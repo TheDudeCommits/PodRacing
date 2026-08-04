@@ -1,0 +1,30 @@
+{
+  "name": "now-this-is-podracing",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "npm run typecheck && vite build",
+    "preview": "vite preview --host 0.0.0.0",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "capture": "npm run build && node scripts/capture.mjs",
+    "capture:selector": "npm run build && node scripts/selector-stability.mjs",
+    "capture:multiplayer": "npm run build && node scripts/multiplayer.mjs",
+    "capture:procedural": "npm run build && node scripts/procedural-courses.mjs",
+    "profile": "node scripts/profile.mjs",
+    "verify": "npm run typecheck && npm run test && npm run build"
+  },
+  "dependencies": {
+    "peerjs": "^1.5.5",
+    "three": "0.185.1"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.62.1",
+    "@types/three": "0.185.3",
+    "typescript": "7.0.2",
+    "vite": "8.2.0",
+    "vitest": "4.1.10"
+  }
+}
