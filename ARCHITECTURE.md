@@ -2,7 +2,7 @@
 
 ## Product contract
 
-“Now This Is PodRacing” is a one-to-three-lap, four-racer arcade game whose frame must
+“Now This Is PodRacing” is a one-to-three-lap, eight-racer arcade game whose frame must
 read as graphic anime art before it reads as WebGL. The primary verbs are
 accelerate, carve, drift, release a charged boost, manage heat/damage, and land
 an unstable repulsorlift craft across an endless procedural desert.
