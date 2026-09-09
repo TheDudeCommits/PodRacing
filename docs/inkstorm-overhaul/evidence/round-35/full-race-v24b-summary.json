@@ -1,0 +1,73 @@
+{
+  "build": "index-B_KeQ-uP.js",
+  "sha256": "7db1087b13f02734d0bb4360db7a9a6a0b5603fe05f938e3defdedd3f801cc67",
+  "races": {
+    "time-attack": {
+      "intervals": 3791,
+      "durationMs": 63747.399999999994,
+      "meanHz": 59.469092072774735,
+      "p95Ms": 16.799999999995634,
+      "p99Ms": 16.80000000000291,
+      "maximumMs": 33.5,
+      "over25": 34,
+      "over50": 0,
+      "outliersOver50": [],
+      "sourceSha256": "5b8224090a87d079c27564eb164e1295930961121aae39459a92be70f8d0fe03",
+      "reportedRendererExtrema": {
+        "minDpr": 1,
+        "maxDpr": 2,
+        "maxCalls": 100,
+        "maxTriangles": 4919217
+      },
+      "dprRange": [
+        1,
+        2
+      ],
+      "maximumFrameSamples": [
+        {
+          "rafTime": 61408.2,
+          "intervalMs": 33.5,
+          "phase": "racing",
+          "raceTime": 55.26666666666417,
+          "simulationFrame": 6993,
+          "progress": 0.8971609370743631,
+          "sector": 8
+        }
+      ]
+    },
+    "cup-round-1": {
+      "intervals": 8135,
+      "durationMs": 137927.8,
+      "meanHz": 58.98013308412083,
+      "p95Ms": 16.79999999998836,
+      "p99Ms": 33.30000000000291,
+      "maximumMs": 50,
+      "over25": 140,
+      "over50": 0,
+      "outliersOver50": [],
+      "sourceSha256": "4e3ce31081ff74829ba4ad615d697fd022e1c054d7c9afb2ce3520e74994e2a9",
+      "reportedRendererExtrema": {
+        "minDpr": 1.875,
+        "maxDpr": 2,
+        "maxCalls": 254,
+        "maxTriangles": 5049901
+      },
+      "dprRange": [
+        1.875,
+        2
+      ],
+      "maximumFrameSamples": [
+        {
+          "rafTime": 96640,
+          "intervalMs": 50,
+          "phase": "racing",
+          "raceTime": 21.416666666666092,
+          "simulationFrame": 2931,
+          "progress": 0.36578925676425306,
+          "sector": 3
+        }
+      ]
+    }
+  },
+  "scope": "Root recomputation of every raw racing interval, including classification grace, no outlier removal. Native Apple M4,1440x900,requestedDPR2/adaptive. Representative Blockrunner races; Teemto activewreck cadence measured separately. Not all devices or all modes."
+}

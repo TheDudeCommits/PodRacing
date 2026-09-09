@@ -1,0 +1,105 @@
+{
+  "scope": "Teemto rigid engine breakup implemented and CPU validated; no browser/build/GPU/visual acceptance by this agent. GameApp and camera contain parent prior changes; these hashes pin the whole current files, not exclusive authorship. Other families retain rigid fallback.",
+  "createdUtc": "2026-09-08T19:43:34.685705+00:00",
+  "files": [
+    {
+      "path": "src/render/combat/TeemtoWreckBreakup.ts",
+      "bytes": 8139,
+      "sha256": "a8adf9b3837012fb1074ee039a32ad6e9aa8221584475ad8be393bd0ebb3f86e"
+    },
+    {
+      "path": "src/render/combat/WreckVisualPose.ts",
+      "bytes": 8739,
+      "sha256": "ac325e5e164abd895a2518e75f1a12d4001a7fbdbc90c3eda2f8adf6d6f68889"
+    },
+    {
+      "path": "src/render/vehicles/ImportedVehiclePresentation.ts",
+      "bytes": 25458,
+      "sha256": "e39dfb8fc854479060872b047ce097103285a65e88fffffe08512f9375bf22d0"
+    },
+    {
+      "path": "src/render/vehicles/RacerPresentation.ts",
+      "bytes": 12170,
+      "sha256": "3a68e2a55a604bf868e7a7c52d8fc0ac44ebd3cafc90d30c968e5d89d4e50754"
+    },
+    {
+      "path": "src/render/app/GameApp.ts",
+      "bytes": 168856,
+      "sha256": "fb8fbb4ec32cc2915aabae39e1feb442d0efdad1db7092f8c69ca997fab75908"
+    },
+    {
+      "path": "src/camera/CinematicCamera.ts",
+      "bytes": 23394,
+      "sha256": "17665988f9f01c8b636067da3b0130e91fc8b6206e05ddeb62da862943d0df50"
+    },
+    {
+      "path": "tests/combat/TeemtoWreckBreakup.test.ts",
+      "bytes": 15423,
+      "sha256": "02293044762cb6c48c9e4b3e2fc6ba61258ad694513bcfaa491fbde30c6b33b5"
+    },
+    {
+      "path": "tests/render/RacerPresentation.test.ts",
+      "bytes": 24733,
+      "sha256": "530118b34630322720ae63049f31bfb93f976747cf41252d072cebb22499a4d3"
+    },
+    {
+      "path": "tests/render/GalacticEffectsContact.test.ts",
+      "bytes": 7170,
+      "sha256": "a1cb6b6678516c22217da33435936ff993b0ffe95a748881e4d7d09873430905"
+    }
+  ],
+  "evidence": [
+    {
+      "path": "assets/source/inkstorm/combat-round35/breakup-feasibility-v1/actual-source-structure.json",
+      "bytes": 48735,
+      "sha256": "433de1ef2dd745d9fb139a5e49499cc4878f8bed098cfc5df8437d840270c985"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/breakup-feasibility-v1/teemto-tests-final.log",
+      "bytes": 1808,
+      "sha256": "e4209a05eaaf43a9f228280b04cf518784201de3903b85bc03bd6a1a8ec9ac1d"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/breakup-feasibility-v1/integration-tests-final.log",
+      "bytes": 217,
+      "sha256": "bed05b5cb84d649a72eb355044f9318b8ccab4f69be64a2b85e52bcaa0dae12f"
+    }
+  ],
+  "validation": {
+    "breakupTests": {
+      "files": 1,
+      "tests": 5,
+      "passed": true
+    },
+    "integrationTests": {
+      "files": 6,
+      "tests": 99,
+      "passed": true
+    },
+    "typecheck": true,
+    "gitDiffCheck": true
+  },
+  "measurements": {
+    "checkpointsPerVariant": 26,
+    "hero": {
+      "minFullVertexTerrainGap": 0.5499999999990415,
+      "maxCameraRadius": 21.35269747746603,
+      "maxExtraSupportQueries": 118
+    },
+    "rival": {
+      "minFullVertexTerrainGap": 0.5325900421483976,
+      "maxCameraRadius": 21.33089009548912,
+      "maxExtraSupportQueries": 114
+    }
+  },
+  "preservedFailures": [
+    "First new test run compared source GLB node order against clone depth-first order; corrected exact mesh-name matching. Not a runtime geometry failure; stdout was not saved.",
+    "First existing FX/contact run failed because its mock omitted new transformWreckAttachment method; fixture now exercises a nonidentity part transform and requires resolver-before-transform ordering. 1 failed/34 passed in that attempt; subsequent35 passed, final99 passed."
+  ],
+  "notRun": [
+    "build",
+    "browser capture",
+    "native cadence",
+    "fresh image critic"
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "outcome": "REJECTED: RGB checkerboard has no transparent alpha; retained unchanged",
+  "source": {
+    "path": "/Users/amir/.codex/generated_images/01a08094-5bf5-77e1-a26d-bb3689ac4568/exec-fb3dd468-5bd8-4c02-8f02-d55425cf8a90.png",
+    "bytes": 1672302,
+    "sha256": "78f89afb178e1ccc9fa4e52e9e9de80911ae65d9a71bb4f103f4e26eb7954d84"
+  },
+  "copiedOutput": {
+    "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/combat-round35/v27-flame-atlas-candidate/flame-atlas-raw-v2.png",
+    "bytes": 1672302,
+    "sha256": "78f89afb178e1ccc9fa4e52e9e9de80911ae65d9a71bb4f103f4e26eb7954d84"
+  },
+  "mode": "RGB",
+  "size": [
+    1254,
+    1254
+  ],
+  "hasAlpha": false,
+  "requestedMode": "built-in imagegen edit of local raw-v1, one targeted correction; no later generation",
+  "prompt": {
+    "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/combat-round35/v27-flame-atlas-candidate/edit-prompt-v2.txt",
+    "bytes": 1299,
+    "sha256": "7f4c46fb6e6e770abfedbc06e2e0146d7c180204d60d72fba5ff90ce3fc7ea0b"
+  },
+  "actualTileInspection": "All four quadrants viewed together at original resolution; baked checkerboard is visible throughout. This RGB output cannot be used as a transparent flame atlas.",
+  "pixelOperations": "None. Both generated originals remain at their generated paths; project copies are byte-identical."
+}

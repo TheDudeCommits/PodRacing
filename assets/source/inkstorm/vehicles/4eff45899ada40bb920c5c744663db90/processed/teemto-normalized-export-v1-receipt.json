@@ -1,0 +1,434 @@
+{
+  "version": 1,
+  "uid": "4eff45899ada40bb920c5c744663db90",
+  "recordedAt": "2026-09-07T15:07:34.515459+00:00",
+  "scope": "One stylized Teemto vehicle family exported as hero and rival variants with an original static seated driver. Public GLBs are prepared assets, not evidence of game wiring or visual/performance acceptance.",
+  "previousStudyReceipt": {
+    "path": "assets/source/inkstorm/vehicles/4eff45899ada40bb920c5c744663db90/processed/teemto-material-study-v1-receipt.json",
+    "bytes": 8725,
+    "sha256": "406412f503beb66161aac9dadd25b50a0cf4388551df7c536f4649286fefa3ea"
+  },
+  "sourcePreservation": {
+    "importedSourceGlb": {
+      "path": "assets/source/inkstorm/vehicles/4eff45899ada40bb920c5c744663db90/imported-source.glb",
+      "bytes": 69550360,
+      "sha256": "b7e2cc046fd392659886b1af88bdda1117037009351493f69dccdf78c4c53836"
+    },
+    "matchesAcquisitionSha256": true,
+    "sourceModified": false,
+    "rawArchivesPreserved": 0
+  },
+  "author": {
+    "uid": "f72a67b7e63e4a08be328091539f3e9d",
+    "username": "rafarelo",
+    "displayName": "Rafael Fernández Calvo",
+    "profileUrl": "https://sketchfab.com/rafarelo"
+  },
+  "modelUrl": "https://sketchfab.com/3d-models/teemto-pagalies-podracer-4eff45899ada40bb920c5c744663db90",
+  "license": {
+    "reported": {
+      "uri": "https://api.sketchfab.com/v3/licenses/322a749bcfa841b29dff1e8a1bb74b0b",
+      "label": "CC Attribution",
+      "fullName": "Creative Commons Attribution",
+      "requirements": "Author must be credited. Commercial use is allowed.",
+      "url": "http://creativecommons.org/licenses/by/4.0/",
+      "slug": "by"
+    },
+    "licenseUrl": "http://creativecommons.org/licenses/by/4.0/",
+    "attributionRequired": true,
+    "nonCommercialOnly": false,
+    "stylizationStatus": "permitted_by_reported_license",
+    "stylizationNote": "Official public model metadata identifies CC BY 4.0. Retain creator credit, model URL, license link and a changes notice with derived exports.",
+    "version": "4.0",
+    "licenseIdentifier": "CC-BY-4.0",
+    "verifiedFrom": "https://api.sketchfab.com/v3/models/4eff45899ada40bb920c5c744663db90",
+    "verifiedAt": "2026-09-07T14:19:16.706642+00:00"
+  },
+  "attributionFile": {
+    "path": "public/assets/inkstorm/vehicles/ATTRIBUTION.md",
+    "bytes": 1263,
+    "sha256": "39a9969d48ec66f9fab9810d15603fa58168562acc0ac5e28a5528325da46512"
+  },
+  "normalization": {
+    "reportedByBlender": {
+      "export": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/vehicles/4eff45899ada40bb920c5c744663db90/processed/teemto-normalized-v1.glb",
+      "scene": "PodRacing — Teemto runtime export v1",
+      "triangles": 50705,
+      "bodyMeshes": 3,
+      "pilotMeshes": 4,
+      "unitScale": 2.5,
+      "restForwardPitchDegrees": 12.742192090049041,
+      "basis": "cockpit seat to engine center, +Z-forward Y-up",
+      "seat": [
+        0,
+        2.2,
+        -5.2
+      ],
+      "anchors": {
+        "teemto-seat": [
+          -1.7763568394002505e-15,
+          2.200000047683716,
+          -5.199999809265137
+        ],
+        "teemto-exhaust-left": [
+          -4.075000762939453,
+          0.17815423011779785,
+          5.637858867645264
+        ],
+        "teemto-exhaust-right": [
+          4.024999141693115,
+          0.17815423011779785,
+          5.637859344482422
+        ],
+        "teemto-coupling-left": [
+          -1.300002098083496,
+          3.2376296520233154,
+          18.940664291381836
+        ],
+        "teemto-coupling-right": [
+          1.3249977827072144,
+          3.2376296520233154,
+          18.940664291381836
+        ]
+      },
+      "bounds": [
+        [
+          -6.54527473449707,
+          0.07286620140075684,
+          -7.333491802215576
+        ],
+        [
+          6.496447563171387,
+          5.250973701477051,
+          22.738540649414062
+        ]
+      ],
+      "exportExtras": false,
+      "animations": false,
+      "sourceModified": false
+    },
+    "officialMcpReceipt": {
+      "path": "assets/source/inkstorm/vehicles/4eff45899ada40bb920c5c744663db90/processed/blender-normalization-export.json",
+      "bytes": 4161,
+      "sha256": "1c6693df707a938680f17eff129209217a3af5a9c1f979bb9b1b6fdc00a3de3a"
+    },
+    "glb": {
+      "path": "assets/source/inkstorm/vehicles/4eff45899ada40bb920c5c744663db90/processed/teemto-normalized-v1.glb",
+      "bytes": 7695708,
+      "sha256": "0221314dd4de62be12472d7f65634f74c9a3b4786ba5eccd78cfba15d5798552",
+      "glbVersion": 2,
+      "counts": {
+        "scenes": 1,
+        "nodes": 16,
+        "meshes": 7,
+        "primitives": 7,
+        "triangles": 50705,
+        "materials": 6,
+        "images": 2,
+        "animations": 0,
+        "skins": 0,
+        "extrasMembers": 0
+      },
+      "meshes": [
+        {
+          "name": "Inkstorm Teemto Gabina-exterior-timon_low_Cabina_0.001",
+          "triangles": 19965,
+          "primitives": 1
+        },
+        {
+          "name": "Inkstorm Teemto Propulsores-alerones_low_Propulsores_0.001",
+          "triangles": 11790,
+          "primitives": 1
+        },
+        {
+          "name": "Inkstorm Teemto Propulsores-alerones_low.002_Propulsores_0.001",
+          "triangles": 11790,
+          "primitives": 1
+        },
+        {
+          "name": "Sphere.042",
+          "triangles": 1144,
+          "primitives": 1
+        },
+        {
+          "name": "Sphere.040",
+          "triangles": 2592,
+          "primitives": 1
+        },
+        {
+          "name": "Sphere.043",
+          "triangles": 3136,
+          "primitives": 1
+        },
+        {
+          "name": "Sphere.041",
+          "triangles": 288,
+          "primitives": 1
+        }
+      ],
+      "nodeNames": [
+        "teemto-cockpit-body",
+        "teemto-cockpit.001",
+        "teemto-coupling-left",
+        "teemto-coupling-right",
+        "teemto-engine-left-body",
+        "teemto-engine-left.001",
+        "teemto-engine-right-body",
+        "teemto-engine-right.001",
+        "teemto-exhaust-left",
+        "teemto-exhaust-right",
+        "teemto-pilot-helmet.001",
+        "teemto-pilot-orange.001",
+        "teemto-pilot-suit.001",
+        "teemto-pilot-visor.001",
+        "teemto-pilot.001",
+        "teemto-seat"
+      ],
+      "extensionsUsed": []
+    }
+  },
+  "stylizedVariants": [
+    {
+      "path": "public/assets/inkstorm/vehicles/teemto-hero.glb",
+      "bytes": 2639312,
+      "sha256": "a7787f380a71ac31c8dbbaf228cb949e97c119d763a54384e66c05f884cba491",
+      "glbVersion": 2,
+      "counts": {
+        "scenes": 1,
+        "nodes": 11,
+        "meshes": 7,
+        "primitives": 7,
+        "triangles": 50705,
+        "materials": 6,
+        "images": 2,
+        "animations": 0,
+        "skins": 0,
+        "extrasMembers": 0
+      },
+      "meshes": [
+        {
+          "name": "Inkstorm Teemto Gabina-exterior-timon_low_Cabina_0.001",
+          "triangles": 19965,
+          "primitives": 1
+        },
+        {
+          "name": "Inkstorm Teemto Propulsores-alerones_low_Propulsores_0.001",
+          "triangles": 11790,
+          "primitives": 1
+        },
+        {
+          "name": "Inkstorm Teemto Propulsores-alerones_low.002_Propulsores_0.001",
+          "triangles": 11790,
+          "primitives": 1
+        },
+        {
+          "name": "Sphere.042",
+          "triangles": 1144,
+          "primitives": 1
+        },
+        {
+          "name": "Sphere.040",
+          "triangles": 2592,
+          "primitives": 1
+        },
+        {
+          "name": "Sphere.043",
+          "triangles": 3136,
+          "primitives": 1
+        },
+        {
+          "name": "Sphere.041",
+          "triangles": 288,
+          "primitives": 1
+        }
+      ],
+      "nodeNames": [
+        "teemto-cockpit-body",
+        "teemto-cockpit.001",
+        "teemto-engine-left-body",
+        "teemto-engine-left.001",
+        "teemto-engine-right-body",
+        "teemto-engine-right.001",
+        "teemto-pilot-helmet.001",
+        "teemto-pilot-orange.001",
+        "teemto-pilot-suit.001",
+        "teemto-pilot-visor.001",
+        "teemto-pilot.001"
+      ],
+      "extensionsUsed": [
+        "EXT_texture_webp"
+      ],
+      "preservedSourceCopy": {
+        "path": "assets/source/inkstorm/vehicles/4eff45899ada40bb920c5c744663db90/processed/teemto-hero-a7787f380a71.glb",
+        "bytes": 2639312,
+        "sha256": "a7787f380a71ac31c8dbbaf228cb949e97c119d763a54384e66c05f884cba491"
+      }
+    },
+    {
+      "path": "public/assets/inkstorm/vehicles/teemto-rival.glb",
+      "bytes": 1931540,
+      "sha256": "3d9d8d8d924258b84553de7f31f44dc4f69f069511cb6358ab2c174768e3385f",
+      "glbVersion": 2,
+      "counts": {
+        "scenes": 1,
+        "nodes": 11,
+        "meshes": 7,
+        "primitives": 7,
+        "triangles": 26180,
+        "materials": 6,
+        "images": 2,
+        "animations": 0,
+        "skins": 0,
+        "extrasMembers": 0
+      },
+      "meshes": [
+        {
+          "name": "Inkstorm Teemto Gabina-exterior-timon_low_Cabina_0.001",
+          "triangles": 12026,
+          "primitives": 1
+        },
+        {
+          "name": "Inkstorm Teemto Propulsores-alerones_low_Propulsores_0.001",
+          "triangles": 5426,
+          "primitives": 1
+        },
+        {
+          "name": "Inkstorm Teemto Propulsores-alerones_low.002_Propulsores_0.001",
+          "triangles": 5378,
+          "primitives": 1
+        },
+        {
+          "name": "Sphere.042",
+          "triangles": 514,
+          "primitives": 1
+        },
+        {
+          "name": "Sphere.040",
+          "triangles": 1166,
+          "primitives": 1
+        },
+        {
+          "name": "Sphere.043",
+          "triangles": 1410,
+          "primitives": 1
+        },
+        {
+          "name": "Sphere.041",
+          "triangles": 260,
+          "primitives": 1
+        }
+      ],
+      "nodeNames": [
+        "teemto-cockpit-body",
+        "teemto-cockpit.001",
+        "teemto-engine-left-body",
+        "teemto-engine-left.001",
+        "teemto-engine-right-body",
+        "teemto-engine-right.001",
+        "teemto-pilot-helmet.001",
+        "teemto-pilot-orange.001",
+        "teemto-pilot-suit.001",
+        "teemto-pilot-visor.001",
+        "teemto-pilot.001"
+      ],
+      "extensionsUsed": [
+        "EXT_texture_webp"
+      ],
+      "preservedSourceCopy": {
+        "path": "assets/source/inkstorm/vehicles/4eff45899ada40bb920c5c744663db90/processed/teemto-rival-3d9d8d8d9242.glb",
+        "bytes": 1931540,
+        "sha256": "3d9d8d8d924258b84553de7f31f44dc4f69f069511cb6358ab2c174768e3385f"
+      }
+    }
+  ],
+  "driver": {
+    "sourceOccupancy": "absent_confirmed",
+    "derivedOccupancy": "original_driver_added",
+    "pose": "static seated; hands positioned on source controls",
+    "driverAdded": true,
+    "bodyMeshes": 3,
+    "bodyTriangles": 43545,
+    "pilotMeshes": 4,
+    "pilotTriangles": 7160,
+    "animation": false,
+    "basis": "Producer executed original driver construction in Blender; saved side-v4 render inspected separately. Geometry totals independently checked in normalized/hero GLB JSON accessors.",
+    "visualEvidence": [
+      {
+        "path": "output/vehicles/teemto-review/driver-cockpit-side-v3.png",
+        "bytes": 1901185,
+        "sha256": "a78eb449ca2c3dbee06e0f03fc10307171b6663aef1608ea66cad5c7bbfb650d"
+      },
+      {
+        "path": "output/vehicles/teemto-review/driver-cockpit-side-v4.png",
+        "bytes": 1899159,
+        "sha256": "64efa333f7ab394a12ed37b031c533c6265e06703c8bb22810ccc78b417b7a60"
+      }
+    ]
+  },
+  "validation": {
+    "hero": {
+      "errors": 0,
+      "warnings": 0,
+      "infoMessages": 3,
+      "details": [
+        {
+          "code": "IMAGE_NPOT_DIMENSIONS",
+          "messages": 2,
+          "imageDimensions": [
+            1254,
+            1254
+          ]
+        },
+        {
+          "code": "ACCESSOR_INDEX_TRIANGLE_DEGENERATE",
+          "messages": 1,
+          "degenerateTriangles": 2,
+          "primitiveTriangles": 19965,
+          "pointer": "/meshes/0/primitives/0/indices"
+        }
+      ],
+      "evidence": {
+        "path": "output/vehicles/teemto-review/hero-validation.log",
+        "bytes": 3966,
+        "sha256": "e9b68dbe620276dad4a010ca832b97332eaff026328e9e67b3bcd83fb62807b8"
+      }
+    },
+    "rival": "No rival validator report supplied at this receipt; parsed GLB JSON/header/counts only.",
+    "pixelUvAndRuntimeAppearance": "not_accepted",
+    "runtimeIntegration": "not_started"
+  },
+  "optimizationEvidence": [
+    {
+      "path": "output/vehicles/teemto-review/hero-optimize.log",
+      "bytes": 322,
+      "sha256": "cb8cb5b668c08f4bd1318c94ee32f555e045fc1844e4120b70e0fb7133cb591b"
+    },
+    {
+      "path": "output/vehicles/teemto-review/rival-simplify.log",
+      "bytes": 63,
+      "sha256": "eeef247350884ae535b8f5b671c78fbf1e6851907f6dd1ec3b3294a59b59ce6b"
+    }
+  ],
+  "anchorContract": {
+    "normalizedAnchorCount": 5,
+    "optimizedEmptyAnchorsPreserved": false,
+    "note": "The optimized hero/rival JSON has 11 nodes versus normalized16; the five empty anchor nodes were removed. Runtime integration must use the recorded normalization anchor data or preserve the anchors in a later export. No runtime integration is asserted here."
+  },
+  "sourceScriptCopies": [
+    {
+      "path": "assets/source/inkstorm/vehicles/4eff45899ada40bb920c5c744663db90/processed/teemto-driver-export-v1-a8e7d777817a.py",
+      "bytes": 5037,
+      "sha256": "a8e7d777817a0521fc879bc39c6b282856ebea0b997b01e02f929ae5d0791756",
+      "copiedFrom": "scripts/blender/teemto-driver.py",
+      "recordedAt": "2026-09-07T15:07:34.515459+00:00"
+    },
+    {
+      "path": "assets/source/inkstorm/vehicles/4eff45899ada40bb920c5c744663db90/processed/export-teemto-export-v1-290853d24237.py",
+      "bytes": 4894,
+      "sha256": "290853d242372cef3ecc146826d84de714b902d692547e9b766acd79ca0908e2",
+      "copiedFrom": "scripts/blender/export-teemto.py",
+      "recordedAt": "2026-09-07T15:07:34.515459+00:00"
+    }
+  ],
+  "auditScope": "Source/provenance documentation; headers, JSON accessor counts and SHA verification only. Saved Blender image inspected; no Blender, browser, GPU, build or image/GLB modification performed by this audit."
+}

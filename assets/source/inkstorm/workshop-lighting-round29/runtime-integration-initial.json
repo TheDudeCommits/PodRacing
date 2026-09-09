@@ -1,0 +1,34 @@
+{
+  "scope": "Initial lighting runtime integration; separate material classifier correction pending",
+  "recordedAtUTC": "2026-09-07T20:40:49.566309+00:00",
+  "source": {
+    "src/render/inkstorm/InkstormSurfaceMaterial.ts": "a78f6be5d2f39363cc4836277090f274fa048be30324e3b2c1d93d23dd25bd69",
+    "src/render/inkstorm/InkstormWorld.ts": "19b591bca5bce7169eaa298ac71acb4d75fed1a355dc6892abfdc1ce689571a3"
+  },
+  "pairs": [
+    {
+      "before": "grid-construction-round29-unlit",
+      "after": "grid-construction-round29-lit",
+      "errors": [],
+      "posesExact": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "before": "grid-district-round29-unlit",
+      "after": "grid-district-round29-lit",
+      "errors": [],
+      "posesExact": [
+        true,
+        true,
+        true,
+        true
+      ]
+    }
+  ],
+  "review": "docs/inkstorm-overhaul/BLIND_WORKSHOP_LIGHTING_ROUND29.md",
+  "acceptance": "Blind narrowly retainB, strict parityFAIL; no new FPS measurement",
+  "priorShader": "versions/initial-lighting/InkstormSurfaceMaterial.ts"
+}

@@ -1,0 +1,81 @@
+{
+  "scope": "PRIVATE ONLY; git apply --check passed, no live apply or native visual acceptance.",
+  "files": [
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/combat-round35/v24-impact-camera-preparation/v24-impact-camera.patch",
+      "bytes": 35712,
+      "sha256": "33ac76078c8a9466b1e4f62d4fd7281ce9598f43af31c08af77e23ea463aa5e7"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/combat-round35/v24-impact-camera-preparation/v24-gameapp-impact-adapter.patch",
+      "bytes": 793,
+      "sha256": "905b4b0027cd280152647c86270d952fbc587ea74d00c72725689b2640dce5c1"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/combat-round35/v24-impact-camera-preparation/input-inventory.json",
+      "bytes": 639,
+      "sha256": "029bfd2f9d838efb10e29c363c047f38ae07c3b3715d3705e6f1d44de6eb8632"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/combat-round35/v24-impact-camera-preparation/same-snapshot-metrics.json",
+      "bytes": 5237,
+      "sha256": "7af6bda10aaa80fd5ea2cf689514e86fc2d54759382a0fbd554381b7575a8667"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/combat-round35/v24-impact-camera-preparation/HANDOFF.md",
+      "bytes": 6307,
+      "sha256": "9bd692fbe4512a7d19df09f1d4c31cf0d0aeb259f378890dc794aca367d14ee4"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/combat-round35/v24-impact-camera-preparation/focused-final.log",
+      "bytes": 215,
+      "sha256": "fe65d2f3f00d05593fdf6b1d112e4b12b887ce095f73ccbe213aedd3355b1879"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/combat-round35/v24-impact-camera-preparation/typecheck-final.log",
+      "bytes": 71,
+      "sha256": "3885676a8746bf95d2b45be70bcfd15d8a44e988ba2df606be6c27b5b5cba5bf"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/combat-round35/v24-impact-camera-preparation/apply-check.log",
+      "bytes": 12,
+      "sha256": "21fefdddd9e88788ddbe4699e83f74a76d6d388dbf5015cc5ece40a0b27d0455"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/combat-round35/v24-impact-camera-preparation/candidate/src/camera/CinematicCamera.ts",
+      "bytes": 33884,
+      "sha256": "862a5787a34d6d767841b87b738a38d82b5b1bf074b1e54454f2a5f47bd9ecf9"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/combat-round35/v24-impact-camera-preparation/candidate/src/render/combat/WreckVisualPose.ts",
+      "bytes": 11510,
+      "sha256": "2f634e7cbd07d166ecf2beaf16b02031b6e320c3c30aa16b074c7c10d5729e90"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/combat-round35/v24-impact-camera-preparation/candidate/src/render/combat/TeemtoAuthoredDamage.ts",
+      "bytes": 22967,
+      "sha256": "8823718236f00cad5dafc109056ca554c67fb09ad30462069bb1180281703841"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/combat-round35/v24-impact-camera-preparation/candidate/tests/camera/TeemtoImpactFraming.test.ts",
+      "bytes": 17379,
+      "sha256": "fcbe52c429ef175fbbcc609d1f3b4d82de91f2fba4a7e6b993c498967324a91c"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/combat-round35/v24-impact-camera-preparation/candidate/tests/fixtures/teemtoActualCamera.ts",
+      "bytes": 4089,
+      "sha256": "2c67ce683eae39dafec9060ad5848d7e66a14067b29eac1d4d3ac2716d1ac03f"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/combat-round35/v24-impact-camera-preparation/candidate/src/render/app/GameApp.ts",
+      "bytes": 175201,
+      "sha256": "6ad516d7a8579583711d18bab55ee82f475f98f85ccb4c3ebcf7929f4ad1f90a"
+    }
+  ],
+  "gameAppLiveInput": {
+    "path": "/Users/amir/Projects/PodRacing/src/render/app/GameApp.ts",
+    "bytes": 175092,
+    "sha256": "533e59920f8c95cdf7943c496b4923abb9a1223d486c935fe32adecb3531c7c8"
+  },
+  "gameAppNote": "Root owns concurrent HUD changes. Adapter is two added optional-field assignments; dry apply checked against the current live GameApp without overwriting it."
+}

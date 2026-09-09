@@ -1,0 +1,159 @@
+{
+  "status": "adapter-frozen-integrated-CPU-checks-passed",
+  "owned": [
+    {
+      "path": "src/render/vehicles/ImportedVehiclePresentation.ts",
+      "bytes": 34499,
+      "sha256": "f6e600f8f7fd418ed12e3d7cc364644d1b5215817f8cd1e4e783c50e35ed2042"
+    },
+    {
+      "path": "src/render/vehicles/RacerPresentation.ts",
+      "bytes": 12592,
+      "sha256": "9345e527763d742af0500a00864f838a1397c9031a2a5626d38b3cac9fefb749"
+    },
+    {
+      "path": "tests/render/importedVehicleDamage.test.ts",
+      "bytes": 26781,
+      "sha256": "2e6e4df8d0d773e88e9e078894cc3a4c21241728d518a98a33c261dbdb53b9ad"
+    }
+  ],
+  "optionalAcquisition": "Original and damage leases share one AbortController and generation; only newest generation commits. Damage failure commits ready intact art. Clear/dispose/replacement drains both resolved and pending acquisitions.",
+  "geometryContract": "Exactly front and rear engine fragments; optional cockpit stubs and severed tethers must be present together. Authored transforms, POSITION, NORMAL, UV0, indices and borrowed material UV requirements validated once. Existing per-presentation draw and triangle budgets unchanged.",
+  "rootAndCache": "Damage root attached under intact root before installDamageVariant; helper constructor receives only originals. geometryMeshes remains original intact geometry for WreckVisualPoseCache, which does not filter visibility. getOpaqueMeshes/prepass/shadow arrays include fixed resident replacements once.",
+  "materialOwnership": "Replacements borrow exact converted cockpit/right-engine CelMaterials. No additional texture, CelMaterial or shader is created. Source/damage lease owns geometry; proxies removed before releases.",
+  "statistics": "statistics selects precomputed intact/replacement full-detail submissions. residentStatistics separately reports full resident resources. Existing LOD visibility counts remain separately observable via visiblePrepasses.",
+  "knownHeroMetrics": {
+    "intactTriangles": 57618,
+    "replacementTriangles": 58624,
+    "residentTriangles": 88337,
+    "intactMeshes": 10,
+    "replacementMeshes": 12,
+    "residentMeshes": 14,
+    "bodyDraws": {
+      "intact": 4,
+      "replacement": 6
+    },
+    "pilotDraws": 6,
+    "verifiedByInstalledLoaderAndAdapter": true
+  },
+  "checks": {
+    "existingRegressions": {
+      "passed": 61,
+      "files": 2,
+      "log": "assets/source/inkstorm/combat-round35/damage-adapter-v16/existing-regressions-initial.log"
+    },
+    "initialDamageTests": {
+      "passed": 11,
+      "failed": 3,
+      "log": "assets/source/inkstorm/combat-round35/damage-adapter-v16/damage-initial-tests.log",
+      "reason": "Three valid-install cases ran before helper API existed. No weakening; rerun pending."
+    },
+    "initialTypecheck": {
+      "log": "assets/source/inkstorm/combat-round35/damage-adapter-v16/initial-typecheck.log",
+      "errors": "Four missing helper API references only; integration pending."
+    },
+    "integrated": {
+      "passed": 81,
+      "failed": 0,
+      "files": 3,
+      "newDamageTests": 20,
+      "log": {
+        "path": "assets/source/inkstorm/combat-round35/damage-adapter-v16/integrated-tests.log",
+        "bytes": 16025,
+        "sha256": "b619545265b69815977e4618a1e3f0b07568656ae903f6d180d4a1a6d0b66198"
+      },
+      "execution": {
+        "command": [
+          "npx",
+          "vitest",
+          "run",
+          "tests/render/importedVehicleDamage.test.ts",
+          "tests/render/importedVehiclePresentation.test.ts",
+          "tests/render/racerPresentation.test.ts",
+          "--silent=false",
+          "--reporter=verbose"
+        ],
+        "exitCode": 0,
+        "elapsedSeconds": 1.1771819591522217
+      },
+      "typecheck": {
+        "exitCode": 0,
+        "log": {
+          "path": "assets/source/inkstorm/combat-round35/damage-adapter-v16/integrated-typecheck.log",
+          "bytes": 57,
+          "sha256": "fa95b29726a1ab8891b320173cad4ef80c08c37ec637f2c438a5294fb97ce445"
+        }
+      },
+      "diffCheck": {
+        "exitCode": 0,
+        "command": [
+          "git",
+          "diff",
+          "--check",
+          "--",
+          "src/render/vehicles/ImportedVehiclePresentation.ts",
+          "src/render/vehicles/RacerPresentation.ts",
+          "tests/render/importedVehicleDamage.test.ts"
+        ]
+      }
+    }
+  },
+  "privateGameAppDiagnosticPatch": "assets/source/inkstorm/combat-round35/damage-adapter-v16/GameApp-damage-diagnostics.patch",
+  "limitations": [
+    "No browser, build, GPU or Blender used. No visual acceptance or FPS inference.",
+    "Actual source texture/image decoding is excluded from CPU fixtures; runtime maps are borrowed unchanged by identity in synthetic material tests.",
+    "Current statistics selects full-detail intact/replacement counts, as prior statistics did; LOD/ancestor visibility remains reported separately via visiblePrepasses.",
+    "Native damage metadata URL configuration and GameApp diagnostics patch are parent/root-owned. This freeze validates direct adapter definitions using exact private packages, not a published native run.",
+    "Parent owns full-vertex terrain/camera validation of the new helper; this adapter suite does not claim it."
+  ],
+  "completedAtUtc": "2026-09-08T21:46:46.106261+00:00",
+  "integratedHelperSources": [
+    {
+      "path": "src/render/combat/TeemtoWreckBreakup.ts",
+      "bytes": 11490,
+      "sha256": "824ce19d7c465cb1ac0da82f050a22998d9afa7048215a8f18f98cfb140adcbf"
+    },
+    {
+      "path": "src/render/combat/TeemtoAuthoredDamage.ts",
+      "bytes": 10466,
+      "sha256": "58292fae738aa7195b6b6bed5962d04fda8fb694c6d89bfa1fd292765db2e366"
+    }
+  ],
+  "actualPackages": [
+    {
+      "path": "assets/source/inkstorm/combat-round35/authored-damage-v16/packaged-b/teemto-damage-hero-v16.glb",
+      "bytes": 1997952,
+      "sha256": "31cf1c7bfb3ea539d19598b466abd9eaec1b8e5f0c4ece58e9014c686c3c13d8"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/authored-damage-v16/packaged-b/teemto-damage-rival-v16.glb",
+      "bytes": 451628,
+      "sha256": "631e8a0e7a2809e0e9e077cebf9306c5b0ad8167980b3394f1cd276f16671e20"
+    }
+  ],
+  "verifiedRivalMetrics": {
+    "intactTriangles": 26180,
+    "replacementTriangles": 26588,
+    "residentTriangles": 31966,
+    "intactMeshes": 7,
+    "replacementMeshes": 8,
+    "residentMeshes": 9,
+    "bodyDraws": {
+      "intact": 3,
+      "replacement": 4
+    },
+    "pilotDraws": 4,
+    "unchangedMaxTriangles": 30000
+  },
+  "validationCoverage": [
+    "Exact packaged geometry-only damage GLB bytes parsed through installed GLTFLoader for both hero and rival.",
+    "Intact fixture preserves exact BIN/attributes/topology/hierarchy and actual source material names/factors/primitive assignments, omitting only texture bindings to avoid DOM image decoding.",
+    "Hero borrow identities: cockpit stubs and severed tethers reuse original cockpit CelMaterial; front/rear reuse distinct right-engine CelMaterial. Rival front/rear reuse right-engine CelMaterial; cockpit and pilot geometry/material identities remain exact.",
+    "Fixed original geometry cache list and fixed resident render/prepass/shadow lists across activation and reset; no geometry revision changes per frame.",
+    "Actual InkstormRacerShadow CPU selectCasters path switches 4 intact / 6 damaged / 4 reset in synthetic hero fixture with fixed bindings; wrapper hidden clears all proxies. No GPU rendering used.",
+    "Actual RacerPresentation preserves live damage only when requested, hides imported coupling/flame effects, respects pilot LOD, and resets exact ordinary presentation.",
+    "Optional missing, duplicate, incomplete-pair, invalid UV/normal/index and over-budget data leaves intact art ready. Hero package against rival cap is explicitly rejected.",
+    "Cancellation during either acquisition order, clear/dispose/replacement, primary/optional load failures, shared templates and release() exactly once per lease.",
+    "Registration callback precedes old material/resource release; removed proxies cannot retain stale borrowed geometry."
+  ]
+}

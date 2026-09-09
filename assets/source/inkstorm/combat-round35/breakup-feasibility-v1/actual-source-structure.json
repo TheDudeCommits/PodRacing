@@ -1,0 +1,1719 @@
+{
+  "scope": "Read-only actual GLB headers and referenced POSITION/index topology; no browser/MCP or authoring. Mesh transforms all identity in these eight packages; group and attachment transforms recorded separately.",
+  "sources": [
+    {
+      "path": "public/assets/inkstorm/vehicles/teemto-hero-open-v2.glb",
+      "bytes": 7698824,
+      "sha256": "af5d69514a51f7e9c089a1710e1587f46e053412b488268dc433f029576c0a7e",
+      "nodes": [
+        {
+          "nodeIndex": 0,
+          "name": "teemto-cockpit-body",
+          "children": [],
+          "transform": {},
+          "primitives": [
+            {
+              "material": "Inkstorm Teemto Cabina",
+              "positionCount": 25119,
+              "referencedVertices": 25119,
+              "triangles": 17923,
+              "referencedBounds": {
+                "min": [
+                  -4.178723335266113,
+                  1.001510739326477,
+                  -7.389999866485596
+                ],
+                "max": [
+                  4.177325248718262,
+                  5.13743257522583,
+                  15.937384605407715
+                ]
+              },
+              "exactPositionWeldedForwardComponents": [
+                {
+                  "triangles": 144,
+                  "bounds": {
+                    "min": [
+                      -4.178723335266113,
+                      2.6947789192199707,
+                      1.1724190711975098
+                    ],
+                    "max": [
+                      -0.9918592572212219,
+                      5.100466251373291,
+                      15.937384605407715
+                    ]
+                  },
+                  "firstTriangle": 1807
+                },
+                {
+                  "triangles": 144,
+                  "bounds": {
+                    "min": [
+                      1.0115609169006348,
+                      2.69962215423584,
+                      1.1714577674865723
+                    ],
+                    "max": [
+                      4.177325248718262,
+                      5.13743257522583,
+                      15.936711311340332
+                    ]
+                  },
+                  "firstTriangle": 3159
+                }
+              ],
+              "componentScope": "Actual referenced source triangles, exact Float32 position welding externally; diagnosis only, no partition/mesh edits."
+            }
+          ]
+        },
+        {
+          "nodeIndex": 1,
+          "name": "teemto-cockpit.001",
+          "children": [
+            0,
+            13
+          ],
+          "transform": {}
+        },
+        {
+          "nodeIndex": 2,
+          "name": "teemto-engine-left-body",
+          "children": [],
+          "transform": {},
+          "primitives": [
+            {
+              "material": "Inkstorm Teemto Propulsores",
+              "positionCount": 13967,
+              "referencedVertices": 13967,
+              "triangles": 11790,
+              "referencedBounds": {
+                "min": [
+                  -6.54527473449707,
+                  0.07286620140075684,
+                  5.0940141677856445
+                ],
+                "max": [
+                  -1.3186402320861816,
+                  5.191770553588867,
+                  22.738540649414062
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "nodeIndex": 3,
+          "name": "teemto-engine-left.001",
+          "children": [
+            2
+          ],
+          "transform": {}
+        },
+        {
+          "nodeIndex": 4,
+          "name": "teemto-engine-right-body",
+          "children": [],
+          "transform": {},
+          "primitives": [
+            {
+              "material": "Inkstorm Teemto Propulsores",
+              "positionCount": 13867,
+              "referencedVertices": 13867,
+              "triangles": 11790,
+              "referencedBounds": {
+                "min": [
+                  1.2777190208435059,
+                  0.11396288871765137,
+                  5.1262664794921875
+                ],
+                "max": [
+                  6.496447563171387,
+                  5.250973701477051,
+                  22.736522674560547
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "nodeIndex": 5,
+          "name": "teemto-engine-right.001",
+          "children": [
+            4
+          ],
+          "transform": {}
+        },
+        {
+          "nodeIndex": 6,
+          "name": "teemto-pilot-accent.003",
+          "children": [],
+          "transform": {},
+          "primitives": [
+            {
+              "material": "Pilot atlas v4c runtime accent",
+              "positionCount": 301,
+              "referencedVertices": 301,
+              "triangles": 188,
+              "referencedBounds": {
+                "min": [
+                  -0.3497789800167084,
+                  2.1751253604888916,
+                  -5.6404194831848145
+                ],
+                "max": [
+                  0.3465256690979004,
+                  3.2211050987243652,
+                  -5.051327228546143
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "nodeIndex": 7,
+          "name": "teemto-pilot-hardware.003",
+          "children": [],
+          "transform": {},
+          "primitives": [
+            {
+              "material": "Pilot atlas v4c runtime hardware",
+              "positionCount": 1587,
+              "referencedVertices": 1587,
+              "triangles": 1552,
+              "referencedBounds": {
+                "min": [
+                  -0.17999997735023499,
+                  2.403860569000244,
+                  -5.627439498901367
+                ],
+                "max": [
+                  0.18000000715255737,
+                  3.215754508972168,
+                  -5.061928749084473
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "nodeIndex": 8,
+          "name": "teemto-pilot-rubber.002",
+          "children": [],
+          "transform": {},
+          "primitives": [
+            {
+              "material": "Pilot atlas v4c runtime rubber",
+              "positionCount": 2524,
+              "referencedVertices": 2524,
+              "triangles": 2228,
+              "referencedBounds": {
+                "min": [
+                  -0.38293713331222534,
+                  2.29592227935791,
+                  -5.509989261627197
+                ],
+                "max": [
+                  0.4204370379447937,
+                  2.9088850021362305,
+                  -4.128168106079102
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "nodeIndex": 9,
+          "name": "teemto-pilot-shell.003",
+          "children": [],
+          "transform": {},
+          "primitives": [
+            {
+              "material": "Pilot atlas v4c runtime shell",
+              "positionCount": 1558,
+              "referencedVertices": 1558,
+              "triangles": 1444,
+              "referencedBounds": {
+                "min": [
+                  -0.21125000715255737,
+                  2.2050418853759766,
+                  -5.660841464996338
+                ],
+                "max": [
+                  0.21125000715255737,
+                  3.2183940410614014,
+                  -5.070261001586914
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "nodeIndex": 10,
+          "name": "teemto-pilot-suit.005",
+          "children": [],
+          "transform": {},
+          "primitives": [
+            {
+              "material": "Pilot atlas v4c runtime suit",
+              "positionCount": 12692,
+              "referencedVertices": 12692,
+              "triangles": 9359,
+              "referencedBounds": {
+                "min": [
+                  -0.37821540236473083,
+                  2.0615973472595215,
+                  -5.545644283294678
+                ],
+                "max": [
+                  0.3790219724178314,
+                  2.8416998386383057,
+                  -4.231770992279053
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "nodeIndex": 11,
+          "name": "teemto-pilot-webbing.002",
+          "children": [],
+          "transform": {},
+          "primitives": [
+            {
+              "material": "Pilot atlas v4c runtime webbing",
+              "positionCount": 1037,
+              "referencedVertices": 1037,
+              "triangles": 1008,
+              "referencedBounds": {
+                "min": [
+                  -0.22436034679412842,
+                  2.1737446784973145,
+                  -5.492895603179932
+                ],
+                "max": [
+                  0.22436034679412842,
+                  2.8099563121795654,
+                  -5.0683794021606445
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "nodeIndex": 12,
+          "name": "teemto-pilot-construction-v4b.002",
+          "children": [
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ],
+          "transform": {}
+        },
+        {
+          "nodeIndex": 13,
+          "name": "teemto-cockpit-graphite-v2",
+          "children": [],
+          "transform": {},
+          "primitives": [
+            {
+              "material": "Inkstorm Teemto open cockpit graphite structure v2",
+              "positionCount": 396,
+              "referencedVertices": 396,
+              "triangles": 336,
+              "referencedBounds": {
+                "min": [
+                  -0.5084967017173767,
+                  2.124769449234009,
+                  -7.064000129699707
+                ],
+                "max": [
+                  0.5584967136383057,
+                  2.819999933242798,
+                  -3.436000108718872
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "public/assets/inkstorm/vehicles/teemto-rival.glb",
+      "bytes": 1931540,
+      "sha256": "3d9d8d8d924258b84553de7f31f44dc4f69f069511cb6358ab2c174768e3385f",
+      "nodes": [
+        {
+          "nodeIndex": 0,
+          "name": "teemto-cockpit-body",
+          "children": [],
+          "transform": {},
+          "primitives": [
+            {
+              "material": "Inkstorm Teemto Cabina",
+              "positionCount": 20302,
+              "referencedVertices": 20302,
+              "triangles": 12026,
+              "referencedBounds": {
+                "min": [
+                  -1.3348463773727417,
+                  1.001510739326477,
+                  -7.333491802215576
+                ],
+                "max": [
+                  1.3557040691375732,
+                  4.498374938964844,
+                  1.1882781982421875
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "nodeIndex": 1,
+          "name": "teemto-cockpit.001",
+          "children": [
+            0
+          ],
+          "transform": {}
+        },
+        {
+          "nodeIndex": 2,
+          "name": "teemto-engine-left-body",
+          "children": [],
+          "transform": {},
+          "primitives": [
+            {
+              "material": "Inkstorm Teemto Propulsores",
+              "positionCount": 9805,
+              "referencedVertices": 9805,
+              "triangles": 5426,
+              "referencedBounds": {
+                "min": [
+                  -6.54527473449707,
+                  0.07286620140075684,
+                  5.0940141677856445
+                ],
+                "max": [
+                  -1.3187763690948486,
+                  5.1863298416137695,
+                  22.738540649414062
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "nodeIndex": 3,
+          "name": "teemto-engine-left.001",
+          "children": [
+            2
+          ],
+          "transform": {}
+        },
+        {
+          "nodeIndex": 4,
+          "name": "teemto-engine-right-body",
+          "children": [],
+          "transform": {},
+          "primitives": [
+            {
+              "material": "Inkstorm Teemto Propulsores",
+              "positionCount": 9618,
+              "referencedVertices": 9618,
+              "triangles": 5378,
+              "referencedBounds": {
+                "min": [
+                  1.2777190208435059,
+                  0.12051224708557129,
+                  5.1262664794921875
+                ],
+                "max": [
+                  6.496447563171387,
+                  5.250973701477051,
+                  22.736522674560547
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "nodeIndex": 5,
+          "name": "teemto-engine-right.001",
+          "children": [
+            4
+          ],
+          "transform": {}
+        },
+        {
+          "nodeIndex": 6,
+          "name": "teemto-pilot-helmet.001",
+          "children": [],
+          "transform": {},
+          "primitives": [
+            {
+              "material": "Teemto original pilot helmet.001",
+              "positionCount": 389,
+              "referencedVertices": 389,
+              "triangles": 514,
+              "referencedBounds": {
+                "min": [
+                  -0.3725000321865082,
+                  2.3902416229248047,
+                  -5.669759273529053
+                ],
+                "max": [
+                  0.36919623613357544,
+                  3.275423288345337,
+                  -4.624944686889648
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "nodeIndex": 7,
+          "name": "teemto-pilot-orange.001",
+          "children": [],
+          "transform": {},
+          "primitives": [
+            {
+              "material": "Teemto original pilot orange.001",
+              "positionCount": 861,
+              "referencedVertices": 861,
+              "triangles": 1166,
+              "referencedBounds": {
+                "min": [
+                  -0.30346211791038513,
+                  2.1005306243896484,
+                  -5.563058376312256
+                ],
+                "max": [
+                  0.30346211791038513,
+                  3.2314445972442627,
+                  -4.555837154388428
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "nodeIndex": 8,
+          "name": "teemto-pilot-suit.001",
+          "children": [],
+          "transform": {},
+          "primitives": [
+            {
+              "material": "Teemto original pilot suit.001",
+              "positionCount": 1132,
+              "referencedVertices": 1132,
+              "triangles": 1410,
+              "referencedBounds": {
+                "min": [
+                  -0.3674999177455902,
+                  2.054417371749878,
+                  -5.534947395324707
+                ],
+                "max": [
+                  0.3675000071525574,
+                  3.009394645690918,
+                  -4.12967586517334
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "nodeIndex": 9,
+          "name": "teemto-pilot-visor.001",
+          "children": [],
+          "transform": {},
+          "primitives": [
+            {
+              "material": "Teemto original pilot visor.001",
+              "positionCount": 171,
+              "referencedVertices": 171,
+              "triangles": 260,
+              "referencedBounds": {
+                "min": [
+                  -0.19249999523162842,
+                  2.9972448348999023,
+                  -5.355953216552734
+                ],
+                "max": [
+                  0.19249998033046722,
+                  3.1874423027038574,
+                  -5.22206974029541
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "nodeIndex": 10,
+          "name": "teemto-pilot.001",
+          "children": [
+            6,
+            7,
+            8,
+            9
+          ],
+          "transform": {}
+        }
+      ]
+    },
+    {
+      "path": "public/assets/inkstorm/vehicles/sebulba-hero.glb",
+      "bytes": 2672804,
+      "sha256": "f4b31d9260e3272ec394161dea236c874d551b469f18a1d794ec85c05b625b7e",
+      "nodes": [
+        {
+          "nodeIndex": 0,
+          "name": "sebulba-body-hardware.002",
+          "children": [],
+          "transform": {},
+          "primitives": [
+            {
+              "material": "Inkstorm Sebulba Material_765",
+              "positionCount": 14412,
+              "referencedVertices": 14412,
+              "triangles": 14267,
+              "referencedBounds": {
+                "min": [
+                  -6.221403121948242,
+                  0.7946953773498535,
+                  -7.042924880981445
+                ],
+                "max": [
+                  6.217049598693848,
+                  6.823702335357666,
+                  16.970491409301758
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "nodeIndex": 1,
+          "name": "sebulba-body-shell.002",
+          "children": [],
+          "transform": {},
+          "primitives": [
+            {
+              "material": "Inkstorm Sebulba Material_805",
+              "positionCount": 41446,
+              "referencedVertices": 41446,
+              "triangles": 33095,
+              "referencedBounds": {
+                "min": [
+                  -9.582127571105957,
+                  0.5256763100624084,
+                  -7.276037693023682
+                ],
+                "max": [
+                  9.58211898803711,
+                  8.310291290283203,
+                  19.124982833862305
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "nodeIndex": 2,
+          "name": "sebulba-pilot-helmet.002",
+          "children": [],
+          "transform": {},
+          "primitives": [
+            {
+              "material": "Sebulba original pilot helmet.003",
+              "positionCount": 755,
+              "referencedVertices": 755,
+              "triangles": 1144,
+              "referencedBounds": {
+                "min": [
+                  -0.3702598512172699,
+                  1.611192226409912,
+                  -5.615139961242676
+                ],
+                "max": [
+                  0.3702601492404938,
+                  3.0377800464630127,
+                  -4.39440393447876
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "nodeIndex": 3,
+          "name": "sebulba-pilot-orange.002",
+          "children": [],
+          "transform": {},
+          "primitives": [
+            {
+              "material": "Sebulba original pilot orange.003",
+              "positionCount": 1665,
+              "referencedVertices": 1665,
+              "triangles": 2592,
+              "referencedBounds": {
+                "min": [
+                  -0.46001988649368286,
+                  1.0331400632858276,
+                  -5.540339946746826
+                ],
+                "max": [
+                  0.4600200951099396,
+                  2.9068799018859863,
+                  -4.268739700317383
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "nodeIndex": 4,
+          "name": "sebulba-pilot-suit.002",
+          "children": [],
+          "transform": {},
+          "primitives": [
+            {
+              "material": "Sebulba original pilot suit.003",
+              "positionCount": 2095,
+              "referencedVertices": 2095,
+              "triangles": 3136,
+              "referencedBounds": {
+                "min": [
+                  -0.5497797727584839,
+                  1.0183210372924805,
+                  -5.592171669006348
+                ],
+                "max": [
+                  0.5497801899909973,
+                  2.566539764404297,
+                  -3.56935977935791
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "nodeIndex": 5,
+          "name": "sebulba-pilot-visor.002",
+          "children": [],
+          "transform": {},
+          "primitives": [
+            {
+              "material": "Sebulba original pilot visor.003",
+              "positionCount": 185,
+              "referencedVertices": 185,
+              "triangles": 288,
+              "referencedBounds": {
+                "min": [
+                  -0.2879798710346222,
+                  2.5515799522399902,
+                  -5.1326799392700195
+                ],
+                "max": [
+                  0.2879801392555237,
+                  2.8432998657226562,
+                  -4.938199996948242
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "public/assets/inkstorm/vehicles/sebulba-rival.glb",
+      "bytes": 1819016,
+      "sha256": "22e1adf8e3dd6562ce143132fb4e82cdb56e62696d9894804ca07b4a3552d951",
+      "nodes": [
+        {
+          "nodeIndex": 0,
+          "name": "sebulba-body-hardware.002",
+          "children": [],
+          "transform": {},
+          "primitives": [
+            {
+              "material": "Inkstorm Sebulba Material_765",
+              "positionCount": 9494,
+              "referencedVertices": 9494,
+              "triangles": 6406,
+              "referencedBounds": {
+                "min": [
+                  -6.221403121948242,
+                  0.7970750331878662,
+                  -7.042924880981445
+                ],
+                "max": [
+                  6.217049598693848,
+                  6.823702335357666,
+                  16.970491409301758
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "nodeIndex": 1,
+          "name": "sebulba-body-shell.002",
+          "children": [],
+          "transform": {},
+          "primitives": [
+            {
+              "material": "Inkstorm Sebulba Material_805",
+              "positionCount": 26920,
+              "referencedVertices": 26920,
+              "triangles": 14803,
+              "referencedBounds": {
+                "min": [
+                  -9.582127571105957,
+                  0.5256763100624084,
+                  -7.276037693023682
+                ],
+                "max": [
+                  9.58211898803711,
+                  8.310291290283203,
+                  19.124982833862305
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "nodeIndex": 2,
+          "name": "sebulba-pilot-helmet.002",
+          "children": [],
+          "transform": {},
+          "primitives": [
+            {
+              "material": "Sebulba original pilot helmet.003",
+              "positionCount": 391,
+              "referencedVertices": 391,
+              "triangles": 514,
+              "referencedBounds": {
+                "min": [
+                  -0.36531755328178406,
+                  1.6156502962112427,
+                  -5.615139961242676
+                ],
+                "max": [
+                  0.3702601492404938,
+                  3.0377800464630127,
+                  -4.400444507598877
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "nodeIndex": 3,
+          "name": "sebulba-pilot-orange.002",
+          "children": [],
+          "transform": {},
+          "primitives": [
+            {
+              "material": "Sebulba original pilot orange.003",
+              "positionCount": 849,
+              "referencedVertices": 849,
+              "triangles": 1166,
+              "referencedBounds": {
+                "min": [
+                  -0.46001988649368286,
+                  1.0331400632858276,
+                  -5.540339946746826
+                ],
+                "max": [
+                  0.4539794623851776,
+                  2.9068799018859863,
+                  -4.268739700317383
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "nodeIndex": 4,
+          "name": "sebulba-pilot-suit.002",
+          "children": [],
+          "transform": {},
+          "primitives": [
+            {
+              "material": "Sebulba original pilot suit.003",
+              "positionCount": 1131,
+              "referencedVertices": 1131,
+              "triangles": 1410,
+              "referencedBounds": {
+                "min": [
+                  -0.5497797727584839,
+                  1.020527720451355,
+                  -5.592171669006348
+                ],
+                "max": [
+                  0.5497801899909973,
+                  2.566539764404297,
+                  -3.56935977935791
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "nodeIndex": 5,
+          "name": "sebulba-pilot-visor.002",
+          "children": [],
+          "transform": {},
+          "primitives": [
+            {
+              "material": "Sebulba original pilot visor.003",
+              "positionCount": 171,
+              "referencedVertices": 171,
+              "triangles": 260,
+              "referencedBounds": {
+                "min": [
+                  -0.2879798710346222,
+                  2.5515799522399902,
+                  -5.1326799392700195
+                ],
+                "max": [
+                  0.2879801392555237,
+                  2.8432998657226562,
+                  -4.938199996948242
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "public/assets/inkstorm/vehicles/polwo-hero-v1.glb",
+      "bytes": 10189760,
+      "sha256": "17e117cd9cbf86a2cf096ca6cdc0e46413b391395577b5f0774203ce7987f39f",
+      "nodes": [
+        {
+          "nodeIndex": 0,
+          "name": "polwo-body-0",
+          "children": [],
+          "transform": {},
+          "primitives": [
+            {
+              "material": "Polwo Inkstorm body paint-v1",
+              "positionCount": 53865,
+              "referencedVertices": 53865,
+              "triangles": 32520,
+              "referencedBounds": {
+                "min": [
+                  -5.347447395324707,
+                  0.10000002384185791,
+                  -7.634738922119141
+                ],
+                "max": [
+                  5.347446441650391,
+                  5.673315525054932,
+                  22.365262985229492
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "nodeIndex": 1,
+          "name": "polwo-body-1",
+          "children": [],
+          "transform": {},
+          "primitives": [
+            {
+              "material": "antenne_low__0",
+              "positionCount": 982,
+              "referencedVertices": 982,
+              "triangles": 544,
+              "referencedBounds": {
+                "min": [
+                  -0.9160718321800232,
+                  4.7739338874816895,
+                  -6.912002086639404
+                ],
+                "max": [
+                  -0.7535524368286133,
+                  5.250851631164551,
+                  -6.264702796936035
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "nodeIndex": 2,
+          "name": "polwo-pilot-accent",
+          "children": [],
+          "transform": {},
+          "primitives": [
+            {
+              "material": "Pilot atlas v4c runtime accent",
+              "positionCount": 363,
+              "referencedVertices": 363,
+              "triangles": 188,
+              "referencedBounds": {
+                "min": [
+                  -0.5421574115753174,
+                  4.253157615661621,
+                  -5.559020042419434
+                ],
+                "max": [
+                  0.5371147990226746,
+                  5.907783508300781,
+                  -4.902400970458984
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "nodeIndex": 3,
+          "name": "polwo-pilot-hardware",
+          "children": [],
+          "transform": {},
+          "primitives": [
+            {
+              "material": "Pilot atlas v4c runtime hardware",
+              "positionCount": 1745,
+              "referencedVertices": 1745,
+              "triangles": 1552,
+              "referencedBounds": {
+                "min": [
+                  -0.2789999544620514,
+                  4.536032199859619,
+                  -5.540347099304199
+                ],
+                "max": [
+                  0.27900001406669617,
+                  5.903914451599121,
+                  -4.921000957489014
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "nodeIndex": 4,
+          "name": "polwo-pilot-rubber",
+          "children": [],
+          "transform": {},
+          "primitives": [
+            {
+              "material": "Pilot atlas v4c runtime rubber",
+              "positionCount": 2639,
+              "referencedVertices": 2639,
+              "triangles": 2228,
+              "referencedBounds": {
+                "min": [
+                  -0.5836577415466309,
+                  4.125282287597656,
+                  -5.44025182723999
+                ],
+                "max": [
+                  0.7681447863578796,
+                  5.388533592224121,
+                  -3.5221259593963623
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "nodeIndex": 5,
+          "name": "polwo-pilot-shell",
+          "children": [],
+          "transform": {},
+          "primitives": [
+            {
+              "material": "Pilot atlas v4c runtime shell",
+              "positionCount": 1928,
+              "referencedVertices": 1928,
+              "triangles": 1444,
+              "referencedBounds": {
+                "min": [
+                  -0.32743749022483826,
+                  4.288431167602539,
+                  -5.610751152038574
+                ],
+                "max": [
+                  0.32743749022483826,
+                  5.91165828704834,
+                  -4.940375804901123
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "nodeIndex": 6,
+          "name": "polwo-pilot-suit",
+          "children": [],
+          "transform": {},
+          "primitives": [
+            {
+              "material": "Pilot atlas v4c runtime suit",
+              "positionCount": 13076,
+              "referencedVertices": 13076,
+              "triangles": 9491,
+              "referencedBounds": {
+                "min": [
+                  -0.5849800109863281,
+                  3.9095218181610107,
+                  -5.567115783691406
+                ],
+                "max": [
+                  0.7634984254837036,
+                  5.313838005065918,
+                  -3.6894640922546387
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "nodeIndex": 7,
+          "name": "polwo-pilot-webbing",
+          "children": [],
+          "transform": {},
+          "primitives": [
+            {
+              "material": "Pilot atlas v4c runtime webbing",
+              "positionCount": 1233,
+              "referencedVertices": 1233,
+              "triangles": 1008,
+              "referencedBounds": {
+                "min": [
+                  -0.34775853157043457,
+                  4.197868347167969,
+                  -5.4803147315979
+                ],
+                "max": [
+                  0.34775853157043457,
+                  5.259263515472412,
+                  -4.961187839508057
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "nodeIndex": 8,
+          "name": "polwo-anchor-pilot",
+          "children": [],
+          "transform": {
+            "translation": [
+              0,
+              4.2725324630737305,
+              -5.199999809265137
+            ]
+          }
+        },
+        {
+          "nodeIndex": 9,
+          "name": "polwo-anchor-exhaustLeft",
+          "children": [],
+          "transform": {
+            "translation": [
+              -3.929196834564209,
+              1.6775317192077637,
+              5.835364818572998
+            ]
+          }
+        },
+        {
+          "nodeIndex": 10,
+          "name": "polwo-anchor-exhaustRight",
+          "children": [],
+          "transform": {
+            "translation": [
+              3.929197072982788,
+              1.677531659603119,
+              5.835364818572998
+            ]
+          }
+        },
+        {
+          "nodeIndex": 11,
+          "name": "polwo-anchor-couplingLeft",
+          "children": [],
+          "transform": {
+            "translation": [
+              -3.0361387729644775,
+              1.6775315403938293,
+              14.65654182434082
+            ]
+          }
+        },
+        {
+          "nodeIndex": 12,
+          "name": "polwo-anchor-couplingRight",
+          "children": [],
+          "transform": {
+            "translation": [
+              3.0361380577087402,
+              1.6775315403938293,
+              14.65653944015503
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "path": "public/assets/inkstorm/vehicles/polwo-rival-v1.glb",
+      "bytes": 4188076,
+      "sha256": "b9a2f310ffd43477091575a52f1cb6804ec9fafca6fcf31093072b7f43e6d502",
+      "nodes": [
+        {
+          "nodeIndex": 0,
+          "name": "polwo-body-0",
+          "children": [],
+          "transform": {},
+          "primitives": [
+            {
+              "material": "Polwo Inkstorm body paint-v1",
+              "positionCount": 32032,
+              "referencedVertices": 32032,
+              "triangles": 19199,
+              "referencedBounds": {
+                "min": [
+                  -5.347447395324707,
+                  0.10000002384185791,
+                  -7.634738922119141
+                ],
+                "max": [
+                  5.347446441650391,
+                  5.673315525054932,
+                  22.365262985229492
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "nodeIndex": 1,
+          "name": "polwo-body-1",
+          "children": [],
+          "transform": {},
+          "primitives": [
+            {
+              "material": "antenne_low__0",
+              "positionCount": 982,
+              "referencedVertices": 982,
+              "triangles": 544,
+              "referencedBounds": {
+                "min": [
+                  -0.9160718321800232,
+                  4.7739338874816895,
+                  -6.912002086639404
+                ],
+                "max": [
+                  -0.7535524368286133,
+                  5.250851631164551,
+                  -6.264702796936035
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "nodeIndex": 2,
+          "name": "polwo-pilot-accent",
+          "children": [],
+          "transform": {},
+          "primitives": [
+            {
+              "material": "Pilot atlas v4c runtime accent",
+              "positionCount": 363,
+              "referencedVertices": 363,
+              "triangles": 188,
+              "referencedBounds": {
+                "min": [
+                  -0.5421574115753174,
+                  4.253157615661621,
+                  -5.559020042419434
+                ],
+                "max": [
+                  0.5371147990226746,
+                  5.907783508300781,
+                  -4.902400970458984
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "nodeIndex": 3,
+          "name": "polwo-pilot-hardware",
+          "children": [],
+          "transform": {},
+          "primitives": [
+            {
+              "material": "Pilot atlas v4c runtime hardware",
+              "positionCount": 1416,
+              "referencedVertices": 1416,
+              "triangles": 1100,
+              "referencedBounds": {
+                "min": [
+                  -0.2789999544620514,
+                  4.536032199859619,
+                  -5.540347099304199
+                ],
+                "max": [
+                  0.27900001406669617,
+                  5.903914451599121,
+                  -4.921000957489014
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "nodeIndex": 4,
+          "name": "polwo-pilot-rubber",
+          "children": [],
+          "transform": {},
+          "primitives": [
+            {
+              "material": "Pilot atlas v4c runtime rubber",
+              "positionCount": 1225,
+              "referencedVertices": 1225,
+              "triangles": 1000,
+              "referencedBounds": {
+                "min": [
+                  -0.5836577415466309,
+                  4.125282287597656,
+                  -5.44025182723999
+                ],
+                "max": [
+                  0.7681447863578796,
+                  5.388533592224121,
+                  -3.5221259593963623
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "nodeIndex": 5,
+          "name": "polwo-pilot-shell",
+          "children": [],
+          "transform": {},
+          "primitives": [
+            {
+              "material": "Pilot atlas v4c runtime shell",
+              "positionCount": 1346,
+              "referencedVertices": 1346,
+              "triangles": 1100,
+              "referencedBounds": {
+                "min": [
+                  -0.32743749022483826,
+                  4.288431167602539,
+                  -5.610751152038574
+                ],
+                "max": [
+                  0.32743749022483826,
+                  5.91165828704834,
+                  -4.940375804901123
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "nodeIndex": 6,
+          "name": "polwo-pilot-suit",
+          "children": [],
+          "transform": {},
+          "primitives": [
+            {
+              "material": "Pilot atlas v4c runtime suit",
+              "positionCount": 6675,
+              "referencedVertices": 6675,
+              "triangles": 5000,
+              "referencedBounds": {
+                "min": [
+                  -0.5849800109863281,
+                  3.9095218181610107,
+                  -5.567115783691406
+                ],
+                "max": [
+                  0.7634984254837036,
+                  5.313838005065918,
+                  -3.6894640922546387
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "nodeIndex": 7,
+          "name": "polwo-pilot-webbing",
+          "children": [],
+          "transform": {},
+          "primitives": [
+            {
+              "material": "Pilot atlas v4c runtime webbing",
+              "positionCount": 1039,
+              "referencedVertices": 1039,
+              "triangles": 699,
+              "referencedBounds": {
+                "min": [
+                  -0.34775853157043457,
+                  4.197868347167969,
+                  -5.4803147315979
+                ],
+                "max": [
+                  0.34775853157043457,
+                  5.259263515472412,
+                  -4.961187839508057
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "nodeIndex": 8,
+          "name": "polwo-anchor-pilot",
+          "children": [],
+          "transform": {
+            "translation": [
+              0,
+              4.2725324630737305,
+              -5.199999809265137
+            ]
+          }
+        },
+        {
+          "nodeIndex": 9,
+          "name": "polwo-anchor-exhaustLeft",
+          "children": [],
+          "transform": {
+            "translation": [
+              -3.929196834564209,
+              1.6775317192077637,
+              5.835364818572998
+            ]
+          }
+        },
+        {
+          "nodeIndex": 10,
+          "name": "polwo-anchor-exhaustRight",
+          "children": [],
+          "transform": {
+            "translation": [
+              3.929197072982788,
+              1.677531659603119,
+              5.835364818572998
+            ]
+          }
+        },
+        {
+          "nodeIndex": 11,
+          "name": "polwo-anchor-couplingLeft",
+          "children": [],
+          "transform": {
+            "translation": [
+              -3.0361387729644775,
+              1.6775315403938293,
+              14.65654182434082
+            ]
+          }
+        },
+        {
+          "nodeIndex": 12,
+          "name": "polwo-anchor-couplingRight",
+          "children": [],
+          "transform": {
+            "translation": [
+              3.0361380577087402,
+              1.6775315403938293,
+              14.65653944015503
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "path": "public/assets/inkstorm/vehicles/blockrunner-hero-v1.glb",
+      "bytes": 4198472,
+      "sha256": "ee744b122b3e2a009ef7a8f3a8c5c5848fe1503b13e4334e0fe8276ce5c44d8d",
+      "nodes": [
+        {
+          "nodeIndex": 0,
+          "name": "blockrunner-body",
+          "children": [],
+          "transform": {},
+          "primitives": [
+            {
+              "material": "Blockrunner Inkstorm body atlas v1",
+              "positionCount": 58253,
+              "referencedVertices": 58253,
+              "triangles": 39900,
+              "referencedBounds": {
+                "min": [
+                  -4.779439926147461,
+                  0.10000000149011612,
+                  -10.543083190917969
+                ],
+                "max": [
+                  4.6107282638549805,
+                  4.794350624084473,
+                  8.656911849975586
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "nodeIndex": 1,
+          "name": "blockrunner-pilot-suit",
+          "children": [],
+          "transform": {},
+          "primitives": [
+            {
+              "material": "Blockrunner Inkstorm pilot suit atlas v1",
+              "positionCount": 5612,
+              "referencedVertices": 5612,
+              "triangles": 2508,
+              "referencedBounds": {
+                "min": [
+                  -0.7723499536514282,
+                  2.8431434631347656,
+                  -5.487110614776611
+                ],
+                "max": [
+                  0.792324423789978,
+                  4.690016269683838,
+                  -4.392811298370361
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "nodeIndex": 2,
+          "name": "blockrunner-pilot-helmet",
+          "children": [],
+          "transform": {},
+          "primitives": [
+            {
+              "material": "Blockrunner Inkstorm pilot helmet atlas v1",
+              "positionCount": 1729,
+              "referencedVertices": 1729,
+              "triangles": 740,
+              "referencedBounds": {
+                "min": [
+                  -0.4245762228965759,
+                  4.349484443664551,
+                  -5.57911491394043
+                ],
+                "max": [
+                  0.42458152770996094,
+                  5.145554065704346,
+                  -4.840311527252197
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "nodeIndex": 3,
+          "name": "blockrunner-pilot-visor",
+          "children": [],
+          "transform": {},
+          "primitives": [
+            {
+              "material": "Blockrunner Inkstorm pilot visor atlas v1",
+              "positionCount": 352,
+              "referencedVertices": 352,
+              "triangles": 200,
+              "referencedBounds": {
+                "min": [
+                  -0.4811878502368927,
+                  4.4977593421936035,
+                  -5.343186378479004
+                ],
+                "max": [
+                  0.4811931550502777,
+                  4.975829124450684,
+                  -4.653589725494385
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "nodeIndex": 4,
+          "name": "blockrunner-pilot-gloves",
+          "children": [],
+          "transform": {},
+          "primitives": [
+            {
+              "material": "Blockrunner Inkstorm pilot gloves atlas v1",
+              "positionCount": 1794,
+              "referencedVertices": 1794,
+              "triangles": 680,
+              "referencedBounds": {
+                "min": [
+                  -0.8281780481338501,
+                  3.7499403953552246,
+                  -5.072874069213867
+                ],
+                "max": [
+                  0.7985591888427734,
+                  4.169008255004883,
+                  -4.222898483276367
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "public/assets/inkstorm/vehicles/blockrunner-rival-v1.glb",
+      "bytes": 3341896,
+      "sha256": "b680cea9dd832ca6c5af382fed5eeea57e4baf6b7d119f0f8bace3dfa6037cb9",
+      "nodes": [
+        {
+          "nodeIndex": 0,
+          "name": "blockrunner-body",
+          "children": [],
+          "transform": {},
+          "primitives": [
+            {
+              "material": "Blockrunner Inkstorm body atlas v1",
+              "positionCount": 58253,
+              "referencedVertices": 35987,
+              "triangles": 25554,
+              "referencedBounds": {
+                "min": [
+                  -4.779439926147461,
+                  0.10000000149011612,
+                  -10.543083190917969
+                ],
+                "max": [
+                  4.6107282638549805,
+                  4.794350624084473,
+                  8.656911849975586
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "nodeIndex": 1,
+          "name": "blockrunner-pilot-suit",
+          "children": [],
+          "transform": {},
+          "primitives": [
+            {
+              "material": "Blockrunner Inkstorm pilot suit atlas v1",
+              "positionCount": 5612,
+              "referencedVertices": 5612,
+              "triangles": 2508,
+              "referencedBounds": {
+                "min": [
+                  -0.7723499536514282,
+                  2.8431434631347656,
+                  -5.487110614776611
+                ],
+                "max": [
+                  0.792324423789978,
+                  4.690016269683838,
+                  -4.392811298370361
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "nodeIndex": 2,
+          "name": "blockrunner-pilot-helmet",
+          "children": [],
+          "transform": {},
+          "primitives": [
+            {
+              "material": "Blockrunner Inkstorm pilot helmet atlas v1",
+              "positionCount": 1729,
+              "referencedVertices": 1729,
+              "triangles": 740,
+              "referencedBounds": {
+                "min": [
+                  -0.4245762228965759,
+                  4.349484443664551,
+                  -5.57911491394043
+                ],
+                "max": [
+                  0.42458152770996094,
+                  5.145554065704346,
+                  -4.840311527252197
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "nodeIndex": 3,
+          "name": "blockrunner-pilot-visor",
+          "children": [],
+          "transform": {},
+          "primitives": [
+            {
+              "material": "Blockrunner Inkstorm pilot visor atlas v1",
+              "positionCount": 352,
+              "referencedVertices": 352,
+              "triangles": 200,
+              "referencedBounds": {
+                "min": [
+                  -0.4811878502368927,
+                  4.4977593421936035,
+                  -5.343186378479004
+                ],
+                "max": [
+                  0.4811931550502777,
+                  4.975829124450684,
+                  -4.653589725494385
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "nodeIndex": 4,
+          "name": "blockrunner-pilot-gloves",
+          "children": [],
+          "transform": {},
+          "primitives": [
+            {
+              "material": "Blockrunner Inkstorm pilot gloves atlas v1",
+              "positionCount": 1794,
+              "referencedVertices": 1794,
+              "triangles": 680,
+              "referencedBounds": {
+                "min": [
+                  -0.8281780481338501,
+                  3.7499403953552246,
+                  -5.072874069213867
+                ],
+                "max": [
+                  0.7985591888427734,
+                  4.169008255004883,
+                  -4.222898483276367
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

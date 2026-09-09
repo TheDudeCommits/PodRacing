@@ -1,0 +1,376 @@
+--- a/src/camera/CinematicCamera.ts
++++ b/src/camera/CinematicCamera.ts
+@@ -108,6 +108,13 @@
+   junctionWeight?: number;
+   /** Extra eye clearance for a tall cockpit; affects chase composition only. */
+   chaseClearance?: number;
++  /** Current displayed wreck center/heading, separate from authoritative driving. */
++  combatFocus?: Vector3;
++  combatForward?: Vector3;
++  /** Radius of the imported rigid body, measured once when the shot starts. */
++  combatRadius?: number;
++  /** Post-cut chase keeps the tumbling body outside the lens until recovery. */
++  wreckChase?: boolean;
+ }
+ 
+ /**
+@@ -278,6 +285,19 @@
+         : 62 + speedT * 6 * (this.comfort.reducedMotion ? 0 : this.comfort.fovKickIntensity);
+     this.camera.fov = MathUtils.damp(this.camera.fov, targetFov, 4.8, dt);
+     this.camera.updateProjectionMatrix();
++
++    if (this.mode === 'chase' && subject.wreckChase && subject.combatFocus) {
++      // A straight spring between two safe viewpoints can cross the wreck.
++      // Keep its radial clearance while the restored chase angle eases around it.
++      const distance = this.wreckChaseDistance(subject);
++      this.targetVelocity.copy(this.camera.position).sub(subject.combatFocus);
++      if (this.targetVelocity.lengthSq() < distance * distance) {
++        if (this.targetVelocity.lengthSq() < .001) this.targetVelocity.set(0, 1, -1);
++        this.targetVelocity.setLength(distance);
++        this.camera.position.copy(subject.combatFocus).add(this.targetVelocity);
++      }
++      this.lookPoint.copy(subject.combatFocus);
++    }
+ 
+     this.shake = MathUtils.damp(this.shake, 0, 7, dt);
+     if (!this.captureMode && !this.comfort.reducedMotion && this.shake > 0.002) {
+@@ -345,13 +365,21 @@
+         // left of the telemetry stack while preserving clean wake space aft.
+         if (this.combatFraming) {
+           const portraitClearance = Math.max(1, 1.35 / this.camera.aspect);
+-          position.copy(subject.position)
+-            .addScaledVector(right, 12 * portraitClearance)
+-            .addScaledVector(UP, 14 * portraitClearance)
+-            .addScaledVector(forward, -48 * portraitClearance);
+-          lookAt.copy(subject.position)
+-            .addScaledVector(forward, 4)
+-            .addScaledVector(UP, 2.8);
++          const radius = Number.isFinite(subject.combatRadius) ? Math.max(0, subject.combatRadius!) : 17;
++          const clearance = portraitClearance * Math.max(1, radius / 17);
++          if (subject.combatForward && subject.combatForward.lengthSq() > 0.001) {
++            forward.copy(subject.combatForward).setY(0).normalize();
++            right.crossVectors(forward, UP).normalize();
++          }
++          lookAt.copy(subject.combatFocus ?? subject.position);
++          if (!subject.combatFocus) lookAt.addScaledVector(UP, 2.8).addScaledVector(forward, 4);
++          // The live visual wreck spins independently of the simulation yaw.
++          // Track that rigid body's center from a lateral three-quarter view;
++          // an authoritative-heading rear view stacks its long engines end-on.
++          position.copy(lookAt)
++            .addScaledVector(right, 28 * clearance)
++            .addScaledVector(UP, 14 * clearance)
++            .addScaledVector(forward, -28 * clearance);
+         } else if (this.highlightFraming) {
+           // Replay cameras stay inside the pylon line and trail the action at
+           // a three-quarter angle. A far exterior side camera made track
+@@ -393,6 +421,14 @@
+         break;
+       case 'chase':
+       default: {
++        if (subject.wreckChase && subject.combatFocus) {
++          const distance = this.wreckChaseDistance(subject);
++          lookAt.copy(subject.combatFocus);
++          position.copy(lookAt)
++            .addScaledVector(forward, -distance * Math.sqrt(1 - .36 * .36))
++            .addScaledVector(UP, distance * .36);
++          break;
++        }
+         const speedT = MathUtils.smoothstep(subject.speed, 0, 230);
+         const clearance = MathUtils.clamp(Number.isFinite(subject.chaseClearance) ? subject.chaseClearance! : 0, 0, 6);
+         this.framingForward.copy(forward);
+@@ -450,6 +486,14 @@
+     return this.desiredPose;
+   }
+ 
++  private wreckChaseDistance(subject: CameraSubject): number {
++    const radius = Number.isFinite(subject.combatRadius) ? Math.max(1, subject.combatRadius!) : 17;
++    // Use the narrower screen angle; the 60-degree cut lens is conservative
++    // while ordinary chase FOV recovers. No geometry or physics radius changes.
++    const halfAngle = Math.atan(Math.tan(Math.PI / 6) * Math.min(1, Math.max(.1, this.camera.aspect)));
++    return radius / Math.sin(halfAngle) * 1.08;
++  }
++
+   private springVector(
+     value: Vector3,
+     velocity: Vector3,
+--- a/src/render/app/GameApp.ts
++++ b/src/render/app/GameApp.ts
+@@ -1,7 +1,10 @@
+ import { CombatPresentationController, type CombatPresentationContext } from '../combat/CombatPresentationController';
+ import {
++  Box3,
+   Color,
++  Euler,
+   Fog,
++  Matrix4,
+   Mesh,
+   Scene,
+   Vector3,
+@@ -434,6 +437,7 @@
+   private readonly cameraDirector = new RaceCameraDirector(this.cameraRig);
+   private readonly combatPresentation = new CombatPresentationController();
+   private combatCameraCut = false;
++  private combatChaseRecovery = false;
+   private combatPriorManualCamera: CaptureCamera | null = null;
+   private readonly combatSystemMotion = typeof window.matchMedia === 'function'
+     ? window.matchMedia('(prefers-reduced-motion: reduce)') : null;
+@@ -471,6 +475,15 @@
+   };
+   private readonly routeCameraPreview = new Vector3();
+   private readonly junctionCameraPreview = new Vector3();
++  private readonly combatCameraBounds = new Box3();
++  private readonly combatCameraMeshBounds = new Box3();
++  private readonly combatCameraInverse = new Matrix4();
++  private readonly combatCameraMatrix = new Matrix4();
++  private readonly combatCameraLocalCenter = new Vector3();
++  private readonly combatCameraFocus = new Vector3();
++  private readonly combatCameraForward = new Vector3();
++  private readonly combatCameraRotation = new Euler(0, 0, 0, 'YXZ');
++  private combatCameraRadius = 17;
+   private captureMode = false;
+   private preset: CapturePreset = 'desert';
+   private reviewScenario: ReviewCapturePreset = 'desert';
+@@ -732,6 +745,8 @@
+ 
+   private cancelCombatCut(): void {
+     this.combatPresentation.cancel();
++    this.combatChaseRecovery = false;
++    this.subject.wreckChase = false;
+     if (this.combatCameraCut) {
+       this.combatCameraCut = false;
+       this.cameraRig.setCombatFraming(false);
+@@ -953,18 +968,36 @@
+     const combatCut = combatFrame.cinematic.cameraCut && !replayFrame;
+     const cutChanged = combatCut !== this.combatCameraCut;
+     if (cutChanged) {
+-      if (combatCut) this.combatPriorManualCamera = this.cameraDirector.getManualMode();
++      if (combatCut) {
++        this.combatPriorManualCamera = this.cameraDirector.getManualMode();
++        this.measureCombatCameraSubject();
++        this.combatChaseRecovery = true;
++      }
+       this.combatCameraCut = combatCut;
+       this.cameraRig.setCombatFraming(combatCut);
+       this.cameraDirector.setManualMode(combatCut ? 'side' : this.combatPriorManualCamera);
+-      this.syncCameraSubject();
+-    }
++      this.syncCameraSubject(renderExtrapolation);
++    }
++    this.subject.combatFocus = undefined;
++    this.subject.combatForward = undefined;
++    this.subject.combatRadius = undefined;
++    this.subject.wreckChase = false;
++    if (combatCut) this.syncCombatCameraSubject(presentationTime);
+     const cameraPresentation = this.cameraDirector.update({
+       phase: this.race.state.phase,
+       playerFinished: this.race.state.entries.find((entry) => entry.isPlayer)?.status === 'finished',
+     });
+     this.cameraMode = cameraPresentation.mode;
+-    if (replayFrame || cutChanged) {
++    const stillWrecked = this.combatChaseRecovery && !this.paused && !this.captureMode
++      && this.race.state.phase === 'racing' && this.race.state.entries
++      .some(entry => entry.vehicle === this.playerState && entry.galactic?.wreck.phase === 'wrecked');
++    if (!stillWrecked) this.combatChaseRecovery = false;
++    const wreckChase = stillWrecked && !combatCut && !replayFrame && this.cameraMode === 'chase';
++    if (wreckChase) {
++      this.syncCombatCameraSubject(presentationTime);
++      this.subject.wreckChase = true;
++    }
++    if (replayFrame || (cutChanged && !wreckChase)) {
+       // Highlight poses come from a ring buffer and may move several metres
+       // between presented samples. A gameplay spring chases that historical
+       // subject from the live results orbit, making the event recede into a
+@@ -3130,6 +3163,60 @@
+           boost: this.playerState.boost.energy > 0.34 && Math.sin(time * 0.17) > 0.72,
+         };
+     }
++  }
++
++  /** Read rigid art once per cut; hidden procedural bodies and VFX are excluded. */
++  private measureCombatCameraSubject(): void {
++    this.combatCameraBounds.makeEmpty();
++    const view = this.playerView;
++    if (view.importedActive) {
++      view.updateWorldMatrix(true, false);
++      this.combatCameraInverse.copy(view.matrixWorld).invert();
++      for (const mesh of view.imported.geometryMeshes) {
++        mesh.updateWorldMatrix(true, false);
++        const positions = mesh.geometry.getAttribute('position');
++        if (!positions) continue;
++        if (mesh.geometry.boundingBox) this.combatCameraMeshBounds.copy(mesh.geometry.boundingBox);
++        else {
++          this.combatCameraMeshBounds.makeEmpty();
++          for (let vertex = 0; vertex < positions.count; vertex++) {
++            this.combatCameraFocus.fromBufferAttribute(positions, vertex);
++            this.combatCameraMeshBounds.expandByPoint(this.combatCameraFocus);
++          }
++        }
++        this.combatCameraMatrix.multiplyMatrices(this.combatCameraInverse, mesh.matrixWorld);
++        this.combatCameraMeshBounds.applyMatrix4(this.combatCameraMatrix);
++        this.combatCameraBounds.union(this.combatCameraMeshBounds);
++      }
++    }
++    if (this.combatCameraBounds.isEmpty()) {
++      // Procedural classes keep their established, conservatively sized envelope.
++      this.combatCameraLocalCenter.set(0, 2.8, 4);
++      this.combatCameraRadius = 17;
++    } else {
++      this.combatCameraBounds.getCenter(this.combatCameraLocalCenter);
++      this.combatCameraBounds.getSize(this.combatCameraFocus);
++      this.combatCameraRadius = this.combatCameraFocus.length() * 0.5;
++    }
++  }
++
++  /** Matches RacerPresentation's displayed rigid wreck, never the physics pose. */
++  private syncCombatCameraSubject(time: number): void {
++    const state = this.playerState;
++    const racerIndex = this.playerView.racerIndex;
++    const visualYaw = state.orientation.yaw + time * 1.25;
++    this.combatCameraRotation.set(
++      state.orientation.pitch + 0.34 + Math.sin(time * 5.1 + racerIndex) * 0.16,
++      visualYaw,
++      state.orientation.roll + state.orientation.bank - 0.92 + Math.sin(time * 7.4 + racerIndex) * 0.34,
++      'YXZ',
++    );
++    this.combatCameraFocus.copy(this.combatCameraLocalCenter).applyEuler(this.combatCameraRotation)
++      .add(this.subject.position);
++    this.combatCameraForward.set(Math.sin(visualYaw), 0, Math.cos(visualYaw));
++    this.subject.combatFocus = this.combatCameraFocus;
++    this.subject.combatForward = this.combatCameraForward;
++    this.subject.combatRadius = this.combatCameraRadius;
+   }
+ 
+   private syncCameraSubject(extrapolationSeconds = 0): void {
+--- a/tests/camera/CinematicCamera.test.ts
++++ b/tests/camera/CinematicCamera.test.ts
+@@ -1,32 +1,109 @@
+-import { Vector3 } from 'three';
++import { Box3, Euler, Vector3 } from 'three';
+ import { describe, expect, it } from 'vitest';
+ 
+ import { CinematicCamera } from '../../src/camera/CinematicCamera';
+ import { vehicleChaseClearance } from '../../src/game/vehicleAppearance';
+ 
+ describe('cinematic cockpit presentation', () => {
+-  it('keeps a separating vehicle envelope inside the live wreck shot across desktop and portrait aspects', () => {
+-    const rig = new CinematicCamera();
+-    const subject = { position: new Vector3(), forward: new Vector3(0, 0, 1), velocity: new Vector3(), speed: 0 };
+-    rig.setMode('side');
+-    rig.setCombatFraming(true);
++  it('frames the actual rigid Teemto wreck across its cut while separating cockpit and engine depth', () => {
++    // POSITION bounds from the admitted teemto-hero-open-v2.glb, including its pilot.
++    // This tests the displayed YXZ wreck, not the physics collider or a guessed box.
++    const bounds = new Box3(new Vector3(-6.545275, .072866, -7.39), new Vector3(6.496448, 5.250974, 22.738541));
++    const center = bounds.getCenter(new Vector3()), radius = bounds.getSize(new Vector3()).length() * .5;
++    const rig = new CinematicCamera();
++    rig.setMode('side'); rig.setCombatFraming(true);
++    const authoritativeForward = new Vector3(0, 0, 1), authoritativePosition = new Vector3(18600, -10.3, 14.6);
++    for (const aspect of [1440 / 900, 390 / 844]) for (const time of [7.6, 7.7, 7.8, 7.9]) {
++      const yaw = -.0083682 + time * 1.25;
++      const rotation = new Euler(.34 + Math.sin(time * 5.1) * .16, yaw, -.92 + Math.sin(time * 7.4) * .34, 'YXZ');
++      const focus = center.clone().applyEuler(rotation).add(authoritativePosition);
++      const forward = new Vector3(Math.sin(yaw), 0, Math.cos(yaw));
++      const subject = { position: authoritativePosition, forward: authoritativeForward, velocity: new Vector3(), speed: 0,
++        combatFocus: focus, combatForward: forward, combatRadius: radius };
++      const inputs = [focus.clone(), forward.clone()];
++      rig.camera.aspect = aspect; rig.snap(subject); rig.camera.updateMatrixWorld(true);
++      for (const x of [bounds.min.x, bounds.max.x]) for (const y of [bounds.min.y, bounds.max.y]) for (const z of [bounds.min.z, bounds.max.z]) {
++        const projected = new Vector3(x, y, z).applyEuler(rotation).add(authoritativePosition).project(rig.camera);
++        expect(Math.abs(projected.x)).toBeLessThan(.85);
++        expect(Math.abs(projected.y)).toBeLessThan(.82);
++      }
++      const cockpit = new Vector3(0, 2.8, -5.2).applyEuler(rotation).add(authoritativePosition).project(rig.camera);
++      const engines = new Vector3(0, 2.65, 14).applyEuler(rotation).add(authoritativePosition).project(rig.camera);
++      expect(Math.abs(cockpit.x - engines.x)).toBeGreaterThan(.3);
++      expect(rig.camera.getWorldDirection(new Vector3()).dot(focus.clone().sub(rig.camera.position).normalize())).toBeCloseTo(1, 8);
++      expect([focus, forward]).toEqual(inputs);
++      expect(authoritativeForward.toArray()).toEqual([0, 0, 1]);
++      expect(authoritativePosition.toArray()).toEqual([18600, -10.3, 14.6]);
++    }
++    rig.dispose();
++  });
++
++  it('restores ordinary and replay camera framing exactly after a combat cut', () => {
++    const actual = new CinematicCamera(), baseline = new CinematicCamera();
++    const subject = { position: new Vector3(100, 2, -30), forward: new Vector3(0, 0, 1), velocity: new Vector3(0, 0, 120), speed: 120 };
++    actual.setMode('side'); actual.setCombatFraming(true);
++    actual.snap({ ...subject, combatFocus: new Vector3(105, 3, -28), combatForward: new Vector3(1, 0, 0), combatRadius: 19 });
++    actual.setCombatFraming(false);
++    for (const highlight of [false, true]) for (const mode of ['chase', 'side', 'cockpit', 'hero'] as const) {
++      actual.setHighlightFraming(highlight); baseline.setHighlightFraming(highlight);
++      actual.setMode(mode); baseline.setMode(mode);
++      // Even a stale optional combat subject cannot affect any ordinary/replay shot.
++      actual.snap({ ...subject, combatFocus: new Vector3(900, -100, 700), combatForward: new Vector3(-1, 0, 0), combatRadius: 100 });
++      baseline.snap(subject);
++      expect(actual.camera.position.toArray()).toEqual(baseline.camera.position.toArray());
++      expect(actual.camera.quaternion.toArray()).toEqual(baseline.camera.quaternion.toArray());
++      expect(actual.camera.fov).toEqual(baseline.camera.fov);
++    }
++    actual.dispose(); baseline.dispose();
++  });
++
++  it('uses a finite fallback for unavailable imported bounds and follows a translated visual subject', () => {
++    const rig = new CinematicCamera(); rig.setMode('side'); rig.setCombatFraming(true);
++    const subject = { position: new Vector3(), forward: new Vector3(0, 0, 1), velocity: new Vector3(), speed: 0,
++      combatFocus: new Vector3(2, 3, 4), combatForward: new Vector3(1, 0, 0), combatRadius: Number.NaN };
++    rig.snap(subject); const offset = rig.camera.position.clone().sub(subject.position);
++    for (let index = 0; index < 30; index++) {
++      subject.position.x += 1; subject.combatFocus.x += 1;
++      rig.update(1 / 60, index / 60, subject);
++    }
++    expect(rig.camera.position.clone().sub(subject.position).distanceTo(offset)).toBeLessThan(.001);
++    expect(rig.camera.position.toArray().every(Number.isFinite)).toBe(true);
++    rig.dispose();
++  });
++  it('keeps the tumbling rigid body inside restored chase throughout the exit spring', () => {
++    const min = new Vector3(-6.545275, .072866, -7.39), max = new Vector3(6.496448, 5.250974, 22.738541);
++    const bounds = new Box3(min, max), center = bounds.getCenter(new Vector3()), radius = bounds.getSize(new Vector3()).length() * .5;
+     for (const aspect of [1440 / 900, 390 / 844]) {
+-      rig.camera.aspect = aspect;
+-      rig.snap(subject);
+-      rig.camera.updateMatrixWorld(true);
+-      // A conservative authored envelope, not an assertion about every imported asset.
+-      for (const x of [-13, 13]) for (const y of [-1, 12]) for (const z of [-14, 24]) {
+-        const projected = new Vector3(x, y, z).project(rig.camera);
+-        expect(Math.abs(projected.x)).toBeLessThan(0.95);
+-        expect(Math.abs(projected.y)).toBeLessThan(0.82);
++      const rig = new CinematicCamera(); rig.camera.aspect = aspect; rig.setMode('side'); rig.setCombatFraming(true);
++      const subject = { position: new Vector3(), forward: new Vector3(0, 0, 1), velocity: new Vector3(), speed: 0,
++        combatFocus: new Vector3(), combatForward: new Vector3(), combatRadius: radius, wreckChase: false };
++      const rotation = new Euler(0, 0, 0, 'YXZ');
++      for (let frame = 0; frame < 100; frame++) {
++        const time = 7.9 + frame / 60, yaw = time * 1.25;
++        rotation.set(.34 + Math.sin(time * 5.1) * .16, yaw, -.92 + Math.sin(time * 7.4) * .34, 'YXZ');
++        subject.combatFocus.copy(center).applyEuler(rotation);
++        subject.combatForward.set(Math.sin(yaw), 0, Math.cos(yaw));
++        if (frame === 0) rig.snap(subject);
++        else {
++          rig.setCombatFraming(false); rig.setMode('chase'); subject.wreckChase = true;
++          rig.update(1 / 60, time, subject);
++        }
++        rig.camera.updateMatrixWorld(true);
++        for (const x of [min.x, max.x]) for (const y of [min.y, max.y]) for (const z of [min.z, max.z]) {
++          const point = new Vector3(x, y, z).applyEuler(rotation).project(rig.camera);
++          expect(Math.abs(point.x)).toBeLessThan(.98);
++          expect(Math.abs(point.y)).toBeLessThan(.98);
++        }
+       }
+-    }
+-    rig.setCombatFraming(false);
+-    rig.camera.aspect = 1440 / 900;
+-    rig.snap(subject);
+-    expect(rig.camera.position.y).toBeCloseTo(9.5);
+-    rig.dispose();
+-  });
++      subject.wreckChase = false;
++      const baseline = new CinematicCamera(); baseline.camera.aspect = aspect;
++      baseline.snap(subject); rig.snap(subject);
++      expect(rig.camera.position.toArray()).toEqual(baseline.camera.position.toArray());
++      expect(rig.camera.quaternion.toArray()).toEqual(baseline.camera.quaternion.toArray());
++      rig.dispose(); baseline.dispose();
++    }
++  });
++
+   it('never doubles the physical pilot with the legacy camera-space body overlay', () => {
+     const rig = new CinematicCamera();
+     const overlay = rig.camera.getObjectByName('Cockpit camera instrument frame');

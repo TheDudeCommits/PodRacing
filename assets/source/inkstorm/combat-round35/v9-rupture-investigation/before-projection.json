@@ -1,0 +1,831 @@
+{
+  "comparisons": [
+    {
+      "name": "before",
+      "frame": 557,
+      "positionExact": true,
+      "yawExact": true,
+      "raceTimeExact": true,
+      "redlineHeatExact": true
+    },
+    {
+      "name": "wreck",
+      "frame": 922,
+      "positionExact": true,
+      "yawExact": true,
+      "raceTimeExact": true,
+      "redlineHeatExact": true
+    }
+  ],
+  "birth": {
+    "id": "player",
+    "name": "You",
+    "isPlayer": true,
+    "status": "racing",
+    "vehicle": {
+      "version": 1,
+      "id": "player",
+      "seed": 1229867859,
+      "step": 910,
+      "simulationTime": 7.5833333333335,
+      "position": {
+        "x": 18600.171130179115,
+        "y": -10.899386940635921,
+        "z": 13.883536453583945
+      },
+      "velocity": {
+        "x": -1.0634278990468786,
+        "y": 8.344521270653427,
+        "z": 10.740258277534721
+      },
+      "orientation": {
+        "yaw": -0.09869157909571014,
+        "pitch": -0.04031148446446282,
+        "roll": -0.1697173875307071,
+        "bank": 0
+      },
+      "angularVelocity": {
+        "yaw": 1.581,
+        "pitch": 0.011671007144439588,
+        "roll": -1.2195674947268136,
+        "bank": 0
+      },
+      "probes": [
+        {
+          "id": "cockpit-front",
+          "localX": 0,
+          "localZ": 1.9,
+          "worldX": 18599.98392042922,
+          "worldZ": 15.774290935145318,
+          "groundHeight": -12.798654490947845,
+          "clearance": 1.8226757298294451,
+          "compression": 0.627324270170555,
+          "lift": 0,
+          "active": true
+        },
+        {
+          "id": "cockpit-rear",
+          "localX": 0,
+          "localZ": -1.8,
+          "worldX": 18600.348486784278,
+          "worldZ": 12.09229536578896,
+          "groundHeight": -12.954995901799567,
+          "clearance": 2.128169633199679,
+          "compression": 0.32183036680032107,
+          "lift": 0,
+          "active": true
+        },
+        {
+          "id": "engine-left-front",
+          "localX": -4.1,
+          "localZ": 5.3,
+          "worldX": 18595.568864363937,
+          "worldZ": 18.753767389219508,
+          "groundHeight": -12.680753625973232,
+          "clearance": 2.2635571065515574,
+          "compression": 0.18644289344844278,
+          "lift": 0,
+          "active": true
+        },
+        {
+          "id": "engine-left-rear",
+          "localX": -4.1,
+          "localZ": 2.2,
+          "worldX": 18595.874311850606,
+          "worldZ": 15.668852182461478,
+          "groundHeight": -12.554534194694746,
+          "clearance": 2.262303277112906,
+          "compression": 0.18769672288709405,
+          "lift": 0,
+          "active": true
+        },
+        {
+          "id": "engine-right-front",
+          "localX": 4.1,
+          "localZ": 5.3,
+          "worldX": 18603.728962652778,
+          "worldZ": 19.561725257185515,
+          "groundHeight": -13.4991654469003,
+          "clearance": 1.6902863497268275,
+          "compression": 0.7597136502731727,
+          "lift": 17.471830747967168,
+          "active": true
+        },
+        {
+          "id": "engine-right-rear",
+          "localX": 4.1,
+          "localZ": 2.2,
+          "worldX": 18604.034410139448,
+          "worldZ": 16.476810050427485,
+          "groundHeight": -13.681672880872787,
+          "clearance": 1.9977593855391493,
+          "compression": 0.45224061446085084,
+          "lift": 7.361458690751967,
+          "active": true
+        }
+      ],
+      "drift": {
+        "active": false,
+        "charge": 0,
+        "slipAngle": 1.140396440505362e-16,
+        "direction": 0
+      },
+      "boost": {
+        "energy": 0.14241666666667208,
+        "active": false,
+        "driftBoostTime": 0,
+        "overheated": false
+      },
+      "heat": 0.9084583333333399,
+      "damage": 0,
+      "grounded": true,
+      "airborneTime": 0,
+      "respawn": {
+        "x": 18603.435611755107,
+        "z": -10.213802511245468,
+        "y": null,
+        "yaw": -0.04762988648670374
+      },
+      "controls": {
+        "driftHeld": false,
+        "boostHeld": false,
+        "resetHeld": false
+      },
+      "telemetry": {
+        "speed": 10.792776601256246,
+        "forwardSpeed": 10.792776601256248,
+        "lateralSpeed": 1.3322676295501878e-15,
+        "normalizedSpeed": 0.064442181760546,
+        "groundClearance": 2.027458580326594,
+        "support": 1,
+        "engineTorque": 0.0756875862981699,
+        "landingIntensity": 0
+      }
+    },
+    "progress": {
+      "courseProgress": 0.004061178478139693,
+      "unwrappedProgress": 0.0040611784781397235,
+      "previousProgress": 0.004049508230059573,
+      "completedLaps": 0,
+      "currentLap": 1,
+      "nextCheckpointIndex": 1,
+      "lastCheckpointIndex": 0,
+      "lapStartTime": 0,
+      "lastSplitTime": 0,
+      "lapTimes": [],
+      "splits": [],
+      "finishTime": null,
+      "placement": 1,
+      "wrongWay": false,
+      "wrongWayTimer": 0,
+      "offCourseDistance": 0,
+      "lateralOffset": -2.929776129277739,
+      "cornerPreview": {
+        "direction": "straight",
+        "severity": 0.012296562280133117,
+        "distance": 153,
+        "signedAngle": -0.09660035907817971,
+        "tag": "start-straight"
+      },
+      "resetPose": {
+        "x": 18603.435611755107,
+        "z": -10.213802511245468,
+        "y": null,
+        "yaw": -0.04762988648670381
+      }
+    },
+    "ai": null,
+    "galactic": {
+      "version": 1,
+      "vehicleClass": "podracer",
+      "shield": {
+        "active": false,
+        "remaining": 0,
+        "cooldown": 0,
+        "absorbedDamage": 0
+      },
+      "weapon": {
+        "cooldown": 0,
+        "triggerHeld": false,
+        "shotsFired": 0,
+        "hits": 0
+      },
+      "mine": {
+        "cooldown": 0,
+        "charges": 3,
+        "deployed": 0
+      },
+      "redline": {
+        "active": false,
+        "heat": 1,
+        "lockout": 3.4,
+        "peakHeat": 1.0001666666666718
+      },
+      "wreck": {
+        "phase": "wrecked",
+        "timer": 2.15,
+        "invulnerable": 0,
+        "crashCount": 1,
+        "cause": "redline-explosion",
+        "sourceId": null,
+        "takedownBy": null,
+        "recentAggressorId": null,
+        "recentAggressorTime": 0
+      },
+      "status": {
+        "sandGeyser": 0,
+        "heatVent": 0,
+        "rockfallStun": 0,
+        "dustInterference": 0,
+        "ionized": 0
+      },
+      "upgrades": {
+        "afterburner": 0,
+        "cornering": 0,
+        "resilience": 0,
+        "parts": [],
+        "collectedPickupIds": []
+      },
+      "takedowns": 0,
+      "controls": {
+        "fireHeld": false,
+        "shieldHeld": false,
+        "cycleVehicleHeld": false
+      }
+    },
+    "launch": {
+      "outcome": "bog",
+      "targetThrottle": 0.8016211078723654,
+      "displayedRev": 0,
+      "engineHeat": 0,
+      "accuracyTotal": 86.77133885992107,
+      "accuracySamples": 126,
+      "committedThrottle": 0,
+      "penaltyRemaining": 0,
+      "bonusRemaining": 0
+    },
+    "drafting": {
+      "leaderId": null,
+      "wakeStrength": 0,
+      "turbulence": 0,
+      "charge": 0,
+      "slingshotRemaining": 0,
+      "cooldownRemaining": 0
+    },
+    "competition": {
+      "teamId": "sun",
+      "score": 0,
+      "checkpointScore": 0,
+      "driftScore": 0,
+      "combatScore": 0,
+      "survivalLives": 3,
+      "eliminated": false,
+      "eliminatedAt": null,
+      "finishReason": "running",
+      "checkpointsPassed": 0,
+      "shortcutUses": 0,
+      "usedShortcutEventIds": []
+    }
+  },
+  "at922": {
+    "id": "player",
+    "name": "You",
+    "isPlayer": true,
+    "status": "racing",
+    "vehicle": {
+      "version": 1,
+      "id": "player",
+      "seed": 1229867859,
+      "step": 922,
+      "simulationTime": 7.683333333333505,
+      "position": {
+        "x": 18600.13744955193,
+        "y": -10.18700433948426,
+        "z": 14.706374232596215
+      },
+      "velocity": {
+        "x": 0.01871030844538999,
+        "y": 6.033409027015362,
+        "z": 6.080857481211402
+      },
+      "orientation": {
+        "yaw": 0.0030769097051424055,
+        "pitch": -0.043514113784079385,
+        "roll": -0.2336567161620741,
+        "bank": 0
+      },
+      "angularVelocity": {
+        "yaw": 0.661800746314885,
+        "pitch": -0.06651053401153091,
+        "roll": -0.27243876376943144,
+        "bank": 0
+      },
+      "probes": [
+        {
+          "id": "cockpit-front",
+          "localX": 0,
+          "localZ": 1.9,
+          "worldX": 18600.143295671147,
+          "worldZ": 16.60636523859864,
+          "groundHeight": -12.84503398277591,
+          "clearance": 2.5753528271018986,
+          "compression": -0.12535282710189843,
+          "lift": 0,
+          "active": true
+        },
+        {
+          "id": "cockpit-rear",
+          "localX": 0,
+          "localZ": -1.8,
+          "worldX": 18600.1319111232,
+          "worldZ": 12.906382753225493,
+          "groundHeight": -12.879363004036069,
+          "clearance": 2.7706840693631527,
+          "compression": -0.3206840693631525,
+          "lift": 0,
+          "active": true
+        },
+        {
+          "id": "engine-left-front",
+          "localX": -4.1,
+          "localZ": 5.3,
+          "worldX": 18596.05377655574,
+          "worldZ": 20.018964453962095,
+          "groundHeight": -12.829766902638596,
+          "clearance": 3.37013029636322,
+          "compression": -0.9201302963632196,
+          "lift": 0,
+          "active": true
+        },
+        {
+          "id": "engine-left-rear",
+          "localX": -4.1,
+          "localZ": 2.2,
+          "worldX": 18596.044238150702,
+          "worldZ": 16.918979128379185,
+          "groundHeight": -12.607011064830578,
+          "clearance": 3.2822682112858477,
+          "compression": -0.8322682112858475,
+          "lift": 0,
+          "active": true
+        },
+        {
+          "id": "engine-right-front",
+          "localX": 4.1,
+          "localZ": 5.3,
+          "worldX": 18604.253737739535,
+          "worldZ": 19.993733834191254,
+          "groundHeight": -13.55977198085809,
+          "clearance": 2.1841503020537054,
+          "compression": 0.26584969794629476,
+          "lift": 0,
+          "active": true
+        },
+        {
+          "id": "engine-right-rear",
+          "localX": 4.1,
+          "localZ": 2.2,
+          "worldX": 18604.2441993345,
+          "worldZ": 16.893748508608343,
+          "groundHeight": -13.736909503807672,
+          "clearance": 2.4961815777339336,
+          "compression": -0.04618157773393339,
+          "lift": 0,
+          "active": true
+        }
+      ],
+      "drift": {
+        "active": false,
+        "charge": 0,
+        "slipAngle": 7.85421531344152e-17,
+        "direction": 0
+      },
+      "boost": {
+        "energy": 0.14791666666667214,
+        "active": false,
+        "driftBoostTime": 0,
+        "overheated": false
+      },
+      "heat": 0.8979583333333404,
+      "damage": 0,
+      "grounded": true,
+      "airborneTime": 0,
+      "respawn": {
+        "x": 18603.435611755107,
+        "z": -10.213802511245468,
+        "y": null,
+        "yaw": -0.04762988648670374
+      },
+      "controls": {
+        "driftHeld": false,
+        "boostHeld": false,
+        "resetHeld": false
+      },
+      "telemetry": {
+        "speed": 6.080886266198933,
+        "forwardSpeed": 6.080886266198934,
+        "lateralSpeed": 4.787836793695988e-16,
+        "normalizedSpeed": 0.03630813390374332,
+        "groundClearance": 2.779794547316959,
+        "support": 1,
+        "engineTorque": -0.27988463234392147,
+        "landingIntensity": 0
+      }
+    },
+    "progress": {
+      "courseProgress": 0.004168582980308836,
+      "unwrappedProgress": 0.004168582980308867,
+      "previousProgress": 0.004161963234386114,
+      "completedLaps": 0,
+      "currentLap": 1,
+      "nextCheckpointIndex": 1,
+      "lastCheckpointIndex": 0,
+      "lapStartTime": 0,
+      "lastSplitTime": 0,
+      "lapTimes": [],
+      "splits": [],
+      "finishTime": null,
+      "placement": 1,
+      "wrongWay": false,
+      "wrongWayTimer": 0,
+      "offCourseDistance": 0,
+      "lateralOffset": -2.975356586329634,
+      "cornerPreview": {
+        "direction": "straight",
+        "severity": 0.011202034047380934,
+        "distance": 153,
+        "signedAngle": -0.09512274596396426,
+        "tag": "start-straight"
+      },
+      "resetPose": {
+        "x": 18603.435611755107,
+        "z": -10.213802511245468,
+        "y": null,
+        "yaw": -0.04762988648670381
+      }
+    },
+    "ai": null,
+    "galactic": {
+      "version": 1,
+      "vehicleClass": "podracer",
+      "shield": {
+        "active": false,
+        "remaining": 0,
+        "cooldown": 0,
+        "absorbedDamage": 0
+      },
+      "weapon": {
+        "cooldown": 0,
+        "triggerHeld": false,
+        "shotsFired": 0,
+        "hits": 0
+      },
+      "mine": {
+        "cooldown": 0,
+        "charges": 3,
+        "deployed": 0
+      },
+      "redline": {
+        "active": false,
+        "heat": 0.9799999999999995,
+        "lockout": 3.3000000000000003,
+        "peakHeat": 1.0001666666666718
+      },
+      "wreck": {
+        "phase": "wrecked",
+        "timer": 2.0500000000000003,
+        "invulnerable": 0,
+        "crashCount": 1,
+        "cause": "redline-explosion",
+        "sourceId": null,
+        "takedownBy": null,
+        "recentAggressorId": null,
+        "recentAggressorTime": 0
+      },
+      "status": {
+        "sandGeyser": 0,
+        "heatVent": 0,
+        "rockfallStun": 0,
+        "dustInterference": 0,
+        "ionized": 0
+      },
+      "upgrades": {
+        "afterburner": 0,
+        "cornering": 0,
+        "resilience": 0,
+        "parts": [],
+        "collectedPickupIds": []
+      },
+      "takedowns": 0,
+      "controls": {
+        "fireHeld": false,
+        "shieldHeld": false,
+        "cycleVehicleHeld": false
+      }
+    },
+    "launch": {
+      "outcome": "bog",
+      "targetThrottle": 0.8016211078723654,
+      "displayedRev": 0,
+      "engineHeat": 0,
+      "accuracyTotal": 86.77133885992107,
+      "accuracySamples": 126,
+      "committedThrottle": 0,
+      "penaltyRemaining": 0,
+      "bonusRemaining": 0
+    },
+    "drafting": {
+      "leaderId": null,
+      "wakeStrength": 0,
+      "turbulence": 0,
+      "charge": 0,
+      "slingshotRemaining": 0,
+      "cooldownRemaining": 0
+    },
+    "competition": {
+      "teamId": "sun",
+      "score": 0,
+      "checkpointScore": 0,
+      "driftScore": 0,
+      "combatScore": 0,
+      "survivalLives": 3,
+      "eliminated": false,
+      "eliminatedAt": null,
+      "finishReason": "running",
+      "checkpointsPassed": 0,
+      "shortcutUses": 0,
+      "usedShortcutEventIds": []
+    }
+  },
+  "emitted": {
+    "type": "crash",
+    "time": 7.583333333333333,
+    "position": {
+      "x": 18598.824685153697,
+      "y": -16.654480452532752,
+      "z": 10.266170358915868
+    },
+    "velocity": {
+      "x": -1.0634278990468786,
+      "y": 8.344521270653427,
+      "z": 10.740258277534721
+    },
+    "groundY": -12.908893608390041,
+    "severity": 2,
+    "color": "#ff2f18",
+    "style": "redline"
+  },
+  "emitterBelowTerrain": 3.7455868441427107,
+  "lifecycle": [
+    {
+      "age": 0,
+      "plates": [
+        {
+          "kind": 2,
+          "opacity": 1,
+          "y": -16.65447998046875,
+          "centerBelowTerrain": 3.745628598270189,
+          "radius": 2.0250000953674316
+        }
+      ],
+      "debris": 18
+    },
+    {
+      "age": 0.025,
+      "plates": [
+        {
+          "kind": 2,
+          "opacity": 0.9680211544036865,
+          "y": -16.65447998046875,
+          "centerBelowTerrain": 3.745628598270189,
+          "radius": 2.145535707473755
+        },
+        {
+          "kind": 0,
+          "opacity": 0.5799999833106995,
+          "y": -16.65447998046875,
+          "centerBelowTerrain": 3.745628598270189,
+          "radius": 2.700000047683716
+        }
+      ],
+      "debris": 18
+    },
+    {
+      "age": 0.05,
+      "plates": [
+        {
+          "kind": 2,
+          "opacity": 0.7824329137802124,
+          "y": -16.65447998046875,
+          "centerBelowTerrain": 3.745628598270189,
+          "radius": 2.266071319580078
+        },
+        {
+          "kind": 0,
+          "opacity": 0.579823911190033,
+          "y": -16.65447998046875,
+          "centerBelowTerrain": 3.745628598270189,
+          "radius": 2.7803571224212646
+        },
+        {
+          "kind": 1,
+          "opacity": 0.3799999952316284,
+          "y": -16.304479598999023,
+          "centerBelowTerrain": 3.3956282168004623,
+          "radius": 1.4500000476837158
+        }
+      ],
+      "debris": 18
+    },
+    {
+      "age": 0.075,
+      "plates": [
+        {
+          "kind": 2,
+          "opacity": 0.5069873929023743,
+          "y": -16.65447998046875,
+          "centerBelowTerrain": 3.745628598270189,
+          "radius": 2.3866071701049805
+        },
+        {
+          "kind": 0,
+          "opacity": 0.5614522695541382,
+          "y": -16.65447998046875,
+          "centerBelowTerrain": 3.745628598270189,
+          "radius": 2.8607141971588135
+        },
+        {
+          "kind": 1,
+          "opacity": 0.3799999952316284,
+          "y": -16.238304138183594,
+          "centerBelowTerrain": 3.3294527559850327,
+          "radius": 1.5459558963775635
+        },
+        {
+          "kind": 1,
+          "opacity": 0.3799999952316284,
+          "y": -15.954480171203613,
+          "centerBelowTerrain": 3.045628789005052,
+          "radius": 1.7000000476837158
+        }
+      ],
+      "debris": 18
+    },
+    {
+      "age": 0.1,
+      "plates": [
+        {
+          "kind": 2,
+          "opacity": 0.2294357866048813,
+          "y": -16.65447998046875,
+          "centerBelowTerrain": 3.745628598270189,
+          "radius": 2.5071427822113037
+        },
+        {
+          "kind": 0,
+          "opacity": 0.5173273086547852,
+          "y": -16.65447998046875,
+          "centerBelowTerrain": 3.745628598270189,
+          "radius": 2.9410715103149414
+        },
+        {
+          "kind": 1,
+          "opacity": 0.3799999952316284,
+          "y": -16.17212677001953,
+          "centerBelowTerrain": 3.26327538782097,
+          "radius": 1.6419117450714111
+        },
+        {
+          "kind": 1,
+          "opacity": 0.3799999952316284,
+          "y": -15.899601936340332,
+          "centerBelowTerrain": 2.990750554141771,
+          "radius": 1.7932926416397095
+        }
+      ],
+      "debris": 18
+    },
+    {
+      "age": 0.14,
+      "plates": [
+        {
+          "kind": 2,
+          "opacity": 0,
+          "y": -16.65447998046875,
+          "centerBelowTerrain": 3.745628598270189,
+          "radius": 2.700000047683716
+        },
+        {
+          "kind": 0,
+          "opacity": 0.4090401232242584,
+          "y": -16.65447998046875,
+          "centerBelowTerrain": 3.745628598270189,
+          "radius": 3.0696427822113037
+        },
+        {
+          "kind": 1,
+          "opacity": 0.3799999952316284,
+          "y": -16.066246032714844,
+          "centerBelowTerrain": 3.1573946505162827,
+          "radius": 1.7954411506652832
+        },
+        {
+          "kind": 1,
+          "opacity": 0.3799999952316284,
+          "y": -15.811797142028809,
+          "centerBelowTerrain": 2.9029457598302475,
+          "radius": 1.9425610303878784
+        }
+      ],
+      "debris": 18
+    },
+    {
+      "age": 0.2,
+      "plates": [
+        {
+          "kind": 0,
+          "opacity": 0.21053442358970642,
+          "y": -16.65447998046875,
+          "centerBelowTerrain": 3.745628598270189,
+          "radius": 3.262500047683716
+        },
+        {
+          "kind": 1,
+          "opacity": 0.3799999952316284,
+          "y": -15.907422065734863,
+          "centerBelowTerrain": 2.998570683536302,
+          "radius": 2.025735378265381
+        },
+        {
+          "kind": 1,
+          "opacity": 0.3799999952316284,
+          "y": -15.680089950561523,
+          "centerBelowTerrain": 2.7712385683629623,
+          "radius": 2.1664633750915527
+        }
+      ],
+      "debris": 18
+    },
+    {
+      "age": 0.3,
+      "plates": [
+        {
+          "kind": 0,
+          "opacity": 0.0006470548687502742,
+          "y": -16.65447998046875,
+          "centerBelowTerrain": 3.745628598270189,
+          "radius": 3.5839285850524902
+        },
+        {
+          "kind": 1,
+          "opacity": 0.36447766423225403,
+          "y": -15.642715454101562,
+          "centerBelowTerrain": 2.7338640719030014,
+          "radius": 2.4095587730407715
+        },
+        {
+          "kind": 1,
+          "opacity": 0.3799999952316284,
+          "y": -15.460577964782715,
+          "centerBelowTerrain": 2.5517265825841537,
+          "radius": 2.5396342277526855
+        }
+      ],
+      "debris": 17
+    },
+    {
+      "age": 0.5,
+      "plates": [
+        {
+          "kind": 1,
+          "opacity": 0.17279060184955597,
+          "y": -15.113304138183594,
+          "centerBelowTerrain": 2.2044527559850327,
+          "radius": 3.177205801010132
+        },
+        {
+          "kind": 1,
+          "opacity": 0.28268077969551086,
+          "y": -15.021553993225098,
+          "centerBelowTerrain": 2.1127026110265366,
+          "radius": 3.285975694656372
+        }
+      ],
+      "debris": 15
+    },
+    {
+      "age": 0.8,
+      "plates": [
+        {
+          "kind": 1,
+          "opacity": 0.026349876075983047,
+          "y": -14.363017082214355,
+          "centerBelowTerrain": 1.4541657000157944,
+          "radius": 4.405488014221191
+        }
+      ],
+      "debris": 15
+    }
+  ],
+  "note": "CPU reconstruction exact at saved native checkpoints; no pixel/video clock synchronization claim."
+}

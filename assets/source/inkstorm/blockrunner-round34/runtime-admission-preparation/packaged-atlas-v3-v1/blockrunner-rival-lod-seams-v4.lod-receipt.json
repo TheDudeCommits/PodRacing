@@ -1,0 +1,34 @@
+{
+  "stage": "private rival index-only attribute-seam-aware simplification V4",
+  "attributeWeights": [
+    0.025,
+    0.025,
+    0.025,
+    0.15,
+    0.15
+  ],
+  "flags": [
+    "LockBorder",
+    "ErrorAbsolute",
+    "Permissive"
+  ],
+  "targetBodyTriangles": 24000,
+  "bodyTriangles": 24884,
+  "pilotTriangles": 4128,
+  "totalTriangles": 29012,
+  "maximumAbsoluteErrorMeters": 0.02,
+  "reportedAbsoluteErrorMeters": 0.019885757938027382,
+  "protectedSourceTriangles": 8952,
+  "lockedVertices": 11812,
+  "maximumProtectedSourceCoordinateDeltaMeters": 0.0000034516162017439456,
+  "protectedSurfaceTrianglesExact": true,
+  "status": "private rival geometry candidate; actual silhouette/texture review pending",
+  "input": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/runtime-admission-preparation/packaged-atlas-v3-v1/blockrunner-hero-v1.glb",
+  "inputSha256": "6451e78bc4933fd294bc0c080dbedcf679b2d558b118b62cca8ce4812f942b02",
+  "output": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/runtime-admission-preparation/packaged-atlas-v3-v1/blockrunner-rival-lod-seams-v4.glb",
+  "outputSha256": "1d30b0ab6e58385457297abb4c4a244f18b01b19f5168b1b08ddca78bffd1411",
+  "bytes": 4046236,
+  "pilotAccessorBytesExact": true,
+  "bodyPositionNormalUvAccessorBytesExact": true,
+  "runtimeReady": false
+}

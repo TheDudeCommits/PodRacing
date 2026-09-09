@@ -1,0 +1,181 @@
+--- a/src/audio/PodracerAudio.ts
++++ b/src/audio/PodracerAudio.ts
+@@ -524,6 +524,13 @@
+       case 'electric':
+         this.playNoise(normalizedCue, 'bandpass', 3_300);
+         this.playTone({ ...normalizedCue, intensity: normalizedCue.intensity * 0.42 }, 'square', 1_100, 410);
++        break;
++      case 'emp-pulse':
++        this.playTone(normalizedCue, 'triangle', 1_360, 82);
++        this.playNoise({ ...normalizedCue, intensity: normalizedCue.intensity * 0.28 }, 'bandpass', 1_900);
++        break;
++      case 'repair':
++        this.playArpeggio(normalizedCue, [440, 554, 660], 0.065);
+         break;
+       case 'ui':
+         this.playTone(normalizedCue, 'sine', 610, 820);
+--- a/src/audio/model.ts
++++ b/src/audio/model.ts
+@@ -118,6 +118,8 @@
+   finish: { attack: 0.012, decay: 0.24, sustain: 0.58, release: 1.05, peak: 0.46 },
+   warning: { attack: 0.006, decay: 0.13, sustain: 0.5, release: 0.28, peak: 0.36 },
+   electric: { attack: 0.001, decay: 0.035, sustain: 0.2, release: 0.12, peak: 0.31 },
++  'emp-pulse': { attack: 0.003, decay: 0.052, sustain: 0.22, release: 0.16, peak: 0.23 },
++  repair: { attack: 0.006, decay: 0.055, sustain: 0.24, release: 0.13, peak: 0.18 },
+   ui: { attack: 0.004, decay: 0.045, sustain: 0.25, release: 0.09, peak: 0.2 },
+   weapon: { attack: 0.001, decay: 0.052, sustain: 0.2, release: 0.14, peak: 0.46 },
+   'weapon-hit': { attack: 0.001, decay: 0.075, sustain: 0.24, release: 0.24, peak: 0.56 },
+@@ -258,6 +260,21 @@
+         ? [cue('weapon-hit', 0.52 + damage * 0.46, 0.92)]
+         : [cue('impact', 0.38 + damage * 0.58)];
+     }
++    case 'emp-pulse':
++      // Match existing local-emitter fire cues; these events carry no position.
++      return ownRacer ? [cue('emp-pulse', 0.68)] : [];
++    case 'emp-hit':
++      // The emitter receives its pulse once, not one extra sound per victim.
++      if (options.playerId && eventString(event, 'targetId') !== options.playerId) return [];
++      return eventBoolean(event, 'blocked')
++        ? [cue('shield', 0.44, 0.92)]
++        : [cue('electric', 0.42, 0.78)];
++    case 'repair-salvage-collected': {
++      if (!ownRacer) return [];
++      const restored = Math.max(0, eventNumber(event, 'repaired'))
++        + Math.max(0, eventNumber(event, 'cooled')) + Math.max(0, eventNumber(event, 'coreCooled'));
++      return restored > 0 ? [cue('repair', 0.48 + Math.min(1, restored) * 0.14)] : [];
++    }
+     case 'shield-active':
+       return ownRacer && recordOf(event).active !== false
+         ? [cue('shield', 0.76, 1.12)]
+--- a/src/audio/types.ts
++++ b/src/audio/types.ts
+@@ -73,6 +73,8 @@
+   | 'finish'
+   | 'warning'
+   | 'electric'
++  | 'emp-pulse'
++  | 'repair'
+   | 'ui'
+   | 'weapon'
+   | 'weapon-hit'
+--- a/tests/audio/PodracerAudioCallout.test.ts
++++ b/tests/audio/PodracerAudioCallout.test.ts
+@@ -153,6 +153,7 @@
+   readonly destination = new FakeAudioNode();
+   readonly gains: FakeGainNode[] = [];
+   readonly filters: FakeBiquadFilterNode[] = [];
++  readonly oscillators: FakeOscillatorNode[] = [];
+   readonly bufferSources: FakeBufferSourceNode[] = [];
+   readonly decodedIntro = new FakeAudioBuffer(2, 48_000, 8_000) as unknown as AudioBuffer;
+   decodeCount = 0;
+@@ -169,7 +170,9 @@
+   }
+ 
+   createOscillator(): OscillatorNode {
+-    return new FakeOscillatorNode() as unknown as OscillatorNode;
++    const node = new FakeOscillatorNode();
++    this.oscillators.push(node);
++    return node as unknown as OscillatorNode;
+   }
+ 
+   createBufferSource(): AudioBufferSourceNode {
+@@ -334,3 +337,50 @@
+     audio.dispose();
+   });
+ });
++
++
++describe('new combat cues within the existing audio owner', () => {
++  it('schedules a short descending EMP and cached noise without decoding or creating another context', async () => {
++    const { audio, context, fetchCount } = await createLoadedAudio();
++    context.currentTime = 7;
++    const previousOscillators = context.oscillators.length, previousBuffers = context.bufferSources.length;
++    audio.handleEvents([{ type: 'emp-pulse', racerId: 'player' }], { playerId: 'player' });
++    const tones = context.oscillators.slice(previousOscillators), noise = context.bufferSources.slice(previousBuffers);
++    expect(tones).toHaveLength(1); expect(noise).toHaveLength(1);
++    const frequency = tones[0]!.frequency.events.filter(event => event.value !== undefined);
++    expect(frequency[0]!.value).toBeGreaterThan(frequency.at(-1)!.value!);
++    expect(noise[0]!.buffer).toBe(context.bufferSources.find(source => source.loop && source !== noise[0])!.buffer);
++    for (const source of [...tones, ...noise]) {
++      expect(source.startCalls).toHaveLength(1); expect(source.stopCalls).toHaveLength(1);
++      expect(source.stopCalls[0]! - source.startCalls[0]!.time).toBeGreaterThan(0);
++      expect(source.stopCalls[0]! - source.startCalls[0]!.time).toBeLessThan(.3);
++    }
++    const gain = tones[0]!.connections[0] as FakeGainNode;
++    expect(Math.max(...gain.gain.events.map(event => event.value ?? 0))).toBeLessThan(.17);
++    expect(fetchCount()).toBe(1); expect(context.decodeCount).toBe(1);
++    audio.dispose(); expect(context.closeCount).toBe(1);
++    audio.handleEvents([{ type: 'emp-pulse', racerId: 'player' }], { playerId: 'player' });
++    expect(context.oscillators.length).toBe(previousOscillators + 1);
++  });
++
++  it('schedules an ascending repair chime for core-only cooling and rejects remote/no-op pickups', async () => {
++    const { audio, context } = await createLoadedAudio(); context.currentTime = 8;
++    const before = context.oscillators.length;
++    audio.handleEvents([
++      { type: 'repair-salvage-collected', racerId: 'rival', repaired: .2, cooled: .1, coreCooled: .1 },
++      { type: 'repair-salvage-collected', racerId: 'player', repaired: 0, cooled: 0, coreCooled: 0 },
++    ], { playerId: 'player' });
++    expect(context.oscillators.length).toBe(before);
++    audio.handleEvents([{ type: 'repair-salvage-collected', racerId: 'player', repaired: 0, cooled: 0, coreCooled: .2 }], { playerId: 'player' });
++    const notes = context.oscillators.slice(before); expect(notes).toHaveLength(3);
++    for (let i = 0; i < notes.length; i++) {
++      const note = notes[i]!;
++      expect(note.stopCalls[0]).toBeLessThan(8.4);
++      if (i) {
++        expect(note.startCalls[0]!.time).toBeGreaterThan(notes[i - 1]!.startCalls[0]!.time);
++        expect(note.frequency.events[0]!.value).toBeGreaterThan(notes[i - 1]!.frequency.events[0]!.value!);
++      }
++    }
++    audio.dispose();
++  });
++});
+--- /dev/null
++++ b/tests/audio/combatPickupAudio.test.ts
+@@ -0,0 +1,46 @@
++import { describe, expect, it } from 'vitest';
++import { createAudioEnvelopeSchedule, mapGameEventsToAudioCues } from '../../src/audio';
++
++const local = { playerId: 'player' };
++describe('EMP and repair audio event routing', () => {
++  it('keeps emitter and receiver perspectives separate without sounding every nearby AI hit', () => {
++    const events = [
++      { type: 'emp-pulse', racerId: 'player' },
++      { type: 'emp-hit', attackerId: 'player', targetId: 'rival-a', blocked: false },
++      { type: 'emp-hit', attackerId: 'player', targetId: 'rival-b', blocked: true },
++    ];
++    expect(mapGameEventsToAudioCues(events, local).map(cue => cue.kind)).toEqual(['emp-pulse']);
++    expect(mapGameEventsToAudioCues([{ type: 'emp-pulse', racerId: 'rival' },
++      { type: 'emp-hit', targetId: 'player', blocked: false }], local).map(cue => cue.kind)).toEqual(['electric']);
++    expect(mapGameEventsToAudioCues([{ type: 'emp-hit', targetId: 'player', blocked: true }], local).map(cue => cue.kind)).toEqual(['shield']);
++    expect(mapGameEventsToAudioCues([{ type: 'emp-pulse', racerId: 'rival' }, { type: 'emp-hit', targetId: 'other', blocked: true }], local)).toEqual([]);
++  });
++  it('coalesces duplicate local EMP and shield voices within the authoritative event batch', () => {
++    const cues = mapGameEventsToAudioCues([
++      { type: 'emp-pulse', racerId: 'player' }, { type: 'emp-pulse', racerId: 'player' },
++      { type: 'emp-hit', targetId: 'player', blocked: true }, { type: 'shield-block', racerId: 'player', absorbed: .5 },
++    ], local);
++    expect(cues.filter(cue => cue.kind === 'emp-pulse')).toHaveLength(1);
++    expect(cues.filter(cue => cue.kind === 'shield')).toHaveLength(1);
++  });
++  it('accounts for damage, ordinary heat and core-only heat without rewarding no-op or malformed restoration', () => {
++    for (const amounts of [{ repaired: .2 }, { cooled: .3 }, { coreCooled: .4 }]) {
++      const cues = mapGameEventsToAudioCues([{ type: 'repair-salvage-collected', racerId: 'player', ...amounts }], local);
++      expect(cues).toHaveLength(1); expect(cues[0]!.kind).toBe('repair');
++      expect(cues[0]!.intensity).toBeLessThanOrEqual(.62);
++    }
++    expect(mapGameEventsToAudioCues([
++      { type: 'repair-salvage-collected', racerId: 'rival', repaired: 1 },
++      { type: 'repair-salvage-collected', racerId: 'player', repaired: -2, cooled: NaN, coreCooled: Infinity },
++    ], local)).toEqual([]);
++  });
++  it('retains unscoped preview mapping and short finite conservative cue envelopes', () => {
++    expect(mapGameEventsToAudioCues([{ type: 'emp-pulse', racerId: 'preview' }])[0]?.kind).toBe('emp-pulse');
++    for (const kind of ['emp-pulse', 'repair'] as const) for (const intensity of [0, .5, 1, NaN, Infinity]) {
++      const schedule = createAudioEnvelopeSchedule({ kind, intensity }, 2);
++      expect(schedule.every((point, index) => Number.isFinite(point.time) && Number.isFinite(point.value)
++        && point.value > 0 && point.value <= .23 && (!index || point.time > schedule[index - 1]!.time))).toBe(true);
++      expect(schedule.at(-1)!.time - 2).toBeLessThan(.23);
++    }
++  });
++});

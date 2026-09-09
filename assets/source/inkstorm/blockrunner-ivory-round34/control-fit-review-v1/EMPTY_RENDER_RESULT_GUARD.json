@@ -1,0 +1,5 @@
+{
+  "v2Failure": "No render executed: extra conservative guard rejected preexisting Render Result ID. Original failed receipt preserved with all scene/context/ID guards PASS.",
+  "actualInspection": "Render Result has eight slots, all hasData=false,size[0,0],channels0; active0 restored. No preexisting image pixels to overwrite.",
+  "v3Guard": "Same-invocation verifies all slots empty; after render releases newly generated buffers from this existing ID and requires exact prior slot/name/type/source/filepath/active metadata. Any populated slot rejects. All4 source signatures/fullscene/context/ID guards remain."
+}

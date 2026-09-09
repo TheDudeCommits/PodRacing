@@ -1,0 +1,33 @@
+{
+  "reviewedAt": "2026-09-08T23:03:46.293179+00:00",
+  "scope": "Read-only static review of resource-bar observer, not native or visual acceptance",
+  "script": "/Users/amir/Projects/PodRacing/scripts/inkstorm-broadcast-ui.mjs",
+  "scriptSha256": "568ce4a2885f88acf4bde77fcffc13f3714854e00169a7e02208656511767970",
+  "scriptBytes": 42058,
+  "baseline": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/broadcast-ui-round35/catalog-native-v18/executed-ui-harness-v17.mjs",
+  "baselineSha256": "f9cc90b939fd2cb5f004a2cda2cc1593e4a635ef88afc92dcf639e89d8578688",
+  "finding": {
+    "priority": "P2",
+    "status": "OPEN",
+    "title": "Visibility and shared-row proof is missing",
+    "lines": [
+      92,
+      116
+    ],
+    "detail": "Track width and numeric textContent remain readable by the observer when a resource is opacity:0, visibility:hidden, off screen, or clipped. The observer stores trackBox but does not inspect it and does not capture row/value boxes or ancestor visibility. This can pass binding correlation while the promised visible meter/number is absent."
+  },
+  "verified": [
+    "Changes from preserved V17 harness are bounded to observer functions and start/finish calls around the existing ordinary-W run.",
+    "No gameplay, HUD, resource, or settings writes: the only new page write is a private trace object.",
+    "Numeric value uses rounded updateMeter amount; tolerance 1 is conservative for rounding.",
+    "clientWidth excludes current one-pixel track border and matches the fill percentage containing block; no track padding exists in current CSS.",
+    "Telemetry width is immediate under V18 override; boost retains existing 80ms width interpolation and recent-bound-range allowance.",
+    "Natural heat zero/partial/full requirement would reject the prior constant-100-percent fill override.",
+    "Native capture, reduced-motion, lifecycle and 60-part flows are unchanged."
+  ],
+  "limits": [
+    "Not a visual style/contrast verdict.",
+    "Observer sampling is intentionally not frame-rate evidence.",
+    "No browser or build executed by reviewer."
+  ]
+}

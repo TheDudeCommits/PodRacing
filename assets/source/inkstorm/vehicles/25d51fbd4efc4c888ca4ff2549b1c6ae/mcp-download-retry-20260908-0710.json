@@ -1,0 +1,78 @@
+{
+  "recordedAt": "2026-09-08 07:10:26 UTC",
+  "uid": "25d51fbd4efc4c888ca4ff2549b1c6ae",
+  "title": "Podracer",
+  "author": "JakacBatko",
+  "method": "official_blender_mcp",
+  "targetSize": 12,
+  "attempt": 5,
+  "previousAttemptAt": "2026-09-07T22:29:05Z",
+  "priorOfficialRateLimits": 8,
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "Successfully imported model.\nCreated objects: Sketchfab_model.022, root, GLTF_SceneRootNode, A yellow fin_0, Object_4.017, 1 yellow_1, Object_6.016, 2 gray blue_2, Object_8.012, B yellow fin_3, Object_10.014, C yellow fin_4, Object_12.012, 3 gray _5, Object_14.012, 5.2 line_6, Object_16.012, 5.3 line_7, Object_18.012, 5.1 line_8, Object_20.012, 4 end_9, Object_22.012, 0 shild_10, Object_24.012, 6.1 flap_11, Object_26.012, 6.2 flap_12, Object_28.012, cable A_13, Object_30.012, A yellow fin.003_14, Object_32.012, 1 yellow.002_15, Object_34.012, 2 gray blue.002_16, Object_36.012, B yellow fin.002_17, Object_38.006, C yellow fin.002_18, Object_40.006, 3 gray .002_19, Object_42, 5.2 line.002_20, Object_44, 5.3 line.002_21, Object_46, 5.1 line.002_22, Object_48, 4 end.002_23, Object_50, 0 shild.002_24, Object_52, 6.1 flap.002_25, Object_54, 6.2 flap.002_26, Object_56, cable B_27, Object_58, pod_28, Object_60\nDimensions (X, Y, Z): 12.000 x 5.755 x 1.910 meters\nBounding box: min=[-2.065903425216675, -2.903212547302246, -0.20573240518569946], max=[9.93409538269043, 2.8514397144317627, 1.7039871215820312]\nSize normalized: scale factor 0.514331 applied (target size: 12.0m)\n"
+      }
+    ],
+    "structuredContent": {
+      "result": "Successfully imported model.\nCreated objects: Sketchfab_model.022, root, GLTF_SceneRootNode, A yellow fin_0, Object_4.017, 1 yellow_1, Object_6.016, 2 gray blue_2, Object_8.012, B yellow fin_3, Object_10.014, C yellow fin_4, Object_12.012, 3 gray _5, Object_14.012, 5.2 line_6, Object_16.012, 5.3 line_7, Object_18.012, 5.1 line_8, Object_20.012, 4 end_9, Object_22.012, 0 shild_10, Object_24.012, 6.1 flap_11, Object_26.012, 6.2 flap_12, Object_28.012, cable A_13, Object_30.012, A yellow fin.003_14, Object_32.012, 1 yellow.002_15, Object_34.012, 2 gray blue.002_16, Object_36.012, B yellow fin.002_17, Object_38.006, C yellow fin.002_18, Object_40.006, 3 gray .002_19, Object_42, 5.2 line.002_20, Object_44, 5.3 line.002_21, Object_46, 5.1 line.002_22, Object_48, 4 end.002_23, Object_50, 0 shild.002_24, Object_52, 6.1 flap.002_25, Object_54, 6.2 flap.002_26, Object_56, cable B_27, Object_58, pod_28, Object_60\nDimensions (X, Y, Z): 12.000 x 5.755 x 1.910 meters\nBounding box: min=[-2.065903425216675, -2.903212547302246, -0.20573240518569946], max=[9.93409538269043, 2.8514397144317627, 1.7039871215820312]\nSize normalized: scale factor 0.514331 applied (target size: 12.0m)\n"
+    },
+    "isError": false
+  },
+  "contextBefore": {
+    "scene": "Cruise — Going Merry source 4b2cb678",
+    "viewLayer": "ViewLayer",
+    "active": "Sketchfab_model.001",
+    "selected": [
+      "Sketchfab_model.001",
+      "cd32016bfac44aaea241abaa77bd8b56.fbx",
+      "RootNode",
+      "Object016",
+      "Object_4",
+      "Object016_02 - Default_0",
+      "Plane038",
+      "Object_7",
+      "Plane038_02 - Default_0",
+      "Plane045",
+      "Object_10",
+      "Plane045_02 - Default_0",
+      "Plane056",
+      "Object_13",
+      "Plane056_02 - Default_0"
+    ]
+  },
+  "contextVerification": {
+    "scene": "Cruise — Going Merry source 4b2cb678",
+    "viewLayer": "ViewLayer",
+    "active": "Sketchfab_model.001",
+    "selected": [
+      "Sketchfab_model.001",
+      "cd32016bfac44aaea241abaa77bd8b56.fbx",
+      "RootNode",
+      "Object016",
+      "Object_4",
+      "Object016_02 - Default_0",
+      "Plane038",
+      "Object_7",
+      "Plane038_02 - Default_0",
+      "Plane045",
+      "Object_10",
+      "Plane045_02 - Default_0",
+      "Plane056",
+      "Object_13",
+      "Plane056_02 - Default_0"
+    ],
+    "objects": 17,
+    "intakeObjects": 61,
+    "temporaryConfigurationEmpty": true,
+    "quarryObjects": 166
+  },
+  "originalSceneCount": 105,
+  "originalSceneMembershipChanged": [],
+  "addedScenes": [
+    "PodRacing — source 25d51fbd retry 20260908 0710"
+  ],
+  "sourceImported": true,
+  "rawArchivePreserved": false
+}

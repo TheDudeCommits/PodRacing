@@ -1,0 +1,51 @@
+--- a/src/render/inkstorm/InkstormFoundry.ts
++++ b/src/render/inkstorm/InkstormFoundry.ts
+@@ -41,7 +41,7 @@
+   const sides = [-1, 1].map(side => banks.filter(p => {
+     const road = course.sampleAtProgress(p.progress);
+     return Math.sign((p.x - road.x) * road.rightX + (p.z - road.z) * road.rightZ) === side;
+-  }).sort((a, b) => a.progress - b.progress).slice(0, 4));
++  }).sort((a, b) => a.progress - b.progress));
+   const rows = Math.min(sides[0]!.length, sides[1]!.length);
+   const headings: Vector3[][] = [[], []];
+   for (let sideIndex = 0; sideIndex < 2; sideIndex++) {
+@@ -77,19 +77,35 @@
+   }
+   // Retain the detailed race gantry as the foreground frame. The new pressure
+   // mains sit across successive actual module pairs at lower, visible heights.
+-  const selected = [...new Set([0, Math.floor((rows - 1) * .5), rows - 1])].filter(i => i >= 0);
++  // Preserve every V2 crossing; append the later continuous-chicane rows.
++  const originalRows = Math.min(4, rows);
++  const selected = [...new Set([0, Math.floor((originalRows - 1) * .5), originalRows - 1])].filter(i => i >= 0);
++  for (let row = 6; row < rows; row += 3) selected.push(row);
++  if (rows > 4 && !selected.includes(rows - 1)) selected.push(rows - 1);
+   for (const [index, row] of selected.entries()) {
++    const rhythm = index % 3;
+     const a = headings[0]![row]!.clone(), b = headings[1]![row]!.clone();
+     const progress = (sides[0]![row]!.progress + sides[1]![row]!.progress) / 2;
+-    let y = course.sampleAtProgress(progress).y + [34, 42, 38][index]!;
++    let y = course.sampleAtProgress(progress).y + [34, 42, 38][rhythm]!;
+     // Lift only if the actual crossed racing envelope needs 30m clearance.
+     for (let t = 0; t <= 1; t += .025) {
+       const p = a.clone().lerp(b, t), route = course.projectPoint(p.x, p.z);
+       if (route.distanceToCenter < route.width + 8) y = Math.max(y, heightAt(p.x, p.z) + 34);
+     }
++    if (index >= 3) {
++      // Later switchbacks can have a second legal road above the nearest
++      // terrain projection. Bound the new spans against all adjacent lanes;
++      // the three V2 crossings and their normals remain byte-exact.
++      const corridors = course.getRenderData(4096);
++      const dx = b.x - a.x, dz = b.z - a.z, length2 = dx * dx + dz * dz;
++      for (const p of [...corridors.points, ...(corridors.branches ?? []).flatMap(branch => branch.points)]) {
++        const t = Math.max(0, Math.min(1, ((p.x - a.x) * dx + (p.z - a.z) * dz) / (length2 || 1)));
++        if (Math.hypot(p.x - a.x - dx * t, p.z - a.z - dz * t) < p.width + 8) y = Math.max(y, p.y + 37);
++      }
++    }
+     const ah = a.clone(); ah.y = y; const bh = b.clone(); bh.y = y;
+-    plan.pipes.push({ id: `foundry-overhead-${index}`, radius: [3.2, 2.6, 2][index]!,
+-      color: index === 1 ? PAINT.bone : PAINT.blue,
++    plan.pipes.push({ id: `foundry-overhead-${index}`, radius: [3.2, 2.6, 2][rhythm]!,
++      color: rhythm === 1 ? PAINT.bone : PAINT.blue,
+       points: [point(a), point(ah), point(bh), point(b)] });
+     if (index === 1) {
+       const center = ah.clone().add(bh).multiplyScalar(.5), delta = bh.clone().sub(ah);

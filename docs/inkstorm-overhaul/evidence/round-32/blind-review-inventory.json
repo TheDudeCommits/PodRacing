@@ -1,0 +1,281 @@
+{
+  "recordedAt": "2026-09-08T09:42:33.200765+00:00",
+  "critic": "docs/inkstorm-overhaul/BLIND_POLWO_FINAL_ROUND32.md",
+  "criticSha256": "9b8ea71970a1fa3175ec2ba6c81fac53f849fd9056c55750546a61d6c32bfcd5",
+  "reviewType": "fresh blind still-image review; no implementation code, prior reviews, prompts or receipts read",
+  "outcome": "FAIL",
+  "strictThreshold": 8,
+  "overallScore": 5.8,
+  "scoreMethod": "Holistic judgment, not an arithmetic mean of rows or components.",
+  "approximateComponents": {
+    "vehicle": 6.5,
+    "worldConstruction": 5.5,
+    "gameplayDriverReadability": 4.5
+  },
+  "scoreRows": [
+    {
+      "area": "Garage / Polwo presentation",
+      "construction": 6.5,
+      "styleCoherence": 6.5,
+      "routeReadability": null,
+      "driverReadability": 5.0,
+      "targetParity": 6.0,
+      "overall": 6.1
+    },
+    {
+      "area": "01 — Grid",
+      "construction": 6.0,
+      "styleCoherence": 6.0,
+      "routeReadability": 7.0,
+      "driverReadability": 4.5,
+      "targetParity": 5.0,
+      "overall": 5.8
+    },
+    {
+      "area": "02 — Salt run",
+      "construction": 5.0,
+      "styleCoherence": 6.0,
+      "routeReadability": 7.0,
+      "driverReadability": 4.5,
+      "targetParity": 4.5,
+      "overall": 5.4
+    },
+    {
+      "area": "03 — Canyon",
+      "construction": 6.0,
+      "styleCoherence": 6.0,
+      "routeReadability": 6.5,
+      "driverReadability": 4.5,
+      "targetParity": 5.5,
+      "overall": 5.9
+    },
+    {
+      "area": "04 — Fork",
+      "construction": 5.0,
+      "styleCoherence": 5.5,
+      "routeReadability": 5.5,
+      "driverReadability": 4.5,
+      "targetParity": 4.0,
+      "overall": 4.9
+    },
+    {
+      "area": "05 — Launch",
+      "construction": 6.0,
+      "styleCoherence": 6.0,
+      "routeReadability": 6.5,
+      "driverReadability": 4.5,
+      "targetParity": 5.5,
+      "overall": 5.9
+    },
+    {
+      "area": "06 — Foundry",
+      "construction": 5.0,
+      "styleCoherence": 5.5,
+      "routeReadability": 5.5,
+      "driverReadability": 4.5,
+      "targetParity": 4.5,
+      "overall": 5.0
+    },
+    {
+      "area": "07 — Finish",
+      "construction": 5.0,
+      "styleCoherence": 5.5,
+      "routeReadability": 6.5,
+      "driverReadability": 4.5,
+      "targetParity": 4.5,
+      "overall": 5.2
+    },
+    {
+      "area": "Live-drive still",
+      "construction": 5.5,
+      "styleCoherence": 6.0,
+      "routeReadability": 6.0,
+      "driverReadability": 4.5,
+      "targetParity": 4.5,
+      "overall": 5.3
+    }
+  ],
+  "acceptedWorldTargets": 0,
+  "reviewedWorldTargets": 7,
+  "liveTargetScope": "Live-drive has no dedicated paired target; targetParity compares original salt-run/world language.",
+  "images": [
+    {
+      "kind": "output",
+      "path": "output/gauntlet/round-32-polwo-revision3/garage.png",
+      "bytes": 1057494,
+      "sha256": "58a28604ff9c3bcff067b617499e97a506f4d2fccde09ac84c5a3ce05780bf36",
+      "matchesCriticDirectlyComputedHash": true
+    },
+    {
+      "kind": "output",
+      "path": "output/gauntlet/round-32-polwo-revision3/01-grid.png",
+      "bytes": 3280150,
+      "sha256": "f6b3f2776ec8af82da1026ac8b55d04b2fdb83ba3607b7891314b0f5ec3e7a9e",
+      "matchesCriticDirectlyComputedHash": true
+    },
+    {
+      "kind": "output",
+      "path": "output/gauntlet/round-32-polwo-revision3/02-salt-run.png",
+      "bytes": 2985943,
+      "sha256": "9ecb539b760a9df5a9dda95c33530dabbfbe55b83075f56fbbcf87514f2b7b27",
+      "matchesCriticDirectlyComputedHash": true
+    },
+    {
+      "kind": "output",
+      "path": "output/gauntlet/round-32-polwo-revision3/03-canyon.png",
+      "bytes": 3207063,
+      "sha256": "d8e8b9a5a715bba5f815e0cdbebce501b4c1e6e39f62e740f3de31b731e93493",
+      "matchesCriticDirectlyComputedHash": true
+    },
+    {
+      "kind": "output",
+      "path": "output/gauntlet/round-32-polwo-revision3/04-fork.png",
+      "bytes": 3125087,
+      "sha256": "cb45c6d0bcf5f9f5a8ef26abe78b699f9c8f342c3ef7860c8feff2ff0b884c18",
+      "matchesCriticDirectlyComputedHash": true
+    },
+    {
+      "kind": "output",
+      "path": "output/gauntlet/round-32-polwo-revision3/05-launch.png",
+      "bytes": 3286410,
+      "sha256": "c7a424dc986c06a8f59ccae7791106882ff13b35eec79c91bb0a7bd828382836",
+      "matchesCriticDirectlyComputedHash": true
+    },
+    {
+      "kind": "output",
+      "path": "output/gauntlet/round-32-polwo-revision3/06-foundry.png",
+      "bytes": 2958879,
+      "sha256": "6ca2fbc3109f4ca43af7352c7a26b52c69f50c0a2e4831be365da6a2efaf3132",
+      "matchesCriticDirectlyComputedHash": true
+    },
+    {
+      "kind": "output",
+      "path": "output/gauntlet/round-32-polwo-revision3/07-finish.png",
+      "bytes": 3206838,
+      "sha256": "3264189dc0d48e9e96f4c3289a71f5f9f252e1486722404080ca163a1b053243",
+      "matchesCriticDirectlyComputedHash": true
+    },
+    {
+      "kind": "output",
+      "path": "output/gauntlet/round-32-polwo-revision3/live-drive.png",
+      "bytes": 2484012,
+      "sha256": "d1d96ab80eae14d49abf0756139dea4384aea6d94e72089b8f6cb31fcdd40d09",
+      "matchesCriticDirectlyComputedHash": true
+    },
+    {
+      "kind": "target",
+      "path": "docs/inkstorm-overhaul/concepts/01-grid.png",
+      "bytes": 2680049,
+      "sha256": "9b0cb5d949dbd077abc593b39d9f23805fcf9c7d45e7c1737987d671c2d11445",
+      "matchesCriticDirectlyComputedHash": true
+    },
+    {
+      "kind": "target",
+      "path": "docs/inkstorm-overhaul/concepts/02-salt-run.png",
+      "bytes": 2457271,
+      "sha256": "5827c03ff9e029f9c8ac5a24dfc4dcc4dbc2942e25b4925f3d14b0d8fe2e4182",
+      "matchesCriticDirectlyComputedHash": true
+    },
+    {
+      "kind": "target",
+      "path": "docs/inkstorm-overhaul/concepts/03-canyon.png",
+      "bytes": 2414783,
+      "sha256": "962f31af50b5e89d8f109443f914f33d5ca4aafb9ff010aaec0123fc75e63cea",
+      "matchesCriticDirectlyComputedHash": true
+    },
+    {
+      "kind": "target",
+      "path": "docs/inkstorm-overhaul/concepts/04-fork.png",
+      "bytes": 2568277,
+      "sha256": "cab90a3aa51d6e80bb4cfe0d95af97d7e1803b4eff5420f48df2aff65501106f",
+      "matchesCriticDirectlyComputedHash": true
+    },
+    {
+      "kind": "target",
+      "path": "docs/inkstorm-overhaul/concepts/05-launch.png",
+      "bytes": 2540528,
+      "sha256": "a791c4726db5997b8395d0d50e8ee3b858db80e0ecb01eb817ad30e7b2dc212a",
+      "matchesCriticDirectlyComputedHash": true
+    },
+    {
+      "kind": "target",
+      "path": "docs/inkstorm-overhaul/concepts/06-foundry.png",
+      "bytes": 2549771,
+      "sha256": "e56c72e8a4c96be345a5cfa088186ad65763fbc94c5f8b85233bb9a04b1aeb50",
+      "matchesCriticDirectlyComputedHash": true
+    },
+    {
+      "kind": "target",
+      "path": "docs/inkstorm-overhaul/concepts/07-finish.png",
+      "bytes": 2614500,
+      "sha256": "49150b64ed3dab444fde9aab7fb5091443e685a93d5c42270df257b7b8b640a2",
+      "matchesCriticDirectlyComputedHash": true
+    },
+    {
+      "kind": "target",
+      "path": "docs/inkstorm-overhaul/concepts/10-polwo-vehicle-round32.png",
+      "bytes": 1905017,
+      "sha256": "ff6884640507cfe0a336ffcc93495259f89e1d86f23dc5a366bae4b039ade708",
+      "matchesCriticDirectlyComputedHash": true
+    }
+  ],
+  "all17ImageHashesMatch": true,
+  "technicalScope": "Frozen round32 functional and full-race PASS remain separate; stills do not prove motion, FPS, handling, collisions, contacts, complete laps or articulation.",
+  "round33Scope": "Active round33 source/public candidates and later builds excluded.",
+  "preservedBeforeUpdate": [
+    {
+      "source": "HANDOVER.md",
+      "preserved": "docs/inkstorm-overhaul/HANDOVER_BEFORE_BLIND_FINAL_ROUND32.md",
+      "bytes": 17937,
+      "sha256": "59bf565d90fd303b2465cf2a53dc1a6c049ae4d8aeff437736f4a96a6670a469"
+    },
+    {
+      "source": "docs/inkstorm-overhaul/ROUND32.md",
+      "preserved": "docs/inkstorm-overhaul/ROUND32_BEFORE_BLIND_FINAL_ROUND32.md",
+      "bytes": 14427,
+      "sha256": "2b8d9e8001c545eceea4b90a42833377195dd5538dcb9324abee2611904b7935"
+    },
+    {
+      "source": "docs/inkstorm-overhaul/STATUS.md",
+      "preserved": "docs/inkstorm-overhaul/STATUS_BEFORE_BLIND_FINAL_ROUND32.md",
+      "bytes": 10136,
+      "sha256": "15a9b2d8597a9807d8a97b41c104588b1b2efaa3526cbe3972c23bfcd3edf993"
+    },
+    {
+      "source": "docs/inkstorm-overhaul/CURRENT_VISUALS.md",
+      "preserved": "docs/inkstorm-overhaul/CURRENT_VISUALS_BEFORE_BLIND_FINAL_ROUND32.md",
+      "bytes": 4405,
+      "sha256": "9b782d3187a0a8d881a2060d4ab00dc9ca5f83a6fe44c49415e602045604c5ec"
+    },
+    {
+      "source": "docs/inkstorm-overhaul/VEHICLE_CATALOG.md",
+      "preserved": "docs/inkstorm-overhaul/VEHICLE_CATALOG_BEFORE_BLIND_FINAL_ROUND32.md",
+      "bytes": 31215,
+      "sha256": "51fb8c419bf86c3ed7c4069c882084bcab89715e1435dcf6076623634f3328bb"
+    },
+    {
+      "source": "docs/inkstorm-overhaul/ASSET_ACQUISITION_LIMITS.md",
+      "preserved": "docs/inkstorm-overhaul/ASSET_ACQUISITION_LIMITS_BEFORE_BLIND_FINAL_ROUND32.md",
+      "bytes": 7623,
+      "sha256": "82b5f2d58b2374f96950283b31fde71cb3cd039a32a0bf2bd3611509a2cfed72"
+    },
+    {
+      "source": "docs/inkstorm-overhaul/FULL_RACE_PERFORMANCE_ROUND32.md",
+      "preserved": "docs/inkstorm-overhaul/FULL_RACE_PERFORMANCE_ROUND32_BEFORE_BLIND_FINAL_ROUND32.md",
+      "bytes": 8009,
+      "sha256": "89fb9f54f6011803760939ddfce55bf99df3c32d079d4837173c240315a2ca76"
+    },
+    {
+      "source": "assets/source/inkstorm/vehicle-manifest.json",
+      "preserved": "assets/source/inkstorm/vehicle-manifest-before-blind-final-round32.json",
+      "bytes": 507766,
+      "sha256": "17fbc2814a3776dca681c129d07a4adccf453750f9dbf12fe8c053d0a5fcf4b1"
+    },
+    {
+      "source": "docs/inkstorm-overhaul/evidence/round-32/gallery-inventory.json",
+      "preserved": "docs/inkstorm-overhaul/evidence/round-32/gallery-inventory-before-blind-final.json",
+      "bytes": 4038,
+      "sha256": "822eb2cbc24fa266610a543fbc1354704311d4ae7c9f6f93b612f6e45b6706dd"
+    }
+  ]
+}

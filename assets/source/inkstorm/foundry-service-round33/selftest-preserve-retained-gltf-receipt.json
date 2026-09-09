@@ -1,0 +1,110 @@
+{
+  "durationSeconds": 2.355,
+  "packerSha256": "3465396693e6bd5572afa13dd80e37e4cce585d7abd4e9056472900a84410854",
+  "scope": "Synthetic fixtures only; actual native export and Khronos validation remain pending.",
+  "selftestSha256": "63a1b28d383b227889a5b75f98ee7e901123d353676f472aa3f7c7ea068e986e",
+  "sourceSha256": "3d0cd999daf52b82ac0232c7316a5e4072c80bd83982f83cbaf4a1dcde11e862",
+  "status": "PASS",
+  "syntheticFinalProof": {
+    "addedVertices": 7680,
+    "additionAttributesAndWindingPreserved": true,
+    "boundsGltf": [
+      [
+        -52.0,
+        52.0
+      ],
+      [
+        -25.0,
+        61.45000076293945
+      ],
+      [
+        -7.0,
+        7.0
+      ]
+    ],
+    "clippedOpenCorridorMinimumY": 39.66999816894531,
+    "materials": 1,
+    "meshes": 1,
+    "primitives": 1,
+    "retainedAttributeSha256": {
+      "COLOR_0": "a096f77fc953583773527b7f89a50e81f2888d04ca1f8f3270a772fc1e6c6c87",
+      "NORMAL": "99b52bd8a25d3319f8e6c0dc7bef6183c9e13fc82bdc58e843f3be34ade86197",
+      "POSITION": "df804271fb085ece97cb485c72f4217c1380a8aed7b97826f7573278a16e60f0"
+    },
+    "retainedInterleavedRecordsSha256": "d8a036cd26111a5f1a4cdb8b2d14c76c15c975a069ec13ccd1e926261b463f28",
+    "retainedPositionNormalColorBytesExact": true,
+    "retainedVertices": 7336,
+    "textures": 0,
+    "triangles": 6500,
+    "vertices": 15016
+  },
+  "syntheticNormalMaximumDelta": 0.0001157373480964452,
+  "temporaryFixturesCleaned": true,
+  "tests": [
+    {
+      "pass": true,
+      "test": "check-only-detects-normal-drift-without-output"
+    },
+    {
+      "pass": true,
+      "test": "repair-after-vertex-triangle-reorder-and-cyclic-rotation-restores-all-source-bytes-and-seams"
+    },
+    {
+      "pass": true,
+      "test": "existing-output-refused-without-changing-it"
+    },
+    {
+      "pass": true,
+      "test": "exact-RGBA-native-needs-no-repair"
+    },
+    {
+      "pass": true,
+      "test": "normalized-byte-native-color-converts-additions-and-restores-source-float-color"
+    },
+    {
+      "observedError": "Reversed/degenerate source triangle at native triangle 2441",
+      "pass": true,
+      "test": "reject-reversed"
+    },
+    {
+      "observedError": "Duplicate retained source triangle: 0",
+      "pass": true,
+      "test": "reject-duplicate"
+    },
+    {
+      "observedError": "Removed signal triangle reappeared: 2654",
+      "pass": true,
+      "test": "reject-signal"
+    },
+    {
+      "observedError": "Missing/moved retained source triangles: 2; first=0",
+      "pass": true,
+      "test": "reject-moved"
+    },
+    {
+      "observedError": "Missing/moved retained source triangles: 1; first=0",
+      "pass": true,
+      "test": "reject-missing"
+    },
+    {
+      "observedError": "Duplicate retained source triangle: 0",
+      "pass": true,
+      "test": "reject-false-match"
+    },
+    {
+      "observedError": "Nonopaque vertex alpha cannot be dropped",
+      "pass": true,
+      "test": "reject-alpha"
+    },
+    {
+      "observedError": "Corridor clearance violation: 39.0",
+      "pass": true,
+      "test": "reject-low-addition"
+    },
+    {
+      "pass": true,
+      "test": "both-inputs-byte-preserved"
+    }
+  ],
+  "testsPassed": 14
+}

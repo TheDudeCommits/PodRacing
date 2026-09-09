@@ -1,0 +1,129 @@
+{
+  "recordedAt": "2026-09-07T18:16:10+00:00",
+  "scope": "One official request for next saved unattempted candidate; HTTP429. Five rate-limited requests total means four Ben requests plus this first Podracer request. The two earlier successful imports remain separate. No new source, archive, stylization, driver or runtime integration.",
+  "manifestBeforeSha256": "121d99f24de97f97f06a043f21d00f8ab758e835cee9a2003462f470ddecfb0e",
+  "previousLatestProgressReceipt": "vehicle-progress-2026-09-07-full-race-round26.json",
+  "previousLatestProgressReceiptSha256": "9276d9d43f952bedccf9869698c1487f06132efac558065270016f008486c1e9",
+  "requestReceipt": "vehicles/25d51fbd4efc4c888ca4ff2549b1c6ae/mcp-download-attempt-20260907-1816.json",
+  "requestReceiptSha256": "53f8f9837ca698554112136d0d3fb69d03a15d76bc61f666c7a073824744fe8f",
+  "contextSnapshot": "vehicles/25d51fbd4efc4c888ca4ff2549b1c6ae/intake-context-20260907-1816.json",
+  "contextSnapshotSha256": "e6a1a5d5f197a23b3075a142fb2a0840622dc1cf9971bb2e54ce22d699abd3de",
+  "countsBefore": {
+    "publicResults": 29,
+    "vehicleCandidates": 26,
+    "excludedNonVehicles": 3,
+    "downloaded": 2,
+    "blockedOrPending": 24,
+    "downloadStatuses": {
+      "downloaded": 2,
+      "pending_download": 23,
+      "rate_limited": 1
+    },
+    "mcpImportedSourceGlbs": 2,
+    "rawArchivesPreserved": 0,
+    "stylizationNeedsPermission": 0,
+    "publicAdaptationRestricted": 1,
+    "stylizedExports": 2,
+    "stylizedSourceStudies": 2,
+    "stylizedExportVariants": 4,
+    "driversAdded": 2,
+    "runtimeIntegrations": 2,
+    "driverInspections": 2
+  },
+  "countsAfter": {
+    "publicResults": 29,
+    "vehicleCandidates": 26,
+    "excludedNonVehicles": 3,
+    "downloaded": 2,
+    "blockedOrPending": 24,
+    "downloadStatuses": {
+      "downloaded": 2,
+      "pending_download": 22,
+      "rate_limited": 2
+    },
+    "mcpImportedSourceGlbs": 2,
+    "rawArchivesPreserved": 0,
+    "stylizationNeedsPermission": 0,
+    "publicAdaptationRestricted": 1,
+    "stylizedExports": 2,
+    "stylizedSourceStudies": 2,
+    "stylizedExportVariants": 4,
+    "driversAdded": 2,
+    "runtimeIntegrations": 2,
+    "driverInspections": 2
+  },
+  "acquisitionState": {
+    "method": "official_blender_mcp",
+    "status": "stopped_after_rate_limit",
+    "lastAttemptUid": "25d51fbd4efc4c888ca4ff2549b1c6ae",
+    "httpStatus": 429,
+    "rawArchivesPreserved": 0,
+    "driverInspections": 2,
+    "runtimeIntegrations": 2,
+    "standaloneCliCompatibility": "Schema2 CLI refresh/resume preserves verified MCP source GLBs, acquisition history and independent archive/source/runtime counts. Token handling remains separate.",
+    "lastAttemptReceipt": "vehicles/25d51fbd4efc4c888ca4ff2549b1c6ae/mcp-download-attempt-20260907-1816.json",
+    "recordedAttemptCountForLastUid": 1,
+    "stylizedSourceStudies": 2,
+    "stylizedExports": 2,
+    "driversAdded": 2,
+    "contextRestoration": "Next saved unattempted candidate requested once, 62 minutes 40 seconds after the previous official attempt. Empty isolated intake verified before request; HTTP429 imported no objects. Temporary configuration cleared; original scene/layer/active/15 selected objects restored exactly. All 78 pre-existing scenes retain identical object membership. No further requests made.",
+    "stylizedExportVariants": 4,
+    "lastAttemptAt": "2026-09-07T18:16:10+00:00",
+    "recordedRateLimitedRequestCount": 5,
+    "rateLimitedRequestsByUid": {
+      "c2ca24c9b3c2416db0abe026d9f4b7ac": 4,
+      "25d51fbd4efc4c888ca4ff2549b1c6ae": 1
+    }
+  },
+  "preservedAcceptanceCheckpoint": {
+    "lastCompletedRound": 26,
+    "bundle": "index-BlxCUBzh.js",
+    "bundleSha256": "749fd90ba1b87928161c6732fd18c6a8376acb03fe64c3cb7dd8e9b6d660d49e",
+    "fullRacePerformance": "PASS for Teemto and Sebulba ordinary Time Attack/Canyon Cup/Continue, local adaptive rendering",
+    "worldArtAcceptance": {
+      "round": 26,
+      "outcome": "FAIL",
+      "acceptedSections": 0,
+      "reviewedSections": 7,
+      "receipt": "docs/inkstorm-overhaul/BLIND_WORLD_ROUND26.md"
+    },
+    "activeWork": {
+      "round": 27,
+      "status": "active, outside last completed round26 freeze",
+      "scope": [
+        "LaunchBasinPlan.ts broken escarpment/front candidate in progress",
+        "PodracerView.ts engine-cap shading with smaller hot core and annular band in progress",
+        "Isolated pilot v3 construction study in progress; unpublished"
+      ],
+      "acceptance": "requires its own combined tests/build/captures/fresh criticism/full-race timing; no inherited round26 pass"
+    },
+    "deployment": "none"
+  },
+  "preservationChecks": {
+    "allOtherModelRecordsUnchanged": true,
+    "lastCompletedPerformanceCheckpointUnchanged": true,
+    "previousProgressHistoryPrefixUnchanged": true,
+    "noRuntimeOrPublicAssetEdits": true
+  },
+  "modelChange": {
+    "uid": "25d51fbd4efc4c888ca4ff2549b1c6ae",
+    "beforeDownload": {
+      "status": "pending_download",
+      "archive": null,
+      "receipt": null
+    },
+    "afterDownload": {
+      "status": "rate_limited",
+      "method": "official_blender_mcp",
+      "httpStatus": 429,
+      "archive": null,
+      "sourceGlb": null,
+      "receipt": "vehicles/25d51fbd4efc4c888ca4ff2549b1c6ae/mcp-download-attempt-20260907-1816.json",
+      "receiptSha256": "53f8f9837ca698554112136d0d3fb69d03a15d76bc61f666c7a073824744fe8f",
+      "attemptCount": 1,
+      "attemptedAt": "2026-09-07T18:16:10+00:00",
+      "sourceImported": false,
+      "rawArchivePreserved": false
+    }
+  }
+}

@@ -1,0 +1,441 @@
+{
+  "sourceChecks": {
+    "1": {
+      "triangles": 4200,
+      "vertices": 2102,
+      "boundaryEdges": 0,
+      "nonManifoldEdges": 0,
+      "connectedComponents": 1,
+      "componentVertexCounts": [
+        2102
+      ],
+      "signedVolume": 310161.7727436964
+    },
+    "2": {
+      "triangles": 4200,
+      "vertices": 2102,
+      "boundaryEdges": 0,
+      "nonManifoldEdges": 0,
+      "connectedComponents": 1,
+      "componentVertexCounts": [
+        2102
+      ],
+      "signedVolume": 302271.86274717114
+    }
+  },
+  "components": [
+    {
+      "name": "left-root",
+      "sourceVariant": 1,
+      "rotationDegreesBlenderXYZ": [
+        4,
+        -8,
+        7
+      ],
+      "targetBounds": {
+        "min": [
+          -83.2,
+          0,
+          -15.8
+        ],
+        "max": [
+          -49.2,
+          46,
+          15.8
+        ]
+      },
+      "scaleXYZ": [
+        0.39531941320839087,
+        0.3146615504894684,
+        0.3954041320839848
+      ],
+      "nonuniformScaleRatio": 1.256601359361886,
+      "topology": {
+        "triangles": 4200,
+        "vertices": 2102,
+        "boundaryEdges": 0,
+        "nonManifoldEdges": 0,
+        "connectedComponents": 1,
+        "componentVertexCounts": [
+          2102
+        ],
+        "signedVolume": 15255.319600883184
+      }
+    },
+    {
+      "name": "left-shoulder",
+      "sourceVariant": 2,
+      "rotationDegreesBlenderXYZ": [
+        -8,
+        -24,
+        5
+      ],
+      "targetBounds": {
+        "min": [
+          -80.5,
+          28,
+          -16.5
+        ],
+        "max": [
+          -29,
+          80.5,
+          15.7
+        ]
+      },
+      "scaleXYZ": [
+        0.5569951672050031,
+        0.29627846249241935,
+        0.5280677581362369
+      ],
+      "nonuniformScaleRatio": 1.879971843107747,
+      "topology": {
+        "triangles": 4200,
+        "vertices": 2102,
+        "boundaryEdges": 0,
+        "nonManifoldEdges": 0,
+        "connectedComponents": 1,
+        "componentVertexCounts": [
+          2102
+        ],
+        "signedVolume": 26341.402507868523
+      }
+    },
+    {
+      "name": "high-left-cap",
+      "sourceVariant": 1,
+      "rotationDegreesBlenderXYZ": [
+        7,
+        76,
+        -5
+      ],
+      "targetBounds": {
+        "min": [
+          -63,
+          53,
+          -15.4
+        ],
+        "max": [
+          -8,
+          94,
+          16.1
+        ]
+      },
+      "scaleXYZ": [
+        0.5174671432740886,
+        0.274603775831182,
+        0.48063374817804283
+      ],
+      "nonuniformScaleRatio": 1.884413794776848,
+      "topology": {
+        "triangles": 4200,
+        "vertices": 2102,
+        "boundaryEdges": 0,
+        "nonManifoldEdges": 0,
+        "connectedComponents": 1,
+        "componentVertexCounts": [
+          2102
+        ],
+        "signedVolume": 21183.21208055603
+      }
+    },
+    {
+      "name": "middle-span",
+      "sourceVariant": 2,
+      "rotationDegreesBlenderXYZ": [
+        -6,
+        100,
+        4
+      ],
+      "targetBounds": {
+        "min": [
+          -29,
+          50,
+          -16.3
+        ],
+        "max": [
+          31,
+          84.5,
+          14.9
+        ]
+      },
+      "scaleXYZ": [
+        0.5313099337673178,
+        0.26725005208487185,
+        0.42452421810332763
+      ],
+      "nonuniformScaleRatio": 1.9880629755633772,
+      "topology": {
+        "triangles": 4200,
+        "vertices": 2102,
+        "boundaryEdges": 0,
+        "nonManifoldEdges": 0,
+        "connectedComponents": 1,
+        "componentVertexCounts": [
+          2102
+        ],
+        "signedVolume": 18220.73813197858
+      }
+    },
+    {
+      "name": "descending-span",
+      "sourceVariant": 1,
+      "rotationDegreesBlenderXYZ": [
+        10,
+        112,
+        -6
+      ],
+      "targetBounds": {
+        "min": [
+          11,
+          40.5,
+          -14.7
+        ],
+        "max": [
+          65,
+          76.5,
+          16.4
+        ]
+      },
+      "scaleXYZ": [
+        0.4988498362114328,
+        0.2618329576006895,
+        0.4079692385865406
+      ],
+      "nonuniformScaleRatio": 1.9052217138081138,
+      "topology": {
+        "triangles": 4200,
+        "vertices": 2102,
+        "boundaryEdges": 0,
+        "nonManifoldEdges": 0,
+        "connectedComponents": 1,
+        "componentVertexCounts": [
+          2102
+        ],
+        "signedVolume": 16527.601909703604
+      }
+    },
+    {
+      "name": "right-springing",
+      "sourceVariant": 2,
+      "rotationDegreesBlenderXYZ": [
+        -7,
+        29,
+        -8
+      ],
+      "targetBounds": {
+        "min": [
+          43.5,
+          24.5,
+          -16.4
+        ],
+        "max": [
+          86.5,
+          66,
+          15.6
+        ]
+      },
+      "scaleXYZ": [
+        0.46463569258062976,
+        0.29988436270379565,
+        0.3635025524591408
+      ],
+      "nonuniformScaleRatio": 1.5493828634191364,
+      "topology": {
+        "triangles": 4200,
+        "vertices": 2102,
+        "boundaryEdges": 0,
+        "nonManifoldEdges": 0,
+        "connectedComponents": 1,
+        "componentVertexCounts": [
+          2102
+        ],
+        "signedVolume": 15309.87302417213
+      }
+    },
+    {
+      "name": "right-root",
+      "sourceVariant": 1,
+      "rotationDegreesBlenderXYZ": [
+        6,
+        15,
+        176
+      ],
+      "targetBounds": {
+        "min": [
+          49.5,
+          0,
+          -15.7
+        ],
+        "max": [
+          85.5,
+          41.5,
+          16.3
+        ]
+      },
+      "scaleXYZ": [
+        0.4495312738244667,
+        0.2929206203544823,
+        0.3734477802206735
+      ],
+      "nonuniformScaleRatio": 1.5346521978564012,
+      "topology": {
+        "triangles": 4200,
+        "vertices": 2102,
+        "boundaryEdges": 0,
+        "nonManifoldEdges": 0,
+        "connectedComponents": 1,
+        "componentVertexCounts": [
+          2102
+        ],
+        "signedVolume": 15252.042702117858
+      }
+    },
+    {
+      "name": "left-root-shelf",
+      "sourceVariant": 2,
+      "rotationDegreesBlenderXYZ": [
+        12,
+        72,
+        5
+      ],
+      "targetBounds": {
+        "min": [
+          -83.4,
+          10,
+          -16.6
+        ],
+        "max": [
+          -49.1,
+          37,
+          14
+        ]
+      },
+      "scaleXYZ": [
+        0.2996393279977116,
+        0.3248126920774006,
+        0.307840318551487
+      ],
+      "nonuniformScaleRatio": 1.0840122164467052,
+      "topology": {
+        "triangles": 4200,
+        "vertices": 2102,
+        "boundaryEdges": 0,
+        "nonManifoldEdges": 0,
+        "connectedComponents": 1,
+        "componentVertexCounts": [
+          2102
+        ],
+        "signedVolume": 9056.387411414446
+      }
+    },
+    {
+      "name": "right-root-shelf",
+      "sourceVariant": 2,
+      "rotationDegreesBlenderXYZ": [
+        -11,
+        104,
+        178
+      ],
+      "targetBounds": {
+        "min": [
+          49.2,
+          6,
+          -15.6
+        ],
+        "max": [
+          86.7,
+          31,
+          16.4
+        ]
+      },
+      "scaleXYZ": [
+        0.3276347099619263,
+        0.27805836647909254,
+        0.3062057594679376
+      ],
+      "nonuniformScaleRatio": 1.1782947375782755,
+      "topology": {
+        "triangles": 4200,
+        "vertices": 2102,
+        "boundaryEdges": 0,
+        "nonManifoldEdges": 0,
+        "connectedComponents": 1,
+        "componentVertexCounts": [
+          2102
+        ],
+        "signedVolume": 8432.123892131855
+      }
+    }
+  ],
+  "merged": {
+    "triangles": 37800,
+    "vertices": 18918,
+    "boundaryEdges": 0,
+    "nonManifoldEdges": 0,
+    "connectedComponents": 9,
+    "componentVertexCounts": [
+      2102,
+      2102,
+      2102,
+      2102,
+      2102,
+      2102,
+      2102,
+      2102,
+      2102
+    ],
+    "signedVolume": 145578.7012608266
+  },
+  "source": "Poly Haven boulder_01, Rico Cilliers, CC0; previously validated boulder-1/2 LOD geometry",
+  "construction": "9 overlapping watertight scanned rock volumes; no Boolean, remesh, or displacement",
+  "sourceNormalsAndVertexColors": "retained through import, transform, and merge",
+  "blenderContext": {
+    "contextPreserved": true,
+    "before": {
+      "scene": "Cruise — Going Merry source 4b2cb678",
+      "viewLayer": "ViewLayer",
+      "active": "Sketchfab_model.001",
+      "selected": [
+        "Object016",
+        "Object016_02 - Default_0",
+        "Object_10",
+        "Object_13",
+        "Object_4",
+        "Object_7",
+        "Plane038",
+        "Plane038_02 - Default_0",
+        "Plane045",
+        "Plane045_02 - Default_0",
+        "Plane056",
+        "Plane056_02 - Default_0",
+        "RootNode",
+        "Sketchfab_model.001",
+        "cd32016bfac44aaea241abaa77bd8b56.fbx"
+      ],
+      "objectCount": 17
+    },
+    "after": {
+      "scene": "Cruise — Going Merry source 4b2cb678",
+      "viewLayer": "ViewLayer",
+      "active": "Sketchfab_model.001",
+      "selected": [
+        "Object016",
+        "Object016_02 - Default_0",
+        "Object_10",
+        "Object_13",
+        "Object_4",
+        "Object_7",
+        "Plane038",
+        "Plane038_02 - Default_0",
+        "Plane045",
+        "Plane045_02 - Default_0",
+        "Plane056",
+        "Plane056_02 - Default_0",
+        "RootNode",
+        "Sketchfab_model.001",
+        "cd32016bfac44aaea241abaa77bd8b56.fbx"
+      ],
+      "objectCount": 17
+    }
+  }
+}

@@ -1,0 +1,860 @@
+{
+  "input": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/polwo-driver-round32/polwo-inkstorm-shoulders-v2-native.glb",
+  "inputSha256": "c498176511f7582f2f058ece457c1231a89b439180bd8c3fa7652d47de0816da",
+  "output": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/polwo-driver-round32/packaged-shoulders-v2/polwo-shoulders-v2-tangent-repaired.glb",
+  "outputSha256": "d85ab8d3a3e0d310da7985145c9eac1f526b9e8c9d76ef47559f7f25fe4e76db",
+  "zeroTangentXYZBefore": 25,
+  "invalidTangentAfter": 0,
+  "changedBinBytes": 203,
+  "onlyPreviouslyZeroTangentXYZChanged": true,
+  "tangentWPreserved": true,
+  "positionsNormalsUVsIndicesImagesAndNonzeroTangentsExact": true,
+  "gltfJsonSemanticsExact": true,
+  "fallbackCount": 0,
+  "repairs": [
+    {
+      "mesh": 0,
+      "meshName": "reacteur_low_Material #6_0.006",
+      "primitive": 0,
+      "accessor": 3,
+      "vertex": 25996,
+      "before": [
+        0.0,
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "after": [
+        0.9999999964375712,
+        8.440887073284078e-05,
+        0.0,
+        -1.0
+      ],
+      "basis": "area-weighted adjacent nondegenerate UV triangle",
+      "donorVertex": null,
+      "adjacentTriangles": [
+        17300
+      ],
+      "validUvAdjacentCount": 1,
+      "degenerateUvAdjacentCount": 0,
+      "degenerateGeometryAdjacentCount": 0
+    },
+    {
+      "mesh": 0,
+      "meshName": "reacteur_low_Material #6_0.006",
+      "primitive": 0,
+      "accessor": 3,
+      "vertex": 26003,
+      "before": [
+        0.0,
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "after": [
+        0.9999999999997685,
+        -6.803416328058565e-07,
+        0.0,
+        -1.0
+      ],
+      "basis": "area-weighted adjacent nondegenerate UV triangle",
+      "donorVertex": null,
+      "adjacentTriangles": [
+        17303
+      ],
+      "validUvAdjacentCount": 1,
+      "degenerateUvAdjacentCount": 0,
+      "degenerateGeometryAdjacentCount": 0
+    },
+    {
+      "mesh": 0,
+      "meshName": "reacteur_low_Material #6_0.006",
+      "primitive": 0,
+      "accessor": 3,
+      "vertex": 26008,
+      "before": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "after": [
+        -0.9999999964375712,
+        8.440887073284078e-05,
+        0.0,
+        1.0
+      ],
+      "basis": "area-weighted adjacent nondegenerate UV triangle",
+      "donorVertex": null,
+      "adjacentTriangles": [
+        17306
+      ],
+      "validUvAdjacentCount": 1,
+      "degenerateUvAdjacentCount": 0,
+      "degenerateGeometryAdjacentCount": 0
+    },
+    {
+      "mesh": 0,
+      "meshName": "reacteur_low_Material #6_0.006",
+      "primitive": 0,
+      "accessor": 3,
+      "vertex": 26017,
+      "before": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "after": [
+        -0.9999999999997685,
+        -6.803398534278217e-07,
+        0.0,
+        1.0
+      ],
+      "basis": "area-weighted adjacent nondegenerate UV triangle",
+      "donorVertex": null,
+      "adjacentTriangles": [
+        17309
+      ],
+      "validUvAdjacentCount": 1,
+      "degenerateUvAdjacentCount": 0,
+      "degenerateGeometryAdjacentCount": 0
+    },
+    {
+      "mesh": 4,
+      "meshName": "Original Inkstorm pilot v4b rubber.019",
+      "primitive": 0,
+      "accessor": 23,
+      "vertex": 1334,
+      "before": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "after": [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ],
+      "basis": "area-weighted adjacent nondegenerate UV triangle",
+      "donorVertex": null,
+      "adjacentTriangles": [
+        1239
+      ],
+      "validUvAdjacentCount": 1,
+      "degenerateUvAdjacentCount": 0,
+      "degenerateGeometryAdjacentCount": 0
+    },
+    {
+      "mesh": 4,
+      "meshName": "Original Inkstorm pilot v4b rubber.019",
+      "primitive": 0,
+      "accessor": 23,
+      "vertex": 1335,
+      "before": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "after": [
+        0.9810461563716318,
+        -0.008441731165989994,
+        0.19359022765462358,
+        1.0
+      ],
+      "basis": "area-weighted adjacent nondegenerate UV triangle",
+      "donorVertex": null,
+      "adjacentTriangles": [
+        1238
+      ],
+      "validUvAdjacentCount": 1,
+      "degenerateUvAdjacentCount": 0,
+      "degenerateGeometryAdjacentCount": 0
+    },
+    {
+      "mesh": 4,
+      "meshName": "Original Inkstorm pilot v4b rubber.019",
+      "primitive": 0,
+      "accessor": 23,
+      "vertex": 1336,
+      "before": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "after": [
+        -0.9775052984603656,
+        -0.00682357542345519,
+        0.21080045137606254,
+        1.0
+      ],
+      "basis": "area-weighted adjacent nondegenerate UV triangle",
+      "donorVertex": null,
+      "adjacentTriangles": [
+        1238
+      ],
+      "validUvAdjacentCount": 1,
+      "degenerateUvAdjacentCount": 0,
+      "degenerateGeometryAdjacentCount": 0
+    },
+    {
+      "mesh": 4,
+      "meshName": "Original Inkstorm pilot v4b rubber.019",
+      "primitive": 0,
+      "accessor": 23,
+      "vertex": 1338,
+      "before": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "after": [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ],
+      "basis": "area-weighted adjacent nondegenerate UV triangle",
+      "donorVertex": null,
+      "adjacentTriangles": [
+        1239
+      ],
+      "validUvAdjacentCount": 1,
+      "degenerateUvAdjacentCount": 0,
+      "degenerateGeometryAdjacentCount": 0
+    },
+    {
+      "mesh": 4,
+      "meshName": "Original Inkstorm pilot v4b rubber.019",
+      "primitive": 0,
+      "accessor": 23,
+      "vertex": 1385,
+      "before": [
+        0.0,
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "after": [
+        -0.01515605852811934,
+        -0.002221649377779086,
+        0.9998826721990608,
+        -1.0
+      ],
+      "basis": "area-weighted adjacent nondegenerate UV triangle",
+      "donorVertex": null,
+      "adjacentTriangles": [
+        1258
+      ],
+      "validUvAdjacentCount": 1,
+      "degenerateUvAdjacentCount": 0,
+      "degenerateGeometryAdjacentCount": 0
+    },
+    {
+      "mesh": 4,
+      "meshName": "Original Inkstorm pilot v4b rubber.019",
+      "primitive": 0,
+      "accessor": 23,
+      "vertex": 1386,
+      "before": [
+        0.0,
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "after": [
+        0.0,
+        0.0,
+        1.0,
+        -1.0
+      ],
+      "basis": "area-weighted adjacent nondegenerate UV triangle",
+      "donorVertex": null,
+      "adjacentTriangles": [
+        1259
+      ],
+      "validUvAdjacentCount": 1,
+      "degenerateUvAdjacentCount": 0,
+      "degenerateGeometryAdjacentCount": 0
+    },
+    {
+      "mesh": 4,
+      "meshName": "Original Inkstorm pilot v4b rubber.019",
+      "primitive": 0,
+      "accessor": 23,
+      "vertex": 1387,
+      "before": [
+        0.0,
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "after": [
+        -0.014796982345459661,
+        0.003962231501537072,
+        0.9998826681341147,
+        -1.0
+      ],
+      "basis": "area-weighted adjacent nondegenerate UV triangle",
+      "donorVertex": null,
+      "adjacentTriangles": [
+        1258
+      ],
+      "validUvAdjacentCount": 1,
+      "degenerateUvAdjacentCount": 0,
+      "degenerateGeometryAdjacentCount": 0
+    },
+    {
+      "mesh": 4,
+      "meshName": "Original Inkstorm pilot v4b rubber.019",
+      "primitive": 0,
+      "accessor": 23,
+      "vertex": 1440,
+      "before": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "after": [
+        0.00509807568850958,
+        -0.0015435094043791072,
+        0.999985813500868,
+        1.0
+      ],
+      "basis": "area-weighted adjacent nondegenerate UV triangle",
+      "donorVertex": null,
+      "adjacentTriangles": [
+        1278
+      ],
+      "validUvAdjacentCount": 1,
+      "degenerateUvAdjacentCount": 0,
+      "degenerateGeometryAdjacentCount": 0
+    },
+    {
+      "mesh": 4,
+      "meshName": "Original Inkstorm pilot v4b rubber.019",
+      "primitive": 0,
+      "accessor": 23,
+      "vertex": 1443,
+      "before": [
+        0.0,
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "after": [
+        0.0,
+        0.0005531652503403085,
+        0.9999998470040911,
+        -1.0
+      ],
+      "basis": "area-weighted adjacent nondegenerate UV triangle",
+      "donorVertex": null,
+      "adjacentTriangles": [
+        1279
+      ],
+      "validUvAdjacentCount": 1,
+      "degenerateUvAdjacentCount": 0,
+      "degenerateGeometryAdjacentCount": 0
+    },
+    {
+      "mesh": 4,
+      "meshName": "Original Inkstorm pilot v4b rubber.019",
+      "primitive": 0,
+      "accessor": 23,
+      "vertex": 1444,
+      "before": [
+        0.0,
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "after": [
+        0.0,
+        0.0005531652503403085,
+        0.9999998470040911,
+        -1.0
+      ],
+      "basis": "area-weighted adjacent nondegenerate UV triangle",
+      "donorVertex": null,
+      "adjacentTriangles": [
+        1279
+      ],
+      "validUvAdjacentCount": 1,
+      "degenerateUvAdjacentCount": 0,
+      "degenerateGeometryAdjacentCount": 0
+    },
+    {
+      "mesh": 4,
+      "meshName": "Original Inkstorm pilot v4b rubber.019",
+      "primitive": 0,
+      "accessor": 23,
+      "vertex": 2524,
+      "before": [
+        0.0,
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "after": [
+        0.0,
+        0.0,
+        1.0,
+        -1.0
+      ],
+      "basis": "area-weighted adjacent nondegenerate UV triangle",
+      "donorVertex": null,
+      "adjacentTriangles": [
+        2187
+      ],
+      "validUvAdjacentCount": 1,
+      "degenerateUvAdjacentCount": 0,
+      "degenerateGeometryAdjacentCount": 0
+    },
+    {
+      "mesh": 4,
+      "meshName": "Original Inkstorm pilot v4b rubber.019",
+      "primitive": 0,
+      "accessor": 23,
+      "vertex": 2525,
+      "before": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "after": [
+        0.0,
+        -0.0007993356809361693,
+        0.9999996805311836,
+        1.0
+      ],
+      "basis": "area-weighted adjacent nondegenerate UV triangle",
+      "donorVertex": null,
+      "adjacentTriangles": [
+        2186
+      ],
+      "validUvAdjacentCount": 1,
+      "degenerateUvAdjacentCount": 0,
+      "degenerateGeometryAdjacentCount": 0
+    },
+    {
+      "mesh": 4,
+      "meshName": "Original Inkstorm pilot v4b rubber.019",
+      "primitive": 0,
+      "accessor": 23,
+      "vertex": 2526,
+      "before": [
+        0.0,
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "after": [
+        0.0,
+        0.0,
+        1.0,
+        -1.0
+      ],
+      "basis": "area-weighted adjacent nondegenerate UV triangle",
+      "donorVertex": null,
+      "adjacentTriangles": [
+        2187
+      ],
+      "validUvAdjacentCount": 1,
+      "degenerateUvAdjacentCount": 0,
+      "degenerateGeometryAdjacentCount": 0
+    },
+    {
+      "mesh": 4,
+      "meshName": "Original Inkstorm pilot v4b rubber.019",
+      "primitive": 0,
+      "accessor": 23,
+      "vertex": 2578,
+      "before": [
+        0.0,
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "after": [
+        -0.0001461162945925771,
+        0.0007404685043002463,
+        0.9999997151781707,
+        -1.0
+      ],
+      "basis": "area-weighted adjacent nondegenerate UV triangle",
+      "donorVertex": null,
+      "adjacentTriangles": [
+        2206
+      ],
+      "validUvAdjacentCount": 1,
+      "degenerateUvAdjacentCount": 0,
+      "degenerateGeometryAdjacentCount": 0
+    },
+    {
+      "mesh": 4,
+      "meshName": "Original Inkstorm pilot v4b rubber.019",
+      "primitive": 0,
+      "accessor": 23,
+      "vertex": 2579,
+      "before": [
+        0.0,
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "after": [
+        0.00015859753070896995,
+        0.0007350834395540259,
+        0.9999997172495401,
+        -1.0
+      ],
+      "basis": "area-weighted adjacent nondegenerate UV triangle",
+      "donorVertex": null,
+      "adjacentTriangles": [
+        2206
+      ],
+      "validUvAdjacentCount": 1,
+      "degenerateUvAdjacentCount": 0,
+      "degenerateGeometryAdjacentCount": 0
+    },
+    {
+      "mesh": 4,
+      "meshName": "Original Inkstorm pilot v4b rubber.019",
+      "primitive": 0,
+      "accessor": 23,
+      "vertex": 2582,
+      "before": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "after": [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ],
+      "basis": "area-weighted adjacent nondegenerate UV triangle",
+      "donorVertex": null,
+      "adjacentTriangles": [
+        2207
+      ],
+      "validUvAdjacentCount": 1,
+      "degenerateUvAdjacentCount": 0,
+      "degenerateGeometryAdjacentCount": 0
+    },
+    {
+      "mesh": 4,
+      "meshName": "Original Inkstorm pilot v4b rubber.019",
+      "primitive": 0,
+      "accessor": 23,
+      "vertex": 2633,
+      "before": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "after": [
+        0.015194343043023454,
+        -0.001589215166159222,
+        0.9998832963574532,
+        1.0
+      ],
+      "basis": "area-weighted adjacent nondegenerate UV triangle",
+      "donorVertex": null,
+      "adjacentTriangles": [
+        2226
+      ],
+      "validUvAdjacentCount": 1,
+      "degenerateUvAdjacentCount": 0,
+      "degenerateGeometryAdjacentCount": 0
+    },
+    {
+      "mesh": 4,
+      "meshName": "Original Inkstorm pilot v4b rubber.019",
+      "primitive": 0,
+      "accessor": 23,
+      "vertex": 2634,
+      "before": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "after": [
+        0.015194343043023454,
+        -0.001589215166159222,
+        0.9998832963574532,
+        1.0
+      ],
+      "basis": "area-weighted adjacent nondegenerate UV triangle",
+      "donorVertex": null,
+      "adjacentTriangles": [
+        2226
+      ],
+      "validUvAdjacentCount": 1,
+      "degenerateUvAdjacentCount": 0,
+      "degenerateGeometryAdjacentCount": 0
+    },
+    {
+      "mesh": 4,
+      "meshName": "Original Inkstorm pilot v4b rubber.019",
+      "primitive": 0,
+      "accessor": 23,
+      "vertex": 2637,
+      "before": [
+        0.0,
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "after": [
+        -0.015197705667570009,
+        0.0006049065126832688,
+        0.9998843252249496,
+        -1.0
+      ],
+      "basis": "area-weighted adjacent nondegenerate UV triangle",
+      "donorVertex": null,
+      "adjacentTriangles": [
+        2227
+      ],
+      "validUvAdjacentCount": 1,
+      "degenerateUvAdjacentCount": 0,
+      "degenerateGeometryAdjacentCount": 0
+    },
+    {
+      "mesh": 4,
+      "meshName": "Original Inkstorm pilot v4b rubber.019",
+      "primitive": 0,
+      "accessor": 23,
+      "vertex": 2638,
+      "before": [
+        0.0,
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "after": [
+        -0.015197705667570009,
+        0.0006049065126832688,
+        0.9998843252249496,
+        -1.0
+      ],
+      "basis": "area-weighted adjacent nondegenerate UV triangle",
+      "donorVertex": null,
+      "adjacentTriangles": [
+        2227
+      ],
+      "validUvAdjacentCount": 1,
+      "degenerateUvAdjacentCount": 0,
+      "degenerateGeometryAdjacentCount": 0
+    },
+    {
+      "mesh": 6,
+      "meshName": "Original Inkstorm pilot v4b suit.019",
+      "primitive": 0,
+      "accessor": 33,
+      "vertex": 10382,
+      "before": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "after": [
+        0.4585245859647353,
+        0.7776457818437083,
+        0.4301421184289626,
+        1.0
+      ],
+      "basis": "area-weighted adjacent nondegenerate UV triangle",
+      "donorVertex": null,
+      "adjacentTriangles": [
+        8168
+      ],
+      "validUvAdjacentCount": 1,
+      "degenerateUvAdjacentCount": 0,
+      "degenerateGeometryAdjacentCount": 0
+    }
+  ],
+  "statistics": {
+    "triangles": 48975,
+    "bodyDraws": 2,
+    "pilotDraws": 6,
+    "opaqueDraws": 8,
+    "draws": [
+      {
+        "node": "polwo-body-0 fit-v3 paint-v1 shoulder-repair-v2",
+        "mesh": 0,
+        "pilot": false,
+        "triangles": 32520,
+        "vertices": 53865,
+        "tangents": true
+      },
+      {
+        "node": "polwo-body-1 fit-v3 paint-v1 shoulder-repair-v2",
+        "mesh": 1,
+        "pilot": false,
+        "triangles": 544,
+        "vertices": 982,
+        "tangents": true
+      },
+      {
+        "node": "polwo-pilot-accent.012 fit-v3 paint-v1 shoulder-repair-v2",
+        "mesh": 2,
+        "pilot": true,
+        "triangles": 188,
+        "vertices": 363,
+        "tangents": true
+      },
+      {
+        "node": "polwo-pilot-hardware.012 fit-v3 paint-v1 shoulder-repair-v2",
+        "mesh": 3,
+        "pilot": true,
+        "triangles": 1552,
+        "vertices": 1745,
+        "tangents": true
+      },
+      {
+        "node": "polwo-pilot-rubber.011 fit-v3 paint-v1 shoulder-repair-v2",
+        "mesh": 4,
+        "pilot": true,
+        "triangles": 2228,
+        "vertices": 2639,
+        "tangents": true
+      },
+      {
+        "node": "polwo-pilot-shell.012 fit-v3 paint-v1 shoulder-repair-v2",
+        "mesh": 5,
+        "pilot": true,
+        "triangles": 1444,
+        "vertices": 1928,
+        "tangents": true
+      },
+      {
+        "node": "polwo-pilot-suit.014 fit-v3 paint-v1 shoulder-repair-v2",
+        "mesh": 6,
+        "pilot": true,
+        "triangles": 9491,
+        "vertices": 13076,
+        "tangents": true
+      },
+      {
+        "node": "polwo-pilot-webbing.011 fit-v3 paint-v1 shoulder-repair-v2",
+        "mesh": 7,
+        "pilot": true,
+        "triangles": 1008,
+        "vertices": 1233,
+        "tangents": true
+      }
+    ],
+    "images": [
+      {
+        "index": 0,
+        "name": "Material_6_normal",
+        "role": [
+          "body",
+          "normal"
+        ],
+        "width": 4096,
+        "height": 4096,
+        "encodedBytes": 14704802,
+        "sha256": "411d4ee7db869d881cba0e0b7592c135f2481b771a9a0bf6ec80a43c8b386a75",
+        "rgba8Bytes": 67108864,
+        "rgba8FullMipBytes": 89478484
+      },
+      {
+        "index": 1,
+        "name": "polwo-inkstorm-orm-v1",
+        "role": [
+          "body",
+          "data"
+        ],
+        "width": 2048,
+        "height": 2048,
+        "encodedBytes": 5954253,
+        "sha256": "aaf2d4eb53f3d4408dd260e9c101bb8530ca924bfe8c53fdc9d117c368f866d0",
+        "rgba8Bytes": 16777216,
+        "rgba8FullMipBytes": 22369620
+      },
+      {
+        "index": 2,
+        "name": "polwo-inkstorm-base-color-v1",
+        "role": [
+          "body",
+          "color"
+        ],
+        "width": 2048,
+        "height": 2048,
+        "encodedBytes": 4659294,
+        "sha256": "f1ad598ae4836511040e3c8041b75ac10d27dd852d0650b72214a4321ff3da1e",
+        "rgba8Bytes": 16777216,
+        "rgba8FullMipBytes": 22369620
+      },
+      {
+        "index": 3,
+        "name": "pilot-normal-atlas-v4b",
+        "role": [
+          "pilot",
+          "normal"
+        ],
+        "width": 1024,
+        "height": 1024,
+        "encodedBytes": 931598,
+        "sha256": "129c56aba5d10f037a68ec7883e06641c4a357f9d8801e5b25a339c6320dfae5",
+        "rgba8Bytes": 4194304,
+        "rgba8FullMipBytes": 5592404
+      },
+      {
+        "index": 4,
+        "name": "pilot-color-atlas-v4c",
+        "role": [
+          "pilot",
+          "color"
+        ],
+        "width": 2048,
+        "height": 2048,
+        "encodedBytes": 1521750,
+        "sha256": "c3b038376a5774fb382b213e0a064c9f6313049043225c343a1624a34138a52c",
+        "rgba8Bytes": 16777216,
+        "rgba8FullMipBytes": 22369620
+      },
+      {
+        "index": 5,
+        "name": "pilot-roughness-atlas-v4b",
+        "role": [
+          "pilot",
+          "data"
+        ],
+        "width": 1024,
+        "height": 1024,
+        "encodedBytes": 555525,
+        "sha256": "0bad12d53c6a248eee0d8fba53de4d88a903cefb27a5762852bb60eba93f2ddb",
+        "rgba8Bytes": 4194304,
+        "rgba8FullMipBytes": 5592404
+      }
+    ],
+    "imageBytes": 28327222,
+    "rgba8Bytes": 125829120,
+    "rgba8FullMipBytes": 167772152,
+    "textureDefinitions": 21,
+    "uniqueImages": 6,
+    "allMeshDefinitionsReferenced": true
+  },
+  "visualAcceptance": false,
+  "limitations": [
+    "UV-degenerate vertices have no unique normal-map tangent; fallback basis is explicit",
+    "This numerical repair does not close shoulder holes or establish driver contact/visual acceptance"
+  ]
+}

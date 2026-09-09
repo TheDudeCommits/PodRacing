@@ -1,0 +1,45 @@
+{
+  "date": "2026-09-07",
+  "asset": "pit-district.glb",
+  "bytes": 990016,
+  "sha256": "947b7b7043775f0f4cdb007e30c055f6cfe485bddc6dcf6632f131a88833d2a0",
+  "triangles": 13254,
+  "vertices": 25260,
+  "meshes": 1,
+  "primitives": 1,
+  "materials": 1,
+  "bounds": {
+    "min": [
+      -56.81999969482422,
+      0,
+      -18
+    ],
+    "max": [
+      58.25,
+      34.05223083496094,
+      12.535015106201172
+    ]
+  },
+  "source": "Original Blender geometry authored through Blender MCP; no downloaded models",
+  "sourceScript": "build_pit_district.py",
+  "sourceScriptSha256": "8e14c56d9f88da0e7fa08e639ff08ab09bdb0add115abad09ba56572ffdec74e",
+  "rawSha256": "4ec69f2b37bc1663be98bdb597fcabaab2976d82154e0592c378d2095e3ba531",
+  "userPrompt": "Use Blender MCP and Codex imagegen skill to generate concept images of the target art style for each section. Keep Iterateing until in-world screenshots look as close as possible to those, at 40-60fps.",
+  "optimization": "glTF Transform 4.5.0 dedup/prune and stable hierarchy names",
+  "design": "Three unequal open service bays; four sagging painted canopies; supported balcony, access ladders, utility masts, power lines, service signage, spare engines, cases and 14 human-scale crew silhouettes.",
+  "preservation": "New objects only in Inkstorm World Kit; active Korostyshiv Fractured Quarry Revision scene and previous objects preserved; scene/render settings restored after export and neutral preview.",
+  "preview": "pit-district/district-asset-preview.png is a neutral Blender asset render, not in-game visual or performance evidence",
+  "collisionEnvelope": [
+    60,
+    18,
+    35
+  ],
+  "validation": {
+    "numErrors": 0,
+    "numWarnings": 0,
+    "numInfos": 0,
+    "numHints": 0,
+    "messages": [],
+    "truncated": false
+  }
+}

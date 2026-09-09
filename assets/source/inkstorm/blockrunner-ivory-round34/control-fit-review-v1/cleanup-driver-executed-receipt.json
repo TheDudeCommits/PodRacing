@@ -1,0 +1,61 @@
+{
+  "actualPreexistingDatablockCounts": {
+    "actions": 6,
+    "cameras": 55,
+    "collections": 2,
+    "curves": 0,
+    "images": 564,
+    "lights": 119,
+    "materials": 1072,
+    "meshes": 5046,
+    "node_groups": 1,
+    "objects": 7265,
+    "scenes": 163,
+    "worlds": 55
+  },
+  "artAccepted": false,
+  "cleanupReceiptSha256": "72f9efa252dcb233d7b95b484a8c9d766d42269bd7b250f59a8ec9040301c4e3",
+  "error": "Preserve an existing render result; do not overwrite it.",
+  "globalPreservation": {
+    "allCollectionMembershipsPreserved": true,
+    "allSceneSettingsAndMembershipsPreserved": true,
+    "changedCollections": [],
+    "changedDatablockSets": [],
+    "changedScenes": [],
+    "contextRestored": true,
+    "noPersistentDatablocksCreatedOrRemoved": true
+  },
+  "originalContext": {
+    "activeObject": "Sketchfab_model.001",
+    "mode": "OBJECT",
+    "scene": "Cruise — Going Merry source 4b2cb678",
+    "selectedObjects": [
+      "Object016",
+      "Object016_02 - Default_0",
+      "Object_10",
+      "Object_13",
+      "Object_4",
+      "Object_7",
+      "Plane038",
+      "Plane038_02 - Default_0",
+      "Plane045",
+      "Plane045_02 - Default_0",
+      "Plane056",
+      "Plane056_02 - Default_0",
+      "RootNode",
+      "Sketchfab_model.001",
+      "cd32016bfac44aaea241abaa77bd8b56.fbx"
+    ],
+    "viewLayer": "ViewLayer"
+  },
+  "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-ivory-round34/control-fit-review-v1/ivory-cleanup-driver-neutral-fit-review-v1.png",
+  "renderPassed": false,
+  "runtimeReady": false,
+  "scope": "Matched neutral inspection only. Original source materials/mesh data are borrowed read-only by temporary render objects; no material substitution, role paint, mask, control movement, fitting, export, or blend save.",
+  "sourceGlbSha256": "2ed231e15b8bbab3f7b7028b73e8b6f442d532c9bc4d1fc0a2f5c40aeda49576",
+  "sourceUid": "e42fb924b344481ea013c58cb0f52ad7",
+  "stage": "IVORY_NEUTRAL_CLEANUP_FIT_COMPARISON_V1",
+  "status": "FAILED",
+  "variant": "cleanup",
+  "view": "driver"
+}

@@ -1,0 +1,229 @@
+--- a/src/camera/CinematicCamera.ts
++++ b/src/camera/CinematicCamera.ts
+@@ -113,6 +113,8 @@
+   combatForward?: Vector3;
+   /** Authored moving failure point; a victim shot views its side of the craft. */
+   combatImpactPosition?: Vector3;
++  /** Optional active authored-engine cluster; full combatBounds still protect the lens. */
++  combatImpactFraming?: { readonly center: Vector3; readonly bounds: readonly Vector3[] };
+   /** Current displayed assembly radius, resolved from cached source bounds. */
+   combatRadius?: number;
+   /** Existing per-part source-box corners, already transformed into world space. */
+@@ -158,6 +160,8 @@
+   private combatFraming = false;
+   private readonly authoredCombatBack = new Vector3();
+   private hasAuthoredCombatBack = false;
++  private hasImpactCombatBack = false;
++  private readonly impactAzimuthCandidate = new Vector3();
+   private readonly desiredPosition = new Vector3();
+   private readonly desiredLookAt = new Vector3();
+   private readonly travelDirection = new Vector3();
+@@ -206,9 +210,11 @@
+     if (enabled) this.hasAuthoredCombatBack = false;
+   }
+ 
+-  /** Live wrecks need space for the full vehicle and its separating engines. */
++  /** Live victim wreck framing; optional authored impact clusters retain full lens safety. */
+   setCombatFraming(enabled: boolean): void {
+-    if (enabled && !this.combatFraming) this.hasAuthoredCombatBack = false;
++    if (enabled && !this.combatFraming) {
++      this.hasAuthoredCombatBack = false; this.hasImpactCombatBack = false;
++    }
+     this.combatFraming = enabled;
+   }
+ 
+@@ -250,7 +256,9 @@
+   }
+ 
+   snap(subject: CameraSubject): void {
+-    if (!this.combatFraming && !subject.wreckChase) this.hasAuthoredCombatBack = false;
++    if (!this.combatFraming && !subject.wreckChase) {
++      this.hasAuthoredCombatBack = false; this.hasImpactCombatBack = false;
++    }
+     this.lastSubjectPosition.copy(subject.position);
+     this.hasSubjectPosition = true;
+     const desired = this.getDesired(subject, 0);
+@@ -271,7 +279,9 @@
+   }
+ 
+   update(dt: number, time: number, subject: CameraSubject): void {
+-    if (!this.combatFraming && !subject.wreckChase) this.hasAuthoredCombatBack = false;
++    if (!this.combatFraming && !subject.wreckChase) {
++      this.hasAuthoredCombatBack = false; this.hasImpactCombatBack = false;
++    }
+     dt = MathUtils.clamp(Number.isFinite(dt) ? dt : 0, 0, 0.05);
+     this.orbitTime += dt;
+     if (this.hasSubjectPosition) {
+@@ -312,7 +322,8 @@
+       // at that intermediate angle. Safe endpoints alone do not protect a
+       // spring crossing the nearer engine as the parts open.
+       this.boundsBack.copy(this.camera.position).sub(this.lookPoint).normalize();
+-      const distance = this.boundsOffset.copy(this.camera.position).sub(subject.combatFocus!).dot(this.boundsBack);
++      const focus = this.impactFrame(subject)?.center ?? subject.combatFocus!;
++      const distance = this.boundsOffset.copy(this.camera.position).sub(focus).dot(this.boundsBack);
+       this.fitCombatBounds(subject, this.boundsBack, Math.max(0, distance));
+       this.camera.position.copy(this.desiredPosition);
+       this.lookPoint.copy(this.desiredLookAt);
+@@ -537,6 +548,18 @@
+     return true;
+   }
+ 
++  private impactFrame(subject: CameraSubject): CameraSubject['combatImpactFraming'] {
++    const frame = subject.combatImpactFraming;
++    if (subject.wreckRecovery || !frame || !this.hasCombatBounds(subject)
++      || !((this.combatFraming && this.mode === 'side') || (this.mode === 'chase' && subject.wreckChase))
++      || !Number.isFinite(frame.center.x + frame.center.y + frame.center.z)
++      || frame.bounds.length < 8 || frame.bounds.length > 32) return undefined;
++    for (const point of frame.bounds) {
++      if (!Number.isFinite(point.x + point.y + point.z)) return undefined;
++    }
++    return frame;
++  }
++
+   private combatDirection(subject: CameraSubject, forward: Vector3, right: Vector3): void {
+     if (subject.combatForward && subject.combatForward.lengthSq() > .001) {
+       forward.copy(subject.combatForward).setY(0).normalize();
+@@ -547,7 +570,8 @@
+     let side = .86, fore = -.5;
+     const impact = subject.combatImpactPosition;
+     const authored = !!impact && !!subject.combatFocus && Number.isFinite(impact.x + impact.y + impact.z);
+-    if (authored && this.hasAuthoredCombatBack) {
++    const impactFrame = this.impactFrame(subject);
++    if (authored && this.hasAuthoredCombatBack && (!impactFrame || this.hasImpactCombatBack)) {
+       // The controller's victim-cut rising edge owns this shot. Crossing the
+       // moving assembly centroid must not reverse its chosen tear-side azimuth.
+       this.boundsBack.copy(this.authoredCombatBack);
+@@ -564,6 +588,23 @@
+     }
+     this.boundsBack.copy(right).multiplyScalar(side).addScaledVector(forward, fore)
+       .addScaledVector(UP, .20).normalize();
++    if (authored && impactFrame) {
++      // Existing racer shadows cast toward (+.42, +.50) in world XZ. Select
++      // one modest 20-degree offset away from that direction, on the same
++      // tear side. Lock it for this identity: no orbit as the pieces settle.
++      const x = this.boundsBack.x, z = this.boundsBack.z;
++      let best = x * .42 + z * .50;
++      for (let sign = -1; sign <= 1; sign += 2) {
++        const angle = sign * Math.PI / 9;
++        const c = Math.cos(angle), sn = Math.sin(angle);
++        this.impactAzimuthCandidate.set(x * c + z * sn, this.boundsBack.y, z * c - x * sn);
++        const score = this.impactAzimuthCandidate.x * .42 + this.impactAzimuthCandidate.z * .50;
++        if (score < best && this.impactAzimuthCandidate.dot(right) * Math.sign(side) > .35) {
++          best = score; this.boundsBack.copy(this.impactAzimuthCandidate);
++        }
++      }
++      this.hasImpactCombatBack = true;
++    }
+     if (authored) {
+       this.authoredCombatBack.copy(this.boundsBack);
+       this.hasAuthoredCombatBack = true;
+@@ -571,7 +612,9 @@
+   }
+ 
+   private fitCombatBounds(subject: CameraSubject, direction: Vector3, minimumDistance = 0): void {
+-    const focus = subject.combatFocus!, points = subject.combatBounds!;
++    const impactFrame = this.impactFrame(subject);
++    const focus = impactFrame?.center ?? subject.combatFocus!;
++    const points = impactFrame?.bounds ?? subject.combatBounds!;
+     this.boundsBack.copy(direction);
+     if (this.boundsBack.lengthSq() < .001) this.boundsBack.set(0, .2, -1);
+     this.boundsBack.normalize();
+@@ -588,11 +631,21 @@
+         this.boundsOffset.copy(point).sub(focus);
+         const x = this.boundsOffset.dot(this.boundsRight), y = this.boundsOffset.dot(this.boundsUp);
+         const z = this.boundsOffset.dot(this.boundsBack);
+-        // Exact perspective half-spaces: x in +/-.78 and y in [-.58,.70].
++        // Authored cluster: x in +/-.74; legacy full assembly: +/-.78.
++        // Vertical caption/matte protection stays y in [-.58,.70].
+         // The .06 upward screen bias reserves caption space below the craft.
+-        distance = Math.max(distance, z + Math.abs(x) / (.78 * horizontal),
++        distance = Math.max(distance, z + Math.abs(x) / ((impactFrame ? .74 : .78) * horizontal),
+           (y + .70 * tangent * z) / (.64 * tangent),
+           (-y + .58 * tangent * z) / (.64 * tangent), z + this.camera.near + .5);
++      }
++      if (impactFrame) {
++        // The reframing permits rods offscreen, never through the lens. Every
++        // original full-assembly box must remain beyond the near-plane guard.
++        // Therefore the eye is outside every visible source box as well.
++        for (const point of subject.combatBounds!) {
++          const z = this.boundsOffset.copy(point).sub(focus).dot(this.boundsBack);
++          distance = Math.max(distance, z + this.camera.near + .5);
++        }
+       }
+       this.desiredLookAt.copy(focus).addScaledVector(this.boundsUp, -.06 * tangent * distance);
+       this.desiredPosition.copy(this.desiredLookAt).addScaledVector(this.boundsBack, distance);
+--- a/src/render/combat/WreckVisualPose.ts
++++ b/src/render/combat/WreckVisualPose.ts
+@@ -25,6 +25,8 @@
+   readonly forward: Vector3;
+   /** Cached source-box corners in world space; no sphere inflation for camera fitting. */
+   bounds: readonly Vector3[];
++  /** Optional authored impact composition; full bounds remain the safety envelope. */
++  impactFraming?: { readonly center: Vector3; readonly bounds: readonly Vector3[] };
+   radius: number;
+   groundCorrection: number;
+   /** Simulation base frame before renderer-only tumble. Reused, read-only data
+@@ -146,6 +148,7 @@
+    */
+   update(state: PodracerState, remaining: number, terrain: { heightAt(x: number, z: number): number }, extrapolation = 0): WreckVisualPose {
+     const pose = this.pose;
++    pose.impactFraming = undefined;
+     pose.groundContact = undefined;
+     pose.rupture = undefined;
+     // A bounded articulated presentation may widen the camera envelope after
+--- a/src/render/combat/TeemtoAuthoredDamage.ts
++++ b/src/render/combat/TeemtoAuthoredDamage.ts
+@@ -28,6 +28,9 @@
+   private readonly stationary = new WreckVisualPoseCache();
+   private readonly bounds: Vector3[];
+   private readonly assembly = new Box3();
++  private readonly impactBox = new Box3();
++  private readonly impactFraming: { center: Vector3; bounds: Vector3[] };
++  private impactPose: WreckVisualPose | null = null;
+   private readonly partBox = new Box3();
+   private readonly body = new Matrix4();
+   private readonly world = new Matrix4();
+@@ -99,6 +102,12 @@
+     if (stubs) stationary.push(stubs);
+     this.stationary.refresh(root, stationary, 0);
+     this.bounds = Array.from({ length: (this.parts.length + 1) * 8 }, () => new Vector3());
++    // First three moving source boxes are the actual engines. Two reused
++    // witness slots include the fracture and real contact without the pilot or
++    // long severed rods expanding the screen-fit rectangle. Full bounds stay intact.
++    this.impactFraming = { center: new Vector3(), bounds: [
++      ...this.bounds.slice(8, 32), new Vector3(), new Vector3(),
++    ] };
+     this.originalVisibility = hidden.map(mesh => mesh.visible);
+     // Exact outer rear cut-loop centroid from the hero/rival Blender receipts,
+     // in admitted +Y-up/+Z-forward metres. This face opens toward +Z. Neither
+@@ -111,6 +120,8 @@
+   update(pose: WreckVisualPose, remaining: number, terrain: { heightAt(x: number, z: number): number }, extrapolation = 0): void {
+     if (this.contactPose?.groundContact === this.contact) this.contactPose.groundContact = undefined;
+     this.contactPose = null; pose.groundContact = undefined;
++    if (this.impactPose?.impactFraming === this.impactFraming) this.impactPose.impactFraming = undefined;
++    this.impactPose = null; pose.impactFraming = undefined;
+     if (this.rupturePose?.rupture === this.rupture) this.rupturePose.rupture = undefined;
+     this.rupturePose = null; pose.rupture = undefined;
+     const age = Math.max(0, Math.min(WRECK_PRESENTATION_DURATION, WRECK_PRESENTATION_DURATION - remaining + extrapolation));
+@@ -178,6 +189,12 @@
+     this.assembly.getCenter(pose.center).applyMatrix4(this.body); this.assembly.getSize(this.point);
+     pose.radius = this.point.length() * .5; pose.bounds = this.bounds;
+     this.writeRupture(pose);
++    this.impactFraming.bounds[24]!.copy(this.rupture.position);
++    this.impactFraming.bounds[25]!.copy(pose.groundContact?.position ?? this.rupture.position);
++    this.impactBox.makeEmpty();
++    for (const bound of this.impactFraming.bounds) this.impactBox.expandByPoint(bound);
++    this.impactBox.getCenter(this.impactFraming.center);
++    pose.impactFraming = this.impactFraming; this.impactPose = pose;
+   }
+ 
+   private updateStrikingEngine(index: number, part: Part, pose: WreckVisualPose, age: number,
+@@ -334,6 +351,8 @@
+   }
+ 
+   reset(): void {
++    if (this.impactPose?.impactFraming === this.impactFraming) this.impactPose.impactFraming = undefined;
++    this.impactPose = null;
+     if (this.rupturePose?.rupture === this.rupture) this.rupturePose.rupture = undefined;
+     this.rupturePose = null;
+     if (this.contactPose?.groundContact === this.contact) this.contactPose.groundContact = undefined;

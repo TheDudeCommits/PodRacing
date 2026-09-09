@@ -1,0 +1,295 @@
+{
+  "scope": "actual source recordings/stills, derived extractions and review; no runtime acceptance",
+  "sourceEvidence": [
+    {
+      "path": "output/playwright/round35-combat-v2/receipt.json",
+      "bytes": 695374,
+      "sha256": "61cc66f358a683846dac5761f49c95624761ceda54097006cc68c51225ac3e0d"
+    },
+    {
+      "path": "output/playwright/round35-combat-v2/solo-chase-observations.json",
+      "bytes": 104431,
+      "sha256": "ff3bfc43fc0c96512d39c08cef740bb965d8185bb8b656557d76381c7b924d2f"
+    },
+    {
+      "path": "output/playwright/round35-combat-v2/video/page@f86e23ca0ac2884209002aa6df1c22ea.webm",
+      "bytes": 2869934,
+      "sha256": "1ff8cd2ee71b7cd478d34c37a5ad2f193ac5a4956bc7e07ddd4e1bc35f4fff81"
+    },
+    {
+      "path": "output/playwright/round35-combat-v2/solo-chase-before.png",
+      "bytes": 1483376,
+      "sha256": "73f97f62af5cc9722147409b51f289016056248a5e24567cb1ca25665b88a2b3"
+    },
+    {
+      "path": "output/playwright/round35-combat-v2/solo-chase-wreck.png",
+      "bytes": 1484082,
+      "sha256": "4638dfabcca6f47f48f7c91649aa8fa39508f995291688fbce36d22d9657f84e"
+    },
+    {
+      "path": "output/playwright/round35-combat-v2/solo-chase-restored.png",
+      "bytes": 1513371,
+      "sha256": "8bd220735cbbc67a91418f49ba6097fccb0d921629efa6094a581fe286eb757b"
+    },
+    {
+      "path": "output/playwright/round35-combat-v2/solo-chase-recovery.png",
+      "bytes": 1450548,
+      "sha256": "627b0edc150665e51ed67f4d11b23ffc6ef3f6138a343dcf5dc80e6171b467a9"
+    }
+  ],
+  "implementationReadOnlyAtReview": [
+    {
+      "path": "scripts/inkstorm-combat.mjs",
+      "bytes": 17986,
+      "sha256": "b43be0efcb910195927882192a62b7d643838f800a46b223b0d4666557080dc2"
+    },
+    {
+      "path": "src/camera/CinematicCamera.ts",
+      "bytes": 20858,
+      "sha256": "e0b14ea8b8797fac6a1e89000da899d7f1b2740b6ce4334df08c775b6ff94249"
+    },
+    {
+      "path": "src/render/app/GameApp.ts",
+      "bytes": 163884,
+      "sha256": "9055c5fb0a1250abdcb039858eee3e398767bc1211d1e29c138516c937fc0fcc"
+    },
+    {
+      "path": "src/render/galactic/GalacticEffectsView.ts",
+      "bytes": 48720,
+      "sha256": "250df1187130aa79282013e6b921356e72a2f3d4be03996d0ad16ff3350e56c4"
+    },
+    {
+      "path": "src/render/combat/CombatPresentationController.ts",
+      "bytes": 9563,
+      "sha256": "97d26a20c911047eed03364fe74612c20b7982cab757b4ee35dbd241b27c8369"
+    }
+  ],
+  "derived": [
+    {
+      "path": "assets/source/inkstorm/combat-round35/visual-review-v2/REVIEW.md",
+      "bytes": 4889,
+      "sha256": "f422b6c0c1e8b056fc25d294b4b22fe602cf81a081e6e11ec2398f32797e194d"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/visual-review-v2/solo-chase-dense-1.png",
+      "bytes": 3055293,
+      "sha256": "b9ea3cd03df6f6fbaa84aae6c8cd96e930c08e8e6cc6ed687802cfff37d335f5"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/visual-review-v2/solo-chase-dense-2.png",
+      "bytes": 2950158,
+      "sha256": "f0e4e87baa4a4ef7def732f1837969493c47ce93b524f96e59dbdbfc9c4bd71f"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/visual-review-v2/solo-chase-hold-pts10.80.png",
+      "bytes": 940150,
+      "sha256": "5af18b7861399bc6bfdee3ac8b92b90ef616f5b6464c1d537c4df34cce9571a1"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/visual-review-v2/solo-chase-overview-offset9.png",
+      "bytes": 4178803,
+      "sha256": "23fd9067806cb339a3ae511dcbb4c50a46dc7441dd7d12cc55538f193aa66e40"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/visual-review-v2/solo-chase-return-pts11.12.png",
+      "bytes": 853685,
+      "sha256": "ee8721844bb3b5ba31b90d4c8589120121608363d173531e39c32e835cef6e97"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/visual-review-v2/temporal-001.png",
+      "bytes": 432292,
+      "sha256": "4809628ec319d52d1ac0d6ef50413360ac2196b6851a66646333cf387d899a59"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/visual-review-v2/temporal-002.png",
+      "bytes": 431726,
+      "sha256": "a1ac497fbf59cd57c7c6bbb2cbde1b06c23868a0929b9aa7c4946fc9efd72ddc"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/visual-review-v2/temporal-003.png",
+      "bytes": 432097,
+      "sha256": "066ade64b48d75ccbb657f9578c18e95b126cdf7ec22b702906e013d90a0ccb7"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/visual-review-v2/temporal-004.png",
+      "bytes": 429263,
+      "sha256": "bc40cd61e12f70b45189b0c64e9c1bff48939d5e72a595eab8a81dd7030e2651"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/visual-review-v2/temporal-005.png",
+      "bytes": 426329,
+      "sha256": "54b765b0b2a77f7f77ddd256055d2f276c018af35549aac08e42a16c400bf6f4"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/visual-review-v2/temporal-006.png",
+      "bytes": 424854,
+      "sha256": "df4edfbc630eb7a7443ade3fb5c8a83f6911a368ce70c4ac875a185b90f93ddf"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/visual-review-v2/temporal-007.png",
+      "bytes": 425494,
+      "sha256": "0fd30df3f2855bc18e11a0db1b789724472277c45d761db3becffc3fed82c388"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/visual-review-v2/temporal-008.png",
+      "bytes": 333695,
+      "sha256": "f6474de781ff2525a7984c0ec3c1577cd4d6bfb8914d25ee885d61775f48f85e"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/visual-review-v2/temporal-009.png",
+      "bytes": 312865,
+      "sha256": "b91883cf645e03fd5e438f73149568f8e895494cf789c48375e429b5b170281c"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/visual-review-v2/temporal-010.png",
+      "bytes": 306123,
+      "sha256": "e809c01054d5b33d72fcfcad70d1beeda56fd3e0136971cf0801c65e053b9b06"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/visual-review-v2/temporal-011.png",
+      "bytes": 304801,
+      "sha256": "4cf131a939df61ea781e2033b912a467565768d78842c19478cc1fbd2507d386"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/visual-review-v2/temporal-012.png",
+      "bytes": 304221,
+      "sha256": "fa97e3091ed08c572959a1f2ce75fa53b8944fbef227e38835b69d325f970547"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/visual-review-v2/temporal-013.png",
+      "bytes": 304357,
+      "sha256": "eaedf529659331dd209e9c8b8bd2901e553e2613f059925afdf38c18fffe4f30"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/visual-review-v2/temporal-014.png",
+      "bytes": 304393,
+      "sha256": "2bee79ec2753987cd68dffff731628b024ad7af94bca9ce79a85780d4567c961"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/visual-review-v2/temporal-015.png",
+      "bytes": 297218,
+      "sha256": "7fb63ffbf5b6fde5aed420802d243f5f484f9c76ecf16f519fde9e7bfe0942bb"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/visual-review-v2/temporal-016.png",
+      "bytes": 295575,
+      "sha256": "338c75d5b7b00b45492724a899abdbc02ad359314ab333a61b36218101ad8e12"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/visual-review-v2/temporal-017.png",
+      "bytes": 295725,
+      "sha256": "aa10e2b4e425a4368dae9bbe7d31d0f91ffe468801d5f56fc7f98218aa4490ae"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/visual-review-v2/temporal-018.png",
+      "bytes": 298978,
+      "sha256": "3af731d9aacf302e13dec1f569a008f9a3ca4b27d922509b97e6780cc4545da8"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/visual-review-v2/temporal-019.png",
+      "bytes": 302679,
+      "sha256": "e0c96511ae062d945fde210daf52518857cd25c5ae07315ce57e211576fcd320"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/visual-review-v2/temporal-020.png",
+      "bytes": 310452,
+      "sha256": "e1c82909c148fd700597035c5206d5a2f070daa27d2966965d1f119edebf62de"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/visual-review-v2/temporal-021.png",
+      "bytes": 314055,
+      "sha256": "1d44cd7da150e79c6dc42e55c9005b10ee8758f4b0eeb8c685add891567e67b9"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/visual-review-v2/temporal-022.png",
+      "bytes": 318209,
+      "sha256": "ea8aed72a35368f2871a9458b79f7b0e55926047c3c684385df187358c134203"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/visual-review-v2/temporal-023.png",
+      "bytes": 321828,
+      "sha256": "e2c3895985baf0e8aba8542ba45022e3703890a2eeae1a25fceb5899a5d937fa"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/visual-review-v2/temporal-024.png",
+      "bytes": 323442,
+      "sha256": "eaeb8e92503cb9c2511682551b7e5e10863bae7b6e0f61fc4c1bf9f3b9efdc2c"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/visual-review-v2/temporal-025.png",
+      "bytes": 326879,
+      "sha256": "6474c9bf6a9fa36b045d0109631d44be41018b081c429dcc0838e17d33a89e71"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/visual-review-v2/temporal-026.png",
+      "bytes": 330330,
+      "sha256": "2e637d898c7902983bb9394ec399d5608eb127ce0fccaf39334247f09c99bd15"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/visual-review-v2/temporal-027.png",
+      "bytes": 333302,
+      "sha256": "239fcbf50f45beb97cbd433bc4170bf429215df2cd7da49898ebdae3d019654e"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/visual-review-v2/temporal-028.png",
+      "bytes": 337761,
+      "sha256": "815c06f1b17a0263a27dbc558efb7f77927473c284c505cab7f1b60544bb1d7b"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/visual-review-v2/temporal-029.png",
+      "bytes": 340749,
+      "sha256": "5ee9be3d5365995001c34aee7eaef01311ab0bae3f240cac40f40c33129e5fc2"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/visual-review-v2/temporal-030.png",
+      "bytes": 324854,
+      "sha256": "84fbadb5cae08c67159116bbab16222847b0b03c10a4bcda26ac1b0ee3586d0d"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/visual-review-v2/temporal-031.png",
+      "bytes": 343510,
+      "sha256": "4b5c7082f14f402522c1154c9ab0e198280663cbe30afacbc869af2d89f02376"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/visual-review-v2/temporal-032.png",
+      "bytes": 364128,
+      "sha256": "b54cf1a8a41aa18630b2afca5c5cfe783c361a611111c98875bb6cbc601a9c88"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/visual-review-v2/temporal-033.png",
+      "bytes": 373386,
+      "sha256": "ecf9a9d28b42e296bd6800c76d158ddcf6a582d86cd098c10e1a473247dfb6ff"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/visual-review-v2/temporal-034.png",
+      "bytes": 380832,
+      "sha256": "89ff9beb30e116ce8106e916f8684e91ad79fc13f40852b7f92e9e13d141ca96"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/visual-review-v2/temporal-035.png",
+      "bytes": 392178,
+      "sha256": "9a584e28b80fcf05ac91fa2f9c2ea4bf4cd3621200c0613101e90112c4a077a4"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/visual-review-v2/temporal-036.png",
+      "bytes": 403315,
+      "sha256": "7ae952748f9786ebc96cca9fde4b916d525e775f663327e1264efe90f2311393"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/visual-review-v2/temporal-037.png",
+      "bytes": 411128,
+      "sha256": "236e84f31bd8a12b19d32fb11f44c59e3f5e1df2819929c7ea9dd5d36cd477f3"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/visual-review-v2/timing-and-scope.json",
+      "bytes": 7396,
+      "sha256": "2200a141ae934db5f963688fd9c772277d40a0aeb0e142a51e225a903065a45a"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/visual-review-v2/write-review.py",
+      "bytes": 8797,
+      "sha256": "99e7345320cdddb8823d6adae1830c7fb9ab50dec74d4cdeca64209e4eea8287"
+    }
+  ],
+  "extraction": "ffmpeg CPU decode with -threads 1; overview fps=5, frames native25fps without interpolation; temporal frames scaled720x450, contact thumbnails480x300; full-resolution selected frames unchanged content. Labels/PIL only on sheets. Initial drawtext attempt failed because this ffmpeg has no drawtext; successful labels were added to sheet margins."
+}

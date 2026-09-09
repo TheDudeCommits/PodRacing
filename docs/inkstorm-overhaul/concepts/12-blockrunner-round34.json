@@ -1,0 +1,19 @@
+{
+  "tool": "Built-in imagegen",
+  "recordedAt": "2026-09-08 10:49:37 UTC",
+  "prompt": "Use case: stylized-concept. Asset type: concept target for a real browser podracing game's next imported vehicle, Blockrunner. Input image1 is the exact source craft geometry reference; preserve its proportions, two short oxblood turbine engines, exposed brick studs, straight narrow towing beams, solid studded crossbeam between engines, tall graphite cockpit sidewalls with large pale circular side panels, ivory sloping seat/rear shell and existing seated grey minifigure driver. Do not replace the source with another pod, add engines, add a second driver, or change its brick/minifigure identity. Input image2 supplies only the approved Inkstorm art language: painterly cel shading, warm desert rim light, deep indigo shade, worn metal edges, selective cool luminous accents. Create a landscape concept sheet with one large clean front three-quarter garage view of the complete source craft and a smaller rear three-quarter inset showing the seated original driver and rear engine throats. The exact source silhouette should be recognizable. Materials: retain oxblood engine housings, ivory shell and graphite studs/beams; small painted chips on exposed edges, localized dust at seams, subtle steel fans and readable dark gaps, limited cyan inside rear exhaust throats only. Keep physical solid front crossbeam, no replacement lightning coupling. Driver remains seated, visible torso and head, hands on existing controls, matte grey with distinct lighter face/helmet plane and darker joints; do not add human anatomy to the minifigure. Stage it in an understated shadowed industrial garage with a warm side opening, no dense background competing with the asset. Crisp mechanically believable real-time cel-render construction, brush-grain surface treatment, restrained highlights; no photoreal raytraced showroom, no bloom wash, no motion blur, no UI, no watermark. Label only 'BLOCKRUNNER' and a small 'CONCEPT TARGET'.",
+  "references": [
+    {
+      "path": "assets/source/inkstorm/catalogue-inspection-round32/a6f14ae799ab40d7ac425f043f824ff8-quarter-a.png",
+      "role": "Source geometry reference"
+    },
+    {
+      "path": "docs/inkstorm-overhaul/concepts/06-foundry.png",
+      "role": "Approved original Inkstorm world art language only"
+    }
+  ],
+  "output": "docs/inkstorm-overhaul/concepts/12-blockrunner-round34.png",
+  "original": "/Users/amir/.codex/generated_images/01a076a6-10a1-7b50-b775-dd7d40542e2a/exec-8dd37495-e081-4bc6-a81c-53d2a072904c.png",
+  "scope": "Supplementary Blockrunner paint, shading, and driver readability target; not an in-game screenshot or replacement for the original seven world targets.",
+  "inspection": "Front view retains recognizable brick/engine/beam/cockpit layout and original minifigure silhouette. Generated rear inset compresses perspective and invents throat details; source geometry measurements, not this image, govern real anchors and mesh identity. Do not add unmeasured geometry or a duplicate driver from the concept."
+}

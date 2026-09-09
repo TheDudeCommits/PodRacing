@@ -1,0 +1,64 @@
+{
+  "status": "PREPARED NOT EXECUTED",
+  "mcpExecuted": false,
+  "payload": "ivory-unchanged-source-copy-prepared-v1.py",
+  "payloadBytes": 56226,
+  "payloadSha256": "5b113e2669ca3f822ad8593d428d429c1c730ded3a75e48277f6f213a3aba534",
+  "sourceGlbSha256": "2ed231e15b8bbab3f7b7028b73e8b6f442d532c9bc4d1fc0a2f5c40aeda49576",
+  "auditReceiptSha256": "f5375ba02bd017af32f833af96b2f7ccf4ab61d505acf754ee9ad48cae621079",
+  "normalSampleReceiptSha256": "6f0be7447392eb2779bd35b8b927ca013c7fd988a41904bf873423cd8f922e82",
+  "astParsed": true,
+  "safeAttributeAndModuleNamespaceChecksPassed": true,
+  "literalHasattrChecks": [
+    {
+      "line": 126,
+      "name": "cycles"
+    },
+    {
+      "line": 44,
+      "name": "default_value"
+    },
+    {
+      "line": 65,
+      "name": "image"
+    },
+    {
+      "line": 276,
+      "name": "image"
+    }
+  ],
+  "targetScene": "PodRacing \u2014 Blockrunner Ivory source copy V1 e42fb924b344481ea013c58cb0f52ad7",
+  "plannedOwnedDatablockAdds": {
+    "scenes": 1,
+    "objects": 55,
+    "meshes": 51,
+    "materials": 51,
+    "collections": 0,
+    "images": 0,
+    "worlds": 0,
+    "cameras": 0,
+    "lights": 0,
+    "curves": 0,
+    "actions": 0,
+    "node_groups": 0
+  },
+  "copyTriangles": 48384,
+  "sourceAndCopyNormals": "Exact own live corner-normal FNV; no setters/recalculation; no Colour references.",
+  "bridge": "Before creating anything, all51 direct source polygon/corner position+UV streams must match pinned GLB at6dec and actual evaluated polygon-loop-vertex FNV. Source triangle/polygon/loop formula is emitted only after full checks pass. GLB/live normals remain separately scoped.",
+  "isolation": "55 deep-copied objects,51 deep-copied meshes,51 deep-copied materials/embedded node trees,remapped copied parents,exact transform checks.",
+  "failure": "Rollback only newly owned objects/scene/meshes/materials; preserve all preexisting ID sets,scene/collection records and restore exact fresh context.",
+  "unexecuted": [
+    "source copy",
+    "cleanup",
+    "semantic masks",
+    "control fitting",
+    "paint",
+    "render",
+    "export",
+    "runtime admission"
+  ],
+  "files": {
+    "copy-only-body.py": "8ea60a71f2fedb91462f78f3b093293784fd9ad47c92e847f0fa291ce1256be7",
+    "copy-reference.json": "538c4299b2b29d7c2d34c1e30bec15d468ea97194516d23ef8e3be933ce67459"
+  }
+}

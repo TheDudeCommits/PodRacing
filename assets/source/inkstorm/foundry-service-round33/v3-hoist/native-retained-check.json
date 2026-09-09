@@ -1,0 +1,80 @@
+{
+  "absentV2HoistTriangles": 1632,
+  "addedBoundsGltf": [
+    [
+      -32.5,
+      2.5
+    ],
+    [
+      39.74372863769531,
+      48.900001525878906
+    ],
+    [
+      -6.989999771118164,
+      -4.199999809265137
+    ]
+  ],
+  "boundsGltf": [
+    [
+      -52.0,
+      52.0
+    ],
+    [
+      -25.0,
+      61.400001525878906
+    ],
+    [
+      -7.0,
+      7.0
+    ]
+  ],
+  "clippedOpenCorridorMinimumY": 39.66999816894531,
+  "matchedRetainedTriangles": 18324,
+  "maximumMatchedPositionDelta": 0.0,
+  "nativeAdditionTriangles": 1548,
+  "nativeFormats": {
+    "COLOR_0": {
+      "componentType": 5126,
+      "normalized": null,
+      "type": "VEC3"
+    },
+    "NORMAL": {
+      "componentType": 5126,
+      "normalized": null,
+      "type": "VEC3"
+    },
+    "POSITION": {
+      "componentType": 5126,
+      "normalized": null,
+      "type": "VEC3"
+    }
+  },
+  "nativeInputPreserved": true,
+  "nativePath": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/foundry-service-round33/v3-hoist/foundry-service-gantry-v3-native.glb",
+  "nativeRetainedAttributes": {
+    "COLOR_0": {
+      "differentCorners": 54972,
+      "exact": false,
+      "maximumComponentDelta": 0.003992617130279541
+    },
+    "NORMAL": {
+      "differentCorners": 1372,
+      "exact": false,
+      "maximumComponentDelta": 0.00029999471735209227
+    },
+    "POSITION": {
+      "differentCorners": 0,
+      "exact": true,
+      "maximumComponentDelta": 0.0
+    }
+  },
+  "nativeRetainedAttributesExact": false,
+  "nativeSha256": "1153129cb3575b65f373a84219afeddbf9c74862adfd5a86f98bfe9e724208b5",
+  "newHoistStaysAboveOriginalClearance": true,
+  "outputPath": null,
+  "packerSha256": "821daa5a7c6d4901d28a7d82345baa40dcaaaf75d0da0bd3423b55d777848850",
+  "positionMatchingTolerance": 2e-05,
+  "scope": "Source-only exact retained attribute check/repair; no Blender, runtime install, render or art acceptance.",
+  "sourceSha256": "58fc12d837039eb73111886b1b91c294516c51fc47a4a0d00200717161fd39ba",
+  "status": "native-retained-attribute-drift"
+}

@@ -1,0 +1,52 @@
+{
+  "status": "prepared only; no Blender execution",
+  "payload": {
+    "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/mcp-safe/15-contact-v7-driver-render-composed-payload.py",
+    "bytes": 87953,
+    "sha256": "3567b57d8b272e545a4caf7b000a07d736811411cfe9b79dfa7a5691bd229722"
+  },
+  "actualAuthorReceipt": {
+    "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/mcp-safe/contact-author-v7-receipt.json",
+    "bytes": 68012,
+    "sha256": "640ccbd730e00a5ec21d70b2b49f15f4c95a18058409145d88e0d98fcd68e691"
+  },
+  "matchedActualCameraReceipt": {
+    "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/mcp-safe/atlas-clamp-v6-driver-render-receipt.json",
+    "bytes": 9023,
+    "sha256": "12ac7284e306052fa3b0f874930c314731c2d4f7b481b22e94d796db30d9a9c1"
+  },
+  "outputImageReserved": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/paint-v1-driver-20260908-round34-contact-v7.png",
+  "sourceFragments": [
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/mcp-safe/00-source-reference.py",
+      "bytes": 20886,
+      "sha256": "1e102e361460a5540776f5d45289f4b458ddb10f3355d6421e3c096a762d87b8"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/mcp-safe/01-source-guard.py",
+      "bytes": 10293,
+      "sha256": "2a16250b35ebc55240477f5aebc16b81d83dc475d14f290c803c86abf6fd2e89"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/mcp-safe/13-v4-attribute-signatures.py",
+      "bytes": 945,
+      "sha256": "edf0140332615bf6d14beebbb891f2a409bd6458edf23b17b1b92bcb84f75dca"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/mcp-safe/14-atlas-wrap-guards.py",
+      "bytes": 4267,
+      "sha256": "31fd32887302053ea98f888900514edef3c02588b0912b777b59a6736bff8ca2"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/mcp-safe/15d-ao-contact-guards.py",
+      "bytes": 5356,
+      "sha256": "f2a5925bbbe6f0e32265d21650d09e5b1a9c9a59c7938e4057acdfd2a78ab9a1"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/mcp-safe/render-paint-comparison-v1.py",
+      "bytes": 16423,
+      "sha256": "bf245dc0671161ca57dac5c4f3723c5133d5001f3d0b6d42a9e190ea687bbbd2"
+    }
+  ],
+  "staticValidation": "AST and safe import/literal attribute checks pass; temporary copies only; no new bake or stored-scene mutation"
+}

@@ -1,0 +1,1069 @@
+{
+  "recordedAt": "2026-09-07T19:59:27.371567+00:00",
+  "scope": "Frozen round28 bundle only; local Apple M4 / Chrome 152 adaptive native-RAF Time Attack, two-lap Canyon Cup and actual Continue. Current round29 pit/foundation source changes occurred after this freeze and have no inherited performance or visual acceptance. Technical documentation checkpoint only; no acquisition, asset, driver-count, runtime, public, dist, build, GPU or deployment operation.",
+  "beforeManifestSha256": "282699699d629ed8c423944f5df22cc11ba80a32e4030a149862b7586f4eb1a2",
+  "afterManifestSha256": "daa39b17d7c4086821f732aaed4c4104c688675d05a75d25d69411cfb974cc34",
+  "beforeManifestSnapshot": "output/playwright/full-race-performance-round28-documentation/vehicle-manifest-before.json",
+  "previousProgressReceipt": "vehicle-progress-2026-09-07-sixth-rate-limit.json",
+  "latestProgressReceiptPreserved": "vehicle-progress-2026-09-07-sixth-rate-limit.json",
+  "beforeCounts": {
+    "publicResults": 29,
+    "vehicleCandidates": 26,
+    "excludedNonVehicles": 3,
+    "downloaded": 2,
+    "blockedOrPending": 24,
+    "downloadStatuses": {
+      "downloaded": 2,
+      "pending_download": 22,
+      "rate_limited": 2
+    },
+    "mcpImportedSourceGlbs": 2,
+    "rawArchivesPreserved": 0,
+    "stylizationNeedsPermission": 0,
+    "publicAdaptationRestricted": 1,
+    "stylizedExports": 2,
+    "stylizedSourceStudies": 2,
+    "stylizedExportVariants": 4,
+    "driversAdded": 2,
+    "runtimeIntegrations": 2,
+    "driverInspections": 2,
+    "stylizedExportFiles": 6
+  },
+  "afterCounts": {
+    "publicResults": 29,
+    "vehicleCandidates": 26,
+    "excludedNonVehicles": 3,
+    "downloaded": 2,
+    "blockedOrPending": 24,
+    "downloadStatuses": {
+      "downloaded": 2,
+      "pending_download": 22,
+      "rate_limited": 2
+    },
+    "mcpImportedSourceGlbs": 2,
+    "rawArchivesPreserved": 0,
+    "stylizationNeedsPermission": 0,
+    "publicAdaptationRestricted": 1,
+    "stylizedExports": 2,
+    "stylizedSourceStudies": 2,
+    "stylizedExportVariants": 4,
+    "driversAdded": 2,
+    "runtimeIntegrations": 2,
+    "driverInspections": 2,
+    "stylizedExportFiles": 6
+  },
+  "performances": [
+    {
+      "uid": "4eff45899ada40bb920c5c744663db90",
+      "appearance": "teemto",
+      "performance": {
+        "round": 28,
+        "outcome": "PASS",
+        "scope": "Frozen round28 bundle only; local Apple M4 / Chrome 152 adaptive native-RAF Time Attack, two-lap Canyon Cup and actual Continue. Current round29 pit/foundation source changes occurred after this freeze and have no inherited performance or visual acceptance.",
+        "receipt": "output/playwright/full-race-performance-round28-teemto/receipt.json",
+        "receiptSha256": "765470719c3fe4fcbcc3af54748697f5207c44b8bb293e17e4244b39999b8225",
+        "completedAt": "2026-09-07T19:37:32.048Z",
+        "report": "docs/inkstorm-overhaul/FULL_RACE_PERFORMANCE_ROUND28.md",
+        "reportSha256": "44c89c59deadeb1c47d374e5c7c155d7ffb6b7f6b399f637cd8c339a535f7774",
+        "bundle": "index-CED-RrRq.js",
+        "bundleSha256": "ca752f0a0f3da8e7585dd6c999d7ed5615d56c766c04e4dd767ef07256f1175d",
+        "harnessSha256": "07ccba4b9f8ca567099f6d0e9b85ade62cadbda0d8e1123ab62bddc3490966f5",
+        "device": {
+          "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/152.0.0.0 Safari/537.36",
+          "hardwareConcurrency": 10,
+          "requestedDpr": 2,
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "canvas": {
+            "width": 2520,
+            "height": 1575
+          },
+          "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M4, Unspecified Version)",
+          "vendor": "Google Inc. (Apple)",
+          "webglVersion": "WebGL 2.0 (OpenGL ES 3.0 Chromium)"
+        },
+        "browserVersion": "152.0.7977.77",
+        "appearanceSelection": {
+          "requested": "default",
+          "action": "No appearance selection; preserve the ordinary default flow."
+        },
+        "resolutionMode": "adaptive",
+        "qualityOverride": null,
+        "races": {
+          "time-attack": {
+            "gate": {
+              "outcome": "PASS",
+              "criteria": {
+                "minimumMeanHz": 40,
+                "maximumP95Ms": 25,
+                "boundaryToleranceSeconds": 0.05
+              },
+              "issues": []
+            },
+            "finishTime": 63.316666666663714,
+            "sectorCount": 10,
+            "rawReceipt": "output/playwright/full-race-performance-round28-teemto/time-attack.json",
+            "rawReceiptSha256": "d52c2fdcb0403aff0a649d114760733ce6fe4575c20695f81efd780896a8c2f0",
+            "racingCadence": {
+              "phase": "racing",
+              "samples": 3788,
+              "durationMs": 63314.200000000004,
+              "averageFps": 59.82860085099393,
+              "p50Ms": 16.69999999999709,
+              "p95Ms": 16.70000000001164,
+              "p99Ms": 16.80000000000291,
+              "maxMs": 33.400000000001455,
+              "over25ms": 11,
+              "over33ms": 3,
+              "over50ms": 0,
+              "firstRaceTime": 0.025,
+              "lastRaceTime": 63.316666666663714
+            },
+            "countdownCadence": {
+              "phase": "countdown",
+              "samples": 160,
+              "durationMs": 2683.1000000000004,
+              "averageFps": 59.632514628601236,
+              "p50Ms": 16.699999999999818,
+              "p95Ms": 16.700000000000728,
+              "p99Ms": 16.800000000000182,
+              "maxMs": 33.30000000000018,
+              "over25ms": 1,
+              "over33ms": 0,
+              "over50ms": 0,
+              "firstRaceTime": 0,
+              "lastRaceTime": 0
+            },
+            "rawRows": 3994,
+            "rawPhases": {
+              "countdown": 161,
+              "racing": 3788,
+              "finished": 45
+            },
+            "minimumDpr": 1,
+            "maximumDpr": 2,
+            "recoveredDpr2RaceTime": 35.283333333331974,
+            "rendererSamples": 68,
+            "rendererExtrema": {
+              "minDpr": 1,
+              "maxDpr": 2,
+              "maxCalls": 99,
+              "maxTriangles": 3942466
+            },
+            "terrain": {
+              "requested": [
+                6,
+                5,
+                4
+              ],
+              "effective": [
+                6
+              ],
+              "coverage": [
+                3072
+              ]
+            },
+            "shadow": {
+              "size": [
+                512
+              ],
+              "draws": [
+                3
+              ],
+              "casters": [
+                3
+              ],
+              "drawnTriangles": [
+                43545
+              ],
+              "omitted": [
+                0
+              ],
+              "failures": [],
+              "skips": [],
+              "frames": [
+                30,
+                3993
+              ],
+              "monotonic": true,
+              "cpu": {
+                "samples": 68,
+                "p50": 0.09999999403953552,
+                "p95": 0.19999998807907104,
+                "p99": 0.20000001788139343,
+                "max": 0.20000001788139343,
+                "resultLifetimeMax": 6.0999999940395355
+              },
+              "result": {
+                "size": 512,
+                "casters": 3,
+                "candidates": 3,
+                "omitted": 0,
+                "triangles": 43545,
+                "drawCalls": 3,
+                "drawnTriangles": 43545,
+                "frames": 4022,
+                "refreshes": 2,
+                "texelMetres": 0.09748708248429594,
+                "depthMetres": 48.51559034841648,
+                "cpuMs": 0.09999999403953552,
+                "maxCpuMs": 6.0999999940395355,
+                "failure": null,
+                "skipped": null
+              }
+            },
+            "activeHero": "teemto",
+            "controller": {
+              "samples": 3994,
+              "p50": 0.5,
+              "p95": 0.699999988079071,
+              "p99": 0.7000000178813934,
+              "max": 1.0999999940395355
+            },
+            "observedGalacticEvents": {}
+          },
+          "cup-round-1": {
+            "gate": {
+              "outcome": "PASS",
+              "criteria": {
+                "minimumMeanHz": 40,
+                "maximumP95Ms": 25,
+                "boundaryToleranceSeconds": 0.05
+              },
+              "issues": []
+            },
+            "finishTime": 126.16666666671314,
+            "sectorCount": 20,
+            "rawReceipt": "output/playwright/full-race-performance-round28-teemto/cup-round-1.json",
+            "rawReceiptSha256": "9fea125a4fbb83d48ae511bca173651d334376f65aa67eba7250282b1244d349",
+            "racingCadence": {
+              "phase": "racing",
+              "samples": 8030,
+              "durationMs": 134194.69999999998,
+              "averageFps": 59.83842879040678,
+              "p50Ms": 16.699999999982538,
+              "p95Ms": 16.79999999998836,
+              "p99Ms": 16.800000000017462,
+              "maxMs": 33.40000000002328,
+              "over25ms": 22,
+              "over33ms": 10,
+              "over50ms": 0,
+              "firstRaceTime": 0,
+              "lastRaceTime": 134.1750000000423
+            },
+            "countdownCadence": {
+              "phase": "countdown",
+              "samples": 163,
+              "durationMs": 2733.199999999997,
+              "averageFps": 59.637055466120366,
+              "p50Ms": 16.69999999999709,
+              "p95Ms": 16.70000000001164,
+              "p99Ms": 16.80000000000291,
+              "maxMs": 33.30000000000291,
+              "over25ms": 1,
+              "over33ms": 0,
+              "over50ms": 0,
+              "firstRaceTime": 0,
+              "lastRaceTime": 0
+            },
+            "rawRows": 8244,
+            "rawPhases": {
+              "countdown": 164,
+              "racing": 8030,
+              "finished": 50
+            },
+            "minimumDpr": 1.875,
+            "maximumDpr": 2,
+            "recoveredDpr2RaceTime": 2.2499999999999947,
+            "rendererSamples": 138,
+            "rendererExtrema": {
+              "minDpr": 1.875,
+              "maxDpr": 2,
+              "maxCalls": 274,
+              "maxTriangles": 3963010
+            },
+            "terrain": {
+              "requested": [
+                6
+              ],
+              "effective": [
+                6
+              ],
+              "coverage": [
+                3072
+              ]
+            },
+            "shadow": {
+              "size": [
+                512
+              ],
+              "draws": [
+                3
+              ],
+              "casters": [
+                3
+              ],
+              "drawnTriangles": [
+                43545
+              ],
+              "omitted": [
+                0
+              ],
+              "failures": [],
+              "skips": [],
+              "frames": [
+                4061,
+                12272
+              ],
+              "monotonic": true,
+              "cpu": {
+                "samples": 138,
+                "p50": 0.09999999403953552,
+                "p95": 0.19999998807907104,
+                "p99": 0.20000001788139343,
+                "max": 0.20000001788139343,
+                "resultLifetimeMax": 6.0999999940395355
+              },
+              "result": {
+                "size": 512,
+                "casters": 3,
+                "candidates": 3,
+                "omitted": 0,
+                "triangles": 43545,
+                "drawCalls": 3,
+                "drawnTriangles": 43545,
+                "frames": 12304,
+                "refreshes": 2,
+                "texelMetres": 0.10277689387967825,
+                "depthMetres": 51.281757291096255,
+                "cpuMs": 0.19999998807907104,
+                "maxCpuMs": 6.0999999940395355,
+                "failure": null,
+                "skipped": null
+              }
+            },
+            "activeHero": "teemto",
+            "controller": {
+              "samples": 8244,
+              "p50": 0.4000000059604645,
+              "p95": 0.5,
+              "p99": 0.5,
+              "max": 0.6000000238418579
+            },
+            "observedGalacticEvents": {
+              "redline-surge": 194
+            }
+          }
+        },
+        "browserErrors": [],
+        "freezeComparison": "output/playwright/full-race-performance-round28-final-freeze-comparison.json",
+        "freezeComparisonSha256": "ea1f95892a1770b9a39051bce21a506397c3361614bfcf6d982ba95095856bf6",
+        "cleanup": {
+          "receipt": "output/playwright/full-race-performance-round28-teemto/cleanup.json",
+          "sha256": "1f3e46ac73bcb8bf0c8f7e19db37ddde63087b96af0cacc2e34c68c5b8d9363c",
+          "ownedPreviewPortsClosed": true,
+          "unrelated5211": "read-only check; no stop signal"
+        },
+        "cupContinue": {
+          "eventId": "cup-foundry",
+          "championshipRound": 1,
+          "awaitingStart": true
+        },
+        "sourceScope": {
+          "measuredRound": 28,
+          "appliesToCurrentRound29Source": false,
+          "laterChanges": "Round29 pit and foundation edits are outside the recorded runtime freeze"
+        },
+        "limits": [
+          "Local adaptive native RAF cadence only; not GPU execution or physical display presentation",
+          "No fixed-DPR-2 or other-device acceptance",
+          "No human driving, all-Cup-circuits, worst-case combat/effects or visual/art acceptance"
+        ],
+        "evidence": {
+          "analysis": "output/playwright/full-race-performance-round28-teemto/analysis-summary.json",
+          "rawSummaryValidation": "output/playwright/full-race-performance-round28-teemto/raw-summary-validation.json",
+          "beforeManifest": "output/playwright/full-race-performance-round28-teemto/artifact-manifest-before.json",
+          "afterManifest": "output/playwright/full-race-performance-round28-teemto/artifact-manifest-after.json",
+          "inventory": "output/playwright/full-race-performance-round28-evidence-inventory.json"
+        }
+      }
+    },
+    {
+      "uid": "f97e3891a6a846ed97379e3cfa5931a0",
+      "appearance": "sebulba",
+      "performance": {
+        "round": 28,
+        "outcome": "PASS",
+        "scope": "Frozen round28 bundle only; local Apple M4 / Chrome 152 adaptive native-RAF Time Attack, two-lap Canyon Cup and actual Continue. Current round29 pit/foundation source changes occurred after this freeze and have no inherited performance or visual acceptance.",
+        "receipt": "output/playwright/full-race-performance-round28-sebulba-attempt3/receipt.json",
+        "receiptSha256": "6c0f5a6770ab4f2eafc62cfe8963e18b49a947dd3c46d63cdf449d71cdea5fb6",
+        "completedAt": "2026-09-07T19:48:02.726Z",
+        "report": "docs/inkstorm-overhaul/FULL_RACE_PERFORMANCE_ROUND28.md",
+        "reportSha256": "44c89c59deadeb1c47d374e5c7c155d7ffb6b7f6b399f637cd8c339a535f7774",
+        "bundle": "index-CED-RrRq.js",
+        "bundleSha256": "ca752f0a0f3da8e7585dd6c999d7ed5615d56c766c04e4dd767ef07256f1175d",
+        "harnessSha256": "667941482387f3634aeb0abbb2d7db0d355eb07ce267332d9d96ad842145ac37",
+        "device": {
+          "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/152.0.0.0 Safari/537.36",
+          "hardwareConcurrency": 10,
+          "requestedDpr": 2,
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "canvas": {
+            "width": 2520,
+            "height": 1575
+          },
+          "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M4, Unspecified Version)",
+          "vendor": "Google Inc. (Apple)",
+          "webglVersion": "WebGL 2.0 (OpenGL ES 3.0 Chromium)"
+        },
+        "browserVersion": "152.0.7977.77",
+        "appearanceSelection": {
+          "requested": "sebulba",
+          "action": "Click the visible garage appearance button before Start, then wait for its actual race geometry and decoded preview."
+        },
+        "resolutionMode": "adaptive",
+        "qualityOverride": null,
+        "races": {
+          "time-attack": {
+            "gate": {
+              "outcome": "PASS",
+              "criteria": {
+                "minimumMeanHz": 40,
+                "maximumP95Ms": 25,
+                "boundaryToleranceSeconds": 0.05
+              },
+              "issues": []
+            },
+            "finishTime": 63.34166666666371,
+            "sectorCount": 10,
+            "rawReceipt": "output/playwright/full-race-performance-round28-sebulba-attempt3/time-attack.json",
+            "rawReceiptSha256": "982db1c68f223bd8e6cee3ae6bfd14979f56140f99614dd624c82a903ba6d72b",
+            "racingCadence": {
+              "phase": "racing",
+              "samples": 3788,
+              "durationMs": 63347.5,
+              "averageFps": 59.79715063735743,
+              "p50Ms": 16.69999999999709,
+              "p95Ms": 16.70000000001164,
+              "p99Ms": 16.80000000000291,
+              "maxMs": 33.400000000001455,
+              "over25ms": 13,
+              "over33ms": 7,
+              "over50ms": 0,
+              "firstRaceTime": 0,
+              "lastRaceTime": 63.33333333333038
+            },
+            "countdownCadence": {
+              "phase": "countdown",
+              "samples": 160,
+              "durationMs": 2700,
+              "averageFps": 59.25925925925926,
+              "p50Ms": 16.699999999999818,
+              "p95Ms": 16.700000000000728,
+              "p99Ms": 16.800000000000182,
+              "maxMs": 50,
+              "over25ms": 1,
+              "over33ms": 1,
+              "over50ms": 0,
+              "firstRaceTime": 0,
+              "lastRaceTime": 0
+            },
+            "rawRows": 3991,
+            "rawPhases": {
+              "countdown": 161,
+              "racing": 3788,
+              "finished": 42
+            },
+            "minimumDpr": 1,
+            "maximumDpr": 2,
+            "recoveredDpr2RaceTime": 35.14999999999865,
+            "rendererSamples": 68,
+            "rendererExtrema": {
+              "minDpr": 1,
+              "maxDpr": 2,
+              "maxCalls": 92,
+              "maxTriangles": 3936679
+            },
+            "terrain": {
+              "requested": [
+                6,
+                5,
+                4
+              ],
+              "effective": [
+                6
+              ],
+              "coverage": [
+                3072
+              ]
+            },
+            "shadow": {
+              "size": [
+                512
+              ],
+              "draws": [
+                2
+              ],
+              "casters": [
+                2
+              ],
+              "drawnTriangles": [
+                47362
+              ],
+              "omitted": [
+                0
+              ],
+              "failures": [],
+              "skips": [],
+              "frames": [
+                37,
+                3992
+              ],
+              "monotonic": true,
+              "cpu": {
+                "samples": 68,
+                "p50": 0.09999999403953552,
+                "p95": 0.20000001788139343,
+                "p99": 0.20000001788139343,
+                "max": 0.20000001788139343,
+                "resultLifetimeMax": 6.300000011920929
+              },
+              "result": {
+                "size": 512,
+                "casters": 2,
+                "candidates": 2,
+                "omitted": 0,
+                "triangles": 47362,
+                "drawCalls": 2,
+                "drawnTriangles": 47362,
+                "frames": 4027,
+                "refreshes": 3,
+                "texelMetres": 0.10853733213726358,
+                "depthMetres": 54.01117793804406,
+                "cpuMs": 0.09999999403953552,
+                "maxCpuMs": 6.300000011920929,
+                "failure": null,
+                "skipped": null
+              }
+            },
+            "activeHero": "sebulba",
+            "controller": {
+              "samples": 3991,
+              "p50": 0.5,
+              "p95": 0.699999988079071,
+              "p99": 0.7000000178813934,
+              "max": 0.800000011920929
+            },
+            "observedGalacticEvents": {}
+          },
+          "cup-round-1": {
+            "gate": {
+              "outcome": "PASS",
+              "criteria": {
+                "minimumMeanHz": 40,
+                "maximumP95Ms": 25,
+                "boundaryToleranceSeconds": 0.05
+              },
+              "issues": []
+            },
+            "finishTime": 126.35000000004662,
+            "sectorCount": 20,
+            "rawReceipt": "output/playwright/full-race-performance-round28-sebulba-attempt3/cup-round-1.json",
+            "rawReceiptSha256": "c685c2d2a629318e206f1206bced7ddc4109682347b5ef6b4e8b1af77cd8855e",
+            "racingCadence": {
+              "phase": "racing",
+              "samples": 8037,
+              "durationMs": 134378,
+              "averageFps": 59.80889728973493,
+              "p50Ms": 16.699999999982538,
+              "p95Ms": 16.79999999998836,
+              "p99Ms": 16.800000000017462,
+              "maxMs": 33.40000000002328,
+              "over25ms": 26,
+              "over33ms": 10,
+              "over50ms": 0,
+              "firstRaceTime": 0.008333333333333333,
+              "lastRaceTime": 134.35833333337547
+            },
+            "countdownCadence": {
+              "phase": "countdown",
+              "samples": 163,
+              "durationMs": 2716.5999999999913,
+              "averageFps": 60.00147242877145,
+              "p50Ms": 16.69999999999709,
+              "p95Ms": 16.70000000001164,
+              "p99Ms": 16.80000000000291,
+              "maxMs": 16.80000000000291,
+              "over25ms": 0,
+              "over33ms": 0,
+              "over50ms": 0,
+              "firstRaceTime": 0,
+              "lastRaceTime": 0
+            },
+            "rawRows": 8241,
+            "rawPhases": {
+              "countdown": 164,
+              "racing": 8037,
+              "finished": 40
+            },
+            "minimumDpr": 1.875,
+            "maximumDpr": 2,
+            "recoveredDpr2RaceTime": 2.2666666666666613,
+            "rendererSamples": 138,
+            "rendererExtrema": {
+              "minDpr": 1.875,
+              "maxDpr": 2,
+              "maxCalls": 267,
+              "maxTriangles": 3957223
+            },
+            "terrain": {
+              "requested": [
+                6
+              ],
+              "effective": [
+                6
+              ],
+              "coverage": [
+                3072
+              ]
+            },
+            "shadow": {
+              "size": [
+                512
+              ],
+              "draws": [
+                2
+              ],
+              "casters": [
+                2
+              ],
+              "drawnTriangles": [
+                47362
+              ],
+              "omitted": [
+                0
+              ],
+              "failures": [],
+              "skips": [],
+              "frames": [
+                4066,
+                12272
+              ],
+              "monotonic": true,
+              "cpu": {
+                "samples": 138,
+                "p50": 0.09999999403953552,
+                "p95": 0.19999998807907104,
+                "p99": 0.20000001788139343,
+                "max": 0.20000001788139343,
+                "resultLifetimeMax": 6.300000011920929
+              },
+              "result": {
+                "size": 512,
+                "casters": 2,
+                "candidates": 2,
+                "omitted": 0,
+                "triangles": 47362,
+                "drawCalls": 2,
+                "drawnTriangles": 47362,
+                "frames": 12305,
+                "refreshes": 3,
+                "texelMetres": 0.11198819493350953,
+                "depthMetres": 55.741031885740085,
+                "cpuMs": 0.09999999403953552,
+                "maxCpuMs": 6.300000011920929,
+                "failure": null,
+                "skipped": null
+              }
+            },
+            "activeHero": "sebulba",
+            "controller": {
+              "samples": 8241,
+              "p50": 0.4000000059604645,
+              "p95": 0.5,
+              "p99": 0.5999999940395355,
+              "max": 1.100000023841858
+            },
+            "observedGalacticEvents": {
+              "redline-surge": 188
+            }
+          }
+        },
+        "browserErrors": [],
+        "freezeComparison": "output/playwright/full-race-performance-round28-final-freeze-comparison.json",
+        "freezeComparisonSha256": "ea1f95892a1770b9a39051bce21a506397c3361614bfcf6d982ba95095856bf6",
+        "cleanup": {
+          "receipt": "output/playwright/full-race-performance-round28-sebulba-attempt3/cleanup.json",
+          "sha256": "c44e0e75f5d0533278e9e4d57425672b1bfdacbb29290481e23dd904b8df94b1",
+          "ownedPreviewPortsClosed": true,
+          "unrelated5211": "read-only check; no stop signal"
+        },
+        "cupContinue": {
+          "eventId": "cup-foundry",
+          "championshipRound": 1,
+          "awaitingStart": true
+        },
+        "sourceScope": {
+          "measuredRound": 28,
+          "appliesToCurrentRound29Source": false,
+          "laterChanges": "Round29 pit and foundation edits are outside the recorded runtime freeze"
+        },
+        "limits": [
+          "Local adaptive native RAF cadence only; not GPU execution or physical display presentation",
+          "No fixed-DPR-2 or other-device acceptance",
+          "No human driving, all-Cup-circuits, worst-case combat/effects or visual/art acceptance"
+        ],
+        "evidence": {
+          "analysis": "output/playwright/full-race-performance-round28-sebulba-attempt3/analysis-summary.json",
+          "rawSummaryValidation": "output/playwright/full-race-performance-round28-sebulba-attempt3/raw-summary-validation.json",
+          "beforeManifest": "output/playwright/full-race-performance-round28-sebulba-attempt3/artifact-manifest-before.json",
+          "afterManifest": "output/playwright/full-race-performance-round28-sebulba-attempt3/artifact-manifest-after.json",
+          "inventory": "output/playwright/full-race-performance-round28-evidence-inventory.json"
+        },
+        "preservedOriginalFailures": [
+          {
+            "directory": "output/playwright/full-race-performance-round28-sebulba",
+            "receipt": "output/playwright/full-race-performance-round28-sebulba/receipt.json",
+            "receiptSha256": "61b9336bbb40a2eb8d52e8ae129ea72161e209457e9fb7d0733624d7792e8259",
+            "outcome": "FAIL",
+            "exitCode": 1,
+            "error": "Error: Finish highlight clock differs from actual solo finish",
+            "timeAttackFinishTime": 63.32499999999705,
+            "timeAttackCadenceGate": {
+              "outcome": "PASS",
+              "criteria": {
+                "minimumMeanHz": 40,
+                "maximumP95Ms": 25,
+                "boundaryToleranceSeconds": 0.05
+              },
+              "issues": []
+            },
+            "racingCadence": {
+              "phase": "racing",
+              "samples": 3787,
+              "durationMs": 63330.7,
+              "averageFps": 59.7972231476993,
+              "p50Ms": 16.69999999999709,
+              "p95Ms": 16.799999999995634,
+              "p99Ms": 16.80000000000291,
+              "maxMs": 33.400000000001455,
+              "over25ms": 13,
+              "over33ms": 5,
+              "over50ms": 0,
+              "firstRaceTime": 0,
+              "lastRaceTime": 63.316666666663714
+            },
+            "rawRows": 3993,
+            "rawReceiptSha256": "5e6ea03fb63671da2610f7db0e0164f4f4216adf5bd93411d31d2a2177c497f7",
+            "cupReached": false,
+            "diagnosis": "output/playwright/full-race-performance-round28-sebulba/clock-mismatch-diagnostic.json",
+            "harnessSha256": "07ccba4b9f8ca567099f6d0e9b85ade62cadbda0d8e1123ab62bddc3490966f5"
+          },
+          {
+            "directory": "output/playwright/full-race-performance-round28-sebulba-attempt2",
+            "receipt": "output/playwright/full-race-performance-round28-sebulba-attempt2/receipt.json",
+            "receiptSha256": "f4a3478b486bfe60edd4f49dde22a615b180d19d7a329bee2efe99f03c396d87",
+            "outcome": "FAIL",
+            "exitCode": 1,
+            "error": "Error: Finish highlight clock differs from actual solo finish",
+            "timeAttackFinishTime": 63.32499999999705,
+            "timeAttackCadenceGate": {
+              "outcome": "PASS",
+              "criteria": {
+                "minimumMeanHz": 40,
+                "maximumP95Ms": 25,
+                "boundaryToleranceSeconds": 0.05
+              },
+              "issues": []
+            },
+            "racingCadence": {
+              "phase": "racing",
+              "samples": 3788,
+              "durationMs": 63347.4,
+              "averageFps": 59.79724503294531,
+              "p50Ms": 16.69999999999709,
+              "p95Ms": 16.70000000001164,
+              "p99Ms": 16.80000000000291,
+              "maxMs": 33.400000000001455,
+              "over25ms": 13,
+              "over33ms": 6,
+              "over50ms": 0,
+              "firstRaceTime": 0.008333333333333333,
+              "lastRaceTime": 63.32499999999705
+            },
+            "rawRows": 3992,
+            "rawReceiptSha256": "b6996f3aa0139cea9b046f78f36c3859f3efb0e998ee6b6561f041ddf0c20a1e",
+            "cupReached": false,
+            "diagnosis": "output/playwright/full-race-performance-round28-sebulba-attempt2/clock-mismatch-diagnostic.json",
+            "harnessSha256": "07ccba4b9f8ca567099f6d0e9b85ade62cadbda0d8e1123ab62bddc3490966f5"
+          }
+        ],
+        "clockOracleCorrection": {
+          "receipt": "assets/source/inkstorm/clock-oracle-round28/correction.json",
+          "sha256": "239005a7a5e7a4f5c674c2a4c8fdb9b1c21ba55c57e74eba84330022c3b194da",
+          "scope": "Import plus expected-clock calculation only; controller, course, quality and native cadence unchanged. Independent nanosecond normalization preserves exact millisecond string equality. Original two failures remain FAIL.",
+          "originalHarnessSha256": "07ccba4b9f8ca567099f6d0e9b85ade62cadbda0d8e1123ab62bddc3490966f5",
+          "correctedHarnessSha256": "667941482387f3634aeb0abbb2d7db0d355eb07ce267332d9d96ad842145ac37",
+          "observedOriginalAuthoritativeTime": 63.32499999999705,
+          "originalExpectedClock": "1:03.324",
+          "actualCorrectDisplay": "1:03.325",
+          "correctedLiveAttemptRehitOriginalBoundary": false
+        }
+      }
+    }
+  ],
+  "acceptanceCheckpoint": {
+    "lastCompletedRound": 28,
+    "scope": "Completed frozen technical checkpoint only; art FAIL, no deployment. Does not apply to current round29 source.",
+    "bundle": "index-CED-RrRq.js",
+    "bundleSha256": "ca752f0a0f3da8e7585dd6c999d7ed5615d56c766c04e4dd767ef07256f1175d",
+    "fullRacePerformance": "PASS for all four required Teemto and Sebulba ordinary Time Attack/Canyon Cup cadence gates and both actual Continue flows, local adaptive rendering; two original Sebulba flow failures remain preserved and corrected-oracle retry is separately identified.",
+    "fullRacePerformanceReport": "docs/inkstorm-overhaul/FULL_RACE_PERFORMANCE_ROUND28.md",
+    "fullRacePerformanceProgressReceipt": "vehicle-progress-2026-09-07-full-race-round28.json",
+    "finalFreezeComparison": "output/playwright/full-race-performance-round28-final-freeze-comparison.json",
+    "worldArtAcceptance": {
+      "round": 28,
+      "outcome": "FAIL",
+      "acceptedSections": 0,
+      "reviewedSections": 7,
+      "receipt": "docs/inkstorm-overhaul/BLIND_WORLD_ROUND28.md"
+    },
+    "pilotArtAcceptance": {
+      "round": 28,
+      "outcome": "FAIL",
+      "scope": "V4C relative preference is not strict 8/10 acceptance",
+      "receipt": "docs/inkstorm-overhaul/BLIND_PILOT_RUNTIME_ROUND28.md"
+    },
+    "activeWork": {
+      "round": 29,
+      "status": "source changed after the completed frozen round28 benchmark",
+      "scope": [
+        "Pit and foundation changes after the round28 runtime freeze"
+      ],
+      "acceptance": "Requires its own tests/build/captures/fresh criticism/full-race timing; no inherited round28 acceptance"
+    },
+    "deployment": "none"
+  },
+  "previousAcceptanceCheckpointPreservedInHistory": true,
+  "preservation": {
+    "totalModelRecords": 29,
+    "updatedIntegratedModels": 2,
+    "otherModelRecords": 27,
+    "otherModels": [
+      {
+        "uid": "c2ca24c9b3c2416db0abe026d9f4b7ac",
+        "beforeSha256": "e1abaa3297b5d4413093347ec4248b3d98a43faf27d6fa80a76a1ee36a9e1e06",
+        "afterSha256": "e1abaa3297b5d4413093347ec4248b3d98a43faf27d6fa80a76a1ee36a9e1e06",
+        "byteEquivalentSerialization": true
+      },
+      {
+        "uid": "25d51fbd4efc4c888ca4ff2549b1c6ae",
+        "beforeSha256": "00da8d41bdfd8bf9700afd0a041f5b34de734af7ba029478af36f06a0421446c",
+        "afterSha256": "00da8d41bdfd8bf9700afd0a041f5b34de734af7ba029478af36f06a0421446c",
+        "byteEquivalentSerialization": true
+      },
+      {
+        "uid": "e377c2e49ad447caa0517b87562b3acc",
+        "beforeSha256": "f42ba80fe90589a000a8f69bc12200a61d4684a17319dd8747a1881a03ff0ddd",
+        "afterSha256": "f42ba80fe90589a000a8f69bc12200a61d4684a17319dd8747a1881a03ff0ddd",
+        "byteEquivalentSerialization": true
+      },
+      {
+        "uid": "dd948b66950147b78ace05dfcb9ccbbb",
+        "beforeSha256": "6ea939e5212e19b90188413270fa4273a4f51bfa5252fdbed0a5c8f022ea9734",
+        "afterSha256": "6ea939e5212e19b90188413270fa4273a4f51bfa5252fdbed0a5c8f022ea9734",
+        "byteEquivalentSerialization": true
+      },
+      {
+        "uid": "4022e489f3d74eebb0aa3305f38dcc3f",
+        "beforeSha256": "7dab97005f8014c66926a74fc5c824367525b4fc9df6bb5236b785eb729e4828",
+        "afterSha256": "7dab97005f8014c66926a74fc5c824367525b4fc9df6bb5236b785eb729e4828",
+        "byteEquivalentSerialization": true
+      },
+      {
+        "uid": "fee6dfa2369149aa84e7f99d9bb35cb0",
+        "beforeSha256": "79602568c7ed9d57b8b0c37cfe9b42bb11bf66d1e381114168a355abe167a2e7",
+        "afterSha256": "79602568c7ed9d57b8b0c37cfe9b42bb11bf66d1e381114168a355abe167a2e7",
+        "byteEquivalentSerialization": true
+      },
+      {
+        "uid": "7766ca8e7bd047f5ad4bdb86d11ec6d4",
+        "beforeSha256": "3072159fe453dca4554d2b2f76415252c57e4c82d70006d1a025b6e56c92bedf",
+        "afterSha256": "3072159fe453dca4554d2b2f76415252c57e4c82d70006d1a025b6e56c92bedf",
+        "byteEquivalentSerialization": true
+      },
+      {
+        "uid": "dac6d14dcf914e88af8625b59f4020bc",
+        "beforeSha256": "ff857d60c9d831bea5fefd6f27ec66ccfef0aa36fc80a5df55b1539f88936977",
+        "afterSha256": "ff857d60c9d831bea5fefd6f27ec66ccfef0aa36fc80a5df55b1539f88936977",
+        "byteEquivalentSerialization": true
+      },
+      {
+        "uid": "39f96d4fcf00432dba3beb2e42163aa6",
+        "beforeSha256": "e1ef345e22383b8108df44973f1f565ca2ebcb6fc09cebefa85e21d20d54a774",
+        "afterSha256": "e1ef345e22383b8108df44973f1f565ca2ebcb6fc09cebefa85e21d20d54a774",
+        "byteEquivalentSerialization": true
+      },
+      {
+        "uid": "5a3422df6f894b48b846d590cdc2bf4c",
+        "beforeSha256": "139120a8c98b862e54b804e48e80d1ea8e73808ca5ed614233f89fad129c76a0",
+        "afterSha256": "139120a8c98b862e54b804e48e80d1ea8e73808ca5ed614233f89fad129c76a0",
+        "byteEquivalentSerialization": true
+      },
+      {
+        "uid": "ce9c2d4e92a44dffbd78e6b29d6c0182",
+        "beforeSha256": "018fa952c7bc82e11cbddd04c87a3795546552bf78e6abf44f4614a8d8ee1dbe",
+        "afterSha256": "018fa952c7bc82e11cbddd04c87a3795546552bf78e6abf44f4614a8d8ee1dbe",
+        "byteEquivalentSerialization": true
+      },
+      {
+        "uid": "309c3c42bac24b5c801fcc09f875e6a7",
+        "beforeSha256": "7257b6ee21a714b23f3ce8a83274142129151677e847ec98b9d6af21e1341b7c",
+        "afterSha256": "7257b6ee21a714b23f3ce8a83274142129151677e847ec98b9d6af21e1341b7c",
+        "byteEquivalentSerialization": true
+      },
+      {
+        "uid": "6ea36ebb4e504fb8976d2b527b5e40dc",
+        "beforeSha256": "fd2dca46a32542e851bf5de650f9ee60efc612d8d3d0f73bd0702384e16c4536",
+        "afterSha256": "fd2dca46a32542e851bf5de650f9ee60efc612d8d3d0f73bd0702384e16c4536",
+        "byteEquivalentSerialization": true
+      },
+      {
+        "uid": "f0f7c6046dcf4e03acb83ba5335f927e",
+        "beforeSha256": "30c63986258eb32a3824078894b893f17374e763607f9c43a924dd3a5056a0ad",
+        "afterSha256": "30c63986258eb32a3824078894b893f17374e763607f9c43a924dd3a5056a0ad",
+        "byteEquivalentSerialization": true
+      },
+      {
+        "uid": "19a50e866e5d44cb8e4840b616cc8132",
+        "beforeSha256": "4f4aa4ccce60b3231795f94d23e1d57a821fa0ad5914b904bf6df2d10d9f9eef",
+        "afterSha256": "4f4aa4ccce60b3231795f94d23e1d57a821fa0ad5914b904bf6df2d10d9f9eef",
+        "byteEquivalentSerialization": true
+      },
+      {
+        "uid": "ff12ef200c994c8b9c6b61ea45702454",
+        "beforeSha256": "ffde64dca73b5df7cd660091702d5095713685b295c46014a857f8939180fe6e",
+        "afterSha256": "ffde64dca73b5df7cd660091702d5095713685b295c46014a857f8939180fe6e",
+        "byteEquivalentSerialization": true
+      },
+      {
+        "uid": "e10eb39da3cf48018ba79c341a867d45",
+        "beforeSha256": "344f487e6c7c0cccd05c24ae00ead56d89b6360779bf73c0576bacd5c2d2938d",
+        "afterSha256": "344f487e6c7c0cccd05c24ae00ead56d89b6360779bf73c0576bacd5c2d2938d",
+        "byteEquivalentSerialization": true
+      },
+      {
+        "uid": "bf27702f670247c0afb23a64c9119520",
+        "beforeSha256": "13f79551f5709faa33ff5f09cde9481d4fbb074ff005f8a929228493b649efb5",
+        "afterSha256": "13f79551f5709faa33ff5f09cde9481d4fbb074ff005f8a929228493b649efb5",
+        "byteEquivalentSerialization": true
+      },
+      {
+        "uid": "41071debeaf1499a9a1586b78ea18a09",
+        "beforeSha256": "a72acb4fefe719ac87833da710fadd9de1222b3987009712df7d8a3e716889d4",
+        "afterSha256": "a72acb4fefe719ac87833da710fadd9de1222b3987009712df7d8a3e716889d4",
+        "byteEquivalentSerialization": true
+      },
+      {
+        "uid": "a6f14ae799ab40d7ac425f043f824ff8",
+        "beforeSha256": "d0911decf889cb64849f7f4712be4917f738f62b8e46798bc6c84d97384950a5",
+        "afterSha256": "d0911decf889cb64849f7f4712be4917f738f62b8e46798bc6c84d97384950a5",
+        "byteEquivalentSerialization": true
+      },
+      {
+        "uid": "e42fb924b344481ea013c58cb0f52ad7",
+        "beforeSha256": "f1cf8e89565c72f30ceec8276c35931a8c5307768831e6c27b76710993d65614",
+        "afterSha256": "f1cf8e89565c72f30ceec8276c35931a8c5307768831e6c27b76710993d65614",
+        "byteEquivalentSerialization": true
+      },
+      {
+        "uid": "de647073cd03464aaddb5227baf41bab",
+        "beforeSha256": "9ef6c3a0bf32ab28e5f836a7c8e192eb8248f84756596d2d17777db9f982945c",
+        "afterSha256": "9ef6c3a0bf32ab28e5f836a7c8e192eb8248f84756596d2d17777db9f982945c",
+        "byteEquivalentSerialization": true
+      },
+      {
+        "uid": "5a927a9fa0984371bd970b31f5f06086",
+        "beforeSha256": "ce0b9b24c66ea733ab6cc5b166c85c133b55223a2e20912815e37f218b0ca8a7",
+        "afterSha256": "ce0b9b24c66ea733ab6cc5b166c85c133b55223a2e20912815e37f218b0ca8a7",
+        "byteEquivalentSerialization": true
+      },
+      {
+        "uid": "c0d192c145a44459a454627708e46cf5",
+        "beforeSha256": "60f55362a2ea23e780400c1d463bb13aced3a3fbb75297417c05046d0aad7f58",
+        "afterSha256": "60f55362a2ea23e780400c1d463bb13aced3a3fbb75297417c05046d0aad7f58",
+        "byteEquivalentSerialization": true
+      },
+      {
+        "uid": "9ecf7f66246d4f30b990cc605359e3b6",
+        "beforeSha256": "07e4a9548af822c9e0174006288f21181f866aab6b368319a76072c507a30152",
+        "afterSha256": "07e4a9548af822c9e0174006288f21181f866aab6b368319a76072c507a30152",
+        "byteEquivalentSerialization": true
+      },
+      {
+        "uid": "eb1a1861d3f140fa958ca7eb70a9f380",
+        "beforeSha256": "d2d8012c67a65c4102da8cdf96696805c4aa56407ad9a02a8fd79dedf4515b9f",
+        "afterSha256": "d2d8012c67a65c4102da8cdf96696805c4aa56407ad9a02a8fd79dedf4515b9f",
+        "byteEquivalentSerialization": true
+      },
+      {
+        "uid": "0baa936f45434c7eb8d58c31890402a2",
+        "beforeSha256": "78b25d2ee77fe4111d49edb6249f93852c123deb23e3d050eb7aed8a37f44778",
+        "afterSha256": "78b25d2ee77fe4111d49edb6249f93852c123deb23e3d050eb7aed8a37f44778",
+        "byteEquivalentSerialization": true
+      }
+    ],
+    "allOtherModelsByteEquivalent": true,
+    "existingRuntimeHistoryByteEquivalent": true,
+    "previousCurrentRuntimeArchivedIntact": true,
+    "teemtoStylizedExportAndHistoryByteEquivalent": true,
+    "existingProgressHistoryUnchanged": true,
+    "rootFieldsPreserved": {
+      "version": true,
+      "query": true,
+      "filter": true,
+      "searchPages": true,
+      "sourceSnapshot": true,
+      "sourceSnapshotSha256": true,
+      "authenticationConfigured": true,
+      "authScheme": true,
+      "counts": true,
+      "authenticationProvider": true,
+      "authenticationReceipt": true,
+      "acquisitionState": true,
+      "latestProgressReceipt": true
+    },
+    "allPreviousProgressReceiptFilesUnchanged": true,
+    "previousProgressReceiptFileHashes": {
+      "vehicle-progress-2026-09-07-fourth-rate-limit.json": "f1c585b8db2887c0098999bec9e83325180b95e386185b9ae73db14e904fa8b4",
+      "vehicle-progress-2026-09-07-full-race-round25.json": "365ae0f9c2c5aca25e1af8a2e76ad7dc59aa49c09b7e8e550ad2fca06b70302a",
+      "vehicle-progress-2026-09-07-full-race-round26.json": "9276d9d43f952bedccf9869698c1487f06132efac558065270016f008486c1e9",
+      "vehicle-progress-2026-09-07-next-candidate-rate-limit.json": "ab79bf8777e09d84a01e807fd247a8413014e7cc84a9c5909d44a89cf2829ebc",
+      "vehicle-progress-2026-09-07-sebulba-integration-round25.json": "6b6f215a525d4977b39d13abd225d632f74811408480f724969639b23823daa4",
+      "vehicle-progress-2026-09-07-sixth-rate-limit.json": "96b05134ecd730747bce6edb24ec597d7587c35489f99f0ad269b38dbb2bffc0",
+      "vehicle-progress-2026-09-07-teemto-export-v1.json": "9c1b989955d09ab1f7a360ef9511c81bea1aebf45880cc9f10121659b41658d2",
+      "vehicle-progress-2026-09-07-teemto-integration-sebulba-export.json": "7a3291e698bd3e8a5220df91b862cf9bcd6b7e6c9fdd7f356ee054c38d81cafd",
+      "vehicle-progress-2026-09-07-teemto-study-v1.json": "0b7318a8925ea699d77fb44c11197182ba42101cab4ef629070a14bc6a7889a1"
+    },
+    "v4bCatalogueSectionByteIdentical": true
+  },
+  "documents": [
+    {
+      "path": "docs/inkstorm-overhaul/VEHICLE_CATALOG.md",
+      "sha256": "7aa52b5f5b15df169e575c9f69fb4bf74ed3439d8c766d79c6f03c4ba06b5b74"
+    },
+    {
+      "path": "docs/inkstorm-overhaul/TEEMTO_PILOT_V4C_RUNTIME_ROUND28.md",
+      "sha256": "9181f90baa45d044bc3ef9c45727ff5a26bc824cd9fb6ac093ded980fd7a09bf"
+    }
+  ],
+  "allOriginalFailedRaceEvidencePreserved": true,
+  "newAcquisitionRequests": 0,
+  "countsChanged": false,
+  "currentRound29Acceptance": "Unavailable: current pit/foundation edits are outside frozen28 evidence; requires fresh verification."
+}

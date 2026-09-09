@@ -1,0 +1,34 @@
+{
+  "status": "CENTRALLY_APPLIED",
+  "at": "2026-09-09T09:26:14.857732+00:00",
+  "patchSha256": "4890cbf4a68532e8fab8cbcac6df574052290866dde76f6fc1c8d8fd2dde3ddf",
+  "files": [
+    {
+      "target": "src/render/combat/TeemtoStrikeMotion.ts",
+      "before": "7073f4700efcc0f876d0e3859167f45898c6313f7585af4d45ad057d9cad241c",
+      "candidate": "efa2c8e2c52e6b46c348b54458ef2a7a0c1cf984e67a909d1ce7c634608a82bd"
+    },
+    {
+      "target": "src/render/combat/TeemtoAuthoredDamage.ts",
+      "before": "920a7e2a2689374a947e240265ec66829aeb0a3d8d369c33d7534eb0ba82891b",
+      "candidate": "f7a37f5be10d89e92ba8189b7860917c3fc99d03afce7fc880506c95358e7b59"
+    },
+    {
+      "target": "tests/combat/TeemtoSupportSettle.test.ts",
+      "before": "adeed98a68da395c4cc1b06f10daef9ced205606596648ad01beb312b15bb4ed",
+      "candidate": "052ff5b14dfd6a9f84f2745d386ea14ffab3b6806c7ba126f1f0120e247d0fdd"
+    },
+    {
+      "target": "tests/combat/TeemtoAuthoredDamage.test.ts",
+      "before": "66373c3ae9e505d44d4f447858126325d27ad87798578fb3573062eacce65738",
+      "candidate": "ce48b6a0bac37c752fbcd2581a598c7ab2d49c3d18aa9ae928f8cd175b87a214"
+    },
+    {
+      "target": "tests/combat/TeemtoFrontCatch.test.ts",
+      "before": null,
+      "candidate": "f5217aee783f97c1f36e143738874457c4cf50f6cd9f418665db3bcfb02445d6"
+    }
+  ],
+  "validation": "Privatefocused12/compat16/camera4 andTSC PASS; combinedverify/nativepending",
+  "explicitContracts": "front4.4m; oneextra111hero/102rivalsupportquerypass; actualpivotcatchandCOM-preservinglategroundingadapter; finalbroadbandretained"
+}

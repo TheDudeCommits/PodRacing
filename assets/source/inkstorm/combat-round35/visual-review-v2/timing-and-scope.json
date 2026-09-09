@@ -1,0 +1,396 @@
+{
+  "scope": "implementation-aware visual QA of solo-chase only, not blind and not a performance benchmark",
+  "receiptCaseOutcome": "PASS",
+  "receiptOverallOutcome": "FAIL",
+  "receiptErrors": [],
+  "cleanup": {
+    "browserClosed": true,
+    "serverExited": true,
+    "errors": []
+  },
+  "servedBundle": {
+    "scripts": [
+      {
+        "url": "http://127.0.0.1:5196/assets/index-_F1BLY7k.js",
+        "sha256": "d1c2dd3ecb226da13f9b729934d0564db31596ea4088fb2f8cf57e8b404eb079"
+      }
+    ],
+    "browser": "152.0.7977.77",
+    "node": "v24.19.0",
+    "os": {
+      "platform": "darwin",
+      "release": "25.6.0",
+      "architecture": "arm64"
+    },
+    "page": {
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/152.0.0.0 Safari/537.36",
+      "width": 1440,
+      "height": 900,
+      "devicePixelRatio": 1,
+      "hardwareConcurrency": 10
+    }
+  },
+  "event": {
+    "observedWallMs": 10352.3,
+    "type": "wreck",
+    "racerId": "player",
+    "cause": "redline-explosion",
+    "sourceId": null,
+    "takedownBy": null,
+    "runTokens": 2,
+    "frame": 914
+  },
+  "estimatedCueStartPerformanceMs": 10334.999999988078,
+  "firstSideObserverSample": {
+    "wallMs": 10352.3,
+    "frame": 917,
+    "raceTime": 4.633333333333353,
+    "camera": "side",
+    "matte": true,
+    "cueKind": "wreck",
+    "cueAge": 0.013840000009536743
+  },
+  "lastSideObserverSample": {
+    "wallMs": 11152.3,
+    "frame": 947,
+    "raceTime": 4.883333333333366,
+    "camera": "side",
+    "matte": true,
+    "cueKind": "wreck",
+    "cueAge": 0.6538400000095368
+  },
+  "firstChaseAfterSide": {
+    "wallMs": 11185.5,
+    "frame": 951,
+    "raceTime": 4.916666666666701,
+    "camera": "chase",
+    "matte": false,
+    "cueKind": "wreck",
+    "cueAge": 0.6800799999952316
+  },
+  "videoFrameRate": 25,
+  "videoFirstVisibleSidePTS": 10.28,
+  "videoLastVisibleSidePTS": 11.08,
+  "videoFirstVisibleReturnPTS": 11.12,
+  "sideFrameCount": 21,
+  "firstSideOnsetBracketPTS": [
+    10.24,
+    10.28
+  ],
+  "returnBracketPTS": [
+    11.08,
+    11.12
+  ],
+  "interpretation": "21 consecutive encoded frames show sustained near-engine bottom clipping; this is not a count of unique rendered frames. Side images span 800 ms between timestamps and 840 ms of encoded frame occupancy. Independent observer brackets bound the intended 820 ms shot. Video PTS and performance.now have different epochs; onset/return correspondence implies about -70 ms offset with recording/observer quantization, not an exact synchronization.",
+  "extractedFrames": [
+    {
+      "file": "temporal-001.png",
+      "sourcePTS": 9.96,
+      "size": [
+        720,
+        450
+      ]
+    },
+    {
+      "file": "temporal-002.png",
+      "sourcePTS": 10.0,
+      "size": [
+        720,
+        450
+      ]
+    },
+    {
+      "file": "temporal-003.png",
+      "sourcePTS": 10.04,
+      "size": [
+        720,
+        450
+      ]
+    },
+    {
+      "file": "temporal-004.png",
+      "sourcePTS": 10.08,
+      "size": [
+        720,
+        450
+      ]
+    },
+    {
+      "file": "temporal-005.png",
+      "sourcePTS": 10.12,
+      "size": [
+        720,
+        450
+      ]
+    },
+    {
+      "file": "temporal-006.png",
+      "sourcePTS": 10.16,
+      "size": [
+        720,
+        450
+      ]
+    },
+    {
+      "file": "temporal-007.png",
+      "sourcePTS": 10.2,
+      "size": [
+        720,
+        450
+      ]
+    },
+    {
+      "file": "temporal-008.png",
+      "sourcePTS": 10.24,
+      "size": [
+        720,
+        450
+      ]
+    },
+    {
+      "file": "temporal-009.png",
+      "sourcePTS": 10.28,
+      "size": [
+        720,
+        450
+      ]
+    },
+    {
+      "file": "temporal-010.png",
+      "sourcePTS": 10.32,
+      "size": [
+        720,
+        450
+      ]
+    },
+    {
+      "file": "temporal-011.png",
+      "sourcePTS": 10.36,
+      "size": [
+        720,
+        450
+      ]
+    },
+    {
+      "file": "temporal-012.png",
+      "sourcePTS": 10.4,
+      "size": [
+        720,
+        450
+      ]
+    },
+    {
+      "file": "temporal-013.png",
+      "sourcePTS": 10.44,
+      "size": [
+        720,
+        450
+      ]
+    },
+    {
+      "file": "temporal-014.png",
+      "sourcePTS": 10.48,
+      "size": [
+        720,
+        450
+      ]
+    },
+    {
+      "file": "temporal-015.png",
+      "sourcePTS": 10.52,
+      "size": [
+        720,
+        450
+      ]
+    },
+    {
+      "file": "temporal-016.png",
+      "sourcePTS": 10.56,
+      "size": [
+        720,
+        450
+      ]
+    },
+    {
+      "file": "temporal-017.png",
+      "sourcePTS": 10.6,
+      "size": [
+        720,
+        450
+      ]
+    },
+    {
+      "file": "temporal-018.png",
+      "sourcePTS": 10.64,
+      "size": [
+        720,
+        450
+      ]
+    },
+    {
+      "file": "temporal-019.png",
+      "sourcePTS": 10.68,
+      "size": [
+        720,
+        450
+      ]
+    },
+    {
+      "file": "temporal-020.png",
+      "sourcePTS": 10.72,
+      "size": [
+        720,
+        450
+      ]
+    },
+    {
+      "file": "temporal-021.png",
+      "sourcePTS": 10.76,
+      "size": [
+        720,
+        450
+      ]
+    },
+    {
+      "file": "temporal-022.png",
+      "sourcePTS": 10.8,
+      "size": [
+        720,
+        450
+      ]
+    },
+    {
+      "file": "temporal-023.png",
+      "sourcePTS": 10.84,
+      "size": [
+        720,
+        450
+      ]
+    },
+    {
+      "file": "temporal-024.png",
+      "sourcePTS": 10.88,
+      "size": [
+        720,
+        450
+      ]
+    },
+    {
+      "file": "temporal-025.png",
+      "sourcePTS": 10.92,
+      "size": [
+        720,
+        450
+      ]
+    },
+    {
+      "file": "temporal-026.png",
+      "sourcePTS": 10.96,
+      "size": [
+        720,
+        450
+      ]
+    },
+    {
+      "file": "temporal-027.png",
+      "sourcePTS": 11.0,
+      "size": [
+        720,
+        450
+      ]
+    },
+    {
+      "file": "temporal-028.png",
+      "sourcePTS": 11.04,
+      "size": [
+        720,
+        450
+      ]
+    },
+    {
+      "file": "temporal-029.png",
+      "sourcePTS": 11.08,
+      "size": [
+        720,
+        450
+      ]
+    },
+    {
+      "file": "temporal-030.png",
+      "sourcePTS": 11.12,
+      "size": [
+        720,
+        450
+      ]
+    },
+    {
+      "file": "temporal-031.png",
+      "sourcePTS": 11.16,
+      "size": [
+        720,
+        450
+      ]
+    },
+    {
+      "file": "temporal-032.png",
+      "sourcePTS": 11.2,
+      "size": [
+        720,
+        450
+      ]
+    },
+    {
+      "file": "temporal-033.png",
+      "sourcePTS": 11.24,
+      "size": [
+        720,
+        450
+      ]
+    },
+    {
+      "file": "temporal-034.png",
+      "sourcePTS": 11.28,
+      "size": [
+        720,
+        450
+      ]
+    },
+    {
+      "file": "temporal-035.png",
+      "sourcePTS": 11.32,
+      "size": [
+        720,
+        450
+      ]
+    },
+    {
+      "file": "temporal-036.png",
+      "sourcePTS": 11.36,
+      "size": [
+        720,
+        450
+      ]
+    },
+    {
+      "file": "temporal-037.png",
+      "sourcePTS": 11.4,
+      "size": [
+        720,
+        450
+      ]
+    }
+  ],
+  "commands": [
+    {
+      "action": "native start click; hold S brake"
+    },
+    {
+      "action": "native Shift held with S to overheat",
+      "beforeFrame": 531
+    },
+    {
+      "action": "native Shift released after observed actual wreck cue"
+    }
+  ],
+  "noBrowserOrRuntimeEdits": true
+}

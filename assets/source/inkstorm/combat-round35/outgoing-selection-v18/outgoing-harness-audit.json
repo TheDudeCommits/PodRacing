@@ -1,0 +1,108 @@
+{
+  "version": 18,
+  "createdAt": "2026-09-08T23:00:12.078884+00:00",
+  "status": "source/tests frozen; native run not performed",
+  "ownedFiles": [
+    {
+      "path": "scripts/inkstorm-outgoing-takedown.ts",
+      "bytes": 25920,
+      "sha256": "9c15a5e63aa2b709f5d3835c109093f9b79d35c8e099e764db971bc735682f0b"
+    },
+    {
+      "path": "scripts/inkstorm-outgoing-takedown.test.mjs",
+      "bytes": 12303,
+      "sha256": "ba490222c43810c76f19126bc5d4f2cf15d6e02a898c4e29799b74c605446d86"
+    }
+  ],
+  "preservedBefore": [
+    {
+      "path": "scripts/inkstorm-outgoing-takedown.ts",
+      "bytes": 21524,
+      "sha256": "6010609aaef719cbdf869ecb7e967698bd123d3c73f99c95e307500b5a49f496"
+    },
+    {
+      "path": "scripts/inkstorm-outgoing-takedown.test.mjs",
+      "bytes": 4289,
+      "sha256": "30748b487b91c51cbe3d44aae715dd7a174413b79644df899145070304a8abe2"
+    },
+    {
+      "path": "output/playwright/round35-outgoing-takedown-v17/receipt.json",
+      "bytes": 977889,
+      "sha256": "267c80b5d1addb719a8330b7916da16cced5688d4ae50577297ab636f3152980"
+    }
+  ],
+  "failedV17ReceiptUnchanged": {
+    "path": "output/playwright/round35-outgoing-takedown-v17/receipt.json",
+    "bytes": 977889,
+    "sha256": "267c80b5d1addb719a8330b7916da16cced5688d4ae50577297ab636f3152980"
+  },
+  "tests": {
+    "command": "node --test scripts/inkstorm-outgoing-takedown.test.mjs",
+    "passed": 23,
+    "failed": 0,
+    "entireHarnessSyntaxCheck": "PASS (node --check)",
+    "projectTypecheck": "PASS; tsconfig excludes scripts, so script parsing and extracted actual function execution are checked separately",
+    "trackedDiffCheck": "PASS",
+    "ownedFileTrailingWhitespace": "PASS",
+    "existingPaceCameraAndViewGateBlockByteIdentical": true
+  },
+  "behavior": [
+    "Retains every outgoing enemy wreck, paired authoritative event history, and each candidate identity victim/frame in an append-only deduplicated ledger.",
+    "Captures previous-RAF and current raw context for every kill, including actual read-only controller cooldown; candidate selection does not inspect slowdown, cue success or camera quality.",
+    "Requires running player as a harness scenario. Recovery exclusion is recorded separately from real controller cooldown/policy exclusions.",
+    "Selects first eligible candidate once; stops after the same2200ms return window or existing180s/race-finish limit. An eligible candidate with failed quality gates is never replaced by a later candidate.",
+    "Passes selected victim/frame into analysis and brackets cue birth against that event so a later kill cue cannot substitute. Existing pace, camera-baseline and retained-view gate block is byte-identical.",
+    "Keeps new-directory-only output creation and refuses a frozen bundle missing the read-only controller diagnostic. No eligible candidate remains FAIL/uncovered."
+  ],
+  "rootOwnedDependency": {
+    "path": "src/render/app/GameApp.ts",
+    "snapshotField": "game.combatPresentation",
+    "shape": {
+      "cooldownUntilWallMs": "number|null",
+      "cinematic": "{startedAtWallMs:number,focusRacerId:string|null,victim:boolean}|null"
+    },
+    "note": "Root implemented pure controller getter and snapshot; this child changed neither runtime file."
+  },
+  "limitations": [
+    "No browser, build, native gameplay or FPS measurement was run. Native V18 coverage remains required.",
+    "Eligibility compares the actual PRE-event controller deadline to the first observed event RAF timestamp. If the observation interval straddles the deadline, cooldownBoundaryStraddled records the timing uncertainty; quality gates still apply and selection is not based on their result.",
+    "The legacy V17 receipt lacked controller diagnostics; it remains a preserved failed run. Regression checks its two original clock/camera failures without retroactively certifying eligibility."
+  ],
+  "evidence": [
+    {
+      "path": "assets/source/inkstorm/combat-round35/outgoing-selection-v18/initial-tests.log",
+      "bytes": 2133,
+      "sha256": "fc7cd9ff2f35c69c14bb088f39f91dddd8a340a79c07287b97360b6c8cc5eca9"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/outgoing-selection-v18/final-tests.log",
+      "bytes": 2234,
+      "sha256": "9295aca53eaa9a8883c3d89e412eadb6f3bd8592a581e3074172f50274aa39ff"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/outgoing-selection-v18/freeze-tests.log",
+      "bytes": 2332,
+      "sha256": "5aa5211113df6d83904040eafc4d3e7138d4e758f7fbc13cd0569585aa99dceb"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/outgoing-selection-v18/syntax-check.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/outgoing-selection-v18/typecheck.log",
+      "bytes": 57,
+      "sha256": "fa95b29726a1ab8891b320173cad4ef80c08c37ec637f2c438a5294fb97ce445"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/outgoing-selection-v18/diff-check.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/outgoing-selection-v18/outgoing-harness-v18.patch",
+      "bytes": 25370,
+      "sha256": "5251788af5d3d22646e14605ffe3b1618eae15df598194b32b55a6848fbae8df"
+    }
+  ]
+}

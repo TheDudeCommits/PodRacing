@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+import type { CelMaterial } from '../../src/render/materials';
 import { Box3, Matrix4, Mesh, Object3D, PerspectiveCamera, Quaternion, Vector3 } from 'three';
 
 import {
@@ -151,14 +152,38 @@ describe('procedural pilot rig', () => {
     pilot.dispose();
   });
 
-  it('keeps its shallow face plate forward of the rear helmet silhouette', () => {
-    const pilot = new PilotView({ variant: 'sunflare', detail: 'hero', outlines: false });
+  it('keeps an exposed face plate forward of the rear helmet silhouette', () => {
+    const pilot = new PilotView({ variant: 'dune-fang', detail: 'hero', outlines: false });
     const face = pilot.getObjectByName('face');
     const helmet = pilot.getObjectByName('helmet-dome');
     expect(face).toBeDefined();
     expect(helmet).toBeDefined();
     expect(face!.position.z).toBeGreaterThan(helmet!.position.z + 0.12);
     expect(face!.scale.z).toBeLessThan(face!.scale.x * 0.7);
+    pilot.dispose();
+  });
+
+  it('uses a forward curved dark visor and matte painted helmet on the hero', () => {
+    const pilot = new PilotView({ variant: 'sunflare', detail: 'hero', outlines: false });
+    const helmet = pilot.getObjectByName('helmet-dome') as Mesh;
+    const visor = pilot.getObjectByName('split-goggles') as Mesh;
+    const stripe = pilot.getObjectByName('helmet-painted-center-stripe') as Mesh;
+    expect(stripe.parent).toBe(pilot.rig.head);
+    expect(pilot.getObjectByName('face')).toBeUndefined(); // fully occluded by this visor
+    const helmetMaterial = helmet.material as CelMaterial;
+    const visorMaterial = visor.material as CelMaterial;
+    expect(helmetMaterial.name).toContain('painted-helmet');
+    expect(helmetMaterial.uniforms.uEmissiveStrength!.value).toBe(0);
+    expect(helmetMaterial.uniforms.uSpecularStrength!.value).toBeLessThanOrEqual(.1);
+    expect(visorMaterial.uniforms.uReflectionStrength!.value).toBeLessThanOrEqual(.2);
+    const points = visor.geometry.getAttribute('position');
+    let minDepth = Infinity, maxDepth = -Infinity;
+    for (let i = 0; i < points.count; i++) {
+      minDepth = Math.min(minDepth, points.getZ(i));
+      maxDepth = Math.max(maxDepth, points.getZ(i));
+    }
+    expect(minDepth).toBeGreaterThan(0); // never paints a second face on the rear
+    expect(maxDepth - minDepth).toBeGreaterThan(.18); // a wraparound volume, not a flat plate
     pilot.dispose();
   });
 

@@ -1,0 +1,22 @@
+{
+  "scope": "Supplement only; original V19 source audit remains bound to initial fixture hash. No reviewer test/runtime edits or execution.",
+  "outcome": "PASS_STATIC_DELTA",
+  "before": {
+    "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/combat-round35/attribution-v19/takedownAttribution.initial-regression.test.ts",
+    "bytes": 3717,
+    "sha256": "b1e91a0b18cfaa12088b9bd12944b59862ba1d92ab2973deda24586178561a12"
+  },
+  "after": {
+    "path": "/Users/amir/Projects/PodRacing/tests/race/takedownAttribution.test.ts",
+    "bytes": 3726,
+    "sha256": "a329f035ca8c77e45dfd243b46f3e3c7f01799f1bbe05745bad6a0dd02b673f5"
+  },
+  "preservedTestLog": {
+    "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/combat-round35/attribution-v19/contact-threshold-regression.log",
+    "bytes": 215,
+    "sha256": "8baa0acf7ae0f44ed8dbf501bb879ddca9ff00f64e388517cb081182473b1dd0"
+  },
+  "verifiedChange": "Exactly3 fatal scenery fixture calls change starting damage0.9→0.8599. Existing WRECK_DAMAGE_THRESHOLD is0.86; new starting hull is below fatal threshold, so actual physical collision must cross it. All assertions remain unchanged.",
+  "reportedExecution": "Preserved root execution log shows4/4 tests PASS in1file; reviewer read log and diff, did not rerun.",
+  "runtimeChanged": false
+}

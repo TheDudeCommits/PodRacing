@@ -1,0 +1,21 @@
+{
+  "source": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/vehicles/4eff45899ada40bb920c5c744663db90/processed/pilot-v4c/teemto-pilot-v4c-runtime.glb",
+  "sourceSha256": "f3eb56a54b7dbb8f4a26263fb26f1f88b188db6bcc409910a3561ae939f1eef1",
+  "geometry": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/teemto-open-cockpit-round31/teemto-open-cockpit-round31-geometry.glb",
+  "geometrySha256": "df556ededb148ea37082c459a28e23e54b35df5702f307b154190c9394259f5a",
+  "candidate": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/teemto-open-cockpit-round31/teemto-open-cockpit-round31-candidate.glb",
+  "candidateSha256": "994a051fdf23b89e1d499ce6421fbf92bfd05fc015dbfe6dc7849767af7d0f56",
+  "bytes": 7702964,
+  "originalBinChunkByteExact": true,
+  "preservedOriginalBinBytes": 6763760,
+  "originalMeshesMaterialsTexturesAndAccessorsRetained": true,
+  "changedOriginalNode": "teemto-cockpit-body mesh reference only",
+  "newNodes": [
+    "teemto-cockpit-bone-return",
+    "teemto-cockpit-coaming-graphite",
+    "teemto-cockpit-nose-deck-cap",
+    "teemto-cockpit-rear-mount-cap"
+  ],
+  "alphaMode": "Every new material is OPAQUE; no transparency or runtime camera changes",
+  "status": "Source-only candidate; in-world visual and performance acceptance pending"
+}

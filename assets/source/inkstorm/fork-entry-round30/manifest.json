@@ -1,0 +1,64 @@
+{
+  "status": "SOURCE_CANDIDATE_READY_FOR_ROOT_AB",
+  "runtimePublicWrites": false,
+  "browserGpuBlenderUsed": false,
+  "actualGameVisualAcceptance": false,
+  "files": {
+    "InkstormForkFoundation.ts": {
+      "sha256": "822e03c8582a0bb70ddcbf06da9827ce607d30421853273ffd5c139e6da3e98e",
+      "bytes": 8178
+    },
+    "ForkIslandContacts.ts": {
+      "sha256": "c5a38db38f9b8d0d82f3b1bace7cb1fa16ec4747649620f1bee498b3d212514a",
+      "bytes": 3412
+    },
+    "InkstormBridge.candidate.ts": {
+      "sha256": "a9e1ba926f526f1dbc6c8877cd51fe6542eee245f09545ea01cabc8166cc887a",
+      "bytes": 5816
+    },
+    "runtime-candidate.patch": {
+      "sha256": "f3f83d0eac120d2e425f3c280ab11c2a3f9afe29063e92a1dbf1ceacd7642ae8",
+      "bytes": 15286
+    },
+    "fork-foundation.glb": {
+      "sha256": "565803a38a7403e5c511244624f8e6353b589d75d76b2a03aab66112de723d0a",
+      "bytes": 284820
+    },
+    "clearance-audit.json": {
+      "sha256": "5af826ffb2f1a5e0f3bffeda530d9132296b2e8faab6f7f8359a1238cfba1d0f",
+      "bytes": 2675
+    },
+    "island-contact-audit.json": {
+      "sha256": "afc28e26ad4eb4d4d0d6bde5805a71a7d5e5092dfbe6aeef84d495c67050ecce",
+      "bytes": 3232
+    },
+    "hook-audit.json": {
+      "sha256": "eab7649c694aca1a029cd3a9552179adab473ce5b3fd11fd7d20a3f1f24600b9",
+      "bytes": 915
+    },
+    "course-contact-study.json": {
+      "sha256": "e04e4710f617b1b3c7bd9318b4b3bf2b4ae159603ef660257ed5b1c5ec0ec1bd",
+      "bytes": 16968
+    },
+    "island-contact-plan.json": {
+      "sha256": "d89e903b77d3a0ace04d0746a601995b833395e60048b01d859fe022a96eecce",
+      "bytes": 6725
+    },
+    "HANDOFF.md": {
+      "sha256": "485242dc4efa3aba4fb20fc13a84381caed354de0ce5d70216df047b7daefbb9",
+      "bytes": 5469
+    }
+  },
+  "physicsSourceHashes": {
+    "src/game/race/course.ts": "c1030fcc0ea2ee7d6e0487b6b7332fd29a36947c41bc4847defa9535d6bd12d3",
+    "src/game/race/branches.ts": "f9595ca3b1eafea98f7e87607f246b5c1f405be1e2602456d1b8d939ccae3f52",
+    "src/game/race/bridgeSurface.ts": "8eacf7a9cc9189ee9afe609f944299398e5134f90ad55ff67b81dc62d1aa0362",
+    "src/game/race/CourseGulfField.ts": "4804ca75b6003ad640b452c8cecbaa373d3f2df042a1574d7359a89b6a5f40f8",
+    "src/render/inkstorm/InkstormRoad.ts": "ea6cdb44c50b33028fd5070e2f906a834351c93f1a51900cfd25df09aa8f8de8"
+  },
+  "newTriangles": 2628,
+  "newAttributeBytes": 283824,
+  "newMainPassMaterialDraws": 1,
+  "newRenderPasses": 0,
+  "newTextureAllocations": 0
+}

@@ -1,0 +1,16 @@
+{
+  "status": "Rejected before execution; no mutation",
+  "payload": "15c-author-contact-v7-composed-payload.py",
+  "raw": {
+    "content": [
+      {
+        "type": "text",
+        "text": "Rejected by safe mode - line 638: getattr() attribute name must be a literal string, not a computed expression\n\nBLENDER_MCP_SAFE_MODE is enabled: scripts may only import bpy, bmesh, mathutils, and pure-python stdlib modules. No eval/exec/open, no os/subprocess/network access, no handlers/timers/drivers, no class or property registration, and no loading of external .blend datablocks. Blender operators for rendering, saving, and import/export ARE allowed. Rewrite the script within these limits; only the user can disable safe mode."
+      }
+    ],
+    "structuredContent": {
+      "result": "Rejected by safe mode - line 638: getattr() attribute name must be a literal string, not a computed expression\n\nBLENDER_MCP_SAFE_MODE is enabled: scripts may only import bpy, bmesh, mathutils, and pure-python stdlib modules. No eval/exec/open, no os/subprocess/network access, no handlers/timers/drivers, no class or property registration, and no loading of external .blend datablocks. Blender operators for rendering, saving, and import/export ARE allowed. Rewrite the script within these limits; only the user can disable safe mode."
+    },
+    "isError": false
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "auditedAt": "2026-09-08T21:32:35.888852+00:00",
+  "eventTypes": {
+    "thread.started": 1,
+    "turn.started": 1,
+    "item.completed": 1,
+    "turn.completed": 1
+  },
+  "itemTypes": {
+    "agent_message": 1
+  },
+  "finalTextMatchesReview": true,
+  "extraToolOrRetrievalEvents": 0,
+  "exactSevenImagesRehashed": true,
+  "promptSha256": "379fe9118dc4303f1021fe2dbba6b094f5a9d1670d75042618b66acc78b1046e",
+  "captureReceiptSha256": "cce0bb6a1ddb922ffda166e45ec63b44b4ab5b32ba4741937137ed463c976b9d",
+  "captureReceiptOutcome": "FAIL",
+  "notes": [
+    "Only seven neutral images and the exact V10 prompt supplied to fresh ephemeral read-only CLI with default model configuration.",
+    "Generic startup skill icon and state database warnings were emitted; no model-visible retrieval/tool events appear. This audit cannot assert generic user configuration was absent.",
+    "Desktop still criticism is valid for the frozen attachments; landscape/motion failures and incomplete 14-image native coverage remain unaccepted."
+  ],
+  "verdict": "FAIL",
+  "scores": {
+    "HUD": {
+      "style": 6.5,
+      "readability": 7
+    },
+    "Build": {
+      "style": 7,
+      "readability": 8
+    },
+    "map": {
+      "style": 7,
+      "readability": 8
+    },
+    "garage": {
+      "style": 7.5,
+      "readability": 7.5
+    }
+  },
+  "hashes": {
+    "review.md": "6aead622c66704bfcc93bc4ac8bfd259c1c3e93f2b376d851f7e33516cfbf423",
+    "events.jsonl": "69df4e6b9baead4612dd2b26288bd6e815a966a2151c89143a7248d391a61869",
+    "stderr.log": "79ba9cf8ca64269e6b855bb5dd617acea12ada82fb7958a1ce6d7ddf8d0422cf",
+    "invocation.json": "a940203fb433c1f74d53ca2e56cbbdd4d2deb1ae92aeb2ad0ebcbed612c579d8"
+  }
+}

@@ -1,0 +1,121 @@
+{
+  "stage": "V27 combined rooted flame atlas, support-pivot impact/settle and compact Build overview; fullverificationPASS,nativepending",
+  "bundle": "index-CH_QOFv7.js",
+  "bytes": 1843880,
+  "sha256": "54e20c0f1d4741620789c5009900f834573892b545ff331bff97cf2466e1fcbc",
+  "verificationSummary": [
+    "Test Files  149 passed (149)",
+    "Tests  889 passed (889)"
+  ],
+  "sourceFiles": [
+    {
+      "path": "src/ui/RaceHud.ts",
+      "bytes": 120320,
+      "sha256": "3298fa56fd31deb8eb543195dd09bf4835e32376387be7e666f9bc62f2cee8da"
+    },
+    {
+      "path": "src/ui/broadcastStyles.ts",
+      "bytes": 90864,
+      "sha256": "67ae54e547d7a79fa876f210fb65b798c8076d0299f1e675046c2f8371b938e5"
+    },
+    {
+      "path": "src/camera/CinematicCamera.ts",
+      "bytes": 33884,
+      "sha256": "862a5787a34d6d767841b87b738a38d82b5b1bf074b1e54454f2a5f47bd9ecf9"
+    },
+    {
+      "path": "src/render/app/GameApp.ts",
+      "bytes": 175339,
+      "sha256": "43b880c9018fec9f6d83157e5185633dac47b42df536f2556512214b9468f949"
+    },
+    {
+      "path": "src/render/combat/WreckVisualPose.ts",
+      "bytes": 11510,
+      "sha256": "2f634e7cbd07d166ecf2beaf16b02031b6e320c3c30aa16b074c7c10d5729e90"
+    },
+    {
+      "path": "src/render/combat/TeemtoAuthoredDamage.ts",
+      "bytes": 25332,
+      "sha256": "920a7e2a2689374a947e240265ec66829aeb0a3d8d369c33d7534eb0ba82891b"
+    },
+    {
+      "path": "src/render/galactic/GalacticEffectsView.ts",
+      "bytes": 83092,
+      "sha256": "aa4d086d6ef893268fc47a410e1cd574a6c883bffd77af4dd843cd6fea13420b"
+    },
+    {
+      "path": "scripts/inkstorm-hud-feedback-fixtures.mjs",
+      "bytes": 18103,
+      "sha256": "b2054233c43bcce2cf57e660ea2cbd2e7106ac8df68b3404e3becc0689e24920"
+    },
+    {
+      "path": "scripts/inkstorm-combat.mjs",
+      "bytes": 29532,
+      "sha256": "1d78c1a7df6c2d52c6e03cd45ad146caced48bb4ce6c2d6bfb6205c273d623d7"
+    },
+    {
+      "path": "scripts/inkstorm-broadcast-ui.mjs",
+      "bytes": 57271,
+      "sha256": "6e7abeb0a3492205d4059c98822b98227ee2b8aad45293514f58d0bfff74765b"
+    },
+    {
+      "path": "src/ui/RaceEventAtlas.ts",
+      "bytes": 16046,
+      "sha256": "3f75c9629d40c2183203538c6d0033e8cd7c8ec7fd941ca95212f8906062fe0f"
+    },
+    {
+      "path": "src/ui/raceEventAtlasStyles.ts",
+      "bytes": 15322,
+      "sha256": "1876448332a92a4789fa0a07543910db4fdb011bfc6c2ab231c3c59875f0aa59"
+    },
+    {
+      "path": "src/ui/workshopGraphicStyles.ts",
+      "bytes": 16244,
+      "sha256": "215189e5b369ae7febc289c2a99222b4759269a168e6ad67eedacfdb82ddedbc"
+    },
+    {
+      "path": "src/render/combat/TeemtoStrikeMotion.ts",
+      "bytes": 2542,
+      "sha256": "7073f4700efcc0f876d0e3859167f45898c6313f7585af4d45ad057d9cad241c"
+    },
+    {
+      "path": "src/render/galactic/RuptureFlameAtlas.ts",
+      "bytes": 5842,
+      "sha256": "1b31608f0bb490ffbe0810c42412fcac785906f0d9f85bd7881ffe2a0a71375d"
+    },
+    {
+      "path": "public/assets/fx/inkstorm/rupture-flame-v1.png",
+      "bytes": 578105,
+      "sha256": "f14657a3388bf9618d0206806c7b9c54856bd7f54c98596ea1790d85c97dd4c5"
+    }
+  ],
+  "distFiles": [
+    {
+      "path": "dist/assets/bundler-C30YlaIR.js",
+      "bytes": 87464,
+      "sha256": "3b9f59942a228402856ec9907d5d92d85852751e6551549454b66951e4dff7b1"
+    },
+    {
+      "path": "dist/assets/bundler-C30YlaIR.js.map",
+      "bytes": 311383,
+      "sha256": "cd65c2cbac02f5d8290fb410fad86da5b1b5fe2203fe7d782e53cf493166e094"
+    },
+    {
+      "path": "dist/assets/index-CH_QOFv7.js",
+      "bytes": 1843880,
+      "sha256": "54e20c0f1d4741620789c5009900f834573892b545ff331bff97cf2466e1fcbc"
+    },
+    {
+      "path": "dist/assets/index-CH_QOFv7.js.map",
+      "bytes": 6189083,
+      "sha256": "59a7cc9065a9e1d4a8735aed46aef764e6770d42c5936ffa4e2cb674e2cc3953"
+    },
+    {
+      "path": "dist/assets/index-DCGNDBpv.css",
+      "bytes": 346,
+      "sha256": "cd1dec34949f10aa5da912d2d52293d9b59951b8aaca83ee0307bac6e2ea1475"
+    }
+  ],
+  "publicFlameAtlasSha256": "f14657a3388bf9618d0206806c7b9c54856bd7f54c98596ea1790d85c97dd4c5",
+  "nativeAtlasGuard": "INKSTORM_EXPECTED_FLAME_ATLAS_SHA must be supplied to V27 combat runs"
+}

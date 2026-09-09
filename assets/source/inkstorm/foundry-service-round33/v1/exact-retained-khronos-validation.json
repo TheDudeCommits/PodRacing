@@ -1,0 +1,44 @@
+{
+  "artifact": "foundry-service-gantry-v1.glb",
+  "bytes": 438108,
+  "sha256": "2acef39a4d9d81950b3421aac20dd1cb02f9c7a89ca951eed387417039eb65d7",
+  "validatorVersion": "2.0.0-dev.3.10",
+  "report": {
+    "uri": "foundry-service-gantry-v1.glb",
+    "mimeType": "model/gltf-binary",
+    "validatorVersion": "2.0.0-dev.3.10",
+    "validatedAt": "2026-09-08T09:44:46.880Z",
+    "issues": {
+      "numErrors": 0,
+      "numWarnings": 0,
+      "numInfos": 0,
+      "numHints": 0,
+      "messages": [],
+      "truncated": false
+    },
+    "info": {
+      "version": "2.0",
+      "generator": "PodRacing preserve-retained-gltf.py",
+      "resources": [
+        {
+          "pointer": "/buffers/0",
+          "mimeType": "application/gltf-buffer",
+          "storage": "glb",
+          "byteLength": 436224
+        }
+      ],
+      "animationCount": 0,
+      "materialCount": 1,
+      "hasMorphTargets": false,
+      "hasSkins": false,
+      "hasTextures": false,
+      "hasDefaultScene": true,
+      "drawCallCount": 1,
+      "totalVertexCount": 11034,
+      "totalTriangleCount": 6500,
+      "maxUVs": 0,
+      "maxInfluences": 0,
+      "maxAttributes": 3
+    }
+  }
+}

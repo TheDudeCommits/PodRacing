@@ -1,0 +1,18 @@
+diff --git a/Users/amir/Projects/PodRacing/assets/source/inkstorm/broadcast-ui-round35/atlas-landscape-v16b/before/raceEventAtlasStyles.ts b/Users/amir/Projects/PodRacing/src/ui/raceEventAtlasStyles.ts
+index f071e78..dcb0292 100644
+--- a/Users/amir/Projects/PodRacing/assets/source/inkstorm/broadcast-ui-round35/atlas-landscape-v16b/before/raceEventAtlasStyles.ts
++++ b/Users/amir/Projects/PodRacing/src/ui/raceEventAtlasStyles.ts
+@@ -158,6 +158,13 @@ export const RACE_EVENT_ATLAS_CSS = /* css */ `
+  .race-event-atlas__edition { font-size:10px; }
+  .race-event-atlas__close { font-size:11px!important; }
+ }
++/* A short screen scrolls the complete map and footer together. The 360px
++   drawing needs an equal intrinsic viewport; a 240px basis let labels reach
++   into the footer even though the map itself retained its 340px minimum. */
++@media (max-height:540px) and (min-width:721px) {
++ .race-event-atlas__viewport { flex:0 0 auto; min-height:360px; }
++ .race-event-atlas__map { height:360px; }
++}
+ .pod-hud.is-reduced-motion .race-event-atlas *,.pod-hud.is-reduced-motion .race-event-atlas *::before,.pod-hud.is-reduced-motion .race-event-atlas *::after { animation:none!important; transition:none!important; }
+ @media (prefers-reduced-motion:reduce) { .race-event-atlas *,.race-event-atlas *::before,.race-event-atlas *::after { animation:none!important; transition:none!important; } }
+ `;

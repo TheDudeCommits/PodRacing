@@ -1,0 +1,48 @@
+import { Box3, Matrix4, Quaternion, Vector3, type PerspectiveCamera } from 'three';
+import { afterAll, expect, it } from 'vitest';
+import { CinematicCamera } from '../test-runtime/src/camera/CinematicCamera';
+import { CinematicCamera as BeforeCamera } from '../before-runtime/src/camera/CinematicCamera';
+import { fixture, race, step, variants } from '/Users/amir/Projects/PodRacing/tests/fixtures/teemtoActualCamera';
+const fileModule:string='node:fs'; const {writeFileSync}=await import(/* @vite-ignore */ fileModule);
+const rows:unknown[]=[];
+afterAll(()=>writeFileSync('assets/source/inkstorm/combat-round35/v29-two-beat-camera-preparation/projected-v1.json',JSON.stringify(rows,null,2)+'\n'));
+const phases=new Set([922,932,958,988,1006,1024,1066]);
+const names=['teemto-engine-left-body','teemto-damage-right-front-v16','teemto-damage-right-rear-v16'];
+function extent(camera:PerspectiveCamera,points:readonly Vector3[]) {
+ let minX=Infinity,maxX=-Infinity,minY=Infinity,maxY=-Infinity,nearest=Infinity;
+ const p=new Vector3();camera.updateMatrixWorld(true);
+ for(const point of points){p.copy(point).applyMatrix4(camera.matrixWorldInverse);nearest=Math.min(nearest,-p.z);p.copy(point).project(camera);minX=Math.min(minX,p.x);maxX=Math.max(maxX,p.x);minY=Math.min(minY,p.y);maxY=Math.max(maxY,p.y);}
+ return{width:(maxX-minX)/2,height:(maxY-minY)/2,ndc:[minX,maxX,minY,maxY],nearest,emptyBelow:(minY+1)/2};
+}
+function sourcePoints(art:ReturnType<typeof fixture>,body:Matrix4){
+ const right:Vector3[]=[],left:Vector3[]=[];const m=new Matrix4();art.root.updateMatrixWorld(true);
+ for(const name of names){const mesh=art.all.find(m=>m.name===name)!;m.copy(body).multiply(mesh.matrixWorld);const position=mesh.geometry.getAttribute('position');
+  for(let i=0;i<position.count;i++)(name===names[0]?left:right).push(new Vector3().fromBufferAttribute(position,i).applyMatrix4(m));}
+ return{right,left};
+}
+it.each(variants)('%s compares exact V28 and V29 camera histories on the same authored source poses',variant=>{
+ const art=fixture(variant),sim=race();const rigs=[1.6,390/844,844/390].map(aspect=>{const a=new CinematicCamera(),b=new BeforeCamera();a.camera.aspect=b.camera.aspect=aspect;return{a,b,aspect};});
+ const baselineBounds=Array.from({length:26},()=>new Vector3()), baselineCenter=new Vector3(),box=new Box3();let minimumGround=Infinity,minimumNear=Infinity;
+ try{for(let frame=1;frame<=1067;frame++){
+  step(sim,frame);if(frame<910)continue;const entry=sim.state.entries[0]!,remaining=entry.galactic!.wreck.timer;
+  const pose=art.cache.update(entry.vehicle,remaining,sim.terrain);art.breakup.update(pose,remaining,sim.terrain);
+  const subject={position:new Vector3(entry.vehicle.position.x,entry.vehicle.position.y,entry.vehicle.position.z),forward:new Vector3(Math.sin(entry.vehicle.orientation.yaw),0,Math.cos(entry.vehicle.orientation.yaw)),velocity:new Vector3(),speed:0,
+    combatFocus:pose.center,combatForward:pose.forward,combatBounds:pose.bounds,combatImpactPosition:pose.rupture?.position,combatImpactFraming:pose.impactFraming,combatTerrain:sim.terrain,wreckChase:frame>927};
+  const old={...subject,combatImpactFraming:undefined as {center:Vector3;bounds:Vector3[]}|undefined};
+  if(pose.impactFraming){for(let i=0;i<24;i++)baselineBounds[i]!.copy(pose.bounds[8+i]!);baselineBounds[24]!.copy(pose.rupture!.position);baselineBounds[25]!.copy(pose.groundContact?.position??pose.rupture!.position);box.setFromPoints(baselineBounds).getCenter(baselineCenter);old.combatImpactFraming={center:baselineCenter,bounds:baselineBounds};}
+  for(const {a,b,aspect}of rigs){a.setMode(subject.wreckChase?'chase':'side');b.setMode(subject.wreckChase?'chase':'side');a.setCombatFraming(!subject.wreckChase);b.setCombatFraming(!subject.wreckChase);
+   // Native slowdown yields about two simulation ticks per rendered frame;
+   // this bounded source check preserves realistic full-fallback birth, then springs.
+   const dt=frame<=927?1/60:1/120;if(frame===910){a.snap(subject);b.snap(old);}else{a.update(dt,frame/120,subject);b.update(dt,frame/120,old);}
+   const ground=a.camera.position.y-sim.terrain.heightAt(a.camera.position.x,a.camera.position.z);minimumGround=Math.min(minimumGround,ground);
+   const near=extent(a.camera,pose.bounds).nearest;minimumNear=Math.min(minimumNear,near);
+   expect(ground,`${variant}/${frame}/${aspect}: actual eye-ground`).toBeGreaterThanOrEqual(1.2-1e-6);
+   expect(near,`${variant}/${frame}/${aspect}: ALL full source boxes beyond lens`).toBeGreaterThan(a.camera.near+.49);
+   if(phases.has(frame)){
+    const body=new Matrix4().compose(pose.position,new Quaternion().setFromEuler(pose.rotation),new Vector3(1,1,1));const points=sourcePoints(art,body);
+    rows.push({variant,frame,age:pose.impactFraming!.ageSeconds,aspect,pointCounts:{right:points.right.length,left:points.left.length},candidate:{torn:extent(a.camera,points.right),allThree:extent(a.camera,[...points.right,...points.left]),eye:a.camera.position.toArray(),back:new Vector3(0,0,1).applyQuaternion(a.camera.quaternion).toArray(),ground},v28:{torn:extent(b.camera,points.right),allThree:extent(b.camera,[...points.right,...points.left]),eye:b.camera.position.toArray()},scope:'Exact same actual GLTF POSITION surfaces; source projection with sequential entry springs, not native pixels or screenshot replication.'});
+   }
+  }
+ }rows.push({variant,minimumGround,minimumNear,fullBoundsCount:variant==='hero'?40:32});}
+ finally{rigs.forEach(({a,b})=>{a.dispose();b.dispose();});art.breakup.reset();}
+});

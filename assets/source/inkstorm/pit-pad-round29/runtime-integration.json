@@ -1,0 +1,34 @@
+{
+  "scope": "CPU integration only. Root render integration and actual acceptance are separate.",
+  "sha256": {
+    "src/game/race/PitPadField.ts": "3e5905c04a070ef30a2e0a781510d81f7345b4b37903f0515f671029217e72e5",
+    "src/game/race/RaceSimulation.ts": "36de9c291f3c631fe519b88c32c344d5e3f523835ba6139c55d9066fed5ed35e",
+    "tests/terrain/pitPadField.test.ts": "c15c9d01242898fa0302ed91420e454cb62146d1c50a805700f17587e0eb34fe",
+    "assets/source/inkstorm/pit-pad-round29/PitPadField.ts": "f0428bdecf6e58756c052882075b02fd9b18e6dd8cc704b06109881824a8ff6a",
+    "assets/source/inkstorm/pit-pad-round29/receipt.json": "7a5810b015a92b008579e74172ea7760c64e7ead28b84d12d7850811916c6c30",
+    "assets/source/inkstorm/pit-pad-round29/runtime-before/RaceSimulation.ts": "f924fb2609f77083660e31353772c7510e2645c4acd84cb3ba694a7a6df40de5",
+    "docs/inkstorm-overhaul/PIT_PAD_ROUND29_PROPOSAL.md": "2973cd2792a060d134a77238e96a9aeff184b43749d0e7b2f5f4776f6de4d205"
+  },
+  "checks": {
+    "focusedTests": {
+      "passed": 17,
+      "files": [
+        "tests/terrain/pitPadField.test.ts",
+        "tests/terrain/courseGulfField.test.ts",
+        "tests/race/inkstormPitDistrict.test.ts"
+      ]
+    },
+    "projectTypecheck": "pass",
+    "diffCheck": "pass",
+    "isolatedStrictTypecheck": "pass",
+    "stagedSyntheticGuards": 6
+  },
+  "rootOwnedRuntimeFilesUntouchedByThisTask": [
+    "src/render/terrain/CourseGulfTextures.ts",
+    "src/render/terrain/TerrainSystem.ts",
+    "src/render/app/GameApp.ts",
+    "src/render/inkstorm/InkstormWorld.ts",
+    "src/render/inkstorm/InkstormFoundations.ts"
+  ],
+  "noGPUOrFullBuildOrFullSuite": true
+}

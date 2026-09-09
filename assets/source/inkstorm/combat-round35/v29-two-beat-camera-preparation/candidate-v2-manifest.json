@@ -1,0 +1,76 @@
+{
+  "stage": "PRIVATE V29 camera v2; not applied, native untested",
+  "createdUTC": "2026-09-09T10:18:02.696208+00:00",
+  "baseline": "V28 77f0ed1228afb3909953ae940451e2b1b3cd76b552688ea7d1a154a68debd87d",
+  "scope": [
+    "three production files plus explicit changed composition contract test and new age/reuse/recovery tests",
+    "No GameApp adapter needed: existing object pass-through",
+    "No FX/contact/terrain/source asset/simulation/network/HUD/build/public edits"
+  ],
+  "patch": {
+    "path": "assets/source/inkstorm/combat-round35/v29-two-beat-camera-preparation/v29-two-beat-camera-v2.patch",
+    "bytes": 27535,
+    "sha256": "041087a276e296909b542124d3e33746fb5beecae93d327e78ea6125acb248a9"
+  },
+  "files": [
+    {
+      "path": "src/camera/CinematicCamera.ts",
+      "before": {
+        "bytes": 33884,
+        "sha256": "862a5787a34d6d767841b87b738a38d82b5b1bf074b1e54454f2a5f47bd9ecf9"
+      },
+      "candidate": {
+        "bytes": 36339,
+        "sha256": "2bd0b85a1dc5ea3bcc44426801ae42c93016d3c26960a5a00e1edfb14584ff3b"
+      }
+    },
+    {
+      "path": "src/render/combat/TeemtoAuthoredDamage.ts",
+      "before": {
+        "bytes": 27082,
+        "sha256": "f7a37f5be10d89e92ba8189b7860917c3fc99d03afce7fc880506c95358e7b59"
+      },
+      "candidate": {
+        "bytes": 27940,
+        "sha256": "918c6904113bc77b34d35db1c6b6d024927e2ec71fd073799d9202ea9f0ce9a6"
+      }
+    },
+    {
+      "path": "src/render/combat/WreckVisualPose.ts",
+      "before": {
+        "bytes": 11510,
+        "sha256": "2f634e7cbd07d166ecf2beaf16b02031b6e320c3c30aa16b074c7c10d5729e90"
+      },
+      "candidate": {
+        "bytes": 11765,
+        "sha256": "e14f1c1cd2444c9d4d0fcd417092dd9263fa96783750871b9ffe7e8aa55e7b58"
+      }
+    },
+    {
+      "path": "tests/camera/TeemtoImpactFraming.test.ts",
+      "before": {
+        "bytes": 17379,
+        "sha256": "fcbe52c429ef175fbbcc609d1f3b4d82de91f2fba4a7e6b993c498967324a91c"
+      },
+      "candidate": {
+        "bytes": 18093,
+        "sha256": "7eb5d1e43cfd3515d6b0820238835413796586ed2d04dbf430623be42dd2e061"
+      }
+    },
+    {
+      "path": "tests/camera/TeemtoTwoBeatCamera.test.ts",
+      "before": null,
+      "candidate": {
+        "bytes": 7885,
+        "sha256": "90f25e89dfda836d8b1f29d2db549d56e54f073a89cb0cf68b682a954173bf82"
+      }
+    }
+  ],
+  "validation": {
+    "focused": "39 tests / 7 files PASS; includes 2 private same-source projection checks",
+    "typecheck": "typecheck-final-v2b.log PASS",
+    "applyCheck": "apply-check-v2.log PASS",
+    "native": "NOT EXECUTED",
+    "sizeBeat": "Source-projected distinction established with explicit .88-to-.74 margin during age .13-.65: desktop held width 79.6-82.6%, settled 63.8%; portrait comparable, short landscape remains vertically constrained. Native visual effect untested."
+  }
+}

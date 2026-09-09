@@ -1,0 +1,100 @@
+{
+  "recordedAt": "2026-09-07T21:21:09.635229+00:00",
+  "scope": "Round29 full-race technical checkpoint only. No source acquisition or visual acceptance.",
+  "previousManifest": "vehicle-manifest-before-full-race-round29.json",
+  "previousManifestSha256": "74cbe4e9346af202891c216258c944df86d376a2d47a37fee60889db0f482b99",
+  "preservedLatestAcquisitionReceipt": "vehicles/25d51fbd4efc4c888ca4ff2549b1c6ae/mcp-download-retry-20260907-2052.json",
+  "previousLatestProgressReceipt": "vehicle-progress-2026-09-07-seventh-rate-limit.json",
+  "previousLatestPerformanceReceipt": "vehicle-progress-2026-09-07-full-race-round28.json",
+  "countsBefore": {
+    "publicResults": 29,
+    "vehicleCandidates": 26,
+    "excludedNonVehicles": 3,
+    "downloaded": 2,
+    "blockedOrPending": 24,
+    "downloadStatuses": {
+      "downloaded": 2,
+      "pending_download": 22,
+      "rate_limited": 2
+    },
+    "mcpImportedSourceGlbs": 2,
+    "rawArchivesPreserved": 0,
+    "stylizationNeedsPermission": 0,
+    "publicAdaptationRestricted": 1,
+    "stylizedExports": 2,
+    "stylizedSourceStudies": 2,
+    "stylizedExportVariants": 4,
+    "driversAdded": 2,
+    "runtimeIntegrations": 2,
+    "driverInspections": 2,
+    "stylizedExportFiles": 6
+  },
+  "countsAfter": {
+    "publicResults": 29,
+    "vehicleCandidates": 26,
+    "excludedNonVehicles": 3,
+    "downloaded": 2,
+    "blockedOrPending": 24,
+    "downloadStatuses": {
+      "downloaded": 2,
+      "pending_download": 22,
+      "rate_limited": 2
+    },
+    "mcpImportedSourceGlbs": 2,
+    "rawArchivesPreserved": 0,
+    "stylizationNeedsPermission": 0,
+    "publicAdaptationRestricted": 1,
+    "stylizedExports": 2,
+    "stylizedSourceStudies": 2,
+    "stylizedExportVariants": 4,
+    "driversAdded": 2,
+    "runtimeIntegrations": 2,
+    "driverInspections": 2,
+    "stylizedExportFiles": 6
+  },
+  "checkpoint": {
+    "lastCompletedRound": 29,
+    "scope": "Completed frozen technical/world-image checkpoint only; all7 world targets still FAIL, no deployment. Round30 source studies are outside this freeze.",
+    "bundle": "index-B2tbJL7E.js",
+    "bundleSha256": "f919adbafbd0c0a27a9e719693f0585fb08a3ed17fe9df82f58173983d1b6008",
+    "fullRacePerformance": "PASS for all four required Teemto/Sebulba ordinary Time Attack/Canyon Cup cadence gates and both actual Continue flows. Local adaptive rendering, no retries in round29.",
+    "fullRacePerformanceReport": "docs/inkstorm-overhaul/FULL_RACE_PERFORMANCE_ROUND29.md",
+    "fullRacePerformanceProgressReceipt": "vehicle-progress-2026-09-07-full-race-round29.json",
+    "finalFreezeComparison": "output/gauntlet/round29-freeze/complete-race-comparison.json",
+    "worldArtAcceptance": {
+      "round": 29,
+      "outcome": "FAIL",
+      "acceptedSections": 0,
+      "reviewedSections": 7,
+      "receipt": "docs/inkstorm-overhaul/BLIND_WORLD_ROUND29.md"
+    },
+    "pilotArtAcceptance": {
+      "round": 28,
+      "outcome": "FAIL",
+      "scope": "V4C relative preference is not strict 8/10 acceptance",
+      "receipt": "docs/inkstorm-overhaul/BLIND_PILOT_RUNTIME_ROUND28.md"
+    },
+    "activeWork": {
+      "round": 30,
+      "status": "Source-only road-level paddock and baked-lighting candidates; runtime/public remain frozen29 at checkpoint recording",
+      "scope": [
+        "Road-facing workshop Y anchors and off-road grading study",
+        "Blender UV/direct-light bake study, supplementary imagegen workshop target"
+      ],
+      "acceptance": "New integration needs its own actual captures, fresh criticism and full-race timing"
+    },
+    "deployment": "none"
+  },
+  "evidence": [
+    "docs/inkstorm-overhaul/FULL_RACE_PERFORMANCE_ROUND29.md",
+    "output/gauntlet/round29-freeze/complete-race-comparison.json",
+    "output/gauntlet/round29-freeze/race-evidence-inventory.json"
+  ],
+  "preservationChecks": {
+    "all29ModelRecordsUnchanged": true,
+    "allCountsUnchanged": true,
+    "acquisitionStateUnchanged": true,
+    "historyPrefixesUnchanged": true,
+    "previousAcceptanceCheckpointPreserved": true
+  }
+}

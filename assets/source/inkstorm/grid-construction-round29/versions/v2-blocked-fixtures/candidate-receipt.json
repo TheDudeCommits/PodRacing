@@ -1,0 +1,152 @@
+{
+  "date": "2026-09-08",
+  "revision": 2,
+  "status": "CANDIDATES VALIDATED; NOT PUBLISHED; NO VISUAL OR PERFORMANCE ACCEPTANCE",
+  "previousRevision": "versions/v1/",
+  "correction": "Reversed inward ring surfaces and cloth top/bottom, retained correct cloth edges, explicitly matched cloth-layer triangle diagonals; added six supported 24-triangle task fixtures",
+  "frontFaceValidation": "test_frontfaces.mjs / frontface-audit.json: actual exported normals, signed volumes, closed directed edges, FrontSide ray hits and open bore",
+  "fixtureValidation": "test_task_fixtures.mjs / task-fixture-audit.json: exact emitter planes, normals, face areas and contact with predecessor crossbeams",
+  "sharedTaskLightAnchors": "task-light-anchors.json",
+  "sharedTaskLightAnchorSha256": "ffbd4ce8cd410cb72f4a8602cbca9cf577617519a55d924378f16021e4f60cea",
+  "userPrompt": "Use Blender MCP and Codex imagegen skill to generate concept images of the target art style for each section. Keep Iterateing until in-world screenshots look as close as possible to those, at 40-60fps.",
+  "source": "Original Blender MCP authored additive construction in an isolated scene; no downloads",
+  "sourceScript": "build_grid_detail.py",
+  "sourceScriptSha256": "06b73e5171c6c6329124796134c350fbcde801effb20eb2a89634d6819e85cc2",
+  "mergeScriptSha256": "b9d7d5565c94e6423e838b74f03479e3e9bdabc18ec84954139b4622603c778d",
+  "blenderReceipt": "blender-export-receipt.txt",
+  "preservedPredecessors": "predecessors/",
+  "optimization": "glTF Transform 4.5.0 exact-prefix concatenation plus dedup/prune; no remesh, simplify or quantization",
+  "deliveryIncrease": 846212,
+  "maximumAllPlacementExtraTriangles": 35512,
+  "extraDrawCalls": 0,
+  "extraMaterials": 0,
+  "extraTextures": 0,
+  "assets": [
+    {
+      "family": "pit-complex",
+      "candidatePath": "assets/source/inkstorm/grid-construction-round29/candidates/pit-complex.glb",
+      "predecessorSha256": "5cebe6dce3a0a27a7d887f4f9a6fbfde6e29512cd47a039b79c4dbadbfe39acd",
+      "overlaySha256": "8b5e31d19d59244c03aa2a957551f24f35dea1ea5d071caf6328c4010fabf172",
+      "candidateSha256": "57866979d90b8dd2f1be5204df496307ec89b8c3f847900c5a154566fdd8129a",
+      "predecessorBytes": 513368,
+      "overlayBytes": 378356,
+      "candidateBytes": 890432,
+      "originalTriangles": 7032,
+      "addedTriangles": 4980,
+      "triangles": 12012,
+      "vertices": 22702,
+      "meshes": 1,
+      "primitives": 1,
+      "materials": 1,
+      "textures": 0,
+      "uvStatus": "No TEXCOORD attributes in either predecessor or overlay; original vertex-color/local-position shader contract preserved",
+      "bounds": {
+        "min": [
+          -71,
+          0,
+          -32.5
+        ],
+        "max": [
+          79,
+          47,
+          28
+        ]
+      },
+      "maxNormalLengthError": 1.207730937480278e-7,
+      "preservation": "Every predecessor POSITION/NORMAL/COLOR_0 byte and every original index retained as exact prefixes after final GLB roundtrip; hierarchy and original material retained",
+      "runtimeAssetUnchanged": true,
+      "validation": {
+        "numErrors": 0,
+        "numWarnings": 0,
+        "numInfos": 0,
+        "numHints": 0,
+        "messages": [],
+        "truncated": false
+      }
+    },
+    {
+      "family": "pit-district",
+      "candidatePath": "assets/source/inkstorm/grid-construction-round29/candidates/pit-district.glb",
+      "predecessorSha256": "947b7b7043775f0f4cdb007e30c055f6cfe485bddc6dcf6632f131a88833d2a0",
+      "overlaySha256": "3b59a19cf2bb9a7a0d710c3b997e350db374eb45fd3bff8646035d815390b0aa",
+      "candidateSha256": "2ac76f281193d72216ff6c8bc2c14db123d58c8881f6e7b951a6ef1dd73ff705",
+      "predecessorBytes": 990016,
+      "overlayBytes": 349012,
+      "candidateBytes": 1337732,
+      "originalTriangles": 13254,
+      "addedTriangles": 4240,
+      "triangles": 17494,
+      "vertices": 34212,
+      "meshes": 1,
+      "primitives": 1,
+      "materials": 1,
+      "textures": 0,
+      "uvStatus": "No TEXCOORD attributes in either predecessor or overlay; original vertex-color/local-position shader contract preserved",
+      "bounds": {
+        "min": [
+          -56.81999969482422,
+          0,
+          -18
+        ],
+        "max": [
+          58.25,
+          34.05223083496094,
+          12.535015106201172
+        ]
+      },
+      "maxNormalLengthError": 1.182496955909329e-7,
+      "preservation": "Every predecessor POSITION/NORMAL/COLOR_0 byte and every original index retained as exact prefixes after final GLB roundtrip; hierarchy and original material retained",
+      "runtimeAssetUnchanged": true,
+      "validation": {
+        "numErrors": 0,
+        "numWarnings": 0,
+        "numInfos": 0,
+        "numHints": 0,
+        "messages": [],
+        "truncated": false
+      }
+    },
+    {
+      "family": "foundry-gantry",
+      "candidatePath": "assets/source/inkstorm/grid-construction-round29/candidates/foundry-gantry.glb",
+      "predecessorSha256": "5270c5d9073016f374e4c17a7240160ae68898e802ca219b4393821a56a59bc6",
+      "overlaySha256": "7d5fe8cb3a6080f5bef2d48be283a9cd8adb11e2031472e0df95ba4cb68bd12f",
+      "candidateSha256": "3d0cd999daf52b82ac0232c7316a5e4072c80bd83982f83cbaf4a1dcde11e862",
+      "predecessorBytes": 317292,
+      "overlayBytes": 122724,
+      "candidateBytes": 438724,
+      "originalTriangles": 4494,
+      "addedTriangles": 1806,
+      "triangles": 6300,
+      "vertices": 11106,
+      "meshes": 1,
+      "primitives": 1,
+      "materials": 1,
+      "textures": 0,
+      "uvStatus": "No TEXCOORD attributes in either predecessor or overlay; original vertex-color/local-position shader contract preserved",
+      "bounds": {
+        "min": [
+          -52,
+          -25,
+          -7
+        ],
+        "max": [
+          52,
+          54.30417251586914,
+          7
+        ]
+      },
+      "maxNormalLengthError": 9.999998984433489e-8,
+      "preservation": "Every predecessor POSITION/NORMAL/COLOR_0 byte and every original index retained as exact prefixes after final GLB roundtrip; hierarchy and original material retained",
+      "runtimeAssetUnchanged": true,
+      "validation": {
+        "numErrors": 0,
+        "numWarnings": 0,
+        "numInfos": 0,
+        "numHints": 0,
+        "messages": [],
+        "truncated": false
+      }
+    }
+  ]
+}

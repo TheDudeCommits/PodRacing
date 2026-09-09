@@ -1,0 +1,47 @@
+{
+  "status": "CPU preparation PASS; no Blender/export/render/world acceptance",
+  "sourceV2Sha256": "58fc12d837039eb73111886b1b91c294516c51fc47a4a0d00200717161fd39ba",
+  "removedHoistTriangles": 1632,
+  "retainedV2UnrelatedTriangles": 18324,
+  "newGeometry": {
+    "vertices": 1302,
+    "triangles": 1548,
+    "trianglesByGroup": {
+      "drum_cable_wrap": 256,
+      "hoist_axles": 80,
+      "hoist_bearings": 96,
+      "hoist_drum": 132,
+      "hoist_motor": 44,
+      "hoist_mounts": 180,
+      "hoist_track": 36,
+      "hoist_wheels": 112,
+      "lower_pulley": 256,
+      "motor_fins": 192,
+      "service_cable": 40,
+      "service_hook": 124
+    },
+    "boundsBlender": [
+      [
+        -32.5,
+        2.5
+      ],
+      [
+        4.2,
+        6.989999999999999
+      ],
+      [
+        39.74372673423227,
+        48.9
+      ]
+    ],
+    "retainedTriangles": 18324,
+    "candidateTriangles": 19872
+  },
+  "newClearance": 39.74372673423227,
+  "combinedClearance": 39.66999816894531,
+  "originalV2FootprintRetained": true,
+  "allNewGroupsClosed": true,
+  "minimumTriangleArea": 0.004773965038361587,
+  "authorSha256": "a08a6c103b5c46558fc65f327b71de85fd53701ed622dc1a15cf01630a5a7eed",
+  "exportScriptSha256": "8891cca12a84107b26e62c508f421ad95eafc891f16b447fc35a4b92b9efd096"
+}

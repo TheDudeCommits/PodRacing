@@ -1,0 +1,12 @@
+{
+  "purpose": "Opt-in actual loaded atlas plus exact served PNG hash gate; no runtime or build edits. Preserves prior native input/capture/clock/cleanup predicates. Guard runs before Start, before performance sampling. A missing optional env retains historical behavior.",
+  "beforeSha256": "fedd0e69e86516f135ba9fed1af17ab1fe38ba72804b415a0173d85c37e824c2",
+  "afterSha256": "1d78c1a7df6c2d52c6e03cd45ad146caced48bb4ce6c2d6bfb6205c273d623d7",
+  "environment": "INKSTORM_EXPECTED_FLAME_ATLAS_SHA",
+  "expected": {
+    "status": "ready",
+    "width": 1254,
+    "height": 1254,
+    "frameCount": 4
+  }
+}

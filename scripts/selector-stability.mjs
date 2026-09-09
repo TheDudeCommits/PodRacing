@@ -86,7 +86,7 @@ try {
     const panel = document.querySelector('[data-hud="vehicle-selection"]');
     const previews = Array.from(document.querySelectorAll('[data-vehicle-preview][data-preview-ready="true"]'));
     return panel?.classList.contains('is-visible')
-      && previews.length === 4
+      && previews.length === 5
       && previews.every((host) => {
         const image = host.querySelector('img[data-vehicle-preview-image]');
         return image instanceof HTMLImageElement
@@ -104,7 +104,7 @@ try {
     const panel = document.querySelector('[data-hud="vehicle-selection"]');
     const cards = Array.from(document.querySelectorAll('.pod-hud__vehicle-card'));
     const previews = Array.from(document.querySelectorAll('[data-vehicle-preview]'));
-    if (!(panel instanceof HTMLElement) || cards.length !== 4 || previews.length !== 4) {
+    if (!(panel instanceof HTMLElement) || cards.length !== 4 || previews.length !== 5) {
       throw new Error('Selector structure is incomplete.');
     }
     const style = getComputedStyle(panel);

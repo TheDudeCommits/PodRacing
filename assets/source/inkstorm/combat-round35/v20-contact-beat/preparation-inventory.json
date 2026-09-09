@@ -1,0 +1,124 @@
+{
+  "status": "PRIVATE_CANDIDATE_VALIDATED_NOT_APPLIED",
+  "createdUtc": "2026-09-09T04:13:52.251215+00:00",
+  "liveInputsUnchanged": true,
+  "privateTests": {
+    "focused": 50,
+    "actualGeometry": 4,
+    "camera": 28,
+    "typecheck": "PASS",
+    "patchApplyCheck": "PASS"
+  },
+  "executedNativeV20": false,
+  "artAcceptance": null,
+  "files": [
+    {
+      "path": "assets/source/inkstorm/combat-round35/v20-contact-beat/v20-contact-beat.patch",
+      "bytes": 16805,
+      "sha256": "227dffc8cc6fd186ee58fb7eb86d0d05b9a8b15099df7612c762f35c82e9639e"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/v20-contact-beat/candidate-inputs.json",
+      "bytes": 1140,
+      "sha256": "8378efb56fd58ae3fcc566eae05182eadbb51bd99e8caf24a2e2e17e45df78cd"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/v20-contact-beat/contact-timing-receipt.json",
+      "bytes": 1169,
+      "sha256": "aa20bf9050a1a93c7595888434a6d86740b18537b55411f094ec724adf5a6f4c"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/v20-contact-beat/HANDOFF.md",
+      "bytes": 3585,
+      "sha256": "b8bd9f9259f360e5a2becaf09d76cae855c2c12d7ed45759dec4d98e944c5f59"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/v20-contact-beat/focused-initial.log",
+      "bytes": 1153,
+      "sha256": "1893f00cca64f3c822810cecc798fb8992ac8850853d82cc0b916d50cb7a74f7"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/v20-contact-beat/focused-v2.log",
+      "bytes": 1365,
+      "sha256": "d5e5edbf41ca64e2cc5deb55371b3768d43dc00bb30110e0bb3f959b66b0f783"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/v20-contact-beat/focused-final.log",
+      "bytes": 986,
+      "sha256": "90358ad27b22e19d08d0d9e79146fddf7a32aaee56e7802441c82b0aa3ace1cd"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/v20-contact-beat/actual-geometry.log",
+      "bytes": 217,
+      "sha256": "ed3e31b5073531babfde349839c6afeb98a34e6dbe0a83f82c67d40376500d8a"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/v20-contact-beat/camera-regression.log",
+      "bytes": 58418,
+      "sha256": "2230ba85bda2a782d2cc621c4c5d30adc89839d67f0c070bec680fd0b7551f80"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/v20-contact-beat/typecheck-final.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/v20-contact-beat/vitest.config.ts",
+      "bytes": 1024,
+      "sha256": "b18813b27e4ac50d3f097a1cf2aa701a1dc6f54cf5e530c593215b721b3582de"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/v20-contact-beat/tsconfig.candidate.json",
+      "bytes": 236,
+      "sha256": "f88ef78be87e8fa475912b0a641fc9dec6dde4aad72508d3ae6183560c4c1abb"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/v20-contact-beat/contactBeat.test.ts",
+      "bytes": 5349,
+      "sha256": "bbda95e0875bc60d1d2909fa982c8bd8703b279eaffc45f340f5a257d5fccdfd"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/v20-contact-beat/contactTiming.test.ts",
+      "bytes": 6828,
+      "sha256": "b653bd45d8182264fb8c0f382ad256ace513ee986023184f285d267dc3218e54"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/v20-contact-beat/actualGeometry.test.ts",
+      "bytes": 15569,
+      "sha256": "4a0c44eaf6fd18110a78ddab412887bc50d161d6d71b88d30088b51d6638b3d0"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/v20-contact-beat/effectRegression.test.ts",
+      "bytes": 30700,
+      "sha256": "b6707c6cfa506dba638d8f4d573a3051579cac9232b7c3a7bd7e2a30f999800b"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/v20-contact-beat/independent-static-review.json",
+      "bytes": 820,
+      "sha256": "99267f1f56f942b3e0286de646a8b3cdd8bf8eb7bd948b74299eb0a70599285f"
+    }
+  ],
+  "actualGeometryInputs": [
+    {
+      "path": "public/assets/inkstorm/vehicles/teemto-hero-open-v2.glb",
+      "bytes": 7698824,
+      "sha256": "af5d69514a51f7e9c089a1710e1587f46e053412b488268dc433f029576c0a7e"
+    },
+    {
+      "path": "public/assets/inkstorm/vehicles/teemto-rival.glb",
+      "bytes": 1931540,
+      "sha256": "3d9d8d8d924258b84553de7f31f44dc4f69f069511cb6358ab2c174768e3385f"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/authored-damage-v16/packaged-b/teemto-damage-hero-v16.glb",
+      "bytes": 1997952,
+      "sha256": "31cf1c7bfb3ea539d19598b466abd9eaec1b8e5f0c4ece58e9014c686c3c13d8"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/authored-damage-v16/packaged-b/teemto-damage-rival-v16.glb",
+      "bytes": 451628,
+      "sha256": "631e8a0e7a2809e0e9e077cebf9306c5b0ad8167980b3394f1cd276f16671e20"
+    }
+  ],
+  "independentStaticReview": "No actionable bugs found; visual acceptance pending."
+}

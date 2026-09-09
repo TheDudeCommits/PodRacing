@@ -1,0 +1,321 @@
+[
+  {
+    "path": "assets/source/inkstorm/vehicles/4eff45899ada40bb920c5c744663db90/processed/pilot-material-v2c/teemto-pilot-material-v2-candidate.glb",
+    "bytes": 3035412,
+    "sha256": "1070bea977a74e0ddcc4640f86dc3fca7bc8b211e6af5896284677de7dc7f283",
+    "triangles": 52217,
+    "meshCount": 7,
+    "meshes": [
+      {
+        "name": "Pilot v2 unchanged body Inkstorm Teemto Gabina-exterior-timon_low_Cabina_0.007",
+        "triangles": 19965,
+        "primitives": 1
+      },
+      {
+        "name": "Pilot v2 unchanged body Inkstorm Teemto Propulsores-alerones_low_Propulsores_0.007",
+        "triangles": 11790,
+        "primitives": 1
+      },
+      {
+        "name": "Pilot v2 unchanged body Inkstorm Teemto Propulsores-alerones_low.002_Propulsores_0.007",
+        "triangles": 11790,
+        "primitives": 1
+      },
+      {
+        "name": "Original Inkstorm pilot v2 accent.007",
+        "triangles": 276,
+        "primitives": 1
+      },
+      {
+        "name": "Original Inkstorm pilot v2 hardware.007",
+        "triangles": 2752,
+        "primitives": 1
+      },
+      {
+        "name": "Original Inkstorm pilot v2 shell.007",
+        "triangles": 1540,
+        "primitives": 1
+      },
+      {
+        "name": "Original Inkstorm pilot v2 suit.007",
+        "triangles": 4104,
+        "primitives": 1
+      }
+    ],
+    "materials": 6,
+    "textures": 3,
+    "images": 3,
+    "imageMimeTypes": [
+      "image/webp",
+      "image/webp",
+      "image/webp"
+    ],
+    "skins": 0,
+    "animations": 0,
+    "extensionsUsed": [
+      "EXT_texture_webp"
+    ],
+    "nodes": [
+      {
+        "name": "teemto-cockpit-body.001",
+        "mesh": 0,
+        "translation": null,
+        "rotation": null,
+        "scale": null
+      },
+      {
+        "name": "teemto-cockpit-material-v2",
+        "mesh": null,
+        "translation": null,
+        "rotation": null,
+        "scale": null
+      },
+      {
+        "name": "teemto-engine-left-body.001",
+        "mesh": 1,
+        "translation": null,
+        "rotation": null,
+        "scale": null
+      },
+      {
+        "name": "teemto-engine-left-material-v2",
+        "mesh": null,
+        "translation": null,
+        "rotation": null,
+        "scale": null
+      },
+      {
+        "name": "teemto-engine-right-body.001",
+        "mesh": 2,
+        "translation": null,
+        "rotation": null,
+        "scale": null
+      },
+      {
+        "name": "teemto-engine-right-material-v2",
+        "mesh": null,
+        "translation": null,
+        "rotation": null,
+        "scale": null
+      },
+      {
+        "name": "teemto-pilot-accent",
+        "mesh": 3,
+        "translation": null,
+        "rotation": null,
+        "scale": null
+      },
+      {
+        "name": "teemto-pilot-hardware",
+        "mesh": 4,
+        "translation": null,
+        "rotation": null,
+        "scale": null
+      },
+      {
+        "name": "teemto-pilot-shell",
+        "mesh": 5,
+        "translation": null,
+        "rotation": null,
+        "scale": null
+      },
+      {
+        "name": "teemto-pilot-suit.002",
+        "mesh": 6,
+        "translation": null,
+        "rotation": null,
+        "scale": null
+      },
+      {
+        "name": "teemto-pilot-material-v2",
+        "mesh": null,
+        "translation": null,
+        "rotation": null,
+        "scale": null
+      }
+    ],
+    "boundsFromPositionAccessors": [
+      [
+        -6.54527473449707,
+        0.07286620140075684,
+        -7.333491802215576
+      ],
+      [
+        6.496447563171387,
+        5.250973701477051,
+        22.738540649414062
+      ]
+    ]
+  },
+  {
+    "path": "assets/source/inkstorm/vehicles/4eff45899ada40bb920c5c744663db90/processed/pilot-material-v2c/teemto-pilot-material-v2-normalized.glb",
+    "bytes": 10076136,
+    "sha256": "89fcdf43f8ed345aaaa52811672c118c249543a74d019740f01edfb7eaae2856",
+    "triangles": 52217,
+    "meshCount": 7,
+    "meshes": [
+      {
+        "name": "Pilot v2 unchanged body Inkstorm Teemto Gabina-exterior-timon_low_Cabina_0.007",
+        "triangles": 19965,
+        "primitives": 1
+      },
+      {
+        "name": "Pilot v2 unchanged body Inkstorm Teemto Propulsores-alerones_low_Propulsores_0.007",
+        "triangles": 11790,
+        "primitives": 1
+      },
+      {
+        "name": "Pilot v2 unchanged body Inkstorm Teemto Propulsores-alerones_low.002_Propulsores_0.007",
+        "triangles": 11790,
+        "primitives": 1
+      },
+      {
+        "name": "Original Inkstorm pilot v2 accent.007",
+        "triangles": 276,
+        "primitives": 1
+      },
+      {
+        "name": "Original Inkstorm pilot v2 hardware.007",
+        "triangles": 2752,
+        "primitives": 1
+      },
+      {
+        "name": "Original Inkstorm pilot v2 shell.007",
+        "triangles": 1540,
+        "primitives": 1
+      },
+      {
+        "name": "Original Inkstorm pilot v2 suit.007",
+        "triangles": 4104,
+        "primitives": 1
+      }
+    ],
+    "materials": 6,
+    "textures": 6,
+    "images": 3,
+    "imageMimeTypes": [
+      "image/png",
+      "image/png",
+      "image/png"
+    ],
+    "skins": 0,
+    "animations": 0,
+    "extensionsUsed": [],
+    "nodes": [
+      {
+        "name": "teemto-cockpit-body.001",
+        "mesh": 0,
+        "translation": null,
+        "rotation": null,
+        "scale": null
+      },
+      {
+        "name": "teemto-cockpit-material-v2",
+        "mesh": null,
+        "translation": null,
+        "rotation": null,
+        "scale": null
+      },
+      {
+        "name": "teemto-engine-left-body.001",
+        "mesh": 1,
+        "translation": null,
+        "rotation": null,
+        "scale": null
+      },
+      {
+        "name": "teemto-engine-left-material-v2",
+        "mesh": null,
+        "translation": null,
+        "rotation": null,
+        "scale": null
+      },
+      {
+        "name": "teemto-engine-right-body.001",
+        "mesh": 2,
+        "translation": null,
+        "rotation": null,
+        "scale": null
+      },
+      {
+        "name": "teemto-engine-right-material-v2",
+        "mesh": null,
+        "translation": null,
+        "rotation": null,
+        "scale": null
+      },
+      {
+        "name": "teemto-pilot-accent",
+        "mesh": 3,
+        "translation": null,
+        "rotation": null,
+        "scale": null
+      },
+      {
+        "name": "teemto-pilot-hardware",
+        "mesh": 4,
+        "translation": null,
+        "rotation": null,
+        "scale": null
+      },
+      {
+        "name": "teemto-pilot-shell",
+        "mesh": 5,
+        "translation": null,
+        "rotation": null,
+        "scale": null
+      },
+      {
+        "name": "teemto-pilot-suit.002",
+        "mesh": 6,
+        "translation": null,
+        "rotation": null,
+        "scale": null
+      },
+      {
+        "name": "teemto-pilot-material-v2",
+        "mesh": null,
+        "translation": null,
+        "rotation": null,
+        "scale": null
+      }
+    ],
+    "boundsFromPositionAccessors": [
+      [
+        -6.54527473449707,
+        0.07286620140075684,
+        -7.333491802215576
+      ],
+      [
+        6.496447563171387,
+        5.250973701477051,
+        22.738540649414062
+      ]
+    ]
+  },
+  {
+    "path": "assets/source/inkstorm/vehicles/4eff45899ada40bb920c5c744663db90/processed/pilot-material-v2c/pilot-color-atlas-v2.png",
+    "bytes": 2214951,
+    "sha256": "6b47509a9ccf4755d643a6101d65c88240dab8902e41d75890af88a5aee7f282"
+  },
+  {
+    "path": "scripts/blender/inkstorm-pilot-material-v2.py",
+    "bytes": 21466,
+    "sha256": "db3c75f07eda3c94f8765d6db84b2eea0b5178af7fe3ffb3483c995f25147963"
+  },
+  {
+    "path": "output/vehicles/pilot-material-v2c-review/teemto-material-side-v2.png",
+    "bytes": 1901547,
+    "sha256": "b478a7ee65ac9991e6d2e5e1d464764bd15eec7bc4e97cca559f860a957b3c3a"
+  },
+  {
+    "path": "output/vehicles/pilot-material-v2c-review/teemto-material-full-v2.png",
+    "bytes": 1632590,
+    "sha256": "22cb9b0d6c7b7c53111cca274170032d9b45f1efb8a0dfa3aea45f9405fe69a7"
+  },
+  {
+    "path": "output/vehicles/pilot-material-v2c-review/teemto-material-front-quarter-v2.png",
+    "bytes": 1851838,
+    "sha256": "f7ad2707731a7a5a9456585772f26b5e408072bb51b6b91e10354d7dd07e5c79"
+  }
+]

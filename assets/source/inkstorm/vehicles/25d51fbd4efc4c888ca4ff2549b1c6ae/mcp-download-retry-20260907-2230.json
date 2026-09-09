@@ -1,0 +1,92 @@
+{
+  "recordedAt": "2026-09-07 22:29:05 UTC",
+  "uid": "25d51fbd4efc4c888ca4ff2549b1c6ae",
+  "title": "Podracer",
+  "author": "JakacBatko",
+  "method": "official_blender_mcp",
+  "targetSize": 12,
+  "attempt": 4,
+  "totalOfficialRateLimits": 8,
+  "requestInCurrentRetry": 1,
+  "previousAttemptAt": "2026-09-07T20:52:51Z",
+  "backoffSincePreviousOfficialRequestSeconds": 5774,
+  "setup": {
+    "activeScene": "PodRacing — source 25d51fbd retry 2230",
+    "objects": 0,
+    "configured": true
+  },
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "Error: Download request failed with status code 429"
+      }
+    ],
+    "structuredContent": {
+      "result": "Error: Download request failed with status code 429"
+    },
+    "isError": false
+  },
+  "contextBefore": {
+    "scene": "Cruise — Going Merry source 4b2cb678",
+    "viewLayer": "ViewLayer",
+    "active": "Sketchfab_model.001",
+    "selected": [
+      "Sketchfab_model.001",
+      "cd32016bfac44aaea241abaa77bd8b56.fbx",
+      "RootNode",
+      "Object016",
+      "Object_4",
+      "Object016_02 - Default_0",
+      "Plane038",
+      "Object_7",
+      "Plane038_02 - Default_0",
+      "Plane045",
+      "Object_10",
+      "Plane045_02 - Default_0",
+      "Plane056",
+      "Object_13",
+      "Plane056_02 - Default_0"
+    ],
+    "objects": 17
+  },
+  "contextVerification": {
+    "scene": "Cruise — Going Merry source 4b2cb678",
+    "viewLayer": "ViewLayer",
+    "active": "Sketchfab_model.001",
+    "selected": [
+      "Sketchfab_model.001",
+      "cd32016bfac44aaea241abaa77bd8b56.fbx",
+      "RootNode",
+      "Object016",
+      "Object_4",
+      "Object016_02 - Default_0",
+      "Plane038",
+      "Object_7",
+      "Plane038_02 - Default_0",
+      "Plane045",
+      "Object_10",
+      "Plane045_02 - Default_0",
+      "Plane056",
+      "Object_13",
+      "Plane056_02 - Default_0"
+    ],
+    "objects": 17,
+    "intakeObjects": 0,
+    "temporaryConfigurationEmpty": true
+  },
+  "contextComparison": {
+    "contextExact": true,
+    "originalSceneMembershipChanged": [],
+    "originalSceneCount": 96,
+    "addedScenes": [
+      "PodRacing — source 25d51fbd retry 2230"
+    ],
+    "intakeObjects": 0,
+    "temporaryConfigurationEmpty": true
+  },
+  "sourceImported": false,
+  "sourceGlb": null,
+  "rawArchivePreserved": false,
+  "scope": "One official request after prolonged backoff; HTTP429, zero imported objects. Temporary configuration cleared and exact scene/view layer/active/selection restored. All 96 pre-existing scene memberships unchanged. No alternative credentials or network, unofficial source, full Blender save, source export, render or browser used."
+}

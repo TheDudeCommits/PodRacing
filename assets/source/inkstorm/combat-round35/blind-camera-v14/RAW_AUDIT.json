@@ -1,0 +1,103 @@
+{
+  "scope": "Fresh isolated image-only CLI review; audit confirms explicit invocation and emitted event stream, not invisible model internals. No prior implementation, history, earlier verdict, or scores were supplied. Generic user CLI configuration may load.",
+  "outcome": "PASS",
+  "criticThreadId": "01a082b7-392b-7432-8f82-36a28452a85d",
+  "eventTypes": [
+    "thread.started",
+    "turn.started",
+    "item.completed",
+    "turn.completed"
+  ],
+  "completedItemTypes": [
+    "agent_message"
+  ],
+  "additionalToolOrRetrievalItems": [],
+  "exitCode": 0,
+  "rawFinalMatchesReview": true,
+  "allSevenAttachmentsMatchOriginalSHA256": true,
+  "promptByteIdenticalToV13": true,
+  "referenceHashUnchanged": true,
+  "workdirOutsideProject": true,
+  "ephemeral": true,
+  "sandboxReadOnly": true,
+  "scores": {
+    "framing": 6,
+    "impactDebris": 3,
+    "hud": 5,
+    "excitement": 4,
+    "overall": 4,
+    "required": 8,
+    "verdict": "FAIL"
+  },
+  "sources": [
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/combat-round35/blind-camera-v14/prompt.txt",
+      "bytes": 1144,
+      "sha256": "336d5a5414ac6dfc77d745415ae2f54504635d9434cc8ce94b0921f34ed359b4"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/combat-round35/blind-camera-v14/inventory.json",
+      "bytes": 3036,
+      "sha256": "c61d315d7c2ad87ff819fe3482bb22b0d44ebf35406f62aa07aed023170f5d53"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/combat-round35/blind-camera-v14/cli-critic-attempt1/invocation.json",
+      "bytes": 1746,
+      "sha256": "5344c0b785ed3d83e03a1843ddf5029a4fb47640af13574259e2ee7752574e57"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/combat-round35/blind-camera-v14/cli-critic-attempt1/events.jsonl",
+      "bytes": 3171,
+      "sha256": "f6667dab974afaaf5e76a9ce55478045d5f68bff1b44d500524d61df583b37fb"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/combat-round35/blind-camera-v14/cli-critic-attempt1/review.md",
+      "bytes": 2805,
+      "sha256": "df4a3c76293eacd4eb4f603e83e5442c34a4c3b8ba254f201b2a5da1b35f4918"
+    }
+  ],
+  "attachments": [
+    {
+      "original": "/Users/amir/Projects/PodRacing/output/playwright/round35-combat-v14/temporal-review/entry-pts10.68.png",
+      "attachment": "/var/folders/8_/sqnvwbyn5qv5slnnkk73035c0000gn/T/pod-combat-v14-critic-2gpsld61/image-01.png",
+      "sha256": "1e3045423e08ba46da9bc86d9aef44624ce661b5452f3b266b532fe088bfb67b",
+      "bytes": 896327
+    },
+    {
+      "original": "/Users/amir/Projects/PodRacing/output/playwright/round35-combat-v14/temporal-review/early-impact-pts10.72.png",
+      "attachment": "/var/folders/8_/sqnvwbyn5qv5slnnkk73035c0000gn/T/pod-combat-v14-critic-2gpsld61/image-02.png",
+      "sha256": "e1ed1e687f1ed993d0142fc571cf8583e364883a3bd8c256926c78f6a0af4eb2",
+      "bytes": 909902
+    },
+    {
+      "original": "/Users/amir/Projects/PodRacing/output/playwright/round35-combat-v14/temporal-review/hold-pts11.20.png",
+      "attachment": "/var/folders/8_/sqnvwbyn5qv5slnnkk73035c0000gn/T/pod-combat-v14-critic-2gpsld61/image-03.png",
+      "sha256": "bfc16b9c7887eec68480ee892a0677afcacf817890816f9a5ba7fb2fc4bae1c8",
+      "bytes": 974875
+    },
+    {
+      "original": "/Users/amir/Projects/PodRacing/output/playwright/round35-combat-v14/temporal-review/debris-return-pts11.72.png",
+      "attachment": "/var/folders/8_/sqnvwbyn5qv5slnnkk73035c0000gn/T/pod-combat-v14-critic-2gpsld61/image-04.png",
+      "sha256": "cda47eb3873639f1f92d65592eb3ac011722f4bfed1c32136c7afadde0419c4d",
+      "bytes": 1175570
+    },
+    {
+      "original": "/Users/amir/Projects/PodRacing/output/playwright/round35-combat-v14/temporal-review/settled-pts12.52.png",
+      "attachment": "/var/folders/8_/sqnvwbyn5qv5slnnkk73035c0000gn/T/pod-combat-v14-critic-2gpsld61/image-05.png",
+      "sha256": "a62ab501520ca4c105a3693765099f8e1aa5007af57fefd838f17322157d6baa",
+      "bytes": 1143788
+    },
+    {
+      "original": "/Users/amir/Projects/PodRacing/output/playwright/round35-combat-v14/temporal-review/recovery-pts13.48.png",
+      "attachment": "/var/folders/8_/sqnvwbyn5qv5slnnkk73035c0000gn/T/pod-combat-v14-critic-2gpsld61/image-06.png",
+      "sha256": "caac08bd6d2475cbabd6fd262396151a461cf400ce4e13b76c26d36fb4b4dbf9",
+      "bytes": 925614
+    },
+    {
+      "original": "/Users/amir/Projects/PodRacing/output/reference-ui-round35/UI-takedown-motion.jpg",
+      "attachment": "/var/folders/8_/sqnvwbyn5qv5slnnkk73035c0000gn/T/pod-combat-v14-critic-2gpsld61/image-07.jpg",
+      "sha256": "065476fff16d5986a4173ba374dd308b326d976687db4413f1b9b0f81b8bcb21",
+      "bytes": 271125
+    }
+  ]
+}

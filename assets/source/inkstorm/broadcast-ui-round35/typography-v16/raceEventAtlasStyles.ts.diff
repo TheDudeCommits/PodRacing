@@ -1,0 +1,43 @@
+--- before/src/ui/raceEventAtlasStyles.ts
++++ after/src/ui/raceEventAtlasStyles.ts
+@@ -124,4 +124,40 @@
+ 
+ .race-event-atlas__heading::after { content:''; display:inline-block; width:76px; height:26px; margin-left:19px; background:repeating-linear-gradient(110deg,#b54a36 0 13px,transparent 13px 18px); clip-path:polygon(8% 0,100% 0,92% 100%,0 100%); }
+ @media (max-width:720px) { .race-event-atlas__heading::after { width:48px; height:20px; margin-left:12px; } }
++
++/* Broad destination lettering and three orbital weights establish the map hierarchy. */
++.race-event-atlas__heading { font:400 clamp(34px,3.7vw,54px)/1 var(--ui-heading); letter-spacing:-.015em; }
++.race-event-atlas__edition { font-size:12px; letter-spacing:.1em; }
++.race-event-atlas .race-event-atlas__event { width:128px; transition:left 420ms var(--ui-settle),top 420ms var(--ui-settle); }
++.race-event-atlas__event:not(.is-selected) .race-event-atlas__name { font:400 15px/1.25 var(--ui-heading); letter-spacing:0; color:#203a42; margin-left:-12px; margin-right:-12px; padding:3px 0; }
++.race-event-atlas__event.is-selected .race-event-atlas__name { font:400 20px/1.18 var(--ui-heading); letter-spacing:0; padding:5px 7px; background:#e8e7dcf5; }
++.race-event-atlas__event.is-selected .race-event-atlas__marker { font-size:12px; letter-spacing:.06em; width:96px; }
++.race-event-atlas__disc { transition:transform 380ms var(--ui-settle),box-shadow 380ms var(--ui-settle); }
++.race-event-atlas__name,.race-event-atlas__marker { transition:transform 380ms var(--ui-settle),opacity 220ms ease; }
++.race-event-atlas__orbits { opacity:.85; }
++.race-event-atlas__orbits .atlas-orbit-main { stroke-width:3.4; }
++.race-event-atlas__orbits .atlas-orbit-secondary { stroke-width:1.8; opacity:.78; }
++.race-event-atlas__orbits .atlas-orbit-accent { stroke-width:3.5; opacity:.85; }
++.race-event-atlas__eyebrow { font-size:12px; letter-spacing:.08em; }
++.race-event-atlas__title { font:400 clamp(26px,2.3vw,34px)/1.15 var(--ui-heading); letter-spacing:0; }
++.race-event-atlas__description { max-width:57ch; margin-top:10px; font-size:17px; }
++.race-event-atlas__details { border-left-width:3px; padding-left:18px; }
++.race-event-atlas .race-event-atlas__start { font:400 16px/1.2 var(--ui-heading); letter-spacing:0; border-radius:4px; transition:background-color 220ms var(--ui-settle); }
++.race-event-atlas .race-event-atlas__start:hover:not(:disabled) { background:#355b63; }
++.race-event-atlas__close { font-size:13px!important; }
++.race-event-atlas:not([hidden]) .race-event-atlas__header { animation:atlas-panel-in 280ms var(--ui-settle) both; }
++.race-event-atlas:not([hidden]) .race-event-atlas__viewport { animation:atlas-panel-in 340ms 40ms var(--ui-settle) both; }
++.race-event-atlas:not([hidden]) .race-event-atlas__footer { animation:atlas-panel-in 320ms 80ms var(--ui-settle) both; }
++@keyframes atlas-panel-in { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
++@media (max-width:720px), (max-height:540px) {
++ .race-event-atlas__event:not(.is-selected) .race-event-atlas__name { font-size:13px; }
++ .race-event-atlas__event.is-selected .race-event-atlas__name { font-size:18px; }
++ .race-event-atlas__description { font-size:15px; }
++ .race-event-atlas__title { font-size:28px; }
++ .race-event-atlas__heading { font-size:36px; }
++ .race-event-atlas__edition { font-size:10px; }
++ .race-event-atlas__close { font-size:11px!important; }
++}
++.pod-hud.is-reduced-motion .race-event-atlas *,.pod-hud.is-reduced-motion .race-event-atlas *::before,.pod-hud.is-reduced-motion .race-event-atlas *::after { animation:none!important; transition:none!important; }
++@media (prefers-reduced-motion:reduce) { .race-event-atlas *,.race-event-atlas *::before,.race-event-atlas *::after { animation:none!important; transition:none!important; } }
+ `;

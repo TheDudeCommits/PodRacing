@@ -1,0 +1,80 @@
+[
+  {
+    "path": "src/render/app/GameApp.ts",
+    "before": {
+      "sha256": "d289a9cfb8b683f0ab4309b4b9060fe02cfac4f091273b09b31c103f98a864a8",
+      "bytes": 175443
+    }
+  },
+  {
+    "path": "src/render/combat/TeemtoAuthoredDamage.ts",
+    "before": {
+      "sha256": "918c6904113bc77b34d35db1c6b6d024927e2ec71fd073799d9202ea9f0ce9a6",
+      "bytes": 27940
+    }
+  },
+  {
+    "path": "src/render/combat/WreckGroundContact.ts",
+    "before": {
+      "sha256": "7da1df16e489f21ac3ea1a0e174c7a6d4666a6fa20a1eb00aac2b150330a8b91",
+      "bytes": 2479
+    }
+  },
+  {
+    "path": "src/render/combat/WreckVisualPose.ts",
+    "before": {
+      "sha256": "e14f1c1cd2444c9d4d0fcd417092dd9263fa96783750871b9ffe7e8aa55e7b58",
+      "bytes": 11765
+    }
+  },
+  {
+    "path": "src/render/galactic/GalacticEffectsView.ts",
+    "before": {
+      "sha256": "892d90922e94b0b517fc3e14cd8f94ec57624f8717992566a2b11c6a0b8635dc",
+      "bytes": 98484
+    }
+  },
+  {
+    "path": "tests/combat/TeemtoAuthoredDamage.test.ts",
+    "before": {
+      "sha256": "ce48b6a0bac37c752fbcd2581a598c7ab2d49c3d18aa9ae928f8cd175b87a214",
+      "bytes": 18366
+    }
+  },
+  {
+    "path": "tests/combat/TeemtoGroundEdges.test.ts",
+    "before": {
+      "sha256": "7cbc97c488e950f5cf9be8c8080891dd51676479b933e76ad124223ef5a23152",
+      "bytes": 7761
+    }
+  },
+  {
+    "path": "tests/combat/TeemtoPresentationSupports.test.ts",
+    "before": null
+  },
+  {
+    "path": "tests/combat/TeemtoSupportSettle.test.ts",
+    "before": {
+      "sha256": "98debb1cd3e0d6b925563ce12c4b2b1c3e1b40e29b24bbe41498d2849c931306",
+      "bytes": 13331
+    }
+  },
+  {
+    "path": "tests/combat/WreckGroundContact.test.ts",
+    "before": {
+      "sha256": "dcb1df11624c8914c7608646a3f396409c35fc1100d318d1e9f766a04541210e",
+      "bytes": 3432
+    }
+  },
+  {
+    "path": "tests/render/PerPieceContactEffects.test.ts",
+    "before": null
+  },
+  {
+    "path": "tests/render/WreckContactVolume.test.ts",
+    "before": {
+      "sha256": "40a9a700f8106b093a830a94b5116aeef6e86f76989e9cf118e981f5a9d180c7",
+      "bytes": 12798
+    }
+  }
+]

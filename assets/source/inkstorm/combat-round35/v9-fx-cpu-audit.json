@@ -1,0 +1,69 @@
+{
+  "createdAt": "2026-09-08T18:34:40.793028+00:00",
+  "status": "CPU_PASS_AWAITING_MERGED_VISUAL_REVIEW",
+  "ownedFiles": [
+    {
+      "path": "src/render/galactic/GalacticEffectsView.ts",
+      "sha256": "209542bd5acd5f2acc5e487972b6079c308d48f81e117f6e957640d05f1a504b"
+    },
+    {
+      "path": "tests/render/GalacticEffectsView.test.ts",
+      "sha256": "b9bcfc6ee52694a17282291aa630abb41ecf1e5d8288d1fc321127fdb8a9c7bb"
+    },
+    {
+      "path": "tests/render/GalacticEffectsContact.test.ts",
+      "sha256": "ae4a69eeb7efee47e069e2a583ece09b62ecfc7587da9373509b3694fce8c290"
+    }
+  ],
+  "gameAppOwnedMethod": {
+    "name": "consumeGalacticEffects",
+    "sha256": "1f4cffba8893cfc1905a598e5fb282f79120096747821de4e2d55ed8106397cb"
+  },
+  "validation": {
+    "tests": {
+      "files": 3,
+      "passed": 20,
+      "command": "npm test -- tests/render/GalacticEffectsView.test.ts tests/render/GalacticEffectsContact.test.ts tests/render/solidEffectGeometry.test.ts"
+    },
+    "typecheck": "npm run typecheck PASS",
+    "scopedDiffCheck": "PASS",
+    "browserRun": false
+  },
+  "sourceFindings": {
+    "actualTeemtoHero": "/assets/inkstorm/vehicles/teemto-hero-open-v2.glb",
+    "authoredExhaustRight": [
+      4.025,
+      0.178,
+      5.638
+    ],
+    "oldBurstOrigin": "entry.vehicle.position; no imported-art offset",
+    "newBurstOrigin": "Loaded exhaustRight transformed through exact displayed event-tick YXZ wreck pose plus authoritative root. Procedural engine-right fallback. Missing anchor retains root.",
+    "contactEvidenceLimit": "Authoritative events identify racer/cause, no contact worldpoint. This is a presentation engine rupture origin, not a measured collision contact.",
+    "deduplication": "redline-explosion consumes one burst; paired wreck with redline cause remains skipped"
+  },
+  "budget": {
+    "maxDrawPools": 8,
+    "fragmentCapacity": 64,
+    "maxFragmentsPerEvent": 18,
+    "fullSeverityMetalFragments": 15,
+    "fullSeverityHotSparks": 3,
+    "maxPlatesPerEvent": 4,
+    "plateCapacity": 16,
+    "hazardPlumeCapacity": 72,
+    "trianglesPerFragment": 12,
+    "newDrawPool": false,
+    "newShaderBehavior": true,
+    "runtimeProgramCountMeasured": false
+  },
+  "changes": [
+    "Bent/tapered casing geometry retains twelve triangles; dark neutral metal with directional facets holds its value during tumble and contracts at end.",
+    "Three sparse velocity-aligned ivory/amber sparks at full severity, with shorter lifetime than metal.",
+    "Four bounded layers: short ivory rupture peak, amber flare, two restrained smoke lobes; new contact shader kind shares the existing atmospheric draw.",
+    "Event location is copied from render attachment and authoritative pose; simulation snapshots, events, clocks, camera methods and deterministic gameplay are not changed."
+  ],
+  "limits": [
+    "CPU evidence cannot establish visual quality or actual GPU timing. Root must build and review merged camera/HUD/FX.",
+    "A new shader variant is expected; do not infer unchanged compiled-program count from unchanged draw-pool count.",
+    "Existing imported meshes stay rigid; this patch emits generic casing fragments, not detached source components."
+  ]
+}

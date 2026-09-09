@@ -4,9 +4,10 @@ import { mkdir, writeFile } from 'node:fs/promises';
 import { createServer } from 'node:net';
 import { fileURLToPath } from 'node:url';
 import { chromium } from '@playwright/test';
+import { frozenBuildReceipt } from './lib/frozen-build-receipt.mjs';
 
 const projectRoot = fileURLToPath(new URL('../', import.meta.url));
-const outputDir = fileURLToPath(new URL('../output/playwright/', import.meta.url));
+const outputDir = process.env.INKSTORM_OUTPUT ?? fileURLToPath(new URL('../output/playwright/', import.meta.url));
 const REQUIRED_SECTIONS = [
   'start-straight',
   'fast-straight',
@@ -265,6 +266,25 @@ async function waitForGame(page) {
   await page.waitForFunction(() => window.__PODRACING__?.snapshot().game.awaitingStart === true);
 }
 
+async function selectExpedition(page) {
+  await page.evaluate(() => window.__PODRACING__?.setCaptureMode(false));
+  await page.locator('[data-action="select-event"][data-event-id="open-expedition"]').click();
+  await page.waitForFunction(() => {
+    const game = window.__PODRACING__?.snapshot().game;
+    return game?.mastery?.eventId === 'open-expedition' && game?.competitionProfile === 'chaos'
+      && game?.awaitingStart === true;
+  });
+}
+
+async function retryFromPause(page) {
+  await page.evaluate(() => window.__PODRACING__?.setCaptureMode(false));
+  await page.keyboard.down('p');
+  await page.waitForTimeout(100);
+  await page.keyboard.up('p');
+  await page.locator('[data-action="retry-race"][data-solo-pause]').click();
+  await page.waitForFunction(() => window.__PODRACING__?.snapshot().game.awaitingStart === false);
+}
+
 async function beginRace(page) {
   await page.keyboard.press('Enter');
   await page.waitForFunction(() => window.__PODRACING__?.snapshot().game.awaitingStart === false);
@@ -295,6 +315,8 @@ async function captureMinimap(page, filename) {
     style.textContent = `
       .pod-hud__map {
         display: block !important;
+        opacity: 1 !important;
+        visibility: visible !important;
         position: fixed !important;
         left: 400px !important;
         top: 112px !important;
@@ -364,9 +386,7 @@ async function captureTrackViews(page, slug) {
 async function returnToSelector(page) {
   await stage(page, 'finish', 'hero', 1);
   await page.evaluate(() => window.__PODRACING__?.setCaptureMode(false));
-  await page.keyboard.down('r');
-  await page.waitForTimeout(90);
-  await page.keyboard.up('r');
+  await page.locator('.pod-hud__results-actions [data-action="return-to-garage"]').click();
   await page.waitForFunction(() => window.__PODRACING__?.snapshot().game.awaitingStart === true);
 }
 
@@ -389,6 +409,7 @@ const server = spawn(
 let browser;
 const contexts = [];
 const browserErrors = [];
+const environments = [];
 
 try {
   await waitForServer(baseUrl);
@@ -405,18 +426,50 @@ try {
     attachErrors(page, label, browserErrors);
     await page.goto(url, { waitUntil: 'networkidle' });
     await waitForGame(page);
+    environments.push({ label, ...await frozenBuildReceipt(page, browser) });
     return page;
   };
 
-  // The shipping rematch path, not a direct diagnostic mutation: Enter starts
-  // each race, the finish tableau makes R legal, and R returns to the selector.
+  console.log('Procedural: local browser ready; checking fixed Time Attack before expedition generation.');
+  // Time Attack is the deliberate default and must retain its exact course on
+  // retry. Use the actual pause/retry buttons, without staging a finish.
+  const fixedPage = await createPage('fixed-time-attack', baseUrl);
+  const fixedBoot = await fixedPage.evaluate(() => window.__PODRACING__?.snapshot());
+  if (fixedBoot?.game?.mastery?.eventId !== 'inkstorm-trial'
+    || fixedBoot?.game?.competitionProfile !== 'time-trial'
+    || fixedBoot?.game?.course?.seed !== 0x494e4b53) {
+    throw new Error('Default Time Attack did not boot on the fixed Inkstorm hero course.');
+  }
+  await beginRace(fixedPage);
+  const fixedFirst = await snapshotCourse(fixedPage, 'Fixed Time Attack');
+  await retryFromPause(fixedPage);
+  const fixedRetry = await snapshotCourse(fixedPage, 'Fixed Time Attack retry');
+  if (fixedFirst.seed !== fixedRetry.seed || fixedFirst.signature !== fixedRetry.signature
+    || fixedFirst.sampleDigest !== fixedRetry.sampleDigest) {
+    throw new Error('Retry changed the fixed Time Attack course.');
+  }
+  const fixedRetryProfile = await fixedPage.evaluate(() => window.__PODRACING__?.snapshot().game.competitionProfile);
+  if (fixedRetryProfile !== 'time-trial') throw new Error('Time Attack retry silently changed competition rules.');
+  await fixedPage.screenshot({ path: `${outputDir}/procedural-fixed-time-attack-retry.png`, animations: 'disabled' });
+  await fixedPage.context().close();
+
+  // Explicitly selecting Open Expedition enables fresh courses. Retry keeps
+  // the same layout; Back to Hangar creates the next expedition race.
   const soloPage = await createPage('solo-sequence');
+  await selectExpedition(soloPage);
   const first = await captureStartedCourse(
     soloPage,
     'First solo race',
     'procedural-course-a',
     true,
   );
+  await retryFromPause(soloPage);
+  const expeditionRetry = await snapshotCourse(soloPage, 'Open Expedition retry');
+  if (expeditionRetry.seed !== first.course.seed
+    || expeditionRetry.signature !== first.course.signature
+    || expeditionRetry.sampleDigest !== first.course.sampleDigest) {
+    throw new Error('Retry changed the selected Open Expedition course.');
+  }
   await returnToSelector(soloPage);
   const rematch = await captureStartedCourse(
     soloPage,
@@ -445,6 +498,7 @@ try {
   // Fresh capture sessions must replay the same deterministic seed and pixels.
   const deterministicPageA = await createPage('deterministic-a');
   const deterministicPageB = await createPage('deterministic-b');
+  await Promise.all([selectExpedition(deterministicPageA), selectExpedition(deterministicPageB)]);
   const deterministicA = await captureStartedCourse(
     deterministicPageA,
     'Deterministic replay A',
@@ -525,10 +579,13 @@ try {
 
   if (browserErrors.length > 0) throw new Error(`Browser errors:\n${browserErrors.join('\n')}`);
   const receipt = {
+    outcome: 'PASS', environments,
     capturedAt: new Date().toISOString(),
     viewport: { width: 1440, height: 900, deviceScaleFactor: 2 },
+    fixedTimeAttack: { first: fixedFirst, retry: fixedRetry, sameCourse: true, competitionProfile: fixedRetryProfile },
     solo: {
       first: first.course,
+      retry: expeditionRetry,
       rematch: rematch.course,
       difference: {
         rmsCenterlineMetres: soloRms,
@@ -567,8 +624,20 @@ try {
     minimapChangedPercent: soloMaskDifference.changedFraction * 100,
     deterministicSignature: deterministicA.course.signature,
     roomSignature: hostCourse.signature,
-    evidence: 'output/playwright/procedural-course-receipt.json',
+    evidence: `${outputDir}/procedural-course-receipt.json`,
   }, null, 2));
+} catch (error) {
+  const pages = contexts.flatMap((context) => context.pages());
+  const snapshots = [];
+  for (let index = 0; index < pages.length; index += 1) {
+    const page = pages[index];
+    await page.screenshot({ path: `${outputDir}/procedural-failure-${index}.png` }).catch(() => undefined);
+    snapshots.push(await page.evaluate(() => window.__PODRACING__?.snapshot()).catch(() => null));
+  }
+  await writeFile(`${outputDir}/procedural-course-failure.json`, `${JSON.stringify({
+    capturedAt: new Date().toISOString(), error: String(error), browserErrors, snapshots, environments,
+  }, null, 2)}\n`);
+  throw error;
 } finally {
   await Promise.all(contexts.map((context) => context.close().catch(() => undefined)));
   if (browser) await browser.close().catch(() => undefined);

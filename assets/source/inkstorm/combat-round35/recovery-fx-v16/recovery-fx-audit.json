@@ -1,0 +1,174 @@
+{
+  "version": "v16",
+  "status": "frozen-CPU-tests-passed-native-visual-verification-pending",
+  "scope": "Owned only GalacticEffectsView.ts and two directly relevant FX test files, plus reports/private patch. Parent applied two GameApp adapter lines. CPU tests/typecheck/diff check only; no browser, build, GPU or Blender.",
+  "cause": {
+    "actualAdapter": "GameApp.consumeGalacticEffects recovered event routes style energy at severity 1.4, color #60ff91, vehicle root position and sampled groundY",
+    "legacyEmitter": "Generic energy emits 15 ballistic instances of the existing opaque depth-writing bent BoxGeometry(1,.38,1.7), plus four transparent plates. Non-contact energy nominal sparks do not get the thin contact-spark transform. Existing fragment lifetimes are .85 to 2 seconds.",
+    "interpretation": "The inspected frame is consistent with a near-camera recovery casing fragment; actual recovered emitter routing is verified in source and regression fixture, not inferred from hue alone."
+  },
+  "evidenceViewedIndividually": [
+    {
+      "path": "output/playwright/round35-combat-v15/temporal-review/recovery-fragment-pts14.24.png",
+      "bytes": 1288454,
+      "sha256": "9ee1a94725f0f0a548b94fb25b6a9f064b09e0e7913347d68c2164883fa951b5"
+    },
+    {
+      "path": "output/playwright/round35-combat-v15/temporal-review/recovery-pts13.52.png",
+      "bytes": 982550,
+      "sha256": "b331483173cb4e1beeb519cf8fd582dc1396be8d945e4747814c3f997221952c"
+    }
+  ],
+  "change": {
+    "style": "explicit recovery",
+    "opaqueFragments": 0,
+    "transparentPulseCount": 2,
+    "pool": "existing 16 explosion slots and existing explosionPlates mesh/material/geometry",
+    "newSceneNodes": 0,
+    "newDraws": 0,
+    "newTimers": 0,
+    "position": "Event X/Z remain fixed; sampled groundY + .12 or .27 initial height, rising at most .55m",
+    "actualSeverity": 1.4,
+    "actualMaximumFullPlaneWidthMeters": [
+      2.52,
+      3.22
+    ],
+    "maximumSupportedSeverity": 2,
+    "maximumSupportedFullPlaneWidthMeters": 4.6,
+    "orientation": "Horizontal surface plane, normal up; not camera billboard",
+    "opacityControlMaximum": 0.42,
+    "fade": "Quadratic to zero within existing event time",
+    "pulseStartOffsetsSeconds": [
+      0,
+      0.04
+    ],
+    "pulseDurationsSeconds": [
+      0.26,
+      0.34
+    ],
+    "lastVisibleAgeAtMostSeconds": 0.38,
+    "slotsExpiredByTestAgeSeconds": 0.4,
+    "unrelatedEnergyStyle": "Unchanged, including identical green energy hits",
+    "persistentRecoveryScan": "Unchanged"
+  },
+  "tests": {
+    "effectsReady": {
+      "log": "assets/source/inkstorm/combat-round35/recovery-fx-v16/effects-ready-tests.log",
+      "passed": 24,
+      "failed": 0
+    },
+    "initialBeforeAdapter": {
+      "log": "assets/source/inkstorm/combat-round35/recovery-fx-v16/before-adapter-tests.log",
+      "passed": 27,
+      "failed": 2,
+      "failures": [
+        "Expected actual recovered routing failure because parent adapter not yet applied.",
+        "New energy nonregression fixture sampled age .1 before fourth existing energy plate begins at .105. Corrected sample to .14 without changing expected four plates or implementation."
+      ]
+    },
+    "typecheck": {
+      "log": "assets/source/inkstorm/combat-round35/recovery-fx-v16/before-adapter-typecheck.log",
+      "exitCode": 0
+    },
+    "coverage": [
+      "Actual recovered event consumed through GameApp prototype and passed directly into real FX view; passed with parent-applied adapter.",
+      "Zero opaque recovery debris at supported severity .2, actual 1.4, maximum 2 across seven sampled ages.",
+      "Pulse count, scale, ground height, fixed horizontal position, orientation, opacity control, expiry.",
+      "Existing green energy remains 15 casing instances and four plates.",
+      "Recovery leaves already-live redline casing instances byte-identical at same update time.",
+      "Repeated recovery events wrap existing pool; deterministic transforms and colors, immutable inputs, clear and expiry, unchanged node/material/geometry identities."
+    ],
+    "final": {
+      "passed": 29,
+      "failed": 0,
+      "files": 2,
+      "log": {
+        "path": "assets/source/inkstorm/combat-round35/recovery-fx-v16/final-tests.log",
+        "bytes": 4968,
+        "sha256": "8ddc5299c3ecc282e3ba29be6d97d36b0e4427fc4abaa43ce458f9bd742fd6f7"
+      },
+      "execution": {
+        "command": [
+          "npx",
+          "vitest",
+          "run",
+          "tests/render/GalacticEffectsView.test.ts",
+          "tests/render/GalacticEffectsContact.test.ts",
+          "--silent=false",
+          "--reporter=verbose"
+        ],
+        "exitCode": 0,
+        "elapsedSeconds": 1.959510087966919
+      }
+    },
+    "finalChecks": [
+      {
+        "check": "typecheck",
+        "command": [
+          "npm",
+          "run",
+          "typecheck"
+        ],
+        "exitCode": 0,
+        "elapsedSeconds": 0.517338752746582
+      },
+      {
+        "check": "diff-check",
+        "command": [
+          "git",
+          "diff",
+          "--check",
+          "--",
+          "src/render/galactic/GalacticEffectsView.ts",
+          "tests/render/GalacticEffectsView.test.ts",
+          "tests/render/GalacticEffectsContact.test.ts",
+          "src/render/app/GameApp.ts"
+        ],
+        "exitCode": 0,
+        "elapsedSeconds": 0.022597074508666992
+      }
+    ]
+  },
+  "source": [
+    {
+      "path": "src/render/galactic/GalacticEffectsView.ts",
+      "bytes": 63012,
+      "sha256": "abf66cdb0353c8b9d411751a0682e81a5f94398aa4dbcf9bce09912ef2d2bf45"
+    },
+    {
+      "path": "tests/render/GalacticEffectsView.test.ts",
+      "bytes": 30433,
+      "sha256": "6ff0f39dcb14a199f36851e363b3e61367549fcb89b864c045bc93d16d429839"
+    },
+    {
+      "path": "tests/render/GalacticEffectsContact.test.ts",
+      "bytes": 9723,
+      "sha256": "a03252958ae8374e3a6613945228583d0e100136ef8855771ef1115e7b6e5dc4"
+    }
+  ],
+  "parentAdapterPatch": {
+    "path": "assets/source/inkstorm/combat-round35/recovery-fx-v16/GameApp-recovery-style.patch",
+    "bytes": 679,
+    "sha256": "ce59e5f20b3151a4858de47a48e1003709d113cbbefef5465252af5b04fc5f84"
+  },
+  "limitations": [
+    "Native V16 perceptual verification remains pending; CPU checks do not prove appearance, visibility, gameplay FPS or visual acceptance.",
+    "No new native capture/build was run by this agent.",
+    "The ground pulses use the existing sampled event ground height, not a per-pixel terrain conforming mesh.",
+    "No simulation or recovery timing changed; the existing recovery scan remains separate and unchanged."
+  ],
+  "completedAtUtc": "2026-09-08T21:16:58.385518+00:00",
+  "sourceStableDuringFinalVerification": true,
+  "preservedBeforeCopiesVerified": true,
+  "adapter": {
+    "path": "src/render/app/GameApp.ts",
+    "bytes": 171897,
+    "sha256": "5d6767b70f54687e3a4c803a5d4d718057167ff75154472adedef2751dd0318a",
+    "appliedBy": "parent agent",
+    "actualRoutingVerified": true,
+    "changes": [
+      "Local effect style union accepts recovery",
+      "Recovered case assigns recovery style"
+    ]
+  }
+}

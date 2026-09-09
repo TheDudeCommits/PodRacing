@@ -1,0 +1,178 @@
+{
+  "input": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/polwo-driver-round32/packaged-shoulders-v2/polwo-hero-v1.glb",
+  "inputSha256": "17e117cd9cbf86a2cf096ca6cdc0e46413b391395577b5f0774203ce7987f39f",
+  "uncappedReference": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/polwo-driver-round32/polwo-inkstorm-paint-v1-native.glb",
+  "uncappedReferenceSha256": "469bc1243e29d8ddd1f2829dc345227712e6a6d2049c9604f56057e98681e759",
+  "sourcePreserved": true,
+  "trials": [
+    {
+      "name": "01-topology-locked",
+      "error": 0.001,
+      "flags": [
+        "LockBorder"
+      ],
+      "attributes": false,
+      "triangles": 36079,
+      "parts": [
+        {
+          "name": "polwo-body-0",
+          "beforeTriangles": 32520,
+          "afterTriangles": 23220,
+          "error": 0.0009763565030880272,
+          "lockedVertices": 23,
+          "protectedNewCapTriangles": 0
+        },
+        {
+          "name": "polwo-body-1",
+          "beforeTriangles": 544,
+          "afterTriangles": 544,
+          "error": 0,
+          "lockedVertices": 11,
+          "protectedNewCapTriangles": 0
+        },
+        {
+          "name": "polwo-pilot-accent",
+          "beforeTriangles": 188,
+          "afterTriangles": 188,
+          "error": 0,
+          "lockedVertices": 18,
+          "protectedNewCapTriangles": 0
+        },
+        {
+          "name": "polwo-pilot-hardware",
+          "beforeTriangles": 1552,
+          "afterTriangles": 1214,
+          "error": 0.0009946731152012944,
+          "lockedVertices": 13,
+          "protectedNewCapTriangles": 0
+        },
+        {
+          "name": "polwo-pilot-rubber",
+          "beforeTriangles": 2228,
+          "afterTriangles": 2164,
+          "error": 0.0009922741446644068,
+          "lockedVertices": 13,
+          "protectedNewCapTriangles": 0
+        },
+        {
+          "name": "polwo-pilot-shell",
+          "beforeTriangles": 1444,
+          "afterTriangles": 1182,
+          "error": 0.0009966318029910326,
+          "lockedVertices": 12,
+          "protectedNewCapTriangles": 0
+        },
+        {
+          "name": "polwo-pilot-suit",
+          "beforeTriangles": 9491,
+          "afterTriangles": 6867,
+          "error": 0.0009983316995203495,
+          "lockedVertices": 289,
+          "protectedNewCapTriangles": 132
+        },
+        {
+          "name": "polwo-pilot-webbing",
+          "beforeTriangles": 1008,
+          "afterTriangles": 700,
+          "error": 0.0009219450876116753,
+          "lockedVertices": 6,
+          "protectedNewCapTriangles": 0
+        }
+      ],
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/polwo-driver-round32/packaged-shoulders-v2/rival-lod/01-topology-locked.glb",
+      "sha256": "d85f9f29e6a4ca46c80fe7bd33718f1a1f595c4ed4ea8d605a33d9caeef9ca2f",
+      "withinRivalGeometryBudget": false
+    },
+    {
+      "name": "02-attribute-seams",
+      "error": 0.006,
+      "flags": [
+        "Permissive"
+      ],
+      "attributes": true,
+      "triangles": 28830,
+      "parts": [
+        {
+          "name": "polwo-body-0",
+          "beforeTriangles": 32520,
+          "afterTriangles": 19199,
+          "error": 0.00036584437475539744,
+          "lockedVertices": 23,
+          "protectedNewCapTriangles": 0
+        },
+        {
+          "name": "polwo-body-1",
+          "beforeTriangles": 544,
+          "afterTriangles": 544,
+          "error": 0,
+          "lockedVertices": 11,
+          "protectedNewCapTriangles": 0
+        },
+        {
+          "name": "polwo-pilot-accent",
+          "beforeTriangles": 188,
+          "afterTriangles": 188,
+          "error": 0,
+          "lockedVertices": 18,
+          "protectedNewCapTriangles": 0
+        },
+        {
+          "name": "polwo-pilot-hardware",
+          "beforeTriangles": 1552,
+          "afterTriangles": 1100,
+          "error": 0.0011871299939230084,
+          "lockedVertices": 13,
+          "protectedNewCapTriangles": 0
+        },
+        {
+          "name": "polwo-pilot-rubber",
+          "beforeTriangles": 2228,
+          "afterTriangles": 1000,
+          "error": 0.004774469882249832,
+          "lockedVertices": 13,
+          "protectedNewCapTriangles": 0
+        },
+        {
+          "name": "polwo-pilot-shell",
+          "beforeTriangles": 1444,
+          "afterTriangles": 1100,
+          "error": 0.0009002096485346556,
+          "lockedVertices": 12,
+          "protectedNewCapTriangles": 0
+        },
+        {
+          "name": "polwo-pilot-suit",
+          "beforeTriangles": 9491,
+          "afterTriangles": 5000,
+          "error": 0.0014596295077353716,
+          "lockedVertices": 289,
+          "protectedNewCapTriangles": 132
+        },
+        {
+          "name": "polwo-pilot-webbing",
+          "beforeTriangles": 1008,
+          "afterTriangles": 699,
+          "error": 0.0008248628000728786,
+          "lockedVertices": 6,
+          "protectedNewCapTriangles": 0
+        }
+      ],
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/polwo-driver-round32/packaged-shoulders-v2/rival-lod/02-attribute-seams.glb",
+      "sha256": "d55626cbc4e58cd3fcaae1dc71e9ea6f270915cac1ee88d957b718719d1049db",
+      "withinRivalGeometryBudget": true
+    }
+  ],
+  "method": "Original vertex subset only; positions, UVs, normals, tangents not interpolated; no component pruning; capped triangles/extreme positions protected",
+  "normalWeights": [
+    0.1,
+    0.1,
+    0.1
+  ],
+  "uvWeights": [
+    1,
+    1
+  ],
+  "visualAcceptance": false,
+  "output": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/polwo-driver-round32/packaged-shoulders-v2/rival-lod/03-rival-reordered.glb",
+  "outputSha256": "7a77b0ec4a3e697c06ef801e2b854f1807c622231e56aa29a83c7ebe870b256e"
+}

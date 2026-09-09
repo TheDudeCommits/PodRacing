@@ -1,0 +1,44 @@
+{
+  "status": "Integrated local source; frozen for root capture and complete performance checkpoint",
+  "runtimeEdited": [
+    "src/game/race/LaunchBasinPlan.ts",
+    "src/render/inkstorm/InkstormVista.ts",
+    "src/render/inkstorm/InkstormWorld.ts"
+  ],
+  "fieldAdapterCopied": false,
+  "newCompositionForms": 3,
+  "olderDepthFormsRetained": 5,
+  "olderRidgeAccentsRetained": 9,
+  "newTrianglesAllHigh": 10248,
+  "newTrianglesAllLow": 5409,
+  "historicalNormalFixture": {
+    "sites": 6,
+    "points": 54,
+    "fieldSha256": "1508215a796d439b48aeebf7f510c8847ab057a296b138fb578b094c29efa572",
+    "thresholdsRelaxed": false
+  },
+  "checks": {
+    "focusedTestFiles": 14,
+    "passedTests": 60,
+    "failedTests": 0,
+    "typecheck": "pass",
+    "gitDiffCheck": "pass",
+    "worldAssemblyGroundingTest": "pass; new ID/family-scoped grounded matrices, ordinary spire transforms preserved",
+    "actualGlbHighLodFootprintToeBudgetTests": "pass"
+  },
+  "captureRunByThisTask": false,
+  "buildRunByThisTask": false,
+  "fullRacePerformanceRunByThisTask": false,
+  "artAccepted": false,
+  "files": {
+    "src/game/race/LaunchBasinPlan.ts": "38235aaac16084e1a7c2e4c5e33a4673d0d68285591e65f4a3a2c81066f9765c",
+    "src/render/inkstorm/InkstormVista.ts": "cdd3cb7284f5c1f0b871f527abc465adad63030f1b2915fa1b59a2a5d1a5f49e",
+    "src/render/inkstorm/InkstormWorld.ts": "855023d0f53b75cfa0083dbb588efcec7fc77a4d2151de86af26717a7b1a659c",
+    "src/render/terrain/terrainShaderChunks.ts": "15b74f643cde0b76a679665e99fd8ed8e827d846b609c335ee61f39029627ec8",
+    "tests/terrain/authoredTerrainLightingRound27.ts": "0b7e62e4d55e1c39bf7306aef9de968f5aa00c5fc30775566483292e6ab7b2e5",
+    "tests/terrain/authoredTerrainLighting.test.ts": "72705300b39c4001eb4f5da042f3b404fc57d0740f88701dc1e982d87f233a43",
+    "tests/terrain/launchComposition.test.ts": "65dce22d639dfcd0578ec885f4faa23ebe454e73178672eafaf5b2bb5b5b10e7",
+    "tests/terrain/launchBasinComposition.test.ts": "ca4b4e1a02cbf674710cc623b26dcacdc1a730fe6d065eae9e6f6a4b09eabce6",
+    "tests/render/inkstormLaunchDepth.test.ts": "e170bd655f5888998f7bdf3eeca2a90828c949eb3d787a24e0b3f61999f36088"
+  }
+}

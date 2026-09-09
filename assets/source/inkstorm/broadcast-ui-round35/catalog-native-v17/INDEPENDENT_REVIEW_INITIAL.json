@@ -1,0 +1,56 @@
+{
+  "status": "STATIC_REVIEW_FINDINGS_NATIVE_PENDING",
+  "recordedAt": "2026-09-08T22:24:26.856152+00:00",
+  "source": "scripts/inkstorm-broadcast-ui.mjs",
+  "sha256": "6c0c9c796b21d0b8e088b18e2adae433b57255c081e281e2ea69a54c4bf3f781",
+  "bytes": 34187,
+  "sourceMutation": false,
+  "browserBuildGPU": false,
+  "findings": [
+    {
+      "priority": "P2",
+      "lines": [
+        165,
+        170,
+        194,
+        201
+      ],
+      "title": "Take the original loadout snapshot before any catalogue actions",
+      "reason": "Per-slot initial IDs are captured after earlier slot mutations. A cross-slot mutation can become the later baseline and pass final restoration.",
+      "fix": "Snapshot all five persisted IDs once at entry; assert UI matches each original ID, restore from that immutable snapshot, and compare all five after the loop."
+    },
+    {
+      "priority": "P2",
+      "lines": [
+        185,
+        190
+      ],
+      "title": "Positive SVG width does not establish a visible schematic",
+      "reason": "The glyph assertion accepts hidden, zero-opacity, offscreen, zero-height or clipped SVGs. Text checks do not cover the glyph.",
+      "fix": "Scroll the glyph into view and check positive width/height, computed visibility/ancestor opacity, viewport and actual overflow clipping bounds; retain raw evidence."
+    },
+    {
+      "priority": "P3",
+      "lines": [
+        175,
+        182,
+        202
+      ],
+      "title": "Narrow Enter follows an already completed touch equip",
+      "reason": "Tap equips first and waits for selected. Enter then exercises idempotent activation and keyboard focus, not a keyboard-triggered transition to a new part. Touch dispatch comes from desktop Chromium emulation, not a physical device.",
+      "fix": "Label evidence precisely; keep desktop Enter equip/rebuild assertion. A separate keyboard activation on an unselected narrow control is needed only to claim that specific transition."
+    }
+  ],
+  "limits": [
+    "readableText establishes nonempty DOM text and bounded layout/visibility; it does not establish visual contrast or absence of unrelated overlapping overlays.",
+    "The catalogue checks headings, descriptions, benefits, tradeoffs and equip labels; per-part comparison disclosure is not in its selector list. Avoid claiming it validates all twenty comparisons.",
+    "All 20 parts are traversed across desktop/mobile/landscape emulated viewports, with live DOM input and persisted IDs. This is not physical-device acceptance or performance evidence."
+  ],
+  "preservedGoodGates": [
+    "Existing native motion samples and reduced-motion checks retained unchanged.",
+    "display:contents remains excluded only from clipping bounds; hidden ancestry is still rejected.",
+    "Full text remains checked for own overflow and containing card/ancestor clipping.",
+    "No state/loadout injection introduced.",
+    "The overall receipt and motion sampling explicitly disclaim performance evidence."
+  ]
+}

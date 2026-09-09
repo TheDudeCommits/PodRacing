@@ -1,0 +1,78 @@
+{
+  "date": "2026-09-08T13:09:39.862261+00:00",
+  "sourceScene": "PodRacing \u2014 Blockrunner Inkstorm finalized atlas round34 V3",
+  "triangles": 44028,
+  "materialDraws": 5,
+  "preservedGeometryUvNormals": true,
+  "images": [
+    {
+      "view": "fullcraft",
+      "stage": "paint-v2",
+      "path": "assets/source/inkstorm/blockrunner-round34/paint-v1-fullcraft-20260908-round34-paint-v2.png",
+      "bytes": 1029541,
+      "sha256": "d7eca2c44cd6abc36229098207d5ec48fb72b8557e33d2a1c47b411b4b68b048"
+    },
+    {
+      "view": "fullcraft",
+      "stage": "atlas-v3",
+      "path": "assets/source/inkstorm/blockrunner-round34/paint-v1-fullcraft-20260908-round34-atlas-v3.png",
+      "bytes": 1028808,
+      "sha256": "6bb1e53448fd3ed14e1a1c5b900e5391be1ef5d13977cf9fab23061c59c71f4c"
+    },
+    {
+      "view": "driver",
+      "stage": "paint-v2",
+      "path": "assets/source/inkstorm/blockrunner-round34/paint-v1-driver-20260908-round34-paint-v2.png",
+      "bytes": 1133509,
+      "sha256": "cf9a65f314b1d097405dabf72aaacb122f5e439e954a7a07af5eb5f06056494d"
+    },
+    {
+      "view": "driver",
+      "stage": "atlas-v3",
+      "path": "assets/source/inkstorm/blockrunner-round34/paint-v1-driver-20260908-round34-atlas-v3.png",
+      "bytes": 1132184,
+      "sha256": "e998310bbe51959c082420465d6d99112df41b27f1cc15bdd9e9aef9332cb9e5"
+    },
+    {
+      "view": "front",
+      "stage": "paint-v2",
+      "path": "assets/source/inkstorm/blockrunner-round34/paint-v1-front-20260908-round34-paint-v2.png",
+      "bytes": 1001858,
+      "sha256": "d9afa00eff05ae46221f4875f92a1eeaf80031cd99ad6abde052775472d4b0bf"
+    },
+    {
+      "view": "front",
+      "stage": "atlas-v3",
+      "path": "assets/source/inkstorm/blockrunner-round34/paint-v1-front-20260908-round34-atlas-v3.png",
+      "bytes": 1001253,
+      "sha256": "c180072ac5d5f740072c66b05f2110ce96e4addd15c1bfeb062c18f2648aea35"
+    },
+    {
+      "view": "rear",
+      "stage": "paint-v2",
+      "path": "assets/source/inkstorm/blockrunner-round34/paint-v1-rear-20260908-round34-paint-v2.png",
+      "bytes": 1052744,
+      "sha256": "b3be3197434995b1ca324ba88f22ccbd069ec966dfd56e5a91cf8e1b1adf692e"
+    },
+    {
+      "view": "rear",
+      "stage": "atlas-v3",
+      "path": "assets/source/inkstorm/blockrunner-round34/paint-v1-rear-20260908-round34-atlas-v3.png",
+      "bytes": 1052659,
+      "sha256": "502041f7d447870fd417761ffc37fcaf65db4876a20aa6f7086131d00d9b4368"
+    }
+  ],
+  "review": {
+    "reviewer": "root",
+    "allFourAtlasViewsIndividuallyInspected": true,
+    "proceduralDriverReopenedForDirectComparison": true,
+    "findings": [
+      "Palette, silhouette, pilot role assignments and major shading preserved.",
+      "Small procedural scuffs soften at baked atlas resolution.",
+      "Dark disc rim notches are also in procedural V2 and are not new atlas bleed."
+    ],
+    "artParityAccepted": false,
+    "freshBlindReview": "Not obtained: both new-agent and finished-reviewer followup calls rejected by agent thread limit."
+  },
+  "runtimeRegistered": false
+}

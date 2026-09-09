@@ -1,0 +1,203 @@
+{
+  "objectLineage": [
+    {
+      "importedName": "teemto-cockpit.010",
+      "object": "Teemto V16 rival intact | teemto-cockpit.010",
+      "triangles": 0,
+      "type": "EMPTY",
+      "worldBounds": null
+    },
+    {
+      "importedName": "teemto-cockpit-body.010",
+      "object": "Teemto V16 rival intact | teemto-cockpit-body.010",
+      "triangles": 12026,
+      "type": "MESH",
+      "worldBounds": [
+        [
+          -1.3348463773727417,
+          -1.1882781982421875,
+          1.001510739326477
+        ],
+        [
+          1.3557040691375732,
+          7.333491802215576,
+          4.498374938964844
+        ]
+      ]
+    },
+    {
+      "importedName": "teemto-engine-left.010",
+      "object": "Teemto V16 rival intact | teemto-engine-left.010",
+      "triangles": 0,
+      "type": "EMPTY",
+      "worldBounds": null
+    },
+    {
+      "importedName": "teemto-engine-left-body.013",
+      "object": "Teemto V16 rival intact | teemto-engine-left-body.013",
+      "triangles": 5426,
+      "type": "MESH",
+      "worldBounds": [
+        [
+          -6.54527473449707,
+          -22.738540649414062,
+          0.07286620140075684
+        ],
+        [
+          -1.3187763690948486,
+          -5.0940141677856445,
+          5.1863298416137695
+        ]
+      ]
+    },
+    {
+      "importedName": "teemto-engine-right.010",
+      "object": "Teemto V16 rival intact | teemto-engine-right.010",
+      "triangles": 0,
+      "type": "EMPTY",
+      "worldBounds": null
+    },
+    {
+      "importedName": "teemto-engine-right-body.013",
+      "object": "Teemto V16 rival intact | teemto-engine-right-body.013",
+      "triangles": 5378,
+      "type": "MESH",
+      "worldBounds": [
+        [
+          1.2777190208435059,
+          -22.736522674560547,
+          0.12051224708557129
+        ],
+        [
+          6.496447563171387,
+          -5.1262664794921875,
+          5.250973701477051
+        ]
+      ]
+    },
+    {
+      "importedName": "teemto-pilot.002",
+      "object": "Teemto V16 rival intact | teemto-pilot.002",
+      "triangles": 0,
+      "type": "EMPTY",
+      "worldBounds": null
+    },
+    {
+      "importedName": "teemto-pilot-helmet.002",
+      "object": "Teemto V16 rival intact | teemto-pilot-helmet.002",
+      "triangles": 514,
+      "type": "MESH",
+      "worldBounds": [
+        [
+          -0.3725000321865082,
+          4.624944686889648,
+          2.3902416229248047
+        ],
+        [
+          0.36919623613357544,
+          5.669759273529053,
+          3.275423288345337
+        ]
+      ]
+    },
+    {
+      "importedName": "teemto-pilot-orange.002",
+      "object": "Teemto V16 rival intact | teemto-pilot-orange.002",
+      "triangles": 1166,
+      "type": "MESH",
+      "worldBounds": [
+        [
+          -0.30346211791038513,
+          4.555837154388428,
+          2.1005306243896484
+        ],
+        [
+          0.30346211791038513,
+          5.563058376312256,
+          3.2314445972442627
+        ]
+      ]
+    },
+    {
+      "importedName": "teemto-pilot-suit.014",
+      "object": "Teemto V16 rival intact | teemto-pilot-suit.014",
+      "triangles": 1410,
+      "type": "MESH",
+      "worldBounds": [
+        [
+          -0.3674999177455902,
+          4.12967586517334,
+          2.054417371749878
+        ],
+        [
+          0.3675000071525574,
+          5.534947395324707,
+          3.009394645690918
+        ]
+      ]
+    },
+    {
+      "importedName": "teemto-pilot-visor.002",
+      "object": "Teemto V16 rival intact | teemto-pilot-visor.002",
+      "triangles": 260,
+      "type": "MESH",
+      "worldBounds": [
+        [
+          -0.19249999523162842,
+          5.22206974029541,
+          2.9972448348999023
+        ],
+        [
+          0.19249998033046722,
+          5.355953216552734,
+          3.1874423027038574
+        ]
+      ]
+    }
+  ],
+  "preservation": {
+    "changedCollections": [],
+    "changedScenes": [],
+    "contextRestored": true,
+    "preexistingMaterialsRetained": true,
+    "preexistingMeshesRetained": true,
+    "preexistingObjectsRetained": true,
+    "preexistingScenes": 161
+  },
+  "scene": "PodRacing — Teemto damage V16 pinned intact rival source",
+  "sceneCountAfter": 162,
+  "source": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/combat-round35/authored-damage-v16/intact-teemto-rival.glb",
+  "sourceByteSha256External": "3d9d8d8d924258b84553de7f31f44dc4f69f069511cb6358ab2c174768e3385f",
+  "sourceCornerNormalSignature": {
+    "Teemto V16 rival intact | teemto-cockpit-body.010": "bd9c934bceef6995",
+    "Teemto V16 rival intact | teemto-engine-left-body.013": "4c8a33c5cc2b3013",
+    "Teemto V16 rival intact | teemto-engine-right-body.013": "d21bc4a781a4398a",
+    "Teemto V16 rival intact | teemto-pilot-helmet.002": "18c33a9ae8439df7",
+    "Teemto V16 rival intact | teemto-pilot-orange.002": "7591d69d6a413dcf",
+    "Teemto V16 rival intact | teemto-pilot-suit.014": "3f30b7dac8d3f025",
+    "Teemto V16 rival intact | teemto-pilot-visor.002": "1e6c6bddc4e0642f"
+  },
+  "sourceSignature": {
+    "algorithm": "FNV-1a-64 over canonical ASCII JSON; non-cryptographic",
+    "materialsFnv1a64": {
+      "Inkstorm Teemto Cabina.011": "a93bedcebea3fcac",
+      "Inkstorm Teemto Propulsores.011": "c975e02c63d5519a",
+      "Teemto original pilot helmet.002": "e8699fe76db560cc",
+      "Teemto original pilot orange.002": "808b24240ee5c140",
+      "Teemto original pilot suit.002": "9ce869624a170788",
+      "Teemto original pilot visor.002": "68a4fcd55cfc3246"
+    },
+    "meshesFnv1a64": {
+      "Inkstorm Teemto Gabina-exterior-timon_low_Cabina_0.002": "c10d4e242fd0b9e8",
+      "Inkstorm Teemto Propulsores-alerones_low.002_Propulsores_0.002": "c78021a93e4d9596",
+      "Inkstorm Teemto Propulsores-alerones_low_Propulsores_0.002": "59d984da259e8ff2",
+      "Sphere.136": "1e9c2c0cd1f76867",
+      "Sphere.137": "f928a10ab3d10453",
+      "Sphere.138": "0cf2bad63140b658",
+      "Sphere.139": "59b6f2582aed375f"
+    },
+    "objectsFnv1a64": "24a955528f2a5c0b"
+  },
+  "stage": "V16 pinned source import",
+  "success": true
+}

@@ -1,0 +1,210 @@
+--- a/src/ui/RaceHud.ts
++++ b/src/ui/RaceHud.ts
+@@ -445,7 +445,7 @@
+           <strong class="pod-hud__sr-only"><span data-hud="redline-value">0</span>%</strong>
+         </div>
+       <section class="pod-hud__speed" aria-label="Speed">
+-        <div class="pod-hud__speed-ring" data-hud="speed-ring"><svg class="pod-hud__speed-dial" viewBox="0 0 185 120" aria-hidden="true"><path class="dial-fill" d="M39 31H113a31 31 0 0 1 0 62H39a31 31 0 0 1 0-62Z"/><path d="M39 31H113a31 31 0 0 1 0 62H39a31 31 0 0 1 0-62Z"/><path d="M38 9H116a52 52 0 0 1 0 104H40v-7h76a45 45 0 0 0 0-90H38"/><path class="dial-track" pathLength="100" d="M40 102H115a50 50 0 0 0 0-100H38"/><path class="dial-charge" pathLength="100" d="M40 102H115a50 50 0 0 0 0-100H38"/><circle class="dial-fill" cx="36" cy="12" r="10"/><circle cx="36" cy="12" r="10"/></svg></div>
++        <div class="pod-hud__speed-ring" data-hud="speed-ring"><svg class="pod-hud__speed-dial" viewBox="0 0 185 210" aria-hidden="true"><path class="dial-resource-glass" d="M0 110H171V184a14 14 0 0 1-14 14H0Z"/><path class="dial-fill" d="M39 31H113a31 31 0 0 1 0 62H39a31 31 0 0 1 0-62Z"/><path d="M39 31H113a31 31 0 0 1 0 62H39a31 31 0 0 1 0-62Z"/><path d="M38 9H116a52 52 0 0 1 0 104H40v-7h76a45 45 0 0 0 0-90H38"/><path class="dial-track" pathLength="100" d="M10 198H115a58 58 0 0 0 58-58V60a58 58 0 0 0-58-58H38"/><path class="dial-charge" pathLength="100" d="M10 198H115a58 58 0 0 0 58-58V60a58 58 0 0 0-58-58H38"/><circle class="dial-fill" cx="36" cy="12" r="10"/><circle cx="36" cy="12" r="10"/></svg></div>
+         <div class="pod-hud__speed-readout">
+           <span class="pod-hud__speed-number" data-hud="speed">000</span>
+           <span class="pod-hud__speed-unit">KPH</span>
+--- a/src/ui/broadcastStyles.ts
++++ b/src/ui/broadcastStyles.ts
+@@ -545,7 +545,7 @@
+ .pod-hud__driving-instruments>.pod-hud__redline-heat { top:0; left:14px; font:700 12px/1.3 Inkstorm UI,sans-serif; }
+ .pod-hud__driving-instruments>.pod-hud__redline-heat:not(.is-active):not(.has-core-heat) .pod-hud__redline-track { visibility:hidden; }
+ .pod-hud__driving-instruments>.pod-hud__speed { top:23px; height:170px; }
+-.pod-hud__driving-instruments .pod-hud__speed-number { font-size:48px; }
++.pod-hud__driving-instruments .pod-hud__speed-number { font-size:48px; text-shadow:none; }
+ .pod-hud__driving-instruments .pod-hud__speed-dial .dial-fill { fill:#142f37bd; }
+ .pod-hud__driving-instruments .pod-hud__speed>.pod-hud__meter--boost { width:100%; bottom:0; left:0; right:0; padding:5px 9px; background:#142f37ca; border-radius:2px; }
+ .pod-hud__driving-instruments .pod-hud__meter-head { align-items:baseline; }
+@@ -661,32 +661,38 @@
+ .pod-hud__vehicle-select.is-visible .pod-hud__mastery { animation:instrument-enter 340ms 50ms var(--ui-settle) both; }
+ .pod-hud__vehicle-select.is-visible .pod-hud__vehicle-cards { animation:instrument-enter 340ms 90ms var(--ui-settle) both; }
+ 
+-/* Open amber instruments share anchors; contrast stays local to their readings. */
++/* One connected dial: speed above three actual resource readings. */
+ .pod-hud__driving-instruments { width:244px; height:264px; background:transparent; border:0; border-radius:0; box-shadow:none; filter:none; }
+-.pod-hud__driving-instruments>.pod-hud__redline-heat { top:10px; left:16px; right:28px; width:auto; min-height:0; height:17px; padding:0; transform:none; display:flex; align-items:center; gap:9px; box-shadow:none; border:0; background:none; }
+-.pod-hud__driving-instruments>.pod-hud__redline-heat>span { flex:0 0 auto; font:700 12px/1.2 Inkstorm UI,sans-serif; letter-spacing:.025em; }
++.pod-hud__driving-instruments>.pod-hud__redline-heat { top:22px; left:62px; right:22px; width:auto; min-height:0; height:17px; padding:0; transform:none; display:flex; align-items:center; gap:8px; box-shadow:none; border:0; background:none; z-index:2; }
++.pod-hud__driving-instruments>.pod-hud__redline-heat>span { flex:0 0 auto; font:700 11px/1.2 Inkstorm UI,sans-serif; letter-spacing:0; }
+ .pod-hud__driving-instruments>.pod-hud__redline-heat::after { content:none; }
+-.pod-hud__driving-instruments>.pod-hud__redline-heat .pod-hud__redline-track { flex:1; height:4px; border:0; transform:none; }
+-.pod-hud__driving-instruments>.pod-hud__speed { inset:30px 12px auto; height:183px; }
+-.pod-hud__driving-instruments .pod-hud__speed-ring { width:216px; height:140px; }
+-.pod-hud__driving-instruments .pod-hud__speed-dial { stroke-width:1.6; filter:drop-shadow(0 1px 1px #10272ddd); }
+-.pod-hud__driving-instruments .pod-hud__speed-dial>path:nth-of-type(3) { display:none; }
+-.pod-hud__driving-instruments .pod-hud__speed-dial .dial-fill { fill:#112e3657; }
+-.pod-hud__driving-instruments .pod-hud__speed-dial .dial-track { stroke:#f5d58e80; stroke-width:1.6; }
+-.pod-hud__driving-instruments .pod-hud__speed-dial .dial-charge { stroke-width:2.2; }
+-.pod-hud__driving-instruments .pod-hud__speed-readout { top:49px; left:31px; width:147px; }
++.pod-hud__driving-instruments>.pod-hud__redline-heat .pod-hud__redline-track { flex:1; min-width:22px; height:4px; border:0; transform:none; }
++.pod-hud__driving-instruments>.pod-hud__speed { inset:16px 12px auto; height:245px; }
++.pod-hud__driving-instruments .pod-hud__speed-ring { width:216px; height:245px; }
++.pod-hud__driving-instruments .pod-hud__speed-dial { stroke-width:1.6; filter:none; }
++.pod-hud__driving-instruments .pod-hud__speed-dial>path:nth-of-type(4) { display:none; }
++.pod-hud__driving-instruments .pod-hud__speed-dial .dial-fill { fill:#112e367d; }
++.pod-hud__driving-instruments .pod-hud__speed-dial .dial-resource-glass { fill:#112e3696; stroke:none; }
++.pod-hud__driving-instruments .pod-hud__speed-dial .dial-track { stroke:#f5d58e8c; stroke-width:1.6; }
++.pod-hud__driving-instruments .pod-hud__speed-dial .dial-charge { stroke-width:3; }
++.pod-hud__driving-instruments .pod-hud__speed-readout { top:49px; left:31px; width:147px; text-shadow:none; }
+ .pod-hud__driving-instruments .pod-hud__speed-number { font-size:48px; }
+ .pod-hud__driving-instruments .pod-hud__speed-unit { font:700 11px/1 Inkstorm UI,sans-serif; }
+-.pod-hud__driving-instruments .pod-hud__speed>.pod-hud__meter--boost { padding:0; background:none; border:0; border-radius:0; }
+-.pod-hud__driving-instruments>.pod-hud__telemetry { left:12px; right:12px; bottom:12px; gap:14px; }
+-.pod-hud__driving-instruments .pod-hud__telemetry>.pod-hud__meter { width:calc((100% - 14px)/2); padding:0; background:none; border:0; border-radius:0; box-shadow:none; }
+-.pod-hud__driving-instruments .pod-hud__meter-head { display:flex; justify-content:space-between; gap:4px; text-shadow:none; }
+-.pod-hud__driving-instruments .pod-hud__meter-head .pod-hud__label { font:400 12px/1.25 var(--ui-heading); letter-spacing:0; }
+-.pod-hud__driving-instruments .pod-hud__meter-value { font:400 15px/1.15 var(--ui-heading); letter-spacing:0; }
+-.pod-hud__driving-instruments .pod-hud__meter-track,.pod-hud__driving-instruments .pod-hud__telemetry .pod-hud__meter-track { height:5px; margin-top:5px; background:#d8ddbb24; border:0; transform:none; }
++.pod-hud__driving-instruments .pod-hud__speed>.pod-hud__meter--boost { top:130px; bottom:auto; left:8px; right:26px; width:auto; padding:0; background:none; border:0; border-radius:0; }
++.pod-hud__driving-instruments>.pod-hud__telemetry { left:20px; right:38px; bottom:32px; height:auto; display:grid; grid-template-columns:minmax(0,1fr); gap:8px; }
++.pod-hud__driving-instruments .pod-hud__telemetry>.pod-hud__meter { width:auto; min-height:22px; padding:0; background:none; border:0; border-radius:0; box-shadow:none; }
++.pod-hud__driving-instruments .pod-hud__meter--boost,.pod-hud__driving-instruments .pod-hud__telemetry>.pod-hud__meter { display:grid; grid-template-columns:47px minmax(0,1fr) 38px; align-items:center; column-gap:7px; }
++.pod-hud__driving-instruments .pod-hud__meter-head { display:contents; text-shadow:none; }
++.pod-hud__driving-instruments .pod-hud__meter-head .pod-hud__label { grid-column:1; grid-row:1; margin:0; font:700 12px/1.25 Inkstorm UI,sans-serif; letter-spacing:0; }
++.pod-hud__driving-instruments .pod-hud__meter-value { grid-column:3; grid-row:1; font:400 15px/1.15 var(--ui-heading); letter-spacing:0; text-align:right; }
++.pod-hud__driving-instruments .pod-hud__meter-value::after { font-size:.7em; }
++.pod-hud__driving-instruments .pod-hud__meter-track,.pod-hud__driving-instruments .pod-hud__telemetry .pod-hud__meter-track { grid-column:2; grid-row:1; height:7px; margin:0; background:#e4d69e26; border:1px solid #f5d58e66; border-radius:1px; transform:none; }
++.pod-hud__driving-instruments .pod-hud__telemetry .pod-hud__meter-fill { width:var(--pod-meter-value,0%)!important; height:100%; }
+ .pod-hud__driving-instruments .pod-hud__telemetry.is-hot .pod-hud__meter--heat { background:none; box-shadow:none; outline:0; }
+-.pod-hud__driving-instruments .pod-hud__telemetry.is-hot .pod-hud__meter--heat .pod-hud__meter-head { color:#ffb794; }
+-.pod-hud__driving-instruments .pod-hud__speed>.pod-hud__meter--drift { top:-77px; padding:7px 10px; border-radius:5px; background:#112e36ed; }
++.pod-hud__driving-instruments .pod-hud__telemetry.is-hot .pod-hud__meter--heat .pod-hud__label { color:#ffb794; }
++.pod-hud__driving-instruments .pod-hud__telemetry.is-damaged .pod-hud__meter--damage { background:none; box-shadow:none; outline:0; }
++.pod-hud__driving-instruments .pod-hud__speed>.pod-hud__meter--drift { top:-58px; padding:7px 10px; border-radius:5px; background:#112e36ed; }
++.pod-hud__driving-instruments .pod-hud__meter--drift .pod-hud__meter-head { display:flex; }
+ .pod-hud__flight { bottom:300px; width:244px; }
+ .pod-hud__race-stat .pod-hud__label,.pod-hud__race-time>.pod-hud__label { font:400 12px/1.25 var(--ui-heading); letter-spacing:.035em; }
+ 
+@@ -718,19 +724,23 @@
+  .pod-hud__detail-toggle { font-size:11px; padding:6px 8px; }
+  .pod-hud__corner-distance { font-size:14px; }
+  .pod-hud__corner-tag { font-size:11px; }
+- .pod-hud__driving-instruments { width:180px; height:224px; border-radius:18px 56px 10px 10px; }
+- .pod-hud__driving-instruments>.pod-hud__redline-heat { top:10px; left:10px; right:18px; gap:5px; }
+- .pod-hud__driving-instruments>.pod-hud__redline-heat>span { font-size:10px; }
+- .pod-hud__driving-instruments>.pod-hud__speed { inset:29px 9px auto; height:143px; }
+- .pod-hud__driving-instruments .pod-hud__speed-ring { width:160px; height:104px; }
++ .pod-hud__driving-instruments { width:180px; height:224px; }
++ .pod-hud__driving-instruments>.pod-hud__redline-heat { top:22px; left:48px; right:13px; gap:5px; }
++ .pod-hud__driving-instruments>.pod-hud__redline-heat>span { font-size:9px; }
++ .pod-hud__driving-instruments>.pod-hud__redline-heat .pod-hud__redline-track { min-width:16px; }
++ .pod-hud__driving-instruments>.pod-hud__speed { inset:18px 9px auto; height:182px; }
++ .pod-hud__driving-instruments .pod-hud__speed-ring { width:160px; height:182px; }
+  .pod-hud__driving-instruments .pod-hud__speed-readout { left:22px; top:37px; width:111px; }
+  .pod-hud__driving-instruments .pod-hud__speed-number { font-size:35px; }
+  .pod-hud__driving-instruments .pod-hud__speed-unit { font-size:9px; }
+- .pod-hud__driving-instruments>.pod-hud__telemetry { left:9px; right:9px; bottom:12px; gap:8px; }
+- .pod-hud__driving-instruments .pod-hud__telemetry>.pod-hud__meter { width:calc((100% - 8px)/2); padding:0; }
++ .pod-hud__driving-instruments .pod-hud__speed>.pod-hud__meter--boost { top:103px; left:5px; right:13px; }
++ .pod-hud__driving-instruments>.pod-hud__telemetry { left:14px; right:22px; bottom:34px; gap:6px; }
++ .pod-hud__driving-instruments .pod-hud__telemetry>.pod-hud__meter { min-height:18px; }
++ .pod-hud__driving-instruments .pod-hud__meter--boost,.pod-hud__driving-instruments .pod-hud__telemetry>.pod-hud__meter { grid-template-columns:39px minmax(0,1fr) 32px; column-gap:5px; }
+  .pod-hud__driving-instruments .pod-hud__meter-head .pod-hud__label { font-size:10px; }
+- .pod-hud__driving-instruments .pod-hud__meter-value { font:700 12px/1.15 Inkstorm UI,sans-serif; }
+- .pod-hud__driving-instruments .pod-hud__speed>.pod-hud__meter--drift { top:-72px; }
++ .pod-hud__driving-instruments .pod-hud__meter-value { font:700 13px/1.15 Inkstorm UI,sans-serif; }
++ .pod-hud__driving-instruments .pod-hud__meter-track,.pod-hud__driving-instruments .pod-hud__telemetry .pod-hud__meter-track { height:6px; }
++ .pod-hud__driving-instruments .pod-hud__speed>.pod-hud__meter--drift { top:-58px; }
+  .pod-hud__flight { width:180px; bottom:254px; }
+  .pod-hud__race-stat .pod-hud__label,.pod-hud__race-time>.pod-hud__label { font-size:10px; }
+  .pod-hud__system-label { font:700 10px/1.2 Inkstorm UI,sans-serif; }
+@@ -746,28 +756,76 @@
+ }
+ @media (max-height:540px) and (min-width:761px) {
+  .pod-hud__driving-instruments { width:174px; height:189px; }
+- .pod-hud__driving-instruments>.pod-hud__redline-heat { top:7px; }
+- .pod-hud__driving-instruments>.pod-hud__speed { top:22px; height:119px; }
+- .pod-hud__driving-instruments .pod-hud__speed-ring { width:154px; height:89px; }
+- .pod-hud__driving-instruments .pod-hud__speed-readout { top:29px; }
++ .pod-hud__driving-instruments>.pod-hud__redline-heat { top:17px; left:46px; right:11px; }
++ .pod-hud__driving-instruments>.pod-hud__speed { top:13px; height:175px; }
++ .pod-hud__driving-instruments .pod-hud__speed-ring { width:154px; height:175px; }
++ .pod-hud__driving-instruments .pod-hud__speed-readout { top:34px; }
+  .pod-hud__driving-instruments .pod-hud__speed-number { font-size:30px; }
+- .pod-hud__driving-instruments>.pod-hud__telemetry { bottom:9px; }
+- .pod-hud__driving-instruments .pod-hud__speed>.pod-hud__meter--drift { top:-62px; }
++ .pod-hud__driving-instruments .pod-hud__speed>.pod-hud__meter--boost { top:99px; }
++ .pod-hud__driving-instruments>.pod-hud__telemetry { bottom:9px; gap:4px; }
++ .pod-hud__driving-instruments .pod-hud__meter-value { font-size:12px; }
++ .pod-hud__driving-instruments .pod-hud__speed>.pod-hud__meter--drift { top:-52px; }
+  .pod-hud__flight { top:153px; bottom:auto; }
+ }
+-/* A crisp shared timing line connects the readings without filling the sky. */
+-.pod-hud__race::before { content:none; }
+-.pod-hud__race-rail { display:block; }
+-.pod-hud__race-rail svg { stroke:#f5d58ed9; stroke-width:1.15; filter:drop-shadow(0 1px 0 #10272d); }
+-.pod-hud__race-stat,.pod-hud__race-time { background:none; border:0; padding-bottom:4px; }
+-.pod-hud__race-value,.pod-hud__clock { text-shadow:-1px 0 #10272d,1px 0 #10272d,0 -1px #10272d,0 2px #10272d; }
+-.pod-hud__race-stat .pod-hud__label,.pod-hud__race-time>.pod-hud__label { display:inline-block; align-self:center; padding:1px 5px; border-radius:2px; background:#112e36d6; text-shadow:none; }
+-.pod-hud__driving-instruments .pod-hud__speed-readout { text-shadow:0 1px 2px #081d24,0 0 5px #081d24; }
+-.pod-hud__driving-instruments>.pod-hud__redline-heat>span { padding:2px 4px; border-radius:2px; background:#112e36d6; }
+-.pod-hud__driving-instruments .pod-hud__meter-head { padding:2px 4px; border-radius:2px; background:#112e36d6; }
+-.pod-hud__driving-instruments .pod-hud__meter-track,.pod-hud__driving-instruments .pod-hud__telemetry .pod-hud__meter-track { background:#112e36a6; }
++/* Filled timing numerals share one shallow transparent instrument glass. */
++.pod-hud__race { top:18px; height:76px; }
++.pod-hud__race::before { content:''; background:#173c43b8; clip-path:polygon(0 0,100% 0,100% calc(100% - 20px),90.5% calc(100% - 20px),88.8% calc(100% - 5px),78.2% calc(100% - 5px),76.4% calc(100% - 20px),61% calc(100% - 20px),57% calc(100% - 4px),43% calc(100% - 4px),39% calc(100% - 20px),23.6% calc(100% - 20px),21.8% calc(100% - 5px),11.2% calc(100% - 5px),9.5% calc(100% - 20px),0 calc(100% - 20px)); }
++.pod-hud__race-rail { display:block; top:auto; bottom:0; height:20px; }
++.pod-hud__race-rail svg { stroke:#ffe39bc9; stroke-width:1.3; filter:none; }
++.pod-hud__race-stat,.pod-hud__race-time { top:7px; background:none; border:0; padding-bottom:4px; }
++.pod-hud__race-time { width:220px; }
++.pod-hud__race-value,.pod-hud__clock { color:#ffe39b; font:400 40px/1 Inkstorm Instrument,sans-serif; letter-spacing:-.015em; -webkit-text-stroke:0; text-shadow:none; }
++.pod-hud__race-value small { color:inherit; font:inherit; }
++.pod-hud__race-stat .pod-hud__label,.pod-hud__race-time>.pod-hud__label { display:block; align-self:center; padding:0; border-radius:0; background:none; color:#ffe39b; font:700 12px/1.25 Inkstorm UI,sans-serif; letter-spacing:.1em; text-shadow:none; }
++.pod-hud__race>.pod-hud__detail-toggle { position:absolute; left:12px; right:auto; top:10px; min-width:76px; min-height:44px; padding:8px; background:none; border:0; border-radius:0; font-size:12px; }
++.pod-hud__detail-toggle:focus-visible { outline:2px solid #ffe39b; outline-offset:2px; }
++.pod-hud__corner { top:107px; padding:6px 9px; background:#173c438f; border-bottom:1px solid #f5d58e88; border-radius:0; }
++.pod-hud__launch[data-stage=result] { top:107px; padding:7px 10px; border:0; border-bottom:1px solid #f5d58e88; border-radius:0; background:#173c439e; box-shadow:none; }
++.pod-hud__launch[data-stage=result] header>strong { font-size:17px; }
++.pod-hud__launch[data-stage=result] footer { margin-top:4px; font:700 12px/1.3 Inkstorm UI,sans-serif; }
++.pod-hud__driving-instruments>.pod-hud__redline-heat>span { padding:0; border-radius:0; background:none; text-shadow:0 1px 0 #112e36; }
++.pod-hud__driving-instruments .pod-hud__meter-head { padding:0; border-radius:0; background:none; }
++/* Readiness rings carry the abilities; their keys, identity and ammo remain explicit. */
++.pod-hud__combat-slot { background:none; border:0; border-radius:0; box-shadow:none; overflow:visible; }
++.pod-hud__combat-key { top:-17px; left:0; width:22px; height:22px; padding:0; border:1px solid #f5d58e88; border-radius:3px; background:#112e36b8; box-shadow:none; color:#ffe39b; font:700 13px/1 Inkstorm UI,sans-serif; transform:none; }
++.pod-hud__system-gauge { left:50%; top:5px; width:48px; height:48px; background:conic-gradient(var(--pod-system-accent) 0 var(--pod-readiness-angle),#17363eb8 var(--pod-readiness-angle) 360deg); transform:translateX(-50%) rotate(-35deg); }
++.pod-hud__system-gauge::before { inset:4px; background:#112e36c2; box-shadow:none; }
++.pod-hud__system-icon { inset:12px; }
++.pod-hud__system-label { bottom:6px; padding:0; background:none; overflow:visible; text-overflow:clip; color:#ffe39b; font:700 11px/1.2 Inkstorm UI,sans-serif; text-shadow:0 1px 0 #112e36; }
++.pod-hud__system-ammo { right:0; bottom:30px; color:#ffe39b; font:700 13px/1 Inkstorm UI,sans-serif; text-shadow:0 1px 0 #112e36; }
++.pod-hud__galactic.is-shield-active .pod-hud__combat-slot--shield { background:none; }
++.pod-hud__galactic.is-shield-active .pod-hud__combat-slot--shield .pod-hud__system-gauge { box-shadow:0 0 0 3px #bce5b955; }
+ .pod-hud.is-high-contrast .pod-hud__race { background:none; }
+-.pod-hud.is-high-contrast .pod-hud__race-stat,.pod-hud.is-high-contrast .pod-hud__race-time { background:#0b2026; }
++.pod-hud.is-high-contrast .pod-hud__race::before { background:#0b2026; }
++.pod-hud.is-high-contrast .pod-hud__race-stat,.pod-hud.is-high-contrast .pod-hud__race-time { background:none; }
++.pod-hud.is-high-contrast .pod-hud__speed-dial .dial-resource-glass { fill:#0b2026; }
++.pod-hud.is-high-contrast .pod-hud__combat-slot { background:none; }
++.pod-hud.is-high-contrast .pod-hud__system-gauge::before { background:#0b2026; }
++@media (max-width:760px) {
++ .pod-hud__race { top:12px; height:66px; }
++ .pod-hud__race-value,.pod-hud__clock { font-size:28px; }
++ .pod-hud__race-time { width:138px; }
++ .pod-hud__race-stat .pod-hud__label,.pod-hud__race-time>.pod-hud__label { font-size:10px; }
++ .pod-hud__race>.pod-hud__detail-toggle { position:fixed; top:84px; left:12px; background:#173c438f; border-bottom:1px solid #f5d58e88; }
++ .pod-hud__corner { top:84px; right:12px; min-height:44px; }
++ .pod-hud__launch[data-stage=result] { top:140px; left:15px; }
++ .pod-hud__system-gauge { width:40px; height:40px; top:5px; }
++ .pod-hud__system-icon { inset:9px; }
++ .pod-hud__combat-key { top:-15px; width:18px; height:20px; font-size:11px; }
++ .pod-hud__system-label { bottom:5px; font-size:10px; }
++ .pod-hud__system-ammo { bottom:26px; font-size:11px; }
++}
++@media (max-height:540px) and (min-width:761px) {
++ .pod-hud__race { top:10px; height:61px; }
++ .pod-hud__race-value,.pod-hud__clock { font-size:30px; }
++ .pod-hud__race-stat .pod-hud__label,.pod-hud__race-time>.pod-hud__label { font-size:10px; }
++ .pod-hud__race>.pod-hud__detail-toggle { top:2px; }
++ .pod-hud__corner { top:80px; }
++ .pod-hud__launch[data-stage=result] { top:80px; }
++ .pod-hud__system-gauge { width:40px; height:40px; top:4px; }
++ .pod-hud__system-icon { inset:9px; }
++ .pod-hud__system-label { bottom:5px; font-size:10px; }
++}
+ /* Preserve every bearing; only the first impact needs a repeated text caption. */
+ .pod-hud__threat-cue,.pod-hud__threat-cue.has-group { display:inline-flex; align-items:center; justify-content:center; width:max-content; max-width:160px; min-width:0; height:32px; min-height:0; padding:0; gap:6px; border:0; border-radius:0; background:none; box-shadow:none; }
+ .pod-hud__threat-cue>b { flex:0 0 28px; width:28px; height:28px; display:grid; place-items:center; border:1px solid currentColor; border-radius:50%; background:#112e36e6; }

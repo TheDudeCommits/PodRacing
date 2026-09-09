@@ -1,0 +1,11 @@
+--- a/src/ui/broadcastStyles.ts
++++ b/src/ui/broadcastStyles.ts
+@@ -667,7 +667,7 @@
+ .pod-hud__driving-instruments>.pod-hud__redline-heat>span { flex:0 0 auto; font:700 11px/1.2 Inkstorm UI,sans-serif; letter-spacing:0; }
+ .pod-hud__driving-instruments>.pod-hud__redline-heat::after { content:none; }
+ .pod-hud__driving-instruments>.pod-hud__redline-heat .pod-hud__redline-track { flex:1; min-width:22px; height:4px; border:0; transform:none; }
+-.pod-hud__driving-instruments>.pod-hud__speed { inset:16px 12px auto; height:245px; }
++.pod-hud__driving-instruments>.pod-hud__speed { inset:16px 12px auto; height:245px; z-index:1; }
+ .pod-hud__driving-instruments .pod-hud__speed-ring { width:216px; height:245px; }
+ .pod-hud__driving-instruments .pod-hud__speed-dial { stroke-width:1.6; filter:none; }
+ .pod-hud__driving-instruments .pod-hud__speed-dial>path:nth-of-type(4) { display:none; }

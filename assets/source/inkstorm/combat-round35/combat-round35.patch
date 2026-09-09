@@ -1,0 +1,1055 @@
+diff --git a/src/camera/RaceCameraDirector.ts b/src/camera/RaceCameraDirector.ts
+--- a/src/camera/RaceCameraDirector.ts
++++ b/src/camera/RaceCameraDirector.ts
+@@ -187,6 +187,9 @@
+     return impulses;
+   }
+ 
++  /** Read-only access lets a temporary combat cut restore the exact user override. */
++  getManualMode(): CaptureCamera | null { return this.manualMode; }
++
+   setManualMode(mode: CaptureCamera | null): void {
+     this.manualMode = mode;
+     if (mode !== null && mode !== this.currentMode) {
+diff --git a/src/game/galactic/combatPickups.ts b/src/game/galactic/combatPickups.ts
+new file mode 100644
+--- /dev/null
++++ b/src/game/galactic/combatPickups.ts
+@@ -0,0 +1,99 @@
++import type { PodracerState } from '../simulation/types';
++import type { GalacticEvent, GalacticRacerState, GalacticUpgradePart, GalacticWorldState } from './types';
++
++export const EMP_PULSE_RADIUS = 42;
++export const EMP_DISRUPTION_SECONDS = 1.35;
++export const SALVAGE_REPAIR_AMOUNT = 0.24;
++export const SALVAGE_COOLING_AMOUNT = 0.4;
++export type CombatPickupPart = 'emp-cell' | 'repair-salvage';
++export interface CombatPickupRacer {
++  readonly id: string;
++  readonly vehicle: PodracerState;
++  readonly galactic: GalacticRacerState;
++}
++export function isCombatPickup(part: GalacticUpgradePart): part is CombatPickupPart {
++  return part === 'emp-cell' || part === 'repair-salvage';
++}
++
++/**
++ * Called once at the authoritative pickup-claim boundary. These instant pickups
++ * never change the permanent workshop, RNG sequence, or any existing upgrade.
++ * The caller supplies enemies only, preserving team-race friendly-fire rules.
++ */
++export function collectCombatPickup(
++  pickupId: string,
++  part: CombatPickupPart,
++  collector: CombatPickupRacer,
++  enemies: readonly CombatPickupRacer[],
++  world: GalacticWorldState,
++): GalacticEvent[] {
++  const { galactic, vehicle, id } = collector;
++  if (galactic.wreck.phase === 'wrecked' || galactic.upgrades.collectedPickupIds.includes(pickupId)) return [];
++  galactic.upgrades.collectedPickupIds.push(pickupId);
++  if (part === 'repair-salvage') {
++    const repaired = Math.min(Math.max(0, vehicle.damage), SALVAGE_REPAIR_AMOUNT);
++    const cooled = Math.min(Math.max(0, vehicle.heat), SALVAGE_COOLING_AMOUNT);
++    const coreCooled = Math.min(Math.max(0, galactic.redline.heat), SALVAGE_COOLING_AMOUNT);
++    vehicle.damage = Math.max(0, vehicle.damage - repaired);
++    vehicle.heat = Math.max(0, vehicle.heat - cooled);
++    galactic.redline.heat = Math.max(0, galactic.redline.heat - coreCooled);
++    // A vent helps recovery from heat faults without cancelling the whole lockout.
++    galactic.redline.lockout = Math.max(0, galactic.redline.lockout - 0.8);
++    galactic.status.ionized = 0;
++    return [{ type: 'repair-salvage-collected', racerId: id, pickupId, repaired, cooled, coreCooled }];
++  }
++
++  const events: GalacticEvent[] = [];
++  const targetIds: string[] = [];
++  const blockedIds: string[] = [];
++  const enemyIds = new Set(enemies.map((enemy) => enemy.id));
++  const inRange = (point: { x: number; y: number; z: number }): boolean => {
++    const dx = point.x - vehicle.position.x;
++    const dy = point.y - vehicle.position.y;
++    const dz = point.z - vehicle.position.z;
++    return dx * dx + dy * dy + dz * dz <= EMP_PULSE_RADIUS ** 2;
++  };
++  for (const target of [...enemies].sort((a, b) => a.id < b.id ? -1 : a.id > b.id ? 1 : 0)) {
++    const state = target.galactic;
++    if (target.id === id || state.wreck.phase !== 'running' || state.wreck.invulnerable > 0
++      || !inRange(target.vehicle.position)) continue;
++    const blocked = state.shield.active;
++    if (blocked) {
++      blockedIds.push(target.id);
++      state.shield.remaining = Math.max(0, state.shield.remaining - 0.45);
++      if (state.shield.remaining === 0) {
++        state.shield.active = false;
++        events.push({ type: 'pulse-shell', racerId: target.id, active: false, cooldown: state.shield.cooldown });
++      }
++    } else {
++      targetIds.push(target.id);
++      state.status.ionized = Math.max(state.status.ionized, EMP_DISRUPTION_SECONDS);
++      state.weapon.cooldown = Math.max(state.weapon.cooldown, EMP_DISRUPTION_SECONDS);
++      state.mine.cooldown = Math.max(state.mine.cooldown, EMP_DISRUPTION_SECONDS);
++      state.redline.active = false;
++      target.vehicle.boost.active = false;
++      state.wreck.recentAggressorId = id;
++      state.wreck.recentAggressorTime = 1.5;
++    }
++    events.push({ type: 'emp-hit', attackerId: id, targetId: target.id, blocked,
++      duration: blocked ? 0 : EMP_DISRUPTION_SECONDS });
++  }
++  let clearedOrdnance = 0;
++  for (let index = world.projectiles.length - 1; index >= 0; index -= 1) {
++    const projectile = world.projectiles[index];
++    if (projectile && enemyIds.has(projectile.ownerId) && inRange(projectile.position)) {
++      world.projectiles.splice(index, 1);
++      clearedOrdnance += 1;
++    }
++  }
++  for (let index = world.mines.length - 1; index >= 0; index -= 1) {
++    const mine = world.mines[index];
++    if (mine && enemyIds.has(mine.ownerId) && inRange(mine.position)) {
++      world.mines.splice(index, 1);
++      clearedOrdnance += 1;
++    }
++  }
++  events.push({ type: 'emp-pulse', racerId: id, pickupId, radius: EMP_PULSE_RADIUS,
++    targetIds, blockedIds, clearedOrdnance });
++  return events;
++}
+diff --git a/src/game/galactic/system.ts b/src/game/galactic/system.ts
+--- a/src/game/galactic/system.ts
++++ b/src/game/galactic/system.ts
+@@ -146,6 +146,9 @@
+       makePickup('part-pulse', 0.705, 7, 'pulse-capacitor'),
+       makePickup('part-landing', 0.845, -5, 'landing-recuperator'),
+       makePickup('part-mine', 0.93, 6, 'mine-printer'),
++      // Authored additions: old pickup coordinates and the RNG stream stay fixed.
++      makePickup('combat-emp', 0.315, -9, 'emp-cell'),
++      makePickup('combat-repair', 0.805, 8, 'repair-salvage'),
+     ],
+     runTokens: 3,
+     runCurrency: 0,
+@@ -261,6 +264,7 @@
+   const redlineAllowed = context.racing
+     && state.wreck.phase !== 'wrecked'
+     && state.redline.lockout <= 0
++    && state.status.ionized <= 0
+     && input.boost;
+   state.redline.active = redlineAllowed;
+   if (redlineAllowed) {
+@@ -599,6 +603,7 @@
+     for (const racer of racers) {
+       if (
+         racer.finished
++        || ((pickup.part === 'emp-cell' || pickup.part === 'repair-salvage') && racer.galactic.wreck.phase === 'wrecked')
+         || progressDistance(racer.courseProgress, pickup.progress) > pickup.progressRadius
+         || Math.abs(racer.lateralOffset - pickup.lateralOffset) > pickup.lateralRadius
+       ) continue;
+@@ -735,6 +740,8 @@
+   pickupId: string,
+   part: GalacticUpgradePart,
+ ): GalacticEvent | null {
++  // Instant combat pickups require the authoritative vehicle/world boundary.
++  if (part === 'emp-cell' || part === 'repair-salvage') return null;
+   if (state.upgrades.collectedPickupIds.includes(pickupId)) return null;
+   state.upgrades.collectedPickupIds.push(pickupId);
+   let level = 1;
+diff --git a/src/game/galactic/types.ts b/src/game/galactic/types.ts
+--- a/src/game/galactic/types.ts
++++ b/src/game/galactic/types.ts
+@@ -124,7 +124,9 @@
+   | 'reinforced-frame'
+   | 'pulse-capacitor'
+   | 'landing-recuperator'
+-  | 'mine-printer';
++  | 'mine-printer'
++  | 'emp-cell'
++  | 'repair-salvage';
+ 
+ export type GalacticHazardKind =
+   | 'sand-geyser'
+@@ -382,6 +384,9 @@
+ }
+ 
+ export type GalacticEvent =
++  | { type: 'emp-pulse'; racerId: string; pickupId: string; radius: number; targetIds: string[]; blockedIds: string[]; clearedOrdnance: number }
++  | { type: 'emp-hit'; attackerId: string; targetId: string; blocked: boolean; duration: number }
++  | { type: 'repair-salvage-collected'; racerId: string; pickupId: string; repaired: number; cooled: number; coreCooled: number }
+   | { type: 'vehicle-class-changed'; racerId: string; vehicleClass: GalacticVehicleClass }
+   | { type: 'pulse-shell'; racerId: string; active: boolean; cooldown: number }
+   | { type: 'shield-block'; racerId: string; sourceId: string | null; absorbed: number }
+diff --git a/src/game/race/RaceSimulation.ts b/src/game/race/RaceSimulation.ts
+--- a/src/game/race/RaceSimulation.ts
++++ b/src/game/race/RaceSimulation.ts
+@@ -1,3 +1,4 @@
++import { collectCombatPickup, isCombatPickup } from '../galactic/combatPickups';
+ import { createCourseGulfField, type CourseGulfField } from './CourseGulfField';
+ import { createPitPadField, type PitPadField } from './PitPadField';
+ import { getInkstormLayout } from './inkstormLayout';
+@@ -512,6 +513,18 @@
+     for (const claim of worldResult.pickupClaims) {
+       const collector = this.entriesById.get(claim.racerId);
+       if (!collector) continue;
++      if (isCombatPickup(claim.part)) {
++        const collectorState = this.galacticFor(collector);
++        const enemies = entries.filter((entry) => entry.id !== collector.id
++          && entry.status !== 'finished'
++          && !(this.state.settings.mode === 'team-race'
++            && entry.competition?.teamId === collector.competition?.teamId))
++          .map((entry) => ({ id: entry.id, vehicle: entry.vehicle, galactic: this.galacticFor(entry) }));
++        galacticEvents.push(...collectCombatPickup(claim.pickupId, claim.part,
++          { id: collector.id, vehicle: collector.vehicle, galactic: collectorState },
++          enemies, this.state.galacticWorld));
++        continue;
++      }
+       const event = collectGalacticUpgrade(
+         collector.id,
+         this.galacticFor(collector),
+diff --git a/src/render/app/GameApp.ts b/src/render/app/GameApp.ts
+--- a/src/render/app/GameApp.ts
++++ b/src/render/app/GameApp.ts
+@@ -1,3 +1,4 @@
++import { CombatPresentationController, type CombatPresentationContext } from '../combat/CombatPresentationController';
+ import {
+   Color,
+   Fog,
+@@ -328,7 +329,7 @@
+   }> = [];
+   private readonly galacticMinePool = Array.from({ length: 24 }, () => ({
+     position: { x: 0, y: 0, z: 0 }, yaw: 0, armed: false, phase: 0, scale: 1,
+-    variant: 'mine' as 'mine' | 'pickup',
++    variant: 'mine' as 'mine' | 'pickup' | 'emp' | 'repair',
+   }));
+   private readonly activeGalacticMines: Array<{
+     position: { x: number; y: number; z: number };
+@@ -336,7 +337,7 @@
+     armed: boolean;
+     phase: number;
+     scale: number;
+-    variant: 'mine' | 'pickup';
++    variant: 'mine' | 'pickup' | 'emp' | 'repair';
+   }> = [];
+   private readonly galacticHazardPool = Array.from({ length: 8 }, () => ({
+     kind: 'heat-vent' as 'heat-vent' | 'sand-geyser' | 'rockfall',
+@@ -431,6 +432,12 @@
+   });
+   private readonly audio = new PodracerAudio();
+   private readonly cameraDirector = new RaceCameraDirector(this.cameraRig);
++  private readonly combatPresentation = new CombatPresentationController();
++  private combatCameraCut = false;
++  private combatPriorManualCamera: CaptureCamera | null = null;
++  private readonly combatSystemMotion = typeof window.matchMedia === 'function'
++    ? window.matchMedia('(prefers-reduced-motion: reduce)') : null;
++  private combatVictimRunInvalidated = false;
+   private readonly highlights = new RaceHighlightRecorder({ historySeconds: 300, sampleHz: 12 });
+   private highlightPackage: RaceHighlightPackage | null = null;
+   private highlightReplay: {
+@@ -488,6 +495,7 @@
+     // Background-tab suspension is an explicit timing discontinuity. Long
+     // intervals while visible still count as overload in the governor.
+     this.performanceGovernor.resetMeasurements();
++    this.combatPresentation.cancel();
+   };
+   private restartHeld = false;
+   private showControls = false;
+@@ -722,6 +730,32 @@
+     delete window.__PODRACING__;
+   }
+ 
++  private cancelCombatCut(): void {
++    this.combatPresentation.cancel();
++    if (this.combatCameraCut) {
++      this.combatCameraCut = false;
++      this.cameraRig.setHighlightFraming(false);
++      this.cameraDirector.setManualMode(this.combatPriorManualCamera);
++    }
++  }
++
++  private combatContext(): CombatPresentationContext {
++    const localRacerId = this.localRacerId();
++    return {
++      role: this.room.lobby.role,
++      localRacerId,
++      racing: !this.awaitingRaceStart && this.race.state.phase === 'racing'
++        && this.race.state.entries.find((entry) => entry.id === localRacerId)?.status !== 'finished',
++      paused: this.paused,
++      capture: this.captureMode,
++      reducedMotion: this.settings.comfort.reducedMotion || this.combatSystemMotion?.matches === true,
++      motionIntensity: this.settings.comfort.motionIntensity,
++      allowOffensiveSlowMotion: this.race.competitionProfile === 'chaos',
++      allowVictimSlowMotion: this.combatVictimRunInvalidated,
++      racerName: (id) => this.race.state.entries.find((entry) => entry.id === id)?.name ?? 'RIVAL',
++    };
++  }
++
+   private advanceRealtime(dt: number): void {
+     this.pollGamepadRemapCapture();
+     const input = this.input.snapshot();
+@@ -777,7 +811,8 @@
+     this.restartHeld = input.reset;
+     if (this.paused) return;
+ 
+-    this.accumulator = Math.min(this.accumulator + dt, 0.25);
++    const pacedDelta = this.combatPresentation.scheduleDelta(dt, this.previousTime, this.combatContext());
++    this.accumulator = Math.min(this.accumulator + pacedDelta, 0.25);
+     while (this.accumulator >= FIXED_DT) {
+       this.stepSimulation(input);
+       this.accumulator -= FIXED_DT;
+@@ -794,7 +829,17 @@
+       requestedInput,
+       this.room.lobby.role === 'host' ? this.room.remoteInputs : undefined,
+     );
+-    if (!this.captureMode && this.room.lobby.role === 'solo') this.mastery.step(result);
++    if (!this.captureMode && this.room.lobby.role === 'solo') {
++      this.mastery.step(result);
++      // The mastery observer above already invalidates every local wreck.
++      // Presentation mirrors that outcome; it never changes record eligibility.
++      if (result.galacticEvents.some((event) => event.type === 'wreck' && event.racerId === this.localRacerId())) {
++        this.combatVictimRunInvalidated = true;
++      }
++    }
++    this.combatPresentation.consume(result.galacticEvents.map((event, index) => ({
++      id: `${result.state.step}:${index}`, event,
++    })), performance.now(), this.combatContext());
+     const semanticEvents = [...result.events, ...result.galacticEvents];
+     this.highlights.recordFrame(time, result.state.entries);
+     this.highlights.consumeEvents(time, semanticEvents, result.state.raceTime);
+@@ -889,11 +934,14 @@
+ 
+   private render(dt: number): void {
+     this.renderer.info.reset();
+-    const networkExtrapolation = this.room.lobby.role === 'guest'
++    const combatFrame = this.combatPresentation.frame(performance.now(), this.combatContext());
++    this.hud.updateCombat(combatFrame);
++    const motionDelta = dt * combatFrame.timeScale;
++    const renderExtrapolation = this.room.lobby.role === 'guest'
+       ? Math.min(0.08, this.networkSnapshotAge)
+-      : 0;
+-    const time = this.simulationFrame * FIXED_DT + networkExtrapolation;
+-    if (networkExtrapolation > 0) this.syncCameraSubject(networkExtrapolation);
++      : combatFrame.cinematic.active ? this.accumulator : 0;
++    const time = this.simulationFrame * FIXED_DT + renderExtrapolation;
++    if (renderExtrapolation > 0) this.syncCameraSubject(renderExtrapolation);
+     this.updateOvertakeCallout();
+     const replay = this.resolveHighlightReplayFrame();
+     const replayFrame = replay?.frame ?? null;
+@@ -902,12 +950,21 @@
+     if (replayFrame && replay) {
+       this.emitHighlightReplayImpact(replayFrame, replay.elapsedSeconds, presentationTime);
+     }
++    const combatCut = combatFrame.cinematic.cameraCut && !replayFrame;
++    const cutChanged = combatCut !== this.combatCameraCut;
++    if (cutChanged) {
++      if (combatCut) this.combatPriorManualCamera = this.cameraDirector.getManualMode();
++      this.combatCameraCut = combatCut;
++      this.cameraRig.setHighlightFraming(combatCut);
++      this.cameraDirector.setManualMode(combatCut ? 'side' : this.combatPriorManualCamera);
++      this.syncCameraSubject();
++    }
+     const cameraPresentation = this.cameraDirector.update({
+       phase: this.race.state.phase,
+       playerFinished: this.race.state.entries.find((entry) => entry.isPlayer)?.status === 'finished',
+     });
+     this.cameraMode = cameraPresentation.mode;
+-    if (replayFrame) {
++    if (replayFrame || cutChanged) {
+       // Highlight poses come from a ring buffer and may move several metres
+       // between presented samples. A gameplay spring chases that historical
+       // subject from the live results orbit, making the event recede into a
+@@ -933,7 +990,7 @@
+       time: presentationTime,
+       // Deterministic stepping advances particle lifetimes explicitly. RAFs
+       // between a review step and screenshot must only present that state.
+-      deltaSeconds: this.captureMode ? 0 : Math.max(FIXED_DT, dt),
++      deltaSeconds: this.captureMode ? 0 : Math.max(0, motionDelta),
+       cameraWorldX: this.cameraRig.camera.position.x,
+       cameraWorldY: this.cameraRig.camera.position.y,
+       cameraWorldZ: this.cameraRig.camera.position.z,
+@@ -960,9 +1017,9 @@
+       const input = this.lastRaceInputs[entry.id] ?? NEUTRAL_PLAYER_INPUT;
+       const vehicle = entry.vehicle;
+       const replayPose = replayFrame?.racers.find((pose) => pose.id === entry.id);
+-      const displayX = replayPose?.x ?? vehicle.position.x + vehicle.velocity.x * networkExtrapolation;
+-      const displayY = replayPose?.y ?? vehicle.position.y + vehicle.velocity.y * networkExtrapolation;
+-      const displayZ = replayPose?.z ?? vehicle.position.z + vehicle.velocity.z * networkExtrapolation;
++      const displayX = replayPose?.x ?? vehicle.position.x + vehicle.velocity.x * renderExtrapolation;
++      const displayY = replayPose?.y ?? vehicle.position.y + vehicle.velocity.y * renderExtrapolation;
++      const displayZ = replayPose?.z ?? vehicle.position.z + vehicle.velocity.z * renderExtrapolation;
+       const displayYaw = replayPose?.yaw ?? vehicle.orientation.yaw;
+       const displaySpeed = replayPose?.speed ?? vehicle.telemetry.speed;
+       const galacticState = entry.galactic;
+@@ -1016,7 +1073,7 @@
+       if (pilot && dynamics) {
+         pilot.updateAnimation({
+           time: presentationTime + racerIndex * 0.37,
+-          deltaTime: Math.max(FIXED_DT, Math.min(dt, 0.1)),
++          deltaTime: Math.max(0, Math.min(motionDelta, 0.1)),
+           steering: input.steer,
+           throttle: input.throttle,
+           brake: input.brake,
+@@ -1138,6 +1195,7 @@
+   }
+ 
+   private setCaptureMode(enabled: boolean): void {
++    this.cancelCombatCut();
+     if (this.captureMode === enabled) return;
+     this.captureMode = enabled;
+     this.performanceGovernor.setAdaptiveEnabled(!enabled);
+@@ -1217,6 +1275,9 @@
+     this.lastRaceInputs = {};
+     this.lastLocalPlacement = null;
+     this.highlights.reset();
++    this.combatPresentation.reset();
++    this.combatVictimRunInvalidated = false;
++    this.combatCameraCut = false;
+     this.highlightPackage = null;
+     this.highlightReplay = null;
+     this.cameraRig.setHighlightFraming(false);
+@@ -1337,6 +1398,9 @@
+     this.lastRaceInputs = {};
+     this.lastLocalPlacement = null;
+     this.highlights.reset();
++    this.combatPresentation.reset();
++    this.combatVictimRunInvalidated = false;
++    this.combatCameraCut = false;
+     this.highlightPackage = null;
+     this.highlightReplay = null;
+     this.cameraRig.setHighlightFraming(false);
+@@ -2384,6 +2448,15 @@
+     for (const envelope of authoritativeEvents) {
+       this.highlights.consumeEvents(envelope.step * FIXED_DT, [envelope.event], Math.max(0, snapshot.raceTime - (snapshot.step - envelope.step) * FIXED_DT));
+     }
++    // RoomSession already returns each sequence once. Guests consume the same
++    // semantic presentation events while their simulation remains host-owned.
++    const galacticEvents = authoritativeEvents.map((envelope) => envelope.event as GalacticEvent);
++    this.combatPresentation.consume(authoritativeEvents.map((envelope) => ({
++      id: `room:${envelope.sequence}`, event: envelope.event as GalacticEvent,
++    })), performance.now(), this.combatContext());
++    this.consumeGalacticEffects(galacticEvents, time);
++    this.audio.handleEvents(authoritativeEvents.map((envelope) => envelope.event), { playerId: localRacerId });
++    this.cameraDirector.consumeEvents(authoritativeEvents.map((envelope) => envelope.event), { playerId: localRacerId });
+     for (let index = 0; index < this.race.state.entries.length; index += 1) {
+       const entry = this.race.state.entries[index];
+       if (entry) this.pushRacerWake(index, entry.vehicle, time);
+@@ -2465,6 +2538,7 @@
+   }
+ 
+   private setCamera(name: CaptureCamera): void {
++    this.cancelCombatCut();
+     this.cameraMode = name;
+     this.reviewCameraMode = name;
+     // The extreme review-only course lens exposes articulation differences
+@@ -3336,7 +3410,7 @@
+       effect.armed = false;
+       effect.phase = time + worldObjectIndex * 0.61;
+       effect.scale = 2.25;
+-      effect.variant = 'pickup';
++      effect.variant = pickup.part === 'emp-cell' ? 'emp' : pickup.part === 'repair-salvage' ? 'repair' : 'pickup';
+       this.activeGalacticMines.push(effect);
+       worldObjectIndex += 1;
+     }
+@@ -3406,7 +3480,25 @@
+           racerId = event.racerId;
+           style = event.cause === 'rockfall' ? 'rock' : 'crash';
+           severity = event.cause === 'rockfall' ? 1.65 : 1.8;
+-          color = event.racerId === 'player' ? '#ff6a2d' : '#58d8ff';
++          color = event.racerId === this.localRacerId() ? '#ff6a2d' : '#58d8ff';
++          break;
++        case 'emp-pulse':
++          racerId = event.racerId;
++          style = 'energy';
++          severity = 1.8;
++          color = '#bb66ff';
++          break;
++        case 'emp-hit':
++          racerId = event.targetId;
++          style = 'energy';
++          severity = event.blocked ? 0.7 : 1.1;
++          color = event.blocked ? '#58efff' : '#bb66ff';
++          break;
++        case 'repair-salvage-collected':
++          racerId = event.racerId;
++          style = 'reward';
++          severity = 1.35;
++          color = '#8fff45';
+           break;
+         case 'upgrade-collected':
+           racerId = event.racerId;
+diff --git a/src/render/combat/CombatPresentationController.ts b/src/render/combat/CombatPresentationController.ts
+new file mode 100644
+--- /dev/null
++++ b/src/render/combat/CombatPresentationController.ts
+@@ -0,0 +1,204 @@
++import type { GalacticEvent } from '../../game/galactic/types';
++
++export type CombatCueKind = 'hit' | 'shield-hit' | 'takedown' | 'wreck' | 'emp' | 'repair';
++export interface CombatCue {
++  readonly kind: CombatCueKind;
++  readonly title: string;
++  readonly detail: string;
++  /** Wall-clock lifetime, from zero to one. */
++  readonly progress: number;
++}
++export interface CombatPresentationFrame {
++  readonly cue: CombatCue | null;
++  readonly cinematic: {
++    readonly active: boolean;
++    readonly progress: number;
++    readonly focusRacerId: string | null;
++    readonly cameraCut: boolean;
++    readonly letterbox: boolean;
++  };
++  readonly timeScale: number;
++}
++export interface CombatPresentationContext {
++  readonly role: 'solo' | 'host' | 'guest';
++  readonly localRacerId: string;
++  readonly racing: boolean;
++  readonly paused: boolean;
++  readonly capture: boolean;
++  readonly reducedMotion: boolean;
++  readonly motionIntensity: number;
++  /** Set only for chaos/practice/unranked combat; never invalidate a record here. */
++  readonly allowOffensiveSlowMotion: boolean;
++  /** The existing mastery observer must have invalidated the local wreck first. */
++  readonly allowVictimSlowMotion: boolean;
++  readonly racerName: (id: string) => string;
++}
++export interface AuthoritativeCombatEvent {
++  /** Race-scoped authoritative step/index, or the room's event sequence. */
++  readonly id: string;
++  readonly event: Readonly<GalacticEvent>;
++}
++
++export const COMBAT_CINEMATIC_DURATION_MS = 820;
++export const COMBAT_CINEMATIC_COOLDOWN_MS = 6000;
++const MIN_SCALE = 0.18;
++const ENTER_MS = 80;
++const EXIT_MS = 200;
++const EXIT_START = COMBAT_CINEMATIC_DURATION_MS - EXIT_MS;
++const clamp01 = (value: number): number => Math.max(0, Math.min(1, value));
++const smooth = (value: number): number => value * value * (3 - 2 * value);
++const smoothIntegral = (value: number): number => value ** 3 - value ** 4 / 2;
++
++/** Integral of the removed wall time, in milliseconds, with exact segment edges. */
++function deficitIntegral(elapsed: number): number {
++  if (elapsed <= 0) return 0;
++  const enter = Math.min(elapsed, ENTER_MS);
++  const hold = Math.max(0, Math.min(elapsed, EXIT_START) - ENTER_MS);
++  const exit = Math.max(0, Math.min(elapsed - EXIT_START, EXIT_MS));
++  return (1 - MIN_SCALE) * (ENTER_MS * smoothIntegral(enter / ENTER_MS)
++    + hold + exit - EXIT_MS * smoothIntegral(exit / EXIT_MS));
++}
++
++interface CueState {
++  kind: CombatCueKind;
++  title: string;
++  detail: string;
++  startedAt: number;
++  duration: number;
++  priority: number;
++  focusRacerId: string | null;
++  cinematicEligible: boolean;
++  victim: boolean;
++}
++
++/**
++ * Presentation clock only. It never owns or changes simulation state, fixed dt,
++ * input, record eligibility, random state, or network snapshots.
++ */
++export class CombatPresentationController {
++  private readonly seen = new Set<string>();
++  private readonly seenOrder: string[] = [];
++  private cue: CueState | null = null;
++  private cinematic: CueState | null = null;
++  private nextCinematicAt = -Infinity;
++
++  reset(): void {
++    this.seen.clear();
++    this.seenOrder.length = 0;
++    this.cancel();
++    this.nextCinematicAt = -Infinity;
++  }
++
++  /** Pauses and visibility changes cancel a cut; they do not erase its cooldown. */
++  cancel(): void { this.cue = null; this.cinematic = null; }
++
++  consume(events: readonly AuthoritativeCombatEvent[], nowMs: number, context: CombatPresentationContext): void {
++    if (!Number.isFinite(nowMs)) return;
++    this.reconcile(context);
++    let strongest: CueState | null = null;
++    for (const envelope of events) {
++      if (this.seen.has(envelope.id)) continue;
++      this.seen.add(envelope.id);
++      this.seenOrder.push(envelope.id);
++      if (this.seenOrder.length > 256) this.seen.delete(this.seenOrder.shift()!);
++      if (!context.racing || context.paused || context.capture) continue;
++      const candidate = this.classify(envelope.event, nowMs, context);
++      if (candidate && (!strongest || candidate.priority > strongest.priority)) strongest = candidate;
++    }
++    if (!strongest) return;
++    // A burst of damage, wreck and takedown events must not restart the same shot.
++    if (this.cinematic && nowMs < this.cinematic.startedAt + COMBAT_CINEMATIC_DURATION_MS) return;
++    if (this.cue && nowMs < this.cue.startedAt + this.cue.duration
++      && strongest.priority < this.cue.priority) return;
++    this.cue = strongest;
++    if (strongest.cinematicEligible && context.role === 'solo' && nowMs >= this.nextCinematicAt) {
++      this.cinematic = strongest;
++      this.nextCinematicAt = nowMs + COMBAT_CINEMATIC_COOLDOWN_MS;
++    }
++  }
++
++  /**
++   * Scale only the scheduler's incoming wall delta. The analytic integral gives
++   * the same paced seconds at 30/60/144 Hz, including frames across shot edges.
++   */
++  scheduleDelta(deltaSeconds: number, nowMs: number, context: CombatPresentationContext): number {
++    this.reconcile(context);
++    if (!Number.isFinite(deltaSeconds) || deltaSeconds <= 0 || !Number.isFinite(nowMs)) return 0;
++    if (!this.cinematic || context.role !== 'solo') return deltaSeconds;
++    const end = nowMs - this.cinematic.startedAt;
++    const start = end - deltaSeconds * 1000;
++    return Math.max(0, deltaSeconds - (deficitIntegral(end) - deficitIntegral(start)) / 1000);
++  }
++
++  frame(nowMs: number, context: CombatPresentationContext): CombatPresentationFrame {
++    this.reconcile(context);
++    const elapsed = this.cinematic ? nowMs - this.cinematic.startedAt : Infinity;
++    const active = Number.isFinite(nowMs) && elapsed >= 0 && elapsed < COMBAT_CINEMATIC_DURATION_MS;
++    const motionAllowed = !context.reducedMotion && context.motionIntensity > 0;
++    // Only the victim loses steering. An attacking driver keeps the chase view.
++    const cameraCut = active && motionAllowed && this.cinematic?.victim === true;
++    let timeScale = 1;
++    if (active) {
++      timeScale = elapsed < ENTER_MS ? 1 - (1 - MIN_SCALE) * smooth(elapsed / ENTER_MS)
++        : elapsed < EXIT_START ? MIN_SCALE
++          : MIN_SCALE + (1 - MIN_SCALE) * smooth((elapsed - EXIT_START) / EXIT_MS);
++    }
++    const cue = this.cue && Number.isFinite(nowMs) && nowMs >= this.cue.startedAt
++      && nowMs < this.cue.startedAt + this.cue.duration
++      ? { kind: this.cue.kind, title: this.cue.title, detail: this.cue.detail,
++        progress: clamp01((nowMs - this.cue.startedAt) / this.cue.duration) } : null;
++    return { cue, timeScale, cinematic: { active,
++      progress: active ? clamp01(elapsed / COMBAT_CINEMATIC_DURATION_MS) : 1,
++      focusRacerId: active ? this.cinematic?.focusRacerId ?? null : null,
++      cameraCut, letterbox: cameraCut } };
++  }
++
++  private reconcile(context: CombatPresentationContext): void {
++    if (!context.racing || context.paused || context.capture) this.cancel();
++    else if (context.role !== 'solo') this.cinematic = null;
++    else if (this.cinematic && !(this.cinematic.victim
++      ? context.allowVictimSlowMotion : context.allowOffensiveSlowMotion)) this.cinematic = null;
++  }
++
++  private classify(event: Readonly<GalacticEvent>, now: number, context: CombatPresentationContext): CueState | null {
++    const local = context.localRacerId;
++    const make = (kind: CombatCueKind, title: string, detail: string, priority: number,
++      focusRacerId: string | null = null, victim = false, cinematicEligible = false): CueState => ({
++      kind, title, detail, priority, focusRacerId, victim, cinematicEligible, startedAt: now,
++      duration: priority >= 3 ? 1250 : kind === 'hit' || kind === 'shield-hit' ? 420 : 1000,
++    });
++    switch (event.type) {
++      case 'wreck':
++        if (event.racerId !== local) return null;
++        return make('wreck', event.takedownBy ? 'TAKEN DOWN' : 'WRECKED',
++          event.takedownBy ? `BY ${context.racerName(event.takedownBy)}` : 'RECOVERY INBOUND',
++          4, local, true, context.allowVictimSlowMotion);
++      case 'takedown':
++        if (event.attackerId !== local || event.victimId === local) return null;
++        return make('takedown', 'TAKEDOWN', context.racerName(event.victimId), 3,
++          event.victimId, false, context.allowOffensiveSlowMotion);
++      case 'weapon-hit':
++        if (event.attackerId !== local || event.targetId === local) return null;
++        return make(event.shielded ? 'shield-hit' : 'hit', event.shielded ? 'SHIELD HIT' : 'HIT',
++          context.racerName(event.targetId), 1);
++      case 'emp-pulse':
++        if (event.racerId !== local) return null;
++        return make('emp', 'EMP PULSE', event.targetIds.length
++          ? `${event.targetIds.length} RIVAL${event.targetIds.length === 1 ? '' : 'S'} DISRUPTED` : event.clearedOrdnance ? `${event.clearedOrdnance} ORDNANCE CLEARED`
++            : event.blockedIds.length ? 'SHIELDS BLOCKED PULSE' : 'NO RIVALS IN RANGE', 2);
++      case 'emp-hit':
++        if (event.targetId !== local) return null;
++        return make('emp', event.blocked ? 'EMP BLOCKED' : 'SYSTEMS DISRUPTED',
++          event.blocked ? 'PULSE SHELL HELD' : 'BOOST + WEAPONS INTERRUPTED', 2);
++      case 'repair-salvage-collected': {
++        if (event.racerId !== local) return null;
++        const restored: string[] = [];
++        if (event.repaired > 0) restored.push(`${Math.round(event.repaired * 100)}% HULL RESTORED`);
++        if (event.cooled > 0) restored.push(`${Math.round(event.cooled * 100)}% HEAT VENTED`);
++        if (event.coreCooled > 0) restored.push(`${Math.round(event.coreCooled * 100)}% CORE VENTED`);
++        return make('repair', 'REPAIR + COOLING', restored.join(' · ') || 'HULL + HEAT ALREADY STABLE', 2);
++      }
++      default: return null;
++    }
++  }
++}
+diff --git a/src/render/galactic/GalacticEffectsView.ts b/src/render/galactic/GalacticEffectsView.ts
+--- a/src/render/galactic/GalacticEffectsView.ts
++++ b/src/render/galactic/GalacticEffectsView.ts
+@@ -79,7 +79,7 @@
+   readonly armed?: boolean;
+   readonly phase?: number;
+   readonly scale?: number;
+-  readonly variant?: 'mine' | 'pickup';
++  readonly variant?: 'mine' | 'pickup' | 'emp' | 'repair';
+ }
+ 
+ export type GalacticHazardKind = 'heat-vent' | 'sand-geyser' | 'rockfall';
+@@ -169,7 +169,7 @@
+   scale: number;
+   armed: boolean;
+   phase: number;
+-  variant: 'mine' | 'pickup';
++  variant: 'mine' | 'pickup' | 'emp' | 'repair';
+ }
+ 
+ interface HazardSlot {
+@@ -649,7 +649,8 @@
+       slot.scale = positive(state.scale, 1);
+       slot.armed = state.armed === true;
+       slot.phase = finite(state.phase, 0);
+-      slot.variant = state.variant === 'pickup' ? 'pickup' : 'mine';
++      slot.variant = state.variant === 'pickup' || state.variant === 'emp' || state.variant === 'repair'
++        ? state.variant : 'mine';
+     }
+   }
+ 
+@@ -1051,14 +1052,16 @@
+     for (let index = 0; index < this.mineCount; index += 1) {
+       const slot = this.mineSlots[index];
+       if (!slot) continue;
+-      const pickup = slot.variant === 'pickup';
++      const pickup = slot.variant !== 'mine';
++      const emp = slot.variant === 'emp';
++      const repair = slot.variant === 'repair';
+       const spin = slot.yaw
+         + time * (pickup ? 1.8 : 0)
+         + Math.sin(time * 2 + slot.phase) * 0.08;
+       if (pickup) {
+         // Salvage floats as a tilted rotating casing, distinct from the flat
+         // armed mine that shares this instanced draw pool.
+-        this.euler.set(0.68, spin, 0.24);
++        this.euler.set(emp ? 1.3 : repair ? 0 : 0.68, spin, repair ? 0 : 0.24);
+         this.tempQuaternion.setFromEuler(this.euler);
+       } else {
+         this.tempQuaternion.setFromAxisAngle(UP, spin);
+@@ -1068,10 +1071,10 @@
+       if (!this.isVisible(slot.x, y, slot.z, pulse * 1.8, EFFECT_VISIBILITY_DISTANCE.mines)) continue;
+       const hot = slot.armed && Math.sin(time * 12 + slot.phase) > 0;
+       this.writeInstance(this.scrapMines, visibleCount, slot.x, y, slot.z, this.tempQuaternion,
+-        pulse, pulse * (pickup ? 1 : SOLID_HARDWARE_MINE_DEPTH_SCALE), pulse,
+-        pickup ? 0.2 : slot.armed ? (hot ? 1 : 0.78) : 0.22,
+-        pickup ? 1 : slot.armed ? (hot ? 0.22 : 0.1) : 0.68,
+-        pickup ? 0.66 : slot.armed ? 0.05 : 0.72);
++        pulse, pulse * (emp ? 0.7 : repair ? 1.3 : pickup ? 1 : SOLID_HARDWARE_MINE_DEPTH_SCALE), pulse,
++        emp ? 0.74 : repair ? 0.4 : pickup ? 0.2 : slot.armed ? (hot ? 1 : 0.78) : 0.22,
++        emp ? 0.24 : repair ? 1 : pickup ? 1 : slot.armed ? (hot ? 0.22 : 0.1) : 0.68,
++        emp ? 1 : repair ? 0.24 : pickup ? 0.66 : slot.armed ? 0.05 : 0.72);
+       visibleCount += 1;
+     }
+     this.dirty(this.scrapMines, visibleCount);
+diff --git a/tests/combat/CombatPresentationController.test.ts b/tests/combat/CombatPresentationController.test.ts
+new file mode 100644
+--- /dev/null
++++ b/tests/combat/CombatPresentationController.test.ts
+@@ -0,0 +1,145 @@
++import { describe, expect, it } from 'vitest';
++import { CombatPresentationController, type CombatPresentationContext } from '../../src/render/combat/CombatPresentationController';
++import type { GalacticEvent } from '../../src/game/galactic/types';
++
++const context = (change: Partial<CombatPresentationContext> = {}): CombatPresentationContext => ({
++  role: 'solo', localRacerId: 'player', racing: true, paused: false, capture: false,
++  reducedMotion: false, motionIntensity: 1, allowOffensiveSlowMotion: true,
++  allowVictimSlowMotion: true, racerName: (id) => id === 'rival' ? 'Rival One' : id,
++  ...change,
++});
++const wreck: GalacticEvent = { type: 'wreck', racerId: 'player', cause: 'heat-lance',
++  sourceId: 'rival', takedownBy: 'rival', runTokens: 2 };
++const takedown: GalacticEvent = { type: 'takedown', attackerId: 'player', victimId: 'rival', cause: 'heat-lance' };
++const hit: GalacticEvent = { type: 'weapon-hit', attackerId: 'player', targetId: 'rival',
++  weapon: 'heat-lance', damage: 0.2, shielded: false };
++
++describe('authoritative combat presentation', () => {
++  it('prioritizes the local wreck in the same event batch without changing any event', () => {
++    const controller = new CombatPresentationController();
++    const events = [hit, takedown, wreck].map((event, index) => Object.freeze({ id: `1:${index}`, event: Object.freeze(event) }));
++    const original = JSON.stringify(events);
++    controller.consume(events, 1000, context());
++    expect(controller.frame(1100, context())).toMatchObject({
++      cue: { kind: 'wreck', title: 'TAKEN DOWN', detail: 'BY Rival One' }, timeScale: 0.18,
++      cinematic: { active: true, cameraCut: true, letterbox: true, focusRacerId: 'player' },
++    });
++    expect(JSON.stringify(events)).toBe(original);
++    expect(controller.frame(1820, context())).toMatchObject({ timeScale: 1, cinematic: { active: false } });
++    expect(controller.frame(2250, context()).cue).toBeNull();
++  });
++
++  it('requires the existing record-invalidated victim policy and never authorizes outgoing clean-run slow motion', () => {
++    for (const [event, flags] of [
++      [wreck, { allowVictimSlowMotion: false }],
++      [takedown, { allowOffensiveSlowMotion: false }],
++    ] as const) {
++      const controller = new CombatPresentationController();
++      const ctx = context(flags);
++      controller.consume([{ id: '1', event }], 0, ctx);
++      expect(controller.frame(100, ctx).cue).not.toBeNull();
++      expect(controller.frame(100, ctx).cinematic.active).toBe(false);
++      expect(controller.scheduleDelta(1 / 60, 100, ctx)).toBe(1 / 60);
++    }
++  });
++
++  it('slows an allowed solo takedown while leaving the attacker in the driving camera', () => {
++    const controller = new CombatPresentationController();
++    controller.consume([{ id: '1', event: takedown }], 0, context());
++    expect(controller.frame(200, context())).toMatchObject({
++      cue: { kind: 'takedown' }, timeScale: 0.18,
++      cinematic: { active: true, cameraCut: false, letterbox: false },
++    });
++  });
++
++  it.each(['host', 'guest'] as const)('keeps %s simulation scheduling real time while showing one-shot feedback', (role) => {
++    const controller = new CombatPresentationController();
++    const ctx = context({ role });
++    controller.consume([{ id: 'room:7', event: wreck }], 0, ctx);
++    expect(controller.frame(100, ctx).cue?.kind).toBe('wreck');
++    expect(controller.scheduleDelta(0.05, 100, ctx)).toBe(0.05);
++    expect(controller.frame(100, ctx).cinematic).toMatchObject({ active: false, cameraCut: false, letterbox: false });
++    controller.consume([{ id: 'room:7', event: wreck }], 2000, ctx);
++    expect(controller.frame(2000, ctx).cue).toBeNull();
++  });
++
++  it.each([{ reducedMotion: true }, { motionIntensity: 0 }])('suppresses camera cuts and letterbox for comfort %j', (comfort) => {
++    const controller = new CombatPresentationController();
++    const ctx = context(comfort);
++    controller.consume([{ id: '1', event: wreck }], 0, ctx);
++    expect(controller.frame(100, ctx)).toMatchObject({ timeScale: 0.18,
++      cinematic: { active: true, cameraCut: false, letterbox: false } });
++  });
++
++  it('does not stack, refresh or replay an event, and admits a new cinematic at exactly six seconds', () => {
++    const controller = new CombatPresentationController();
++    const ctx = context();
++    controller.consume([{ id: '1', event: wreck }], 0, ctx);
++    controller.consume([{ id: '2', event: wreck }], 500, ctx);
++    expect(controller.frame(600, ctx).cinematic.progress).toBeCloseTo(600 / 820);
++    controller.consume([{ id: '3', event: wreck }], 5999, ctx);
++    expect(controller.frame(5999, ctx).cinematic.active).toBe(false);
++    controller.consume([{ id: '1', event: wreck }], 6000, ctx);
++    expect(controller.frame(6000, ctx).cinematic.active).toBe(false);
++    controller.consume([{ id: '4', event: wreck }], 6000, ctx);
++    expect(controller.frame(6100, ctx).cinematic.active).toBe(true);
++  });
++
++  it('integrates equal scheduled time at 30, 60 and 144 Hz while every simulation tick remains 1/120', () => {
++    const results = [30, 60, 144].map((hz) => {
++      const controller = new CombatPresentationController();
++      const ctx = context();
++      controller.consume([{ id: '1', event: wreck }], 0, ctx);
++      let accumulator = 0; let ticks = 0; let total = 0;
++      for (let frame = 1; frame <= hz; frame += 1) {
++        const delta = controller.scheduleDelta(1 / hz, frame / hz * 1000, ctx);
++        total += delta; accumulator += delta;
++        while (accumulator >= 1 / 120) { ticks += 1; accumulator -= 1 / 120; }
++      }
++      expect(total).toBeCloseTo(0.4424, 10);
++      return ticks;
++    });
++    expect(results).toEqual([53, 53, 53]);
++  });
++
++  it.each([{ paused: true }, { capture: true }, { racing: false }])('cancels on presentation discontinuity %j without resurrecting a shot', (change) => {
++    const controller = new CombatPresentationController();
++    controller.consume([{ id: '1', event: wreck }], 0, context());
++    expect(controller.frame(100, context(change)).cue).toBeNull();
++    expect(controller.frame(110, context()).cinematic.active).toBe(false);
++    controller.consume([{ id: '2', event: wreck }], 120, context());
++    expect(controller.frame(150, context()).cinematic.active).toBe(false);
++    controller.reset();
++    controller.consume([{ id: '1', event: wreck }], 200, context());
++    expect(controller.frame(300, context()).cinematic.active).toBe(true);
++  });
++
++  it('shows bounded hits and distinct powerup cues without slow motion or camera cuts', () => {
++    const controller = new CombatPresentationController();
++    const ctx = context();
++    controller.consume([{ id: '1', event: { ...hit, shielded: true } }], 0, ctx);
++    expect(controller.frame(210, ctx).cue).toMatchObject({ kind: 'shield-hit', progress: 0.5 });
++    expect(controller.frame(420, ctx).cue).toBeNull();
++    controller.consume([{ id: '2', event: { type: 'emp-hit', attackerId: 'rival', targetId: 'player', blocked: false, duration: 1.35 } }], 500, ctx);
++    expect(controller.frame(600, ctx).cue?.title).toBe('SYSTEMS DISRUPTED');
++    controller.consume([{ id: '3', event: { type: 'repair-salvage-collected', racerId: 'player', pickupId: 'repair', repaired: 0.24, cooled: 0.4, coreCooled: 0.4 } }], 1600, ctx);
++    expect(controller.frame(1700, ctx).cue).toMatchObject({ kind: 'repair', title: 'REPAIR + COOLING' });
++    expect(controller.frame(1700, ctx).cinematic.active).toBe(false);
++  });
++
++  it('reports actual EMP outcomes and core-only cooling without claiming an empty area was cleared', () => {
++    const controller = new CombatPresentationController();
++    const ctx = context();
++    const pulse: GalacticEvent = { type: 'emp-pulse', racerId: 'player', pickupId: 'emp', radius: 42,
++      targetIds: [], blockedIds: [], clearedOrdnance: 0 };
++    controller.consume([{ id: '1', event: pulse }], 0, ctx);
++    expect(controller.frame(100, ctx).cue?.detail).toBe('NO RIVALS IN RANGE');
++    controller.consume([{ id: '2', event: { ...pulse, blockedIds: ['rival'] } }], 1100, ctx);
++    expect(controller.frame(1200, ctx).cue?.detail).toBe('SHIELDS BLOCKED PULSE');
++    controller.consume([{ id: '3', event: { ...pulse, clearedOrdnance: 2 } }], 2200, ctx);
++    expect(controller.frame(2300, ctx).cue?.detail).toBe('2 ORDNANCE CLEARED');
++    controller.consume([{ id: '4', event: { type: 'repair-salvage-collected', racerId: 'player', pickupId: 'repair',
++      repaired: 0, cooled: 0, coreCooled: 0.4 } }], 3300, ctx);
++    expect(controller.frame(3400, ctx).cue?.detail).toBe('40% CORE VENTED');
++  });
++});
+diff --git a/tests/galactic/combatPickups.test.ts b/tests/galactic/combatPickups.test.ts
+new file mode 100644
+--- /dev/null
++++ b/tests/galactic/combatPickups.test.ts
+@@ -0,0 +1,150 @@
++import { describe, expect, it } from 'vitest';
++import { collectCombatPickup, EMP_DISRUPTION_SECONDS, type CombatPickupRacer } from '../../src/game/galactic/combatPickups';
++import { createGalacticRacerState, createGalacticWorldState, snapshotGalacticRacer, spawnHeatLance, stepGalacticRacerAction, stepGalacticWorld } from '../../src/game/galactic/system';
++import { FLAT_HEIGHT_SAMPLER, createPodracerState } from '../../src/game/simulation';
++import { createRaceSimulation } from '../../src/game/race';
++import { normalizePlayerInput } from '../../src/game/input';
++
++function racer(id: string, x = 0, y = 0, z = 0): CombatPickupRacer {
++  const vehicle = createPodracerState({ id, position: { x, z }, terrain: FLAT_HEIGHT_SAMPLER });
++  vehicle.position.y = y;
++  return { id, vehicle, galactic: createGalacticRacerState() };
++}
++function snapshot(entry: CombatPickupRacer) {
++  return snapshotGalacticRacer(entry.id, entry.vehicle, entry.galactic, 0.315, -9, false);
++}
++
++describe('deterministic instant combat pickups', () => {
++  it('preserves all six old pickup placements and RNG while adding fixed, distinct chaos resources', () => {
++    const world = createGalacticWorldState(93);
++    expect(world.pickups.slice(0, 6).map(({ id, progress, lateralOffset, part }) => ({ id, progress, lateralOffset, part }))).toEqual([
++      { id: 'part-afterburner', progress: 0.205, lateralOffset: -7, part: 'afterburner-coils' },
++      { id: 'part-vector', progress: 0.39, lateralOffset: 8, part: 'vector-vanes' },
++      { id: 'part-frame', progress: 0.57, lateralOffset: -7, part: 'reinforced-frame' },
++      { id: 'part-pulse', progress: 0.705, lateralOffset: 7, part: 'pulse-capacitor' },
++      { id: 'part-landing', progress: 0.845, lateralOffset: -5, part: 'landing-recuperator' },
++      { id: 'part-mine', progress: 0.93, lateralOffset: 6, part: 'mine-printer' },
++    ]);
++    expect(world.pickups.slice(6).map((pickup) => pickup.part)).toEqual(['emp-cell', 'repair-salvage']);
++    const rng = world.rngState;
++    collectCombatPickup('emp', 'emp-cell', racer('player'), [racer('enemy', 10)], world);
++    expect(world.rngState).toBe(rng);
++    for (const competitionProfile of ['time-trial', 'training', 'clean-race'] as const) {
++      const race = createRaceSimulation({ terrain: FLAT_HEIGHT_SAMPLER, seed: 93, competitionProfile });
++      expect(race.state.galacticWorld.pickups).toEqual([]);
++      expect(race.state.galacticWorld.hazards).toEqual([]);
++    }
++  });
++
++  it('interrupts nearby enemies without hull damage, conserves existing longer cooldowns, and cannot apply twice', () => {
++    const owner = racer('player'); const target = racer('enemy', 20);
++    target.vehicle.damage = 0.3; target.vehicle.boost.active = true;
++    target.galactic.redline.active = true; target.galactic.weapon.cooldown = 2;
++    const world = createGalacticWorldState(1);
++    const result = collectCombatPickup('emp', 'emp-cell', owner, [target], world);
++    expect(result).toContainEqual({ type: 'emp-hit', attackerId: 'player', targetId: 'enemy', blocked: false, duration: EMP_DISRUPTION_SECONDS });
++    expect(target.vehicle.damage).toBe(0.3);
++    expect(target.vehicle.boost.active).toBe(false);
++    expect(target.galactic.weapon.cooldown).toBe(2);
++    expect(target.galactic.mine.cooldown).toBe(EMP_DISRUPTION_SECONDS);
++    expect(target.galactic.wreck.recentAggressorId).toBe('player');
++    const action = stepGalacticRacerAction(target.galactic, { step: 1, delta: 1 / 120,
++      racing: true, input: normalizePlayerInput({ throttle: 1, boost: true, fire: true, mine: true }), self: snapshot(target), opponents: [] });
++    expect(action.input.boost).toBe(false);
++    expect(action.redlineAcceleration).toBe(0);
++    expect(action.fireHeatLance).toBe(false);
++    expect(action.deployMine).toBe(false);
++    expect(collectCombatPickup('emp', 'emp-cell', owner, [target], world)).toEqual([]);
++    expect(owner.galactic.upgrades.parts).toEqual([]);
++  });
++
++  it('respects shields, recovery immunity, wrecks, and a three-dimensional range boundary', () => {
++    const owner = racer('player'); const shield = racer('shield', 20);
++    shield.galactic.shield.active = true; shield.galactic.shield.remaining = 1;
++    const immune = racer('immune', 20); immune.galactic.wreck.invulnerable = 1;
++    const wreck = racer('wreck', 20); wreck.galactic.wreck.phase = 'wrecked';
++    const far = racer('far', 42.01); const above = racer('above', 0, 42.01);
++    const edge = racer('edge', 42);
++    const events = collectCombatPickup('emp', 'emp-cell', owner, [shield, immune, wreck, far, above, edge], createGalacticWorldState());
++    expect(shield.galactic.shield.remaining).toBeCloseTo(0.55);
++    expect(shield.galactic.status.ionized).toBe(0);
++    for (const entry of [immune, wreck, far, above]) expect(entry.galactic.status.ionized).toBe(0);
++    expect(edge.galactic.status.ionized).toBe(EMP_DISRUPTION_SECONDS);
++    expect(events.at(-1)).toMatchObject({ type: 'emp-pulse', targetIds: ['edge'], blockedIds: ['shield'] });
++  });
++
++  it('clears only hostile in-range ordnance, with stable enemy ordering and no projectiles spawned', () => {
++    const owner = racer('player'); const a = racer('a', 15); const b = racer('b', 20);
++    const world = createGalacticWorldState();
++    const ownBolt = spawnHeatLance(world, snapshot(owner));
++    const hostileBolt = spawnHeatLance(world, snapshot(a));
++    ownBolt.position = { x: 1, y: 0, z: 0 }; hostileBolt.position = { x: 2, y: 0, z: 0 };
++    const sequence = world.projectileSequence;
++    const events = collectCombatPickup('emp', 'emp-cell', owner, [b, a], world);
++    expect(world.projectiles.map((projectile) => projectile.id)).toEqual([ownBolt.id]);
++    expect(world.projectileSequence).toBe(sequence);
++    expect(events.at(-1)).toMatchObject({ targetIds: ['a', 'b'], clearedOrdnance: 1 });
++  });
++
++  it('repairs and cools bounded amounts without free permanent upgrades, ammunition, or tokens', () => {
++    const owner = racer('player'); const world = createGalacticWorldState();
++    owner.vehicle.damage = 0.63; owner.vehicle.heat = 0.9;
++    owner.galactic.redline.heat = 0.95; owner.galactic.redline.lockout = 2;
++    owner.galactic.status.ionized = 1;
++    const events = collectCombatPickup('repair', 'repair-salvage', owner, [], world);
++    expect(events).toEqual([{ type: 'repair-salvage-collected', racerId: 'player', pickupId: 'repair', repaired: 0.24, cooled: 0.4, coreCooled: 0.4 }]);
++    expect(owner.vehicle.damage).toBeCloseTo(0.39); expect(owner.vehicle.heat).toBeCloseTo(0.5);
++    expect(owner.galactic.redline.heat).toBeCloseTo(0.55);
++    expect(owner.galactic.redline.lockout).toBeCloseTo(1.2);
++    expect(owner.galactic.status.ionized).toBe(0);
++    expect(owner.galactic.upgrades.parts).toEqual([]);
++    expect(owner.galactic.mine.charges).toBe(3); expect(world.runTokens).toBe(3);
++    expect(collectCombatPickup('repair', 'repair-salvage', owner, [], world)).toEqual([]);
++    owner.vehicle.damage = 0.03; owner.vehicle.heat = 0.07;
++    expect(collectCombatPickup('repair2', 'repair-salvage', owner, [], world)[0]).toMatchObject({ repaired: 0.03, cooled: 0.07 });
++    expect(owner.vehicle.damage).toBe(0); expect(owner.vehicle.heat).toBe(0);
++    owner.galactic.redline.heat = 0.8;
++    expect(collectCombatPickup('core-only', 'repair-salvage', owner, [], world)[0])
++      .toMatchObject({ repaired: 0, cooled: 0, coreCooled: 0.4 });
++    expect(owner.galactic.redline.heat).toBe(0.4);
++  });
++
++  it('resolves contested instant pickups deterministically and excludes wrecked collectors', () => {
++    const a = racer('a'); const b = racer('b');
++    const world = createGalacticWorldState(); world.hazards = [];
++    world.pickups = world.pickups.filter((pickup) => pickup.part === 'emp-cell');
++    const reversed = structuredClone(world);
++    expect(stepGalacticWorld(world, [snapshot(b), snapshot(a)], 1 / 120).pickupClaims)
++      .toEqual(stepGalacticWorld(reversed, [snapshot(a), snapshot(b)], 1 / 120).pickupClaims);
++    expect(world.pickups[0]?.collectedBy).toBe('a');
++    const wreckWorld = createGalacticWorldState(); wreckWorld.hazards = [];
++    a.galactic.wreck.phase = 'wrecked';
++    expect(stepGalacticWorld(wreckWorld, [snapshot(a)], 1 / 120).pickupClaims).toEqual([]);
++  });
++
++  it('applies claims inside RaceSimulation, respects team allies, and replays a saved snapshot identically', () => {
++    const race = createRaceSimulation({ terrain: FLAT_HEIGHT_SAMPLER, seed: 87,
++      competitionProfile: 'chaos', mode: 'team-race', countdownSeconds: 0 });
++    const player = race.state.entries[0]!;
++    const ally = race.state.entries.find((entry) => entry.id !== player.id && entry.competition?.teamId === player.competition?.teamId)!;
++    const enemy = race.state.entries.find((entry) => entry.competition?.teamId !== player.competition?.teamId)!;
++    expect(ally).toBeDefined(); expect(enemy).toBeDefined();
++    ally.vehicle.position = { ...player.vehicle.position, x: player.vehicle.position.x + 15 };
++    enemy.vehicle.position = { ...player.vehicle.position, x: player.vehicle.position.x + 25 };
++    const pickup = race.state.galacticWorld.pickups.find((value) => value.part === 'emp-cell')!;
++    for (const entry of race.state.entries) if (entry.id !== player.id) entry.progress.lateralOffset = 100;
++    pickup.progress = player.progress.courseProgress;
++    pickup.lateralOffset = player.progress.lateralOffset;
++    pickup.lateralRadius = 0.01;
++    race.state.galacticWorld.hazards = [];
++    const saved = race.snapshot();
++    const first = race.step({ throttle: 0 });
++    expect(first.galacticEvents.some((event) => event.type === 'emp-pulse' && event.racerId === player.id)).toBe(true);
++    expect(first.galacticEvents.some((event) => event.type === 'emp-hit' && event.targetId === ally.id)).toBe(false);
++    expect(first.galacticEvents.some((event) => event.type === 'emp-hit' && event.targetId === enemy.id)).toBe(true);
++    const expectedEvents = structuredClone(first.galacticEvents); const expectedState = race.snapshot();
++    race.restoreAuthoritativeSnapshot(saved, player.id);
++    expect(race.step({ throttle: 0 }).galacticEvents).toEqual(expectedEvents);
++    expect(race.snapshot()).toEqual(expectedState);
++  });
++});

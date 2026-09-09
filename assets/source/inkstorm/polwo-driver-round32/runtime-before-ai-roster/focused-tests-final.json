@@ -1,0 +1,9 @@
+{
+  "command": "npm test -- tests/render/aiAppearanceRoster.test.ts tests/render/racerPresentation.test.ts",
+  "exitCode": 0,
+  "testFilesPassed": 2,
+  "testsPassed": 20,
+  "durationSeconds": 1.30,
+  "scope": "Six new roster checks plus fourteen existing presentation lifecycle checks. Synthetic mesh loader exercises production roster and adapter routing, not final GLB admission, browser usability, FPS, or a built GameApp.",
+  "followup": "After this passing run, GameApp's unchanged helper arguments were hoisted to one local-id/member snapshot per racer loop to avoid repeated allocating lobby reads. Root owns final typecheck/build/runtime verification."
+}

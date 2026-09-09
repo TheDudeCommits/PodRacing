@@ -1,0 +1,109 @@
+{
+  "groups": [
+    {
+      "manifest": "output/critics/ui-ability-family-v32/SOURCE_FREEZE.json",
+      "manifestSha256": "128ecdabf539f36e8984f5fcef24eb73491749e4cf2550d3e09bb51c85167c65",
+      "patch": "output/critics/ui-ability-family-v32/ABILITY_FAMILY.patch",
+      "patchSha256": "07c34cf7b1d91bd0cc040f32a52655bd06d7ff9a1ee626cdb062f4abee6dd2c2",
+      "files": [
+        {
+          "path": "src/ui/broadcastStyles.ts",
+          "before": "5f4df11492a88addab70766e99482a801b964a0bcc7968f0646a24291fba70b5",
+          "after": "d0b614a67f39ea73845e82206af30062e52c95f114c5f16a11fabb81b90e4d3a"
+        }
+      ],
+      "stage": "Centrally applied V32 candidate; integrated/native/visual/performance validation pending",
+      "at": "2026-09-09T12:58:54.898641+00:00"
+    },
+    {
+      "manifest": "output/critics/ui-feedback-reservation-v32/SOURCE_FREEZE.json",
+      "manifestSha256": "ed25dd31ff0bd69c3d33fbae421aa983cca354d1925d346ddc084d97dcd48f14",
+      "patch": "output/critics/ui-feedback-reservation-v32/FEEDBACK_RESERVATION.patch",
+      "patchSha256": "4e1816f0e0036ec7b7e040dc88bfb4deb31434788b8c26a7925c4d7aee0db2a6",
+      "files": [
+        {
+          "path": "src/ui/RaceHud.ts",
+          "before": "a57dab1f88fad3c325aceee9be00ee415fc7f651d7743ef0db76b7ef6a1fa103",
+          "after": "54f55b92bed92a8866ccebe74f0dc871815518fe453aae974ea8958477851230"
+        },
+        {
+          "path": "tests/ui/threatLayout.test.ts",
+          "before": "b2357ff335984f3a162944fee940e3bb8f8c8bb74db9fa545322c6a0178bc3a8",
+          "after": "6b737567a12dc524da0ed9819bb2404917eeab04397c0b6d29df849c73f6587c"
+        }
+      ],
+      "stage": "Centrally applied V32 candidate; integrated/native/visual/performance validation pending",
+      "at": "2026-09-09T12:58:54.908716+00:00"
+    },
+    {
+      "manifest": "assets/source/inkstorm/combat-round35/v32-per-piece-support-preparation/FROZEN-MANIFEST.json",
+      "manifestSha256": "bfa778a53ef8cbc11f7f98a8ba6ff14042657413ca46070e1b8c26d9c45887b8",
+      "patch": "assets/source/inkstorm/combat-round35/v32-per-piece-support-preparation/v32-per-piece-support.patch",
+      "patchSha256": "754d1d9c9419bb6c011b219d13e08409e32731b24de6876a541c74f0110f0b1a",
+      "files": [
+        {
+          "path": "src/render/app/GameApp.ts",
+          "before": "d289a9cfb8b683f0ab4309b4b9060fe02cfac4f091273b09b31c103f98a864a8",
+          "after": "f426d9024bf65413a5988c0076abd8db20d71f70c3b01824e1868a70f8f6fe7a"
+        },
+        {
+          "path": "src/render/combat/TeemtoAuthoredDamage.ts",
+          "before": "918c6904113bc77b34d35db1c6b6d024927e2ec71fd073799d9202ea9f0ce9a6",
+          "after": "008d11c218b4673f1984adf80ae0bf860b795cdf7a6409157605903997950cad"
+        },
+        {
+          "path": "src/render/combat/WreckGroundContact.ts",
+          "before": "7da1df16e489f21ac3ea1a0e174c7a6d4666a6fa20a1eb00aac2b150330a8b91",
+          "after": "7ab2320d7b62d770c6fd76fd3a9efdfe5c09538c49bed03a24c430078b6aa656"
+        },
+        {
+          "path": "src/render/combat/WreckVisualPose.ts",
+          "before": "e14f1c1cd2444c9d4d0fcd417092dd9263fa96783750871b9ffe7e8aa55e7b58",
+          "after": "969aec25ab34e210e6446ce1cafad45060e96849fcd1a2eb2739acc9e0f0cf9a"
+        },
+        {
+          "path": "src/render/galactic/GalacticEffectsView.ts",
+          "before": "892d90922e94b0b517fc3e14cd8f94ec57624f8717992566a2b11c6a0b8635dc",
+          "after": "a6d2868bf2ba903818bfe18b6f3ef20d5854c9eee9e07e0410c2c6ab8db3b5ca"
+        },
+        {
+          "path": "tests/combat/TeemtoAuthoredDamage.test.ts",
+          "before": "ce48b6a0bac37c752fbcd2581a598c7ab2d49c3d18aa9ae928f8cd175b87a214",
+          "after": "c9fad23f58411660634835d4b796c477b4f7f777c540e15c99f8e744c37d1817"
+        },
+        {
+          "path": "tests/combat/TeemtoGroundEdges.test.ts",
+          "before": "7cbc97c488e950f5cf9be8c8080891dd51676479b933e76ad124223ef5a23152",
+          "after": "c9656e88ab7f9b8c0c8e5956fe686fa36f53c64532d2091fe124350ae8b35602"
+        },
+        {
+          "path": "tests/combat/TeemtoPresentationSupports.test.ts",
+          "before": null,
+          "after": "f33821aae5bdc76519cc2bf51de4e4103aa0d0dc70e1fc1f0915e0acae7d97d5"
+        },
+        {
+          "path": "tests/combat/TeemtoSupportSettle.test.ts",
+          "before": "98debb1cd3e0d6b925563ce12c4b2b1c3e1b40e29b24bbe41498d2849c931306",
+          "after": "f3cef5133c7c283300727a073dad15d7027ff078c98fa4e836a690203260a632"
+        },
+        {
+          "path": "tests/combat/WreckGroundContact.test.ts",
+          "before": "dcb1df11624c8914c7608646a3f396409c35fc1100d318d1e9f766a04541210e",
+          "after": "170737b27a2bce8e9453fd392c848388bdcafe1bd722e309a38f4f39fea27924"
+        },
+        {
+          "path": "tests/render/PerPieceContactEffects.test.ts",
+          "before": null,
+          "after": "7b9af3109db108fae2933e2cb2408b4cecada5f9894eaacb84acbbf4f600fbad"
+        },
+        {
+          "path": "tests/render/WreckContactVolume.test.ts",
+          "before": "40a9a700f8106b093a830a94b5116aeef6e86f76989e9cf118e981f5a9d180c7",
+          "after": "6bba09ed95fe9ce53fc1d30bb5ce64fbd0d1ee1c2f76c58efd01522c6284ee22"
+        }
+      ],
+      "stage": "Centrally applied V32 candidate; integrated/native/visual/performance validation pending",
+      "at": "2026-09-09T12:58:54.921350+00:00"
+    }
+  ]
+}

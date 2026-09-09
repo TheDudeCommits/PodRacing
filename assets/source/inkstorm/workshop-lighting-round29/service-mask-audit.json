@@ -1,0 +1,461 @@
+{
+  "status": "ACTUAL_EXPORTED_PALETTE_PASS",
+  "groundTruth": "Authored cyan hue rays (.1,.87,.79) and (.13,.78,.74), allowing exported scalar face shading; independent of brightness threshold",
+  "thresholds": {
+    "minimumG": 0.5,
+    "minimumB": 0.45,
+    "minimumGreenRedRatio": 3,
+    "minimumBlueRedRatio": 3,
+    "classificationStage": "Before broad/brush/wear modulation"
+  },
+  "currentMaterialSha256": "bf63c30c6c1e273275389e3468866ceb3dd9864ca5ef32fc091e8f66fdbf7d3a",
+  "originalMaterialSha256": "a78f6be5d2f39363cc4836277090f274fa048be30324e3b2c1d93d23dd25bd69",
+  "assets": [
+    {
+      "family": "pit-complex",
+      "path": "public/assets/inkstorm/pit-complex.glb",
+      "sha256": "57866979d90b8dd2f1be5204df496307ec89b8c3f847900c5a154566fdd8129a",
+      "vertexCount": 22702,
+      "uniqueColors": 2330,
+      "cyanVertices": 420,
+      "oldFalsePositiveVertices": 2156,
+      "falsePositiveVertices": 0,
+      "falseNegativeVertices": 0,
+      "cyanRange": [
+        [
+          0.06599999964237213,
+          0.09630213677883148
+        ],
+        [
+          0.5741999745368958,
+          0.8378285765647888
+        ],
+        [
+          0.521399974822998,
+          0.7607868313789368
+        ]
+      ],
+      "mutedBlueRange": [
+        [
+          0.0494999997317791,
+          0.0949999988079071
+        ],
+        [
+          0.11879999935626984,
+          0.20999999344348907
+        ],
+        [
+          0.19140000641345978,
+          0.3199999928474426
+        ]
+      ]
+    },
+    {
+      "family": "pit-district",
+      "path": "public/assets/inkstorm/pit-district.glb",
+      "sha256": "c5aa216edc139efe484981b390946f3a7464587ab508fe5ffec2d8c999240447",
+      "vertexCount": 34212,
+      "uniqueColors": 4337,
+      "cyanVertices": 180,
+      "oldFalsePositiveVertices": 3564,
+      "falsePositiveVertices": 0,
+      "falseNegativeVertices": 0,
+      "cyanRange": [
+        [
+          0.06599999964237213,
+          0.09615200012922287
+        ],
+        [
+          0.5741999745368958,
+          0.8365224003791809
+        ],
+        [
+          0.521399974822998,
+          0.759600818157196
+        ]
+      ],
+      "mutedBlueRange": [
+        [
+          0.038926877081394196,
+          0.0949999988079071
+        ],
+        [
+          0.08604888617992401,
+          0.20999999344348907
+        ],
+        [
+          0.13112211227416992,
+          0.3199999928474426
+        ]
+      ]
+    },
+    {
+      "family": "foundry-gantry",
+      "path": "public/assets/inkstorm/foundry-gantry.glb",
+      "sha256": "3d0cd999daf52b82ac0232c7316a5e4072c80bd83982f83cbaf4a1dcde11e862",
+      "vertexCount": 11106,
+      "uniqueColors": 1395,
+      "cyanVertices": 558,
+      "oldFalsePositiveVertices": 696,
+      "falsePositiveVertices": 0,
+      "falseNegativeVertices": 0,
+      "cyanRange": [
+        [
+          0.06599999964237213,
+          0.10000000149011612
+        ],
+        [
+          0.5741999745368958,
+          0.8700000047683716
+        ],
+        [
+          0.521399974822998,
+          0.7900000214576721
+        ]
+      ],
+      "mutedBlueRange": [
+        [
+          0.0494999997317791,
+          0.07231725007295609
+        ],
+        [
+          0.11879999935626984,
+          0.17356139421463013
+        ],
+        [
+          0.19140000641345978,
+          0.2796266973018646
+        ]
+      ]
+    },
+    {
+      "family": "pipe-bank",
+      "path": "public/assets/inkstorm/pipe-bank.glb",
+      "sha256": "4b3510d0f8b10e1a44158edb0b0bbdc25bac33019176368638937ab1834a3b81",
+      "vertexCount": 12789,
+      "uniqueColors": 2419,
+      "cyanVertices": 96,
+      "oldFalsePositiveVertices": 1374,
+      "falsePositiveVertices": 0,
+      "falseNegativeVertices": 0,
+      "cyanRange": [
+        [
+          0.06599999964237213,
+          0.0964270755648613
+        ],
+        [
+          0.5741999745368958,
+          0.8389155268669128
+        ],
+        [
+          0.521399974822998,
+          0.7617738842964172
+        ]
+      ],
+      "mutedBlueRange": [
+        [
+          0.0494999997317791,
+          0.07237448543310165
+        ],
+        [
+          0.11879999935626984,
+          0.17369875311851501
+        ],
+        [
+          0.19140000641345978,
+          0.27984800934791565
+        ]
+      ]
+    },
+    {
+      "family": "finish-tower",
+      "path": "public/assets/inkstorm/finish-tower.glb",
+      "sha256": "b2100d2c3415ac0cdb8f0fd573ac292583cf7858812b5452f05363698b8885e8",
+      "vertexCount": 1728,
+      "uniqueColors": 36,
+      "cyanVertices": 72,
+      "oldFalsePositiveVertices": 288,
+      "falsePositiveVertices": 0,
+      "falseNegativeVertices": 0,
+      "cyanRange": [
+        [
+          0.10010000318288803,
+          0.13519999384880066
+        ],
+        [
+          0.600600004196167,
+          0.8112000226974487
+        ],
+        [
+          0.5698000192642212,
+          0.769599974155426
+        ]
+      ],
+      "mutedBlueRange": [
+        [
+          0.050050001591444016,
+          0.06759999692440033
+        ],
+        [
+          0.12319999933242798,
+          0.1664000004529953
+        ],
+        [
+          0.24639999866485596,
+          0.3328000009059906
+        ]
+      ]
+    },
+    {
+      "family": "refinery-stack",
+      "path": "public/assets/inkstorm/refinery-stack.glb",
+      "sha256": "0f52f2e0cc195a5fe36853f543cfad8e4c9a2391d5083b016f71ffe4f1f7f781",
+      "vertexCount": 1152,
+      "uniqueColors": 157,
+      "cyanVertices": 0,
+      "oldFalsePositiveVertices": 576,
+      "falsePositiveVertices": 0,
+      "falseNegativeVertices": 0,
+      "cyanRange": null,
+      "mutedBlueRange": [
+        [
+          0.06464915722608566,
+          0.08398852497339249
+        ],
+        [
+          0.11205852776765823,
+          0.14558009803295135
+        ],
+        [
+          0.18963751196861267,
+          0.24636632204055786
+        ]
+      ]
+    }
+  ],
+  "uniqueColorCount": 10395,
+  "cyanColorCount": 166,
+  "mutedBlueColorCount": 1084,
+  "representatives": [
+    {
+      "name": "pit-complex cyan darkest",
+      "family": "pit-complex",
+      "label": "cyan",
+      "rgb": [
+        0.06599999964237213,
+        0.5741999745368958,
+        0.521399974822998
+      ]
+    },
+    {
+      "name": "pit-complex cyan brightest",
+      "family": "pit-complex",
+      "label": "cyan",
+      "rgb": [
+        0.09630213677883148,
+        0.8378285765647888,
+        0.7607868313789368
+      ]
+    },
+    {
+      "name": "pit-complex cobalt darkest",
+      "family": "pit-complex",
+      "label": "cobalt",
+      "rgb": [
+        0.0494999997317791,
+        0.11879999935626984,
+        0.19140000641345978
+      ]
+    },
+    {
+      "name": "pit-complex cobalt brightest",
+      "family": "pit-complex",
+      "label": "cobalt",
+      "rgb": [
+        0.0949999988079071,
+        0.20999999344348907,
+        0.3199999928474426
+      ]
+    },
+    {
+      "name": "pit-district cyan darkest",
+      "family": "pit-district",
+      "label": "cyan",
+      "rgb": [
+        0.06599999964237213,
+        0.5741999745368958,
+        0.521399974822998
+      ]
+    },
+    {
+      "name": "pit-district cyan brightest",
+      "family": "pit-district",
+      "label": "cyan",
+      "rgb": [
+        0.09615200012922287,
+        0.8365224003791809,
+        0.759600818157196
+      ]
+    },
+    {
+      "name": "pit-district cobalt darkest",
+      "family": "pit-district",
+      "label": "cobalt",
+      "rgb": [
+        0.038926877081394196,
+        0.08604888617992401,
+        0.13112211227416992
+      ]
+    },
+    {
+      "name": "pit-district cobalt brightest",
+      "family": "pit-district",
+      "label": "cobalt",
+      "rgb": [
+        0.0949999988079071,
+        0.20999999344348907,
+        0.3199999928474426
+      ]
+    },
+    {
+      "name": "foundry-gantry cyan darkest",
+      "family": "foundry-gantry",
+      "label": "cyan",
+      "rgb": [
+        0.06599999964237213,
+        0.5741999745368958,
+        0.521399974822998
+      ]
+    },
+    {
+      "name": "foundry-gantry cyan brightest",
+      "family": "foundry-gantry",
+      "label": "cyan",
+      "rgb": [
+        0.10000000149011612,
+        0.8700000047683716,
+        0.7900000214576721
+      ]
+    },
+    {
+      "name": "foundry-gantry cobalt darkest",
+      "family": "foundry-gantry",
+      "label": "cobalt",
+      "rgb": [
+        0.0494999997317791,
+        0.11879999935626984,
+        0.19140000641345978
+      ]
+    },
+    {
+      "name": "foundry-gantry cobalt brightest",
+      "family": "foundry-gantry",
+      "label": "cobalt",
+      "rgb": [
+        0.07231725007295609,
+        0.17356139421463013,
+        0.2796266973018646
+      ]
+    },
+    {
+      "name": "pipe-bank cyan darkest",
+      "family": "pipe-bank",
+      "label": "cyan",
+      "rgb": [
+        0.06599999964237213,
+        0.5741999745368958,
+        0.521399974822998
+      ]
+    },
+    {
+      "name": "pipe-bank cyan brightest",
+      "family": "pipe-bank",
+      "label": "cyan",
+      "rgb": [
+        0.0964270755648613,
+        0.8389155268669128,
+        0.7617738842964172
+      ]
+    },
+    {
+      "name": "pipe-bank cobalt darkest",
+      "family": "pipe-bank",
+      "label": "cobalt",
+      "rgb": [
+        0.0494999997317791,
+        0.11879999935626984,
+        0.19140000641345978
+      ]
+    },
+    {
+      "name": "pipe-bank cobalt brightest",
+      "family": "pipe-bank",
+      "label": "cobalt",
+      "rgb": [
+        0.07237448543310165,
+        0.17369875311851501,
+        0.27984800934791565
+      ]
+    },
+    {
+      "name": "finish-tower cyan darkest",
+      "family": "finish-tower",
+      "label": "cyan",
+      "rgb": [
+        0.10010000318288803,
+        0.600600004196167,
+        0.5698000192642212
+      ]
+    },
+    {
+      "name": "finish-tower cyan brightest",
+      "family": "finish-tower",
+      "label": "cyan",
+      "rgb": [
+        0.13519999384880066,
+        0.8112000226974487,
+        0.769599974155426
+      ]
+    },
+    {
+      "name": "finish-tower cobalt darkest",
+      "family": "finish-tower",
+      "label": "cobalt",
+      "rgb": [
+        0.050050001591444016,
+        0.12319999933242798,
+        0.24639999866485596
+      ]
+    },
+    {
+      "name": "finish-tower cobalt brightest",
+      "family": "finish-tower",
+      "label": "cobalt",
+      "rgb": [
+        0.06759999692440033,
+        0.1664000004529953,
+        0.3328000009059906
+      ]
+    },
+    {
+      "name": "refinery-stack cobalt darkest",
+      "family": "refinery-stack",
+      "label": "cobalt",
+      "rgb": [
+        0.06464915722608566,
+        0.11205852776765823,
+        0.18963751196861267
+      ]
+    },
+    {
+      "name": "refinery-stack cobalt brightest",
+      "family": "refinery-stack",
+      "label": "cobalt",
+      "rgb": [
+        0.08398852497339249,
+        0.14558009803295135,
+        0.24636632204055786
+      ]
+    }
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "scope": "Sparse source-geometry body ray test using exact GLB material sidedness. No camera/runtime/art change, no world or pixels or FPS evidence. Higher/side eyes are diagnostic only, not proposed playable camera profiles.",
+  "asset": "/Users/amir/Projects/PodRacing/public/assets/inkstorm/vehicles/teemto-hero-v4c.glb",
+  "bodyMaterialSides": [
+    {
+      "mesh": "teemto-cockpit-body",
+      "material": "Inkstorm Teemto Cabina",
+      "side": 0
+    },
+    {
+      "mesh": "teemto-engine-left-body",
+      "material": "Inkstorm Teemto Propulsores",
+      "side": 0
+    },
+    {
+      "mesh": "teemto-engine-right-body",
+      "material": "Inkstorm Teemto Propulsores",
+      "side": 0
+    }
+  ],
+  "poses": [
+    {
+      "name": "current",
+      "eye": [
+        0.35,
+        7.3459566784,
+        -16.8935306855
+      ],
+      "sampleCount": 199,
+      "bodyOccluded": 199,
+      "unblocked": 0,
+      "firstBlockingMeshes": {
+        "teemto-cockpit-body / Inkstorm Teemto Cabina": 199
+      }
+    },
+    {
+      "name": "higher-12",
+      "eye": [
+        0.35,
+        12,
+        -16.8935306855
+      ],
+      "sampleCount": 199,
+      "bodyOccluded": 199,
+      "unblocked": 0,
+      "firstBlockingMeshes": {
+        "teemto-cockpit-body / Inkstorm Teemto Cabina": 199
+      }
+    },
+    {
+      "name": "higher-16",
+      "eye": [
+        0.35,
+        16,
+        -16.8935306855
+      ],
+      "sampleCount": 199,
+      "bodyOccluded": 199,
+      "unblocked": 0,
+      "firstBlockingMeshes": {
+        "teemto-cockpit-body / Inkstorm Teemto Cabina": 199
+      }
+    },
+    {
+      "name": "side-offset-3",
+      "eye": [
+        3,
+        7.3459566784,
+        -16.8935306855
+      ],
+      "sampleCount": 199,
+      "bodyOccluded": 197,
+      "unblocked": 2,
+      "firstBlockingMeshes": {
+        "teemto-cockpit-body / Inkstorm Teemto Cabina": 197
+      }
+    }
+  ]
+}

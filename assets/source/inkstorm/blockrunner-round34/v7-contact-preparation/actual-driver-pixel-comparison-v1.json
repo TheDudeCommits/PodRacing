@@ -1,0 +1,70 @@
+{
+  "scope": "Unedited actual rendered PNG pixels; V6 atlas versus V7 procedural contact candidate, samecamera/lights. Not pure AO isolation: atlas filtering vs procedural material is another difference. No perception/parity assertion. Both renders already include Cycles light contact.",
+  "files": [
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/paint-v1-driver-20260908-round34-clamp-v6.png",
+      "sha256": "18843e753486c82edb469f6db68034f0b1557802e64ac9ba211bb6d68050ccf6"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/paint-v1-driver-20260908-round34-contact-v7.png",
+      "sha256": "092873123c1939a3757ea24bb259eab886e354dce1bb65a2936362dc54a2bd0d"
+    }
+  ],
+  "roi": {
+    "entire_frame_background_included": {
+      "box": [
+        0,
+        0,
+        1280,
+        960
+      ],
+      "mean_absolute_channel_delta_255": 1.5993459224700928,
+      "mean_signed_channel_delta_255": -1.5394837856292725,
+      "changed_pixel_percent": 65.0
+    },
+    "pilot_torso": {
+      "box": [
+        546,
+        368,
+        807,
+        608
+      ],
+      "mean_absolute_channel_delta_255": 1.9979352951049805,
+      "mean_signed_channel_delta_255": -1.9852384328842163,
+      "changed_pixel_percent": 85.38633461047253
+    },
+    "left_studs": {
+      "box": [
+        28,
+        555,
+        454,
+        810
+      ],
+      "mean_absolute_channel_delta_255": 4.0162353515625,
+      "mean_signed_channel_delta_255": -4.005747318267822,
+      "changed_pixel_percent": 84.00625978090767
+    },
+    "helmet": {
+      "box": [
+        578,
+        145,
+        859,
+        372
+      ],
+      "mean_absolute_channel_delta_255": 1.748673915863037,
+      "mean_signed_channel_delta_255": -1.7314813137054443,
+      "changed_pixel_percent": 73.17478483076489
+    },
+    "right_lower_body": {
+      "box": [
+        760,
+        580,
+        1254,
+        945
+      ],
+      "mean_absolute_channel_delta_255": 1.5307692289352417,
+      "mean_signed_channel_delta_255": -1.3762390613555908,
+      "changed_pixel_percent": 72.03316510454218
+    }
+  }
+}

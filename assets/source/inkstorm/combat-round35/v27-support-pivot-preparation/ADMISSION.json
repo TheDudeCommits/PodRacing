@@ -1,0 +1,7 @@
+{
+  "status": "Centrally integrated local V27 trial; full verification/native motion acceptance pending",
+  "patchSha256": "fecbb34a78e727e8dd5764c01521df42e134d8343eb9de3aacd82eeb311ce520",
+  "freezeSha256": "f6cedec0b50a6cb9d842f1339dd2b93fe0847a4b7071e74ba778387e666bb42f",
+  "tests": "24 focused tests/6files andprivateTSC pass; remainingfulltrajectory/combinedverifypending",
+  "scope": "Two motion source files, four tests; unchanged full-source clearance and terminal broadrest thresholds, explicit transientband/timing distinction. No publicgeometry/camera/simulation changes."
+}

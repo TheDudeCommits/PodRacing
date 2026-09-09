@@ -1,0 +1,52 @@
+{
+  "status": "PREPARED NOT EXECUTED",
+  "mcpExecuted": false,
+  "compactRoleRangeCount": 51,
+  "pairEncoding": "4828 exact independently measured pairs[2i,2i+1], verified live before mutations.",
+  "preflight": {
+    "astParsed": true,
+    "safeImportsAndLiteralAttributes": true,
+    "moduleNamespacesNotUsedAsValues": true,
+    "hasattrLiteralNames": [
+      "cycles",
+      "default_value",
+      "image",
+      "image"
+    ],
+    "bytes": 96855,
+    "sha256": "8e95268cb9faba98f4e5859e61e7c3334929efd63cc75a0b9da8c004f9f0ad66"
+  },
+  "cleanup": {
+    "astParsed": true,
+    "safeImportsAndLiteralAttributes": true,
+    "moduleNamespacesNotUsedAsValues": true,
+    "hasattrLiteralNames": [
+      "cycles",
+      "default_value",
+      "image",
+      "image"
+    ],
+    "bytes": 115616,
+    "sha256": "b366f3cacef794996aba0f4ca9e340799246df904b1cae93b1d16a67d0eb94f7"
+  },
+  "cleanupBoundToActualProof": false,
+  "normalProofReceiptSha256": null,
+  "invocationOrder": [
+    "Execute disposable normal preflight while Blender renderer is idle; retain its printed actual receipt.",
+    "Inspect the measured own Ivory reconstruction and preservation result; no Colour tolerance is imported.",
+    "Externally compose this script with the actual successful receipt path, inspect the bound code/hash, then execute cleanup serially.",
+    "Verify cleanup receipt before any masks/fitting; retain both original and audited source-copy scenes."
+  ],
+  "cleanupTargetCounts": {
+    "objects": 55,
+    "meshes": 51,
+    "materials": 51,
+    "triangles": 43556
+  },
+  "untargetedMeshCount": 50,
+  "semanticMasksApplied": false,
+  "noNormalDirectionRecalculationCalled": true,
+  "normalSetterOnlyOnNewOwnedDerivative": true,
+  "failureRollbackOnlyOwnedIds": true,
+  "all12IdSetsAndFreshContextGuarded": true
+}

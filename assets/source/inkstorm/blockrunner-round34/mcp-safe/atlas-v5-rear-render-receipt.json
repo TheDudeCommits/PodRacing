@@ -1,0 +1,212 @@
+{
+  "boundsMaximumEncodingDifference": 0,
+  "camera": {
+    "aspect": 1.3333333333333333,
+    "fitHeight": 6.008387565612793,
+    "fitWidth": 7.020819425582886,
+    "location": [
+      6.320919036865234,
+      3.4711666107177734,
+      14.715826988220215
+    ],
+    "orthoScale": 9.773643493652344,
+    "orthoScaleMeaning": "horizontal span; vertical span = orthoScale / aspect",
+    "resolution": [
+      1280,
+      960
+    ],
+    "rotationEuler": [
+      1.1182546615600586,
+      7.067455953801982e-8,
+      2.9060475826263428
+    ],
+    "sensorFit": "HORIZONTAL",
+    "target": [
+      0.024481534957885742,
+      -22.76399040222168,
+      1.5982481241226196
+    ]
+  },
+  "cameraBasis": "Source Blender coordinates; front/rear follow the actual front engine group at negative Y. No gameplay normalization.",
+  "exactOriginalCameraReused": true,
+  "fitCornerNormalsPreserved": true,
+  "fitPreservation": true,
+  "focusObjects": [
+    "blockrunner-body-paint-v5",
+    "blockrunner-pilot-paint-v5"
+  ],
+  "focusRoleAcceptance": "full craft geometry",
+  "globalPreservation": {
+    "changedCollections": [],
+    "changedScenes": [],
+    "contextRestored": true,
+    "preexistingMaterialsRetained": true,
+    "preexistingMeshesRetained": true,
+    "preexistingObjectsRetained": true,
+    "preexistingScenes": 149
+  },
+  "imageGuardScope": "Image identities, dimensions, color spaces and linked material structure; external bake inventory supplies actual image-file hashes.",
+  "lighting": {
+    "device": "CPU",
+    "engine": "CYCLES",
+    "exposure": 0,
+    "gamma": 1,
+    "lightColors": [
+      [
+        1,
+        1,
+        1
+      ],
+      [
+        1,
+        1,
+        1
+      ]
+    ],
+    "look": "None",
+    "repainted": false,
+    "samples": 16,
+    "sourceMaterialInputsUnchanged": true,
+    "viewTransform": "Standard",
+    "worldColor": [
+      0.16,
+      0.16,
+      0.16
+    ],
+    "worldStrength": 0.55
+  },
+  "linkedPaintImages": {
+    "Blockrunner body color 20260908-paint-v4b": {
+      "colorSpace": "sRGB",
+      "filepath": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/blockrunner-body-color-v1-20260908-paint-v4b.png",
+      "name": "Blockrunner body color 20260908-paint-v4b",
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    "Blockrunner body roughness 20260908-paint-v4b": {
+      "colorSpace": "Non-Color",
+      "filepath": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/blockrunner-body-roughness-v1-20260908-paint-v4b.png",
+      "name": "Blockrunner body roughness 20260908-paint-v4b",
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    "Blockrunner pilot color 20260908-paint-v4b": {
+      "colorSpace": "sRGB",
+      "filepath": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/blockrunner-pilot-color-v1-20260908-paint-v4b.png",
+      "name": "Blockrunner pilot color 20260908-paint-v4b",
+      "size": [
+        1024,
+        1024
+      ]
+    },
+    "Blockrunner pilot roughness 20260908-paint-v4b": {
+      "colorSpace": "Non-Color",
+      "filepath": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/blockrunner-pilot-roughness-v1-20260908-paint-v4b.png",
+      "name": "Blockrunner pilot roughness 20260908-paint-v4b",
+      "size": [
+        1024,
+        1024
+      ]
+    }
+  },
+  "objectCopies": [
+    {
+      "sourceMesh": "blockrunner-body-paint-v5 geometry",
+      "sourceObject": "blockrunner-body-paint-v5",
+      "temporaryMesh": "blockrunner-body-paint-v5 geometry.001",
+      "temporaryObject": "Blockrunner neutral copy blockrunner-body-paint-v5"
+    },
+    {
+      "sourceMesh": "blockrunner-pilot-paint-v5 geometry",
+      "sourceObject": "blockrunner-pilot-paint-v5",
+      "temporaryMesh": "blockrunner-pilot-paint-v5 geometry.001",
+      "temporaryObject": "Blockrunner neutral copy blockrunner-pilot-paint-v5"
+    }
+  ],
+  "originalSourceBoundsForLighting": [
+    [
+      -2.9099459648132324,
+      -28.763988494873047,
+      0.021512573584914207
+    ],
+    [
+      2.958909034729004,
+      -16.763992309570312,
+      3.1749837398529053
+    ]
+  ],
+  "paintAttributeSignatures": {
+    "blockrunner-body-paint-v5": {
+      "Inkstorm V4 Edge Distance": {
+        "colorsFnv1a64": "77a01b45d7ba2a4d",
+        "dataType": "FLOAT_COLOR",
+        "domain": "CORNER",
+        "length": 119700
+      },
+      "Inkstorm V4 Edge Strength": {
+        "colorsFnv1a64": "18c936df184555bb",
+        "dataType": "FLOAT_COLOR",
+        "domain": "CORNER",
+        "length": 119700
+      }
+    },
+    "blockrunner-pilot-paint-v5": {
+      "Inkstorm V4 Edge Distance": {
+        "colorsFnv1a64": "95983b52da7ef3fd",
+        "dataType": "FLOAT_COLOR",
+        "domain": "CORNER",
+        "length": 12384
+      },
+      "Inkstorm V4 Edge Strength": {
+        "colorsFnv1a64": "85ef768c1f7a2843",
+        "dataType": "FLOAT_COLOR",
+        "domain": "CORNER",
+        "length": 12384
+      }
+    }
+  },
+  "paintCornerNormalsPreserved": true,
+  "paintPreservation": true,
+  "parentPaintAttributeValuesPreserved": true,
+  "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/paint-v1-rear-20260908-round34-atlas-v5.png",
+  "runtimeReady": false,
+  "scope": "Painted source copy under the exact prior neutral-view camera and lighting; style, export and gameplay acceptance pending.",
+  "sharedBlendSaved": false,
+  "signatureAlgorithm": "FNV-1a-64 over canonical ASCII JSON; non-cryptographic",
+  "sourceBounds": [
+    [
+      -2.9099459648132324,
+      -28.763988494873047,
+      0.021512573584914207
+    ],
+    [
+      2.958909034729004,
+      -16.763992309570312,
+      3.1749837398529053
+    ]
+  ],
+  "sourceComparisonPath": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/paint-v1-rear-20260908-round34-paint-v2.png",
+  "sourcePreservation": true,
+  "sourcePreservationScope": "Matching FNV-1a-64 structural signatures; not byte equality or a cryptographic proof.",
+  "sourceUid": "a6f14ae799ab40d7ac425f043f824ff8",
+  "stage": "paint-neutral-comparison",
+  "status": "rendered; human inspection pending",
+  "targetBounds": [
+    [
+      -2.9099459648132324,
+      -28.763988494873047,
+      0.021512573584914207
+    ],
+    [
+      2.958909034729004,
+      -16.763992309570312,
+      3.1749837398529053
+    ]
+  ],
+  "temporarySceneRemoved": true,
+  "view": "rear"
+}

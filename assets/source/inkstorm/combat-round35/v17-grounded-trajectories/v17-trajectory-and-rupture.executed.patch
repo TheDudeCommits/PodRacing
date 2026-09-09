@@ -1,0 +1,447 @@
+--- a/src/render/combat/TeemtoAuthoredDamage.ts
++++ b/src/render/combat/TeemtoAuthoredDamage.ts
+@@ -36,6 +36,9 @@
+   private readonly groundOffset = new Vector3();
+   private readonly point = new Vector3();
+   private readonly contact = { position: new Vector3(), direction: new Vector3() };
++  private readonly rupture = { position: new Vector3(), direction: new Vector3() };
++  private readonly ruptureLocal: Vector3;
++  private rupturePose: WreckVisualPose | null = null;
+   private contactPose: WreckVisualPose | null = null;
+   private activeValue = false;
+   private readonly originalVisibility: readonly boolean[];
+@@ -72,8 +75,8 @@
+     stubs: Mesh | undefined, tethers: Mesh | undefined) {
+     const moving: [Object3D, Mesh][] = [[left, originalLeft], [front, front], [rear, rear]];
+     if (tethers) moving.push([tethers, tethers]);
+-    this.parts = moving.map(([node, mesh]) => {
+-      const samples = new WreckVisualPoseCache(); samples.refresh(root, [mesh], 0);
++    this.parts = moving.map(([node, mesh], index) => {
++      const samples = new WreckVisualPoseCache(index === 2); samples.refresh(root, [mesh], 0);
+       return { node, samples, matrix: new Matrix4(), restMatrix: node.matrix.clone(), restPosition: node.position.clone(),
+         restRotation: node.quaternion.clone(), restScale: node.scale.clone(), auto: node.matrixAutoUpdate };
+     });
+@@ -82,39 +85,57 @@
+     this.stationary.refresh(root, stationary, 0);
+     this.bounds = Array.from({ length: (this.parts.length + 1) * 8 }, () => new Vector3());
+     this.originalVisibility = hidden.map(mesh => mesh.visible);
++    // Exact outer rear cut-loop centroid from the hero/rival Blender receipts,
++    // in admitted +Y-up/+Z-forward metres. This face opens toward +Z. Neither
++    // a guessed exhaust offset nor the intact root center identifies the tear.
++    this.ruptureLocal = stubs ? new Vector3(4.023553848266602, 2.6643872261047363, 15.200007438659668)
++      : new Vector3(4.022682189941406, 2.6537137031555176, 15.200004577636719);
+     for (const mesh of replacements) mesh.visible = false;
+   }
+ 
+   update(pose: WreckVisualPose, remaining: number, terrain: { heightAt(x: number, z: number): number }, extrapolation = 0): void {
+     if (this.contactPose?.groundContact === this.contact) this.contactPose.groundContact = undefined;
+     this.contactPose = null; pose.groundContact = undefined;
++    if (this.rupturePose?.rupture === this.rupture) this.rupturePose.rupture = undefined;
++    this.rupturePose = null; pose.rupture = undefined;
+     const age = Math.max(0, Math.min(WRECK_PRESENTATION_DURATION, WRECK_PRESENTATION_DURATION - remaining + extrapolation));
+-    const release = smooth((remaining - extrapolation) / .35), spread = smooth(age / .12) * release;
+-    if (!Number.isFinite(spread) || spread === 0) { this.reset(); return; }
++    const release = smooth((remaining - extrapolation) / .35), spread = smooth(age / .10) * release;
++    this.bodyRotation.setFromEuler(pose.rotation); this.inverseBody.copy(this.bodyRotation).invert();
++    this.body.compose(pose.position, this.bodyRotation, UNIT);
++    if (!Number.isFinite(spread) || spread === 0) {
++      this.reset();
++      if (Number.isFinite(spread)) this.writeRupture(pose);
++      return;
++    }
+     if (!this.activeValue) {
+       for (const mesh of this.hidden) mesh.visible = false;
+       for (const mesh of this.replacements) mesh.visible = true;
+       this.activeValue = true;
+     }
+-    const settle = smooth(age / .20) * release;
+-    this.bodyRotation.setFromEuler(pose.rotation); this.inverseBody.copy(this.bodyRotation).invert();
+-    this.body.compose(pose.position, this.bodyRotation, UNIT);
++    const followThrough = smooth((age - .06) / .46) * release;
+     this.assembly.copy(this.stationary.localBounds);
+     writeWreckBounds(this.stationary.localBounds, this.body, this.bounds);
+     for (let index = 0; index < this.parts.length; index++) {
+       const part = this.parts[index]!;
+       // Left intact engine, torn front cowl, rear machinery, then severed rods.
+-      // A single deterministic opening exposes the cut before the held shot
+-      // ends. No ballistic state or per-frame allocation is introduced.
+-      const yaw = index === 0 ? -.26 : index === 1 ? .30 : index === 2 ? -.40 : -.25;
+-      const pitch = index === 0 ? .13 : index === 1 ? .18 : index === 2 ? -.35 : .10;
+-      const roll = index === 0 ? -.22 : index === 1 ? .65 : index === 2 ? 1.30 : .65;
+-      this.rotation.setFromAxisAngle(Y, yaw * spread);
+-      this.axis.setFromAxisAngle(X, pitch * spread); this.rotation.multiply(this.axis);
+-      this.axis.setFromAxisAngle(Z, roll * spread); this.rotation.multiply(this.axis);
++      // Opening and follow-through have different directions/timings. The
++      // intact left engine rolls down too; the front cowl topples outward,
++      // while the rear machinery rolls toward the cockpit side. These remain
++      // bounded analytic presentation paths, not a simulated collision solve.
++      const yaw = (index === 0 ? -.26 : index === 1 ? .30 : index === 2 ? -.40 : -.25) * spread
++        + (index === 0 ? -.30 : index === 1 ? .34 : index === 2 ? -.55 : -.36) * followThrough;
++      const pitch = (index === 0 ? .13 : index === 1 ? .18 : index === 2 ? -.35 : .10) * spread
++        + (index === 0 ? -.29 : index === 1 ? -.35 : index === 2 ? .48 : -.22) * followThrough;
++      const roll = (index === 0 ? -.22 : index === 1 ? .65 : index === 2 ? 1.30 : .65) * spread
++        + (index === 0 ? -.88 : index === 1 ? 1.0 : index === 2 ? 1.10 : -.53) * followThrough;
++      this.rotation.setFromAxisAngle(Y, yaw);
++      this.axis.setFromAxisAngle(X, pitch); this.rotation.multiply(this.axis);
++      this.axis.setFromAxisAngle(Z, roll); this.rotation.multiply(this.axis);
+       this.translation.copy(part.samples.localCenter).applyQuaternion(this.rotation).negate().add(part.samples.localCenter);
+       this.translation.x += (index === 0 ? -2.4 : index === 1 ? 3.4 : index === 2 ? 1.5 : -2.8) * spread;
+       this.translation.z += (index === 0 ? 1.3 : index === 1 ? 1.6 : index === 2 ? -3.3 : -1) * spread;
++      this.translation.x += (index === 0 ? -1.2 : index === 1 ? 1.6 : index === 2 ? -2.0 : -.8) * followThrough;
++      this.translation.z += (index === 0 ? .5 : index === 1 ? 1.9 : index === 2 ? -1.2 : -1.4) * followThrough;
+       part.matrix.compose(this.translation, this.rotation, UNIT);
+       this.world.multiplyMatrices(this.body, part.matrix);
+       let gap = Infinity;
+@@ -127,13 +148,16 @@
+         }
+       }
+       if (Number.isFinite(gap)) {
+-        const margin = index === 0 ? .55 : .55 - (index === 2 ? .45 : .37) * settle;
+-        const correction = gap < margin ? margin - gap : index === 0 ? 0 : Math.max(-8, margin - gap) * settle;
++        const settle = smooth(age / (index === 0 ? .34 : index === 1 ? .22 : index === 2 ? .14 : .18)) * release;
++        const margin = .55 - (index === 2 ? .45 : .37) * settle;
++        const correction = gap < margin ? margin - gap : Math.max(-8, margin - gap) * settle;
+         this.groundOffset.set(0, correction, 0).applyQuaternion(this.inverseBody);
+         this.translation.add(this.groundOffset); part.matrix.compose(this.translation, this.rotation, UNIT);
+         this.world.multiplyMatrices(this.body, part.matrix);
+         if (index === 2 && settle === 1 && gap + correction <= .100001) {
+-          this.contact.direction.set(0, 0, 1).transformDirection(this.world); this.contact.direction.y = 0;
++          // Follow the rear section's local departure (-X/-Z), not the
++          // perpendicular fracture-face normal used by the birth rupture.
++          this.contact.direction.set(-2, 0, -1.2).applyQuaternion(this.bodyRotation); this.contact.direction.y = 0;
+           if (this.contact.direction.lengthSq() < .0001) this.contact.direction.copy(pose.forward);
+           this.contact.direction.normalize(); pose.groundContact = this.contact; this.contactPose = pose;
+         }
+@@ -146,6 +170,14 @@
+     }
+     this.assembly.getCenter(pose.center).applyMatrix4(this.body); this.assembly.getSize(this.point);
+     pose.radius = this.point.length() * .5; pose.bounds = this.bounds;
++    this.writeRupture(pose);
++  }
++
++  private writeRupture(pose: WreckVisualPose): void {
++    this.world.multiplyMatrices(this.body, this.parts[2]!.matrix);
++    this.rupture.position.copy(this.ruptureLocal).applyMatrix4(this.world);
++    this.rupture.direction.set(0, 0, 1).transformDirection(this.world);
++    pose.rupture = this.rupture; this.rupturePose = pose;
+   }
+ 
+   transformAttachment(name: string, point: Vector3): void {
+@@ -156,6 +188,8 @@
+   }
+ 
+   reset(): void {
++    if (this.rupturePose?.rupture === this.rupture) this.rupturePose.rupture = undefined;
++    this.rupturePose = null;
+     if (this.contactPose?.groundContact === this.contact) this.contactPose.groundContact = undefined;
+     this.contactPose = null;
+     if (!this.activeValue) return;
+--- a/src/render/combat/WreckVisualPose.ts
++++ b/src/render/combat/WreckVisualPose.ts
+@@ -28,10 +28,13 @@
+   radius: number;
+   groundCorrection: number;
+   groundContact?: WreckGroundContact;
++  /** Authored fracture face in world space, independent of terrain contact. */
++  rupture?: { readonly position: Vector3; readonly direction: Vector3 };
+ }
+ 
+ /** Per-racer, renderer-owned rigid pose. All update storage is reused. */
+ export class WreckVisualPoseCache {
++  constructor(private readonly includeUpperSupport = false) {}
+   readonly localBounds = new Box3();
+   readonly localCenter = new Vector3();
+   readonly supportPoints: Vector3[] = [];
+@@ -54,6 +57,8 @@
+   /** Actual source vertices, refreshed only when the presentation geometry changes.
+    * 26 directional extrema plus the lowest vertex in each of 48 XZ cells
+    * retain engine/cockpit support instead of inventing the corners of a full box.
++   * The authored rolling rear section also retains the upper vertex of these
++   * cells: after a half-roll its original roof becomes terrain-facing.
+    * This is a bounded terrain support approximation, not a collision hull.
+    */
+   refresh(root: Object3D, meshes: readonly Mesh[], revision: number): void {
+@@ -97,8 +102,9 @@
+         this.supportPoints.push(new Vector3(x, y, z));
+       }
+     } else {
+-      const extremal = new Int32Array(26).fill(-1), scores = new Float64Array(26).fill(-Infinity);
++      const extremal = new Int32Array(DIRECTIONS.length).fill(-1), scores = new Float64Array(DIRECTIONS.length).fill(-Infinity);
+       const low = new Int32Array(48).fill(-1);
++      const high = this.includeUpperSupport ? new Int32Array(48).fill(-1) : null;
+       const width = Math.max(.001, this.localBounds.max.x - this.localBounds.min.x);
+       const length = Math.max(.001, this.localBounds.max.z - this.localBounds.min.z);
+       for (let index = 0; index < count; index++) {
+@@ -106,13 +112,14 @@
+         const cell = Math.min(5, Math.floor((x - this.localBounds.min.x) / width * 6))
+           + Math.min(7, Math.floor((z - this.localBounds.min.z) / length * 8)) * 6;
+         if (low[cell]! < 0 || y < vertices[low[cell]! * 3 + 1]!) low[cell] = index;
++        if (high && (high[cell]! < 0 || y > vertices[high[cell]! * 3 + 1]!)) high[cell] = index;
+         for (let direction = 0; direction < DIRECTIONS.length; direction++) {
+           const d = DIRECTIONS[direction]!, score = x * d.x + y * d.y + z * d.z;
+           if (score > scores[direction]!) { scores[direction] = score; extremal[direction] = index; }
+         }
+       }
+       const unique = new Set<string>();
+-      for (const index of [...extremal, ...low]) {
++      for (const index of [...extremal, ...low, ...(high ?? [])]) {
+         if (index < 0) continue;
+         const x = vertices[index * 3]!, y = vertices[index * 3 + 1]!, z = vertices[index * 3 + 2]!;
+         const key = `${x},${y},${z}`;
+@@ -134,6 +141,7 @@
+   update(state: PodracerState, remaining: number, terrain: { heightAt(x: number, z: number): number }, extrapolation = 0): WreckVisualPose {
+     const pose = this.pose;
+     pose.groundContact = undefined;
++    pose.rupture = undefined;
+     // A bounded articulated presentation may widen the camera envelope after
+     // this rigid solve. Start each snapshot from the measured intact radius.
+     pose.radius = this.rigidRadius;
+--- a/src/render/galactic/GalacticEffectsView.ts
++++ b/src/render/galactic/GalacticEffectsView.ts
+@@ -101,6 +101,9 @@
+   readonly velocity?: GalacticPoint;
+   /** Optional authored engine-facing direction for a rupture cone. */
+   readonly direction?: GalacticPoint;
++  /** Actual authored fracture-face outward normal. Its world position is
++   * already supported by the displayed mesh; do not lift it off that surface. */
++  readonly surfaceNormal?: GalacticPoint;
+   readonly groundY?: number;
+   readonly severity?: number;
+   readonly color?: GalacticEffectColor;
+@@ -219,6 +222,7 @@
+   style: GalacticBurstStyle;
+   billboard: boolean;
+   contactLayer: number;
++  authoredSurface: boolean;
+   vx: number;
+   vz: number;
+ }
+@@ -622,6 +626,7 @@
+       style: 'crash',
+       billboard: false,
+       contactLayer: -1,
++      authoredSurface: false,
+       vx: 0,
+       vz: 0,
+       r: 1,
+@@ -642,6 +647,9 @@
+   private readonly tempPosition = new Vector3();
+   private readonly tempScale = new Vector3();
+   private readonly direction = new Vector3();
++  private readonly ruptureAxis = new Vector3();
++  private readonly ruptureEjection = new Vector3();
++  private readonly ruptureRotation = new Quaternion();
+   private readonly midpoint = new Vector3();
+   private readonly tempQuaternion = new Quaternion();
+   private readonly beamTwistQuaternion = new Quaternion();
+@@ -768,11 +776,20 @@
+     const style = event.style ?? 'crash';
+     const contactBurst = style === 'redline' || style === 'crash';
+     const authoredY = finite(event.position.y, 0);
++    const surface = event.surfaceNormal;
++    const surfaceLength = surface ? Math.hypot(surface.x, surface.y, surface.z) : 0;
++    const authoredSurface = contactBurst && !!surface
++      && Number.isFinite(surface.x + surface.y + surface.z)
++      && Number.isFinite(surfaceLength) && surfaceLength > .001;
++    if (authoredSurface) {
++      this.ruptureAxis.set(surface!.x, surface!.y, surface!.z).multiplyScalar(1 / surfaceLength);
++      this.ruptureRotation.setFromUnitVectors(FORWARD, this.ruptureAxis);
++    }
+     // A long, rigid wreck can rotate an authored nozzle beneath the ground.
+     // Project only the render burst onto the sampled surface, keeping X/Z.
+     // Clearance covers the flash's maximum bright-core radius plus a small
+     // depth pad; this is presentation projection, not a physics contact point.
+-    const burstY = contactBurst && Number.isFinite(event.groundY)
++    const burstY = contactBurst && !authoredSurface && Number.isFinite(event.groundY)
+       ? Math.max(authoredY, event.groundY! + severity * RUPTURE_FLASH_SCALE * RUPTURE_FLASH_CORE_RADIUS + 0.04)
+       : authoredY;
+     // Recovery restores the craft; it does not tear off opaque casing. The
+@@ -820,6 +837,11 @@
+       const angle = directed
+         ? Math.atan2(-event.direction!.z, -event.direction!.x) + (hash01(seed) - .5) * 2.4
+         : hash01(seed) * Math.PI * 2;
++      if (authoredSurface) {
++        const cone = .18 + hash01(seed + 16) * .32, azimuth = hash01(seed + 17) * Math.PI * 2;
++        this.ruptureEjection.set(Math.sin(cone) * Math.cos(azimuth), Math.sin(cone) * Math.sin(azimuth), Math.cos(cone))
++          .applyQuaternion(this.ruptureRotation);
++      }
+       const spark = contactBurst ? fragment % 6 === 0 : fragment % 4 === 0;
+       const radial = contactBurst
+         ? ((spark ? 24 : 18) + hash01(seed + 1) * (spark ? 16 : 12)) * Math.sqrt(severity)
+@@ -836,14 +858,16 @@
+         // Open casing fragments already occupy a short rupture cone at birth,
+         // so the slow-motion impact reads before the flare has disappeared.
+         const opening = (.8 + hash01(seed + 14) * .7) * Math.sqrt(severity);
+-        slot.x += Math.cos(angle) * opening;
+-        slot.z += Math.sin(angle) * opening;
++        slot.x += (authoredSurface ? this.ruptureEjection.x : Math.cos(angle)) * opening;
++        slot.y += authoredSurface ? this.ruptureEjection.y * opening : 0;
++        slot.z += (authoredSurface ? this.ruptureEjection.z : Math.sin(angle)) * opening;
+       }
+-      slot.vx = finite(event.velocity?.x, 0) * inheritedVelocity + Math.cos(angle) * radial;
++      slot.vx = finite(event.velocity?.x, 0) * inheritedVelocity + (authoredSurface ? this.ruptureEjection.x : Math.cos(angle)) * radial;
+       slot.vy = finite(event.velocity?.y, 0) * 0.12
+-        + (contactBurst ? (4 + hash01(seed + 3) * 8) * Math.sqrt(severity)
++        + (authoredSurface ? this.ruptureEjection.y * radial
++          : contactBurst ? (4 + hash01(seed + 3) * 8) * Math.sqrt(severity)
+           : (5.5 + hash01(seed + 3) * 11) * severity * liftScale);
+-      slot.vz = finite(event.velocity?.z, 0) * inheritedVelocity + Math.sin(angle) * radial;
++      slot.vz = finite(event.velocity?.z, 0) * inheritedVelocity + (authoredSurface ? this.ruptureEjection.z : Math.sin(angle)) * radial;
+       slot.rx = hash01(seed + 4) * Math.PI;
+       slot.ry = hash01(seed + 5) * Math.PI;
+       slot.rz = hash01(seed + 6) * Math.PI;
+@@ -880,6 +904,7 @@
+       this.explosionCursor = (this.explosionCursor + 1) % this.explosionSlots.length;
+       slot.active = true;
+       slot.contactLayer = contactBurst ? plate : -1;
++      slot.authoredSurface = authoredSurface;
+       slot.vx = 0; slot.vz = 0;
+       if (contactBurst) {
+         // A hot core, amber pressure flare and two smoke lobes read against
+@@ -889,6 +914,10 @@
+         slot.x = finite(event.position.x, 0);
+         slot.y = burstY + (plate > 1 ? (plate - 1) * 0.35 : 0);
+         slot.z = finite(event.position.z, 0);
++        if (authoredSurface && plate > 1) {
++          slot.vx = this.ruptureAxis.x * (plate === 2 ? 1.2 : 2);
++          slot.vz = this.ruptureAxis.z * (plate === 2 ? 1.2 : 2);
++        }
+         slot.scale = severity * [RUPTURE_FLASH_SCALE, 3.5, 2.7, 3.2][plate]!;
+         slot.billboard = true;
+         slot.style = style;
+@@ -973,6 +1002,7 @@
+       slot.y = position.y + .08; slot.vx = dx * (index === 0 ? 3.2 : 4.8); slot.vz = dz * (index === 0 ? 3.2 : 4.8);
+       slot.scale = index === 0 ? 3.8 : 4.6;
+       slot.style = 'sand'; slot.billboard = true; slot.contactLayer = 4 + index;
++      slot.authoredSurface = false;
+       slot.r = .43; slot.g = .27; slot.b = .13;
+     }
+   }
+@@ -1440,17 +1470,18 @@
+           const smoke = slot.contactLayer > 1;
+           const flash = slot.contactLayer === 0;
+           const size = slot.scale * (smoke ? 0.5 + progress * 0.9 : 0.75 + progress * 0.25);
+-          const y = slot.y + (smoke ? progress * 4.8 : 0);
+-          if (!this.isVisible(slot.x, y, slot.z, size * (flash || smoke ? 1.7 : 1.42), EFFECT_VISIBILITY_DISTANCE.crashes)) continue;
++          const y = slot.y + (smoke ? progress * (slot.authoredSurface ? 2 : 4.8) : 0);
++          const x = slot.x + slot.vx * age, z = slot.z + slot.vz * age;
++          if (!this.isVisible(x, y, z, size * (flash || smoke ? 1.7 : 1.42), EFFECT_VISIBILITY_DISTANCE.crashes)) continue;
+           const opacity = (smoke ? 0.68 : flash ? 1 : 0.68)
+-            * (1 - MathUtils.smoothstep(progress, smoke ? 0.28 : 0.08, 1));
++            * (1 - MathUtils.smoothstep(progress, smoke ? slot.authoredSurface ? .65 : .28 : .08, 1));
+           // Put the hot front lobe within the fire volume, ahead of casing born
+           // at its centre. Keep depth testing: scenery still occludes the burst.
+           const front = flash ? size * 0.25 : 0;
+           this.writeInstance(this.explosionPlates, plateCount,
+-            slot.x + this.billboardToCamera.x * front,
++            x + this.billboardToCamera.x * front,
+             y + Math.max(0, this.billboardToCamera.y) * front,
+-            slot.z + this.billboardToCamera.z * front,
++            z + this.billboardToCamera.z * front,
+             this.billboardQuaternion, size, size * (smoke ? 1.22 : 1), size, slot.r, slot.g, slot.b);
+           this.writeEffectSurface(plateCount, smoke ? 3 : flash ? 2 : 0,
+             opacity, slot.startTime * 1.37);
+--- a/tests/combat/TeemtoAuthoredDamage.test.ts
++++ b/tests/combat/TeemtoAuthoredDamage.test.ts
+@@ -64,13 +64,33 @@
+       const sample = (age: number) => { const remaining = WRECK_PRESENTATION_DURATION - age;
+         const pose = art.cache.update(sim.state.entries[0]!.vehicle, remaining, sim.terrain);
+         art.breakup.update(pose, remaining, sim.terrain); return pose; };
+-      sample(0); expect(art.breakup.active).toBe(false); expect(art.breakup.damageVariantAvailable).toBe(true);
++      const birth = sample(0), face = name === 'hero'
++        ? new Vector3(4.023553848266602, 2.6643872261047363, 15.200007438659668)
++        : new Vector3(4.022682189941406, 2.6537137031555176, 15.200004577636719);
++      expect(birth.rupture).toBeDefined();
++      const witness = birth.rupture!;
++      expect(witness.position.distanceTo(face.clone().applyEuler(birth.rotation).add(birth.position))).toBeLessThan(1e-8);
++      expect(witness.direction.distanceTo(new Vector3(0, 0, 1).applyEuler(birth.rotation))).toBeLessThan(1e-8);
++      expect(art.breakup.active).toBe(false); expect(art.breakup.damageVariantAvailable).toBe(true);
+       expect(art.damage.every(m => !m.visible)).toBe(true); expect(matrices(art)).toEqual(rest);
+-      sample(.12); expect(art.breakup.damageVariantActive).toBe(true);
++      const open = sample(.12); expect(open.rupture).toBe(witness); expect(art.breakup.damageVariantActive).toBe(true);
+       expect(art.damage.every(m => m.visible)).toBe(true);
+       expect(art.original.find(m => m.name === 'teemto-engine-right-body')!.visible).toBe(false);
+       expect(art.original.find(m => m.name === 'teemto-cockpit-body')!.visible).toBe(name === 'rival');
+-      const early = matrices(art); sample(.8); sample(.12); expect(matrices(art)).toEqual(early);
++      art.root.updateMatrixWorld(true);
++      const moving = [art.original.find(m => m.name === 'teemto-engine-left-body')!, ...art.damage.filter(m => !m.name.includes('cockpit'))];
++      const earlyRotation = moving.map(m => new Quaternion().setFromRotationMatrix(m.matrixWorld));
++      const early = matrices(art); sample(.8); art.root.updateMatrixWorld(true);
++      // Every major mass follows through after opening; the left engine can no
++      // longer remain fixed in the same airborne exploded-diagram position.
++      moving.forEach((mesh, index) => expect(new Quaternion().setFromRotationMatrix(mesh.matrixWorld)
++        .angleTo(earlyRotation[index]!)).toBeGreaterThan(.20));
++      sample(.12); expect(matrices(art)).toEqual(early);
++      const backToBirth = sample(0);
++      expect(art.breakup.damageVariantActive).toBe(false); expect(matrices(art)).toEqual(rest);
++      expect(backToBirth.rupture!.position.distanceTo(face.clone().applyEuler(backToBirth.rotation).add(backToBirth.position))).toBeLessThan(1e-8);
++      art.breakup.reset(); expect(backToBirth.rupture).toBeUndefined();
++      sample(.12); expect(matrices(art)).toEqual(early);
+       for (const [i, pilot] of pilots.entries()) {
+         expect(pilot.parent).toBe(pilotParents[i]); expect(pilot.matrix.equals(pilotMatrices[i]!)).toBe(true); expect(pilot.visible).toBe(true);
+       }
+@@ -78,9 +98,15 @@
+       const originalRear = sources.get(`${name}-damage`)!.getObjectByName(rear.name)!;
+       const expected = exhaust.clone().applyMatrix4(new Matrix4().multiplyMatrices(rear.matrix, originalRear.matrix.clone().invert()));
+       art.breakup.transformAttachment('exhaustRight', exhaust); expect(exhaust.distanceTo(expected)).toBeLessThan(1e-9);
++      const deformation = new Matrix4().multiplyMatrices(rear.matrix, originalRear.matrix.clone().invert());
++      const body = new Matrix4().compose(open.position, new Quaternion().setFromEuler(open.rotation), new Vector3(1, 1, 1));
++      const world = new Matrix4().multiplyMatrices(body, deformation);
++      expect(open.rupture!.position.distanceTo(face.clone().applyMatrix4(world))).toBeLessThan(1e-8);
++      expect(open.rupture!.direction.distanceTo(new Vector3(0, 0, 1).transformDirection(world))).toBeLessThan(1e-8);
+       sample(WRECK_PRESENTATION_DURATION); expect(art.breakup.damageVariantActive).toBe(false);
+       expect(art.original.every(m => m.visible)).toBe(true); expect(art.damage.every(m => !m.visible)).toBe(true);
+       expect(matrices(art)).toEqual(rest); art.breakup.reset(); expect(matrices(art)).toEqual(rest);
++      expect(open.rupture).toBeUndefined();
+       expect(JSON.stringify(sim.state)).toBe(before);
+     } finally { for (const spy of spies) spy.mockRestore(); art.breakup.reset(); }
+   });
+@@ -91,9 +117,10 @@
+     const aspects = [1440 / 900, 16 / 9, 390 / 844, 844 / 390];
+     const rigs = aspects.map(aspect => { const camera = new CinematicCamera(); camera.camera.aspect = aspect; return camera; });
+     let positionsTested = 0, contactSamples = 0, cameraPositions = 0, maxQueries = 0;
++    const settledMaximumGap = new Map<string, number>();
+     try {
+       for (let frame = 1; frame <= 1168; frame++) {
+-        step(sim, frame); if (frame < 910 || (frame % 6 && ![910, 911, 922, 943, 1168].includes(frame))) continue;
++        step(sim, frame); if (frame < 910) continue;
+         const entry = sim.state.entries[0]!, before = JSON.stringify(sim.state); let queries = 0;
+         const terrain = { heightAt: (x: number, z: number) => { queries++; return sim.terrain.heightAt(x, z); } };
+         const pose = art.cache.update(entry.vehicle, entry.galactic!.wreck.timer, terrain);
+@@ -103,12 +130,16 @@
+         for (const mesh of art.all) {
+           if (!mesh.visible) continue;
+           world.multiplyMatrices(body, mesh.matrixWorld);
+-          const p = mesh.geometry.getAttribute('position');
++          const p = mesh.geometry.getAttribute('position'); let meshMinimum = Infinity;
+           for (let vertex = 0; vertex < p.count; vertex++) {
+             point.fromBufferAttribute(p, vertex).applyMatrix4(world);
+             const gap = point.y - sim.terrain.heightAt(point.x, point.z), old = statistics.get(mesh.name);
+             if (!old || gap < old.gap) statistics.set(mesh.name, { gap, frame, vertex });
+-            positionsTested++;
++            meshMinimum = Math.min(meshMinimum, gap); positionsTested++;
++          }
++          const age = WRECK_PRESENTATION_DURATION - entry.galactic!.wreck.timer;
++          if (age >= .6 && age <= 1.75 && (mesh.name === 'teemto-engine-left-body' || (mesh.name.startsWith('teemto-damage-') && !mesh.name.includes('cockpit')))) {
++            settledMaximumGap.set(mesh.name, Math.max(settledMaximumGap.get(mesh.name) ?? -Infinity, meshMinimum));
+           }
+         }
+         const vehicle = entry.vehicle;
+@@ -136,12 +167,14 @@
+         }
+         expect(JSON.stringify(sim.state)).toBe(before);
+       }
+-      console.info('V16 actual authored damage geometry support/projection:', JSON.stringify({ name, positionsTested,
+-        cameraPositions, contactSamples, maxQueries, minimumGapByMesh: Object.fromEntries(statistics) }));
++      console.info('V17 actual authored damage geometry support/projection:', JSON.stringify({ name, positionsTested,
++        cameraPositions, contactSamples, maxQueries, settledMaximumGap: Object.fromEntries(settledMaximumGap), minimumGapByMesh: Object.fromEntries(statistics) }));
+       expect(maxQueries).toBeLessThanOrEqual(name === 'hero' ? 296 : 222);
+       expect(contactSamples).toBeGreaterThan(0);
+       for (const [mesh, metric] of statistics) expect(metric.gap, `${name}/${mesh}/${metric.frame}: actual source no burial`).toBeGreaterThanOrEqual(-1e-6);
+       expect(statistics.get('teemto-damage-right-rear-v16')!.gap).toBeLessThan(.15);
++      expect(settledMaximumGap.size).toBe(name === 'hero' ? 4 : 3);
++      for (const [mesh, gap] of settledMaximumGap) expect(gap, `${mesh}: sustained ground settling`).toBeLessThan(.25);
+     } finally { art.breakup.reset(); for (const rig of rigs) rig.dispose(); }
+-  }, 30_000);
++  }, 45_000);
+ });

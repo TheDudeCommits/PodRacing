@@ -1,0 +1,35 @@
+{
+  "scope": "Future-run-only robustness and UI overlap assertion. Isolated JS mocks and syntax/diff checks PASS; no browser launched. Existing V10 combat executed the before-inkstorm-combat.mjs hash.",
+  "files": [
+    {
+      "path": "scripts/inkstorm-broadcast-ui.mjs",
+      "bytes": 17551,
+      "sha256": "2d93e9381f9b0991fe7dcb9e30c81477f361128ec4223605f2db63bb7c594d96"
+    },
+    {
+      "path": "scripts/inkstorm-combat.mjs",
+      "bytes": 20076,
+      "sha256": "ed5c5c21ed4f25607fb027fb1dfa8097fea82308d6c1b75a99119392f622b12f"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/harness-robustness-v10/before-inkstorm-broadcast-ui.mjs",
+      "bytes": 15422,
+      "sha256": "83644d1a6c9aeaf389dbda77fb623b74a39f44a47775e1c6b382a52265586fd3"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/harness-robustness-v10/before-inkstorm-combat.mjs",
+      "bytes": 19975,
+      "sha256": "5dd157221074f25a69370f079305e0ca91eaaf888e0de53f990e11ebf1ff0586"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/harness-robustness-v10/checks.log",
+      "bytes": 593,
+      "sha256": "f7d10e2a52d9990693ebe9c2fec1e3fa183eb1a3cde45f5ae75426b75599edb1"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/harness-robustness-v10/checks.mjs",
+      "bytes": 2633,
+      "sha256": "39b84404a5f30ad3a12101d3c222584af59fdec15e60c0c553095feb43a14d50"
+    }
+  ]
+}

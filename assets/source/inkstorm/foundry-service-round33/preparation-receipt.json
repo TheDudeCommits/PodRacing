@@ -1,0 +1,87 @@
+{
+  "status": "CPU preparation arithmetic and preserved-input checks PASS; this validation does not execute or verify Blender authoring/export/render",
+  "authoringScriptSha256": "3fd60dd4b3b1b15355ee47f927299fd6c9629665859797d2acc8a591e20f4e09",
+  "exportRenderScriptSha256": "5c0c7768231f77d4518878d3a5031c811969e01b6210e738adc02829ad64b306",
+  "bothMcpPayloadsAstChecked": true,
+  "thisValidationExecutedMcpPayloads": false,
+  "sourceGlbSha256": "3d0cd999daf52b82ac0232c7316a5e4072c80bd83982f83cbaf4a1dcde11e862",
+  "sourcePublicAndPreservedCopyByteExact": true,
+  "sourceTriangles": 6300,
+  "signalTrianglesScheduledForRemoval": 2360,
+  "retainedTriangles": 3940,
+  "addedGeometry": {
+    "vertices": 2424,
+    "triangles": 2560,
+    "trianglesByGroup": {
+      "blind_service_caps": 328,
+      "drum_cable_layers": 128,
+      "edge_wear": 8,
+      "hoist_drum": 68,
+      "hoist_motor": 20,
+      "hoist_track": 72,
+      "hoist_trolley": 116,
+      "lower_pulley": 32,
+      "maintenance_rail": 144,
+      "maintenance_walk": 24,
+      "pipe_saddles": 312,
+      "pressure_joint": 376,
+      "pressure_main": 508,
+      "saddle_anchor_bolts": 120,
+      "service_cable": 24,
+      "service_hook": 80,
+      "trolley_axles": 80,
+      "walk_brackets": 32,
+      "weld_sleeves": 88
+    },
+    "boundsBlender": [
+      [
+        -46.91,
+        46.91
+      ],
+      [
+        -3.7860650000000002,
+        3.7
+      ],
+      [
+        39.88758798064189,
+        61.45
+      ]
+    ],
+    "retainedTriangles": 3940,
+    "candidateTriangles": 6500
+  },
+  "candidateTriangleCap": 6500,
+  "minimumAddedTriangleArea": 0.005454621710072766,
+  "addedClippedCorridorMinimumZ": 39.88758798064189,
+  "knownRetainedClippedCorridorMinimumZ": 39.66999816894531,
+  "expectedFinalClippedCorridorMinimumZ": 39.66999816894531,
+  "closedNewConstructionGroups": true,
+  "paintFlakes": {
+    "triangles": 8,
+    "intentionalOpenEdges": 24,
+    "support": "ray projected to actual pipe facets with 0.003 surface offset"
+  },
+  "newGeometryHorizontalEnvelopeInsideOriginal": true,
+  "prospectiveFinalBoundsBlender": [
+    [
+      -52,
+      52
+    ],
+    [
+      -7,
+      7
+    ],
+    [
+      -25,
+      61.45
+    ]
+  ],
+  "expectedMeshes": 1,
+  "expectedMaterialSlots": 1,
+  "expectedImages": 0,
+  "BlenderImportedGeometryNotVerifiedByThisCheck": true,
+  "KhronosExportNotVerifiedByThisCheck": true,
+  "actualSourceViewReviewNotVerifiedByThisCheck": true,
+  "actualWorldReviewNotVerifiedByThisCheck": true,
+  "runtimeNotMutatedByThisCheck": true
+}

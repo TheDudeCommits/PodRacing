@@ -1,0 +1,19 @@
+{
+  "preservedAt": "2026-09-09T04:05:55.897972+00:00",
+  "sources": {
+    "src/ui/broadcastStyles.ts": {
+      "sha256": "418c34511a7e13ebdea08e3151838a33d8b944af554879c65f25db8ceeeba8e1",
+      "bytes": 76020
+    },
+    "src/ui/RaceHud.ts": {
+      "sha256": "d50d8ed42322b2d861491e9934c74da7af6956ef8f1f3110005ff8a16b748ebb",
+      "bytes": 118090
+    },
+    "src/ui/workshopGraphicStyles.ts": {
+      "sha256": "c026d0c35640b4ab1551d4aa0fa265c9cce03dcd970e85614f8195c6c016ffcb",
+      "bytes": 16190
+    }
+  },
+  "proposal": "/Users/amir/Projects/PodRacing/output/critics/blind-hud-v19/motion-review/build-entry-proposal/PROPOSAL.json",
+  "scope": "Remove only full Build-root opacity animation; preserve all descendant motion and settled layout."
+}

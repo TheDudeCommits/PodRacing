@@ -1,0 +1,33 @@
+{
+  "status": "PRIVATE DRAFT; do not apply until root supplies final performance and critic facts",
+  "bundle": "index-Cnysa7ZZ.js",
+  "bundleBytes": 1619624,
+  "bundleSha256": "10ef7eb7189f407f530f73e802cdbc59acc1ebd47f5cfb2a26e3341e3b9bb04e",
+  "verification": {
+    "tests": 671,
+    "files": 120,
+    "outcome": "PASS",
+    "log": "output/gauntlet/round34-blockrunner-admission-v1/verify-framing-v3.log"
+  },
+  "captures": {
+    "directory": "output/gauntlet/round34-blockrunner-admission-v1/captures-framing-v3",
+    "pngs": 13,
+    "errors": [],
+    "receipt": "output/gauntlet/round34-blockrunner-admission-v1/captures-framing-v3/receipts.json"
+  },
+  "coverage": {
+    "sourceFamilies": 26,
+    "runtimeFamilies": 4,
+    "logicalHeroRivalVariants": 8,
+    "preservedPublicGlbs": 12,
+    "projectDriversAdded": 3,
+    "originalSourceDriversRetained": 1,
+    "runtimePreparationPending": 22
+  },
+  "sourceScenes": 152,
+  "finalFullRacePerformance": null,
+  "finalCritic": null,
+  "finalFrozenInventory": null,
+  "finalCleanupEvidence": null,
+  "rootApplyGo": false
+}

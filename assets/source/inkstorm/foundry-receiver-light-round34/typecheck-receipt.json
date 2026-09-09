@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "scope": "TypeScript7 --noEmit against isolated source tree; unchanged source files symlinked, three candidate files copied; no live source writes. Runtime source only, not full suite/browser/GLSL compilation.",
+  "exitCode": 0,
+  "stdout": "",
+  "stderr": "",
+  "earlierPreparationFailure": "TypeScript6 compiler API entrypoint unavailable in installed TypeScript7; prior script retained as failed-typescript6-api-check.mjs. This uses installed native CLI."
+}

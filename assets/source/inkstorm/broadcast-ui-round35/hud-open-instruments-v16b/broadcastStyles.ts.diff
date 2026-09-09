@@ -1,0 +1,48 @@
+diff --git a/assets/source/inkstorm/broadcast-ui-round35/hud-open-instruments-v16b/before/broadcastStyles.ts b/src/ui/broadcastStyles.ts
+index 8644a52..bb1228d 100644
+--- a/assets/source/inkstorm/broadcast-ui-round35/hud-open-instruments-v16b/before/broadcastStyles.ts
++++ b/src/ui/broadcastStyles.ts
+@@ -661,19 +661,19 @@ export const BROADCAST_HUD_CSS = /* css */ `
+ .pod-hud__vehicle-select.is-visible .pod-hud__mastery { animation:instrument-enter 340ms 50ms var(--ui-settle) both; }
+ .pod-hud__vehicle-select.is-visible .pod-hud__vehicle-cards { animation:instrument-enter 340ms 90ms var(--ui-settle) both; }
+ 
+-/* One housing holds the complete lower-right instrument, with no separate meter cards. */
+-.pod-hud__driving-instruments { width:244px; height:264px; background:#112e36ed; border:1px solid #f5d58e66; border-radius:22px 78px 12px 12px; box-shadow:inset 0 0 0 4px #081f262e; filter:none; }
++/* Open amber instruments share anchors; contrast stays local to their readings. */
++.pod-hud__driving-instruments { width:244px; height:264px; background:transparent; border:0; border-radius:0; box-shadow:none; filter:none; }
+ .pod-hud__driving-instruments>.pod-hud__redline-heat { top:10px; left:16px; right:28px; width:auto; min-height:0; height:17px; padding:0; transform:none; display:flex; align-items:center; gap:9px; box-shadow:none; border:0; background:none; }
+ .pod-hud__driving-instruments>.pod-hud__redline-heat>span { flex:0 0 auto; font:700 12px/1.2 Inkstorm UI,sans-serif; letter-spacing:.025em; }
+ .pod-hud__driving-instruments>.pod-hud__redline-heat::after { content:none; }
+ .pod-hud__driving-instruments>.pod-hud__redline-heat .pod-hud__redline-track { flex:1; height:4px; border:0; transform:none; }
+ .pod-hud__driving-instruments>.pod-hud__speed { inset:30px 12px auto; height:183px; }
+ .pod-hud__driving-instruments .pod-hud__speed-ring { width:216px; height:140px; }
+-.pod-hud__driving-instruments .pod-hud__speed-dial { stroke-width:1.6; }
++.pod-hud__driving-instruments .pod-hud__speed-dial { stroke-width:1.6; filter:drop-shadow(0 1px 1px #10272ddd); }
+ .pod-hud__driving-instruments .pod-hud__speed-dial>path:nth-of-type(3) { display:none; }
+-.pod-hud__driving-instruments .pod-hud__speed-dial .dial-fill { fill:#183940; }
+-.pod-hud__driving-instruments .pod-hud__speed-dial .dial-track { stroke:#f5d58e33; stroke-width:3; }
+-.pod-hud__driving-instruments .pod-hud__speed-dial .dial-charge { stroke-width:3; }
++.pod-hud__driving-instruments .pod-hud__speed-dial .dial-fill { fill:#112e3657; }
++.pod-hud__driving-instruments .pod-hud__speed-dial .dial-track { stroke:#f5d58e80; stroke-width:1.6; }
++.pod-hud__driving-instruments .pod-hud__speed-dial .dial-charge { stroke-width:2.2; }
+ .pod-hud__driving-instruments .pod-hud__speed-readout { top:49px; left:31px; width:147px; }
+ .pod-hud__driving-instruments .pod-hud__speed-number { font-size:48px; }
+ .pod-hud__driving-instruments .pod-hud__speed-unit { font:700 11px/1 Inkstorm UI,sans-serif; }
+@@ -755,6 +755,17 @@ export const BROADCAST_HUD_CSS = /* css */ `
+  .pod-hud__driving-instruments .pod-hud__speed>.pod-hud__meter--drift { top:-62px; }
+  .pod-hud__flight { top:153px; bottom:auto; }
+ }
++/* Separate timing instruments leave the sky open between lap, time and position. */
++.pod-hud__race::before { content:none; }
++.pod-hud__race-rail { display:none; }
++.pod-hud__race-stat,.pod-hud__race-time { background:linear-gradient(90deg,transparent,#112e36c4 18%,#112e36c4 82%,transparent); border-bottom:1px solid #f5d58e80; padding-bottom:4px; }
++.pod-hud__race-stat .pod-hud__label,.pod-hud__race-time>.pod-hud__label { text-shadow:0 1px 2px #081d24; }
++.pod-hud__driving-instruments .pod-hud__speed-readout { text-shadow:0 1px 2px #081d24,0 0 5px #081d24; }
++.pod-hud__driving-instruments>.pod-hud__redline-heat>span { padding:2px 4px; border-radius:2px; background:#112e36d6; }
++.pod-hud__driving-instruments .pod-hud__meter-head { padding:2px 4px; border-radius:2px; background:#112e36d6; }
++.pod-hud__driving-instruments .pod-hud__meter-track,.pod-hud__driving-instruments .pod-hud__telemetry .pod-hud__meter-track { background:#112e36a6; }
++.pod-hud.is-high-contrast .pod-hud__race { background:none; }
++.pod-hud.is-high-contrast .pod-hud__race-stat,.pod-hud.is-high-contrast .pod-hud__race-time { background:#0b2026; }
+ .pod-hud.is-reduced-motion *,.pod-hud.is-reduced-motion *::before,.pod-hud.is-reduced-motion *::after { animation:none!important; transition:none!important; }
+ @media (prefers-reduced-motion:reduce) { .pod-hud *,.pod-hud *::before,.pod-hud *::after { animation:none!important; transition:none!important; } }
+ `;

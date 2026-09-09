@@ -111,8 +111,11 @@ describe('eight-racer coordinator', () => {
     expect(resultsEvents).toBe(1);
     expect(race.state.results).toHaveLength(4);
     expect(race.state.results.map((entry) => entry.placement)).toEqual([1, 2, 3, 4]);
-    expect(race.state.results.every((entry) => entry.finishTime !== null)).toBe(true);
-    expect(race.state.results.every((entry) => entry.lapTimes.length === 3)).toBe(true);
+    const unfinished=race.state.results.filter(entry=>entry.id!==player.id);
+    expect(unfinished.every(entry=>entry.finishTime===null)).toBe(true);
+    expect(unfinished.every(entry=>entry.finishReason==='classified')).toBe(true);
+    expect(unfinished.every(entry=>entry.lapTimes.length<3)).toBe(true);
+    expect(race.state.entries.filter(entry=>!entry.isPlayer).every(entry=>entry.progress.completedLaps<3)).toBe(true);
   });
 
   it('latches a sustained pylon overlap instead of emitting impacts every tick', () => {
@@ -219,7 +222,13 @@ describe('eight-racer coordinator', () => {
     player.vehicle.velocity.z = section.rightZ * 40;
     player.vehicle.controls.resetHeld = true;
 
-    const recovered = race.step({ throttle: 1, reset: true });
+    let recovered = race.step({ throttle: 1, reset: true });
+    // Authored scenery can occupy the excursion point. Preserve that impact's
+    // feedback for one tick, then guarantee recovery even with reset held.
+    if (!(recovered.vehicleEvents[player.id] ?? []).some((event) => event.type === 'reset')) {
+      expect((recovered.vehicleEvents[player.id] ?? []).some((event) => event.type === 'collision')).toBe(true);
+      recovered = race.step({ throttle: 1, reset: true });
+    }
     expect(recovered.inputs[player.id]?.reset).toBe(true);
     expect((recovered.vehicleEvents[player.id] ?? []).some((event) => event.type === 'reset')).toBe(true);
     expect(player.vehicle.position.x).toBeCloseTo(safePose.x, 8);

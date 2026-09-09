@@ -1,0 +1,66 @@
+{
+  "date": "2026-09-07",
+  "userAgent": "Inkstorm-PodRacing-asset-production/1.0 (https://github.com/TheDudeCommits/PodRacing)",
+  "scope": "Volumetric fallback art experiment only; no runtime/public replacement",
+  "licenseVerification": "Official boulder_01 model page explicitly labels the asset CC0; Poly Haven license page permits use, modification and redistribution. Verified 2026-09-07.",
+  "assets": [
+    {
+      "asset": "boulder_01",
+      "page": "https://polyhaven.com/a/boulder_01",
+      "author": "Rico Cilliers",
+      "processing": null,
+      "license": "CC0",
+      "licenseUrl": "https://polyhaven.com/license",
+      "manifestUrl": "https://api.polyhaven.com/files/boulder_01",
+      "manifestSha256": "c2b21c87241cbe9a46c190c6cd231cd943c4ff5dbd28b634cf19613a21a75167",
+      "resolution": "1k",
+      "files": [
+        {
+          "path": "originals/boulder_01/boulder_01_1k.gltf",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/gltf/1k/boulder_01/boulder_01_1k.gltf",
+          "bytes": 2773,
+          "md5": "26e2eef4a1f68c9557c65cd375b21d6c",
+          "md5Verified": true,
+          "sha256": "51487934db898b4c24072780a451e34eca5c02e3ada24a62bbc600bbc4019e92"
+        },
+        {
+          "path": "originals/boulder_01/textures/boulder_01_arm_1k.jpg",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/boulder_01/boulder_01_arm_1k.jpg",
+          "bytes": 659386,
+          "md5": "d632159982cc3121ed3d69b89a122146",
+          "md5Verified": true,
+          "sha256": "c57187c5746b6be913fa53846cb44ff78743e7ca5000f131c9627b99563c2b87"
+        },
+        {
+          "path": "originals/boulder_01/textures/boulder_01_diff_1k.jpg",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/boulder_01/boulder_01_diff_1k.jpg",
+          "bytes": 987467,
+          "md5": "25f8a843f13369d56d37f49db05ea8c3",
+          "md5Verified": true,
+          "sha256": "c38f0e918f6dc16b8d386ba3cdd89805c78320c119a1ceec85856f82b09a65b8"
+        },
+        {
+          "path": "originals/boulder_01/boulder_01.bin",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/gltf/8k/boulder_01/boulder_01.bin",
+          "bytes": 2938808,
+          "md5": "27a19fa031d8b4c3a09261f19c444dc5",
+          "md5Verified": true,
+          "sha256": "7f5b06503d62bd95bfe9c6b8a354a5cc8ff04a4d271a8cf87a3e3125db4232d7"
+        },
+        {
+          "path": "originals/boulder_01/textures/boulder_01_nor_gl_1k.jpg",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/boulder_01/boulder_01_nor_gl_1k.jpg",
+          "bytes": 1183552,
+          "md5": "0c4da644d901144b53e4fe2446f3c389",
+          "md5Verified": true,
+          "sha256": "0810cf6e89d89bb6eb065b4d2e2855288f5dcbd2c15c6e40ab90d462021b50aa"
+        }
+      ],
+      "archive": {
+        "path": "originals/boulder_01-1k-original-files.zip",
+        "sha256": "23a296a3188ecd14712a4425b07f930b32f1466438a6f3c9a6c72984eee58d6d",
+        "purpose": "Locally packaged unmodified downloaded files; not an official provider ZIP"
+      }
+    }
+  ]
+}

@@ -1,0 +1,94 @@
+{
+  "sourceSha256": "1ab65a0a4029be221c7c0968768f4e6e700c7f1a50c7a625182e7680670e00c4",
+  "fieldSha256": "19e0344c5c20fec42c9fcbf9a2944825ef1a83f34d82884bd7c83da774af60c6",
+  "passed": 8,
+  "failed": 1,
+  "results": [
+    {
+      "name": "532296 historical lane/shoulder/CPU/MRT samples",
+      "pass": true,
+      "data": {
+        "samples": 532296,
+        "beforeHash": "8b719ceac7e26597a4c33989e6a1a036d2dcfb703812313436838b150d221b57",
+        "afterHash": "8b719ceac7e26597a4c33989e6a1a036d2dcfb703812313436838b150d221b57"
+      }
+    },
+    {
+      "name": "central bowl, finish field, bounds and profile",
+      "pass": true,
+      "data": {
+        "floorHash": "f3f00afd1e3cb4d1c5d4726485edb16ee259b28555baee125d3c35820849c727",
+        "finishHash": "bd9da2b5038d659fc1622390f211ba5e42bacac2a90288b9aaf2656af03abffa",
+        "min": -170,
+        "max": 250
+      }
+    },
+    {
+      "name": "near-west, central opening and rear authoring exact",
+      "pass": true,
+      "data": {
+        "samples": 5978
+      }
+    },
+    {
+      "name": "full founded bench footprints preserved",
+      "pass": true,
+      "data": {
+        "samples": 12889,
+        "maxDelta": 0
+      }
+    },
+    {
+      "name": "existing connected spine and height separations",
+      "pass": true,
+      "data": {
+        "samples": 117,
+        "min": 47.66359473176851
+      }
+    },
+    {
+      "name": "three major saddles at all four 48m sampling phases",
+      "pass": false,
+      "error": "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n\n  assert(height(1090,-350)-height(1138,-350)>60)\n"
+    },
+    {
+      "name": "existing broken escarpment and unequal shelf probes",
+      "pass": true,
+      "data": true
+    },
+    {
+      "name": "unchanged five scan-depth forms stay accepted and bounded",
+      "pass": true,
+      "data": [
+        {
+          "id": "launch-depth-near-west-toe",
+          "scaleRatio": 1.5442461791328685
+        },
+        {
+          "id": "launch-depth-west-valley-shelf",
+          "scaleRatio": 1.3207230546524995
+        },
+        {
+          "id": "launch-depth-east-basin-notch",
+          "scaleRatio": 1.2503695272780069
+        },
+        {
+          "id": "launch-depth-west-inner-shoulder",
+          "scaleRatio": 1.4196661751618356
+        },
+        {
+          "id": "launch-depth-refinery-back-crown",
+          "scaleRatio": 1.5823590556219727
+        }
+      ]
+    },
+    {
+      "name": "one millimetre source continuity and domain closure",
+      "pass": true,
+      "data": {
+        "maxStep": 0.019769638470194195
+      }
+    }
+  ],
+  "limitation": "Focused CPU assertions reproduce the existing numeric protection thresholds. This is not a full test suite, GPU compilation/capture, visual review or performance evidence."
+}

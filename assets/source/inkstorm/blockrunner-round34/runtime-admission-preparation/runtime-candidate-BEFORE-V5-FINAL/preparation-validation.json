@@ -1,0 +1,54 @@
+{
+  "status": "STAGED_ONLY",
+  "createdAt": "2026-09-08T13:10:13.616583+00:00",
+  "liveBaselinePreserved": {
+    "src/game/vehicleAppearance.ts": true,
+    "tests/settings/vehicleAppearance.test.ts": true,
+    "public/assets/inkstorm/vehicles/ATTRIBUTION.md": true
+  },
+  "newTestPathsAbsentFromLive": true,
+  "validation": {
+    "tsSyntaxFiles": 3,
+    "mjsSyntaxPassed": true,
+    "gitApplyCheckPassed": true,
+    "gitDiffCheckPassed": true,
+    "testsExecuted": false,
+    "browserOrBlenderUsed": false,
+    "tsSyntaxMethod": "Node v24 --check native TypeScript syntax, not typecheck",
+    "typescriptApiAttempt": "Unavailable legacy transpileModule API in TypeScript 7; replaced by node --check."
+  },
+  "files": {
+    "baseline-manifest.json": {
+      "bytes": 340,
+      "sha256": "ec404c7faf16dd15d93b13a3bf8848f7b94b14faf303b51154814341c0aa42dd"
+    },
+    "candidate.patch": {
+      "bytes": 22150,
+      "sha256": "da992caa52b02e6a35684c6981781b95d949ed99f2bbf167a71a4ed29ca70637"
+    },
+    "README.md": {
+      "bytes": 4809,
+      "sha256": "ec0177e39ebb4ab585fbd10df01486a1704c992977537902e19f83967dcf8223"
+    },
+    "tests/settings/vehicleAppearance.test.ts": {
+      "bytes": 7780,
+      "sha256": "95495801c8fec902e17b7bf2b55bee373c4feb779120daf00bc7bd2dbeeec683"
+    },
+    "tests/settings/blockrunnerAppearanceAssets.test.mjs": {
+      "bytes": 6817,
+      "sha256": "7daddd6856ab66d1e744ab49b4710d90a2209723573e941c7cfc6312bbe039e7"
+    },
+    "tests/render/blockrunnerAppearance.test.ts": {
+      "bytes": 4360,
+      "sha256": "d9ed53b050443196e0aebf6f21e93c3ab647a60fea3402c6adae3e9e20b4f47d"
+    },
+    "public/assets/inkstorm/vehicles/ATTRIBUTION.md": {
+      "bytes": 5275,
+      "sha256": "5ecdff0a3ddf3ac4a8c4d82f5d720dbc2639c8b1a12621992f7f7a1216a276d3"
+    },
+    "src/game/vehicleAppearance.ts": {
+      "bytes": 13521,
+      "sha256": "95d59f69f4b95d6a5a7dde6bb462b6a45337c93cc62f39d1c6ba49ded1e9b883"
+    }
+  }
+}

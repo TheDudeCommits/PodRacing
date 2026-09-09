@@ -1,0 +1,14 @@
+{
+  "status": "Centrally integrated local V27 candidate; full verify/native acceptance pending",
+  "patchSha256": "1d33e14be0abfdbf0f83beba0764e7ae0633c0ce19f4464908cccc00039fc2c1",
+  "manifestSha256": "a9d9db8bec39ae705ce68654a1cc51afa59aa61ed7067c12dc45b8b7b4d5d43c",
+  "source": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/combat-round35/v27-flame-atlas-candidate/flame-atlas-raw-v1.png",
+  "publicPath": "public/assets/fx/inkstorm/rupture-flame-v1.png",
+  "publicBytes": 578105,
+  "publicSha256": "f14657a3388bf9618d0206806c7b9c54856bd7f54c98596ea1790d85c97dd4c5",
+  "productionMethod": "Original built-in imagegen four-phase artwork, raw-v1 copied byte-for-byte; runtime metadata normalizes rectangles and fracture anchors. No pixel editing. RGB raw-v2 rejected.",
+  "generationReceipt": "../v27-flame-atlas-candidate/raw-v1-receipt.json",
+  "pixelAudit": "../v27-flame-atlas-candidate/raw-v1-metadata-audit.json",
+  "tests": "Private51/9+TSC passed; combined build/native pending",
+  "notes": "Adds one texture; no claim of V26/V24b FPS on this candidate."
+}

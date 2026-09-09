@@ -1,0 +1,2489 @@
+{
+  "scope": "Sparse source-geometry body occlusion, exact fixed chase eye. Not rendered pixels, all-pose coverage, runtime integration, or visual acceptance.",
+  "file": "assets/source/inkstorm/teemto-open-cockpit-round31/teemto-open-cockpit-round31-candidate.glb",
+  "eye": [
+    0.35,
+    7.3459566784,
+    -16.8935306855
+  ],
+  "sampleCount": 199,
+  "bodyOccluded": 48,
+  "unblocked": 151,
+  "perRegion": {
+    "helmet": {
+      "samples": 56,
+      "unblocked": 56
+    },
+    "upper-body": {
+      "samples": 87,
+      "unblocked": 81
+    },
+    "lower-body": {
+      "samples": 56,
+      "unblocked": 14
+    }
+  },
+  "firstBlockingMeshes": {
+    "teemto-cockpit-rear-mount-cap": 16,
+    "teemto-cockpit-coaming-graphite": 1,
+    "teemto-cockpit-body": 28,
+    "teemto-cockpit-bone-return": 3
+  },
+  "bodyBounds": [
+    {
+      "mesh": "teemto-cockpit-body",
+      "min": [
+        -4.178723335266113,
+        1.001510739326477,
+        -7.333491802215576
+      ],
+      "max": [
+        4.177325248718262,
+        5.13743257522583,
+        15.937384605407715
+      ],
+      "triangles": 16827
+    },
+    {
+      "mesh": "teemto-engine-left-body",
+      "min": [
+        -6.54527473449707,
+        0.07286620140075684,
+        5.0940141677856445
+      ],
+      "max": [
+        -1.3186402320861816,
+        5.191770553588867,
+        22.738540649414062
+      ],
+      "triangles": 11790
+    },
+    {
+      "mesh": "teemto-engine-right-body",
+      "min": [
+        1.2777190208435059,
+        0.11396288871765137,
+        5.1262664794921875
+      ],
+      "max": [
+        6.496447563171387,
+        5.250973701477051,
+        22.736522674560547
+      ],
+      "triangles": 11790
+    },
+    {
+      "mesh": "teemto-cockpit-bone-return",
+      "min": [
+        -0.5088708400726318,
+        2.7980000972747803,
+        -6.450279712677002
+      ],
+      "max": [
+        0.5588708519935608,
+        2.8320000171661377,
+        -4.0595221519470215
+      ],
+      "triangles": 416
+    },
+    {
+      "mesh": "teemto-cockpit-coaming-graphite",
+      "min": [
+        -0.5154734253883362,
+        2.684999942779541,
+        -6.462803840637207
+      ],
+      "max": [
+        0.5654734373092651,
+        2.799999952316284,
+        -4.046943187713623
+      ],
+      "triangles": 416
+    },
+    {
+      "mesh": "teemto-cockpit-rear-mount-cap",
+      "min": [
+        -0.17499999701976776,
+        2.740000009536743,
+        -7.114999771118164
+      ],
+      "max": [
+        0.22500000894069672,
+        2.8399999141693115,
+        -6.465000152587891
+      ],
+      "triangles": 108
+    }
+  ],
+  "hits": [
+    {
+      "pilotMesh": "teemto-pilot-accent.003",
+      "region": "lower-body",
+      "target": [
+        0.17000001668930054,
+        2.2385246753692627,
+        -5.267663478851318
+      ],
+      "blocker": "teemto-cockpit-rear-mount-cap",
+      "faceIndex": 103,
+      "point": [
+        0.1911976621756356,
+        2.8399999141693124,
+        -6.636780336447709
+      ],
+      "normal": [
+        0,
+        1,
+        0
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-accent.003",
+      "region": "lower-body",
+      "target": [
+        0.16499999165534973,
+        2.186619281768799,
+        -5.225168228149414
+      ],
+      "blocker": "teemto-cockpit-rear-mount-cap",
+      "faceIndex": 103,
+      "point": [
+        0.18842846960781967,
+        2.8399999141693115,
+        -6.702854499731528
+      ],
+      "normal": [
+        0,
+        1,
+        0
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-accent.003",
+      "region": "lower-body",
+      "target": [
+        0.17000001668930054,
+        2.1751253604888916,
+        -5.253326892852783
+      ],
+      "blocker": "teemto-cockpit-rear-mount-cap",
+      "faceIndex": 103,
+      "point": [
+        0.19314473002613614,
+        2.8399999141693115,
+        -6.750044698088004
+      ],
+      "normal": [
+        0,
+        1,
+        0
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-accent.003",
+      "region": "lower-body",
+      "target": [
+        0.17000001668930054,
+        2.2451415061950684,
+        -5.238402366638184
+      ],
+      "blocker": "teemto-cockpit-rear-mount-cap",
+      "faceIndex": 103,
+      "point": [
+        0.19099166212100666,
+        2.8399999141693115,
+        -6.597626498944209
+      ],
+      "normal": [
+        0,
+        1,
+        0
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-accent.003",
+      "region": "lower-body",
+      "target": [
+        0.23499998450279236,
+        2.186619281768799,
+        -5.225168228149414
+      ],
+      "blocker": "teemto-cockpit-coaming-graphite",
+      "faceIndex": 321,
+      "point": [
+        0.2471977641943489,
+        2.7338579986196203,
+        -6.462803840637205
+      ],
+      "normal": [
+        0,
+        0,
+        -1
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-accent.003",
+      "region": "lower-body",
+      "target": [
+        -0.23000000417232513,
+        2.1751253604888916,
+        -5.253326892852783
+      ],
+      "blocker": "teemto-cockpit-rear-mount-cap",
+      "faceIndex": 102,
+      "point": [
+        -0.1554225870802316,
+        2.8399999141693124,
+        -6.7500446980880024
+      ],
+      "normal": [
+        0,
+        1,
+        0
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-accent.003",
+      "region": "lower-body",
+      "target": [
+        -0.17000001668930054,
+        2.2451415061950684,
+        -5.238402366638184
+      ],
+      "blocker": "teemto-cockpit-rear-mount-cap",
+      "faceIndex": 102,
+      "point": [
+        -0.10935747787316369,
+        2.8399999141693124,
+        -6.597626498944209
+      ],
+      "normal": [
+        0,
+        1,
+        0
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-accent.003",
+      "region": "lower-body",
+      "target": [
+        -0.23000000417232513,
+        2.1817424297332764,
+        -5.224065780639648
+      ],
+      "blocker": "teemto-cockpit-rear-mount-cap",
+      "faceIndex": 102,
+      "point": [
+        -0.15607020084978995,
+        2.8399999141693124,
+        -6.711516192862797
+      ],
+      "normal": [
+        0,
+        1,
+        0
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-accent.003",
+      "region": "lower-body",
+      "target": [
+        -0.23000000417232513,
+        2.2451415061950684,
+        -5.238402366638184
+      ],
+      "blocker": "teemto-cockpit-rear-mount-cap",
+      "faceIndex": 57,
+      "point": [
+        -0.1626252214205025,
+        2.8376696296645303,
+        -6.592301905912359
+      ],
+      "normal": [
+        -0.3827175913920352,
+        0.9238653826392019,
+        0
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-accent.003",
+      "region": "lower-body",
+      "target": [
+        -0.16499999165534973,
+        2.2336478233337402,
+        -5.2665605545043945
+      ],
+      "blocker": "teemto-cockpit-rear-mount-cap",
+      "faceIndex": 102,
+      "point": [
+        -0.10391774279805216,
+        2.8399999141693124,
+        -6.645592582670179
+      ],
+      "normal": [
+        0,
+        1,
+        0
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-accent.003",
+      "region": "lower-body",
+      "target": [
+        -0.16499999165534973,
+        2.180002212524414,
+        -5.254429340362549
+      ],
+      "blocker": "teemto-cockpit-rear-mount-cap",
+      "faceIndex": 102,
+      "point": [
+        -0.09920405537969723,
+        2.8399999141693124,
+        -6.741430472049984
+      ],
+      "normal": [
+        0,
+        1,
+        0
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-accent.003",
+      "region": "lower-body",
+      "target": [
+        0.00449998676776886,
+        2.413038492202759,
+        -5.051327228546143
+      ],
+      "blocker": "teemto-cockpit-body",
+      "faceIndex": 14241,
+      "point": [
+        0.028519608679641373,
+        2.755981546375713,
+        -5.874613013627455
+      ],
+      "normal": [
+        0.008378835040081576,
+        0.9682364884277685,
+        -0.2498957734745324
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-accent.003",
+      "region": "lower-body",
+      "target": [
+        -0.004500012844800949,
+        2.413038492202759,
+        -5.051327228546143
+      ],
+      "blocker": "teemto-cockpit-body",
+      "faceIndex": 14241,
+      "point": [
+        0.02014851538254897,
+        2.7560262742904333,
+        -5.874720389636202
+      ],
+      "normal": [
+        0.008378835040081576,
+        0.9682364884277685,
+        -0.2498957734745324
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-accent.003",
+      "region": "lower-body",
+      "target": [
+        -0.007000011391937733,
+        2.4427530765533447,
+        -5.06727409362793
+      ],
+      "blocker": "teemto-cockpit-body",
+      "faceIndex": 14238,
+      "point": [
+        0.016822370145486265,
+        2.7699407046529565,
+        -5.856432602594337
+      ],
+      "normal": [
+        0.003663858794826064,
+        0.21427322497200751,
+        -0.9767668919444532
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-accent.003",
+      "region": "lower-body",
+      "target": [
+        -0.004500011447817087,
+        2.4451916217803955,
+        -5.0678253173828125
+      ],
+      "blocker": "teemto-cockpit-body",
+      "faceIndex": 14238,
+      "point": [
+        0.019127454029091884,
+        2.7718281618267886,
+        -5.856009904977434
+      ],
+      "normal": [
+        0.003663858794826064,
+        0.21427322497200751,
+        -0.9767668919444532
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-accent.003",
+      "region": "lower-body",
+      "target": [
+        0.006999986711889505,
+        2.4154770374298096,
+        -5.051878452301025
+      ],
+      "blocker": "teemto-cockpit-body",
+      "faceIndex": 14369,
+      "point": [
+        0.03073139349991627,
+        2.7566059397242384,
+        -5.871175989623108
+      ],
+      "normal": [
+        0.10313061621853903,
+        0.9705141400617102,
+        -0.217867803813835
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-hardware.003",
+      "region": "lower-body",
+      "target": [
+        -0.019485581666231155,
+        2.4384336471557617,
+        -5.069372653961182
+      ],
+      "blocker": "teemto-cockpit-body",
+      "faceIndex": 14238,
+      "point": [
+        0.00514044308461431,
+        2.7655175433331642,
+        -5.857446729895267
+      ],
+      "normal": [
+        0.003663858794826064,
+        0.21427322497200751,
+        -0.9767668919444532
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-hardware.003",
+      "region": "lower-body",
+      "target": [
+        0.004330123774707317,
+        2.483546495437622,
+        -5.156404972076416
+      ],
+      "blocker": "teemto-cockpit-body",
+      "faceIndex": 14238,
+      "point": [
+        0.024924421526766882,
+        2.7732388579717187,
+        -5.85567869628737
+      ],
+      "normal": [
+        0.003663858794826064,
+        0.21427322497200751,
+        -0.9767668919444532
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-rubber.002",
+      "region": "upper-body",
+      "target": [
+        0.35518625378608704,
+        2.6496951580047607,
+        -4.5289812088012695
+      ],
+      "blocker": "teemto-cockpit-body",
+      "faceIndex": 15737,
+      "point": [
+        0.35508870514488244,
+        2.7380274974835963,
+        -4.7615469586291645
+      ],
+      "normal": [
+        0.008373003143692742,
+        0.9758523233785399,
+        -0.21827078543648754
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-rubber.002",
+      "region": "upper-body",
+      "target": [
+        0.3258335590362549,
+        2.6376888751983643,
+        -4.529419422149658
+      ],
+      "blocker": "teemto-cockpit-body",
+      "faceIndex": 16303,
+      "point": [
+        0.32642336251266246,
+        2.752598336726116,
+        -4.831176549595698
+      ],
+      "normal": [
+        0.00017890990795392972,
+        -0.21827882084435377,
+        -0.975886430053233
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-rubber.002",
+      "region": "upper-body",
+      "target": [
+        0.3332781195640564,
+        2.641653537750244,
+        -4.547245025634766
+      ],
+      "blocker": "teemto-cockpit-body",
+      "faceIndex": 15756,
+      "point": [
+        0.333647043975344,
+        2.7454416418053453,
+        -4.819633420355244
+      ],
+      "normal": [
+        0.0001665574436553713,
+        -0.21829199917753125,
+        -0.9758834845173345
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-rubber.002",
+      "region": "upper-body",
+      "target": [
+        0.3332781195640564,
+        2.6515419483184814,
+        -4.561683654785156
+      ],
+      "blocker": "teemto-cockpit-body",
+      "faceIndex": 15756,
+      "point": [
+        0.33362932130869855,
+        2.750136520238426,
+        -4.8206836044880355
+      ],
+      "normal": [
+        0.0001665574436553713,
+        -0.21829199917753125,
+        -0.9758834845173345
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-rubber.002",
+      "region": "upper-body",
+      "target": [
+        0.3281819224357605,
+        2.656604528427124,
+        -4.55915641784668
+      ],
+      "blocker": "teemto-cockpit-body",
+      "faceIndex": 15827,
+      "point": [
+        0.32855370967987824,
+        2.7365126370770634,
+        -4.769338227100302
+      ],
+      "normal": [
+        0.008388402248295502,
+        0.9758509734325608,
+        -0.21827622948558575
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-rubber.002",
+      "region": "upper-body",
+      "target": [
+        0.35580432415008545,
+        2.668739080429077,
+        -4.563694000244141
+      ],
+      "blocker": "teemto-cockpit-body",
+      "faceIndex": 15644,
+      "point": [
+        0.3557779596687232,
+        2.689984002835258,
+        -4.6196987548172
+      ],
+      "normal": [
+        0.005614212121689401,
+        0.47285573042215123,
+        -0.8811219772705631
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-rubber.002",
+      "region": "lower-body",
+      "target": [
+        0.23051634430885315,
+        2.3659303188323975,
+        -4.1375274658203125
+      ],
+      "blocker": "teemto-cockpit-body",
+      "faceIndex": 14772,
+      "point": [
+        0.2313447109570661,
+        2.4004562773798197,
+        -4.225963390973062
+      ],
+      "normal": [
+        0.005924771840787933,
+        0.5221415146102778,
+        -0.852838282325037
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-rubber.002",
+      "region": "lower-body",
+      "target": [
+        -0.25500011444091797,
+        2.3443360328674316,
+        -4.233020782470703
+      ],
+      "blocker": "teemto-cockpit-body",
+      "faceIndex": 15123,
+      "point": [
+        -0.25381980535191395,
+        2.3540938133483946,
+        -4.257720471864612
+      ],
+      "normal": [
+        0.0059276610298755455,
+        0.5221423519729483,
+        -0.8528377495812863
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-shell.003",
+      "region": "lower-body",
+      "target": [
+        -0.1887499988079071,
+        2.2156476974487305,
+        -5.221480369567871
+      ],
+      "blocker": "teemto-cockpit-rear-mount-cap",
+      "faceIndex": 102,
+      "point": [
+        -0.12318479459450377,
+        2.8399999141693115,
+        -6.641954363528978
+      ],
+      "normal": [
+        0,
+        1,
+        0
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-shell.003",
+      "region": "lower-body",
+      "target": [
+        -0.05000000819563866,
+        2.4424710273742676,
+        -5.113859176635742
+      ],
+      "blocker": "teemto-cockpit-body",
+      "faceIndex": 14470,
+      "point": [
+        -0.02453252261546318,
+        2.7546696462528377,
+        -5.8638556969970015
+      ],
+      "normal": [
+        -0.0864528814163924,
+        0.9720585262968685,
+        -0.2182386783967575
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-suit.005",
+      "region": "lower-body",
+      "target": [
+        -1.010810546375751e-8,
+        2.2440881729125977,
+        -5.084376811981201
+      ],
+      "blocker": "teemto-cockpit-bone-return",
+      "faceIndex": 204,
+      "point": [
+        0.040305976902510976,
+        2.831619143693236,
+        -6.444318494512588
+      ],
+      "normal": [
+        0,
+        0.9429578101802784,
+        -0.33291225303375954
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-suit.005",
+      "region": "lower-body",
+      "target": [
+        0.1314084380865097,
+        2.515005111694336,
+        -5.2430338859558105
+      ],
+      "blocker": "teemto-cockpit-body",
+      "faceIndex": 14345,
+      "point": [
+        0.1428308180620845,
+        2.767443787531003,
+        -5.851824088943051
+      ],
+      "normal": [
+        0.1618647209107118,
+        0.986571980712496,
+        0.021806856662982533
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-suit.005",
+      "region": "lower-body",
+      "target": [
+        0.26346272230148315,
+        2.468231439590454,
+        -5.204361915588379
+      ],
+      "blocker": "teemto-cockpit-body",
+      "faceIndex": 14519,
+      "point": [
+        0.26821366293762944,
+        2.736021040388281,
+        -5.846103236654882
+      ],
+      "normal": [
+        0.09326232743419242,
+        0.3285865629138948,
+        -0.9398579727565173
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-suit.005",
+      "region": "lower-body",
+      "target": [
+        -0.3113826513290405,
+        2.470670461654663,
+        -5.203365325927734
+      ],
+      "blocker": "teemto-cockpit-body",
+      "faceIndex": 14442,
+      "point": [
+        -0.275713645294961,
+        2.733599362395424,
+        -5.833827249765715
+      ],
+      "normal": [
+        -0.26921864130047707,
+        0.29154424928055417,
+        -0.9178906655412523
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-suit.005",
+      "region": "lower-body",
+      "target": [
+        -0.039883729070425034,
+        2.2416985034942627,
+        -5.133184909820557
+      ],
+      "blocker": "teemto-cockpit-rear-mount-cap",
+      "faceIndex": 103,
+      "point": [
+        0.005816934396973283,
+        2.8399999141693115,
+        -6.51168717724266
+      ],
+      "normal": [
+        0,
+        1,
+        0
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-webbing.002",
+      "region": "lower-body",
+      "target": [
+        0.049374986439943314,
+        2.4367947578430176,
+        -5.119394302368164
+      ],
+      "blocker": "teemto-cockpit-body",
+      "faceIndex": 14369,
+      "point": [
+        0.0686626870079089,
+        2.7517600497928374,
+        -5.874807214670183
+      ],
+      "normal": [
+        0.10313061621853903,
+        0.9705141400617102,
+        -0.217867803813835
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-webbing.002",
+      "region": "lower-body",
+      "target": [
+        0.0293617881834507,
+        2.4460132122039795,
+        -5.127610683441162
+      ],
+      "blocker": "teemto-cockpit-body",
+      "faceIndex": 14369,
+      "point": [
+        0.04957953435467821,
+        2.7549776762074005,
+        -5.869507236334536
+      ],
+      "normal": [
+        0.10313061621853903,
+        0.9705141400617102,
+        -0.217867803813835
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-webbing.002",
+      "region": "lower-body",
+      "target": [
+        0.17625001072883606,
+        2.2464396953582764,
+        -5.168978691101074
+      ],
+      "blocker": "teemto-cockpit-rear-mount-cap",
+      "faceIndex": 103,
+      "point": [
+        0.19647370681479207,
+        2.8399999141693124,
+        -6.533662379850318
+      ],
+      "normal": [
+        0,
+        1,
+        0
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-webbing.002",
+      "region": "lower-body",
+      "target": [
+        0.05112944915890694,
+        2.3490641117095947,
+        -5.095935344696045
+      ],
+      "blocker": "teemto-cockpit-body",
+      "faceIndex": 13565,
+      "point": [
+        0.07573491458826548,
+        2.7604491309358323,
+        -6.067209776020178
+      ],
+      "normal": [
+        0.0025649367548556206,
+        0.07439108124423631,
+        -0.9972258461004493
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-webbing.002",
+      "region": "lower-body",
+      "target": [
+        0.19447369873523712,
+        2.272932529449463,
+        -5.1260223388671875
+      ],
+      "blocker": "teemto-cockpit-bone-return",
+      "faceIndex": 369,
+      "point": [
+        0.2116133172288619,
+        2.8320000171661377,
+        -6.42284867654547
+      ],
+      "normal": [
+        0,
+        1,
+        0
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-webbing.002",
+      "region": "lower-body",
+      "target": [
+        0.1580262929201126,
+        2.221452474594116,
+        -5.212827682495117
+      ],
+      "blocker": "teemto-cockpit-rear-mount-cap",
+      "faceIndex": 103,
+      "point": [
+        0.18119826044271378,
+        2.8399999141693124,
+        -6.622733626094702
+      ],
+      "normal": [
+        0,
+        1,
+        0
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-webbing.002",
+      "region": "lower-body",
+      "target": [
+        -0.0977473184466362,
+        2.4782862663269043,
+        -5.152892112731934
+      ],
+      "blocker": "teemto-cockpit-body",
+      "faceIndex": 14217,
+      "point": [
+        -0.07097241351882788,
+        2.7693687745489965,
+        -5.85497221154349
+      ],
+      "normal": [
+        -0.08330520859416365,
+        0.05976768340049382,
+        -0.9947301474480509
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-webbing.002",
+      "region": "lower-body",
+      "target": [
+        -0.06938820332288742,
+        2.4265074729919434,
+        -5.112563610076904
+      ],
+      "blocker": "teemto-cockpit-body",
+      "faceIndex": 13995,
+      "point": [
+        -0.04054874554827975,
+        2.7647960717403057,
+        -5.922688214974597
+      ],
+      "normal": [
+        0.9238124569726824,
+        -0.09146417679430406,
+        -0.3717591272658087
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-webbing.002",
+      "region": "lower-body",
+      "target": [
+        -0.1287500262260437,
+        2.319453716278076,
+        -5.092728614807129
+      ],
+      "blocker": "teemto-cockpit-body",
+      "faceIndex": 13410,
+      "point": [
+        -0.08926293533280788,
+        2.7340374624243653,
+        -6.066053561965505
+      ],
+      "normal": [
+        0.0009585126126822543,
+        -0.12158020901056804,
+        -0.9925811473277727
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-webbing.002",
+      "region": "lower-body",
+      "target": [
+        -0.11265359073877335,
+        2.3016304969787598,
+        -5.092654228210449
+      ],
+      "blocker": "teemto-cockpit-body",
+      "faceIndex": 13410,
+      "point": [
+        -0.0745747597187027,
+        2.716805150580253,
+        -6.063928610385473
+      ],
+      "normal": [
+        0.0009585126126822543,
+        -0.12158020901056804,
+        -0.9925811473277727
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-webbing.002",
+      "region": "lower-body",
+      "target": [
+        -0.18143750727176666,
+        2.3048243522644043,
+        -5.083350658416748
+      ],
+      "blocker": "teemto-cockpit-body",
+      "faceIndex": 13410,
+      "point": [
+        -0.13727209334889845,
+        2.7237704988521996,
+        -6.0648423338490325
+      ],
+      "normal": [
+        0.0009585126126822543,
+        -0.12158020901056804,
+        -0.9925811473277727
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-webbing.002",
+      "region": "lower-body",
+      "target": [
+        -8.942516949161927e-9,
+        2.1737446784973145,
+        -5.097709655761719
+      ],
+      "blocker": "teemto-cockpit-rear-mount-cap",
+      "faceIndex": 103,
+      "point": [
+        0.04508502207469295,
+        2.8399999141693115,
+        -6.617180922651176
+      ],
+      "normal": [
+        0,
+        1,
+        0
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-webbing.002",
+      "region": "lower-body",
+      "target": [
+        0.022499987855553627,
+        2.3819668292999268,
+        -5.0867204666137695
+      ],
+      "blocker": "teemto-cockpit-body",
+      "faceIndex": 14241,
+      "point": [
+        0.04609644225147774,
+        2.7396234880864245,
+        -5.937403973667813
+      ],
+      "normal": [
+        0.008378835040081576,
+        0.9682364884277685,
+        -0.2498957734745324
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-webbing.002",
+      "region": "lower-body",
+      "target": [
+        0.02114998735487461,
+        2.2451562881469727,
+        -5.083917617797852
+      ],
+      "blocker": "teemto-cockpit-bone-return",
+      "faceIndex": 368,
+      "point": [
+        0.05898396495521979,
+        2.8320000171661386,
+        -6.44260583154699
+      ],
+      "normal": [
+        0,
+        1,
+        0
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-webbing.002",
+      "region": "lower-body",
+      "target": [
+        -0.018000008538365364,
+        2.209538459777832,
+        -5.09124231338501
+      ],
+      "blocker": "teemto-cockpit-rear-mount-cap",
+      "faceIndex": 103,
+      "point": [
+        0.02716956502907103,
+        2.8399999141693115,
+        -6.53989535827419
+      ],
+      "normal": [
+        0,
+        1,
+        0
+      ]
+    }
+  ],
+  "visible": [
+    {
+      "pilotMesh": "teemto-pilot-accent.003",
+      "region": "helmet",
+      "point": [
+        0.05500002205371857,
+        3.220388412475586,
+        -5.4708571434021
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-accent.003",
+      "region": "helmet",
+      "point": [
+        0.05500002205371857,
+        3.2211050987243652,
+        -5.467687129974365
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-accent.003",
+      "region": "helmet",
+      "point": [
+        0.035000018775463104,
+        3.220388412475586,
+        -5.4708571434021
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-accent.003",
+      "region": "helmet",
+      "point": [
+        0.05500002205371857,
+        3.220388412475586,
+        -5.4708571434021
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-accent.003",
+      "region": "helmet",
+      "point": [
+        0.025000030174851418,
+        3.1993672847747803,
+        -5.552480697631836
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-accent.003",
+      "region": "helmet",
+      "point": [
+        0.04000003635883331,
+        3.0981781482696533,
+        -5.63724946975708
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-accent.003",
+      "region": "helmet",
+      "point": [
+        0.04000003635883331,
+        3.097461462020874,
+        -5.6404194831848145
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-accent.003",
+      "region": "helmet",
+      "point": [
+        -0.04499998316168785,
+        3.1854233741760254,
+        -5.364782810211182
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-accent.003",
+      "region": "helmet",
+      "point": [
+        -0.024999966844916344,
+        3.198650360107422,
+        -5.55565071105957
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-accent.003",
+      "region": "helmet",
+      "point": [
+        -0.024999966844916344,
+        3.1993672847747803,
+        -5.552480697631836
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-accent.003",
+      "region": "helmet",
+      "point": [
+        -0.044999971985816956,
+        3.198650360107422,
+        -5.55565071105957
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-accent.003",
+      "region": "helmet",
+      "point": [
+        -0.024999966844916344,
+        3.198650360107422,
+        -5.55565071105957
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-accent.003",
+      "region": "helmet",
+      "point": [
+        -0.039999961853027344,
+        3.0981781482696533,
+        -5.63724946975708
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-accent.003",
+      "region": "upper-body",
+      "point": [
+        0.3465256690979004,
+        2.614274263381958,
+        -5.287047863006592
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-accent.003",
+      "region": "upper-body",
+      "point": [
+        0.3376787304878235,
+        2.573331117630005,
+        -5.243180751800537
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-accent.003",
+      "region": "upper-body",
+      "point": [
+        -0.33890965580940247,
+        2.596964120864868,
+        -5.301225185394287
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-accent.003",
+      "region": "upper-body",
+      "point": [
+        -0.33111077547073364,
+        2.567546844482422,
+        -5.298758506774902
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-accent.003",
+      "region": "lower-body",
+      "point": [
+        -0.32282066345214844,
+        2.535965919494629,
+        -5.2458672523498535
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-hardware.003",
+      "region": "helmet",
+      "point": [
+        0.16128244996070862,
+        3.0294952392578125,
+        -5.37424898147583
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-hardware.003",
+      "region": "helmet",
+      "point": [
+        -0.14438124001026154,
+        3.0322978496551514,
+        -5.341075897216797
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-hardware.003",
+      "region": "helmet",
+      "point": [
+        -0.06583836674690247,
+        3.098705291748047,
+        -5.296771049499512
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-hardware.003",
+      "region": "helmet",
+      "point": [
+        0.1654454469680786,
+        3.0248701572418213,
+        -5.350308895111084
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-hardware.003",
+      "region": "helmet",
+      "point": [
+        0.11747296154499054,
+        3.025899648666382,
+        -5.3145856857299805
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-hardware.003",
+      "region": "helmet",
+      "point": [
+        0.0711590051651001,
+        3.0224227905273438,
+        -5.2566094398498535
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-hardware.003",
+      "region": "helmet",
+      "point": [
+        3.302808693206316e-9,
+        3.0244719982147217,
+        -5.23777961730957
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-hardware.003",
+      "region": "helmet",
+      "point": [
+        -0.0711589902639389,
+        3.0224227905273438,
+        -5.2566094398498535
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-hardware.003",
+      "region": "helmet",
+      "point": [
+        -0.13069193065166473,
+        3.0214457511901855,
+        -5.302468299865723
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-hardware.003",
+      "region": "helmet",
+      "point": [
+        -0.14980775117874146,
+        3.030195474624634,
+        -5.35858678817749
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-hardware.003",
+      "region": "helmet",
+      "point": [
+        0.16294631361961365,
+        3.10964035987854,
+        -5.385266304016113
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-hardware.003",
+      "region": "helmet",
+      "point": [
+        0.11839035153388977,
+        3.1201446056365967,
+        -5.325699329376221
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-hardware.003",
+      "region": "helmet",
+      "point": [
+        0.050469085574150085,
+        3.1203904151916504,
+        -5.298245906829834
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-hardware.003",
+      "region": "helmet",
+      "point": [
+        -0.01606695167720318,
+        3.125260353088379,
+        -5.299411296844482
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-hardware.003",
+      "region": "helmet",
+      "point": [
+        -0.08609011769294739,
+        3.119495391845703,
+        -5.306012153625488
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-hardware.003",
+      "region": "helmet",
+      "point": [
+        -0.13634233176708221,
+        3.1011598110198975,
+        -5.354945659637451
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-hardware.003",
+      "region": "helmet",
+      "point": [
+        -0.15807409584522247,
+        3.1035854816436768,
+        -5.407319068908691
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-hardware.003",
+      "region": "helmet",
+      "point": [
+        0.15679752826690674,
+        3.099794387817383,
+        -5.403411388397217
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-hardware.003",
+      "region": "helmet",
+      "point": [
+        0.18000000715255737,
+        3.031527280807495,
+        -5.487429618835449
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-hardware.003",
+      "region": "helmet",
+      "point": [
+        0.06591526418924332,
+        3.2105674743652344,
+        -5.480264186859131
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-hardware.003",
+      "region": "helmet",
+      "point": [
+        -0.16429749131202698,
+        3.057969570159912,
+        -5.3784589767456055
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-hardware.003",
+      "region": "helmet",
+      "point": [
+        -0.17000000178813934,
+        3.010784149169922,
+        -5.490996837615967
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-hardware.003",
+      "region": "helmet",
+      "point": [
+        -0.17000000178813934,
+        3.0121889114379883,
+        -5.437071800231934
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-hardware.003",
+      "region": "helmet",
+      "point": [
+        -0.059083107858896255,
+        3.189077138900757,
+        -5.563157081604004
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-hardware.003",
+      "region": "helmet",
+      "point": [
+        0.03725000098347664,
+        2.9717674255371094,
+        -5.23508882522583
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-hardware.003",
+      "region": "helmet",
+      "point": [
+        0.015500003471970558,
+        2.9740257263183594,
+        -5.233036041259766
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-hardware.003",
+      "region": "helmet",
+      "point": [
+        -0.004499996080994606,
+        2.9931387901306152,
+        -5.241459369659424
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-hardware.003",
+      "region": "helmet",
+      "point": [
+        -0.02449999749660492,
+        2.9925873279571533,
+        -5.243897438049316
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-hardware.003",
+      "region": "helmet",
+      "point": [
+        -0.04450000077486038,
+        2.9734745025634766,
+        -5.235474586486816
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-hardware.003",
+      "region": "upper-body",
+      "point": [
+        0.10500000417232513,
+        2.666635036468506,
+        -5.210686206817627
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-hardware.003",
+      "region": "upper-body",
+      "point": [
+        -0.13249999284744263,
+        2.6690735816955566,
+        -5.211237907409668
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-rubber.002",
+      "region": "upper-body",
+      "point": [
+        1.1871502891835917e-8,
+        2.766500234603882,
+        -5.335793972015381
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-rubber.002",
+      "region": "upper-body",
+      "point": [
+        0.08720500767230988,
+        2.834477186203003,
+        -5.397894382476807
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-rubber.002",
+      "region": "upper-body",
+      "point": [
+        2.6597710700571042e-8,
+        2.854001522064209,
+        -5.504241943359375
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-rubber.002",
+      "region": "upper-body",
+      "point": [
+        2.7100117705458615e-8,
+        2.8680806159973145,
+        -5.509989261627197
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-rubber.002",
+      "region": "upper-body",
+      "point": [
+        0.2417665719985962,
+        2.611828088760376,
+        -4.80963134765625
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-rubber.002",
+      "region": "upper-body",
+      "point": [
+        0.31798648834228516,
+        2.615534543991089,
+        -4.572206020355225
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-rubber.002",
+      "region": "upper-body",
+      "point": [
+        0.2775192856788635,
+        2.6855101585388184,
+        -4.696505069732666
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-rubber.002",
+      "region": "upper-body",
+      "point": [
+        0.3141528367996216,
+        2.6239993572235107,
+        -4.560276031494141
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-rubber.002",
+      "region": "upper-body",
+      "point": [
+        0.3150676488876343,
+        2.642014265060425,
+        -4.587405204772949
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-rubber.002",
+      "region": "upper-body",
+      "point": [
+        0.25742828845977783,
+        2.6608147621154785,
+        -4.682942867279053
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-rubber.002",
+      "region": "lower-body",
+      "point": [
+        0.18749991059303284,
+        2.4467501640319824,
+        -4.2561798095703125
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-rubber.002",
+      "region": "upper-body",
+      "point": [
+        -0.24101005494594574,
+        2.6166129112243652,
+        -4.798040390014648
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-rubber.002",
+      "region": "upper-body",
+      "point": [
+        -0.3294283151626587,
+        2.627448320388794,
+        -4.70657205581665
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-rubber.002",
+      "region": "upper-body",
+      "point": [
+        -0.28503063321113586,
+        2.641099452972412,
+        -4.577603816986084
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-rubber.002",
+      "region": "upper-body",
+      "point": [
+        -0.3767354488372803,
+        2.5871760845184326,
+        -4.566067218780518
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-rubber.002",
+      "region": "upper-body",
+      "point": [
+        -0.2783358097076416,
+        2.621863842010498,
+        -4.5279860496521
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-rubber.002",
+      "region": "upper-body",
+      "point": [
+        -0.348271906375885,
+        2.5845885276794434,
+        -4.595493316650391
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-rubber.002",
+      "region": "upper-body",
+      "point": [
+        -0.27326464653015137,
+        2.6367239952087402,
+        -4.545111179351807
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-rubber.002",
+      "region": "upper-body",
+      "point": [
+        -0.348271906375885,
+        2.5944769382476807,
+        -4.609931945800781
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-rubber.002",
+      "region": "upper-body",
+      "point": [
+        -0.2984127998352051,
+        2.6708498001098633,
+        -4.5492448806762695
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-rubber.002",
+      "region": "upper-body",
+      "point": [
+        -0.3650013208389282,
+        2.623870372772217,
+        -4.609065055847168
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-rubber.002",
+      "region": "upper-body",
+      "point": [
+        -0.27360400557518005,
+        2.6606431007385254,
+        -4.580342769622803
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-rubber.002",
+      "region": "upper-body",
+      "point": [
+        -0.2534220516681671,
+        2.6595025062561035,
+        -4.687926292419434
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-rubber.002",
+      "region": "lower-body",
+      "point": [
+        -0.23531398177146912,
+        2.427806854248047,
+        -4.328615665435791
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-rubber.002",
+      "region": "lower-body",
+      "point": [
+        -0.18750008940696716,
+        2.4522643089294434,
+        -4.231795787811279
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-shell.003",
+      "region": "upper-body",
+      "point": [
+        9.069200501699015e-9,
+        2.8967788219451904,
+        -5.303739547729492
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-shell.003",
+      "region": "upper-body",
+      "point": [
+        0.1300000101327896,
+        2.9020965099334717,
+        -5.404903888702393
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-shell.003",
+      "region": "upper-body",
+      "point": [
+        -0.05931589752435684,
+        2.9071450233459473,
+        -5.586600303649902
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-shell.003",
+      "region": "helmet",
+      "point": [
+        -0.16428153216838837,
+        2.9960827827453613,
+        -5.408658981323242
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-shell.003",
+      "region": "helmet",
+      "point": [
+        0.15705956518650055,
+        3.0616438388824463,
+        -5.549450397491455
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-shell.003",
+      "region": "helmet",
+      "point": [
+        0.08611339330673218,
+        3.157071590423584,
+        -5.365478992462158
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-shell.003",
+      "region": "helmet",
+      "point": [
+        0.046878740191459656,
+        3.196133613586426,
+        -5.396762847900391
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-shell.003",
+      "region": "helmet",
+      "point": [
+        0.12250002473592758,
+        3.170152187347412,
+        -5.511656284332275
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-shell.003",
+      "region": "helmet",
+      "point": [
+        0.1593722403049469,
+        3.1070244312286377,
+        -5.404106616973877
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-shell.003",
+      "region": "helmet",
+      "point": [
+        0.12846291065216064,
+        3.12565279006958,
+        -5.340621471405029
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-shell.003",
+      "region": "helmet",
+      "point": [
+        0.0858624130487442,
+        3.1463067531585693,
+        -5.311460494995117
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-shell.003",
+      "region": "helmet",
+      "point": [
+        0.018091101199388504,
+        3.1551876068115234,
+        -5.29107666015625
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-shell.003",
+      "region": "helmet",
+      "point": [
+        -0.05296066030859947,
+        3.151524305343628,
+        -5.297832012176514
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-shell.003",
+      "region": "helmet",
+      "point": [
+        -0.11557596921920776,
+        3.139658212661743,
+        -5.331417083740234
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-shell.003",
+      "region": "helmet",
+      "point": [
+        -0.156307190656662,
+        3.1100659370422363,
+        -5.385436534881592
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-shell.003",
+      "region": "helmet",
+      "point": [
+        0.1900000125169754,
+        3.0140926837921143,
+        -5.47636604309082
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-shell.003",
+      "region": "helmet",
+      "point": [
+        -0.18999998271465302,
+        3.0260298252105713,
+        -5.472657680511475
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-shell.003",
+      "region": "upper-body",
+      "point": [
+        0.14750000834465027,
+        2.615893602371216,
+        -5.219717025756836
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-shell.003",
+      "region": "upper-body",
+      "point": [
+        -0.0924999937415123,
+        2.6777243614196777,
+        -5.218320369720459
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-shell.003",
+      "region": "upper-body",
+      "point": [
+        -0.006249993573874235,
+        2.7506396770477295,
+        -5.263003349304199
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-shell.003",
+      "region": "upper-body",
+      "point": [
+        -0.00624999450519681,
+        2.7318215370178223,
+        -5.2555437088012695
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-shell.003",
+      "region": "upper-body",
+      "point": [
+        -0.006249995436519384,
+        2.713003396987915,
+        -5.248084545135498
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-shell.003",
+      "region": "upper-body",
+      "point": [
+        -0.006249995902180672,
+        2.694185256958008,
+        -5.240624904632568
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-shell.003",
+      "region": "upper-body",
+      "point": [
+        -0.006249996833503246,
+        2.6753668785095215,
+        -5.233165740966797
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-shell.003",
+      "region": "upper-body",
+      "point": [
+        -0.006249997299164534,
+        2.6565487384796143,
+        -5.225706577301025
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-shell.003",
+      "region": "upper-body",
+      "point": [
+        -0.006249997764825821,
+        2.637730598449707,
+        -5.218246936798096
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-shell.003",
+      "region": "upper-body",
+      "point": [
+        -0.006249998230487108,
+        2.6189124584198,
+        -5.210787773132324
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-shell.003",
+      "region": "upper-body",
+      "point": [
+        -0.006249999161809683,
+        2.6000943183898926,
+        -5.203328609466553
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-shell.003",
+      "region": "upper-body",
+      "point": [
+        -0.0062500000931322575,
+        2.5812759399414062,
+        -5.195868968963623
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-shell.003",
+      "region": "upper-body",
+      "point": [
+        -0.006250000558793545,
+        2.562457799911499,
+        -5.188409805297852
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-shell.003",
+      "region": "lower-body",
+      "point": [
+        -0.006250001490116119,
+        2.543639659881592,
+        -5.18095064163208
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-suit.005",
+      "region": "upper-body",
+      "point": [
+        -0.14191687107086182,
+        2.7842514514923096,
+        -5.40464448928833
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-suit.005",
+      "region": "upper-body",
+      "point": [
+        0.08660256117582321,
+        2.8224618434906006,
+        -5.463789463043213
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-suit.005",
+      "region": "upper-body",
+      "point": [
+        0.14896026253700256,
+        2.750640392303467,
+        -5.330810546875
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-suit.005",
+      "region": "upper-body",
+      "point": [
+        -0.15958291292190552,
+        2.6585745811462402,
+        -5.296237468719482
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-suit.005",
+      "region": "upper-body",
+      "point": [
+        0.3142160177230835,
+        2.680363893508911,
+        -5.291764259338379
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-suit.005",
+      "region": "lower-body",
+      "point": [
+        0.36999374628067017,
+        2.512214183807373,
+        -5.164103984832764
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-suit.005",
+      "region": "upper-body",
+      "point": [
+        0.2788470387458801,
+        2.5614802837371826,
+        -5.080214500427246
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-suit.005",
+      "region": "upper-body",
+      "point": [
+        0.24295954406261444,
+        2.6009016036987305,
+        -4.8689985275268555
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-suit.005",
+      "region": "upper-body",
+      "point": [
+        0.33632099628448486,
+        2.653042793273926,
+        -5.2725958824157715
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-suit.005",
+      "region": "lower-body",
+      "point": [
+        0.34883928298950195,
+        2.5143795013427734,
+        -5.115784168243408
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-suit.005",
+      "region": "upper-body",
+      "point": [
+        0.3505423367023468,
+        2.5740745067596436,
+        -4.991348743438721
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-suit.005",
+      "region": "lower-body",
+      "point": [
+        0.33593687415122986,
+        2.465435028076172,
+        -5.014469623565674
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-suit.005",
+      "region": "lower-body",
+      "point": [
+        0.3346399664878845,
+        2.5317068099975586,
+        -4.888202667236328
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-suit.005",
+      "region": "upper-body",
+      "point": [
+        0.17161019146442413,
+        2.606785297393799,
+        -5.320585250854492
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-suit.005",
+      "region": "upper-body",
+      "point": [
+        0.3006816506385803,
+        2.686171770095825,
+        -5.304511070251465
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-suit.005",
+      "region": "upper-body",
+      "point": [
+        0.3388723134994507,
+        2.572575092315674,
+        -5.235352993011475
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-suit.005",
+      "region": "upper-body",
+      "point": [
+        -0.1901291012763977,
+        2.7386741638183594,
+        -5.310523509979248
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-suit.005",
+      "region": "lower-body",
+      "point": [
+        -0.332145094871521,
+        2.526407480239868,
+        -5.209020137786865
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-suit.005",
+      "region": "lower-body",
+      "point": [
+        -0.3673165738582611,
+        2.4740664958953857,
+        -5.078226566314697
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-suit.005",
+      "region": "upper-body",
+      "point": [
+        -0.23762807250022888,
+        2.573993444442749,
+        -4.893274784088135
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-suit.005",
+      "region": "upper-body",
+      "point": [
+        -0.31254762411117554,
+        2.6785354614257812,
+        -5.3021016120910645
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-suit.005",
+      "region": "lower-body",
+      "point": [
+        -0.3500550091266632,
+        2.515347719192505,
+        -5.11555814743042
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-suit.005",
+      "region": "upper-body",
+      "point": [
+        -0.34912174940109253,
+        2.5693812370300293,
+        -4.993584156036377
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-suit.005",
+      "region": "upper-body",
+      "point": [
+        -0.34283819794654846,
+        2.642850399017334,
+        -4.815624713897705
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-suit.005",
+      "region": "lower-body",
+      "point": [
+        -0.33271512389183044,
+        2.5211634635925293,
+        -4.907227993011475
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-suit.005",
+      "region": "upper-body",
+      "point": [
+        -0.3147149384021759,
+        2.6500508785247803,
+        -5.330988883972168
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-suit.005",
+      "region": "upper-body",
+      "point": [
+        -0.16906847059726715,
+        2.6578352451324463,
+        -5.283891201019287
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-suit.005",
+      "region": "upper-body",
+      "point": [
+        -0.3328930735588074,
+        2.5869953632354736,
+        -5.215803146362305
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-webbing.002",
+      "region": "upper-body",
+      "point": [
+        0.15492072701454163,
+        2.6753029823303223,
+        -5.492895603179932
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-webbing.002",
+      "region": "upper-body",
+      "point": [
+        0.1252698302268982,
+        2.778085708618164,
+        -5.450203895568848
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-webbing.002",
+      "region": "upper-body",
+      "point": [
+        0.11377648264169693,
+        2.785963773727417,
+        -5.311751842498779
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-webbing.002",
+      "region": "upper-body",
+      "point": [
+        0.12444121390581131,
+        2.5893337726593018,
+        -5.203629970550537
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-webbing.002",
+      "region": "upper-body",
+      "point": [
+        0.16222511231899261,
+        2.786062002182007,
+        -5.309399604797363
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-webbing.002",
+      "region": "upper-body",
+      "point": [
+        0.15530049800872803,
+        2.698190212249756,
+        -5.487070560455322
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-webbing.002",
+      "region": "upper-body",
+      "point": [
+        0.13421247899532318,
+        2.587231397628784,
+        -5.2031168937683105
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-webbing.002",
+      "region": "upper-body",
+      "point": [
+        0.11900001764297485,
+        2.809082269668579,
+        -5.388863563537598
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-webbing.002",
+      "region": "upper-body",
+      "point": [
+        0.10886520147323608,
+        2.705350160598755,
+        -5.253657817840576
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-webbing.002",
+      "region": "upper-body",
+      "point": [
+        -0.14908215403556824,
+        2.7447452545166016,
+        -5.476373672485352
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-webbing.002",
+      "region": "upper-body",
+      "point": [
+        -0.12776429951190948,
+        2.802048683166504,
+        -5.363042831420898
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-webbing.002",
+      "region": "upper-body",
+      "point": [
+        -0.10389398038387299,
+        2.7055583000183105,
+        -5.254555702209473
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-webbing.002",
+      "region": "upper-body",
+      "point": [
+        -0.11755569279193878,
+        2.7696802616119385,
+        -5.4706854820251465
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-webbing.002",
+      "region": "lower-body",
+      "point": [
+        -0.07078753411769867,
+        2.5231070518493652,
+        -5.1740264892578125
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-webbing.002",
+      "region": "upper-body",
+      "point": [
+        -0.12002117186784744,
+        2.7941832542419434,
+        -5.337381839752197
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-webbing.002",
+      "region": "upper-body",
+      "point": [
+        -0.15717542171478271,
+        2.7211225032806396,
+        -5.482003688812256
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-webbing.002",
+      "region": "upper-body",
+      "point": [
+        -0.14319582283496857,
+        2.6249265670776367,
+        -5.2202863693237305
+      ]
+    },
+    {
+      "pilotMesh": "teemto-pilot-webbing.002",
+      "region": "upper-body",
+      "point": [
+        -0.1647154986858368,
+        2.797272205352783,
+        -5.410500526428223
+      ]
+    }
+  ]
+}

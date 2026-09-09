@@ -1,0 +1,39 @@
+{
+  "build": "index-CmUCVazP.js",
+  "sha256": "edcb8d7a510025d4a554e4c89fb511774c00c0b27fe681a271005c0a90cd52f3",
+  "races": {
+    "time-attack": {
+      "intervals": 3792,
+      "durationMs": 63714.1,
+      "meanHz": 59.515868544011454,
+      "p95Ms": 16.799999999995634,
+      "p99Ms": 16.80000000000291,
+      "maximumMs": 33.400000000001455,
+      "over25": 31,
+      "over50": 0,
+      "dprRange": [
+        1,
+        2
+      ],
+      "outliersOver50": [],
+      "sourceSha256": "70a1d68a91f81fbfc9a1a114c81fec6c2b5778e3618556d6331471e5b37acc59"
+    },
+    "cup-round-1": {
+      "intervals": 8139,
+      "durationMs": 137694.6,
+      "meanHz": 59.10907181545245,
+      "p95Ms": 16.79999999998836,
+      "p99Ms": 33.30000000000291,
+      "maximumMs": 33.5,
+      "over25": 123,
+      "over50": 0,
+      "dprRange": [
+        1.875,
+        2
+      ],
+      "outliersOver50": [],
+      "sourceSha256": "0dab970a238b99f13cc65398dfc094fd7613c5dfeb3f287cf69b0f8f60ddced5"
+    }
+  },
+  "scope": "Root recomputation from every raw racing interval. Classification grace retained; no outlier removal. Native Apple M4,1440x900,requestedDPR2/adaptive. Representative Blockrunner races; active Teemto wreck cadence measured separately. Not all devices or all modes."
+}

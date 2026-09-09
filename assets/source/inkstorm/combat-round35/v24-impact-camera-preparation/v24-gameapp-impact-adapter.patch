@@ -1,0 +1,18 @@
+--- a/src/render/app/GameApp.ts
++++ b/src/render/app/GameApp.ts
+@@ -977,6 +977,7 @@
+     this.subject.combatFocus = undefined;
+     this.subject.combatForward = undefined;
+     this.subject.combatImpactPosition = undefined;
++    this.subject.combatImpactFraming = undefined;
+     this.subject.combatRadius = undefined;
+     this.subject.combatBounds = undefined;
+     this.subject.combatTerrain = undefined;
+@@ -3233,6 +3234,7 @@
+     this.subject.combatFocus = pose.center;
+     this.subject.combatForward = pose.forward;
+     this.subject.combatImpactPosition = pose.rupture?.position;
++    this.subject.combatImpactFraming = pose.impactFraming;
+     this.subject.combatRadius = pose.radius;
+     this.subject.combatBounds = pose.bounds;
+     this.subject.combatTerrain = this.race.terrain;

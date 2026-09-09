@@ -1,0 +1,526 @@
+{
+  "status": "applied_dated_partial_checkpoint",
+  "round": 34,
+  "scope": "Dated tested checkpoint only. Full-race/Continue, staged and context PASS; exact resource plateau FAIL; visual6/10 FAIL8. Not final overhaul. Later working-tree changes do not inherit this evidence.",
+  "manifestBeforeSnapshot": "docs/inkstorm-overhaul/evidence/round-34/pre-blockrunner-admission-documentation/vehicle-manifest.json",
+  "manifestBeforeSha256": "f14e338ddd017df60aba7e2cdb16695e07b5a891a7d079a647fa9abcff3506e8",
+  "countsBefore": {
+    "publicResults": 29,
+    "vehicleCandidates": 26,
+    "excludedNonVehicles": 3,
+    "downloaded": 26,
+    "blockedOrPending": 0,
+    "downloadStatuses": {
+      "downloaded": 26
+    },
+    "mcpImportedSourceGlbs": 26,
+    "rawArchivesPreserved": 0,
+    "stylizationNeedsPermission": 0,
+    "publicAdaptationRestricted": 1,
+    "stylizedExports": 3,
+    "stylizedSourceStudies": 3,
+    "stylizedExportVariants": 6,
+    "driversAdded": 3,
+    "runtimeIntegrations": 3,
+    "driverInspections": 5,
+    "stylizedExportFiles": 10,
+    "sourceVisualInspections": 26
+  },
+  "counts": {
+    "publicResults": 29,
+    "vehicleCandidates": 26,
+    "excludedNonVehicles": 3,
+    "downloaded": 26,
+    "blockedOrPending": 0,
+    "downloadStatuses": {
+      "downloaded": 26
+    },
+    "mcpImportedSourceGlbs": 26,
+    "rawArchivesPreserved": 0,
+    "stylizationNeedsPermission": 0,
+    "publicAdaptationRestricted": 1,
+    "stylizedExports": 4,
+    "stylizedSourceStudies": 4,
+    "stylizedExportVariants": 8,
+    "driversAdded": 3,
+    "runtimeIntegrations": 4,
+    "driverInspections": 5,
+    "stylizedExportFiles": 12,
+    "sourceVisualInspections": 26,
+    "originalSourceDriversRetained": 1,
+    "runtimePreparationPending": 22
+  },
+  "publicCopyReceipt": "output/gauntlet/round34-blockrunner-admission-v1/public-admission.json",
+  "sourceExportReceipt": "assets/source/inkstorm/blockrunner-round34/runtime-admission-preparation/export-atlas-v6-v1-receipt.json",
+  "bundle": "index-Cnysa7ZZ.js",
+  "bundleSha256": "10ef7eb7189f407f530f73e802cdbc59acc1ebd47f5cfb2a26e3341e3b9bb04e",
+  "fullRacePerformance": {
+    "outcome": "PASS",
+    "testedDate": "2026-09-08",
+    "attempt": 1,
+    "scope": "Representative Blockrunner Time Attack and Canyon Cup round1, plus actual Continue to Foundry awaiting Start. Second Cup race and full four-family matrix not completed. Resource lifecycle has its separate FAIL below.",
+    "report": "docs/inkstorm-overhaul/FULL_RACE_PERFORMANCE_BLOCKRUNNER_ROUND34.md",
+    "aggregate": "output/playwright/blockrunner-final-framing-v3-attempt1-round34-verification-summary.json",
+    "races": [
+      {
+        "event": "time-attack",
+        "outcome": "PASS",
+        "playerFinishSeconds": 63.74999999999702,
+        "medal": "gold",
+        "validSectors": 10,
+        "rawRows": 3962,
+        "racing": {
+          "phase": "racing",
+          "samples": 3793,
+          "durationMs": 63747.5,
+          "averageFps": 59.500372563629945,
+          "p50Ms": 16.69999999999709,
+          "p95Ms": 16.799999999995634,
+          "p99Ms": 16.80000000000291,
+          "maxMs": 33.400000000001455,
+          "over25ms": 32,
+          "over33ms": 15,
+          "over50ms": 0,
+          "firstRaceTime": 0,
+          "lastRaceTime": 63.73333333333036
+        },
+        "acceptance": {
+          "outcome": "PASS",
+          "criteria": {
+            "minimumMeanHz": 40,
+            "maximumP95Ms": 25,
+            "boundaryToleranceSeconds": 0.05
+          },
+          "issues": []
+        },
+        "postPlayerFinishRacingIntervals": 0,
+        "postPlayerFinishIntervalDurationMs": 0.0,
+        "postPlayerFinishScope": "Ending-snapshot raceTime > player finish; first such interval can straddle finish. Native intervals retained, not filtered.",
+        "rendererExtrema": {
+          "minDpr": 1,
+          "maxDpr": 2,
+          "maxCalls": 100,
+          "maxTriangles": 4919217
+        }
+      },
+      {
+        "event": "cup-round-1",
+        "outcome": "PASS",
+        "playerFinishSeconds": 129.6750000000464,
+        "medal": "gold",
+        "validSectors": 20,
+        "rawRows": 8308,
+        "racing": {
+          "phase": "racing",
+          "samples": 8142,
+          "durationMs": 137677.80000000002,
+          "averageFps": 59.13807454796633,
+          "p50Ms": 16.699999999982538,
+          "p95Ms": 16.79999999998836,
+          "p99Ms": 33.29999999998836,
+          "maxMs": 33.40000000002328,
+          "over25ms": 119,
+          "over33ms": 31,
+          "over50ms": 0,
+          "firstRaceTime": 0.016666666666666666,
+          "lastRaceTime": 137.68333333337245
+        },
+        "acceptance": {
+          "outcome": "PASS",
+          "criteria": {
+            "minimumMeanHz": 40,
+            "maximumP95Ms": 25,
+            "boundaryToleranceSeconds": 0.05
+          },
+          "issues": []
+        },
+        "postPlayerFinishRacingIntervals": 481,
+        "postPlayerFinishIntervalDurationMs": 8016.200000000012,
+        "postPlayerFinishScope": "Ending-snapshot raceTime > player finish; first such interval can straddle finish. Native intervals retained, not filtered.",
+        "rendererExtrema": {
+          "minDpr": 1.75,
+          "maxDpr": 2,
+          "maxCalls": 254,
+          "maxTriangles": 5029751
+        }
+      }
+    ],
+    "totals": {
+      "rawRows": 12270,
+      "racingIntervals": 11935,
+      "racingOver25ms": 151,
+      "racingOver50ms": 0,
+      "resolutionSamples": 209
+    },
+    "cupContinue": {
+      "event": "cup-foundry",
+      "championshipRound": 1,
+      "awaitingStart": true
+    },
+    "requestedDpr": 2,
+    "adaptiveGovernor": true,
+    "observedDpr": {
+      "timeAttack": [
+        1,
+        2
+      ],
+      "cupRound1": [
+        1.75,
+        2
+      ]
+    },
+    "fixedDpr2Verified": false,
+    "otherDeviceAcceptance": false
+  },
+  "finalCritic": {
+    "outcome": "FAIL",
+    "reviewedRevision": "V3",
+    "testedDate": "2026-09-08",
+    "receipt": "docs/inkstorm-overhaul/BLOCKRUNNER_INGAME_FRAMING_V3_REVIEW_ROUND34.md",
+    "selectedCraftScore": 6,
+    "worldScore": 6,
+    "overallScore": 6,
+    "requiredScore": 8,
+    "freshBlind": false,
+    "reviewType": "independent, with prior narrow code and V1 image/review context disclosed",
+    "scope": "13 individually opened actual V3 stills; retained concept01-07/12 viewing reused with hashes checked. Full-frame delivery resized; not native-pixel or motion acceptance.",
+    "openIssues": [
+      "flat material response",
+      "garage pilot occlusion",
+      "compact chase craft and small exhaust read",
+      "world depth/landmark parity",
+      "Foundry route continuation over crests",
+      "native-size motion inspection"
+    ],
+    "aaaAccepted": false,
+    "previousV1": {
+      "receipt": "docs/inkstorm-overhaul/BLOCKRUNNER_INGAME_V1_REVIEW_ROUND34.md",
+      "selectedCraftScore": 5.5,
+      "worldScore": 6,
+      "outcome": "FAIL",
+      "freshBlind": false
+    }
+  },
+  "historicalTailBytes": 9333,
+  "historicalTailSha256": "ae67e1e01f16a115cbecbe514529e50a2d1bb450e7605f323471a7b332cc726b",
+  "recordedAt": "2026-09-08T14:43:56.403597+00:00",
+  "checkpoint": {
+    "testedDate": "2026-09-08",
+    "attempt": 1,
+    "revision": "Blockrunner framing V3",
+    "technicalOutcome": "INCOMPLETE",
+    "scope": "Dated tested checkpoint only. Full-race/Continue, staged and context PASS; exact resource plateau FAIL; visual6/10 FAIL8. Not final overhaul. Later working-tree changes do not inherit this evidence.",
+    "fullRacePerformance": {
+      "outcome": "PASS",
+      "testedDate": "2026-09-08",
+      "attempt": 1,
+      "scope": "Representative Blockrunner Time Attack and Canyon Cup round1, plus actual Continue to Foundry awaiting Start. Second Cup race and full four-family matrix not completed. Resource lifecycle has its separate FAIL below.",
+      "report": "docs/inkstorm-overhaul/FULL_RACE_PERFORMANCE_BLOCKRUNNER_ROUND34.md",
+      "aggregate": "output/playwright/blockrunner-final-framing-v3-attempt1-round34-verification-summary.json",
+      "races": [
+        {
+          "event": "time-attack",
+          "outcome": "PASS",
+          "playerFinishSeconds": 63.74999999999702,
+          "medal": "gold",
+          "validSectors": 10,
+          "rawRows": 3962,
+          "racing": {
+            "phase": "racing",
+            "samples": 3793,
+            "durationMs": 63747.5,
+            "averageFps": 59.500372563629945,
+            "p50Ms": 16.69999999999709,
+            "p95Ms": 16.799999999995634,
+            "p99Ms": 16.80000000000291,
+            "maxMs": 33.400000000001455,
+            "over25ms": 32,
+            "over33ms": 15,
+            "over50ms": 0,
+            "firstRaceTime": 0,
+            "lastRaceTime": 63.73333333333036
+          },
+          "acceptance": {
+            "outcome": "PASS",
+            "criteria": {
+              "minimumMeanHz": 40,
+              "maximumP95Ms": 25,
+              "boundaryToleranceSeconds": 0.05
+            },
+            "issues": []
+          },
+          "postPlayerFinishRacingIntervals": 0,
+          "postPlayerFinishIntervalDurationMs": 0.0,
+          "postPlayerFinishScope": "Ending-snapshot raceTime > player finish; first such interval can straddle finish. Native intervals retained, not filtered.",
+          "rendererExtrema": {
+            "minDpr": 1,
+            "maxDpr": 2,
+            "maxCalls": 100,
+            "maxTriangles": 4919217
+          }
+        },
+        {
+          "event": "cup-round-1",
+          "outcome": "PASS",
+          "playerFinishSeconds": 129.6750000000464,
+          "medal": "gold",
+          "validSectors": 20,
+          "rawRows": 8308,
+          "racing": {
+            "phase": "racing",
+            "samples": 8142,
+            "durationMs": 137677.80000000002,
+            "averageFps": 59.13807454796633,
+            "p50Ms": 16.699999999982538,
+            "p95Ms": 16.79999999998836,
+            "p99Ms": 33.29999999998836,
+            "maxMs": 33.40000000002328,
+            "over25ms": 119,
+            "over33ms": 31,
+            "over50ms": 0,
+            "firstRaceTime": 0.016666666666666666,
+            "lastRaceTime": 137.68333333337245
+          },
+          "acceptance": {
+            "outcome": "PASS",
+            "criteria": {
+              "minimumMeanHz": 40,
+              "maximumP95Ms": 25,
+              "boundaryToleranceSeconds": 0.05
+            },
+            "issues": []
+          },
+          "postPlayerFinishRacingIntervals": 481,
+          "postPlayerFinishIntervalDurationMs": 8016.200000000012,
+          "postPlayerFinishScope": "Ending-snapshot raceTime > player finish; first such interval can straddle finish. Native intervals retained, not filtered.",
+          "rendererExtrema": {
+            "minDpr": 1.75,
+            "maxDpr": 2,
+            "maxCalls": 254,
+            "maxTriangles": 5029751
+          }
+        }
+      ],
+      "totals": {
+        "rawRows": 12270,
+        "racingIntervals": 11935,
+        "racingOver25ms": 151,
+        "racingOver50ms": 0,
+        "resolutionSamples": 209
+      },
+      "cupContinue": {
+        "event": "cup-foundry",
+        "championshipRound": 1,
+        "awaitingStart": true
+      },
+      "requestedDpr": 2,
+      "adaptiveGovernor": true,
+      "observedDpr": {
+        "timeAttack": [
+          1,
+          2
+        ],
+        "cupRound1": [
+          1.75,
+          2
+        ]
+      },
+      "fixedDpr2Verified": false,
+      "otherDeviceAcceptance": false
+    },
+    "stagedSections": {
+      "outcome": "PASS",
+      "sections": 7,
+      "intervals": 2527,
+      "over25ms": 0,
+      "warmupSeconds": 1.5,
+      "endingDprRange": [
+        1,
+        1.75
+      ],
+      "receipt": "output/playwright/round34-blockrunner-final-framing-v3-staged-attempt1/section-performance.json"
+    },
+    "foundryContext": {
+      "outcome": "PASS",
+      "receipt": "output/playwright/round34-blockrunner-final-framing-v3-context-attempt1/receipt.json",
+      "scope": "Original suspension/frozen-simulation/history/shadow/framebuffer fallback and explicit recovery assertions; readiness keeps >10 samples. Linked programs/submitted geometry are not emitted-pixel art acceptance."
+    },
+    "resourceCycles": {
+      "appearanceScope": "Blockrunner hero selected through the visible garage UI, with the final runtime Cup roster including Blockrunner ai-sola. Both natural GLB responses are hashed before collection. All seven sections and the service gantry are visited in each original resource cycle.",
+      "cycles": [
+        {
+          "cycle": 1,
+          "peak": {
+            "geometries": 216,
+            "textures": 108,
+            "programs": 50
+          },
+          "garage": {
+            "geometries": 216,
+            "textures": 108,
+            "programs": 50
+          }
+        },
+        {
+          "cycle": 2,
+          "peak": {
+            "geometries": 218,
+            "textures": 110,
+            "programs": 50
+          },
+          "garage": {
+            "geometries": 218,
+            "textures": 110,
+            "programs": 50
+          }
+        },
+        {
+          "cycle": 3,
+          "peak": {
+            "geometries": 218,
+            "textures": 110,
+            "programs": 50
+          },
+          "garage": {
+            "geometries": 218,
+            "textures": 110,
+            "programs": 50
+          }
+        }
+      ],
+      "finalCycleDelta": [
+        {
+          "stage": "01-grid",
+          "geometries": 2,
+          "textures": 2,
+          "programs": 0
+        },
+        {
+          "stage": "02-salt-run",
+          "geometries": 2,
+          "textures": 2,
+          "programs": 0
+        },
+        {
+          "stage": "03-canyon",
+          "geometries": 2,
+          "textures": 2,
+          "programs": 0
+        },
+        {
+          "stage": "04-fork",
+          "geometries": 2,
+          "textures": 2,
+          "programs": 0
+        },
+        {
+          "stage": "05-launch",
+          "geometries": 2,
+          "textures": 2,
+          "programs": 0
+        },
+        {
+          "stage": "06-foundry",
+          "geometries": 2,
+          "textures": 2,
+          "programs": 0
+        },
+        {
+          "stage": "07-finish",
+          "geometries": 2,
+          "textures": 2,
+          "programs": 0
+        },
+        {
+          "stage": "garage",
+          "geometries": 0,
+          "textures": 0,
+          "programs": 0
+        }
+      ],
+      "plateau": false,
+      "scope": "Three identical staged seven-section visits and garage returns on the same selected Cup event and course. Review staging changes the competition profile to chaos and cancels records. Renderer.info counters indicate WebGL geometry/texture/program counts, not GPU bytes, JS heap, a complete leak proof, live racing performance or FPS.",
+      "outcome": "FAIL",
+      "error": "Error: Identical second and third cycles did not reach a resource-count plateau",
+      "receipt": "output/playwright/round34-blockrunner-final-framing-v3-resources-attempt1/receipt.json",
+      "leakEstablished": false,
+      "causeStatus": "under investigation; exact stage gate fails despite equal final garage totals",
+      "gateRelaxed": false,
+      "retrySubstituted": false
+    },
+    "visualAcceptance": {
+      "outcome": "FAIL",
+      "reviewedRevision": "V3",
+      "testedDate": "2026-09-08",
+      "receipt": "docs/inkstorm-overhaul/BLOCKRUNNER_INGAME_FRAMING_V3_REVIEW_ROUND34.md",
+      "selectedCraftScore": 6,
+      "worldScore": 6,
+      "overallScore": 6,
+      "requiredScore": 8,
+      "freshBlind": false,
+      "reviewType": "independent, with prior narrow code and V1 image/review context disclosed",
+      "scope": "13 individually opened actual V3 stills; retained concept01-07/12 viewing reused with hashes checked. Full-frame delivery resized; not native-pixel or motion acceptance.",
+      "openIssues": [
+        "flat material response",
+        "garage pilot occlusion",
+        "compact chase craft and small exhaust read",
+        "world depth/landmark parity",
+        "Foundry route continuation over crests",
+        "native-size motion inspection"
+      ],
+      "aaaAccepted": false,
+      "previousV1": {
+        "receipt": "docs/inkstorm-overhaul/BLOCKRUNNER_INGAME_V1_REVIEW_ROUND34.md",
+        "selectedCraftScore": 5.5,
+        "worldScore": 6,
+        "outcome": "FAIL",
+        "freshBlind": false
+      }
+    },
+    "frozenRuntime": {
+      "path": "output/gauntlet/round34-blockrunner-final-framing-v3-attempt1-frozen-runtime/inventory.json",
+      "bytes": 97290,
+      "sha256": "fb8b4b820300b830cf7732974af714549de6935abbbc6b8e913af17f2298613c",
+      "fileCount": 503,
+      "bytesCopied": 178371665,
+      "categoryCounts": {
+        "source": 142,
+        "public": 43,
+        "dist": 49,
+        "harness": 126,
+        "configuration": 6,
+        "tests": 137
+      },
+      "allCopiedHashesReverified": true,
+      "readinessHarnessCopiedInMainInventory": true
+    },
+    "evidenceInventory": {
+      "path": "output/gauntlet/round34-blockrunner-final-framing-v3-attempt1-frozen-runtime/verification-evidence-inventory.json",
+      "bytes": 30313,
+      "sha256": "abf630de96cdad2e77254613a632806321bd8094d43efdc126e7d27eacb041cf"
+    },
+    "aggregate": {
+      "path": "output/playwright/blockrunner-final-framing-v3-attempt1-round34-verification-summary.json",
+      "bytes": 111439,
+      "sha256": "ee09ed352d1cea6c4cf480dc1797a4168148299ce98d98e3ecf3f2e2c31884c9"
+    },
+    "cleanup": {
+      "ownedRuns": 4,
+      "allBrowsersClosed": true,
+      "allPreviewServersExited": true,
+      "residualOwnedPidProcessGroupsListeners": false,
+      "fallbackKillsUsed": false,
+      "unrelated5211Untouched": true,
+      "ports": [
+        57957,
+        58081,
+        58140,
+        58181
+      ],
+      "report": "docs/inkstorm-overhaul/FULL_RACE_PERFORMANCE_BLOCKRUNNER_ROUND34.md"
+    }
+  },
+  "sourceSceneCount": 152,
+  "bundleBytes": 1619624,
+  "documentationReconciliationReceipt": "assets/source/inkstorm/blockrunner-round34/documentation-reconciliation-attempt1/applied-inventory.json"
+}

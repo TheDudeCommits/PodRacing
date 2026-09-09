@@ -1,0 +1,21 @@
+{
+  "status": "prepared only; not executed",
+  "payload": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/runtime-admission-preparation/export-atlas-v8-v1-prepared-input.py",
+  "bytes": 120439,
+  "sha256": "dc0c3f62952ff076bb49f826063ed768599ae31bd69d4c3a49cdb991785b77f6",
+  "state": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/mcp-safe/contact-atlas-v8-receipt.json",
+  "stateSha256": "de5d517c4c27790bc8695b3029551d5e300203632c006ba9c143839e358b64cd",
+  "expectedNewExport": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/exports/blockrunner-atlas-v8-v1-normalized-master.glb",
+  "preservedHistories": [
+    "source",
+    "fit",
+    "V4B",
+    "V6 atlas",
+    "V7 procedural",
+    "V8 atlas",
+    "all preexisting scene memberships/context"
+  ],
+  "normalization": "Existing V1 candidate applied exactly once as positive object transforms on new mesh copies; two named authoring masks removed only on export copies",
+  "colorSource": "Actual V7 new color masters; original V4B roughness masters reused",
+  "noNewLodSolve": true
+}

@@ -1,0 +1,775 @@
+diff --git a/src/render/app/GameApp.ts b/src/render/app/GameApp.ts
+--- a/src/render/app/GameApp.ts
++++ b/src/render/app/GameApp.ts
+@@ -1094,12 +1094,17 @@
+       ));
+       const wreckPose = wrecked && !replayFrame ? this.resolveWreckVisualPose(entry, renderExtrapolation) : null;
+       this.galacticEffects.syncWreckRupture(racerIndex, galacticState?.wreck.crashCount ?? -1, wreckPose?.rupture);
+-      if (!this.paused && wreckPose?.groundContact && this.wreckGroundContacts.take(
+-        entry.id, this.simulationFrame, galacticState!.wreck.crashCount, wreckPose.groundContact,
+-      )) {
+-        this.galacticEffects.emitWreckGroundContact(presentationTime,
+-          wreckPose.groundContact.position, wreckPose.groundContact.direction, wreckPose.groundContact.footprint,
+-          { terrain: this.race.terrain, owner: racerIndex, sequence: galacticState!.wreck.crashCount });
++      if (!this.paused && wreckPose) {
++        const contacts = wreckPose.groundContacts;
++        const count = contacts?.length ?? (wreckPose.groundContact ? 1 : 0);
++        for (let index = 0; index < count; index++) {
++          const contact = contacts?.[index] ?? wreckPose.groundContact;
++          if (!contact || !this.wreckGroundContacts.take(entry.id, this.simulationFrame,
++            galacticState!.wreck.crashCount, contact)) continue;
++          this.galacticEffects.emitWreckGroundContact(presentationTime, contact.position, contact.direction, contact.footprint,
++            { terrain: this.race.terrain, owner: racerIndex, sequence: galacticState!.wreck.crashCount,
++              partId: contacts?.[index]?.partId });
++        }
+       }
+       this.contactShadows.update(
+         racerIndex,
+diff --git a/src/render/combat/TeemtoAuthoredDamage.ts b/src/render/combat/TeemtoAuthoredDamage.ts
+--- a/src/render/combat/TeemtoAuthoredDamage.ts
++++ b/src/render/combat/TeemtoAuthoredDamage.ts
+@@ -1,5 +1,7 @@
+ import { Box3, Euler, Matrix4, Quaternion, Vector3, type Mesh, type Object3D } from 'three';
+ import { WreckVisualPoseCache, WRECK_PRESENTATION_DURATION, writeWreckBounds, type WreckVisualPose } from './WreckVisualPose';
++
++import type { WreckPresentationSupport, WreckSupportPartId } from './WreckGroundContact';
+ 
+ import { sampleTeemtoStrikeMotion, sampleTeemtoContactRoll, teemtoSlideTime, teemtoStrikeTime, sampleTeemtoFrontCatch, TEEMTO_FRONT_CATCH_PITCH, TEEMTO_FRONT_RESERVED_ROLL, TEEMTO_FRONT_CATCH_END } from './TeemtoStrikeMotion';
+ 
+@@ -45,7 +47,8 @@
+   private readonly pivotOffset = new Vector3();
+   private readonly rollAxis = new Vector3();
+   private readonly rollRotation = new Quaternion();
+-  private contactGrade = 0;
++  private readonly directionContactRotation = new Quaternion();
++  private readonly directionRotation = new Quaternion();
+   private readonly derivativeA = new Vector3();
+   private readonly derivativeB = new Vector3();
+   private readonly rotation = new Quaternion();
+@@ -57,9 +60,15 @@
+   private readonly translation = new Vector3();
+   private readonly groundOffset = new Vector3();
+   private readonly point = new Vector3();
+-  private readonly contact = { position: new Vector3(), direction: new Vector3(),
++  private readonly contacts = ([0, 1, 2] as const).map(partId => ({
++    partId, kind: 'presentation-support' as const, clearance: Infinity,
++    witness: new Vector3(), position: new Vector3(), direction: new Vector3(),
+     footprint: { center: new Vector3(), axis: new Vector3(), halfLength: 0, halfWidth: 0,
+-      edges: [new Vector3(), new Vector3()] as const } };
++      edges: [new Vector3(), new Vector3()] as const },
++  }));
++  private readonly contact = this.contacts[2]!;
++  private readonly activeContacts: WreckPresentationSupport[] = [];
++  private supportPose: WreckVisualPose | null = null;
+   private readonly rupture = { position: new Vector3(), direction: new Vector3() };
+   private readonly ruptureLocal: Vector3;
+   private rupturePose: WreckVisualPose | null = null;
+@@ -128,6 +137,7 @@
+   update(pose: WreckVisualPose, remaining: number, terrain: { heightAt(x: number, z: number): number }, extrapolation = 0): void {
+     if (this.contactPose?.groundContact === this.contact) this.contactPose.groundContact = undefined;
+     this.contactPose = null; pose.groundContact = undefined;
++    this.clearSupports(); pose.groundContacts = undefined;
+     if (this.impactPose?.impactFraming === this.impactFraming) this.impactPose.impactFraming = undefined;
+     this.impactPose = null; pose.impactFraming = undefined;
+     if (this.rupturePose?.rupture === this.rupture) this.rupturePose.rupture = undefined;
+@@ -275,7 +285,7 @@
+       }
+       this.translation.copy(this.supportPivot).applyQuaternion(this.rotation).negate().add(this.groundOffset);
+     }
+-    if (index === 2) this.contactGrade = grade;
++
+     // Exact recovery goes back to the existing intact parent pose. Until then
+     // detached masses do not inherit its unrelated late yaw/roll orbit.
+     this.rotation.slerp(this.bodyRotation, 1 - release);
+@@ -291,7 +301,11 @@
+         this.point.copy(support).applyMatrix4(this.world);
+         const ground = terrain.heightAt(this.point.x, this.point.z), candidate = this.point.y - ground;
+         part.groundGaps[supportIndex++] = candidate;
+-        if (candidate < gap) { gap = candidate; if (index === 2) this.contact.position.set(this.point.x, ground, this.point.z); }
++        if (candidate < gap) {
++          gap = candidate;
++          this.contacts[index]!.position.set(this.point.x, ground, this.point.z);
++          this.contacts[index]!.witness.copy(this.point);
++        }
+         if (support.z < minZ + length * .25 && candidate < rearGap) { rearGap = candidate; rearZ = support.z; }
+         if (support.z > minZ + length * .75 && candidate < frontGap) { frontGap = candidate; frontZ = support.z; }
+       }
+@@ -319,10 +333,14 @@
+       const settle = fall * release, margin = .55 - (index === 2 ? .45 : .37) * settle;
+       const correction = gap < margin ? margin - gap : Math.max(-8, margin - gap) * settle;
+       this.translation.y += correction; this.world.compose(this.translation, this.rotation, UNIT);
+-      if (index === 2 && strike === 1 && release === 1 && gap + correction <= .100001) {
+-        this.writeStrikeDirection(part, pose, age);
+-        this.writeContactFootprint(part, correction, terrain);
+-        pose.groundContact = this.contact; this.contactPose = pose;
++      if (strike === 1 && release === 1 && gap + correction <= (index === 2 ? .100001 : .180001)) {
++        const contact = this.contacts[index]!;
++        contact.clearance = gap + correction; contact.witness.y += correction;
++        this.writeStrikeDirection(index as WreckSupportPartId, part, pose, age, grade);
++        this.writeContactFootprint(part, contact, correction, terrain);
++        this.activeContacts.push(contact); pose.groundContacts = this.activeContacts; this.supportPose = pose;
++        // Existing camera and legacy consumers retain the same rear alias.
++        if (index === 2) { pose.groundContact = this.contact; this.contactPose = pose; }
+       }
+     }
+     // Explicitly cancel the moving rendered parent; node/prepass/shadow paths
+@@ -335,20 +353,20 @@
+     this.partBox.copy(part.samples.localBounds).applyMatrix4(part.matrix); this.assembly.union(this.partBox);
+   }
+ 
+-  private writeContactFootprint(part: Part, correction: number, terrain: { heightAt(x: number, z: number): number }): void {
+-    const footprint = this.contact.footprint;
++  private writeContactFootprint(part: Part, contact: typeof this.contact, correction: number, terrain: { heightAt(x: number, z: number): number }): void {
++    const footprint = contact.footprint;
+     footprint.axis.set(0, 0, 1).applyQuaternion(this.rotation).setY(0).normalize();
+     const ax = footprint.axis.x, az = footprint.axis.z;
+     let minAlong = Infinity, maxAlong = -Infinity, minAcross = Infinity, maxAcross = -Infinity;
+     let left = Infinity, right = -Infinity;
+-    footprint.edges[0].copy(this.contact.position); footprint.edges[1].copy(this.contact.position);
++    footprint.edges[0].copy(contact.position); footprint.edges[1].copy(contact.position);
+     for (let index = 0; index < part.samples.supportPoints.length; index++) {
+       // Reuse the exact terrain samples from the grounding pass. The belly's
+       // narrow contact band sits inside a much wider casing; placing both dust
+       // planes there lets that casing depth-occlude the contact presentation.
+       const gap = part.groundGaps[index]! + correction;
+       this.point.copy(part.samples.supportPoints[index]!).applyMatrix4(this.world);
+-      const across = (this.point.x - this.contact.position.x) * az - (this.point.z - this.contact.position.z) * ax;
++      const across = (this.point.x - contact.position.x) * az - (this.point.z - contact.position.z) * ax;
+       if (Number.isFinite(gap)) {
+         if (across < left) { left = across; footprint.edges[0].copy(this.point); footprint.edges[0].y -= gap; }
+         if (across > right) { right = across; footprint.edges[1].copy(this.point); footprint.edges[1].y -= gap; }
+@@ -357,14 +375,14 @@
+       // Each edge retains an actual source vertex's XZ and its own ground Y;
+       // no box corner, extra terrain query or new collision area is introduced.
+       if (gap > .45) continue;
+-      this.point.sub(this.contact.position);
++      this.point.sub(contact.position);
+       const along = this.point.x * ax + this.point.z * az;
+       minAlong = Math.min(minAlong, along); maxAlong = Math.max(maxAlong, along);
+       minAcross = Math.min(minAcross, across); maxAcross = Math.max(maxAcross, across);
+     }
+     footprint.halfLength = Number.isFinite(minAlong + maxAlong) ? (maxAlong - minAlong) * .5 : 0;
+     footprint.halfWidth = Number.isFinite(minAcross + maxAcross) ? (maxAcross - minAcross) * .5 : 0;
+-    footprint.center.copy(this.contact.position);
++    footprint.center.copy(contact.position);
+     if (footprint.halfLength > 0) {
+       const along = (minAlong + maxAlong) * .5, across = (minAcross + maxAcross) * .5;
+       footprint.center.x += ax * along + az * across; footprint.center.z += az * along - ax * across;
+@@ -373,40 +391,57 @@
+     }
+   }
+ 
+-  private writeStrikeDirection(part: Part, pose: WreckVisualPose, age: number): void {
++  private writeStrikeDirection(index: WreckSupportPartId, part: Part, pose: WreckVisualPose, age: number, grade: number): void {
+     const base = pose.baseMotion, rotation = base?.rotation ?? pose.rotation;
+-    const omega = base?.angularVelocity, epsilon = .0001;
+-    // Differentiate the desired WORLD center, including simulation-base
+-    // angular and linear motion. Generic parent tumble has been cancelled.
++    const omega = base?.angularVelocity, epsilon = .0001, contact = this.contacts[index]!;
++    // Differentiate this part's supported WORLD center, including its base
++    // motion and cached source-pivot arc. Hold the sampled grade/witness for
++    // the two derivative samples; no derivative-only terrain queries occur.
+     for (let side = 0; side < 2; side++) {
+-      const delta = side === 0 ? -epsilon : epsilon;
+-      sampleTeemtoStrikeMotion(2, age + delta, this.path, this.pathVelocity);
++      const delta = side === 0 ? -epsilon : epsilon, t = age + delta;
++      sampleTeemtoStrikeMotion(index, t, this.path, this.pathVelocity);
+       this.motionEuler.set(rotation.x + (omega?.x ?? 0) * delta,
+         rotation.y + (omega?.y ?? 0) * delta, rotation.z + (omega?.z ?? 0) * delta, 'YXZ');
+       this.motionQuaternion.setFromEuler(this.motionEuler);
+       const target = side === 0 ? this.derivativeA : this.derivativeB;
+       target.copy(part.samples.localCenter).add(this.path).applyQuaternion(this.motionQuaternion);
+-      // The contact roll moves the center around its source support. Include
+-      // that arc in the world departure direction, using the same sampled
+-      // terrain grade rather than issuing derivative-only terrain queries.
+-      if (age < teemtoStrikeTime(2) + teemtoSlideTime(2)) {
+-        this.settledRotation.setFromAxisAngle(Y, this.motionEuler.y - .65);
+-        this.axis.setFromAxisAngle(X, -this.contactGrade); this.settledRotation.multiply(this.axis);
+-        this.pivotOffset.copy(this.supportPivot).sub(part.samples.localCenter).applyQuaternion(this.settledRotation);
++      if (t >= teemtoStrikeTime(index) && (index === 1 || t < teemtoStrikeTime(index) + teemtoSlideTime(index))) {
++        const heading = this.motionEuler.y + (index === 0 ? -.5 : index === 1 ? .6 : -.65);
++        this.directionContactRotation.setFromAxisAngle(Y, heading);
++        this.axis.setFromAxisAngle(X, -grade + (index === 1 ? TEEMTO_FRONT_CATCH_PITCH : 0));
++        this.directionContactRotation.multiply(this.axis);
++        this.axis.setFromAxisAngle(Z, index === 0 ? -Math.PI / 12 : index === 1 ? 11 * Math.PI / 12 - TEEMTO_FRONT_RESERVED_ROLL : 0);
++        this.directionContactRotation.multiply(this.axis);
++        this.pivotOffset.copy(this.supportPivot).sub(part.samples.localCenter).applyQuaternion(this.directionContactRotation);
+         target.add(this.pivotOffset);
+-        this.rollAxis.copy(Z).applyQuaternion(this.settledRotation);
+-        this.rollRotation.setFromAxisAngle(this.rollAxis, sampleTeemtoContactRoll(2, age + delta));
+-        this.pivotOffset.applyQuaternion(this.rollRotation); target.sub(this.pivotOffset);
+-      }
+-    }
+-    this.contact.direction.copy(this.derivativeB).sub(this.derivativeA).multiplyScalar(.5 / epsilon);
+-    if (base) this.contact.direction.add(base.velocity);
+-    this.contact.direction.y = 0;
+-    if (this.contact.direction.lengthSq() < .0001) {
+-      sampleTeemtoStrikeMotion(2, teemtoStrikeTime(2), this.path, this.pathVelocity);
+-      this.contact.direction.copy(this.pathVelocity).applyQuaternion(this.baseQuaternion); this.contact.direction.y = 0;
+-    }
+-    this.contact.direction.normalize();
++        if (index === 1) {
++          const remaining = sampleTeemtoFrontCatch(t);
++          this.directionRotation.setFromAxisAngle(Y, heading);
++          this.axis.setFromAxisAngle(X, -grade + TEEMTO_FRONT_CATCH_PITCH * remaining); this.directionRotation.multiply(this.axis);
++          this.axis.setFromAxisAngle(Z, 11 * Math.PI / 12 - TEEMTO_FRONT_RESERVED_ROLL * remaining + sampleTeemtoContactRoll(index, t));
++          this.directionRotation.multiply(this.axis);
++          this.pivotOffset.copy(this.supportPivot).sub(part.samples.localCenter).applyQuaternion(this.directionRotation);
++        } else {
++          this.rollAxis.copy(Z).applyQuaternion(this.directionContactRotation);
++          this.rollRotation.setFromAxisAngle(this.rollAxis, sampleTeemtoContactRoll(index, t));
++          this.pivotOffset.applyQuaternion(this.rollRotation);
++        }
++        target.sub(this.pivotOffset);
++      }
++    }
++    contact.direction.copy(this.derivativeB).sub(this.derivativeA).multiplyScalar(.5 / epsilon);
++    if (base) contact.direction.add(base.velocity);
++    contact.direction.y = 0;
++    if (contact.direction.lengthSq() < .0001) {
++      sampleTeemtoStrikeMotion(index, teemtoStrikeTime(index), this.path, this.pathVelocity);
++      contact.direction.copy(this.pathVelocity).applyQuaternion(this.baseQuaternion); contact.direction.y = 0;
++    }
++    contact.direction.normalize();
++  }
++
++  private clearSupports(): void {
++    if (this.supportPose?.groundContacts === this.activeContacts) this.supportPose.groundContacts = undefined;
++    this.supportPose = null; this.activeContacts.length = 0;
+   }
+ 
+   private writeRupture(pose: WreckVisualPose): void {
+@@ -424,6 +459,7 @@
+   }
+ 
+   reset(): void {
++    this.clearSupports();
+     if (this.impactPose?.impactFraming === this.impactFraming) this.impactPose.impactFraming = undefined;
+     this.impactPose = null;
+     if (this.rupturePose?.rupture === this.rupture) this.rupturePose.rupture = undefined;
+diff --git a/src/render/combat/WreckGroundContact.ts b/src/render/combat/WreckGroundContact.ts
+--- a/src/render/combat/WreckGroundContact.ts
++++ b/src/render/combat/WreckGroundContact.ts
+@@ -5,7 +5,7 @@
+   readonly axis: Vector3;
+   readonly halfLength: number;
+   readonly halfWidth: number;
+-  /** Opposing actual casing extrema projected onto their sampled ground. */
++  /** Opposing cached source casing extrema projected onto their sampled ground. */
+   readonly edges?: readonly [Vector3, Vector3];
+ }
+ 
+@@ -17,12 +17,47 @@
+   readonly footprint?: WreckGroundFootprint;
+ }
+ 
+-/** One bounded renderer cue per received authoritative wreck identity.
++export type WreckSupportPartId = 0 | 1 | 2;
++
++/** Display support proximity, not an authoritative metal/terrain collision.
++ * position is the sampled floor below witness; exterior footprint edges are
++ * cosmetic escape roots and do not claim contact at those outer vertices. */
++export interface WreckPresentationSupport extends WreckGroundContact {
++  readonly partId: WreckSupportPartId;
++  readonly kind: 'presentation-support';
++  readonly footprint: WreckGroundFootprint;
++  /** Height of this cached source witness above its sampled floor; not a
++   * guarantee that every uncached mesh vertex has the identical clearance. */
++  readonly clearance: number;
++  readonly witness: Vector3;
++}
++
++/** The measured band can narrow to an edge while a casing rolls. Its two
++ * cosmetic escape roots instead cover the bounded full casing (12 m axial,
++ * 6 m lateral/vertical from the band center); this never enlarges the band. */
++export function isWreckSupportFootprint(footprint: WreckGroundFootprint | undefined): boolean {
++  if (!footprint || !footprint.edges || !Number.isFinite(footprint.center.x + footprint.center.y + footprint.center.z
++    + footprint.axis.x + footprint.axis.y + footprint.axis.z + footprint.halfLength + footprint.halfWidth)
++    || footprint.halfLength < .000001 || footprint.halfLength > 12 || footprint.halfWidth < 0 || footprint.halfWidth > 6
++    || Math.abs(footprint.axis.y) > .000001 || Math.abs(Math.hypot(footprint.axis.x, footprint.axis.z) - 1) >= .001) return false;
++  for (let index = 0; index < 2; index++) {
++    const edge = footprint.edges[index];
++    if (!edge || !Number.isFinite(edge.x + edge.y + edge.z)) return false;
++    const x = edge.x - footprint.center.x, z = edge.z - footprint.center.z;
++    const along = x * footprint.axis.x + z * footprint.axis.z;
++    const across = (x * footprint.axis.z - z * footprint.axis.x) * (index === 0 ? -1 : 1);
++    if (Math.abs(along) > 12 || across < Math.max(.05, footprint.halfWidth)
++      || across > 6 || Math.abs(edge.y - footprint.center.y) > 6) return false;
++  }
++  return true;
++}
++
++/** One bounded renderer cue per supported part of a received authoritative wreck identity.
+  * Fixed ticks may run ahead of rendering: eligibility uses the current wreck
+  * count plus its recorded birth frame, not a cached previous render pose.
+  */
+ export class WreckGroundContactGate {
+-  private readonly entries = new Map<string, { frame: number; crashCount: number; emitted: boolean }>();
++  private readonly entries = new Map<string, { frame: number; crashCount: number; emitted: number }>();
+ 
+   begin(racerId: string, frame: number, crashCount: number): void {
+     if (!Number.isSafeInteger(frame) || frame < 0 || !Number.isSafeInteger(crashCount) || crashCount < 1) return;
+@@ -34,18 +69,34 @@
+       const oldest = this.entries.keys().next().value;
+       if (oldest !== undefined) this.entries.delete(oldest);
+     }
+-    this.entries.set(racerId, { frame, crashCount, emitted: false });
++    this.entries.set(racerId, { frame, crashCount, emitted: 0 });
+   }
+ 
+   take(racerId: string, currentFrame: number, crashCount: number, contact: WreckGroundContact | undefined): boolean {
+     const entry = this.entries.get(racerId);
+-    if (!contact || !entry || entry.emitted || entry.crashCount !== crashCount
++    if (!contact || !entry || entry.crashCount !== crashCount
+       || currentFrame <= entry.frame || !Number.isSafeInteger(currentFrame)) return false;
+     if (!Number.isFinite(contact.position.x + contact.position.y + contact.position.z
+       + contact.direction.x + contact.direction.y + contact.direction.z)) return false;
+-    // Match the dust emitter before consuming this wreck's only contact cue.
++    // Legacy point/rear consumers share part 2's bit. Malformed declared
++    // metadata must not consume any part's valid future cue.
++    let partId: WreckSupportPartId = 2;
++    if ('partId' in contact || 'kind' in contact || 'clearance' in contact || 'witness' in contact) {
++      const support = contact as WreckPresentationSupport;
++      if ((support.partId !== 0 && support.partId !== 1 && support.partId !== 2)
++        || support.kind !== 'presentation-support' || !isWreckSupportFootprint(support.footprint) || !Number.isFinite(support.clearance)
++        || support.clearance < 0 || support.clearance > (support.partId === 2 ? .100001 : .180001)
++        || !support.witness || !Number.isFinite(support.witness.x + support.witness.y + support.witness.z)
++        || Math.abs(support.witness.x - support.position.x) > .000001
++        || Math.abs(support.witness.z - support.position.z) > .000001
++        || Math.abs(support.witness.y - support.position.y - support.clearance) > .000001) return false;
++      partId = support.partId;
++    }
++    const bit = 1 << partId;
++    if (entry.emitted & bit) return false;
++    // Match the dust emitter before consuming this part's contact cue.
+     if (Math.hypot(contact.direction.x, contact.direction.z) < .001) return false;
+-    entry.emitted = true;
++    entry.emitted |= bit;
+     return true;
+   }
+ 
+diff --git a/src/render/combat/WreckVisualPose.ts b/src/render/combat/WreckVisualPose.ts
+--- a/src/render/combat/WreckVisualPose.ts
++++ b/src/render/combat/WreckVisualPose.ts
+@@ -1,6 +1,6 @@
+ import { Box3, Euler, Matrix4, Quaternion, Vector3, type BufferGeometry, type Mesh, type Object3D } from 'three';
+ import type { PodracerState } from '../../game/simulation';
+-import type { WreckGroundContact } from './WreckGroundContact';
++import type { WreckGroundContact, WreckPresentationSupport } from './WreckGroundContact';
+ 
+ // The presentation follows the existing recovery-start duration. It never
+ // advances the timer or feeds a transformed pose back to the race simulation.
+@@ -38,6 +38,7 @@
+   baseMotion?: { readonly position: Vector3; readonly rotation: Euler;
+     readonly velocity: Vector3; readonly angularVelocity: Euler };
+   groundContact?: WreckGroundContact;
++  groundContacts?: readonly WreckPresentationSupport[];
+   /** Authored fracture face in world space, independent of terrain contact. */
+   rupture?: { readonly position: Vector3; readonly direction: Vector3 };
+ }
+@@ -154,6 +155,7 @@
+     const pose = this.pose;
+     pose.impactFraming = undefined;
+     pose.groundContact = undefined;
++    pose.groundContacts = undefined;
+     pose.rupture = undefined;
+     // A bounded articulated presentation may widen the camera envelope after
+     // this rigid solve. Start each snapshot from the measured intact radius.
+diff --git a/src/render/galactic/GalacticEffectsView.ts b/src/render/galactic/GalacticEffectsView.ts
+--- a/src/render/galactic/GalacticEffectsView.ts
++++ b/src/render/galactic/GalacticEffectsView.ts
+@@ -27,7 +27,7 @@
+   Vector3,
+ } from 'three';
+ import { RUPTURE_ATLAS_GLSL, RUPTURE_FLAME_ATLAS, RuptureFlameAtlas, ruptureArtworkScale, type RuptureAtlasOptions } from './RuptureFlameAtlas';
+-import type { WreckGroundFootprint } from '../combat/WreckGroundContact';
++import { isWreckSupportFootprint, type WreckGroundFootprint } from '../combat/WreckGroundContact';
+ import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
+ import { CEL_POST_EXCLUDE_USER_DATA_KEY } from '../materials/InvertedHullOutline';
+ import { TERRAIN_GLSL } from '../terrain/terrainShaderChunks';
+@@ -139,8 +139,8 @@
+   hazardTelegraphs: 24,
+   hazardBodies: 48,
+   crashDebris: 64,
+-  contactDust: 40,
+-  contactDustCards: 80,
++  contactDust: 48,
++  contactDustCards: 96,
+   explosionPlates: 16,
+   hazardPlumes: 72,
+ });
+@@ -148,6 +148,8 @@
+ /** Only the actual race sampler and authoritative wreck identity are retained.
+  * The emitter copies footprint numbers; it never writes terrain or simulation. */
+ export interface WreckGroundSurfaceContext {
++  /** Only a producer-validated presentation support uses the per-part budget. */
++  readonly partId?: 0 | 1 | 2;
+   readonly terrain: { heightAt(x: number, z: number): number };
+   readonly owner: number;
+   readonly sequence: number;
+@@ -1185,41 +1187,52 @@
+   }
+ 
+   /** One sampled engine/sand presentation contact, deduplicated by the caller.
+-   * Authored terrain/owner context selects five closed rolling dust cores;
++   * Explicit per-part context selects two porous billow parents; legacy
++   * terrain/owner calls retain five parents.
+    * point or context-free calls retain their existing two-plate behavior.
+    */
+   emitWreckGroundContact(time: number, position: GalacticPoint, direction: GalacticPoint, footprint?: WreckGroundFootprint, surface?: WreckGroundSurfaceContext): void {
+     if (!Number.isFinite(time + position.x + position.y + position.z + direction.x + direction.z)) return;
+     const length = Math.hypot(direction.x, direction.z);
+     if (length < .001) return;
++    const partId = surface?.partId;
++    if (partId !== undefined && partId !== 0 && partId !== 1 && partId !== 2) return;
++    const perPart = partId !== undefined;
++    // Match the producer gate before allocating or consuming an event seed.
++    if (perPart && (!isWreckSupportFootprint(footprint) || typeof surface?.terrain?.heightAt !== 'function'
++      || !Number.isInteger(surface.owner) || surface.owner < 0 || surface.owner >= 8
++      || !Number.isSafeInteger(surface.sequence) || surface.sequence < 0)) return;
+     const dx = -direction.x / length, dz = -direction.z / length;
+     const heading = Math.atan2(dz, dx);
+     const span = footprint && Number.isFinite(footprint.center.x + footprint.center.y + footprint.center.z
+       + footprint.axis.x + footprint.axis.z + footprint.halfLength + footprint.halfWidth)
+-      && footprint.halfLength >= 1 && footprint.halfLength <= 12 && footprint.halfWidth >= 0 && footprint.halfWidth <= 6
++      && footprint.halfLength >= (perPart ? .000001 : 1) && footprint.halfLength <= 12 && footprint.halfWidth >= 0 && footprint.halfWidth <= 6
+       && Math.abs(Math.hypot(footprint.axis.x, footprint.axis.z) - 1) < .001 ? footprint : undefined;
+-    // A malformed optional edge pair falls back to the admitted centre fan.
+-    // Copy only bounded scalar data into the existing two slots; the producer
+-    // reuses these vectors on every rendered pose.
++    // Legacy malformed optional edges retain their centre-fan fallback;
++    // per-part edges already passed the shared gate above. Copy scalar data
++    // into pooled slots because the producer reuses these vectors each pose.
+     let edges = span?.edges;
+     if (edges) for (let index = 0; index < 2; index++) {
+       const edge = edges[index], sign = index === 0 ? -1 : 1;
+       const ex = edge ? edge.x - span!.center.x : NaN, ez = edge ? edge.z - span!.center.z : NaN;
+       const along = ex * span!.axis.x + ez * span!.axis.z;
+       const across = (ex * span!.axis.z - ez * span!.axis.x) * sign;
+-      if (!edge || !Number.isFinite(edge.x + edge.y + edge.z) || Math.abs(along) > span!.halfLength + 4
++      if (!edge || !Number.isFinite(edge.x + edge.y + edge.z) || Math.abs(along) > (perPart ? 12 : span!.halfLength + 4)
+         || across < Math.max(.05, span!.halfWidth) || across > 6 || Math.abs(edge.y - span!.center.y) > 6) { edges = undefined; break; }
+     }
+     const origin = span?.center ?? position;
+     this.eventSequence++;
+-    for (let index = 0; index < 10; index++) {
++    // Three cues share the existing ten-grit budget: one casing per piece,
++    // two clods on left/front and three on rear. Legacy calls stay unchanged.
++    const debrisCount = perPart ? (partId === 2 ? 4 : 3) : 10;
++    for (let index = 0; index < debrisCount; index++) {
+       const slot = this.debrisSlots[this.debrisCursor]!;
+       this.debrisCursor = (this.debrisCursor + 1) % this.debrisSlots.length;
+       const seed = this.eventSequence * 31 + index * 7;
+       const angle = heading + (hash01(seed) - .5) * 1.8;
+       const speed = 12 + hash01(seed + 1) * 14;
+       slot.active = true; slot.startTime = time; slot.duration = .28 + hash01(seed + 2) * .20;
+-      const along = span ? (index / 9 - .5) * span.halfLength * 1.8 : 0;
++      const along = span ? (index / (debrisCount - 1) - .5) * span.halfLength * 1.8 : 0;
+       slot.x = origin.x + (span?.axis.x ?? 0) * along;
+       slot.y = origin.y + .18; slot.z = origin.z + (span?.axis.z ?? 0) * along;
+       slot.vx = Math.cos(angle) * speed; slot.vz = Math.sin(angle) * speed;
+@@ -1231,10 +1244,11 @@
+       slot.contactGround = !!span;
+       slot.r = 1; slot.g = index % 3 === 0 ? .87 : .48; slot.b = index % 3 === 0 ? .5 : .09;
+       if (span) {
+-        // Same ten entries: three raking casing pieces and seven short sand
+-        // clods. The measured birth band is unchanged; these are departing
++        // Across the three per-part cues (or one legacy cue): three raking
++        // casing pieces and seven clods. The birth band stays unchanged;
++        // these are departing
+         // particles, not additional contact witnesses or gameplay impacts.
+-        const casing = index < 3, rakeSpeed = casing ? 10 + hash01(seed + 1) * 5 : 5 + hash01(seed + 1) * 5;
++        const casing = index < (perPart ? 1 : 3), rakeSpeed = casing ? 10 + hash01(seed + 1) * 5 : 5 + hash01(seed + 1) * 5;
+         slot.vx = Math.cos(angle) * rakeSpeed; slot.vz = Math.sin(angle) * rakeSpeed;
+         slot.vy = 2 + hash01(seed + 3) * 2;
+         slot.rx = hash01(seed + 5) * 2; slot.ry = hash01(seed + 6) * 6; slot.rz = hash01(seed + 7) * 2;
+@@ -1248,16 +1262,16 @@
+       && Number.isInteger(surface.owner) && surface.owner >= 0 && surface.owner < 8
+       && Number.isSafeInteger(surface.sequence) && surface.sequence >= 0) {
+       const inverseAxis = 1 / Math.hypot(span.axis.x, span.axis.z);
+-      for (let index = 0; index < 5; index++) {
++      for (let index = 0; index < (perPart ? 2 : 5); index++) {
+         const slot = this.contactDustSlots[this.contactDustCursor]!;
+         this.contactDustCursor = (this.contactDustCursor + 1) % this.contactDustSlots.length;
+         // Indexed source edges, never a camera-facing offset or new witness.
+-        const edgeIndex = index < 3 ? 1 : 0, edge = edges[edgeIndex]!;
++        const edgeIndex = perPart ? index : index < 3 ? 1 : 0, edge = edges[edgeIndex]!;
+         slot.active = true; slot.startTime = time; slot.owner = surface.owner;
+         slot.sequence = surface.sequence; slot.terrain = surface.terrain;
+         slot.x = edge.x; slot.z = edge.z; slot.axisX = span.axis.x * inverseAxis;
+         slot.axisZ = span.axis.z * inverseAxis; slot.sign = edgeIndex ? 1 : -1;
+-        slot.along = span.halfLength * (index < 3 ? (index - 1) * .68 : (index - 3.5) * .8);
++        slot.along = perPart ? 0 : span.halfLength * (index < 3 ? (index - 1) * .68 : (index - 3.5) * .8);
+         slot.drift = .8 + hash01(index * 7 + this.eventSequence) * .4;
+         slot.width = 2.8 + hash01(index * 11 + this.eventSequence) * .6;
+         slot.peak = 2. + hash01(index * 13 + this.eventSequence) * .6;
+diff --git a/tests/combat/TeemtoAuthoredDamage.test.ts b/tests/combat/TeemtoAuthoredDamage.test.ts
+--- a/tests/combat/TeemtoAuthoredDamage.test.ts
++++ b/tests/combat/TeemtoAuthoredDamage.test.ts
+@@ -180,7 +180,8 @@
+         cameraPositions, contactSamples, maxQueries, settledMaximumGap: Object.fromEntries(settledMaximumGap), minimumGapByMesh: Object.fromEntries(statistics) }));
+       // V28 adds one late front support-balance pass (111/102 cached points).
+       // Exact measured fixed budgets; source no-burial/projection gates stay unchanged.
+-      expect(maxQueries).toBeLessThanOrEqual(name === 'hero' ? 459 : 402);
++      // V32 publishes left/front bands with one additional center sample each.
++      expect(maxQueries).toBeLessThanOrEqual((name === 'hero' ? 459 : 402) + 2);
+       expect(contactSamples).toBeGreaterThan(0);
+       for (const [mesh, metric] of statistics) expect(metric.gap, `${name}/${mesh}/${metric.frame}: actual source no burial`).toBeGreaterThanOrEqual(-1e-6);
+       expect(statistics.get('teemto-damage-right-rear-v16')!.gap).toBeLessThan(.15);
+diff --git a/tests/combat/TeemtoGroundEdges.test.ts b/tests/combat/TeemtoGroundEdges.test.ts
+--- a/tests/combat/TeemtoGroundEdges.test.ts
++++ b/tests/combat/TeemtoGroundEdges.test.ts
+@@ -66,7 +66,8 @@
+   const spies=art.all.map(m=>vi.spyOn(m.geometry,'getAttribute').mockImplementation(()=>{throw new Error('Runtime source scan');}));
+   try { art.breakup.update(pose,e.galactic!.wreck.timer,{heightAt(x,z){queries++;return sim.terrain.heightAt(x,z);}}); }
+   finally {for(const spy of spies)spy.mockRestore();}
+-  expect(queries).toBeLessThanOrEqual(name==='hero'?348:300);
++  // Existing rear cache stays exact; V32 samples the two additional band centers.
++  expect(queries).toBeLessThanOrEqual((name==='hero'?348:300)+2);
+   const contact=pose.groundContact!,f=contact.footprint!,edges=f.edges!;
+   expect(edges).toHaveLength(2);expect(contact.position.y).toBeCloseTo(sim.terrain.heightAt(contact.position.x,contact.position.z),9);
+   art.root.updateMatrixWorld(true);body.compose(pose.position,new Quaternion().setFromEuler(pose.rotation),new Vector3(1,1,1));
+diff --git a/tests/combat/TeemtoPresentationSupports.test.ts b/tests/combat/TeemtoPresentationSupports.test.ts
+new file mode 100644
+--- /dev/null
++++ b/tests/combat/TeemtoPresentationSupports.test.ts
+@@ -0,0 +1,113 @@
++import { Matrix4, Quaternion, Vector3 } from 'three';
++import { afterAll, describe, expect, it, vi } from 'vitest';
++import { fixture, race, step, matrices, variants } from '../fixtures/teemtoActualCamera';
++import { WreckVisualPoseCache, WRECK_PRESENTATION_DURATION } from '../../src/render/combat/WreckVisualPose';
++import { WreckGroundContactGate, isWreckSupportFootprint, type WreckPresentationSupport } from '../../src/render/combat/WreckGroundContact';
++import { teemtoStrikeTime } from '../../src/render/combat/TeemtoStrikeMotion';
++import { GalacticEffectsView } from '../../src/render/galactic/GalacticEffectsView';
++const names = ['teemto-engine-left-body', 'teemto-damage-right-front-v16', 'teemto-damage-right-rear-v16'];
++const unit = new Vector3(1, 1, 1), rows: unknown[] = [];
++afterAll(async () => {
++ const path=(globalThis as unknown as {process?:{env:Record<string,string|undefined>}}).process?.env.V32_SUPPORT_METRICS_PATH;
++ if(path){const module:string='node:fs';const {writeFileSync}=await import(/* @vite-ignore */ module);writeFileSync(path,JSON.stringify(rows,null,2)+'\n');}
++});
++function stoppedRace(){const sim=race();for(let f=1;f<=910;f++)step(sim,f);return sim;}
++describe('Per-piece truthful presentation supports',()=>{
++ it.each(variants)('%s publishes each actual source witness and exterior roots without changing geometry or simulation',name=>{
++  const art=fixture(name),sim=stoppedRace(),vehicle=sim.state.entries[0]!.vehicle;
++  const before=JSON.stringify(sim.state),rest=matrices(art),body=new Matrix4(),world=new Matrix4(),p=new Vector3();
++  const engines=names.map(n=>art.all.find(m=>m.name===n)!);
++  const caches=engines.map((mesh,i)=>{const c=new WreckVisualPoseCache(i!==0);c.refresh(art.root,[mesh],0);return c;});
++  const restInverse=engines.map(m=>m.matrixWorld.clone().invert());const metrics:unknown[]=[];
++  const sample=(age:number)=>{const remaining=2.15-age,pose=art.cache.update(vehicle,remaining,sim.terrain);
++   const terrain={heightAt:vi.fn((x:number,z:number)=>sim.terrain.heightAt(x,z))};
++   const spies=art.all.map(m=>vi.spyOn(m.geometry,'getAttribute').mockImplementation(()=>{throw Error('Uncached source read');}));
++   try{art.breakup.update(pose,remaining,terrain);}finally{for(const spy of spies)spy.mockRestore();}
++   expect(terrain.heightAt.mock.calls.length).toBeLessThanOrEqual((name==='hero'?459:402)+2);
++   art.root.updateMatrixWorld(true);body.compose(pose.position,new Quaternion().setFromEuler(pose.rotation),unit);
++   return {pose,queries:terrain.heightAt.mock.calls.length};};
++  let array:readonly WreckPresentationSupport[]|undefined;const refs=new Map<number,WreckPresentationSupport>();
++  try{
++   for(const age of [0,.07499,.07501,.12999,.13001,.17999,.18001,.4,.65,.77,.9,1.8,1.81,2.15]){
++    const {pose,queries}=sample(age),expected=age>1.8?[]:[0,1,2].filter(i=>age>teemtoStrikeTime(i));
++    expect((pose.groundContacts??[]).map(c=>c.partId)).toEqual(expected);
++    if(!expected.length){expect(pose.groundContacts).toBeUndefined();expect(pose.groundContact).toBeUndefined();continue;}
++    if(array)expect(pose.groundContacts).toBe(array);else array=pose.groundContacts;
++    expect(pose.groundContact).toBe(pose.groundContacts!.find(c=>c.partId===2));
++    expect(pose.bounds).toHaveLength(name==='hero'?40:32);
++    for(const c of pose.groundContacts!){
++     const i=c.partId,f=c.footprint!,mesh=engines[i]!,source=mesh.geometry.getAttribute('position');
++     if(refs.has(i))expect(c).toBe(refs.get(i));else refs.set(i,c);
++     expect(c.kind).toBe('presentation-support');expect(c.clearance).toBeCloseTo(i===2?.1:.18,9);
++     expect(c.witness.y-c.position.y).toBeCloseTo(c.clearance,9);expect(c.witness.x).toBe(c.position.x);expect(c.witness.z).toBe(c.position.z);
++     expect(c.position.y).toBeCloseTo(sim.terrain.heightAt(c.position.x,c.position.z),9);
++     expect(isWreckSupportFootprint(f)).toBe(true);expect(c.direction.y).toBe(0);expect(c.direction.length()).toBeCloseTo(1,9);
++     world.copy(body).multiply(mesh.matrixWorld);let minimum=Infinity,witnessDistance=Infinity,left=Infinity,right=-Infinity;
++     const sourceAlong:number[]=[],sourceAcross:number[]=[],cacheAlong:number[]=[],cacheAcross:number[]=[],edgeDistance=[Infinity,Infinity];
++     for(let j=0;j<source.count;j++){
++      p.fromBufferAttribute(source,j).applyMatrix4(world);const gap=p.y-sim.terrain.heightAt(p.x,p.z);minimum=Math.min(minimum,gap);
++      witnessDistance=Math.min(witnessDistance,p.distanceTo(c.witness));const x=p.x-f.center.x,z=p.z-f.center.z,across=x*f.axis.z-z*f.axis.x;
++      left=Math.min(left,across);right=Math.max(right,across);sourceAcross.push(across);if(gap<=.45)sourceAlong.push(p.x*f.axis.x+p.z*f.axis.z);
++      for(let edge=0;edge<2;edge++)edgeDistance[edge]=Math.min(edgeDistance[edge]!,Math.hypot(p.x-f.edges![edge]!.x,p.z-f.edges![edge]!.z));
++     }
++     expect(minimum).toBeGreaterThanOrEqual(-1e-6);expect(witnessDistance).toBeLessThan(1e-7);
++     const cacheWorld=world.clone().multiply(restInverse[i]!);
++     for(const source of caches[i]!.supportPoints){p.copy(source).applyMatrix4(cacheWorld);cacheAcross.push((p.x-f.center.x)*f.axis.z-(p.z-f.center.z)*f.axis.x);if(p.y-sim.terrain.heightAt(p.x,p.z)<=.45)cacheAlong.push(p.x*f.axis.x+p.z*f.axis.z);}
++     expect(cacheAlong.length).toBeGreaterThan(1);expect(sourceAlong.length).toBeGreaterThan(1);
++     const low=Math.min(...cacheAlong),high=Math.max(...cacheAlong),center=f.center.x*f.axis.x+f.center.z*f.axis.z;
++     expect(center-f.halfLength).toBeCloseTo(low,7);expect(center+f.halfLength).toBeCloseTo(high,7);
++     const sourceMin=Math.min(...sourceAlong),sourceMax=Math.max(...sourceAlong);
++     expect(low).toBeGreaterThanOrEqual(sourceMin-1e-7);expect(high).toBeLessThanOrEqual(sourceMax+1e-7);
++     const coverage=Math.max(...sourceAlong.map(v=>Math.min(...cacheAlong.map(c=>Math.abs(c-v)))));
++     expect(Math.abs(f.halfLength-(sourceMax-sourceMin)*.5)).toBeLessThanOrEqual(coverage+1e-7);
++     // The fixed reduction retains real source vertices, but a new roll can
++     // put an uncached vertex slightly farther out. Require exact cached
++     // extrema and independently measured full-source coverage, never pretend
++     // the root is the global extremum or inflate the near-ground band.
++     const lateralCoverage=Math.max(...sourceAcross.map(v=>Math.min(...cacheAcross.map(c=>Math.abs(c-v)))));
++     for(let edge=0;edge<2;edge++){const e=f.edges![edge]!;expect(edgeDistance[edge]).toBeLessThan(1e-7);
++      expect(e.y).toBeCloseTo(sim.terrain.heightAt(e.x,e.z),8);const lateral=(e.x-f.center.x)*f.axis.z-(e.z-f.center.z)*f.axis.x;expect(lateral).toBeCloseTo(edge===0?Math.min(...cacheAcross):Math.max(...cacheAcross),7);
++      expect(Math.abs(lateral-(edge===0?left:right))).toBeLessThanOrEqual(lateralCoverage+1e-7);}
++     metrics.push({age,partId:i,clearance:c.clearance,actualMinimum:minimum,reportedLength:f.halfLength*2,sourceLength:sourceMax-sourceMin,coverage,lateralCoverage,queries});
++    }
++   }
++   const settled=sample(.9),owned=settled.pose;expect(owned.groundContacts).toHaveLength(3);art.breakup.reset();expect(owned.groundContacts).toBeUndefined();expect(owned.groundContact).toBeUndefined();
++   expect(matrices(art)).toEqual(rest);expect(JSON.stringify(sim.state)).toBe(before);rows.push({name,metrics});
++  }finally{art.breakup.reset();}
++ });
++ it.each(variants)('%s emits staggered supports once per part and spends only six parents/ten grit',name=>{
++  const art=fixture(name),sim=stoppedRace(),gate=new WreckGroundContactGate(),fx=new GalacticEffectsView(),emitted:number[]=[];
++  gate.begin('racer',910,1);const terrain={heightAt:vi.fn((x:number,z:number)=>sim.terrain.heightAt(x,z))};
++  try{
++   // Same game-clock sequence as production: birth, rear, front, left. Repeated
++   // renders and duplicate begin packets cannot reseed any already spent bit.
++   for(const [frame,age] of [[910,0],[919,.07501],[926,.13001],[932,.18001],[933,.18001],[945,.3]]){
++    const remaining=2.15-age!,pose=art.cache.update(sim.state.entries[0]!.vehicle,remaining,sim.terrain);art.breakup.update(pose,remaining,sim.terrain);
++    gate.begin('racer',910,1);
++    for(const c of pose.groundContacts??[])if(gate.take('racer',frame!,1,c)){emitted.push(c.partId);fx.emitWreckGroundContact(age!,c.position,c.direction,c.footprint,{terrain,owner:0,sequence:1,partId:c.partId});}
++   }
++   expect(emitted).toEqual([2,1,0]);terrain.heightAt.mockClear();fx.update(.23);expect(terrain.heightAt).toHaveBeenCalledTimes(54);
++   expect(fx.contactDust.count).toBe(12);expect(fx.crashDebris.count).toBe(10);expect(fx.explosionPlates.count).toBe(0);
++   const debris=(fx as unknown as {debrisSlots:{active:boolean;metal:boolean}[]}).debrisSlots;
++   expect(debris.filter(s=>s.active&&s.metal)).toHaveLength(3);expect(debris.filter(s=>s.active&&!s.metal)).toHaveLength(7);
++   terrain.heightAt.mockClear();fx.update(.23);expect(terrain.heightAt).not.toHaveBeenCalled();
++   fx.syncWreckRupture(0,1);fx.update(.23);expect(fx.contactDust.count).toBe(0);
++  }finally{fx.dispose();art.breakup.reset();}
++ });
++ it.each(variants)('%s uses each supported-center derivative, including base translation and angular motion',name=>{
++  const art=fixture(name),sim=stoppedRace(),state=sim.state.entries[0]!.vehicle,terrain={heightAt:(x:number,z:number)=>.025*x-.04*z};
++  const engines=names.map(n=>art.all.find(m=>m.name===n)!);engines.forEach(m=>m.geometry.computeBoundingBox());
++  const center=engines.map(m=>m.geometry.boundingBox!.getCenter(new Vector3())),velocity=new Vector3(2,0,-1),omega=new Vector3(.02,.08,-.015),body=new Matrix4();
++  const sample=(age:number,delta=0)=>{
++   const remaining=WRECK_PRESENTATION_DURATION-age-delta,pose=art.cache.update(state,remaining,terrain);
++   pose.baseMotion!.position.addScaledVector(velocity,delta);pose.baseMotion!.rotation.x+=omega.x*delta;pose.baseMotion!.rotation.y+=omega.y*delta;pose.baseMotion!.rotation.z+=omega.z*delta;
++   pose.baseMotion!.velocity.copy(velocity);pose.baseMotion!.angularVelocity.set(omega.x,omega.y,omega.z);
++   art.breakup.update(pose,remaining,terrain);art.root.updateMatrixWorld(true);body.compose(pose.position,new Quaternion().setFromEuler(pose.rotation),unit);
++   return {directions:pose.groundContacts!.map(c=>[c.partId,c.direction.clone()] as const),centers:engines.map((m,i)=>center[i]!.clone().applyMatrix4(body.clone().multiply(m.matrixWorld)).setY(0))};
++  };
++  try{for(const age of [.2,.4,.6,.72]){const epsilon=.0001,a=sample(age,-epsilon),b=sample(age,epsilon),current=sample(age);
++   for(const [i,direction] of current.directions){const derivative=b.centers[i]!.sub(a.centers[i]!).normalize();
++    expect(direction.dot(derivative),`${name}/${age}/${i}`).toBeGreaterThan(.99999);}
++  }}finally{art.breakup.reset();}
++ });
++});
+diff --git a/tests/combat/TeemtoSupportSettle.test.ts b/tests/combat/TeemtoSupportSettle.test.ts
+--- a/tests/combat/TeemtoSupportSettle.test.ts
++++ b/tests/combat/TeemtoSupportSettle.test.ts
+@@ -50,7 +50,8 @@
+     const before = JSON.stringify(sim.state), rest = matrices(art), world = new Matrix4(), p = new Vector3();
+     const engine = names.map(n => art.all.find(m => m.name === n)!);
+     const frontSupports = new WreckVisualPoseCache(true); frontSupports.refresh(art.root, [engine[1]!], 0);
+-    const queryCap = (name === 'hero' ? 348 : 300) + frontSupports.supportPoints.length;
++    // V32 adds only the two new footprint-center queries, not support scans.
++    const queryCap = (name === 'hero' ? 348 : 300) + frontSupports.supportPoints.length + 2;
+     const sourceCounts = art.all.map(m => m.geometry.getAttribute('position').count);
+     const snapshots = new Map<number, { corners: Vector3[]; rotations: Quaternion[]; matrices: number[][] }>();
+     let maxQueries = 0, positions = 0, minimum = Infinity;
+diff --git a/tests/combat/WreckGroundContact.test.ts b/tests/combat/WreckGroundContact.test.ts
+--- a/tests/combat/WreckGroundContact.test.ts
++++ b/tests/combat/WreckGroundContact.test.ts
+@@ -1,6 +1,6 @@
+ import { describe, expect, it } from 'vitest';
+ import { Vector3 } from 'three';
+-import { WreckGroundContactGate } from '../../src/render/combat/WreckGroundContact';
++import { WreckGroundContactGate, type WreckPresentationSupport } from '../../src/render/combat/WreckGroundContact';
+ 
+ describe('rendered engine contact identity gate', () => {
+   const contact = { position: new Vector3(1, 2, 3), direction: new Vector3(0, 0, 1) };
+@@ -62,3 +62,39 @@
+     expect(gate.take('player', 1220, 2, contact)).toBe(true);
+   });
+ });
++
++
++describe('per-piece presentation-support identity mask', () => {
++  const support = (partId: 0 | 1 | 2): WreckPresentationSupport => ({
++    partId, kind: 'presentation-support', clearance: partId === 2 ? .1 : .18,
++    position: new Vector3(0, 2, 0), witness: new Vector3(0, 2 + (partId === 2 ? .1 : .18), 0), direction: new Vector3(1, 0, 0),
++    footprint: { center: new Vector3(0, 2, 0), axis: new Vector3(0, 0, 1), halfLength: .12, halfWidth: .5,
++      edges: [new Vector3(-2, 2, 5.6), new Vector3(2, 2, 0)] },
++  });
++  it('allows three staggered parts, shares the rear legacy bit, and rejects stale/out-of-order crashes', () => {
++    const gate = new WreckGroundContactGate(); gate.begin('r', 100, 1);
++    const rear = support(2), legacy = { position: rear.position, direction: rear.direction };
++    expect(gate.take('r', 100, 1, rear)).toBe(false);
++    expect(gate.take('r', 101, 1, rear)).toBe(true); expect(gate.take('r', 102, 1, legacy)).toBe(false);
++    gate.begin('r', 200, 1); gate.begin('r', 80, 0);
++    for (const id of [1, 0] as const) { expect(gate.take('r', 103, 1, support(id))).toBe(true); expect(gate.take('r', 104, 1, support(id))).toBe(false); }
++    gate.begin('r', 300, 2); expect(gate.take('r', 400, 1, support(0))).toBe(false);
++    expect(gate.take('r', 301, 2, legacy)).toBe(true); expect(gate.take('r', 301, 2, rear)).toBe(false);
++    expect(gate.take('r', 301, 2, support(0))).toBe(true); expect(gate.take('r', 301, 2, support(1))).toBe(true);
++    gate.clear(); expect(gate.take('r', 302, 2, support(0))).toBe(false);
++  });
++  it('rejects malformed witness/part/band/edge data without consuming any valid bit', () => {
++    const gate = new WreckGroundContactGate(); gate.begin('r', 100, 1);
++    const c = support(1);
++    const malformed = [ { ...c, partId: 3 }, { ...c, partId: NaN }, { ...c, partId: undefined }, { ...c, kind: 'collision' },
++      { ...c, clearance: -.1 }, { ...c, clearance: .181 }, { ...c, clearance: NaN },
++      { ...c, witness: new Vector3(1, 2.18, 0) }, { ...c, witness: new Vector3(0, 2.19, 0) },
++      { ...c, footprint: undefined }, { ...c, footprint: { ...c.footprint!, halfLength: 0 } },
++      { ...c, footprint: { ...c.footprint!, halfWidth: Infinity } },
++      { ...c, footprint: { ...c.footprint!, edges: [new Vector3(-2, 2, 12.001), new Vector3(2, 2, 0)] } },
++    ];
++    for (const bad of malformed) expect(gate.take('r', 110, 1, bad as WreckPresentationSupport)).toBe(false);
++    expect(gate.take('r', 110, 1, c)).toBe(true);
++    expect(gate.take('r', 110, 1, support(0))).toBe(true); expect(gate.take('r', 110, 1, support(2))).toBe(true);
++  });
++});
+diff --git a/tests/render/PerPieceContactEffects.test.ts b/tests/render/PerPieceContactEffects.test.ts
+new file mode 100644
+--- /dev/null
++++ b/tests/render/PerPieceContactEffects.test.ts
+@@ -0,0 +1,45 @@
++import { Matrix4, PerspectiveCamera, Vector3 } from 'three';
++import { describe, expect, it, vi } from 'vitest';
++import { GalacticEffectsView, GALACTIC_EFFECT_CAPACITY, GALACTIC_EFFECT_DRAW_CALL_BUDGET } from '../../src/render/galactic/GalacticEffectsView';
++const footprint = () => ({ center: new Vector3(), axis: new Vector3(0, 0, 1), halfLength: .12, halfWidth: .5,
++ edges: [new Vector3(-2, 0, 5.6), new Vector3(2, 0, 0)] as const });
++const rupture={position:new Vector3(),direction:new Vector3(1,0,0)};
++describe('Per-piece contact pool and lifecycle',()=>{
++ it('bounds eight three-part wrecks at 48 parents/96 cards with shared owner release and held-clock zero queries',()=>{
++  const fx=new GalacticEffectsView(),terrain={heightAt:vi.fn((x:number,z:number)=>.1*x-.05*z)},f=footprint();
++  const emit=(owner:number,sequence:number,time:number)=>{for(const partId of [0,1,2] as const)fx.emitWreckGroundContact(time,new Vector3(),new Vector3(1,0,0),f,{terrain,owner,sequence,partId});};
++  const slots=(fx as unknown as {contactDustSlots:{active:boolean;owner:number;sequence:number;terrain:unknown}[]}).contactDustSlots;
++  try{
++   expect(GALACTIC_EFFECT_DRAW_CALL_BUDGET).toBe(9);expect(fx.children).toHaveLength(9);
++   expect(GALACTIC_EFFECT_CAPACITY.contactDust).toBe(48);expect(GALACTIC_EFFECT_CAPACITY.contactDustCards).toBe(96);
++   for(let owner=0;owner<8;owner++)emit(owner,1,0);
++   const camera=new PerspectiveCamera(70,1.6,.1,120);camera.position.set(20,8,25);camera.lookAt(0,1,0);camera.updateMatrixWorld(true);
++   const original=JSON.stringify(f);fx.update(.2,camera);expect(fx.contactDust.count).toBe(96);expect(terrain.heightAt).toHaveBeenCalledTimes(432);expect(fx.crashDebris.count).toBeLessThanOrEqual(64);
++   const geometry=fx.contactDust.geometry.getAttribute('position'),matrix=new Matrix4();
++   for(const yaw of [0,Math.PI/2,Math.PI,Math.PI*1.5]){
++    camera.position.set(Math.sin(yaw)*25,8,Math.cos(yaw)*25);camera.lookAt(0,1,0);camera.updateMatrixWorld(true);
++    terrain.heightAt.mockClear();fx.update(.2,camera);expect(terrain.heightAt).not.toHaveBeenCalled();
++    for(let i=0;i<96;i++){fx.contactDust.getMatrixAt(i,matrix);expect(matrix.elements.every(Number.isFinite)).toBe(true);
++     for(let j=0;j<geometry.count;j++){const p=new Vector3().fromBufferAttribute(geometry,j).applyMatrix4(matrix);expect(p.y-(.1*p.x-.05*p.z)).toBeGreaterThan(.0199);}}
++   }
++   expect(JSON.stringify(f)).toBe(original);
++   // Wrap all three new parts over their owner's six old slots, then clear
++   // that owner. Other racers must retain all their own simulation-clock aftermath entries; no stale callback survives overwrite.
++   emit(0,2,.2);fx.syncWreckRupture(0,2,rupture);fx.update(.3);expect(fx.contactDust.count).toBe(96);
++   fx.syncWreckRupture(0,2);fx.update(.3);expect(fx.contactDust.count).toBe(84);expect(slots.filter(s=>s.owner===0).every(s=>!s.active&&!s.terrain)).toBe(true);
++   fx.syncWreckRupture(3,2,rupture);fx.update(.3);expect(fx.contactDust.count).toBe(72);
++   fx.clearEffects();expect(slots.every(s=>!s.active&&!s.terrain)).toBe(true);expect(fx.contactDust.count).toBe(0);
++   emit(4,3,1);terrain.heightAt.mockClear();fx.update(2.65-1e-10);expect(fx.contactDust.count).toBe(0);expect(terrain.heightAt).not.toHaveBeenCalled();
++  }finally{fx.dispose();}
++ });
++ it('fails closed for malformed per-part data while preserving legacy point/fan behavior',()=>{
++  const fx=new GalacticEffectsView(),terrain={heightAt:vi.fn(()=>0)},f=footprint(),context={terrain,owner:0,sequence:1,partId:1 as const};
++  try{
++   for(const value of [ {...context,partId:3}, {...context,owner:8}, {...context,sequence:NaN} ])fx.emitWreckGroundContact(0,new Vector3(),new Vector3(1,0,0),f,value as typeof context);
++   fx.emitWreckGroundContact(0,new Vector3(),new Vector3(1,0,0),{...f,halfLength:0},context);
++   fx.update(.1);expect(fx.contactDust.count).toBe(0);expect(fx.crashDebris.count).toBe(0);expect(fx.explosionPlates.count).toBe(0);expect(terrain.heightAt).not.toHaveBeenCalled();
++   fx.emitWreckGroundContact(0,new Vector3(),new Vector3(1,0,0),f,context);fx.update(.1);expect(fx.contactDust.count).toBe(4);expect(fx.crashDebris.count).toBe(3);expect(fx.explosionPlates.count).toBe(0);
++   fx.clearEffects();fx.emitWreckGroundContact(0,new Vector3(),new Vector3(1,0,0));fx.update(.1);expect(fx.contactDust.count).toBe(0);expect(fx.explosionPlates.count).toBe(2);expect(fx.crashDebris.count).toBe(10);
++  }finally{fx.dispose();}
++ });
++});
+diff --git a/tests/render/WreckContactVolume.test.ts b/tests/render/WreckContactVolume.test.ts
+--- a/tests/render/WreckContactVolume.test.ts
++++ b/tests/render/WreckContactVolume.test.ts
+@@ -105,7 +105,7 @@
+     const fx = new GalacticEffectsView(), f = footprint(), terrain = { heightAt: vi.fn(() => 0) };
+     let disposed = false;
+     try {
+-      expect(GALACTIC_EFFECT_DRAW_CALL_BUDGET).toBe(9); expect(GALACTIC_EFFECT_CAPACITY.contactDust).toBe(40); expect(GALACTIC_EFFECT_CAPACITY.contactDustCards).toBe(80);
++      expect(GALACTIC_EFFECT_DRAW_CALL_BUDGET).toBe(9); expect(GALACTIC_EFFECT_CAPACITY.contactDust).toBe(48); expect(GALACTIC_EFFECT_CAPACITY.contactDustCards).toBe(96);
+       for (let owner = 0; owner < 8; owner++) fx.emitWreckGroundContact(1, new Vector3(), new Vector3(1, 0, 0), f, { terrain, owner, sequence: 1 });
+       const camera = new PerspectiveCamera(70, 1.6, .1, 120); camera.position.set(20, 8, 25); camera.lookAt(0, 1, 0); camera.updateMatrixWorld(true);
+       terrain.heightAt.mockClear(); fx.update(1.2, camera); expect(fx.contactDust.count).toBe(80); expect(terrain.heightAt).toHaveBeenCalledTimes(360);

@@ -1,0 +1,13 @@
+# Teemto Inkstorm vehicle target
+
+Generated with the built-in Codex imagegen tool on 7 September 2026. Concept only; not a Blender render or gameplay capture. Source silhouette reference: official Sketchfab preview for Teemto Pagalies' Podracer, UID4eff45899ada40bb920c5c744663db90, Rafael Fernández Calvo (rafarelo), CC BY4.0. The added pilot is an original helmeted character study; actual cockpit occupancy and rig anchors remain to be inspected in the downloaded geometry.
+
+![Paint and pilot concept](teemto-inkstorm.png)
+
+## Exact prompt
+
+Use case: stylized-concept. Asset type: production art reference for adapting an already downloaded podracing vehicle in a real-time 3D game. The single attached image is the SOURCE SILHOUETTE REFERENCE: Teemto Pagalies' Podracer model by Rafael Fernández Calvo from Sketchfab. Preserve its exact distinctive layout: two separate bulbous oval engines at the front linked by a thin cyan power arc; long red articulated tow arms; a large upright circular enclosed cockpit ring at the rear with the same proportions and visible opening. Do not substitute cylindrical engines or a generic race car. Generate one clean 16:9 concept board: a large three-quarter full-vehicle view on the left occupying two thirds, and a close cockpit/pilot study on the right occupying one third. Approved art direction: Inkstorm, premium painterly sci-fi industrial racing, warm worn dusty blue enamel, burnt orange repair panels, dark iron seams, bone ceramic trim, subtle cyan energy, broad authored brush texture, clear believable manufactured panel seams and sparse localized chips, sunset rim light and cool violet recesses. Show an original small helmeted racing pilot seated inside the existing circular cockpit opening, hands on controls, charcoal flight suit, bone and orange helmet, no famous character. Keep the vehicle mechanically faithful to the supplied model; show how materials and driver make it belong to Inkstorm rather than redesigning the geometry. Restrained warm gray studio background, contact shadow, no environment diorama, no logos, no lettering, no watermark. Concept reference only, not a claimed gameplay screenshot.
+
+## Production notes
+
+Retain the two oval engines, circular rear cockpit, tow joints and major panels. Match muted blue/orange enamel, warm ceramic trim, dark seams, localized wear and charcoal/bone pilot palette. The concept contains generated fine detail; source geometry and actual final materials must be validated separately. Preserve the original downloaded GLB. This image does not establish successful stylization or a game integration.

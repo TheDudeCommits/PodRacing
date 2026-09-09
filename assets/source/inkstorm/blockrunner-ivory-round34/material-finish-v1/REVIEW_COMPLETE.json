@@ -1,0 +1,74 @@
+{
+  "stage": "Ivory original-surface material finish V1",
+  "status": "EXECUTED_SOURCE_TRIAL",
+  "artAccepted": false,
+  "runtimeReady": false,
+  "sourceSceneCount": 165,
+  "counts": {
+    "materials": 9,
+    "meshes": 53,
+    "objects": 57,
+    "triangles": 44028
+  },
+  "sourcePreservationVerified": true,
+  "sharedBlendSaved": false,
+  "atlasExportPublicRegistryRun": false,
+  "reviewScope": "Implementation-aware individual actual driver/fullcraft PNG review, prior matched palette views and concept21; not fresh blind or runtime acceptance.",
+  "finding": "Orange engine front bands, rear stripe and original shoulder accents read; source vehicle/pilot identity retained. Wear/contact dust too subtle and visor too dark to match concept21; no final quality pass.",
+  "author": {
+    "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-ivory-round34/material-finish-v1/01-author-receipt.json",
+    "bytes": 121794,
+    "sha256": "9b06075b8cc86bc3f8e26fb4f98b687627feb5675a79043ab274b20ab89d6e8a"
+  },
+  "authorPayload": {
+    "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-ivory-round34/material-finish-v1/01-author-composed.py",
+    "bytes": 149058,
+    "sha256": "e9b4074a181b4e49fa17735302d827eb93a23a982926df9fcf1597e6469c1057"
+  },
+  "renders": [
+    {
+      "receipt": {
+        "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-ivory-round34/material-finish-v1/02-render-driver-receipt.json",
+        "bytes": 2723,
+        "sha256": "eb8eefb16fb1a4bf80e06c37b31abeebe8b0c774e1ffb33c0833225a2289cb82"
+      },
+      "actualImage": {
+        "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-ivory-round34/material-finish-v1/ivory-finish-v1-driver.png",
+        "bytes": 415432,
+        "sha256": "4acf6a9d66db846e5c21728e5f58ac764435622c82ce5f6fa5b819642b9edc9d"
+      },
+      "viewed": true,
+      "matchedPaletteImage": {
+        "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-ivory-round34/paint-copy-v1/ivory-palette-v1-driver.png",
+        "bytes": 410205,
+        "sha256": "511ccab0d9eb9df932ecdde9f3c334fed557de5e9f21a92f494ec6c2b3263aa9"
+      }
+    },
+    {
+      "receipt": {
+        "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-ivory-round34/material-finish-v1/02-render-fullcraft-receipt.json",
+        "bytes": 5922,
+        "sha256": "3592c40c956b10135702f9bf4c01f77c92e72835858228f6d450561c628e2478"
+      },
+      "actualImage": {
+        "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-ivory-round34/material-finish-v1/ivory-finish-v1-fullcraft.png",
+        "bytes": 386661,
+        "sha256": "7402d8a196c8a69ae1f82b2e120e0da8c78398c6f191c5ff8e005125346e8f79"
+      },
+      "viewed": true,
+      "matchedPaletteImage": {
+        "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-ivory-round34/paint-copy-v1/ivory-palette-v1-fullcraft.png",
+        "bytes": 384941,
+        "sha256": "110c6a22b4f8deab803c913385bcdd7a0b068bb8cbec6858e23d3c334b0a5f25"
+      }
+    }
+  ],
+  "target": {
+    "path": "/Users/amir/Projects/PodRacing/docs/inkstorm-overhaul/concepts/21-ivory-worn-paint-target.png",
+    "bytes": 1429692,
+    "sha256": "181d4d557343679d35c73d6bd17c1937f4983e260ab7d2cf310715f0fd3fc3f9"
+  },
+  "heavyJobsReleased": true,
+  "noBrowserUsed": true,
+  "nextStage": "Hold for separate source finish/UV/bake authorization; no further render scheduled."
+}

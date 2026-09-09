@@ -1,0 +1,493 @@
+{
+  "status": "source candidate packaged; live visual/performance review pending",
+  "profile": "rival",
+  "input": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/polwo-driver-round32/packaged-shoulders-v2/rival-lod/03-rival-reordered.glb",
+  "inputSha256": "7a77b0ec4a3e697c06ef801e2b854f1807c622231e56aa29a83c7ebe870b256e",
+  "output": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/polwo-driver-round32/packaged-shoulders-v2/polwo-rival-v1.glb",
+  "outputSha256": "b9a2f310ffd43477091575a52f1cb6804ec9fafca6fcf31093072b7f43e6d502",
+  "inputBytes": 8591512,
+  "outputBytes": 4188076,
+  "inputStatistics": {
+    "triangles": 28830,
+    "bodyDraws": 2,
+    "pilotDraws": 6,
+    "opaqueDraws": 8,
+    "draws": [
+      {
+        "node": "polwo-body-0",
+        "mesh": 0,
+        "pilot": false,
+        "triangles": 19199,
+        "vertices": 32032,
+        "tangents": true
+      },
+      {
+        "node": "polwo-body-1",
+        "mesh": 1,
+        "pilot": false,
+        "triangles": 544,
+        "vertices": 982,
+        "tangents": true
+      },
+      {
+        "node": "polwo-pilot-accent",
+        "mesh": 2,
+        "pilot": true,
+        "triangles": 188,
+        "vertices": 363,
+        "tangents": true
+      },
+      {
+        "node": "polwo-pilot-hardware",
+        "mesh": 3,
+        "pilot": true,
+        "triangles": 1100,
+        "vertices": 1416,
+        "tangents": true
+      },
+      {
+        "node": "polwo-pilot-rubber",
+        "mesh": 4,
+        "pilot": true,
+        "triangles": 1000,
+        "vertices": 1225,
+        "tangents": true
+      },
+      {
+        "node": "polwo-pilot-shell",
+        "mesh": 5,
+        "pilot": true,
+        "triangles": 1100,
+        "vertices": 1346,
+        "tangents": true
+      },
+      {
+        "node": "polwo-pilot-suit",
+        "mesh": 6,
+        "pilot": true,
+        "triangles": 5000,
+        "vertices": 6675,
+        "tangents": true
+      },
+      {
+        "node": "polwo-pilot-webbing",
+        "mesh": 7,
+        "pilot": true,
+        "triangles": 699,
+        "vertices": 1039,
+        "tangents": true
+      }
+    ],
+    "images": [
+      {
+        "index": 0,
+        "name": "Material_6_normal",
+        "role": [
+          "body",
+          "normal"
+        ],
+        "width": 1024,
+        "height": 1024,
+        "encodedBytes": 1747661,
+        "sha256": "2a420549bb8746c5ecab39c208d446a661d08d14cb1d96517eef58bc66ec7d6d",
+        "rgba8Bytes": 4194304,
+        "rgba8FullMipBytes": 5592404
+      },
+      {
+        "index": 1,
+        "name": "polwo-inkstorm-orm-v1",
+        "role": [
+          "body",
+          "data"
+        ],
+        "width": 1024,
+        "height": 1024,
+        "encodedBytes": 1577297,
+        "sha256": "f598238e458b7fa4c23013346d6b20c1f0c5c12bd396e476888768b4f5574977",
+        "rgba8Bytes": 4194304,
+        "rgba8FullMipBytes": 5592404
+      },
+      {
+        "index": 2,
+        "name": "polwo-inkstorm-base-color-v1",
+        "role": [
+          "body",
+          "color"
+        ],
+        "width": 1024,
+        "height": 1024,
+        "encodedBytes": 1341403,
+        "sha256": "ef374164322d1bba7e75459939ed5368db833b85845870da4c090ce83ba68d8c",
+        "rgba8Bytes": 4194304,
+        "rgba8FullMipBytes": 5592404
+      },
+      {
+        "index": 3,
+        "name": "pilot-normal-atlas-v4b",
+        "role": [
+          "pilot",
+          "normal"
+        ],
+        "width": 512,
+        "height": 512,
+        "encodedBytes": 201580,
+        "sha256": "59ab9fa090eb4b26d78ecdf1bcf3ff66c262837972ac199bea247f6f81ea60a8",
+        "rgba8Bytes": 1048576,
+        "rgba8FullMipBytes": 1398100
+      },
+      {
+        "index": 4,
+        "name": "pilot-color-atlas-v4c",
+        "role": [
+          "pilot",
+          "color"
+        ],
+        "width": 1024,
+        "height": 1024,
+        "encodedBytes": 1203726,
+        "sha256": "a9c2c523dd669b7d322c2b4d2fa88a0a4057c88ba86db8efce4246c8b6c60392",
+        "rgba8Bytes": 4194304,
+        "rgba8FullMipBytes": 5592404
+      },
+      {
+        "index": 5,
+        "name": "pilot-roughness-atlas-v4b",
+        "role": [
+          "pilot",
+          "data"
+        ],
+        "width": 512,
+        "height": 512,
+        "encodedBytes": 172940,
+        "sha256": "92458f3c56b91b22bab4f088e6722d1a762a33553db5910be127ae8ec85f7157",
+        "rgba8Bytes": 1048576,
+        "rgba8FullMipBytes": 1398100
+      }
+    ],
+    "imageBytes": 6244607,
+    "rgba8Bytes": 18874368,
+    "rgba8FullMipBytes": 25165816,
+    "textureDefinitions": 6,
+    "uniqueImages": 6,
+    "allMeshDefinitionsReferenced": true
+  },
+  "outputStatistics": {
+    "triangles": 28830,
+    "bodyDraws": 2,
+    "pilotDraws": 6,
+    "opaqueDraws": 8,
+    "draws": [
+      {
+        "node": "polwo-body-0",
+        "mesh": 0,
+        "pilot": false,
+        "triangles": 19199,
+        "vertices": 32032,
+        "tangents": true
+      },
+      {
+        "node": "polwo-body-1",
+        "mesh": 1,
+        "pilot": false,
+        "triangles": 544,
+        "vertices": 982,
+        "tangents": true
+      },
+      {
+        "node": "polwo-pilot-accent",
+        "mesh": 2,
+        "pilot": true,
+        "triangles": 188,
+        "vertices": 363,
+        "tangents": true
+      },
+      {
+        "node": "polwo-pilot-hardware",
+        "mesh": 3,
+        "pilot": true,
+        "triangles": 1100,
+        "vertices": 1416,
+        "tangents": true
+      },
+      {
+        "node": "polwo-pilot-rubber",
+        "mesh": 4,
+        "pilot": true,
+        "triangles": 1000,
+        "vertices": 1225,
+        "tangents": true
+      },
+      {
+        "node": "polwo-pilot-shell",
+        "mesh": 5,
+        "pilot": true,
+        "triangles": 1100,
+        "vertices": 1346,
+        "tangents": true
+      },
+      {
+        "node": "polwo-pilot-suit",
+        "mesh": 6,
+        "pilot": true,
+        "triangles": 5000,
+        "vertices": 6675,
+        "tangents": true
+      },
+      {
+        "node": "polwo-pilot-webbing",
+        "mesh": 7,
+        "pilot": true,
+        "triangles": 699,
+        "vertices": 1039,
+        "tangents": true
+      }
+    ],
+    "images": [
+      {
+        "index": 0,
+        "name": "Material_6_normal",
+        "role": [
+          "body",
+          "normal"
+        ],
+        "width": 512,
+        "height": 512,
+        "encodedBytes": 468899,
+        "sha256": "1d2c1b417c473f3f745ab5d922a92ba748e31c318609255e1a6074909acf1c58",
+        "rgba8Bytes": 1048576,
+        "rgba8FullMipBytes": 1398100
+      },
+      {
+        "index": 1,
+        "name": "polwo-inkstorm-orm-v1",
+        "role": [
+          "body",
+          "data"
+        ],
+        "width": 512,
+        "height": 512,
+        "encodedBytes": 458385,
+        "sha256": "67bef9e2fe3aee278866a432ab2ab1e9f43f52a6303e2e4cfadc5e82ee52bec1",
+        "rgba8Bytes": 1048576,
+        "rgba8FullMipBytes": 1398100
+      },
+      {
+        "index": 2,
+        "name": "polwo-inkstorm-base-color-v1",
+        "role": [
+          "body",
+          "color"
+        ],
+        "width": 512,
+        "height": 512,
+        "encodedBytes": 397106,
+        "sha256": "25eaefe085fd5ce857d46048fbabc3916301e06c3b45af02bf23941268c12757",
+        "rgba8Bytes": 1048576,
+        "rgba8FullMipBytes": 1398100
+      },
+      {
+        "index": 3,
+        "name": "pilot-normal-atlas-v4b",
+        "role": [
+          "pilot",
+          "normal"
+        ],
+        "width": 256,
+        "height": 256,
+        "encodedBytes": 55106,
+        "sha256": "b318f97e92f7568ead411efa81d4123fb27c11f5e06d38004f2850768d6c1f23",
+        "rgba8Bytes": 262144,
+        "rgba8FullMipBytes": 349524
+      },
+      {
+        "index": 4,
+        "name": "pilot-color-atlas-v4c",
+        "role": [
+          "pilot",
+          "color"
+        ],
+        "width": 512,
+        "height": 512,
+        "encodedBytes": 406096,
+        "sha256": "4e9ffeb6fe1fa502b645ccecdca5390db85813635471906746bc29d0e7ed1372",
+        "rgba8Bytes": 1048576,
+        "rgba8FullMipBytes": 1398100
+      },
+      {
+        "index": 5,
+        "name": "pilot-roughness-atlas-v4b",
+        "role": [
+          "pilot",
+          "data"
+        ],
+        "width": 256,
+        "height": 256,
+        "encodedBytes": 55602,
+        "sha256": "df943d57030865e0da91a1773e62b92ef2eec0c8402293c5c70053b40858e803",
+        "rgba8Bytes": 262144,
+        "rgba8FullMipBytes": 349524
+      }
+    ],
+    "imageBytes": 1841194,
+    "rgba8Bytes": 4718592,
+    "rgba8FullMipBytes": 6291448,
+    "textureDefinitions": 6,
+    "uniqueImages": 6,
+    "allMeshDefinitionsReferenced": true
+  },
+  "meshAccessorBytesExact": true,
+  "allNonImageBufferViewsExact": true,
+  "existingNodeTransformsHierarchyExact": true,
+  "normalMapChannelConvention": "RGB preserved; resized vectors renormalized; no green flip",
+  "ormChannelConvention": "R occlusion / G roughness / B metallic preserved, no floors added by packager",
+  "resampling": "Lanczos; sRGB color in linear light, ORM scalar channels in linear data, normal vectors renormalized",
+  "textureBudgetDefinition": "unique RGBA8 images with a complete mip chain; estimate, not measured GPU allocation",
+  "sourceTextureBytesPreservedInInput": true,
+  "nodeNameChanges": [
+    {
+      "from": "polwo-body-0",
+      "to": "polwo-body-0"
+    },
+    {
+      "from": "polwo-body-1",
+      "to": "polwo-body-1"
+    },
+    {
+      "from": "polwo-pilot-accent",
+      "to": "polwo-pilot-accent"
+    },
+    {
+      "from": "polwo-pilot-hardware",
+      "to": "polwo-pilot-hardware"
+    },
+    {
+      "from": "polwo-pilot-rubber",
+      "to": "polwo-pilot-rubber"
+    },
+    {
+      "from": "polwo-pilot-shell",
+      "to": "polwo-pilot-shell"
+    },
+    {
+      "from": "polwo-pilot-suit",
+      "to": "polwo-pilot-suit"
+    },
+    {
+      "from": "polwo-pilot-webbing",
+      "to": "polwo-pilot-webbing"
+    }
+  ],
+  "imageChanges": [
+    {
+      "image": 0,
+      "owner": "body",
+      "role": "normal",
+      "beforeSize": [
+        1024,
+        1024
+      ],
+      "afterSize": [
+        512,
+        512
+      ],
+      "inputSha256": "2a420549bb8746c5ecab39c208d446a661d08d14cb1d96517eef58bc66ec7d6d",
+      "outputSha256": "1d2c1b417c473f3f745ab5d922a92ba748e31c318609255e1a6074909acf1c58"
+    },
+    {
+      "image": 1,
+      "owner": "body",
+      "role": "data",
+      "beforeSize": [
+        1024,
+        1024
+      ],
+      "afterSize": [
+        512,
+        512
+      ],
+      "inputSha256": "f598238e458b7fa4c23013346d6b20c1f0c5c12bd396e476888768b4f5574977",
+      "outputSha256": "67bef9e2fe3aee278866a432ab2ab1e9f43f52a6303e2e4cfadc5e82ee52bec1"
+    },
+    {
+      "image": 2,
+      "owner": "body",
+      "role": "color",
+      "beforeSize": [
+        1024,
+        1024
+      ],
+      "afterSize": [
+        512,
+        512
+      ],
+      "inputSha256": "ef374164322d1bba7e75459939ed5368db833b85845870da4c090ce83ba68d8c",
+      "outputSha256": "25eaefe085fd5ce857d46048fbabc3916301e06c3b45af02bf23941268c12757"
+    },
+    {
+      "image": 3,
+      "owner": "pilot",
+      "role": "normal",
+      "beforeSize": [
+        512,
+        512
+      ],
+      "afterSize": [
+        256,
+        256
+      ],
+      "inputSha256": "59ab9fa090eb4b26d78ecdf1bcf3ff66c262837972ac199bea247f6f81ea60a8",
+      "outputSha256": "b318f97e92f7568ead411efa81d4123fb27c11f5e06d38004f2850768d6c1f23"
+    },
+    {
+      "image": 4,
+      "owner": "pilot",
+      "role": "color",
+      "beforeSize": [
+        1024,
+        1024
+      ],
+      "afterSize": [
+        512,
+        512
+      ],
+      "inputSha256": "a9c2c523dd669b7d322c2b4d2fa88a0a4057c88ba86db8efce4246c8b6c60392",
+      "outputSha256": "4e9ffeb6fe1fa502b645ccecdca5390db85813635471906746bc29d0e7ed1372"
+    },
+    {
+      "image": 5,
+      "owner": "pilot",
+      "role": "data",
+      "beforeSize": [
+        512,
+        512
+      ],
+      "afterSize": [
+        256,
+        256
+      ],
+      "inputSha256": "92458f3c56b91b22bab4f088e6722d1a762a33553db5910be127ae8ec85f7157",
+      "outputSha256": "df943d57030865e0da91a1773e62b92ef2eec0c8402293c5c70053b40858e803"
+    }
+  ],
+  "runtimeContract": {
+    "embeddedPilotNodePrefix": "polwo-pilot-",
+    "status": "pending DCC measurement; no positions invented",
+    "attachments": {}
+  },
+  "materialNames": [
+    "Polwo Inkstorm body paint-v1",
+    "antenne_low__0",
+    "Pilot atlas v4c runtime accent",
+    "Pilot atlas v4c runtime hardware",
+    "Pilot atlas v4c runtime rubber",
+    "Pilot atlas v4c runtime shell",
+    "Pilot atlas v4c runtime suit",
+    "Pilot atlas v4c runtime webbing"
+  ],
+  "runtimeIntegrated": false,
+  "limitations": [
+    "No browser import or perceptual test performed by this script",
+    "Reduced atlas resolution requires original/concept/actual gameplay comparison",
+    "Decoded budget counts unique image payloads; verify actual renderer allocations and texture sharing"
+  ]
+}

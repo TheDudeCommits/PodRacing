@@ -1,0 +1,47 @@
+{
+  "build": "index-Cb2gSSE6.js",
+  "sha256": "e15afb715d0b90e46a6d7de86fa35366649068940ca0b140a102103e75951527",
+  "races": {
+    "time-attack": {
+      "intervals": 3790,
+      "durationMs": 63747.5,
+      "meanHz": 59.453311894584104,
+      "p95Ms": 16.799999999995634,
+      "maximumMs": 33.5,
+      "over25": 35,
+      "over50": 0,
+      "dprRange": [
+        1,
+        2
+      ],
+      "outliersOver50": [],
+      "sourceSha256": "0a6d09dbb0578ab16ac0c0883009803cb3c6e1313538983e4138717a6b7bea92"
+    },
+    "cup-round-1": {
+      "intervals": 8157,
+      "durationMs": 138127.8,
+      "meanHz": 59.05400650701742,
+      "p95Ms": 16.79999999998836,
+      "maximumMs": 66.69999999999709,
+      "over25": 129,
+      "over50": 1,
+      "dprRange": [
+        1.875,
+        2
+      ],
+      "outliersOver50": [
+        {
+          "rafTime": 96910.3,
+          "intervalMs": 66.69999999999709,
+          "phase": "racing",
+          "raceTime": 21.433333333332758,
+          "simulationFrame": 2933,
+          "progress": 0.366101432769111,
+          "sector": 3
+        }
+      ],
+      "sourceSha256": "c1155ffac7a39283c89103e410c8c922b21c8bf0f44c6cccb854fa102a2b7c83"
+    }
+  },
+  "scope": "Root recomputation from every raw racing interval. Classification grace retained; no outlier removal. Full races on native M4 at1440x900 with requestedDPR2; not all devices or all modes."
+}

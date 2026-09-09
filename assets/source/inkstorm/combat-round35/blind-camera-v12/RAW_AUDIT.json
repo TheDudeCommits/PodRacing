@@ -1,0 +1,52 @@
+{
+  "scope": "Fresh separate ephemeral CLI image-only review. Exact unchanged V10 prompt, 6 actual V12 video frames and unchanged original reference. No implementation/history/tuning findings passed. Generic user CLI configuration may load. Raw event audit establishes no extra tool/file/search/browser/history retrieval items.",
+  "returncode": 0,
+  "eventTypes": [
+    "thread.started",
+    "turn.started",
+    "item.completed",
+    "turn.completed"
+  ],
+  "itemTypes": [
+    "agent_message"
+  ],
+  "threadIds": [
+    "01a08296-cc55-7960-9c9d-de5df66314df"
+  ],
+  "allAttachmentsExact": true,
+  "unchangedPromptAndReference": true,
+  "finalMatchesRawAgentMessage": true,
+  "extraRetrievalItems": [],
+  "files": [
+    {
+      "path": "prompt.txt",
+      "sha256": "336d5a5414ac6dfc77d745415ae2f54504635d9434cc8ce94b0921f34ed359b4",
+      "bytes": 1144
+    },
+    {
+      "path": "inventory.json",
+      "sha256": "764dc5770c4acc4d9d5a755cb083a37838bfe14cf890859df8afa81dd5dee2e7",
+      "bytes": 2467
+    },
+    {
+      "path": "cli-critic-attempt1/review.md",
+      "sha256": "aa9ff2c10b0837fec3ff96f749e800c06e24c3a202dcf8466988a52fe1d70b37",
+      "bytes": 2910
+    },
+    {
+      "path": "cli-critic-attempt1/events.jsonl",
+      "sha256": "5786ef45b74038e8b3179f15830be677810ce959d6348a2f34cbdccd6d38cf35",
+      "bytes": 3276
+    },
+    {
+      "path": "cli-critic-attempt1/stderr.log",
+      "sha256": "336c19a28b33751299436e9cf924c9045f2ebfe6d988639e94e990b20e1d05ed",
+      "bytes": 2883
+    },
+    {
+      "path": "cli-critic-attempt1/invocation.json",
+      "sha256": "e24f17842299f9c4afdd2fe3cc7ac8949c4ee450317955788c7720ca24d6ec38",
+      "bytes": 1746
+    }
+  ]
+}

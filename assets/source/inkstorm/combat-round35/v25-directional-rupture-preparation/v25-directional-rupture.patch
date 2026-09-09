@@ -1,0 +1,430 @@
+--- a/src/render/galactic/GalacticEffectsView.ts
++++ b/src/render/galactic/GalacticEffectsView.ts
+@@ -215,6 +215,7 @@
+   spark: boolean;
+   ember: boolean;
+   contactSpark: boolean;
++  authoredEjection: boolean;
+   emberPhase: number;
+   wreckOwner: number;
+   wreckSequence: number;
+@@ -426,6 +427,12 @@
+       varying vec3 vEffectSurface;
+       varying vec2 vEffectUv;
+       float paintHash(vec2 p) { return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
++      // Tapered pressure tongues share a tight root; the ends have distinct
++      // lengths/directions instead of repeating a radial glow.
++      float ruptureTongue(vec2 p, vec2 tip, float width) {
++        float travel = clamp(dot(p, tip) / dot(tip, tip), 0.0, 1.0);
++        return length(p - tip * travel) / max(0.022, width * (1.0 - travel * 0.91));
++      }
+       float paintNoise(vec2 p) {
+         vec2 cell = floor(p), f = fract(p);
+         f = f * f * (3.0 - 2.0 * f);
+@@ -439,7 +446,34 @@
+       float grain = paintNoise(p * vec2(16.0, 10.0) + vEffectSurface.z);
+       float radius = length(p);
+       float alpha;
+-      if (vEffectSurface.x > 3.5) {
++      if (vEffectSurface.x > 7.5) {
++        // Authored smoke has a dense torn belly and two unequal billows.
++        // It stays local to the actual tear; no full-screen wash is added.
++        float belly = length((p - vec2(-0.10, -0.24)) * vec2(1.30, 1.55));
++        float crown = length((p - vec2(0.12, 0.22)) * vec2(1.24, 1.20));
++        float shoulder = length((p - vec2(-0.33, 0.18)) * vec2(1.90, 1.80));
++        float billow = min(belly, min(crown, shoulder)) + brush * 0.15 + grain * 0.025;
++        alpha = (1.0 - smoothstep(0.59, 0.82, billow))
++          * smoothstep(-1.0, -0.82, p.y) * (0.91 + brush * 0.09);
++        diffuseColor.rgb *= mix(0.56, 1.28, smoothstep(-0.65, 0.75, p.y))
++          * (0.87 + grain * 0.18);
++      } else if (vEffectSurface.x > 5.5) {
++        // +X follows the projected world cut normal. Three asymmetric tongues
++        // form one pressure release; the short fourth lobe marks its birth.
++        vec2 q = p;
++        float upper = ruptureTongue(q, vec2(0.83, 0.39), 0.20);
++        float mainTongue = ruptureTongue(q, vec2(1.02, 0.04), 0.24);
++        float lower = ruptureTongue(q, vec2(0.68, -0.36), 0.17);
++        float contour = min(mainTongue, min(upper, lower));
++        if (vEffectSurface.x < 6.5) contour = min(contour,
++          ruptureTongue(q, vec2(0.36, 0.63), 0.21));
++        float eroded = contour + brush * 0.22 + grain * 0.06;
++        float edge = 1.0 - smoothstep(0.65, 1.10, eroded);
++        float core = 1.0 - smoothstep(0.18, 0.69, eroded);
++        diffuseColor.rgb = mix(vec3(1.0, 0.22, 0.025), vec3(1.0, 0.98, 0.80), core);
++        alpha = edge * (1.0 - smoothstep(0.88, 1.0, abs(p.x)))
++          * (1.0 - smoothstep(0.82, 1.0, abs(p.y)));
++      } else if (vEffectSurface.x > 3.5) {
+         // Contact ejecta starts at a tight grounded root and opens into a
+         // directional sand fan. A broad circular wash cannot mark the strike.
+         float height = clamp((p.y + 1.0) * 0.5, 0.0, 1.0);
+@@ -489,7 +523,7 @@
+       if (diffuseColor.a < 0.008) discard;
+     `);
+   };
+-  result.customProgramCacheKey = () => 'painterly-atmosphere-contact-v6';
++  result.customProgramCacheKey = () => 'painterly-atmosphere-directional-rupture-v7';
+   return result;
+ }
+ 
+@@ -637,7 +671,7 @@
+   );
+   private readonly debrisSlots = Array.from(
+     { length: GALACTIC_EFFECT_CAPACITY.crashDebris },
+-    (): DebrisSlot => ({ active: false, startTime: 0, duration: 0, x: 0, y: 0, z: 0, vx: 0, vy: 0, vz: 0, rx: 0, ry: 0, rz: 0, ax: 0, ay: 0, az: 0, scale: 1, groundY: 0, metal: false, spark: false, ember: false, contactSpark: false, emberPhase: 0, wreckOwner: -1, wreckSequence: -1, r: 1, g: 0.3, b: 0.1 }),
++    (): DebrisSlot => ({ active: false, startTime: 0, duration: 0, x: 0, y: 0, z: 0, vx: 0, vy: 0, vz: 0, rx: 0, ry: 0, rz: 0, ax: 0, ay: 0, az: 0, scale: 1, groundY: 0, metal: false, spark: false, ember: false, contactSpark: false, authoredEjection: false, emberPhase: 0, wreckOwner: -1, wreckSequence: -1, r: 1, g: 0.3, b: 0.1 }),
+   );
+   private readonly explosionSlots = Array.from(
+     { length: GALACTIC_EFFECT_CAPACITY.explosionPlates },
+@@ -867,7 +901,10 @@
+         ? Math.atan2(-event.direction!.z, -event.direction!.x) + (hash01(seed) - .5) * 2.4
+         : hash01(seed) * Math.PI * 2;
+       if (authoredSurface) {
+-        const cone = .18 + hash01(seed + 16) * .32, azimuth = hash01(seed + 17) * Math.PI * 2;
++        // Stratified sectors prevent a thin rising column when the source
++        // normal points upward. Every fragment remains in its outward half-space.
++        const cone = .42 + hash01(seed + 16) * .58;
++        const azimuth = (fragment % 6 + .15 + hash01(seed + 17) * .7) * Math.PI / 3;
+         this.ruptureEjection.set(Math.sin(cone) * Math.cos(azimuth), Math.sin(cone) * Math.sin(azimuth), Math.cos(cone))
+           .applyQuaternion(this.ruptureRotation);
+       }
+@@ -878,6 +915,7 @@
+         : (5.5 + hash01(seed + 1) * 11) * severity * radialScale;
+       slot.active = true;
+       slot.contactSpark = false;
++      slot.authoredEjection = authoredSurface;
+       slot.ember = ember; slot.emberPhase = ember && fragment === fragmentCount - 1 ? .21 : 0; slot.wreckOwner = ember ? event.wreckOwner! : -1;
+       slot.wreckSequence = ember ? event.wreckSequence! : -1;
+       slot.startTime = finite(event.time, 0);
+@@ -910,6 +948,12 @@
+       slot.scale = contactBurst
+         ? (spark ? 0.28 + hash01(seed + 10) * 0.2 : 0.42 + hash01(seed + 10) * 0.35) * Math.sqrt(severity)
+         : (0.12 + hash01(seed + 10) * 0.38) * severity * fragmentScale;
++      if (authoredSurface && !spark) {
++        // Three casing plates carry the silhouette; smaller satellites reveal
++        // the direction without making every fragment the same black block.
++        slot.scale = (fragment % 6 === 1 ? .91 + hash01(seed + 10) * .16
++          : .27 + hash01(seed + 10) * .28) * Math.sqrt(severity);
++      }
+       if (ember) {
+         slot.vx = this.ruptureEjection.x * 5; slot.vy = this.ruptureEjection.y * 5 + 2;
+         slot.vz = this.ruptureEjection.z * 5; slot.scale = .2;
+@@ -958,7 +1002,8 @@
+           slot.vx = this.ruptureAxis.x * (plate === 2 ? 1.2 : 2);
+           slot.vz = this.ruptureAxis.z * (plate === 2 ? 1.2 : 2);
+         }
+-        slot.scale = severity * [RUPTURE_FLASH_SCALE, tracked ? 1.25 : 3.5, 2.7, 3.2][plate]!;
++        slot.scale = severity * [RUPTURE_FLASH_SCALE,
++          authoredSurface ? 2.45 : tracked ? 1.25 : 3.5, 2.7, 3.2][plate]!;
+         slot.billboard = true;
+         slot.style = style;
+         slot.r = [1, 1, 0.075, 0.14][plate]!;
+@@ -1050,7 +1095,7 @@
+       slot.vy = 2 + hash01(seed + 3) * 4;
+       slot.rx = 0; slot.ry = 0; slot.rz = 0; slot.ax = 0; slot.ay = 0; slot.az = 0;
+       slot.scale = .34 + hash01(seed + 4) * .20;
+-      slot.groundY = origin.y; slot.metal = false; slot.spark = true; slot.contactSpark = true;
++      slot.groundY = origin.y; slot.metal = false; slot.spark = true; slot.contactSpark = true; slot.authoredEjection = false;
+       slot.ember = false; slot.emberPhase = 0; slot.wreckOwner = -1; slot.wreckSequence = -1;
+       slot.r = 1; slot.g = index % 3 === 0 ? .87 : .48; slot.b = index % 3 === 0 ? .5 : .09;
+     }
+@@ -1513,13 +1558,17 @@
+         continue;
+       }
+       const motionAge = slot.ember ? (age + slot.emberPhase) % .42 : age;
+-      const x = slot.x + slot.vx * motionAge;
++      // Free casing loses horizontal velocity, then falls. Its actual birth
++      // impulse remains distinct from the two retained moving-root embers.
++      const travelAge = slot.authoredEjection && slot.metal
++        ? -Math.expm1(-2.2 * motionAge) / 2.2 : motionAge;
++      const x = slot.x + slot.vx * travelAge;
+       // Retained embers start at the moving fracture, not the terrain height
+       // sampled at its birth. A stale floor would detach them on a descent.
+-      const y = slot.ember ? slot.y + Math.max(0, slot.vy) * motionAge - 1.5 * motionAge * motionAge
+-        : Math.max(slot.groundY + 0.04, slot.y + slot.vy * motionAge - 7.2 * motionAge * motionAge);
+-      const z = slot.z + slot.vz * motionAge;
+-      if (!this.isVisible(x, y, z, slot.scale * 1.4, EFFECT_VISIBILITY_DISTANCE.crashes)) continue;
++      let y = slot.ember ? slot.y + Math.max(0, slot.vy) * motionAge - 1.5 * motionAge * motionAge
++        : Math.max(slot.groundY + 0.04, slot.y + slot.vy * motionAge
++          - (slot.authoredEjection && slot.metal ? 17 : 7.2) * motionAge * motionAge);
++      const z = slot.z + slot.vz * travelAge;
+       this.euler.set(slot.rx + slot.ax * age, slot.ry + slot.ay * age, slot.rz + slot.az * age);
+       this.tempQuaternion.setFromEuler(this.euler);
+       if (slot.spark) {
+@@ -1532,6 +1581,15 @@
+       // Metal holds its value while tumbling, then contracts over the last
+       // quarter of its life instead of becoming black floating rectangles.
+       const size = slot.scale * (slot.metal ? 1 - MathUtils.smoothstep(progress, 0.75, 1) : 1);
++      if (slot.authoredEjection && slot.metal) {
++        // Analytic support of the existing bent primitive's local bounds:
++        // x±.5, y±.332, z±.85. No vertex scan or terrain query per frame.
++        this.tempMatrix.makeRotationFromQuaternion(this.tempQuaternion);
++        const e = this.tempMatrix.elements;
++        const support = size * (Math.abs(e[1]!) * .5 + Math.abs(e[5]!) * .332 * .65 + Math.abs(e[9]!) * .85);
++        y = Math.max(y, slot.groundY + .04 + support);
++      }
++      if (!this.isVisible(x, y, z, slot.scale * 1.4, EFFECT_VISIBILITY_DISTANCE.crashes)) continue;
+       this.writeInstance(this.crashDebris, debrisCount, x, y, z, this.tempQuaternion,
+         size * (slot.spark ? slot.contactSpark ? .26 : .09 : 1), size * (slot.spark ? slot.contactSpark ? .32 : .12 : slot.metal ? .65 : 1),
+         size * (slot.spark ? 2.8 : 1), slot.r * fade, slot.g * fade, slot.b * fade);
+@@ -1573,6 +1631,32 @@
+             broad ? this.tempQuaternion : this.billboardQuaternion, width, height, width, slot.r, slot.g, slot.b);
+           this.writeEffectSurface(plateCount, broad ? 5 : 4, (broad ? .82 : .67)
+             * (1 - MathUtils.smoothstep(progress, .25, 1)), slot.startTime * 1.37);
++          plateCount++;
++          continue;
++        }
++        if (slot.authoredSurface && slot.contactLayer >= 0) {
++          const smoke = slot.contactLayer > 1, flash = slot.contactLayer === 0;
++          const size = slot.scale * (smoke ? .74 + progress * .62 : flash ? .78 + progress * .22 : .90 + Math.sin(age * 19) * .05);
++          const lift = smoke ? size * (slot.contactLayer === 2 ? .46 : .72) + progress * 1.2 : 0;
++          const x = slot.x + slot.vx * age, y = slot.y + lift, z = slot.z + slot.vz * age;
++          if (!this.isVisible(x, y, z, size * 1.9, EFFECT_VISIBILITY_DISTANCE.crashes)) continue;
++          let rotation = this.billboardQuaternion;
++          if (!smoke) {
++            // Rotate within the camera plane: local +X follows the *actual*
++            // normal's projection. It stays stable for a fixed camera/normal.
++            this.ruptureRotation.copy(this.billboardQuaternion).invert();
++            this.ruptureAxis.set(slot.nx, slot.ny, slot.nz).applyQuaternion(this.ruptureRotation);
++            const angle = Math.hypot(this.ruptureAxis.x, this.ruptureAxis.y) > .001
++              ? Math.atan2(this.ruptureAxis.y, this.ruptureAxis.x) : 0;
++            this.tempQuaternion.setFromAxisAngle(FORWARD, angle).premultiply(this.billboardQuaternion);
++            rotation = this.tempQuaternion;
++          }
++          const opacity = (smoke ? .90 : 1)
++            * (1 - MathUtils.smoothstep(progress, smoke ? .68 : flash ? .10 : .78, 1));
++          this.writeInstance(this.explosionPlates, plateCount, x, y, z, rotation,
++            size, size * (smoke ? 1.22 : flash ? .82 : .70), size, slot.r, slot.g, slot.b);
++          this.writeEffectSurface(plateCount, smoke ? 8 : flash ? 6 : 7, opacity,
++            slot.startTime * 1.37 + (smoke ? age * .32 : age * 1.8));
+           plateCount++;
+           continue;
+         }
+--- a/tests/combat/AuthoredAftermath.test.ts
++++ b/tests/combat/AuthoredAftermath.test.ts
+@@ -16,14 +16,14 @@
+ }
+ 
+ describe('fixed authored aftermath slots', () => {
+-  it('keeps smaller hot face, smoke and two embers on the moving cut after the birth flash has expired', () => {
++  it('keeps directional hot tongues, smoke and two embers on the moving cut after the birth flash has expired', () => {
+     const view = new GalacticEffectsView();
+     try {
+       view.emitCrash(birth); view.syncWreckRupture(0, 3, rupture); view.update(5.1);
+       expect(view.explosionPlates.count).toBe(3);
+       for (const center of centers(view.explosionPlates)) expect(center.distanceTo(rupture.position)).toBeLessThan(12);
+       const surface = view.explosionPlates.geometry.getAttribute('aEffectSurface');
+-      const hot = Array.from({ length: view.explosionPlates.count }, (_, i) => i).filter(i => surface.getX(i) === 2);
++      const hot = Array.from({ length: view.explosionPlates.count }, (_, i) => i).filter(i => surface.getX(i) === 7);
+       expect(hot).toHaveLength(1); expect(surface.getY(hot[0]!)).toBeGreaterThan(.8);
+       const embers = centers(view.crashDebris).filter(point => point.distanceTo(rupture.position) < 4);
+       expect(embers).toHaveLength(2); expect(embers[0]!.distanceTo(embers[1]!)).toBeGreaterThan(.2);
+--- /dev/null
++++ b/tests/render/AuthoredRuptureBeat.test.ts
+@@ -0,0 +1,90 @@
++import { InstancedMesh, Matrix4, Vector3 } from 'three';
++import { describe, expect, it } from 'vitest';
++import { GalacticEffectsView, GALACTIC_EFFECT_CAPACITY } from '../../src/render/galactic/GalacticEffectsView';
++
++const birth = Object.freeze({ type: 'crash' as const, time: 3,
++  position: Object.freeze({ x: 100, y: 8, z: -10 }),
++  velocity: Object.freeze({ x: 180, y: 0, z: -80 }),
++  surfaceNormal: Object.freeze({ x: 0, y: 1, z: 0 }),
++  groundY: 0, severity: 2, style: 'redline' as const, wreckOwner: 0, wreckSequence: 8 });
++
++function metal(view: GalacticEffectsView) {
++  const matrix = new Matrix4(), point = new Vector3(), a = view.crashDebris.geometry.getAttribute('aFragmentMetal');
++  return Array.from({ length: view.crashDebris.count }, (_, index) => {
++    view.crashDebris.getMatrixAt(index, matrix); point.setFromMatrixPosition(matrix);
++    return { index, isMetal: a.getX(index) === 1, point: point.clone(), matrix: matrix.clone() };
++  }).filter(row => row.isMetal);
++}
++
++describe('directional authored rupture beat', () => {
++  it('opens a broad outward casing fan before the birth flash expires, including an upward cut normal', () => {
++    const view = new GalacticEffectsView();
++    try {
++      view.emitCrash({ ...birth, velocity: { x: 0, y: 0, z: 0 }, groundY: -100 });
++      view.update(3.08);
++      const rows = metal(view), angles = rows.map(row => {
++        const p = row.point.clone().sub(birth.position);
++        expect(p.y).toBeGreaterThan(0);
++        return Math.atan2(Math.hypot(p.x, p.z), p.y);
++      });
++      expect(rows).toHaveLength(13); // three free sparks plus two retained embers occupy the other five slots
++      expect(Math.max(...angles)).toBeGreaterThan(.85);
++      expect(Math.min(...angles)).toBeGreaterThan(.35);
++      const xs = rows.map(row => row.point.x - birth.position.x), zs = rows.map(row => row.point.z - birth.position.z);
++      expect(Math.min(...xs)).toBeLessThan(-2); expect(Math.max(...xs)).toBeGreaterThan(2);
++      expect(Math.min(...zs)).toBeLessThan(-2); expect(Math.max(...zs)).toBeGreaterThan(2);
++      const surfaces = view.explosionPlates.geometry.getAttribute('aEffectSurface');
++      expect(Array.from({ length: view.explosionPlates.count }, (_, i) => surfaces.getX(i))).toContain(6);
++      const scales = rows.map(row => new Vector3().setFromMatrixScale(row.matrix).x);
++      expect(scales.filter(scale => scale > 1.2)).toHaveLength(3);
++      expect(scales.filter(scale => scale < .8)).toHaveLength(10);
++      expect(view.crashDebris.count).toBe(18); expect(view.explosionPlates.count).toBe(4);
++    } finally { view.dispose(); }
++  });
++
++  it('keeps every rotated casing vertex above the existing sampled floor and limits free drift with drag', () => {
++    const view = new GalacticEffectsView();
++    try {
++      const event = { ...birth, position: { x: 100, y: .12, z: -10 }, surfaceNormal: { x: .8, y: -.6, z: 0 } };
++      const snapshot = JSON.stringify(event), vertices = view.crashDebris.geometry.getAttribute('position');
++      const point = new Vector3(); let verticesChecked = 0, minimumGap = Infinity;
++      view.emitCrash(event);
++      for (let tick = 0; tick <= 38; tick++) {
++        view.update(3 + tick * .05);
++        for (const row of metal(view)) {
++          expect(Math.hypot(row.point.x - event.position.x, row.point.z - event.position.z)).toBeLessThan(42);
++          for (let index = 0; index < vertices.count; index++) {
++            point.fromBufferAttribute(vertices, index).applyMatrix4(row.matrix);
++            const gap = point.y - event.groundY;
++            if (!(gap >= .03999)) expect(gap, `sample${tick} fragment${row.index} vertex${index}`).toBeGreaterThanOrEqual(.03999);
++            minimumGap = Math.min(minimumGap, gap); verticesChecked++;
++          }
++        }
++      }
++      expect(verticesChecked).toBeGreaterThan(8_000);
++      expect(minimumGap).toBeLessThan(.3); // support must not merely hold all small casing high in the air
++      expect(JSON.stringify(event)).toBe(snapshot);
++      view.update(5.3); expect(view.explosionPlates.count).toBe(0); expect(view.crashDebris.count).toBe(0);
++    } finally { view.dispose(); }
++  });
++
++  it('keeps the same resource arrays through simultaneous authored rupture/contact saturation and reset', () => {
++    const view = new GalacticEffectsView();
++    try {
++      const resources = view.children.map(child => { const mesh = child as InstancedMesh;
++        return [mesh, mesh.geometry, mesh.material, mesh.instanceMatrix, mesh.instanceColor]; });
++      for (let i = 0; i < 20; i++) {
++        view.emitCrash({ ...birth, wreckOwner: i % 8, wreckSequence: i });
++        view.emitWreckGroundContact(3, { x: i, y: 0, z: 0 }, { x: 1, y: 0, z: 0 });
++      }
++      view.update(3.1);
++      expect(view.children).toHaveLength(8);
++      expect(view.crashDebris.count).toBe(GALACTIC_EFFECT_CAPACITY.crashDebris);
++      expect(view.explosionPlates.count).toBe(GALACTIC_EFFECT_CAPACITY.explosionPlates);
++      expect(view.children.map(child => { const mesh = child as InstancedMesh;
++        return [mesh, mesh.geometry, mesh.material, mesh.instanceMatrix, mesh.instanceColor]; })).toEqual(resources);
++      view.clearEffects(); view.update(3.1);
++      expect(view.crashDebris.count).toBe(0); expect(view.explosionPlates.count).toBe(0);
++    } finally { view.dispose(); }
++  });
++});
+--- /dev/null
++++ b/tests/render/DirectionalRuptureLifecycle.test.ts
+@@ -0,0 +1,114 @@
++import { InstancedMesh, Matrix4, MeshBasicMaterial, PerspectiveCamera, Vector3 } from 'three';
++import { describe, expect, it } from 'vitest';
++import { GalacticEffectsView, GALACTIC_EFFECT_DRAW_CALL_BUDGET, type CrashEffectEvent, type GalacticPoint } from '../../src/render/galactic/GalacticEffectsView';
++
++const event: CrashEffectEvent = Object.freeze({ type: 'crash', time: 4, position: Object.freeze({ x: 0, y: 10, z: 0 }),
++  groundY: 0, velocity: Object.freeze({ x: 0, y: 0, z: 0 }), severity: 2, style: 'redline',
++  surfaceNormal: Object.freeze({ x: 1, y: 0, z: 0 }), wreckOwner: 0, wreckSequence: 3 });
++
++function plates(view: GalacticEffectsView) {
++  const matrix = new Matrix4(), surface = view.explosionPlates.geometry.getAttribute('aEffectSurface');
++  return Array.from({ length: view.explosionPlates.count }, (_, i) => {
++    view.explosionPlates.getMatrixAt(i, matrix);
++    return { kind: surface.getX(i), opacity: surface.getY(i), position: new Vector3().setFromMatrixPosition(matrix),
++      x: new Vector3().setFromMatrixColumn(matrix, 0).normalize(),
++      normal: new Vector3().setFromMatrixColumn(matrix, 2).normalize(), matrix: matrix.toArray() };
++  });
++}
++
++function visibleState(view: GalacticEffectsView) {
++  return view.children.filter((child): child is InstancedMesh => child instanceof InstancedMesh).map(mesh => ({
++    count: mesh.count, matrices: Array.from(mesh.instanceMatrix.array.slice(0, mesh.count * 16)),
++    colors: Array.from(mesh.instanceColor?.array.slice(0, mesh.count * 3) ?? []),
++    surfaces: Array.from(mesh.geometry.getAttribute('aEffectSurface')?.array.slice(0, mesh.count * 3) ?? []),
++    fragments: Array.from(mesh.geometry.getAttribute('aFragmentMetal')?.array.slice(0, mesh.count) ?? []),
++  }));
++}
++
++describe('directional authored rupture lifecycle', () => {
++  it('orients both hot surfaces in the camera plane while keeping exact birth and moving-cut roots', () => {
++    const camera = new PerspectiveCamera(60, 1.6, .35, 1000);
++    camera.position.set(0, 15, 35); camera.lookAt(0, 10, 0); camera.rotateZ(.41); camera.updateMatrixWorld(true);
++    const cameraNormal = new Vector3(0, 0, 1).applyQuaternion(camera.quaternion);
++    for (const direction of [new Vector3(1, 0, 0), new Vector3(.4, .3, -.8660254037844386), cameraNormal.clone()]) {
++      const view = new GalacticEffectsView(), unit = direction.clone().normalize();
++      try {
++        const birth = { ...event, surfaceNormal: direction.clone().multiplyScalar(9) };
++        const before = JSON.stringify(birth);
++        view.emitCrash(birth); view.update(4, camera);
++        const born = plates(view);
++        expect(born.map(p => p.kind)).toEqual([6]);
++        expect(born[0]!.position.distanceTo(event.position)).toBeLessThan(1e-5);
++        const moved = { position: new Vector3(2, 11, -3), direction };
++        view.syncWreckRupture(0, 3, moved); view.update(4.1, camera);
++        const records = plates(view), hot = records.filter(p => p.kind === 6 || p.kind === 7);
++        expect(hot).toHaveLength(2);
++        expect(records.map(p => p.kind)).toEqual([8, 8, 6, 7]);
++        const projected = unit.clone().addScaledVector(cameraNormal, -unit.dot(cameraNormal));
++        for (const plate of hot) {
++          expect(plate.matrix.every(Number.isFinite)).toBe(true);
++          expect(Math.abs(plate.normal.dot(cameraNormal))).toBeGreaterThan(.99999);
++          if (projected.lengthSq() > 1e-8) expect(plate.x.dot(projected.clone().normalize())).toBeGreaterThan(.99999);
++          const expected = moved.position.clone().addScaledVector(unit, plate.kind === 6 ? 0 : .6);
++          expect(plate.position.distanceTo(expected)).toBeLessThan(1e-5);
++        }
++        const frozen = visibleState(view);
++        view.syncWreckRupture(0, 3, moved); view.update(4.1, camera);
++        expect(visibleState(view)).toEqual(frozen);
++        expect(JSON.stringify(birth)).toBe(before);
++        const material = view.explosionPlates.material as MeshBasicMaterial;
++        expect(material.transparent).toBe(true); expect(material.depthTest).toBe(true); expect(material.depthWrite).toBe(false);
++      } finally { view.dispose(); }
++    }
++  });
++
++  it('keeps ownership and original expiry through sync, ring wrap and unrelated effects', () => {
++    const view = new GalacticEffectsView();
++    const resources = view.children.map(child => { const mesh = child as InstancedMesh;
++      return [mesh, mesh.geometry, mesh.material, mesh.instanceMatrix, mesh.instanceColor]; });
++    try {
++      expect(resources).toHaveLength(GALACTIC_EFFECT_DRAW_CALL_BUDGET);
++      for (let owner = 0; owner < 5; owner++) view.emitCrash({ ...event, wreckOwner: owner, position: { x: owner * 40, y: 10, z: 0 } });
++      view.update(4.1); const wrapped = visibleState(view);
++      view.syncWreckRupture(0, 3, { position: { x: 900, y: 900, z: 900 }, direction: { x: 0, y: 1, z: 0 } });
++      view.update(4.1); expect(visibleState(view)).toEqual(wrapped);
++      view.emitCrash({ ...event, time: 4.1, style: 'energy', position: { x: -200, y: 8, z: 0 } });
++      view.emitWreckGroundContact(4.1, { x: -250, y: 0, z: 0 }, { x: 0, y: 0, z: 1 });
++      view.update(4.2);
++      const unrelated = plates(view).filter(p => p.kind < 6).map(p => ({ kind: p.kind, opacity: p.opacity, matrix: p.matrix }));
++      expect(unrelated.length).toBeGreaterThan(0);
++      expect(plates(view).some(p => p.kind >= 6 && p.position.x > 155)).toBe(true);
++      view.syncWreckRupture(4, 999, { position: { x: 900, y: 900, z: 900 }, direction: { x: 1, y: 0, z: 0 } });
++      view.update(4.2);
++      expect(plates(view).filter(p => p.kind < 6).map(p => ({ kind: p.kind, opacity: p.opacity, matrix: p.matrix }))).toEqual(unrelated);
++      expect(plates(view).some(p => p.kind >= 6 && p.position.x > 155)).toBe(false);
++      for (const time of [5, 6, 6.226]) {
++        view.syncWreckRupture(3, 3, { position: { x: 120, y: 3, z: 2 }, direction: { x: 0, y: 0, z: 1 } });
++        view.update(time);
++      }
++      expect(plates(view).filter(p => p.kind >= 6)).toHaveLength(0);
++      view.clearEffects(); view.update(7);
++      expect(view.explosionPlates.count).toBe(0); expect(view.crashDebris.count).toBe(0);
++      expect(view.children.map(child => { const mesh = child as InstancedMesh;
++        return [mesh, mesh.geometry, mesh.material, mesh.instanceMatrix, mesh.instanceColor]; })).toEqual(resources);
++    } finally { view.dispose(); }
++  });
++
++  it('normalizes direction and preserves the complete generic fallback for malformed normals', () => {
++    for (const invalid of [{ x: 0, y: 0, z: 0 }, { x: NaN, y: 0, z: 1 }, { x: 1, y: Infinity, z: 0 }] satisfies GalacticPoint[]) {
++      const fallback = new GalacticEffectsView(), candidate = new GalacticEffectsView();
++      try {
++        fallback.emitCrash({ ...event, surfaceNormal: undefined }); candidate.emitCrash({ ...event, surfaceNormal: invalid });
++        for (const time of [4, 4.08, 4.3, 5.1, 6.3]) {
++          fallback.update(time); candidate.update(time); expect(visibleState(candidate)).toEqual(visibleState(fallback));
++        }
++      } finally { fallback.dispose(); candidate.dispose(); }
++    }
++    const a = new GalacticEffectsView(), b = new GalacticEffectsView();
++    try {
++      a.emitCrash({ ...event, surfaceNormal: { x: .8, y: .6, z: 0 } });
++      b.emitCrash({ ...event, surfaceNormal: { x: 8, y: 6, z: 0 } });
++      for (const time of [4, 4.1, 5.1]) { a.update(time); b.update(time); expect(visibleState(a)).toEqual(visibleState(b)); }
++    } finally { a.dispose(); b.dispose(); }
++  });
++});

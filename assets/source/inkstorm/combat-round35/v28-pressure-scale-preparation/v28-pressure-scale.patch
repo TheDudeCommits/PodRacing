@@ -1,0 +1,237 @@
+diff --git a/src/render/galactic/GalacticEffectsView.ts b/src/render/galactic/GalacticEffectsView.ts
+--- a/src/render/galactic/GalacticEffectsView.ts
++++ b/src/render/galactic/GalacticEffectsView.ts
+@@ -26,7 +26,7 @@
+   TubeGeometry,
+   Vector3,
+ } from 'three';
+-import { RUPTURE_ATLAS_GLSL, RUPTURE_FLAME_ATLAS, RuptureFlameAtlas, type RuptureAtlasOptions } from './RuptureFlameAtlas';
++import { RUPTURE_ATLAS_GLSL, RUPTURE_FLAME_ATLAS, RuptureFlameAtlas, ruptureArtworkScale, type RuptureAtlasOptions } from './RuptureFlameAtlas';
+ import type { WreckGroundFootprint } from '../combat/WreckGroundContact';
+ import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
+ import { CEL_POST_EXCLUDE_USER_DATA_KEY } from '../materials/InvertedHullOutline';
+@@ -968,7 +968,11 @@
+         // Stratified sectors prevent a thin rising column when the source
+         // normal points upward. Every fragment remains in its outward half-space.
+         const cone = .42 + hash01(seed + 16) * .58;
+-        const azimuth = (fragment % 6 + .15 + hash01(seed + 17) * .7) * Math.PI / 3;
++        // Leaders1/7/13 previously shared sector1, hiding their silhouette
++        // punctuation in one lane. Keep satellites unchanged; place the three
++        // leaders in separate outward sectors of the same source-normal cone.
++        const sector = fragment % 6 === 1 ? Math.floor(fragment / 6) * 2 : fragment % 6;
++        const azimuth = (sector + .15 + hash01(seed + 17) * .7) * Math.PI / 3;
+         this.ruptureEjection.set(Math.sin(cone) * Math.cos(azimuth), Math.sin(cone) * Math.sin(azimuth), Math.cos(cone))
+           .applyQuaternion(this.ruptureRotation);
+       }
+@@ -1015,7 +1019,7 @@
+       if (authoredSurface && !spark) {
+         // Three casing plates carry the silhouette; smaller satellites reveal
+         // the direction without making every fragment the same black block.
+-        slot.scale = (fragment % 6 === 1 ? .91 + hash01(seed + 10) * .16
++        slot.scale = (fragment % 6 === 1 ? (.91 + hash01(seed + 10) * .16) * 1.15
+           : .27 + hash01(seed + 10) * .28) * Math.sqrt(severity);
+       }
+       if (ember) {
+@@ -1704,7 +1708,10 @@
+         }
+         if (slot.authoredSurface && slot.contactLayer >= 0) {
+           const smoke = slot.contactLayer > 1, flash = slot.contactLayer === 0;
+-          const size = slot.scale * (smoke ? .74 + progress * .62 : flash ? .78 + progress * .22 : .90 + Math.sin(age * 19) * .05);
++          const opticalScale = smoke ? 1 : ruptureArtworkScale(flash, age);
++          // Enlarge the existing plate/cull volume together. Changing only UV
++          // scale would clip the artwork against the previous quad boundary.
++          const size = slot.scale * (smoke ? .74 + progress * .62 : flash ? .78 + progress * .22 : .90 + Math.sin(age * 19) * .05) * opticalScale;
+           const lift = smoke ? size * (slot.contactLayer === 2 ? .46 : .72) + progress * 1.2 : 0;
+           const x = slot.x + slot.vx * age, y = slot.y + lift, z = slot.z + slot.vz * age;
+           if (!this.isVisible(x, y, z, size * 1.9, EFFECT_VISIBILITY_DISTANCE.crashes)) continue;
+@@ -1726,7 +1733,7 @@
+           // Authored branches consume actual event age, so a moving root cannot
+           // restart the pressure/fire progression. Legacy seed semantics stay unchanged.
+           const severity = slot.scale / (flash ? RUPTURE_FLASH_SCALE : 2.45);
+-          const pixelsPerWorld = RUPTURE_FLAME_ATLAS.pixelsPerWorldAtUnitSeverity / severity;
++          const pixelsPerWorld = RUPTURE_FLAME_ATLAS.pixelsPerWorldAtUnitSeverity / (severity * opticalScale);
+           this.writeEffectSurface(plateCount, smoke ? (slot.contactLayer === 2 ? 8 : 9) : flash ? 6 : 7, opacity, age,
+             smoke ? 0 : size * pixelsPerWorld,
+             smoke ? 0 : size * (flash ? .82 : .70) * pixelsPerWorld);
+diff --git a/src/render/galactic/RuptureFlameAtlas.ts b/src/render/galactic/RuptureFlameAtlas.ts
+--- a/src/render/galactic/RuptureFlameAtlas.ts
++++ b/src/render/galactic/RuptureFlameAtlas.ts
+@@ -4,8 +4,9 @@
+ export const RUPTURE_FLAME_ATLAS = {
+   sha256: 'f14657a3388bf9618d0206806c7b9c54856bd7f54c98596ea1790d85c97dd4c5',
+   width: 1254, height: 1254,
+-  // At severity2 one source pixel spans1/120m. The same scale applies to all
+-  // four drawings despite their unequal rectangles and existing plate pulses.
++  // Base sampling scale: at severity2 one source pixel spans1/120m, before
++  // the authored pressure/fire optical envelope below. Original pixels/roots
++  // remain immutable; the three fire drawings share the same event-age scale.
+   pixelsPerWorldAtUnitSeverity: 240,
+   frames: [
+     { rect: [245, 126, 619, 539], root: [266, 349] },
+@@ -14,6 +15,14 @@
+     { rect: [860, 814, 1201, 1117], root: [889, 969] },
+   ],
+ } as const;
++
++/** Optical extent only; pressure/fire clocks and roots stay in the FX owner.
++ * The larger short pressure gives way to a smaller lingering burn. */
++export function ruptureArtworkScale(pressure: boolean, age: number): number {
++  if (pressure) return 1.8;
++  const t = Number.isFinite(age) ? Math.max(0, Math.min(1, age / .60)) : 0;
++  return 1.6 - .45 * t * t * (3 - 2 * t);
++}
+ 
+ export interface RuptureAtlasOptions {
+   readonly url: string;
+diff --git a/tests/render/RuptureAtlasIntegration.test.ts b/tests/render/RuptureAtlasIntegration.test.ts
+--- a/tests/render/RuptureAtlasIntegration.test.ts
++++ b/tests/render/RuptureAtlasIntegration.test.ts
+@@ -1,7 +1,7 @@
+ import { Matrix4, MeshBasicMaterial, PerspectiveCamera, ShaderLib, Texture, UniformsUtils, Vector3 } from 'three';
+ import { describe, expect, it } from 'vitest';
+ import { GalacticEffectsView } from '../../src/render/galactic/GalacticEffectsView';
+-import { type RuptureAtlasOptions } from '../../src/render/galactic/RuptureFlameAtlas';
++import { ruptureArtworkScale, type RuptureAtlasOptions } from '../../src/render/galactic/RuptureFlameAtlas';
+ 
+ function pendingTexture() {
+   const texture = new Texture({ width: 1254, height: 1254 } as HTMLImageElement);
+@@ -41,7 +41,7 @@
+     } finally { trial.dispose(); fallback.dispose(); }
+   });
+ 
+-  it('maps all four measured roots to the same plate center with shared pixels/world despite unequal rectangles and pulse/stretch', () => {
++  it('maps all four measured roots to the same plate center with one animated optical scale despite unequal rectangles and pulse/stretch', () => {
+     const view = new GalacticEffectsView(), camera = new PerspectiveCamera();
+     camera.position.set(15, 18, 30); camera.lookAt(0, 8, 0); camera.updateMatrixWorld();
+     const matrix = new Matrix4(), axis = new Vector3();
+@@ -56,7 +56,9 @@
+           view.explosionPlates.getMatrixAt(i, matrix);
+           const metresPerPixelX = axis.setFromMatrixColumn(matrix, 0).length() / span.getX(i);
+           const metresPerPixelY = axis.setFromMatrixColumn(matrix, 1).length() / span.getY(i);
+-          expect(metresPerPixelX).toBeCloseTo(1 / 120, 7); expect(metresPerPixelY).toBeCloseTo(1 / 120, 7);
++          const fireAge = kind.getX(i) === 6 ? age : age - .065;
++          const scale = ruptureArtworkScale(kind.getX(i) === 6, fireAge);
++          expect(metresPerPixelX).toBeCloseTo(scale / 120, 7); expect(metresPerPixelY).toBeCloseTo(scale / 120, 7);
+ 
+         }
+       }
+diff --git a/tests/render/RuptureAtlasPixels.test.ts b/tests/render/RuptureAtlasPixels.test.ts
+--- a/tests/render/RuptureAtlasPixels.test.ts
++++ b/tests/render/RuptureAtlasPixels.test.ts
+@@ -44,7 +44,7 @@
+ }
+ 
+ describe('actual generated PNG sampling authority', () => {
+-  it('isolates every meaningful alpha pixel, preserves hot witnesses and fits all artwork within existing hot plate/ground envelopes', () => {
++  it('isolates every meaningful alpha pixel, preserves hot witnesses and fits all artwork within the hot quads without borrowing the generic ground clamp', () => {
+     const rgba = decodeSource(), frames = RUPTURE_FLAME_ATLAS.frames;
+     const counts = [0, 0, 0, 0], extrema = frames.map(() => ({ x: 0, y: 0, radius: 0, borderAlpha: 0 }));
+     let outside = 0, overlaps = 0, imageBorder = 0;
+@@ -75,8 +75,10 @@
+       const halfX = (i === 0 ? 3.6 * .78 : 2.45 * .85) * 240;
+       const halfY = halfX * (i === 0 ? .82 : .70);
+       expect(e.x).toBeLessThan(halfX - 1); expect(e.y).toBeLessThan(halfY - 1);
+-      // Existing source-ground hot-volume clearance .64*3.6 per severity.
+-      expect(e.radius / 240).toBeLessThan(3.6 * .64);
++      // Authored roots do not use the generic .64*3.6 birth ground clamp.
++      // Optical growth scales quad and culling sphere together, so normalized
++      // containment is unchanged. Natural terrain/depth occlusion is allowed.
++      expect(e.radius).toBeLessThan(halfX * 1.9 - 1);
+     }
+   });
+ });
+diff --git a/tests/render/RupturePressureScale.test.ts b/tests/render/RupturePressureScale.test.ts
+new file mode 100644
+--- /dev/null
++++ b/tests/render/RupturePressureScale.test.ts
+@@ -0,0 +1,90 @@
++import { Matrix4, MeshBasicMaterial, Vector3 } from 'three';
++import { describe, expect, it } from 'vitest';
++import { GalacticEffectsView } from '../../src/render/galactic/GalacticEffectsView';
++
++const birth = Object.freeze({ type: 'crash' as const, time: 4,
++  position: Object.freeze({ x: 0, y: 8, z: 0 }), groundY: -100,
++  surfaceNormal: Object.freeze({ x: 0, y: 0, z: 1 }), severity: 2,
++  style: 'redline' as const, wreckOwner: 0, wreckSequence: 1 });
++
++function hot(view: GalacticEffectsView) {
++  const matrix = new Matrix4(), kinds = view.explosionPlates.geometry.getAttribute('aEffectSurface');
++  const spans = view.explosionPlates.geometry.getAttribute('aRuptureAtlasSpan');
++  return Array.from({ length: view.explosionPlates.count }, (_, index) => {
++    view.explosionPlates.getMatrixAt(index, matrix);
++    const size = new Vector3().setFromMatrixScale(matrix);
++    return { kind: kinds.getX(index), age: kinds.getZ(index), size,
++      position: new Vector3().setFromMatrixPosition(matrix),
++      metresPerPixel: size.x / spans.getX(index),
++    };
++  }).filter(row => row.kind === 6 || row.kind === 7);
++}
++
++describe('authored pressure size and distinct casing leaders', () => {
++  it('makes pressure stronger than sustained fire, then contracts without stretching phase clocks', () => {
++    const view = new GalacticEffectsView();
++    try {
++      view.emitCrash(birth); view.update(4);
++      const pressure = hot(view)[0]!;
++      expect(pressure.kind).toBe(6);
++      expect(pressure.metresPerPixel).toBeCloseTo(1.8 / 120, 7);
++      view.update(4.065);
++      const fire = hot(view).find(row => row.kind === 7)!;
++      expect(fire.metresPerPixel).toBeCloseTo(1.6 / 120, 7);
++      expect(pressure.size.x).toBeGreaterThan(fire.size.x * 1.35);
++      view.update(4.084); expect(hot(view).some(row => row.kind === 6)).toBe(true);
++      view.update(4.086); expect(hot(view).some(row => row.kind === 6)).toBe(false);
++      view.update(4.665);
++      const lingering = hot(view)[0]!;
++      expect(lingering.kind).toBe(7);
++      expect(lingering.metresPerPixel).toBeCloseTo(1.15 / 120, 7);
++      expect(fire.metresPerPixel / lingering.metresPerPixel).toBeGreaterThan(1.38);
++      expect(lingering.age).toBeCloseTo(.6, 7);
++      view.update(6.114); expect(hot(view).map(row => row.kind)).toEqual([7]);
++      view.update(6.116); expect(hot(view)).toEqual([]);
++      view.update(6.226); expect(view.explosionPlates.count).toBe(0);
++      expect(view.crashDebris.count).toBe(0); expect(view.children).toHaveLength(8);
++    } finally { view.dispose(); }
++  });
++
++  it('keeps a low authored root attached instead of borrowing the generic ground lift', () => {
++    const view = new GalacticEffectsView();
++    const event = { ...birth, position: { x: 2, y: -4, z: 5 }, groundY: 3 };
++    const saved = JSON.stringify(event);
++    try {
++      view.emitCrash(event); view.update(4);
++      expect(hot(view)[0]!.position.toArray()).toEqual([2, -4, 5]);
++      view.syncWreckRupture(0, 1, { position: { x: 7, y: -6, z: 11 }, direction: { x: 0, y: 0, z: 2 } });
++      view.update(4.08);
++      const rows = hot(view);
++      expect(rows).toHaveLength(2);
++      expect(rows.find(row => row.kind === 6)!.position.toArray()).toEqual([7, -6, 11]);
++      expect(rows.find(row => row.kind === 7)!.position.distanceTo(new Vector3(7, -6, 11.6))).toBeLessThan(1e-5);
++      const material = view.explosionPlates.material as MeshBasicMaterial;
++      expect(material.depthTest).toBe(true); expect(material.depthWrite).toBe(false);
++      expect(JSON.stringify(event)).toBe(saved);
++      // This allows real occlusion; it does not assert that buried artwork is visible.
++    } finally { view.dispose(); }
++  });
++
++  it('separates the three large leaders into different outward lanes without adding fragments', () => {
++    const view = new GalacticEffectsView(), matrix = new Matrix4();
++    try {
++      view.emitCrash(birth); view.update(4);
++      const metal = view.crashDebris.geometry.getAttribute('aFragmentMetal');
++      const leaders: Vector3[] = [];
++      for (let index = 0; index < view.crashDebris.count; index++) {
++        view.crashDebris.getMatrixAt(index, matrix);
++        if (metal.getX(index) !== 1 || new Vector3().setFromMatrixScale(matrix).x <= 1.45) continue;
++        const p = new Vector3().setFromMatrixPosition(matrix).sub(birth.position);
++        expect(p.z).toBeGreaterThan(0); // still the real source-normal half-space
++        leaders.push(p.setZ(0).normalize());
++      }
++      expect(leaders).toHaveLength(3);
++      for (let a = 0; a < leaders.length; a++) for (let b = a + 1; b < leaders.length; b++) {
++        expect(leaders[a]!.dot(leaders[b]!)).toBeLessThan(Math.cos(70 * Math.PI / 180));
++      }
++      expect(view.crashDebris.count).toBe(18);
++    } finally { view.dispose(); }
++  });
++});

@@ -1,0 +1,65 @@
+{
+  "absentSignalTriangles": 2360,
+  "boundsGltf": [
+    [
+      -52.0,
+      52.0
+    ],
+    [
+      -25.0,
+      61.45000076293945
+    ],
+    [
+      -7.0,
+      7.0
+    ]
+  ],
+  "clippedOpenCorridorMinimumY": 39.66999816894531,
+  "matchedRetainedTriangles": 3940,
+  "maximumMatchedPositionDelta": 0.0,
+  "nativeAdditionTriangles": 2560,
+  "nativeFormats": {
+    "COLOR_0": {
+      "componentType": 5126,
+      "normalized": null,
+      "type": "VEC3"
+    },
+    "NORMAL": {
+      "componentType": 5126,
+      "normalized": null,
+      "type": "VEC3"
+    },
+    "POSITION": {
+      "componentType": 5126,
+      "normalized": null,
+      "type": "VEC3"
+    }
+  },
+  "nativeInputPreserved": true,
+  "nativePath": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/foundry-service-round33/v1/foundry-service-gantry-v1-native.glb",
+  "nativeRetainedAttributes": {
+    "COLOR_0": {
+      "differentCorners": 11820,
+      "exact": false,
+      "maximumComponentDelta": 0.003992617130279541
+    },
+    "NORMAL": {
+      "differentCorners": 580,
+      "exact": false,
+      "maximumComponentDelta": 0.00029999471735209227
+    },
+    "POSITION": {
+      "differentCorners": 0,
+      "exact": true,
+      "maximumComponentDelta": 0.0
+    }
+  },
+  "nativeRetainedAttributesExact": false,
+  "nativeSha256": "41f52534400704655d551e4d1feabae61d6102506d2ed2496938e1aeaf48c01c",
+  "outputPath": null,
+  "packerSha256": "3465396693e6bd5572afa13dd80e37e4cce585d7abd4e9056472900a84410854",
+  "positionMatchingTolerance": 2e-05,
+  "scope": "Source-only exact retained attribute check/repair; no Blender, runtime install, render or art acceptance.",
+  "sourceSha256": "3d0cd999daf52b82ac0232c7316a5e4072c80bd83982f83cbaf4a1dcde11e862",
+  "status": "native-retained-attribute-drift"
+}

@@ -1,0 +1,1163 @@
+{
+  "status": "PASS",
+  "scope": "Actual WebGL2 GPU rendering of unchanged production material shaders on flat diagnostic geometry using actual exported COLOR_0 values and real machinery texture. Controlled uniforms; not in-world art, sun-shadow, or performance acceptance.",
+  "gpu": {
+    "vendor": "Google Inc. (Apple)",
+    "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M4, Unspecified Version)"
+  },
+  "materialSha256": "bf63c30c6c1e273275389e3468866ceb3dd9864ca5ef32fc091e8f66fdbf7d3a",
+  "checks": [
+    {
+      "name": "All exported muted blues regain strong direct sun response",
+      "pass": true,
+      "evidence": {
+        "colors": 1084,
+        "newMinimumRatio": 3.1791065292096223,
+        "oldMaximumRatio": 1.22890023905007
+      }
+    },
+    {
+      "name": "Every exported true cyan color keeps the original lit/shaded emission",
+      "pass": true,
+      "evidence": {
+        "colors": 166,
+        "maximumByteDifference": 0
+      }
+    },
+    {
+      "name": "Real machinery paint texture affects cobalt again",
+      "pass": true,
+      "evidence": {
+        "changedNewColors": 1084,
+        "colors": 1084,
+        "maximumNewByteDifference": 56,
+        "maximumOldByteDifference": 0
+      }
+    },
+    {
+      "name": "Unchanged workshop lights now affect cobalt paint",
+      "pass": true,
+      "evidence": {
+        "colors": 1084,
+        "minimumNewByteDifference": 10,
+        "maximumOldByteDifference": 0
+      }
+    },
+    {
+      "name": "Cyan remains excluded from added task diffuse",
+      "pass": true,
+      "evidence": {
+        "colors": 166
+      }
+    },
+    {
+      "name": "GPU has no shader or WebGL errors",
+      "pass": true,
+      "evidence": {
+        "errors": []
+      }
+    }
+  ],
+  "representatives": [
+    {
+      "name": "pit-complex cyan darkest",
+      "family": "pit-complex",
+      "label": "cyan",
+      "rgb": [
+        0.06599999964237213,
+        0.5741999745368958,
+        0.521399974822998
+      ],
+      "oldLit": [
+        15,
+        128,
+        116
+      ],
+      "oldShade": [
+        13,
+        105,
+        100
+      ],
+      "newLit": [
+        15,
+        128,
+        116
+      ],
+      "newShade": [
+        13,
+        105,
+        100
+      ],
+      "oldWear": [
+        15,
+        128,
+        116
+      ],
+      "newWear": [
+        15,
+        128,
+        116
+      ],
+      "oldTask": [
+        14,
+        115,
+        111
+      ],
+      "newTask": [
+        14,
+        115,
+        111
+      ]
+    },
+    {
+      "name": "pit-complex cyan brightest",
+      "family": "pit-complex",
+      "label": "cyan",
+      "rgb": [
+        0.09630213677883148,
+        0.8378285765647888,
+        0.7607868313789368
+      ],
+      "oldLit": [
+        21,
+        183,
+        167
+      ],
+      "oldShade": [
+        18,
+        150,
+        142
+      ],
+      "newLit": [
+        21,
+        183,
+        167
+      ],
+      "newShade": [
+        18,
+        150,
+        142
+      ],
+      "oldWear": [
+        21,
+        183,
+        167
+      ],
+      "newWear": [
+        21,
+        183,
+        167
+      ],
+      "oldTask": [
+        20,
+        168,
+        161
+      ],
+      "newTask": [
+        20,
+        168,
+        161
+      ]
+    },
+    {
+      "name": "pit-complex cobalt darkest",
+      "family": "pit-complex",
+      "label": "cobalt",
+      "rgb": [
+        0.0494999997317791,
+        0.11879999935626984,
+        0.19140000641345978
+      ],
+      "oldLit": [
+        12,
+        29,
+        47
+      ],
+      "oldShade": [
+        11,
+        24,
+        41
+      ],
+      "newLit": [
+        10,
+        23,
+        37
+      ],
+      "newShade": [
+        4,
+        5,
+        16
+      ],
+      "oldWear": [
+        12,
+        29,
+        47
+      ],
+      "newWear": [
+        64,
+        56,
+        56
+      ],
+      "oldTask": [
+        11,
+        24,
+        42
+      ],
+      "newTask": [
+        12,
+        20,
+        32
+      ]
+    },
+    {
+      "name": "pit-complex cobalt brightest",
+      "family": "pit-complex",
+      "label": "cobalt",
+      "rgb": [
+        0.0949999988079071,
+        0.20999999344348907,
+        0.3199999928474426
+      ],
+      "oldLit": [
+        22,
+        49,
+        75
+      ],
+      "oldShade": [
+        19,
+        41,
+        65
+      ],
+      "newLit": [
+        18,
+        39,
+        59
+      ],
+      "newShade": [
+        5,
+        8,
+        22
+      ],
+      "oldWear": [
+        22,
+        49,
+        75
+      ],
+      "newWear": [
+        67,
+        67,
+        74
+      ],
+      "oldTask": [
+        20,
+        43,
+        69
+      ],
+      "newTask": [
+        21,
+        34,
+        50
+      ]
+    },
+    {
+      "name": "pit-district cyan darkest",
+      "family": "pit-district",
+      "label": "cyan",
+      "rgb": [
+        0.06599999964237213,
+        0.5741999745368958,
+        0.521399974822998
+      ],
+      "oldLit": [
+        15,
+        128,
+        116
+      ],
+      "oldShade": [
+        13,
+        105,
+        100
+      ],
+      "newLit": [
+        15,
+        128,
+        116
+      ],
+      "newShade": [
+        13,
+        105,
+        100
+      ],
+      "oldWear": [
+        15,
+        128,
+        116
+      ],
+      "newWear": [
+        15,
+        128,
+        116
+      ],
+      "oldTask": [
+        14,
+        115,
+        111
+      ],
+      "newTask": [
+        14,
+        115,
+        111
+      ]
+    },
+    {
+      "name": "pit-district cyan brightest",
+      "family": "pit-district",
+      "label": "cyan",
+      "rgb": [
+        0.09615200012922287,
+        0.8365224003791809,
+        0.759600818157196
+      ],
+      "oldLit": [
+        22,
+        190,
+        173
+      ],
+      "oldShade": [
+        18,
+        155,
+        147
+      ],
+      "newLit": [
+        22,
+        190,
+        173
+      ],
+      "newShade": [
+        18,
+        155,
+        147
+      ],
+      "oldWear": [
+        22,
+        190,
+        173
+      ],
+      "newWear": [
+        22,
+        190,
+        173
+      ],
+      "oldTask": [
+        20,
+        167,
+        161
+      ],
+      "newTask": [
+        20,
+        167,
+        161
+      ]
+    },
+    {
+      "name": "pit-district cobalt darkest",
+      "family": "pit-district",
+      "label": "cobalt",
+      "rgb": [
+        0.038926877081394196,
+        0.08604888617992401,
+        0.13112211227416992
+      ],
+      "oldLit": [
+        9,
+        20,
+        30
+      ],
+      "oldShade": [
+        8,
+        17,
+        27
+      ],
+      "newLit": [
+        7,
+        16,
+        24
+      ],
+      "newShade": [
+        3,
+        4,
+        12
+      ],
+      "oldWear": [
+        9,
+        20,
+        30
+      ],
+      "newWear": [
+        62,
+        49,
+        43
+      ],
+      "oldTask": [
+        9,
+        18,
+        29
+      ],
+      "newTask": [
+        10,
+        15,
+        24
+      ]
+    },
+    {
+      "name": "pit-district cobalt brightest",
+      "family": "pit-district",
+      "label": "cobalt",
+      "rgb": [
+        0.0949999988079071,
+        0.20999999344348907,
+        0.3199999928474426
+      ],
+      "oldLit": [
+        22,
+        49,
+        75
+      ],
+      "oldShade": [
+        19,
+        41,
+        65
+      ],
+      "newLit": [
+        18,
+        39,
+        59
+      ],
+      "newShade": [
+        5,
+        8,
+        22
+      ],
+      "oldWear": [
+        22,
+        49,
+        75
+      ],
+      "newWear": [
+        67,
+        67,
+        74
+      ],
+      "oldTask": [
+        20,
+        43,
+        69
+      ],
+      "newTask": [
+        21,
+        34,
+        50
+      ]
+    },
+    {
+      "name": "foundry-gantry cyan darkest",
+      "family": "foundry-gantry",
+      "label": "cyan",
+      "rgb": [
+        0.06599999964237213,
+        0.5741999745368958,
+        0.521399974822998
+      ],
+      "oldLit": [
+        15,
+        128,
+        116
+      ],
+      "oldShade": [
+        13,
+        105,
+        100
+      ],
+      "newLit": [
+        15,
+        128,
+        116
+      ],
+      "newShade": [
+        13,
+        105,
+        100
+      ],
+      "oldWear": [
+        15,
+        128,
+        116
+      ],
+      "newWear": [
+        15,
+        128,
+        116
+      ],
+      "oldTask": [
+        14,
+        115,
+        111
+      ],
+      "newTask": [
+        14,
+        115,
+        111
+      ]
+    },
+    {
+      "name": "foundry-gantry cyan brightest",
+      "family": "foundry-gantry",
+      "label": "cyan",
+      "rgb": [
+        0.10000000149011612,
+        0.8700000047683716,
+        0.7900000214576721
+      ],
+      "oldLit": [
+        23,
+        202,
+        183
+      ],
+      "oldShade": [
+        20,
+        164,
+        156
+      ],
+      "newLit": [
+        23,
+        202,
+        183
+      ],
+      "newShade": [
+        20,
+        164,
+        156
+      ],
+      "oldWear": [
+        23,
+        202,
+        183
+      ],
+      "newWear": [
+        23,
+        202,
+        183
+      ],
+      "oldTask": [
+        21,
+        174,
+        167
+      ],
+      "newTask": [
+        21,
+        174,
+        167
+      ]
+    },
+    {
+      "name": "foundry-gantry cobalt darkest",
+      "family": "foundry-gantry",
+      "label": "cobalt",
+      "rgb": [
+        0.0494999997317791,
+        0.11879999935626984,
+        0.19140000641345978
+      ],
+      "oldLit": [
+        12,
+        29,
+        47
+      ],
+      "oldShade": [
+        11,
+        24,
+        41
+      ],
+      "newLit": [
+        10,
+        23,
+        37
+      ],
+      "newShade": [
+        4,
+        5,
+        16
+      ],
+      "oldWear": [
+        12,
+        29,
+        47
+      ],
+      "newWear": [
+        64,
+        56,
+        56
+      ],
+      "oldTask": [
+        11,
+        24,
+        42
+      ],
+      "newTask": [
+        12,
+        20,
+        32
+      ]
+    },
+    {
+      "name": "foundry-gantry cobalt brightest",
+      "family": "foundry-gantry",
+      "label": "cobalt",
+      "rgb": [
+        0.07231725007295609,
+        0.17356139421463013,
+        0.2796266973018646
+      ],
+      "oldLit": [
+        16,
+        39,
+        63
+      ],
+      "oldShade": [
+        14,
+        32,
+        54
+      ],
+      "newLit": [
+        13,
+        31,
+        49
+      ],
+      "newShade": [
+        4,
+        6,
+        19
+      ],
+      "oldWear": [
+        16,
+        39,
+        63
+      ],
+      "newWear": [
+        67,
+        63,
+        68
+      ],
+      "oldTask": [
+        15,
+        35,
+        60
+      ],
+      "newTask": [
+        17,
+        28,
+        44
+      ]
+    },
+    {
+      "name": "pipe-bank cyan darkest",
+      "family": "pipe-bank",
+      "label": "cyan",
+      "rgb": [
+        0.06599999964237213,
+        0.5741999745368958,
+        0.521399974822998
+      ],
+      "oldLit": [
+        15,
+        128,
+        116
+      ],
+      "oldShade": [
+        13,
+        105,
+        100
+      ],
+      "newLit": [
+        15,
+        128,
+        116
+      ],
+      "newShade": [
+        13,
+        105,
+        100
+      ],
+      "oldWear": [
+        15,
+        128,
+        116
+      ],
+      "newWear": [
+        15,
+        128,
+        116
+      ],
+      "oldTask": [
+        14,
+        115,
+        111
+      ],
+      "newTask": [
+        14,
+        115,
+        111
+      ]
+    },
+    {
+      "name": "pipe-bank cyan brightest",
+      "family": "pipe-bank",
+      "label": "cyan",
+      "rgb": [
+        0.0964270755648613,
+        0.8389155268669128,
+        0.7617738842964172
+      ],
+      "oldLit": [
+        21,
+        184,
+        167
+      ],
+      "oldShade": [
+        18,
+        150,
+        143
+      ],
+      "newLit": [
+        21,
+        184,
+        167
+      ],
+      "newShade": [
+        18,
+        150,
+        143
+      ],
+      "oldWear": [
+        21,
+        184,
+        167
+      ],
+      "newWear": [
+        21,
+        184,
+        167
+      ],
+      "oldTask": [
+        20,
+        168,
+        161
+      ],
+      "newTask": [
+        20,
+        168,
+        161
+      ]
+    },
+    {
+      "name": "pipe-bank cobalt darkest",
+      "family": "pipe-bank",
+      "label": "cobalt",
+      "rgb": [
+        0.0494999997317791,
+        0.11879999935626984,
+        0.19140000641345978
+      ],
+      "oldLit": [
+        12,
+        29,
+        47
+      ],
+      "oldShade": [
+        11,
+        24,
+        41
+      ],
+      "newLit": [
+        10,
+        23,
+        37
+      ],
+      "newShade": [
+        4,
+        5,
+        16
+      ],
+      "oldWear": [
+        12,
+        29,
+        47
+      ],
+      "newWear": [
+        64,
+        56,
+        56
+      ],
+      "oldTask": [
+        11,
+        24,
+        42
+      ],
+      "newTask": [
+        12,
+        20,
+        32
+      ]
+    },
+    {
+      "name": "pipe-bank cobalt brightest",
+      "family": "pipe-bank",
+      "label": "cobalt",
+      "rgb": [
+        0.07237448543310165,
+        0.17369875311851501,
+        0.27984800934791565
+      ],
+      "oldLit": [
+        16,
+        39,
+        63
+      ],
+      "oldShade": [
+        14,
+        32,
+        55
+      ],
+      "newLit": [
+        13,
+        31,
+        50
+      ],
+      "newShade": [
+        4,
+        6,
+        20
+      ],
+      "oldWear": [
+        16,
+        39,
+        63
+      ],
+      "newWear": [
+        61,
+        59,
+        64
+      ],
+      "oldTask": [
+        15,
+        35,
+        60
+      ],
+      "newTask": [
+        17,
+        28,
+        44
+      ]
+    },
+    {
+      "name": "finish-tower cyan darkest",
+      "family": "finish-tower",
+      "label": "cyan",
+      "rgb": [
+        0.10010000318288803,
+        0.600600004196167,
+        0.5698000192642212
+      ],
+      "oldLit": [
+        23,
+        140,
+        133
+      ],
+      "oldShade": [
+        20,
+        114,
+        114
+      ],
+      "newLit": [
+        23,
+        140,
+        133
+      ],
+      "newShade": [
+        20,
+        114,
+        114
+      ],
+      "oldWear": [
+        23,
+        140,
+        133
+      ],
+      "newWear": [
+        23,
+        140,
+        133
+      ],
+      "oldTask": [
+        21,
+        120,
+        121
+      ],
+      "newTask": [
+        21,
+        120,
+        121
+      ]
+    },
+    {
+      "name": "finish-tower cyan brightest",
+      "family": "finish-tower",
+      "label": "cyan",
+      "rgb": [
+        0.13519999384880066,
+        0.8112000226974487,
+        0.769599974155426
+      ],
+      "oldLit": [
+        31,
+        189,
+        179
+      ],
+      "oldShade": [
+        26,
+        154,
+        153
+      ],
+      "newLit": [
+        31,
+        189,
+        179
+      ],
+      "newShade": [
+        26,
+        154,
+        153
+      ],
+      "oldWear": [
+        31,
+        189,
+        179
+      ],
+      "newWear": [
+        31,
+        189,
+        179
+      ],
+      "oldTask": [
+        28,
+        162,
+        162
+      ],
+      "newTask": [
+        28,
+        162,
+        162
+      ]
+    },
+    {
+      "name": "finish-tower cobalt darkest",
+      "family": "finish-tower",
+      "label": "cobalt",
+      "rgb": [
+        0.050050001591444016,
+        0.12319999933242798,
+        0.24639999866485596
+      ],
+      "oldLit": [
+        11,
+        28,
+        56
+      ],
+      "oldShade": [
+        10,
+        23,
+        48
+      ],
+      "newLit": [
+        9,
+        22,
+        44
+      ],
+      "newShade": [
+        4,
+        5,
+        18
+      ],
+      "oldWear": [
+        11,
+        28,
+        56
+      ],
+      "newWear": [
+        59,
+        52,
+        60
+      ],
+      "oldTask": [
+        11,
+        25,
+        53
+      ],
+      "newTask": [
+        13,
+        21,
+        39
+      ]
+    },
+    {
+      "name": "finish-tower cobalt brightest",
+      "family": "finish-tower",
+      "label": "cobalt",
+      "rgb": [
+        0.06759999692440033,
+        0.1664000004529953,
+        0.3328000009059906
+      ],
+      "oldLit": [
+        15,
+        37,
+        75
+      ],
+      "oldShade": [
+        13,
+        31,
+        65
+      ],
+      "newLit": [
+        12,
+        29,
+        59
+      ],
+      "newShade": [
+        4,
+        6,
+        22
+      ],
+      "oldWear": [
+        15,
+        37,
+        75
+      ],
+      "newWear": [
+        54,
+        53,
+        69
+      ],
+      "oldTask": [
+        14,
+        34,
+        71
+      ],
+      "newTask": [
+        16,
+        27,
+        51
+      ]
+    },
+    {
+      "name": "refinery-stack cobalt darkest",
+      "family": "refinery-stack",
+      "label": "cobalt",
+      "rgb": [
+        0.06464915722608566,
+        0.11205852776765823,
+        0.18963751196861267
+      ],
+      "oldLit": [
+        15,
+        26,
+        44
+      ],
+      "oldShade": [
+        13,
+        22,
+        39
+      ],
+      "newLit": [
+        12,
+        20,
+        35
+      ],
+      "newShade": [
+        4,
+        5,
+        15
+      ],
+      "oldWear": [
+        15,
+        26,
+        44
+      ],
+      "newWear": [
+        57,
+        47,
+        49
+      ],
+      "oldTask": [
+        14,
+        23,
+        41
+      ],
+      "newTask": [
+        15,
+        18,
+        31
+      ]
+    },
+    {
+      "name": "refinery-stack cobalt brightest",
+      "family": "refinery-stack",
+      "label": "cobalt",
+      "rgb": [
+        0.08398852497339249,
+        0.14558009803295135,
+        0.24636632204055786
+      ],
+      "oldLit": [
+        19,
+        32,
+        55
+      ],
+      "oldShade": [
+        16,
+        27,
+        48
+      ],
+      "newLit": [
+        15,
+        25,
+        43
+      ],
+      "newShade": [
+        5,
+        6,
+        18
+      ],
+      "oldWear": [
+        19,
+        32,
+        55
+      ],
+      "newWear": [
+        63,
+        54,
+        58
+      ],
+      "oldTask": [
+        18,
+        30,
+        53
+      ],
+      "newTask": [
+        19,
+        24,
+        39
+      ]
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "scope": "V3 shared-court CPU stage; mesh-clear narrow variant retained, art declined; no runtime/public/browser/GPU changes",
+  "strictIsolatedTypescript": "passed",
+  "corridorProbes": 641400,
+  "corridorDelta": 0,
+  "flagshipPhysicalProbes": 65534,
+  "flagshipMeshChecks": 35,
+  "gulfBytesUnchanged": true,
+  "pitGlslExactlyUnchanged": true,
+  "rigidChangesOnlyY": true,
+  "nonflagshipV2FloatArraysUnchanged": true,
+  "sharedCourtFloor": -15.9098131740998,
+  "artAccepted": false,
+  "gpuSamplerRun": false,
+  "hashes": {
+    "PitPadField.ts": "2bdb69ec2aa3258b7ecc51b5d86d1f4076f7433ff0ebebcab7aa237f8eed57bb",
+    "round29-reference.ts": "0474e7d46be3c6ddbd81965d9d80463b1fd5029b9afaad08ce86357379a1b5a4",
+    "probe.ts": "f9a81c9afe8313f0a37f7e92db4162657e8fdb73a6dd088662a2477de003cfb3",
+    "receipt.json": "764f7a54c9b58e538fb0e3c9cc55e2182a1e4c686e25608c85375e71348dd25c",
+    "constraints.ts": "64a2378d665e1d3f84f2fd63dc4a7c16bb1b335280c29f8fa28eb61c3097ed0b",
+    "constraints.json": "7133d611045be3e74779e77d815a362ae1964a605d5f1cb6f792b5b6bc3ccb45",
+    "compare.mjs": "e33f4092b4d428eb5eb7687b1f8496a46457b13fdeefbe782fafa1fce09236ee",
+    "comparison.json": "610eb5be8396d4fb794c8d39169a2540d29120c3deb611e47b88a23cff897dbf",
+    "README.md": "c41ad73cce8b9816fe539620fcb7bc3842c40a0eb1fcdc64ee7a76909f511fdd",
+    "camera-inputs-pits.json": "1ee07865d3f0f4ab1dbc09d6ac9b6fffc2971d654ede817c4ce9315f62c44078",
+    "camera-inputs-districts.json": "d7802d7e8f02642cacf735f2f9029b33250d08d8f2ca5af314d8fa0931ad6922",
+    "old29-front-profiles.json": "0b351585849553c12e8cfba1432b7c3b969268b7e67491230a2df91fbde3ad1b"
+  }
+}

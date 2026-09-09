@@ -1,0 +1,130 @@
+{
+  "method": "CPU analytic vertex samples, exact LOD0 triangle connectivity; no GPU float emulation or native GPU readback",
+  "seed": 1229867859,
+  "courseSignature": "2dacfc90",
+  "patch": {
+    "halfWidthMetres": 20,
+    "stepMetres": 1,
+    "lod0CellMetres": 1.5
+  },
+  "captures": [
+    {
+      "name": "wreck",
+      "frame": 923,
+      "playerPosition": [
+        18600.13729363269,
+        -10.23725016521327,
+        14.655700420252787
+      ],
+      "cameraPosition": [
+        18629.958972609576,
+        -3.100592736849568,
+        38.2168825545736
+      ],
+      "samples": 1681,
+      "minMeshMinusContinuous": -0.06886707330527742,
+      "maxMeshMinusContinuous": 0.05538149241106005,
+      "maxBridgeDelta": 0,
+      "minGulfOffset": 0,
+      "maxGulfOffset": 0,
+      "minPitOffset": 0,
+      "maxPitOffset": 0,
+      "maxCameraChebyshev": 49.82167897688487,
+      "worstNegative": {
+        "x": 18596.13729363269,
+        "z": -4.344299579747213,
+        "height": -11.233239142654618,
+        "continuous": -11.16437206934934
+      },
+      "worstPositive": {
+        "x": 18599.13729363269,
+        "z": -1.3442995797472133,
+        "height": -13.258902603150604,
+        "continuous": -13.314284095561664
+      },
+      "shadow": {
+        "size": 512,
+        "casters": 6,
+        "candidates": 6,
+        "omitted": 0,
+        "triangles": 42845,
+        "drawCalls": 6,
+        "drawnTriangles": 42845,
+        "frames": 487,
+        "refreshes": 2,
+        "texelMetres": 0.10161527204192566,
+        "depthMetres": 48.793492245316884,
+        "cpuMs": 0.10000002384185791,
+        "maxCpuMs": 9.199999988079071,
+        "failure": null,
+        "skipped": null
+      },
+      "shadowWorldDepthBias": 0.05080763602096283,
+      "shadowNormalBias": 0.1524229080628885,
+      "baseAtPlayer": -12.806213494149818,
+      "renderFieldAtPlayer": -12.806213494149818,
+      "physicsAtPlayer": -12.806213494149818,
+      "bridgeAtPlayer": null,
+      "flatGroundVerticalShadowBiasEquivalent": 0.19095971474530585
+    },
+    {
+      "name": "restored",
+      "frame": 1145,
+      "playerPosition": [
+        18600.146944912514,
+        -10.398229480187938,
+        15.075286382043856
+      ],
+      "cameraPosition": [
+        18630.806274906736,
+        -4.568234844753643,
+        41.37773114793447
+      ],
+      "samples": 1681,
+      "minMeshMinusContinuous": -0.06062845814548368,
+      "maxMeshMinusContinuous": 0.0515673796240641,
+      "maxBridgeDelta": 0,
+      "minGulfOffset": 0,
+      "maxGulfOffset": 0,
+      "minPitOffset": 0,
+      "maxPitOffset": 0,
+      "maxCameraChebyshev": 50.65932999422148,
+      "worstNegative": {
+        "x": 18594.146944912514,
+        "z": -2.9247136179561437,
+        "height": -11.098811404609236,
+        "continuous": -11.038182946463753
+      },
+      "worstPositive": {
+        "x": 18600.146944912514,
+        "z": -2.9247136179561437,
+        "height": -13.07500292823368,
+        "continuous": -13.126570307857744
+      },
+      "shadow": {
+        "size": 512,
+        "casters": 6,
+        "candidates": 6,
+        "omitted": 0,
+        "triangles": 42845,
+        "drawCalls": 6,
+        "drawnTriangles": 42845,
+        "frames": 621,
+        "refreshes": 2,
+        "texelMetres": 0.0990350039864687,
+        "depthMetres": 47.087320359624755,
+        "cpuMs": 0,
+        "maxCpuMs": 9.199999988079071,
+        "failure": null,
+        "skipped": null
+      },
+      "shadowWorldDepthBias": 0.04951750199323435,
+      "shadowNormalBias": 0.14855250597970304,
+      "baseAtPlayer": -12.805717147615733,
+      "renderFieldAtPlayer": -12.805717147615733,
+      "physicsAtPlayer": -12.805717147615733,
+      "bridgeAtPlayer": null,
+      "flatGroundVerticalShadowBiasEquivalent": 0.18611076594129938
+    }
+  ]
+}

@@ -1,0 +1,97 @@
+{
+  "scope": "Decode/dimensions/channel/content checks for actual private emission-baked masters; no runtime or perceptual parity claim.",
+  "images": [
+    {
+      "owner": "body",
+      "channel": "color",
+      "path": "assets/source/inkstorm/blockrunner-round34/blockrunner-body-color-v1-20260908-paint-v2.png",
+      "bytes": 950861,
+      "sha256": "29e636635021b238b30a8e47be950ff99c8f46492c797e6f30093b2e5c5e88c2",
+      "size": [
+        2048,
+        2048
+      ],
+      "nonzeroPixels": 947281,
+      "nonzeroRGBMin": [
+        1,
+        1,
+        0
+      ],
+      "nonzeroRGBMax": [
+        219,
+        204,
+        175
+      ],
+      "channelContract": "sRGB base-color"
+    },
+    {
+      "owner": "body",
+      "channel": "roughness",
+      "path": "assets/source/inkstorm/blockrunner-round34/blockrunner-body-roughness-v1-20260908-paint-v2.png",
+      "bytes": 916085,
+      "sha256": "ab48a30a2aea89a0f5d4fffe449522264e6ab46a8a1038b65403caa74d5285cb",
+      "size": [
+        2048,
+        2048
+      ],
+      "nonzeroPixels": 947281,
+      "nonzeroRGBMin": [
+        1,
+        1,
+        1
+      ],
+      "nonzeroRGBMax": [
+        197,
+        197,
+        197
+      ],
+      "channelContract": "linear grayscale, G roughness"
+    },
+    {
+      "owner": "pilot",
+      "channel": "color",
+      "path": "assets/source/inkstorm/blockrunner-round34/blockrunner-pilot-color-v1-20260908-paint-v2.png",
+      "bytes": 214682,
+      "sha256": "dc30ff51712d874b50f654719cd0dfdd66e279ad3e24309212963b99878b6b6d",
+      "size": [
+        1024,
+        1024
+      ],
+      "nonzeroPixels": 757157,
+      "nonzeroRGBMin": [
+        4,
+        4,
+        3
+      ],
+      "nonzeroRGBMax": [
+        218,
+        203,
+        174
+      ],
+      "channelContract": "sRGB base-color"
+    },
+    {
+      "owner": "pilot",
+      "channel": "roughness",
+      "path": "assets/source/inkstorm/blockrunner-round34/blockrunner-pilot-roughness-v1-20260908-paint-v2.png",
+      "bytes": 303673,
+      "sha256": "64f79b48d3a4d82b64d69fda31da978d43e8973e910c5ae9375337ca3088fc14",
+      "size": [
+        1024,
+        1024
+      ],
+      "nonzeroPixels": 757157,
+      "nonzeroRGBMin": [
+        7,
+        7,
+        7
+      ],
+      "nonzeroRGBMax": [
+        225,
+        225,
+        225
+      ],
+      "channelContract": "linear grayscale, G roughness"
+    }
+  ]
+}

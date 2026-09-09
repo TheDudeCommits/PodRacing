@@ -1,0 +1,34 @@
+{
+  "version": 1,
+  "scope": "Actual private final-atlas package bytes. Runtime and fresh visual admission remain pending.",
+  "sourceReceipts": [
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/runtime-admission-preparation/packaged-atlas-v8-v1/blockrunner-hero-v1.package-receipt.json",
+      "sha256": "e64d2abf142853c7681178cd14588fa513f61a42ca3230962648006acbba0738"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/runtime-admission-preparation/packaged-atlas-v8-v1/blockrunner-rival-v1.package-receipt.json",
+      "sha256": "2926af3d822981d3629f5dce004943676c320d914fba28aad3493798904f1a4c"
+    }
+  ],
+  "packages": {
+    "hero": {
+      "publicUrl": "/assets/inkstorm/vehicles/blockrunner-hero-v1.glb",
+      "sha256": "ee744b122b3e2a009ef7a8f3a8c5c5848fe1503b13e4334e0fe8276ce5c44d8d",
+      "bytes": 4198472,
+      "triangles": 44028,
+      "bodyTriangles": 39900,
+      "pilotTriangles": 4128,
+      "draws": 5
+    },
+    "rival": {
+      "publicUrl": "/assets/inkstorm/vehicles/blockrunner-rival-v1.glb",
+      "sha256": "b680cea9dd832ca6c5af382fed5eeea57e4baf6b7d119f0f8bace3dfa6037cb9",
+      "bytes": 3341896,
+      "triangles": 29682,
+      "bodyTriangles": 25554,
+      "pilotTriangles": 4128,
+      "draws": 5
+    }
+  }
+}

@@ -1,0 +1,569 @@
+--- a/src/camera/CinematicCamera.ts
++++ b/src/camera/CinematicCamera.ts
+@@ -113,6 +113,8 @@
+   combatForward?: Vector3;
+   /** Authored moving failure point; a victim shot views its side of the craft. */
+   combatImpactPosition?: Vector3;
++  /** Optional active authored-engine cluster; full combatBounds still protect the lens. */
++  combatImpactFraming?: { readonly center: Vector3; readonly bounds: readonly Vector3[] };
+   /** Current displayed assembly radius, resolved from cached source bounds. */
+   combatRadius?: number;
+   /** Existing per-part source-box corners, already transformed into world space. */
+@@ -158,6 +160,8 @@
+   private combatFraming = false;
+   private readonly authoredCombatBack = new Vector3();
+   private hasAuthoredCombatBack = false;
++  private hasImpactCombatBack = false;
++  private readonly impactAzimuthCandidate = new Vector3();
+   private readonly desiredPosition = new Vector3();
+   private readonly desiredLookAt = new Vector3();
+   private readonly travelDirection = new Vector3();
+@@ -206,9 +210,11 @@
+     if (enabled) this.hasAuthoredCombatBack = false;
+   }
+ 
+-  /** Live wrecks need space for the full vehicle and its separating engines. */
++  /** Live victim wreck framing; optional authored impact clusters retain full lens safety. */
+   setCombatFraming(enabled: boolean): void {
+-    if (enabled && !this.combatFraming) this.hasAuthoredCombatBack = false;
++    if (enabled && !this.combatFraming) {
++      this.hasAuthoredCombatBack = false; this.hasImpactCombatBack = false;
++    }
+     this.combatFraming = enabled;
+   }
+ 
+@@ -250,7 +256,9 @@
+   }
+ 
+   snap(subject: CameraSubject): void {
+-    if (!this.combatFraming && !subject.wreckChase) this.hasAuthoredCombatBack = false;
++    if (!this.combatFraming && !subject.wreckChase) {
++      this.hasAuthoredCombatBack = false; this.hasImpactCombatBack = false;
++    }
+     this.lastSubjectPosition.copy(subject.position);
+     this.hasSubjectPosition = true;
+     const desired = this.getDesired(subject, 0);
+@@ -271,7 +279,9 @@
+   }
+ 
+   update(dt: number, time: number, subject: CameraSubject): void {
+-    if (!this.combatFraming && !subject.wreckChase) this.hasAuthoredCombatBack = false;
++    if (!this.combatFraming && !subject.wreckChase) {
++      this.hasAuthoredCombatBack = false; this.hasImpactCombatBack = false;
++    }
+     dt = MathUtils.clamp(Number.isFinite(dt) ? dt : 0, 0, 0.05);
+     this.orbitTime += dt;
+     if (this.hasSubjectPosition) {
+@@ -312,7 +322,8 @@
+       // at that intermediate angle. Safe endpoints alone do not protect a
+       // spring crossing the nearer engine as the parts open.
+       this.boundsBack.copy(this.camera.position).sub(this.lookPoint).normalize();
+-      const distance = this.boundsOffset.copy(this.camera.position).sub(subject.combatFocus!).dot(this.boundsBack);
++      const focus = this.impactFrame(subject)?.center ?? subject.combatFocus!;
++      const distance = this.boundsOffset.copy(this.camera.position).sub(focus).dot(this.boundsBack);
+       this.fitCombatBounds(subject, this.boundsBack, Math.max(0, distance));
+       this.camera.position.copy(this.desiredPosition);
+       this.lookPoint.copy(this.desiredLookAt);
+@@ -537,6 +548,18 @@
+     return true;
+   }
+ 
++  private impactFrame(subject: CameraSubject): CameraSubject['combatImpactFraming'] {
++    const frame = subject.combatImpactFraming;
++    if (subject.wreckRecovery || !frame || !this.hasCombatBounds(subject)
++      || !((this.combatFraming && this.mode === 'side') || (this.mode === 'chase' && subject.wreckChase))
++      || !Number.isFinite(frame.center.x + frame.center.y + frame.center.z)
++      || frame.bounds.length < 8 || frame.bounds.length > 32) return undefined;
++    for (const point of frame.bounds) {
++      if (!Number.isFinite(point.x + point.y + point.z)) return undefined;
++    }
++    return frame;
++  }
++
+   private combatDirection(subject: CameraSubject, forward: Vector3, right: Vector3): void {
+     if (subject.combatForward && subject.combatForward.lengthSq() > .001) {
+       forward.copy(subject.combatForward).setY(0).normalize();
+@@ -547,7 +570,8 @@
+     let side = .86, fore = -.5;
+     const impact = subject.combatImpactPosition;
+     const authored = !!impact && !!subject.combatFocus && Number.isFinite(impact.x + impact.y + impact.z);
+-    if (authored && this.hasAuthoredCombatBack) {
++    const impactFrame = this.impactFrame(subject);
++    if (authored && this.hasAuthoredCombatBack && (!impactFrame || this.hasImpactCombatBack)) {
+       // The controller's victim-cut rising edge owns this shot. Crossing the
+       // moving assembly centroid must not reverse its chosen tear-side azimuth.
+       this.boundsBack.copy(this.authoredCombatBack);
+@@ -564,6 +588,23 @@
+     }
+     this.boundsBack.copy(right).multiplyScalar(side).addScaledVector(forward, fore)
+       .addScaledVector(UP, .20).normalize();
++    if (authored && impactFrame) {
++      // Existing racer shadows cast toward (+.42, +.50) in world XZ. Select
++      // one modest 20-degree offset away from that direction, on the same
++      // tear side. Lock it for this identity: no orbit as the pieces settle.
++      const x = this.boundsBack.x, z = this.boundsBack.z;
++      let best = x * .42 + z * .50;
++      for (let sign = -1; sign <= 1; sign += 2) {
++        const angle = sign * Math.PI / 9;
++        const c = Math.cos(angle), sn = Math.sin(angle);
++        this.impactAzimuthCandidate.set(x * c + z * sn, this.boundsBack.y, z * c - x * sn);
++        const score = this.impactAzimuthCandidate.x * .42 + this.impactAzimuthCandidate.z * .50;
++        if (score < best && this.impactAzimuthCandidate.dot(right) * Math.sign(side) > .35) {
++          best = score; this.boundsBack.copy(this.impactAzimuthCandidate);
++        }
++      }
++      this.hasImpactCombatBack = true;
++    }
+     if (authored) {
+       this.authoredCombatBack.copy(this.boundsBack);
+       this.hasAuthoredCombatBack = true;
+@@ -571,7 +612,9 @@
+   }
+ 
+   private fitCombatBounds(subject: CameraSubject, direction: Vector3, minimumDistance = 0): void {
+-    const focus = subject.combatFocus!, points = subject.combatBounds!;
++    const impactFrame = this.impactFrame(subject);
++    const focus = impactFrame?.center ?? subject.combatFocus!;
++    const points = impactFrame?.bounds ?? subject.combatBounds!;
+     this.boundsBack.copy(direction);
+     if (this.boundsBack.lengthSq() < .001) this.boundsBack.set(0, .2, -1);
+     this.boundsBack.normalize();
+@@ -584,17 +627,43 @@
+       this.boundsRight.normalize();
+       this.boundsUp.crossVectors(this.boundsBack, this.boundsRight).normalize();
+       let distance = Math.max(2, minimumDistance);
++      let leftAim = -Infinity, rightAim = Infinity, upperAim = -Infinity, lowerAim = Infinity;
+       for (const point of points) {
+         this.boundsOffset.copy(point).sub(focus);
+         const x = this.boundsOffset.dot(this.boundsRight), y = this.boundsOffset.dot(this.boundsUp);
+         const z = this.boundsOffset.dot(this.boundsBack);
+-        // Exact perspective half-spaces: x in +/-.78 and y in [-.58,.70].
+-        // The .06 upward screen bias reserves caption space below the craft.
+-        distance = Math.max(distance, z + Math.abs(x) / (.78 * horizontal),
+-          (y + .70 * tangent * z) / (.64 * tangent),
+-          (-y + .58 * tangent * z) / (.64 * tangent), z + this.camera.near + .5);
++        if (impactFrame) {
++          // Solve the aim translation as well as distance. A world-AABB center
++          // leaves empty screen space above/beside a long banked casing. These
++          // interval endpoints retain x=+/-.74 and y=[-.58,.70] exactly.
++          leftAim = Math.max(leftAim, x + .74 * horizontal * z);
++          rightAim = Math.min(rightAim, x - .74 * horizontal * z);
++          upperAim = Math.max(upperAim, y + .70 * tangent * z);
++          lowerAim = Math.min(lowerAim, y - .58 * tangent * z);
++          distance = Math.max(distance, z + this.camera.near + .5);
++        } else {
++          // Exact legacy framing, including its fixed .06 upward screen bias.
++          distance = Math.max(distance, z + Math.abs(x) / (.78 * horizontal),
++            (y + .70 * tangent * z) / (.64 * tangent),
++            (-y + .58 * tangent * z) / (.64 * tangent), z + this.camera.near + .5);
++        }
++      }
++      if (impactFrame) {
++        distance = Math.max(distance, (leftAim - rightAim) / (1.48 * horizontal),
++          (upperAim - lowerAim) / (1.28 * tangent));
++        // The reframing permits rods offscreen, never through the lens. Every
++        // original full-assembly box must remain beyond the near-plane guard.
++        // Therefore the eye is outside every visible source box as well.
++        for (const point of subject.combatBounds!) {
++          const z = this.boundsOffset.copy(point).sub(focus).dot(this.boundsBack);
++          distance = Math.max(distance, z + this.camera.near + .5);
++        }
+       }
+       this.desiredLookAt.copy(focus).addScaledVector(this.boundsUp, -.06 * tangent * distance);
++      if (impactFrame) {
++        this.desiredLookAt.addScaledVector(this.boundsRight, (leftAim + rightAim) * .5)
++          .addScaledVector(this.boundsUp, (upperAim + lowerAim) * .5);
++      }
+       this.desiredPosition.copy(this.desiredLookAt).addScaledVector(this.boundsBack, distance);
+       const height = subject.combatTerrain?.heightAt(this.desiredPosition.x, this.desiredPosition.z);
+       if (pass === 0 && height !== undefined && Number.isFinite(height) && this.desiredPosition.y < height + 1.2) {
+--- a/src/render/combat/WreckVisualPose.ts
++++ b/src/render/combat/WreckVisualPose.ts
+@@ -25,6 +25,8 @@
+   readonly forward: Vector3;
+   /** Cached source-box corners in world space; no sphere inflation for camera fitting. */
+   bounds: readonly Vector3[];
++  /** Optional authored impact composition; full bounds remain the safety envelope. */
++  impactFraming?: { readonly center: Vector3; readonly bounds: readonly Vector3[] };
+   radius: number;
+   groundCorrection: number;
+   /** Simulation base frame before renderer-only tumble. Reused, read-only data
+@@ -146,6 +148,7 @@
+    */
+   update(state: PodracerState, remaining: number, terrain: { heightAt(x: number, z: number): number }, extrapolation = 0): WreckVisualPose {
+     const pose = this.pose;
++    pose.impactFraming = undefined;
+     pose.groundContact = undefined;
+     pose.rupture = undefined;
+     // A bounded articulated presentation may widen the camera envelope after
+--- a/src/render/combat/TeemtoAuthoredDamage.ts
++++ b/src/render/combat/TeemtoAuthoredDamage.ts
+@@ -28,6 +28,9 @@
+   private readonly stationary = new WreckVisualPoseCache();
+   private readonly bounds: Vector3[];
+   private readonly assembly = new Box3();
++  private readonly impactBox = new Box3();
++  private readonly impactFraming: { center: Vector3; bounds: Vector3[] };
++  private impactPose: WreckVisualPose | null = null;
+   private readonly partBox = new Box3();
+   private readonly body = new Matrix4();
+   private readonly world = new Matrix4();
+@@ -99,6 +102,12 @@
+     if (stubs) stationary.push(stubs);
+     this.stationary.refresh(root, stationary, 0);
+     this.bounds = Array.from({ length: (this.parts.length + 1) * 8 }, () => new Vector3());
++    // First three moving source boxes are the actual engines. Two reused
++    // witness slots include the fracture and real contact without the pilot or
++    // long severed rods expanding the screen-fit rectangle. Full bounds stay intact.
++    this.impactFraming = { center: new Vector3(), bounds: [
++      ...this.bounds.slice(8, 32), new Vector3(), new Vector3(),
++    ] };
+     this.originalVisibility = hidden.map(mesh => mesh.visible);
+     // Exact outer rear cut-loop centroid from the hero/rival Blender receipts,
+     // in admitted +Y-up/+Z-forward metres. This face opens toward +Z. Neither
+@@ -111,6 +120,8 @@
+   update(pose: WreckVisualPose, remaining: number, terrain: { heightAt(x: number, z: number): number }, extrapolation = 0): void {
+     if (this.contactPose?.groundContact === this.contact) this.contactPose.groundContact = undefined;
+     this.contactPose = null; pose.groundContact = undefined;
++    if (this.impactPose?.impactFraming === this.impactFraming) this.impactPose.impactFraming = undefined;
++    this.impactPose = null; pose.impactFraming = undefined;
+     if (this.rupturePose?.rupture === this.rupture) this.rupturePose.rupture = undefined;
+     this.rupturePose = null; pose.rupture = undefined;
+     const age = Math.max(0, Math.min(WRECK_PRESENTATION_DURATION, WRECK_PRESENTATION_DURATION - remaining + extrapolation));
+@@ -178,6 +189,12 @@
+     this.assembly.getCenter(pose.center).applyMatrix4(this.body); this.assembly.getSize(this.point);
+     pose.radius = this.point.length() * .5; pose.bounds = this.bounds;
+     this.writeRupture(pose);
++    this.impactFraming.bounds[24]!.copy(this.rupture.position);
++    this.impactFraming.bounds[25]!.copy(this.contactPose === pose ? this.contact.position : this.rupture.position);
++    this.impactBox.makeEmpty();
++    for (const bound of this.impactFraming.bounds) this.impactBox.expandByPoint(bound);
++    this.impactBox.getCenter(this.impactFraming.center);
++    pose.impactFraming = this.impactFraming; this.impactPose = pose;
+   }
+ 
+   private updateStrikingEngine(index: number, part: Part, pose: WreckVisualPose, age: number,
+@@ -334,6 +351,8 @@
+   }
+ 
+   reset(): void {
++    if (this.impactPose?.impactFraming === this.impactFraming) this.impactPose.impactFraming = undefined;
++    this.impactPose = null;
+     if (this.rupturePose?.rupture === this.rupture) this.rupturePose.rupture = undefined;
+     this.rupturePose = null;
+     if (this.contactPose?.groundContact === this.contact) this.contactPose.groundContact = undefined;
+--- /dev/null
++++ b/tests/camera/TeemtoImpactFraming.test.ts
+@@ -0,0 +1,254 @@
++import { Box3, Matrix4, Quaternion, Vector3 } from 'three';
++import { afterAll, describe, expect, it } from 'vitest';
++import { CinematicCamera, type CameraSubject } from '../../src/camera/CinematicCamera';
++import { WRECK_PRESENTATION_DURATION, type WreckVisualPose } from '../../src/render/combat/WreckVisualPose';
++import { fixture, matrices, race, step, variants } from '../fixtures/teemtoActualCamera';
++
++const aspects = [1440 / 900, 390 / 844];
++const checkpoints = new Set([913, 932, 1067]);
++const engineNames = ['teemto-engine-left-body', 'teemto-damage-right-front-v16', 'teemto-damage-right-rear-v16'];
++const epsilon = 1e-6;
++const measurements: unknown[] = [];
++afterAll(async () => {
++  // Optional private diagnostic output; ordinary test runs write no files.
++  const metricPath = (globalThis as unknown as { process?: { env: Record<string, string | undefined> } }).process?.env.V24_CAMERA_METRICS_PATH;
++  if (metricPath) {
++    const fileModule: string = 'node:fs';
++    const { writeFileSync } = await import(/* @vite-ignore */ fileModule);
++    writeFileSync(metricPath, JSON.stringify(measurements, null, 2) + '\n');
++  }
++});
++
++function subjectFor(sim: ReturnType<typeof race>, pose: WreckVisualPose): CameraSubject {
++  const vehicle = sim.state.entries[0]!.vehicle;
++  return {
++    position: new Vector3(vehicle.position.x, vehicle.position.y, vehicle.position.z),
++    forward: new Vector3(Math.sin(vehicle.orientation.yaw), 0, Math.cos(vehicle.orientation.yaw)),
++    velocity: new Vector3(vehicle.velocity.x, vehicle.velocity.y, vehicle.velocity.z), speed: 0,
++    combatFocus: pose.center, combatForward: pose.forward, combatRadius: pose.radius,
++    combatBounds: pose.bounds, combatTerrain: sim.terrain, combatImpactPosition: pose.rupture?.position,
++    combatImpactFraming: pose.impactFraming,
++  };
++}
++
++function bodyMatrix(pose: WreckVisualPose): Matrix4 {
++  return new Matrix4().compose(pose.position, new Quaternion().setFromEuler(pose.rotation), new Vector3(1, 1, 1));
++}
++
++function fittedConstraints(rig: CinematicCamera, pose: WreckVisualPose) {
++  const focus = pose.impactFraming!.center;
++  const back = new Vector3(0, 0, 1).applyQuaternion(rig.camera.quaternion);
++  const right = new Vector3(1, 0, 0).applyQuaternion(rig.camera.quaternion);
++  const up = new Vector3(0, 1, 0).applyQuaternion(rig.camera.quaternion);
++  const tangent = Math.tan(Math.PI / 6), horizontal = tangent * rig.camera.aspect, offset = new Vector3();
++  let horizontalMax = -Infinity, horizontalMin = Infinity, verticalMax = -Infinity, verticalMin = Infinity, fullNearDistance = 2;
++  for (const p of pose.impactFraming!.bounds) {
++    offset.copy(p).sub(focus);
++    const x = offset.dot(right), y = offset.dot(up), z = offset.dot(back);
++    horizontalMax = Math.max(horizontalMax, x + .74 * horizontal * z);
++    horizontalMin = Math.min(horizontalMin, x - .74 * horizontal * z);
++    verticalMax = Math.max(verticalMax, y + .70 * tangent * z);
++    verticalMin = Math.min(verticalMin, y - .58 * tangent * z);
++  }
++  for (const p of pose.bounds) fullNearDistance = Math.max(fullNearDistance, offset.copy(p).sub(focus).dot(back) + rig.camera.near + .5);
++  const horizontalDistance = Math.max(2, (horizontalMax - horizontalMin) / (1.48 * horizontal));
++  const verticalDistance = Math.max(2, (verticalMax - verticalMin) / (1.28 * tangent));
++  const fittedDistance = Math.max(horizontalDistance, verticalDistance, fullNearDistance);
++  const actualAxialDistance = rig.camera.position.clone().sub(focus).dot(back);
++  return { horizontalDistance, verticalDistance, fullNearDistance, fittedDistance, actualAxialDistance,
++    extraDistanceAboveGeometricFit: actualAxialDistance - fittedDistance };
++}
++
++function safeCluster(rig: CinematicCamera, points: readonly Vector3[], label: string, horizontal = .74): void {
++  rig.camera.updateMatrixWorld(true);
++  for (const world of points) {
++    const p = world.clone().project(rig.camera);
++    expect(p.toArray().every(Number.isFinite), `${label}: finite`).toBe(true);
++    expect(p.x, `${label}: left`).toBeGreaterThanOrEqual(-horizontal - epsilon);
++    expect(p.x, `${label}: right`).toBeLessThanOrEqual(horizontal + epsilon);
++    expect(p.y, `${label}: bottom`).toBeGreaterThanOrEqual(-.58 - epsilon);
++    expect(p.y, `${label}: top`).toBeLessThanOrEqual(.70 + epsilon);
++    expect(p.z, `${label}: near`).toBeGreaterThan(-1);
++    expect(p.z, `${label}: far`).toBeLessThan(1);
++  }
++}
++
++function sourceSafety(rig: CinematicCamera, art: ReturnType<typeof fixture>, pose: WreckVisualPose, label: string, baseline?: CinematicCamera): void {
++  art.root.updateMatrixWorld(true); rig.camera.updateMatrixWorld(true);
++  const body = bodyMatrix(pose), matrix = new Matrix4(), point = new Vector3();
++  let count = 0, nearest = Infinity, farthest = -Infinity;
++  let principalCount = 0, minX = Infinity, maxX = -Infinity, baselineMinX = Infinity, baselineMaxX = -Infinity;
++  const baselineMatrix = new Matrix4(), baselinePoint = new Vector3();
++  baseline?.camera.updateMatrixWorld(true);
++  const horizontal = Math.tan(rig.camera.fov * Math.PI / 360) * rig.camera.aspect;
++  const baselineHorizontal = baseline ? Math.tan(baseline.camera.fov * Math.PI / 360) * baseline.camera.aspect : 1;
++  for (const mesh of art.all.filter(mesh => mesh.visible)) {
++    matrix.copy(rig.camera.matrixWorldInverse).multiply(body).multiply(mesh.matrixWorld);
++    if (baseline) baselineMatrix.copy(baseline.camera.matrixWorldInverse).multiply(body).multiply(mesh.matrixWorld);
++    const position = mesh.geometry.getAttribute('position');
++    for (let i = 0; i < position.count; i++) {
++      point.fromBufferAttribute(position, i).applyMatrix4(matrix);
++      nearest = Math.min(nearest, -point.z); farthest = Math.max(farthest, -point.z); count++;
++      if (baseline && engineNames.includes(mesh.name)) {
++        baselinePoint.fromBufferAttribute(position, i).applyMatrix4(baselineMatrix);
++        const x = point.x / (-point.z * horizontal), baselineX = baselinePoint.x / (-baselinePoint.z * baselineHorizontal);
++        minX = Math.min(minX, x); maxX = Math.max(maxX, x);
++        baselineMinX = Math.min(baselineMinX, baselineX); baselineMaxX = Math.max(baselineMaxX, baselineX); principalCount++;
++      }
++    }
++  }
++  const expectedCount = art.variant === 'hero' ? (art.breakup.active ? 90_581 : 73_048) : (art.breakup.active ? 45_605 : 42_278);
++  expect(count, `${label}: exact visible source POSITION count`).toBe(expectedCount);
++  expect(nearest, `${label}: complete visible source in front of lens`).toBeGreaterThan(rig.camera.near);
++  expect(farthest, `${label}: complete visible source before far plane`).toBeLessThan(rig.camera.far);
++  if (baseline) measurements.push({ label, principalSourcePositions: principalCount,
++    completeVisibleSourcePositions: count, principalWidthFraction: (maxX - minX) / 2,
++    baselinePrincipalWidthFraction: (baselineMaxX - baselineMinX) / 2,
++    desiredWidthFraction: [.65, .75], candidateCamera: rig.camera.position.toArray(), baselineCamera: baseline.camera.position.toArray(),
++    candidateDistanceToImpactCenter: rig.camera.position.distanceTo(pose.impactFraming!.center),
++    baselineDistanceToImpactCenter: baseline.camera.position.distanceTo(pose.impactFraming!.center),
++    candidateConstraintsAtCurrentAngle: fittedConstraints(rig, pose),
++    scope: 'Same actual source pose, complete principal-engine POSITION extents from the existing source-safety pass; both cameras share birth and side/chase history. Source projection only, not native pixels.',
++  });
++}
++
++function assertActualCluster(art: ReturnType<typeof fixture>, pose: WreckVisualPose): void {
++  const cluster = pose.impactFraming!;
++  expect(cluster).toBeDefined();
++  expect(cluster.center.toArray().every(Number.isFinite)).toBe(true);
++  expect(pose.bounds, 'full stationary, engine and optional tether safety bounds retained').toHaveLength(art.damage.some(mesh => mesh.name === 'teemto-damage-severed-tethers-v16') ? 40 : 32);
++  art.root.updateMatrixWorld(true);
++  const body = bodyMatrix(pose), model = new Matrix4(), corner = new Vector3();
++  const expected: Vector3[] = [];
++  for (const name of engineNames) {
++    const mesh = art.all.find(mesh => mesh.name === name)!;
++    expect(mesh?.visible, name).toBe(true);
++    const local = new Box3(), position = mesh.geometry.getAttribute('position');
++    for (let i = 0; i < position.count; i++) local.expandByPoint(corner.fromBufferAttribute(position, i));
++    model.copy(body).multiply(mesh.matrixWorld);
++    for (let i = 0; i < 8; i++) {
++      corner.set(i & 1 ? local.max.x : local.min.x, i & 2 ? local.max.y : local.min.y, i & 4 ? local.max.z : local.min.z).applyMatrix4(model);
++      expect(Math.min(...cluster.bounds.map(point => point.distanceTo(corner))), `${name}: independently transformed source box corner`).toBeLessThan(1e-7);
++      expect(Math.min(...pose.bounds.map(point => point.distanceTo(corner))), `${name}: full safety corner retained`).toBeLessThan(1e-7);
++      expected.push(corner.clone());
++    }
++  }
++  for (const witness of [pose.rupture?.position, pose.groundContact?.position]) if (witness) {
++    expect(Math.min(...cluster.bounds.map(point => point.distanceTo(witness))), 'authored witness retained').toBeLessThan(1e-7);
++    expected.push(witness);
++  }
++  expect(cluster.bounds.length).toBeGreaterThanOrEqual(expected.length);
++  expect(cluster.bounds.length).toBeLessThanOrEqual(32);
++}
++
++function cameraState(rig: CinematicCamera) {
++  return [...rig.camera.position.toArray(), ...rig.camera.quaternion.toArray(), rig.camera.fov];
++}
++
++describe('actual authored Teemto impact camera', () => {
++  it.each(variants)('%s fits the actual impact cluster while retaining complete source near-plane safety through the handoff', name => {
++    const art = fixture(name), sim = race(), rest = matrices(art);
++    const pilots = art.original.filter(mesh => mesh.name.startsWith('teemto-pilot-'));
++    const pilotParents = pilots.map(mesh => mesh.parent), pilotMatrices = pilots.map(mesh => mesh.matrix.clone());
++    const rigs = aspects.map(aspect => { const rig = new CinematicCamera(); rig.camera.aspect = aspect; return rig; });
++    const baseline = new CinematicCamera(); baseline.camera.aspect = aspects[0]!;
++    let impactFrames = 0;
++    try {
++      for (let frame = 1; frame <= 1067; frame++) {
++        step(sim, frame); if (frame < 910) continue;
++        const entry = sim.state.entries[0]!, before = checkpoints.has(frame) ? JSON.stringify(sim.state) : null;
++        const pose = art.cache.update(entry.vehicle, entry.galactic!.wreck.timer, sim.terrain);
++        art.breakup.update(pose, entry.galactic!.wreck.timer, sim.terrain);
++        const subject = subjectFor(sim, pose), cluster = pose.impactFraming!;
++        if (frame === 910) { expect(cluster).toBeUndefined(); }
++        else { expect(art.breakup.damageVariantActive).toBe(true); expect(cluster).toBeDefined(); impactFrames++; }
++        subject.wreckChase = frame > 943;
++        const boundsBefore = pose.bounds.map(point => point.toArray());
++        const clusterBefore = cluster?.bounds.map(point => point.toArray());
++        if (checkpoints.has(frame)) assertActualCluster(art, pose);
++        baseline.setMode(subject.wreckChase ? 'chase' : 'side'); baseline.setCombatFraming(!subject.wreckChase);
++        const baselineSubject = { ...subject, combatImpactFraming: undefined };
++        if (frame === 910) baseline.snap(baselineSubject); else baseline.update(1 / 120, frame / 120, baselineSubject);
++        for (const [index, rig] of rigs.entries()) {
++          rig.setMode(subject.wreckChase ? 'chase' : 'side'); rig.setCombatFraming(!subject.wreckChase);
++          if (frame === 910) rig.snap(subject); else rig.update(1 / 120, frame / 120, subject);
++          const label = `${name}/${frame}/${aspects[index]}`;
++          safeCluster(rig, cluster?.bounds ?? pose.bounds, label, cluster ? .74 : .78);
++          expect(rig.camera.position.y - sim.terrain.heightAt(rig.camera.position.x, rig.camera.position.z), `${label}: eye above terrain`).toBeGreaterThanOrEqual(1.2 - epsilon);
++          if (checkpoints.has(frame)) {
++            const measuredBaseline = index === 0 && (frame === 932 || frame === 1067) ? baseline : undefined;
++            sourceSafety(rig, art, pose, label, measuredBaseline);
++            if (measuredBaseline) measurements.push({ label,
++              candidateEyeGround: rig.camera.position.y - sim.terrain.heightAt(rig.camera.position.x, rig.camera.position.z),
++              baselineEyeGround: baseline.camera.position.y - sim.terrain.heightAt(baseline.camera.position.x, baseline.camera.position.z),
++            });
++            // Both protected views also receive explicit endpoint coverage.
++            const endpoint = new CinematicCamera(); endpoint.camera.aspect = aspects[index]!;
++            try { for (const mode of ['side', 'chase'] as const) {
++              endpoint.setMode(mode); endpoint.setCombatFraming(mode === 'side');
++              endpoint.snap({ ...subject, wreckChase: mode === 'chase' });
++              safeCluster(endpoint, cluster.bounds, `${label}/${mode}`);
++              sourceSafety(endpoint, art, pose, `${label}/${mode}`);
++            } } finally { endpoint.dispose(); }
++          }
++        }
++        expect(pose.bounds.map(point => point.toArray())).toEqual(boundsBefore);
++        expect(cluster?.bounds.map(point => point.toArray())).toEqual(clusterBefore);
++        if (before) expect(JSON.stringify(sim.state)).toBe(before);
++      }
++      expect(impactFrames).toBe(157);
++      for (let i = 0; i < pilots.length; i++) {
++        expect(pilots[i]!.parent).toBe(pilotParents[i]); expect(pilots[i]!.matrix.equals(pilotMatrices[i]!)).toBe(true);
++      }
++    } finally { for (const rig of rigs) rig.dispose(); baseline.dispose(); art.breakup.reset(); }
++    expect(matrices(art)).toEqual(rest);
++  });
++
++  it.each(variants)('%s clears the cluster at birth/reset and ignores stale or invalid framing during fallback and return', name => {
++    const art = fixture(name), sim = race();
++    const a = new CinematicCamera(), b = new CinematicCamera();
++    try {
++      for (let frame = 1; frame <= 932; frame++) step(sim, frame);
++      const entry = sim.state.entries[0]!, before = JSON.stringify(sim.state);
++      const pose = art.cache.update(entry.vehicle, entry.galactic!.wreck.timer, sim.terrain);
++      art.breakup.update(pose, entry.galactic!.wreck.timer, sim.terrain);
++      const stale = { center: pose.impactFraming!.center.clone(), bounds: pose.impactFraming!.bounds.map(point => point.clone()) };
++      const subject = subjectFor(sim, pose);
++      for (const mode of ['side', 'chase'] as const) {
++        a.setMode(mode); b.setMode(mode); a.setCombatFraming(mode === 'side'); b.setCombatFraming(mode === 'side');
++        for (const malformed of [
++          undefined, { center: new Vector3(NaN, 0, 0), bounds: stale.bounds },
++          { center: stale.center, bounds: [] }, { center: stale.center, bounds: [new Vector3(0, Infinity, 0), ...stale.bounds.slice(1)] },
++        ]) {
++          a.snap({ ...subject, wreckChase: mode === 'chase', combatImpactFraming: malformed });
++          b.snap({ ...subject, wreckChase: mode === 'chase', combatImpactFraming: undefined });
++          expect(cameraState(a)).toEqual(cameraState(b)); safeCluster(a, pose.bounds, `${name}/${mode}/legacy-full-fit`, .78);
++        }
++      }
++      // Both rigs first acquire the same impact-shot history. Recovery retains
++      // that chosen azimuth; stale versus absent metadata must not alter it.
++      a.setMode('side'); b.setMode('side'); a.setCombatFraming(true); b.setCombatFraming(true);
++      a.snap(subject); b.snap(subject);
++      for (let tick = 0; tick < 4; tick++) { a.update(1 / 120, tick / 120, subject); b.update(1 / 120, tick / 120, subject); }
++      // The renderer supplies an intact pose during protected recovery.
++      const recovery = art.cache.update(entry.vehicle, WRECK_PRESENTATION_DURATION, sim.terrain);
++      art.breakup.update(recovery, WRECK_PRESENTATION_DURATION, sim.terrain);
++      expect(art.breakup.active).toBe(false); expect(recovery.impactFraming).toBeUndefined();
++      const recoveredSubject = { ...subjectFor(sim, recovery), wreckChase: true, wreckRecovery: true };
++      a.setMode('chase'); b.setMode('chase'); a.setCombatFraming(false); b.setCombatFraming(false);
++      a.snap({ ...recoveredSubject, combatImpactFraming: stale }); b.snap(recoveredSubject);
++      expect(cameraState(a)).toEqual(cameraState(b)); safeCluster(a, recovery.bounds, `${name}/recovery-full-fit`, .78);
++      sourceSafety(a, art, recovery, `${name}/recovery-full-source`);
++      const ordinary: CameraSubject = { position: recoveredSubject.position.clone(), forward: recoveredSubject.forward.clone(), velocity: new Vector3(), speed: 0 };
++      a.snap({ ...ordinary, combatImpactFraming: stale }); b.snap(ordinary);
++      for (let tick = 0; tick < 12; tick++) {
++        ordinary.speed += 7; ordinary.velocity.copy(ordinary.forward).multiplyScalar(ordinary.speed);
++        ordinary.position.addScaledVector(ordinary.velocity, 1 / 60);
++        a.update(1 / 60, tick / 60, { ...ordinary, combatImpactFraming: stale }); b.update(1 / 60, tick / 60, ordinary);
++        expect(cameraState(a)).toEqual(cameraState(b));
++      }
++      expect(JSON.stringify(sim.state)).toBe(before);
++      art.breakup.reset(); expect(pose.impactFraming).toBeUndefined();
++    } finally { a.dispose(); b.dispose(); art.breakup.reset(); }
++  });
++});
+--- /dev/null
++++ b/tests/fixtures/teemtoActualCamera.ts
+@@ -0,0 +1,55 @@
++import { Mesh, Object3D, type Group } from 'three';
++import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
++import { afterAll, beforeAll, expect } from 'vitest';
++import { RaceSimulation } from '../../src/game/race/RaceSimulation';
++import { sampleTerrainHeight } from '../../src/render/terrain/terrainMath';
++import { WreckVisualPoseCache } from '../../src/render/combat/WreckVisualPose';
++import { TeemtoWreckBreakup } from '../../src/render/combat/TeemtoWreckBreakup';
++
++const fileModule: string = 'node:fs';
++const { readFileSync } = await import(/* @vite-ignore */ fileModule);
++const variants = ['hero', 'rival'] as const;
++const sources = new Map<string, Group>();
++const privatePath = 'assets/source/inkstorm/combat-round35/authored-damage-v16/packaged-b/';
++
++async function load(path: string, stripImages = false): Promise<Group> {
++  const data = readFileSync(path);
++  if (!stripImages) return (await new GLTFLoader().parseAsync(data.buffer.slice(data.byteOffset, data.byteOffset + data.byteLength), '')).scene;
++  const size = data.readUInt32LE(12), json = JSON.parse(data.subarray(20, 20 + size).toString());
++  // Original names, hierarchy, geometry accessors and complete BIN are exact.
++  // CPU geometry tests remove only image/material references from a memory copy.
++  for (const mesh of json.meshes) for (const primitive of mesh.primitives) delete primitive.material;
++  delete json.materials; delete json.images; delete json.textures; delete json.samplers;
++  const text = new TextEncoder().encode(JSON.stringify(json)), padded = Math.ceil(text.byteLength / 4) * 4;
++  const binary = data.subarray(28 + size), output = new Uint8Array(28 + padded + binary.byteLength), h = new DataView(output.buffer);
++  h.setUint32(0, 0x46546c67, true); h.setUint32(4, 2, true); h.setUint32(8, output.byteLength, true);
++  h.setUint32(12, padded, true); h.setUint32(16, 0x4e4f534a, true); output.fill(32, 20, 20 + padded); output.set(text, 20);
++  h.setUint32(20 + padded, binary.byteLength, true); h.setUint32(24 + padded, 0x004e4942, true); output.set(binary, 28 + padded);
++  expect(binary.equals(output.subarray(28 + padded))).toBe(true);
++  return (await new GLTFLoader().parseAsync(output.buffer, '')).scene;
++}
++function meshes(root: Object3D): Mesh[] { const result: Mesh[] = []; root.traverse(o => { if (o instanceof Mesh) result.push(o); }); return result; }
++function fixture(name: typeof variants[number]) {
++  const root = sources.get(name)!.clone(true), original = meshes(root), nodes = new Map<string, Object3D>();
++  root.traverse(node => nodes.set(node.name, node)); root.updateMatrixWorld(true);
++  const cache = new WreckVisualPoseCache(); cache.refresh(root, original, 1);
++  const breakup = TeemtoWreckBreakup.create(root, nodes, original)!; expect(breakup).not.toBeNull();
++  const damageRoot = sources.get(`${name}-damage`)!.clone(true), damage = meshes(damageRoot); root.add(damageRoot);
++  expect(breakup.installDamageVariant(damage)).toBe(true);
++  return { variant: name, root, original, damage, cache, breakup, all: [...original, ...damage] };
++}
++function race() { return new RaceSimulation({ terrain: { heightAt: sampleTerrainHeight }, seed: 1229867859,
++  totalLaps: 1, countdownSeconds: 3, competitionProfile: 'time-trial' }); }
++function step(sim: RaceSimulation, frame: number) { sim.step({ brake: 1, boost: frame >= 558 && frame <= 910 }); }
++function matrices(art: ReturnType<typeof fixture>) { return art.all.map(m => [...m.matrix.elements, ...m.position.toArray(), ...m.quaternion.toArray()]); }
++
++beforeAll(async () => {
++  for (const name of variants) {
++    sources.set(name, await load(`public/assets/inkstorm/vehicles/teemto-${name === 'hero' ? 'hero-open-v2' : 'rival'}.glb`, true));
++    sources.set(`${name}-damage`, await load(`${privatePath}teemto-damage-${name}-v16.glb`));
++  }
++});
++afterAll(() => { for (const root of sources.values()) for (const mesh of meshes(root)) {
++  mesh.geometry.dispose(); for (const material of Array.isArray(mesh.material) ? mesh.material : [mesh.material]) material.dispose();
++} });
++export { fixture, race, step, matrices, variants };

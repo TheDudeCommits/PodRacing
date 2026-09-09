@@ -1,0 +1,92 @@
+{
+  "samplesPerTriangle": 28,
+  "status": "PASS",
+  "scope": "CPU generated render-only fork foundation, road-space clearance and topology; no browser/GPU/Blender or in-world acceptance",
+  "checks": [
+    {
+      "name": "Pit grading field has no support in the candidate footprint",
+      "pass": true,
+      "pitPadSupportClearance": 262.0617474393299
+    },
+    {
+      "name": "Every foundation toe embeds in actual terrain",
+      "pass": true,
+      "maxFootAboveGround": -1.0937013517603624,
+      "contacts": 268,
+      "samples": 4522
+    },
+    {
+      "name": "Consistent outward solid orientation",
+      "pass": true,
+      "inconsistentEdges": 0,
+      "signedVolumes": [
+        164679.26659084446,
+        25585.404705652556
+      ]
+    },
+    {
+      "name": "Closed solids without boundary edges",
+      "pass": true,
+      "nonmanifoldEdges": 0
+    },
+    {
+      "name": "Finite nondegenerate triangles",
+      "pass": true,
+      "degenerate": 0
+    },
+    {
+      "name": "No new solid above a legal canonical road surface",
+      "pass": true,
+      "illegalRoadSamples": 0,
+      "maxRoadPenetration": -0.34999960767696336,
+      "bad": []
+    },
+    {
+      "name": "No new solid intrudes through the legal elevated road surface",
+      "pass": true,
+      "maxDeckPenetration": -0.3169563253897625
+    },
+    {
+      "name": "Island connection clears canonical racing width by eight metres",
+      "pass": true,
+      "minWingMainClearance": 34.16105401837913
+    },
+    {
+      "name": "Additional source geometry budget below4500triangles",
+      "pass": true,
+      "triangles": 2628
+    }
+  ],
+  "bounds": {
+    "min": [
+      18398.935546875,
+      -13.940555572509766,
+      -934.8325805664062
+    ],
+    "max": [
+      18520.0703125,
+      26.055479049682617,
+      -462.302490234375
+    ]
+  },
+  "vertices": 7884,
+  "triangles": 2628,
+  "attributeBytes": 283824,
+  "materialGroupsAdded": 1,
+  "newRenderPasses": 0,
+  "newTextures": 0,
+  "maxDeckPenetration": -0.3169563253897625,
+  "triangleKinds": {
+    "causeway": 2060,
+    "islandButtress": 568
+  },
+  "physicsHashes": {
+    "src/game/race/course.ts": "c1030fcc0ea2ee7d6e0487b6b7332fd29a36947c41bc4847defa9535d6bd12d3",
+    "src/game/race/branches.ts": "f9595ca3b1eafea98f7e87607f246b5c1f405be1e2602456d1b8d939ccae3f52",
+    "src/game/race/bridgeSurface.ts": "8eacf7a9cc9189ee9afe609f944299398e5134f90ad55ff67b81dc62d1aa0362",
+    "src/game/race/CourseGulfField.ts": "4804ca75b6003ad640b452c8cecbaa373d3f2df042a1574d7359a89b6a5f40f8",
+    "src/render/inkstorm/InkstormRoad.ts": "ea6cdb44c50b33028fd5070e2f906a834351c93f1a51900cfd25df09aa8f8de8"
+  },
+  "topUp": 1920,
+  "topDown": 508
+}

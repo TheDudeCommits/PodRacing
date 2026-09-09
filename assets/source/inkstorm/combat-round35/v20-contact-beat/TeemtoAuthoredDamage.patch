@@ -1,0 +1,13 @@
+--- a/src/render/combat/TeemtoAuthoredDamage.ts
++++ b/src/render/combat/TeemtoAuthoredDamage.ts
+@@ -132,7 +132,9 @@
+       this.rotation.setFromAxisAngle(Y, yaw);
+       this.axis.setFromAxisAngle(X, pitch); this.rotation.multiply(this.axis);
+       this.axis.setFromAxisAngle(Z, roll); this.rotation.multiply(this.axis);
+-      const settle = smooth(age / (index === 0 ? .34 : index === 1 ? .22 : index === 2 ? .14 : .18)) * release;
++      // The rear machinery makes its supported contact during the held beat;
++      // other masses retain their slower follow-through and exact birth/reset.
++      const settle = smooth(age / (index === 0 ? .34 : index === 1 ? .22 : index === 2 ? .075 : .18)) * release;
+       if (index < 3 && settle > 0) {
+         // Terrain clearance alone can leave a long shell balancing on its
+         // nose. Settle its long axis along the local ground grade instead of

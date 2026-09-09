@@ -1,0 +1,63 @@
+{
+  "scope": "CPU source candidate only: no browser, GPU, Blender, render, timing or art acceptance",
+  "clearanceRule": "Vertices and triangle centroids must stay 2m outside the road edge or at least 30m above installed terrain",
+  "seed": 1229867859,
+  "bankIds": [
+    "inkstorm-pipe-bank-227",
+    "inkstorm-pipe-bank-228",
+    "inkstorm-pipe-bank-230",
+    "inkstorm-pipe-bank-233",
+    "inkstorm-pipe-bank-229",
+    "inkstorm-pipe-bank-231",
+    "inkstorm-pipe-bank-232",
+    "inkstorm-pipe-bank-234"
+  ],
+  "sockets": 24,
+  "pipeRuns": 33,
+  "boxes": 19,
+  "triangles": 20868,
+  "vertices": 62604,
+  "materials": 1,
+  "additionalMeshes": 1,
+  "additionalTextures": 0,
+  "additionalLights": 0,
+  "perFrameUpdates": 0,
+  "geometryBytes": 2253744,
+  "bounds": {
+    "min": [
+      19522.693359375,
+      -14.614823341369629,
+      -364.5816650390625
+    ],
+    "max": [
+      19867.888671875,
+      66.83480834960938,
+      -51.773826599121094
+    ]
+  },
+  "minimumLowVertexOrCentroidClearance": 7.840575026154433,
+  "minimumOverheadVertexOrCentroidHeight": 31.775250539536295,
+  "nonfinite": 0,
+  "failures": [],
+  "removedArtInstances": [],
+  "geometryBudget": 24000,
+  "budgetPassed": true,
+  "clearancePassed": true,
+  "limitations": [
+    "Per-vertex and triangle-centroid checks are not swept-pod or triangle-volume collision proof.",
+    "Root must validate actual camera composition, graphics lifecycle and full-race cadence.",
+    "Existing collision placement list, gulf arrays, terrain and physics were not edited.",
+    "The distant launch basin has not been recomposed by this near-foundry candidate."
+  ],
+  "hashes": {
+    "candidate": "7066858ee884a3a9d38cc0ec2d19642c617be2338b084ed85e06f27916fda224",
+    "pipeBankGlb": "4b3510d0f8b10e1a44158edb0b0bbdc25bac33019176368638937ab1834a3b81"
+  },
+  "attachmentRayProbe": {
+    "scope": "9 rays per actual scaled aperture; hit before original cap along its measured outward normal",
+    "total": 216,
+    "hits": 216,
+    "misses": []
+  },
+  "strictTypecheck": "PASS"
+}

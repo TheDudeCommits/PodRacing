@@ -1,0 +1,54 @@
+{
+  "scope": "Camera/pose candidate snapshot before parent integrated V14 build. Source-only CPU validation; no visual acceptance. Parent owns concurrent UI/FX. GameApp diff from this candidate baseline contains only camera/pose integration. No simulation/public/asset changes.",
+  "files": [
+    {
+      "path": "src/render/combat/TeemtoWreckBreakup.ts",
+      "bytes": 8882,
+      "sha256": "8074c6aec3d2d0062a26a56f9fdd6eeb2de19d87ee85f0b6631ab2a8cac9d4ab",
+      "frozenCopy": "assets/source/inkstorm/combat-round35/camera-separation-v14/frozen/src/render/combat/TeemtoWreckBreakup.ts",
+      "priorSha256": "865f19fa9463ab044f7c0d6d072efe5e23bd8af317a937e98c2623c264481a55"
+    },
+    {
+      "path": "src/render/combat/WreckVisualPose.ts",
+      "bytes": 9593,
+      "sha256": "16fe2c934948fd27c83c8a3eb07586faba53a99135e742f8b26cdf52b7b2faf3",
+      "frozenCopy": "assets/source/inkstorm/combat-round35/camera-separation-v14/frozen/src/render/combat/WreckVisualPose.ts",
+      "priorSha256": "ac325e5e164abd895a2518e75f1a12d4001a7fbdbc90c3eda2f8adf6d6f68889"
+    },
+    {
+      "path": "src/camera/CinematicCamera.ts",
+      "bytes": 28427,
+      "sha256": "f160d558384d86ed2d16b118e5f8d2b1788d257b1e228a90f3d94d3568d75040",
+      "frozenCopy": "assets/source/inkstorm/combat-round35/camera-separation-v14/frozen/src/camera/CinematicCamera.ts",
+      "priorSha256": "17665988f9f01c8b636067da3b0130e91fc8b6206e05ddeb62da862943d0df50"
+    },
+    {
+      "path": "src/render/app/GameApp.ts",
+      "bytes": 169668,
+      "sha256": "cdd27d8032c0abaa511959d69c8fd98bbc0faf2d65ddc641ed10904ac485a6ac",
+      "frozenCopy": "assets/source/inkstorm/combat-round35/camera-separation-v14/frozen/src/render/app/GameApp.ts",
+      "priorSha256": "905ba50af47e6de33ea05dd72d34ecb10f26540ba63c45158e60b65dd22aa2ed"
+    },
+    {
+      "path": "tests/combat/TeemtoWreckBreakup.test.ts",
+      "bytes": 20437,
+      "sha256": "fbb896ce86fefa97575ff2f8516f33de2661cd34fdf349c66f538de06fc0098d",
+      "frozenCopy": "assets/source/inkstorm/combat-round35/camera-separation-v14/frozen/tests/combat/TeemtoWreckBreakup.test.ts",
+      "priorSha256": "f31521900c264b89df230e332220111fecc9c31dab7e1643996abcd93f96d120"
+    },
+    {
+      "path": "tests/camera/WreckBoundsFraming.test.ts",
+      "bytes": 20738,
+      "sha256": "d3a2766d1c10add1b35df699a4ce74242b4e5b774e7e4f1e6e8668b09c802736",
+      "frozenCopy": "assets/source/inkstorm/combat-round35/camera-separation-v14/frozen/tests/camera/WreckBoundsFraming.test.ts",
+      "priorSha256": null
+    },
+    {
+      "path": "tests/render/racerPresentation.test.ts",
+      "bytes": 24830,
+      "sha256": "f00ce414a0f950e64d15999c8d2b3816617a42ebd5afefb82420f6823b8a68f6",
+      "frozenCopy": "assets/source/inkstorm/combat-round35/camera-separation-v14/frozen/tests/render/racerPresentation.test.ts",
+      "priorSha256": "a9a5e029ad1ce0e08841dec76fcb8a8f5a963a60a3809f4e9c2819de41a5f180"
+    }
+  ]
+}

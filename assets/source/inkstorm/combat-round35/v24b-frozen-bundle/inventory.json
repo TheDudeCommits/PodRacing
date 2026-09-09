@@ -1,0 +1,54 @@
+{
+  "stage": "V24b one pause-feedback CSS selector beyond V24; TSC/build pass, native pending",
+  "bundle": "index-B_KeQ-uP.js",
+  "bytes": 1824681,
+  "sha256": "7db1087b13f02734d0bb4360db7a9a6a0b5603fe05f938e3defdedd3f801cc67",
+  "v24Tests": "862/142; no TypeScript source changes after that test run",
+  "sourceFiles": [
+    {
+      "path": "src/ui/RaceHud.ts",
+      "bytes": 118902,
+      "sha256": "f3ed25bf23aafc35d81c4a87bd635ed54278fb0c703ed4dab586960ed09dfa76"
+    },
+    {
+      "path": "src/ui/broadcastStyles.ts",
+      "bytes": 86743,
+      "sha256": "31ca8920ffed5d08721877e201b97da4c66025399474bd5c3f2f04eefeb273d5"
+    },
+    {
+      "path": "src/camera/CinematicCamera.ts",
+      "bytes": 33884,
+      "sha256": "862a5787a34d6d767841b87b738a38d82b5b1bf074b1e54454f2a5f47bd9ecf9"
+    },
+    {
+      "path": "src/render/app/GameApp.ts",
+      "bytes": 175201,
+      "sha256": "6ad516d7a8579583711d18bab55ee82f475f98f85ccb4c3ebcf7929f4ad1f90a"
+    },
+    {
+      "path": "src/render/combat/WreckVisualPose.ts",
+      "bytes": 11510,
+      "sha256": "2f634e7cbd07d166ecf2beaf16b02031b6e320c3c30aa16b074c7c10d5729e90"
+    },
+    {
+      "path": "src/render/combat/TeemtoAuthoredDamage.ts",
+      "bytes": 22967,
+      "sha256": "8823718236f00cad5dafc109056ca554c67fb09ad30462069bb1180281703841"
+    },
+    {
+      "path": "scripts/inkstorm-hud-feedback-fixtures.mjs",
+      "bytes": 18103,
+      "sha256": "b2054233c43bcce2cf57e660ea2cbd2e7106ac8df68b3404e3becc0689e24920"
+    },
+    {
+      "path": "scripts/inkstorm-combat.mjs",
+      "bytes": 27774,
+      "sha256": "fedd0e69e86516f135ba9fed1af17ab1fe38ba72804b415a0173d85c37e824c2"
+    },
+    {
+      "path": "scripts/inkstorm-broadcast-ui.mjs",
+      "bytes": 48486,
+      "sha256": "0496c3c3cec96067d64088001a522f1acef50f010d65fc04177d5038846bbfac"
+    }
+  ]
+}

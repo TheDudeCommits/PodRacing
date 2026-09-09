@@ -1,0 +1,29 @@
+--- a/src/ui/broadcastStyles.ts
++++ b/src/ui/broadcastStyles.ts
+@@ -687,7 +687,7 @@
+ .pod-hud__driving-instruments .pod-hud__meter-value { grid-column:3; grid-row:1; font:400 15px/1.15 var(--ui-heading); letter-spacing:0; text-align:right; }
+ .pod-hud__driving-instruments .pod-hud__meter-value::after { font-size:.7em; }
+ .pod-hud__driving-instruments .pod-hud__meter-track,.pod-hud__driving-instruments .pod-hud__telemetry .pod-hud__meter-track { grid-column:2; grid-row:1; height:7px; margin:0; background:#e4d69e26; border:1px solid #f5d58e66; border-radius:1px; transform:none; }
+-.pod-hud__driving-instruments .pod-hud__telemetry .pod-hud__meter-fill { width:var(--pod-meter-value,0%)!important; height:100%; }
++.pod-hud__driving-instruments .pod-hud__telemetry .pod-hud__meter-fill { display:block; width:var(--pod-meter-value,0%)!important; height:100%; }
+ .pod-hud__driving-instruments .pod-hud__telemetry.is-hot .pod-hud__meter--heat { background:none; box-shadow:none; outline:0; }
+ .pod-hud__driving-instruments .pod-hud__telemetry.is-hot .pod-hud__meter--heat .pod-hud__label { color:#ffb794; }
+ .pod-hud__driving-instruments .pod-hud__telemetry.is-damaged .pod-hud__meter--damage { background:none; box-shadow:none; outline:0; }
+@@ -783,7 +783,7 @@
+ .pod-hud__launch[data-stage=result] { top:107px; padding:7px 10px; border:0; border-bottom:1px solid #f5d58e88; border-radius:0; background:#173c439e; box-shadow:none; }
+ .pod-hud__launch[data-stage=result] header>strong { font-size:17px; }
+ .pod-hud__launch[data-stage=result] footer { margin-top:4px; font:700 12px/1.3 Inkstorm UI,sans-serif; }
+-.pod-hud__driving-instruments>.pod-hud__redline-heat>span { padding:0; border-radius:0; background:none; text-shadow:0 1px 0 #112e36; }
++.pod-hud__driving-instruments>.pod-hud__redline-heat>span { padding:2px 4px; border-radius:2px; background:#112e36e6; color:#ffe39b; text-shadow:none; }
+ .pod-hud__driving-instruments .pod-hud__meter-head { padding:0; border-radius:0; background:none; }
+ /* Readiness rings carry the abilities; their keys, identity and ammo remain explicit. */
+ .pod-hud__combat-slot { background:none; border:0; border-radius:0; box-shadow:none; overflow:visible; }
+@@ -791,7 +791,7 @@
+ .pod-hud__system-gauge { left:50%; top:5px; width:48px; height:48px; background:conic-gradient(var(--pod-system-accent) 0 var(--pod-readiness-angle),#17363eb8 var(--pod-readiness-angle) 360deg); transform:translateX(-50%) rotate(-35deg); }
+ .pod-hud__system-gauge::before { inset:4px; background:#112e36c2; box-shadow:none; }
+ .pod-hud__system-icon { inset:12px; }
+-.pod-hud__system-label { bottom:6px; padding:0; background:none; overflow:visible; text-overflow:clip; color:#ffe39b; font:700 11px/1.2 Inkstorm UI,sans-serif; text-shadow:0 1px 0 #112e36; }
++.pod-hud__system-label { left:50%; right:auto; bottom:6px; width:max-content; max-width:100%; padding:2px 4px; border-radius:2px; background:#112e36e6; overflow:visible; text-overflow:clip; color:#ffe39b; font:700 12px/1.2 Inkstorm UI,sans-serif; text-shadow:none; transform:translateX(-50%); }
+ .pod-hud__system-ammo { right:0; bottom:30px; color:#ffe39b; font:700 13px/1 Inkstorm UI,sans-serif; text-shadow:0 1px 0 #112e36; }
+ .pod-hud__galactic.is-shield-active .pod-hud__combat-slot--shield { background:none; }
+ .pod-hud__galactic.is-shield-active .pod-hud__combat-slot--shield .pod-hud__system-gauge { box-shadow:0 0 0 3px #bce5b955; }

@@ -1,0 +1,424 @@
+diff --git a/src/render/combat/TeemtoAuthoredDamage.ts b/src/render/combat/TeemtoAuthoredDamage.ts
+--- a/src/render/combat/TeemtoAuthoredDamage.ts
++++ b/src/render/combat/TeemtoAuthoredDamage.ts
+@@ -1,7 +1,7 @@
+ import { Box3, Euler, Matrix4, Quaternion, Vector3, type Mesh, type Object3D } from 'three';
+ import { WreckVisualPoseCache, WRECK_PRESENTATION_DURATION, writeWreckBounds, type WreckVisualPose } from './WreckVisualPose';
+ 
+-import { sampleTeemtoStrikeMotion, teemtoStrikeTime } from './TeemtoStrikeMotion';
++import { sampleTeemtoStrikeMotion, sampleTeemtoContactRoll, teemtoSlideTime, teemtoStrikeTime } from './TeemtoStrikeMotion';
+ 
+ const X = new Vector3(1, 0, 0), Y = new Vector3(0, 1, 0), Z = new Vector3(0, 0, 1), UNIT = new Vector3(1, 1, 1);
+ const smooth = (value: number): number => { const t = Math.max(0, Math.min(1, value)); return t * t * (3 - 2 * t); };
+@@ -41,6 +41,11 @@
+   private readonly path = new Vector3();
+   private readonly pathVelocity = new Vector3();
+   private readonly movingCenter = new Vector3();
++  private readonly supportPivot = new Vector3();
++  private readonly pivotOffset = new Vector3();
++  private readonly rollAxis = new Vector3();
++  private readonly rollRotation = new Quaternion();
++  private contactGrade = 0;
+   private readonly derivativeA = new Vector3();
+   private readonly derivativeB = new Vector3();
+   private readonly rotation = new Quaternion();
+@@ -223,6 +228,25 @@
+     this.settledRotation.multiply(this.axis);
+     this.rotation.copy(this.baseQuaternion).slerp(this.settledRotation, smooth(strike));
+     this.translation.copy(part.samples.localCenter).applyQuaternion(this.rotation).negate().add(this.movingCenter);
++    // Rotate around a real cached point on the broad resting surface. Select
++    // against the already sampled longitudinal terrain plane; no new terrain
++    // calls or source reads. The existing final solve still grounds every pose.
++    const contactAge = age - teemtoStrikeTime(index);
++    if (contactAge >= 0 && contactAge < teemtoSlideTime(index)) {
++      let lowest = Infinity;
++      const slope = Math.tan(grade);
++      for (const support of part.samples.supportPoints) {
++        this.point.copy(support).applyQuaternion(this.settledRotation);
++        const height = this.point.y - slope * (this.point.x * dx + this.point.z * dz);
++        if (height < lowest) { lowest = height; this.supportPivot.copy(support); }
++      }
++      this.groundOffset.copy(this.supportPivot).applyQuaternion(this.rotation).add(this.translation);
++      this.rollAxis.copy(Z).applyQuaternion(this.settledRotation);
++      this.rollRotation.setFromAxisAngle(this.rollAxis, sampleTeemtoContactRoll(index, age));
++      this.rotation.premultiply(this.rollRotation);
++      this.translation.copy(this.supportPivot).applyQuaternion(this.rotation).negate().add(this.groundOffset);
++    }
++    if (index === 2) this.contactGrade = grade;
+     // Exact recovery goes back to the existing intact parent pose. Until then
+     // detached masses do not inherit its unrelated late yaw/roll orbit.
+     this.rotation.slerp(this.bodyRotation, 1 - release);
+@@ -325,6 +349,18 @@
+       this.motionQuaternion.setFromEuler(this.motionEuler);
+       const target = side === 0 ? this.derivativeA : this.derivativeB;
+       target.copy(part.samples.localCenter).add(this.path).applyQuaternion(this.motionQuaternion);
++      // The contact roll moves the center around its source support. Include
++      // that arc in the world departure direction, using the same sampled
++      // terrain grade rather than issuing derivative-only terrain queries.
++      if (age < teemtoStrikeTime(2) + teemtoSlideTime(2)) {
++        this.settledRotation.setFromAxisAngle(Y, this.motionEuler.y - .65);
++        this.axis.setFromAxisAngle(X, -this.contactGrade); this.settledRotation.multiply(this.axis);
++        this.pivotOffset.copy(this.supportPivot).sub(part.samples.localCenter).applyQuaternion(this.settledRotation);
++        target.add(this.pivotOffset);
++        this.rollAxis.copy(Z).applyQuaternion(this.settledRotation);
++        this.rollRotation.setFromAxisAngle(this.rollAxis, sampleTeemtoContactRoll(2, age + delta));
++        this.pivotOffset.applyQuaternion(this.rollRotation); target.sub(this.pivotOffset);
++      }
+     }
+     this.contact.direction.copy(this.derivativeB).sub(this.derivativeA).multiplyScalar(.5 / epsilon);
+     if (base) this.contact.direction.add(base.velocity);
+diff --git a/src/render/combat/TeemtoStrikeMotion.ts b/src/render/combat/TeemtoStrikeMotion.ts
+--- a/src/render/combat/TeemtoStrikeMotion.ts
++++ b/src/render/combat/TeemtoStrikeMotion.ts
+@@ -1,7 +1,9 @@
+ import type { Vector3 } from 'three';
+ 
+ export const TEEMTO_REAR_STRIKE_TIME = .075;
+-export const TEEMTO_REAR_SLIDE_TIME = .22;
++export const TEEMTO_REAR_SLIDE_TIME = .60;
++const SLIDE_DURATION = [.70, .64, TEEMTO_REAR_SLIDE_TIME] as const;
++const CONTACT_ROLL = [-.085, .11, -.075] as const;
+ const DURATION = [.18, .13, TEEMTO_REAR_STRIKE_TIME] as const;
+ const FLIGHT = [2.4, 2.8, 3.0] as const;
+ const SLIDE = [.8, 1.0, 2.0] as const;
+@@ -10,16 +12,33 @@
+ 
+ export function teemtoStrikeTime(index: number): number { return DURATION[index] ?? TEEMTO_REAR_STRIKE_TIME; }
+ 
++export function teemtoSlideTime(index: number): number { return SLIDE_DURATION[index] ?? TEEMTO_REAR_SLIDE_TIME; }
++
++/** One support response: contact impulse, a smaller opposite rebound, then exact
++ * rest. Event-age sampling permits pause, repeated frames and random access. */
++export function sampleTeemtoContactRoll(index: number, age: number): number {
++  if (!Number.isFinite(age)) return 0;
++  const u = (age - teemtoStrikeTime(index)) / teemtoSlideTime(index);
++  if (u <= 0 || u >= 1) return 0;
++  const amplitude = CONTACT_ROLL[index] ?? CONTACT_ROLL[2];
++  if (u < .28) return amplitude * Math.sin(Math.PI * .5 * u / .28);
++  const t = u < .68 ? (u - .28) / .40 : (u - .68) / .32;
++  const smooth = t * t * (3 - 2 * t);
++  // Angular return dies faster than the remaining linear slide, so the
++  // source center's support arc cannot tug the mass backwards near rest.
++  return amplitude * (u < .68 ? 1 - 1.24 * smooth : -.24 * (1 - smooth) ** 2);
++}
++
+ /** Explicit impulse, supported contact and one-way braking path. The position
+  * is continuous at impact; its speed drops as the ground absorbs the impulse.
+  * No integration/history, random displacement or direction reversal. */
+ export function sampleTeemtoStrikeMotion(index: number, age: number, point: Vector3, velocity: Vector3): void {
+-  const duration = teemtoStrikeTime(index), flight = FLIGHT[index] ?? 3, slide = SLIDE[index] ?? 2;
++  const duration = teemtoStrikeTime(index), slideTime = teemtoSlideTime(index), flight = FLIGHT[index] ?? 3, slide = SLIDE[index] ?? 2;
+   const time = Math.max(0, Number.isFinite(age) ? age : 0);
+-  const u = time >= duration + TEEMTO_REAR_SLIDE_TIME ? 1
+-    : Math.max(0, (time - duration) / TEEMTO_REAR_SLIDE_TIME);
++  const u = time >= duration + slideTime ? 1
++    : Math.max(0, (time - duration) / slideTime);
+   const distance = time < duration ? flight * time / duration : flight + slide * (2 * u - u * u);
+-  const speed = time < duration ? flight / duration : slide * 2 * (1 - u) / TEEMTO_REAR_SLIDE_TIME;
++  const speed = time < duration ? flight / duration : slide * 2 * (1 - u) / slideTime;
+   const dx = DX[index] ?? DX[2], dz = DZ[index] ?? DZ[2];
+   point.set(dx * distance, 0, dz * distance);
+   velocity.set(dx * speed, 0, dz * speed);
+diff --git a/tests/combat/TeemtoAuthoredDamage.test.ts b/tests/combat/TeemtoAuthoredDamage.test.ts
+--- a/tests/combat/TeemtoAuthoredDamage.test.ts
++++ b/tests/combat/TeemtoAuthoredDamage.test.ts
+@@ -207,7 +207,7 @@
+         direction: pose.groundContact?.direction.clone() };
+     };
+     try {
+-      const birth = sample(0), strike = sample(.08), rest = sample(.4), later = sample(1.6);
++      const birth = sample(0), strike = sample(.08), rest = sample(.9), later = sample(1.6);
+       expect(birth.position.y - strike.position.y).toBeGreaterThan(.5);
+       expect(rest.position.distanceTo(later.position)).toBeLessThan(1e-7);
+       expect(rest.rotation.angleTo(later.rotation)).toBeLessThan(1e-7);
+diff --git a/tests/combat/TeemtoGroundFootprint.test.ts b/tests/combat/TeemtoGroundFootprint.test.ts
+--- a/tests/combat/TeemtoGroundFootprint.test.ts
++++ b/tests/combat/TeemtoGroundFootprint.test.ts
+@@ -4,12 +4,21 @@
+ import { RaceSimulation } from '../../src/game/race/RaceSimulation';
+ import { sampleTerrainHeight } from '../../src/render/terrain/terrainMath';
+ import { WreckVisualPoseCache } from '../../src/render/combat/WreckVisualPose';
++import { teemtoSlideTime, teemtoStrikeTime } from '../../src/render/combat/TeemtoStrikeMotion';
+ import { TeemtoWreckBreakup } from '../../src/render/combat/TeemtoWreckBreakup';
+ 
+ const fileModule: string = 'node:fs';
+ const { readFileSync } = await import(/* @vite-ignore */ fileModule);
+ const variants = ['hero', 'rival'] as const;
+ const sources = new Map<string, Group>();
++const contactBandMeasurements: unknown[] = [];
++afterAll(async () => {
++  const path = (globalThis as unknown as { process?: { env: Record<string, string | undefined> } }).process?.env.V27_BAND_METRICS_PATH;
++  if (path) {
++    const module: string = 'node:fs'; const { writeFileSync } = await import(/* @vite-ignore */ module);
++    writeFileSync(path, JSON.stringify(contactBandMeasurements, null, 2) + '\n');
++  }
++});
+ const privatePath = 'assets/source/inkstorm/combat-round35/authored-damage-v16/packaged-b/';
+ 
+ async function load(path: string, stripImages = false): Promise<Group> {
+@@ -62,6 +71,9 @@
+     let minimum = Infinity, checked = 0, maxQueries = 0; const bands: unknown[] = [];
+     const rest = matrices(art), pilots = art.original.filter(m => m.name.startsWith('teemto-pilot-'));
+     const originalPilotMatrices = pilots.map(m => m.matrix.clone());
++    const rear = art.damage.find(m => m.name.includes('right-rear'))!;
++    const rearSamples = new WreckVisualPoseCache(true); rearSamples.refresh(art.root, [rear], 0);
++    const restInverse = rear.matrixWorld.clone().invert(), cacheWorld = new Matrix4();
+     try {
+       for (let frame = 1; frame <= 1168; frame++) {
+         step(sim, frame); if (!frames.has(frame)) continue;
+@@ -70,6 +82,7 @@
+         art.breakup.update(pose, e.galactic!.wreck.timer, { heightAt(x,z) { queries++; return sim.terrain.heightAt(x,z); } });
+         maxQueries = Math.max(queries,maxQueries); art.root.updateMatrixWorld(true);
+         body.compose(pose.position,q.setFromEuler(pose.rotation),unit);
++        const sourceNearAlong: number[] = [];
+         for (const mesh of art.all) if (mesh.visible) {
+           world.multiplyMatrices(body,mesh.matrixWorld); axis.set(0,0,1).transformDirection(world).setY(0).normalize();
+           const p=mesh.geometry.getAttribute('position'); let low=Infinity, hi=-Infinity, near=0;
+@@ -79,16 +92,46 @@
+             // Check every vertex with the same bound, constructing detailed assertion
+             // state only on failure instead of roughly a million passing matchers.
+             if (!(gap >= -1e-6)) expect(gap,`${name}/${frame}/${mesh.name}/${i}: no source burial`).toBeGreaterThanOrEqual(-1e-6);
+-            if (gap<=.45) {const along=point.x*axis.x+point.z*axis.z;low=Math.min(low,along);hi=Math.max(hi,along);near++;}
++            if (gap<=.45) {const along=point.x*axis.x+point.z*axis.z;low=Math.min(low,along);hi=Math.max(hi,along);near++;if(mesh===rear)sourceNearAlong.push(along);}
+           }
+-          if ([984,1018].includes(frame) && (mesh.name==='teemto-engine-left-body'||mesh.name.includes('damage-right'))) {
++          // V27 completes the last engine response at .88 s. These unchanged
++          // broad-rest lengths now sample .9 and 1.667 s; frame 984 remains
++          // an intermediate full-source clearance sample, not terminal rest.
++          if ([1018,1110].includes(frame) && (mesh.name==='teemto-engine-left-body'||mesh.name.includes('damage-right'))) {
+             const length=hi-low;bands.push({frame,mesh:mesh.name,length,near});
+             expect(length,`${name}/${mesh.name}: long casing contact band`).toBeGreaterThan(mesh.name.includes('rear')?6:mesh.name.includes('front')?4.5:8);
+           }
+         }
+         if (pose.groundContact?.footprint) {
+           const f=pose.groundContact.footprint;expect(f.center.y).toBeCloseTo(sim.terrain.heightAt(f.center.x,f.center.z),9);
+-          expect(f.halfLength).toBeGreaterThan(2);expect(f.axis.length()).toBeCloseTo(1,9);
++          const age = 2.15 - e.galactic!.wreck.timer;
++          expect(f.halfLength).toBeGreaterThan(0);expect(f.axis.length()).toBeCloseTo(1,9);
++          if (age >= teemtoStrikeTime(2) + teemtoSlideTime(2)) expect(f.halfLength).toBeGreaterThan(2);
++          // A rolling casing can contact on an edge. Recompute the transient
++          // band from complete source vertices and independently transformed
++          // cached vertices, sampling actual terrain rather than stored gaps.
++          cacheWorld.copy(body).multiply(rear.matrixWorld).multiply(restInverse);
++          const cachedAlong: number[] = [];
++          for (const support of rearSamples.supportPoints) {
++            point.copy(support).applyMatrix4(cacheWorld);
++            if (point.y - sim.terrain.heightAt(point.x,point.z) <= .45) cachedAlong.push(point.x*f.axis.x+point.z*f.axis.z);
++          }
++          expect(sourceNearAlong.length).toBeGreaterThan(1);expect(cachedAlong.length).toBeGreaterThan(1);
++          const sourceMin=Math.min(...sourceNearAlong), sourceMax=Math.max(...sourceNearAlong);
++          const cacheMin=Math.min(...cachedAlong), cacheMax=Math.max(...cachedAlong);
++          const centerAlong=f.center.x*f.axis.x+f.center.z*f.axis.z;
++          expect(sourceMax-sourceMin).toBeGreaterThan(0);
++          expect(Math.abs(centerAlong-f.halfLength-cacheMin)).toBeLessThan(1e-7);
++          expect(Math.abs(centerAlong+f.halfLength-cacheMax)).toBeLessThan(1e-7);
++          // Tolerance is the measured axial coverage gap of this cache, not an
++          // inflated footprint or a new permissive constant. Its endpoints
++          // must also remain inside the actual full-source near-ground band.
++          const coverage=Math.max(...sourceNearAlong.map(v=>Math.min(...cachedAlong.map(c=>Math.abs(c-v)))));
++          expect(cacheMin).toBeGreaterThanOrEqual(sourceMin-1e-7);expect(cacheMax).toBeLessThanOrEqual(sourceMax+1e-7);
++          expect(Math.abs(f.halfLength-(sourceMax-sourceMin)*.5)).toBeLessThanOrEqual(coverage+1e-7);
++          contactBandMeasurements.push({name,frame,age,reportedLength:f.halfLength*2,
++            actualSourceLength:sourceMax-sourceMin,cacheCoverageTolerance:coverage,sourceNearVertices:sourceNearAlong.length,
++            cachedNearVertices:cachedAlong.length,terminal:age>=teemtoStrikeTime(2)+teemtoSlideTime(2)});
+         }
+         for (let i=0;i<pilots.length;i++) expect(pilots[i]!.matrix.equals(originalPilotMatrices[i]!)).toBe(true);
+         expect(JSON.stringify(sim.state)).toBe(before);
+diff --git a/tests/combat/TeemtoStrikeMotion.test.ts b/tests/combat/TeemtoStrikeMotion.test.ts
+--- a/tests/combat/TeemtoStrikeMotion.test.ts
++++ b/tests/combat/TeemtoStrikeMotion.test.ts
+@@ -1,12 +1,12 @@
+ import { Vector3 } from 'three';
+ import { describe, expect, it } from 'vitest';
+-import { sampleTeemtoStrikeMotion, teemtoStrikeTime, TEEMTO_REAR_SLIDE_TIME } from '../../src/render/combat/TeemtoStrikeMotion';
++import { sampleTeemtoStrikeMotion, teemtoStrikeTime, teemtoSlideTime } from '../../src/render/combat/TeemtoStrikeMotion';
+ 
+ describe('principal strike motion', () => {
+   it.each([0, 1, 2])('mass %i has exact birth, one-way travel, an impact speed loss and a terminal rest', index => {
+     const p = new Vector3(), v = new Vector3(), previous = new Vector3(), direction = new Vector3();
+     sampleTeemtoStrikeMotion(index, 0, p, v); expect(p.length()).toBe(0); direction.copy(v).normalize();
+-    const contact = teemtoStrikeTime(index), end = contact + TEEMTO_REAR_SLIDE_TIME;
++    const contact = teemtoStrikeTime(index), end = contact + teemtoSlideTime(index);
+     for (let age = 0; age <= 1.7; age += .002) {
+       sampleTeemtoStrikeMotion(index, age, p, v);
+       expect(p.clone().sub(previous).dot(direction)).toBeGreaterThanOrEqual(-1e-8);
+diff --git a/tests/combat/TeemtoSupportSettle.test.ts b/tests/combat/TeemtoSupportSettle.test.ts
+new file mode 100644
+--- /dev/null
++++ b/tests/combat/TeemtoSupportSettle.test.ts
+@@ -0,0 +1,175 @@
++import { Matrix4, Mesh, Quaternion, Vector3 } from 'three';
++import { afterAll, describe, expect, it, vi } from 'vitest';
++import { fixture, matrices, race, step, variants } from '../fixtures/teemtoActualCamera';
++import { sampleTeemtoContactRoll, teemtoSlideTime, teemtoStrikeTime } from '../../src/render/combat/TeemtoStrikeMotion';
++import { WreckVisualPoseCache, WRECK_PRESENTATION_DURATION } from '../../src/render/combat/WreckVisualPose';
++import { ImportedVehiclePresentation } from '../../src/render/vehicles/ImportedVehiclePresentation';
++import { VehicleArtLibrary } from '../../src/render/vehicles/VehicleArtLibrary';
++import { TEEMTO_ART_DEFINITIONS } from '../../src/game/vehicleAppearance';
++import { InkstormRacerShadow } from '../../src/render/inkstorm/InkstormRacerShadow';
++
++const names = ['teemto-engine-left-body', 'teemto-damage-right-front-v16', 'teemto-damage-right-rear-v16'];
++const starts = [0.18, 0.13, 0.075], ends = [0.88, 0.77, 0.675];
++const peaks = [.376, .3092, .243], rebounds = [.656, .5652, .483];
++const criticalAges = [...new Set([0, .05, ...starts.flatMap(t => [t - 1e-6, t, t + 1e-6]),
++  ...peaks, ...rebounds, ...ends, .9, 1.8, 1.96, 2.15])].sort((a, b) => a - b);
++const unit = new Vector3(1, 1, 1);
++const measurements: unknown[] = [];
++afterAll(async () => {
++  const path = (globalThis as unknown as { process?: { env: Record<string, string | undefined> } }).process?.env.V27_SUPPORT_METRICS_PATH;
++  if (path) {
++    const module: string = 'node:fs';
++    const { writeFileSync } = await import(/* @vite-ignore */ module);
++    writeFileSync(path, JSON.stringify(measurements, null, 2) + '\n');
++  }
++});
++
++function stoppedRace() { const sim = race(); for (let frame = 1; frame <= 910; frame++) step(sim, frame); return sim; }
++
++describe('support-pivot impact and settling', () => {
++  it.each([0, 1, 2])('mass %i has one bounded asymmetric rebound and stops exactly before recovery', index => {
++    const start = starts[index]!, end = ends[index]!, peak = sampleTeemtoContactRoll(index, peaks[index]!);
++    expect(teemtoStrikeTime(index)).toBe(start); expect(start + teemtoSlideTime(index)).toBeCloseTo(end, 12);
++    expect(Math.abs(peak)).toBeGreaterThan(.07); expect(Math.abs(peak)).toBeLessThanOrEqual(.11);
++    const rebound = sampleTeemtoContactRoll(index, rebounds[index]!);
++    expect(Math.sign(rebound)).toBe(-Math.sign(peak));
++    expect(Math.abs(rebound)).toBeLessThan(Math.abs(peak) * .25);
++    expect(Math.abs(rebound)).toBeGreaterThan(Math.abs(peak) * .20);
++    for (const age of [-1, 0, start, end, 1.8, 2.15, NaN, Infinity]) expect(sampleTeemtoContactRoll(index, age)).toBe(0);
++    const epsilon = 1e-6;
++    for (const age of [start, peaks[index]!, rebounds[index]!, end]) {
++      expect(Math.abs(sampleTeemtoContactRoll(index, age + epsilon) - sampleTeemtoContactRoll(index, age - epsilon))).toBeLessThan(.00001);
++    }
++    // Contact injects angular motion; terminal rest has no residual angular drift.
++    expect(Math.abs(sampleTeemtoContactRoll(index, start + epsilon) / epsilon)).toBeGreaterThan(.3);
++    expect(Math.abs(sampleTeemtoContactRoll(index, end - epsilon) / epsilon)).toBeLessThan(.00001);
++  });
++
++  it.each(variants)('%s keeps complete actual geometry above terrain at contact and angular extrema within the existing query budget', name => {
++    const art = fixture(name), sim = stoppedRace(), state = sim.state.entries[0]!.vehicle;
++    const before = JSON.stringify(sim.state), rest = matrices(art), world = new Matrix4(), p = new Vector3();
++    const engine = names.map(n => art.all.find(m => m.name === n)!);
++    const sourceCounts = art.all.map(m => m.geometry.getAttribute('position').count);
++    const snapshots = new Map<number, { corners: Vector3[]; rotations: Quaternion[]; matrices: number[][] }>();
++    let maxQueries = 0, positions = 0, minimum = Infinity;
++    const sample = (age: number, checkSource = true) => {
++      const remaining = WRECK_PRESENTATION_DURATION - age, pose = art.cache.update(state, remaining, sim.terrain);
++      let queries = 0;
++      const spies = art.all.map(m => vi.spyOn(m.geometry, 'getAttribute').mockImplementation(() => { throw new Error('Uncached runtime source read'); }));
++      try { art.breakup.update(pose, remaining, { heightAt(x, z) { queries++; return sim.terrain.heightAt(x, z); } }); }
++      finally { for (const spy of spies) spy.mockRestore(); }
++      maxQueries = Math.max(maxQueries, queries); expect(queries).toBeLessThanOrEqual(name === 'hero' ? 348 : 300);
++      art.root.updateMatrixWorld(true);
++      const body = new Matrix4().compose(pose.position, new Quaternion().setFromEuler(pose.rotation), unit);
++      const rotations = engine.map(m => new Quaternion().setFromRotationMatrix(world.copy(body).multiply(m.matrixWorld)));
++      if (checkSource) {
++        let count = 0;
++        for (const mesh of art.all) if (mesh.visible) {
++          world.copy(body).multiply(mesh.matrixWorld); const source = mesh.geometry.getAttribute('position');
++          for (let i = 0; i < source.count; i++) {
++            p.fromBufferAttribute(source, i).applyMatrix4(world);
++            const gap = p.y - sim.terrain.heightAt(p.x, p.z); minimum = Math.min(minimum, gap); count++; positions++;
++            if (gap < -1e-6 || !Number.isFinite(gap)) throw new Error(`${name}/${age}/${mesh.name}/${i}: source burial ${gap}`);
++          }
++        }
++        expect(count).toBe(name === 'hero' ? (art.breakup.active ? 90581 : 73048) : (art.breakup.active ? 45605 : 42278));
++      }
++      if (art.breakup.active) {
++        expect(pose.bounds).toHaveLength(name === 'hero' ? 40 : 32); expect(pose.impactFraming!.bounds).toHaveLength(26);
++        for (const mesh of engine) {
++          mesh.geometry.computeBoundingBox(); const box = mesh.geometry.boundingBox!;
++          world.copy(body).multiply(mesh.matrixWorld);
++          for (let i = 0; i < 8; i++) {
++            p.set(i & 1 ? box.max.x : box.min.x, i & 2 ? box.max.y : box.min.y, i & 4 ? box.max.z : box.min.z).applyMatrix4(world);
++            expect(Math.min(...pose.bounds.map(b => b.distanceTo(p)))).toBeLessThan(1e-7);
++            expect(Math.min(...pose.impactFraming!.bounds.map(b => b.distanceTo(p)))).toBeLessThan(1e-7);
++          }
++        }
++      }
++      return { corners: pose.bounds.map(v => v.clone()), rotations, matrices: matrices(art) };
++    };
++    try {
++      for (const age of criticalAges) snapshots.set(age, sample(age));
++      const angularResponses: number[] = [];
++      for (let index = 0; index < 3; index++) {
++        const start = starts[index]!;
++        const a = snapshots.get(start - 1e-6)!, b = snapshots.get(start + 1e-6)!;
++        expect(Math.max(...a.corners.map((point, i) => point.distanceTo(b.corners[i]!))), `mass ${index} contact continuity`).toBeLessThan(.002);
++        const contact = snapshots.get(start)!.rotations[index]!, peak = snapshots.get(peaks[index]!)!.rotations[index]!;
++        expect(peak.angleTo(contact), `mass ${index} visible post-contact angular response`).toBeGreaterThan(.035);
++        expect(peak.angleTo(contact)).toBeLessThan(.14);
++        angularResponses.push(peak.angleTo(contact));
++      }
++      expect(sample(peaks[2]!, false).matrices).toEqual(snapshots.get(peaks[2]!)!.matrices);
++      expect(sample(.9, false).matrices).toEqual(snapshots.get(.9)!.matrices);
++      sample(2.15, false); expect(matrices(art)).toEqual(rest);
++      expect(art.all.map(m => m.geometry.getAttribute('position').count)).toEqual(sourceCounts);
++      expect(JSON.stringify(sim.state)).toBe(before);
++      measurements.push({ name, ages: criticalAges, positions, minimum, maxQueries, postContactAngularRadians: angularResponses });
++    } finally { art.breakup.reset(); }
++  });
++
++  it.each(variants)('%s retains one-way capped world-center travel while rotating about support', name => {
++    const art = fixture(name), sim = stoppedRace(), state = sim.state.entries[0]!.vehicle;
++    const body = new Matrix4(), world = new Matrix4();
++    const engines = names.map(n => art.all.find(m => m.name === n)!);
++    const centers = engines.map(m => { m.geometry.computeBoundingBox(); return m.geometry.boundingBox!.getCenter(new Vector3()); });
++    const sample = (age: number) => {
++      const remaining = WRECK_PRESENTATION_DURATION - age;
++      const pose = art.cache.update(state, remaining, sim.terrain); art.breakup.update(pose, remaining, sim.terrain);
++      art.root.updateMatrixWorld(true); body.compose(pose.position, new Quaternion().setFromEuler(pose.rotation), unit);
++      return engines.map((m, i) => centers[i]!.clone().applyMatrix4(world.copy(body).multiply(m.matrixWorld)).setY(0));
++    };
++    try {
++      const birth = sample(0), terminal = sample(.9);
++      const directions = terminal.map((p, i) => p.clone().sub(birth[i]!).normalize()), previous = birth.map(p => p.clone());
++      const travel = [3.2, 3.8, 5]; let worstStep = Infinity;
++      for (let tick = 1; tick <= 120; tick++) {
++        const age = tick * .9 / 120, points = sample(age);
++        for (let i = 0; i < 3; i++) {
++          const advance = points[i]!.clone().sub(previous[i]!).dot(directions[i]!); worstStep = Math.min(worstStep, advance);
++          expect(advance, `${name}/${age}/${names[i]}: actual center must not reverse`).toBeGreaterThanOrEqual(-1e-8);
++          expect(points[i]!.distanceTo(birth[i]!), `${name}/${age}/${names[i]}: total displacement cap`).toBeLessThanOrEqual(travel[i]! + 1e-7);
++          previous[i]!.copy(points[i]!);
++        }
++      }
++      measurements.push({ name, worldCenterSamples: 120, worstForwardStep: worstStep, terminalDisplacements: terminal.map((p, i) => p.distanceTo(birth[i]!)) });
++    } finally { art.breakup.reset(); }
++  });
++
++  it.each(variants)('%s shares actual source matrices with the production prepass and shadow adapters through settle and reset', async name => {
++    const art = fixture(name), sim = stoppedRace(), damageRoot = art.damage[0]!.parent!;
++    damageRoot.removeFromParent(); art.breakup.reset();
++    const definition = TEEMTO_ART_DEFINITIONS[name];
++    const library = new VehicleArtLibrary({ load: async url => url === definition.damageVariant!.url ? damageRoot : art.root, maxIdleEntries: 0 });
++    const presentation = new ImportedVehiclePresentation(library, { maxTriangles: 200000 });
++    const shadow = new InkstormRacerShadow();
++    try {
++      expect(await presentation.setSource(definition)).toBe('ready');
++      const cache = new WreckVisualPoseCache(); cache.refresh(presentation, presentation.geometryMeshes, presentation.geometryRevision);
++      shadow.refreshCasters(presentation);
++      const access = shadow as unknown as { selectCasters(): void; bindings: Array<{ source: Mesh; proxy: Mesh }> };
++      const registration = [...access.bindings], prepasses = presentation.prepassMeshes;
++      for (const age of [0, ...peaks, ...rebounds, .9, 1.96, 2.15]) {
++        const remaining = WRECK_PRESENTATION_DURATION - age;
++        const pose = cache.update(sim.state.entries[0]!.vehicle, remaining, sim.terrain);
++        presentation.updateWreckBreakup(pose, remaining, sim.terrain);
++        presentation.position.copy(pose.position); presentation.quaternion.setFromEuler(pose.rotation);
++        presentation.updateMatrixWorld(true); access.selectCasters();
++        for (const proxy of prepasses) if (proxy.visible) {
++          const source = proxy.parent as Mesh;
++          expect(proxy.geometry).toBe(source.geometry); expect(proxy.matrixWorld.elements).toEqual(source.matrixWorld.elements);
++        }
++        for (const { source, proxy } of access.bindings) if (proxy.visible) {
++          expect(proxy.geometry).toBe(source.geometry); expect(proxy.matrix.elements).toEqual(source.matrixWorld.elements);
++        }
++        if (age > 0 && age < 2.15) for (const name of names) {
++          expect(access.bindings.find(b => b.source.name === name)?.proxy.visible, name).toBe(true);
++          expect(prepasses.find(p => p.parent?.name === name)?.visible, name).toBe(true);
++        }
++        expect(presentation.prepassMeshes).toBe(prepasses); expect(access.bindings).toEqual(registration);
++      }
++      expect(shadow.receipt.refreshes).toBe(1); expect(presentation.damageVariantActive).toBe(false);
++    } finally { shadow.dispose(); presentation.dispose(); library.dispose(); }
++  });
++});

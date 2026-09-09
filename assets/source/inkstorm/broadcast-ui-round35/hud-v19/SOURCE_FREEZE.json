@@ -1,0 +1,38 @@
+{
+  "frozenAt": "2026-09-08T23:34:01.029704+00:00",
+  "scope": "Seven HUD CSS line changes and one decorative SVG path. No source binding, logic, threat, menu, anchor or test changes.",
+  "sources": {
+    "src/ui/broadcastStyles.ts": {
+      "sha256": "3a962dea33886361329f4fbec6de75c155c69c41e0bd53db483636e630f325a2",
+      "bytes": 76009
+    },
+    "src/ui/RaceHud.ts": {
+      "sha256": "d50d8ed42322b2d861491e9934c74da7af6956ef8f1f3110005ff8a16b748ebb",
+      "bytes": 118090
+    }
+  },
+  "unchangedOtherUi": {
+    "workshopGraphicStyles.ts": "c026d0c35640b4ab1551d4aa0fa265c9cce03dcd970e85614f8195c6c016ffcb",
+    "raceEventAtlasStyles.ts": "478d21bed4f791f07417ead6c762245ef36284de9d1de5a2caf135c98215c1fd"
+  },
+  "patchSha256": "5e364860809e290713dc33c28799729a43f4d1ec164a18553aa809bd7ce3ab3b",
+  "checks": {
+    "typecheck": "PASS",
+    "existingHudThreatTests": {
+      "files": 4,
+      "tests": 29,
+      "outcome": "PASS"
+    },
+    "postcssRules": 771,
+    "svgXml": "PASS",
+    "whitespace": "PASS",
+    "actualMeterBindingUnchanged": true,
+    "RaceHudMatchesBeforeApartFromDecorativePath": true,
+    "threatAndReducedMotionTailIdentical": true
+  },
+  "nativeAndVisualAcceptance": "PENDING_ROOT_BUILD_AND_NATIVE_CAPTURE; no browser/build run by this agent",
+  "priorV18b": {
+    "native": "PASS17 with raw functional audit",
+    "blindVisual": "FAIL; HUD7/7, Build7/8, Map7/8, Garage7.5/7.5; unchanged menus not edited"
+  }
+}

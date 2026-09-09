@@ -1,0 +1,95 @@
+{
+  "scope": "Independent exact-nearest-triangle distances at seven barycentric samples on every changed triangle, both directions. Identical triangles skipped as exactly coincident. Finite sampling is not a continuous Hausdorff bound.",
+  "hero": "assets/source/inkstorm/blockrunner-round34/runtime-admission-preparation/packaged-atlas-v3-v1/blockrunner-hero-v1.glb",
+  "heroSha256": "6451e78bc4933fd294bc0c080dbedcf679b2d558b118b62cca8ce4812f942b02",
+  "rival": "assets/source/inkstorm/blockrunner-round34/runtime-admission-preparation/packaged-atlas-v3-v1/blockrunner-rival-lod-deviations-v5.glb",
+  "rivalSha256": "307a1f8eae8fc403bebaace1a93b08041636f357def07c1f39eeab6275f1b1fe",
+  "sampleRule": [
+    [
+      1,
+      0,
+      0
+    ],
+    [
+      0,
+      1,
+      0
+    ],
+    [
+      0,
+      0,
+      1
+    ],
+    [
+      0.5,
+      0.5,
+      0
+    ],
+    [
+      0.5,
+      0,
+      0.5
+    ],
+    [
+      0,
+      0.5,
+      0.5
+    ],
+    [
+      0.3333333333333333,
+      0.3333333333333333,
+      0.3333333333333333
+    ]
+  ],
+  "heroToRival": {
+    "changedTriangles": 24608,
+    "samples": 172256,
+    "maximumDistanceMeters": 0.024842487951903837,
+    "meanDistanceMeters": 0.005036551704942087,
+    "samplesOverTwoCentimeters": 33,
+    "worst": {
+      "triangleIndices": [
+        31547,
+        32049,
+        32051
+      ],
+      "barycentric": [
+        0,
+        0,
+        1
+      ],
+      "position": [
+        1.767441749572754,
+        3.1768908500671387,
+        -4.047767162322998
+      ]
+    }
+  },
+  "rivalToHero": {
+    "changedTriangles": 10262,
+    "samples": 71834,
+    "maximumDistanceMeters": 0.021002364359816023,
+    "meanDistanceMeters": 0.002194263486078556,
+    "samplesOverTwoCentimeters": 2,
+    "worst": {
+      "triangleIndices": [
+        17941,
+        17876,
+        17959
+      ],
+      "barycentric": [
+        0.5,
+        0,
+        0.5
+      ],
+      "position": [
+        -0.5813907980918884,
+        3.147530436515808,
+        -3.669327735900879
+      ]
+    }
+  },
+  "samplesPassTwoCentimeters": false,
+  "elapsedMilliseconds": 20826,
+  "runtimeReady": false
+}

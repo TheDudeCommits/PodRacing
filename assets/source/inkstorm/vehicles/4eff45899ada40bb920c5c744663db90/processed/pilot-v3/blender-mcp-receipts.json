@@ -1,0 +1,98 @@
+{
+  "pilotV3ConstructionFinal": {
+    "content": [
+      {
+        "type": "text",
+        "text": "Code executed successfully: {\"scene\": \"PodRacing \\u2014 Teemto pilot construction v3c\", \"sourceScene\": \"PodRacing \\u2014 Teemto material study v1\", \"sourceModified\": false, \"runtimeModified\": false, \"pilotMeshes\": 6, \"pilotTriangles\": 15648, \"bodyCopies\": 71, \"featureCount\": 458, \"geometrySeed\": \"authored-static-v3-continuous-garment\", \"meshes\": [{\"mesh\": \"teemto-pilot-v3-suit.002\", \"triangles\": 9188, \"vertices\": 5956, \"validationCorrected\": false}, {\"mesh\": \"teemto-pilot-v3-shell.002\", \"triangles\": 1540, \"vertices\": 836, \"validationCorrected\": false}, {\"mesh\": \"teemto-pilot-v3-accent.002\", \"triangles\": 252, \"vertices\": 160, \"validationCorrected\": false}, {\"mesh\": \"teemto-pilot-v3-hardware.002\", \"triangles\": 1552, \"vertices\": 839, \"validationCorrected\": false}, {\"mesh\": \"teemto-pilot-v3-webbing.002\", \"triangles\": 1008, \"vertices\": 981, \"validationCorrected\": false}, {\"mesh\": \"teemto-pilot-v3-rubber.002\", \"triangles\": 2108, \"vertices\": 1120, \"validationCorrected\": false}], \"anchors\": {\"pelvis\": [0, -0.13, -0.205], \"helmetCenter\": [0, -0.16, 0.143], \"inheritedHandPoseReferences\": [[-0.122, 0.103, -0.071], [0.122, 0.103, -0.071]], \"authoredGripCenters\": [[-0.145, 0.153, -0.096], [0.13, 0.153, -0.096]]}, \"pilotBounds\": [[-0.1681748330593109, -0.23600000143051147, -0.29993945360183716], [0.15317483246326447, 0.30300000309944153, 0.21799999475479126]], \"pose\": \"static, grip geometry needs visual contact acceptance\", \"rendered\": false, \"exported\": false, \"restoredContext\": {\"scene\": \"Cruise \\u2014 Going Merry source 4b2cb678\", \"viewLayer\": \"ViewLayer\", \"activeObject\": \"Sketchfab_model.001\", \"selectedCount\": 15, \"exactSelectionRestored\": true}}\n"
+      }
+    ],
+    "structuredContent": {
+      "result": "Code executed successfully: {\"scene\": \"PodRacing \\u2014 Teemto pilot construction v3c\", \"sourceScene\": \"PodRacing \\u2014 Teemto material study v1\", \"sourceModified\": false, \"runtimeModified\": false, \"pilotMeshes\": 6, \"pilotTriangles\": 15648, \"bodyCopies\": 71, \"featureCount\": 458, \"geometrySeed\": \"authored-static-v3-continuous-garment\", \"meshes\": [{\"mesh\": \"teemto-pilot-v3-suit.002\", \"triangles\": 9188, \"vertices\": 5956, \"validationCorrected\": false}, {\"mesh\": \"teemto-pilot-v3-shell.002\", \"triangles\": 1540, \"vertices\": 836, \"validationCorrected\": false}, {\"mesh\": \"teemto-pilot-v3-accent.002\", \"triangles\": 252, \"vertices\": 160, \"validationCorrected\": false}, {\"mesh\": \"teemto-pilot-v3-hardware.002\", \"triangles\": 1552, \"vertices\": 839, \"validationCorrected\": false}, {\"mesh\": \"teemto-pilot-v3-webbing.002\", \"triangles\": 1008, \"vertices\": 981, \"validationCorrected\": false}, {\"mesh\": \"teemto-pilot-v3-rubber.002\", \"triangles\": 2108, \"vertices\": 1120, \"validationCorrected\": false}], \"anchors\": {\"pelvis\": [0, -0.13, -0.205], \"helmetCenter\": [0, -0.16, 0.143], \"inheritedHandPoseReferences\": [[-0.122, 0.103, -0.071], [0.122, 0.103, -0.071]], \"authoredGripCenters\": [[-0.145, 0.153, -0.096], [0.13, 0.153, -0.096]]}, \"pilotBounds\": [[-0.1681748330593109, -0.23600000143051147, -0.29993945360183716], [0.15317483246326447, 0.30300000309944153, 0.21799999475479126]], \"pose\": \"static, grip geometry needs visual contact acceptance\", \"rendered\": false, \"exported\": false, \"restoredContext\": {\"scene\": \"Cruise \\u2014 Going Merry source 4b2cb678\", \"viewLayer\": \"ViewLayer\", \"activeObject\": \"Sketchfab_model.001\", \"selectedCount\": 15, \"exactSelectionRestored\": true}}\n"
+    },
+    "isError": false
+  },
+  "pilotV3MaterialSetupFinal": {
+    "content": [
+      {
+        "type": "text",
+        "text": "Code executed successfully: {\"action\": \"setup\", \"scene\": \"PodRacing \\u2014 Teemto pilot material v3c\", \"pilotMeshes\": [{\"mesh\": \"pilot-material-v3-suit.001\", \"triangles\": 9188, \"uvLoops\": 18160, \"bakeRoles\": [\"suit\"]}, {\"mesh\": \"pilot-material-v3-shell.001\", \"triangles\": 1540, \"uvLoops\": 2868, \"bakeRoles\": [\"shell\"]}, {\"mesh\": \"pilot-material-v3-accent.001\", \"triangles\": 252, \"uvLoops\": 472, \"bakeRoles\": [\"accent\"]}, {\"mesh\": \"pilot-material-v3-hardware.001\", \"triangles\": 1552, \"uvLoops\": 2940, \"bakeRoles\": [\"hardware\"]}, {\"mesh\": \"pilot-material-v3-webbing.001\", \"triangles\": 1008, \"uvLoops\": 2016, \"bakeRoles\": [\"webbing\"]}, {\"mesh\": \"pilot-material-v3-rubber.001\", \"triangles\": 2108, \"uvLoops\": 3984, \"bakeRoles\": [\"rubber\"]}], \"atlas\": [2048, 2048], \"uvPacking\": \"joint multi-object smart projection\", \"sourceModified\": false, \"baked\": false, \"exported\": false, \"restoredContext\": {\"scene\": \"Cruise \\u2014 Going Merry source 4b2cb678\", \"viewLayer\": \"ViewLayer\", \"activeObject\": \"Sketchfab_model.001\", \"selectedCount\": 15, \"exactSelectionRestored\": true}}\n"
+      }
+    ],
+    "structuredContent": {
+      "result": "Code executed successfully: {\"action\": \"setup\", \"scene\": \"PodRacing \\u2014 Teemto pilot material v3c\", \"pilotMeshes\": [{\"mesh\": \"pilot-material-v3-suit.001\", \"triangles\": 9188, \"uvLoops\": 18160, \"bakeRoles\": [\"suit\"]}, {\"mesh\": \"pilot-material-v3-shell.001\", \"triangles\": 1540, \"uvLoops\": 2868, \"bakeRoles\": [\"shell\"]}, {\"mesh\": \"pilot-material-v3-accent.001\", \"triangles\": 252, \"uvLoops\": 472, \"bakeRoles\": [\"accent\"]}, {\"mesh\": \"pilot-material-v3-hardware.001\", \"triangles\": 1552, \"uvLoops\": 2940, \"bakeRoles\": [\"hardware\"]}, {\"mesh\": \"pilot-material-v3-webbing.001\", \"triangles\": 1008, \"uvLoops\": 2016, \"bakeRoles\": [\"webbing\"]}, {\"mesh\": \"pilot-material-v3-rubber.001\", \"triangles\": 2108, \"uvLoops\": 3984, \"bakeRoles\": [\"rubber\"]}], \"atlas\": [2048, 2048], \"uvPacking\": \"joint multi-object smart projection\", \"sourceModified\": false, \"baked\": false, \"exported\": false, \"restoredContext\": {\"scene\": \"Cruise \\u2014 Going Merry source 4b2cb678\", \"viewLayer\": \"ViewLayer\", \"activeObject\": \"Sketchfab_model.001\", \"selectedCount\": 15, \"exactSelectionRestored\": true}}\n"
+    },
+    "isError": false
+  },
+  "pilotV3BakeFinal": {
+    "content": [
+      {
+        "type": "text",
+        "text": "Code executed successfully: Info: Baking map saved to internal image, save it externally or pack it\nInfo: Baking map saved to internal image, save it externally or pack it\nInfo: Baking map saved to internal image, save it externally or pack it\nInfo: Baking map saved to internal image, save it externally or pack it\nInfo: Baking map saved to internal image, save it externally or pack it\nInfo: Baking map saved to internal image, save it externally or pack it\n{\"action\": \"bake\", \"atlas\": \"/Users/amir/Projects/PodRacing/assets/source/inkstorm/vehicles/4eff45899ada40bb920c5c744663db90/processed/pilot-v3/pilot-color-atlas-v3.png\", \"imageSize\": [2048, 2048], \"pilotTriangles\": 15648, \"pilotDraws\": 6, \"baseColorIncludes\": \"original procedural color, woven value, controlled edge wear, local AO\", \"normalMap\": false, \"roughnessTexture\": false, \"exported\": false, \"restoredContext\": {\"scene\": \"Cruise \\u2014 Going Merry source 4b2cb678\", \"viewLayer\": \"ViewLayer\", \"activeObject\": \"Sketchfab_model.001\", \"selectedCount\": 15, \"exactSelectionRestored\": true}}\n"
+      }
+    ],
+    "structuredContent": {
+      "result": "Code executed successfully: Info: Baking map saved to internal image, save it externally or pack it\nInfo: Baking map saved to internal image, save it externally or pack it\nInfo: Baking map saved to internal image, save it externally or pack it\nInfo: Baking map saved to internal image, save it externally or pack it\nInfo: Baking map saved to internal image, save it externally or pack it\nInfo: Baking map saved to internal image, save it externally or pack it\n{\"action\": \"bake\", \"atlas\": \"/Users/amir/Projects/PodRacing/assets/source/inkstorm/vehicles/4eff45899ada40bb920c5c744663db90/processed/pilot-v3/pilot-color-atlas-v3.png\", \"imageSize\": [2048, 2048], \"pilotTriangles\": 15648, \"pilotDraws\": 6, \"baseColorIncludes\": \"original procedural color, woven value, controlled edge wear, local AO\", \"normalMap\": false, \"roughnessTexture\": false, \"exported\": false, \"restoredContext\": {\"scene\": \"Cruise \\u2014 Going Merry source 4b2cb678\", \"viewLayer\": \"ViewLayer\", \"activeObject\": \"Sketchfab_model.001\", \"selectedCount\": 15, \"exactSelectionRestored\": true}}\n"
+    },
+    "isError": false
+  },
+  "pilotV3Finalpreview-side": {
+    "content": [
+      {
+        "type": "text",
+        "text": "Code executed successfully: {\"action\": \"preview-side\", \"image\": \"/Users/amir/Projects/PodRacing/assets/source/inkstorm/vehicles/4eff45899ada40bb920c5c744663db90/processed/pilot-v3/review/teemto-pilot-side-v3.png\", \"renderer\": \"CPU Cycles, 32 samples\", \"runtimeEvidence\": false, \"restoredContext\": {\"scene\": \"Cruise \\u2014 Going Merry source 4b2cb678\", \"viewLayer\": \"ViewLayer\", \"activeObject\": \"Sketchfab_model.001\", \"selectedCount\": 15, \"exactSelectionRestored\": true}}\n"
+      }
+    ],
+    "structuredContent": {
+      "result": "Code executed successfully: {\"action\": \"preview-side\", \"image\": \"/Users/amir/Projects/PodRacing/assets/source/inkstorm/vehicles/4eff45899ada40bb920c5c744663db90/processed/pilot-v3/review/teemto-pilot-side-v3.png\", \"renderer\": \"CPU Cycles, 32 samples\", \"runtimeEvidence\": false, \"restoredContext\": {\"scene\": \"Cruise \\u2014 Going Merry source 4b2cb678\", \"viewLayer\": \"ViewLayer\", \"activeObject\": \"Sketchfab_model.001\", \"selectedCount\": 15, \"exactSelectionRestored\": true}}\n"
+    },
+    "isError": false
+  },
+  "pilotV3Finalpreview-front": {
+    "content": [
+      {
+        "type": "text",
+        "text": "Code executed successfully: {\"action\": \"preview-front\", \"image\": \"/Users/amir/Projects/PodRacing/assets/source/inkstorm/vehicles/4eff45899ada40bb920c5c744663db90/processed/pilot-v3/review/teemto-pilot-front-quarter-v3.png\", \"renderer\": \"CPU Cycles, 32 samples\", \"runtimeEvidence\": false, \"restoredContext\": {\"scene\": \"Cruise \\u2014 Going Merry source 4b2cb678\", \"viewLayer\": \"ViewLayer\", \"activeObject\": \"Sketchfab_model.001\", \"selectedCount\": 15, \"exactSelectionRestored\": true}}\n"
+      }
+    ],
+    "structuredContent": {
+      "result": "Code executed successfully: {\"action\": \"preview-front\", \"image\": \"/Users/amir/Projects/PodRacing/assets/source/inkstorm/vehicles/4eff45899ada40bb920c5c744663db90/processed/pilot-v3/review/teemto-pilot-front-quarter-v3.png\", \"renderer\": \"CPU Cycles, 32 samples\", \"runtimeEvidence\": false, \"restoredContext\": {\"scene\": \"Cruise \\u2014 Going Merry source 4b2cb678\", \"viewLayer\": \"ViewLayer\", \"activeObject\": \"Sketchfab_model.001\", \"selectedCount\": 15, \"exactSelectionRestored\": true}}\n"
+    },
+    "isError": false
+  },
+  "pilotV3Finalpreview-full": {
+    "content": [
+      {
+        "type": "text",
+        "text": "Code executed successfully: {\"action\": \"preview-full\", \"image\": \"/Users/amir/Projects/PodRacing/assets/source/inkstorm/vehicles/4eff45899ada40bb920c5c744663db90/processed/pilot-v3/review/teemto-pilot-full-v3.png\", \"renderer\": \"CPU Cycles, 32 samples\", \"runtimeEvidence\": false, \"restoredContext\": {\"scene\": \"Cruise \\u2014 Going Merry source 4b2cb678\", \"viewLayer\": \"ViewLayer\", \"activeObject\": \"Sketchfab_model.001\", \"selectedCount\": 15, \"exactSelectionRestored\": true}}\n"
+      }
+    ],
+    "structuredContent": {
+      "result": "Code executed successfully: {\"action\": \"preview-full\", \"image\": \"/Users/amir/Projects/PodRacing/assets/source/inkstorm/vehicles/4eff45899ada40bb920c5c744663db90/processed/pilot-v3/review/teemto-pilot-full-v3.png\", \"renderer\": \"CPU Cycles, 32 samples\", \"runtimeEvidence\": false, \"restoredContext\": {\"scene\": \"Cruise \\u2014 Going Merry source 4b2cb678\", \"viewLayer\": \"ViewLayer\", \"activeObject\": \"Sketchfab_model.001\", \"selectedCount\": 15, \"exactSelectionRestored\": true}}\n"
+    },
+    "isError": false
+  },
+  "pilotV3ContextFinal": {
+    "content": [
+      {
+        "type": "text",
+        "text": "Code executed successfully: {\"sourceBodyMeshCount\": 71, \"candidateBodyMeshCount\": 71, \"bodyTriangles\": 43545, \"maximumBodyVertexError\": 0, \"topologyUnchanged\": true, \"sourceMaterialSlotsUnchanged\": true, \"seatAndControlsAndLicensedHoses\": \"all source body geometry included in this comparison\", \"v2cSourceUntouched\": true, \"fullBlendSaved\": false, \"publicAssetsModified\": false, \"restoredContext\": {\"scene\": \"Cruise \\u2014 Going Merry source 4b2cb678\", \"viewLayer\": \"ViewLayer\", \"active\": \"Sketchfab_model.001\", \"selectedCount\": 15, \"exactSelectionRestored\": true, \"objectCountUnchanged\": true}}\n"
+      }
+    ],
+    "structuredContent": {
+      "result": "Code executed successfully: {\"sourceBodyMeshCount\": 71, \"candidateBodyMeshCount\": 71, \"bodyTriangles\": 43545, \"maximumBodyVertexError\": 0, \"topologyUnchanged\": true, \"sourceMaterialSlotsUnchanged\": true, \"seatAndControlsAndLicensedHoses\": \"all source body geometry included in this comparison\", \"v2cSourceUntouched\": true, \"fullBlendSaved\": false, \"publicAssetsModified\": false, \"restoredContext\": {\"scene\": \"Cruise \\u2014 Going Merry source 4b2cb678\", \"viewLayer\": \"ViewLayer\", \"active\": \"Sketchfab_model.001\", \"selectedCount\": 15, \"exactSelectionRestored\": true, \"objectCountUnchanged\": true}}\n"
+    },
+    "isError": false
+  },
+  "pilotV3ExportFinal": {
+    "content": [
+      {
+        "type": "text",
+        "text": "Code executed successfully: 01:08:19 | INFO: Starting glTF 2.0 export\n01:08:19 | INFO: Extracting primitive: Pilot v3 unchanged body Inkstorm Teemto Gabina-exterior-timon_low_Cabina_0.005\n01:08:19 | INFO: Primitives created: 1\n01:08:19 | INFO: Extracting primitive: Pilot v3 unchanged body Inkstorm Teemto Propulsores-alerones_low_Propulsores_0.005\n01:08:19 | INFO: Primitives created: 1\n01:08:19 | INFO: Extracting primitive: Pilot v3 unchanged body Inkstorm Teemto Propulsores-alerones_low.002_Propulsores_0.005\n01:08:19 | INFO: Primitives created: 1\n01:08:19 | INFO: Extracting primitive: Original Inkstorm pilot v3 accent.005\n01:08:19 | INFO: Primitives created: 1\n01:08:19 | INFO: Extracting primitive: Original Inkstorm pilot v3 hardware.005\n01:08:19 | INFO: Primitives created: 1\n01:08:19 | INFO: Extracting primitive: Original Inkstorm pilot v3 rubber.005\n01:08:19 | INFO: Primitives created: 1\n01:08:19 | INFO: Extracting primitive: Original Inkstorm pilot v3 shell.005\n01:08:19 | INFO: Primitives created: 1\n01:08:19 | INFO: Extracting primitive: Original Inkstorm pilot v3 suit.005\n01:08:19 | INFO: Primitives created: 1\n01:08:19 | INFO: Extracting primitive: Original Inkstorm pilot v3 webbing.005\n01:08:19 | INFO: Primitives created: 1\n01:08:19 | INFO: Finished glTF 2.0 export in 0.08142685890197754 s\n\n{\"action\": \"export\", \"path\": \"/Users/amir/Projects/PodRacing/assets/source/inkstorm/vehicles/4eff45899ada40bb920c5c744663db90/processed/pilot-v3/teemto-pilot-material-v3-normalized.glb\", \"meshes\": [{\"mesh\": \"teemto-cockpit-body.002\", \"triangles\": 19965}, {\"mesh\": \"teemto-engine-left-body.002\", \"triangles\": 11790}, {\"mesh\": \"teemto-engine-right-body.002\", \"triangles\": 11790}, {\"mesh\": \"teemto-pilot-suit.003\", \"triangles\": 9188}, {\"mesh\": \"teemto-pilot-shell.001\", \"triangles\": 1540}, {\"mesh\": \"teemto-pilot-accent.001\", \"triangles\": 252}, {\"mesh\": \"teemto-pilot-hardware.001\", \"triangles\": 1552}, {\"mesh\": \"teemto-pilot-webbing\", \"triangles\": 1008}, {\"mesh\": \"teemto-pilot-rubber\", \"triangles\": 2108}], \"triangles\": 59193, \"normalization\": \"same 2.5 scale / 12.742 degree pitch as Teemto v1\", \"exportExtras\": false, \"sourceModified\": false, \"publicModified\": false, \"restoredContext\": {\"scene\": \"Cruise \\u2014 Going Merry source 4b2cb678\", \"viewLayer\": \"ViewLayer\", \"activeObject\": \"Sketchfab_model.001\", \"selectedCount\": 15, \"exactSelectionRestored\": true}}\n"
+      }
+    ],
+    "structuredContent": {
+      "result": "Code executed successfully: 01:08:19 | INFO: Starting glTF 2.0 export\n01:08:19 | INFO: Extracting primitive: Pilot v3 unchanged body Inkstorm Teemto Gabina-exterior-timon_low_Cabina_0.005\n01:08:19 | INFO: Primitives created: 1\n01:08:19 | INFO: Extracting primitive: Pilot v3 unchanged body Inkstorm Teemto Propulsores-alerones_low_Propulsores_0.005\n01:08:19 | INFO: Primitives created: 1\n01:08:19 | INFO: Extracting primitive: Pilot v3 unchanged body Inkstorm Teemto Propulsores-alerones_low.002_Propulsores_0.005\n01:08:19 | INFO: Primitives created: 1\n01:08:19 | INFO: Extracting primitive: Original Inkstorm pilot v3 accent.005\n01:08:19 | INFO: Primitives created: 1\n01:08:19 | INFO: Extracting primitive: Original Inkstorm pilot v3 hardware.005\n01:08:19 | INFO: Primitives created: 1\n01:08:19 | INFO: Extracting primitive: Original Inkstorm pilot v3 rubber.005\n01:08:19 | INFO: Primitives created: 1\n01:08:19 | INFO: Extracting primitive: Original Inkstorm pilot v3 shell.005\n01:08:19 | INFO: Primitives created: 1\n01:08:19 | INFO: Extracting primitive: Original Inkstorm pilot v3 suit.005\n01:08:19 | INFO: Primitives created: 1\n01:08:19 | INFO: Extracting primitive: Original Inkstorm pilot v3 webbing.005\n01:08:19 | INFO: Primitives created: 1\n01:08:19 | INFO: Finished glTF 2.0 export in 0.08142685890197754 s\n\n{\"action\": \"export\", \"path\": \"/Users/amir/Projects/PodRacing/assets/source/inkstorm/vehicles/4eff45899ada40bb920c5c744663db90/processed/pilot-v3/teemto-pilot-material-v3-normalized.glb\", \"meshes\": [{\"mesh\": \"teemto-cockpit-body.002\", \"triangles\": 19965}, {\"mesh\": \"teemto-engine-left-body.002\", \"triangles\": 11790}, {\"mesh\": \"teemto-engine-right-body.002\", \"triangles\": 11790}, {\"mesh\": \"teemto-pilot-suit.003\", \"triangles\": 9188}, {\"mesh\": \"teemto-pilot-shell.001\", \"triangles\": 1540}, {\"mesh\": \"teemto-pilot-accent.001\", \"triangles\": 252}, {\"mesh\": \"teemto-pilot-hardware.001\", \"triangles\": 1552}, {\"mesh\": \"teemto-pilot-webbing\", \"triangles\": 1008}, {\"mesh\": \"teemto-pilot-rubber\", \"triangles\": 2108}], \"triangles\": 59193, \"normalization\": \"same 2.5 scale / 12.742 degree pitch as Teemto v1\", \"exportExtras\": false, \"sourceModified\": false, \"publicModified\": false, \"restoredContext\": {\"scene\": \"Cruise \\u2014 Going Merry source 4b2cb678\", \"viewLayer\": \"ViewLayer\", \"activeObject\": \"Sketchfab_model.001\", \"selectedCount\": 15, \"exactSelectionRestored\": true}}\n"
+    },
+    "isError": false
+  }
+}

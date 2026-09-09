@@ -1,0 +1,627 @@
+diff --git a/src/render/app/GameApp.ts b/src/render/app/GameApp.ts
+--- a/src/render/app/GameApp.ts
++++ b/src/render/app/GameApp.ts
+@@ -1098,7 +1098,8 @@
+         entry.id, this.simulationFrame, galacticState!.wreck.crashCount, wreckPose.groundContact,
+       )) {
+         this.galacticEffects.emitWreckGroundContact(presentationTime,
+-          wreckPose.groundContact.position, wreckPose.groundContact.direction, wreckPose.groundContact.footprint);
++          wreckPose.groundContact.position, wreckPose.groundContact.direction, wreckPose.groundContact.footprint,
++          { terrain: this.race.terrain, owner: racerIndex, sequence: galacticState!.wreck.crashCount });
+       }
+       this.contactShadows.update(
+         racerIndex,
+diff --git a/src/render/galactic/GalacticEffectsView.ts b/src/render/galactic/GalacticEffectsView.ts
+--- a/src/render/galactic/GalacticEffectsView.ts
++++ b/src/render/galactic/GalacticEffectsView.ts
+@@ -32,9 +32,9 @@
+ import { CEL_POST_EXCLUDE_USER_DATA_KEY } from '../materials/InvertedHullOutline';
+ import { TERRAIN_GLSL } from '../terrain/terrainShaderChunks';
+ import { createCourseGulfUniforms, type CourseGulfUniforms } from '../terrain/CourseGulfTextures';
+-import { createSolidEffectMaterial } from './SolidEffectMaterial';
++import { createContactDustMaterial, createSolidEffectMaterial } from './SolidEffectMaterial';
+ import {
+-  createSolidHardwareGeometry, createSolidRubbleGeometry,
++  createContactDustGeometry, createSolidHardwareGeometry, createSolidRubbleGeometry,
+   SOLID_HARDWARE_MINE_DEPTH_SCALE, SOLID_RUBBLE_BASE_Y,
+ } from './SolidEffectGeometry';
+ import { CEL_TERRAIN_EDGE_SUPPRESS_USER_DATA_KEY } from '../post/CelPrepassMaterial';
+@@ -130,7 +130,7 @@
+   readonly hazards?: readonly HazardEffectState[];
+ }
+ 
+-export const GALACTIC_EFFECT_DRAW_CALL_BUDGET = 8;
++export const GALACTIC_EFFECT_DRAW_CALL_BUDGET = 9;
+ export const GALACTIC_EFFECT_CAPACITY = Object.freeze({
+   shields: 8,
+   weaponBolts: 32,
+@@ -139,9 +139,27 @@
+   hazardTelegraphs: 24,
+   hazardBodies: 48,
+   crashDebris: 64,
++  contactDust: 40,
+   explosionPlates: 16,
+   hazardPlumes: 72,
+ });
++
++/** Only the actual race sampler and authoritative wreck identity are retained.
++ * The emitter copies footprint numbers; it never writes terrain or simulation. */
++export interface WreckGroundSurfaceContext {
++  readonly terrain: { heightAt(x: number, z: number): number };
++  readonly owner: number;
++  readonly sequence: number;
++}
++interface ContactDustSlot {
++  active: boolean; startTime: number; owner: number; sequence: number;
++  terrain: WreckGroundSurfaceContext['terrain'] | null;
++  x: number; z: number; axisX: number; axisZ: number; sign: number;
++  along: number; drift: number; width: number; peak: number;
++  lastAge: number; matrix: Matrix4; cx: number; cy: number; cz: number; radius: number;
++}
++const CONTACT_DUST_GROUND_PROBES = [[0, 0], [-1, 0], [1, 0], [0, -1], [0, 1],
++  [-1, -1], [1, -1], [-1, 1], [1, 1]] as const;
+ 
+ interface ColoredSlot {
+   r: number;
+@@ -671,7 +689,7 @@
+   return value - Math.floor(value);
+ }
+ 
+-/** Eight instanced pools: the entire active expansion costs at most 8 draws. */
++/** Nine fixed instanced pools, including one owned rear-contact volume mesh. */
+ export class GalacticEffectsView extends Group {
+   private readonly hazardGroundUniforms = createCourseGulfUniforms();
+ 
+@@ -718,6 +736,18 @@
+     createCrashDebrisMaterial(),
+     GALACTIC_EFFECT_CAPACITY.crashDebris,
+   ), 'galactic-crash-debris', 30);
++
++  readonly contactDust = prepare(new InstancedMesh(
++    createContactDustGeometry(), createContactDustMaterial(), GALACTIC_EFFECT_CAPACITY.contactDust,
++  ), 'galactic-ground-contact-volume', 24);
++  private readonly contactDustSlots = Array.from({ length: GALACTIC_EFFECT_CAPACITY.contactDust },
++    (): ContactDustSlot => ({ active: false, startTime: 0, owner: -1, sequence: -1, terrain: null,
++      x: 0, z: 0, axisX: 1, axisZ: 0, sign: 1, along: 0, drift: 1, width: 1, peak: 1.5,
++      lastAge: NaN, matrix: new Matrix4(), cx: 0, cy: 0, cz: 0, radius: 0 }));
++  private contactDustCursor = 0;
++  private readonly contactDustAge = new InstancedBufferAttribute(
++    new Float32Array(GALACTIC_EFFECT_CAPACITY.contactDust), 1).setUsage(DynamicDrawUsage);
++  private readonly contactGroundHeights = new Float64Array(9);
+ 
+   private readonly ruptureFlameAtlas = new RuptureFlameAtlas();
+ 
+@@ -814,6 +844,9 @@
+     // The existing flag reduces all Sobel ink; it does not alter world masks.
+     this.hazardBodies.userData[CEL_TERRAIN_EDGE_SUPPRESS_USER_DATA_KEY] = true;
+     this.scrapMines.userData[CEL_TERRAIN_EDGE_SUPPRESS_USER_DATA_KEY] = true;
++    this.contactDust.geometry.setAttribute('aContactAge', this.contactDustAge);
++    this.contactDust.userData[CEL_POST_EXCLUDE_USER_DATA_KEY] = false;
++    this.contactDust.userData[CEL_TERRAIN_EDGE_SUPPRESS_USER_DATA_KEY] = true;
+     this.add(
+       this.shieldShells,
+       this.weaponBolts,
+@@ -823,6 +856,7 @@
+       this.hazardBodies,
+       this.crashDebris,
+       this.explosionPlates,
++      this.contactDust,
+     );
+   }
+ 
+@@ -1142,11 +1176,11 @@
+     }
+   }
+ 
+-  /** One sampled engine/sand presentation contact. Reuses ten debris slots and
+-   * two dust plates; no new mesh, material, timer or per-frame event allocation.
+-   * The caller deduplicates the actual wreck identity before calling this.
++  /** One sampled engine/sand presentation contact, deduplicated by the caller.
++   * Authored terrain/owner context selects five closed rolling dust cores;
++   * point or context-free calls retain their existing two-plate behavior.
+    */
+-  emitWreckGroundContact(time: number, position: GalacticPoint, direction: GalacticPoint, footprint?: WreckGroundFootprint): void {
++  emitWreckGroundContact(time: number, position: GalacticPoint, direction: GalacticPoint, footprint?: WreckGroundFootprint, surface?: WreckGroundSurfaceContext): void {
+     if (!Number.isFinite(time + position.x + position.y + position.z + direction.x + direction.z)) return;
+     const length = Math.hypot(direction.x, direction.z);
+     if (length < .001) return;
+@@ -1202,6 +1236,27 @@
+         slot.r = casing ? .14 : .52; slot.g = casing ? .12 : .31; slot.b = casing ? .10 : .12;
+       }
+     }
++    if (span && edges && surface && typeof surface.terrain?.heightAt === 'function'
++      && Number.isInteger(surface.owner) && surface.owner >= 0 && surface.owner < 8
++      && Number.isSafeInteger(surface.sequence) && surface.sequence >= 0) {
++      const inverseAxis = 1 / Math.hypot(span.axis.x, span.axis.z);
++      for (let index = 0; index < 5; index++) {
++        const slot = this.contactDustSlots[this.contactDustCursor]!;
++        this.contactDustCursor = (this.contactDustCursor + 1) % this.contactDustSlots.length;
++        // Indexed source edges, never a camera-facing offset or new witness.
++        const edgeIndex = index < 3 ? 1 : 0, edge = edges[edgeIndex]!;
++        slot.active = true; slot.startTime = time; slot.owner = surface.owner;
++        slot.sequence = surface.sequence; slot.terrain = surface.terrain;
++        slot.x = edge.x; slot.z = edge.z; slot.axisX = span.axis.x * inverseAxis;
++        slot.axisZ = span.axis.z * inverseAxis; slot.sign = edgeIndex ? 1 : -1;
++        slot.along = span.halfLength * (index < 3 ? (index - 1) * .68 : (index - 3.5) * .8);
++        slot.drift = .8 + hash01(index * 7 + this.eventSequence) * .4;
++        slot.width = .82 + hash01(index * 11 + this.eventSequence) * .26;
++        slot.peak = 1.3 + hash01(index * 13 + this.eventSequence) * .5;
++        slot.lastAge = NaN;
++      }
++      return;
++    }
+     for (let index = 0; index < 2; index++) {
+       const slot = this.explosionSlots[this.explosionCursor]!;
+       this.explosionCursor = (this.explosionCursor + 1) % this.explosionSlots.length;
+@@ -1229,6 +1284,11 @@
+     const p = rupture?.position, n = rupture?.direction;
+     const length = n ? Math.hypot(n.x, n.y, n.z) : 0;
+     const valid = !!p && !!n && Number.isInteger(sequence) && Number.isFinite(p.x + p.y + p.z + length) && length > .001;
++    for (const slot of this.contactDustSlots) {
++      if (slot.active && slot.owner === owner && (!valid || slot.sequence !== sequence)) {
++        slot.active = false; slot.terrain = null;
++      }
++    }
+     for (const slot of this.explosionSlots) {
+       if (!slot.active || slot.wreckOwner !== owner) continue;
+       if (!valid || slot.wreckSequence !== sequence) { slot.active = false; continue; }
+@@ -1264,6 +1324,7 @@
+     this.updateMines(time);
+     this.updateHazards(time);
+     this.updateCrash(time);
++    this.updateContactDust(time);
+   }
+ 
+   clearEffects(): void {
+@@ -1273,6 +1334,7 @@
+     this.mineCount = 0;
+     this.hazardCount = 0;
+     this.plumeCount = 0;
++    for (const slot of this.contactDustSlots) { slot.active = false; slot.terrain = null; }
+     for (const slot of this.debrisSlots) slot.active = false;
+     for (const slot of this.explosionSlots) slot.active = false;
+     for (const mesh of this.children) {
+@@ -1281,6 +1343,7 @@
+   }
+ 
+   dispose(): void {
++    this.clearEffects();
+     this.ruptureFlameAtlas.dispose();
+     for (const child of this.children) {
+       if (!(child instanceof InstancedMesh)) continue;
+@@ -1288,6 +1351,67 @@
+       const materials = Array.isArray(child.material) ? child.material : [child.material];
+       for (const childMaterial of materials) childMaterial.dispose();
+     }
++  }
++
++  private updateContactDust(time: number): void {
++    let count = 0;
++    for (const slot of this.contactDustSlots) {
++      if (!slot.active || !slot.terrain) continue;
++      const age = time - slot.startTime;
++      if (age < 0) continue;
++      if (age >= 1.65) { slot.active = false; slot.terrain = null; continue; }
++      if (age !== slot.lastAge) {
++        const swell = MathUtils.smoothstep(age, 0, .14);
++        const decay = 1 - MathUtils.smoothstep(age, 1.2, 1.65);
++        const width = slot.width * (.12 + .88 * swell) * Math.sqrt(decay);
++        const depth = width * (.72 + .12 * Math.sin(age * 5 + slot.peak));
++        const height = (.02 + (slot.peak - .02) * swell)
++          * (1 - .72 * MathUtils.smoothstep(age, .45, 1.25)) * decay;
++        // Smoothstep can round to one immediately before the nominal end.
++        // Retire invisible dimensions before terrain gradients divide by them.
++        if (!Number.isFinite(width + depth + height) || Math.min(width, depth, height) <= 1e-6) {
++          slot.active = false; slot.terrain = null; continue;
++        }
++        const travel = slot.drift * (1 - Math.exp(-age * 4));
++        const ax = slot.axisX, az = slot.axisZ, bx = -az, bz = ax;
++        const x = slot.x + ax * slot.along - bx * slot.sign * travel;
++        const z = slot.z + az * slot.along - bz * slot.sign * travel;
++        // Nine fixed samples cover the current lobe, not the old birth plane.
++        // Terrain can still occlude between probes; no continuous-surface claim.
++        const rx = width * 1.06, rz = depth * 1.06;
++        let finiteGround = true;
++        for (let i = 0; i < CONTACT_DUST_GROUND_PROBES.length; i++) {
++          const [u, v] = CONTACT_DUST_GROUND_PROBES[i]!;
++          const h = slot.terrain.heightAt(x + ax * u * rx + bx * v * rz,
++            z + az * u * rx + bz * v * rz);
++          this.contactGroundHeights[i] = h; finiteGround &&= Number.isFinite(h);
++        }
++        if (!finiteGround) { slot.active = false; slot.terrain = null; continue; }
++        const h = this.contactGroundHeights;
++        const gx = (h[2]! - h[1]!) / (2 * rx), gz = (h[4]! - h[3]!) / (2 * rz);
++        let residual = 0;
++        for (let i = 0; i < CONTACT_DUST_GROUND_PROBES.length; i++) {
++          const [u, v] = CONTACT_DUST_GROUND_PROBES[i]!;
++          residual = Math.max(residual, h[i]! - h[0]! - gx * u * rx - gz * v * rz);
++        }
++        const y = h[0]! + residual + .04;
++        // Positive determinant; a vertical shear follows the actual terrain
++        // grade while keeping the cap's height and grounded base explicit.
++        slot.matrix.set(ax * width, 0, bx * depth, x,
++          gx * width, height, gz * depth, y,
++          az * width, 0, bz * depth, z, 0, 0, 0, 1);
++        slot.cx = x; slot.cy = y + height * .5; slot.cz = z;
++        slot.radius = Math.hypot(rx, rz, height + Math.abs(gx * rx) + Math.abs(gz * rz));
++        slot.lastAge = age;
++      }
++      if (!this.isVisible(slot.cx, slot.cy, slot.cz, slot.radius, EFFECT_VISIBILITY_DISTANCE.crashes)) continue;
++      this.contactDust.setMatrixAt(count, slot.matrix);
++      this.contactDustAge.setX(count, age);
++      this.color.setRGB(.68, .40, .19); this.contactDust.setColorAt(count, this.color);
++      count++;
++    }
++    if (count > 0) this.contactDustAge.needsUpdate = true;
++    this.dirty(this.contactDust, count);
+   }
+ 
+   private copyBeam(
+diff --git a/src/render/galactic/SolidEffectGeometry.ts b/src/render/galactic/SolidEffectGeometry.ts
+--- a/src/render/galactic/SolidEffectGeometry.ts
++++ b/src/render/galactic/SolidEffectGeometry.ts
+@@ -87,3 +87,43 @@
+   geometry.computeBoundingBox(); geometry.computeBoundingSphere();
+   return geometry;
+ }
++
++/** Four overlapping closed rounded subcaps form one rolling dust lobe.
++ * 256 triangles per lobe; built once inside +/-1.06 XZ and [0,1] Y.
++ * Active dust never rescans or rewrites its source geometry. */
++export function createContactDustGeometry(): BufferGeometry {
++  const sides = 8, bands = 4, positions: number[] = [], indices: number[] = [];
++  const billows = [
++    [-.17, -.13, .68, 1., .64],
++    [-.42, .26, .55, .62, .55],
++    [.41, .20, .58, .77, .58],
++    [.25, -.43, .48, .67, .54],
++  ] as const;
++  for (const [cx, cz, rx, height, rz] of billows) {
++    const start = positions.length / 3;
++    for (let band = 0; band < bands; band++) {
++      const phi = band / bands * Math.PI * .5;
++      for (let side = 0; side < sides; side++) {
++        const theta = side / sides * Math.PI * 2;
++        positions.push(cx + Math.cos(theta) * Math.cos(phi) * rx,
++          Math.sin(phi) * height, cz + Math.sin(theta) * Math.cos(phi) * rz);
++      }
++    }
++    const top = positions.length / 3; positions.push(cx, height, cz);
++    const base = positions.length / 3; positions.push(cx, 0, cz);
++    for (let side = 0; side < sides; side++) {
++      const next = (side + 1) % sides;
++      for (let band = 0; band < bands - 1; band++) {
++        const a = start + band * sides + side, b = start + band * sides + next;
++        indices.push(a, a + sides, b, b, a + sides, b + sides);
++      }
++      indices.push(start + (bands - 1) * sides + side, top, start + (bands - 1) * sides + next);
++      indices.push(base, start + side, start + next);
++    }
++  }
++  const geometry = new BufferGeometry();
++  geometry.setAttribute('position', new Float32BufferAttribute(positions, 3));
++  geometry.setIndex(indices); geometry.computeVertexNormals();
++  geometry.computeBoundingBox(); geometry.computeBoundingSphere();
++  return geometry;
++}
+diff --git a/src/render/galactic/SolidEffectMaterial.ts b/src/render/galactic/SolidEffectMaterial.ts
+--- a/src/render/galactic/SolidEffectMaterial.ts
++++ b/src/render/galactic/SolidEffectMaterial.ts
+@@ -62,3 +62,76 @@
+   result.customProgramCacheKey = () => hardware ? 'inkstorm-solid-hardware-v2' : 'inkstorm-solid-rubble-v2';
+   return result;
+ }
++
++/** Dense rolling dust cores share actual depth and sun-facing volume shade.
++ * Their lifetime contracts the geometry; no alpha curtain or opacity wash. */
++export function createContactDustMaterial(): MeshBasicMaterial {
++  const result = new MeshBasicMaterial({ color: '#ffffff', transparent: false,
++    depthTest: true, depthWrite: true, side: FrontSide, toneMapped: false });
++  result.name = 'Inkstorm rolling ochre contact volume';
++  result.onBeforeCompile = shader => {
++    shader.vertexShader = shader.vertexShader.replace('#include <common>', `
++      #include <common>
++      attribute float aContactAge;
++      varying float vContactAge;
++      varying vec3 vContactNormal;
++      varying vec3 vContactLocal;
++      varying vec3 vContactWorld;
++    `).replace('#include <begin_vertex>', `
++      #include <begin_vertex>
++      vContactLocal = position;
++      vContactAge = aContactAge;
++      vec3 contactNormal = normal;
++      vec4 contactWorld = vec4(position, 1.);
++      #ifdef USE_INSTANCING
++        mat3 m = mat3(instanceMatrix);
++        // Adjugate-transpose handles the fitted terrain shear as well as
++        // nonuniform scale; positive determinant needs no sign correction.
++        mat3 cofactors = mat3(cross(m[1], m[2]), cross(m[2], m[0]), cross(m[0], m[1]));
++        contactNormal = cofactors * contactNormal;
++        contactWorld = instanceMatrix * contactWorld;
++      #endif
++      vContactNormal = normalize(mat3(modelMatrix) * contactNormal);
++      vContactWorld = (modelMatrix * contactWorld).xyz;
++    `);
++    shader.fragmentShader = shader.fragmentShader.replace('#include <common>', `
++      #include <common>
++      varying float vContactAge;
++      varying vec3 vContactNormal;
++      varying vec3 vContactLocal;
++      varying vec3 vContactWorld;
++      float contactHash(vec3 p) {
++        p = fract(p * .3183099 + vec3(.11, .37, .71));
++        p *= 17.; return fract(p.x * p.y * p.z * (p.x + p.y + p.z));
++      }
++      float contactNoise(vec3 p) {
++        vec3 i = floor(p), f = fract(p); f = f * f * (3. - 2. * f);
++        return mix(mix(mix(contactHash(i), contactHash(i + vec3(1,0,0)), f.x),
++          mix(contactHash(i + vec3(0,1,0)), contactHash(i + vec3(1,1,0)), f.x), f.y),
++          mix(mix(contactHash(i + vec3(0,0,1)), contactHash(i + vec3(1,0,1)), f.x),
++          mix(contactHash(i + vec3(0,1,1)), contactHash(i + vec3(1,1,1)), f.x), f.y), f.z);
++      }
++    `).replace('#include <color_fragment>', `
++      #include <color_fragment>
++      // Game-clock age rolls small billows up the closed core. No vertex
++      // displacement changes the grounded shell or its shared depth passes.
++      vec3 p = vContactLocal * vec3(3.2, 4., 3.2) - vec3(0., vContactAge * 1.3, 0.);
++      float billow = contactNoise(p) * .88 + contactNoise(p * 2.3 + 9.) * .12;
++      vec3 n = normalize(vContactNormal);
++      vec3 dx = dFdx(vContactWorld), dy = dFdy(vContactWorld);
++      vec3 r1 = cross(dy, n), r2 = cross(n, dx);
++      float det = dot(dx, r1);
++      vec3 gradient = sign(det) * (dFdx(billow) * r1 + dFdy(billow) * r2);
++      n = normalize(n - .035 * (1. - smoothstep(.8, 1.5, vContactAge))
++        * gradient / max(abs(det), .000001));
++      float direct = dot(n, normalize(vec3(-.42, .76, -.5)));
++      float crown = smoothstep(.05, .8, vContactLocal.y);
++      float light = smoothstep(-.24, .92, direct) * (.65 + .35 * crown);
++      vec3 trough = diffuseColor.rgb * vec3(.30, .23, .18);
++      vec3 lit = diffuseColor.rgb * vec3(1.38, 1.19, .94);
++      diffuseColor.rgb = mix(trough, lit, light) * (.88 + .24 * billow);
++    `);
++  };
++  result.customProgramCacheKey = () => 'inkstorm-closed-contact-volume-v2';
++  return result;
++}
+diff --git a/tests/combat/AuthoredAftermath.test.ts b/tests/combat/AuthoredAftermath.test.ts
+--- a/tests/combat/AuthoredAftermath.test.ts
++++ b/tests/combat/AuthoredAftermath.test.ts
+@@ -67,7 +67,7 @@
+       expect(view.explosionPlates.count).toBeLessThan(before.count);
+       expect(view.children.map(mesh => [mesh, (mesh as InstancedMesh).geometry, (mesh as InstancedMesh).material])).toEqual(identities);
+       view.clearEffects(); view.update(6); expect(view.explosionPlates.count).toBe(0); expect(view.crashDebris.count).toBe(0);
+-      expect(view.children).toHaveLength(8);
++      expect(view.children).toHaveLength(9);
+     } finally { view.dispose(); }
+   });
+ });
+diff --git a/tests/combat/WreckContactBeat.test.ts b/tests/combat/WreckContactBeat.test.ts
+--- a/tests/combat/WreckContactBeat.test.ts
++++ b/tests/combat/WreckContactBeat.test.ts
+@@ -52,7 +52,7 @@
+     const p = new Vector3(0, 3, 0), m = new Matrix4(), scale = new Vector3(), center = new Vector3(), q = new Quaternion();
+     try {
+       const children = view.children.slice(); view.emitWreckGroundContact(4, p, new Vector3(1, 0, 0)); view.update(4.15, camera);
+-      expect(view.children).toEqual(children); expect(view.children).toHaveLength(8);
++      expect(view.children).toEqual(children); expect(view.children).toHaveLength(9);
+       expect(view.explosionPlates.count).toBe(2); expect(view.crashDebris.count).toBe(10);
+       const heights: number[] = [];
+       for (let i = 0; i < 2; i++) {
+diff --git a/tests/render/AuthoredRuptureBeat.test.ts b/tests/render/AuthoredRuptureBeat.test.ts
+--- a/tests/render/AuthoredRuptureBeat.test.ts
++++ b/tests/render/AuthoredRuptureBeat.test.ts
+@@ -78,7 +78,7 @@
+         view.emitWreckGroundContact(3, { x: i, y: 0, z: 0 }, { x: 1, y: 0, z: 0 });
+       }
+       view.update(3.08);
+-      expect(view.children).toHaveLength(8);
++      expect(view.children).toHaveLength(9);
+       expect(view.crashDebris.count).toBe(GALACTIC_EFFECT_CAPACITY.crashDebris);
+       expect(view.explosionPlates.count).toBe(GALACTIC_EFFECT_CAPACITY.explosionPlates);
+       expect(view.children.map(child => { const mesh = child as InstancedMesh;
+diff --git a/tests/render/GalacticEffectsContact.test.ts b/tests/render/GalacticEffectsContact.test.ts
+--- a/tests/render/GalacticEffectsContact.test.ts
++++ b/tests/render/GalacticEffectsContact.test.ts
+@@ -147,7 +147,7 @@
+     expect(projected.y - authored.groundY!).toBeCloseTo(4.648, 5);
+     expect(projected.y - 7.2 * 0.64).toBeGreaterThan(authored.groundY!);
+     expect(effects.crashDebris.count).toBe(18);
+-    expect(effects.children).toHaveLength(8);
++    expect(effects.children).toHaveLength(9);
+     expect(JSON.stringify(race.snapshot())).toBe(stateBefore);
+     effects.dispose();
+   });
+diff --git a/tests/render/GalacticEffectsView.test.ts b/tests/render/GalacticEffectsView.test.ts
+--- a/tests/render/GalacticEffectsView.test.ts
++++ b/tests/render/GalacticEffectsView.test.ts
+@@ -424,7 +424,7 @@
+       for (let i = 0; i < 20; i++) candidate.emitWreckGroundContact(1, { x: i, y: 0, z: 0 }, { x: 1, y: 0, z: 0 });
+       candidate.update(1.1);
+     }
+-    expect(view.children).toHaveLength(8);
++    expect(view.children).toHaveLength(9);
+     expect(view.children.map(child => (child as InstancedMesh).geometry)).toEqual(geometry);
+     expect(view.children.map(child => (child as InstancedMesh).material)).toEqual(material);
+     expect(view.crashDebris.count).toBe(64); expect(view.explosionPlates.count).toBe(16);
+@@ -547,7 +547,7 @@
+     }
+     a.update(1.1); b.update(1.1);
+     expect(a.children).toEqual(children);
+-    expect(a.children).toHaveLength(8);
++    expect(a.children).toHaveLength(9);
+     expect(a.crashDebris.geometry).toBe(geometry);
+     expect(a.crashDebris.count).toBe(GALACTIC_EFFECT_CAPACITY.crashDebris);
+     expect(a.explosionPlates.count).toBe(GALACTIC_EFFECT_CAPACITY.explosionPlates);
+diff --git a/tests/render/RuptureAtlasIntegration.test.ts b/tests/render/RuptureAtlasIntegration.test.ts
+--- a/tests/render/RuptureAtlasIntegration.test.ts
++++ b/tests/render/RuptureAtlasIntegration.test.ts
+@@ -36,7 +36,7 @@
+           expect(state(trial)).toEqual(before); expect(trial.flameAtlasDiagnostics.status).toBe('ready');
+         }
+       }
+-      expect(trial.children).toHaveLength(8); expect(trial.explosionPlates.count).toBe(0);
++      expect(trial.children).toHaveLength(9); expect(trial.explosionPlates.count).toBe(0);
+       trial.syncWreckRupture(0, -1); trial.clearEffects(); expect(trial.crashDebris.count).toBe(0);
+     } finally { trial.dispose(); fallback.dispose(); }
+   });
+diff --git a/tests/render/RupturePressureScale.test.ts b/tests/render/RupturePressureScale.test.ts
+--- a/tests/render/RupturePressureScale.test.ts
++++ b/tests/render/RupturePressureScale.test.ts
+@@ -43,7 +43,7 @@
+       view.update(6.114); expect(hot(view).map(row => row.kind)).toEqual([7]);
+       view.update(6.116); expect(hot(view)).toEqual([]);
+       view.update(6.226); expect(view.explosionPlates.count).toBe(0);
+-      expect(view.crashDebris.count).toBe(0); expect(view.children).toHaveLength(8);
++      expect(view.crashDebris.count).toBe(0); expect(view.children).toHaveLength(9);
+     } finally { view.dispose(); }
+   });
+ 
+diff --git a/tests/render/WreckContactConsequence.test.ts b/tests/render/WreckContactConsequence.test.ts
+--- a/tests/render/WreckContactConsequence.test.ts
++++ b/tests/render/WreckContactConsequence.test.ts
+@@ -28,7 +28,7 @@
+       for(const age of[0,.05,.09,.16,.25,.32,.47,.7,1.0]){
+         const spy=vi.spyOn(geometry,'getAttribute').mockImplementation(key=>{if(key==='position')throw new Error('Runtime geometry scan');return getAttribute(key);});
+         try{fx.update(4+age);}finally{spy.mockRestore();}
+-        expect(fx.children).toEqual(children);expect(children).toHaveLength(8);
++        expect(fx.children).toEqual(children);expect(children).toHaveLength(9);
+         const active=born.filter(s=>age>=s.startTime-4&&age<=s.duration+s.startTime-4);
+         expect(fx.crashDebris.count).toBe(active.length);
+         for(let i=0;i<active.length;i++){
+diff --git a/tests/render/WreckContactVolume.test.ts b/tests/render/WreckContactVolume.test.ts
+new file mode 100644
+--- /dev/null
++++ b/tests/render/WreckContactVolume.test.ts
+@@ -0,0 +1,110 @@
++import { Matrix4, MeshBasicMaterial, Vector3 } from 'three';
++import { afterAll, describe, expect, it, vi } from 'vitest';
++import { GalacticEffectsView, GALACTIC_EFFECT_CAPACITY, GALACTIC_EFFECT_DRAW_CALL_BUDGET } from '../../src/render/galactic/GalacticEffectsView';
++import { CEL_POST_EXCLUDE_USER_DATA_KEY } from '../../src/render/materials/InvertedHullOutline';
++import { fixture, race, variants } from '../fixtures/teemtoActualCamera';
++const rows: unknown[] = [];
++afterAll(async () => {
++  const path = (globalThis as unknown as { process?: { env: Record<string, string | undefined> } }).process?.env.V30_CONTACT_METRICS_PATH;
++  if (path) { const module: string = 'node:fs'; const { writeFileSync } = await import(/* @vite-ignore */ module); writeFileSync(path, JSON.stringify(rows, null, 2) + '\n'); }
++});
++const footprint = () => ({ center: new Vector3(0, 0, 0), axis: new Vector3(0, 0, 1), halfLength: 1.5, halfWidth: .5,
++  edges: [new Vector3(-2, 0, 0), new Vector3(2, 0, 0)] as const });
++const rupture = { position: new Vector3(), direction: new Vector3(1, 0, 0) };
++describe('Owned rolling rear-contact volume', () => {
++  it.each(variants)('%s uses real current terrain under its complete closed dust geometry with fixed query cost', name => {
++    const art = fixture(name), sim = race(), fx = new GalacticEffectsView();
++    // Native V29 heat onset560 / wreck912: exact hero body position at922.
++    for (let frame = 1; frame <= 922; frame++) sim.step({ brake: 1, boost: frame >= 560 && frame <= 912 });
++    const entry = sim.state.entries[0]!, remaining = entry.galactic!.wreck.timer;
++    const pose = art.cache.update(entry.vehicle, remaining, sim.terrain); art.breakup.update(pose, remaining, sim.terrain);
++    const c = pose.groundContact!, f = c.footprint!, before = JSON.stringify(f);
++    const terrain = { heightAt: vi.fn((x: number, z: number) => sim.terrain.heightAt(x, z)) };
++    const geometry = fx.contactDust.geometry, positions = geometry.getAttribute('position');
++    const source = Array.from({ length: positions.count }, (_, i) => new Vector3().fromBufferAttribute(positions, i));
++    const matrix = new Matrix4(), metrics: unknown[] = []; let minimum = Infinity;
++    try {
++      expect(geometry.index!.count / 3).toBe(256);
++      // Fixed nine-probe/cull envelope must cover every closed subcap.
++      for (const local of source) {
++        expect(Math.abs(local.x)).toBeLessThanOrEqual(1.06);
++        expect(Math.abs(local.z)).toBeLessThanOrEqual(1.06);
++        expect(local.y).toBeGreaterThanOrEqual(0); expect(local.y).toBeLessThanOrEqual(1);
++      }
++      fx.emitWreckGroundContact(4, c.position, c.direction, f, { terrain, owner: 0, sequence: 1 });
++      for (const age of [0, .058333333333, .16, .408333333333, 1.208333333333, 1.64]) {
++        terrain.heightAt.mockClear(); fx.update(4 + age);
++        expect(terrain.heightAt).toHaveBeenCalledTimes(45);
++        expect(fx.contactDust.count).toBe(5); expect(fx.explosionPlates.count).toBe(0);
++        let ageMin = Infinity, ageMaxRise = 0, maxBaseGap = 0;
++        for (let i = 0; i < 5; i++) {
++          fx.contactDust.getMatrixAt(i, matrix); expect(matrix.elements.every(Number.isFinite)).toBe(true);
++          expect(matrix.determinant()).toBeGreaterThan(0);
++          expect(geometry.getAttribute('aContactAge').getX(i)).toBeCloseTo(age, 5);
++          for (const local of source) {
++            const world = local.clone().applyMatrix4(matrix), gap = world.y - sim.terrain.heightAt(world.x, world.z);
++            minimum = Math.min(minimum, gap); ageMin = Math.min(ageMin, gap);
++            expect(gap).toBeGreaterThan(.0199);
++            if (local.y === 0) maxBaseGap = Math.max(maxBaseGap, gap);
++          }
++          const bottom = new Vector3().applyMatrix4(matrix), top = new Vector3(0, 1, 0).applyMatrix4(matrix);
++          ageMaxRise = Math.max(ageMaxRise, top.y - bottom.y);
++          expect(top.y - bottom.y).toBeLessThanOrEqual(1.801);
++        }
++        if (age > 1.2 && age < 1.3) { expect(ageMaxRise).toBeGreaterThan(.3); expect(ageMaxRise).toBeLessThan(.6); }
++        if (age > 1.6) expect(ageMaxRise).toBeLessThan(.01);
++        const unchanged = [...fx.contactDust.instanceMatrix.array]; terrain.heightAt.mockClear(); fx.update(4 + age);
++        expect(terrain.heightAt).not.toHaveBeenCalled(); expect([...fx.contactDust.instanceMatrix.array]).toEqual(unchanged);
++        metrics.push({ age, minimumGap: ageMin, maximumBaseGap: maxBaseGap, maximumVerticalRise: ageMaxRise, queries: 45 });
++      }
++      expect(JSON.stringify(f)).toBe(before); expect(fx.children).toHaveLength(9);
++      fx.update(5.65); expect(fx.contactDust.count).toBe(0);
++      rows.push({ name, birthFootprint: JSON.parse(before), minimumGeometryGap: minimum, metrics,
++        scope: 'Actual native-input source fixture, complete dust vertices versus physical terrain; no native pixels/casing occlusion/FPS claim. Nine terrain probes per active lobe, zero on repeated same clock.' });
++    } finally { fx.dispose(); art.breakup.reset(); }
++  });
++  it('keeps bounded resources, exact owner/sequence replacement and recovery/reset/disposal clearing', () => {
++    const fx = new GalacticEffectsView(), f = footprint(), terrain = { heightAt: vi.fn(() => 0) };
++    let disposed = false;
++    try {
++      expect(GALACTIC_EFFECT_DRAW_CALL_BUDGET).toBe(9); expect(GALACTIC_EFFECT_CAPACITY.contactDust).toBe(40);
++      for (let owner = 0; owner < 8; owner++) fx.emitWreckGroundContact(1, new Vector3(), new Vector3(1, 0, 0), f, { terrain, owner, sequence: 1 });
++      terrain.heightAt.mockClear(); fx.update(1.2); expect(fx.contactDust.count).toBe(40); expect(terrain.heightAt).toHaveBeenCalledTimes(360);
++      fx.emitWreckGroundContact(1.2, new Vector3(), new Vector3(1, 0, 0), f, { terrain, owner: 0, sequence: 2 });
++      fx.syncWreckRupture(0, 2, rupture); fx.update(1.3); expect(fx.contactDust.count).toBe(40);
++      fx.syncWreckRupture(0, 2); fx.update(1.3); expect(fx.contactDust.count).toBe(35);
++      const slots = (fx as unknown as { contactDustSlots: { active: boolean; terrain: unknown; owner: number }[] }).contactDustSlots;
++      expect(slots.filter(s => s.owner === 0).every(s => !s.active && !s.terrain)).toBe(true);
++      fx.clearEffects(); expect(fx.contactDust.count).toBe(0); expect(slots.every(s => !s.active && !s.terrain)).toBe(true);
++      const material = fx.contactDust.material as MeshBasicMaterial;
++      expect(material.transparent).toBe(false); expect(material.depthTest).toBe(true); expect(material.depthWrite).toBe(true);
++      expect(fx.contactDust.userData[CEL_POST_EXCLUDE_USER_DATA_KEY]).toBe(false);
++      const disposeGeometry = vi.spyOn(fx.contactDust.geometry, 'dispose'), disposeMaterial = vi.spyOn(material, 'dispose');
++      fx.dispose(); disposed = true; expect(disposeGeometry).toHaveBeenCalledTimes(1); expect(disposeMaterial).toHaveBeenCalledTimes(1);
++    } finally { if (!disposed) fx.dispose(); }
++  });
++  it('retires the rounded-zero expiry neighbour before terrain-gradient division', () => {
++    const fx = new GalacticEffectsView(), heightAt = vi.fn(() => 0);
++    try {
++      fx.emitWreckGroundContact(0, new Vector3(), new Vector3(1, 0, 0), footprint(),
++        { terrain: { heightAt }, owner: 0, sequence: 1 });
++      fx.update(1.65 - 1e-10);
++      expect(heightAt).not.toHaveBeenCalled(); expect(fx.contactDust.count).toBe(0);
++      expect([...fx.contactDust.instanceMatrix.array].every(Number.isFinite)).toBe(true);
++      const slots = (fx as unknown as { contactDustSlots: { active: boolean; terrain: unknown }[] }).contactDustSlots;
++      expect(slots.every(slot => !slot.active && !slot.terrain)).toBe(true);
++    } finally { fx.dispose(); }
++  });
++  it('preserves context-free plate behavior and rejects non-finite terrain without corrupting matrices', () => {
++    const fx = new GalacticEffectsView(), f = footprint();
++    try {
++      fx.emitWreckGroundContact(1, new Vector3(), new Vector3(1, 0, 0), f);
++      fx.update(1.2); expect(fx.contactDust.count).toBe(0); expect(fx.explosionPlates.count).toBe(2);
++      fx.clearEffects();
++      const heightAt = vi.fn(() => NaN);
++      fx.emitWreckGroundContact(2, new Vector3(), new Vector3(1, 0, 0), f, { terrain: { heightAt }, owner: 1, sequence: 1 });
++      fx.update(2.1); expect(fx.contactDust.count).toBe(0); expect(heightAt).toHaveBeenCalledTimes(45);
++      expect([...fx.contactDust.instanceMatrix.array].every(Number.isFinite)).toBe(true);
++    } finally { fx.dispose(); }
++  });
++});
+diff --git a/tests/render/WreckFootprintEffects.test.ts b/tests/render/WreckFootprintEffects.test.ts
+--- a/tests/render/WreckFootprintEffects.test.ts
++++ b/tests/render/WreckFootprintEffects.test.ts
+@@ -10,7 +10,7 @@
+   try{
+    const children=view.children.slice();view.emitWreckGroundContact(4,witness,new Vector3(1,0,0),footprint);
+    footprint.center.set(1000,-1000,1000);footprint.axis.set(1,0,0);footprint.halfLength=1000;
+-   view.update(4.05,camera);expect(view.children).toEqual(children);expect(children).toHaveLength(8);
++   view.update(4.05,camera);expect(view.children).toEqual(children);expect(children).toHaveLength(9);
+    expect(view.explosionPlates.count).toBe(2);expect(view.crashDebris.count).toBe(10);
+    const zs:number[]=[];
+    for(let i=0;i<10;i++){view.crashDebris.getMatrixAt(i,m);m.decompose(p,q,s);zs.push(p.z);expect(Math.abs(p.x)).toBeLessThan(2);}
+@@ -52,7 +52,7 @@
+    edges[0].set(1000,-1000,1000);edges[1].set(-1000,1000,-1000);center.set(500,500,500);axis.set(1,0,0);
+    const positions:number[][]=[];
+    for(const time of[4.05,4.15]){
+-    view.update(time,camera);expect(view.children).toEqual(children);expect(children).toHaveLength(8);
++    view.update(time,camera);expect(view.children).toEqual(children);expect(children).toHaveLength(9);
+     expect(view.explosionPlates.count).toBe(2);expect(view.crashDebris.count).toBe(10);
+     const xs:number[]=[];
+     for(let i=0;i<2;i++){

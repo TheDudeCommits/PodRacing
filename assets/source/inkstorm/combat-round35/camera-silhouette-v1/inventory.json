@@ -1,0 +1,119 @@
+{
+  "sourceAtHandoff": [
+    {
+      "path": "src/camera/CinematicCamera.ts",
+      "bytes": 23394,
+      "sha256": "825dae66cd2cff8e398c9db5f7bbaa2b2e1cbad922d2539429742306a70bae94"
+    },
+    {
+      "path": "src/render/app/GameApp.ts",
+      "bytes": 169405,
+      "sha256": "fcbebb65619cb7c81130683c85e6b0171a5ebd9584c24380d8459b2d76d4b061"
+    },
+    {
+      "path": "tests/camera/CinematicCamera.test.ts",
+      "bytes": 15951,
+      "sha256": "4890da0a9d1de4f47eb7bb6434bf8247ae7c342b1f9c0a52ac69f30c4610b5ae"
+    }
+  ],
+  "actualEvidence": [
+    {
+      "path": "output/playwright/round35-combat-v7/receipt.json",
+      "bytes": 725582,
+      "sha256": "bb1a7619aba5f087eeab5b33f72ad172cbd41f8bb9a934f95895341ac9745c72"
+    },
+    {
+      "path": "output/playwright/round35-combat-v7/contact-02-wreck-entry.png",
+      "bytes": 926223,
+      "sha256": "02e2c17854d1e36885d7bcdac2072ab076b33ad758b3004ba8ca42d8d8aa6dff"
+    },
+    {
+      "path": "output/playwright/round35-combat-v7/contact-03-wreck-hold.png",
+      "bytes": 1067389,
+      "sha256": "f547bb502cde6f0f79a64a60c0b2e5a91b85e15ad60e8bd3a00d7dac468baa7c"
+    },
+    {
+      "path": "output/playwright/round35-combat-v7/contact-04-camera-return.png",
+      "bytes": 1243597,
+      "sha256": "4284ea30694188a3c48c226c41f2faf8f30949b6077ead1f1377773b1133d77e"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/blind-camera-v7/cli-critic-attempt1/review.md",
+      "bytes": 2676,
+      "sha256": "9425a643dc954721f3028622e6676f9016a81b7d93a2b5ae330fdf40504faebe"
+    }
+  ],
+  "privateFiles": [
+    {
+      "path": "assets/source/inkstorm/combat-round35/camera-silhouette-v1/READY.md",
+      "bytes": 4036,
+      "sha256": "a88ca1883057ea203e002bf5a05e0ef92002e12ef45de38c0c9d2070c4610b90"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/camera-silhouette-v1/before-CinematicCamera.test.ts",
+      "bytes": 10187,
+      "sha256": "335ec4002e76813d6e2c80caf8ca63465da78d67aa13c5f26b283fecf72cc499"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/camera-silhouette-v1/before-CinematicCamera.ts",
+      "bytes": 20858,
+      "sha256": "e0b14ea8b8797fac6a1e89000da899d7f1b2740b6ce4334df08c775b6ff94249"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/camera-silhouette-v1/before-GameApp.ts",
+      "bytes": 163884,
+      "sha256": "9055c5fb0a1250abdcb039858eee3e398767bc1211d1e29c138516c937fc0fcc"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/camera-silhouette-v1/before-inventory.json",
+      "bytes": 472,
+      "sha256": "3028af77fe886698727b8337f4ce9a2ca61d1703107e3ca85cf36c54b9c92e48"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/camera-silhouette-v1/camera-silhouette-v1.patch",
+      "bytes": 20036,
+      "sha256": "f138950d82b20851897ca4c4c18f76f031b01a8fd9c69e15c0e7ca8ca4b4e0a6"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/camera-silhouette-v1/camera-tests-v2.log",
+      "bytes": 388,
+      "sha256": "4467e99761005c8e297d625559d76b055f08d17ec5b2b7dba7c74dd8b4289914"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/camera-silhouette-v1/camera-tests-v3.log",
+      "bytes": 388,
+      "sha256": "8792cc2392f2a7fbbdf012b95098b7f93713deb03a10592c09dbcc1bf3c833a7"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/camera-silhouette-v1/camera-tests.log",
+      "bytes": 388,
+      "sha256": "dcc839026bacae37033995b23fad05fd38572b4350dedc92c145d2d06a400057"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/camera-silhouette-v1/projection-check.json",
+      "bytes": 13627,
+      "sha256": "2f16a6fc0e4b311c7615de4917120a4899cb6f587ead3bfb5a667c866ccfc44d"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/camera-silhouette-v1/projection-check.mjs",
+      "bytes": 3520,
+      "sha256": "76e5cd414059e0daee23ea7f91b72a5c3a102b626aab4d885c9ba83e933d5d94"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/camera-silhouette-v1/typecheck-v2.log",
+      "bytes": 238,
+      "sha256": "5c12e4020c43b3d742760ca1e1f2296feaf1951c8476af5f40edecf89d84c962"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/camera-silhouette-v1/typecheck-v3.log",
+      "bytes": 57,
+      "sha256": "fa95b29726a1ab8891b320173cad4ef80c08c37ec637f2c438a5294fb97ce445"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/camera-silhouette-v1/typecheck.log",
+      "bytes": 490,
+      "sha256": "c3c6398cd9012eb583771734c8a51fcfa246a538c685cce46af96b21c6b33e8d"
+    }
+  ],
+  "scope": "Only three authorized live files; GameApp full hash includes separately owned FX work. Camera patch omits consumeGalacticEffects."
+}

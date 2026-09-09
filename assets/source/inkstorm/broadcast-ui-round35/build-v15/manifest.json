@@ -1,0 +1,19 @@
+{
+  "scope": [
+    "src/ui/workshopGraphicStyles.ts"
+  ],
+  "sourceRelease": "Explicit root source-freeze release after V14 full-race completion",
+  "sourceHashes": {
+    "before": "955cfc4e6430084c51850ba42fe180e052723b289e3bdb37266547bc536253a7",
+    "after": "135d089fa9414278e6e64b9f8d96a3b3bbcbc2b87d2f9958827f9809d3f15893"
+  },
+  "glyphSourceUnchangedSha256": "4b532469a7fd8e3c416f4a6369a46be82a59ee646110d0d923a875af52dd884a",
+  "validation": {
+    "typecheck": "pass",
+    "postcssParse": "101 rules pass",
+    "decorativeSvgXml": "5 stamps pass",
+    "gitDiffCheck": "pass",
+    "browser": "not run; parent owns actual capture/acceptance",
+    "build": "not run; V14 frozen dist remains unchanged"
+  }
+}

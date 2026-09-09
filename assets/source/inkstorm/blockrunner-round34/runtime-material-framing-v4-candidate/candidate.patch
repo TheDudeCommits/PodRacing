@@ -1,0 +1,96 @@
+--- a/src/game/vehicleAppearance.ts
++++ b/src/game/vehicleAppearance.ts
+@@ -194,17 +194,26 @@
+   }),
+ });
+ 
+-/** Atlas maps already contain the authored wear. Keep distinct source pilot roles. */
++/** Warm key light and cool reflected fill separate the existing atlas surfaces.
++ * Paint wear remains authored in the maps; these colors only shape response. */
++const BLOCKRUNNER_PALETTE = Object.freeze({
++  ...DEFAULT_CEL_PALETTE,
++  diffuseBands: ['#535b70', '#9999a3', '#d5d1cb', '#fff4e3'] as const,
++  specular: '#fff0cf', rim: '#dbc5a4', reflection: '#9ab6ca',
++});
+ const BLOCKRUNNER_SURFACE_STYLES = Object.freeze({
+   'Blockrunner Inkstorm body atlas v1': Object.freeze({
+-    specularStrength: .08, rimStrength: 0, reflectionStrength: 0, wear: 0,
++    palette: BLOCKRUNNER_PALETTE,
++    specularStrength: .24, rimStrength: .025, reflectionStrength: .045, wear: 0,
+   }),
+   'Blockrunner Inkstorm pilot suit atlas v1': TEEMTO_CLOTH_STYLE,
+   'Blockrunner Inkstorm pilot helmet atlas v1': Object.freeze({
+-    specularStrength: .08, rimStrength: 0, reflectionStrength: 0, wear: 0,
++    palette: BLOCKRUNNER_PALETTE,
++    specularStrength: .32, rimStrength: .035, reflectionStrength: .1, wear: 0,
+   }),
+   'Blockrunner Inkstorm pilot visor atlas v1': Object.freeze({
+-    specularStrength: .14, rimStrength: 0, reflectionStrength: .015, wear: 0,
++    palette: BLOCKRUNNER_PALETTE,
++    specularStrength: .42, rimStrength: .015, reflectionStrength: .18, wear: 0,
+   }),
+   'Blockrunner Inkstorm pilot gloves atlas v1': Object.freeze({
+     specularStrength: .035, rimStrength: 0, reflectionStrength: 0, wear: 0,
+--- a/src/ui/VehicleCardPreview.ts
++++ b/src/ui/VehicleCardPreview.ts
+@@ -336,6 +336,7 @@
+   private readonly onAppearanceStatusChange: (() => void) | undefined;
+   private root: ParentNode | null;
+   private readonly limits: Readonly<VehiclePreviewRenderLimits>;
++  private readonly heroLimits: Readonly<VehiclePreviewRenderLimits>;
+   private readonly releaseOnHide: boolean;
+   private readonly cache = new Map<string, PreviewCacheEntry>();
+   private readonly managedImages = new Set<HTMLImageElement>();
+@@ -357,6 +358,14 @@
+     this.releaseOnHide = options.releaseOnHide ?? true;
+     this.limits = Object.freeze({
+       ...DEFAULT_VEHICLE_PREVIEW_LIMITS,
++      ...options.limits,
++    });
++    // The wide inspection bay needs more pixels than a small selection card.
++    // Both are still one-shot renders, and caller-provided caps remain final.
++    this.heroLimits = Object.freeze({
++      ...DEFAULT_VEHICLE_PREVIEW_LIMITS,
++      maxWidth: 1_440,
++      maxHeight: 720,
+       ...options.limits,
+     });
+   }
+@@ -564,7 +573,8 @@
+       const vehicleClass = resolveVehiclePreviewClass(element.dataset.vehicleId);
+       if (!vehicleClass) continue;
+       const rect = element.getBoundingClientRect();
+-      const size = calculateVehiclePreviewRenderSize(rect.width, rect.height, pixelRatio, this.limits);
++      const limits = element.dataset.vehiclePreview === 'hero' ? this.heroLimits : this.limits;
++      const size = calculateVehiclePreviewRenderSize(rect.width, rect.height, pixelRatio, limits);
+       const rawAngle = Number(element.dataset.previewAngle ?? 0);
+       const angle = Number.isFinite(rawAngle) ? Math.round(rawAngle / 15) * 15 : 0;
+       const appearance = resolveVehicleAppearance(vehicleClass, this.appearance);
+@@ -669,7 +679,7 @@
+     if (vehicle.activeAppearanceId === 'polwo') cameraDirection.set(-1.5, 0.5, -0.5);
+     // The tall rear wedges conceal Blockrunner's cockpit and front intakes.
+     // A broad front quarter exposes those source features in the same host.
+-    else if (vehicle.activeAppearanceId === 'blockrunner') cameraDirection.set(-1.8, 0.45, 0.65);
++    else if (vehicle.activeAppearanceId === 'blockrunner') cameraDirection.set(-1.8, 1.05, 0.25);
+     else cameraDirection.set(0.7, 0.38, -1);
+     cameraDirection.normalize().applyAxisAngle(worldUp, angle * Math.PI / 180);
+     vehicle.visible = true;
+--- a/tests/render/blockrunnerAppearance.test.ts
++++ b/tests/render/blockrunnerAppearance.test.ts
+@@ -34,12 +34,14 @@
+     expect(f.racer.pilotAnchor.visible).toBe(false);
+     const materials = new Map(f.racer.imported.geometryMeshes.map(mesh => [mesh.name, mesh.material as CelMaterial]));
+     for (const material of materials.values()) {
+-      expect(material.uniforms.uRimStrength!.value).toBe(0);
+       expect(material.uniforms.uWear!.value).toBe(0);
+     }
+     expect(materials.get('blockrunner-pilot-suit')!.uniforms.uSpecularStrength!.value).toBe(.025);
+     expect(materials.get('blockrunner-pilot-gloves')!.uniforms.uSpecularStrength!.value).toBe(.035);
+-    expect(materials.get('blockrunner-pilot-visor')!.uniforms.uSpecularStrength!.value).toBe(.14);
++    expect(materials.get('blockrunner-pilot-visor')!.uniforms.uSpecularStrength!.value).toBe(.42);
++    expect(materials.get('blockrunner-pilot-helmet')!.uniforms.uSpecularStrength!.value).toBe(.32);
++    expect(materials.get('blockrunner-body')!.uniforms.uReflectionStrength!.value).toBe(.045);
++    expect(materials.get('blockrunner-pilot-suit')!.uniforms.uRimStrength!.value).toBe(0);
+     f.racer.setLodMode('simplified');
+     expect(f.racer.prepassMeshes.filter(mesh => mesh.visible)).toHaveLength(1);
+     await f.racer.setAppearance('procedural');

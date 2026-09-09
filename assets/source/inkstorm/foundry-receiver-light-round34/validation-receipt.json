@@ -1,0 +1,89 @@
+{
+  "status": "PASS_CPU_PREPARATION_ONLY",
+  "root": "/Users/amir/Projects/PodRacing",
+  "liveSourceChecks": [
+    {
+      "path": "src/render/inkstorm/InkstormSurfaceMaterial.ts",
+      "liveSha256": "b8bfbc87654537f6825e4a91ce858d7558ab89137c483e117a0e93f2bd6f82cb",
+      "preservedBeforeSha256": "b8bfbc87654537f6825e4a91ce858d7558ab89137c483e117a0e93f2bd6f82cb",
+      "unchanged": true
+    },
+    {
+      "path": "src/render/inkstorm/InkstormWorld.ts",
+      "liveSha256": "c402c85ecbd13e6d4f4fb63a702cc7d1a447a4e509d6459e4265642fe10d15a5",
+      "preservedBeforeSha256": "c402c85ecbd13e6d4f4fb63a702cc7d1a447a4e509d6459e4265642fe10d15a5",
+      "unchanged": true
+    }
+  ],
+  "sourceAssets": [
+    {
+      "path": "public/assets/inkstorm/pipe-bank-detail-v1.glb",
+      "bytes": 1329140,
+      "sha256": "7a28b2e2f3ce25b173ed21033cbe0d28e7341197407b5e86d2400848dba8d946"
+    },
+    {
+      "path": "public/assets/inkstorm/foundry-service-gantry-v3.glb",
+      "bytes": 1327988,
+      "sha256": "55d694f8406d9a2ff819ba7d262d86e30f0bc8bafd543699a8ceff83da2380b4"
+    }
+  ],
+  "inspectedImages": [
+    {
+      "path": "docs/inkstorm-overhaul/concepts/06-foundry.png",
+      "sha256": "e56c72e8a4c96be345a5cfa088186ad65763fbc94c5f8b85233bb9a04b1aeb50"
+    },
+    {
+      "path": "docs/inkstorm-overhaul/concepts/11-foundry-construction-round33.png",
+      "sha256": "ef201350569c53d6a36a9e1c0f1db7c6c8d444c58a1dd39db5b3ab22e2c6a2d8"
+    },
+    {
+      "path": "output/gauntlet/round34-sobel-stencil-v9/captures/06-foundry.png",
+      "sha256": "3922f8dfbc9359a595f3fdcd6e4b216a92fbe88c3c4683470cc1112308bee086"
+    },
+    {
+      "path": "output/gauntlet/round34-sobel-stencil-v9/captures/foundry-middle.png",
+      "sha256": "ef48838f76a0cb7effe8a1c2ae92a1d3f5085686209bf90a4c24474b06ecf777"
+    },
+    {
+      "path": "output/gauntlet/round34-sobel-stencil-v9/captures/foundry-exit.png",
+      "sha256": "e36d1a753042eda40015397ebbeb89b7de1787c58d9d2bd187448ce679affcb1"
+    }
+  ],
+  "gitApplyCheck": {
+    "exitCode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  "patchWhitespaceCheck": {
+    "exitCode": 1,
+    "stdout": "",
+    "stderr": ""
+  },
+  "candidateFiles": [
+    {
+      "path": "candidate/src/render/inkstorm/InkstormFoundryFinish.ts",
+      "bytes": 3268,
+      "sha256": "6d3bd8c684b4d2943b28d11e2dd06968776a16e331ea55acda48fa562f4689ed"
+    },
+    {
+      "path": "candidate/src/render/inkstorm/InkstormSurfaceMaterial.ts",
+      "bytes": 18283,
+      "sha256": "1589ea0add9e3c4faabfde6c65746f9cb126ae2b613134cbef05343e39f9a082"
+    },
+    {
+      "path": "candidate/src/render/inkstorm/InkstormWorld.ts",
+      "bytes": 16146,
+      "sha256": "e9f468bcf0245cd508c4608f25b9492857dda5335c9c58ed0505266ea4594ba2"
+    }
+  ],
+  "patchSha256": "83212fbde6bb174579d55475634814492b160df58645df06d65b87b4fb0872cb",
+  "responseReceiptSha256": "a09a4638cb7d84e53669a5c956b8e32195d9513171004470c0a13640d4cc1e6a",
+  "typecheckReceiptSha256": "070012163b5f6260aafd257a3fe9cb210a3963df474ddd273aae6c4960f1913c",
+  "unperformed": [
+    "Live integration",
+    "GLSL GPU compilation",
+    "Actual image/motion A/B",
+    "Performance/context/resource acceptance"
+  ],
+  "browserAndBlenderUsed": false
+}

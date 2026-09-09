@@ -1,0 +1,136 @@
+--- a/src/render/app/GameApp.ts
++++ b/src/render/app/GameApp.ts
+@@ -1,5 +1,6 @@
+ import { CombatPresentationController, type CombatPresentationContext } from '../combat/CombatPresentationController';
+ import { WreckVisualPoseCache, type WreckVisualPose } from '../combat/WreckVisualPose';
++import { WreckGroundContactGate } from '../combat/WreckGroundContact';
+ import {
+   Color,
+   Euler,
+@@ -476,6 +477,9 @@
+   private readonly routeCameraPreview = new Vector3();
+   private readonly junctionCameraPreview = new Vector3();
+   private readonly wreckVisualPoses = new Map<RacerPresentation, WreckVisualPoseCache>();
++  private readonly wreckGroundContacts = new WreckGroundContactGate();
++  private readonly wreckRuptureDirection = new Vector3();
++  private readonly wreckRuptureOrigin = new Vector3();
+   private captureMode = false;
+   private preset: CapturePreset = 'desert';
+   private reviewScenario: ReviewCapturePreset = 'desert';
+@@ -1074,6 +1078,12 @@
+         entry.id, appearanceLocalRacerId, this.vehicleAppearance, appearanceHumanMembers,
+       ));
+       const wreckPose = wrecked && !replayFrame ? this.resolveWreckVisualPose(entry, renderExtrapolation) : null;
++      if (!this.paused && wreckPose?.groundContact && this.wreckGroundContacts.take(
++        entry.id, this.simulationFrame, galacticState!.wreck.crashCount, wreckPose.groundContact,
++      )) {
++        this.galacticEffects.emitWreckGroundContact(presentationTime,
++          wreckPose.groundContact.position, wreckPose.groundContact.direction);
++      }
+       this.contactShadows.update(
+         racerIndex,
+         wreckPose?.position.x ?? displayX,
+@@ -1317,6 +1327,7 @@
+     this.resultsPresentation = null;
+     this.dust.clear();
+     this.galacticEffects.clearEffects();
++    this.wreckGroundContacts.clear();
+     this.cameraDirector.reset();
+     this.paused = false;
+     this.hud.setPaused(false);
+@@ -1442,6 +1453,7 @@
+     this.recentGalacticEvents.length = 0;
+     this.dust.clear();
+     this.galacticEffects.clearEffects();
++    this.wreckGroundContacts.clear();
+     this.cameraDirector.reset();
+     this.syncRacerVehicleViews();
+     this.syncCameraSubject();
+@@ -2486,7 +2498,7 @@
+     this.combatPresentation.consume(authoritativeEvents.map((envelope) => ({
+       id: `room:${envelope.sequence}`, event: envelope.event as GalacticEvent,
+     })), performance.now(), this.combatContext());
+-    this.consumeGalacticEffects(galacticEvents, time);
++    this.consumeGalacticEffects(galacticEvents, time, authoritativeEvents.map(envelope => envelope.step));
+     this.audio.handleEvents(authoritativeEvents.map((envelope) => envelope.event), { playerId: localRacerId });
+     this.cameraDirector.consumeEvents(authoritativeEvents.map((envelope) => envelope.event), { playerId: localRacerId });
+     for (let index = 0; index < this.race.state.entries.length; index += 1) {
+@@ -2757,6 +2769,7 @@
+     this.reviewInput = normalizePlayerInput();
+     this.setReviewCameraFocus();
+     this.galacticEffects.clearEffects();
++    this.wreckGroundContacts.clear();
+     const player = this.race.state.entries.find((entry) => entry.isPlayer);
+     const galactic = player?.galactic;
+     if (!player || !galactic) return;
+@@ -3025,6 +3038,7 @@
+     this.race.reset();
+     this.dust.clear();
+     this.galacticEffects.clearEffects();
++    this.wreckGroundContacts.clear();
+     const progressByPreset: Record<CapturePreset, number> = {
+       // The wide review camera doubles as proof of the authored canyon set
+       // piece, while still showing the infinite terrain rings around it.
+@@ -3517,8 +3531,16 @@
+     });
+   }
+ 
+-  private consumeGalacticEffects(events: readonly GalacticEvent[], time: number): void {
+-    for (const event of events) {
++  private consumeGalacticEffects(events: readonly GalacticEvent[], time: number, authoritativeFrames?: readonly number[]): void {
++    for (let eventIndex = 0; eventIndex < events.length; eventIndex++) {
++      const event = events[eventIndex]!;
++      if (event.type === 'wreck') {
++        const entry = this.race.state.entries.find(candidate => candidate.id === event.racerId);
++        if (entry?.galactic?.wreck.phase === 'wrecked') {
++          this.wreckGroundContacts.begin(event.racerId,
++            authoritativeFrames?.[eventIndex] ?? this.simulationFrame, entry.galactic.wreck.crashCount);
++        }
++      }
+       let racerId: string | null = null;
+       let style: 'crash' | 'mine' | 'sand' | 'rock' | 'redline' | 'reward' | 'energy' = 'crash';
+       let severity = 1;
+@@ -3599,6 +3621,7 @@
+       const entry = this.race.state.entries[racerIndex];
+       if (!entry) continue;
+       let position = entry.vehicle.position;
++      let direction: Vector3 | undefined;
+       if (style === 'redline' || style === 'crash') {
+         const view = this.racerViews[racerIndex];
+         // Events identify the racer, not a collision world point. Emit this
+@@ -3613,6 +3636,14 @@
+           // renderer pose owns pivot/terrain clearance for body, camera and FX.
+           const wreckPose = entry.galactic?.wreck.phase === 'wrecked'
+             ? this.resolveWreckVisualPose(entry) : null;
++          this.wreckRuptureDirection.set(0, 0, 1);
++          if (wreckPose && view.importedActive) {
++            this.wreckRuptureOrigin.set(0, 0, 0);
++            view.imported.transformWreckAttachment('exhaustRight', this.wreckRuptureDirection);
++            view.imported.transformWreckAttachment('exhaustRight', this.wreckRuptureOrigin);
++            this.wreckRuptureDirection.sub(this.wreckRuptureOrigin).applyEuler(wreckPose.rotation).normalize();
++          } else this.wreckRuptureDirection.set(Math.sin(vehicle.orientation.yaw), 0, Math.cos(vehicle.orientation.yaw));
++          direction = this.wreckRuptureDirection;
+           if (wreckPose) view.imported.transformWreckAttachment('exhaustRight', local);
+           local.applyEuler(wreckPose?.rotation ?? new Euler(vehicle.orientation.pitch,
+             vehicle.orientation.yaw, vehicle.orientation.roll + vehicle.orientation.bank, 'YXZ'));
+@@ -3625,6 +3656,7 @@
+         time,
+         position,
+         velocity: entry.vehicle.velocity,
++        direction,
+         groundY: this.race.terrain.heightAt(position.x, position.z),
+         severity,
+         color,
+@@ -3792,6 +3824,12 @@
+         ],
+         cameraFocusPosition: this.subject.position.toArray(),
+         cameraPosition: this.cameraRig.camera.position.toArray(),
++        combatCamera: {
++          cut: this.combatCameraCut,
++          recoveryArmed: this.combatChaseRecovery,
++          wreckChase: !!this.subject.wreckChase,
++          wreckRecovery: !!this.subject.wreckRecovery,
++        },
+         renderedRacerPositions: this.racerViews.map((view, index) => ({
+           id: this.race.state.entries[index]?.id ?? `racer-${index}`,
+           position: view.position.toArray(),

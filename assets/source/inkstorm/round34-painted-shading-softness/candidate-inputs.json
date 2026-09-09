@@ -1,0 +1,77 @@
+{
+  "scope": "Private source/test candidate only; no live source edits/GPU/browser",
+  "baseline": [
+    {
+      "path": "src/render/materials/celRamp.ts",
+      "bytes": 5243,
+      "sha256": "56fc547d41383e3aa3f9ed1a802c7f5033aa7adc145a7916823dde3f4cd50f0f"
+    },
+    {
+      "path": "src/render/materials/celShaders.ts",
+      "bytes": 11087,
+      "sha256": "4c3c83f8216cb394b271cc7605260edfe850d815b4cabd8f56c96115e0f229bc"
+    },
+    {
+      "path": "src/render/materials/CelMaterial.ts",
+      "bytes": 11868,
+      "sha256": "865f71b49cda271162da281399f0e0cc5d31372394e7d2113a0caf731baee9dd"
+    },
+    {
+      "path": "src/render/vehicles/ImportedVehiclePresentation.ts",
+      "bytes": 23931,
+      "sha256": "309490a5d92445704a0107cbb363e1f32776b66fc3ca8548c7666a7ffb1e4d0e"
+    },
+    {
+      "path": "src/game/vehicleAppearance.ts",
+      "bytes": 14646,
+      "sha256": "d60711be193329f77b2f1d1eba01e798db69793e5273d1ba199141c5422f59b2"
+    },
+    {
+      "path": "tests/render/importedVehiclePresentation.test.ts",
+      "bytes": 27489,
+      "sha256": "c0bda12e6ba71876e0d282d80ede4966154b79f44fb32336accd5395e3b384da"
+    }
+  ],
+  "candidate": [
+    {
+      "path": "src/render/materials/celRamp.ts",
+      "bytes": 6734,
+      "sha256": "776b320d15b4f65a76d1e4e490bb51b94ebe8fce602084115f9f293a314ef723"
+    },
+    {
+      "path": "src/render/materials/celShaders.ts",
+      "bytes": 12450,
+      "sha256": "d29a4130ffe3a0ccce00f694a4a1b2653788f859a0831683eb4bb06383bef836"
+    },
+    {
+      "path": "src/render/materials/CelMaterial.ts",
+      "bytes": 12673,
+      "sha256": "da3b0e6d914e2ce6f2a31379240e717fd1d071efc4750d820ef5f3336edcf5ea"
+    },
+    {
+      "path": "src/render/vehicles/ImportedVehiclePresentation.ts",
+      "bytes": 24512,
+      "sha256": "b142b924fc0eccb7578938f19cbda4159da694ee710062a49d503b8f66a209da"
+    },
+    {
+      "path": "src/game/vehicleAppearance.ts",
+      "bytes": 14733,
+      "sha256": "b73ca607f62adea3c9c2609a064bf647c309b274e1702d7dc5b4a4ecb5940c7b"
+    },
+    {
+      "path": "tests/render/importedVehiclePresentation.test.ts",
+      "bytes": 33945,
+      "sha256": "530b3407721cdfa002029c90f92b8d95ace5c604e95ce45e17dc68a27ba92caf"
+    },
+    {
+      "path": "tests/materials/celPaintedShading.test.ts",
+      "bytes": 10841,
+      "sha256": "e820024e84c0e1e4801df3261faeefa3aace030226353533a539acb1b3d60c38"
+    }
+  ],
+  "patch": {
+    "path": "blockrunner-painted-shading-v1.patch",
+    "bytes": 29450,
+    "sha256": "fcb48c2c760923041a53b97ed8b53617f6b5574b08dead086a31d1ac5d929db2"
+  }
+}

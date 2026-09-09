@@ -1,0 +1,22 @@
+{
+  "frozenAt": "2026-09-08T23:40:43.895106+00:00",
+  "scope": "One property: speed sibling z-index2 inherited becomes explicit1, beneath existing redline2 and telemetry4. No anchors, geometry, markup, bindings or other UI changes.",
+  "sources": {
+    "src/ui/broadcastStyles.ts": {
+      "sha256": "418c34511a7e13ebdea08e3151838a33d8b944af554879c65f25db8ceeeba8e1",
+      "bytes": 76020
+    },
+    "src/ui/RaceHud.ts": {
+      "sha256": "d50d8ed42322b2d861491e9934c74da7af6956ef8f1f3110005ff8a16b748ebb",
+      "bytes": 118090
+    }
+  },
+  "patchSha256": "9ba64ef9ba231d61847b1c9dad99a80c526ede5dc0497bcd4732e99d14a09cf8",
+  "checks": {
+    "typecheck": "PASS",
+    "onlyOneCssPropertyChanged": true,
+    "RaceHudUnchanged": true,
+    "whitespace": "PASS"
+  },
+  "nativeVisualVerification": "PENDING; V19 functional PASS does not cover its observed caption occlusion."
+}

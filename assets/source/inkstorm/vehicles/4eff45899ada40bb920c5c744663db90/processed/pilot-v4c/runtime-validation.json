@@ -1,0 +1,164 @@
+{
+  "runtime": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/vehicles/4eff45899ada40bb920c5c744663db90/processed/pilot-v4c/teemto-pilot-v4c-runtime.glb",
+  "sha256": "f3eb56a54b7dbb8f4a26263fb26f1f88b188db6bcc409910a3561ae939f1eef1",
+  "bytes": 6774412,
+  "V4BComparison": [
+    {
+      "name": "teemto-cockpit-body",
+      "orderedTriangles": 19965,
+      "maxAbsoluteComponentErrors": {
+        "POSITION": 0.0,
+        "NORMAL": 0.0,
+        "TEXCOORD_0": 0.0
+      },
+      "worldTransformsExactlyIdentity": true
+    },
+    {
+      "name": "teemto-engine-left-body",
+      "orderedTriangles": 11790,
+      "maxAbsoluteComponentErrors": {
+        "POSITION": 0.0,
+        "NORMAL": 0.0,
+        "TEXCOORD_0": 0.0
+      },
+      "worldTransformsExactlyIdentity": true
+    },
+    {
+      "name": "teemto-engine-right-body",
+      "orderedTriangles": 11790,
+      "maxAbsoluteComponentErrors": {
+        "POSITION": 0.0,
+        "NORMAL": 0.0,
+        "TEXCOORD_0": 0.0
+      },
+      "worldTransformsExactlyIdentity": true
+    },
+    {
+      "name": "teemto-pilot-accent.003",
+      "orderedTriangles": 188,
+      "maxAbsoluteComponentErrors": {
+        "POSITION": 0.0,
+        "NORMAL": 0.0,
+        "TEXCOORD_0": 0.0
+      },
+      "worldTransformsExactlyIdentity": true
+    },
+    {
+      "name": "teemto-pilot-hardware.003",
+      "orderedTriangles": 1552,
+      "maxAbsoluteComponentErrors": {
+        "POSITION": 0.0,
+        "NORMAL": 0.0,
+        "TEXCOORD_0": 0.0
+      },
+      "worldTransformsExactlyIdentity": true
+    },
+    {
+      "name": "teemto-pilot-rubber.002",
+      "orderedTriangles": 2228,
+      "maxAbsoluteComponentErrors": {
+        "POSITION": 0.0,
+        "NORMAL": 0.0,
+        "TEXCOORD_0": 0.0
+      },
+      "worldTransformsExactlyIdentity": true
+    },
+    {
+      "name": "teemto-pilot-shell.003",
+      "orderedTriangles": 1444,
+      "maxAbsoluteComponentErrors": {
+        "POSITION": 0.0,
+        "NORMAL": 0.0,
+        "TEXCOORD_0": 0.0
+      },
+      "worldTransformsExactlyIdentity": true
+    },
+    {
+      "name": "teemto-pilot-suit.005",
+      "orderedTriangles": 9359,
+      "maxAbsoluteComponentErrors": {
+        "POSITION": 0.0,
+        "NORMAL": 0.0,
+        "TEXCOORD_0": 0.0
+      },
+      "worldTransformsExactlyIdentity": true
+    },
+    {
+      "name": "teemto-pilot-webbing.002",
+      "orderedTriangles": 1008,
+      "maxAbsoluteComponentErrors": {
+        "POSITION": 0.0,
+        "NORMAL": 0.0,
+        "TEXCOORD_0": 0.0
+      },
+      "worldTransformsExactlyIdentity": true
+    }
+  ],
+  "allIndicesAndAllAttributeArraysExactlyEqual": true,
+  "includes": [
+    "POSITION",
+    "NORMAL",
+    "TEXCOORD_0",
+    "TANGENT"
+  ],
+  "nodesAndTransformsExactlyEqual": true,
+  "originalPublicBodyWorldComparison": [
+    {
+      "name": "teemto-cockpit-body",
+      "orderedTriangles": 19965,
+      "maxAbsoluteComponentErrors": {
+        "POSITION": 0.0,
+        "NORMAL": 0.0,
+        "TEXCOORD_0": 0.0
+      },
+      "worldTransformsExactlyIdentity": true
+    },
+    {
+      "name": "teemto-engine-left-body",
+      "orderedTriangles": 11790,
+      "maxAbsoluteComponentErrors": {
+        "POSITION": 0.0,
+        "NORMAL": 0.0,
+        "TEXCOORD_0": 0.0
+      },
+      "worldTransformsExactlyIdentity": true
+    },
+    {
+      "name": "teemto-engine-right-body",
+      "orderedTriangles": 11790,
+      "maxAbsoluteComponentErrors": {
+        "POSITION": 0.0,
+        "NORMAL": 0.0,
+        "TEXCOORD_0": 0.0
+      },
+      "worldTransformsExactlyIdentity": true
+    }
+  ],
+  "triangles": 59324,
+  "pilotTriangles": 15779,
+  "totalPrimitives": 9,
+  "pilotPrimitives": 6,
+  "materialNames": [
+    "Pilot atlas v4c runtime accent",
+    "Pilot atlas v4c runtime hardware",
+    "Pilot atlas v4c runtime rubber",
+    "Pilot atlas v4c runtime shell",
+    "Pilot atlas v4c runtime suit",
+    "Pilot atlas v4c runtime webbing"
+  ],
+  "materialParametersUnchanged": true,
+  "mapsPreservedByteForByte": [
+    "teemto-cockpit-inkstorm-v1",
+    "teemto-engines-inkstorm-v1",
+    "pilot-normal-atlas-v4b",
+    "pilot-roughness-atlas-v4b"
+  ],
+  "replacedMap": "pilot-color-atlas-v4c",
+  "textures": 5,
+  "allV4BAndPublicSnapshotFilesPreserved": 29,
+  "extensionsUsed": [
+    "EXT_texture_webp"
+  ],
+  "visualAcceptance": "pending fresh in-world review",
+  "performanceAcceptance": "not measured"
+}

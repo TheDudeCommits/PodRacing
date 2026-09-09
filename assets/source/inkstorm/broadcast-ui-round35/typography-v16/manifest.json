@@ -1,0 +1,176 @@
+{
+  "frozenAt": "2026-09-08T21:21:26.236187+00:00",
+  "owner": "ui_build_graphics_v13",
+  "scope": "Three UI CSS modules and Russo One runtime font/license/provenance only; no browser/build/GPU or runtime logic edits",
+  "files": [
+    {
+      "path": "src/ui/broadcastStyles.ts",
+      "bytes": 67148,
+      "afterSha256": "0bbd39f4c17ea6458db6a12fff0f462e789b719d6413b1d171d8e948f40dd7bf",
+      "beforeSha256": "dcbae5ddc98cf5d894116b6b5199e1445c01b7bf7e6f7a8d56d798d60f588a7b"
+    },
+    {
+      "path": "src/ui/workshopGraphicStyles.ts",
+      "bytes": 16127,
+      "afterSha256": "925131cba7ef736e1fdd79e26c176834989827c08691dd0181600943a1cf8786",
+      "beforeSha256": "135d089fa9414278e6e64b9f8d96a3b3bbcbc2b87d2f9958827f9809d3f15893"
+    },
+    {
+      "path": "src/ui/raceEventAtlasStyles.ts",
+      "bytes": 15800,
+      "afterSha256": "db9c6e985ccacd45600541ae7602d2214eec43f31b111179c07fdd1ee4c8763d",
+      "beforeSha256": "162fce1650c32dcbbe32e02ccfa3d64fdf140b4b388b8861676291291fd72431"
+    },
+    {
+      "path": "public/fonts/inkstorm/PROVENANCE.md",
+      "bytes": 4286,
+      "afterSha256": "6171939d6b9f178d1a0afd951ac2a6febca1747ffbda5e9cf5bec7a70618a6bb",
+      "beforeSha256": "59ffb7afcd3c3a7d0dc38fe36a3a481e8fa97c3a5ee4f00c386e7f6486053963"
+    },
+    {
+      "path": "public/fonts/inkstorm/RussoOne-Regular.ttf",
+      "bytes": 39124,
+      "afterSha256": "bc0abcc660bd8b7ad3000ecb2898a27c58a29a50f7ec81652fa12e75148d09df"
+    },
+    {
+      "path": "public/fonts/inkstorm/RussoOne-OFL.txt",
+      "bytes": 4390,
+      "afterSha256": "3ac1301549523d9861fedca12871f24e575fbd26d520632fc00ba849b471d275"
+    },
+    {
+      "path": "public/fonts/inkstorm/RussoOne-provenance.json",
+      "bytes": 2082,
+      "afterSha256": "e81940b5ec5e90dc1acb84192c3c1e5bbe5770f4bd6870b426b8728d6e154ed0"
+    }
+  ],
+  "checks": {
+    "typecheck": "PASS",
+    "cssParse": {
+      "broadcast": {
+        "rules": 693,
+        "bytes": 67005,
+        "parse": "PASS"
+      },
+      "workshop": {
+        "rules": 122,
+        "bytes": 16946,
+        "parse": "PASS"
+      },
+      "atlas": {
+        "rules": 133,
+        "bytes": 15658,
+        "parse": "PASS"
+      }
+    },
+    "diffWhitespace": {
+      "src/ui/broadcastStyles.ts": "PASS: no whitespace diagnostics in explicit preserved-before comparison; added lines have no trailing whitespace",
+      "src/ui/workshopGraphicStyles.ts": "PASS: no whitespace diagnostics in explicit preserved-before comparison; added lines have no trailing whitespace",
+      "src/ui/raceEventAtlasStyles.ts": "PASS: no whitespace diagnostics in explicit preserved-before comparison; added lines have no trailing whitespace",
+      "public/fonts/inkstorm/PROVENANCE.md": "PASS: no whitespace diagnostics in explicit preserved-before comparison; added lines have no trailing whitespace"
+    },
+    "fontIntegrity": {
+      "family": "Russo One",
+      "subfamily": "Regular",
+      "postScriptName": "RussoOne-Regular",
+      "fontWeight": 400,
+      "unitsPerEm": 1000,
+      "tableChecksumsPass": 17,
+      "wholeFontChecksumPass": true,
+      "sampleWidthsNotBrowserLayout": {
+        "BUILD": {
+          "fontSize": 48,
+          "advanceWidth": 154.32
+        },
+        "HANGAR": {
+          "fontSize": 48,
+          "advanceWidth": 206.4
+        },
+        "AVAILABLE PARTS": {
+          "fontSize": 21,
+          "advanceWidth": 200.865
+        },
+        "R-44 BALANCED ION DRIVE": {
+          "fontSize": 26,
+          "advanceWidth": 362.05
+        },
+        "NOVA-BURST TURBINES": {
+          "fontSize": 21,
+          "advanceWidth": 259.875
+        },
+        "KRAYT TORQUE CORE": {
+          "fontSize": 21,
+          "advanceWidth": 228.606
+        },
+        "SIEGE PULSE REACTOR": {
+          "fontSize": 21,
+          "advanceWidth": 247.695
+        },
+        "EQUIP PART": {
+          "fontSize": 13,
+          "advanceWidth": 81.965
+        },
+        "DAMAGE": {
+          "fontSize": 12,
+          "advanceWidth": 52.5
+        },
+        "100%": {
+          "fontSize": 15,
+          "advanceWidth": 39.075
+        },
+        "OPEN EXPEDITION": {
+          "fontSize": 20,
+          "advanceWidth": 187.7
+        },
+        "INKSTORM CUP \u00b7 GLASSLANDS": {
+          "fontSize": 15,
+          "advanceWidth": 233.34
+        }
+      }
+    },
+    "nativeVisualLayoutMotionAndLoadedFont": "PENDING root native capture; CPU checks are not visual acceptance"
+  },
+  "fontSource": {
+    "retrievedAt": "2026-09-08T21:06:27.407681+00:00",
+    "officialRepository": "https://github.com/google/fonts/tree/main/ofl/russoone",
+    "pinnedCommit": "4adee181a4deb534a57245053f4102831c481890",
+    "sourceAPI": "https://api.github.com/repos/google/fonts/commits?path=ofl/russoone&per_page=1",
+    "license": "SIL Open Font License 1.1; unmodified font distributed with exact OFL text",
+    "files": [
+      {
+        "sourceName": "RussoOne-Regular.ttf",
+        "sourceURL": "https://raw.githubusercontent.com/google/fonts/4adee181a4deb534a57245053f4102831c481890/ofl/russoone/RussoOne-Regular.ttf",
+        "bytes": 39124,
+        "sha256": "bc0abcc660bd8b7ad3000ecb2898a27c58a29a50f7ec81652fa12e75148d09df",
+        "runtimePath": "public/fonts/inkstorm/RussoOne-Regular.ttf"
+      },
+      {
+        "sourceName": "OFL.txt",
+        "sourceURL": "https://raw.githubusercontent.com/google/fonts/4adee181a4deb534a57245053f4102831c481890/ofl/russoone/OFL.txt",
+        "bytes": 4390,
+        "sha256": "3ac1301549523d9861fedca12871f24e575fbd26d520632fc00ba849b471d275",
+        "runtimePath": "public/fonts/inkstorm/RussoOne-OFL.txt"
+      },
+      {
+        "sourceName": "METADATA.pb",
+        "sourceURL": "https://raw.githubusercontent.com/google/fonts/4adee181a4deb534a57245053f4102831c481890/ofl/russoone/METADATA.pb",
+        "bytes": 642,
+        "sha256": "908b29f061817ef8a1b5cbae222f1b31afe2d92c1688ef971e9af4d1391ffebb",
+        "runtimePath": null
+      },
+      {
+        "sourceName": "DESCRIPTION.en_us.html",
+        "sourceURL": "https://raw.githubusercontent.com/google/fonts/4adee181a4deb534a57245053f4102831c481890/ofl/russoone/DESCRIPTION.en_us.html",
+        "bytes": 636,
+        "sha256": "baf259209826ef99df05cd3a3287c0f8dc7fb8eec8c7a38603165a1748ce0ab3",
+        "runtimePath": null
+      },
+      {
+        "sourceName": "FONTLOG.txt",
+        "sourceURL": "https://raw.githubusercontent.com/google/fonts/4adee181a4deb534a57245053f4102831c481890/ofl/russoone/FONTLOG.txt",
+        "bytes": 1425,
+        "sha256": "9e60016bc61e7679a47f7341664c59e43039bc58c9bf402a867c601e8659bcb9",
+        "runtimePath": null
+      }
+    ]
+  }
+}

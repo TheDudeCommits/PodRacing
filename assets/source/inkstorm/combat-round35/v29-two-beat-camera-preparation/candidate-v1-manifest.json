@@ -1,0 +1,76 @@
+{
+  "stage": "PRIVATE V29 camera v1; not applied, native untested",
+  "createdUTC": "2026-09-09T10:08:34.461588+00:00",
+  "baseline": "V28 77f0ed1228afb3909953ae940451e2b1b3cd76b552688ea7d1a154a68debd87d",
+  "scope": [
+    "three production files plus explicit changed composition contract test and new age/reuse/recovery tests",
+    "No GameApp adapter needed: existing object pass-through",
+    "No FX/contact/terrain/source asset/simulation/network/HUD/build/public edits"
+  ],
+  "patch": {
+    "path": "assets/source/inkstorm/combat-round35/v29-two-beat-camera-preparation/v29-two-beat-camera-v1.patch",
+    "bytes": 19682,
+    "sha256": "35237829af9c0c5e6beef5d4b381908fdf1a481aa74539bc632a9f3e3a628f63"
+  },
+  "files": [
+    {
+      "path": "src/camera/CinematicCamera.ts",
+      "before": {
+        "bytes": 33884,
+        "sha256": "862a5787a34d6d767841b87b738a38d82b5b1bf074b1e54454f2a5f47bd9ecf9"
+      },
+      "candidate": {
+        "bytes": 35815,
+        "sha256": "01550de63470f05712bdcd8027797c2e6d4f253ce59d1fd8cdffa6d798a31ac8"
+      }
+    },
+    {
+      "path": "src/render/combat/TeemtoAuthoredDamage.ts",
+      "before": {
+        "bytes": 27082,
+        "sha256": "f7a37f5be10d89e92ba8189b7860917c3fc99d03afce7fc880506c95358e7b59"
+      },
+      "candidate": {
+        "bytes": 27817,
+        "sha256": "0801731c75b9b6209e73dd9afa5389c6e4fad6005292f3f8197d75600d4beecb"
+      }
+    },
+    {
+      "path": "src/render/combat/WreckVisualPose.ts",
+      "before": {
+        "bytes": 11510,
+        "sha256": "2f634e7cbd07d166ecf2beaf16b02031b6e320c3c30aa16b074c7c10d5729e90"
+      },
+      "candidate": {
+        "bytes": 11639,
+        "sha256": "ff2c92449dc13a861c4674642f3e6a3e7aa449c09d8636428d1b9d53058da015"
+      }
+    },
+    {
+      "path": "tests/camera/TeemtoImpactFraming.test.ts",
+      "before": {
+        "bytes": 17379,
+        "sha256": "fcbe52c429ef175fbbcc609d1f3b4d82de91f2fba4a7e6b993c498967324a91c"
+      },
+      "candidate": {
+        "bytes": 17857,
+        "sha256": "c73f76b9ac65f171591ab0b6b3804924d5f576c451979cb765505517fbcd0762"
+      }
+    },
+    {
+      "path": "tests/camera/TeemtoTwoBeatCamera.test.ts",
+      "before": null,
+      "candidate": {
+        "bytes": 6866,
+        "sha256": "0a9c0babd711a8698274f53c9129becca95dc188019d59c1646037d1f43e11f9"
+      }
+    }
+  ],
+  "validation": {
+    "focused": "38 tests / 7 files PASS; includes 2 private same-source projection checks",
+    "typecheck": "typecheck-v3.log PASS",
+    "applyCheck": "apply-check-v1.log PASS",
+    "native": "NOT EXECUTED",
+    "sizeBeat": "NOT ESTABLISHED: both torn sections already dominate original horizontal fit. 18-to-26 point substitution does not tighten early projected size."
+  }
+}

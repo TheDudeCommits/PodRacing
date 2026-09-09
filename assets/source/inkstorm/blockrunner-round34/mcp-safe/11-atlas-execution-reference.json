@@ -1,0 +1,78 @@
+{
+  "status": "Actual completed bake inputs pinned for prepared-only stage 11; no Blender execution by this reviewer.",
+  "algorithm": "FNV-1a-64 over canonical ASCII JSON; non-cryptographic",
+  "paintSignatureFnv1a64": "9e45fb9bc1a499ab",
+  "linkedImagesFnv1a64": "c255745cce8c26bb",
+  "linkedPaintImages": {
+    "Blockrunner body color 20260908-paint-v2": {
+      "colorSpace": "sRGB",
+      "filepath": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/blockrunner-body-color-v1-20260908-paint-v2.png",
+      "name": "Blockrunner body color 20260908-paint-v2",
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    "Blockrunner body roughness 20260908-paint-v2": {
+      "colorSpace": "Non-Color",
+      "filepath": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/blockrunner-body-roughness-v1-20260908-paint-v2.png",
+      "name": "Blockrunner body roughness 20260908-paint-v2",
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    "Blockrunner pilot color 20260908-paint-v2": {
+      "colorSpace": "sRGB",
+      "filepath": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/blockrunner-pilot-color-v1-20260908-paint-v2.png",
+      "name": "Blockrunner pilot color 20260908-paint-v2",
+      "size": [
+        1024,
+        1024
+      ]
+    },
+    "Blockrunner pilot roughness 20260908-paint-v2": {
+      "colorSpace": "Non-Color",
+      "filepath": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/blockrunner-pilot-roughness-v1-20260908-paint-v2.png",
+      "name": "Blockrunner pilot roughness 20260908-paint-v2",
+      "size": [
+        1024,
+        1024
+      ]
+    }
+  },
+  "receipts": [
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/mcp-safe/bake-v2-body-color-receipt.json",
+      "owner": "body",
+      "channel": "color",
+      "fnv1a64": "50215ec1a66752e0",
+      "bytes": 3553,
+      "sha256External": "470ca2bf97d4594882e651056f956117ba4885d383cd8065a4268860f62c3dc8"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/mcp-safe/bake-v2-body-roughness-receipt.json",
+      "owner": "body",
+      "channel": "roughness",
+      "fnv1a64": "94619d1924f81486",
+      "bytes": 3936,
+      "sha256External": "076cd0520b0e405c226803f40ea77297249a52cd2c5a948997ef0d967075134d"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/mcp-safe/bake-v2-pilot-color-receipt.json",
+      "owner": "pilot",
+      "channel": "color",
+      "fnv1a64": "6342d00416aae43f",
+      "bytes": 4399,
+      "sha256External": "2fdeedac627e0ab2d211f599530efbe982b5a3be980ad0692842a51912e84d38"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/mcp-safe/bake-v2-pilot-roughness-receipt.json",
+      "owner": "pilot",
+      "channel": "roughness",
+      "fnv1a64": "d16671acbb97f8d5",
+      "bytes": 4789,
+      "sha256External": "90b8d36f9c1c87b11ef72d38f4fb12044fb52e4012e3f628281d649d83bad39e"
+    }
+  ]
+}

@@ -1,0 +1,427 @@
+diff --git a/src/render/combat/TeemtoAuthoredDamage.ts b/src/render/combat/TeemtoAuthoredDamage.ts
+--- a/src/render/combat/TeemtoAuthoredDamage.ts
++++ b/src/render/combat/TeemtoAuthoredDamage.ts
+@@ -16,6 +16,7 @@
+   readonly restRotation: Quaternion;
+   readonly restScale: Vector3;
+   readonly auto: boolean;
++  readonly groundGaps: Float64Array;
+ }
+ 
+ /** Optional, explicitly authored Teemto geometry. The pilot and intact assets
+@@ -47,7 +48,8 @@
+   private readonly translation = new Vector3();
+   private readonly groundOffset = new Vector3();
+   private readonly point = new Vector3();
+-  private readonly contact = { position: new Vector3(), direction: new Vector3() };
++  private readonly contact = { position: new Vector3(), direction: new Vector3(),
++    footprint: { center: new Vector3(), axis: new Vector3(), halfLength: 0, halfWidth: 0 } };
+   private readonly rupture = { position: new Vector3(), direction: new Vector3() };
+   private readonly ruptureLocal: Vector3;
+   private rupturePose: WreckVisualPose | null = null;
+@@ -88,9 +90,9 @@
+     const moving: [Object3D, Mesh][] = [[left, originalLeft], [front, front], [rear, rear]];
+     if (tethers) moving.push([tethers, tethers]);
+     this.parts = moving.map(([node, mesh], index) => {
+-      const samples = new WreckVisualPoseCache(index === 2); samples.refresh(root, [mesh], 0);
++      const samples = new WreckVisualPoseCache(index === 1 || index === 2); samples.refresh(root, [mesh], 0);
+       return { node, samples, matrix: new Matrix4(), restMatrix: node.matrix.clone(), restPosition: node.position.clone(),
+-        restRotation: node.quaternion.clone(), restScale: node.scale.clone(), auto: node.matrixAutoUpdate };
++        restRotation: node.quaternion.clone(), restScale: node.scale.clone(), auto: node.matrixAutoUpdate, groundGaps: new Float64Array(samples.supportPoints.length) };
+     });
+     const stationary = originals.filter(mesh => mesh !== originalLeft && !hidden.includes(mesh));
+     if (stubs) stationary.push(stubs);
+@@ -196,7 +198,10 @@
+     const grade = Number.isFinite(a + b) ? Math.max(-.35, Math.min(.35, Math.atan2(a - b, reach * 2))) : 0;
+     this.settledRotation.setFromAxisAngle(Y, heading);
+     this.axis.setFromAxisAngle(X, -grade); this.settledRotation.multiply(this.axis);
+-    this.axis.setFromAxisAngle(Z, index === 0 ? -Math.PI / 2 : index === 1 ? 1.3 : Math.PI / 2);
++    // Exact source surface bands: the rear belly supports ~10 m, the left
++    // shallow bank ~13 m, and the front roof ~7 m. A quarter-roll rested the
++    // rear on a 0.36 m protrusion while leaving most of its casing elevated.
++    this.axis.setFromAxisAngle(Z, index === 0 ? -Math.PI / 12 : index === 1 ? Math.PI * 11 / 12 : 0);
+     this.settledRotation.multiply(this.axis);
+     this.rotation.copy(this.baseQuaternion).slerp(this.settledRotation, smooth(strike));
+     this.translation.copy(part.samples.localCenter).applyQuaternion(this.rotation).negate().add(this.movingCenter);
+@@ -206,10 +211,30 @@
+     this.translation.lerp(pose.position, 1 - release);
+     this.world.compose(this.translation, this.rotation, UNIT);
+     let gap = Infinity;
+-    for (const support of part.samples.supportPoints) {
+-      this.point.copy(support).applyMatrix4(this.world);
+-      const ground = terrain.heightAt(this.point.x, this.point.z), candidate = this.point.y - ground;
+-      if (candidate < gap) { gap = candidate; if (index === 2) this.contact.position.set(this.point.x, ground, this.point.z); }
++    for (let pass = 0; pass < (index === 0 ? 2 : 1); pass++) {
++      gap = Infinity;
++      let supportIndex = 0, rearGap = Infinity, frontGap = Infinity, rearZ = 0, frontZ = 0;
++      const minZ = part.samples.localBounds.min.z, length = part.samples.localBounds.max.z - minZ;
++      for (const support of part.samples.supportPoints) {
++        this.point.copy(support).applyMatrix4(this.world);
++        const ground = terrain.heightAt(this.point.x, this.point.z), candidate = this.point.y - ground;
++        part.groundGaps[supportIndex++] = candidate;
++        if (candidate < gap) { gap = candidate; if (index === 2) this.contact.position.set(this.point.x, ground, this.point.z); }
++        if (support.z < minZ + length * .25 && candidate < rearGap) { rearGap = candidate; rearZ = support.z; }
++        if (support.z > minZ + length * .75 && candidate < frontGap) { frontGap = candidate; frontZ = support.z; }
++      }
++      if (index !== 0 || pass > 0 || !Number.isFinite(rearGap + frontGap) || frontZ - rearZ < 1) break;
++      // The long left casing's tail protrusion can hold its nose a metre above
++      // sloped sand. Balance separated fore/aft source supports, then resample
++      // the same bounded cache so no hidden vertex is deliberately submerged.
++      const balance = Math.max(-.12, Math.min(.12, Math.atan2(rearGap - frontGap, frontZ - rearZ))) * fall * release;
++      if (Math.abs(balance) < .00001) break;
++      this.groundOffset.copy(part.samples.localCenter).applyQuaternion(this.rotation).add(this.translation);
++      this.point.set(0, 0, 1).applyQuaternion(this.rotation).setY(0).normalize();
++      this.point.set(this.point.z, 0, -this.point.x);
++      this.axis.setFromAxisAngle(this.point, -balance); this.rotation.premultiply(this.axis);
++      this.translation.copy(part.samples.localCenter).applyQuaternion(this.rotation).negate().add(this.groundOffset);
++      this.world.compose(this.translation, this.rotation, UNIT);
+     }
+     if (Number.isFinite(gap)) {
+       const settle = fall * release, margin = .55 - (index === 2 ? .45 : .37) * settle;
+@@ -217,6 +242,7 @@
+       this.translation.y += correction; this.world.compose(this.translation, this.rotation, UNIT);
+       if (index === 2 && strike === 1 && release === 1 && gap + correction <= .100001) {
+         this.writeStrikeDirection(part, pose, age);
++        this.writeContactFootprint(part, correction, terrain);
+         pose.groundContact = this.contact; this.contactPose = pose;
+       }
+     }
+@@ -230,6 +256,31 @@
+     this.partBox.copy(part.samples.localBounds).applyMatrix4(part.matrix); this.assembly.union(this.partBox);
+   }
+ 
++  private writeContactFootprint(part: Part, correction: number, terrain: { heightAt(x: number, z: number): number }): void {
++    const footprint = this.contact.footprint;
++    footprint.axis.set(0, 0, 1).applyQuaternion(this.rotation).setY(0).normalize();
++    const ax = footprint.axis.x, az = footprint.axis.z;
++    let minAlong = Infinity, maxAlong = -Infinity, minAcross = Infinity, maxAcross = -Infinity;
++    for (let index = 0; index < part.samples.supportPoints.length; index++) {
++      // This is a near-ground source surface band, not an invented collision
++      // area. Reuse the already sampled gaps: no second terrain/vertex pass.
++      if (part.groundGaps[index]! + correction > .45) continue;
++      this.point.copy(part.samples.supportPoints[index]!).applyMatrix4(this.world).sub(this.contact.position);
++      const along = this.point.x * ax + this.point.z * az, across = this.point.x * az - this.point.z * ax;
++      minAlong = Math.min(minAlong, along); maxAlong = Math.max(maxAlong, along);
++      minAcross = Math.min(minAcross, across); maxAcross = Math.max(maxAcross, across);
++    }
++    footprint.halfLength = Number.isFinite(minAlong + maxAlong) ? (maxAlong - minAlong) * .5 : 0;
++    footprint.halfWidth = Number.isFinite(minAcross + maxAcross) ? (maxAcross - minAcross) * .5 : 0;
++    footprint.center.copy(this.contact.position);
++    if (footprint.halfLength > 0) {
++      const along = (minAlong + maxAlong) * .5, across = (minAcross + maxAcross) * .5;
++      footprint.center.x += ax * along + az * across; footprint.center.z += az * along - ax * across;
++      const ground = terrain.heightAt(footprint.center.x, footprint.center.z);
++      if (Number.isFinite(ground)) footprint.center.y = ground;
++    }
++  }
++
+   private writeStrikeDirection(part: Part, pose: WreckVisualPose, age: number): void {
+     const base = pose.baseMotion, rotation = base?.rotation ?? pose.rotation;
+     const omega = base?.angularVelocity, epsilon = .0001;
+diff --git a/src/render/combat/WreckGroundContact.ts b/src/render/combat/WreckGroundContact.ts
+--- a/src/render/combat/WreckGroundContact.ts
++++ b/src/render/combat/WreckGroundContact.ts
+@@ -1,9 +1,18 @@
+ import type { Vector3 } from 'three';
+ 
++export interface WreckGroundFootprint {
++  readonly center: Vector3;
++  readonly axis: Vector3;
++  readonly halfLength: number;
++  readonly halfWidth: number;
++}
++
+ /** Sampled contact of the displayed engine, never a simulation collision. */
+ export interface WreckGroundContact {
+   readonly position: Vector3;
+   readonly direction: Vector3;
++  /** Cached near-ground source band; cosmetic ejecta extent, not collision state. */
++  readonly footprint?: WreckGroundFootprint;
+ }
+ 
+ /** One bounded renderer cue per received authoritative wreck identity.
+diff --git a/src/render/galactic/GalacticEffectsView.ts b/src/render/galactic/GalacticEffectsView.ts
+--- a/src/render/galactic/GalacticEffectsView.ts
++++ b/src/render/galactic/GalacticEffectsView.ts
+@@ -26,6 +26,7 @@
+   TubeGeometry,
+   Vector3,
+ } from 'three';
++import type { WreckGroundFootprint } from '../combat/WreckGroundContact';
+ import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
+ import { CEL_POST_EXCLUDE_USER_DATA_KEY } from '../materials/InvertedHullOutline';
+ import { TERRAIN_GLSL } from '../terrain/terrainShaderChunks';
+@@ -230,6 +231,8 @@
+   style: GalacticBurstStyle;
+   billboard: boolean;
+   contactLayer: number;
++  contactHalfLength: number;
++  contactHalfWidth: number;
+   authoredSurface: boolean;
+   wreckOwner: number;
+   wreckSequence: number;
+@@ -440,7 +443,7 @@
+         // Contact ejecta starts at a tight grounded root and opens into a
+         // directional sand fan. A broad circular wash cannot mark the strike.
+         float height = clamp((p.y + 1.0) * 0.5, 0.0, 1.0);
+-        float spread = 0.08 + height * 0.86;
++        float spread = vEffectSurface.x > 4.5 ? 0.62 + height * 0.32 : 0.08 + height * 0.86;
+         float edge = abs(p.x + (brush - 0.5) * height * 0.18) / spread;
+         alpha = (1.0 - smoothstep(0.65, 1.0, edge))
+           * smoothstep(0.0, 0.055, height) * (1.0 - smoothstep(0.76, 1.0, height))
+@@ -486,7 +489,7 @@
+       if (diffuseColor.a < 0.008) discard;
+     `);
+   };
+-  result.customProgramCacheKey = () => 'painterly-atmosphere-contact-v5';
++  result.customProgramCacheKey = () => 'painterly-atmosphere-contact-v6';
+   return result;
+ }
+ 
+@@ -648,7 +651,7 @@
+       scale: 1,
+       style: 'crash',
+       billboard: false,
+-      contactLayer: -1,
++      contactLayer: -1, contactHalfLength: 0, contactHalfWidth: 0,
+       authoredSurface: false,
+       wreckOwner: -1, wreckSequence: -1, nx: 0, ny: 0, nz: 1,
+       vx: 0,
+@@ -1009,12 +1012,17 @@
+    * two dust plates; no new mesh, material, timer or per-frame event allocation.
+    * The caller deduplicates the actual wreck identity before calling this.
+    */
+-  emitWreckGroundContact(time: number, position: GalacticPoint, direction: GalacticPoint): void {
++  emitWreckGroundContact(time: number, position: GalacticPoint, direction: GalacticPoint, footprint?: WreckGroundFootprint): void {
+     if (!Number.isFinite(time + position.x + position.y + position.z + direction.x + direction.z)) return;
+     const length = Math.hypot(direction.x, direction.z);
+     if (length < .001) return;
+     const dx = -direction.x / length, dz = -direction.z / length;
+     const heading = Math.atan2(dz, dx);
++    const span = footprint && Number.isFinite(footprint.center.x + footprint.center.y + footprint.center.z
++      + footprint.axis.x + footprint.axis.z + footprint.halfLength + footprint.halfWidth)
++      && footprint.halfLength >= 1 && footprint.halfLength <= 12 && footprint.halfWidth >= 0 && footprint.halfWidth <= 6
++      && Math.abs(Math.hypot(footprint.axis.x, footprint.axis.z) - 1) < .001 ? footprint : undefined;
++    const origin = span?.center ?? position;
+     this.eventSequence++;
+     for (let index = 0; index < 10; index++) {
+       const slot = this.debrisSlots[this.debrisCursor]!;
+@@ -1023,12 +1031,14 @@
+       const angle = heading + (hash01(seed) - .5) * 1.8;
+       const speed = 12 + hash01(seed + 1) * 14;
+       slot.active = true; slot.startTime = time; slot.duration = .28 + hash01(seed + 2) * .20;
+-      slot.x = position.x; slot.y = position.y + .18; slot.z = position.z;
++      const along = span ? (index / 9 - .5) * span.halfLength * 1.8 : 0;
++      slot.x = origin.x + (span?.axis.x ?? 0) * along;
++      slot.y = origin.y + .18; slot.z = origin.z + (span?.axis.z ?? 0) * along;
+       slot.vx = Math.cos(angle) * speed; slot.vz = Math.sin(angle) * speed;
+       slot.vy = 2 + hash01(seed + 3) * 4;
+       slot.rx = 0; slot.ry = 0; slot.rz = 0; slot.ax = 0; slot.ay = 0; slot.az = 0;
+       slot.scale = .34 + hash01(seed + 4) * .20;
+-      slot.groundY = position.y; slot.metal = false; slot.spark = true; slot.contactSpark = true;
++      slot.groundY = origin.y; slot.metal = false; slot.spark = true; slot.contactSpark = true;
+       slot.ember = false; slot.emberPhase = 0; slot.wreckOwner = -1; slot.wreckSequence = -1;
+       slot.r = 1; slot.g = index % 3 === 0 ? .87 : .48; slot.b = index % 3 === 0 ? .5 : .09;
+     }
+@@ -1036,10 +1046,12 @@
+       const slot = this.explosionSlots[this.explosionCursor]!;
+       this.explosionCursor = (this.explosionCursor + 1) % this.explosionSlots.length;
+       slot.active = true; slot.startTime = time + index * .04; slot.duration = index === 0 ? .52 : 1.15;
+-      slot.x = position.x + dx * index * .7; slot.z = position.z + dz * index * .7;
+-      slot.y = position.y + .08; slot.vx = dx * (index === 0 ? 3.2 : 4.8); slot.vz = dz * (index === 0 ? 3.2 : 4.8);
++      slot.x = origin.x + dx * index * .7; slot.z = origin.z + dz * index * .7;
++      slot.y = origin.y + .08; slot.vx = dx * (index === 0 ? 3.2 : 4.8); slot.vz = dz * (index === 0 ? 3.2 : 4.8);
+       slot.scale = index === 0 ? 3.8 : 4.6;
+       slot.style = 'sand'; slot.billboard = true; slot.contactLayer = 4 + index;
++      slot.contactHalfLength = span?.halfLength ?? 0; slot.contactHalfWidth = span?.halfWidth ?? 0;
++      slot.nx = span?.axis.x ?? 0; slot.nz = span?.axis.z ?? 1;
+       slot.authoredSurface = false; slot.wreckOwner = -1; slot.wreckSequence = -1;
+       slot.r = index === 0 ? .31 : .65; slot.g = index === 0 ? .18 : .42; slot.b = index === 0 ? .065 : .19;
+     }
+@@ -1531,14 +1543,21 @@
+           // actual support witness readable. Both keep their existing slots,
+           // world departure direction and feathered dust shader.
+           const scrape = slot.contactLayer === 4;
+-          const width = slot.scale * (scrape ? .50 + progress * .70 : .30 + progress * .65);
+-          const height = width * (scrape ? .18 : .54);
++          const broad = slot.contactHalfLength > 0;
++          const width = broad ? slot.contactHalfLength * (scrape ? .95 + progress * .30 : .80 + progress * .40)
++            : slot.scale * (scrape ? .50 + progress * .70 : .30 + progress * .65);
++          const height = broad ? (scrape ? .35 + slot.contactHalfWidth * .4 + progress * .7 : 1.4 + progress * 1.8)
++            : width * (scrape ? .18 : .54);
+           const x = slot.x + slot.vx * age, z = slot.z + slot.vz * age;
+           const y = slot.y + height * 1.05;
+           if (!this.isVisible(x, y, z, width * 1.5, EFFECT_VISIBILITY_DISTANCE.crashes)) continue;
++          // Keep the ejecta root along the measured engine support line.
++          // A point-shaped billboard under a ten-metre casing is easily hidden.
++          if (broad) this.tempQuaternion.setFromAxisAngle(UP, Math.atan2(-slot.nz, slot.nx));
+           this.writeInstance(this.explosionPlates, plateCount, x, y, z,
+-            this.billboardQuaternion, width, height, width, slot.r, slot.g, slot.b);
+-          this.writeEffectSurface(plateCount, 4, .67 * (1 - MathUtils.smoothstep(progress, .25, 1)), slot.startTime * 1.37);
++            broad ? this.tempQuaternion : this.billboardQuaternion, width, height, width, slot.r, slot.g, slot.b);
++          this.writeEffectSurface(plateCount, broad ? 5 : 4, (broad ? .82 : .67)
++            * (1 - MathUtils.smoothstep(progress, .25, 1)), slot.startTime * 1.37);
+           plateCount++;
+           continue;
+         }
+diff --git a/tests/combat/TeemtoAuthoredDamage.test.ts b/tests/combat/TeemtoAuthoredDamage.test.ts
+--- a/tests/combat/TeemtoAuthoredDamage.test.ts
++++ b/tests/combat/TeemtoAuthoredDamage.test.ts
+@@ -178,7 +178,9 @@
+       }
+       console.info('V21 actual authored damage geometry support/projection:', JSON.stringify({ name, positionsTested,
+         cameraPositions, contactSamples, maxQueries, settledMaximumGap: Object.fromEntries(settledMaximumGap), minimumGapByMesh: Object.fromEntries(statistics) }));
+-      expect(maxQueries).toBeLessThanOrEqual(name === 'hero' ? 296 : 222);
++      // V22 uses front roof samples and a second cached left support-balance pass.
++      // Exact measured fixed budgets; source no-burial/projection gates stay unchanged.
++      expect(maxQueries).toBeLessThanOrEqual(name === 'hero' ? 348 : 300);
+       expect(contactSamples).toBeGreaterThan(0);
+       for (const [mesh, metric] of statistics) expect(metric.gap, `${name}/${mesh}/${metric.frame}: actual source no burial`).toBeGreaterThanOrEqual(-1e-6);
+       expect(statistics.get('teemto-damage-right-rear-v16')!.gap).toBeLessThan(.15);
+diff --git a/tests/combat/TeemtoGroundFootprint.test.ts b/tests/combat/TeemtoGroundFootprint.test.ts
+new file mode 100644
+--- /dev/null
++++ b/tests/combat/TeemtoGroundFootprint.test.ts
+@@ -0,0 +1,99 @@
++import { Matrix4, Mesh, Object3D, Quaternion, Vector3, type Group } from 'three';
++import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
++import { afterAll, beforeAll, describe, expect, it } from 'vitest';
++import { RaceSimulation } from '../../src/game/race/RaceSimulation';
++import { sampleTerrainHeight } from '../../src/render/terrain/terrainMath';
++import { WreckVisualPoseCache } from '../../src/render/combat/WreckVisualPose';
++import { TeemtoWreckBreakup } from '../../src/render/combat/TeemtoWreckBreakup';
++
++const fileModule: string = 'node:fs';
++const { readFileSync } = await import(/* @vite-ignore */ fileModule);
++const variants = ['hero', 'rival'] as const;
++const sources = new Map<string, Group>();
++const privatePath = 'assets/source/inkstorm/combat-round35/authored-damage-v16/packaged-b/';
++
++async function load(path: string, stripImages = false): Promise<Group> {
++  const data = readFileSync(path);
++  if (!stripImages) return (await new GLTFLoader().parseAsync(data.buffer.slice(data.byteOffset, data.byteOffset + data.byteLength), '')).scene;
++  const size = data.readUInt32LE(12), json = JSON.parse(data.subarray(20, 20 + size).toString());
++  // Original names, hierarchy, geometry accessors and complete BIN are exact.
++  // CPU geometry tests remove only image/material references from a memory copy.
++  for (const mesh of json.meshes) for (const primitive of mesh.primitives) delete primitive.material;
++  delete json.materials; delete json.images; delete json.textures; delete json.samplers;
++  const text = new TextEncoder().encode(JSON.stringify(json)), padded = Math.ceil(text.byteLength / 4) * 4;
++  const binary = data.subarray(28 + size), output = new Uint8Array(28 + padded + binary.byteLength), h = new DataView(output.buffer);
++  h.setUint32(0, 0x46546c67, true); h.setUint32(4, 2, true); h.setUint32(8, output.byteLength, true);
++  h.setUint32(12, padded, true); h.setUint32(16, 0x4e4f534a, true); output.fill(32, 20, 20 + padded); output.set(text, 20);
++  h.setUint32(20 + padded, binary.byteLength, true); h.setUint32(24 + padded, 0x004e4942, true); output.set(binary, 28 + padded);
++  expect(binary.equals(output.subarray(28 + padded))).toBe(true);
++  return (await new GLTFLoader().parseAsync(output.buffer, '')).scene;
++}
++function meshes(root: Object3D): Mesh[] { const result: Mesh[] = []; root.traverse(o => { if (o instanceof Mesh) result.push(o); }); return result; }
++function fixture(name: typeof variants[number]) {
++  const root = sources.get(name)!.clone(true), original = meshes(root), nodes = new Map<string, Object3D>();
++  root.traverse(node => nodes.set(node.name, node)); root.updateMatrixWorld(true);
++  const cache = new WreckVisualPoseCache(); cache.refresh(root, original, 1);
++  const breakup = TeemtoWreckBreakup.create(root, nodes, original)!; expect(breakup).not.toBeNull();
++  const damageRoot = sources.get(`${name}-damage`)!.clone(true), damage = meshes(damageRoot); root.add(damageRoot);
++  expect(breakup.installDamageVariant(damage)).toBe(true);
++  return { root, original, damage, cache, breakup, all: [...original, ...damage] };
++}
++function race() { return new RaceSimulation({ terrain: { heightAt: sampleTerrainHeight }, seed: 1229867859,
++  totalLaps: 1, countdownSeconds: 3, competitionProfile: 'time-trial' }); }
++function step(sim: RaceSimulation, frame: number) { sim.step({ brake: 1, boost: frame >= 558 && frame <= 910 }); }
++function matrices(art: ReturnType<typeof fixture>) { return art.all.map(m => [...m.matrix.elements, ...m.position.toArray(), ...m.quaternion.toArray()]); }
++
++beforeAll(async () => {
++  for (const name of variants) {
++    sources.set(name, await load(`public/assets/inkstorm/vehicles/teemto-${name === 'hero' ? 'hero-open-v2' : 'rival'}.glb`, true));
++    sources.set(`${name}-damage`, await load(`${privatePath}teemto-damage-${name}-v16.glb`));
++  }
++});
++afterAll(() => { for (const root of sources.values()) for (const mesh of meshes(root)) {
++  mesh.geometry.dispose(); for (const material of Array.isArray(mesh.material) ? mesh.material : [mesh.material]) material.dispose();
++} });
++
++
++describe('V22 source casing support rather than a single protrusion', () => {
++  it.each(variants)('%s uses extended casing ground support, preserves every sampled source surface and restores intact geometry', name => {
++    const art = fixture(name), sim = race(), point = new Vector3(), axis = new Vector3(), q = new Quaternion();
++    const body = new Matrix4(), world = new Matrix4(), unit = new Vector3(1, 1, 1);
++    const frames = new Set([910, 914, 919, 926, 932, 946, 984, 1018, 1110, 1158, 1168]);
++    let minimum = Infinity, checked = 0, maxQueries = 0; const bands: unknown[] = [];
++    const rest = matrices(art), pilots = art.original.filter(m => m.name.startsWith('teemto-pilot-'));
++    const originalPilotMatrices = pilots.map(m => m.matrix.clone());
++    try {
++      for (let frame = 1; frame <= 1168; frame++) {
++        step(sim, frame); if (!frames.has(frame)) continue;
++        const e = sim.state.entries[0]!, before = JSON.stringify(sim.state);
++        const pose = art.cache.update(e.vehicle, e.galactic!.wreck.timer, sim.terrain); let queries = 0;
++        art.breakup.update(pose, e.galactic!.wreck.timer, { heightAt(x,z) { queries++; return sim.terrain.heightAt(x,z); } });
++        maxQueries = Math.max(queries,maxQueries); art.root.updateMatrixWorld(true);
++        body.compose(pose.position,q.setFromEuler(pose.rotation),unit);
++        for (const mesh of art.all) if (mesh.visible) {
++          world.multiplyMatrices(body,mesh.matrixWorld); axis.set(0,0,1).transformDirection(world).setY(0).normalize();
++          const p=mesh.geometry.getAttribute('position'); let low=Infinity, hi=-Infinity, near=0;
++          for (let i=0;i<p.count;i++) {
++            point.fromBufferAttribute(p,i).applyMatrix4(world); const gap=point.y-sim.terrain.heightAt(point.x,point.z);
++            minimum=Math.min(minimum,gap);checked++;
++            expect(gap,`${name}/${frame}/${mesh.name}/${i}: no source burial`).toBeGreaterThanOrEqual(-1e-6);
++            if (gap<=.45) {const along=point.x*axis.x+point.z*axis.z;low=Math.min(low,along);hi=Math.max(hi,along);near++;}
++          }
++          if ([984,1018].includes(frame) && (mesh.name==='teemto-engine-left-body'||mesh.name.includes('damage-right'))) {
++            const length=hi-low;bands.push({frame,mesh:mesh.name,length,near});
++            expect(length,`${name}/${mesh.name}: long casing contact band`).toBeGreaterThan(mesh.name.includes('rear')?6:mesh.name.includes('front')?4.5:8);
++          }
++        }
++        if (pose.groundContact?.footprint) {
++          const f=pose.groundContact.footprint;expect(f.center.y).toBeCloseTo(sim.terrain.heightAt(f.center.x,f.center.z),9);
++          expect(f.halfLength).toBeGreaterThan(2);expect(f.axis.length()).toBeCloseTo(1,9);
++        }
++        for (let i=0;i<pilots.length;i++) expect(pilots[i]!.matrix.equals(originalPilotMatrices[i]!)).toBe(true);
++        expect(JSON.stringify(sim.state)).toBe(before);
++      }
++      art.breakup.reset();expect(matrices(art)).toEqual(rest);expect(art.damage.every(m=>!m.visible)).toBe(true);
++      expect(art.original.every(m=>m.visible)).toBe(true);
++      console.info('V22 broad source support', JSON.stringify({name,minimum,checked,maxQueries,bands}));
++    } finally {art.breakup.reset();}
++  });
++});
+diff --git a/tests/render/WreckFootprintEffects.test.ts b/tests/render/WreckFootprintEffects.test.ts
+new file mode 100644
+--- /dev/null
++++ b/tests/render/WreckFootprintEffects.test.ts
+@@ -0,0 +1,38 @@
++import { Matrix4, PerspectiveCamera, Quaternion, Vector3 } from 'three';
++import { describe,expect,it } from 'vitest';
++import { GalacticEffectsView } from '../../src/render/galactic/GalacticEffectsView';
++
++describe('Measured casing ejecta footprint',()=>{
++ it('distributes existing sparks and two upright plates along the source ground band, without retaining mutable pose data',()=>{
++  const view=new GalacticEffectsView(), camera=new PerspectiveCamera(60,1.6,.1,200),m=new Matrix4(),q=new Quaternion(),s=new Vector3(),p=new Vector3();
++  camera.position.set(18,12,30);camera.lookAt(0,0,0);camera.updateMatrixWorld(true);
++  const witness=new Vector3(0,3,-5),footprint={center:new Vector3(0,3,0),axis:new Vector3(0,0,1),halfLength:5,halfWidth:.7};
++  try{
++   const children=view.children.slice();view.emitWreckGroundContact(4,witness,new Vector3(1,0,0),footprint);
++   footprint.center.set(1000,-1000,1000);footprint.axis.set(1,0,0);footprint.halfLength=1000;
++   view.update(4.05,camera);expect(view.children).toEqual(children);expect(children).toHaveLength(8);
++   expect(view.explosionPlates.count).toBe(2);expect(view.crashDebris.count).toBe(10);
++   const zs:number[]=[];
++   for(let i=0;i<10;i++){view.crashDebris.getMatrixAt(i,m);m.decompose(p,q,s);zs.push(p.z);expect(Math.abs(p.x)).toBeLessThan(2);}
++   expect(Math.max(...zs)-Math.min(...zs)).toBeGreaterThan(8);
++   for(let i=0;i<2;i++){
++    view.explosionPlates.getMatrixAt(i,m);m.decompose(p,q,s);expect(s.x*2).toBeGreaterThan(8);
++    expect(Math.abs(new Vector3(1,0,0).applyQuaternion(q).z)).toBeCloseTo(1,6);
++    for(const x of[-1,1])for(const y of[-1,1])expect(new Vector3(x,y,0).applyMatrix4(m).y).toBeGreaterThan(3.03);
++    expect(view.explosionPlates.geometry.getAttribute('aEffectSurface').getX(i)).toBe(5);
++   }
++   view.clearEffects();view.update(10,camera);expect(view.explosionPlates.count).toBe(0);expect(view.crashDebris.count).toBe(0);
++  }finally{view.dispose();}
++ });
++ it('retains exact legacy point emission for omitted or invalid footprints, including reused slots',()=>{
++  const a=new GalacticEffectsView(),b=new GalacticEffectsView(),camera=new PerspectiveCamera(60,1.6,.1,200);camera.position.set(18,12,30);camera.lookAt(0,0,0);camera.updateMatrixWorld(true);
++  try{
++   const point=new Vector3(0,3,0),direction=new Vector3(1,0,0);
++   a.emitWreckGroundContact(4,point,direction);b.emitWreckGroundContact(4,point,direction,{center:point,axis:direction,halfLength:Infinity,halfWidth:1});
++   a.update(4.1,camera);b.update(4.1,camera);
++   expect([...a.explosionPlates.instanceMatrix.array]).toEqual([...b.explosionPlates.instanceMatrix.array]);
++   expect([...a.crashDebris.instanceMatrix.array]).toEqual([...b.crashDebris.instanceMatrix.array]);
++   expect([...a.explosionPlates.geometry.getAttribute('aEffectSurface').array]).toEqual([...b.explosionPlates.geometry.getAttribute('aEffectSurface').array]);
++  }finally{a.dispose();b.dispose();}
++ });
++});

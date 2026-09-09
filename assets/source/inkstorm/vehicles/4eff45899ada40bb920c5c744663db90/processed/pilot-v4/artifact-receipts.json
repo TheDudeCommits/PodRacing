@@ -1,0 +1,644 @@
+[
+  {
+    "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/vehicles/4eff45899ada40bb920c5c744663db90/processed/pilot-v4/teemto-pilot-material-v4-normalized.glb",
+    "bytes": 12670320,
+    "sha256": "b3e6f8032c578647e00f19c5042952d08ff54d428539dfca2e42e50d48a88f4c",
+    "triangles": 59427,
+    "meshes": [
+      {
+        "name": "Pilot v4 unchanged body Inkstorm Teemto Gabina-exterior-timon_low_Cabina_0.002",
+        "triangles": 19965,
+        "primitives": 1
+      },
+      {
+        "name": "Pilot v4 unchanged body Inkstorm Teemto Propulsores-alerones_low_Propulsores_0.002",
+        "triangles": 11790,
+        "primitives": 1
+      },
+      {
+        "name": "Pilot v4 unchanged body Inkstorm Teemto Propulsores-alerones_low.002_Propulsores_0.002",
+        "triangles": 11790,
+        "primitives": 1
+      },
+      {
+        "name": "Original Inkstorm pilot v4 accent.002",
+        "triangles": 212,
+        "primitives": 1
+      },
+      {
+        "name": "Original Inkstorm pilot v4 hardware.002",
+        "triangles": 1552,
+        "primitives": 1
+      },
+      {
+        "name": "Original Inkstorm pilot v4 rubber.002",
+        "triangles": 2132,
+        "primitives": 1
+      },
+      {
+        "name": "Original Inkstorm pilot v4 shell.002",
+        "triangles": 1540,
+        "primitives": 1
+      },
+      {
+        "name": "Original Inkstorm pilot v4 suit.002",
+        "triangles": 9438,
+        "primitives": 1
+      },
+      {
+        "name": "Original Inkstorm pilot v4 webbing.002",
+        "triangles": 1008,
+        "primitives": 1
+      }
+    ],
+    "pilotTriangles": 15882,
+    "pilotMaterialMaps": [
+      {
+        "name": "Pilot atlas v4 runtime accent",
+        "normal": {
+          "index": 2
+        },
+        "roughness": {
+          "index": 4
+        },
+        "roughnessFactor": 1
+      },
+      {
+        "name": "Pilot atlas v4 runtime hardware",
+        "normal": {
+          "index": 5
+        },
+        "roughness": {
+          "index": 7
+        },
+        "roughnessFactor": 1
+      },
+      {
+        "name": "Pilot atlas v4 runtime rubber",
+        "normal": {
+          "index": 8
+        },
+        "roughness": {
+          "index": 10
+        },
+        "roughnessFactor": 1
+      },
+      {
+        "name": "Pilot atlas v4 runtime shell",
+        "normal": {
+          "index": 11
+        },
+        "roughness": {
+          "index": 13
+        },
+        "roughnessFactor": 1
+      },
+      {
+        "name": "Pilot atlas v4 runtime suit",
+        "normal": {
+          "index": 14
+        },
+        "roughness": {
+          "index": 16
+        },
+        "roughnessFactor": 1
+      },
+      {
+        "name": "Pilot atlas v4 runtime webbing",
+        "normal": {
+          "index": 17
+        },
+        "roughness": {
+          "index": 19
+        },
+        "roughnessFactor": 1
+      }
+    ],
+    "tangentAttributes": [
+      {
+        "name": "Original Inkstorm pilot v4 accent.002",
+        "tangent": false
+      },
+      {
+        "name": "Original Inkstorm pilot v4 hardware.002",
+        "tangent": false
+      },
+      {
+        "name": "Original Inkstorm pilot v4 rubber.002",
+        "tangent": false
+      },
+      {
+        "name": "Original Inkstorm pilot v4 shell.002",
+        "tangent": false
+      },
+      {
+        "name": "Original Inkstorm pilot v4 suit.002",
+        "tangent": false
+      },
+      {
+        "name": "Original Inkstorm pilot v4 webbing.002",
+        "tangent": false
+      }
+    ],
+    "materials": 8,
+    "textures": 20,
+    "images": [
+      {
+        "mimeType": "image/png",
+        "embedded": true
+      },
+      {
+        "mimeType": "image/png",
+        "embedded": true
+      },
+      {
+        "mimeType": "image/png",
+        "embedded": true
+      },
+      {
+        "mimeType": "image/png",
+        "embedded": true
+      },
+      {
+        "mimeType": "image/png",
+        "embedded": true
+      }
+    ],
+    "skins": 0,
+    "animations": 0,
+    "extras": [],
+    "extensionsUsed": [],
+    "transformsNormalized": true,
+    "nodes": [
+      {
+        "name": "teemto-cockpit-body.003",
+        "mesh": 0
+      },
+      {
+        "name": "teemto-cockpit-construction-v4",
+        "mesh": null
+      },
+      {
+        "name": "teemto-engine-left-body.003",
+        "mesh": 1
+      },
+      {
+        "name": "teemto-engine-left-construction-v4",
+        "mesh": null
+      },
+      {
+        "name": "teemto-engine-right-body.003",
+        "mesh": 2
+      },
+      {
+        "name": "teemto-engine-right-construction-v4",
+        "mesh": null
+      },
+      {
+        "name": "teemto-pilot-accent.002",
+        "mesh": 3
+      },
+      {
+        "name": "teemto-pilot-hardware.002",
+        "mesh": 4
+      },
+      {
+        "name": "teemto-pilot-rubber.001",
+        "mesh": 5
+      },
+      {
+        "name": "teemto-pilot-shell.002",
+        "mesh": 6
+      },
+      {
+        "name": "teemto-pilot-suit.004",
+        "mesh": 7
+      },
+      {
+        "name": "teemto-pilot-webbing.001",
+        "mesh": 8
+      },
+      {
+        "name": "teemto-pilot-construction-v4.001",
+        "mesh": null
+      }
+    ]
+  },
+  {
+    "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/vehicles/4eff45899ada40bb920c5c744663db90/processed/pilot-v4/teemto-pilot-v4-candidate.glb",
+    "bytes": 5435516,
+    "sha256": "97b8fe38343c7d5b615d80c78fd42385d1b1329f10e6af1ced0ee4dbd46099f0",
+    "triangles": 59427,
+    "meshes": [
+      {
+        "name": "Pilot v4 unchanged body Inkstorm Teemto Gabina-exterior-timon_low_Cabina_0.002",
+        "triangles": 19965,
+        "primitives": 1
+      },
+      {
+        "name": "Pilot v4 unchanged body Inkstorm Teemto Propulsores-alerones_low_Propulsores_0.002",
+        "triangles": 11790,
+        "primitives": 1
+      },
+      {
+        "name": "Pilot v4 unchanged body Inkstorm Teemto Propulsores-alerones_low.002_Propulsores_0.002",
+        "triangles": 11790,
+        "primitives": 1
+      },
+      {
+        "name": "Original Inkstorm pilot v4 accent.002",
+        "triangles": 212,
+        "primitives": 1
+      },
+      {
+        "name": "Original Inkstorm pilot v4 hardware.002",
+        "triangles": 1552,
+        "primitives": 1
+      },
+      {
+        "name": "Original Inkstorm pilot v4 rubber.002",
+        "triangles": 2132,
+        "primitives": 1
+      },
+      {
+        "name": "Original Inkstorm pilot v4 shell.002",
+        "triangles": 1540,
+        "primitives": 1
+      },
+      {
+        "name": "Original Inkstorm pilot v4 suit.002",
+        "triangles": 9438,
+        "primitives": 1
+      },
+      {
+        "name": "Original Inkstorm pilot v4 webbing.002",
+        "triangles": 1008,
+        "primitives": 1
+      }
+    ],
+    "pilotTriangles": 15882,
+    "pilotMaterialMaps": [
+      {
+        "name": "Pilot atlas v4 runtime accent",
+        "normal": {
+          "index": 3
+        },
+        "roughness": {
+          "index": 4
+        },
+        "roughnessFactor": 1
+      },
+      {
+        "name": "Pilot atlas v4 runtime hardware",
+        "normal": {
+          "index": 3
+        },
+        "roughness": {
+          "index": 4
+        },
+        "roughnessFactor": 1
+      },
+      {
+        "name": "Pilot atlas v4 runtime shell",
+        "normal": {
+          "index": 3
+        },
+        "roughness": {
+          "index": 4
+        },
+        "roughnessFactor": 1
+      }
+    ],
+    "tangentAttributes": [
+      {
+        "name": "Original Inkstorm pilot v4 accent.002",
+        "tangent": false
+      },
+      {
+        "name": "Original Inkstorm pilot v4 hardware.002",
+        "tangent": false
+      },
+      {
+        "name": "Original Inkstorm pilot v4 rubber.002",
+        "tangent": false
+      },
+      {
+        "name": "Original Inkstorm pilot v4 shell.002",
+        "tangent": false
+      },
+      {
+        "name": "Original Inkstorm pilot v4 suit.002",
+        "tangent": false
+      },
+      {
+        "name": "Original Inkstorm pilot v4 webbing.002",
+        "tangent": false
+      }
+    ],
+    "materials": 5,
+    "textures": 5,
+    "images": [
+      {
+        "mimeType": "image/webp",
+        "embedded": true
+      },
+      {
+        "mimeType": "image/webp",
+        "embedded": true
+      },
+      {
+        "mimeType": "image/png",
+        "embedded": true
+      },
+      {
+        "mimeType": "image/webp",
+        "embedded": true
+      },
+      {
+        "mimeType": "image/png",
+        "embedded": true
+      }
+    ],
+    "skins": 0,
+    "animations": 0,
+    "extras": [],
+    "extensionsUsed": [
+      "EXT_texture_webp"
+    ],
+    "transformsNormalized": true,
+    "nodes": [
+      {
+        "name": "teemto-cockpit-body.003",
+        "mesh": 0
+      },
+      {
+        "name": "teemto-cockpit-construction-v4",
+        "mesh": null
+      },
+      {
+        "name": "teemto-engine-left-body.003",
+        "mesh": 1
+      },
+      {
+        "name": "teemto-engine-left-construction-v4",
+        "mesh": null
+      },
+      {
+        "name": "teemto-engine-right-body.003",
+        "mesh": 2
+      },
+      {
+        "name": "teemto-engine-right-construction-v4",
+        "mesh": null
+      },
+      {
+        "name": "teemto-pilot-accent.002",
+        "mesh": 3
+      },
+      {
+        "name": "teemto-pilot-hardware.002",
+        "mesh": 4
+      },
+      {
+        "name": "teemto-pilot-rubber.001",
+        "mesh": 5
+      },
+      {
+        "name": "teemto-pilot-shell.002",
+        "mesh": 6
+      },
+      {
+        "name": "teemto-pilot-suit.004",
+        "mesh": 7
+      },
+      {
+        "name": "teemto-pilot-webbing.001",
+        "mesh": 8
+      },
+      {
+        "name": "teemto-pilot-construction-v4.001",
+        "mesh": null
+      }
+    ]
+  },
+  {
+    "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/vehicles/4eff45899ada40bb920c5c744663db90/processed/pilot-v4/teemto-pilot-v4-pruned.glb",
+    "bytes": 12668376,
+    "sha256": "d5b1b356696be491d230d8cf29047f64df167573fd54352e43bce4efc9b008e9",
+    "triangles": 59427,
+    "meshes": [
+      {
+        "name": "Pilot v4 unchanged body Inkstorm Teemto Gabina-exterior-timon_low_Cabina_0.002",
+        "triangles": 19965,
+        "primitives": 1
+      },
+      {
+        "name": "Pilot v4 unchanged body Inkstorm Teemto Propulsores-alerones_low_Propulsores_0.002",
+        "triangles": 11790,
+        "primitives": 1
+      },
+      {
+        "name": "Pilot v4 unchanged body Inkstorm Teemto Propulsores-alerones_low.002_Propulsores_0.002",
+        "triangles": 11790,
+        "primitives": 1
+      },
+      {
+        "name": "Original Inkstorm pilot v4 accent.002",
+        "triangles": 212,
+        "primitives": 1
+      },
+      {
+        "name": "Original Inkstorm pilot v4 hardware.002",
+        "triangles": 1552,
+        "primitives": 1
+      },
+      {
+        "name": "Original Inkstorm pilot v4 rubber.002",
+        "triangles": 2132,
+        "primitives": 1
+      },
+      {
+        "name": "Original Inkstorm pilot v4 shell.002",
+        "triangles": 1540,
+        "primitives": 1
+      },
+      {
+        "name": "Original Inkstorm pilot v4 suit.002",
+        "triangles": 9438,
+        "primitives": 1
+      },
+      {
+        "name": "Original Inkstorm pilot v4 webbing.002",
+        "triangles": 1008,
+        "primitives": 1
+      }
+    ],
+    "pilotTriangles": 15882,
+    "pilotMaterialMaps": [
+      {
+        "name": "Pilot atlas v4 runtime accent",
+        "normal": {
+          "index": 3
+        },
+        "roughness": {
+          "index": 4
+        },
+        "roughnessFactor": 1
+      },
+      {
+        "name": "Pilot atlas v4 runtime hardware",
+        "normal": {
+          "index": 3
+        },
+        "roughness": {
+          "index": 4
+        },
+        "roughnessFactor": 1
+      },
+      {
+        "name": "Pilot atlas v4 runtime shell",
+        "normal": {
+          "index": 3
+        },
+        "roughness": {
+          "index": 4
+        },
+        "roughnessFactor": 1
+      }
+    ],
+    "tangentAttributes": [
+      {
+        "name": "Original Inkstorm pilot v4 accent.002",
+        "tangent": false
+      },
+      {
+        "name": "Original Inkstorm pilot v4 hardware.002",
+        "tangent": false
+      },
+      {
+        "name": "Original Inkstorm pilot v4 rubber.002",
+        "tangent": false
+      },
+      {
+        "name": "Original Inkstorm pilot v4 shell.002",
+        "tangent": false
+      },
+      {
+        "name": "Original Inkstorm pilot v4 suit.002",
+        "tangent": false
+      },
+      {
+        "name": "Original Inkstorm pilot v4 webbing.002",
+        "tangent": false
+      }
+    ],
+    "materials": 5,
+    "textures": 5,
+    "images": [
+      {
+        "mimeType": "image/png",
+        "embedded": true
+      },
+      {
+        "mimeType": "image/png",
+        "embedded": true
+      },
+      {
+        "mimeType": "image/png",
+        "embedded": true
+      },
+      {
+        "mimeType": "image/png",
+        "embedded": true
+      },
+      {
+        "mimeType": "image/png",
+        "embedded": true
+      }
+    ],
+    "skins": 0,
+    "animations": 0,
+    "extras": [],
+    "extensionsUsed": [],
+    "transformsNormalized": true,
+    "nodes": [
+      {
+        "name": "teemto-cockpit-body.003",
+        "mesh": 0
+      },
+      {
+        "name": "teemto-cockpit-construction-v4",
+        "mesh": null
+      },
+      {
+        "name": "teemto-engine-left-body.003",
+        "mesh": 1
+      },
+      {
+        "name": "teemto-engine-left-construction-v4",
+        "mesh": null
+      },
+      {
+        "name": "teemto-engine-right-body.003",
+        "mesh": 2
+      },
+      {
+        "name": "teemto-engine-right-construction-v4",
+        "mesh": null
+      },
+      {
+        "name": "teemto-pilot-accent.002",
+        "mesh": 3
+      },
+      {
+        "name": "teemto-pilot-hardware.002",
+        "mesh": 4
+      },
+      {
+        "name": "teemto-pilot-rubber.001",
+        "mesh": 5
+      },
+      {
+        "name": "teemto-pilot-shell.002",
+        "mesh": 6
+      },
+      {
+        "name": "teemto-pilot-suit.004",
+        "mesh": 7
+      },
+      {
+        "name": "teemto-pilot-webbing.001",
+        "mesh": 8
+      },
+      {
+        "name": "teemto-pilot-construction-v4.001",
+        "mesh": null
+      }
+    ]
+  },
+  {
+    "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/vehicles/4eff45899ada40bb920c5c744663db90/processed/pilot-v4/review/teemto-pilot-front-quarter-v4.png",
+    "bytes": 1863542,
+    "sha256": "d27dc62ab487818dcc2fe03348d4e4c97cb426c2f358a3a8b0645123f13bd368"
+  },
+  {
+    "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/vehicles/4eff45899ada40bb920c5c744663db90/processed/pilot-v4/review/teemto-pilot-full-v4.png",
+    "bytes": 1632180,
+    "sha256": "0633eccdd0d045d253a10e0457cdb430f8b2db29e1ac69a40448a24950dc87f3"
+  },
+  {
+    "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/vehicles/4eff45899ada40bb920c5c744663db90/processed/pilot-v4/review/teemto-pilot-side-v4.png",
+    "bytes": 1915993,
+    "sha256": "8a14cdb03390d307ccc4b4200a386e8775c9cd5bd20b510a49d9359007d4680c"
+  },
+  {
+    "path": "/Users/amir/Projects/PodRacing/scripts/blender/inkstorm-pilot-v4.py",
+    "bytes": 34155,
+    "sha256": "0513fceaffaae93d6f88bccf45e561160031e93238ccf13affcebdfeab95a3e7"
+  },
+  {
+    "path": "/Users/amir/Projects/PodRacing/scripts/blender/inkstorm-pilot-v4-material.py",
+    "bytes": 20432,
+    "sha256": "c70213055d5266d3a29cb1b032b155d7e4029c5ab6d66b2e2e90fcda379715d9"
+  }
+]

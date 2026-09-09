@@ -1,0 +1,78 @@
+{
+  "status": "OFFLINE DIAGNOSIS; SAMPLE PAYLOAD PREPARED NOT EXECUTED",
+  "positionMatchesAt6Decimals": 51,
+  "uvMatchesAt6Decimals": 51,
+  "normalMatchesAt6Decimals": 0,
+  "evaluatedTopologyMatchesSource": 51,
+  "originalAndEvaluatedNormalsMatch": 51,
+  "finding": "Position/UV ordered bridge evidence is supported independently of normal-stream encoding. Only GLB-versus-live normals differ at6dec; cause unresolved pending numeric samples. Live source normal FNV remains own clone authority.",
+  "offlineNormalCandidates": [
+    {
+      "name": "pasted__L2x3slope2_lambert1_0",
+      "actualNormalStreamFnv": "9a4c40d24faa3136",
+      "maximumGlbNormalLengthError": 1.28393255360848e-07,
+      "candidateNormalHashes": {
+        "rawBasis": "510069a83dccb7e8",
+        "unitFloat64": "cd693d74696f9c72",
+        "unitFloat32Rounded": "e051e02f9c7573b1",
+        "unitFloat32Arithmetic": "949eaaf8923ea185"
+      },
+      "matches": {
+        "rawBasis": false,
+        "unitFloat64": false,
+        "unitFloat32Rounded": false,
+        "unitFloat32Arithmetic": false
+      }
+    },
+    {
+      "name": "pasted__L2x3slope2_pasted__Lego_White7_0",
+      "actualNormalStreamFnv": "42c1e57662f934a1",
+      "maximumGlbNormalLengthError": 1.3262227249732916e-07,
+      "candidateNormalHashes": {
+        "rawBasis": "ae34fc4c0a715a8a",
+        "unitFloat64": "fc5b2c74706f82ae",
+        "unitFloat32Rounded": "1e6b051521792a9f",
+        "unitFloat32Arithmetic": "d698bf458dda9e14"
+      },
+      "matches": {
+        "rawBasis": false,
+        "unitFloat64": false,
+        "unitFloat32Rounded": false,
+        "unitFloat32Arithmetic": false
+      }
+    },
+    {
+      "name": "pasted__L2x3slope2_pasted__LegoWhite3_0",
+      "actualNormalStreamFnv": "e8ea97054679c2ba",
+      "maximumGlbNormalLengthError": 1.1753186113239167e-07,
+      "candidateNormalHashes": {
+        "rawBasis": "1b81668688ad72bc",
+        "unitFloat64": "6bf9514b6ac98c8f",
+        "unitFloat32Rounded": "4f30b84a416114fb",
+        "unitFloat32Arithmetic": "e10cade14d9cea92"
+      },
+      "matches": {
+        "rawBasis": false,
+        "unitFloat64": false,
+        "unitFloat32Rounded": false,
+        "unitFloat32Arithmetic": false
+      }
+    }
+  ],
+  "sampleScope": {
+    "meshCount": 3,
+    "trianglesPerMesh": 6,
+    "cornersTotal": 54,
+    "selection": "First four triangles plus highest GLB normal length error and first oblique-normal triangle, with midpoint/final fallback when duplicate."
+  },
+  "noSemanticMasksAssigned": true,
+  "liveProbeExecuted": false,
+  "payload": {
+    "path": "assets/source/inkstorm/blockrunner-ivory-round34/bridge-diagnosis-v1/ivory-bounded-normal-sample-prepared-v1.py",
+    "bytes": 32026,
+    "sha256": "c33ebe5dd2b178c16e85a382b0b86512486a9e8ca9579b2d1181c678329ffea7",
+    "astAndSafeAttributeChecksPassed": true,
+    "freshAllSceneAnd12IdSetGuards": true,
+    "prePostSelectedMeshAndRawNormalGuards": true
+  }
+}

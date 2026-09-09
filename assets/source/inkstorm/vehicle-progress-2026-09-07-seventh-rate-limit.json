@@ -1,0 +1,253 @@
+{
+  "recordedAt": "2026-09-07T20:52:51+00:00",
+  "scope": "Third official Podracer request returned HTTP429 after 91m46s (5506 seconds). Seven rate-limited requests = Ben4 plus Podracer3, separate from two successful imports. Counts unchanged; 24 pending = 22 unattempted plus 2 rate-limited. Source/export/driver/runtime and frozen round28 performance records preserved.",
+  "manifestBeforeSha256": "daa39b17d7c4086821f732aaed4c4104c688675d05a75d25d69411cfb974cc34",
+  "manifestBeforeBackup": "vehicle-manifest-before-seventh-rate-limit-2026-09-07.json",
+  "manifestBeforeBackupSha256": "daa39b17d7c4086821f732aaed4c4104c688675d05a75d25d69411cfb974cc34",
+  "manifestAfterSha256": "74cbe4e9346af202891c216258c944df86d376a2d47a37fee60889db0f482b99",
+  "previousLatestProgressReceipt": "vehicle-progress-2026-09-07-sixth-rate-limit.json",
+  "previousLatestProgressReceiptSha256": "96b05134ecd730747bce6edb24ec597d7587c35489f99f0ad269b38dbb2bffc0",
+  "requestReceipt": "vehicles/25d51fbd4efc4c888ca4ff2549b1c6ae/mcp-download-retry-20260907-2052.json",
+  "requestReceiptSha256": "971dd103319b5d4888c2614a6665410c18c227783ead4039e967fb1bf5365a92",
+  "backoffSincePreviousOfficialRequestSeconds": 5506,
+  "contextEvidence": "Context snapshot and exact before/after membership comparison embedded in immutable requestReceipt; no Blender reinspection during bookkeeping.",
+  "contextComparison": {
+    "contextExact": true,
+    "originalSceneMembershipChanged": [],
+    "originalSceneCount": 93,
+    "addedScenes": [
+      "PodRacing — source 25d51fbd retry 2052"
+    ],
+    "intakeObjects": 0,
+    "temporaryConfigurationEmpty": true
+  },
+  "countsBefore": {
+    "publicResults": 29,
+    "vehicleCandidates": 26,
+    "excludedNonVehicles": 3,
+    "downloaded": 2,
+    "blockedOrPending": 24,
+    "downloadStatuses": {
+      "downloaded": 2,
+      "pending_download": 22,
+      "rate_limited": 2
+    },
+    "mcpImportedSourceGlbs": 2,
+    "rawArchivesPreserved": 0,
+    "stylizationNeedsPermission": 0,
+    "publicAdaptationRestricted": 1,
+    "stylizedExports": 2,
+    "stylizedSourceStudies": 2,
+    "stylizedExportVariants": 4,
+    "driversAdded": 2,
+    "runtimeIntegrations": 2,
+    "driverInspections": 2,
+    "stylizedExportFiles": 6
+  },
+  "countsAfter": {
+    "publicResults": 29,
+    "vehicleCandidates": 26,
+    "excludedNonVehicles": 3,
+    "downloaded": 2,
+    "blockedOrPending": 24,
+    "downloadStatuses": {
+      "downloaded": 2,
+      "pending_download": 22,
+      "rate_limited": 2
+    },
+    "mcpImportedSourceGlbs": 2,
+    "rawArchivesPreserved": 0,
+    "stylizationNeedsPermission": 0,
+    "publicAdaptationRestricted": 1,
+    "stylizedExports": 2,
+    "stylizedSourceStudies": 2,
+    "stylizedExportVariants": 4,
+    "driversAdded": 2,
+    "runtimeIntegrations": 2,
+    "driverInspections": 2,
+    "stylizedExportFiles": 6
+  },
+  "acquisitionState": {
+    "method": "official_blender_mcp",
+    "status": "stopped_after_rate_limit",
+    "lastAttemptUid": "25d51fbd4efc4c888ca4ff2549b1c6ae",
+    "httpStatus": 429,
+    "rawArchivesPreserved": 0,
+    "driverInspections": 2,
+    "runtimeIntegrations": 2,
+    "standaloneCliCompatibility": "Schema2 CLI refresh/resume preserves verified MCP source GLBs, acquisition history and independent archive/source/runtime counts. Token handling remains separate.",
+    "lastAttemptReceipt": "vehicles/25d51fbd4efc4c888ca4ff2549b1c6ae/mcp-download-retry-20260907-2052.json",
+    "recordedAttemptCountForLastUid": 3,
+    "stylizedSourceStudies": 2,
+    "stylizedExports": 2,
+    "driversAdded": 2,
+    "contextRestoration": "One official retry after 91 minutes 46 seconds (5506 seconds). Empty isolated intake verified before request; HTTP429 imported no objects. Temporary configuration cleared; original scene/view layer/active/15 selected objects restored exactly. All 93 pre-existing scenes retain identical object membership; the sole new empty intake brings the total to 94. No further requests made.",
+    "stylizedExportVariants": 4,
+    "lastAttemptAt": "2026-09-07T20:52:51+00:00",
+    "recordedRateLimitedRequestCount": 7,
+    "rateLimitedRequestsByUid": {
+      "c2ca24c9b3c2416db0abe026d9f4b7ac": 4,
+      "25d51fbd4efc4c888ca4ff2549b1c6ae": 3
+    }
+  },
+  "preservedAcceptanceCheckpoint": {
+    "lastCompletedRound": 28,
+    "scope": "Completed frozen technical checkpoint only; art FAIL, no deployment. Does not apply to current round29 source.",
+    "bundle": "index-CED-RrRq.js",
+    "bundleSha256": "ca752f0a0f3da8e7585dd6c999d7ed5615d56c766c04e4dd767ef07256f1175d",
+    "fullRacePerformance": "PASS for all four required Teemto and Sebulba ordinary Time Attack/Canyon Cup cadence gates and both actual Continue flows, local adaptive rendering; two original Sebulba flow failures remain preserved and corrected-oracle retry is separately identified.",
+    "fullRacePerformanceReport": "docs/inkstorm-overhaul/FULL_RACE_PERFORMANCE_ROUND28.md",
+    "fullRacePerformanceProgressReceipt": "vehicle-progress-2026-09-07-full-race-round28.json",
+    "finalFreezeComparison": "output/playwright/full-race-performance-round28-final-freeze-comparison.json",
+    "worldArtAcceptance": {
+      "round": 28,
+      "outcome": "FAIL",
+      "acceptedSections": 0,
+      "reviewedSections": 7,
+      "receipt": "docs/inkstorm-overhaul/BLIND_WORLD_ROUND28.md"
+    },
+    "pilotArtAcceptance": {
+      "round": 28,
+      "outcome": "FAIL",
+      "scope": "V4C relative preference is not strict 8/10 acceptance",
+      "receipt": "docs/inkstorm-overhaul/BLIND_PILOT_RUNTIME_ROUND28.md"
+    },
+    "activeWork": {
+      "round": 29,
+      "status": "source changed after the completed frozen round28 benchmark",
+      "scope": [
+        "Pit and foundation changes after the round28 runtime freeze"
+      ],
+      "acceptance": "Requires its own tests/build/captures/fresh criticism/full-race timing; no inherited round28 acceptance"
+    },
+    "deployment": "none"
+  },
+  "preservedAcceptanceCheckpointHistory": [
+    {
+      "recordedAt": "2026-09-07T19:59:27.371567+00:00",
+      "previous": {
+        "lastCompletedRound": 26,
+        "bundle": "index-BlxCUBzh.js",
+        "bundleSha256": "749fd90ba1b87928161c6732fd18c6a8376acb03fe64c3cb7dd8e9b6d660d49e",
+        "fullRacePerformance": "PASS for Teemto and Sebulba ordinary Time Attack/Canyon Cup/Continue, local adaptive rendering",
+        "worldArtAcceptance": {
+          "round": 26,
+          "outcome": "FAIL",
+          "acceptedSections": 0,
+          "reviewedSections": 7,
+          "receipt": "docs/inkstorm-overhaul/BLIND_WORLD_ROUND26.md"
+        },
+        "activeWork": {
+          "round": 27,
+          "status": "active, outside last completed round26 freeze",
+          "scope": [
+            "LaunchBasinPlan.ts broken escarpment/front candidate in progress",
+            "PodracerView.ts engine-cap shading with smaller hot core and annular band in progress",
+            "Isolated pilot v3 construction study in progress; unpublished"
+          ],
+          "acceptance": "requires its own combined tests/build/captures/fresh criticism/full-race timing; no inherited round26 pass"
+        },
+        "deployment": "none"
+      },
+      "scope": "Preserved round26 checkpoint and then-active round27 work description as history."
+    }
+  ],
+  "preservedLatestPerformanceReceipt": "vehicle-progress-2026-09-07-full-race-round28.json",
+  "preservedLatestPerformanceReceiptSha256": "eba3acf99fe93f2b5240775413a9f8b20735f985da517168193b87bf9a931bb0",
+  "preservationChecks": {
+    "allOther28ModelRecordsUnchanged": true,
+    "allCandidateNonAcquisitionFieldsUnchanged": true,
+    "allCountsUnchanged": true,
+    "stylizedExportFilesRemainsSix": true,
+    "previousDownloadHistoryPrefixUnchanged": true,
+    "previousProgressHistoryPrefixUnchanged": true,
+    "existingRuntimeAndPilotV4BV4CRecordsUnchanged": true,
+    "round28AcceptanceAndPerformanceRecordsUnchanged": true,
+    "latestPerformanceReceiptUnchanged": true,
+    "previousManifestBackupByteIdentical": true,
+    "allHistoricalReceiptsUnchanged": true,
+    "sixPublicVehicleGlbHashesUnchanged": true,
+    "noPublicOrRuntimeAssetEditsByThisBookkeeping": true,
+    "noNetworkBlenderBrowserGpuOrCommit": true
+  },
+  "modelChange": {
+    "uid": "25d51fbd4efc4c888ca4ff2549b1c6ae",
+    "beforeDownload": {
+      "status": "rate_limited",
+      "method": "official_blender_mcp",
+      "httpStatus": 429,
+      "archive": null,
+      "sourceGlb": null,
+      "receipt": "vehicles/25d51fbd4efc4c888ca4ff2549b1c6ae/mcp-download-retry-20260907-1921.json",
+      "receiptSha256": "29fef1c131cf2b694e7809434c552f87ba6b6927e629cd0dd3c3cfbde683b0e0",
+      "attemptCount": 2,
+      "attemptedAt": "2026-09-07T19:21:05+00:00",
+      "sourceImported": false,
+      "rawArchivePreserved": false
+    },
+    "afterDownload": {
+      "status": "rate_limited",
+      "method": "official_blender_mcp",
+      "httpStatus": 429,
+      "archive": null,
+      "sourceGlb": null,
+      "receipt": "vehicles/25d51fbd4efc4c888ca4ff2549b1c6ae/mcp-download-retry-20260907-2052.json",
+      "receiptSha256": "971dd103319b5d4888c2614a6665410c18c227783ead4039e967fb1bf5365a92",
+      "attemptCount": 3,
+      "attemptedAt": "2026-09-07T20:52:51+00:00",
+      "sourceImported": false,
+      "rawArchivePreserved": false
+    }
+  },
+  "preservedHistoricalFileSha256s": {
+    "vehicle-progress-2026-09-07-fourth-rate-limit.json": "f1c585b8db2887c0098999bec9e83325180b95e386185b9ae73db14e904fa8b4",
+    "vehicle-progress-2026-09-07-full-race-round25.json": "365ae0f9c2c5aca25e1af8a2e76ad7dc59aa49c09b7e8e550ad2fca06b70302a",
+    "vehicle-progress-2026-09-07-full-race-round26.json": "9276d9d43f952bedccf9869698c1487f06132efac558065270016f008486c1e9",
+    "vehicle-progress-2026-09-07-full-race-round28.json": "eba3acf99fe93f2b5240775413a9f8b20735f985da517168193b87bf9a931bb0",
+    "vehicle-progress-2026-09-07-next-candidate-rate-limit.json": "ab79bf8777e09d84a01e807fd247a8413014e7cc84a9c5909d44a89cf2829ebc",
+    "vehicle-progress-2026-09-07-sebulba-integration-round25.json": "6b6f215a525d4977b39d13abd225d632f74811408480f724969639b23823daa4",
+    "vehicle-progress-2026-09-07-sixth-rate-limit.json": "96b05134ecd730747bce6edb24ec597d7587c35489f99f0ad269b38dbb2bffc0",
+    "vehicle-progress-2026-09-07-teemto-export-v1.json": "9c1b989955d09ab1f7a360ef9511c81bea1aebf45880cc9f10121659b41658d2",
+    "vehicle-progress-2026-09-07-teemto-integration-sebulba-export.json": "7a3291e698bd3e8a5220df91b862cf9bcd6b7e6c9fdd7f356ee054c38d81cafd",
+    "vehicle-progress-2026-09-07-teemto-study-v1.json": "0b7318a8925ea699d77fb44c11197182ba42101cab4ef629070a14bc6a7889a1",
+    "vehicles/25d51fbd4efc4c888ca4ff2549b1c6ae/mcp-download-attempt-20260907-1816.json": "53f8f9837ca698554112136d0d3fb69d03a15d76bc61f666c7a073824744fe8f",
+    "vehicles/25d51fbd4efc4c888ca4ff2549b1c6ae/mcp-download-retry-20260907-1921.json": "29fef1c131cf2b694e7809434c552f87ba6b6927e629cd0dd3c3cfbde683b0e0",
+    "vehicles/25d51fbd4efc4c888ca4ff2549b1c6ae/mcp-download-retry-20260907-2052.json": "971dd103319b5d4888c2614a6665410c18c227783ead4039e967fb1bf5365a92",
+    "vehicles/4eff45899ada40bb920c5c744663db90/mcp-download.json": "70c64782ed898e2c4ef2a1c1c3af164515a47263ac077d623bb36dcc8521cda2",
+    "vehicles/c2ca24c9b3c2416db0abe026d9f4b7ac/mcp-download-retry-20260907-1450.json": "53bc794ee95b8efc873ea228d37565de37508b1b0470558c61657b7c4fbffbd3",
+    "vehicles/c2ca24c9b3c2416db0abe026d9f4b7ac/mcp-download-retry-20260907-1558.json": "190472579c32a38c064316c876575cda044e9042fcf25ef8a4744071bf06d765",
+    "vehicles/c2ca24c9b3c2416db0abe026d9f4b7ac/mcp-download-retry-20260907-1713.json": "76e64392f29ca4f44ffc925394c2488417d8e6742ec63b165aac65cc67adf4b8",
+    "vehicles/c2ca24c9b3c2416db0abe026d9f4b7ac/mcp-download.json": "9ae3c75275af73049c6793cd29be7c03f12635fc9ca7872d57d1cff33ba97e71",
+    "vehicles/f97e3891a6a846ed97379e3cfa5931a0/mcp-download.json": "07dc151bbbb48a4a02c510feeda4e2bd665c89d4bf53ecbfeea9482736c7a885"
+  },
+  "preservedPublicVehicleGlbSha256s": {
+    "public/assets/inkstorm/vehicles/sebulba-hero.glb": "f4b31d9260e3272ec394161dea236c874d551b469f18a1d794ec85c05b625b7e",
+    "public/assets/inkstorm/vehicles/sebulba-rival.glb": "22e1adf8e3dd6562ce143132fb4e82cdb56e62696d9894804ca07b4a3552d951",
+    "public/assets/inkstorm/vehicles/teemto-hero-v4b.glb": "838d71f3ac2e79dda66ada37ac367fe66f0d9885b166b7fe12829416befcfa6c",
+    "public/assets/inkstorm/vehicles/teemto-hero-v4c.glb": "f3eb56a54b7dbb8f4a26263fb26f1f88b188db6bcc409910a3561ae939f1eef1",
+    "public/assets/inkstorm/vehicles/teemto-hero.glb": "a7787f380a71ac31c8dbbaf228cb949e97c119d763a54384e66c05f884cba491",
+    "public/assets/inkstorm/vehicles/teemto-rival.glb": "3d9d8d8d924258b84553de7f31f44dc4f69f069511cb6358ab2c174768e3385f"
+  },
+  "changedDocumentation": {
+    "HANDOVER.md": {
+      "beforeSha256": "020ba02f3fd8a79531af728cabc2e6955868ef6c6b2a3710f11fb2e73135a213",
+      "afterSha256": "f4e82c4d7a0804406c7f3df3c73c177fd1220a7d01a9d282c5a36a50be587453",
+      "scope": "Current acquisition statement only; all performance/art sections retained"
+    },
+    "docs/inkstorm-overhaul/STATUS.md": {
+      "beforeSha256": "3afb19465db2df35ac02792900f6055ec8990c49194336b17a9b09b8e2574f48",
+      "afterSha256": "e580ffd029b1f21018b9391f93a238668b9da47d0827a22e19f2700b95d7c085",
+      "scope": "Current acquisition statement only; all performance/art sections retained"
+    },
+    "docs/inkstorm-overhaul/VEHICLE_CATALOG.md": {
+      "beforeSha256": "7aa52b5f5b15df169e575c9f69fb4bf74ed3439d8c766d79c6f03c4ba06b5b74",
+      "afterSha256": "def587578e6030de7dcbd23cb465377b8a2992233c39434a4cc7582cc08b58b1",
+      "scope": "Current acquisition statement only; all performance/art sections retained"
+    },
+    "docs/inkstorm-overhaul/ASSET_ACQUISITION_LIMITS.md": {
+      "beforeSha256": "f1be26cc8a065bb4552624be218665eba5b9c8970eeca07533df9871f5d98eae",
+      "afterSha256": "38b46f7cd61a3d1e8305325181317f8fc4313177e6f7d6e35695bbf2c5717539",
+      "scope": "Current acquisition statement only; all performance/art sections retained"
+    }
+  }
+}

@@ -1,0 +1,177 @@
+{
+  "outcome": "PASS",
+  "harnessSha256": "ffa0db2a3a3315e564ceb33c89287b0948a6ab66120d4dd12b1677d86b3e0bc8",
+  "receipt": "output/playwright/round35-network-combat-v14/receipt.json",
+  "receiptSha256": "6e432c742de6a2a727597ef5c5cd1aa57148d017575cf1644f5ca36a5911c452",
+  "build": [
+    {
+      "url": "http://127.0.0.1:5198/assets/index-ChC9xw8D.js",
+      "sha256": "a0a190f2637399270af5b9d893c77bf02d07f262ad2e59d7e854d707f85ab39e"
+    }
+  ],
+  "scope": "Two real browser contexts using real room signaling and ordinary S+Shift input. No state/event/heat injection or mocked network. Wall-clock/snapshot observations are not performance or two-physical-device evidence.",
+  "phases": [
+    {
+      "name": "host-wreck",
+      "racerId": "player",
+      "event": {
+        "type": "wreck",
+        "racerId": "player",
+        "cause": "redline-explosion",
+        "sourceId": null,
+        "takedownBy": "ai-olan",
+        "runTokens": 2,
+        "frame": 985
+      },
+      "analysis": [
+        {
+          "firstObservedFrame": 987,
+          "eventFrame": 985,
+          "windows": {
+            "before": {
+              "samples": 30,
+              "wallSeconds": 0.9667000000000008,
+              "frameRatio": 0.9999655184303982,
+              "raceRatio": 0.9999655184304479,
+              "maximumGapMs": 33.400000000001455
+            },
+            "impact": {
+              "samples": 23,
+              "wallSeconds": 0.7334000000000015,
+              "frameRatio": 0.9999090991728004,
+              "raceRatio": 0.9999090991728502,
+              "maximumGapMs": 33.400000000001455
+            },
+            "after": {
+              "samples": 28,
+              "wallSeconds": 0.9,
+              "frameRatio": 1,
+              "raceRatio": 1.0000000000000497,
+              "maximumGapMs": 33.400000000001455
+            }
+          },
+          "localVictim": true,
+          "cueSamples": 37,
+          "noMatte": true,
+          "camera": "chase"
+        },
+        {
+          "firstObservedFrame": 996,
+          "eventFrame": 985,
+          "windows": {
+            "before": {
+              "samples": 30,
+              "wallSeconds": 0.9666999999999989,
+              "frameRatio": 0.9827247336298759,
+              "raceRatio": 0.9827247336299249,
+              "maximumGapMs": 33.400000000001455
+            },
+            "impact": {
+              "samples": 23,
+              "wallSeconds": 0.7333000000000011,
+              "frameRatio": 1.022773762443746,
+              "raceRatio": 1.022773762443797,
+              "maximumGapMs": 33.399999999999636
+            },
+            "after": {
+              "samples": 27,
+              "wallSeconds": 0.8666000000000004,
+              "frameRatio": 1.0385414262635584,
+              "raceRatio": 1.03854142626361,
+              "maximumGapMs": 33.400000000001455
+            }
+          },
+          "localVictim": false,
+          "cueSamples": 0,
+          "noMatte": true,
+          "camera": "chase"
+        }
+      ],
+      "outcome": "PASS"
+    },
+    {
+      "name": "guest-wreck",
+      "racerId": "ai-vexa",
+      "event": {
+        "type": "wreck",
+        "racerId": "ai-vexa",
+        "cause": "redline-explosion",
+        "sourceId": null,
+        "takedownBy": null,
+        "runTokens": 2,
+        "frame": 1830
+      },
+      "analysis": [
+        {
+          "firstObservedFrame": 1833,
+          "eventFrame": 1830,
+          "windows": {
+            "before": {
+              "samples": 30,
+              "wallSeconds": 0.9665999999999986,
+              "frameRatio": 1.0000689702738135,
+              "raceRatio": 1.0000689702737566,
+              "maximumGapMs": 33.400000000001455
+            },
+            "impact": {
+              "samples": 23,
+              "wallSeconds": 0.733300000000003,
+              "frameRatio": 1.00004545661166,
+              "raceRatio": 1.0000454566116033,
+              "maximumGapMs": 33.400000000001455
+            },
+            "after": {
+              "samples": 28,
+              "wallSeconds": 0.9,
+              "frameRatio": 1,
+              "raceRatio": 0.9999999999999432,
+              "maximumGapMs": 33.400000000001455
+            }
+          },
+          "localVictim": false,
+          "cueSamples": 0,
+          "noMatte": true,
+          "camera": "chase"
+        },
+        {
+          "firstObservedFrame": 1836,
+          "eventFrame": 1830,
+          "windows": {
+            "before": {
+              "samples": 30,
+              "wallSeconds": 0.9665999999999986,
+              "frameRatio": 0.9310986964618263,
+              "raceRatio": 0.9310986964617735,
+              "maximumGapMs": 33.400000000001455
+            },
+            "impact": {
+              "samples": 23,
+              "wallSeconds": 0.733300000000003,
+              "frameRatio": 1.0227737624437434,
+              "raceRatio": 1.0227737624436852,
+              "maximumGapMs": 33.400000000001455
+            },
+            "after": {
+              "samples": 28,
+              "wallSeconds": 0.8999000000000015,
+              "frameRatio": 1.0556728525391692,
+              "raceRatio": 1.0556728525391093,
+              "maximumGapMs": 33.400000000001455
+            }
+          },
+          "localVictim": true,
+          "cueSamples": 37,
+          "noMatte": true,
+          "camera": "chase"
+        }
+      ],
+      "outcome": "PASS"
+    }
+  ],
+  "finalStepGap": 11,
+  "cleanup": {
+    "browserClosed": true,
+    "serverExited": true,
+    "errors": []
+  }
+}

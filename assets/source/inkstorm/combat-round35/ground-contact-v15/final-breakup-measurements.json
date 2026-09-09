@@ -1,0 +1,68 @@
+{
+  "wholeGeometry": [
+    [
+      {
+        "name": "teemto-hero-open-v2",
+        "samples": 26,
+        "minimumFullVertexGap": 0.5499999999988958,
+        "maximumActiveCameraRadius": 21.722934789639474,
+        "maximumExtraSupportQueries": 118
+      },
+      {
+        "name": "teemto-rival",
+        "samples": 26,
+        "minimumFullVertexGap": 0.5325900421483976,
+        "maximumActiveCameraRadius": 21.700683177425223,
+        "maximumExtraSupportQueries": 114
+      }
+    ]
+  ],
+  "rightEngine": [
+    {
+      "name": "teemto-hero-open-v2",
+      "nativeFrames": 259,
+      "sourcePositionsPerFrame": 13867,
+      "fullPositionProjections": 3591553,
+      "contactFrames": 197,
+      "minimumFullVertexGap": 0.5499999999999954,
+      "minimumSettledFullVertexGap": 0.5499999999999954,
+      "maximumSettledFullVertexGap": 0.5500000000000043,
+      "maximumContactDistanceToSource": 0.5500000000000043,
+      "firstContactFrame": 930,
+      "lastContactFrame": 1126
+    },
+    {
+      "name": "teemto-rival",
+      "nativeFrames": 259,
+      "sourcePositionsPerFrame": 9618,
+      "fullPositionProjections": 2491062,
+      "contactFrames": 197,
+      "minimumFullVertexGap": 0.5499999999999954,
+      "minimumSettledFullVertexGap": 0.5499999999999954,
+      "maximumSettledFullVertexGap": 0.5500000000000043,
+      "maximumContactDistanceToSource": 0.5500000000000043,
+      "firstContactFrame": 930,
+      "lastContactFrame": 1126
+    }
+  ],
+  "downwardSettle": [
+    [
+      {
+        "name": "teemto-hero-open-v2",
+        "inputLiftMetres": 2,
+        "rightEngineWorldShiftMetres": 3.552713678800501e-15,
+        "airborneInputLiftMetres": 20,
+        "cappedDescentMetres": 8.000000000000004,
+        "airborneContact": false
+      },
+      {
+        "name": "teemto-rival",
+        "inputLiftMetres": 2,
+        "rightEngineWorldShiftMetres": 0,
+        "airborneInputLiftMetres": 20,
+        "cappedDescentMetres": 8,
+        "airborneContact": false
+      }
+    ]
+  ]
+}

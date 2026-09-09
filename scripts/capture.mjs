@@ -342,7 +342,7 @@ try {
   await selectionPanel.waitFor({ state: 'visible' });
   await page.waitForFunction(() => {
     const previews = Array.from(document.querySelectorAll('[data-vehicle-preview][data-preview-ready="true"]'));
-    return previews.length === 4 && previews.every((preview) => {
+    return previews.length === 5 && previews.every((preview) => {
       const image = preview.querySelector('img[data-vehicle-preview-image]');
       return image instanceof HTMLImageElement
         && image.complete
@@ -378,7 +378,7 @@ try {
   });
   if (selectorContract.title !== 'NOW THIS IS PODRACING!'
     || selectorContract.cardCount !== 4
-    || selectorContract.previewCount !== 4
+    || selectorContract.previewCount !== 5
     || !selectorContract.descriptionsSingleLine
     || !selectorContract.statsPerCard.every((count) => count === 5)
     || !selectorContract.opaque
@@ -391,6 +391,8 @@ try {
   const skimCard = page.locator('.pod-hud__vehicle-card[data-vehicle-id="skim-speeder"]');
   await skimCard.click();
   await page.waitForFunction(() => window.__PODRACING__?.snapshot().game.vehicleClass === 'skim-speeder');
+  await skimCard.waitFor({ state: 'visible' });
+  await page.waitForFunction(() => document.querySelector('.pod-hud__vehicle-card[data-vehicle-id="skim-speeder"]')?.getAttribute('aria-selected') === 'true');
   const selectedVehicle = await page.evaluate(() => window.__PODRACING__?.snapshot());
   if (selectedVehicle?.game?.awaitingStart !== true
     || selectedVehicle?.game?.vehicleClass !== 'skim-speeder'

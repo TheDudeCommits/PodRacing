@@ -1,0 +1,128 @@
+{
+  "auditedAt": "2026-09-08T20:27:03.580846+00:00",
+  "threadId": "01a082a5-1a01-7253-8b57-546e1b4e0cec",
+  "eventCount": 4,
+  "eventTypes": {
+    "thread.started": 1,
+    "turn.started": 1,
+    "item.completed": 1,
+    "turn.completed": 1
+  },
+  "itemTypes": {
+    "agent_message": 1
+  },
+  "nonMessageItems": [],
+  "extraRetrievalObserved": false,
+  "agentMessageCount": 1,
+  "finalEventTextMatchesReviewIgnoringTrailingNewlines": true,
+  "criticStatesAllSevenImagesExamined": true,
+  "attachmentCount": 7,
+  "attachments": [
+    {
+      "image": 1,
+      "expectedSha256": "de71779813eff608105bd63f2477d728cadf97d58985478ce101078b571df785",
+      "original": {
+        "exists": true,
+        "sha256": "de71779813eff608105bd63f2477d728cadf97d58985478ce101078b571df785"
+      },
+      "attachment": {
+        "exists": true,
+        "sha256": "de71779813eff608105bd63f2477d728cadf97d58985478ce101078b571df785"
+      },
+      "bothMatch": true
+    },
+    {
+      "image": 2,
+      "expectedSha256": "d35ba42eaf89d6e2c695ec2f4f877fd79358baaa1f56f5ba245aafcb41668770",
+      "original": {
+        "exists": true,
+        "sha256": "d35ba42eaf89d6e2c695ec2f4f877fd79358baaa1f56f5ba245aafcb41668770"
+      },
+      "attachment": {
+        "exists": true,
+        "sha256": "d35ba42eaf89d6e2c695ec2f4f877fd79358baaa1f56f5ba245aafcb41668770"
+      },
+      "bothMatch": true
+    },
+    {
+      "image": 3,
+      "expectedSha256": "1e40d0c924185d9f582d98d046635dad993b4eb6bf6cfbab946bdaebdde4d176",
+      "original": {
+        "exists": true,
+        "sha256": "1e40d0c924185d9f582d98d046635dad993b4eb6bf6cfbab946bdaebdde4d176"
+      },
+      "attachment": {
+        "exists": true,
+        "sha256": "1e40d0c924185d9f582d98d046635dad993b4eb6bf6cfbab946bdaebdde4d176"
+      },
+      "bothMatch": true
+    },
+    {
+      "image": 4,
+      "expectedSha256": "650455603dfd2592ac09672617adb0d03045da7d41730a85c6fb0513e1ba0da4",
+      "original": {
+        "exists": true,
+        "sha256": "650455603dfd2592ac09672617adb0d03045da7d41730a85c6fb0513e1ba0da4"
+      },
+      "attachment": {
+        "exists": true,
+        "sha256": "650455603dfd2592ac09672617adb0d03045da7d41730a85c6fb0513e1ba0da4"
+      },
+      "bothMatch": true
+    },
+    {
+      "image": 5,
+      "expectedSha256": "e52cf3605ffb4674ea185605545ebbd893d6ffea0c56616e90cae36cf32ec18e",
+      "original": {
+        "exists": true,
+        "sha256": "e52cf3605ffb4674ea185605545ebbd893d6ffea0c56616e90cae36cf32ec18e"
+      },
+      "attachment": {
+        "exists": true,
+        "sha256": "e52cf3605ffb4674ea185605545ebbd893d6ffea0c56616e90cae36cf32ec18e"
+      },
+      "bothMatch": true
+    },
+    {
+      "image": 6,
+      "expectedSha256": "dce0c433baef209fcad3cc137f820496f794c74bcb7c99455e687953620187ef",
+      "original": {
+        "exists": true,
+        "sha256": "dce0c433baef209fcad3cc137f820496f794c74bcb7c99455e687953620187ef"
+      },
+      "attachment": {
+        "exists": true,
+        "sha256": "dce0c433baef209fcad3cc137f820496f794c74bcb7c99455e687953620187ef"
+      },
+      "bothMatch": true
+    },
+    {
+      "image": 7,
+      "expectedSha256": "65250df343f42c8efb02fcfa72eea0b9ba331885d538898cbb00bc7e0b8c90cd",
+      "original": {
+        "exists": true,
+        "sha256": "65250df343f42c8efb02fcfa72eea0b9ba331885d538898cbb00bc7e0b8c90cd"
+      },
+      "attachment": {
+        "exists": true,
+        "sha256": "65250df343f42c8efb02fcfa72eea0b9ba331885d538898cbb00bc7e0b8c90cd"
+      },
+      "bothMatch": true
+    }
+  ],
+  "allAttachmentHashesMatch": true,
+  "promptMatchesV10Bytes": true,
+  "promptSha256": "379fe9118dc4303f1021fe2dbba6b094f5a9d1670d75042618b66acc78b1046e",
+  "promptMatchesInvocationHash": true,
+  "readOnlySandbox": true,
+  "ephemeralProcess": true,
+  "returncode": 0,
+  "rawHashes": {
+    "events.jsonl": "29e1cf9497b4f8c3a6b2d2c3917cfdfa1125b55508bead20f0d72c98478c45db",
+    "review.md": "d42823023b8d0162b420e6c19aed3c05b42b457c48524fca01647aeecf8d1f08",
+    "invocation.json": "225396715b5970e1635cb802a8ee6ae8f0a082e9ac0655bcad30b9184361c5ed"
+  },
+  "inventorySha256": "4bb45766e839a5c53d6fc132942f72941d4be6ba724a49bc7c916e7e7a17ae72",
+  "reviewVerdictPreserved": "**Verdict: Not yet a pass.** Examined all seven images: candidate HUD **1** against reference **2**, candidate Build **3** against reference **4**, candidate map **5** against reference **6**, and garage **7** for family consistency. Scores assess visible interface design only; no motion or functionality credit.",
+  "notes": "Audited raw events and all seven original/attachment hashes. Events contain only the critic final message; no tool use, commands, file reads, searches or other retrieval are recorded. Review bytes were not edited. Generic Codex startup configuration may load; this audit does not assert its absence."
+}

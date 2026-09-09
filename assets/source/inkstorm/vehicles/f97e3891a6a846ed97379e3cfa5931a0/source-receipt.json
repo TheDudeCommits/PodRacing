@@ -1,0 +1,121 @@
+{
+  "uid": "f97e3891a6a846ed97379e3cfa5931a0",
+  "title": "Sebulba podracer star wars",
+  "capturedAt": "2026-09-07T14:19:16.706642+00:00",
+  "scope": "Saved Blender-imported normalized source GLB; not an untouched vendor archive, original artist/DCC source file, stylized asset or runtime integration. JSON/header/count inspection only; images and binary vertex data were not decoded.",
+  "officialModelUrl": "https://sketchfab.com/3d-models/sebulba-podracer-star-wars-f97e3891a6a846ed97379e3cfa5931a0",
+  "officialMetadataUrl": "https://api.sketchfab.com/v3/models/f97e3891a6a846ed97379e3cfa5931a0",
+  "author": {
+    "uid": "d436e90915aa48c1a2cbaadaafa165e6",
+    "username": "vladvhm",
+    "displayName": "Vlad",
+    "profileUrl": "https://sketchfab.com/vladvhm"
+  },
+  "license": {
+    "reported": {
+      "uri": "https://api.sketchfab.com/v3/licenses/322a749bcfa841b29dff1e8a1bb74b0b",
+      "label": "CC Attribution",
+      "fullName": "Creative Commons Attribution",
+      "requirements": "Author must be credited. Commercial use is allowed.",
+      "url": "http://creativecommons.org/licenses/by/4.0/",
+      "slug": "by"
+    },
+    "licenseUrl": "http://creativecommons.org/licenses/by/4.0/",
+    "attributionRequired": true,
+    "nonCommercialOnly": false,
+    "stylizationStatus": "permitted_by_reported_license",
+    "stylizationNote": "Official public model metadata identifies CC BY 4.0. Retain creator credit, model URL, license link and a changes notice with derived exports.",
+    "version": "4.0",
+    "licenseIdentifier": "CC-BY-4.0",
+    "verifiedFrom": "https://api.sketchfab.com/v3/models/f97e3891a6a846ed97379e3cfa5931a0",
+    "verifiedAt": "2026-09-07T14:19:16.706642+00:00"
+  },
+  "acquisition": {
+    "provider": "official Blender MCP Sketchfab downloader",
+    "status": "imported_source_saved",
+    "targetLargestDimensionMetres": 12,
+    "normalizationAppliedByConnector": true,
+    "rawArchivePreserved": false,
+    "rawArchiveRemoval": "Connector deleted its temporary archive after successful import.",
+    "downloadReceipt": "vehicles/f97e3891a6a846ed97379e3cfa5931a0/mcp-download.json",
+    "exportReceipt": "vehicles/f97e3891a6a846ed97379e3cfa5931a0/mcp-export.json"
+  },
+  "sourceGlb": {
+    "path": "vehicles/f97e3891a6a846ed97379e3cfa5931a0/imported-source.glb",
+    "bytes": 68689196,
+    "sha256": "4bc2a4caf9370e8eb3adbb112749790123a7b113ca005a07611bfefafa70aaae",
+    "glbVersion": 2,
+    "generator": "Khronos glTF Blender I/O v5.2.39",
+    "chunks": [
+      {
+        "type": "JSON",
+        "bytes": 10800
+      },
+      {
+        "type": "BIN",
+        "bytes": 68678368
+      }
+    ],
+    "counts": {
+      "scenes": 1,
+      "nodes": 12,
+      "defaultSceneReachableNodes": 12,
+      "meshNodesInDefaultScene": 8,
+      "meshes": 8,
+      "primitives": 8,
+      "trianglesAcrossMeshDefinitions": 411899,
+      "trianglesInstancedInDefaultScene": 411899,
+      "positionAccessorVerticesAcrossPrimitives": 526971,
+      "materials": 2,
+      "images": 8,
+      "textures": 8,
+      "animations": 0,
+      "skins": 0,
+      "nonTrianglePrimitives": 0
+    },
+    "defaultSceneName": "PodRacing — source f97e3891a6a846ed97379e3cfa5931a0",
+    "extensionsUsed": [
+      "KHR_materials_specular"
+    ],
+    "exportExtras": false,
+    "exportExtrasBasis": "Export setting recorded by acquisition task; independently checked that parsed glTF JSON has no extras members.",
+    "extrasMemberCount": 0
+  },
+  "blenderExportReportedScene": {
+    "export": "{'FINISHED'}",
+    "scene": "PodRacing — source f97e3891a6a846ed97379e3cfa5931a0",
+    "objects": 12,
+    "mesh_count": 8,
+    "triangles": 411899,
+    "materials": [
+      "Material_765",
+      "Material_805"
+    ]
+  },
+  "blenderReportScope": "Counts transcribed from MCP export receipt; distinguish Blender objects/action count from emitted glTF nodes/animations.",
+  "exportWarnings": {
+    "count": 3,
+    "messages": {
+      "More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.": 3
+    },
+    "followUp": "Inspect material texture/sampler fidelity before stylization; export success alone does not establish appearance parity."
+  },
+  "driver": {
+    "status": "unknown_not_visually_inspected",
+    "pilotAdded": false
+  },
+  "stylizedExport": {
+    "status": "not_started",
+    "path": null
+  },
+  "runtimeIntegration": {
+    "status": "not_started",
+    "path": null
+  },
+  "evidenceHashes": {
+    "mcp-download.json": "07dc151bbbb48a4a02c510feeda4e2bd665c89d4bf53ecbfeea9482736c7a885",
+    "mcp-export.json": "1f19c129da212c42a2ea3a5b974a0919bfdfd1070cf4267c23adb2fc5449b351",
+    "model-metadata.json": "f7775cf2482ee3079a3cadff42ff8d0d147b3f24199caeda59b66ea4f2c4731c",
+    "metadata-receipt.json": "2e93120a485dbcefcaa1dad4f8352a1a4c34c7e9a54c1a5893186b0e67c83100"
+  }
+}

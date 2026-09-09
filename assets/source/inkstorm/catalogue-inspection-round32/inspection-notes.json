@@ -1,0 +1,1382 @@
+{
+  "recordedAt": "2026-09-08T07:59:43.401932+00:00",
+  "scope": "Root reviewed all24 quarter-a views and Polwo quarter-b only. Saved images are original-source studies, not game screenshots or blanket occupancy/fit/visual acceptance.",
+  "reviewedImageCount": 25,
+  "capturedImageCount": 48,
+  "confirmedNewOccupancy": {
+    "presentMinifigure": 2,
+    "absentPolwo": 1
+  },
+  "remainingNewOccupancy": "21 candidates remain probable/occluded/unverified; no formal driver inspection counted for them.",
+  "notes": [
+    {
+      "ordinal": 3,
+      "uid": "c2ca24c9b3c2416db0abe026d9f4b7ac",
+      "title": "BEN QUADINAROS PODRACER",
+      "author": "mateuszmalarski",
+      "reviewer": "Root task direct visual observations supplied to inventory author",
+      "reviewedViews": [
+        "quarter-a"
+      ],
+      "unreviewedViews": [
+        "quarter-b"
+      ],
+      "constructionObservation": "Four red engines, blue chair visibly empty.",
+      "sourceOccupancy": {
+        "status": "probable_empty",
+        "confirmed": false,
+        "scope": "Probable appearance or obscured/unverified occupancy only; not a completed driver inspection"
+      },
+      "nextAction": "Inspect the chair and controls closely before confirming occupancy or fitting a pilot.",
+      "artAcceptance": "not assessed; source inspection is not a blind critic",
+      "runtimeReady": false,
+      "license": {
+        "reported": {
+          "uri": "https://api.sketchfab.com/v3/licenses/bbfe3f7dbcdd4122b966b85b9786a989",
+          "label": "CC Attribution-NonCommercial",
+          "fullName": "Creative Commons Attribution-NonCommercial",
+          "requirements": "Author must be credited. No commercial use.",
+          "url": "http://creativecommons.org/licenses/by-nc/4.0/",
+          "slug": "by-nc"
+        },
+        "licenseUrl": "http://creativecommons.org/licenses/by-nc/4.0/",
+        "attributionRequired": true,
+        "nonCommercialOnly": true,
+        "stylizationStatus": "permitted_by_reported_license",
+        "stylizationNote": "Official public model metadata identifies CC BY-NC 4.0. Retain attribution and the non-commercial restriction.",
+        "version": "4.0",
+        "licenseIdentifier": "CC-BY-NC-4.0",
+        "verifiedFrom": "https://api.sketchfab.com/v3/models/c2ca24c9b3c2416db0abe026d9f4b7ac",
+        "verifiedAt": "2026-09-08T07:17:13.638715+00:00",
+        "metadataReceipt": "vehicles/c2ca24c9b3c2416db0abe026d9f4b7ac/official-metadata-20260908.json"
+      },
+      "receipt": "assets/source/inkstorm/catalogue-inspection-round32/c2ca24c9b3c2416db0abe026d9f4b7ac-receipt.json",
+      "imageEvidence": [
+        {
+          "path": "assets/source/inkstorm/catalogue-inspection-round32/c2ca24c9b3c2416db0abe026d9f4b7ac-quarter-a.png",
+          "view": "quarter-a",
+          "sha256": "a502ef421662561a720574e41c2080a4b4ebbfb8010a9fab3fb1a01c8786d037",
+          "reviewedByRoot": true
+        },
+        {
+          "path": "assets/source/inkstorm/catalogue-inspection-round32/c2ca24c9b3c2416db0abe026d9f4b7ac-quarter-b.png",
+          "view": "quarter-b",
+          "sha256": "f5a2e74b82de5e145fd37eda40b53dc6ab2f2f7be1a13a7f32ef117a71dad863",
+          "reviewedByRoot": false
+        }
+      ]
+    },
+    {
+      "ordinal": 4,
+      "uid": "25d51fbd4efc4c888ca4ff2549b1c6ae",
+      "title": "Podracer",
+      "author": "jakacbatko",
+      "reviewer": "Root task direct visual observations supplied to inventory author",
+      "reviewedViews": [
+        "quarter-a"
+      ],
+      "unreviewedViews": [
+        "quarter-b"
+      ],
+      "constructionObservation": "Low-poly textured craft with a closed cockpit.",
+      "sourceOccupancy": {
+        "status": "occluded_unverified",
+        "confirmed": false,
+        "scope": "Probable appearance or obscured/unverified occupancy only; not a completed driver inspection"
+      },
+      "nextAction": "Inspect physical shell and occupancy; an authored opening may be needed for a visible pilot.",
+      "artAcceptance": "not assessed; source inspection is not a blind critic",
+      "runtimeReady": false,
+      "license": {
+        "reported": {
+          "uri": "https://api.sketchfab.com/v3/licenses/322a749bcfa841b29dff1e8a1bb74b0b",
+          "label": "CC Attribution",
+          "fullName": "Creative Commons Attribution",
+          "requirements": "Author must be credited. Commercial use is allowed.",
+          "url": "http://creativecommons.org/licenses/by/4.0/",
+          "slug": "by"
+        },
+        "licenseUrl": "http://creativecommons.org/licenses/by/4.0/",
+        "attributionRequired": true,
+        "nonCommercialOnly": false,
+        "stylizationStatus": "permitted_by_reported_license",
+        "stylizationNote": "Retain attribution and stated license conditions. Exact license version must be recorded from downloaded license metadata before export.",
+        "verifiedAt": "2026-09-08T07:17:13.447667+00:00",
+        "verifiedFrom": "https://api.sketchfab.com/v3/models/25d51fbd4efc4c888ca4ff2549b1c6ae",
+        "metadataReceipt": "vehicles/25d51fbd4efc4c888ca4ff2549b1c6ae/official-metadata-20260908.json",
+        "version": "4.0"
+      },
+      "receipt": "assets/source/inkstorm/catalogue-inspection-round32/25d51fbd4efc4c888ca4ff2549b1c6ae-receipt.json",
+      "imageEvidence": [
+        {
+          "path": "assets/source/inkstorm/catalogue-inspection-round32/25d51fbd4efc4c888ca4ff2549b1c6ae-quarter-a.png",
+          "view": "quarter-a",
+          "sha256": "27f350ed744b3725f81a6fabe8d07c66e7e58558c689c54332781bc7e3542c7b",
+          "reviewedByRoot": true
+        },
+        {
+          "path": "assets/source/inkstorm/catalogue-inspection-round32/25d51fbd4efc4c888ca4ff2549b1c6ae-quarter-b.png",
+          "view": "quarter-b",
+          "sha256": "a7bb82be75acb2c6bac751ee5774ed4cb7250480f3780a08543b415e834747fe",
+          "reviewedByRoot": false
+        }
+      ]
+    },
+    {
+      "ordinal": 5,
+      "uid": "e377c2e49ad447caa0517b87562b3acc",
+      "title": "Star Wars Galaxies - Anakin's Podracer",
+      "author": "4130ff15fe394c239cc064b5286c43",
+      "reviewer": "Root task direct visual observations supplied to inventory author",
+      "reviewedViews": [
+        "quarter-a"
+      ],
+      "unreviewedViews": [
+        "quarter-b"
+      ],
+      "constructionObservation": "Low-poly textured craft; open cockpit looks empty.",
+      "sourceOccupancy": {
+        "status": "probable_empty",
+        "confirmed": false,
+        "scope": "Probable appearance or obscured/unverified occupancy only; not a completed driver inspection"
+      },
+      "nextAction": "Confirm seat/control geometry and occupant absence in a dedicated cockpit inspection.",
+      "artAcceptance": "not assessed; source inspection is not a blind critic",
+      "runtimeReady": false,
+      "license": {
+        "reported": {
+          "uri": "https://api.sketchfab.com/v3/licenses/322a749bcfa841b29dff1e8a1bb74b0b",
+          "label": "CC Attribution",
+          "fullName": "Creative Commons Attribution",
+          "requirements": "Author must be credited. Commercial use is allowed.",
+          "url": "http://creativecommons.org/licenses/by/4.0/",
+          "slug": "by"
+        },
+        "licenseUrl": "http://creativecommons.org/licenses/by/4.0/",
+        "attributionRequired": true,
+        "nonCommercialOnly": false,
+        "stylizationStatus": "permitted_by_reported_license",
+        "stylizationNote": "Retain attribution and stated license conditions. Exact license version must be recorded from downloaded license metadata before export.",
+        "verifiedAt": "2026-09-08T07:17:13.832992+00:00",
+        "verifiedFrom": "https://api.sketchfab.com/v3/models/e377c2e49ad447caa0517b87562b3acc",
+        "metadataReceipt": "vehicles/e377c2e49ad447caa0517b87562b3acc/official-metadata-20260908.json",
+        "version": "4.0"
+      },
+      "receipt": "assets/source/inkstorm/catalogue-inspection-round32/e377c2e49ad447caa0517b87562b3acc-receipt.json",
+      "imageEvidence": [
+        {
+          "path": "assets/source/inkstorm/catalogue-inspection-round32/e377c2e49ad447caa0517b87562b3acc-quarter-a.png",
+          "view": "quarter-a",
+          "sha256": "a0bb64d7a9e89f9e9e39c6330eb5824428819134c1e9bdcefb903f6aea10473e",
+          "reviewedByRoot": true
+        },
+        {
+          "path": "assets/source/inkstorm/catalogue-inspection-round32/e377c2e49ad447caa0517b87562b3acc-quarter-b.png",
+          "view": "quarter-b",
+          "sha256": "2fb06d622d6d2cf27c929a56f33b1d84f740649ec35f9a7c1450f2edd82b6c85",
+          "reviewedByRoot": false
+        }
+      ]
+    },
+    {
+      "ordinal": 6,
+      "uid": "dd948b66950147b78ace05dfcb9ccbbb",
+      "title": "Anakin Podracer",
+      "author": "fblupi",
+      "reviewer": "Root task direct visual observations supplied to inventory author",
+      "reviewedViews": [
+        "quarter-a"
+      ],
+      "unreviewedViews": [
+        "quarter-b"
+      ],
+      "constructionObservation": "Red seat visibly empty in the source view.",
+      "sourceOccupancy": {
+        "status": "probable_empty",
+        "confirmed": false,
+        "scope": "Probable appearance or obscured/unverified occupancy only; not a completed driver inspection"
+      },
+      "nextAction": "Private noncommercial adaptation study only; confirm cockpit and preserve the NoDerivs public-sharing restriction.",
+      "artAcceptance": "not assessed; source inspection is not a blind critic",
+      "runtimeReady": false,
+      "license": {
+        "reported": {
+          "uri": "https://api.sketchfab.com/v3/licenses/34b725081a6a4184957efaec2cb84ed3",
+          "label": "CC Attribution-NonCommercial-NoDerivs",
+          "fullName": "CC Attribution-NonCommercial-NoDerivs",
+          "requirements": "Author must be credited. No commercial use. Modified versions can not be distributed.",
+          "url": "http://creativecommons.org/licenses/by-nc-nd/4.0/",
+          "slug": "by-nc-nd"
+        },
+        "licenseUrl": "http://creativecommons.org/licenses/by-nc-nd/4.0/",
+        "attributionRequired": true,
+        "nonCommercialOnly": true,
+        "stylizationStatus": "private_noncommercial_study_only",
+        "stylizationNote": "CC BY-NC-ND 4.0 permits producing/reproducing adaptations for private noncommercial study. Do not share adapted assets through public runtime, repositories or deployments without additional permission.",
+        "publicAdaptationEligibility": "not_permitted_without_separate_permission",
+        "privateStudyEligibility": "noncommercial_adaptation_permitted",
+        "version": "4.0",
+        "licenseIdentifier": "CC-BY-NC-ND-4.0",
+        "verifiedFrom": "https://api.sketchfab.com/v3/models/dd948b66950147b78ace05dfcb9ccbbb",
+        "verifiedAt": "2026-09-08T07:17:14.317582+00:00",
+        "legalScopeSource": "https://creativecommons.org/licenses/by-nc-nd/4.0/legalcode.en#s2a1",
+        "metadataReceipt": "vehicles/dd948b66950147b78ace05dfcb9ccbbb/official-metadata-20260908.json"
+      },
+      "receipt": "assets/source/inkstorm/catalogue-inspection-round32/dd948b66950147b78ace05dfcb9ccbbb-receipt.json",
+      "imageEvidence": [
+        {
+          "path": "assets/source/inkstorm/catalogue-inspection-round32/dd948b66950147b78ace05dfcb9ccbbb-quarter-a.png",
+          "view": "quarter-a",
+          "sha256": "b4920196cc244343d0515c65f1e6d6d8ea05c3e4f160adb73d9b9fb4efdea726",
+          "reviewedByRoot": true
+        },
+        {
+          "path": "assets/source/inkstorm/catalogue-inspection-round32/dd948b66950147b78ace05dfcb9ccbbb-quarter-b.png",
+          "view": "quarter-b",
+          "sha256": "5a97bd27872324a56b01c5ebae615a689980e72f881fb8165f810127339b42e6",
+          "reviewedByRoot": false
+        }
+      ]
+    },
+    {
+      "ordinal": 7,
+      "uid": "4022e489f3d74eebb0aa3305f38dcc3f",
+      "title": "Ye Old Podracer",
+      "author": "pertrosfoliea",
+      "reviewer": "Root task direct visual observations supplied to inventory author",
+      "reviewedViews": [
+        "quarter-a"
+      ],
+      "unreviewedViews": [
+        "quarter-b"
+      ],
+      "constructionObservation": "Green steampunk construction, wood-like fins and a visible red seat.",
+      "sourceOccupancy": {
+        "status": "probable_empty",
+        "confirmed": false,
+        "scope": "Probable appearance or obscured/unverified occupancy only; not a completed driver inspection"
+      },
+      "nextAction": "Inspect the seat and control reach; preserve the source construction before a derivative.",
+      "artAcceptance": "not assessed; source inspection is not a blind critic",
+      "runtimeReady": false,
+      "license": {
+        "reported": {
+          "uri": "https://api.sketchfab.com/v3/licenses/322a749bcfa841b29dff1e8a1bb74b0b",
+          "label": "CC Attribution",
+          "fullName": "Creative Commons Attribution",
+          "requirements": "Author must be credited. Commercial use is allowed.",
+          "url": "http://creativecommons.org/licenses/by/4.0/",
+          "slug": "by"
+        },
+        "licenseUrl": "http://creativecommons.org/licenses/by/4.0/",
+        "attributionRequired": true,
+        "nonCommercialOnly": false,
+        "stylizationStatus": "permitted_by_reported_license",
+        "stylizationNote": "Retain attribution and stated license conditions. Exact license version must be recorded from downloaded license metadata before export.",
+        "verifiedAt": "2026-09-08T07:17:14.206981+00:00",
+        "verifiedFrom": "https://api.sketchfab.com/v3/models/4022e489f3d74eebb0aa3305f38dcc3f",
+        "metadataReceipt": "vehicles/4022e489f3d74eebb0aa3305f38dcc3f/official-metadata-20260908.json",
+        "version": "4.0"
+      },
+      "receipt": "assets/source/inkstorm/catalogue-inspection-round32/4022e489f3d74eebb0aa3305f38dcc3f-receipt.json",
+      "imageEvidence": [
+        {
+          "path": "assets/source/inkstorm/catalogue-inspection-round32/4022e489f3d74eebb0aa3305f38dcc3f-quarter-a.png",
+          "view": "quarter-a",
+          "sha256": "de9434ab6a87273d448f1a550ac4afe3da34ac7480a8b7e68ebcdfd728d7a9f2",
+          "reviewedByRoot": true
+        },
+        {
+          "path": "assets/source/inkstorm/catalogue-inspection-round32/4022e489f3d74eebb0aa3305f38dcc3f-quarter-b.png",
+          "view": "quarter-b",
+          "sha256": "31e482910b9ccc4dcd86a9c0278b3dae7d5154abc6b4942513a26319e1f3fb1d",
+          "reviewedByRoot": false
+        }
+      ]
+    },
+    {
+      "ordinal": 8,
+      "uid": "fee6dfa2369149aa84e7f99d9bb35cb0",
+      "title": "Old Worn Out Spaceship",
+      "author": "misiek13",
+      "reviewer": "Root task direct visual observations supplied to inventory author",
+      "reviewedViews": [
+        "quarter-a"
+      ],
+      "unreviewedViews": [
+        "quarter-b"
+      ],
+      "constructionObservation": "Orange industrial craft with three engines; glass canopy obscures the driver region and a panel shows an alpha-grid defect.",
+      "sourceOccupancy": {
+        "status": "occluded_unverified",
+        "confirmed": false,
+        "scope": "Probable appearance or obscured/unverified occupancy only; not a completed driver inspection"
+      },
+      "nextAction": "Diagnose transparency/panel material and inspect beneath the canopy before occupancy or pilot changes.",
+      "artAcceptance": "not assessed; source inspection is not a blind critic",
+      "runtimeReady": false,
+      "license": {
+        "reported": {
+          "uri": "https://api.sketchfab.com/v3/licenses/322a749bcfa841b29dff1e8a1bb74b0b",
+          "label": "CC Attribution",
+          "fullName": "Creative Commons Attribution",
+          "requirements": "Author must be credited. Commercial use is allowed.",
+          "url": "http://creativecommons.org/licenses/by/4.0/",
+          "slug": "by"
+        },
+        "licenseUrl": "http://creativecommons.org/licenses/by/4.0/",
+        "attributionRequired": true,
+        "nonCommercialOnly": false,
+        "stylizationStatus": "permitted_by_reported_license",
+        "stylizationNote": "Retain attribution and stated license conditions. Exact license version must be recorded from downloaded license metadata before export.",
+        "verifiedAt": "2026-09-08T07:17:14.843385+00:00",
+        "verifiedFrom": "https://api.sketchfab.com/v3/models/fee6dfa2369149aa84e7f99d9bb35cb0",
+        "metadataReceipt": "vehicles/fee6dfa2369149aa84e7f99d9bb35cb0/official-metadata-20260908.json",
+        "version": "4.0"
+      },
+      "receipt": "assets/source/inkstorm/catalogue-inspection-round32/fee6dfa2369149aa84e7f99d9bb35cb0-receipt.json",
+      "imageEvidence": [
+        {
+          "path": "assets/source/inkstorm/catalogue-inspection-round32/fee6dfa2369149aa84e7f99d9bb35cb0-quarter-a.png",
+          "view": "quarter-a",
+          "sha256": "8f7b40861728f823d22904f005f1d5b7eadd1a92cd8498ecdce5a055e15f666c",
+          "reviewedByRoot": true
+        },
+        {
+          "path": "assets/source/inkstorm/catalogue-inspection-round32/fee6dfa2369149aa84e7f99d9bb35cb0-quarter-b.png",
+          "view": "quarter-b",
+          "sha256": "dfccb4a367d3f2c8a62cc08c49c52e07d1ec307372cc4ebb792b6767579ec335",
+          "reviewedByRoot": false
+        }
+      ]
+    },
+    {
+      "ordinal": 9,
+      "uid": "7766ca8e7bd047f5ad4bdb86d11ec6d4",
+      "title": "Star Wars Galaxies - XJ-6 Airspeeder",
+      "author": "4130ff15fe394c239cc064b5286c43",
+      "reviewer": "Root task direct visual observations supplied to inventory author",
+      "reviewedViews": [
+        "quarter-a"
+      ],
+      "unreviewedViews": [
+        "quarter-b"
+      ],
+      "constructionObservation": "Yellow convertible with a two-seat empty-looking cavity.",
+      "sourceOccupancy": {
+        "status": "probable_empty",
+        "confirmed": false,
+        "scope": "Probable appearance or obscured/unverified occupancy only; not a completed driver inspection"
+      },
+      "nextAction": "Confirm both seat positions and whether any occupant geometry is hidden.",
+      "artAcceptance": "not assessed; source inspection is not a blind critic",
+      "runtimeReady": false,
+      "license": {
+        "reported": {
+          "uri": "https://api.sketchfab.com/v3/licenses/322a749bcfa841b29dff1e8a1bb74b0b",
+          "label": "CC Attribution",
+          "fullName": "Creative Commons Attribution",
+          "requirements": "Author must be credited. Commercial use is allowed.",
+          "url": "http://creativecommons.org/licenses/by/4.0/",
+          "slug": "by"
+        },
+        "licenseUrl": "http://creativecommons.org/licenses/by/4.0/",
+        "attributionRequired": true,
+        "nonCommercialOnly": false,
+        "stylizationStatus": "permitted_by_reported_license",
+        "stylizationNote": "Retain attribution and stated license conditions. Exact license version must be recorded from downloaded license metadata before export.",
+        "verifiedAt": "2026-09-08T07:17:14.641357+00:00",
+        "verifiedFrom": "https://api.sketchfab.com/v3/models/7766ca8e7bd047f5ad4bdb86d11ec6d4",
+        "metadataReceipt": "vehicles/7766ca8e7bd047f5ad4bdb86d11ec6d4/official-metadata-20260908.json",
+        "version": "4.0"
+      },
+      "receipt": "assets/source/inkstorm/catalogue-inspection-round32/7766ca8e7bd047f5ad4bdb86d11ec6d4-receipt.json",
+      "imageEvidence": [
+        {
+          "path": "assets/source/inkstorm/catalogue-inspection-round32/7766ca8e7bd047f5ad4bdb86d11ec6d4-quarter-a.png",
+          "view": "quarter-a",
+          "sha256": "fec7778b88eafce568bd46504ff8a2acb444f32ede7546e8f2099ff642f037bb",
+          "reviewedByRoot": true
+        },
+        {
+          "path": "assets/source/inkstorm/catalogue-inspection-round32/7766ca8e7bd047f5ad4bdb86d11ec6d4-quarter-b.png",
+          "view": "quarter-b",
+          "sha256": "ac049fff878a52d4bdb6510420c6d02ebc943e0c7e06b9ebbbe9bbf9745ad429",
+          "reviewedByRoot": false
+        }
+      ]
+    },
+    {
+      "ordinal": 10,
+      "uid": "dac6d14dcf914e88af8625b59f4020bc",
+      "title": "Anakins Pod Racer",
+      "author": "tutan09",
+      "reviewer": "Root task direct visual observations supplied to inventory author",
+      "reviewedViews": [
+        "quarter-a"
+      ],
+      "unreviewedViews": [
+        "quarter-b"
+      ],
+      "constructionObservation": "Chrome/yellow craft with a visibly empty red seat.",
+      "sourceOccupancy": {
+        "status": "probable_empty",
+        "confirmed": false,
+        "scope": "Probable appearance or obscured/unverified occupancy only; not a completed driver inspection"
+      },
+      "nextAction": "Confirm empty seat, orientation and hand-control anchors at closer range.",
+      "artAcceptance": "not assessed; source inspection is not a blind critic",
+      "runtimeReady": false,
+      "license": {
+        "reported": {
+          "uri": "https://api.sketchfab.com/v3/licenses/322a749bcfa841b29dff1e8a1bb74b0b",
+          "label": "CC Attribution",
+          "fullName": "Creative Commons Attribution",
+          "requirements": "Author must be credited. Commercial use is allowed.",
+          "url": "http://creativecommons.org/licenses/by/4.0/",
+          "slug": "by"
+        },
+        "licenseUrl": "http://creativecommons.org/licenses/by/4.0/",
+        "attributionRequired": true,
+        "nonCommercialOnly": false,
+        "stylizationStatus": "permitted_by_reported_license",
+        "stylizationNote": "Retain attribution and stated license conditions. Exact license version must be recorded from downloaded license metadata before export.",
+        "verifiedAt": "2026-09-08T07:17:15.280266+00:00",
+        "verifiedFrom": "https://api.sketchfab.com/v3/models/dac6d14dcf914e88af8625b59f4020bc",
+        "metadataReceipt": "vehicles/dac6d14dcf914e88af8625b59f4020bc/official-metadata-20260908.json",
+        "version": "4.0"
+      },
+      "receipt": "assets/source/inkstorm/catalogue-inspection-round32/dac6d14dcf914e88af8625b59f4020bc-receipt.json",
+      "imageEvidence": [
+        {
+          "path": "assets/source/inkstorm/catalogue-inspection-round32/dac6d14dcf914e88af8625b59f4020bc-quarter-a.png",
+          "view": "quarter-a",
+          "sha256": "c9b710db01003f028b3a4d23231088ba2d547d0220fdae0b63321587395045d0",
+          "reviewedByRoot": true
+        },
+        {
+          "path": "assets/source/inkstorm/catalogue-inspection-round32/dac6d14dcf914e88af8625b59f4020bc-quarter-b.png",
+          "view": "quarter-b",
+          "sha256": "39bf58f78526ef018f8c8c518f6de0be3c06637a37c233131a48d6110a958019",
+          "reviewedByRoot": false
+        }
+      ]
+    },
+    {
+      "ordinal": 11,
+      "uid": "39f96d4fcf00432dba3beb2e42163aa6",
+      "title": "World Skills Pod Transporter",
+      "author": "Its_Bucks",
+      "reviewer": "Root task direct visual observations supplied to inventory author",
+      "reviewedViews": [
+        "quarter-a"
+      ],
+      "unreviewedViews": [
+        "quarter-b"
+      ],
+      "constructionObservation": "Yellow two-engine cargo/net/box craft; tiny seat is unclear.",
+      "sourceOccupancy": {
+        "status": "unverified",
+        "confirmed": false,
+        "scope": "Probable appearance or obscured/unverified occupancy only; not a completed driver inspection"
+      },
+      "nextAction": "Locate and inspect a driver position before choosing a pilot arrangement.",
+      "artAcceptance": "not assessed; source inspection is not a blind critic",
+      "runtimeReady": false,
+      "license": {
+        "reported": {
+          "uri": "https://api.sketchfab.com/v3/licenses/322a749bcfa841b29dff1e8a1bb74b0b",
+          "label": "CC Attribution",
+          "fullName": "Creative Commons Attribution",
+          "requirements": "Author must be credited. Commercial use is allowed.",
+          "url": "http://creativecommons.org/licenses/by/4.0/",
+          "slug": "by"
+        },
+        "licenseUrl": "http://creativecommons.org/licenses/by/4.0/",
+        "attributionRequired": true,
+        "nonCommercialOnly": false,
+        "stylizationStatus": "permitted_by_reported_license",
+        "stylizationNote": "Retain attribution and stated license conditions. Exact license version must be recorded from downloaded license metadata before export.",
+        "verifiedAt": "2026-09-08T07:17:15.213281+00:00",
+        "verifiedFrom": "https://api.sketchfab.com/v3/models/39f96d4fcf00432dba3beb2e42163aa6",
+        "metadataReceipt": "vehicles/39f96d4fcf00432dba3beb2e42163aa6/official-metadata-20260908.json",
+        "version": "4.0"
+      },
+      "receipt": "assets/source/inkstorm/catalogue-inspection-round32/39f96d4fcf00432dba3beb2e42163aa6-receipt.json",
+      "imageEvidence": [
+        {
+          "path": "assets/source/inkstorm/catalogue-inspection-round32/39f96d4fcf00432dba3beb2e42163aa6-quarter-a.png",
+          "view": "quarter-a",
+          "sha256": "55cdfbbd97f9fa09c70623bd925eb46a42be27ec92dd4860f1b48109070fab5f",
+          "reviewedByRoot": true
+        },
+        {
+          "path": "assets/source/inkstorm/catalogue-inspection-round32/39f96d4fcf00432dba3beb2e42163aa6-quarter-b.png",
+          "view": "quarter-b",
+          "sha256": "8581cefe74b6c9263d1559b2b6a33cc85e343b90bae9ca85396e6b724eaceef5",
+          "reviewedByRoot": false
+        }
+      ]
+    },
+    {
+      "ordinal": 12,
+      "uid": "5a3422df6f894b48b846d590cdc2bf4c",
+      "title": "Anakin's pod Star Wars",
+      "author": "polwo",
+      "reviewer": "Root task direct visual observations supplied to inventory author",
+      "reviewedViews": [
+        "quarter-a",
+        "quarter-b"
+      ],
+      "unreviewedViews": [],
+      "constructionObservation": "Detailed ring engines and prongs; original cockpit confirmed empty from quarter-a and quarter-b.",
+      "sourceOccupancy": {
+        "status": "absent_confirmed",
+        "confirmed": true,
+        "scope": "Dedicated source-empty confirmation from both saved views"
+      },
+      "nextAction": "Continue source driver fitting; source V1/V2 and later V3 evidence are unaccepted and do not count as another runtime driver.",
+      "artAcceptance": "not assessed; source inspection is not a blind critic",
+      "runtimeReady": false,
+      "license": {
+        "reported": {
+          "uri": "https://api.sketchfab.com/v3/licenses/322a749bcfa841b29dff1e8a1bb74b0b",
+          "label": "CC Attribution",
+          "fullName": "Creative Commons Attribution",
+          "requirements": "Author must be credited. Commercial use is allowed.",
+          "url": "http://creativecommons.org/licenses/by/4.0/",
+          "slug": "by"
+        },
+        "licenseUrl": "http://creativecommons.org/licenses/by/4.0/",
+        "attributionRequired": true,
+        "nonCommercialOnly": false,
+        "stylizationStatus": "permitted_by_reported_license",
+        "stylizationNote": "Retain attribution and stated license conditions. Exact license version must be recorded from downloaded license metadata before export.",
+        "verifiedAt": "2026-09-08T07:17:15.574718+00:00",
+        "verifiedFrom": "https://api.sketchfab.com/v3/models/5a3422df6f894b48b846d590cdc2bf4c",
+        "metadataReceipt": "vehicles/5a3422df6f894b48b846d590cdc2bf4c/official-metadata-20260908.json",
+        "version": "4.0"
+      },
+      "receipt": "assets/source/inkstorm/catalogue-inspection-round32/5a3422df6f894b48b846d590cdc2bf4c-receipt.json",
+      "imageEvidence": [
+        {
+          "path": "assets/source/inkstorm/catalogue-inspection-round32/5a3422df6f894b48b846d590cdc2bf4c-quarter-a.png",
+          "view": "quarter-a",
+          "sha256": "36d5324c25093730f1264f3ff8cadc01dcbee803fbd103803e262c0d17db3732",
+          "reviewedByRoot": true
+        },
+        {
+          "path": "assets/source/inkstorm/catalogue-inspection-round32/5a3422df6f894b48b846d590cdc2bf4c-quarter-b.png",
+          "view": "quarter-b",
+          "sha256": "6f5a5c468507e5ab62b45538759a93c4ac4d56f22bdc242a545ebac014aa934e",
+          "reviewedByRoot": true
+        }
+      ],
+      "driverFitStudy": {
+        "directory": "assets/source/inkstorm/polwo-driver-round32",
+        "versions": [
+          {
+            "version": "v1",
+            "path": "assets/source/inkstorm/polwo-driver-round32/polwo-driver-fit-v1.glb",
+            "status": "source fit candidate; acceptance pending"
+          },
+          {
+            "version": "v2",
+            "path": "assets/source/inkstorm/polwo-driver-round32/polwo-driver-fit-v2.glb",
+            "status": "source fit candidate; acceptance pending"
+          },
+          {
+            "version": "v3",
+            "path": "assets/source/inkstorm/polwo-driver-round32/polwo-driver-fit-v3.glb",
+            "status": "source fit candidate; acceptance pending"
+          }
+        ],
+        "scope": "File existence and saved fit receipts only. Original source empty; derived pilot is a pending fit study. No runtime, stylized-export or accepted added-driver count increment."
+      }
+    },
+    {
+      "ordinal": 13,
+      "uid": "ce9c2d4e92a44dffbd78e6b29d6c0182",
+      "title": "podracer",
+      "author": "emmasartgallery",
+      "reviewer": "Root task direct visual observations supplied to inventory author",
+      "reviewedViews": [
+        "quarter-a"
+      ],
+      "unreviewedViews": [
+        "quarter-b"
+      ],
+      "constructionObservation": "White three-prong wedge without a constructed cockpit in the reviewed source view.",
+      "sourceOccupancy": {
+        "status": "unverified",
+        "confirmed": false,
+        "scope": "Probable appearance or obscured/unverified occupancy only; not a completed driver inspection"
+      },
+      "nextAction": "Determine whether a plausible cockpit can be authored; do not label the open geometry an empty finished seat.",
+      "artAcceptance": "not assessed; source inspection is not a blind critic",
+      "runtimeReady": false,
+      "license": {
+        "reported": {
+          "uri": "https://api.sketchfab.com/v3/licenses/322a749bcfa841b29dff1e8a1bb74b0b",
+          "label": "CC Attribution",
+          "fullName": "Creative Commons Attribution",
+          "requirements": "Author must be credited. Commercial use is allowed.",
+          "url": "http://creativecommons.org/licenses/by/4.0/",
+          "slug": "by"
+        },
+        "licenseUrl": "http://creativecommons.org/licenses/by/4.0/",
+        "attributionRequired": true,
+        "nonCommercialOnly": false,
+        "stylizationStatus": "permitted_by_reported_license",
+        "stylizationNote": "Retain attribution and stated license conditions. Exact license version must be recorded from downloaded license metadata before export.",
+        "verifiedAt": "2026-09-08T07:17:15.706693+00:00",
+        "verifiedFrom": "https://api.sketchfab.com/v3/models/ce9c2d4e92a44dffbd78e6b29d6c0182",
+        "metadataReceipt": "vehicles/ce9c2d4e92a44dffbd78e6b29d6c0182/official-metadata-20260908.json",
+        "version": "4.0"
+      },
+      "receipt": "assets/source/inkstorm/catalogue-inspection-round32/ce9c2d4e92a44dffbd78e6b29d6c0182-receipt.json",
+      "imageEvidence": [
+        {
+          "path": "assets/source/inkstorm/catalogue-inspection-round32/ce9c2d4e92a44dffbd78e6b29d6c0182-quarter-a.png",
+          "view": "quarter-a",
+          "sha256": "2ad5ff75eab0fb236043ebf08b3dadb92dd1147d8db3e8b443569da9066010b7",
+          "reviewedByRoot": true
+        },
+        {
+          "path": "assets/source/inkstorm/catalogue-inspection-round32/ce9c2d4e92a44dffbd78e6b29d6c0182-quarter-b.png",
+          "view": "quarter-b",
+          "sha256": "2790ad43c1291224634972310c67e4a1e0d99b1a1251025173a411fb601bddc4",
+          "reviewedByRoot": false
+        }
+      ]
+    },
+    {
+      "ordinal": 14,
+      "uid": "309c3c42bac24b5c801fcc09f875e6a7",
+      "title": "Pod Racer - Star Wars Inspired Build",
+      "author": "pdon24",
+      "reviewer": "Root task direct visual observations supplied to inventory author",
+      "reviewedViews": [
+        "quarter-a"
+      ],
+      "unreviewedViews": [
+        "quarter-b"
+      ],
+      "constructionObservation": "Untextured industrial cargo/chair construction; high triangle count.",
+      "sourceOccupancy": {
+        "status": "unverified",
+        "confirmed": false,
+        "scope": "Probable appearance or obscured/unverified occupancy only; not a completed driver inspection"
+      },
+      "nextAction": "Inspect chair occupancy and isolate/optimize intended vehicle geometry before material or pilot work.",
+      "artAcceptance": "not assessed; source inspection is not a blind critic",
+      "runtimeReady": false,
+      "license": {
+        "reported": {
+          "uri": "https://api.sketchfab.com/v3/licenses/322a749bcfa841b29dff1e8a1bb74b0b",
+          "label": "CC Attribution",
+          "fullName": "Creative Commons Attribution",
+          "requirements": "Author must be credited. Commercial use is allowed.",
+          "url": "http://creativecommons.org/licenses/by/4.0/",
+          "slug": "by"
+        },
+        "licenseUrl": "http://creativecommons.org/licenses/by/4.0/",
+        "attributionRequired": true,
+        "nonCommercialOnly": false,
+        "stylizationStatus": "permitted_by_reported_license",
+        "stylizationNote": "Retain attribution and stated license conditions. Exact license version must be recorded from downloaded license metadata before export.",
+        "verifiedAt": "2026-09-08T07:17:15.933551+00:00",
+        "verifiedFrom": "https://api.sketchfab.com/v3/models/309c3c42bac24b5c801fcc09f875e6a7",
+        "metadataReceipt": "vehicles/309c3c42bac24b5c801fcc09f875e6a7/official-metadata-20260908.json",
+        "version": "4.0"
+      },
+      "receipt": "assets/source/inkstorm/catalogue-inspection-round32/309c3c42bac24b5c801fcc09f875e6a7-receipt.json",
+      "imageEvidence": [
+        {
+          "path": "assets/source/inkstorm/catalogue-inspection-round32/309c3c42bac24b5c801fcc09f875e6a7-quarter-a.png",
+          "view": "quarter-a",
+          "sha256": "22c86a304ddcffda48fdc15ac085ebef6f23713b03481391c9d888ee90064fec",
+          "reviewedByRoot": true
+        },
+        {
+          "path": "assets/source/inkstorm/catalogue-inspection-round32/309c3c42bac24b5c801fcc09f875e6a7-quarter-b.png",
+          "view": "quarter-b",
+          "sha256": "a098562e45298013cce9b8dbe02584d87a3ebe45e2cea1f74205a4933674b6a6",
+          "reviewedByRoot": false
+        }
+      ]
+    },
+    {
+      "ordinal": 15,
+      "uid": "6ea36ebb4e504fb8976d2b527b5e40dc",
+      "title": "Star Wars Pod Racer",
+      "author": "Valeron_2605",
+      "reviewer": "Root task direct visual observations supplied to inventory author",
+      "reviewedViews": [
+        "quarter-a"
+      ],
+      "unreviewedViews": [
+        "quarter-b"
+      ],
+      "constructionObservation": "Untextured retro-jet/bowl construction; high triangle count.",
+      "sourceOccupancy": {
+        "status": "unverified",
+        "confirmed": false,
+        "scope": "Probable appearance or obscured/unverified occupancy only; not a completed driver inspection"
+      },
+      "nextAction": "Resolve cockpit/seat intent and optimize the source before fitting a pilot.",
+      "artAcceptance": "not assessed; source inspection is not a blind critic",
+      "runtimeReady": false,
+      "license": {
+        "reported": {
+          "uri": "https://api.sketchfab.com/v3/licenses/322a749bcfa841b29dff1e8a1bb74b0b",
+          "label": "CC Attribution",
+          "fullName": "Creative Commons Attribution",
+          "requirements": "Author must be credited. Commercial use is allowed.",
+          "url": "http://creativecommons.org/licenses/by/4.0/",
+          "slug": "by"
+        },
+        "licenseUrl": "http://creativecommons.org/licenses/by/4.0/",
+        "attributionRequired": true,
+        "nonCommercialOnly": false,
+        "stylizationStatus": "permitted_by_reported_license",
+        "stylizationNote": "Retain attribution and stated license conditions. Exact license version must be recorded from downloaded license metadata before export.",
+        "verifiedAt": "2026-09-08T07:17:16.034197+00:00",
+        "verifiedFrom": "https://api.sketchfab.com/v3/models/6ea36ebb4e504fb8976d2b527b5e40dc",
+        "metadataReceipt": "vehicles/6ea36ebb4e504fb8976d2b527b5e40dc/official-metadata-20260908.json",
+        "version": "4.0"
+      },
+      "receipt": "assets/source/inkstorm/catalogue-inspection-round32/6ea36ebb4e504fb8976d2b527b5e40dc-receipt.json",
+      "imageEvidence": [
+        {
+          "path": "assets/source/inkstorm/catalogue-inspection-round32/6ea36ebb4e504fb8976d2b527b5e40dc-quarter-a.png",
+          "view": "quarter-a",
+          "sha256": "24e7a246f3edcd967b313cb4f4f38a75769daedc273fa30e2a133454f3bac598",
+          "reviewedByRoot": true
+        },
+        {
+          "path": "assets/source/inkstorm/catalogue-inspection-round32/6ea36ebb4e504fb8976d2b527b5e40dc-quarter-b.png",
+          "view": "quarter-b",
+          "sha256": "2c87afc750e135f5f4ac859cae0c8d76a111769ac745db730798ce4a5c290511",
+          "reviewedByRoot": false
+        }
+      ]
+    },
+    {
+      "ordinal": 17,
+      "uid": "19a50e866e5d44cb8e4840b616cc8132",
+      "title": "Podracer stl file",
+      "author": "emmasartgallery",
+      "reviewer": "Root task direct visual observations supplied to inventory author",
+      "reviewedViews": [
+        "quarter-a"
+      ],
+      "unreviewedViews": [
+        "quarter-b"
+      ],
+      "constructionObservation": "White three-prong wedge without a constructed cockpit; this listing is vertically oriented.",
+      "sourceOccupancy": {
+        "status": "unverified",
+        "confirmed": false,
+        "scope": "Probable appearance or obscured/unverified occupancy only; not a completed driver inspection"
+      },
+      "nextAction": "Verify orientation and intended seating; retain this format variant separately.",
+      "artAcceptance": "not assessed; source inspection is not a blind critic",
+      "runtimeReady": false,
+      "license": {
+        "reported": {
+          "uri": "https://api.sketchfab.com/v3/licenses/322a749bcfa841b29dff1e8a1bb74b0b",
+          "label": "CC Attribution",
+          "fullName": "Creative Commons Attribution",
+          "requirements": "Author must be credited. Commercial use is allowed.",
+          "url": "http://creativecommons.org/licenses/by/4.0/",
+          "slug": "by"
+        },
+        "licenseUrl": "http://creativecommons.org/licenses/by/4.0/",
+        "attributionRequired": true,
+        "nonCommercialOnly": false,
+        "stylizationStatus": "permitted_by_reported_license",
+        "stylizationNote": "Retain attribution and stated license conditions. Exact license version must be recorded from downloaded license metadata before export.",
+        "verifiedAt": "2026-09-08T07:17:16.228760+00:00",
+        "verifiedFrom": "https://api.sketchfab.com/v3/models/19a50e866e5d44cb8e4840b616cc8132",
+        "metadataReceipt": "vehicles/19a50e866e5d44cb8e4840b616cc8132/official-metadata-20260908.json",
+        "version": "4.0"
+      },
+      "receipt": "assets/source/inkstorm/catalogue-inspection-round32/19a50e866e5d44cb8e4840b616cc8132-receipt.json",
+      "imageEvidence": [
+        {
+          "path": "assets/source/inkstorm/catalogue-inspection-round32/19a50e866e5d44cb8e4840b616cc8132-quarter-a.png",
+          "view": "quarter-a",
+          "sha256": "a58eb7db1d1ba68f691e53e6f95b85b84bf09ab7aa06c256ae6c4daf5ea00805",
+          "reviewedByRoot": true
+        },
+        {
+          "path": "assets/source/inkstorm/catalogue-inspection-round32/19a50e866e5d44cb8e4840b616cc8132-quarter-b.png",
+          "view": "quarter-b",
+          "sha256": "294d31bac10cf5ca42d6a6c70b6b310241712a56d180e6dcb91bfc4bacf2a3a6",
+          "reviewedByRoot": false
+        }
+      ]
+    },
+    {
+      "ordinal": 18,
+      "uid": "ff12ef200c994c8b9c6b61ea45702454",
+      "title": "Podracer obj file",
+      "author": "emmasartgallery",
+      "reviewer": "Root task direct visual observations supplied to inventory author",
+      "reviewedViews": [
+        "quarter-a"
+      ],
+      "unreviewedViews": [
+        "quarter-b"
+      ],
+      "constructionObservation": "White three-prong wedge without a constructed cockpit in the reviewed source view.",
+      "sourceOccupancy": {
+        "status": "unverified",
+        "confirmed": false,
+        "scope": "Probable appearance or obscured/unverified occupancy only; not a completed driver inspection"
+      },
+      "nextAction": "Verify orientation, body grouping and intended seating; retain this format variant separately.",
+      "artAcceptance": "not assessed; source inspection is not a blind critic",
+      "runtimeReady": false,
+      "license": {
+        "reported": {
+          "uri": "https://api.sketchfab.com/v3/licenses/322a749bcfa841b29dff1e8a1bb74b0b",
+          "label": "CC Attribution",
+          "fullName": "Creative Commons Attribution",
+          "requirements": "Author must be credited. Commercial use is allowed.",
+          "url": "http://creativecommons.org/licenses/by/4.0/",
+          "slug": "by"
+        },
+        "licenseUrl": "http://creativecommons.org/licenses/by/4.0/",
+        "attributionRequired": true,
+        "nonCommercialOnly": false,
+        "stylizationStatus": "permitted_by_reported_license",
+        "stylizationNote": "Retain attribution and stated license conditions. Exact license version must be recorded from downloaded license metadata before export.",
+        "verifiedAt": "2026-09-08T07:17:16.673911+00:00",
+        "verifiedFrom": "https://api.sketchfab.com/v3/models/ff12ef200c994c8b9c6b61ea45702454",
+        "metadataReceipt": "vehicles/ff12ef200c994c8b9c6b61ea45702454/official-metadata-20260908.json",
+        "version": "4.0"
+      },
+      "receipt": "assets/source/inkstorm/catalogue-inspection-round32/ff12ef200c994c8b9c6b61ea45702454-receipt.json",
+      "imageEvidence": [
+        {
+          "path": "assets/source/inkstorm/catalogue-inspection-round32/ff12ef200c994c8b9c6b61ea45702454-quarter-a.png",
+          "view": "quarter-a",
+          "sha256": "94915ed87a1676075d035d21410b549a3ae8b69c716fa573d3d579603509cb09",
+          "reviewedByRoot": true
+        },
+        {
+          "path": "assets/source/inkstorm/catalogue-inspection-round32/ff12ef200c994c8b9c6b61ea45702454-quarter-b.png",
+          "view": "quarter-b",
+          "sha256": "a16f0b8900842d20d4a3f4bb2c86555bdcc0c66958d87392a1467599920e8563",
+          "reviewedByRoot": false
+        }
+      ]
+    },
+    {
+      "ordinal": 19,
+      "uid": "e10eb39da3cf48018ba79c341a867d45",
+      "title": "Yet Another Pod Racer",
+      "author": "zodd",
+      "reviewer": "Root task direct visual observations supplied to inventory author",
+      "reviewedViews": [
+        "quarter-a"
+      ],
+      "unreviewedViews": [
+        "quarter-b"
+      ],
+      "constructionObservation": "Untextured fin/ring engines with long pipes; cockpit is unclear.",
+      "sourceOccupancy": {
+        "status": "unverified",
+        "confirmed": false,
+        "scope": "Probable appearance or obscured/unverified occupancy only; not a completed driver inspection"
+      },
+      "nextAction": "Locate cockpit and driver anchors before an occupancy decision.",
+      "artAcceptance": "not assessed; source inspection is not a blind critic",
+      "runtimeReady": false,
+      "license": {
+        "reported": {
+          "uri": "https://api.sketchfab.com/v3/licenses/322a749bcfa841b29dff1e8a1bb74b0b",
+          "label": "CC Attribution",
+          "fullName": "Creative Commons Attribution",
+          "requirements": "Author must be credited. Commercial use is allowed.",
+          "url": "http://creativecommons.org/licenses/by/4.0/",
+          "slug": "by"
+        },
+        "licenseUrl": "http://creativecommons.org/licenses/by/4.0/",
+        "attributionRequired": true,
+        "nonCommercialOnly": false,
+        "stylizationStatus": "permitted_by_reported_license",
+        "stylizationNote": "Retain attribution and stated license conditions. Exact license version must be recorded from downloaded license metadata before export.",
+        "verifiedAt": "2026-09-08T07:17:16.598883+00:00",
+        "verifiedFrom": "https://api.sketchfab.com/v3/models/e10eb39da3cf48018ba79c341a867d45",
+        "metadataReceipt": "vehicles/e10eb39da3cf48018ba79c341a867d45/official-metadata-20260908.json",
+        "version": "4.0"
+      },
+      "receipt": "assets/source/inkstorm/catalogue-inspection-round32/e10eb39da3cf48018ba79c341a867d45-receipt.json",
+      "imageEvidence": [
+        {
+          "path": "assets/source/inkstorm/catalogue-inspection-round32/e10eb39da3cf48018ba79c341a867d45-quarter-a.png",
+          "view": "quarter-a",
+          "sha256": "3763b7b3e0b8c5bd736cdb8e5a3e05936a77e46abc8b379c248c362b5f319999",
+          "reviewedByRoot": true
+        },
+        {
+          "path": "assets/source/inkstorm/catalogue-inspection-round32/e10eb39da3cf48018ba79c341a867d45-quarter-b.png",
+          "view": "quarter-b",
+          "sha256": "fd912b2c83f682c7972e74d8241b0c7853b435b001d8807627eb33e8c1a98aaa",
+          "reviewedByRoot": false
+        }
+      ]
+    },
+    {
+      "ordinal": 21,
+      "uid": "41071debeaf1499a9a1586b78ea18a09",
+      "title": "Star Wars - Ark Bumpy Rooses Pod Racer",
+      "author": "Agus555",
+      "reviewer": "Root task direct visual observations supplied to inventory author",
+      "reviewedViews": [
+        "quarter-a"
+      ],
+      "unreviewedViews": [
+        "quarter-b"
+      ],
+      "constructionObservation": "Multiple craft copies or LOD-like groups and black planes are visible.",
+      "sourceOccupancy": {
+        "status": "unverified",
+        "confirmed": false,
+        "scope": "Probable appearance or obscured/unverified occupancy only; not a completed driver inspection"
+      },
+      "nextAction": "Isolate one intended craft and diagnose black planes; preserve the source author's N64-texture provenance.",
+      "artAcceptance": "not assessed; source inspection is not a blind critic",
+      "runtimeReady": false,
+      "license": {
+        "reported": {
+          "uri": "https://api.sketchfab.com/v3/licenses/322a749bcfa841b29dff1e8a1bb74b0b",
+          "label": "CC Attribution",
+          "fullName": "Creative Commons Attribution",
+          "requirements": "Author must be credited. Commercial use is allowed.",
+          "url": "http://creativecommons.org/licenses/by/4.0/",
+          "slug": "by"
+        },
+        "licenseUrl": "http://creativecommons.org/licenses/by/4.0/",
+        "attributionRequired": true,
+        "nonCommercialOnly": false,
+        "stylizationStatus": "permitted_by_reported_license",
+        "stylizationNote": "Retain attribution and stated license conditions. Exact license version must be recorded from downloaded license metadata before export.",
+        "verifiedAt": "2026-09-08T07:17:17.010214+00:00",
+        "verifiedFrom": "https://api.sketchfab.com/v3/models/41071debeaf1499a9a1586b78ea18a09",
+        "metadataReceipt": "vehicles/41071debeaf1499a9a1586b78ea18a09/official-metadata-20260908.json",
+        "version": "4.0"
+      },
+      "receipt": "assets/source/inkstorm/catalogue-inspection-round32/41071debeaf1499a9a1586b78ea18a09-receipt.json",
+      "imageEvidence": [
+        {
+          "path": "assets/source/inkstorm/catalogue-inspection-round32/41071debeaf1499a9a1586b78ea18a09-quarter-a.png",
+          "view": "quarter-a",
+          "sha256": "a59d47229cd95bde6426c845bbc5d54ed68af264d0dbf444f188bd37684605c9",
+          "reviewedByRoot": true
+        },
+        {
+          "path": "assets/source/inkstorm/catalogue-inspection-round32/41071debeaf1499a9a1586b78ea18a09-quarter-b.png",
+          "view": "quarter-b",
+          "sha256": "92bc1e251e70c875dbdcabc13bd645cc1d40cd6056f1736567c847b6a299d3fe",
+          "reviewedByRoot": false
+        }
+      ]
+    },
+    {
+      "ordinal": 22,
+      "uid": "a6f14ae799ab40d7ac425f043f824ff8",
+      "title": "Pod Racer Colour",
+      "author": "20001748",
+      "reviewer": "Root task direct visual observations supplied to inventory author",
+      "reviewedViews": [
+        "quarter-a"
+      ],
+      "unreviewedViews": [
+        "quarter-b"
+      ],
+      "constructionObservation": "Toy brick craft with an existing minifigure driver visibly present.",
+      "sourceOccupancy": {
+        "status": "present_minifigure_confirmed",
+        "confirmed": true,
+        "scope": "Existing minifigure presence confirmed in saved quarter-a view"
+      },
+      "nextAction": "Preserve the existing source driver; assess fit, style, anchors and runtime compatibility instead of blindly adding another pilot.",
+      "artAcceptance": "not assessed; source inspection is not a blind critic",
+      "runtimeReady": false,
+      "license": {
+        "reported": {
+          "uri": "https://api.sketchfab.com/v3/licenses/322a749bcfa841b29dff1e8a1bb74b0b",
+          "label": "CC Attribution",
+          "fullName": "Creative Commons Attribution",
+          "requirements": "Author must be credited. Commercial use is allowed.",
+          "url": "http://creativecommons.org/licenses/by/4.0/",
+          "slug": "by"
+        },
+        "licenseUrl": "http://creativecommons.org/licenses/by/4.0/",
+        "attributionRequired": true,
+        "nonCommercialOnly": false,
+        "stylizationStatus": "permitted_by_reported_license",
+        "stylizationNote": "Retain attribution and stated license conditions. Exact license version must be recorded from downloaded license metadata before export.",
+        "verifiedAt": "2026-09-08T07:17:17.025587+00:00",
+        "verifiedFrom": "https://api.sketchfab.com/v3/models/a6f14ae799ab40d7ac425f043f824ff8",
+        "metadataReceipt": "vehicles/a6f14ae799ab40d7ac425f043f824ff8/official-metadata-20260908.json",
+        "version": "4.0"
+      },
+      "receipt": "assets/source/inkstorm/catalogue-inspection-round32/a6f14ae799ab40d7ac425f043f824ff8-receipt.json",
+      "imageEvidence": [
+        {
+          "path": "assets/source/inkstorm/catalogue-inspection-round32/a6f14ae799ab40d7ac425f043f824ff8-quarter-a.png",
+          "view": "quarter-a",
+          "sha256": "1f28ac061416f547661bc71ec66b095bcf1ad049385cc9c3ed96ea3334e88770",
+          "reviewedByRoot": true
+        },
+        {
+          "path": "assets/source/inkstorm/catalogue-inspection-round32/a6f14ae799ab40d7ac425f043f824ff8-quarter-b.png",
+          "view": "quarter-b",
+          "sha256": "3ff9108f6d1408d269f4fe9d66b4a57e9d72d8ba0dc6123bc0d064ccd3917518",
+          "reviewedByRoot": false
+        }
+      ]
+    },
+    {
+      "ordinal": 23,
+      "uid": "e42fb924b344481ea013c58cb0f52ad7",
+      "title": "Pod Racer",
+      "author": "20001748",
+      "reviewer": "Root task direct visual observations supplied to inventory author",
+      "reviewedViews": [
+        "quarter-a"
+      ],
+      "unreviewedViews": [
+        "quarter-b"
+      ],
+      "constructionObservation": "Uncoloured toy brick craft with an existing minifigure driver visibly present.",
+      "sourceOccupancy": {
+        "status": "present_minifigure_confirmed",
+        "confirmed": true,
+        "scope": "Existing minifigure presence confirmed in saved quarter-a view"
+      },
+      "nextAction": "Preserve the existing source driver; assess fit, style, anchors and runtime compatibility instead of blindly adding another pilot.",
+      "artAcceptance": "not assessed; source inspection is not a blind critic",
+      "runtimeReady": false,
+      "license": {
+        "reported": {
+          "uri": "https://api.sketchfab.com/v3/licenses/322a749bcfa841b29dff1e8a1bb74b0b",
+          "label": "CC Attribution",
+          "fullName": "Creative Commons Attribution",
+          "requirements": "Author must be credited. Commercial use is allowed.",
+          "url": "http://creativecommons.org/licenses/by/4.0/",
+          "slug": "by"
+        },
+        "licenseUrl": "http://creativecommons.org/licenses/by/4.0/",
+        "attributionRequired": true,
+        "nonCommercialOnly": false,
+        "stylizationStatus": "permitted_by_reported_license",
+        "stylizationNote": "Retain attribution and stated license conditions. Exact license version must be recorded from downloaded license metadata before export.",
+        "verifiedAt": "2026-09-08T07:17:17.315361+00:00",
+        "verifiedFrom": "https://api.sketchfab.com/v3/models/e42fb924b344481ea013c58cb0f52ad7",
+        "metadataReceipt": "vehicles/e42fb924b344481ea013c58cb0f52ad7/official-metadata-20260908.json",
+        "version": "4.0"
+      },
+      "receipt": "assets/source/inkstorm/catalogue-inspection-round32/e42fb924b344481ea013c58cb0f52ad7-receipt.json",
+      "imageEvidence": [
+        {
+          "path": "assets/source/inkstorm/catalogue-inspection-round32/e42fb924b344481ea013c58cb0f52ad7-quarter-a.png",
+          "view": "quarter-a",
+          "sha256": "6407b463c5d26eb74747656360dbe7b2e7fa7e2677f36cbaf6932bbc33ad3f89",
+          "reviewedByRoot": true
+        },
+        {
+          "path": "assets/source/inkstorm/catalogue-inspection-round32/e42fb924b344481ea013c58cb0f52ad7-quarter-b.png",
+          "view": "quarter-b",
+          "sha256": "646f0442eeb9802030beb28a6718b5a662f89b61df4bf91ca18e0cec685f08dd",
+          "reviewedByRoot": false
+        }
+      ]
+    },
+    {
+      "ordinal": 25,
+      "uid": "5a927a9fa0984371bd970b31f5f06086",
+      "title": "Spaceship(pod)",
+      "author": "LewisGridley",
+      "reviewer": "Root task direct visual observations supplied to inventory author",
+      "reviewedViews": [
+        "quarter-a"
+      ],
+      "unreviewedViews": [
+        "quarter-b"
+      ],
+      "constructionObservation": "Dark angular craft with fan engines; cockpit is unclear.",
+      "sourceOccupancy": {
+        "status": "unverified",
+        "confirmed": false,
+        "scope": "Probable appearance or obscured/unverified occupancy only; not a completed driver inspection"
+      },
+      "nextAction": "Inspect the driver compartment and material readability before occupancy or cockpit edits.",
+      "artAcceptance": "not assessed; source inspection is not a blind critic",
+      "runtimeReady": false,
+      "license": {
+        "reported": {
+          "uri": "https://api.sketchfab.com/v3/licenses/322a749bcfa841b29dff1e8a1bb74b0b",
+          "label": "CC Attribution",
+          "fullName": "Creative Commons Attribution",
+          "requirements": "Author must be credited. Commercial use is allowed.",
+          "url": "http://creativecommons.org/licenses/by/4.0/",
+          "slug": "by"
+        },
+        "licenseUrl": "http://creativecommons.org/licenses/by/4.0/",
+        "attributionRequired": true,
+        "nonCommercialOnly": false,
+        "stylizationStatus": "permitted_by_reported_license",
+        "stylizationNote": "Retain attribution and stated license conditions. Exact license version must be recorded from downloaded license metadata before export.",
+        "verifiedAt": "2026-09-08T07:17:17.340179+00:00",
+        "verifiedFrom": "https://api.sketchfab.com/v3/models/5a927a9fa0984371bd970b31f5f06086",
+        "metadataReceipt": "vehicles/5a927a9fa0984371bd970b31f5f06086/official-metadata-20260908.json",
+        "version": "4.0"
+      },
+      "receipt": "assets/source/inkstorm/catalogue-inspection-round32/5a927a9fa0984371bd970b31f5f06086-receipt.json",
+      "imageEvidence": [
+        {
+          "path": "assets/source/inkstorm/catalogue-inspection-round32/5a927a9fa0984371bd970b31f5f06086-quarter-a.png",
+          "view": "quarter-a",
+          "sha256": "bebd63c9af7c1e5d16e228020e8fbf51a2a7b8f3e05611bf6e9138166b126148",
+          "reviewedByRoot": true
+        },
+        {
+          "path": "assets/source/inkstorm/catalogue-inspection-round32/5a927a9fa0984371bd970b31f5f06086-quarter-b.png",
+          "view": "quarter-b",
+          "sha256": "eb68c5d6ba2b5d13d3650f4363acb0f687e1228ce27877f06413700070b36a0e",
+          "reviewedByRoot": false
+        }
+      ]
+    },
+    {
+      "ordinal": 26,
+      "uid": "c0d192c145a44459a454627708e46cf5",
+      "title": "Pog Racer",
+      "author": "andrearosini",
+      "reviewer": "Root task direct visual observations supplied to inventory author",
+      "reviewedViews": [
+        "quarter-a"
+      ],
+      "unreviewedViews": [
+        "quarter-b"
+      ],
+      "constructionObservation": "Single-cylinder engine and a closed upper capsule with opaque orange glass-like material.",
+      "sourceOccupancy": {
+        "status": "occluded_unverified",
+        "confirmed": false,
+        "scope": "Probable appearance or obscured/unverified occupancy only; not a completed driver inspection"
+      },
+      "nextAction": "Inspect shell/material construction and hidden occupant region; do not infer an empty cockpit from opacity.",
+      "artAcceptance": "not assessed; source inspection is not a blind critic",
+      "runtimeReady": false,
+      "license": {
+        "reported": {
+          "uri": "https://api.sketchfab.com/v3/licenses/322a749bcfa841b29dff1e8a1bb74b0b",
+          "label": "CC Attribution",
+          "fullName": "Creative Commons Attribution",
+          "requirements": "Author must be credited. Commercial use is allowed.",
+          "url": "http://creativecommons.org/licenses/by/4.0/",
+          "slug": "by"
+        },
+        "licenseUrl": "http://creativecommons.org/licenses/by/4.0/",
+        "attributionRequired": true,
+        "nonCommercialOnly": false,
+        "stylizationStatus": "permitted_by_reported_license",
+        "stylizationNote": "Retain attribution and stated license conditions. Exact license version must be recorded from downloaded license metadata before export.",
+        "verifiedAt": "2026-09-08T07:17:17.725235+00:00",
+        "verifiedFrom": "https://api.sketchfab.com/v3/models/c0d192c145a44459a454627708e46cf5",
+        "metadataReceipt": "vehicles/c0d192c145a44459a454627708e46cf5/official-metadata-20260908.json",
+        "version": "4.0"
+      },
+      "receipt": "assets/source/inkstorm/catalogue-inspection-round32/c0d192c145a44459a454627708e46cf5-receipt.json",
+      "imageEvidence": [
+        {
+          "path": "assets/source/inkstorm/catalogue-inspection-round32/c0d192c145a44459a454627708e46cf5-quarter-a.png",
+          "view": "quarter-a",
+          "sha256": "d946aaeb72e048c8d6be28db8b3736d9c06ee9c98c08134b03a9846df2f17e31",
+          "reviewedByRoot": true
+        },
+        {
+          "path": "assets/source/inkstorm/catalogue-inspection-round32/c0d192c145a44459a454627708e46cf5-quarter-b.png",
+          "view": "quarter-b",
+          "sha256": "e3592767850813a57cb55079757a81dea0f8a98adde2ef70517892ee24ceddd6",
+          "reviewedByRoot": false
+        }
+      ]
+    },
+    {
+      "ordinal": 27,
+      "uid": "9ecf7f66246d4f30b990cc605359e3b6",
+      "title": "Advanced X1",
+      "author": "mozhdasuramiri",
+      "reviewer": "Root task direct visual observations supplied to inventory author",
+      "reviewedViews": [
+        "quarter-a"
+      ],
+      "unreviewedViews": [
+        "quarter-b"
+      ],
+      "constructionObservation": "TIE-like vehicle with a closed cabin, not a conventional pod configuration.",
+      "sourceOccupancy": {
+        "status": "occluded_unverified",
+        "confirmed": false,
+        "scope": "Probable appearance or obscured/unverified occupancy only; not a completed driver inspection"
+      },
+      "nextAction": "Retain the acquired candidate; determine drivable identity and cabin/pilot arrangement separately.",
+      "artAcceptance": "not assessed; source inspection is not a blind critic",
+      "runtimeReady": false,
+      "license": {
+        "reported": {
+          "uri": "https://api.sketchfab.com/v3/licenses/322a749bcfa841b29dff1e8a1bb74b0b",
+          "label": "CC Attribution",
+          "fullName": "Creative Commons Attribution",
+          "requirements": "Author must be credited. Commercial use is allowed.",
+          "url": "http://creativecommons.org/licenses/by/4.0/",
+          "slug": "by"
+        },
+        "licenseUrl": "http://creativecommons.org/licenses/by/4.0/",
+        "attributionRequired": true,
+        "nonCommercialOnly": false,
+        "stylizationStatus": "permitted_by_reported_license",
+        "stylizationNote": "Retain attribution and stated license conditions. Exact license version must be recorded from downloaded license metadata before export.",
+        "verifiedAt": "2026-09-08T07:17:17.724960+00:00",
+        "verifiedFrom": "https://api.sketchfab.com/v3/models/9ecf7f66246d4f30b990cc605359e3b6",
+        "metadataReceipt": "vehicles/9ecf7f66246d4f30b990cc605359e3b6/official-metadata-20260908.json",
+        "version": "4.0"
+      },
+      "receipt": "assets/source/inkstorm/catalogue-inspection-round32/9ecf7f66246d4f30b990cc605359e3b6-receipt.json",
+      "imageEvidence": [
+        {
+          "path": "assets/source/inkstorm/catalogue-inspection-round32/9ecf7f66246d4f30b990cc605359e3b6-quarter-a.png",
+          "view": "quarter-a",
+          "sha256": "f347ffd473c6ff0abf9bee2afdd648fce886c71eafe0ac51a8093a254563d636",
+          "reviewedByRoot": true
+        },
+        {
+          "path": "assets/source/inkstorm/catalogue-inspection-round32/9ecf7f66246d4f30b990cc605359e3b6-quarter-b.png",
+          "view": "quarter-b",
+          "sha256": "299f9b763e55421ef0e2cbca76a62507ae31abc4da99cf6a9e65c3eb1573959e",
+          "reviewedByRoot": false
+        }
+      ]
+    },
+    {
+      "ordinal": 28,
+      "uid": "eb1a1861d3f140fa958ca7eb70a9f380",
+      "title": "Now This Is Podracing MWRB",
+      "author": "bkids",
+      "reviewer": "Root task direct visual observations supplied to inventory author",
+      "reviewedViews": [
+        "quarter-a"
+      ],
+      "unreviewedViews": [
+        "quarter-b"
+      ],
+      "constructionObservation": "Blue/yellow toy pod with an open, empty-looking seat.",
+      "sourceOccupancy": {
+        "status": "probable_empty",
+        "confirmed": false,
+        "scope": "Probable appearance or obscured/unverified occupancy only; not a completed driver inspection"
+      },
+      "nextAction": "Confirm seat/control geometry and drivable identity; preserve this MWRB variant.",
+      "artAcceptance": "not assessed; source inspection is not a blind critic",
+      "runtimeReady": false,
+      "license": {
+        "reported": {
+          "uri": "https://api.sketchfab.com/v3/licenses/322a749bcfa841b29dff1e8a1bb74b0b",
+          "label": "CC Attribution",
+          "fullName": "Creative Commons Attribution",
+          "requirements": "Author must be credited. Commercial use is allowed.",
+          "url": "http://creativecommons.org/licenses/by/4.0/",
+          "slug": "by"
+        },
+        "licenseUrl": "http://creativecommons.org/licenses/by/4.0/",
+        "attributionRequired": true,
+        "nonCommercialOnly": false,
+        "stylizationStatus": "permitted_by_reported_license",
+        "stylizationNote": "Retain attribution and stated license conditions. Exact license version must be recorded from downloaded license metadata before export.",
+        "verifiedAt": "2026-09-08T07:17:18.221369+00:00",
+        "verifiedFrom": "https://api.sketchfab.com/v3/models/eb1a1861d3f140fa958ca7eb70a9f380",
+        "metadataReceipt": "vehicles/eb1a1861d3f140fa958ca7eb70a9f380/official-metadata-20260908.json",
+        "version": "4.0"
+      },
+      "receipt": "assets/source/inkstorm/catalogue-inspection-round32/eb1a1861d3f140fa958ca7eb70a9f380-receipt.json",
+      "imageEvidence": [
+        {
+          "path": "assets/source/inkstorm/catalogue-inspection-round32/eb1a1861d3f140fa958ca7eb70a9f380-quarter-a.png",
+          "view": "quarter-a",
+          "sha256": "c8865010f9f3f41456e8ea059c61ef6740d62db74d31b8e73772ab8906ac3d70",
+          "reviewedByRoot": true
+        },
+        {
+          "path": "assets/source/inkstorm/catalogue-inspection-round32/eb1a1861d3f140fa958ca7eb70a9f380-quarter-b.png",
+          "view": "quarter-b",
+          "sha256": "8315802016ca385eefc9f7984165b970657c50de27a4b89fa6b0864b5ee7c4b6",
+          "reviewedByRoot": false
+        }
+      ]
+    },
+    {
+      "ordinal": 29,
+      "uid": "0baa936f45434c7eb8d58c31890402a2",
+      "title": "Now This Is Podracing MWRB",
+      "author": "bkids",
+      "reviewer": "Root task direct visual observations supplied to inventory author",
+      "reviewedViews": [
+        "quarter-a"
+      ],
+      "unreviewedViews": [
+        "quarter-b"
+      ],
+      "constructionObservation": "Blue/yellow toy pod with an open, empty-looking seat.",
+      "sourceOccupancy": {
+        "status": "probable_empty",
+        "confirmed": false,
+        "scope": "Probable appearance or obscured/unverified occupancy only; not a completed driver inspection"
+      },
+      "nextAction": "Confirm seat/control geometry and drivable identity; preserve this MWRB variant.",
+      "artAcceptance": "not assessed; source inspection is not a blind critic",
+      "runtimeReady": false,
+      "license": {
+        "reported": {
+          "uri": "https://api.sketchfab.com/v3/licenses/322a749bcfa841b29dff1e8a1bb74b0b",
+          "label": "CC Attribution",
+          "fullName": "Creative Commons Attribution",
+          "requirements": "Author must be credited. Commercial use is allowed.",
+          "url": "http://creativecommons.org/licenses/by/4.0/",
+          "slug": "by"
+        },
+        "licenseUrl": "http://creativecommons.org/licenses/by/4.0/",
+        "attributionRequired": true,
+        "nonCommercialOnly": false,
+        "stylizationStatus": "permitted_by_reported_license",
+        "stylizationNote": "Retain attribution and stated license conditions. Exact license version must be recorded from downloaded license metadata before export.",
+        "verifiedAt": "2026-09-08T07:17:18.033235+00:00",
+        "verifiedFrom": "https://api.sketchfab.com/v3/models/0baa936f45434c7eb8d58c31890402a2",
+        "metadataReceipt": "vehicles/0baa936f45434c7eb8d58c31890402a2/official-metadata-20260908.json",
+        "version": "4.0"
+      },
+      "receipt": "assets/source/inkstorm/catalogue-inspection-round32/0baa936f45434c7eb8d58c31890402a2-receipt.json",
+      "imageEvidence": [
+        {
+          "path": "assets/source/inkstorm/catalogue-inspection-round32/0baa936f45434c7eb8d58c31890402a2-quarter-a.png",
+          "view": "quarter-a",
+          "sha256": "6273a1f4bd47ab497fea60002bd396bd94e47be9deb2ffccf5473098604da9ff",
+          "reviewedByRoot": true
+        },
+        {
+          "path": "assets/source/inkstorm/catalogue-inspection-round32/0baa936f45434c7eb8d58c31890402a2-quarter-b.png",
+          "view": "quarter-b",
+          "sha256": "ec8144d432ea3b7f03db0158b2289584f34c512fdea112b73f33bd83aaa06b77",
+          "reviewedByRoot": false
+        }
+      ]
+    }
+  ]
+}

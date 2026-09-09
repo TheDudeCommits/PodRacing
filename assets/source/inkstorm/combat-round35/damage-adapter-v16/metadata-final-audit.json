@@ -1,0 +1,56 @@
+{
+  "status": "test-only-metadata-fixture-freeze",
+  "completedAtUtc": "2026-09-08T21:54:06.146986+00:00",
+  "initialResult": {
+    "passed": 129,
+    "failed": 8,
+    "log": "assets/source/inkstorm/combat-round35/damage-adapter-v16/metadata-initial-tests.log",
+    "cause": "Source-only Racer mock loaders consumed new optional damage requests; several reused one template under different URL keys or depended on positional load outcomes."
+  },
+  "finalResult": {
+    "passed": 139,
+    "failed": 0,
+    "files": 8,
+    "typecheckExitCode": 0,
+    "diffCheckExitCode": 0,
+    "log": "assets/source/inkstorm/combat-round35/damage-adapter-v16/metadata-final-tests.log"
+  },
+  "changes": [
+    "tests/render/racerPresentation.test.ts isolates its existing intact-only lifecycle fixtures by removing optional damage metadata from the mocked definition getter; original behavioral assertions remain unchanged.",
+    "tests/render/importedVehicleDamage.test.ts adds unmocked production hero/rival metadata routing using exact public damage GLB bytes and real installed loader. Existing damage/cancellation/material/budget tests remain unchanged."
+  ],
+  "files": [
+    {
+      "path": "tests/render/racerPresentation.test.ts",
+      "sha256": "4113b42dd36f9df0bad349a6ca98b0d4b883446a62f276ea773d44d4de068682",
+      "bytes": 25547
+    },
+    {
+      "path": "tests/render/importedVehicleDamage.test.ts",
+      "sha256": "4a2e97946e49900cabe0bfb4ac566753cb391b177d4485e7e6f255ecdafb93de",
+      "bytes": 27931
+    },
+    {
+      "path": "src/render/vehicles/ImportedVehiclePresentation.ts",
+      "sha256": "f6e600f8f7fd418ed12e3d7cc364644d1b5215817f8cd1e4e783c50e35ed2042",
+      "bytes": 34499
+    },
+    {
+      "path": "src/render/vehicles/RacerPresentation.ts",
+      "sha256": "9345e527763d742af0500a00864f838a1397c9031a2a5626d38b3cac9fefb749",
+      "bytes": 12592
+    },
+    {
+      "path": "src/game/vehicleAppearance.ts",
+      "sha256": "815bc24d4719bb76c3f1470223609ede365e1705064cdc78af17a05f5b74668d",
+      "bytes": 15063
+    }
+  ],
+  "runtimeEditsByThisFollowup": false,
+  "publicScriptEditsByThisFollowup": false,
+  "fullSuite": "Root requested ownership of integrated npm run verify; not duplicated.",
+  "limitations": [
+    "No browser/build/GPU execution.",
+    "Intact CPU source fixtures omit image decoding while retaining exact BIN/hierarchy/material names/factors/primitive assignments."
+  ]
+}

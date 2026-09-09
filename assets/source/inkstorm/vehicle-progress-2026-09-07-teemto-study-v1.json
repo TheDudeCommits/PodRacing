@@ -1,0 +1,71 @@
+{
+  "version": 1,
+  "recordedAt": "2026-09-07T14:59:57.230000+00:00",
+  "scope": "Current source-study and cockpit-inspection progress; separate from original acquisition receipt.",
+  "previousAcquisitionReceipt": {
+    "path": "vehicle-acquisition-2026-09-07.json",
+    "sha256": "3b24a639cb746741aff0ee05e444268424e549b7f91afafa1bda4489739fca0b"
+  },
+  "counts": {
+    "publicResults": 29,
+    "vehicleCandidates": 26,
+    "excludedNonVehicles": 3,
+    "downloaded": 2,
+    "blockedOrPending": 24,
+    "downloadStatuses": {
+      "downloaded": 2,
+      "pending_download": 23,
+      "rate_limited": 1
+    },
+    "mcpImportedSourceGlbs": 2,
+    "rawArchivesPreserved": 0,
+    "stylizationNeedsPermission": 0,
+    "publicAdaptationRestricted": 1,
+    "stylizedExports": 0,
+    "runtimeIntegrations": 0,
+    "driverInspections": 1,
+    "stylizedSourceStudies": 1,
+    "driversAdded": 0
+  },
+  "studyReceipt": {
+    "path": "vehicles/4eff45899ada40bb920c5c744663db90/processed/teemto-material-study-v1-receipt.json",
+    "sha256": "406412f503beb66161aac9dadd25b50a0cf4388551df7c536f4649286fefa3ea"
+  },
+  "sourceGlbsReverified": [
+    {
+      "uid": "4eff45899ada40bb920c5c744663db90",
+      "path": "assets/source/inkstorm/vehicles/4eff45899ada40bb920c5c744663db90/imported-source.glb",
+      "bytes": 69550360,
+      "sha256": "b7e2cc046fd392659886b1af88bdda1117037009351493f69dccdf78c4c53836",
+      "matchesAcquisitionReceipt": true
+    },
+    {
+      "uid": "f97e3891a6a846ed97379e3cfa5931a0",
+      "path": "assets/source/inkstorm/vehicles/f97e3891a6a846ed97379e3cfa5931a0/imported-source.glb",
+      "bytes": 68689196,
+      "sha256": "4bc2a4caf9370e8eb3adbb112749790123a7b113ca005a07611bfefafa70aaae",
+      "matchesAcquisitionReceipt": true
+    }
+  ],
+  "benAttempts": [
+    {
+      "ordinal": 1,
+      "status": "rate_limited",
+      "httpStatus": 429,
+      "receipt": "vehicles/c2ca24c9b3c2416db0abe026d9f4b7ac/mcp-download.json",
+      "sha256": "9ae3c75275af73049c6793cd29be7c03f12635fc9ca7872d57d1cff33ba97e71"
+    },
+    {
+      "ordinal": 2,
+      "status": "rate_limited",
+      "httpStatus": 429,
+      "receipt": "vehicles/c2ca24c9b3c2416db0abe026d9f4b7ac/mcp-download-retry-20260907-1450.json",
+      "sha256": "53bc794ee95b8efc873ea228d37565de37508b1b0470558c61657b7c4fbffbd3"
+    }
+  ],
+  "manifestSha256": "9efbcea30803874ce90fcb0ab0015f1b8465454b1bf5168d602bbf7671ddc367",
+  "noProcessedVehicleGlb": true,
+  "noRuntimeIntegration": true,
+  "driverScriptExecuted": false,
+  "documentationFinalizedAt": "2026-09-07T15:04:00.430798+00:00"
+}

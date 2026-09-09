@@ -1,0 +1,44 @@
+{
+  "artifact": "foundry-service-gantry-v1-native.glb",
+  "bytes": 439424,
+  "sha256": "41f52534400704655d551e4d1feabae61d6102506d2ed2496938e1aeaf48c01c",
+  "validatorVersion": "2.0.0-dev.3.10",
+  "report": {
+    "uri": "foundry-service-gantry-v1-native.glb",
+    "mimeType": "model/gltf-binary",
+    "validatorVersion": "2.0.0-dev.3.10",
+    "validatedAt": "2026-09-08T09:44:05.384Z",
+    "issues": {
+      "numErrors": 0,
+      "numWarnings": 0,
+      "numInfos": 0,
+      "numHints": 0,
+      "messages": [],
+      "truncated": false
+    },
+    "info": {
+      "version": "2.0",
+      "generator": "Khronos glTF Blender I/O v5.2.39",
+      "resources": [
+        {
+          "pointer": "/buffers/0",
+          "mimeType": "application/gltf-buffer",
+          "storage": "glb",
+          "byteLength": 437664
+        }
+      ],
+      "animationCount": 0,
+      "materialCount": 1,
+      "hasMorphTargets": false,
+      "hasSkins": false,
+      "hasTextures": false,
+      "hasDefaultScene": true,
+      "drawCallCount": 1,
+      "totalVertexCount": 11074,
+      "totalTriangleCount": 6500,
+      "maxUVs": 0,
+      "maxInfluences": 0,
+      "maxAttributes": 3
+    }
+  }
+}

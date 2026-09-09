@@ -1,0 +1,54 @@
+{
+  "groups": [
+    {
+      "manifest": "output/critics/ui-driving-hierarchy-v31/SOURCE_FREEZE.json",
+      "manifestSha256": "700118f073be3d6697144f5ee841b3f5132254131db7b473483bbc2ce95667ba",
+      "patch": "output/critics/ui-driving-hierarchy-v31/DRIVING_HIERARCHY.patch",
+      "patchSha256": "69e5c064d356465697dc6046c448e8e46c97f50d44152477e8181ad3883c4410",
+      "files": [
+        {
+          "path": "src/ui/RaceHud.ts",
+          "before": "d1828008f52e291b7e2b4f5ad922ba77496bd81edf4d652894d0977b06060b26",
+          "after": "a57dab1f88fad3c325aceee9be00ee415fc7f651d7743ef0db76b7ef6a1fa103"
+        },
+        {
+          "path": "src/ui/broadcastStyles.ts",
+          "before": "67ae54e547d7a79fa876f210fb65b798c8076d0299f1e675046c2f8371b938e5",
+          "after": "5f4df11492a88addab70766e99482a801b964a0bcc7968f0646a24291fba70b5"
+        }
+      ],
+      "stage": "Centrally applied V31 candidate; integrated/native/visual/performance validation pending",
+      "at": "2026-09-09T11:53:01.540713+00:00"
+    },
+    {
+      "manifest": "assets/source/inkstorm/combat-round35/v31-contact-billow-preparation/FROZEN-MANIFEST.json",
+      "manifestSha256": "8bfe5a880343ee7d3b1958b9bab75635a6890c6b7bf3b36026dff863cee32668",
+      "patch": "assets/source/inkstorm/combat-round35/v31-contact-billow-preparation/v31-porous-contact-billows.patch",
+      "patchSha256": "abcd2b01ce18346a54d29456cad3ee60f86a70c7d91f144e15237ad0d0dd96b5",
+      "files": [
+        {
+          "path": "src/render/galactic/GalacticEffectsView.ts",
+          "before": "c3d67f5247327e10aa4e05acec3f95e9735ae1a946a85769d325ed33dd354aff",
+          "after": "892d90922e94b0b517fc3e14cd8f94ec57624f8717992566a2b11c6a0b8635dc"
+        },
+        {
+          "path": "src/render/galactic/SolidEffectGeometry.ts",
+          "before": "95447f705aa91ab46eb849ebecf023da23b2a59f971569fe10e861d727b86175",
+          "after": "948dd0f1289238c84dc26dbcd65e26dcb4430f57e3c300028a8e581f162bc28b"
+        },
+        {
+          "path": "src/render/galactic/SolidEffectMaterial.ts",
+          "before": "26ec19fa19c7531333d11a65af34654c546c2ea371cba9cf9c08d6ae6095d4e6",
+          "after": "d8c5c3eb47e5e8f16ccc83b517c73e50ff66571a2cfba6c2f8ff6695117b9421"
+        },
+        {
+          "path": "tests/render/WreckContactVolume.test.ts",
+          "before": "0fec48cfd074e390726a68f5099911e96c474d971b495017be0d28ad52b78e5a",
+          "after": "40a9a700f8106b093a830a94b5116aeef6e86f76989e9cf118e981f5a9d180c7"
+        }
+      ],
+      "stage": "Centrally applied V31 candidate; integrated/native/visual/performance validation pending",
+      "at": "2026-09-09T11:53:01.551496+00:00"
+    }
+  ]
+}

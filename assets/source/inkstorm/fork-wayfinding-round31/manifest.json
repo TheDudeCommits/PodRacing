@@ -1,0 +1,45 @@
+{
+  "status": "SOURCE_ONLY_READY_FOR_ROOT_REVIEW",
+  "integration": "runtime-candidate.patch",
+  "runtimeIntegrated": false,
+  "visualAcceptance": "UNREVIEWED",
+  "sourceEvidence": "cpu-receipt.json",
+  "verification": {
+    "boundedCpuAudit": "PASS",
+    "isolatedRuntimeModuleStrictTypecheck": "PASS",
+    "gitApplyCheck": "PASS",
+    "svgXmlParse": "PASS"
+  },
+  "sourceHashes": {
+    "src/render/inkstorm/InkstormWorld.ts": "6be94a53671ed539451e5966749c08c6c79a18baf7fd9bb2472cf28d702c4fb4",
+    "src/render/inkstorm/InkstormRoad.ts": "ea6cdb44c50b33028fd5070e2f906a834351c93f1a51900cfd25df09aa8f8de8",
+    "src/render/inkstorm/InkstormBridge.ts": "8d80b6ac2095f954c3a4756ab0d7faa8fd4315e3f56460fa6e9badff8c0763c8",
+    "src/render/inkstorm/InkstormForkFoundation.ts": "41b00fe8da8c172e01170a34e3424c21ce736bd015622c9b6d549339a76ab838",
+    "src/game/race/course.ts": "c1030fcc0ea2ee7d6e0487b6b7332fd29a36947c41bc4847defa9535d6bd12d3",
+    "src/game/race/branches.ts": "f9595ca3b1eafea98f7e87607f246b5c1f405be1e2602456d1b8d939ccae3f52",
+    "src/game/race/bridgeSurface.ts": "8eacf7a9cc9189ee9afe609f944299398e5134f90ad55ff67b81dc62d1aa0362",
+    "src/game/race/CourseGulfField.ts": "bcffab83e4d1c157177df74a26ed00a3960080e70b9a662589a7c91143e970fe",
+    "src/camera/CourseJunctionFraming.ts": "9c2d104c324dfb1bfa1387a3d8fc2edbc9d3f2983062eb5e62585c740acfafdb",
+    "src/render/inkstorm/InkstormSurfaceMaterial.ts": "85d7410b71b40672840b071bc284e126d2e3c46ef9e7b22ee20c6914024dde55"
+  },
+  "artDirection": {
+    "target": "docs/inkstorm-overhaul/concepts/04-fork.png",
+    "actualImageDirectory": "output/gauntlet/round-30-fork-foundry-v3-complete",
+    "critic": "docs/inkstorm-overhaul/BLIND_FORK_FOUNDRY_V3_ROUND30.md"
+  },
+  "stagedFilesSha256": {
+    "HANDOFF.md": "aba9564879c0465dd94c769ec40bbcf2cebbb12fe720a2107ac5124fce989e8b",
+    "InkstormForkWayfinding.ts": "091d84f3b984fb0f088b3ba567ceca0a7ff54f3acbddaf64aeb8c2b0ae897ac5",
+    "audit-current-field.log": "c9b80b7cdd4b4c4e1d2e915f925a6854be185b12f5cdc8bd6f99ab607650ba8d",
+    "audit.ts": "5af7c3cd4398936b604e99381e66902bc6f790596d4da74e1c2d7e7195059ec4",
+    "cpu-receipt.json": "c9b80b7cdd4b4c4e1d2e915f925a6854be185b12f5cdc8bd6f99ab607650ba8d",
+    "package-patch.py": "227fb1a61929ec55fb887f0d29c270cb332f702bb372c15ea89bd241436dc84f",
+    "plan.json": "8c91db97009abd21cdaabb9497a9cd09d2a90cf55afae3911230de8c3a2e32d3",
+    "route-key.svg": "d5c308eda5dd993277fa9e84ed3c79b3f1e2c89b8fdfe2cc922150d0dcac5e94",
+    "runtime-before-InkstormWorld.ts": "6be94a53671ed539451e5966749c08c6c79a18baf7fd9bb2472cf28d702c4fb4",
+    "runtime-candidate.patch": "1a018d73c41cf81308350e5c0638341d5ebaf03f7beb224bbff61281a16de6cf",
+    "tsconfig.json": "b3d9d1f6a2793ab5e8279b114d0a5fccdb98d52d5ba28635e172858375059887"
+  },
+  "verifiedCurrentSourceHashesMatch": true,
+  "scope": "Source-only fork advance guidance; no runtime/public/dist/browser/GPU/Blender/network changes by this subtask. Rechecked against the parent agent\u2019s intentional launch31 CourseGulfField change."
+}

@@ -1,0 +1,55 @@
+{
+  "createdAt": "2026-09-08T18:57:48.889560+00:00",
+  "surfaceProjection": "implemented",
+  "sharedPoseAdapter": "wired to parent resolveWreckVisualPose(entry); owner cached fields not mutated",
+  "validation": {
+    "fxTestsPassed": 22,
+    "testFiles": 3,
+    "typecheckAfterSurfaceProjection": "PASS",
+    "typecheckAfterSharedResolver": "delegated to parent when resolver implementation completes",
+    "browserRun": false,
+    "buildRun": false
+  },
+  "sourcePins": [
+    {
+      "path": "src/render/galactic/GalacticEffectsView.ts",
+      "sha256": "822739696faddff750932d8bfaae85e332af75fa5b6df5eda5e03cbd5c1008b2"
+    },
+    {
+      "path": "tests/render/GalacticEffectsContact.test.ts",
+      "sha256": "536a41d09ea35c0486a818bf75334f4bb1a19ee713c34cae91ea70d81cc3a950"
+    },
+    {
+      "path": "tests/render/GalacticEffectsView.test.ts",
+      "sha256": "083d2b8b519d5e7010f93a1593977df028a82d379ed6cdf044d5cf7717847363"
+    }
+  ],
+  "consumerMethodSha256": "c633d3553d59cf87816e203f82f709319c94940a21c075141f4c0de4570469d8",
+  "evidence": [
+    {
+      "path": "before-projection.json",
+      "sha256": "33467e571ae6efd791b3027fb17dd0158965af017eafb0012e4a4f0d1028fc63"
+    },
+    {
+      "path": "after-projection.json",
+      "sha256": "fa8052dea4267f82c22650592db7415f6fc28d73145b99243833f7cff519f4e5"
+    },
+    {
+      "path": "after-projection-replay.json",
+      "sha256": "fa8052dea4267f82c22650592db7415f6fc28d73145b99243833f7cff519f4e5"
+    },
+    {
+      "path": "reproduce.mjs",
+      "sha256": "66461f465c292ec6014575a2b07a6154bcfddeec0853b9c9037f6d844c25dd16"
+    },
+    {
+      "path": "reproduce-original-live-imports.mjs",
+      "sha256": "710b0aa333d763257db5a04c76e84e9e8db1a6c5c8a74d2e90f2cceb5e8dc303"
+    },
+    {
+      "path": "v9-consumer-fragment.ts.txt",
+      "sha256": "1f4cffba8893cfc1905a598e5fb282f79120096747821de4e2d55ed8106397cb"
+    }
+  ],
+  "replayEqual": true
+}

@@ -1,0 +1,417 @@
+--- a/src/render/combat/TeemtoAuthoredDamage.ts
++++ b/src/render/combat/TeemtoAuthoredDamage.ts
+@@ -1,5 +1,7 @@
+-import { Box3, Matrix4, Quaternion, Vector3, type Mesh, type Object3D } from 'three';
++import { Box3, Euler, Matrix4, Quaternion, Vector3, type Mesh, type Object3D } from 'three';
+ import { WreckVisualPoseCache, WRECK_PRESENTATION_DURATION, writeWreckBounds, type WreckVisualPose } from './WreckVisualPose';
++
++import { sampleTeemtoStrikeMotion, teemtoStrikeTime } from './TeemtoStrikeMotion';
+ 
+ const X = new Vector3(1, 0, 0), Y = new Vector3(0, 1, 0), Z = new Vector3(0, 0, 1), UNIT = new Vector3(1, 1, 1);
+ const smooth = (value: number): number => { const t = Math.max(0, Math.min(1, value)); return t * t * (3 - 2 * t); };
+@@ -28,6 +30,15 @@
+   private readonly partBox = new Box3();
+   private readonly body = new Matrix4();
+   private readonly world = new Matrix4();
++  private readonly inverseWorldBody = new Matrix4();
++  private readonly baseQuaternion = new Quaternion();
++  private readonly motionQuaternion = new Quaternion();
++  private readonly motionEuler = new Euler(0, 0, 0, 'YXZ');
++  private readonly path = new Vector3();
++  private readonly pathVelocity = new Vector3();
++  private readonly movingCenter = new Vector3();
++  private readonly derivativeA = new Vector3();
++  private readonly derivativeB = new Vector3();
+   private readonly rotation = new Quaternion();
+   private readonly axis = new Quaternion();
+   private readonly bodyRotation = new Quaternion();
+@@ -103,6 +114,7 @@
+     const release = smooth((remaining - extrapolation) / .35), spread = smooth(age / .10) * release;
+     this.bodyRotation.setFromEuler(pose.rotation); this.inverseBody.copy(this.bodyRotation).invert();
+     this.body.compose(pose.position, this.bodyRotation, UNIT);
++    this.inverseWorldBody.copy(this.body).invert();
+     if (!Number.isFinite(spread) || spread === 0) {
+       this.reset();
+       if (Number.isFinite(spread)) this.writeRupture(pose);
+@@ -118,45 +130,23 @@
+     writeWreckBounds(this.stationary.localBounds, this.body, this.bounds);
+     for (let index = 0; index < this.parts.length; index++) {
+       const part = this.parts[index]!;
+-      // Left intact engine, torn front cowl, rear machinery, then severed rods.
+-      // Opening and follow-through have different directions/timings. The
+-      // intact left engine rolls down too; the front cowl topples outward,
+-      // while the rear machinery rolls toward the cockpit side. These remain
+-      // bounded analytic presentation paths, not a simulated collision solve.
+-      const yaw = (index === 0 ? -.26 : index === 1 ? .30 : index === 2 ? -.40 : -.25) * spread
+-        + (index === 0 ? -.30 : index === 1 ? .34 : index === 2 ? -.55 : -.36) * followThrough;
+-      const pitch = (index === 0 ? .13 : index === 1 ? .18 : index === 2 ? -.35 : .10) * spread
+-        + (index === 0 ? -.29 : index === 1 ? -.35 : index === 2 ? .48 : -.22) * followThrough;
+-      const roll = (index === 0 ? -.22 : index === 1 ? .65 : index === 2 ? 1.30 : .65) * spread
+-        + (index === 0 ? -.88 : index === 1 ? 1.0 : index === 2 ? 1.10 : -.53) * followThrough;
++      if (index < 3) {
++        this.updateStrikingEngine(index, part, pose, age, release, terrain);
++        continue;
++      }
++      // The remaining severed tether mass keeps its small bounded tumble.
++      const yaw = -.25 * spread - .36 * followThrough;
++      const pitch = .10 * spread - .22 * followThrough;
++      const roll = .65 * spread - .53 * followThrough;
+       this.rotation.setFromAxisAngle(Y, yaw);
+       this.axis.setFromAxisAngle(X, pitch); this.rotation.multiply(this.axis);
+       this.axis.setFromAxisAngle(Z, roll); this.rotation.multiply(this.axis);
+-      // The rear machinery makes its supported contact during the held beat;
+-      // other masses retain their slower follow-through and exact birth/reset.
+-      const settle = smooth(age / (index === 0 ? .34 : index === 1 ? .22 : index === 2 ? .075 : .18)) * release;
+-      if (index < 3 && settle > 0) {
+-        // Terrain clearance alone can leave a long shell balancing on its
+-        // nose. Settle its long axis along the local ground grade instead of
+-        // inheriting the parent wreck's pitch. The retained source surface
+-        // then rests on its broad side/belly, with a different heading per mass.
+-        const heading = pose.rotation.y + yaw, dx = Math.sin(heading), dz = Math.cos(heading);
+-        const reach = Math.max(2, (part.samples.localBounds.max.z - part.samples.localBounds.min.z) * .4);
+-        this.point.copy(part.samples.localCenter).applyMatrix4(this.body);
+-        const a = terrain.heightAt(this.point.x + dx * reach, this.point.z + dz * reach);
+-        const b = terrain.heightAt(this.point.x - dx * reach, this.point.z - dz * reach);
+-        const grade = Number.isFinite(a + b) ? Math.max(-.35, Math.min(.35, Math.atan2(a - b, reach * 2))) : 0;
+-        this.settledRotation.setFromAxisAngle(Y, heading);
+-        this.axis.setFromAxisAngle(X, -grade); this.settledRotation.multiply(this.axis);
+-        this.axis.setFromAxisAngle(Z, index === 0 ? -Math.PI / 2 : index === 1 ? 1.3 : Math.PI / 2);
+-        this.settledRotation.multiply(this.axis).premultiply(this.inverseBody);
+-        this.rotation.slerp(this.settledRotation, settle);
+-      }
++      const settle = smooth(age / .18) * release;
+       this.translation.copy(part.samples.localCenter).applyQuaternion(this.rotation).negate().add(part.samples.localCenter);
+-      this.translation.x += (index === 0 ? -2.4 : index === 1 ? 3.4 : index === 2 ? 1.5 : -2.8) * spread;
+-      this.translation.z += (index === 0 ? 1.3 : index === 1 ? 1.6 : index === 2 ? -3.3 : -1) * spread;
+-      this.translation.x += (index === 0 ? -1.2 : index === 1 ? 1.6 : index === 2 ? -2.0 : -.8) * followThrough;
+-      this.translation.z += (index === 0 ? .5 : index === 1 ? 1.9 : index === 2 ? -1.2 : -1.4) * followThrough;
++      this.translation.x += -2.8 * spread;
++      this.translation.z += -spread;
++      this.translation.x += -.8 * followThrough;
++      this.translation.z += -1.4 * followThrough;
+       part.matrix.compose(this.translation, this.rotation, UNIT);
+       this.world.multiplyMatrices(this.body, part.matrix);
+       let gap = Infinity;
+@@ -165,22 +155,16 @@
+         const ground = terrain.heightAt(this.point.x, this.point.z), candidate = this.point.y - ground;
+         if (candidate < gap) {
+           gap = candidate;
+-          if (index === 2) this.contact.position.set(this.point.x, ground, this.point.z);
++
+         }
+       }
+       if (Number.isFinite(gap)) {
+-        const margin = .55 - (index === 2 ? .45 : .37) * settle;
++        const margin = .55 - .37 * settle;
+         const correction = gap < margin ? margin - gap : Math.max(-8, margin - gap) * settle;
+         this.groundOffset.set(0, correction, 0).applyQuaternion(this.inverseBody);
+         this.translation.add(this.groundOffset); part.matrix.compose(this.translation, this.rotation, UNIT);
+         this.world.multiplyMatrices(this.body, part.matrix);
+-        if (index === 2 && settle === 1 && gap + correction <= .100001) {
+-          // Follow the rear section's local departure (-X/-Z), not the
+-          // perpendicular fracture-face normal used by the birth rupture.
+-          this.contact.direction.set(-2, 0, -1.2).applyQuaternion(this.bodyRotation); this.contact.direction.y = 0;
+-          if (this.contact.direction.lengthSq() < .0001) this.contact.direction.copy(pose.forward);
+-          this.contact.direction.normalize(); pose.groundContact = this.contact; this.contactPose = pose;
+-        }
++
+       }
+       writeWreckBounds(part.samples.localBounds, this.world, this.bounds, (index + 1) * 8);
+       part.node.matrixAutoUpdate = false; part.node.matrix.multiplyMatrices(part.matrix, part.restMatrix);
+@@ -191,6 +175,83 @@
+     this.assembly.getCenter(pose.center).applyMatrix4(this.body); this.assembly.getSize(this.point);
+     pose.radius = this.point.length() * .5; pose.bounds = this.bounds;
+     this.writeRupture(pose);
++  }
++
++  private updateStrikingEngine(index: number, part: Part, pose: WreckVisualPose, age: number,
++    release: number, terrain: { heightAt(x: number, z: number): number }): void {
++    const base = pose.baseMotion;
++    const basePosition = base?.position ?? pose.position, baseRotation = base?.rotation ?? pose.rotation;
++    this.baseQuaternion.setFromEuler(baseRotation);
++    sampleTeemtoStrikeMotion(index, age, this.path, this.pathVelocity);
++    this.movingCenter.copy(part.samples.localCenter).add(this.path).applyQuaternion(this.baseQuaternion).add(basePosition);
++    const strike = Math.min(1, age / teemtoStrikeTime(index));
++    // An accelerating drop ends with a defined impact, rather than easing to
++    // zero speed before touching. Orientation arrests into a supported side.
++    const fall = strike * strike;
++    const heading = baseRotation.y + (index === 0 ? -.5 : index === 1 ? .6 : -.65);
++    const dx = Math.sin(heading), dz = Math.cos(heading);
++    const reach = Math.max(2, (part.samples.localBounds.max.z - part.samples.localBounds.min.z) * .4);
++    const a = terrain.heightAt(this.movingCenter.x + dx * reach, this.movingCenter.z + dz * reach);
++    const b = terrain.heightAt(this.movingCenter.x - dx * reach, this.movingCenter.z - dz * reach);
++    const grade = Number.isFinite(a + b) ? Math.max(-.35, Math.min(.35, Math.atan2(a - b, reach * 2))) : 0;
++    this.settledRotation.setFromAxisAngle(Y, heading);
++    this.axis.setFromAxisAngle(X, -grade); this.settledRotation.multiply(this.axis);
++    this.axis.setFromAxisAngle(Z, index === 0 ? -Math.PI / 2 : index === 1 ? 1.3 : Math.PI / 2);
++    this.settledRotation.multiply(this.axis);
++    this.rotation.copy(this.baseQuaternion).slerp(this.settledRotation, smooth(strike));
++    this.translation.copy(part.samples.localCenter).applyQuaternion(this.rotation).negate().add(this.movingCenter);
++    // Exact recovery goes back to the existing intact parent pose. Until then
++    // detached masses do not inherit its unrelated late yaw/roll orbit.
++    this.rotation.slerp(this.bodyRotation, 1 - release);
++    this.translation.lerp(pose.position, 1 - release);
++    this.world.compose(this.translation, this.rotation, UNIT);
++    let gap = Infinity;
++    for (const support of part.samples.supportPoints) {
++      this.point.copy(support).applyMatrix4(this.world);
++      const ground = terrain.heightAt(this.point.x, this.point.z), candidate = this.point.y - ground;
++      if (candidate < gap) { gap = candidate; if (index === 2) this.contact.position.set(this.point.x, ground, this.point.z); }
++    }
++    if (Number.isFinite(gap)) {
++      const settle = fall * release, margin = .55 - (index === 2 ? .45 : .37) * settle;
++      const correction = gap < margin ? margin - gap : Math.max(-8, margin - gap) * settle;
++      this.translation.y += correction; this.world.compose(this.translation, this.rotation, UNIT);
++      if (index === 2 && strike === 1 && release === 1 && gap + correction <= .100001) {
++        this.writeStrikeDirection(part, pose, age);
++        pose.groundContact = this.contact; this.contactPose = pose;
++      }
++    }
++    // Explicitly cancel the moving rendered parent; node/prepass/shadow paths
++    // receive the same existing root-local deformation matrix.
++    part.matrix.multiplyMatrices(this.inverseWorldBody, this.world);
++    writeWreckBounds(part.samples.localBounds, this.world, this.bounds, (index + 1) * 8);
++    part.node.matrixAutoUpdate = false; part.node.matrix.multiplyMatrices(part.matrix, part.restMatrix);
++    part.node.matrix.decompose(part.node.position, part.node.quaternion, part.node.scale);
++    part.node.matrixWorldNeedsUpdate = true;
++    this.partBox.copy(part.samples.localBounds).applyMatrix4(part.matrix); this.assembly.union(this.partBox);
++  }
++
++  private writeStrikeDirection(part: Part, pose: WreckVisualPose, age: number): void {
++    const base = pose.baseMotion, rotation = base?.rotation ?? pose.rotation;
++    const omega = base?.angularVelocity, epsilon = .0001;
++    // Differentiate the desired WORLD center, including simulation-base
++    // angular and linear motion. Generic parent tumble has been cancelled.
++    for (let side = 0; side < 2; side++) {
++      const delta = side === 0 ? -epsilon : epsilon;
++      sampleTeemtoStrikeMotion(2, age + delta, this.path, this.pathVelocity);
++      this.motionEuler.set(rotation.x + (omega?.x ?? 0) * delta,
++        rotation.y + (omega?.y ?? 0) * delta, rotation.z + (omega?.z ?? 0) * delta, 'YXZ');
++      this.motionQuaternion.setFromEuler(this.motionEuler);
++      const target = side === 0 ? this.derivativeA : this.derivativeB;
++      target.copy(part.samples.localCenter).add(this.path).applyQuaternion(this.motionQuaternion);
++    }
++    this.contact.direction.copy(this.derivativeB).sub(this.derivativeA).multiplyScalar(.5 / epsilon);
++    if (base) this.contact.direction.add(base.velocity);
++    this.contact.direction.y = 0;
++    if (this.contact.direction.lengthSq() < .0001) {
++      sampleTeemtoStrikeMotion(2, teemtoStrikeTime(2), this.path, this.pathVelocity);
++      this.contact.direction.copy(this.pathVelocity).applyQuaternion(this.baseQuaternion); this.contact.direction.y = 0;
++    }
++    this.contact.direction.normalize();
+   }
+ 
+   private writeRupture(pose: WreckVisualPose): void {
+--- /dev/null
++++ b/src/render/combat/TeemtoStrikeMotion.ts
+@@ -0,0 +1,26 @@
++import type { Vector3 } from 'three';
++
++export const TEEMTO_REAR_STRIKE_TIME = .075;
++export const TEEMTO_REAR_SLIDE_TIME = .22;
++const DURATION = [.18, .13, TEEMTO_REAR_STRIKE_TIME] as const;
++const FLIGHT = [2.4, 2.8, 3.0] as const;
++const SLIDE = [.8, 1.0, 2.0] as const;
++const DX = [-.9701425001, .7071067812, .3939192986] as const;
++const DZ = [.242535625, .7071067812, -.91914503] as const;
++
++export function teemtoStrikeTime(index: number): number { return DURATION[index] ?? TEEMTO_REAR_STRIKE_TIME; }
++
++/** Explicit impulse, supported contact and one-way braking path. The position
++ * is continuous at impact; its speed drops as the ground absorbs the impulse.
++ * No integration/history, random displacement or direction reversal. */
++export function sampleTeemtoStrikeMotion(index: number, age: number, point: Vector3, velocity: Vector3): void {
++  const duration = teemtoStrikeTime(index), flight = FLIGHT[index] ?? 3, slide = SLIDE[index] ?? 2;
++  const time = Math.max(0, Number.isFinite(age) ? age : 0);
++  const u = time >= duration + TEEMTO_REAR_SLIDE_TIME ? 1
++    : Math.max(0, (time - duration) / TEEMTO_REAR_SLIDE_TIME);
++  const distance = time < duration ? flight * time / duration : flight + slide * (2 * u - u * u);
++  const speed = time < duration ? flight / duration : slide * 2 * (1 - u) / TEEMTO_REAR_SLIDE_TIME;
++  const dx = DX[index] ?? DX[2], dz = DZ[index] ?? DZ[2];
++  point.set(dx * distance, 0, dz * distance);
++  velocity.set(dx * speed, 0, dz * speed);
++}
+--- a/src/render/combat/WreckVisualPose.ts
++++ b/src/render/combat/WreckVisualPose.ts
+@@ -27,6 +27,10 @@
+   bounds: readonly Vector3[];
+   radius: number;
+   groundCorrection: number;
++  /** Simulation base frame before renderer-only tumble. Reused, read-only data
++   * lets detached masses cancel moving-parent presentation transforms. */
++  baseMotion?: { readonly position: Vector3; readonly rotation: Euler;
++    readonly velocity: Vector3; readonly angularVelocity: Euler };
+   groundContact?: WreckGroundContact;
+   /** Authored fracture face in world space, independent of terrain contact. */
+   rupture?: { readonly position: Vector3; readonly direction: Vector3 };
+@@ -41,7 +45,9 @@
+   private readonly worldBounds = Array.from({ length: 8 }, () => new Vector3());
+   readonly pose: WreckVisualPose = {
+     position: new Vector3(), rotation: new Euler(0, 0, 0, 'YXZ'),
+-    center: new Vector3(), forward: new Vector3(), bounds: this.worldBounds, radius: 17, groundCorrection: 0,
++    center: new Vector3(), forward: new Vector3(),
++    baseMotion: { position: new Vector3(), rotation: new Euler(0, 0, 0, 'YXZ'),
++      velocity: new Vector3(), angularVelocity: new Euler(0, 0, 0, 'YXZ') }, bounds: this.worldBounds, radius: 17, groundCorrection: 0,
+   };
+   private revision = -1;
+   private rigidRadius = 17;
+@@ -150,6 +156,13 @@
+     const blend = smooth(elapsed / .3) * smooth((remaining - extrapolation) / .35);
+     this.baseRotation.set(state.orientation.pitch, state.orientation.yaw,
+       state.orientation.roll + state.orientation.bank, 'YXZ');
++    const base = pose.baseMotion!;
++    base.position.set(state.position.x + state.velocity.x * extrapolation,
++      state.position.y + state.velocity.y * extrapolation, state.position.z + state.velocity.z * extrapolation);
++    base.rotation.copy(this.baseRotation);
++    base.velocity.set(state.velocity.x, state.velocity.y, state.velocity.z);
++    base.angularVelocity.set(state.angularVelocity.pitch, state.angularVelocity.yaw,
++      state.angularVelocity.roll + state.angularVelocity.bank, 'YXZ');
+     this.baseCenter.copy(this.localCenter).applyEuler(this.baseRotation);
+     const pitch = Math.sin(elapsed * 2.2) * .1 * blend;
+     const roll = -Math.sin(Math.min(elapsed * 3, Math.PI * .75)) * .32 * blend;
+--- a/src/render/galactic/GalacticEffectsView.ts
++++ b/src/render/galactic/GalacticEffectsView.ts
+@@ -436,7 +436,17 @@
+       float grain = paintNoise(p * vec2(16.0, 10.0) + vEffectSurface.z);
+       float radius = length(p);
+       float alpha;
+-      if (vEffectSurface.x > 2.5) {
++      if (vEffectSurface.x > 3.5) {
++        // Contact ejecta starts at a tight grounded root and opens into a
++        // directional sand fan. A broad circular wash cannot mark the strike.
++        float height = clamp((p.y + 1.0) * 0.5, 0.0, 1.0);
++        float spread = 0.08 + height * 0.86;
++        float edge = abs(p.x + (brush - 0.5) * height * 0.18) / spread;
++        alpha = (1.0 - smoothstep(0.65, 1.0, edge))
++          * smoothstep(0.0, 0.055, height) * (1.0 - smoothstep(0.76, 1.0, height))
++          * (0.78 + brush * 0.22);
++        diffuseColor.rgb *= mix(0.60, 1.35, height) * (0.9 + grain * 0.16);
++      } else if (vEffectSurface.x > 2.5) {
+         // Three broad charcoal billows with a broken painted edge. Full-wreck
+         // smoke has mass; the softer dust/hazard wash keeps its original path.
+         float lower = length((p - vec2(-0.14, -0.10)) * vec2(1.02, 1.18));
+@@ -476,7 +486,7 @@
+       if (diffuseColor.a < 0.008) discard;
+     `);
+   };
+-  result.customProgramCacheKey = () => 'painterly-atmosphere-contact-v4';
++  result.customProgramCacheKey = () => 'painterly-atmosphere-contact-v5';
+   return result;
+ }
+ 
+@@ -1031,7 +1041,7 @@
+       slot.scale = index === 0 ? 3.8 : 4.6;
+       slot.style = 'sand'; slot.billboard = true; slot.contactLayer = 4 + index;
+       slot.authoredSurface = false; slot.wreckOwner = -1; slot.wreckSequence = -1;
+-      slot.r = index === 0 ? .20 : .43; slot.g = index === 0 ? .115 : .27; slot.b = index === 0 ? .055 : .13;
++      slot.r = index === 0 ? .31 : .65; slot.g = index === 0 ? .18 : .42; slot.b = index === 0 ? .065 : .19;
+     }
+   }
+ 
+@@ -1528,7 +1538,7 @@
+           if (!this.isVisible(x, y, z, width * 1.5, EFFECT_VISIBILITY_DISTANCE.crashes)) continue;
+           this.writeInstance(this.explosionPlates, plateCount, x, y, z,
+             this.billboardQuaternion, width, height, width, slot.r, slot.g, slot.b);
+-          this.writeEffectSurface(plateCount, 1, .67 * (1 - MathUtils.smoothstep(progress, .25, 1)), slot.startTime * 1.37);
++          this.writeEffectSurface(plateCount, 4, .67 * (1 - MathUtils.smoothstep(progress, .25, 1)), slot.startTime * 1.37);
+           plateCount++;
+           continue;
+         }
+--- a/tests/combat/TeemtoAuthoredDamage.test.ts
++++ b/tests/combat/TeemtoAuthoredDamage.test.ts
+@@ -176,7 +176,7 @@
+         }
+         expect(JSON.stringify(sim.state)).toBe(before);
+       }
+-      console.info('V18 actual authored damage geometry support/projection:', JSON.stringify({ name, positionsTested,
++      console.info('V21 actual authored damage geometry support/projection:', JSON.stringify({ name, positionsTested,
+         cameraPositions, contactSamples, maxQueries, settledMaximumGap: Object.fromEntries(settledMaximumGap), minimumGapByMesh: Object.fromEntries(statistics) }));
+       expect(maxQueries).toBeLessThanOrEqual(name === 'hero' ? 296 : 222);
+       expect(contactSamples).toBeGreaterThan(0);
+@@ -187,3 +187,47 @@
+     } finally { art.breakup.reset(); for (const rig of rigs) rig.dispose(); }
+   }, 45_000);
+ });
++
++
++describe('actual principal world strike', () => {
++  it.each(variants)('%s drops once, arrests and differentiates real world departure instead of inheriting parent orbit', name => {
++    const art = fixture(name), sim = race(); for (let frame = 1; frame <= 910; frame++) step(sim, frame);
++    const state = sim.state.entries[0]!.vehicle, frozen = JSON.stringify(sim.state);
++    const rear = art.damage.find(m => m.name === 'teemto-damage-right-rear-v16')!;
++    rear.geometry.computeBoundingBox(); const center = rear.geometry.boundingBox!.getCenter(new Vector3());
++    const world = new Matrix4(), body = new Matrix4(), q = new Quaternion(), unit = new Vector3(1, 1, 1);
++    const sample = (age: number, source = state) => {
++      const remaining = WRECK_PRESENTATION_DURATION - age;
++      const pose = art.cache.update(source, remaining, sim.terrain); art.breakup.update(pose, remaining, sim.terrain);
++      art.root.updateMatrixWorld(true); body.compose(pose.position, q.setFromEuler(pose.rotation), unit);
++      world.multiplyMatrices(body, rear.matrixWorld);
++      return { position: center.clone().applyMatrix4(world), rotation: new Quaternion().setFromRotationMatrix(world),
++        direction: pose.groundContact?.direction.clone() };
++    };
++    try {
++      const birth = sample(0), strike = sample(.08), rest = sample(.4), later = sample(1.6);
++      expect(birth.position.y - strike.position.y).toBeGreaterThan(.5);
++      expect(rest.position.distanceTo(later.position)).toBeLessThan(1e-7);
++      expect(rest.rotation.angleTo(later.rotation)).toBeLessThan(1e-7);
++      const repeat = sample(.08); expect(repeat.position.distanceTo(strike.position)).toBeLessThan(1e-8);
++      const moving = structuredClone(state);
++      moving.orientation = { pitch: .1, yaw: .6, roll: -.15, bank: .03 };
++      moving.angularVelocity = { pitch: .1, yaw: .7, roll: -.12, bank: .05 };
++      moving.velocity = { x: 12, y: 0, z: -5 };
++      const value = sample(.14, moving); expect(value.direction).toBeDefined();
++      const epsilon = .0001, positions: Vector3[] = [];
++      for (const delta of [-epsilon, epsilon]) {
++        const shifted = structuredClone(moving);
++        shifted.position.x += moving.velocity.x * delta; shifted.position.z += moving.velocity.z * delta;
++        for (const key of ['pitch', 'yaw', 'roll', 'bank'] as const) shifted.orientation[key] += moving.angularVelocity[key] * delta;
++        positions.push(sample(.14 + delta, shifted).position);
++      }
++      const measured = positions[1]!.sub(positions[0]!); measured.y = 0; measured.normalize();
++      expect(measured.dot(value.direction!)).toBeGreaterThan(.999999);
++      console.info('Actual principal strike/arrest:', JSON.stringify({ name, birthY: birth.position.y,
++        strikeY: strike.position.y, terminalWorldDrift: rest.position.distanceTo(later.position),
++        terminalAngularDrift: rest.rotation.angleTo(later.rotation), worldDirectionDot: measured.dot(value.direction!) }));
++      expect(JSON.stringify(sim.state)).toBe(frozen);
++    } finally { art.breakup.reset(); }
++  });
++});
+--- /dev/null
++++ b/tests/combat/TeemtoStrikeMotion.test.ts
+@@ -0,0 +1,25 @@
++import { Vector3 } from 'three';
++import { describe, expect, it } from 'vitest';
++import { sampleTeemtoStrikeMotion, teemtoStrikeTime, TEEMTO_REAR_SLIDE_TIME } from '../../src/render/combat/TeemtoStrikeMotion';
++
++describe('principal strike motion', () => {
++  it.each([0, 1, 2])('mass %i has exact birth, one-way travel, an impact speed loss and a terminal rest', index => {
++    const p = new Vector3(), v = new Vector3(), previous = new Vector3(), direction = new Vector3();
++    sampleTeemtoStrikeMotion(index, 0, p, v); expect(p.length()).toBe(0); direction.copy(v).normalize();
++    const contact = teemtoStrikeTime(index), end = contact + TEEMTO_REAR_SLIDE_TIME;
++    for (let age = 0; age <= 1.7; age += .002) {
++      sampleTeemtoStrikeMotion(index, age, p, v);
++      expect(p.clone().sub(previous).dot(direction)).toBeGreaterThanOrEqual(-1e-8);
++      expect(v.dot(direction)).toBeGreaterThanOrEqual(-1e-8);
++      previous.copy(p);
++    }
++    sampleTeemtoStrikeMotion(index, contact - 1e-7, p, v); const before = p.clone(), incoming = v.length();
++    sampleTeemtoStrikeMotion(index, contact + 1e-7, p, v);
++    expect(p.distanceTo(before)).toBeLessThan(1e-5); expect(v.length()).toBeLessThan(incoming);
++    sampleTeemtoStrikeMotion(index, end, p, v); const stopped = p.clone(); expect(v.length()).toBe(0);
++    sampleTeemtoStrikeMotion(index, 1.7, p, v); expect(p.toArray()).toEqual(stopped.toArray()); expect(v.length()).toBe(0);
++    sampleTeemtoStrikeMotion(index, .05, p, v); const direct = p.clone();
++    sampleTeemtoStrikeMotion(index, 1, p, v); sampleTeemtoStrikeMotion(index, .05, p, v);
++    expect(p.toArray()).toEqual(direct.toArray());
++  });
++});
+--- a/tests/render/GalacticEffectsView.test.ts
++++ b/tests/render/GalacticEffectsView.test.ts
+@@ -408,7 +408,7 @@
+       expect(point.z).toBeLessThan(position.z);
+       expect(point.y - position.y).toBeLessThan(3);
+       expect(size.y / size.x).toBeCloseTo(i === 0 ? .18 : .54, 5);
+-      expect(surface.getX(i)).toBe(1);
++      expect(surface.getX(i)).toBe(4);
+       expect(surface.getY(i)).toBeLessThanOrEqual(Math.fround(.67));
+     }
+     view.update(2.21);

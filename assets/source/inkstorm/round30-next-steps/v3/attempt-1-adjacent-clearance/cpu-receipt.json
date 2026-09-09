@@ -1,0 +1,364 @@
+{
+  "scope": "CPU source candidate only: no browser, GPU, Blender, render, timing or art acceptance",
+  "clearanceRule": "Vertices and triangle centroids must stay 2m outside the road edge or at least 30m above installed terrain",
+  "seed": 1229867859,
+  "bankIds": [
+    "inkstorm-pipe-bank-227",
+    "inkstorm-pipe-bank-228",
+    "inkstorm-pipe-bank-230",
+    "inkstorm-pipe-bank-233",
+    "inkstorm-pipe-bank-235",
+    "inkstorm-pipe-bank-237",
+    "inkstorm-pipe-bank-239",
+    "inkstorm-pipe-bank-241",
+    "inkstorm-pipe-bank-243",
+    "inkstorm-pipe-bank-229",
+    "inkstorm-pipe-bank-231",
+    "inkstorm-pipe-bank-232",
+    "inkstorm-pipe-bank-234",
+    "inkstorm-pipe-bank-236",
+    "inkstorm-pipe-bank-238",
+    "inkstorm-pipe-bank-240",
+    "inkstorm-pipe-bank-242",
+    "inkstorm-pipe-bank-244"
+  ],
+  "sockets": 54,
+  "pipeRuns": 75,
+  "boxes": 19,
+  "triangles": 46788,
+  "vertices": 140364,
+  "materials": 1,
+  "additionalMeshes": 1,
+  "additionalTextures": 0,
+  "additionalLights": 0,
+  "perFrameUpdates": 0,
+  "geometryBytes": 5053104,
+  "bounds": {
+    "min": [
+      19522.693359375,
+      -14.718767166137695,
+      -779.6039428710938
+    ],
+    "max": [
+      19867.888671875,
+      68.76985931396484,
+      -51.773826599121094
+    ]
+  },
+  "minimumLowVertexOrCentroidClearance": 7.840575026154433,
+  "minimumOverheadVertexOrCentroidHeight": 30.734745476669634,
+  "nonfinite": 0,
+  "failures": [],
+  "removedArtInstances": [],
+  "geometryBudget": 50000,
+  "budgetPassed": true,
+  "clearancePassed": true,
+  "limitations": [
+    "Per-vertex and triangle-centroid checks are not swept-pod or triangle-volume collision proof.",
+    "Root must validate actual camera composition, graphics lifecycle and full-race cadence.",
+    "Existing collision placement list, gulf arrays, terrain and physics were not edited.",
+    "The distant launch basin has not been recomposed by this near-foundry candidate."
+  ],
+  "hashes": {
+    "candidate": "324b9e33cf9b16f2aa68850c4da67726057ee3350c54e1a40e41960fe548da9b",
+    "pipeBankGlb": "4b3510d0f8b10e1a44158edb0b0bbdc25bac33019176368638937ab1834a3b81"
+  },
+  "attachmentRayProbe": {
+    "scope": "9 rays per actual scaled aperture; hit before original cap along its measured outward normal",
+    "total": 486,
+    "hits": 486,
+    "misses": []
+  },
+  "v2Preservation": {
+    "parts": 52,
+    "changedParts": [],
+    "originalTriangles": 20868,
+    "missingTriangles": 0,
+    "positionsNormalsColorsByteExact": true
+  },
+  "bankCoverage": {
+    "actualBanks": 18,
+    "connectedBanks": 18,
+    "unconnectedIds": []
+  },
+  "adjacentRouteAudit": {
+    "segmentCount": 4168,
+    "adjacentProbes": 7667661,
+    "minAdjacentOverhead": 28.061306781572128,
+    "minAdjacentLowClearance": -13.037967154064711,
+    "failures": [
+      {
+        "id": "v136744",
+        "segment": "0:2495",
+        "edge": 1.1812106698774976,
+        "above": 28.829190274117863,
+        "x": 19755.806640625,
+        "y": 37.60736083984375,
+        "z": -531.9528198242188
+      },
+      {
+        "id": "v136744",
+        "segment": "0:2496",
+        "edge": 0.12615713615343438,
+        "above": 29.558128262114305,
+        "x": 19755.806640625,
+        "y": 37.60736083984375,
+        "z": -531.9528198242188
+      },
+      {
+        "id": "v136747",
+        "segment": "0:2495",
+        "edge": 1.1812106698774976,
+        "above": 28.829190274117863,
+        "x": 19755.806640625,
+        "y": 37.60736083984375,
+        "z": -531.9528198242188
+      },
+      {
+        "id": "v136747",
+        "segment": "0:2496",
+        "edge": 0.12615713615343438,
+        "above": 29.558128262114305,
+        "x": 19755.806640625,
+        "y": 37.60736083984375,
+        "z": -531.9528198242188
+      },
+      {
+        "id": "v136749",
+        "segment": "0:2495",
+        "edge": 1.1812106698774976,
+        "above": 28.829190274117863,
+        "x": 19755.806640625,
+        "y": 37.60736083984375,
+        "z": -531.9528198242188
+      },
+      {
+        "id": "v136749",
+        "segment": "0:2496",
+        "edge": 0.12615713615343438,
+        "above": 29.558128262114305,
+        "x": 19755.806640625,
+        "y": 37.60736083984375,
+        "z": -531.9528198242188
+      },
+      {
+        "id": "v136750",
+        "segment": "0:2496",
+        "edge": 1.0417293200380335,
+        "above": 28.837688351225633,
+        "x": 19755.341796875,
+        "y": 36.88692092895508,
+        "z": -533.7349243164062
+      },
+      {
+        "id": "v136750",
+        "segment": "0:2497",
+        "edge": -0.009947904424638665,
+        "above": 29.669413084685665,
+        "x": 19755.341796875,
+        "y": 36.88692092895508,
+        "z": -533.7349243164062
+      },
+      {
+        "id": "v136753",
+        "segment": "0:2496",
+        "edge": 1.0417293200380335,
+        "above": 28.837688351225633,
+        "x": 19755.341796875,
+        "y": 36.88692092895508,
+        "z": -533.7349243164062
+      },
+      {
+        "id": "v136753",
+        "segment": "0:2497",
+        "edge": -0.009947904424638665,
+        "above": 29.669413084685665,
+        "x": 19755.341796875,
+        "y": 36.88692092895508,
+        "z": -533.7349243164062
+      },
+      {
+        "id": "v136755",
+        "segment": "0:2496",
+        "edge": 1.0417293200380335,
+        "above": 28.837688351225633,
+        "x": 19755.341796875,
+        "y": 36.88692092895508,
+        "z": -533.7349243164062
+      },
+      {
+        "id": "v136755",
+        "segment": "0:2497",
+        "edge": -0.009947904424638665,
+        "above": 29.669413084685665,
+        "x": 19755.341796875,
+        "y": 36.88692092895508,
+        "z": -533.7349243164062
+      },
+      {
+        "id": "v136802",
+        "segment": "0:2495",
+        "edge": 1.1812106698774976,
+        "above": 28.829190274117863,
+        "x": 19755.806640625,
+        "y": 37.60736083984375,
+        "z": -531.9528198242188
+      },
+      {
+        "id": "v136802",
+        "segment": "0:2496",
+        "edge": 0.12615713615343438,
+        "above": 29.558128262114305,
+        "x": 19755.806640625,
+        "y": 37.60736083984375,
+        "z": -531.9528198242188
+      },
+      {
+        "id": "v136804",
+        "segment": "0:2492",
+        "edge": 1.2173546322130022,
+        "above": 28.84997954093183,
+        "x": 19750.72265625,
+        "y": 37.60432815551758,
+        "z": -530.625
+      },
+      {
+        "id": "v136804",
+        "segment": "0:2493",
+        "edge": -0.29781560541826835,
+        "above": 28.81862991807187,
+        "x": 19750.72265625,
+        "y": 37.60432815551758,
+        "z": -530.625
+      },
+      {
+        "id": "v136804",
+        "segment": "0:2494",
+        "edge": -1.7424367581273188,
+        "above": 28.80201799373033,
+        "x": 19750.72265625,
+        "y": 37.60432815551758,
+        "z": -530.625
+      },
+      {
+        "id": "v136804",
+        "segment": "0:2495",
+        "edge": -3.1053811543373158,
+        "above": 28.82615758979169,
+        "x": 19750.72265625,
+        "y": 37.60432815551758,
+        "z": -530.625
+      },
+      {
+        "id": "v136804",
+        "segment": "0:2496",
+        "edge": -4.360422586716027,
+        "above": 29.555095577788133,
+        "x": 19750.72265625,
+        "y": 37.60432815551758,
+        "z": -530.625
+      },
+      {
+        "id": "v136805",
+        "segment": "0:2495",
+        "edge": 1.1812106698774976,
+        "above": 28.829190274117863,
+        "x": 19755.806640625,
+        "y": 37.60736083984375,
+        "z": -531.9528198242188
+      },
+      {
+        "id": "v136805",
+        "segment": "0:2496",
+        "edge": 0.12615713615343438,
+        "above": 29.558128262114305,
+        "x": 19755.806640625,
+        "y": 37.60736083984375,
+        "z": -531.9528198242188
+      },
+      {
+        "id": "v136806",
+        "segment": "0:2495",
+        "edge": 1.1812106698774976,
+        "above": 28.829190274117863,
+        "x": 19755.806640625,
+        "y": 37.60736083984375,
+        "z": -531.9528198242188
+      },
+      {
+        "id": "v136806",
+        "segment": "0:2496",
+        "edge": 0.12615713615343438,
+        "above": 29.558128262114305,
+        "x": 19755.806640625,
+        "y": 37.60736083984375,
+        "z": -531.9528198242188
+      },
+      {
+        "id": "v136807",
+        "segment": "0:2492",
+        "edge": 1.2173546322130022,
+        "above": 28.84997954093183,
+        "x": 19750.72265625,
+        "y": 37.60432815551758,
+        "z": -530.625
+      },
+      {
+        "id": "v136807",
+        "segment": "0:2493",
+        "edge": -0.29781560541826835,
+        "above": 28.81862991807187,
+        "x": 19750.72265625,
+        "y": 37.60432815551758,
+        "z": -530.625
+      },
+      {
+        "id": "v136807",
+        "segment": "0:2494",
+        "edge": -1.7424367581273188,
+        "above": 28.80201799373033,
+        "x": 19750.72265625,
+        "y": 37.60432815551758,
+        "z": -530.625
+      },
+      {
+        "id": "v136807",
+        "segment": "0:2495",
+        "edge": -3.1053811543373158,
+        "above": 28.82615758979169,
+        "x": 19750.72265625,
+        "y": 37.60432815551758,
+        "z": -530.625
+      },
+      {
+        "id": "v136807",
+        "segment": "0:2496",
+        "edge": -4.360422586716027,
+        "above": 29.555095577788133,
+        "x": 19750.72265625,
+        "y": 37.60432815551758,
+        "z": -530.625
+      },
+      {
+        "id": "v136808",
+        "segment": "0:2496",
+        "edge": 1.0417293200380335,
+        "above": 28.837688351225633,
+        "x": 19755.341796875,
+        "y": 36.88692092895508,
+        "z": -533.7349243164062
+      },
+      {
+        "id": "v136808",
+        "segment": "0:2497",
+        "edge": -0.009947904424638665,
+        "above": 29.669413084685665,
+        "x": 19755.341796875,
+        "y": 36.88692092895508,
+        "z": -533.7349243164062
+      }
+    ],
+    "passed": false,
+    "scope": "All nearby conservative main and branch capsules at4096 main rows plus actual branch rows; discrete vertices/centroids, not swept volumes"
+  }
+}

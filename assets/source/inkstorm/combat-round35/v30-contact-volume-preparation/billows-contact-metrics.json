@@ -1,0 +1,152 @@
+[
+  {
+    "name": "hero",
+    "birthFootprint": {
+      "center": {
+        "x": 18604.71414349513,
+        "y": -13.548755956132803,
+        "z": 23.254411075335113
+      },
+      "axis": {
+        "x": -0.611826935413504,
+        "y": 0,
+        "z": 0.7909916567843935
+      },
+      "halfLength": 1.5275428568457396,
+      "halfWidth": 0.5113702284448932,
+      "edges": [
+        {
+          "x": 18600.678161616866,
+          "y": -13.529447943707618,
+          "z": 24.515250243735117
+        },
+        {
+          "x": 18604.596790007618,
+          "y": -14.029355792412545,
+          "z": 27.405177884321986
+        }
+      ]
+    },
+    "minimumGeometryGap": 0.039701147701856954,
+    "metrics": [
+      {
+        "age": 0,
+        "minimumGap": 0.03998197957208305,
+        "maximumBaseGap": 0.04060760803770336,
+        "maximumVerticalRise": 0.019999999552965164,
+        "queries": 45
+      },
+      {
+        "age": 0.058333333333,
+        "minimumGap": 0.03999709362942028,
+        "maximumBaseGap": 0.048587747502180534,
+        "maximumVerticalRise": 0.665330708026886,
+        "queries": 45
+      },
+      {
+        "age": 0.16,
+        "minimumGap": 0.03980011440027731,
+        "maximumBaseGap": 0.0801996987099507,
+        "maximumVerticalRise": 1.7355867624282837,
+        "queries": 45
+      },
+      {
+        "age": 0.408333333333,
+        "minimumGap": 0.039701147701856954,
+        "maximumBaseGap": 0.07996802505029343,
+        "maximumVerticalRise": 1.7355867624282837,
+        "queries": 45
+      },
+      {
+        "age": 1.208333333333,
+        "minimumGap": 0.03977172055172673,
+        "maximumBaseGap": 0.08076475584435805,
+        "maximumVerticalRise": 0.49527689814567566,
+        "queries": 45
+      },
+      {
+        "age": 1.64,
+        "minimumGap": 0.039981892404943764,
+        "maximumBaseGap": 0.040114621390651806,
+        "maximumVerticalRise": 0.0007092812447808683,
+        "queries": 45
+      }
+    ],
+    "scope": "Actual native-input source fixture, complete dust vertices versus physical terrain; no native pixels/casing occlusion/FPS claim. Nine terrain probes per active lobe, zero on repeated same clock."
+  },
+  {
+    "name": "rival",
+    "birthFootprint": {
+      "center": {
+        "x": 18604.700962408693,
+        "y": -13.546980011230739,
+        "z": 23.257317506984723
+      },
+      "axis": {
+        "x": -0.6118269354135042,
+        "y": 0,
+        "z": 0.7909916567843935
+      },
+      "halfLength": 1.5350675821773945,
+      "halfWidth": 0.5118893389464251,
+      "edges": [
+        {
+          "x": 18600.792932519413,
+          "y": -13.520454843293074,
+          "z": 24.482400965696904
+        },
+        {
+          "x": 18604.461026222103,
+          "y": -14.027483218151504,
+          "z": 27.442534708186955
+        }
+      ]
+    },
+    "minimumGeometryGap": 0.03952881803987651,
+    "metrics": [
+      {
+        "age": 0,
+        "minimumGap": 0.039966487806875506,
+        "maximumBaseGap": 0.040617095751462884,
+        "maximumVerticalRise": 0.019999999552965164,
+        "queries": 45
+      },
+      {
+        "age": 0.058333333333,
+        "minimumGap": 0.03998379843117661,
+        "maximumBaseGap": 0.04873136198732908,
+        "maximumVerticalRise": 0.665330708026886,
+        "queries": 45
+      },
+      {
+        "age": 0.16,
+        "minimumGap": 0.03987355522830072,
+        "maximumBaseGap": 0.08120895419759044,
+        "maximumVerticalRise": 1.7355867624282837,
+        "queries": 45
+      },
+      {
+        "age": 0.408333333333,
+        "minimumGap": 0.03952881803987651,
+        "maximumBaseGap": 0.08117048819571338,
+        "maximumVerticalRise": 1.7355867624282837,
+        "queries": 45
+      },
+      {
+        "age": 1.208333333333,
+        "minimumGap": 0.03967769442151159,
+        "maximumBaseGap": 0.08206253160669164,
+        "maximumVerticalRise": 0.49527689814567566,
+        "queries": 45
+      },
+      {
+        "age": 1.64,
+        "minimumGap": 0.04000238337432904,
+        "maximumBaseGap": 0.040074295348874855,
+        "maximumVerticalRise": 0.0007092812447808683,
+        "queries": 45
+      }
+    ],
+    "scope": "Actual native-input source fixture, complete dust vertices versus physical terrain; no native pixels/casing occlusion/FPS claim. Nine terrain probes per active lobe, zero on repeated same clock."
+  }
+]

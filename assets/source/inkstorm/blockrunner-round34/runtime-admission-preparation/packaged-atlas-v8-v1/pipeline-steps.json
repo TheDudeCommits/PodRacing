@@ -1,0 +1,35 @@
+{
+  "scope": "private packaging only",
+  "master": "assets/source/inkstorm/blockrunner-round34/exports/blockrunner-atlas-v8-v1-normalized-master.glb",
+  "expectedMasterSha256": "f0a716c9f8bf5018e59f9876a00a4ce8ab745582258de1ee44cef2761b7860f5",
+  "steps": [
+    {
+      "step": "01-hero",
+      "exitCode": 0
+    },
+    {
+      "step": "02-protected-lod",
+      "exitCode": 0
+    },
+    {
+      "step": "03-rival",
+      "exitCode": 0
+    },
+    {
+      "step": "04-validator-hero",
+      "exitCode": 0
+    },
+    {
+      "step": "04-validator-rival",
+      "exitCode": 0
+    },
+    {
+      "step": "05-color-only",
+      "exitCode": 0
+    },
+    {
+      "step": "06-fixture",
+      "exitCode": 0
+    }
+  ]
+}

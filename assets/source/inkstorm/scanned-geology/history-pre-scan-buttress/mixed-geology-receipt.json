@@ -1,0 +1,465 @@
+{
+  "date": "2026-09-07",
+  "source": "Original Blender geometry; no downloaded assets",
+  "operation": "Byte-exact restoration of broad round-13 cliffs and preservation of round-14 sculpture under fractured-spire runtime family",
+  "internalMeshNames": "The fractured-spire files retain historical canyon-buttress internal mesh/node names to preserve the approved sculpture bytes. Runtime family and asset URL are fractured-spire.",
+  "placement": "At most 15 percent of ordinary broad-cliff placements become separate open-ground accents. Canyon, hairpin, start, chicane, fork dividers and citadel remain broad. Accent dimensions never exceed the original placement footprint; selected accents are at least 260 m apart.",
+  "validation": "All public Inkstorm GLBs validated with Khronos glTF Validator; four geology assets additionally assert triangle budgets, identical exact bounds, one primitive/material, finite attributes and unit normals.",
+  "performance": "Adds one high and one low geometry, with separate instanced material batches. Full runtime performance must be measured on the integrated build.",
+  "preserved": [
+    {
+      "asset": "canyon-buttress.glb",
+      "sourcePath": "assets/source/inkstorm/geology-revision/history-round13/canyon-buttress.glb",
+      "sha256": "a65200e93cf582925bd4ee496e9a91569152156e59c56a23a157bd8a66b708e2"
+    },
+    {
+      "asset": "canyon-buttress-lod.glb",
+      "sourcePath": "assets/source/inkstorm/geology-revision/history-round13/canyon-buttress-lod.glb",
+      "sha256": "a358427e62edcfaf1a1e3308b3662ecd9715078c6066717099f9902a3c671e7c"
+    },
+    {
+      "asset": "fractured-spire.glb",
+      "sourcePath": "assets/source/inkstorm/geology-revision/history-round14/canyon-buttress.glb",
+      "sha256": "e82a86b1e0667dace700cfe5b24d6af8e2dc0ae1b4f6da6160ade168a4df79d7"
+    },
+    {
+      "asset": "fractured-spire-lod.glb",
+      "sourcePath": "assets/source/inkstorm/geology-revision/history-round14/canyon-buttress-lod.glb",
+      "sha256": "b0203d116d7b3bbf9858a06d0366a90ce08c8aa6b4a2b43ae2167a01df92dccc"
+    }
+  ],
+  "assets": [
+    {
+      "asset": "canyon-arch.glb",
+      "bytes": 63568,
+      "sha256": "36876e340a578993c9c3d01084029d1ca0b757ef140ae482bbd1e0e1ff6b0453",
+      "meshes": 1,
+      "primitives": 1,
+      "materials": 1,
+      "triangles": 800,
+      "bounds": {
+        "min": [
+          -83.76539611816406,
+          0,
+          -16.794767379760742
+        ],
+        "max": [
+          86.93008422851562,
+          99.79183197021484,
+          16.7889404296875
+        ]
+      },
+      "validation": {
+        "errors": 0,
+        "warnings": 0,
+        "infos": 0,
+        "hints": 0
+      }
+    },
+    {
+      "asset": "canyon-buttress-lod.glb",
+      "bytes": 126372,
+      "sha256": "a358427e62edcfaf1a1e3308b3662ecd9715078c6066717099f9902a3c671e7c",
+      "meshes": 1,
+      "primitives": 1,
+      "materials": 1,
+      "triangles": 1798,
+      "bounds": {
+        "min": [
+          -40,
+          0,
+          -50
+        ],
+        "max": [
+          40,
+          120,
+          50
+        ]
+      },
+      "validation": {
+        "errors": 0,
+        "warnings": 0,
+        "infos": 0,
+        "hints": 0
+      }
+    },
+    {
+      "asset": "canyon-buttress.glb",
+      "bytes": 716600,
+      "sha256": "a65200e93cf582925bd4ee496e9a91569152156e59c56a23a157bd8a66b708e2",
+      "meshes": 1,
+      "primitives": 1,
+      "materials": 1,
+      "triangles": 7990,
+      "bounds": {
+        "min": [
+          -40,
+          0,
+          -50
+        ],
+        "max": [
+          40,
+          120,
+          50
+        ]
+      },
+      "validation": {
+        "errors": 0,
+        "warnings": 0,
+        "infos": 0,
+        "hints": 0
+      }
+    },
+    {
+      "asset": "cliff-strata.glb",
+      "bytes": 52460,
+      "sha256": "eed02024c8ee24adceb1ba9e15a9343c5ef4cf652e85b30cabd4453eabc5af2f",
+      "meshes": 1,
+      "primitives": 1,
+      "materials": 1,
+      "triangles": 664,
+      "bounds": {
+        "min": [
+          -36.51308059692383,
+          -2,
+          -28.8538875579834
+        ],
+        "max": [
+          37.07428741455078,
+          111.13047790527344,
+          23.516141891479492
+        ]
+      },
+      "validation": {
+        "errors": 0,
+        "warnings": 0,
+        "infos": 0,
+        "hints": 0
+      }
+    },
+    {
+      "asset": "finish-tower.glb",
+      "bytes": 68484,
+      "sha256": "b2100d2c3415ac0cdb8f0fd573ac292583cf7858812b5452f05363698b8885e8",
+      "meshes": 1,
+      "primitives": 1,
+      "materials": 1,
+      "triangles": 868,
+      "bounds": {
+        "min": [
+          -12.5,
+          0,
+          -11.5
+        ],
+        "max": [
+          21,
+          113,
+          11.5
+        ]
+      },
+      "validation": {
+        "errors": 0,
+        "warnings": 0,
+        "infos": 0,
+        "hints": 0
+      }
+    },
+    {
+      "asset": "foundry-gantry.glb",
+      "bytes": 317292,
+      "sha256": "5270c5d9073016f374e4c17a7240160ae68898e802ca219b4393821a56a59bc6",
+      "meshes": 1,
+      "primitives": 1,
+      "materials": 1,
+      "triangles": 4494,
+      "bounds": {
+        "min": [
+          -52,
+          -25,
+          -7
+        ],
+        "max": [
+          52,
+          54.30417251586914,
+          7
+        ]
+      },
+      "validation": {
+        "errors": 0,
+        "warnings": 0,
+        "infos": 0,
+        "hints": 0
+      }
+    },
+    {
+      "asset": "fractured-spire-lod.glb",
+      "bytes": 176148,
+      "sha256": "b0203d116d7b3bbf9858a06d0366a90ce08c8aa6b4a2b43ae2167a01df92dccc",
+      "meshes": 1,
+      "primitives": 1,
+      "materials": 1,
+      "triangles": 1803,
+      "bounds": {
+        "min": [
+          -40,
+          0,
+          -50
+        ],
+        "max": [
+          40,
+          120,
+          50
+        ]
+      },
+      "validation": {
+        "errors": 0,
+        "warnings": 0,
+        "infos": 0,
+        "hints": 0
+      }
+    },
+    {
+      "asset": "fractured-spire.glb",
+      "bytes": 373568,
+      "sha256": "e82a86b1e0667dace700cfe5b24d6af8e2dc0ae1b4f6da6160ade168a4df79d7",
+      "meshes": 1,
+      "primitives": 1,
+      "materials": 1,
+      "triangles": 3416,
+      "bounds": {
+        "min": [
+          -40,
+          0,
+          -50
+        ],
+        "max": [
+          40,
+          120,
+          50
+        ]
+      },
+      "validation": {
+        "errors": 0,
+        "warnings": 0,
+        "infos": 0,
+        "hints": 0
+      }
+    },
+    {
+      "asset": "mesa-crown.glb",
+      "bytes": 52452,
+      "sha256": "613434716aa55d31f8d3d78f3a35b076db49466e6393a2f601bada5dda2b3d97",
+      "meshes": 1,
+      "primitives": 1,
+      "materials": 1,
+      "triangles": 664,
+      "bounds": {
+        "min": [
+          -71.69628143310547,
+          -2,
+          -60.30181121826172
+        ],
+        "max": [
+          71.615478515625,
+          77.82073211669922,
+          47.50540542602539
+        ]
+      },
+      "validation": {
+        "errors": 0,
+        "warnings": 0,
+        "infos": 0,
+        "hints": 0
+      }
+    },
+    {
+      "asset": "pipe-bank.glb",
+      "bytes": 504460,
+      "sha256": "4b3510d0f8b10e1a44158edb0b0bbdc25bac33019176368638937ab1834a3b81",
+      "meshes": 1,
+      "primitives": 1,
+      "materials": 1,
+      "triangles": 7160,
+      "bounds": {
+        "min": [
+          -47,
+          0,
+          -23
+        ],
+        "max": [
+          47,
+          51,
+          20.20081901550293
+        ]
+      },
+      "validation": {
+        "errors": 0,
+        "warnings": 0,
+        "infos": 0,
+        "hints": 0
+      }
+    },
+    {
+      "asset": "pit-complex.glb",
+      "bytes": 513368,
+      "sha256": "5cebe6dce3a0a27a7d887f4f9a6fbfde6e29512cd47a039b79c4dbadbfe39acd",
+      "meshes": 1,
+      "primitives": 1,
+      "materials": 1,
+      "triangles": 7032,
+      "bounds": {
+        "min": [
+          -71,
+          0,
+          -32.5
+        ],
+        "max": [
+          79,
+          47,
+          28
+        ]
+      },
+      "validation": {
+        "errors": 0,
+        "warnings": 0,
+        "infos": 0,
+        "hints": 0
+      }
+    },
+    {
+      "asset": "refinery-stack.glb",
+      "bytes": 57844,
+      "sha256": "0f52f2e0cc195a5fe36853f543cfad8e4c9a2391d5083b016f71ffe4f1f7f781",
+      "meshes": 1,
+      "primitives": 4,
+      "materials": 4,
+      "triangles": 528,
+      "bounds": {
+        "min": [
+          -11.5,
+          0,
+          -11.5
+        ],
+        "max": [
+          11.5,
+          97.5,
+          11.5
+        ]
+      },
+      "validation": {
+        "errors": 0,
+        "warnings": 0,
+        "infos": 4,
+        "hints": 0
+      }
+    },
+    {
+      "asset": "roadside-shard.glb",
+      "bytes": 52464,
+      "sha256": "fd3c839b37007dc5beb53f750362eea44cf966dc4b7b4cf501d9251d4b5d4f6d",
+      "meshes": 1,
+      "primitives": 1,
+      "materials": 1,
+      "triangles": 664,
+      "bounds": {
+        "min": [
+          -6.204627990722656,
+          -2,
+          -4.231997489929199
+        ],
+        "max": [
+          6.129746437072754,
+          12.339521408081055,
+          4.429841995239258
+        ]
+      },
+      "validation": {
+        "errors": 0,
+        "warnings": 0,
+        "infos": 0,
+        "hints": 0
+      }
+    },
+    {
+      "asset": "sandstone-scree-lod.glb",
+      "bytes": 94152,
+      "sha256": "1cd793662a4707a87fda35a84dda546b5fb9c047c64d99816e2a0f19a88915b7",
+      "meshes": 1,
+      "primitives": 1,
+      "materials": 1,
+      "triangles": 1198,
+      "bounds": {
+        "min": [
+          -17.5,
+          0,
+          -11
+        ],
+        "max": [
+          17.5,
+          12,
+          11
+        ]
+      },
+      "validation": {
+        "errors": 0,
+        "warnings": 0,
+        "infos": 0,
+        "hints": 0
+      }
+    },
+    {
+      "asset": "sandstone-scree.glb",
+      "bytes": 599300,
+      "sha256": "b6a3688af319752f7a4d02d95d1600225310b22e573adecc5274a04fbdf5af7c",
+      "meshes": 1,
+      "primitives": 1,
+      "materials": 1,
+      "triangles": 5852,
+      "bounds": {
+        "min": [
+          -17.5,
+          0,
+          -11
+        ],
+        "max": [
+          17.5,
+          12,
+          11
+        ]
+      },
+      "validation": {
+        "errors": 0,
+        "warnings": 0,
+        "infos": 0,
+        "hints": 0
+      }
+    },
+    {
+      "asset": "wind-blade.glb",
+      "bytes": 52456,
+      "sha256": "ba6164eb49629f3283c66e160ede136488f69bbfbf8fc8d340e72bc3a0002153",
+      "meshes": 1,
+      "primitives": 1,
+      "materials": 1,
+      "triangles": 664,
+      "bounds": {
+        "min": [
+          -19.583036422729492,
+          -2,
+          -8.26010513305664
+        ],
+        "max": [
+          16.98383903503418,
+          152.40176391601562,
+          8.396995544433594
+        ]
+      },
+      "validation": {
+        "errors": 0,
+        "warnings": 0,
+        "infos": 0,
+        "hints": 0
+      }
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "status": "V17_UI_SOURCE_FROZEN_NATIVE_PENDING",
+  "recordedAt": "2026-09-08T22:13:35.002990+00:00",
+  "files": [
+    {
+      "path": "src/ui/broadcastStyles.ts",
+      "sha256": "eaf1be63399d84d70d1c13187d75aa1c350987bb201cc464a25060f62c82ceec",
+      "bytes": 70090
+    },
+    {
+      "path": "src/ui/RaceHud.ts",
+      "sha256": "0a2e915b26e5c0c50aa1430615af08fa7978a9c59a492e804b6b15df0bdaa9d9",
+      "bytes": 117892
+    },
+    {
+      "path": "src/ui/workshopGraphicStyles.ts",
+      "sha256": "c026d0c35640b4ab1551d4aa0fa265c9cce03dcd970e85614f8195c6c016ffcb",
+      "bytes": 16190
+    }
+  ],
+  "buildChange": {
+    "beforeSha256": "925131cba7ef736e1fdd79e26c176834989827c08691dd0181600943a1cf8786",
+    "afterSha256": "c026d0c35640b4ab1551d4aa0fa265c9cce03dcd970e85614f8195c6c016ffcb",
+    "patch": "assets/source/inkstorm/broadcast-ui-round35/build-v17/BUILD_V17.patch",
+    "patchSha256": "978abf5bf9c747af8a88a2eaf4e676d5ce4bef0cbfc0c59929dcc493f5abfc2a",
+    "scope": "CSS only. Existing markup, 5 slots, 20 part identities, original glyph functions, actual names/descriptions/benefits/tradeoffs/comparisons/equip/focus behavior and summary unchanged."
+  },
+  "checks": {
+    "typecheck": "npm run typecheck PASS",
+    "buildRegression": "2 files / 17 tests PASS: workshop and galacticHudModel",
+    "hudRegressionPreviouslyPassed": "4 files / 29 tests PASS: threatLayout, hudModel, sessionHudModel, galacticHudModel",
+    "cssSyntax": {
+      "status": "PASS",
+      "type": "CPU CSS syntax parse, not rendered layout validation",
+      "workshopRules": 120,
+      "combinedRules": 838
+    },
+    "whitespaceCheck": "git diff --no-index --check produced no whitespace diagnostics"
+  },
+  "hudEvidence": "output/critics/hud-v17-proposal/APPLIED_FREEZE.json",
+  "nativeValidation": "Pending root integrated build, all20-part native readability/equip/reset/focus/description checks, desktop/mobile/landscape/motion, and fresh unchanged seven-image critic. No browser/build/GPU used by this agent."
+}

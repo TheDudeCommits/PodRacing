@@ -1,0 +1,51 @@
+{
+  "outcome": "PASS",
+  "scope": "Audit of isolated critic execution, not art acceptance. Seven exact byte-matched images and a standalone prompt; no task history supplied. Generic user/Codex configuration may load. Raw event log contains no tool, browser, file-read, search or history retrieval item. The critic itself rejects the art at4/10 against8.",
+  "attachmentCount": 7,
+  "referenceSha256": "065476fff16d5986a4173ba374dd308b326d976687db4413f1b9b0f81b8bcb21",
+  "eventTypes": [
+    "thread.started",
+    "turn.started",
+    "item.completed",
+    "turn.completed"
+  ],
+  "itemTypes": [
+    "agent_message"
+  ],
+  "threadId": "01a08275-0786-71c3-bae0-9d0ab2370e18",
+  "exitCode": 0,
+  "rawFinalMatchesReview": true,
+  "promptSha256": "336d5a5414ac6dfc77d745415ae2f54504635d9434cc8ce94b0921f34ed359b4",
+  "files": [
+    {
+      "path": "assets/source/inkstorm/combat-round35/blind-camera-v10/inventory.json",
+      "bytes": 2467,
+      "sha256": "486c1c95e5c541a67c538d3aaeb8cdce8706413b6b3975c50a727fddf93d999c"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/blind-camera-v10/prompt.txt",
+      "bytes": 1144,
+      "sha256": "336d5a5414ac6dfc77d745415ae2f54504635d9434cc8ce94b0921f34ed359b4"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/blind-camera-v10/cli-critic-attempt1/invocation.json",
+      "bytes": 1698,
+      "sha256": "70c2102c3ab2486d6fd8819433a9f3d121a0640c52af17102dc845dadf102dd5"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/blind-camera-v10/cli-critic-attempt1/events.jsonl",
+      "bytes": 3428,
+      "sha256": "8de3bc43a170fee956fe2b2f2590d95f414644120a1e4ebb92088612daff7c83"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/blind-camera-v10/cli-critic-attempt1/stderr.log",
+      "bytes": 2883,
+      "sha256": "d99ee1dac6eb16dd1318e8c29b30e0b7ad0198428425946208cb2b12c68b6650"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/blind-camera-v10/cli-critic-attempt1/review.md",
+      "bytes": 3063,
+      "sha256": "6a5247e9ea4af0340ea73d735f7f1969ada5e26e0f384ad3a2c6520dc9f9378d"
+    }
+  ]
+}

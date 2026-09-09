@@ -1,0 +1,45 @@
+{
+  "outcome": "PASS",
+  "postcssRules": 771,
+  "changedCssLines": [
+    {
+      "line": 675,
+      "before": ".pod-hud__driving-instruments .pod-hud__speed-dial .dial-resource-glass { fill:#112e3696; stroke:none; }",
+      "after": ".pod-hud__driving-instruments .pod-hud__speed-dial .dial-resource-glass { fill:#083e52d4; stroke:none; }"
+    },
+    {
+      "line": 684,
+      "before": ".pod-hud__driving-instruments .pod-hud__meter--boost,.pod-hud__driving-instruments .pod-hud__telemetry>.pod-hud__meter { display:grid; grid-template-columns:47px minmax(0,1fr) 38px; align-items:center; column-gap:7px; }",
+      "after": ".pod-hud__driving-instruments .pod-hud__meter--boost,.pod-hud__driving-instruments .pod-hud__telemetry>.pod-hud__meter { display:grid; grid-template-columns:50px minmax(0,1fr) 42px; align-items:center; column-gap:7px; }"
+    },
+    {
+      "line": 686,
+      "before": ".pod-hud__driving-instruments .pod-hud__meter-head .pod-hud__label { grid-column:1; grid-row:1; margin:0; font:700 12px/1.25 Inkstorm UI,sans-serif; letter-spacing:0; }",
+      "after": ".pod-hud__driving-instruments .pod-hud__meter-head .pod-hud__label { grid-column:1; grid-row:1; margin:0; font:700 13px/1.25 Inkstorm UI,sans-serif; letter-spacing:0; }"
+    },
+    {
+      "line": 687,
+      "before": ".pod-hud__driving-instruments .pod-hud__meter-value { grid-column:3; grid-row:1; font:400 15px/1.15 var(--ui-heading); letter-spacing:0; text-align:right; }",
+      "after": ".pod-hud__driving-instruments .pod-hud__meter-value { grid-column:3; grid-row:1; font:400 16px/1.15 var(--ui-heading); letter-spacing:0; text-align:right; }"
+    },
+    {
+      "line": 689,
+      "before": ".pod-hud__driving-instruments .pod-hud__meter-track,.pod-hud__driving-instruments .pod-hud__telemetry .pod-hud__meter-track { grid-column:2; grid-row:1; height:7px; margin:0; background:#e4d69e26; border:1px solid #f5d58e66; border-radius:1px; transform:none; }",
+      "after": ".pod-hud__driving-instruments .pod-hud__meter-track,.pod-hud__driving-instruments .pod-hud__telemetry .pod-hud__meter-track { grid-column:2; grid-row:1; height:7px; margin:0; background:#b1d9da33; border:0; border-radius:999px; transform:none; }"
+    },
+    {
+      "line": 772,
+      "before": ".pod-hud__race::before { content:''; background:#173c43b8; clip-path:polygon(0 0,100% 0,100% calc(100% - 20px),90.5% calc(100% - 20px),88.8% calc(100% - 5px),78.2% calc(100% - 5px),76.4% calc(100% - 20px),61% calc(100% - 20px),57% calc(100% - 4px),43% calc(100% - 4px),39% calc(100% - 20px),23.6% calc(100% - 20px),21.8% calc(100% - 5px),11.2% calc(100% - 5px),9.5% calc(100% - 20px),0 calc(100% - 20px)); }",
+      "after": ".pod-hud__race::before { content:''; background:#063e57e6; clip-path:polygon(0 0,100% 0,100% calc(100% - 20px),90.5% calc(100% - 20px),88.8% calc(100% - 5px),78.2% calc(100% - 5px),76.4% calc(100% - 20px),61% calc(100% - 20px),57% calc(100% - 4px),43% calc(100% - 4px),39% calc(100% - 20px),23.6% calc(100% - 20px),21.8% calc(100% - 5px),11.2% calc(100% - 5px),9.5% calc(100% - 20px),0 calc(100% - 20px)); }"
+    },
+    {
+      "line": 779,
+      "before": ".pod-hud__race-stat .pod-hud__label,.pod-hud__race-time>.pod-hud__label { display:block; align-self:center; padding:0; border-radius:0; background:none; color:#ffe39b; font:700 12px/1.25 Inkstorm UI,sans-serif; letter-spacing:.1em; text-shadow:none; }",
+      "after": ".pod-hud__race-stat .pod-hud__label,.pod-hud__race-time>.pod-hud__label { display:block; align-self:center; padding:0; border-radius:0; background:none; color:#ffe39b; font:700 13px/1.25 Inkstorm UI,sans-serif; letter-spacing:.075em; text-shadow:none; }"
+    }
+  ],
+  "onlyDecorativeResourcePathChangesInRaceHud": true,
+  "telemetryBlockDisplayAndActualPercentWidthPreserved": true,
+  "threatAndReducedMotionTailIdentical": true,
+  "scope": "Source invariants only; native visual and resource-row geometry pending"
+}

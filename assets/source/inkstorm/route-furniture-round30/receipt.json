@@ -1,0 +1,41 @@
+{
+  "status": "STAGED ONLY; no runtime/public/test/build/render changed",
+  "source": "src/render/objects/RaceCourseView.ts",
+  "sourceSha256": "ff07bf2f9910bd61c0b7873261016682f2dc8686c3f9f0c9277cc13e7530710a",
+  "candidateSha256": "1d81e54c8eb1ffeb7d043175539e91db7637f3e61a7e499243fd40d68540651b",
+  "changes": [
+    {
+      "before": "uHalfHeight: { value: 4.8 }",
+      "after": "uHalfHeight: { value: 2.4 }"
+    },
+    {
+      "before": "uHalfHeight: { value: 1.75 }",
+      "after": "uHalfHeight: { value: .7 }"
+    },
+    {
+      "before": "new ConeGeometry(0.92, 9.6, 5)",
+      "after": "new ConeGeometry(.62, 4.8, 5)"
+    },
+    {
+      "before": "new CylinderGeometry(0.34, 0.34, 3.5, 5)",
+      "after": "new CylinderGeometry(.24, .24, 1.4, 5)"
+    },
+    {
+      "before": "One coherent 4.6 x 14 CSS-pixel sign",
+      "after": "One coherent 3.6 x 9 CSS-pixel sign"
+    },
+    {
+      "before": "new Vector2(4.6, 14)",
+      "after": "new Vector2(3.6, 9)"
+    },
+    {
+      "before": "this.heightAt(pylonX, pylonZ) + 4.6",
+      "after": "this.heightAt(pylonX, pylonZ) + 2.2"
+    },
+    {
+      "before": "position.y += 3.55;",
+      "after": "position.y += 2.0;"
+    }
+  ],
+  "scope": "Near route markers reduced from9.9m total top to4.9m, grounded bottom stays-0.2m; far coherent single-quad marker becomes3.6x9CSSpx. Placements/counts/fades/branch-conflict checks/physics unchanged. Requires actual near+far/section/live readability, existing test calibration and blind comparison before retaining."
+}

@@ -1,0 +1,106 @@
+{
+  "status": "SOURCE_ONLY_FEASIBILITY_METRICS_NOT_BAKED",
+  "candidateRevision": 4,
+  "anchorSha256": "2fafc4be49abd590acd62ff3a8c9e4672d6b27d6d929d334d5e5232584f8d8b1",
+  "assets": [
+    {
+      "family": "pit-complex",
+      "path": "assets/source/inkstorm/grid-construction-round29/candidates/pit-complex.glb",
+      "sha256": "ea94400e38bf6cf5998f84cbd2cffd342054760e17c43c0f4b75ac636212d1dc",
+      "bytes": 897776,
+      "triangles": 12012,
+      "vertices": 22906,
+      "surfaceAreaSquareMetres": 44892.23766482888,
+      "priorityAreaSquareMetres": 14779.887896953624,
+      "priorityTriangles": 3725,
+      "minimumTriangleArea": 0.0016164747285074554,
+      "medianTriangleArea": 0.13532635421142913,
+      "originalAttributes": [
+        "POSITION",
+        "NORMAL",
+        "COLOR_0"
+      ],
+      "sourcesGLB": [
+        [
+          -50,
+          9.44,
+          -3
+        ],
+        [
+          -8,
+          9.44,
+          -3
+        ],
+        [
+          36,
+          9.44,
+          -6
+        ]
+      ],
+      "densityEstimates": [
+        {
+          "resolution": 1024,
+          "rgba8WithMipsMiB": 5.333333333333333,
+          "uniformTexelsPerMetreAt65PercentPacking": 3.8964670517926914,
+          "priorityTexelsPerMetreIf80PercentUsableAreaIsDedicated": 6.073877916413116
+        },
+        {
+          "resolution": 2048,
+          "rgba8WithMipsMiB": 21.333333333333332,
+          "uniformTexelsPerMetreAt65PercentPacking": 7.792934103585383,
+          "priorityTexelsPerMetreIf80PercentUsableAreaIsDedicated": 12.147755832826231
+        }
+      ]
+    },
+    {
+      "family": "pit-district",
+      "path": "assets/source/inkstorm/grid-construction-round29/candidates/pit-district.glb",
+      "sha256": "607ea30cc7563a0c07da20a21b25135055a7736adcc34527c057fa6216fba091",
+      "bytes": 1324124,
+      "triangles": 17110,
+      "vertices": 33898,
+      "surfaceAreaSquareMetres": 24815.277600380352,
+      "priorityAreaSquareMetres": 6942.139832517588,
+      "priorityTriangles": 4897,
+      "minimumTriangleArea": 0.0010824285291164415,
+      "medianTriangleArea": 0.11599821472191252,
+      "originalAttributes": [
+        "POSITION",
+        "NORMAL",
+        "COLOR_0"
+      ],
+      "sourcesGLB": [
+        [
+          -36,
+          8.08,
+          -4
+        ],
+        [
+          1,
+          13.08,
+          -8
+        ],
+        [
+          41,
+          9.88,
+          -1
+        ]
+      ],
+      "densityEstimates": [
+        {
+          "resolution": 1024,
+          "rgba8WithMipsMiB": 5.333333333333333,
+          "uniformTexelsPerMetreAt65PercentPacking": 5.240793720159893,
+          "priorityTexelsPerMetreIf80PercentUsableAreaIsDedicated": 8.862473505081947
+        },
+        {
+          "resolution": 2048,
+          "rgba8WithMipsMiB": 21.333333333333332,
+          "uniformTexelsPerMetreAt65PercentPacking": 10.481587440319785,
+          "priorityTexelsPerMetreIf80PercentUsableAreaIsDedicated": 17.724947010163895
+        }
+      ]
+    }
+  ],
+  "note": "Priority is a conservative source-facing centroid bucket, not actual irradiance/occlusion or a final UV allocation; area includes two-sided duplicate source surfaces."
+}

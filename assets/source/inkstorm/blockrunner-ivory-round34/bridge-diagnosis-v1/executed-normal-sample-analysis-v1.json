@@ -1,0 +1,58 @@
+{
+  "status": "ACTUAL SAMPLE ANALYZED; COPY NOT EXECUTED",
+  "receipt": "assets/source/inkstorm/blockrunner-ivory-round34/bridge-diagnosis-v1/executed-normal-sample-v1-receipt.json",
+  "receiptSha256": "6f0be7447392eb2779bd35b8b927ca013c7fd988a41904bf873423cd8f922e82",
+  "samplePassed": true,
+  "sampledCorners": 54,
+  "differentVectors": 39,
+  "exactVectors": 15,
+  "allSamplePositionsAndUvsMatchAt6Decimals": true,
+  "maxComponentDifference": 4.2498111724853516e-05,
+  "maxChordDifference": 4.84623006745735e-05,
+  "maxNormalizedAngleDegrees": 0.0027766804765054754,
+  "perMesh": [
+    {
+      "name": "pasted__L2x3slope2_lambert1_0",
+      "cornerSamples": 18,
+      "differentVectors": 18,
+      "maxComponentDifference": 4.2498111724853516e-05,
+      "maxChordDifference": 4.84623006745735e-05,
+      "maxNormalizedAngleDegrees": 0.0027766804765054754
+    },
+    {
+      "name": "pasted__L2x3slope2_pasted__Lego_White7_0",
+      "cornerSamples": 18,
+      "differentVectors": 9,
+      "maxComponentDifference": 3.4183263778686523e-05,
+      "maxChordDifference": 4.5272122735441035e-05,
+      "maxNormalizedAngleDegrees": 0.002593883070617961
+    },
+    {
+      "name": "pasted__L2x3slope2_pasted__LegoWhite3_0",
+      "cornerSamples": 18,
+      "differentVectors": 12,
+      "maxComponentDifference": 3.7527293898165226e-05,
+      "maxChordDifference": 4.695429601198301e-05,
+      "maxNormalizedAngleDegrees": 0.002690273544727676
+    }
+  ],
+  "fullAuditEvidence": {
+    "meshCount": 51,
+    "orderedPositionStreamMatchesAt6Decimals": 51,
+    "orderedUvStreamMatchesAt6Decimals": 51,
+    "evaluatedTopologyMatchesOriginal": 51,
+    "originalVersusEvaluatedRawNormalFnvMatches": 51,
+    "orderedGlbNormalStreamMatchesAt6Decimals": 0
+  },
+  "interpretation": "Small nonzero directional differences, not only vector-length differences. Consistent with custom-normal encoding/roundtrip precision; actual codec stage is not isolated by54 samples. No axis/basis mismatch is evidenced. Sample bounds are not whole-source maxima.",
+  "bridgeScope": "Position/UV order and same-source topology evidence remain separate from normal encoding. A copy-only payload will directly certify every source polygon/corner against own GLB position/UV stream and actual triangulation FNV before mutation; normals remain governed by exact own live source FNV. No masks assigned.",
+  "globalPreservation": {
+    "allCollectionMembershipsPreserved": true,
+    "allSceneSettingsAndMembershipsPreserved": true,
+    "changedCollections": [],
+    "changedDatablockSets": [],
+    "changedScenes": [],
+    "contextRestored": true,
+    "noPersistentDatablocksCreatedOrRemoved": true
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "runtimeBuildUnchanged": "7db1087b13f02734d0bb4360db7a9a6a0b5603fe05f938e3defdedd3f801cc67",
+  "before": {
+    "path": "scripts/inkstorm-broadcast-ui.mjs",
+    "bytes": 48486,
+    "sha256": "0496c3c3cec96067d64088001a522f1acef50f010d65fc04177d5038846bbfac"
+  },
+  "after": {
+    "path": "scripts/inkstorm-broadcast-ui.mjs",
+    "bytes": 48954,
+    "sha256": "791899650ef3b8fb603e620903cc449edac4c1d8ab4848eb417f40532487630f"
+  },
+  "scope": "Readonly resource observer remains running after unchanged W8second input until a naturally cooling partialheat sample appears, bounded4seconds. No runtime, screenshot input sequence, or original assertion changes.",
+  "failureEvidence": "output/gauntlet/round35-broadcast-native-v24b/COVERAGE_FINDING.json",
+  "retryEvidence": "output/gauntlet/round35-broadcast-native-v24b-retry/receipt.json"
+}

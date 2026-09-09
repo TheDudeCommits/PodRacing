@@ -1,0 +1,20 @@
+{
+  "scope": "Prepared after parent applied pilot-material candidate; includes that unchanged baseline. Only three camera/metadata glue files differ.",
+  "files": [
+    {
+      "path": "src/camera/CinematicCamera.ts",
+      "baselineSha256": "55812dd845f2040beab6848aaa0623bbc186aa1283e24b4cb03401440aca37c0",
+      "candidateSha256": "01cbfd84f1fac6929241d7c9856702f986d57906c9505039af85266db27632c1"
+    },
+    {
+      "path": "src/render/app/GameApp.ts",
+      "baselineSha256": "0d87e236bdf0f27a73aa2a4fd24c63dc5c8a5be7c7c6bd255f8612ce46730fd9",
+      "candidateSha256": "961a66e7d75504ff942e62b667451467da9cb7dd181dec625bb0dfd50bd5dee1"
+    },
+    {
+      "path": "src/game/vehicleAppearance.ts",
+      "baselineSha256": "d60711be193329f77b2f1d1eba01e798db69793e5273d1ba199141c5422f59b2",
+      "candidateSha256": "ac81918ebe048eda599967f54c1eb8a3fa74379fd0325cef68926ba78be6a75d"
+    }
+  ]
+}

@@ -1,0 +1,1756 @@
+{
+  "scope": "CPU GLB vertices, flat rigid pose, 1440x900/16:10, no world terrain or runtime rendering. Sparse pilot-point body occlusion is diagnostic only, not visible-pixel area or acceptance.",
+  "asset": "/Users/amir/Projects/PodRacing/public/assets/inkstorm/vehicles/teemto-hero-v4c.glb",
+  "bounds": {
+    "all": {
+      "min": [
+        -6.54527473449707,
+        0.07286620140075684,
+        -7.333491802215576
+      ],
+      "max": [
+        6.496447563171387,
+        5.250973701477051,
+        22.738540649414062
+      ]
+    },
+    "pilot": {
+      "min": [
+        -0.38293713331222534,
+        2.0615973472595215,
+        -5.660841464996338
+      ],
+      "max": [
+        0.4204370379447937,
+        3.2211050987243652,
+        -4.128168106079102
+      ]
+    },
+    "body": {
+      "min": [
+        -6.54527473449707,
+        0.07286620140075684,
+        -7.333491802215576
+      ],
+      "max": [
+        6.496447563171387,
+        5.250973701477051,
+        22.738540649414062
+      ]
+    }
+  },
+  "variants": [
+    {
+      "name": "baseline-410kph-flat",
+      "baseRear": 16.5,
+      "baseEyeHeight": 7.1,
+      "baseAimHeight": 5.8,
+      "baseFov": 62,
+      "eye": [
+        0.35,
+        7.345956678443659,
+        -16.893530685509855
+      ],
+      "aim": [
+        0,
+        5.8,
+        42.854440423971724
+      ],
+      "fov": 63.23400281110756,
+      "all": {
+        "xPx": [
+          563.6349,
+          888.7385
+        ],
+        "yPx": [
+          471.6834,
+          863.4967
+        ],
+        "widthPct": 22.5766,
+        "heightPct": 43.5348,
+        "offscreenVertexPct": 0,
+        "nearestDepth": 9.6838
+      },
+      "engines": {
+        "xPx": [
+          563.6349,
+          888.7385
+        ],
+        "yPx": [
+          471.6834,
+          661.6052
+        ],
+        "widthPct": 22.5766,
+        "heightPct": 21.1024,
+        "offscreenVertexPct": 0,
+        "nearestDepth": 22.164
+      },
+      "pilot": {
+        "xPx": [
+          711.6118,
+          760.3168
+        ],
+        "yPx": [
+          692.2824,
+          760.6089
+        ],
+        "widthPct": 3.3823,
+        "heightPct": 7.5918,
+        "offscreenVertexPct": 0,
+        "nearestDepth": 11.3415
+      },
+      "pilotSampleCount": 199,
+      "pilotSampleBodyOccludedPct": 100,
+      "horizonY": 431.623,
+      "pitchDownDegrees": 1.4822,
+      "syntheticCorners": [
+        {
+          "speed": 0,
+          "kick": 0,
+          "descent": 0,
+          "pitchDownDegrees": 1.4746,
+          "xPx": [
+            556.6609,
+            894.9622
+          ],
+          "yPx": [
+            468.0479,
+            873.0422
+          ],
+          "widthPct": 23.4931,
+          "heightPct": 44.9994,
+          "offscreenVertexPct": 0,
+          "nearestDepth": 9.2837
+        },
+        {
+          "speed": 0,
+          "kick": 0,
+          "descent": 1,
+          "pitchDownDegrees": 1.4746,
+          "xPx": [
+            556.6609,
+            894.9622
+          ],
+          "yPx": [
+            468.0479,
+            873.0422
+          ],
+          "widthPct": 23.4931,
+          "heightPct": 44.9994,
+          "offscreenVertexPct": 0,
+          "nearestDepth": 9.2837
+        },
+        {
+          "speed": 0,
+          "kick": 1,
+          "descent": 0,
+          "pitchDownDegrees": 1.4746,
+          "xPx": [
+            556.6609,
+            894.9622
+          ],
+          "yPx": [
+            468.0479,
+            873.0422
+          ],
+          "widthPct": 23.4931,
+          "heightPct": 44.9994,
+          "offscreenVertexPct": 0,
+          "nearestDepth": 9.2837
+        },
+        {
+          "speed": 0,
+          "kick": 1,
+          "descent": 1,
+          "pitchDownDegrees": 1.4746,
+          "xPx": [
+            556.6609,
+            894.9622
+          ],
+          "yPx": [
+            468.0479,
+            873.0422
+          ],
+          "widthPct": 23.4931,
+          "heightPct": 44.9994,
+          "offscreenVertexPct": 0,
+          "nearestDepth": 9.2837
+        },
+        {
+          "speed": 113.76,
+          "kick": 0,
+          "descent": 0,
+          "pitchDownDegrees": 1.4822,
+          "xPx": [
+            559.7958,
+            892.8815
+          ],
+          "yPx": [
+            472.2158,
+            873.6491
+          ],
+          "widthPct": 23.1309,
+          "heightPct": 44.6037,
+          "offscreenVertexPct": 0,
+          "nearestDepth": 9.6838
+        },
+        {
+          "speed": 113.76,
+          "kick": 0,
+          "descent": 1,
+          "pitchDownDegrees": 8.1076,
+          "xPx": [
+            563.4767,
+            888.2949
+          ],
+          "yPx": [
+            407.7759,
+            840.3039
+          ],
+          "widthPct": 22.5568,
+          "heightPct": 48.0587,
+          "offscreenVertexPct": 0,
+          "nearestDepth": 10.3153
+        },
+        {
+          "speed": 113.76,
+          "kick": 1,
+          "descent": 0,
+          "pitchDownDegrees": 1.4822,
+          "xPx": [
+            563.6349,
+            888.7385
+          ],
+          "yPx": [
+            471.6834,
+            863.4967
+          ],
+          "widthPct": 22.5766,
+          "heightPct": 43.5348,
+          "offscreenVertexPct": 0,
+          "nearestDepth": 9.6838
+        },
+        {
+          "speed": 113.76,
+          "kick": 1,
+          "descent": 1,
+          "pitchDownDegrees": 8.1076,
+          "xPx": [
+            567.2277,
+            884.2618
+          ],
+          "yPx": [
+            408.7878,
+            830.9507
+          ],
+          "widthPct": 22.0163,
+          "heightPct": 46.907,
+          "offscreenVertexPct": 0,
+          "nearestDepth": 10.3153
+        },
+        {
+          "speed": 230,
+          "kick": 0,
+          "descent": 0,
+          "pitchDownDegrees": 1.4879,
+          "xPx": [
+            562.7272,
+            890.5932
+          ],
+          "yPx": [
+            476.4595,
+            874.2513
+          ],
+          "widthPct": 22.7685,
+          "heightPct": 44.1991,
+          "offscreenVertexPct": 0,
+          "nearestDepth": 10.0969
+        },
+        {
+          "speed": 230,
+          "kick": 0,
+          "descent": 1,
+          "pitchDownDegrees": 12.9693,
+          "xPx": [
+            569.066,
+            882.8249
+          ],
+          "yPx": [
+            370.6118,
+            826.4871
+          ],
+          "widthPct": 21.7888,
+          "heightPct": 50.6528,
+          "offscreenVertexPct": 0,
+          "nearestDepth": 11.3957
+        },
+        {
+          "speed": 230,
+          "kick": 1,
+          "descent": 0,
+          "pitchDownDegrees": 1.4879,
+          "xPx": [
+            579.8995,
+            871.9665
+          ],
+          "yPx": [
+            473.5705,
+            827.9284
+          ],
+          "widthPct": 20.2824,
+          "heightPct": 39.3731,
+          "offscreenVertexPct": 0,
+          "nearestDepth": 10.0969
+        },
+        {
+          "speed": 230,
+          "kick": 1,
+          "descent": 1,
+          "pitchDownDegrees": 12.9693,
+          "xPx": [
+            585.5461,
+            865.0464
+          ],
+          "yPx": [
+            379.28,
+            785.3794
+          ],
+          "widthPct": 19.4097,
+          "heightPct": 45.1222,
+          "offscreenVertexPct": 0,
+          "nearestDepth": 11.3957
+        }
+      ],
+      "postureProbes": [
+        {
+          "pitch": -0.13,
+          "roll": -0.18,
+          "xPx": [
+            557.8987,
+            887.8076
+          ],
+          "yPx": [
+            405.8529,
+            943.9566
+          ],
+          "widthPct": 22.9103,
+          "heightPct": 59.7893,
+          "offscreenVertexPct": 0.1471,
+          "nearestDepth": 9.4505
+        },
+        {
+          "pitch": -0.13,
+          "roll": 0,
+          "xPx": [
+            558.4449,
+            894.3642
+          ],
+          "yPx": [
+            417.0281,
+            942.3871
+          ],
+          "widthPct": 23.3277,
+          "heightPct": 58.3732,
+          "offscreenVertexPct": 0.1391,
+          "nearestDepth": 9.4461
+        },
+        {
+          "pitch": -0.13,
+          "roll": 0.18,
+          "xPx": [
+            564.4515,
+            895.4194
+          ],
+          "yPx": [
+            404.2965,
+            943.4664
+          ],
+          "widthPct": 22.9839,
+          "heightPct": 59.9078,
+          "offscreenVertexPct": 0.1471,
+          "nearestDepth": 9.4543
+        },
+        {
+          "pitch": 0,
+          "roll": -0.18,
+          "xPx": [
+            558.437,
+            885.5026
+          ],
+          "yPx": [
+            461.1568,
+            875.3645
+          ],
+          "widthPct": 22.7129,
+          "heightPct": 46.0231,
+          "offscreenVertexPct": 0,
+          "nearestDepth": 9.6823
+        },
+        {
+          "pitch": 0,
+          "roll": 0,
+          "xPx": [
+            559.7958,
+            892.8815
+          ],
+          "yPx": [
+            472.2158,
+            873.6491
+          ],
+          "widthPct": 23.1309,
+          "heightPct": 44.6037,
+          "offscreenVertexPct": 0,
+          "nearestDepth": 9.6838
+        },
+        {
+          "pitch": 0,
+          "roll": 0.18,
+          "xPx": [
+            566.516,
+            894.8686
+          ],
+          "yPx": [
+            459.6907,
+            874.856
+          ],
+          "widthPct": 22.8023,
+          "heightPct": 46.1295,
+          "offscreenVertexPct": 0,
+          "nearestDepth": 9.6873
+        },
+        {
+          "pitch": 0.13,
+          "roll": -0.18,
+          "xPx": [
+            557.9576,
+            884.1172
+          ],
+          "yPx": [
+            511.959,
+            805.75
+          ],
+          "widthPct": 22.65,
+          "heightPct": 32.6434,
+          "offscreenVertexPct": 0,
+          "nearestDepth": 10.0389
+        },
+        {
+          "pitch": 0.13,
+          "roll": 0,
+          "xPx": [
+            560.1306,
+            892.33
+          ],
+          "yPx": [
+            525.1229,
+            803.4366
+          ],
+          "widthPct": 23.0694,
+          "heightPct": 30.9237,
+          "offscreenVertexPct": 0,
+          "nearestDepth": 10.0463
+        },
+        {
+          "pitch": 0.13,
+          "roll": 0.18,
+          "xPx": [
+            567.5858,
+            895.2499
+          ],
+          "yPx": [
+            511.3897,
+            805.1586
+          ],
+          "widthPct": 22.7545,
+          "heightPct": 32.641,
+          "offscreenVertexPct": 0,
+          "nearestDepth": 10.0452
+        }
+      ]
+    },
+    {
+      "name": "A-balanced",
+      "baseRear": 13.8,
+      "baseEyeHeight": 5.1,
+      "baseAimHeight": 3.8,
+      "baseFov": 62,
+      "eye": [
+        0.35,
+        5.345956678443659,
+        -14.193530685509856
+      ],
+      "aim": [
+        0,
+        3.8,
+        42.854440423971724
+      ],
+      "fov": 63.23400281110756,
+      "all": {
+        "xPx": [
+          545.1938,
+          910.1787
+        ],
+        "yPx": [
+          432.2601,
+          826.1481
+        ],
+        "widthPct": 25.3462,
+        "heightPct": 43.7653,
+        "offscreenVertexPct": 0,
+        "nearestDepth": 6.9363
+      },
+      "engines": {
+        "xPx": [
+          545.1938,
+          910.1787
+        ],
+        "yPx": [
+          432.2601,
+          618.4051
+        ],
+        "widthPct": 25.3462,
+        "heightPct": 20.6828,
+        "offscreenVertexPct": 0,
+        "nearestDepth": 19.4173
+      },
+      "pilot": {
+        "xPx": [
+          710.2224,
+          773.4316
+        ],
+        "yPx": [
+          606.8982,
+          697.6617
+        ],
+        "widthPct": 4.3895,
+        "heightPct": 10.0848,
+        "offscreenVertexPct": 0,
+        "nearestDepth": 8.5933
+      },
+      "pilotSampleCount": 199,
+      "pilotSampleBodyOccludedPct": 100,
+      "horizonY": 430.5819,
+      "pitchDownDegrees": 1.5523,
+      "syntheticCorners": [
+        {
+          "speed": 0,
+          "kick": 0,
+          "descent": 0,
+          "pitchDownDegrees": 1.5579,
+          "xPx": [
+            536.7196,
+            917.602
+          ],
+          "yPx": [
+            426.2222,
+            832.1951
+          ],
+          "widthPct": 26.4502,
+          "heightPct": 45.1081,
+          "offscreenVertexPct": 0,
+          "nearestDepth": 6.5368
+        },
+        {
+          "speed": 0,
+          "kick": 0,
+          "descent": 1,
+          "pitchDownDegrees": 1.5579,
+          "xPx": [
+            536.7196,
+            917.602
+          ],
+          "yPx": [
+            426.2222,
+            832.1951
+          ],
+          "widthPct": 26.4502,
+          "heightPct": 45.1081,
+          "offscreenVertexPct": 0,
+          "nearestDepth": 6.5368
+        },
+        {
+          "speed": 0,
+          "kick": 1,
+          "descent": 0,
+          "pitchDownDegrees": 1.5579,
+          "xPx": [
+            536.7196,
+            917.602
+          ],
+          "yPx": [
+            426.2222,
+            832.1951
+          ],
+          "widthPct": 26.4502,
+          "heightPct": 45.1081,
+          "offscreenVertexPct": 0,
+          "nearestDepth": 6.5368
+        },
+        {
+          "speed": 0,
+          "kick": 1,
+          "descent": 1,
+          "pitchDownDegrees": 1.5579,
+          "xPx": [
+            536.7196,
+            917.602
+          ],
+          "yPx": [
+            426.2222,
+            832.1951
+          ],
+          "widthPct": 26.4502,
+          "heightPct": 45.1081,
+          "offscreenVertexPct": 0,
+          "nearestDepth": 6.5368
+        },
+        {
+          "speed": 113.76,
+          "kick": 0,
+          "descent": 0,
+          "pitchDownDegrees": 1.5523,
+          "xPx": [
+            540.9019,
+            914.848
+          ],
+          "yPx": [
+            431.8246,
+            835.3835
+          ],
+          "widthPct": 25.9685,
+          "heightPct": 44.8399,
+          "offscreenVertexPct": 0,
+          "nearestDepth": 6.9363
+        },
+        {
+          "speed": 113.76,
+          "kick": 0,
+          "descent": 1,
+          "pitchDownDegrees": 8.4858,
+          "xPx": [
+            544.7895,
+            910.679
+          ],
+          "yPx": [
+            366.7727,
+            828.5977
+          ],
+          "widthPct": 25.409,
+          "heightPct": 51.3139,
+          "offscreenVertexPct": 0,
+          "nearestDepth": 7.3801
+        },
+        {
+          "speed": 113.76,
+          "kick": 1,
+          "descent": 0,
+          "pitchDownDegrees": 1.5523,
+          "xPx": [
+            545.1938,
+            910.1787
+          ],
+          "yPx": [
+            432.2601,
+            826.1481
+          ],
+          "widthPct": 25.3462,
+          "heightPct": 43.7653,
+          "offscreenVertexPct": 0,
+          "nearestDepth": 6.9363
+        },
+        {
+          "speed": 113.76,
+          "kick": 1,
+          "descent": 1,
+          "pitchDownDegrees": 8.4858,
+          "xPx": [
+            548.9882,
+            906.1096
+          ],
+          "yPx": [
+            368.7671,
+            819.5249
+          ],
+          "widthPct": 24.8001,
+          "heightPct": 50.0842,
+          "offscreenVertexPct": 0,
+          "nearestDepth": 7.3801
+        },
+        {
+          "speed": 230,
+          "kick": 0,
+          "descent": 0,
+          "pitchDownDegrees": 1.5482,
+          "xPx": [
+            544.8235,
+            911.8626
+          ],
+          "yPx": [
+            437.4521,
+            838.3188
+          ],
+          "widthPct": 25.4888,
+          "heightPct": 44.5407,
+          "offscreenVertexPct": 0,
+          "nearestDepth": 7.3491
+        },
+        {
+          "speed": 230,
+          "kick": 0,
+          "descent": 1,
+          "pitchDownDegrees": 13.4762,
+          "xPx": [
+            551.5483,
+            904.2356
+          ],
+          "yPx": [
+            330.0379,
+            834.8622
+          ],
+          "widthPct": 24.4922,
+          "heightPct": 56.0916,
+          "offscreenVertexPct": 0,
+          "nearestDepth": 8.3484
+        },
+        {
+          "speed": 230,
+          "kick": 1,
+          "descent": 0,
+          "pitchDownDegrees": 1.5482,
+          "xPx": [
+            563.9506,
+            890.9136
+          ],
+          "yPx": [
+            438.8221,
+            795.9192
+          ],
+          "widthPct": 22.7058,
+          "heightPct": 39.6775,
+          "offscreenVertexPct": 0,
+          "nearestDepth": 7.3491
+        },
+        {
+          "speed": 230,
+          "kick": 1,
+          "descent": 1,
+          "pitchDownDegrees": 13.4762,
+          "xPx": [
+            569.9411,
+            884.1193
+          ],
+          "yPx": [
+            343.1363,
+            792.84
+          ],
+          "widthPct": 21.8179,
+          "heightPct": 49.9671,
+          "offscreenVertexPct": 0,
+          "nearestDepth": 8.3484
+        }
+      ],
+      "postureProbes": [
+        {
+          "pitch": -0.13,
+          "roll": -0.18,
+          "xPx": [
+            538.3748,
+            909.5166
+          ],
+          "yPx": [
+            361.2085,
+            931.0893
+          ],
+          "widthPct": 25.7737,
+          "heightPct": 63.3201,
+          "offscreenVertexPct": 0.0649,
+          "nearestDepth": 6.7042
+        },
+        {
+          "pitch": -0.13,
+          "roll": 0,
+          "xPx": [
+            539.2853,
+            916.7381
+          ],
+          "yPx": [
+            373.4008,
+            928.9364
+          ],
+          "widthPct": 26.212,
+          "heightPct": 61.7262,
+          "offscreenVertexPct": 0.0649,
+          "nearestDepth": 6.6998
+        },
+        {
+          "pitch": -0.13,
+          "roll": 0.18,
+          "xPx": [
+            546.3763,
+            917.7547
+          ],
+          "yPx": [
+            359.4996,
+            930.4138
+          ],
+          "widthPct": 25.7902,
+          "heightPct": 63.4349,
+          "offscreenVertexPct": 0.0649,
+          "nearestDepth": 6.7082
+        },
+        {
+          "pitch": 0,
+          "roll": -0.18,
+          "xPx": [
+            538.9639,
+            906.582
+          ],
+          "yPx": [
+            417.7849,
+            837.7218
+          ],
+          "widthPct": 25.529,
+          "heightPct": 46.6597,
+          "offscreenVertexPct": 0,
+          "nearestDepth": 6.9348
+        },
+        {
+          "pitch": 0,
+          "roll": 0,
+          "xPx": [
+            540.9019,
+            914.848
+          ],
+          "yPx": [
+            431.8246,
+            835.3835
+          ],
+          "widthPct": 25.9685,
+          "heightPct": 44.8399,
+          "offscreenVertexPct": 0,
+          "nearestDepth": 6.9363
+        },
+        {
+          "pitch": 0,
+          "roll": 0.18,
+          "xPx": [
+            548.892,
+            917.0462
+          ],
+          "yPx": [
+            416.9201,
+            837.034
+          ],
+          "widthPct": 25.5663,
+          "heightPct": 46.6793,
+          "offscreenVertexPct": 0,
+          "nearestDepth": 6.94
+        },
+        {
+          "pitch": 0.13,
+          "roll": -0.18,
+          "xPx": [
+            538.5142,
+            904.8188
+          ],
+          "yPx": [
+            451.1088,
+            744.6485
+          ],
+          "widthPct": 25.4378,
+          "heightPct": 32.6155,
+          "offscreenVertexPct": 0,
+          "nearestDepth": 7.2903
+        },
+        {
+          "pitch": 0.13,
+          "roll": 0,
+          "xPx": [
+            541.4799,
+            914.1391
+          ],
+          "yPx": [
+            446.6485,
+            741.2615
+          ],
+          "widthPct": 25.8791,
+          "heightPct": 32.7348,
+          "offscreenVertexPct": 0,
+          "nearestDepth": 7.2977
+        },
+        {
+          "pitch": 0.13,
+          "roll": 0.18,
+          "xPx": [
+            550.384,
+            917.5175
+          ],
+          "yPx": [
+            450.232,
+            743.869
+          ],
+          "widthPct": 25.4954,
+          "heightPct": 32.6263,
+          "offscreenVertexPct": 0,
+          "nearestDepth": 7.2968
+        }
+      ]
+    },
+    {
+      "name": "B-close-low",
+      "baseRear": 12.4,
+      "baseEyeHeight": 3.9,
+      "baseAimHeight": 3.5,
+      "baseFov": 62,
+      "eye": [
+        0.35,
+        4.145956678443659,
+        -12.793530685509856
+      ],
+      "aim": [
+        0,
+        3.5,
+        42.854440423971724
+      ],
+      "fov": 63.23400281110756,
+      "all": {
+        "xPx": [
+          532.7412,
+          924.0879
+        ],
+        "yPx": [
+          407.8369,
+          788.9938
+        ],
+        "widthPct": 27.1768,
+        "heightPct": 42.3508,
+        "offscreenVertexPct": 0,
+        "nearestDepth": 5.4806
+      },
+      "engines": {
+        "xPx": [
+          532.7412,
+          924.0879
+        ],
+        "yPx": [
+          414.6869,
+          596.6879
+        ],
+        "widthPct": 27.1768,
+        "heightPct": 20.2223,
+        "offscreenVertexPct": 0,
+        "nearestDepth": 17.9358
+      },
+      "pilot": {
+        "xPx": [
+          709.1448,
+          784.1872
+        ],
+        "yPx": [
+          533.6423,
+          644.2111
+        ],
+        "widthPct": 5.2113,
+        "heightPct": 12.2854,
+        "offscreenVertexPct": 0,
+        "nearestDepth": 7.1471
+      },
+      "pilotSampleCount": 199,
+      "pilotSampleBodyOccludedPct": 100,
+      "horizonY": 441.8178,
+      "pitchDownDegrees": 0.6651,
+      "syntheticCorners": [
+        {
+          "speed": 0,
+          "kick": 0,
+          "descent": 0,
+          "pitchDownDegrees": 0.4939,
+          "xPx": [
+            523.3543,
+            932.398
+          ],
+          "yPx": [
+            381.7791,
+            792.3945
+          ],
+          "widthPct": 28.4058,
+          "heightPct": 45.6239,
+          "offscreenVertexPct": 0,
+          "nearestDepth": 5.0806
+        },
+        {
+          "speed": 0,
+          "kick": 0,
+          "descent": 1,
+          "pitchDownDegrees": 0.4939,
+          "xPx": [
+            523.3543,
+            932.398
+          ],
+          "yPx": [
+            381.7791,
+            792.3945
+          ],
+          "widthPct": 28.4058,
+          "heightPct": 45.6239,
+          "offscreenVertexPct": 0,
+          "nearestDepth": 5.0806
+        },
+        {
+          "speed": 0,
+          "kick": 1,
+          "descent": 0,
+          "pitchDownDegrees": 0.4939,
+          "xPx": [
+            523.3543,
+            932.398
+          ],
+          "yPx": [
+            381.7791,
+            792.3945
+          ],
+          "widthPct": 28.4058,
+          "heightPct": 45.6239,
+          "offscreenVertexPct": 0,
+          "nearestDepth": 5.0806
+        },
+        {
+          "speed": 0,
+          "kick": 1,
+          "descent": 1,
+          "pitchDownDegrees": 0.4939,
+          "xPx": [
+            523.3543,
+            932.398
+          ],
+          "yPx": [
+            381.7791,
+            792.3945
+          ],
+          "widthPct": 28.4058,
+          "heightPct": 45.6239,
+          "offscreenVertexPct": 0,
+          "nearestDepth": 5.0806
+        },
+        {
+          "speed": 113.76,
+          "kick": 0,
+          "descent": 0,
+          "pitchDownDegrees": 0.6651,
+          "xPx": [
+            528.1436,
+            929.0987
+          ],
+          "yPx": [
+            406.8017,
+            797.3169
+          ],
+          "widthPct": 27.8441,
+          "heightPct": 43.3906,
+          "offscreenVertexPct": 0,
+          "nearestDepth": 5.4806
+        },
+        {
+          "speed": 113.76,
+          "kick": 0,
+          "descent": 1,
+          "pitchDownDegrees": 7.7885,
+          "xPx": [
+            531.6692,
+            925.3273
+          ],
+          "yPx": [
+            349.356,
+            818.0919
+          ],
+          "widthPct": 27.3374,
+          "heightPct": 52.0818,
+          "offscreenVertexPct": 0,
+          "nearestDepth": 5.7939
+        },
+        {
+          "speed": 113.76,
+          "kick": 1,
+          "descent": 0,
+          "pitchDownDegrees": 0.6651,
+          "xPx": [
+            532.7412,
+            924.0879
+          ],
+          "yPx": [
+            407.8369,
+            788.9938
+          ],
+          "widthPct": 27.1768,
+          "heightPct": 42.3508,
+          "offscreenVertexPct": 0,
+          "nearestDepth": 5.4806
+        },
+        {
+          "speed": 113.76,
+          "kick": 1,
+          "descent": 1,
+          "pitchDownDegrees": 7.7885,
+          "xPx": [
+            536.1823,
+            920.4068
+          ],
+          "yPx": [
+            351.7679,
+            809.2709
+          ],
+          "widthPct": 26.6823,
+          "heightPct": 50.8337,
+          "offscreenVertexPct": 0,
+          "nearestDepth": 5.7939
+        },
+        {
+          "speed": 230,
+          "kick": 0,
+          "descent": 0,
+          "pitchDownDegrees": 0.7908,
+          "xPx": [
+            532.6186,
+            925.5752
+          ],
+          "yPx": [
+            419.1545,
+            802.1963
+          ],
+          "widthPct": 27.2887,
+          "heightPct": 42.5602,
+          "offscreenVertexPct": 0,
+          "nearestDepth": 5.8937
+        },
+        {
+          "speed": 230,
+          "kick": 0,
+          "descent": 1,
+          "pitchDownDegrees": 13.0062,
+          "xPx": [
+            539.2066,
+            918.4587
+          ],
+          "yPx": [
+            312.9925,
+            842.9209
+          ],
+          "widthPct": 26.337,
+          "heightPct": 58.8809,
+          "offscreenVertexPct": 0,
+          "nearestDepth": 6.6841
+        },
+        {
+          "speed": 230,
+          "kick": 1,
+          "descent": 0,
+          "pitchDownDegrees": 0.7908,
+          "xPx": [
+            553.0783,
+            903.1289
+          ],
+          "yPx": [
+            422.5224,
+            763.7409
+          ],
+          "widthPct": 24.3091,
+          "heightPct": 37.9132,
+          "offscreenVertexPct": 0,
+          "nearestDepth": 5.8937
+        },
+        {
+          "speed": 230,
+          "kick": 1,
+          "descent": 1,
+          "pitchDownDegrees": 13.0062,
+          "xPx": [
+            558.9469,
+            896.7895
+          ],
+          "yPx": [
+            327.952,
+            800.0188
+          ],
+          "widthPct": 23.4613,
+          "heightPct": 52.4519,
+          "offscreenVertexPct": 0,
+          "nearestDepth": 6.6841
+        }
+      ],
+      "postureProbes": [
+        {
+          "pitch": -0.13,
+          "roll": -0.18,
+          "xPx": [
+            525.4046,
+            923.3306
+          ],
+          "yPx": [
+            341.1029,
+            917.0182
+          ],
+          "widthPct": 27.6338,
+          "heightPct": 63.9906,
+          "offscreenVertexPct": 0.0649,
+          "nearestDepth": 5.2326
+        },
+        {
+          "pitch": -0.13,
+          "roll": 0,
+          "xPx": [
+            526.4284,
+            931.1159
+          ],
+          "yPx": [
+            355.6948,
+            914.289
+          ],
+          "widthPct": 28.1033,
+          "heightPct": 62.066,
+          "offscreenVertexPct": 0.0543,
+          "nearestDepth": 5.229
+        },
+        {
+          "pitch": -0.13,
+          "roll": 0.18,
+          "xPx": [
+            534.0777,
+            932.2528
+          ],
+          "yPx": [
+            339.5564,
+            916.1705
+          ],
+          "widthPct": 27.651,
+          "heightPct": 64.0682,
+          "offscreenVertexPct": 0.0596,
+          "nearestDepth": 5.2369
+        },
+        {
+          "pitch": 0,
+          "roll": -0.18,
+          "xPx": [
+            525.9365,
+            920.1087
+          ],
+          "yPx": [
+            397.6599,
+            800.5171
+          ],
+          "widthPct": 27.3731,
+          "heightPct": 44.7619,
+          "offscreenVertexPct": 0,
+          "nearestDepth": 5.4783
+        },
+        {
+          "pitch": 0,
+          "roll": 0,
+          "xPx": [
+            528.1436,
+            929.0987
+          ],
+          "yPx": [
+            406.8017,
+            797.3169
+          ],
+          "widthPct": 27.8441,
+          "heightPct": 43.3906,
+          "offscreenVertexPct": 0,
+          "nearestDepth": 5.4806
+        },
+        {
+          "pitch": 0,
+          "roll": 0.18,
+          "xPx": [
+            536.8312,
+            931.5955
+          ],
+          "yPx": [
+            397.0133,
+            799.5408
+          ],
+          "widthPct": 27.4142,
+          "heightPct": 44.7253,
+          "offscreenVertexPct": 0,
+          "nearestDepth": 5.4839
+        },
+        {
+          "pitch": 0.13,
+          "roll": -0.18,
+          "xPx": [
+            525.2719,
+            918.2338
+          ],
+          "yPx": [
+            357.0039,
+            687.1008
+          ],
+          "widthPct": 27.289,
+          "heightPct": 36.6774,
+          "offscreenVertexPct": 0,
+          "nearestDepth": 5.8483
+        },
+        {
+          "pitch": 0.13,
+          "roll": 0,
+          "xPx": [
+            528.664,
+            928.4395
+          ],
+          "yPx": [
+            351.9635,
+            682.1157
+          ],
+          "widthPct": 27.7622,
+          "heightPct": 36.6836,
+          "offscreenVertexPct": 0,
+          "nearestDepth": 5.8565
+        },
+        {
+          "pitch": 0.13,
+          "roll": 0.18,
+          "xPx": [
+            538.407,
+            932.2963
+          ],
+          "yPx": [
+            356.1001,
+            686.1474
+          ],
+          "widthPct": 27.3534,
+          "heightPct": 36.6719,
+          "offscreenVertexPct": 0,
+          "nearestDepth": 5.8551
+        }
+      ]
+    },
+    {
+      "name": "rejected-long-lens-control",
+      "baseRear": 12.80647,
+      "baseEyeHeight": 4.95404,
+      "baseAimHeight": 1.3,
+      "baseFov": 54,
+      "eye": [
+        0.35,
+        5.199996678443659,
+        -13.200000685509854
+      ],
+      "aim": [
+        0,
+        1.3,
+        42.854440423971724
+      ],
+      "fov": 55.23400281110756,
+      "all": {
+        "xPx": [
+          506.0962,
+          953.04
+        ],
+        "yPx": [
+          388.8041,
+          897.0388
+        ],
+        "widthPct": 31.0378,
+        "heightPct": 56.4705,
+        "offscreenVertexPct": 0,
+        "nearestDepth": 6.0413
+      },
+      "engines": {
+        "xPx": [
+          506.0962,
+          953.04
+        ],
+        "yPx": [
+          388.8041,
+          615.1676
+        ],
+        "widthPct": 31.0378,
+        "heightPct": 25.1515,
+        "offscreenVertexPct": 0,
+        "nearestDepth": 18.5754
+      },
+      "pilot": {
+        "xPx": [
+          707.8116,
+          790.2354
+        ],
+        "yPx": [
+          607.1151,
+          724.2809
+        ],
+        "widthPct": 5.7239,
+        "heightPct": 13.0184,
+        "offscreenVertexPct": 0,
+        "nearestDepth": 7.67
+      },
+      "pilotSampleCount": 199,
+      "pilotSampleBodyOccludedPct": 100,
+      "horizonY": 390.605,
+      "pitchDownDegrees": 3.9799,
+      "syntheticCorners": [
+        {
+          "speed": 0,
+          "kick": 0,
+          "descent": 0,
+          "pitchDownDegrees": 4.4639,
+          "xPx": [
+            495.2074,
+            962.7144
+          ],
+          "yPx": [
+            372.8533,
+            898.8278
+          ],
+          "widthPct": 32.4658,
+          "heightPct": 58.4416,
+          "offscreenVertexPct": 0,
+          "nearestDepth": 5.6492
+        },
+        {
+          "speed": 0,
+          "kick": 0,
+          "descent": 1,
+          "pitchDownDegrees": 4.4639,
+          "xPx": [
+            495.2074,
+            962.7144
+          ],
+          "yPx": [
+            372.8533,
+            898.8278
+          ],
+          "widthPct": 32.4658,
+          "heightPct": 58.4416,
+          "offscreenVertexPct": 0,
+          "nearestDepth": 5.6492
+        },
+        {
+          "speed": 0,
+          "kick": 1,
+          "descent": 0,
+          "pitchDownDegrees": 4.4639,
+          "xPx": [
+            495.2074,
+            962.7144
+          ],
+          "yPx": [
+            372.8533,
+            898.8278
+          ],
+          "widthPct": 32.4658,
+          "heightPct": 58.4416,
+          "offscreenVertexPct": 0,
+          "nearestDepth": 5.6492
+        },
+        {
+          "speed": 0,
+          "kick": 1,
+          "descent": 1,
+          "pitchDownDegrees": 4.4639,
+          "xPx": [
+            495.2074,
+            962.7144
+          ],
+          "yPx": [
+            372.8533,
+            898.8278
+          ],
+          "widthPct": 32.4658,
+          "heightPct": 58.4416,
+          "offscreenVertexPct": 0,
+          "nearestDepth": 5.6492
+        },
+        {
+          "speed": 113.76,
+          "kick": 0,
+          "descent": 0,
+          "pitchDownDegrees": 3.9799,
+          "xPx": [
+            500.37,
+            959.2784
+          ],
+          "yPx": [
+            387.1659,
+            909.0059
+          ],
+          "widthPct": 31.8686,
+          "heightPct": 57.9822,
+          "offscreenVertexPct": 0.0543,
+          "nearestDepth": 6.0413
+        },
+        {
+          "speed": 113.76,
+          "kick": 0,
+          "descent": 1,
+          "pitchDownDegrees": 10.9701,
+          "xPx": [
+            504.6806,
+            954.6611
+          ],
+          "yPx": [
+            310.1401,
+            909.8194
+          ],
+          "widthPct": 31.2486,
+          "heightPct": 66.631,
+          "offscreenVertexPct": 0.0543,
+          "nearestDepth": 6.4986
+        },
+        {
+          "speed": 113.76,
+          "kick": 1,
+          "descent": 0,
+          "pitchDownDegrees": 3.9799,
+          "xPx": [
+            506.0962,
+            953.04
+          ],
+          "yPx": [
+            388.8041,
+            897.0388
+          ],
+          "widthPct": 31.0378,
+          "heightPct": 56.4705,
+          "offscreenVertexPct": 0,
+          "nearestDepth": 6.0413
+        },
+        {
+          "speed": 113.76,
+          "kick": 1,
+          "descent": 1,
+          "pitchDownDegrees": 10.9701,
+          "xPx": [
+            510.2943,
+            948.5431
+          ],
+          "yPx": [
+            313.7865,
+            897.8311
+          ],
+          "widthPct": 30.4339,
+          "heightPct": 64.8938,
+          "offscreenVertexPct": 0,
+          "nearestDepth": 6.4986
+        },
+        {
+          "speed": 230,
+          "kick": 0,
+          "descent": 0,
+          "pitchDownDegrees": 3.623,
+          "xPx": [
+            505.2352,
+            955.529
+          ],
+          "yPx": [
+            399.5347,
+            916.7001
+          ],
+          "widthPct": 31.2704,
+          "heightPct": 57.4628,
+          "offscreenVertexPct": 0.0649,
+          "nearestDepth": 6.4484
+        },
+        {
+          "speed": 230,
+          "kick": 0,
+          "descent": 1,
+          "pitchDownDegrees": 15.5971,
+          "xPx": [
+            513.4645,
+            946.6257
+          ],
+          "yPx": [
+            273.0312,
+            925.83
+          ],
+          "widthPct": 30.0806,
+          "heightPct": 72.5332,
+          "offscreenVertexPct": 0.0649,
+          "nearestDepth": 7.4816
+        },
+        {
+          "speed": 230,
+          "kick": 1,
+          "descent": 0,
+          "pitchDownDegrees": 3.623,
+          "xPx": [
+            530.4649,
+            927.86
+          ],
+          "yPx": [
+            405.4631,
+            861.874
+          ],
+          "widthPct": 27.5969,
+          "heightPct": 50.7123,
+          "offscreenVertexPct": 0,
+          "nearestDepth": 6.4484
+        },
+        {
+          "speed": 230,
+          "kick": 1,
+          "descent": 1,
+          "pitchDownDegrees": 15.5971,
+          "xPx": [
+            537.7275,
+            920.0026
+          ],
+          "yPx": [
+            293.8208,
+            869.9314
+          ],
+          "widthPct": 26.5469,
+          "heightPct": 64.0123,
+          "offscreenVertexPct": 0,
+          "nearestDepth": 7.4816
+        }
+      ],
+      "postureProbes": [
+        {
+          "pitch": -0.13,
+          "roll": -0.18,
+          "xPx": [
+            497.2513,
+            953.8158
+          ],
+          "yPx": [
+            300.4255,
+            1033.24
+          ],
+          "widthPct": 31.7059,
+          "heightPct": 81.4238,
+          "offscreenVertexPct": 0.9685,
+          "nearestDepth": 5.8526
+        },
+        {
+          "pitch": -0.13,
+          "roll": 0,
+          "xPx": [
+            497.8663,
+            962.169
+          ],
+          "yPx": [
+            316.0282,
+            1030.4968
+          ],
+          "widthPct": 32.2432,
+          "heightPct": 79.3854,
+          "offscreenVertexPct": 0.8532,
+          "nearestDepth": 5.8464
+        },
+        {
+          "pitch": -0.13,
+          "roll": 0.18,
+          "xPx": [
+            506.1116,
+            962.8613
+          ],
+          "yPx": [
+            298.6482,
+            1032.3483
+          ],
+          "widthPct": 31.7187,
+          "heightPct": 81.5222,
+          "offscreenVertexPct": 0.9712,
+          "nearestDepth": 5.8563
+        },
+        {
+          "pitch": 0,
+          "roll": -0.18,
+          "xPx": [
+            498.4429,
+            949.5936
+          ],
+          "yPx": [
+            369.6958,
+            912.0467
+          ],
+          "widthPct": 31.3299,
+          "heightPct": 60.2612,
+          "offscreenVertexPct": 0.0596,
+          "nearestDepth": 6.0416
+        },
+        {
+          "pitch": 0,
+          "roll": 0,
+          "xPx": [
+            500.37,
+            959.2784
+          ],
+          "yPx": [
+            387.1659,
+            909.0059
+          ],
+          "widthPct": 31.8686,
+          "heightPct": 57.9822,
+          "offscreenVertexPct": 0.0543,
+          "nearestDepth": 6.0413
+        },
+        {
+          "pitch": 0,
+          "roll": 0.18,
+          "xPx": [
+            509.7589,
+            961.4805
+          ],
+          "yPx": [
+            368.7836,
+            911.1304
+          ],
+          "widthPct": 31.3696,
+          "heightPct": 60.2608,
+          "offscreenVertexPct": 0.0596,
+          "nearestDepth": 6.0466
+        },
+        {
+          "pitch": 0.13,
+          "roll": -0.18,
+          "xPx": [
+            498.3124,
+            946.8846
+          ],
+          "yPx": [
+            401.8768,
+            789.406
+          ],
+          "widthPct": 31.1508,
+          "heightPct": 43.0588,
+          "offscreenVertexPct": 0,
+          "nearestDepth": 6.357
+        },
+        {
+          "pitch": 0.13,
+          "roll": 0,
+          "xPx": [
+            501.5428,
+            957.9022
+          ],
+          "yPx": [
+            396.0099,
+            785.1395
+          ],
+          "widthPct": 31.6916,
+          "heightPct": 43.2366,
+          "offscreenVertexPct": 0,
+          "nearestDepth": 6.3625
+        },
+        {
+          "pitch": 0.13,
+          "roll": 0.18,
+          "xPx": [
+            512.0845,
+            961.6017
+          ],
+          "yPx": [
+            400.7345,
+            788.3649
+          ],
+          "widthPct": 31.2165,
+          "heightPct": 43.07,
+          "offscreenVertexPct": 0,
+          "nearestDepth": 6.3631
+        }
+      ]
+    }
+  ]
+}

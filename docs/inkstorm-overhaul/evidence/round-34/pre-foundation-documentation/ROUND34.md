@@ -1,0 +1,33 @@
+# Round34 — Foundry enclosure, solid effects and Blockrunner inspection
+
+Current candidate: **V1**, `index-CV-CIBxc.js`, **1,614,359 bytes**, SHA256 `080280e5f7ea965d9d2343c13292dcf81abc89a63da8b40cb7c5e91143be887d`. **645 tests / 116 files, typecheck/build and thirteen-image capture PASS**. The capture has no browser errors; owned Chrome/server/port5186 are closed. Its short starting-area drive is not a full-race performance result. Current full-race, section, context and resource verification is running in a quiet window; no result is claimed yet.
+
+**Visual acceptance remains FAIL.** The fresh [V1 critic](BLIND_FOUNDRY_CORRIDOR_V1_ROUND34.md), using five actual Foundry views and the unchanged original/supplemental targets, gives construction **7/10**, full scene **6/10**, cyan pickup volume **6/10**, loose rubble volume **4.5/10**. Scores from different critics are not an objective progress curve. The original seven world targets remain unaccepted. Three vehicle families are runtime-integrated; 23 require preparation. The full recommendations1–8/fleet request remains incomplete. No overhaul commit, push or deployment.
+
+## Current game changes
+
+Ten deliberate landforms add irregular rock shoulders and distant silhouettes behind the existing Foundry. Six buttresses and four cliff/mesa forms reuse existing geometry/material batches and the buttress LOD. Total added source cost is **170,656 high / 27,856 far triangles**, before culling and render passes. Large forms still use high detail in the tested Foundry cameras. Up to two previously empty existing family draws can become active; batch reuse is not zero-cost proof.
+
+The render-only planner checks 4,096 main-route segments and all72 linear branch segments against actual rotated source bounds, full lane half-width, **10.5m craft half-width** and a sampling allowance. The smallest remaining safety is **31.382m**, above the required7m. Independent denser route tests and actual high/low GLB vertices verify clearance and buried toes. The older9.6m visual allowance was smaller than the current procedural body maximum10.47204m; the new module uses10.5m. Root's World integration reuses the accepted final base/scale without grounding twice and includes the forms in camera culling, LOD, full-placement static shadows and normal disposal. Eight targeted tests cover the real sources and assembly; they are included in the645-test run. [Detailed CPU handoff](../../output/gauntlet/foundry-corridor-round34-handoff.md).
+
+The shared pickup/mine pool now has an opaque, shaded metal body and a separate bright signal-ring attribute in the same geometry/material draw. Rubble receives broad sunlight/violet shading. Both preserve the original state inputs, instances and **eight effect draw pools**. No new dynamic lights or contact-shadow claim. Actual middle-frame inspection shows an inset pickup face; the fresh critic still finds it too shallow and the rubble too dominated by triangle edges. A further FX derivative is preparation only until applied and captured.
+
+Physical layout, terrain, course/drive/rules editions and simulation are unchanged. The retained Round33 service gantry V3, detailed vessels, grounded collectors, warm glass and curve-aligned collars remain. [Round33 asset history](ROUND33.md). The [frozen V5 performance report](FULL_RACE_PERFORMANCE_ROUND33.md) is historical evidence for its exact files and does not cover this candidate.
+
+## Actual image evidence
+
+`output/gauntlet/round-34-corridor-effects-v1/` contains seven standard sections, four additional Foundry views, garage, live-drive still, build/state receipts and cleanup. The eleven staged race views use time zero / simulation frame2400. Root individually inspected all five Foundry views; the independent critic hashed and individually viewed those five plus both target images. The screenshot HUD speed is not measured motion. Original concepts06 and supplementary11 are unchanged.
+
+## Next fleet source: Blockrunner
+
+An actual Blender MCP audit and four separate neutral renders inspected the existing colour source `a6f14ae799ab40d7ac425f043f824ff8`. The source is **2,667,212 bytes**, SHA256 `1ecf135bc63df02102f168b79ea869d98aba6d07bdc94b2e0c6f10478a13f96e`; live evaluation confirms **268 scene objects /59 mesh occurrences /48,384 triangles**. Existing12m import scale is already applied. The preserved source has an original minifigure driver; no duplicate pilot will be added.
+
+Root individually viewed full craft, front, rear and driver PNGs. Each isolated copy render and the read-only audit restored all140 existing scene/collection memberships, shared active context and source structural signatures. No shared `.blend` save. The original driver hands do not meet the tall controls in the inspected frame. The leg/seat region shows source artifacts. External analysis identifies all8,256 driver faces as4,128 exact coordinate-coincident opposite-winding pairs, including1,104 lower-leg pairs; zero near-zero-area triangles. This is a source finding, not a completed repair. Full59-mesh topology analysis and geometry cleanup remain pending, paused during game performance measurement.
+
+[Source findings](../../assets/source/inkstorm/blockrunner-round34/MEASURED_SOURCE_FINDINGS.md) · [Four-view hash inventory and audit](../../assets/source/inkstorm/blockrunner-round34/source-inspection-inventory.json) · [MCP-safe scripts/receipts](../../assets/source/inkstorm/blockrunner-round34/mcp-safe/README.md).
+
+Supplemental [concept12](concepts/12-blockrunner-round34.png) was actually generated with Codex imagegen from the source view and original Foundry palette. Its JSON records the prompt and source hashes. It sets a paint/readability target; its generated rear inset cannot define real geometry or exhaust anchors. No Blockrunner runtime registration, optimized derivative, gameplay anchor acceptance or fleet-counter increase has occurred.
+
+## Continue from this exact boundary
+
+Finish the current four runtime checks and close every owned browser/server before releasing the quiet window. Preserve all failed attempts and the exact frozen runtime. Then finish Blockrunner topology/anchor inspection and author a copied derivative; apply and independently judge the next solid-effects pass. Larger remaining Foundry priorities are ground/foundation integration, machinery variation, materials/joint hierarchy and a stronger sequence of industrial depths. Do not infer a terrain wall from a still: the earlier bounded route-ray study found machinery/foundations and projection compression important, while most nearby sampled route targets were unobstructed.

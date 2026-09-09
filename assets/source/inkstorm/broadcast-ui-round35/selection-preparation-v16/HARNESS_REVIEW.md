@@ -1,0 +1,9 @@
+# Deferred-course driver harness adaptation
+
+Both native harnesses previously reconstructed their offline course before Start. Under deferred solo preparation that matched the parked scene, not the selected pending Expedition. The prelaunch chaos assertion also described the old simulation instead of the selected rules.
+
+Both now preserve the menu selection snapshot and assert a pending Expedition seed, click native Start once, await the released countdown, retain the existing actual chaos-profile gate there, and verify built seed equals the pending seed and pending is cleared. Driver course sampling uses that newly built seed and retains the exact browser/offline signature match. A second read inside the installation evaluate fails if countdown ended or seed/signature changed during CPU preparation. The installation receipt stores seed, signature, zero race time, simulation frame and current phase.
+
+Ordinary gamepad driver frame bodies are byte-identical. The outgoing pace/analysis block, including its actual immediately pre-event racing-camera baseline, is byte-identical. Pickup authoritative-claim and nonzero repair gates are unchanged, as are optional recharge-wait inputs, cleanup, outcome and error handling. The initial few countdown frames before installation are not sampled; no racing-frame exclusion or performance claim is introduced. If course sampling cannot finish during countdown, the run now fails explicitly instead of driving a mismatched route.
+
+Node syntax and before/after whitespace checks pass. A standalone tsc attempt could not resolve @types/node in this checkout; existing pickup fixture type errors (incomplete neutral upgrade literal and unknown mastery eventId) also remain outside this behavioral change. No dependency installation, build, browser or runtime edit was performed. Full native proof remains pending.

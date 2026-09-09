@@ -1,0 +1,28 @@
+{
+  "argv": [
+    "npx",
+    "vitest",
+    "run",
+    "tests/combat/TeemtoWreckBreakup.test.ts",
+    "tests/camera/WreckBoundsFraming.test.ts",
+    "--silent=false",
+    "--reporter=verbose"
+  ],
+  "exitCode": 0,
+  "settledRightMarginMetres": 0.1,
+  "before": {
+    "tests/combat/TeemtoWreckBreakup.test.ts": "f821e8f8e6cdd3e100b09d947faf7e5e2447936c69041378cd99d6bfaa4d38d9",
+    "tests/camera/WreckBoundsFraming.test.ts": "d3a2766d1c10add1b35df699a4ce74242b4e5b774e7e4f1e6e8668b09c802736",
+    "src/render/combat/TeemtoWreckBreakup.ts": "7f68df7807c6df380a09bdbf1797d1d566d70fff849aa8c5fb35b8c86679a61a",
+    "src/render/combat/WreckVisualPose.ts": "bbe0f733ce523f2a79af9f46eda5f321cee9531ee90f02277d988b2996c42337",
+    "src/camera/CinematicCamera.ts": "f160d558384d86ed2d16b118e5f8d2b1788d257b1e228a90f3d94d3568d75040"
+  },
+  "after": {
+    "tests/combat/TeemtoWreckBreakup.test.ts": "f821e8f8e6cdd3e100b09d947faf7e5e2447936c69041378cd99d6bfaa4d38d9",
+    "tests/camera/WreckBoundsFraming.test.ts": "d3a2766d1c10add1b35df699a4ce74242b4e5b774e7e4f1e6e8668b09c802736",
+    "src/render/combat/TeemtoWreckBreakup.ts": "7f68df7807c6df380a09bdbf1797d1d566d70fff849aa8c5fb35b8c86679a61a",
+    "src/render/combat/WreckVisualPose.ts": "bbe0f733ce523f2a79af9f46eda5f321cee9531ee90f02277d988b2996c42337",
+    "src/camera/CinematicCamera.ts": "f160d558384d86ed2d16b118e5f8d2b1788d257b1e228a90f3d94d3568d75040"
+  },
+  "scope": "CPU tests only; no browser/build/GPU or visual/FPS acceptance. Earlier.55 runs preserved separately."
+}

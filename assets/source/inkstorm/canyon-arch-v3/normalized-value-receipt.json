@@ -1,0 +1,55 @@
+{
+  "source": "canyon-arch-v3.glb",
+  "sourceSha256": "7f21671b8a9d7440b6e528e00308e5872b67c5d3f38b988a5c2bfc6ab4c9dade",
+  "asset": "canyon-arch-v3-normalized.glb",
+  "sha256": "1b950e08b0004fec5590b1167a7c1f7311c0389a2d48b2e43c387c1ef82d9b01",
+  "bytes": 1260384,
+  "targetMedianLuminance": 0.19,
+  "weights": [
+    0.2126,
+    0.7152,
+    0.0722
+  ],
+  "method": "One positive global linear RGB multiplier; no clipping, no geometry/normal/material changes; quantiles over exported vertices",
+  "gain": 0.5711521828682563,
+  "beforeQuantiles": {
+    "0": 0.14462700151205063,
+    "1": 0.7422843051970005,
+    "0.01": 0.15360525540709496,
+    "0.05": 0.17972568472176792,
+    "0.1": 0.20723934448063372,
+    "0.25": 0.26658457724452017,
+    "0.5": 0.33266090141832827,
+    "0.75": 0.4119324310779572,
+    "0.9": 0.5269088374495506,
+    "0.95": 0.5933037643194196,
+    "0.99": 0.6672169413864611
+  },
+  "afterQuantiles": {
+    "0": 0.08260402572602032,
+    "1": 0.42395730118751523,
+    "0.01": 0.08773197645694017,
+    "0.05": 0.1026507162794471,
+    "0.1": 0.11836520493328571,
+    "0.25": 0.15226036308854818,
+    "0.5": 0.19000000538229944,
+    "0.75": 0.23527611020579936,
+    "0.9": 0.30094513419270513,
+    "0.95": 0.33886674113154397,
+    "0.99": 0.38108242231309414
+  },
+  "geometryUnchanged": true,
+  "geometryAttributeHashes": {
+    "POSITION": "b817a54c5fff939415bf9412339bf9c198bd8fc15706da5a6233b066ba8c812e",
+    "NORMAL": "9ada32ed9fe17d086c1a6879e366002669627a4db7480010959239217bf8fac9",
+    "indices": "87055255febf692ed9f7d1916fbfce8fdaba16462d47fa9cc990c5b5fad619c0"
+  },
+  "validation": {
+    "numErrors": 0,
+    "numWarnings": 0,
+    "numInfos": 0,
+    "numHints": 0,
+    "messages": [],
+    "truncated": false
+  }
+}

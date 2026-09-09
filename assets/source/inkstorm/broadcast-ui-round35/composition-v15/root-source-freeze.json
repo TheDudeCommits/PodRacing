@@ -1,0 +1,26 @@
+{
+  "status": "SOURCE_READY_NATIVE_PENDING",
+  "files": [
+    {
+      "path": "src/ui/broadcastStyles.ts",
+      "bytes": 59164,
+      "sha256": "dcbae5ddc98cf5d894116b6b5199e1445c01b7bf7e6f7a8d56d798d60f588a7b"
+    },
+    {
+      "path": "src/ui/raceEventAtlasStyles.ts",
+      "bytes": 12452,
+      "sha256": "162fce1650c32dcbbe32e02ccfa3d64fdf140b4b388b8861676291291fd72431"
+    },
+    {
+      "path": "src/ui/RaceEventAtlas.ts",
+      "bytes": 14008,
+      "sha256": "69b395ccbb8c38ef4fa95acb4948565e40f40d491782f90b5e81453c33058ccf"
+    },
+    {
+      "path": "scripts/inkstorm-broadcast-ui.mjs",
+      "bytes": 18630,
+      "sha256": "e8dded529769c77faadb748514d36e964426eae8f49dd9c93f3eebad0dc52270"
+    }
+  ],
+  "scope": "Transparent secondary HUD treatments, clearer garage type/choice hierarchy, original broad map arcs and restrained surface bands. V15 Build authored separately; no runtime world/simulation edits in this group."
+}

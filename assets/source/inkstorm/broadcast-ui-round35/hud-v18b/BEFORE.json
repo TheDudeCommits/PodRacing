@@ -1,0 +1,31 @@
+{
+  "preservedAt": "2026-09-08T23:12:54.091592+00:00",
+  "sources": {
+    "src/ui/broadcastStyles.ts": {
+      "sha256": "06fb4796a254a1be7aa48fef0aa9fd60a9c0468c078046c8d1c513ec16343e48",
+      "bytes": 75887
+    },
+    "src/ui/RaceHud.ts": {
+      "sha256": "aa587cebc85da3940ae4a70e7afd0995c25c1bfa8a634dca36793bab4967c407",
+      "bytes": 118009
+    }
+  },
+  "nativeFailure": {
+    "receipt.json": {
+      "path": "/Users/amir/Projects/PodRacing/output/gauntlet/round35-broadcast-native-v18/receipt.json",
+      "sha256": "186c88247d4115032de84e2af91c277a622a229a519cfb84045c217d85f470d3",
+      "bytes": 477938
+    },
+    "resource-bars.json": {
+      "path": "/Users/amir/Projects/PodRacing/output/gauntlet/round35-broadcast-native-v18/resource-bars.json",
+      "sha256": "b80e312f4bd7240680935968117991dbc4efed3bf3cd449b9d0a153e6ddb6a45",
+      "bytes": 987538
+    },
+    "06-desktop-live-race.png": {
+      "path": "/Users/amir/Projects/PodRacing/output/gauntlet/round35-broadcast-native-v18/06-desktop-live-race.png",
+      "sha256": "4d4e2267a1c1adfd09fff5bae7bde47e35fe70e2aa3c015d7f65cc363cd1edaa",
+      "bytes": 1475336
+    }
+  },
+  "scope": "Minimal display:block correction for actual zero-width heat/damage spans only. Existing V18 failure preserved unchanged. No Build/Map/Garage changes."
+}

@@ -1,0 +1,97 @@
+{
+  "outcome": "PASS",
+  "scope": "Isolated native harness guard with stubbed loader/network responses; not gameplay or image quality.",
+  "sourceSha256": "1d78c1a7df6c2d52c6e03cd45ad146caced48bb4ce6c2d6bfb6205c273d623d7",
+  "cases": [
+    {
+      "name": "exact ready asset",
+      "outcome": "PASS",
+      "rejected": false,
+      "error": null,
+      "calls": {
+        "wait": 1,
+        "fetch": 1
+      }
+    },
+    {
+      "name": "wrong checksum",
+      "outcome": "PASS",
+      "rejected": true,
+      "error": "Error: Flame atlas checksum mismatch: f14657a3388bf9618d0206806c7b9c54856bd7f54c98596ea1790d85c97dd4c5",
+      "calls": {
+        "wait": 1,
+        "fetch": 1
+      }
+    },
+    {
+      "name": "wrong width",
+      "outcome": "PASS",
+      "rejected": true,
+      "error": "Error: Loaded flame atlas dimensions/frames do not match admitted artwork.",
+      "calls": {
+        "wait": 1,
+        "fetch": 0
+      }
+    },
+    {
+      "name": "wrong count",
+      "outcome": "PASS",
+      "rejected": true,
+      "error": "Error: Loaded flame atlas dimensions/frames do not match admitted artwork.",
+      "calls": {
+        "wait": 1,
+        "fetch": 0
+      }
+    },
+    {
+      "name": "foreign origin",
+      "outcome": "PASS",
+      "rejected": true,
+      "error": "Error: Flame atlas must be served by this frozen local build.",
+      "calls": {
+        "wait": 1,
+        "fetch": 0
+      }
+    },
+    {
+      "name": "unsuccessful response",
+      "outcome": "PASS",
+      "rejected": true,
+      "error": "Error: Flame atlas bytes are not a successful PNG response.",
+      "calls": {
+        "wait": 1,
+        "fetch": 1
+      }
+    },
+    {
+      "name": "not PNG",
+      "outcome": "PASS",
+      "rejected": true,
+      "error": "Error: Flame atlas bytes are not a successful PNG response.",
+      "calls": {
+        "wait": 1,
+        "fetch": 1
+      }
+    },
+    {
+      "name": "loader fallback",
+      "outcome": "PASS",
+      "rejected": true,
+      "error": "Error: simulated readiness timeout",
+      "calls": {
+        "wait": 1,
+        "fetch": 0
+      }
+    },
+    {
+      "name": "guard absent",
+      "outcome": "PASS",
+      "rejected": false,
+      "error": null,
+      "calls": {
+        "wait": 0,
+        "fetch": 0
+      }
+    }
+  ]
+}

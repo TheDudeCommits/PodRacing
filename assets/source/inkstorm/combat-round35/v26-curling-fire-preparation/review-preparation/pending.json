@@ -1,0 +1,25 @@
+{
+  "status": "WAIT FOR ROOT COMPLETED NATIVE RECEIPT AND CPU RELEASE; no media extraction or critic invocation",
+  "expectedReceipt": "/Users/amir/Projects/PodRacing/output/playwright/round35-combat-v26/receipt.json",
+  "sourceCutFrame": null,
+  "sourceCutPTS": null,
+  "phaseOffsetsSeconds": [
+    0,
+    0.04,
+    0.52,
+    1.04,
+    1.84,
+    2.88
+  ],
+  "promptSha256": "336d5a5414ac6dfc77d745415ae2f54504635d9434cc8ce94b0921f34ed359b4",
+  "reference": "/Users/amir/Projects/PodRacing/output/reference-ui-round35/UI-takedown-motion.jpg",
+  "referenceSha256": "065476fff16d5986a4173ba374dd308b326d976687db4413f1b9b0f81b8bcb21",
+  "inputs": "Six exact source-PTS frames located from actual first visible cut plus unchanged reference. No target17, parent findings or source code.",
+  "nativeGates": [
+    "Exact root visibility with depth test",
+    "Pressure evolves into curved fire rather than persistent spokes",
+    "Two shaded smoke billows leave informative cut readable",
+    "No new return crop or recovery remnants",
+    "Preserve unchanged fresh critic/raw audit"
+  ]
+}

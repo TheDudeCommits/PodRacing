@@ -1,0 +1,209 @@
+{
+  "scope": "Actual extracted inspect helper executed with CPU geometry/style objects, not browser/render proof",
+  "reviewedScriptSha256": "2474aa9b66cadf588f4c53086754c710cfe7ba6586452be5da9c7609b3ae1460",
+  "outcome": "PASS",
+  "cases": [
+    {
+      "name": "visible actual-size row",
+      "expectedVisible": true,
+      "result": {
+        "box": {
+          "x": 1200,
+          "y": 740,
+          "width": 180,
+          "height": 22,
+          "left": 1200,
+          "top": 740,
+          "right": 1380,
+          "bottom": 762
+        },
+        "hiddenBy": [],
+        "clippedBy": [],
+        "visible": true
+      }
+    },
+    {
+      "name": "own opacity zero",
+      "expectedVisible": false,
+      "result": {
+        "box": {
+          "x": 1200,
+          "y": 740,
+          "width": 38,
+          "height": 17,
+          "left": 1200,
+          "top": 740,
+          "right": 1238,
+          "bottom": 757
+        },
+        "hiddenBy": [
+          "test-element"
+        ],
+        "clippedBy": [],
+        "visible": false
+      }
+    },
+    {
+      "name": "ancestor opacity zero",
+      "expectedVisible": false,
+      "result": {
+        "box": {
+          "x": 1200,
+          "y": 740,
+          "width": 38,
+          "height": 17,
+          "left": 1200,
+          "top": 740,
+          "right": 1238,
+          "bottom": 757
+        },
+        "hiddenBy": [
+          "test-element"
+        ],
+        "clippedBy": [],
+        "visible": false
+      }
+    },
+    {
+      "name": "ancestor visibility hidden",
+      "expectedVisible": false,
+      "result": {
+        "box": {
+          "x": 1200,
+          "y": 740,
+          "width": 38,
+          "height": 17,
+          "left": 1200,
+          "top": 740,
+          "right": 1238,
+          "bottom": 757
+        },
+        "hiddenBy": [
+          "test-element"
+        ],
+        "clippedBy": [],
+        "visible": false
+      }
+    },
+    {
+      "name": "ancestor display none",
+      "expectedVisible": false,
+      "result": {
+        "box": {
+          "x": 1200,
+          "y": 740,
+          "width": 38,
+          "height": 17,
+          "left": 1200,
+          "top": 740,
+          "right": 1238,
+          "bottom": 757
+        },
+        "hiddenBy": [
+          "test-element"
+        ],
+        "clippedBy": [],
+        "visible": false
+      }
+    },
+    {
+      "name": "outside viewport",
+      "expectedVisible": false,
+      "result": {
+        "box": {
+          "x": 1430,
+          "y": 740,
+          "width": 38,
+          "height": 17,
+          "left": 1430,
+          "top": 740,
+          "right": 1468,
+          "bottom": 757
+        },
+        "hiddenBy": [],
+        "clippedBy": [],
+        "visible": false
+      }
+    },
+    {
+      "name": "actual overflow clips",
+      "expectedVisible": false,
+      "result": {
+        "box": {
+          "x": 1200,
+          "y": 740,
+          "width": 38,
+          "height": 17,
+          "left": 1200,
+          "top": 740,
+          "right": 1238,
+          "bottom": 757
+        },
+        "hiddenBy": [],
+        "clippedBy": [
+          "test-element:x"
+        ],
+        "visible": false
+      }
+    },
+    {
+      "name": "boxless display contents does not clip",
+      "expectedVisible": true,
+      "result": {
+        "box": {
+          "x": 1200,
+          "y": 740,
+          "width": 38,
+          "height": 17,
+          "left": 1200,
+          "top": 740,
+          "right": 1238,
+          "bottom": 757
+        },
+        "hiddenBy": [],
+        "clippedBy": [],
+        "visible": true
+      }
+    },
+    {
+      "name": "display contents hidden still rejected",
+      "expectedVisible": false,
+      "result": {
+        "box": {
+          "x": 1200,
+          "y": 740,
+          "width": 38,
+          "height": 17,
+          "left": 1200,
+          "top": 740,
+          "right": 1238,
+          "bottom": 757
+        },
+        "hiddenBy": [
+          "test-element"
+        ],
+        "clippedBy": [],
+        "visible": false
+      }
+    },
+    {
+      "name": "zero-size track rejected",
+      "expectedVisible": false,
+      "result": {
+        "box": {
+          "x": 1200,
+          "y": 740,
+          "width": 0,
+          "height": 7,
+          "left": 1200,
+          "top": 740,
+          "right": 1200,
+          "bottom": 747
+        },
+        "hiddenBy": [],
+        "clippedBy": [],
+        "visible": false
+      }
+    }
+  ]
+}

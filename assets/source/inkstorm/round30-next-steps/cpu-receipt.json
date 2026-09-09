@@ -1,0 +1,71 @@
+{
+  "scope": "CPU source candidate only: no browser, GPU, Blender, render, timing or art acceptance",
+  "seed": 1229867859,
+  "bankIds": [
+    "inkstorm-pipe-bank-227",
+    "inkstorm-pipe-bank-228",
+    "inkstorm-pipe-bank-230",
+    "inkstorm-pipe-bank-233",
+    "inkstorm-pipe-bank-229",
+    "inkstorm-pipe-bank-231",
+    "inkstorm-pipe-bank-232",
+    "inkstorm-pipe-bank-234"
+  ],
+  "sockets": 24,
+  "pipeRuns": 33,
+  "boxes": 27,
+  "triangles": 17300,
+  "vertices": 51900,
+  "materials": 1,
+  "additionalMeshes": 1,
+  "additionalTextures": 0,
+  "additionalLights": 0,
+  "perFrameUpdates": 0,
+  "geometryBytes": 1868400,
+  "bounds": {
+    "min": [
+      19510.375,
+      -28.624011993408203,
+      -373.3837890625
+    ],
+    "max": [
+      19881.513671875,
+      135.85614013671875,
+      -54.71347427368164
+    ]
+  },
+  "minimumLowVertexOrCentroidClearance": 9.355175429727211,
+  "minimumOverheadVertexOrCentroidHeight": 78.74365771194903,
+  "nonfinite": 0,
+  "failures": [],
+  "removedArtInstances": [
+    {
+      "id": "inkstorm-foundry-gantry-226",
+      "family": "foundry-gantry",
+      "progress": 0.5442499999999999,
+      "x": 19712.22288960099,
+      "z": -149.36573096430502,
+      "yaw": -2.0402081408495887,
+      "sx": 0.78,
+      "sy": 1.05,
+      "sz": 1
+    }
+  ],
+  "geometryBudget": 24000,
+  "budgetPassed": true,
+  "clearancePassed": true,
+  "limitations": [
+    "Per-vertex and triangle-centroid checks are not swept-pod or triangle-volume collision proof.",
+    "Root must validate actual camera composition, graphics lifecycle and full-race cadence.",
+    "Existing collision placement list, gulf arrays, terrain and physics were not edited.",
+    "The distant launch basin has not been recomposed by this near-foundry candidate."
+  ],
+  "hashes": {
+    "candidate": "0fe2e1f764658f642ef39fb0ac94b5a06828f3e1f263059fa0eb84ae1ddd73a0",
+    "worldCandidate": "862db84e6d9778d15a37d16a86bbb1a8b0023d4bb513a6ea585ffbf92d2ed11e",
+    "originalWorld": "8efbc0aaac64ab4de5775b1d58e7539790870aabd0228c3374027810f212336b",
+    "originalLayout": "a8a116265b0664d8d213f954a0898f7cc79315feca3f5e7e7e5bf33fc647f32d"
+  },
+  "strictTypecheck": "PASS",
+  "worldHookWhitespaceCheck": "No diagnostics; no-index difference exit1"
+}

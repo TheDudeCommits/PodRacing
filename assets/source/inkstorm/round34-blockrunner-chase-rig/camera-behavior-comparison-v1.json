@@ -1,0 +1,100 @@
+{
+  "scope": "CPU-only actual private baseline/candidate camera class calls. No renderer/GPU/browser, no simulation mutation except explicit test subject translation. Not a visual/performance pass.",
+  "noExplicitRig": [
+    {
+      "mode": "chase",
+      "clearance": 0,
+      "snapAnd60UpdatesBitExact": true
+    },
+    {
+      "mode": "chase",
+      "clearance": 5.2,
+      "snapAnd60UpdatesBitExact": true
+    },
+    {
+      "mode": "chase",
+      "clearance": 4.8,
+      "snapAnd60UpdatesBitExact": true
+    },
+    {
+      "mode": "hero",
+      "clearance": 0,
+      "snapAnd60UpdatesBitExact": true
+    },
+    {
+      "mode": "hero",
+      "clearance": 5.2,
+      "snapAnd60UpdatesBitExact": true
+    },
+    {
+      "mode": "hero",
+      "clearance": 4.8,
+      "snapAnd60UpdatesBitExact": true
+    },
+    {
+      "mode": "side",
+      "clearance": 0,
+      "snapAnd60UpdatesBitExact": true
+    },
+    {
+      "mode": "side",
+      "clearance": 5.2,
+      "snapAnd60UpdatesBitExact": true
+    },
+    {
+      "mode": "side",
+      "clearance": 4.8,
+      "snapAnd60UpdatesBitExact": true
+    },
+    {
+      "mode": "course",
+      "clearance": 0,
+      "snapAnd60UpdatesBitExact": true
+    },
+    {
+      "mode": "course",
+      "clearance": 5.2,
+      "snapAnd60UpdatesBitExact": true
+    },
+    {
+      "mode": "course",
+      "clearance": 4.8,
+      "snapAnd60UpdatesBitExact": true
+    },
+    {
+      "mode": "cockpit",
+      "clearance": 0,
+      "snapAnd60UpdatesBitExact": true
+    },
+    {
+      "mode": "cockpit",
+      "clearance": 5.2,
+      "snapAnd60UpdatesBitExact": true
+    },
+    {
+      "mode": "cockpit",
+      "clearance": 4.8,
+      "snapAnd60UpdatesBitExact": true
+    }
+  ],
+  "nonChase": [
+    {
+      "mode": "hero",
+      "explicitRigIgnored": true
+    },
+    {
+      "mode": "side",
+      "explicitRigIgnored": true
+    },
+    {
+      "mode": "course",
+      "explicitRigIgnored": true
+    },
+    {
+      "mode": "cockpit",
+      "explicitRigIgnored": true
+    }
+  ],
+  "invalidRigFallsBack": true,
+  "reducedMotionKeepsPoseAndFov62": true
+}

@@ -1,0 +1,20 @@
+--- a/src/render/app/GameApp.ts
++++ b/src/render/app/GameApp.ts
+@@ -3542,7 +3542,7 @@
+         }
+       }
+       let racerId: string | null = null;
+-      let style: 'crash' | 'mine' | 'sand' | 'rock' | 'redline' | 'reward' | 'energy' = 'crash';
++      let style: 'crash' | 'mine' | 'sand' | 'rock' | 'redline' | 'reward' | 'energy' | 'recovery' = 'crash';
+       let severity = 1;
+       let color = '#ff6a2d';
+       switch (event.type) {
+@@ -3597,7 +3597,7 @@
+           break;
+         case 'recovered':
+           racerId = event.racerId;
+-          style = 'energy';
++          style = 'recovery';
+           severity = 1.4;
+           color = '#60ff91';
+           break;

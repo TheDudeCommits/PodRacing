@@ -1,0 +1,118 @@
+{
+  "recordedAt": "2026-09-07T23:09:53.457904+00:00",
+  "scope": "Completed round30 full-race technical evidence and bounded final UI review; no source acquisition, world art acceptance, commit or deployment.",
+  "previousManifest": "vehicle-manifest-before-full-race-round30.json",
+  "previousManifestSha256": "f53869d21b9a96c815caa5d17f288d0ea2c0d16695ff9d4b1cb4d152061e1d9d",
+  "manifestAfterSha256": "c2f335c1a357d3e4d7a4cc4d55f4eb8be07695437f76fc88c91e7784b637ca1d",
+  "preservedLatestAcquisitionReceipt": "vehicles/25d51fbd4efc4c888ca4ff2549b1c6ae/mcp-download-retry-20260907-2230.json",
+  "preservedRateLimitedRequestCount": 8,
+  "previousLatestProgressReceipt": "vehicle-progress-2026-09-07-eighth-rate-limit.json",
+  "previousLatestPerformanceReceipt": "vehicle-progress-2026-09-07-full-race-round29.json",
+  "countsBefore": {
+    "publicResults": 29,
+    "vehicleCandidates": 26,
+    "excludedNonVehicles": 3,
+    "downloaded": 2,
+    "blockedOrPending": 24,
+    "downloadStatuses": {
+      "downloaded": 2,
+      "pending_download": 22,
+      "rate_limited": 2
+    },
+    "mcpImportedSourceGlbs": 2,
+    "rawArchivesPreserved": 0,
+    "stylizationNeedsPermission": 0,
+    "publicAdaptationRestricted": 1,
+    "stylizedExports": 2,
+    "stylizedSourceStudies": 2,
+    "stylizedExportVariants": 4,
+    "driversAdded": 2,
+    "runtimeIntegrations": 2,
+    "driverInspections": 2,
+    "stylizedExportFiles": 6
+  },
+  "countsAfter": {
+    "publicResults": 29,
+    "vehicleCandidates": 26,
+    "excludedNonVehicles": 3,
+    "downloaded": 2,
+    "blockedOrPending": 24,
+    "downloadStatuses": {
+      "downloaded": 2,
+      "pending_download": 22,
+      "rate_limited": 2
+    },
+    "mcpImportedSourceGlbs": 2,
+    "rawArchivesPreserved": 0,
+    "stylizationNeedsPermission": 0,
+    "publicAdaptationRestricted": 1,
+    "stylizedExports": 2,
+    "stylizedSourceStudies": 2,
+    "stylizedExportVariants": 4,
+    "driversAdded": 2,
+    "runtimeIntegrations": 2,
+    "driverInspections": 2,
+    "stylizedExportFiles": 6
+  },
+  "checkpoint": {
+    "lastCompletedRound": 30,
+    "scope": "Last fully verified technical/world-image/full-race checkpoint. World art FAIL; final bounded mastery UI PASS. Active round31 experimental integration is unaccepted and outside this freeze.",
+    "bundle": "index-DFdPXgCs.js",
+    "bundleSha256": "4a5cfa6b986bb1813628c15b1e8783e5c07cd98fc919c048d131a0515e7960f3",
+    "bundleBytes": 1595979,
+    "verification": {
+      "tests": 593,
+      "files": 106,
+      "log": "output/gauntlet/round30-accepted-ui-verify.log"
+    },
+    "fullRacePerformance": "PASS for all four final Teemto/Sebulba ordinary Time Attack/Canyon Cup cadence gates and both Continue flows. Local adaptive RAF; Cups include post-player classification wait. Preserved pursuit harness failures and atomic observation correction remain separate evidence.",
+    "fullRacePerformanceReport": "docs/inkstorm-overhaul/FULL_RACE_PERFORMANCE_ROUND30.md",
+    "fullRacePerformanceProgressReceipt": "vehicle-progress-2026-09-07-full-race-round30.json",
+    "finalFreezeComparison": "output/gauntlet/round30-freeze/complete-race-comparison.json",
+    "raceEvidenceInventory": "output/gauntlet/round30-freeze/race-evidence-inventory.json",
+    "worldArtAcceptance": {
+      "round": 30,
+      "outcome": "FAIL",
+      "acceptedSections": 0,
+      "reviewedSections": 7,
+      "meanScore": 3.9,
+      "receipt": "docs/inkstorm-overhaul/BLIND_WORLD_ROUND30.md",
+      "scope": "Critic reviewed round-30 prefinal UI; final geometry/public art unchanged. Final gallery was not silently substituted into that review."
+    },
+    "boundedMasteryUiAcceptance": {
+      "outcome": "PASS",
+      "receipt": "docs/inkstorm-overhaul/BLIND_MASTERY_FINAL_ROUND30.md",
+      "scope": "Final actual screenshots only; small type, footer and baseline dash weaknesses remain nonblocking. Numeric/record flow verified separately."
+    },
+    "pilotArtAcceptance": {
+      "round": 28,
+      "outcome": "FAIL",
+      "scope": "V4C relative preference is not strict 8/10 acceptance",
+      "receipt": "docs/inkstorm-overhaul/BLIND_PILOT_RUNTIME_ROUND28.md"
+    },
+    "activeWork": {
+      "round": 31,
+      "status": "Active experimental launch/course9 and fork-guidance integration; unaccepted and outside last fully verified round30. Source candidates remain preserved.",
+      "scope": [
+        "Physical launch opening with new course edition and archive migration",
+        "Further route-guidance candidates"
+      ],
+      "acceptance": "Requires its own tests, driving/record checks, actual captures, fresh criticism and full-race timing; no inherited round30 pass."
+    },
+    "deployment": "none"
+  },
+  "evidence": [
+    "docs/inkstorm-overhaul/FULL_RACE_PERFORMANCE_ROUND30.md",
+    "output/gauntlet/round30-freeze/complete-race-comparison.json",
+    "output/gauntlet/round30-freeze/race-evidence-inventory.json",
+    "docs/inkstorm-overhaul/evidence/round-30/gallery-inventory.json"
+  ],
+  "preservationChecks": {
+    "all29ModelRecordsUnchanged": true,
+    "allCountsUnchanged": true,
+    "acquisitionStateUnchanged": true,
+    "eighth429ReceiptAndHistoryPreserved": true,
+    "historyPrefixesUnchanged": true,
+    "previousAcceptanceCheckpointPreserved": true
+  }
+}

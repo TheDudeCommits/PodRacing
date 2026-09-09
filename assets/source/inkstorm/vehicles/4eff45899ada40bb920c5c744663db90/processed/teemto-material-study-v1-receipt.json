@@ -1,0 +1,175 @@
+{
+  "version": 1,
+  "uid": "4eff45899ada40bb920c5c744663db90",
+  "recordedAt": "2026-09-07T14:59:57.230000+00:00",
+  "scope": "Imported-source cockpit inspection and one local material study; two generated repaint atlases applied to an isolated Blender copy. No processed vehicle GLB, runtime integration or added driver is claimed.",
+  "sourcePreservation": {
+    "sourceGlbsRehashed": [
+      {
+        "uid": "4eff45899ada40bb920c5c744663db90",
+        "path": "assets/source/inkstorm/vehicles/4eff45899ada40bb920c5c744663db90/imported-source.glb",
+        "bytes": 69550360,
+        "sha256": "b7e2cc046fd392659886b1af88bdda1117037009351493f69dccdf78c4c53836",
+        "matchesAcquisitionReceipt": true
+      },
+      {
+        "uid": "f97e3891a6a846ed97379e3cfa5931a0",
+        "path": "assets/source/inkstorm/vehicles/f97e3891a6a846ed97379e3cfa5931a0/imported-source.glb",
+        "bytes": 68689196,
+        "sha256": "4bc2a4caf9370e8eb3adbb112749790123a7b113ca005a07611bfefafa70aaae",
+        "matchesAcquisitionReceipt": true
+      }
+    ],
+    "originalSourceReceipt": {
+      "path": "assets/source/inkstorm/vehicles/4eff45899ada40bb920c5c744663db90/source-receipt.json",
+      "sha256": "37834cf326efe9efcc5818a9a01d840b60c5f8c09b39b09e7eb3593a47fe0202"
+    },
+    "sourceGlbModified": false,
+    "rawArchivePreserved": false
+  },
+  "author": {
+    "uid": "f72a67b7e63e4a08be328091539f3e9d",
+    "username": "rafarelo",
+    "displayName": "Rafael Fernández Calvo",
+    "profileUrl": "https://sketchfab.com/rafarelo"
+  },
+  "modelUrl": "https://sketchfab.com/3d-models/teemto-pagalies-podracer-4eff45899ada40bb920c5c744663db90",
+  "license": {
+    "reported": {
+      "uri": "https://api.sketchfab.com/v3/licenses/322a749bcfa841b29dff1e8a1bb74b0b",
+      "label": "CC Attribution",
+      "fullName": "Creative Commons Attribution",
+      "requirements": "Author must be credited. Commercial use is allowed.",
+      "url": "http://creativecommons.org/licenses/by/4.0/",
+      "slug": "by"
+    },
+    "licenseUrl": "http://creativecommons.org/licenses/by/4.0/",
+    "attributionRequired": true,
+    "nonCommercialOnly": false,
+    "stylizationStatus": "permitted_by_reported_license",
+    "stylizationNote": "Official public model metadata identifies CC BY 4.0. Retain creator credit, model URL, license link and a changes notice with derived exports.",
+    "version": "4.0",
+    "licenseIdentifier": "CC-BY-4.0",
+    "verifiedFrom": "https://api.sketchfab.com/v3/models/4eff45899ada40bb920c5c744663db90",
+    "verifiedAt": "2026-09-07T14:19:16.706642+00:00"
+  },
+  "changesNotice": "Local derivative material study by the PodRacing project: dusty-blue/ivory/burnt-orange repaint atlases generated with Codex imagegen and applied to a rigid opaque Blender study copy of Rafael Fernández Calvo (rafarelo)’s Teemto Pagalies model. Imported-source GLB and extracted source albedos retained separately. No original artist/DCC format claim.",
+  "driverInspection": {
+    "status": "absent_confirmed",
+    "driverInspected": true,
+    "basis": "Root inspected the Blender source cockpit; catalog reviewer independently viewed saved source-cockpit.png and paint-cockpit.png. Visible seat and controls are unoccupied.",
+    "sourceEvidence": "output/vehicles/teemto-review/source-cockpit.png",
+    "pilotAdded": false,
+    "nextAction": "Fit an original pilot to the empty study cockpit and verify seat/hand anchors before export.",
+    "preparedScript": "scripts/blender/teemto-driver.py",
+    "preparedScriptExecution": "not_executed_at_this_receipt"
+  },
+  "materialStudy": {
+    "status": "source_study_completed",
+    "provider": "Codex imagegen, as recorded by the producing task",
+    "method": "Edit extracted source UV base-color atlases using the two exact saved prompt files; apply repaints to isolated Blender study.",
+    "generatedAtlasCount": 2,
+    "scene": "PodRacing — Teemto material study v1",
+    "reproductionScript": "scripts/blender/prepare-teemto.py",
+    "scriptScope": "Builds the isolated rigid/opaque source review copy; the saved script alone does not replay all later image assignments or inspection camera poses.",
+    "renderEvidence": [
+      "output/vehicles/teemto-review/paint-full.png",
+      "output/vehicles/teemto-review/paint-cockpit.png"
+    ],
+    "uvFidelity": "Prompts request exact UV layout preservation; pixel alignment, sampler fidelity and runtime appearance have not been accepted.",
+    "visualApproval": "pending_in_world_review",
+    "preparedScriptsSnapshotNote": "Stable source-script copies are linked in evidenceFiles; their versions and any concurrent change are explicit in sourceScriptHistory."
+  },
+  "stylizedExport": {
+    "status": "not_started",
+    "path": null
+  },
+  "runtimeIntegration": {
+    "status": "not_started",
+    "path": null
+  },
+  "evidenceFiles": [
+    {
+      "path": "assets/source/inkstorm/vehicles/4eff45899ada40bb920c5c744663db90/processed/Cabina_baseColor-source.jpg",
+      "bytes": 5307321,
+      "sha256": "64a3146f19e455d41b049621a6e4e1b7130ff10170b975780215b9e899278dab"
+    },
+    {
+      "path": "assets/source/inkstorm/vehicles/4eff45899ada40bb920c5c744663db90/processed/Propulsores_baseColor-source.jpg",
+      "bytes": 4525351,
+      "sha256": "b18bf9292a8a5e8cb3520405f6f19a617b88d12fd7c04c67e3a6aebf004c524c"
+    },
+    {
+      "path": "assets/source/inkstorm/vehicles/4eff45899ada40bb920c5c744663db90/processed/teemto-cockpit-inkstorm-v1.png",
+      "bytes": 2700094,
+      "sha256": "50a2391dcec6da9af0bceeebc48793346cb65ea41d17465841c8a432aaf164b4"
+    },
+    {
+      "path": "assets/source/inkstorm/vehicles/4eff45899ada40bb920c5c744663db90/processed/teemto-engines-inkstorm-v1.png",
+      "bytes": 2747447,
+      "sha256": "a6a99c890410ca0031638ee4bcf8d91fa682a55371e7bbc91c4881375bf78a33"
+    },
+    {
+      "path": "assets/source/inkstorm/vehicles/4eff45899ada40bb920c5c744663db90/processed/cockpit-texture-prompt.txt",
+      "bytes": 1241,
+      "sha256": "3cef5fec89bdb6320200e0d02cbcd02eae8231ade7ece1ac5cdca910a0b49834"
+    },
+    {
+      "path": "assets/source/inkstorm/vehicles/4eff45899ada40bb920c5c744663db90/processed/engine-texture-prompt.txt",
+      "bytes": 1351,
+      "sha256": "fccb53347e80fca00ff2314d6a616dc044c65cda3f4d2bd7afdc314a8fe2fa65"
+    },
+    {
+      "path": "output/vehicles/teemto-review/source-front.png",
+      "bytes": 1598046,
+      "sha256": "fe8636f33353c855e9ddc2e00e9682159cca6976065e8200ced77f1f358092e4"
+    },
+    {
+      "path": "output/vehicles/teemto-review/source-cockpit.png",
+      "bytes": 1737269,
+      "sha256": "0be85a7c8777b60a793b9a84da6e5e3a9fa2818e7a6f76dee42f8db683278aa2"
+    },
+    {
+      "path": "output/vehicles/teemto-review/paint-full.png",
+      "bytes": 1518709,
+      "sha256": "cefa7b5be5b74f6ece7a41498e6adabe16114ee8e4ba3c738b17f7753d0fbc61"
+    },
+    {
+      "path": "output/vehicles/teemto-review/paint-cockpit.png",
+      "bytes": 1713747,
+      "sha256": "699c5e9c85651eaf1b79ae7bb8b8b3f3e1ec046e4317d6c2146b559f975b8c6f"
+    },
+    {
+      "path": "assets/source/inkstorm/vehicles/4eff45899ada40bb920c5c744663db90/processed/prepare-teemto-e41e753af97c.py",
+      "bytes": 4191,
+      "sha256": "e41e753af97caaf83a7f577eefb7b1dd45c83a90f536bfbfe336db13a7bc881b",
+      "copiedFrom": "scripts/blender/prepare-teemto.py",
+      "sameAsOriginalStudyHash": true
+    },
+    {
+      "path": "assets/source/inkstorm/vehicles/4eff45899ada40bb920c5c744663db90/processed/teemto-driver-a8e7d777817a.py",
+      "bytes": 5037,
+      "sha256": "a8e7d777817a0521fc879bc39c6b282856ebea0b997b01e02f929ae5d0791756",
+      "copiedFrom": "scripts/blender/teemto-driver.py",
+      "sameAsOriginalStudyHash": false
+    }
+  ],
+  "auditScope": "Read saved evidence and scripts; hash files without editing images or source GLBs. No Blender, browser, GPU, runtime, public-asset or build changes by this catalog audit.",
+  "sourceScriptHistory": {
+    "originalRecordedAt": "2026-09-07T14:59:57.230000+00:00",
+    "originalObservedScriptHashes": [
+      {
+        "path": "scripts/blender/prepare-teemto.py",
+        "bytes": 4191,
+        "sha256": "e41e753af97caaf83a7f577eefb7b1dd45c83a90f536bfbfe336db13a7bc881b"
+      },
+      {
+        "path": "scripts/blender/teemto-driver.py",
+        "bytes": 5034,
+        "sha256": "48d1ca6dcd8ada5c737df7f6738dc792b2b9877b2218549beaff363068f73fa6"
+      }
+    ],
+    "note": "These working scripts are edited concurrently by the producing task. Hashes above retain the originally observed revisions; the stable copies below preserve the revisions present at documentation finalization. They are not claimed to be identical if a script changed.",
+    "stableCopiesRecordedAt": "2026-09-07T15:04:00.430798+00:00"
+  }
+}

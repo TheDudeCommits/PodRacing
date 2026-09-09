@@ -1,0 +1,158 @@
+{
+  "status": "PASS",
+  "scope": "Bounded CPU geometry/route placement checks only; no browser, GPU, Blender, network, production edits or visual acceptance.",
+  "seed": 1229867859,
+  "courseSignature": "2dacfc90",
+  "totalLength": 7646.005613260706,
+  "sourceHashes": {
+    "src/render/inkstorm/InkstormWorld.ts": "6be94a53671ed539451e5966749c08c6c79a18baf7fd9bb2472cf28d702c4fb4",
+    "src/render/inkstorm/InkstormRoad.ts": "ea6cdb44c50b33028fd5070e2f906a834351c93f1a51900cfd25df09aa8f8de8",
+    "src/render/inkstorm/InkstormBridge.ts": "8d80b6ac2095f954c3a4756ab0d7faa8fd4315e3f56460fa6e9badff8c0763c8",
+    "src/render/inkstorm/InkstormForkFoundation.ts": "41b00fe8da8c172e01170a34e3424c21ce736bd015622c9b6d549339a76ab838",
+    "src/game/race/course.ts": "c1030fcc0ea2ee7d6e0487b6b7332fd29a36947c41bc4847defa9535d6bd12d3",
+    "src/game/race/branches.ts": "f9595ca3b1eafea98f7e87607f246b5c1f405be1e2602456d1b8d939ccae3f52",
+    "src/game/race/bridgeSurface.ts": "8eacf7a9cc9189ee9afe609f944299398e5134f90ad55ff67b81dc62d1aa0362",
+    "src/game/race/CourseGulfField.ts": "bcffab83e4d1c157177df74a26ed00a3960080e70b9a662589a7c91143e970fe",
+    "src/camera/CourseJunctionFraming.ts": "9c2d104c324dfb1bfa1387a3d8fc2edbc9d3f2983062eb5e62585c740acfafdb",
+    "src/render/inkstorm/InkstormSurfaceMaterial.ts": "85d7410b71b40672840b071bc284e126d2e3c46ef9e7b22ee20c6914024dde55"
+  },
+  "checks": [
+    {
+      "name": "One advance directory precedes the actual branch entry by 175 metres",
+      "pass": true,
+      "value": [
+        {
+          "id": "advance",
+          "route": "advance",
+          "center": [
+            18685.411114218947,
+            4.777105692233256,
+            -945.2090174732318
+          ],
+          "distanceFromEntry": -175,
+          "clearance": 4.1615373370157975,
+          "foundationHeights": [
+            4.777105692233256,
+            4.601462290822326,
+            4.663482638663126,
+            4.390133728659116,
+            3.628721819974146,
+            3.3969400152680933
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Main route gets at least four founded continuation markers",
+      "pass": true,
+      "value": 7
+    },
+    {
+      "name": "Both route choices get matching confirmation markers",
+      "pass": true,
+      "value": [
+        {
+          "id": "bridge-0.16",
+          "route": "bridge",
+          "center": [
+            18507.020042967153,
+            1.1942281870935822,
+            -868.4380883910371
+          ],
+          "distanceFromEntry": 101.52346536984008,
+          "clearance": 4.19905941888554,
+          "foundationHeights": [
+            0.8743686579591454,
+            1.0207612354957014,
+            1.0306125295656514,
+            1.1017333331012935,
+            1.1920489513985615,
+            1.1942281870935822
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Every added solid stays outside every sampled continuous legal lane by 3m",
+      "pass": true,
+      "value": {
+        "minClearance": 4.186820034580208,
+        "samples": 1755,
+        "offending": []
+      }
+    },
+    {
+      "name": "Exact box-footprint to every legal lane segment clearance exceeds 3m",
+      "pass": true,
+      "value": {
+        "exactFootprintClearance": 4.186820034580208
+      }
+    },
+    {
+      "name": "Every foundation bottom penetrates the actual terrain",
+      "pass": true,
+      "value": {
+        "minFootBurial": 0.4794268786922391
+      }
+    },
+    {
+      "name": "No two station centers overlap within 2m",
+      "pass": true,
+      "value": [
+        {
+          "a": "main-35-outer",
+          "b": "main-75-outer",
+          "d": 41.496584760829236
+        },
+        {
+          "a": "main-75-inner",
+          "b": "main-120-inner",
+          "d": 42.87644176539522
+        },
+        {
+          "a": "main-75-outer",
+          "b": "main-120-outer",
+          "d": 47.10846812882012
+        }
+      ]
+    },
+    {
+      "name": "Finite geometry under 1800 triangles, two opaque material groups",
+      "pass": true,
+      "value": {
+        "triangles": 780,
+        "groups": [
+          {
+            "start": 0,
+            "count": 1152,
+            "materialIndex": 0
+          },
+          {
+            "start": 1152,
+            "count": 1188,
+            "materialIndex": 1
+          }
+        ]
+      }
+    },
+    {
+      "name": "Non-flagship courses receive no guidance",
+      "pass": true,
+      "value": null
+    }
+  ],
+  "costs": {
+    "geometryTriangles": 780,
+    "attributeBytes": 84240,
+    "additionalMainPassDraws": 2,
+    "addedTextures": 0,
+    "addedRenderPasses": 0,
+    "frameCallbacks": 0
+  },
+  "elapsedMs": 765.3295,
+  "limits": [
+    "Continuous-lane check uses actual 2048-point road segments and exact branch samples; it is not a physical driving test.",
+    "Screen-space readability/occlusion at ordinary chase speed and overlap with existing scenery require real-image integration review.",
+    "The marker treatment does not expose a road hidden by terrain or satisfy original concept04 parity."
+  ]
+}

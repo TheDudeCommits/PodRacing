@@ -1,0 +1,103 @@
+{
+  "sourceSha256": "1ecf135bc63df02102f168b79ea869d98aba6d07bdc94b2e0c6f10478a13f96e",
+  "sourceUnchanged": true,
+  "scope": "Full copied profile vertex/triangle envelope verification, including both ends; actual Blender stage repeats the envelope check on its authored mesh.",
+  "profiles": [
+    {
+      "side": "negativeX",
+      "role": "grip",
+      "vertices": 304,
+      "triangles": 236,
+      "includesEverySourceProfileVertexAndBothEndcaps": true,
+      "vertexStorage": "IEEE float32 to match Blender mesh storage",
+      "maximumDistanceToFiniteAxis": 0.06558336768448793,
+      "testedCapsuleRadius": 0.06558262603576406,
+      "envelopeTolerance": 5e-06,
+      "allTrianglesInsideConvexEnvelope": true,
+      "start": [
+        -0.2615363992448276,
+        -20.55003789210642,
+        2.242410121027933
+      ],
+      "end": [
+        -0.3505770841507285,
+        -20.625890821508698,
+        2.572285990913229
+      ],
+      "length": 0.3499999999999995,
+      "sourcePolygonOrderPreserved": true
+    },
+    {
+      "side": "negativeX",
+      "role": "support",
+      "vertices": 304,
+      "triangles": 236,
+      "includesEverySourceProfileVertexAndBothEndcaps": true,
+      "vertexStorage": "IEEE float32 to match Blender mesh storage",
+      "maximumDistanceToFiniteAxis": 0.0350005566106958,
+      "testedCapsuleRadius": 0.035,
+      "envelopeTolerance": 5e-06,
+      "allTrianglesInsideConvexEnvelope": true,
+      "start": [
+        -0.2653524285979376,
+        -20.553288731937947,
+        2.2565476583087314
+      ],
+      "end": [
+        -1.3899467788704751,
+        -20.553288731937947,
+        2.2565476583087314
+      ],
+      "length": 1.1245943502725375,
+      "sourcePolygonOrderPreserved": true
+    },
+    {
+      "side": "positiveX",
+      "role": "grip",
+      "vertices": 304,
+      "triangles": 236,
+      "includesEverySourceProfileVertexAndBothEndcaps": true,
+      "vertexStorage": "IEEE float32 to match Blender mesh storage",
+      "maximumDistanceToFiniteAxis": 0.0655832830393861,
+      "testedCapsuleRadius": 0.06558262603576406,
+      "envelopeTolerance": 5e-06,
+      "allTrianglesInsideConvexEnvelope": true,
+      "start": [
+        0.4684797129977237,
+        -20.546814594753737,
+        2.2287800934963977
+      ],
+      "end": [
+        0.47173794083023,
+        -20.62171848911295,
+        2.570655495596659
+      ],
+      "length": 0.35000000000000026,
+      "sourcePolygonOrderPreserved": true
+    },
+    {
+      "side": "positiveX",
+      "role": "support",
+      "vertices": 304,
+      "triangles": 236,
+      "includesEverySourceProfileVertexAndBothEndcaps": true,
+      "vertexStorage": "IEEE float32 to match Blender mesh storage",
+      "maximumDistanceToFiniteAxis": 0.035000071381679126,
+      "testedCapsuleRadius": 0.035,
+      "envelopeTolerance": 5e-06,
+      "allTrianglesInsideConvexEnvelope": true,
+      "start": [
+        0.4686193513334025,
+        -20.550024761654846,
+        2.2434318964435516
+      ],
+      "end": [
+        1.5516850968005047,
+        -20.550024761654846,
+        2.2434318964435516
+      ],
+      "length": 1.0830657454671022,
+      "sourcePolygonOrderPreserved": true
+    }
+  ]
+}

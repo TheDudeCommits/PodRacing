@@ -1,0 +1,125 @@
+{
+  "bakedImagePacked": true,
+  "bodyMeshName": "blockrunner-body-paint-v4b",
+  "channel": "color",
+  "colorSpace": "sRGB",
+  "fitCornerNormalsPreserved": true,
+  "fitPreservation": true,
+  "globalPreservation": {
+    "changedCollections": [],
+    "changedScenes": [],
+    "contextRestored": true,
+    "preexistingMaterialsRetained": true,
+    "preexistingMeshesRetained": true,
+    "preexistingObjectsRetained": true,
+    "preexistingScenes": 148
+  },
+  "imageName": "Blockrunner body color 20260908-paint-v4b",
+  "linkedPaintImages": {
+    "Blockrunner body color 20260908-paint-v4b": {
+      "colorSpace": "sRGB",
+      "filepath": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/blockrunner-body-color-v1-20260908-paint-v4b.png",
+      "name": "Blockrunner body color 20260908-paint-v4b",
+      "size": [
+        2048,
+        2048
+      ]
+    }
+  },
+  "meshObjects": 2,
+  "newImageRetained": true,
+  "outputFileWriteStarted": true,
+  "owner": "body",
+  "ownerObject": "blockrunner-body-paint-v4b",
+  "ownerPolygonMaterialIndicesPreserved": true,
+  "paintAttributeSignatures": {
+    "blockrunner-body-paint-v4b": {
+      "Inkstorm V4 Edge Distance": {
+        "colorsFnv1a64": "77a01b45d7ba2a4d",
+        "dataType": "FLOAT_COLOR",
+        "domain": "CORNER",
+        "length": 119700
+      },
+      "Inkstorm V4 Edge Strength": {
+        "colorsFnv1a64": "18c936df184555bb",
+        "dataType": "FLOAT_COLOR",
+        "domain": "CORNER",
+        "length": 119700
+      }
+    },
+    "blockrunner-pilot-paint-v4b": {
+      "Inkstorm V4 Edge Distance": {
+        "colorsFnv1a64": "95983b52da7ef3fd",
+        "dataType": "FLOAT_COLOR",
+        "domain": "CORNER",
+        "length": 12384
+      },
+      "Inkstorm V4 Edge Strength": {
+        "colorsFnv1a64": "85ef768c1f7a2843",
+        "dataType": "FLOAT_COLOR",
+        "domain": "CORNER",
+        "length": 12384
+      }
+    }
+  },
+  "paintBakeSettingsRestored": true,
+  "paintCornerNormalSignature": {
+    "blockrunner-body-paint-v4b": "ab241654681768cb",
+    "blockrunner-pilot-paint-v4b": "2a1f1ceb2412b23f"
+  },
+  "paintCornerNormalsPreserved": true,
+  "paintLayerSelectionRestored": true,
+  "paintMeshUvAndMaterialSlotsPreserved": true,
+  "paintSignature": {
+    "algorithm": "FNV-1a-64 over canonical ASCII JSON; non-cryptographic",
+    "materialsFnv1a64": {
+      "Blockrunner V4B pilot gloves": "7c5b108f9565bf70",
+      "Blockrunner V4B pilot helmet": "4315fa4a95ff4b35",
+      "Blockrunner V4B pilot suit": "32e0764d7d2b6342",
+      "Blockrunner V4B pilot visor": "ae961cd5906928ae",
+      "Blockrunner V4B procedural graphite": "a37e08d434fddad3",
+      "Blockrunner V4B procedural ivory": "47134d557673dbd6",
+      "Blockrunner V4B procedural oxblood": "a1552930fdc5af2e"
+    },
+    "meshesFnv1a64": {
+      "blockrunner-body-paint-v4b geometry": "c084403b40f882e3",
+      "blockrunner-pilot-paint-v4b geometry": "894945bd36291aee"
+    },
+    "objectsFnv1a64": "890a4a28e5ecb2ce"
+  },
+  "parentPaintAttributeValuesPreserved": true,
+  "partialOutputMayExistOnFailure": false,
+  "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/blockrunner-body-color-v1-20260908-paint-v4b.png",
+  "pilotMeshName": "blockrunner-pilot-paint-v4b",
+  "proceduralGraphsRestored": true,
+  "resolution": [
+    2048,
+    2048
+  ],
+  "restorationErrors": [],
+  "retainedBakeImageNodes": [
+    {
+      "material": "Blockrunner V4B procedural oxblood",
+      "node": "Bake body color 20260908-paint-v4b"
+    },
+    {
+      "material": "Blockrunner V4B procedural ivory",
+      "node": "Bake body color 20260908-paint-v4b"
+    },
+    {
+      "material": "Blockrunner V4B procedural graphite",
+      "node": "Bake body color 20260908-paint-v4b"
+    }
+  ],
+  "roughnessChannelContract": "Roughness emitted as grayscale linear data; G is the glTF/runtime roughness channel.",
+  "runtimeReady": false,
+  "scope": "One newly baked private atlas channel. No final material replacement, normalized export, runtime or visual acceptance.",
+  "sharedBlendSaved": false,
+  "sourceCornerNormalsPreserved": true,
+  "sourcePreservation": true,
+  "sourceUid": "a6f14ae799ab40d7ac425f043f824ff8",
+  "stage": "atlas-channel-emission-bake",
+  "status": "one atlas channel baked; final atlas materials and image review pending",
+  "targetScene": "PodRacing — Blockrunner localized broken paint round34 V4B",
+  "triangles": 44028
+}

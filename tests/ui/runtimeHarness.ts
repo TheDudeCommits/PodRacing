@@ -1,3 +1,5 @@
+import { MASTERY_EVENTS } from '../../src/game/mastery/events';
+import type { RaceHudAction } from '../../src/ui/types';
 import {
   createRaceDirectorHudViewModel,
   createRaceModeStatusViewModel,
@@ -110,7 +112,7 @@ const model: RaceHudViewModel = {
     id: racer.id,
     name: racer.name,
     placement: racer.placement,
-    finishTime: 182.4 + racer.placement * 1.73,
+    finishTime: racer.isPlayer ? 184.177 : 182.4 + racer.placement * 1.73,
     bestLap: 59.1 + racer.placement * 0.42,
     isPlayer: racer.isPlayer,
   })).sort((a, b) => a.placement - b.placement),
@@ -119,7 +121,7 @@ const model: RaceHudViewModel = {
         headline: 'The canyon decided it by a wingtip',
         photoFinish: { rivalName: 'Vexa Ruun', gapSeconds: 0.047, won: false },
         highlights: [
-          { id: 'finish', title: 'Wingtip deficit', detail: 'Final straight duel', kind: 'photo-finish', time: 184.13 },
+          { id: 'finish', title: 'Wingtip deficit', detail: '0.047 S behind Vexa Ruun', kind: 'photo-finish', time: 184.177 },
           { id: 'lap', title: 'Boonta best lap', detail: 'No contact', kind: 'fastest-lap', time: 59.52 },
         ],
       }
@@ -196,7 +198,43 @@ const model: RaceHudViewModel = {
   },
 };
 
-const hud = new RaceHud(mount);
+if (query.has('mastery')) {
+  model.mastery = {
+    eventId: 'inkstorm-trial', eventTitle: 'Inkstorm • Time Attack',
+    eventSubtitle: 'One clean lap. Stock machine. Chase your personal best.',
+    events: MASTERY_EVENTS.map(({ id, title, subtitle }) => ({ id, title, subtitle })),
+    bestTime: 94.32, medal: 'silver', ghostAvailable: true, ghostEnabled: true,
+    courseSaved: true, latestSector: { index: 1, time: 28.17, delta: -0.287 },
+    tutorial: query.has('tutorial') ? { step: 2, total: 5, title: 'Brake before the bend', instruction: 'Release the throttle and brake before the corner. Turn in as your speed settles.', progress: 0.45, complete: false } : null,
+    result: phase === 'finished' ? {
+      eventTitle: 'Inkstorm • Time Attack', time: 91.68, personalBest: true, bestTime: 91.68,
+      improvement: 2.64, medal: 'silver', nextMedal: { medal: 'gold', time: 90 },
+      sectors: [{ index: 1, time: 28.17, delta: -0.287 }, { index: 2, time: 32.58, delta: 0.219 }, { index: 3, time: 30.93, delta: -2.572 }],
+      invalidReason: null, nextEventId: 'cup-canyon', nextObjective: 'Find 1.68 seconds for gold. Try a tighter exit from the final turn.',
+    } : null,
+    championship: [],
+    championshipRound: 0, storageWarning: null,
+  };
+  if (model.preRace) {
+    model.preRace.fixedRules = true;
+    model.preRace.selectedLaps = 1;
+    model.preRace.raceMode = 'circuit';
+    model.preRace.aiDifficulty = 'medium';
+  }
+  model.totalLaps = 1; model.lap = 1; model.position = 1; model.racerCount = 1;
+  model.raceModeStatus = createRaceModeStatusViewModel('circuit', { lap: 1, totalLaps: 1, position: 1, racerCount: 1 });
+  if (phase === 'finished') {
+    model.raceTime = 91.68;
+    model.results = [{ id: 'player', name: 'You', placement: 1, finishTime: 91.68, bestLap: 91.68, isPlayer: true }];
+    model.resultsPresentation = {
+      headline: 'A cleaner line through Inkstorm',
+      highlights: [{ id: 'time-attack', title: 'Personal best run', detail: 'One lap · 1:31.680 · 2.640 seconds faster', kind: 'fastest-lap', time: 91.68 }],
+    };
+  }
+}
+const actions: RaceHudAction[] = [];
+const hud = new RaceHud(mount, { onAction: (action) => actions.push(action) });
+Object.assign(window, { __HUD_ACTIONS__: actions, __HUD_MODEL__: model, __HUD_INSTANCE__: hud });
 hud.update(model);
 hud.setPaused(query.has('pause') || query.has('settings'));
 (window as typeof window & { __HUD_READY__?: boolean }).__HUD_READY__ = true;

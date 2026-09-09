@@ -1,0 +1,120 @@
+{
+  "version": 3,
+  "coordinateConvention": "Blender X frontage/Y depth/Z up; GLB X frontage/Y up/Z=-BlenderY",
+  "geometry": {
+    "bodyCenterOffsetBlender": [
+      0,
+      0,
+      0.2
+    ],
+    "bodySizeBlender": [
+      2.6,
+      0.95,
+      0.32
+    ],
+    "lensCenterOffsetBlender": [
+      0,
+      0,
+      0.035
+    ],
+    "lensSizeBlender": [
+      2.1,
+      0.68,
+      0.07
+    ],
+    "trianglesPerFixture": 24,
+    "emittingFace": "lens bottom at exact emitter, normal GLB -Y"
+  },
+  "fixtures": [
+    {
+      "id": "pit-task-1",
+      "family": "pit-complex",
+      "emitterBlender": [
+        -50,
+        3,
+        9.44
+      ],
+      "emitterGLB": [
+        -50,
+        9.44,
+        -3
+      ],
+      "support": "Existing hoist crossbar at Blender Z=10, Y=y-1"
+    },
+    {
+      "id": "pit-task-2",
+      "family": "pit-complex",
+      "emitterBlender": [
+        -8,
+        3,
+        9.44
+      ],
+      "emitterGLB": [
+        -8,
+        9.44,
+        -3
+      ],
+      "support": "Existing hoist crossbar at Blender Z=10, Y=y-1"
+    },
+    {
+      "id": "pit-task-3",
+      "family": "pit-complex",
+      "emitterBlender": [
+        36,
+        6,
+        9.44
+      ],
+      "emitterGLB": [
+        36,
+        9.44,
+        -6
+      ],
+      "support": "Existing hoist crossbar at Blender Z=10, Y=y-1"
+    },
+    {
+      "id": "district-task-1",
+      "family": "pit-district",
+      "emitterBlender": [
+        -36,
+        4,
+        8.08
+      ],
+      "emitterGLB": [
+        -36,
+        8.08,
+        -4
+      ],
+      "support": "Existing v1 lower service rail at Blender Y=back-9, Z=h-3.5, connected by three diagonal brackets; fixture behind cloth attachment"
+    },
+    {
+      "id": "district-task-2",
+      "family": "pit-district",
+      "emitterBlender": [
+        1,
+        8,
+        13.08
+      ],
+      "emitterGLB": [
+        1,
+        13.08,
+        -8
+      ],
+      "support": "Existing v1 lower service rail at Blender Y=back-9, Z=h-3.5, connected by three diagonal brackets; fixture behind cloth attachment"
+    },
+    {
+      "id": "district-task-3",
+      "family": "pit-district",
+      "emitterBlender": [
+        41,
+        1,
+        9.88
+      ],
+      "emitterGLB": [
+        41,
+        9.88,
+        -1
+      ],
+      "support": "Existing v1 lower service rail at Blender Y=back-9, Z=h-3.5, connected by three diagonal brackets; fixture behind cloth attachment"
+    }
+  ]
+}

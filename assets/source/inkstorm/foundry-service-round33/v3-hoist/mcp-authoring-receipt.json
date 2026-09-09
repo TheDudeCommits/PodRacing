@@ -1,0 +1,96 @@
+{
+  "animations": 0,
+  "expectedSourceSha256": "58fc12d837039eb73111886b1b91c294516c51fc47a4a0d00200717161fd39ba",
+  "exportEnabled": false,
+  "family": "foundry-service-gantry-v3",
+  "finalClearanceBlenderZ": 39.66999816894531,
+  "footprints": "Exact original geometry at X[-52,-40]/[40,52], Y[-7,7]; no new ground support.",
+  "frontAxis": "-Y",
+  "materials": 1,
+  "meshes": 1,
+  "newGeometry": {
+    "boundsBlender": [
+      [
+        -32.5,
+        2.5
+      ],
+      [
+        4.2,
+        6.989999999999999
+      ],
+      [
+        39.74372673423227,
+        48.9
+      ]
+    ],
+    "candidateTriangles": 19872,
+    "retainedTriangles": 18324,
+    "triangles": 1548,
+    "trianglesByGroup": {
+      "drum_cable_wrap": 256,
+      "hoist_axles": 80,
+      "hoist_bearings": 96,
+      "hoist_drum": 132,
+      "hoist_motor": 44,
+      "hoist_mounts": 180,
+      "hoist_track": 36,
+      "hoist_wheels": 112,
+      "lower_pulley": 256,
+      "motor_fins": 192,
+      "service_cable": 40,
+      "service_hook": 124
+    },
+    "vertices": 1302
+  },
+  "newScene": "PodRacing — Foundry service gantry round33 hoist V3",
+  "normalStorage": "FLOAT_VECTOR/CORNER custom_normal; actual computed vectors for all new corners",
+  "originalBoundsBlender": [
+    [
+      -52,
+      52
+    ],
+    [
+      -7,
+      7
+    ],
+    [
+      -25,
+      61.400001525878906
+    ]
+  ],
+  "preservation": {
+    "active": "Sketchfab_model.001",
+    "allExistingCollectionMembershipsExact": true,
+    "allExistingSceneMembershipsExact": true,
+    "contextRestored": true,
+    "existingSceneCount": 139,
+    "noExistingObjectsOrMaterialsEdited": true,
+    "scene": "Cruise — Going Merry source 4b2cb678",
+    "selectedCount": 15,
+    "viewLayer": "ViewLayer"
+  },
+  "renderedAcceptance": false,
+  "replacedV2Hoist": [
+    {
+      "kind": "V2 hoist only",
+      "orientedFnv32": 2540492234,
+      "triangles": 1632
+    }
+  ],
+  "retainedNormalMaximumDelta": 0,
+  "retainedPositionColorAndWindingExact": true,
+  "retainedTriangles": 18324,
+  "runtimeInstalled": false,
+  "source": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/foundry-service-round33/v2/foundry-service-gantry-v2.glb",
+  "sourceHashVerification": "External receipt required; no hashing/filesystem access in MCP.",
+  "status": "isolated source scene authored; rendered review pending",
+  "textures": 0,
+  "tradeoffs": [
+    "Only V2 hoist geometry is replaced; all unrelated V2 geometry is retained.",
+    "A forward supported rail exposes the drum above the retained near conduit; actual camera review is pending.",
+    "No broad near-side masking cheek; separated drum/cables/sheave and a larger open hook retain original corridor clearance."
+  ],
+  "executedVia": "Blender MCP",
+  "scriptSha256": "a08a6c103b5c46558fc65f327b71de85fd53701ed622dc1a15cf01630a5a7eed",
+  "recordedAt": "2026-09-08T10:41:20Z"
+}

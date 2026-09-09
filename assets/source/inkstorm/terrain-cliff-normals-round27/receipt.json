@@ -1,0 +1,35 @@
+{
+  "status": "Staged local lighting candidate; GPU visual and timing acceptance pending",
+  "runtimeChangedFiles": [
+    "src/render/terrain/terrainShaderChunks.ts"
+  ],
+  "sourceSha256": "15b74f643cde0b76a679665e99fd8ed8e827d846b609c335ee61f39029627ec8",
+  "sourceBeforeSha256": "7e0f973bff4869901ab2d4f6375b82a78f350384c5ae419d651dc4d7dcbda609",
+  "terrainMaterialUnchanged": true,
+  "sharedDisplacementGlslExact": true,
+  "sharedDisplacementGlslSha256": "42cbe5211e6f30b030d9f9b62691e88e707869cac4407641a9c78ec9136b65dc",
+  "broadProceduralProbeMetres": [
+    9.5,
+    48
+  ],
+  "authoredFieldProbeMetres": 6,
+  "addedSignedFieldCallsPerVertex": 2,
+  "addedTexelFetchWorstCasePerVertex": 16,
+  "addedTexelFetchForOneActiveGridPerVertex": 8,
+  "newGeometry": false,
+  "newTextures": false,
+  "newTargets": false,
+  "newDraws": false,
+  "MrtGeometricNormalMetres": 1.15,
+  "MrtGeometricNormalSourceChanged": false,
+  "tests": {
+    "command": "npx --no-install vitest run tests/terrain/authoredTerrainLighting.test.ts tests/terrain/terrainMath.test.ts tests/terrain/terrainRegions.test.ts tests/terrain/courseGulfField.test.ts tests/terrain/authoredTerrainDetail.test.ts",
+    "files": 5,
+    "passed": 24,
+    "failed": 0,
+    "typecheck": "pass",
+    "gitDiffCheck": "pass"
+  },
+  "diagnosisSha256": "d3b9862abf69258bd502ba9f36088fd465275ed5225542dc92d0e6802cb361e1",
+  "diagnosisLimitation": "CPU finite-difference samples at saved terrain-only ray hits, not GPU vertex interpolation, full-scene occlusion, screenshot acceptance or measured performance."
+}

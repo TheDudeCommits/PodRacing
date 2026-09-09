@@ -1,0 +1,274 @@
+{
+  "outcome": "PASS CPU geometric and lifecycle validation; native visual acceptance remains separate",
+  "currentSettledRightMarginMetres": 0.1,
+  "assertionsChanged": "Only obsolete right held-rotation equality was narrowed for its added roll/pitch; settled gap/contact witness tightened from.55 to.10. Zero-burial and camera safe-edge assertions remain unchanged.",
+  "tests": {
+    "currentCombinedPass": 16,
+    "breakupTests": 11,
+    "cameraTests": 5,
+    "typecheck": "PASS",
+    "runtimeSourceHashesStableDuringRun": true,
+    "currentOwnedInputsStillMatchTestedHashes": true,
+    "testedInputHashes": {
+      "tests/combat/TeemtoWreckBreakup.test.ts": "f821e8f8e6cdd3e100b09d947faf7e5e2447936c69041378cd99d6bfaa4d38d9",
+      "tests/camera/WreckBoundsFraming.test.ts": "d3a2766d1c10add1b35df699a4ce74242b4e5b774e7e4f1e6e8668b09c802736",
+      "src/render/combat/TeemtoWreckBreakup.ts": "7f68df7807c6df380a09bdbf1797d1d566d70fff849aa8c5fb35b8c86679a61a",
+      "src/render/combat/WreckVisualPose.ts": "bbe0f733ce523f2a79af9f46eda5f321cee9531ee90f02277d988b2996c42337",
+      "src/camera/CinematicCamera.ts": "f160d558384d86ed2d16b118e5f8d2b1788d257b1e228a90f3d94d3568d75040"
+    }
+  },
+  "rightEngineCoverage": {
+    "nativeFramesPerModel": 259,
+    "frameRange": [
+      910,
+      1168
+    ],
+    "fullPositionChecks": 6082615,
+    "models": [
+      {
+        "name": "teemto-hero-open-v2",
+        "nativeFrames": 259,
+        "sourcePositionsPerFrame": 13867,
+        "fullPositionProjections": 3591553,
+        "contactFrames": 197,
+        "minimumFullVertexGap": 0.09999999999999609,
+        "minimumSettledFullVertexGap": 0.09999999999999609,
+        "maximumSettledFullVertexGap": 0.1000000000000032,
+        "maximumContactDistanceToSource": 0.1000000000000032,
+        "firstContactFrame": 930,
+        "lastContactFrame": 1126
+      },
+      {
+        "name": "teemto-rival",
+        "nativeFrames": 259,
+        "sourcePositionsPerFrame": 9618,
+        "fullPositionProjections": 2491062,
+        "contactFrames": 197,
+        "minimumFullVertexGap": 0.09999999999999609,
+        "minimumSettledFullVertexGap": 0.09999999999999609,
+        "maximumSettledFullVertexGap": 0.10000000000054321,
+        "maximumContactDistanceToSource": 0.10000000000000497,
+        "firstContactFrame": 930,
+        "lastContactFrame": 1126
+      }
+    ],
+    "trajectoryScope": "Native Teemto seed/input/terrain CPU replay. Rival is admitted geometric substitution on the same trajectory, not an independent driven session."
+  },
+  "wholeGeometryCheckpoints": [
+    {
+      "name": "teemto-hero-open-v2",
+      "samples": 26,
+      "minimumFullVertexGap": 0.09999999999889475,
+      "maximumActiveCameraRadius": 21.772207181966703,
+      "maximumExtraSupportQueries": 118
+    },
+    {
+      "name": "teemto-rival",
+      "samples": 26,
+      "minimumFullVertexGap": 0.09999999999918963,
+      "maximumActiveCameraRadius": 21.750001107775404,
+      "maximumExtraSupportQueries": 114
+    }
+  ],
+  "downwardAndAirborneProbes": {
+    "measurements": [
+      {
+        "name": "teemto-hero-open-v2",
+        "inputLiftMetres": 2,
+        "rightEngineWorldShiftMetres": 3.552713678800501e-15,
+        "airborneInputLiftMetres": 20,
+        "cappedDescentMetres": 8.000000000000004,
+        "airborneContact": false
+      },
+      {
+        "name": "teemto-rival",
+        "inputLiftMetres": 2,
+        "rightEngineWorldShiftMetres": 3.552713678800501e-15,
+        "airborneInputLiftMetres": 20,
+        "cappedDescentMetres": 8,
+        "airborneContact": false
+      }
+    ],
+    "scope": "Counterfactual renderer-owned root lifts of2m and20m at a native checkpoint. These are CPU probes, not native input/video events.",
+    "capReference": "Same elevated pose and authored part rotation with unavailable terrain establishes uncorrected world transform; finite native terrain lowers it exactly8m and suppresses contact.",
+    "directResetAndPoseSwitchInvalidation": "PASS"
+  },
+  "cameraCoverage": {
+    "aspects": [
+      1.6,
+      1.7777777777777777,
+      0.46208530805687204,
+      2.164102564102564
+    ],
+    "allPositionSnapshotProjections": 78450400,
+    "dynamicAllPositionProjections": 8473568,
+    "sequentialCornerUpdates": 1088,
+    "safeNdcRectangle": {
+      "x": [
+        -0.78,
+        0.78
+      ],
+      "y": [
+        -0.58,
+        0.7
+      ]
+    },
+    "allFourRigidFamiliesPlusArticulatedTeemto": "PASS",
+    "heldShotWidthFindings": {
+      "teemto-hero-open-v2/separating/1.6": {
+        "checkpoints": [
+          {
+            "frame": 910,
+            "widthFraction": 0.6293840203839618,
+            "heightFraction": 0.26997289343416697
+          },
+          {
+            "frame": 922,
+            "widthFraction": 0.6687163323580136,
+            "heightFraction": 0.27927155604700904
+          },
+          {
+            "frame": 934,
+            "widthFraction": 0.6593917216203428,
+            "heightFraction": 0.3074189806396824
+          },
+          {
+            "frame": 943,
+            "widthFraction": 0.6572034048415774,
+            "heightFraction": 0.31853582647706946
+          }
+        ],
+        "belowDesiredWidthFrames": [
+          910
+        ],
+        "aboveDesiredWidthFrames": []
+      },
+      "teemto-hero-open-v2/separating/1.7777777777777777": {
+        "checkpoints": [
+          {
+            "frame": 910,
+            "widthFraction": 0.6029937817020389,
+            "heightFraction": 0.2870180235948792
+          },
+          {
+            "frame": 922,
+            "widthFraction": 0.6738320452756956,
+            "heightFraction": 0.30546634471000644
+          },
+          {
+            "frame": 934,
+            "widthFraction": 0.6643086904425496,
+            "heightFraction": 0.3355967008178036
+          },
+          {
+            "frame": 943,
+            "widthFraction": 0.6622334708718484,
+            "heightFraction": 0.3477180854546138
+          }
+        ],
+        "belowDesiredWidthFrames": [
+          910
+        ],
+        "aboveDesiredWidthFrames": []
+      },
+      "teemto-hero-open-v2/separating/0.46208530805687204": {
+        "checkpoints": [
+          {
+            "frame": 910,
+            "widthFraction": 0.6676630533996397,
+            "heightFraction": 0.0865417242471935
+          },
+          {
+            "frame": 922,
+            "widthFraction": 0.643189098442693,
+            "heightFraction": 0.09006236074498322
+          },
+          {
+            "frame": 934,
+            "widthFraction": 0.6401320680894367,
+            "heightFraction": 0.10061906065876629
+          },
+          {
+            "frame": 943,
+            "widthFraction": 0.636899313366573,
+            "heightFraction": 0.10411724711876476
+          }
+        ],
+        "belowDesiredWidthFrames": [
+          922,
+          934,
+          943
+        ],
+        "aboveDesiredWidthFrames": []
+      },
+      "teemto-hero-open-v2/separating/2.164102564102564": {
+        "checkpoints": [
+          {
+            "frame": 910,
+            "widthFraction": 0.5341768231603428,
+            "heightFraction": 0.3090254250778431
+          },
+          {
+            "frame": 922,
+            "widthFraction": 0.671275021302556,
+            "heightFraction": 0.3574137214365585
+          },
+          {
+            "frame": 934,
+            "widthFraction": 0.6759505357293878,
+            "heightFraction": 0.3936874807724059
+          },
+          {
+            "frame": 943,
+            "widthFraction": 0.6742623700647838,
+            "heightFraction": 0.4078323175541023
+          }
+        ],
+        "belowDesiredWidthFrames": [
+          910
+        ],
+        "aboveDesiredWidthFrames": []
+      }
+    },
+    "compositionNote": "Actual-source width target65\u201380% is not universally met. Landscape post-birth held checkpoints meet it; portrait post-birth held checkpoints remain below65%. Later hypothetical side snapshots have additional misses. No art acceptance inferred."
+  },
+  "sourceConservation": "Existing actual-loader activation, shared source geometry/index preservation, untouched cockpit/pilot/source instance, exact birth/reset, deterministic random-access/fractional-age, no per-update geometry reads or traversal, and stable contact object/vector checks all pass.",
+  "limitations": [
+    "No browser, build, GPU, audio, native-video, performance/FPS or perceptual/reference acceptance was performed.",
+    "Terrain checks evaluate every relevant source vertex against the native analytic terrain at the stated CPU trajectory checkpoints; this is not a full triangle collision/physics proof.",
+    "Camera projection checks do not establish clearance from scenery occluders or visual excitement.",
+    "Earlier.55m PASS artifacts remain unchanged under initial-targeted-* and final-breakup-* names; only close-contact-* artifacts describe current.10m acceptance."
+  ],
+  "files": [
+    {
+      "path": "tests/combat/TeemtoWreckBreakup.test.ts",
+      "bytes": 29934,
+      "sha256": "f821e8f8e6cdd3e100b09d947faf7e5e2447936c69041378cd99d6bfaa4d38d9"
+    },
+    {
+      "path": "tests/camera/WreckBoundsFraming.test.ts",
+      "bytes": 20738,
+      "sha256": "d3a2766d1c10add1b35df699a4ce74242b4e5b774e7e4f1e6e8668b09c802736"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/ground-contact-v15/close-contact-run.log",
+      "bytes": 64236,
+      "sha256": "64836ded6bacdbe9ed9d0b9bbeb02a593827fe2ddc0023e90f70c19e0e9129bc"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/ground-contact-v15/close-contact-typecheck.log",
+      "bytes": 57,
+      "sha256": "fa95b29726a1ab8891b320173cad4ef80c08c37ec637f2c438a5294fb97ce445"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/ground-contact-v15/close-contact-run-manifest.json",
+      "bytes": 1523,
+      "sha256": "baef491e01ff1d9e9c30e181bf1bc88503da3701b1fcc597e700d845687ab454"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/ground-contact-v15/close-contact-measurements.json",
+      "bytes": 110136,
+      "sha256": "8a2ec2b1d08900af65bf0c2bdd224425f6fb7bb36fbe53015aa5845c46645633"
+    }
+  ]
+}

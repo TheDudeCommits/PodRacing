@@ -1,0 +1,69 @@
+{
+  "status": "PASS local pure geometry arithmetic only; no Blender or GLB execution",
+  "results": [
+    {
+      "family": "pit-complex",
+      "triangles": 4908,
+      "cap": 6468,
+      "verticesBeforeExport": 3624,
+      "boundsBlender": [
+        [
+          -64.855,
+          57.33586543171413
+        ],
+        [
+          -24.195,
+          -6.2250000000000005
+        ],
+        [
+          0.9999999999999999,
+          19.37884392308557
+        ]
+      ],
+      "problems": []
+    },
+    {
+      "family": "pit-district",
+      "triangles": 4168,
+      "cap": 4246,
+      "verticesBeforeExport": 4012,
+      "boundsBlender": [
+        [
+          -54.8,
+          53.0
+        ],
+        [
+          -11.095,
+          9.283462350501434
+        ],
+        [
+          0.4,
+          26.17956743187181
+        ]
+      ],
+      "problems": []
+    },
+    {
+      "family": "foundry-gantry",
+      "triangles": 1806,
+      "cap": 2006,
+      "verticesBeforeExport": 1032,
+      "boundsBlender": [
+        [
+          -47.325,
+          47.325
+        ],
+        [
+          -0.56,
+          6.04
+        ],
+        [
+          31.0,
+          50.525
+        ]
+      ],
+      "problems": []
+    }
+  ],
+  "allPlacedExtraTriangleUpperBound": 35008
+}

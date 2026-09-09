@@ -1,0 +1,2856 @@
+{
+  "scope": "Actual rigid POSITION occurrences from all four admitted GLBs transformed at exact native V9 state checkpoints. Uses current renderer-only helper. No browser/Blender/render. Authoritative race state is unchanged by every helper call. Other three families are geometric substitution checks on Teemto native trajectory, not independent driving runs. The bounded support approximation and positive vertex tests do not establish continuous triangle/terrain collision or visual acceptance.",
+  "sourceModule": {
+    "path": "src/render/combat/WreckVisualPose.ts",
+    "sha256": "0cd9de49bb2f7c1f5814d9a603ccd78378640b90c717ad6a88c639fc2300ab7f"
+  },
+  "checkpoints": 26,
+  "summary": [
+    {
+      "name": "teemto-hero-open-v2",
+      "source": {
+        "path": "public/assets/inkstorm/vehicles/teemto-hero-open-v2.glb",
+        "bytes": 7698824,
+        "sha256": "af5d69514a51f7e9c089a1710e1587f46e053412b488268dc433f029576c0a7e"
+      },
+      "meshes": 10,
+      "localBounds": {
+        "min": [
+          -6.54527473449707,
+          0.07286620140075684,
+          -7.389999866485596
+        ],
+        "max": [
+          6.496447563171387,
+          5.250973701477051,
+          22.738540649414062
+        ]
+      },
+      "localCenter": [
+        -0.024413585662841797,
+        2.661919951438904,
+        7.674270391464233
+      ],
+      "radius": 16.61797424018686,
+      "supportSamples": 60,
+      "checkpoints": 26,
+      "positionOccurrences": 73048,
+      "minimumClearance": 0.5499999999999989,
+      "maximumGroundLift": 0,
+      "maximumGroundDrop": 2.4143945464817387,
+      "maximumQueries": 60,
+      "allSampledPositionsClear": true
+    },
+    {
+      "name": "sebulba-hero",
+      "source": {
+        "path": "public/assets/inkstorm/vehicles/sebulba-hero.glb",
+        "bytes": 2672804,
+        "sha256": "f4b31d9260e3272ec394161dea236c874d551b469f18a1d794ec85c05b625b7e"
+      },
+      "meshes": 6,
+      "localBounds": {
+        "min": [
+          -9.582127571105957,
+          0.5256763100624084,
+          -7.276037693023682
+        ],
+        "max": [
+          9.58211898803711,
+          8.310291290283203,
+          19.124982833862305
+        ]
+      },
+      "localCenter": [
+        -0.000004291534423828125,
+        4.417983800172806,
+        5.9244725704193115
+      ],
+      "radius": 16.76963372759644,
+      "supportSamples": 53,
+      "checkpoints": 26,
+      "positionOccurrences": 60558,
+      "minimumClearance": 0.4237917173838106,
+      "maximumGroundLift": 0,
+      "maximumGroundDrop": 2.49353639429025,
+      "maximumQueries": 53,
+      "allSampledPositionsClear": true
+    },
+    {
+      "name": "polwo-hero-v1",
+      "source": {
+        "path": "public/assets/inkstorm/vehicles/polwo-hero-v1.glb",
+        "bytes": 10189760,
+        "sha256": "17e117cd9cbf86a2cf096ca6cdc0e46413b391395577b5f0774203ce7987f39f"
+      },
+      "meshes": 8,
+      "localBounds": {
+        "min": [
+          -5.347447395324707,
+          0.10000002384185791,
+          -7.634738922119141
+        ],
+        "max": [
+          5.347446441650391,
+          5.91165828704834,
+          22.365262985229492
+        ]
+      },
+      "localCenter": [
+        -4.76837158203125e-7,
+        3.005829155445099,
+        7.365262031555176
+      ],
+      "radius": 16.187620581739196,
+      "supportSamples": 53,
+      "checkpoints": 26,
+      "positionOccurrences": 75831,
+      "minimumClearance": 0.5499999999999989,
+      "maximumGroundLift": 0,
+      "maximumGroundDrop": 2.7447696610501398,
+      "maximumQueries": 53,
+      "allSampledPositionsClear": true
+    },
+    {
+      "name": "blockrunner-hero-v1",
+      "source": {
+        "path": "public/assets/inkstorm/vehicles/blockrunner-hero-v1.glb",
+        "bytes": 4198472,
+        "sha256": "ee744b122b3e2a009ef7a8f3a8c5c5848fe1503b13e4334e0fe8276ce5c44d8d"
+      },
+      "meshes": 5,
+      "localBounds": {
+        "min": [
+          -4.779439926147461,
+          0.10000000149011612,
+          -10.543083190917969
+        ],
+        "max": [
+          4.6107282638549805,
+          5.145554065704346,
+          8.656911849975586
+        ]
+      },
+      "localCenter": [
+        -0.08435583114624023,
+        2.622777033597231,
+        -0.9430856704711914
+      ],
+      "radius": 10.980353865219685,
+      "supportSamples": 58,
+      "checkpoints": 26,
+      "positionOccurrences": 67740,
+      "minimumClearance": 0.4100040635767943,
+      "maximumGroundLift": 0,
+      "maximumGroundDrop": 2.2877549052062163,
+      "maximumQueries": 58,
+      "allSampledPositionsClear": true
+    }
+  ],
+  "rows": [
+    {
+      "frame": 910,
+      "name": "teemto-hero-open-v2",
+      "remaining": 2.15,
+      "position": [
+        18600.171130179115,
+        -10.899386940635921,
+        13.883536453583945
+      ],
+      "rotationYXZ": [
+        -0.04031148446446282,
+        -0.09869157909571014,
+        -0.1697173875307071
+      ],
+      "center": [
+        18599.849497014682,
+        -7.964445834120353,
+        21.450802320537463
+      ],
+      "groundCorrection": 0,
+      "minimumPositionClearance": 2.4169158898666545,
+      "belowTerrain": 0,
+      "positionOccurrences": 73048,
+      "terrainQueries": 60,
+      "supportSamples": 60
+    },
+    {
+      "frame": 910,
+      "name": "sebulba-hero",
+      "remaining": 2.15,
+      "position": [
+        18600.171130179115,
+        -10.899386940635921,
+        13.883536453583945
+      ],
+      "rotationYXZ": [
+        -0.04031148446446282,
+        -0.09869157909571014,
+        -0.1697173875307071
+      ],
+      "center": [
+        18600.347727695866,
+        -6.309655605579754,
+        19.673280462202943
+      ],
+      "groundCorrection": 0,
+      "minimumPositionClearance": 2.597924799829377,
+      "belowTerrain": 0,
+      "positionOccurrences": 60558,
+      "terrainQueries": 53,
+      "supportSamples": 53
+    },
+    {
+      "frame": 910,
+      "name": "polwo-hero-v1",
+      "remaining": 2.15,
+      "position": [
+        18600.171130179115,
+        -10.899386940635921,
+        13.883536453583945
+      ],
+      "rotationYXZ": [
+        -0.04031148446446282,
+        -0.09869157909571014,
+        -0.1697173875307071
+      ],
+      "center": [
+        18599.962999126627,
+        -7.64232643793604,
+        21.138213017837852
+      ],
+      "groundCorrection": 0,
+      "minimumPositionClearance": 2.5395480400655153,
+      "belowTerrain": 0,
+      "positionOccurrences": 75831,
+      "terrainQueries": 53,
+      "supportSamples": 53
+    },
+    {
+      "frame": 910,
+      "name": "blockrunner-hero-v1",
+      "remaining": 2.15,
+      "position": [
+        18600.171130179115,
+        -10.899386940635921,
+        13.883536453583945
+      ],
+      "rotationYXZ": [
+        -0.04031148446446282,
+        -0.09869157909571014,
+        -0.1697173875307071
+      ],
+      "center": [
+        18600.632402040796,
+        -8.340163116859229,
+        12.877013952346754
+      ],
+      "groundCorrection": 0,
+      "minimumPositionClearance": 2.152604368151273,
+      "belowTerrain": 0,
+      "positionOccurrences": 67740,
+      "terrainQueries": 58,
+      "supportSamples": 58
+    },
+    {
+      "frame": 922,
+      "name": "teemto-hero-open-v2",
+      "remaining": 2.0500000000000003,
+      "position": [
+        18600.06716935204,
+        -10.279312675471616,
+        14.690164944942813
+      ],
+      "rotationYXZ": [
+        -0.03785630874124209,
+        0.003973297075361,
+        -0.25817394812212574
+      ],
+      "center": [
+        18600.7532712518,
+        -7.410779683153732,
+        22.258627308426558
+      ],
+      "groundCorrection": -0.15039062499999897,
+      "minimumPositionClearance": 2.6687050727664268,
+      "belowTerrain": 0,
+      "positionOccurrences": 73048,
+      "terrainQueries": 60,
+      "supportSamples": 60
+    },
+    {
+      "frame": 922,
+      "name": "sebulba-hero",
+      "remaining": 2.0500000000000003,
+      "position": [
+        18600.02715431204,
+        -10.278542870648776,
+        14.68106885429075
+      ],
+      "rotationYXZ": [
+        -0.03785630874124209,
+        0.003973297075361,
+        -0.25817394812212574
+      ],
+      "center": [
+        18601.17800117648,
+        -5.7858149629976,
+        20.4351025297814
+      ],
+      "groundCorrection": -0.15039062499999897,
+      "minimumPositionClearance": 3.0773192469639437,
+      "belowTerrain": 0,
+      "positionOccurrences": 60558,
+      "terrainQueries": 53,
+      "supportSamples": 53
+    },
+    {
+      "frame": 922,
+      "name": "polwo-hero-v1",
+      "remaining": 2.0500000000000003,
+      "position": [
+        18600.059419672943,
+        -10.278503994979912,
+        14.688400598816202
+      ],
+      "rotationYXZ": [
+        -0.03785630874124209,
+        0.003973297075361,
+        -0.25817394812212574
+      ],
+      "center": [
+        18600.855654065806,
+        -7.095621635727282,
+        21.93528712918029
+      ],
+      "groundCorrection": -0.15039062499999897,
+      "minimumPositionClearance": 2.8742828944965826,
+      "belowTerrain": 0,
+      "positionOccurrences": 75831,
+      "terrainQueries": 53,
+      "supportSamples": 53
+    },
+    {
+      "frame": 922,
+      "name": "blockrunner-hero-v1",
+      "remaining": 2.0500000000000003,
+      "position": [
+        18600.075467012048,
+        -10.329679817252767,
+        14.692257722339361
+      ],
+      "rotationYXZ": [
+        -0.03785630874124209,
+        0.003973297075361,
+        -0.25817394812212574
+      ],
+      "center": [
+        18600.65940872388,
+        -7.8098155086633465,
+        13.650729134377466
+      ],
+      "groundCorrection": -0.15039062499999897,
+      "minimumPositionClearance": 2.445235638515685,
+      "belowTerrain": 0,
+      "positionOccurrences": 67740,
+      "terrainQueries": 58,
+      "supportSamples": 58
+    },
+    {
+      "frame": 934,
+      "name": "teemto-hero-open-v2",
+      "remaining": 1.9500000000000006,
+      "position": [
+        18599.724504179583,
+        -9.918316595321599,
+        14.996245573346261
+      ],
+      "rotationYXZ": [
+        -0.02151270072437341,
+        0.05587464408092483,
+        -0.37060048433403275
+      ],
+      "center": [
+        18601.089844043163,
+        -7.26376692665219,
+        22.550717957690814
+      ],
+      "groundCorrection": -0.5468749999999964,
+      "minimumPositionClearance": 2.4047614591015805,
+      "belowTerrain": 0,
+      "positionOccurrences": 73048,
+      "terrainQueries": 60,
+      "supportSamples": 60
+    },
+    {
+      "frame": 934,
+      "name": "sebulba-hero",
+      "remaining": 1.9500000000000006,
+      "position": [
+        18599.51768860123,
+        -9.9021562628181,
+        14.959115632709796
+      ],
+      "rotationYXZ": [
+        -0.02151270072437341,
+        0.05587464408092483,
+        -0.37060048433403275
+      ],
+      "center": [
+        18601.4411038022,
+        -5.657618979342112,
+        20.695171185972526
+      ],
+      "groundCorrection": -0.5468749999999964,
+      "minimumPositionClearance": 2.4814492723132453,
+      "belowTerrain": 0,
+      "positionOccurrences": 60558,
+      "terrainQueries": 53,
+      "supportSamples": 53
+    },
+    {
+      "frame": 934,
+      "name": "polwo-hero-v1",
+      "remaining": 1.9500000000000006,
+      "position": [
+        18599.684452977457,
+        -9.911579679144534,
+        14.989193667131456
+      ],
+      "rotationYXZ": [
+        -0.02151270072437341,
+        0.05587464408092483,
+        -0.37060048433403275
+      ],
+      "center": [
+        18601.17924681944,
+        -6.952029834007447,
+        22.22028969673271
+      ],
+      "groundCorrection": -0.5468749999999964,
+      "minimumPositionClearance": 2.632690512157179,
+      "belowTerrain": 0,
+      "positionOccurrences": 75831,
+      "terrainQueries": 53,
+      "supportSamples": 53
+    },
+    {
+      "frame": 934,
+      "name": "blockrunner-hero-v1",
+      "remaining": 1.9500000000000006,
+      "position": [
+        18599.815310876194,
+        -10.199188174363737,
+        15.00203302855756
+      ],
+      "rotationYXZ": [
+        -0.02151270072437341,
+        0.05587464408092483,
+        -0.37060048433403275
+      ],
+      "center": [
+        18600.629598590982,
+        -7.744779300789503,
+        13.958817588234627
+      ],
+      "groundCorrection": -0.5468749999999964,
+      "minimumPositionClearance": 2.0181435530803427,
+      "belowTerrain": 0,
+      "positionOccurrences": 67740,
+      "terrainQueries": 58,
+      "supportSamples": 58
+    },
+    {
+      "frame": 943,
+      "name": "teemto-hero-open-v2",
+      "remaining": 1.8750000000000009,
+      "position": [
+        18599.36656353384,
+        -9.854415004265325,
+        14.992505725661434
+      ],
+      "rotationYXZ": [
+        -0.00641349873717343,
+        0.08576452770520697,
+        -0.44954209774189724
+      ],
+      "center": [
+        18601.15318761181,
+        -7.397188907444942,
+        22.525822007715945
+      ],
+      "groundCorrection": -0.9563903808593693,
+      "minimumPositionClearance": 2.002602332490948,
+      "belowTerrain": 0,
+      "positionOccurrences": 73048,
+      "terrainQueries": 60,
+      "supportSamples": 60
+    },
+    {
+      "frame": 943,
+      "name": "sebulba-hero",
+      "remaining": 1.8750000000000009,
+      "position": [
+        18599.028095206762,
+        -9.817390453079764,
+        14.939443776770421
+      ],
+      "rotationYXZ": [
+        -0.00641349873717343,
+        0.08576452770520697,
+        -0.44954209774189724
+      ],
+      "center": [
+        18601.44617428114,
+        -5.800433854575438,
+        20.652140983173027
+      ],
+      "groundCorrection": -0.9563903808593693,
+      "minimumPositionClearance": 1.6122040754528992,
+      "belowTerrain": 0,
+      "positionOccurrences": 60558,
+      "terrainQueries": 53,
+      "supportSamples": 53
+    },
+    {
+      "frame": 943,
+      "name": "polwo-hero-v1",
+      "remaining": 1.8750000000000009,
+      "position": [
+        18599.30094399791,
+        -9.84101575983132,
+        14.982680451288935
+      ],
+      "rotationYXZ": [
+        -0.00641349873717343,
+        0.08576452770520697,
+        -0.44954209774189724
+      ],
+      "center": [
+        18601.231739104285,
+        -7.086645909356592,
+        22.191534083399162
+      ],
+      "groundCorrection": -0.9563903808593693,
+      "minimumPositionClearance": 2.218270371045124,
+      "belowTerrain": 0,
+      "positionOccurrences": 75831,
+      "terrainQueries": 53,
+      "supportSamples": 53
+    },
+    {
+      "frame": 943,
+      "name": "blockrunner-hero-v1",
+      "remaining": 1.8750000000000009,
+      "position": [
+        18599.58958702201,
+        -10.350472800161887,
+        14.992446384792524
+      ],
+      "rotationYXZ": [
+        -0.00641349873717343,
+        0.08576452770520697,
+        -0.44954209774189724
+      ],
+      "center": [
+        18600.567338085242,
+        -7.957719363863933,
+        13.946396812597271
+      ],
+      "groundCorrection": -0.9563903808593693,
+      "minimumPositionClearance": 1.4377213240934932,
+      "belowTerrain": 0,
+      "positionOccurrences": 67740,
+      "terrainQueries": 58,
+      "supportSamples": 58
+    },
+    {
+      "frame": 946,
+      "name": "teemto-hero-open-v2",
+      "remaining": 1.850000000000001,
+      "position": [
+        18599.274770385648,
+        -9.909028705354924,
+        14.992990192004068
+      ],
+      "rotationYXZ": [
+        -0.003966676102731388,
+        0.09425007708662764,
+        -0.46200065796059003
+      ],
+      "center": [
+        18601.15560204612,
+        -7.484873200285801,
+        22.514079358111424
+      ],
+      "groundCorrection": -1.1074218749999933,
+      "minimumPositionClearance": 1.8729268392641707,
+      "belowTerrain": 0,
+      "positionOccurrences": 73048,
+      "terrainQueries": 60,
+      "supportSamples": 60
+    },
+    {
+      "frame": 946,
+      "name": "sebulba-hero",
+      "remaining": 1.850000000000001,
+      "position": [
+        18598.912534154675,
+        -9.869072941113286,
+        14.938006220883828
+      ],
+      "rotationYXZ": [
+        -0.003966676102731388,
+        0.09425007708662764,
+        -0.46200065796059003
+      ],
+      "center": [
+        18601.429136848314,
+        -5.890788243078286,
+        20.635191301255364
+      ],
+      "groundCorrection": -1.1074218749999933,
+      "minimumPositionClearance": 1.405545693253881,
+      "belowTerrain": 0,
+      "positionOccurrences": 60558,
+      "terrainQueries": 53,
+      "supportSamples": 53
+    },
+    {
+      "frame": 946,
+      "name": "polwo-hero-v1",
+      "remaining": 1.850000000000001,
+      "position": [
+        18599.204467800857,
+        -9.894499183913387,
+        14.982901527959005
+      ],
+      "rotationYXZ": [
+        -0.003966676102731388,
+        0.09425007708662764,
+        -0.46200065796059003
+      ],
+      "center": [
+        18601.230478274676,
+        -7.174599016528592,
+        22.178700187220407
+      ],
+      "groundCorrection": -1.1074218749999933,
+      "minimumPositionClearance": 2.0867184593448442,
+      "belowTerrain": 0,
+      "positionOccurrences": 75831,
+      "terrainQueries": 53,
+      "supportSamples": 53
+    },
+    {
+      "frame": 946,
+      "name": "blockrunner-hero-v1",
+      "remaining": 1.850000000000001,
+      "position": [
+        18599.54421020631,
+        -10.45429687772988,
+        14.989555444461777
+      ],
+      "rotationYXZ": [
+        -0.003966676102731388,
+        0.09425007708662764,
+        -0.46200065796059003
+      ],
+      "center": [
+        18600.543276771088,
+        -8.072644099540916,
+        13.938326687556229
+      ],
+      "groundCorrection": -1.1074218749999933,
+      "minimumPositionClearance": 1.2687408529103088,
+      "belowTerrain": 0,
+      "positionOccurrences": 67740,
+      "terrainQueries": 58,
+      "supportSamples": 58
+    },
+    {
+      "frame": 958,
+      "name": "teemto-hero-open-v2",
+      "remaining": 1.7500000000000013,
+      "position": [
+        18598.975114076013,
+        -10.405058094924541,
+        15.009475435144562
+      ],
+      "rotationYXZ": [
+        -0.000003539514003933486,
+        0.12504416762623527,
+        -0.4768689956815565
+      ],
+      "center": [
+        18601.12299714771,
+        -8.028878509565526,
+        22.474139445049502
+      ],
+      "groundCorrection": -1.7499999999999907,
+      "minimumPositionClearance": 1.2720812983457161,
+      "belowTerrain": 0,
+      "positionOccurrences": 73048,
+      "terrainQueries": 60,
+      "supportSamples": 60
+    },
+    {
+      "frame": 958,
+      "name": "sebulba-hero",
+      "remaining": 1.7500000000000013,
+      "position": [
+        18598.574133323862,
+        -10.370064536962069,
+        14.952410068652576
+      ],
+      "rotationYXZ": [
+        -0.000003539514003933486,
+        0.12504416762623527,
+        -0.4768689956815565
+      ],
+      "center": [
+        18601.32503969738,
+        -6.444943951213272,
+        20.577701048479707
+      ],
+      "groundCorrection": -1.7499999999999907,
+      "minimumPositionClearance": 0.6827709458058724,
+      "belowTerrain": 0,
+      "positionOccurrences": 60558,
+      "terrainQueries": 53,
+      "supportSamples": 53
+    },
+    {
+      "frame": 958,
+      "name": "polwo-hero-v1",
+      "remaining": 1.7500000000000013,
+      "position": [
+        18598.896751278855,
+        -10.390078457195044,
+        14.999451312157738
+      ],
+      "rotationYXZ": [
+        -0.000003539514003933486,
+        0.12504416762623527,
+        -0.4768689956815565
+      ],
+      "center": [
+        18601.184237022357,
+        -7.719564119012861,
+        22.13512618199521
+      ],
+      "groundCorrection": -1.7499999999999907,
+      "minimumPositionClearance": 1.4821307020083516,
+      "belowTerrain": 0,
+      "positionOccurrences": 75831,
+      "terrainQueries": 53,
+      "supportSamples": 53
+    },
+    {
+      "frame": 958,
+      "name": "blockrunner-hero-v1",
+      "remaining": 1.7500000000000013,
+      "position": [
+        18599.445622839095,
+        -11.089098833061124,
+        14.987341932430567
+      ],
+      "rotationYXZ": [
+        -0.000003539514003933486,
+        0.12504416762623527,
+        -0.4768689956815565
+      ],
+      "center": [
+        18600.44809633093,
+        -8.720212267581715,
+        13.910815484021255
+      ],
+      "groundCorrection": -1.7499999999999907,
+      "minimumPositionClearance": 0.5642471466558501,
+      "belowTerrain": 0,
+      "positionOccurrences": 67740,
+      "terrainQueries": 58,
+      "supportSamples": 58
+    },
+    {
+      "frame": 970,
+      "name": "teemto-hero-open-v2",
+      "remaining": 1.6500000000000017,
+      "position": [
+        18598.698783683223,
+        -11.113977826136608,
+        15.04561671202416
+      ],
+      "rotationYXZ": [
+        0.002201334048726425,
+        0.15742942819146705,
+        -0.47428382845280315
+      ],
+      "center": [
+        18601.08199213104,
+        -8.751630192887056,
+        22.4429453546002
+      ],
+      "groundCorrection": -2.3714842257548083,
+      "minimumPositionClearance": 0.5499999999999989,
+      "belowTerrain": 0,
+      "positionOccurrences": 73048,
+      "terrainQueries": 60,
+      "supportSamples": 60
+    },
+    {
+      "frame": 970,
+      "name": "sebulba-hero",
+      "remaining": 1.6500000000000017,
+      "position": [
+        18598.31343599654,
+        -10.593500359693348,
+        14.98939141002732
+      ],
+      "rotationYXZ": [
+        0.002201334048726425,
+        0.15742942819146705,
+        -0.47428382845280315
+      ],
+      "center": [
+        18601.23637272906,
+        -6.676222790745879,
+        20.532795905620826
+      ],
+      "groundCorrection": -1.86885912975847,
+      "minimumPositionClearance": 0.4237917173838106,
+      "belowTerrain": 0,
+      "positionOccurrences": 60558,
+      "terrainQueries": 53,
+      "supportSamples": 53
+    },
+    {
+      "frame": 970,
+      "name": "polwo-hero-v1",
+      "remaining": 1.6500000000000017,
+      "position": [
+        18598.622637727614,
+        -11.122632984830052,
+        15.036387150705659
+      ],
+      "rotationYXZ": [
+        0.002201334048726425,
+        0.15742942819146705,
+        -0.47428382845280315
+      ],
+      "center": [
+        18601.134073042696,
+        -8.464806822713902,
+        22.10114096491031
+      ],
+      "groundCorrection": -2.3925781249999893,
+      "minimumPositionClearance": 0.7342618202729074,
+      "belowTerrain": 0,
+      "positionOccurrences": 75831,
+      "terrainQueries": 53,
+      "supportSamples": 53
+    },
+    {
+      "frame": 970,
+      "name": "blockrunner-hero-v1",
+      "remaining": 1.6500000000000017,
+      "position": [
+        18599.41969562926,
+        -11.13814831076243,
+        14.991349781451975
+      ],
+      "rotationYXZ": [
+        0.002201334048726425,
+        0.15742942819146705,
+        -0.47428382845280315
+      ],
+      "center": [
+        18600.381554247866,
+        -8.76427760902521,
+        13.889055925300166
+      ],
+      "groundCorrection": -1.6067558369485961,
+      "minimumPositionClearance": 0.5425961914015076,
+      "belowTerrain": 0,
+      "positionOccurrences": 67740,
+      "terrainQueries": 58,
+      "supportSamples": 58
+    },
+    {
+      "frame": 975,
+      "name": "teemto-hero-open-v2",
+      "remaining": 1.6083333333333352,
+      "position": [
+        18598.593108589892,
+        -11.13721895956358,
+        15.066705390952688
+      ],
+      "rotationYXZ": [
+        0.0025834042449616457,
+        0.17193337165147676,
+        -0.4678547942071686
+      ],
+      "center": [
+        18601.068415804148,
+        -8.770178687716069,
+        22.43222060978436
+      ],
+      "groundCorrection": -2.3229261544703315,
+      "minimumPositionClearance": 0.5500000000000007,
+      "belowTerrain": 0,
+      "positionOccurrences": 73048,
+      "terrainQueries": 60,
+      "supportSamples": 60
+    },
+    {
+      "frame": 975,
+      "name": "sebulba-hero",
+      "remaining": 1.6083333333333352,
+      "position": [
+        18598.231046343568,
+        -10.633405840264585,
+        15.011083651283602
+      ],
+      "rotationYXZ": [
+        0.0025834042449616457,
+        0.17193337165147676,
+        -0.4678547942071686
+      ],
+      "center": [
+        18601.209399161366,
+        -6.7055049438112775,
+        20.51734963982981
+      ],
+      "groundCorrection": -1.8265448993624342,
+      "minimumPositionClearance": 0.4264460766775837,
+      "belowTerrain": 0,
+      "positionOccurrences": 60558,
+      "terrainQueries": 53,
+      "supportSamples": 53
+    },
+    {
+      "frame": 975,
+      "name": "polwo-hero-v1",
+      "remaining": 1.6083333333333352,
+      "position": [
+        18598.521068225607,
+        -11.330069767907428,
+        15.05790873753083
+      ],
+      "rotationYXZ": [
+        0.0025834042449616457,
+        0.17193337165147676,
+        -0.4678547942071686
+      ],
+      "center": [
+        18601.117914210514,
+        -8.666289881190007,
+        22.089463426999686
+      ],
+      "groundCorrection": -2.5263208138080193,
+      "minimumPositionClearance": 0.5500000000000007,
+      "belowTerrain": 0,
+      "positionOccurrences": 75831,
+      "terrainQueries": 53,
+      "supportSamples": 53
+    },
+    {
+      "frame": 975,
+      "name": "blockrunner-hero-v1",
+      "remaining": 1.6083333333333352,
+      "position": [
+        18599.431643424377,
+        -11.18096924372468,
+        14.994122696365345
+      ],
+      "rotationYXZ": [
+        0.0025834042449616457,
+        0.17193337165147676,
+        -0.4678547942071686
+      ],
+      "center": [
+        18600.362525862216,
+        -8.79957107551354,
+        13.881519214695741
+      ],
+      "groundCorrection": -1.5453639085368394,
+      "minimumPositionClearance": 0.5424688144324765,
+      "belowTerrain": 0,
+      "positionOccurrences": 67740,
+      "terrainQueries": 58,
+      "supportSamples": 58
+    },
+    {
+      "frame": 982,
+      "name": "teemto-hero-open-v2",
+      "remaining": 1.550000000000002,
+      "position": [
+        18598.455344100243,
+        -11.207205750588038,
+        15.101416210719147
+      ],
+      "rotationYXZ": [
+        0.002495078051581459,
+        0.19339661237938666,
+        -0.4513003913963588
+      ],
+      "center": [
+        18601.049192535716,
+        -8.82030304651894,
+        22.419577569109673
+      ],
+      "groundCorrection": -2.2760303269772963,
+      "minimumPositionClearance": 0.5500000000000007,
+      "belowTerrain": 0,
+      "positionOccurrences": 73048,
+      "terrainQueries": 60,
+      "supportSamples": 60
+    },
+    {
+      "frame": 982,
+      "name": "sebulba-hero",
+      "remaining": 1.550000000000002,
+      "position": [
+        18598.142053869207,
+        -10.762112041439055,
+        15.045775795544982
+      ],
+      "rotationYXZ": [
+        0.002495078051581459,
+        0.19339661237938666,
+        -0.4513003913963588
+      ],
+      "center": [
+        18601.173517145864,
+        -6.801246126728497,
+        20.49919011175342
+      ],
+      "groundCorrection": -1.8199205828598657,
+      "minimumPositionClearance": 0.4341550645978298,
+      "belowTerrain": 0,
+      "positionOccurrences": 60558,
+      "terrainQueries": 53,
+      "supportSamples": 53
+    },
+    {
+      "frame": 982,
+      "name": "polwo-hero-v1",
+      "remaining": 1.550000000000002,
+      "position": [
+        18598.392114778144,
+        -11.402648251557483,
+        15.093110984040816
+      ],
+      "rotationYXZ": [
+        0.002495078051581459,
+        0.19339661237938666,
+        -0.4513003913963588
+      ],
+      "center": [
+        18601.095471634173,
+        -8.71614565589538,
+        22.07570786612181
+      ],
+      "groundCorrection": -2.4784142539429217,
+      "minimumPositionClearance": 0.5500000000000007,
+      "belowTerrain": 0,
+      "positionOccurrences": 75831,
+      "terrainQueries": 53,
+      "supportSamples": 53
+    },
+    {
+      "frame": 982,
+      "name": "blockrunner-hero-v1",
+      "remaining": 1.550000000000002,
+      "position": [
+        18599.470526281817,
+        -11.28077701046431,
+        14.99757929990466
+      ],
+      "rotationYXZ": [
+        0.002495078051581459,
+        0.19339661237938666,
+        -0.4513003913963588
+      ],
+      "center": [
+        18600.33848890163,
+        -8.881454304237053,
+        13.872689395046976
+      ],
+      "groundCorrection": -1.4948315247162511,
+      "minimumPositionClearance": 0.5442504048729724,
+      "belowTerrain": 0,
+      "positionOccurrences": 67740,
+      "terrainQueries": 58,
+      "supportSamples": 58
+    },
+    {
+      "frame": 994,
+      "name": "teemto-hero-open-v2",
+      "remaining": 1.4500000000000024,
+      "position": [
+        18598.248667591535,
+        -11.451757257933757,
+        15.172050717300358
+      ],
+      "rotationYXZ": [
+        0.0003288525245345453,
+        0.2333712247625193,
+        -0.40107985073957375
+      ],
+      "center": [
+        18601.012805123,
+        -8.994079886251058,
+        22.403938820432067
+      ],
+      "groundCorrection": -2.3026224604021523,
+      "minimumPositionClearance": 0.5500000000000007,
+      "belowTerrain": 0,
+      "positionOccurrences": 73048,
+      "terrainQueries": 60,
+      "supportSamples": 60
+    },
+    {
+      "frame": 994,
+      "name": "sebulba-hero",
+      "remaining": 1.4500000000000024,
+      "position": [
+        18598.0612886264,
+        -11.196873983707494,
+        15.110617627016481
+      ],
+      "rotationYXZ": [
+        0.0003288525245345453,
+        0.2333712247625193,
+        -0.40107985073957375
+      ],
+      "center": [
+        18601.10976040123,
+        -7.131448450226311,
+        20.476909751570254
+      ],
+      "groundCorrection": -1.9966885257527174,
+      "minimumPositionClearance": 0.458244638346498,
+      "belowTerrain": 0,
+      "positionOccurrences": 60558,
+      "terrainQueries": 53,
+      "supportSamples": 53
+    },
+    {
+      "frame": 994,
+      "name": "polwo-hero-v1",
+      "remaining": 1.4500000000000024,
+      "position": [
+        18598.208584363467,
+        -11.647126396162896,
+        15.163615551215969
+      ],
+      "rotationYXZ": [
+        0.0003288525245345453,
+        0.2333712247625193,
+        -0.40107985073957375
+      ],
+      "center": [
+        18601.05377768151,
+        -8.882262061106383,
+        22.05872206938346
+      ],
+      "groundCorrection": -2.496586176918277,
+      "minimumPositionClearance": 0.5499999999999989,
+      "belowTerrain": 0,
+      "positionOccurrences": 75831,
+      "terrainQueries": 53,
+      "supportSamples": 53
+    },
+    {
+      "frame": 994,
+      "name": "blockrunner-hero-v1",
+      "remaining": 1.4500000000000024,
+      "position": [
+        18599.59548871707,
+        -11.576672424174484,
+        14.997604934992472
+      ],
+      "rotationYXZ": [
+        0.0003288525245345453,
+        0.2333712247625193,
+        -0.40107985073957375
+      ],
+      "center": [
+        18600.29823017582,
+        -9.128795530919838,
+        13.86202622187572
+      ],
+      "groundCorrection": -1.5490461809391796,
+      "minimumPositionClearance": 0.5469931217369144,
+      "belowTerrain": 0,
+      "positionOccurrences": 67740,
+      "terrainQueries": 58,
+      "supportSamples": 58
+    },
+    {
+      "frame": 1006,
+      "name": "teemto-hero-open-v2",
+      "remaining": 1.3500000000000028,
+      "position": [
+        18598.056910418607,
+        -11.767944782089913,
+        15.261464953345742
+      ],
+      "rotationYXZ": [
+        -0.004870322105950273,
+        0.27707792266676823,
+        -0.3414216018170052
+      ],
+      "center": [
+        18600.987961508403,
+        -9.21415133961526,
+        22.39363982883181
+      ],
+      "groundCorrection": -2.4143945464817387,
+      "minimumPositionClearance": 0.5500000000000007,
+      "belowTerrain": 0,
+      "positionOccurrences": 73048,
+      "terrainQueries": 60,
+      "supportSamples": 60
+    },
+    {
+      "frame": 1006,
+      "name": "sebulba-hero",
+      "remaining": 1.3500000000000028,
+      "position": [
+        18598.029317491568,
+        -11.760696144821665,
+        15.187986175201571
+      ],
+      "rotationYXZ": [
+        -0.004870322105950273,
+        0.27707792266676823,
+        -0.3414216018170052
+      ],
+      "center": [
+        18601.067204667474,
+        -7.568913976930582,
+        20.462278531496295
+      ],
+      "groundCorrection": -2.321482062776549,
+      "minimumPositionClearance": 0.4851918270964113,
+      "belowTerrain": 0,
+      "positionOccurrences": 60558,
+      "terrainQueries": 53,
+      "supportSamples": 53
+    },
+    {
+      "frame": 1006,
+      "name": "polwo-hero-v1",
+      "remaining": 1.3500000000000028,
+      "position": [
+        18598.046505792525,
+        -11.969112861219383,
+        15.251860420115342
+      ],
+      "rotationYXZ": [
+        -0.004870322105950273,
+        0.27707792266676823,
+        -0.3414216018170052
+      ],
+      "center": [
+        18601.02549368781,
+        -9.100943660301503,
+        22.047545099370513
+      ],
+      "groundCorrection": -2.606417076558883,
+      "minimumPositionClearance": 0.5499999999999989,
+      "belowTerrain": 0,
+      "positionOccurrences": 75831,
+      "terrainQueries": 53,
+      "supportSamples": 53
+    },
+    {
+      "frame": 1006,
+      "name": "blockrunner-hero-v1",
+      "remaining": 1.3500000000000028,
+      "position": [
+        18599.76505618911,
+        -11.958217183468093,
+        14.992342061061995
+      ],
+      "rotationYXZ": [
+        -0.004870322105950273,
+        0.27707792266676823,
+        -0.3414216018170052
+      ],
+      "center": [
+        18600.271978399964,
+        -9.463205968606788,
+        13.855049325693436
+      ],
+      "groundCorrection": -1.7448681245428943,
+      "minimumPositionClearance": 0.5467767191401656,
+      "belowTerrain": 0,
+      "positionOccurrences": 67740,
+      "terrainQueries": 58,
+      "supportSamples": 58
+    },
+    {
+      "frame": 1010,
+      "name": "teemto-hero-open-v2",
+      "remaining": 1.3166666666666695,
+      "position": [
+        18597.949867784675,
+        -11.778459186495173,
+        15.30987434100793
+      ],
+      "rotationYXZ": [
+        -0.0073515634712042754,
+        0.2923771974899341,
+        -0.34058956628444387
+      ],
+      "center": [
+        18600.985848778426,
+        -9.204940995579303,
+        22.390881572959252
+      ],
+      "groundCorrection": -2.3775908811910087,
+      "minimumPositionClearance": 0.5499999999999989,
+      "belowTerrain": 0,
+      "positionOccurrences": 73048,
+      "terrainQueries": 60,
+      "supportSamples": 60
+    },
+    {
+      "frame": 1010,
+      "name": "sebulba-hero",
+      "remaining": 1.3166666666666695,
+      "position": [
+        18597.951567590593,
+        -11.798587146303237,
+        15.240097113526536
+      ],
+      "rotationYXZ": [
+        -0.0073515634712042754,
+        0.2923771974899341,
+        -0.34058956628444387
+      ],
+      "center": [
+        18601.06346603651,
+        -7.59093901261368,
+        20.458309579651335
+      ],
+      "groundCorrection": -2.3144884826384873,
+      "minimumPositionClearance": 0.4838796093273352,
+      "belowTerrain": 0,
+      "positionOccurrences": 60558,
+      "terrainQueries": 53,
+      "supportSamples": 53
+    },
+    {
+      "frame": 1010,
+      "name": "polwo-hero-v1",
+      "remaining": 1.3166666666666695,
+      "position": [
+        18597.94477771714,
+        -11.993932247008456,
+        15.301393985835247
+      ],
+      "rotationYXZ": [
+        -0.0073515634712042754,
+        0.2923771974899341,
+        -0.34058956628444387
+      ],
+      "center": [
+        18601.02306553363,
+        -9.106694960474744,
+        22.044545969535612
+      ],
+      "groundCorrection": -2.5843403704954175,
+      "minimumPositionClearance": 0.5499999999999989,
+      "belowTerrain": 0,
+      "positionOccurrences": 75831,
+      "terrainQueries": 53,
+      "supportSamples": 53
+    },
+    {
+      "frame": 1010,
+      "name": "blockrunner-hero-v1",
+      "remaining": 1.3166666666666695,
+      "position": [
+        18599.78390950442,
+        -12.008040786076347,
+        15.003341227416131
+      ],
+      "rotationYXZ": [
+        -0.0073515634712042754,
+        0.2923771974899341,
+        -0.34058956628444387
+      ],
+      "center": [
+        18600.26959662281,
+        -9.514743796122524,
+        13.853096036607157
+      ],
+      "groundCorrection": -1.7615687934235786,
+      "minimumPositionClearance": 0.5452645727077119,
+      "belowTerrain": 0,
+      "positionOccurrences": 67740,
+      "terrainQueries": 58,
+      "supportSamples": 58
+    },
+    {
+      "frame": 1018,
+      "name": "teemto-hero-open-v2",
+      "remaining": 1.250000000000003,
+      "position": [
+        18597.73333352503,
+        -11.795292714213371,
+        15.419899374381245
+      ],
+      "rotationYXZ": [
+        -0.013486918001246725,
+        0.32391060327099064,
+        -0.3409089270389256
+      ],
+      "center": [
+        18600.9867484869,
+        -9.175130420368774,
+        22.386310253171693
+      ],
+      "groundCorrection": -2.3040906608132916,
+      "minimumPositionClearance": 0.5499999999999989,
+      "belowTerrain": 0,
+      "positionOccurrences": 73048,
+      "terrainQueries": 60,
+      "supportSamples": 60
+    },
+    {
+      "frame": 1018,
+      "name": "sebulba-hero",
+      "remaining": 1.250000000000003,
+      "position": [
+        18597.796778567867,
+        -11.875478497483783,
+        15.359171086254586
+      ],
+      "rotationYXZ": [
+        -0.013486918001246725,
+        0.32391060327099064,
+        -0.3409089270389256
+      ],
+      "center": [
+        18601.064661711836,
+        -7.6322213284044,
+        20.45168170977613
+      ],
+      "groundCorrection": -2.309500139900277,
+      "minimumPositionClearance": 0.4802589954489651,
+      "belowTerrain": 0,
+      "positionOccurrences": 60558,
+      "terrainQueries": 53,
+      "supportSamples": 53
+    },
+    {
+      "frame": 1018,
+      "name": "polwo-hero-v1",
+      "remaining": 1.250000000000003,
+      "position": [
+        18597.73949025814,
+        -12.04497448607944,
+        15.414030666394048
+      ],
+      "rotationYXZ": [
+        -0.013486918001246725,
+        0.32391060327099064,
+        -0.3409089270389256
+      ],
+      "center": [
+        18601.024024159367,
+        -9.113053115806139,
+        22.0395697263815
+      ],
+      "groundCorrection": -2.546541250374756,
+      "minimumPositionClearance": 0.5499999999999989,
+      "belowTerrain": 0,
+      "positionOccurrences": 75831,
+      "terrainQueries": 53,
+      "supportSamples": 53
+    },
+    {
+      "frame": 1018,
+      "name": "blockrunner-hero-v1",
+      "remaining": 1.250000000000003,
+      "position": [
+        18599.825038919396,
+        -12.110649471459341,
+        15.02949650229781
+      ],
+      "rotationYXZ": [
+        -0.013486918001246725,
+        0.32391060327099064,
+        -0.3409089270389256
+      ],
+      "center": [
+        18600.27011451028,
+        -9.623552663737442,
+        13.849774906547735
+      ],
+      "groundCorrection": -1.8155226382870964,
+      "minimumPositionClearance": 0.5285350073436792,
+      "belowTerrain": 0,
+      "positionOccurrences": 67740,
+      "terrainQueries": 58,
+      "supportSamples": 58
+    },
+    {
+      "frame": 1030,
+      "name": "teemto-hero-open-v2",
+      "remaining": 1.1500000000000035,
+      "position": [
+        18597.40611575024,
+        -11.842252195117052,
+        15.613106270178594
+      ],
+      "rotationYXZ": [
+        -0.02562139442282159,
+        0.37309625277602226,
+        -0.339511189765678
+      ],
+      "center": [
+        18600.98302366063,
+        -9.128373221919087,
+        22.382259142715068
+      ],
+      "groundCorrection": -2.2165275705267815,
+      "minimumPositionClearance": 0.5500000000000007,
+      "belowTerrain": 0,
+      "positionOccurrences": 73048,
+      "terrainQueries": 60,
+      "supportSamples": 60
+    },
+    {
+      "frame": 1030,
+      "name": "sebulba-hero",
+      "remaining": 1.1500000000000035,
+      "position": [
+        18597.568339219375,
+        -12.046221796697466,
+        15.566458649047775
+      ],
+      "rotationYXZ": [
+        -0.02562139442282159,
+        0.37309625277602226,
+        -0.339511189765678
+      ],
+      "center": [
+        18601.05828271513,
+        -7.730016455678092,
+        20.445866599491563
+      ],
+      "groundCorrection": -2.364414142918984,
+      "minimumPositionClearance": 0.4765064862200319,
+      "belowTerrain": 0,
+      "positionOccurrences": 60558,
+      "terrainQueries": 53,
+      "supportSamples": 53
+    },
+    {
+      "frame": 1030,
+      "name": "polwo-hero-v1",
+      "remaining": 1.1500000000000035,
+      "position": [
+        18597.430337261336,
+        -12.154323579961364,
+        15.611348982287696
+      ],
+      "rotationYXZ": [
+        -0.02562139442282159,
+        0.37309625277602226,
+        -0.339511189765678
+      ],
+      "center": [
+        18601.019783593023,
+        -9.132316904811127,
+        22.035167503423406
+      ],
+      "groundCorrection": -2.524661667930407,
+      "minimumPositionClearance": 0.5500000000000007,
+      "belowTerrain": 0,
+      "positionOccurrences": 75831,
+      "terrainQueries": 53,
+      "supportSamples": 53
+    },
+    {
+      "frame": 1030,
+      "name": "blockrunner-hero-v1",
+      "remaining": 1.1500000000000035,
+      "position": [
+        18599.893885173864,
+        -12.291030307830617,
+        15.073889623241445
+      ],
+      "rotationYXZ": [
+        -0.02562139442282159,
+        0.37309625277602226,
+        -0.339511189765678
+      ],
+      "center": [
+        18600.2661814121,
+        -9.814856500807641,
+        13.846923998428863
+      ],
+      "groundCorrection": -1.9553073596998771,
+      "minimumPositionClearance": 0.4671861813404359,
+      "belowTerrain": 0,
+      "positionOccurrences": 67740,
+      "terrainQueries": 58,
+      "supportSamples": 58
+    },
+    {
+      "frame": 1042,
+      "name": "teemto-hero-open-v2",
+      "remaining": 1.0500000000000038,
+      "position": [
+        18597.083669150095,
+        -11.922187361864498,
+        15.835459448007327
+      ],
+      "rotationYXZ": [
+        -0.04107047080187405,
+        0.4237729829631037,
+        -0.33434531553879077
+      ],
+      "center": [
+        18600.96932098242,
+        -9.086688848980186,
+        22.380877533486117
+      ],
+      "groundCorrection": -2.155003473738595,
+      "minimumPositionClearance": 0.5500000000000007,
+      "belowTerrain": 0,
+      "positionOccurrences": 73048,
+      "terrainQueries": 60,
+      "supportSamples": 60
+    },
+    {
+      "frame": 1042,
+      "name": "sebulba-hero",
+      "remaining": 1.0500000000000038,
+      "position": [
+        18597.35032051554,
+        -12.292198049608551,
+        15.800514655538525
+      ],
+      "rotationYXZ": [
+        -0.04107047080187405,
+        0.4237729829631037,
+        -0.33434531553879077
+      ],
+      "center": [
+        18601.035484815693,
+        -7.879123947924111,
+        20.444036718604814
+      ],
+      "groundCorrection": -2.49353639429025,
+      "minimumPositionClearance": 0.47587983875141404,
+      "belowTerrain": 0,
+      "positionOccurrences": 60558,
+      "terrainQueries": 53,
+      "supportSamples": 53
+    },
+    {
+      "frame": 1042,
+      "name": "polwo-hero-v1",
+      "remaining": 1.0500000000000038,
+      "position": [
+        18597.12707339995,
+        -12.307880742566226,
+        15.837451962273
+      ],
+      "rotationYXZ": [
+        -0.04107047080187405,
+        0.4237729829631037,
+        -0.33434531553879077
+      ],
+      "center": [
+        18601.004310513985,
+        -9.168482805720053,
+        22.033685226191512
+      ],
+      "groundCorrection": -2.541081740643672,
+      "minimumPositionClearance": 0.5499999999999989,
+      "belowTerrain": 0,
+      "positionOccurrences": 75831,
+      "terrainQueries": 53,
+      "supportSamples": 53
+    },
+    {
+      "frame": 1042,
+      "name": "blockrunner-hero-v1",
+      "remaining": 1.0500000000000038,
+      "position": [
+        18599.970421995222,
+        -12.488104182160118,
+        15.120043999135993
+      ],
+      "rotationYXZ": [
+        -0.04107047080187405,
+        0.4237729829631037,
+        -0.33434531553879077
+      ],
+      "center": [
+        18600.25255190198,
+        -10.023715753711384,
+        13.846200113292078
+      ],
+      "groundCorrection": -2.138366833219428,
+      "minimumPositionClearance": 0.4165096398661454,
+      "belowTerrain": 0,
+      "positionOccurrences": 67740,
+      "terrainQueries": 58,
+      "supportSamples": 58
+    },
+    {
+      "frame": 1054,
+      "name": "teemto-hero-open-v2",
+      "remaining": 0.9500000000000042,
+      "position": [
+        18596.777857758607,
+        -11.990232421000208,
+        16.089793197923775
+      ],
+      "rotationYXZ": [
+        -0.05935208479736223,
+        0.47503249277169696,
+        -0.3348661403885763
+      ],
+      "center": [
+        18600.970668553433,
+        -9.017371660540665,
+        22.379727730973546
+      ],
+      "groundCorrection": -2.076103829785846,
+      "minimumPositionClearance": 0.5500000000000007,
+      "belowTerrain": 0,
+      "positionOccurrences": 73048,
+      "terrainQueries": 60,
+      "supportSamples": 60
+    },
+    {
+      "frame": 1054,
+      "name": "sebulba-hero",
+      "remaining": 0.9500000000000042,
+      "position": [
+        18597.154828051596,
+        -12.222385621426671,
+        16.067301614128798
+      ],
+      "rotationYXZ": [
+        -0.05935208479736223,
+        0.47503249277169696,
+        -0.3348661403885763
+      ],
+      "center": [
+        18601.037688843953,
+        -7.705724143504408,
+        20.4423578717431
+      ],
+      "groundCorrection": -2.309854247977733,
+      "minimumPositionClearance": 0.502180788365953,
+      "belowTerrain": 0,
+      "positionOccurrences": 60558,
+      "terrainQueries": 53,
+      "supportSamples": 53
+    },
+    {
+      "frame": 1054,
+      "name": "polwo-hero-v1",
+      "remaining": 0.9500000000000042,
+      "position": [
+        18596.841676699623,
+        -12.46135358533348,
+        16.09575713786049
+      ],
+      "rotationYXZ": [
+        -0.05935208479736223,
+        0.47503249277169696,
+        -0.3348661403885763
+      ],
+      "center": [
+        18601.00582498623,
+        -9.190596808339286,
+        22.032432373889105
+      ],
+      "groundCorrection": -2.553476420705178,
+      "minimumPositionClearance": 0.5500000000000007,
+      "belowTerrain": 0,
+      "positionOccurrences": 75831,
+      "terrainQueries": 53,
+      "supportSamples": 53
+    },
+    {
+      "frame": 1054,
+      "name": "blockrunner-hero-v1",
+      "remaining": 0.9500000000000042,
+      "position": [
+        18600.056706739775,
+        -12.629736062366092,
+        15.172452783758573
+      ],
+      "rotationYXZ": [
+        -0.05935208479736223,
+        0.47503249277169696,
+        -0.3348661403885763
+      ],
+      "center": [
+        18600.253844573133,
+        -10.185271824915633,
+        13.845344226576312
+      ],
+      "groundCorrection": -2.2877549052062163,
+      "minimumPositionClearance": 0.4100040635767943,
+      "belowTerrain": 0,
+      "positionOccurrences": 67740,
+      "terrainQueries": 58,
+      "supportSamples": 58
+    },
+    {
+      "frame": 1066,
+      "name": "teemto-hero-open-v2",
+      "remaining": 0.8500000000000045,
+      "position": [
+        18596.49609169326,
+        -12.054597484527129,
+        16.368830656799318
+      ],
+      "rotationYXZ": [
+        -0.07975443483465328,
+        0.5259478059257741,
+        -0.33880852259589317
+      ],
+      "center": [
+        18600.981080538393,
+        -8.932487701543046,
+        22.37866804681116
+      ],
+      "groundCorrection": -1.986922331635882,
+      "minimumPositionClearance": 0.5500000000000007,
+      "belowTerrain": 0,
+      "positionOccurrences": 73048,
+      "terrainQueries": 60,
+      "supportSamples": 60
+    },
+    {
+      "frame": 1066,
+      "name": "sebulba-hero",
+      "remaining": 0.8500000000000045,
+      "position": [
+        18596.98685371589,
+        -12.088647754461512,
+        16.357490308689233
+      ],
+      "rotationYXZ": [
+        -0.07975443483465328,
+        0.5259478059257741,
+        -0.33880852259589317
+      ],
+      "center": [
+        18601.05493951848,
+        -7.463061882476696,
+        20.440698525267504
+      ],
+      "groundCorrection": -2.0618304964058405,
+      "minimumPositionClearance": 0.48954332185702043,
+      "belowTerrain": 0,
+      "positionOccurrences": 60558,
+      "terrainQueries": 53,
+      "supportSamples": 53
+    },
+    {
+      "frame": 1066,
+      "name": "polwo-hero-v1",
+      "remaining": 0.8500000000000045,
+      "position": [
+        18596.58109962937,
+        -12.618621616937062,
+        16.378555697274194
+      ],
+      "rotationYXZ": [
+        -0.07975443483465328,
+        0.5259478059257741,
+        -0.33880852259589317
+      ],
+      "center": [
+        18601.01756846333,
+        -9.205891350885839,
+        22.031263908536722
+      ],
+      "groundCorrection": -2.564192239421307,
+      "minimumPositionClearance": 0.5499999999999989,
+      "belowTerrain": 0,
+      "positionOccurrences": 75831,
+      "terrainQueries": 53,
+      "supportSamples": 53
+    },
+    {
+      "frame": 1066,
+      "name": "blockrunner-hero-v1",
+      "remaining": 0.8500000000000045,
+      "position": [
+        18600.151031946156,
+        -12.449726527555093,
+        15.227468712256528
+      ],
+      "rotationYXZ": [
+        -0.07975443483465328,
+        0.5259478059257741,
+        -0.33880852259589317
+      ],
+      "center": [
+        18600.26411035973,
+        -10.031101795386046,
+        13.84437307804124
+      ],
+      "groundCorrection": -2.12860701955299,
+      "minimumPositionClearance": 0.5500000000000007,
+      "belowTerrain": 0,
+      "positionOccurrences": 67740,
+      "terrainQueries": 58,
+      "supportSamples": 58
+    },
+    {
+      "frame": 1070,
+      "name": "teemto-hero-open-v2",
+      "remaining": 0.8166666666666713,
+      "position": [
+        18596.40771709211,
+        -12.08427677592358,
+        16.463856518718092
+      ],
+      "rotationYXZ": [
+        -0.0868778538889958,
+        0.5426829162216733,
+        -0.33877219924102625
+      ],
+      "center": [
+        18600.98098568223,
+        -8.909151622560874,
+        22.37863754217367
+      ],
+      "groundCorrection": -1.9632611067874712,
+      "minimumPositionClearance": 0.5500000000000007,
+      "belowTerrain": 0,
+      "positionOccurrences": 73048,
+      "terrainQueries": 60,
+      "supportSamples": 60
+    },
+    {
+      "frame": 1070,
+      "name": "sebulba-hero",
+      "remaining": 0.8166666666666713,
+      "position": [
+        18596.93615473715,
+        -12.046914735861007,
+        16.454358543707585
+      ],
+      "rotationYXZ": [
+        -0.0868778538889958,
+        0.5426829162216733,
+        -0.33877219924102625
+      ],
+      "center": [
+        18601.054779220485,
+        -7.381689841071161,
+        20.440655715593685
+      ],
+      "groundCorrection": -1.9801209959873372,
+      "minimumPositionClearance": 0.4854984047942974,
+      "belowTerrain": 0,
+      "positionOccurrences": 60558,
+      "terrainQueries": 53,
+      "supportSamples": 53
+    },
+    {
+      "frame": 1070,
+      "name": "polwo-hero-v1",
+      "remaining": 0.8166666666666713,
+      "position": [
+        18596.499756640525,
+        -12.679607993954843,
+        16.474477042499412
+      ],
+      "rotationYXZ": [
+        -0.0868778538889958,
+        0.5426829162216733,
+        -0.33877219924102625
+      ],
+      "center": [
+        18601.017460881034,
+        -9.216238416517315,
+        22.031230885396926
+      ],
+      "groundCorrection": -2.574212807694022,
+      "minimumPositionClearance": 0.5499999999999989,
+      "belowTerrain": 0,
+      "positionOccurrences": 75831,
+      "terrainQueries": 53,
+      "supportSamples": 53
+    },
+    {
+      "frame": 1070,
+      "name": "blockrunner-hero-v1",
+      "remaining": 0.8166666666666713,
+      "position": [
+        18600.18305719594,
+        -12.35250165484695,
+        15.24383129532199
+      ],
+      "rotationYXZ": [
+        -0.0868778538889958,
+        0.5426829162216733,
+        -0.33877219924102625
+      ],
+      "center": [
+        18600.26401289705,
+        -9.942025971698547,
+        13.844353174210399
+      ],
+      "groundCorrection": -2.039113465044964,
+      "minimumPositionClearance": 0.5500000000000007,
+      "belowTerrain": 0,
+      "positionOccurrences": 67740,
+      "terrainQueries": 58,
+      "supportSamples": 58
+    },
+    {
+      "frame": 1078,
+      "name": "teemto-hero-open-v2",
+      "remaining": 0.7500000000000049,
+      "position": [
+        18596.23998369431,
+        -12.155732502152485,
+        16.65430265133126
+      ],
+      "rotationYXZ": [
+        -0.1013964713849332,
+        0.5755948314654051,
+        -0.33648391456888904
+      ],
+      "center": [
+        18600.97494409271,
+        -8.871164289209032,
+        22.379038590432483
+      ],
+      "groundCorrection": -1.9258200246539097,
+      "minimumPositionClearance": 0.5500000000000007,
+      "belowTerrain": 0,
+      "positionOccurrences": 73048,
+      "terrainQueries": 60,
+      "supportSamples": 60
+    },
+    {
+      "frame": 1078,
+      "name": "sebulba-hero",
+      "remaining": 0.7500000000000049,
+      "position": [
+        18596.842561741385,
+        -11.960798398302941,
+        16.64509736252608
+      ],
+      "rotationYXZ": [
+        -0.1013964713849332,
+        0.5755948314654051,
+        -0.33648391456888904
+      ],
+      "center": [
+        18601.044756705967,
+        -7.212294944454573,
+        20.441309754462857
+      ],
+      "groundCorrection": -1.8117748207925188,
+      "minimumPositionClearance": 0.48828965017602677,
+      "belowTerrain": 0,
+      "positionOccurrences": 60558,
+      "terrainQueries": 53,
+      "supportSamples": 53
+    },
+    {
+      "frame": 1078,
+      "name": "polwo-hero-v1",
+      "remaining": 0.7500000000000049,
+      "position": [
+        18596.345882696874,
+        -12.813349682293268,
+        16.666058583034193
+      ],
+      "rotationYXZ": [
+        -0.1013964713849332,
+        0.5755948314654051,
+        -0.33648391456888904
+      ],
+      "center": [
+        18601.010644298232,
+        -9.245123323742616,
+        22.031676307196946
+      ],
+      "groundCorrection": -2.6037867013411864,
+      "minimumPositionClearance": 0.5499999999999989,
+      "belowTerrain": 0,
+      "positionOccurrences": 75831,
+      "terrainQueries": 53,
+      "supportSamples": 53
+    },
+    {
+      "frame": 1078,
+      "name": "blockrunner-hero-v1",
+      "remaining": 0.7500000000000049,
+      "position": [
+        18600.24706572064,
+        -12.165498495446325,
+        15.272437750715447
+      ],
+      "rotationYXZ": [
+        -0.1013964713849332,
+        0.5755948314654051,
+        -0.33648391456888904
+      ],
+      "center": [
+        18600.258039974673,
+        -9.770271882088727,
+        13.84476310554118
+      ],
+      "groundCorrection": -1.867774979493796,
+      "minimumPositionClearance": 0.5500000000000007,
+      "belowTerrain": 0,
+      "positionOccurrences": 67740,
+      "terrainQueries": 58,
+      "supportSamples": 58
+    },
+    {
+      "frame": 1090,
+      "name": "teemto-hero-open-v2",
+      "remaining": 0.6500000000000052,
+      "position": [
+        18596.01496776453,
+        -12.263884852062214,
+        16.941622156319408
+      ],
+      "rotationYXZ": [
+        -0.12329241888119064,
+        0.6230711438088757,
+        -0.33335230049038844
+      ],
+      "center": [
+        18600.966678970115,
+        -8.815883787569348,
+        22.37969945331303
+      ],
+      "groundCorrection": -1.8719732544737855,
+      "minimumPositionClearance": 0.5500000000000007,
+      "belowTerrain": 0,
+      "positionOccurrences": 73048,
+      "terrainQueries": 60,
+      "supportSamples": 60
+    },
+    {
+      "frame": 1090,
+      "name": "sebulba-hero",
+      "remaining": 0.6500000000000052,
+      "position": [
+        18596.725793717967,
+        -11.842489467343551,
+        16.928185490662585
+      ],
+      "rotationYXZ": [
+        -0.12329241888119064,
+        0.6230711438088757,
+        -0.33335230049038844
+      ],
+      "center": [
+        18601.031046387445,
+        -6.970807892256863,
+        20.44236735550551
+      ],
+      "groundCorrection": -1.5724553966983155,
+      "minimumPositionClearance": 0.4911695600911141,
+      "belowTerrain": 0,
+      "positionOccurrences": 60558,
+      "terrainQueries": 53,
+      "supportSamples": 53
+    },
+    {
+      "frame": 1090,
+      "name": "polwo-hero-v1",
+      "remaining": 0.6500000000000052,
+      "position": [
+        18596.141183366013,
+        -13.013782203686123,
+        16.954153665347064
+      ],
+      "rotationYXZ": [
+        -0.12329241888119064,
+        0.6230711438088757,
+        -0.33335230049038844
+      ],
+      "center": [
+        18601.00131895056,
+        -9.289200326279449,
+        22.032407857836084
+      ],
+      "groundCorrection": -2.649500783193308,
+      "minimumPositionClearance": 0.5499999999999989,
+      "belowTerrain": 0,
+      "positionOccurrences": 75831,
+      "terrainQueries": 53,
+      "supportSamples": 53
+    },
+    {
+      "frame": 1090,
+      "name": "blockrunner-hero-v1",
+      "remaining": 0.6500000000000052,
+      "position": [
+        18600.343644693217,
+        -11.894412847599746,
+        15.310015125367705
+      ],
+      "rotationYXZ": [
+        -0.12329241888119064,
+        0.6230711438088757,
+        -0.33335230049038844
+      ],
+      "center": [
+        18600.24987081018,
+        -9.523419152780722,
+        13.845405548022772
+      ],
+      "groundCorrection": -1.6224483608928846,
+      "minimumPositionClearance": 0.5500000000000007,
+      "belowTerrain": 0,
+      "positionOccurrences": 67740,
+      "terrainQueries": 58,
+      "supportSamples": 58
+    },
+    {
+      "frame": 1102,
+      "name": "teemto-hero-open-v2",
+      "remaining": 0.5500000000000056,
+      "position": [
+        18595.826726716976,
+        -12.262000319188624,
+        17.230818616584582
+      ],
+      "rotationYXZ": [
+        -0.1444159723957959,
+        0.6675132266468012,
+        -0.3373801616997487
+      ],
+      "center": [
+        18600.977339149118,
+        -8.66385790134564,
+        22.379158407925836
+      ],
+      "groundCorrection": -1.719657557342823,
+      "minimumPositionClearance": 0.5500000000000007,
+      "belowTerrain": 0,
+      "positionOccurrences": 73048,
+      "terrainQueries": 60,
+      "supportSamples": 60
+    },
+    {
+      "frame": 1102,
+      "name": "sebulba-hero",
+      "remaining": 0.5500000000000056,
+      "position": [
+        18596.642311533364,
+        -11.72254407407278,
+        17.213507766748293
+      ],
+      "rotationYXZ": [
+        -0.1444159723957959,
+        0.6675132266468012,
+        -0.3373801616997487
+      ],
+      "center": [
+        18601.048718641614,
+        -6.744402609288353,
+        20.441454490164865
+      ],
+      "groundCorrection": -1.3449860573252213,
+      "minimumPositionClearance": 0.4931986079382309,
+      "belowTerrain": 0,
+      "positionOccurrences": 60558,
+      "terrainQueries": 53,
+      "supportSamples": 53
+    },
+    {
+      "frame": 1102,
+      "name": "polwo-hero-v1",
+      "remaining": 0.5500000000000056,
+      "position": [
+        18595.97272110878,
+        -13.177702578558588,
+        17.244117833294602
+      ],
+      "rotationYXZ": [
+        -0.1444159723957959,
+        0.6675132266468012,
+        -0.3373801616997487
+      ],
+      "center": [
+        18601.01334445181,
+        -9.310884820378599,
+        22.031803124113424
+      ],
+      "groundCorrection": -2.6706641335278034,
+      "minimumPositionClearance": 0.5500000000000007,
+      "belowTerrain": 0,
+      "positionOccurrences": 75831,
+      "terrainQueries": 53,
+      "supportSamples": 53
+    },
+    {
+      "frame": 1102,
+      "name": "blockrunner-hero-v1",
+      "remaining": 0.5500000000000056,
+      "position": [
+        18600.441769811616,
+        -11.625920550195076,
+        15.348801425830768
+      ],
+      "rotationYXZ": [
+        -0.1444159723957959,
+        0.6675132266468012,
+        -0.3373801616997487
+      ],
+      "center": [
+        18600.260393628057,
+        -9.284857118184242,
+        13.844803239860981
+      ],
+      "groundCorrection": -1.3842459188826346,
+      "minimumPositionClearance": 0.5500000000000007,
+      "belowTerrain": 0,
+      "positionOccurrences": 67740,
+      "terrainQueries": 58,
+      "supportSamples": 58
+    },
+    {
+      "frame": 1114,
+      "name": "teemto-hero-open-v2",
+      "remaining": 0.4500000000000056,
+      "position": [
+        18595.669259944454,
+        -12.127454746592091,
+        17.500480938505333
+      ],
+      "rotationYXZ": [
+        -0.16376143269710125,
+        0.7081125307893553,
+        -0.33908661966790343
+      ],
+      "center": [
+        18600.981860507243,
+        -8.391541586958297,
+        22.379012276550007
+      ],
+      "groundCorrection": -1.447493135272455,
+      "minimumPositionClearance": 0.5500000000000007,
+      "belowTerrain": 0,
+      "positionOccurrences": 73048,
+      "terrainQueries": 60,
+      "supportSamples": 60
+    },
+    {
+      "frame": 1114,
+      "name": "sebulba-hero",
+      "remaining": 0.4500000000000056,
+      "position": [
+        18596.580025784046,
+        -11.617376008188955,
+        17.47296070155343
+      ],
+      "rotationYXZ": [
+        -0.16376143269710125,
+        0.7081125307893553,
+        -0.33908661966790343
+      ],
+      "center": [
+        18601.056212560175,
+        -6.540828656419881,
+        20.441188291663423
+      ],
+      "groundCorrection": -1.1412731457429774,
+      "minimumPositionClearance": 0.4933355836063278,
+      "belowTerrain": 0,
+      "positionOccurrences": 60558,
+      "terrainQueries": 53,
+      "supportSamples": 53
+    },
+    {
+      "frame": 1114,
+      "name": "polwo-hero-v1",
+      "remaining": 0.4500000000000056,
+      "position": [
+        18595.83328344841,
+        -13.336274236582952,
+        17.51321910274782
+      ],
+      "rotationYXZ": [
+        -0.16376143269710125,
+        0.7081125307893553,
+        -0.33908661966790343
+      ],
+      "center": [
+        18601.018444506746,
+        -9.338763168202515,
+        22.031637383794088
+      ],
+      "groundCorrection": -2.6986028568571774,
+      "minimumPositionClearance": 0.5500000000000007,
+      "belowTerrain": 0,
+      "positionOccurrences": 75831,
+      "terrainQueries": 53,
+      "supportSamples": 53
+    },
+    {
+      "frame": 1114,
+      "name": "blockrunner-hero-v1",
+      "remaining": 0.4500000000000056,
+      "position": [
+        18600.533036938145,
+        -11.392523306061468,
+        15.376830744656687
+      ],
+      "rotationYXZ": [
+        -0.16376143269710125,
+        0.7081125307893553,
+        -0.33908661966790343
+      ],
+      "center": [
+        18600.264855384088,
+        -9.078250284729881,
+        13.844608537252348
+      ],
+      "groundCorrection": -1.1782691957632128,
+      "minimumPositionClearance": 0.5500000000000007,
+      "belowTerrain": 0,
+      "positionOccurrences": 67740,
+      "terrainQueries": 58,
+      "supportSamples": 58
+    },
+    {
+      "frame": 1126,
+      "name": "teemto-hero-open-v2",
+      "remaining": 0.3500000000000053,
+      "position": [
+        18595.536664377883,
+        -11.997402123614574,
+        17.734996182611432
+      ],
+      "rotationYXZ": [
+        -0.18039981350095452,
+        0.7441303316685097,
+        -0.33448970493661406
+      ],
+      "center": [
+        18600.96972094203,
+        -8.138990107366956,
+        22.379928149388427
+      ],
+      "groundCorrection": -1.1965663187054438,
+      "minimumPositionClearance": 0.5500000000000007,
+      "belowTerrain": 0,
+      "positionOccurrences": 73048,
+      "terrainQueries": 60,
+      "supportSamples": 60
+    },
+    {
+      "frame": 1126,
+      "name": "sebulba-hero",
+      "remaining": 0.3500000000000053,
+      "position": [
+        18596.52852182865,
+        -11.53648724293227,
+        17.688111862044934
+      ],
+      "rotationYXZ": [
+        -0.18039981350095452,
+        0.7441303316685097,
+        -0.33448970493661406
+      ],
+      "center": [
+        18601.03608131062,
+        -6.368091028751448,
+        20.44266158677442
+      ],
+      "groundCorrection": -0.9712231387431689,
+      "minimumPositionClearance": 0.4915987926677694,
+      "belowTerrain": 0,
+      "positionOccurrences": 60558,
+      "terrainQueries": 53,
+      "supportSamples": 53
+    },
+    {
+      "frame": 1126,
+      "name": "polwo-hero-v1",
+      "remaining": 0.3500000000000053,
+      "position": [
+        18595.71607837015,
+        -13.497670925211633,
+        17.745273607762652
+      ],
+      "rotationYXZ": [
+        -0.18039981350095452,
+        0.7441303316685097,
+        -0.33448970493661406
+      ],
+      "center": [
+        18601.004749038744,
+        -9.383009126867252,
+        22.032652124945496
+      ],
+      "groundCorrection": -2.7447696610501398,
+      "minimumPositionClearance": 0.5500000000000007,
+      "belowTerrain": 0,
+      "positionOccurrences": 75831,
+      "terrainQueries": 53,
+      "supportSamples": 53
+    },
+    {
+      "frame": 1126,
+      "name": "blockrunner-hero-v1",
+      "remaining": 0.3500000000000053,
+      "position": [
+        18600.6109063754,
+        -11.21071602682786,
+        15.387956073849372
+      ],
+      "rotationYXZ": [
+        -0.18039981350095452,
+        0.7441303316685097,
+        -0.33448970493661406
+      ],
+      "center": [
+        18600.252863381724,
+        -8.915469736904493,
+        13.84551141055262
+      ],
+      "groundCorrection": -1.017118699392159,
+      "minimumPositionClearance": 0.5500000000000007,
+      "belowTerrain": 0,
+      "positionOccurrences": 67740,
+      "terrainQueries": 58,
+      "supportSamples": 58
+    },
+    {
+      "frame": 1138,
+      "name": "teemto-hero-open-v2",
+      "remaining": 0.250000000000005,
+      "position": [
+        18596.154045398067,
+        -11.78803523776473,
+        17.103518662643246
+      ],
+      "rotationYXZ": [
+        -0.17644707602223197,
+        0.6364205020440074,
+        -0.2900396504866716
+      ],
+      "center": [
+        18600.9708087912,
+        -7.922940015170049,
+        22.379944463048737
+      ],
+      "groundCorrection": -0.980619816603244,
+      "minimumPositionClearance": 0.7924805364691387,
+      "belowTerrain": 0,
+      "positionOccurrences": 73048,
+      "terrainQueries": 60,
+      "supportSamples": 60
+    },
+    {
+      "frame": 1138,
+      "name": "sebulba-hero",
+      "remaining": 0.250000000000005,
+      "position": [
+        18596.997024091663,
+        -11.375071225873535,
+        17.100573948018717
+      ],
+      "rotationYXZ": [
+        -0.17644707602223197,
+        0.6364205020440074,
+        -0.2900396504866716
+      ],
+      "center": [
+        18601.037883630568,
+        -6.167404667911191,
+        20.442671987302795
+      ],
+      "groundCorrection": -0.7706021139038378,
+      "minimumPositionClearance": 0.6762395826894796,
+      "belowTerrain": 0,
+      "positionOccurrences": 60558,
+      "terrainQueries": 53,
+      "supportSamples": 53
+    },
+    {
+      "frame": 1138,
+      "name": "polwo-hero-v1",
+      "remaining": 0.250000000000005,
+      "position": [
+        18596.305748621548,
+        -13.09793601145235,
+        17.118790327915775
+      ],
+      "rotationYXZ": [
+        -0.17644707602223197,
+        0.6364205020440074,
+        -0.2900396504866716
+      ],
+      "center": [
+        18601.00597601292,
+        -8.969527108986398,
+        22.032668237329368
+      ],
+      "groundCorrection": -2.3313749503961416,
+      "minimumPositionClearance": 1.1264854422797086,
+      "belowTerrain": 0,
+      "positionOccurrences": 75831,
+      "terrainQueries": 53,
+      "supportSamples": 53
+    },
+    {
+      "frame": 1138,
+      "name": "blockrunner-hero-v1",
+      "remaining": 0.250000000000005,
+      "position": [
+        18600.532197880006,
+        -11.260404736472637,
+        15.348129183809343
+      ],
+      "rotationYXZ": [
+        -0.17644707602223197,
+        0.6364205020440074,
+        -0.2900396504866716
+      ],
+      "center": [
+        18600.253935809917,
+        -8.927988187033868,
+        13.845501779455295
+      ],
+      "groundCorrection": -1.0299839673860383,
+      "minimumPositionClearance": 0.8046869446627021,
+      "belowTerrain": 0,
+      "positionOccurrences": 67740,
+      "terrainQueries": 58,
+      "supportSamples": 58
+    },
+    {
+      "frame": 1150,
+      "name": "teemto-hero-open-v2",
+      "remaining": 0.15000000000000502,
+      "position": [
+        18597.95503214992,
+        -11.24317692840645,
+        15.80802395872599
+      ],
+      "rotationYXZ": [
+        -0.14480511834014534,
+        0.36112583853517094,
+        -0.20195071651985033
+      ],
+      "center": [
+        18600.982092492595,
+        -7.5504083621677385,
+        22.37926477689308
+      ],
+      "groundCorrection": -0.6070329811129571,
+      "minimumPositionClearance": 1.4852804449739558,
+      "belowTerrain": 0,
+      "positionOccurrences": 73048,
+      "terrainQueries": 60,
+      "supportSamples": 60
+    },
+    {
+      "frame": 1150,
+      "name": "sebulba-hero",
+      "remaining": 0.15000000000000502,
+      "position": [
+        18598.3768930258,
+        -11.093530136913227,
+        15.854592575087734
+      ],
+      "rotationYXZ": [
+        -0.14480511834014534,
+        0.36112583853517094,
+        -0.20195071651985033
+      ],
+      "center": [
+        18601.056592508376,
+        -5.955731191344955,
+        20.44155112888579
+      ],
+      "groundCorrection": -0.5569800477595765,
+      "minimumPositionClearance": 1.3752490300061133,
+      "belowTerrain": 0,
+      "positionOccurrences": 60558,
+      "terrainQueries": 53,
+      "supportSamples": 53
+    },
+    {
+      "frame": 1150,
+      "name": "polwo-hero-v1",
+      "remaining": 0.15000000000000502,
+      "position": [
+        18598.02970515776,
+        -11.875528737625551,
+        15.824366870800322
+      ],
+      "rotationYXZ": [
+        -0.14480511834014534,
+        0.36112583853517094,
+        -0.20195071651985033
+      ],
+      "center": [
+        18601.018705316106,
+        -7.898801696846304,
+        22.03191178016198
+      ],
+      "groundCorrection": -1.259336012564784,
+      "minimumPositionClearance": 2.4903103008403846,
+      "belowTerrain": 0,
+      "positionOccurrences": 75831,
+      "terrainQueries": 53,
+      "supportSamples": 53
+    },
+    {
+      "frame": 1150,
+      "name": "blockrunner-hero-v1",
+      "remaining": 0.15000000000000502,
+      "position": [
+        18600.31184156004,
+        -11.21718842682107,
+        15.223631513872947
+      ],
+      "rotationYXZ": [
+        -0.14480511834014534,
+        0.36112583853517094,
+        -0.20195071651985033
+      ],
+      "center": [
+        18600.26507861625,
+        -8.793949463566303,
+        13.844787066477403
+      ],
+      "groundCorrection": -0.8953086479147612,
+      "minimumPositionClearance": 1.9162001815811625,
+      "belowTerrain": 0,
+      "positionOccurrences": 67740,
+      "terrainQueries": 58,
+      "supportSamples": 58
+    },
+    {
+      "frame": 1153,
+      "name": "teemto-hero-open-v2",
+      "remaining": 0.12500000000000502,
+      "position": [
+        18598.4863404655,
+        -11.095866847606255,
+        15.558526736596477
+      ],
+      "rotationYXZ": [
+        -0.13554225442484363,
+        0.2888351307689879,
+        -0.1793317828322566
+      ],
+      "center": [
+        18600.983335897727,
+        -7.459338291639048,
+        22.379194868489165
+      ],
+      "groundCorrection": -0.5158442106064299,
+      "minimumPositionClearance": 1.8035014317735047,
+      "belowTerrain": 0,
+      "positionOccurrences": 73048,
+      "terrainQueries": 60,
+      "supportSamples": 60
+    },
+    {
+      "frame": 1153,
+      "name": "sebulba-hero",
+      "remaining": 0.12500000000000502,
+      "position": [
+        18598.798549828138,
+        -10.980156506971724,
+        15.602010020497712
+      ],
+      "rotationYXZ": [
+        -0.13554225442484363,
+        0.2888351307689879,
+        -0.1793317828322566
+      ],
+      "center": [
+        18601.05865400764,
+        -5.872333886779409,
+        20.44143491140179
+      ],
+      "groundCorrection": -0.47336627040539325,
+      "minimumPositionClearance": 1.6770628586255931,
+      "belowTerrain": 0,
+      "positionOccurrences": 60558,
+      "terrainQueries": 53,
+      "supportSamples": 53
+    },
+    {
+      "frame": 1153,
+      "name": "polwo-hero-v1",
+      "remaining": 0.12500000000000502,
+      "position": [
+        18598.5413495559,
+        -11.520050910235847,
+        15.57224035652979
+      ],
+      "rotationYXZ": [
+        -0.13554225442484363,
+        0.2888351307689879,
+        -0.1793317828322566
+      ],
+      "center": [
+        18601.02010797371,
+        -7.594302306974905,
+        22.03183386659901
+      ],
+      "groundCorrection": -0.9546895445029799,
+      "minimumPositionClearance": 2.8698955931420187,
+      "belowTerrain": 0,
+      "positionOccurrences": 75831,
+      "terrainQueries": 53,
+      "supportSamples": 53
+    },
+    {
+      "frame": 1153,
+      "name": "blockrunner-hero-v1",
+      "remaining": 0.12500000000000502,
+      "position": [
+        18600.26348974414,
+        -11.049831463569072,
+        15.18628215354188
+      ],
+      "rotationYXZ": [
+        -0.13554225442484363,
+        0.2888351307689879,
+        -0.1793317828322566
+      ],
+      "center": [
+        18600.266306467165,
+        -8.605313626101834,
+        13.844712004635218
+      ],
+      "groundCorrection": -0.7066118287677073,
+      "minimumPositionClearance": 2.2607742544512472,
+      "belowTerrain": 0,
+      "positionOccurrences": 67740,
+      "terrainQueries": 58,
+      "supportSamples": 58
+    }
+  ]
+}

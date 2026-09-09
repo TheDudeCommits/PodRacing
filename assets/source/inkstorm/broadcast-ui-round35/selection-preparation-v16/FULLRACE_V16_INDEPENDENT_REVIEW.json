@@ -1,0 +1,78 @@
+{
+  "scope": "Independent CPU-only static review; no browser/build/native execution.",
+  "files": [
+    {
+      "path": "output/playwright/round35-ui-combat-full-race-v1.ts",
+      "sha256": "3b7bca7bfe2b0912fb2fa4fa2a2d4e6e48ff757e27db943eb66e8779cc60352d",
+      "bytes": 29743
+    },
+    {
+      "path": "output/playwright/round35-ui-combat-full-race-v16.ts",
+      "sha256": "ab12348a26c8d002bfa4f32522b1c7b34cbec1b1a7206b5325088b2c81ac2ccb",
+      "bytes": 30457
+    },
+    {
+      "path": "output/playwright/round35-ui-combat-full-race-runner-v16.py",
+      "sha256": "9754dc5b5c5ae4c7fd945199c3546c36f99bb836d710acccb52882db9cf79475",
+      "bytes": 1578
+    },
+    {
+      "path": "output/playwright/round35-full-race-common-v16.py",
+      "sha256": "4c379723bf68197f12676abc0e4a6a5338d0530e9c1b54906271ddc6cf66579e",
+      "bytes": 28630
+    },
+    {
+      "path": "output/playwright/round35-ui-combat-full-race-prepared-v16.json",
+      "sha256": "441769b2553fe07ff9918d1d2e07240844afd91f2385f5bac2402f2d92145e7b",
+      "bytes": 2096
+    },
+    {
+      "path": "output/playwright/round35-ui-combat-full-race-runner-v1.py",
+      "sha256": "42d5ddeec1ec6eebba6ae672b9417f3862d2d94275adfe595814d7488ddd8690",
+      "bytes": 1377
+    },
+    {
+      "path": "output/playwright/round35-ui-combat-full-race-prepared-v1.json",
+      "sha256": "9542b490fdc9557f9569baef35f7b0420f3c3d43a34be381aa251061bd42d6c8",
+      "bytes": 2972
+    },
+    {
+      "path": "output/playwright/round34-blockrunner-common-v1.py",
+      "sha256": "a052c6ad3fb515444a23feaba282b9a5b975f808b12cf4e27b9b5034daeabc22",
+      "bytes": 28589
+    },
+    {
+      "path": "output/playwright/round34-blockrunner-asset-probe-v1.mjs",
+      "sha256": "95dc0a6773e51a50613d50a7beb769e37b35e5e85be8bb6a5cad48f15c46097b",
+      "bytes": 6275
+    }
+  ],
+  "manifestMatches": {
+    "round34-blockrunner-provenance-v1.json": 46,
+    "round35-ui-combat-full-race-prepared-v1.json": 8,
+    "round35-ui-combat-full-race-prepared-v16.json": 6
+  },
+  "controllerCollectorFinishRunByteIdentical": true,
+  "nodeSyntaxCheck": true,
+  "pythonAstChecks": true,
+  "findings": [
+    {
+      "priority": "P2",
+      "status": "Corrected and independently revalidated: V16 runner validates the prior V1 manifest and unions all five prior V1 evidence files into unique boundary FILES.",
+      "finding": "V16 runner fails to carry forward four V1 evidence files in boundary manifests: runner-v1.py, prepared-v1.json, selector-v1.diff, README-v1.md. They currently match but lose within-run freeze coverage."
+    }
+  ],
+  "otherMaterialFindings": [],
+  "freezeUnionValidation": {
+    "safeNonMainImportPassed": true,
+    "uniqueFiles": 54,
+    "restoredV1Evidence": [
+      "round35-ui-combat-full-race-v1.ts",
+      "round35-ui-combat-full-race-runner-v1.py",
+      "round35-ui-combat-full-race-selector-v1.diff",
+      "round35-ui-combat-full-race-prepared-v1.json",
+      "round35-ui-combat-full-race-README-v1.md"
+    ],
+    "allUnionFilesExist": true
+  }
+}

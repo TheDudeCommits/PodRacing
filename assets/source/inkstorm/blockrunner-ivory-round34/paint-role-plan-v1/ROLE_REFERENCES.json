@@ -1,0 +1,1247 @@
+{
+  "status": "PLAN_ONLY_NO_MASK_ASSIGNMENT",
+  "sourceUid": "e42fb924b344481ea013c58cb0f52ad7",
+  "sourceGlb": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/vehicles/e42fb924b344481ea013c58cb0f52ad7/source-imported.glb",
+  "sourceSha256": "2ed231e15b8bbab3f7b7028b73e8b6f442d532c9bc4d1fc0a2f5c40aeda49576",
+  "sourceBytes": 2868492,
+  "sourceTitle": "Pod Racer",
+  "author": {
+    "uid": "785d61710a7b4a54a55f23194df1f4f8",
+    "username": "20001748",
+    "displayName": "20001748",
+    "profileUrl": "https://sketchfab.com/20001748"
+  },
+  "license": {
+    "label": "CC BY 4.0",
+    "url": "http://creativecommons.org/licenses/by/4.0/",
+    "savedMetadata": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/vehicles/e42fb924b344481ea013c58cb0f52ad7/official-metadata-20260908.json",
+    "savedVerifiedAt": "2026-09-08T07:17:17.315361+00:00",
+    "scope": "Saved official metadata; attribution/modification notice required. No fresh network licence check."
+  },
+  "fittedScene": "PodRacing \u2014 Blockrunner Ivory fitted controls V1 e42fb924b344481ea013c58cb0f52ad7",
+  "fittedCounts": {
+    "materials": 51,
+    "meshes": 53,
+    "objects": 57,
+    "triangles": 44028
+  },
+  "mixedContainer": "Blockrunner Ivory fitted V1 pasted__L2x3slope2_lambert1_0",
+  "fittedMixedTriangles": 4828,
+  "bodyTotalAfterFutureSeparation": 39900,
+  "pilotTotal": 4128,
+  "lineageInput": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-ivory-round34/cleanup-preparation-v1/operation-inputs.json",
+  "pilotRolePointers": {
+    "helmet": {
+      "count": 740,
+      "indicesPointer": "pilotSemanticLineage.sourceRoles.helmet.proposedCleanedPolygonIndices",
+      "indicesJsonSha256": "bede2d7117489febc2f4c0393108f1b11d803a7ff23d6ebe9d08bc897438534a",
+      "authority": "Ivory source correspondence + own executed live bridge + exact retained order; fresh fitted-index guard required before assignment"
+    },
+    "visor": {
+      "count": 200,
+      "indicesPointer": "pilotSemanticLineage.sourceRoles.visor.proposedCleanedPolygonIndices",
+      "indicesJsonSha256": "dc253985cd73d45487f8c55ecbde6814fff626163d32a749d5192f3078e1780b",
+      "authority": "Ivory source correspondence + own executed live bridge + exact retained order; fresh fitted-index guard required before assignment"
+    },
+    "gloves": {
+      "count": 680,
+      "indicesPointer": "pilotSemanticLineage.sourceRoles.gloves.proposedCleanedPolygonIndices",
+      "indicesJsonSha256": "ba709069c71a7466a515c70bd1b70957cb47b0ffbbd34e5415e82fbb519f25fe",
+      "authority": "Ivory source correspondence + own executed live bridge + exact retained order; fresh fitted-index guard required before assignment"
+    },
+    "suit": {
+      "count": 2508,
+      "indicesPointer": "pilotSemanticLineage.sourceRoles.suit.proposedCleanedPolygonIndices",
+      "indicesJsonSha256": "d8df0b1c6170f40f0d0963b7c282edfc28e9e8222e9f5d047c4e423038337195",
+      "authority": "Ivory source correspondence + own executed live bridge + exact retained order; fresh fitted-index guard required before assignment"
+    },
+    "bodyRemainder": {
+      "count": 700,
+      "indicesPointer": "pilotSemanticLineage.proposedBodyRemainderCleanedPolygonIndices",
+      "indicesJsonSha256": "c4084156425a26c2e85534247b2c7e67154113d965fd133b553b218af49de68f"
+    }
+  },
+  "bodyGroupProposals": {
+    "engineContainersSplitRequired": [
+      {
+        "sourceObject": "pasted__L2x3slope2_pasted__Lego_White7_0",
+        "fittedObject": "Blockrunner Ivory fitted V1 pasted__L2x3slope2_pasted__Lego_White7_0",
+        "originalTriangles": 3768,
+        "worldBounds": [
+          [
+            -2.9344284534454346,
+            -6.2063446044921875,
+            0.021512577310204506
+          ],
+          [
+            -1.5243875980377197,
+            -2.6473701000213623,
+            1.6561801433563232
+          ]
+        ],
+        "originalMaterialSlot": [
+          {
+            "link": "DATA",
+            "name": "pasted__Lego_White7",
+            "slot": 0
+          }
+        ],
+        "assignment": "proposed; source masks have not been authored"
+      },
+      {
+        "sourceObject": "pasted__L2x3slope2_pasted__pasted__Lego_White7_0",
+        "fittedObject": "Blockrunner Ivory fitted V1 pasted__L2x3slope2_pasted__pasted__Lego_White7_0",
+        "originalTriangles": 3768,
+        "worldBounds": [
+          [
+            1.5243864059448242,
+            -6.2063446044921875,
+            0.021512577310204506
+          ],
+          [
+            2.934427261352539,
+            -2.6473701000213623,
+            1.6561801433563232
+          ]
+        ],
+        "originalMaterialSlot": [
+          {
+            "link": "DATA",
+            "name": "pasted__pasted__Lego_White7",
+            "slot": 0
+          }
+        ],
+        "assignment": "proposed; source masks have not been authored"
+      }
+    ],
+    "crossbeamOwnOffsetsNavy": [
+      {
+        "sourceObject": "pasted__L2x3slope2_pasted__Lego_White9_0",
+        "fittedObject": "Blockrunner Ivory fitted V1 pasted__L2x3slope2_pasted__Lego_White9_0",
+        "originalTriangles": 828,
+        "worldBounds": [
+          [
+            -2.1165661811828613,
+            -4.896914482116699,
+            0.5935536026954651
+          ],
+          [
+            -0.0004285983741283417,
+            -4.190699577331543,
+            1.077202558517456
+          ]
+        ],
+        "originalMaterialSlot": [
+          {
+            "link": "DATA",
+            "name": "pasted__Lego_White9",
+            "slot": 0
+          }
+        ],
+        "assignment": "proposed; source masks have not been authored"
+      },
+      {
+        "sourceObject": "pasted__L2x3slope2_pasted__pasted__Lego_White9_0",
+        "fittedObject": "Blockrunner Ivory fitted V1 pasted__L2x3slope2_pasted__pasted__Lego_White9_0",
+        "originalTriangles": 828,
+        "worldBounds": [
+          [
+            -0.003669021651148796,
+            -4.896914482116699,
+            0.5935536026954651
+          ],
+          [
+            2.1124684810638428,
+            -4.190699577331543,
+            1.077202558517456
+          ]
+        ],
+        "originalMaterialSlot": [
+          {
+            "link": "DATA",
+            "name": "pasted__pasted__Lego_White9",
+            "slot": 0
+          }
+        ],
+        "assignment": "proposed; source masks have not been authored"
+      }
+    ],
+    "sidewallsNavy": [
+      {
+        "sourceObject": "pasted__L2x3slope2_pasted__pasted__pasted__pasted__Lego_White11_0",
+        "fittedObject": "Blockrunner Ivory fitted V1 pasted__L2x3slope2_pasted__pasted__pasted__pasted__Lego_White11_0",
+        "originalTriangles": 3800,
+        "worldBounds": [
+          [
+            1.4209885597229004,
+            0.14632102847099304,
+            0.8324788212776184
+          ],
+          [
+            1.622184157371521,
+            5.089212894439697,
+            2.9554851055145264
+          ]
+        ],
+        "originalMaterialSlot": [
+          {
+            "link": "DATA",
+            "name": "pasted__pasted__pasted__pasted__Lego_White11",
+            "slot": 0
+          }
+        ],
+        "assignment": "proposed; source masks have not been authored"
+      },
+      {
+        "sourceObject": "pasted__L2x3slope2_pasted__pasted__pasted__pasted__pasted__Lego_White11_0",
+        "fittedObject": "Blockrunner Ivory fitted V1 pasted__L2x3slope2_pasted__pasted__pasted__pasted__pasted__Lego_White11_0",
+        "originalTriangles": 3800,
+        "worldBounds": [
+          [
+            -1.5094019174575806,
+            0.1572778970003128,
+            0.8287215232849121
+          ],
+          [
+            -1.3082062005996704,
+            5.100169658660889,
+            2.951727867126465
+          ]
+        ],
+        "originalMaterialSlot": [
+          {
+            "link": "DATA",
+            "name": "pasted__pasted__pasted__pasted__pasted__Lego_White11",
+            "slot": 0
+          }
+        ],
+        "assignment": "proposed; source masks have not been authored"
+      }
+    ],
+    "exteriorLargeDiscsIvory": [
+      {
+        "sourceObject": "pasted__L2x3slope2_pasted__Lego_White25_0",
+        "fittedObject": "Blockrunner Ivory fitted V1 pasted__L2x3slope2_pasted__Lego_White25_0",
+        "originalTriangles": 360,
+        "worldBounds": [
+          [
+            1.5691977739334106,
+            0.15608495473861694,
+            0.8655673265457153
+          ],
+          [
+            1.696297287940979,
+            0.857562243938446,
+            1.567046046257019
+          ]
+        ],
+        "originalMaterialSlot": [
+          {
+            "link": "DATA",
+            "name": "pasted__Lego_White25",
+            "slot": 0
+          }
+        ],
+        "assignment": "proposed; source masks have not been authored"
+      },
+      {
+        "sourceObject": "pasted__L2x3slope2_pasted__pasted__Lego_White25_0",
+        "fittedObject": "Blockrunner Ivory fitted V1 pasted__L2x3slope2_pasted__pasted__Lego_White25_0",
+        "originalTriangles": 360,
+        "worldBounds": [
+          [
+            1.573938250541687,
+            2.243086338043213,
+            1.5533506870269775
+          ],
+          [
+            1.7010377645492554,
+            2.944563627243042,
+            2.2548294067382812
+          ]
+        ],
+        "originalMaterialSlot": [
+          {
+            "link": "DATA",
+            "name": "pasted__pasted__Lego_White25",
+            "slot": 0
+          }
+        ],
+        "assignment": "proposed; source masks have not been authored"
+      },
+      {
+        "sourceObject": "pasted__L2x3slope2_pasted__pasted__Lego_White26_0",
+        "fittedObject": "Blockrunner Ivory fitted V1 pasted__L2x3slope2_pasted__pasted__Lego_White26_0",
+        "originalTriangles": 360,
+        "worldBounds": [
+          [
+            1.5651319026947021,
+            1.216935157775879,
+            1.1873376369476318
+          ],
+          [
+            1.69223153591156,
+            1.9184138774871826,
+            1.8888163566589355
+          ]
+        ],
+        "originalMaterialSlot": [
+          {
+            "link": "DATA",
+            "name": "pasted__pasted__Lego_White26",
+            "slot": 0
+          }
+        ],
+        "assignment": "proposed; source masks have not been authored"
+      },
+      {
+        "sourceObject": "pasted__L2x3slope2_pasted__pasted__pasted__Lego_White25_0",
+        "fittedObject": "Blockrunner Ivory fitted V1 pasted__L2x3slope2_pasted__pasted__pasted__Lego_White25_0",
+        "originalTriangles": 360,
+        "worldBounds": [
+          [
+            1.5717371702194214,
+            4.368993759155273,
+            1.207391619682312
+          ],
+          [
+            1.6988368034362793,
+            5.070471286773682,
+            1.9088703393936157
+          ]
+        ],
+        "originalMaterialSlot": [
+          {
+            "link": "DATA",
+            "name": "pasted__pasted__pasted__Lego_White25",
+            "slot": 0
+          }
+        ],
+        "assignment": "proposed; source masks have not been authored"
+      },
+      {
+        "sourceObject": "pasted__L2x3slope2_pasted__pasted__pasted__pasted__Lego_White25_0",
+        "fittedObject": "Blockrunner Ivory fitted V1 pasted__L2x3slope2_pasted__pasted__pasted__pasted__Lego_White25_0",
+        "originalTriangles": 360,
+        "worldBounds": [
+          [
+            1.5686182975769043,
+            2.974377155303955,
+            0.8665768504142761
+          ],
+          [
+            1.6957179307937622,
+            3.675855875015259,
+            1.5680556297302246
+          ]
+        ],
+        "originalMaterialSlot": [
+          {
+            "link": "DATA",
+            "name": "pasted__pasted__pasted__pasted__Lego_White25",
+            "slot": 0
+          }
+        ],
+        "assignment": "proposed; source masks have not been authored"
+      },
+      {
+        "sourceObject": "pasted__L2x3slope2_pasted__pasted__pasted__pasted__pasted__Lego_White25_0",
+        "fittedObject": "Blockrunner Ivory fitted V1 pasted__L2x3slope2_pasted__pasted__pasted__pasted__pasted__Lego_White25_0",
+        "originalTriangles": 360,
+        "worldBounds": [
+          [
+            1.5633496046066284,
+            0.8199042081832886,
+            2.2238385677337646
+          ],
+          [
+            1.6904492378234863,
+            1.5213814973831177,
+            2.9253172874450684
+          ]
+        ],
+        "originalMaterialSlot": [
+          {
+            "link": "DATA",
+            "name": "pasted__pasted__pasted__pasted__pasted__Lego_White25",
+            "slot": 0
+          }
+        ],
+        "assignment": "proposed; source masks have not been authored"
+      },
+      {
+        "sourceObject": "pasted__L2x3slope2_pasted__pasted__pasted__pasted__pasted__pasted__Lego_White25_0",
+        "fittedObject": "Blockrunner Ivory fitted V1 pasted__L2x3slope2_pasted__pasted__pasted__pasted__pasted__pasted__Lego_White25_0",
+        "originalTriangles": 360,
+        "worldBounds": [
+          [
+            -1.5756407976150513,
+            0.819902777671814,
+            2.2238385677337646
+          ],
+          [
+            -1.4485411643981934,
+            1.5213814973831177,
+            2.9253172874450684
+          ]
+        ],
+        "originalMaterialSlot": [
+          {
+            "link": "DATA",
+            "name": "pasted__pasted__pasted__pasted__pasted__pasted__Lego_White25",
+            "slot": 0
+          }
+        ],
+        "assignment": "proposed; source masks have not been authored"
+      },
+      {
+        "sourceObject": "pasted__L2x3slope2_pasted__pasted__pasted__pasted__pasted__pasted__pasted__Lego_White25_0",
+        "fittedObject": "Blockrunner Ivory fitted V1 pasted__L2x3slope2_pasted__pasted__pasted__pasted__pasted__pasted__pasted__Lego_White25_0",
+        "originalTriangles": 360,
+        "worldBounds": [
+          [
+            -1.5756407976150513,
+            0.1611112356185913,
+            0.8469039797782898
+          ],
+          [
+            -1.4485411643981934,
+            0.862589955329895,
+            1.5483826398849487
+          ]
+        ],
+        "originalMaterialSlot": [
+          {
+            "link": "DATA",
+            "name": "pasted__pasted__pasted__pasted__pasted__pasted__pasted__Lego_White25",
+            "slot": 0
+          }
+        ],
+        "assignment": "proposed; source masks have not been authored"
+      },
+      {
+        "sourceObject": "pasted__L2x3slope2_pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__Lego_White25_0",
+        "fittedObject": "Blockrunner Ivory fitted V1 pasted__L2x3slope2_pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__Lego_White25_0",
+        "originalTriangles": 360,
+        "worldBounds": [
+          [
+            -1.5756407976150513,
+            4.384347438812256,
+            1.183404803276062
+          ],
+          [
+            -1.4485411643981934,
+            5.0858259201049805,
+            1.8848835229873657
+          ]
+        ],
+        "originalMaterialSlot": [
+          {
+            "link": "DATA",
+            "name": "pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__Lego_White25",
+            "slot": 0
+          }
+        ],
+        "assignment": "proposed; source masks have not been authored"
+      },
+      {
+        "sourceObject": "pasted__L2x3slope2_pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__Lego_White26_0",
+        "fittedObject": "Blockrunner Ivory fitted V1 pasted__L2x3slope2_pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__Lego_White26_0",
+        "originalTriangles": 360,
+        "worldBounds": [
+          [
+            -1.5756407976150513,
+            1.2157891988754272,
+            1.2169123888015747
+          ],
+          [
+            -1.4485411643981934,
+            1.917267918586731,
+            1.9183911085128784
+          ]
+        ],
+        "originalMaterialSlot": [
+          {
+            "link": "DATA",
+            "name": "pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__Lego_White26",
+            "slot": 0
+          }
+        ],
+        "assignment": "proposed; source masks have not been authored"
+      },
+      {
+        "sourceObject": "pasted__L2x3slope2_pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__Lego_White25_0",
+        "fittedObject": "Blockrunner Ivory fitted V1 pasted__L2x3slope2_pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__Lego_White25_0",
+        "originalTriangles": 360,
+        "worldBounds": [
+          [
+            -1.5756407976150513,
+            3.0013954639434814,
+            0.8490140438079834
+          ],
+          [
+            -1.4485411643981934,
+            3.702874183654785,
+            1.550492763519287
+          ]
+        ],
+        "originalMaterialSlot": [
+          {
+            "link": "DATA",
+            "name": "pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__Lego_White25",
+            "slot": 0
+          }
+        ],
+        "assignment": "proposed; source masks have not been authored"
+      },
+      {
+        "sourceObject": "pasted__L2x3slope2_pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__Lego_White25_0",
+        "fittedObject": "Blockrunner Ivory fitted V1 pasted__L2x3slope2_pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__Lego_White25_0",
+        "originalTriangles": 360,
+        "worldBounds": [
+          [
+            -1.5756407976150513,
+            2.2647228240966797,
+            1.547666072845459
+          ],
+          [
+            -1.4485411643981934,
+            2.9662015438079834,
+            2.2491447925567627
+          ]
+        ],
+        "originalMaterialSlot": [
+          {
+            "link": "DATA",
+            "name": "pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__Lego_White25",
+            "slot": 0
+          }
+        ],
+        "assignment": "proposed; source masks have not been authored"
+      }
+    ],
+    "deckIvory": [
+      {
+        "sourceObject": "pasted__L2x3slope2_pasted__Lego_White8_0",
+        "fittedObject": "Blockrunner Ivory fitted V1 pasted__L2x3slope2_pasted__Lego_White8_0",
+        "originalTriangles": 2028,
+        "worldBounds": [
+          [
+            -1.35489022731781,
+            0.14605940878391266,
+            1.5914592742919922
+          ],
+          [
+            0.05583591014146805,
+            2.9671242237091064,
+            1.792655110359192
+          ]
+        ],
+        "originalMaterialSlot": [
+          {
+            "link": "DATA",
+            "name": "pasted__Lego_White8.001",
+            "slot": 0
+          }
+        ],
+        "assignment": "proposed; source masks have not been authored"
+      },
+      {
+        "sourceObject": "pasted__L2x3slope2_pasted__LegoWhite1_0",
+        "fittedObject": "Blockrunner Ivory fitted V1 pasted__L2x3slope2_pasted__LegoWhite1_0",
+        "originalTriangles": 1612,
+        "worldBounds": [
+          [
+            -1.3622825145721436,
+            2.95412278175354,
+            1.6070101261138916
+          ],
+          [
+            0.04844365268945694,
+            5.793654918670654,
+            1.8082077503204346
+          ]
+        ],
+        "originalMaterialSlot": [
+          {
+            "link": "DATA",
+            "name": "pasted__LegoWhite1.001",
+            "slot": 0
+          }
+        ],
+        "assignment": "proposed; source masks have not been authored"
+      },
+      {
+        "sourceObject": "pasted__L2x3slope2_pasted__pasted__Lego_White8_0",
+        "fittedObject": "Blockrunner Ivory fitted V1 pasted__L2x3slope2_pasted__pasted__Lego_White8_0",
+        "originalTriangles": 2028,
+        "worldBounds": [
+          [
+            0.036114685237407684,
+            0.14605940878391266,
+            1.5914592742919922
+          ],
+          [
+            1.4468408823013306,
+            2.9671242237091064,
+            1.792655110359192
+          ]
+        ],
+        "originalMaterialSlot": [
+          {
+            "link": "DATA",
+            "name": "pasted__pasted__Lego_White8.001",
+            "slot": 0
+          }
+        ],
+        "assignment": "proposed; source masks have not been authored"
+      },
+      {
+        "sourceObject": "pasted__L2x3slope2_pasted__pasted__LegoWhite1_0",
+        "fittedObject": "Blockrunner Ivory fitted V1 pasted__L2x3slope2_pasted__pasted__LegoWhite1_0",
+        "originalTriangles": 1612,
+        "worldBounds": [
+          [
+            0.03981294482946396,
+            2.95412278175354,
+            1.6070101261138916
+          ],
+          [
+            1.4505391120910645,
+            5.793654918670654,
+            1.8082077503204346
+          ]
+        ],
+        "originalMaterialSlot": [
+          {
+            "link": "DATA",
+            "name": "pasted__pasted__LegoWhite1.001",
+            "slot": 0
+          }
+        ],
+        "assignment": "proposed; source masks have not been authored"
+      }
+    ],
+    "gripsGraphite": [
+      {
+        "sourceObject": "pasted__L2x3slope2_pasted__LegoWhite4_0",
+        "fittedObject": "Blockrunner Ivory fitted V1 pasted__L2x3slope2_pasted__LegoWhite4_0",
+        "originalTriangles": 236,
+        "worldBounds": [
+          [
+            -0.3633247911930084,
+            1.4747941493988037,
+            1.767959713935852
+          ],
+          [
+            -0.23323579132556915,
+            1.6048831939697266,
+            2.906515598297119
+          ]
+        ],
+        "originalMaterialSlot": [
+          {
+            "link": "DATA",
+            "name": "pasted__LegoWhite4",
+            "slot": 0
+          }
+        ],
+        "assignment": "proposed; source masks have not been authored"
+      },
+      {
+        "sourceObject": "pasted__L2x3slope2_pasted__pasted__LegoWhite4_0",
+        "fittedObject": "Blockrunner Ivory fitted V1 pasted__L2x3slope2_pasted__pasted__LegoWhite4_0",
+        "originalTriangles": 236,
+        "worldBounds": [
+          [
+            0.32980313897132874,
+            1.4747941493988037,
+            1.767959713935852
+          ],
+          [
+            0.4598921537399292,
+            1.6048831939697266,
+            2.906515598297119
+          ]
+        ],
+        "originalMaterialSlot": [
+          {
+            "link": "DATA",
+            "name": "pasted__pasted__LegoWhite4",
+            "slot": 0
+          }
+        ],
+        "assignment": "proposed; source masks have not been authored"
+      }
+    ],
+    "longRailSegmentsPetrolProvisional": [
+      {
+        "sourceObject": "pasted__L2x3slope2_pasted__Lego_White12_0",
+        "fittedObject": "Blockrunner Ivory fitted V1 pasted__L2x3slope2_pasted__Lego_White12_0",
+        "originalTriangles": 348,
+        "worldBounds": [
+          [
+            -1.5146691799163818,
+            -1.3139147758483887,
+            1.588529348373413
+          ],
+          [
+            -0.8168383836746216,
+            0.1359812468290329,
+            1.7933794260025024
+          ]
+        ],
+        "originalMaterialSlot": [
+          {
+            "link": "DATA",
+            "name": "pasted__Lego_White12",
+            "slot": 0
+          }
+        ],
+        "assignment": "proposed; source masks have not been authored"
+      },
+      {
+        "sourceObject": "pasted__L2x3slope2_pasted__Lego_White19_0",
+        "fittedObject": "Blockrunner Ivory fitted V1 pasted__L2x3slope2_pasted__Lego_White19_0",
+        "originalTriangles": 708,
+        "worldBounds": [
+          [
+            2.225727081298828,
+            -5.835866928100586,
+            1.6004328727722168
+          ],
+          [
+            2.865077257156372,
+            -5.129593849182129,
+            1.8152966499328613
+          ]
+        ],
+        "originalMaterialSlot": [
+          {
+            "link": "DATA",
+            "name": "pasted__Lego_White19",
+            "slot": 0
+          }
+        ],
+        "assignment": "proposed; source masks have not been authored"
+      },
+      {
+        "sourceObject": "pasted__L2x3slope2_pasted__pasted__Lego_White12_0",
+        "fittedObject": "Blockrunner Ivory fitted V1 pasted__L2x3slope2_pasted__pasted__Lego_White12_0",
+        "originalTriangles": 348,
+        "worldBounds": [
+          [
+            -1.8685052394866943,
+            -2.6888885498046875,
+            1.588529348373413
+          ],
+          [
+            -1.170674443244934,
+            -1.2389925718307495,
+            1.7933794260025024
+          ]
+        ],
+        "originalMaterialSlot": [
+          {
+            "link": "DATA",
+            "name": "pasted__pasted__Lego_White12",
+            "slot": 0
+          }
+        ],
+        "assignment": "proposed; source masks have not been authored"
+      },
+      {
+        "sourceObject": "pasted__L2x3slope2_pasted__pasted__Lego_White14_0",
+        "fittedObject": "Blockrunner Ivory fitted V1 pasted__L2x3slope2_pasted__pasted__Lego_White14_0",
+        "originalTriangles": 228,
+        "worldBounds": [
+          [
+            -1.2127844095230103,
+            -0.26034870743751526,
+            1.7045392990112305
+          ],
+          [
+            -0.6738786697387695,
+            0.512709379196167,
+            1.9069247245788574
+          ]
+        ],
+        "originalMaterialSlot": [
+          {
+            "link": "DATA",
+            "name": "pasted__pasted__Lego_White14",
+            "slot": 0
+          }
+        ],
+        "assignment": "proposed; source masks have not been authored"
+      },
+      {
+        "sourceObject": "pasted__L2x3slope2_pasted__pasted__Lego_White16_0",
+        "fittedObject": "Blockrunner Ivory fitted V1 pasted__L2x3slope2_pasted__pasted__Lego_White16_0",
+        "originalTriangles": 348,
+        "worldBounds": [
+          [
+            0.8725798726081848,
+            -1.3139147758483887,
+            1.588529348373413
+          ],
+          [
+            1.5704106092453003,
+            0.1359812468290329,
+            1.7933794260025024
+          ]
+        ],
+        "originalMaterialSlot": [
+          {
+            "link": "DATA",
+            "name": "pasted__pasted__Lego_White16",
+            "slot": 0
+          }
+        ],
+        "assignment": "proposed; source masks have not been authored"
+      },
+      {
+        "sourceObject": "pasted__L2x3slope2_pasted__pasted__Lego_White20_0",
+        "fittedObject": "Blockrunner Ivory fitted V1 pasted__L2x3slope2_pasted__pasted__Lego_White20_0",
+        "originalTriangles": 708,
+        "worldBounds": [
+          [
+            -2.847451686859131,
+            -5.835866928100586,
+            1.6004328727722168
+          ],
+          [
+            -2.208101511001587,
+            -5.129593849182129,
+            1.8152966499328613
+          ]
+        ],
+        "originalMaterialSlot": [
+          {
+            "link": "DATA",
+            "name": "pasted__pasted__Lego_White20",
+            "slot": 0
+          }
+        ],
+        "assignment": "proposed; source masks have not been authored"
+      },
+      {
+        "sourceObject": "pasted__L2x3slope2_pasted__pasted__pasted__Lego_White12_0",
+        "fittedObject": "Blockrunner Ivory fitted V1 pasted__L2x3slope2_pasted__pasted__pasted__Lego_White12_0",
+        "originalTriangles": 348,
+        "worldBounds": [
+          [
+            -2.214385986328125,
+            -4.077409744262695,
+            1.588529348373413
+          ],
+          [
+            -1.5165553092956543,
+            -2.627513885498047,
+            1.7933794260025024
+          ]
+        ],
+        "originalMaterialSlot": [
+          {
+            "link": "DATA",
+            "name": "pasted__pasted__pasted__Lego_White12",
+            "slot": 0
+          }
+        ],
+        "assignment": "proposed; source masks have not been authored"
+      },
+      {
+        "sourceObject": "pasted__L2x3slope2_pasted__pasted__pasted__Lego_White14_0",
+        "fittedObject": "Blockrunner Ivory fitted V1 pasted__L2x3slope2_pasted__pasted__pasted__Lego_White14_0",
+        "originalTriangles": 228,
+        "worldBounds": [
+          [
+            -1.5986074209213257,
+            -1.6661356687545776,
+            1.7045392990112305
+          ],
+          [
+            -1.0799113512039185,
+            -0.8977156281471252,
+            1.9069247245788574
+          ]
+        ],
+        "originalMaterialSlot": [
+          {
+            "link": "DATA",
+            "name": "pasted__pasted__pasted__Lego_White14",
+            "slot": 0
+          }
+        ],
+        "assignment": "proposed; source masks have not been authored"
+      },
+      {
+        "sourceObject": "pasted__L2x3slope2_pasted__pasted__pasted__Lego_White15_0",
+        "fittedObject": "Blockrunner Ivory fitted V1 pasted__L2x3slope2_pasted__pasted__pasted__Lego_White15_0",
+        "originalTriangles": 348,
+        "worldBounds": [
+          [
+            1.2264152765274048,
+            -2.6888885498046875,
+            1.588529348373413
+          ],
+          [
+            1.9242466688156128,
+            -1.2389925718307495,
+            1.7933794260025024
+          ]
+        ],
+        "originalMaterialSlot": [
+          {
+            "link": "DATA",
+            "name": "pasted__pasted__pasted__Lego_White15",
+            "slot": 0
+          }
+        ],
+        "assignment": "proposed; source masks have not been authored"
+      },
+      {
+        "sourceObject": "pasted__L2x3slope2_pasted__pasted__pasted__Lego_White16_0",
+        "fittedObject": "Blockrunner Ivory fitted V1 pasted__L2x3slope2_pasted__pasted__pasted__Lego_White16_0",
+        "originalTriangles": 228,
+        "worldBounds": [
+          [
+            0.7296208739280701,
+            -0.26034870743751526,
+            1.7045392990112305
+          ],
+          [
+            1.268526554107666,
+            0.512709379196167,
+            1.9069247245788574
+          ]
+        ],
+        "originalMaterialSlot": [
+          {
+            "link": "DATA",
+            "name": "pasted__pasted__pasted__Lego_White16",
+            "slot": 0
+          }
+        ],
+        "assignment": "proposed; source masks have not been authored"
+      },
+      {
+        "sourceObject": "pasted__L2x3slope2_pasted__pasted__pasted__pasted__Lego_White14_0",
+        "fittedObject": "Blockrunner Ivory fitted V1 pasted__L2x3slope2_pasted__pasted__pasted__pasted__Lego_White14_0",
+        "originalTriangles": 228,
+        "worldBounds": [
+          [
+            -1.9678877592086792,
+            -3.0205976963043213,
+            1.7045392990112305
+          ],
+          [
+            -1.449191689491272,
+            -2.2521777153015137,
+            1.9069247245788574
+          ]
+        ],
+        "originalMaterialSlot": [
+          {
+            "link": "DATA",
+            "name": "pasted__pasted__pasted__pasted__Lego_White14",
+            "slot": 0
+          }
+        ],
+        "assignment": "proposed; source masks have not been authored"
+      },
+      {
+        "sourceObject": "pasted__L2x3slope2_pasted__pasted__pasted__pasted__Lego_White15_0",
+        "fittedObject": "Blockrunner Ivory fitted V1 pasted__L2x3slope2_pasted__pasted__pasted__pasted__Lego_White15_0",
+        "originalTriangles": 348,
+        "worldBounds": [
+          [
+            1.5722960233688354,
+            -4.077409744262695,
+            1.588529348373413
+          ],
+          [
+            2.2701268196105957,
+            -2.627513885498047,
+            1.7933794260025024
+          ]
+        ],
+        "originalMaterialSlot": [
+          {
+            "link": "DATA",
+            "name": "pasted__pasted__pasted__pasted__Lego_White15",
+            "slot": 0
+          }
+        ],
+        "assignment": "proposed; source masks have not been authored"
+      },
+      {
+        "sourceObject": "pasted__L2x3slope2_pasted__pasted__pasted__pasted__Lego_White16_0",
+        "fittedObject": "Blockrunner Ivory fitted V1 pasted__L2x3slope2_pasted__pasted__pasted__pasted__Lego_White16_0",
+        "originalTriangles": 228,
+        "worldBounds": [
+          [
+            1.1356534957885742,
+            -1.6661356687545776,
+            1.7045392990112305
+          ],
+          [
+            1.6543495655059814,
+            -0.8977156281471252,
+            1.9069247245788574
+          ]
+        ],
+        "originalMaterialSlot": [
+          {
+            "link": "DATA",
+            "name": "pasted__pasted__pasted__pasted__Lego_White16",
+            "slot": 0
+          }
+        ],
+        "assignment": "proposed; source masks have not been authored"
+      },
+      {
+        "sourceObject": "pasted__L2x3slope2_pasted__pasted__pasted__pasted__pasted__Lego_White14_0",
+        "fittedObject": "Blockrunner Ivory fitted V1 pasted__L2x3slope2_pasted__pasted__pasted__pasted__pasted__Lego_White14_0",
+        "originalTriangles": 228,
+        "worldBounds": [
+          [
+            1.5049324035644531,
+            -3.0205976963043213,
+            1.7045392990112305
+          ],
+          [
+            2.0236291885375977,
+            -2.2521777153015137,
+            1.9069247245788574
+          ]
+        ],
+        "originalMaterialSlot": [
+          {
+            "link": "DATA",
+            "name": "pasted__pasted__pasted__pasted__pasted__Lego_White14",
+            "slot": 0
+          }
+        ],
+        "assignment": "proposed; source masks have not been authored"
+      }
+    ],
+    "remainingBodyMembershipToReview": [
+      {
+        "sourceObject": "pasted__L2x3slope2_pasted__Lego_White15_0",
+        "fittedObject": "Blockrunner Ivory fitted V1 pasted__L2x3slope2_pasted__Lego_White15_0",
+        "originalTriangles": 380,
+        "worldBounds": [
+          [
+            -0.6507840752601624,
+            0.12320438772439957,
+            1.725773572921753
+          ],
+          [
+            0.7600501179695129,
+            1.176562786102295,
+            2.2072978019714355
+          ]
+        ]
+      },
+      {
+        "sourceObject": "pasted__L2x3slope2_pasted__Lego_White16_0",
+        "fittedObject": "Blockrunner Ivory fitted V1 pasted__L2x3slope2_pasted__Lego_White16_0",
+        "originalTriangles": 348,
+        "worldBounds": [
+          [
+            -0.3128558099269867,
+            3.6542649269104004,
+            1.7671929597854614
+          ],
+          [
+            0.39216887950897217,
+            4.360479831695557,
+            2.250842332839966
+          ]
+        ]
+      },
+      {
+        "sourceObject": "pasted__L2x3slope2_pasted__Lego_White18_0",
+        "fittedObject": "Blockrunner Ivory fitted V1 pasted__L2x3slope2_pasted__Lego_White18_0",
+        "originalTriangles": 936,
+        "worldBounds": [
+          [
+            -1.5055792331695557,
+            1.2014027833938599,
+            1.1639069318771362
+          ],
+          [
+            -0.9973444938659668,
+            1.9094419479370117,
+            1.9533376693725586
+          ]
+        ]
+      },
+      {
+        "sourceObject": "pasted__L2x3slope2_pasted__Lego_White20_0",
+        "fittedObject": "Blockrunner Ivory fitted V1 pasted__L2x3slope2_pasted__Lego_White20_0",
+        "originalTriangles": 348,
+        "worldBounds": [
+          [
+            -1.0225143432617188,
+            3.3023781776428223,
+            1.75735342502594
+          ],
+          [
+            0.39098161458969116,
+            3.658668279647827,
+            2.2524807453155518
+          ]
+        ]
+      },
+      {
+        "sourceObject": "pasted__L2x3slope2_pasted__Lego_White22_0",
+        "fittedObject": "Blockrunner Ivory fitted V1 pasted__L2x3slope2_pasted__Lego_White22_0",
+        "originalTriangles": 380,
+        "worldBounds": [
+          [
+            -1.0138593912124634,
+            3.3094334602355957,
+            2.1817638874053955
+          ],
+          [
+            0.3969747722148895,
+            4.362791538238525,
+            2.663288116455078
+          ]
+        ]
+      },
+      {
+        "sourceObject": "pasted__L2x3slope2_pasted__Lego_White23_0",
+        "fittedObject": "Blockrunner Ivory fitted V1 pasted__L2x3slope2_pasted__Lego_White23_0",
+        "originalTriangles": 228,
+        "worldBounds": [
+          [
+            0.381806343793869,
+            3.309490203857422,
+            1.7729804515838623
+          ],
+          [
+            1.086830973625183,
+            3.6618220806121826,
+            2.2566299438476562
+          ]
+        ]
+      },
+      {
+        "sourceObject": "pasted__L2x3slope2_pasted__Lego_White24_0",
+        "fittedObject": "Blockrunner Ivory fitted V1 pasted__L2x3slope2_pasted__Lego_White24_0",
+        "originalTriangles": 260,
+        "worldBounds": [
+          [
+            0.3820992410182953,
+            3.310462713241577,
+            2.185356378555298
+          ],
+          [
+            1.0890519618988037,
+            4.363821029663086,
+            2.6668806076049805
+          ]
+        ]
+      },
+      {
+        "sourceObject": "pasted__L2x3slope2_pasted__LegoWhite3_0",
+        "fittedObject": "Blockrunner Ivory fitted V1 pasted__L2x3slope2_pasted__LegoWhite3_0",
+        "originalTriangles": 240,
+        "worldBounds": [
+          [
+            -0.646289587020874,
+            1.1917184591293335,
+            1.7296067476272583
+          ],
+          [
+            0.058735087513923645,
+            1.898064136505127,
+            1.9323344230651855
+          ]
+        ]
+      },
+      {
+        "sourceObject": "pasted__L2x3slope2_pasted__pasted__Lego_White18_0",
+        "fittedObject": "Blockrunner Ivory fitted V1 pasted__L2x3slope2_pasted__pasted__Lego_White18_0",
+        "originalTriangles": 936,
+        "worldBounds": [
+          [
+            1.0881931781768799,
+            1.2014027833938599,
+            1.1646243333816528
+          ],
+          [
+            1.5964277982711792,
+            1.9094419479370117,
+            1.9540549516677856
+          ]
+        ]
+      },
+      {
+        "sourceObject": "pasted__L2x3slope2_pasted__pasted__Lego_White19_0",
+        "fittedObject": "Blockrunner Ivory fitted V1 pasted__L2x3slope2_pasted__pasted__Lego_White19_0",
+        "originalTriangles": 348,
+        "worldBounds": [
+          [
+            -1.353293538093567,
+            0.4735811650753021,
+            1.7143648862838745
+          ],
+          [
+            -0.6482688188552856,
+            1.1797960996627808,
+            2.198014259338379
+          ]
+        ]
+      },
+      {
+        "sourceObject": "pasted__L2x3slope2_pasted__pasted__LegoWhite3_0",
+        "fittedObject": "Blockrunner Ivory fitted V1 pasted__L2x3slope2_pasted__pasted__LegoWhite3_0",
+        "originalTriangles": 240,
+        "worldBounds": [
+          [
+            0.05148785561323166,
+            1.1917184591293335,
+            1.7296067476272583
+          ],
+          [
+            0.7565125226974487,
+            1.898064136505127,
+            1.9323344230651855
+          ]
+        ]
+      },
+      {
+        "sourceObject": "pasted__L2x3slope2_pasted__pasted__pasted__Lego_White19_0",
+        "fittedObject": "Blockrunner Ivory fitted V1 pasted__L2x3slope2_pasted__pasted__pasted__Lego_White19_0",
+        "originalTriangles": 348,
+        "worldBounds": [
+          [
+            0.7662551403045654,
+            0.4735811650753021,
+            1.7143648862838745
+          ],
+          [
+            1.4712797403335571,
+            1.1797960996627808,
+            2.198014259338379
+          ]
+        ]
+      }
+    ]
+  },
+  "newFittedMounts": [
+    "Blockrunner Ivory fitted V1 negativeX source profile mount",
+    "Blockrunner Ivory fitted V1 positiveX source profile mount"
+  ],
+  "unresolved": [
+    "Engine shell / intake / fan / hub polygon split",
+    "Orange markings on own surface IDs; no added pipes or panels",
+    "Seat and small cockpit hardware membership",
+    "Body700 subcomponent assignment beyond safe ivory default",
+    "No live mask or UV assignment has occurred"
+  ]
+}

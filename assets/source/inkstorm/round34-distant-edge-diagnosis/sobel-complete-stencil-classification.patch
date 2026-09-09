@@ -1,0 +1,73 @@
+--- a/src/render/post/sobelShader.ts
++++ b/src/render/post/sobelShader.ts
+@@ -38,6 +38,11 @@
+ 
+ float readDepth(vec2 uv) {
+   return unpackDepth24(texture2D(uDepthMask, uv).rgb);
++}
++
++vec2 readDepthClass(vec2 uv) {
++  vec4 depthMask = texture2D(uDepthMask, uv);
++  return vec2(unpackDepth24(depthMask.rgb), depthMask.a);
+ }
+ 
+ vec3 contactPosition(vec2 uv, float packedDepth) {
+@@ -87,14 +92,24 @@
+   vec3 n12 = readNormal(vUv + y);
+   vec3 n22 = readNormal(vUv + x + y);
+ 
+-  float d00 = readDepth(vUv - x - y);
+-  float d10 = readDepth(vUv - y);
+-  float d20 = readDepth(vUv + x - y);
+-  float d01 = readDepth(vUv - x);
+-  float d21 = readDepth(vUv + x);
+-  float d02 = readDepth(vUv - x + y);
+-  float d12 = readDepth(vUv + y);
+-  float d22 = readDepth(vUv + x + y);
++  vec2 depthClass00 = readDepthClass(vUv - x - y);
++  vec2 depthClass10 = readDepthClass(vUv - y);
++  vec2 depthClass20 = readDepthClass(vUv + x - y);
++  vec2 depthClass01 = readDepthClass(vUv - x);
++  vec2 depthClass21 = readDepthClass(vUv + x);
++  vec2 depthClass02 = readDepthClass(vUv - x + y);
++  vec2 depthClass12 = readDepthClass(vUv + y);
++  vec2 depthClass22 = readDepthClass(vUv + x + y);
++  vec2 depthClass11 = readDepthClass(vUv);
++
++  float d00 = depthClass00.x;
++  float d10 = depthClass10.x;
++  float d20 = depthClass20.x;
++  float d01 = depthClass01.x;
++  float d21 = depthClass21.x;
++  float d02 = depthClass02.x;
++  float d12 = depthClass12.x;
++  float d22 = depthClass22.x;
+ 
+   vec3 normalGx = -n00 - 2.0 * n01 - n02 + n20 + 2.0 * n21 + n22;
+   vec3 normalGy = -n00 - 2.0 * n10 - n20 + n02 + 2.0 * n12 + n22;
+@@ -103,17 +118,19 @@
+ 
+   float normalEdge = (length(normalGx) + length(normalGy)) * 0.125;
+   float rawDepthEdge = (abs(depthGx) + abs(depthGy)) * 0.125;
+-  float localDepth = min(readDepth(vUv), min(min(d01, d21), min(d10, d12)));
++  float localDepth = min(depthClass11.x, min(min(d01, d21), min(d10, d12)));
+   // Relative depth keeps line sensitivity stable when camera.far changes and
+   // catches overlapping machinery near the camera without inking distant haze.
+   float depthEdge = rawDepthEdge / max(localDepth, 0.002);
+   float combinedEdge = normalEdge * uNormalWeight + depthEdge * uDepthWeight;
+ 
+-  float edgeClass = texture2D(uDepthMask, vUv).a;
+-  edgeClass = max(edgeClass, texture2D(uDepthMask, vUv - x).a);
+-  edgeClass = max(edgeClass, texture2D(uDepthMask, vUv + x).a);
+-  edgeClass = max(edgeClass, texture2D(uDepthMask, vUv - y).a);
+-  edgeClass = max(edgeClass, texture2D(uDepthMask, vUv + y).a);
++  // Classify the same complete stencil that contributes to the Sobel edge.
++  // Omitting diagonal classes gives isolated skyline samples full-strength ink
++  // while neighboring samples correctly receive terrain/hull suppression.
++  float edgeClass = max(depthClass11.y, max(depthClass00.y, depthClass20.y));
++  edgeClass = max(edgeClass, max(depthClass02.y, depthClass22.y));
++  edgeClass = max(edgeClass, max(depthClass01.y, depthClass21.y));
++  edgeClass = max(edgeClass, max(depthClass10.y, depthClass12.y));
+   float hullMask = step(0.75, edgeClass);
+   float terrainMask = step(0.25, edgeClass) * (1.0 - hullMask);
+ 

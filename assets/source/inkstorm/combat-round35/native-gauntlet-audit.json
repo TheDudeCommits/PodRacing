@@ -1,0 +1,379 @@
+{
+  "createdAt": "2026-09-08T18:01:37.354371+00:00",
+  "outcome": "PASS for four specified runtime behaviors across two pinned native runs; visual framing remains reviewable",
+  "buildSha256": "d1c2dd3ecb226da13f9b729934d0564db31596ea4088fb2f8cf57e8b404eb079",
+  "cases": [
+    {
+      "id": "solo-chase",
+      "receipt": "output/playwright/round35-combat-v2/receipt.json",
+      "receiptSha256": "61cc66f358a683846dac5761f49c95624761ceda54097006cc68c51225ac3e0d",
+      "harnessSha256": "f8aeb6ba5d939a07f3272f46205c736212c7ca0f803ce3450f150bb6daa4950e",
+      "analysis": {
+        "outcome": "PASS",
+        "issues": [],
+        "explosion": {
+          "observedWallMs": 10352.3,
+          "type": "redline-explosion",
+          "racerId": "player",
+          "heat": 1,
+          "frame": 914
+        },
+        "wreck": {
+          "observedWallMs": 10352.3,
+          "type": "wreck",
+          "racerId": "player",
+          "cause": "redline-explosion",
+          "sourceId": null,
+          "takedownBy": null,
+          "runTokens": 2,
+          "frame": 914
+        },
+        "estimatedStartMs": 10334.999999988078,
+        "before": {
+          "samples": 29,
+          "wallSeconds": 0.9333000000000011,
+          "simulationSeconds": 0.9333333333333333,
+          "raceSeconds": 0.9333333333333549,
+          "ratio": 1.000035715561269,
+          "maximumSampleGapMs": 33.400000000001455
+        },
+        "slow": {
+          "samples": 14,
+          "wallSeconds": 0.4332999999999993,
+          "simulationSeconds": 0.075,
+          "raceSeconds": 0.07500000000000373,
+          "ratio": 0.1730902377105934,
+          "maximumSampleGapMs": 33.399999999999636
+        },
+        "after": {
+          "samples": 20,
+          "wallSeconds": 0.6333000000000011,
+          "simulationSeconds": 0.6333333333333333,
+          "raceSeconds": 0.6333333333333648,
+          "ratio": 1.0000526343491745,
+          "maximumSampleGapMs": 33.400000000001455
+        },
+        "restoredCamera": "chase",
+        "samples": 223
+      },
+      "renderer": {
+        "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M4, Unspecified Version)",
+        "vendor": "Google Inc. (Apple)"
+      },
+      "browser": "152.0.7977.77",
+      "video": "/Users/amir/Projects/PodRacing/output/playwright/round35-combat-v2/video/page@f86e23ca0ac2884209002aa6df1c22ea.webm",
+      "videoSha256": "1ff8cd2ee71b7cd478d34c37a5ad2f193ac5a4956bc7e07ddd4e1bc35f4fff81",
+      "cleanup": {
+        "browserClosed": true,
+        "serverExited": true,
+        "errors": []
+      },
+      "captures": [
+        {
+          "name": "before",
+          "path": "/Users/amir/Projects/PodRacing/output/playwright/round35-combat-v2/solo-chase-before.png",
+          "sha256": "73f97f62af5cc9722147409b51f289016056248a5e24567cb1ca25665b88a2b3"
+        },
+        {
+          "name": "wreck",
+          "path": "/Users/amir/Projects/PodRacing/output/playwright/round35-combat-v2/solo-chase-wreck.png",
+          "sha256": "4638dfabcca6f47f48f7c91649aa8fa39508f995291688fbce36d22d9657f84e"
+        },
+        {
+          "name": "restored",
+          "path": "/Users/amir/Projects/PodRacing/output/playwright/round35-combat-v2/solo-chase-restored.png",
+          "sha256": "8bd220735cbbc67a91418f49ba6097fccb0d921629efa6094a581fe286eb757b"
+        },
+        {
+          "name": "recovery",
+          "path": "/Users/amir/Projects/PodRacing/output/playwright/round35-combat-v2/solo-chase-recovery.png",
+          "sha256": "627b0edc150665e51ed67f4d11b23ffc6ef3f6138a343dcf5dc80e6171b467a9"
+        }
+      ]
+    },
+    {
+      "id": "solo-manual-camera",
+      "receipt": "output/playwright/round35-combat-v2/receipt.json",
+      "receiptSha256": "61cc66f358a683846dac5761f49c95624761ceda54097006cc68c51225ac3e0d",
+      "harnessSha256": "f8aeb6ba5d939a07f3272f46205c736212c7ca0f803ce3450f150bb6daa4950e",
+      "analysis": {
+        "outcome": "PASS",
+        "issues": [],
+        "explosion": {
+          "observedWallMs": 10208.1,
+          "type": "redline-explosion",
+          "racerId": "player",
+          "heat": 1,
+          "frame": 912
+        },
+        "wreck": {
+          "observedWallMs": 10208.1,
+          "type": "wreck",
+          "racerId": "player",
+          "cause": "redline-explosion",
+          "sourceId": null,
+          "takedownBy": null,
+          "runTokens": 2,
+          "frame": 912
+        },
+        "estimatedStartMs": 10207.400000011921,
+        "before": {
+          "samples": 30,
+          "wallSeconds": 0.9665999999999986,
+          "simulationSeconds": 0.9666666666666667,
+          "raceSeconds": 0.9666666666666881,
+          "ratio": 1.0000689702738135,
+          "maximumSampleGapMs": 33.400000000001455
+        },
+        "slow": {
+          "samples": 14,
+          "wallSeconds": 0.4333999999999996,
+          "simulationSeconds": 0.075,
+          "raceSeconds": 0.07500000000000373,
+          "ratio": 0.1730502999538534,
+          "maximumSampleGapMs": 33.400000000001455
+        },
+        "after": {
+          "samples": 20,
+          "wallSeconds": 0.6333999999999996,
+          "simulationSeconds": 0.6333333333333333,
+          "raceSeconds": 0.6333333333333648,
+          "ratio": 0.999894747921272,
+          "maximumSampleGapMs": 33.399999999999636
+        },
+        "restoredCamera": "cockpit",
+        "samples": 223
+      },
+      "renderer": {
+        "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M4, Unspecified Version)",
+        "vendor": "Google Inc. (Apple)"
+      },
+      "browser": "152.0.7977.77",
+      "video": "/Users/amir/Projects/PodRacing/output/playwright/round35-combat-v2/video/page@5ef2b7d8211debcca6b9734155ad8252.webm",
+      "videoSha256": "c2885a85da760d1cc13c2665fa375968d48b03d4f764ba04b9955f6eba92b8c6",
+      "cleanup": {
+        "browserClosed": true,
+        "serverExited": true,
+        "errors": []
+      },
+      "captures": [
+        {
+          "name": "before",
+          "path": "/Users/amir/Projects/PodRacing/output/playwright/round35-combat-v2/solo-manual-camera-before.png",
+          "sha256": "86e07af6783cff29ac076841a1e27dacecd404421a4b881b966631d0f55c2409"
+        },
+        {
+          "name": "wreck",
+          "path": "/Users/amir/Projects/PodRacing/output/playwright/round35-combat-v2/solo-manual-camera-wreck.png",
+          "sha256": "e3fb6ba62533147a55cbab5989f173e191e6d9340fd8370a8af29b9b5410d7c9"
+        },
+        {
+          "name": "restored",
+          "path": "/Users/amir/Projects/PodRacing/output/playwright/round35-combat-v2/solo-manual-camera-restored.png",
+          "sha256": "5489e39fdec3e65aba562b8dfd834a423209447019d4ad9fc274914514baf0c8"
+        },
+        {
+          "name": "recovery",
+          "path": "/Users/amir/Projects/PodRacing/output/playwright/round35-combat-v2/solo-manual-camera-recovery.png",
+          "sha256": "459b658f6def6838d0881b4811bfdc5edb05faed746ed1debe72b5c9f9540720"
+        }
+      ]
+    },
+    {
+      "id": "solo-reduced-motion",
+      "receipt": "output/playwright/round35-combat-v2/receipt.json",
+      "receiptSha256": "61cc66f358a683846dac5761f49c95624761ceda54097006cc68c51225ac3e0d",
+      "harnessSha256": "f8aeb6ba5d939a07f3272f46205c736212c7ca0f803ce3450f150bb6daa4950e",
+      "analysis": {
+        "outcome": "PASS",
+        "issues": [],
+        "explosion": {
+          "observedWallMs": 10277.1,
+          "type": "redline-explosion",
+          "racerId": "player",
+          "heat": 1,
+          "frame": 910
+        },
+        "wreck": {
+          "observedWallMs": 10277.1,
+          "type": "wreck",
+          "racerId": "player",
+          "cause": "redline-explosion",
+          "sourceId": null,
+          "takedownBy": null,
+          "runTokens": 2,
+          "frame": 910
+        },
+        "estimatedStartMs": 10260.300000017882,
+        "before": {
+          "samples": 29,
+          "wallSeconds": 0.9332999999999992,
+          "simulationSeconds": 0.9333333333333333,
+          "raceSeconds": 0.9333333333333531,
+          "ratio": 1.000035715561271,
+          "maximumSampleGapMs": 33.400000000001455
+        },
+        "slow": {
+          "samples": 14,
+          "wallSeconds": 0.4332999999999993,
+          "simulationSeconds": 0.075,
+          "raceSeconds": 0.07500000000000373,
+          "ratio": 0.1730902377105934,
+          "maximumSampleGapMs": 33.5
+        },
+        "after": {
+          "samples": 20,
+          "wallSeconds": 0.6333000000000011,
+          "simulationSeconds": 0.6333333333333333,
+          "raceSeconds": 0.6333333333333648,
+          "ratio": 1.0000526343491745,
+          "maximumSampleGapMs": 33.399999999999636
+        },
+        "restoredCamera": "chase",
+        "samples": 222
+      },
+      "renderer": {
+        "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M4, Unspecified Version)",
+        "vendor": "Google Inc. (Apple)"
+      },
+      "browser": "152.0.7977.77",
+      "video": "/Users/amir/Projects/PodRacing/output/playwright/round35-combat-v2/video/page@0b5b9297fbfb9ab0cefc25791a20fbb3.webm",
+      "videoSha256": "a89f8875dd4b47da76fd10d2c014f100536b558318252cc10a4374fbd13de365",
+      "cleanup": {
+        "browserClosed": true,
+        "serverExited": true,
+        "errors": []
+      },
+      "captures": [
+        {
+          "name": "before",
+          "path": "/Users/amir/Projects/PodRacing/output/playwright/round35-combat-v2/solo-reduced-motion-before.png",
+          "sha256": "f9cc2b4a57acf7c53b90ec4c09c61cb8b8c018a428a442d479eae2e49bbb677c"
+        },
+        {
+          "name": "wreck",
+          "path": "/Users/amir/Projects/PodRacing/output/playwright/round35-combat-v2/solo-reduced-motion-wreck.png",
+          "sha256": "c917161475fdd100db7c24b2f024f7cd42368208dd53401089555930016d894f"
+        },
+        {
+          "name": "restored",
+          "path": "/Users/amir/Projects/PodRacing/output/playwright/round35-combat-v2/solo-reduced-motion-restored.png",
+          "sha256": "7341e9ff8de61fe7135c79cdc7bc4822ae8290b4d8939f6adc27bf867e1fb319"
+        },
+        {
+          "name": "recovery",
+          "path": "/Users/amir/Projects/PodRacing/output/playwright/round35-combat-v2/solo-reduced-motion-recovery.png",
+          "sha256": "7a7b5d4e1bc31318bde32a791c10bd97c6742a44668ebaca8fb0b04cc801f20c"
+        }
+      ]
+    },
+    {
+      "id": "solo-pause-cancel",
+      "receipt": "output/playwright/round35-combat-v3/receipt.json",
+      "receiptSha256": "557039152603852aa4e3f66ff1cd29a94678da64291f9b89f0c13a7e3784792f",
+      "harnessSha256": "b43be0efcb910195927882192a62b7d643838f800a46b223b0d4666557080dc2",
+      "analysis": {
+        "outcome": "PASS",
+        "issues": [],
+        "explosion": {
+          "observedWallMs": 10398.1,
+          "type": "redline-explosion",
+          "racerId": "player",
+          "heat": 1,
+          "frame": 912
+        },
+        "wreck": {
+          "observedWallMs": 10398.1,
+          "type": "wreck",
+          "racerId": "player",
+          "cause": "redline-explosion",
+          "sourceId": null,
+          "takedownBy": null,
+          "runTokens": 2,
+          "frame": 912
+        },
+        "estimatedStartMs": 10381.300000017882,
+        "before": {
+          "samples": 29,
+          "wallSeconds": 0.9332999999999992,
+          "simulationSeconds": 0.9333333333333333,
+          "raceSeconds": 0.933333333333354,
+          "ratio": 1.000035715561271,
+          "maximumSampleGapMs": 33.399999999999636
+        },
+        "resumePace": {
+          "samples": 39,
+          "wallSeconds": 1.2665,
+          "simulationSeconds": 1.2666666666666666,
+          "raceSeconds": 1.2666666666667297,
+          "ratio": 1.0001315962626662,
+          "maximumSampleGapMs": 33.400000000001455
+        },
+        "pausedSamples": 22
+      },
+      "renderer": {
+        "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M4, Unspecified Version)",
+        "vendor": "Google Inc. (Apple)"
+      },
+      "browser": "152.0.7977.77",
+      "video": "/Users/amir/Projects/PodRacing/output/playwright/round35-combat-v3/video/page@3d26b3be8b8741a03f74d673bf90949f.webm",
+      "videoSha256": "04d568cd8b2ad9056e262c263a7da07d708c3aeb43f75f3f052e1edf8d1a7546",
+      "cleanup": {
+        "browserClosed": true,
+        "serverExited": true,
+        "errors": []
+      },
+      "captures": [
+        {
+          "name": "before",
+          "path": "/Users/amir/Projects/PodRacing/output/playwright/round35-combat-v3/solo-pause-cancel-before.png",
+          "sha256": "87f77f0858b4e879eb109c47551afd69a651409b68aa3c651915c529d1c8b273"
+        },
+        {
+          "name": "paused",
+          "path": "/Users/amir/Projects/PodRacing/output/playwright/round35-combat-v3/solo-pause-cancel-paused.png",
+          "sha256": "d9b6344738020187e6eda5fa8225db719f22e808d490d5d4edb0e8239b30d58d"
+        }
+      ]
+    }
+  ],
+  "cpu": {
+    "testPath": "tests/combat/CombatSimulationBoundary.test.ts",
+    "sha256": "03f1eb87c9c6dfb8e31db8aed339abfa52a3f569a4e00dfeabdc14cd551fb22f",
+    "passed": 4,
+    "total": 4,
+    "typecheckExitCode": 0,
+    "scope": "Real input-driven RaceSimulation wrecks, paced/unpaced truth equality, host/guest snapshot boundary, clean input suppression. Explicit synthetic finish fixture only for record persistence; no completed-lap claim."
+  },
+  "limits": [
+    "Browser exercises incoming solo redline wrecks only, not outgoing takedowns or a live room.",
+    "Clean outgoing policy and host/guest clock boundary are CPU coverage, not fabricated browser events.",
+    "Captured videos are 25fps visual records, not performance/FPS evidence, and have no audio stream.",
+    "The victim Teemto close-up clips the near engine at the lower edge; visual framing acceptance is open.",
+    "UI v6 source edits during QA were not built: all accepted browser cases served the identical pinned UI v5 bundle."
+  ],
+  "clip": {
+    "path": "output/playwright/round35-combat-v2/solo-chase-wreck-clip.mp4",
+    "source": "/Users/amir/Projects/PodRacing/output/playwright/round35-combat-v2/video/page@f86e23ca0ac2884209002aa6df1c22ea.webm",
+    "sourceSha256": "1ff8cd2ee71b7cd478d34c37a5ad2f193ac5a4956bc7e07ddd4e1bc35f4fff81",
+    "sha256": "7aa9cd73deadfef9802ceabb2a3fcd41f86c6bfc695622aeff4481af5925f518",
+    "trimStartSeconds": 8.5,
+    "processing": "Silent source visual recording trimmed and transcoded with libx264; no speed change, interpolation, compositing, or UI/state injection.",
+    "requestedDurationSeconds": 5.5,
+    "actualDurationSeconds": 5.48
+  },
+  "priorAttempts": [
+    {
+      "run": "round35-combat-v1",
+      "outcome": "chase PASS, manual setup FAIL because camera selected before Start was reset by normal launch flow"
+    },
+    {
+      "run": "round35-combat-v2",
+      "outcome": "first three cases PASS; pause attempt did not observe a zero-delay P pulse between RAF polls"
+    },
+    {
+      "run": "round35-combat-v3",
+      "outcome": "pause case PASS with explicit 80 ms native P hold"
+    }
+  ]
+}

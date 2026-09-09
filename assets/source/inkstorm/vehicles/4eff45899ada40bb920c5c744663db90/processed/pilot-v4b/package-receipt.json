@@ -1,0 +1,62 @@
+{
+  "nativePreserved": true,
+  "nodeRenames": {
+    "teemto-cockpit-body.004": "teemto-cockpit-body",
+    "teemto-cockpit-construction-v4b": "teemto-cockpit.001",
+    "teemto-engine-left-body.004": "teemto-engine-left-body",
+    "teemto-engine-left-construction-v4b": "teemto-engine-left.001",
+    "teemto-engine-right-body.004": "teemto-engine-right-body",
+    "teemto-engine-right-construction-v4b": "teemto-engine-right.001"
+  },
+  "commands": [
+    [
+      "dedup",
+      "/Users/amir/Projects/PodRacing/assets/source/inkstorm/vehicles/4eff45899ada40bb920c5c744663db90/processed/pilot-v4b/teemto-pilot-v4b-tangents.glb",
+      "/Users/amir/Projects/PodRacing/assets/source/inkstorm/vehicles/4eff45899ada40bb920c5c744663db90/processed/pilot-v4b/teemto-pilot-v4b-dedup.glb",
+      "--materials",
+      "false",
+      "--meshes",
+      "false",
+      "--skins",
+      "false"
+    ],
+    [
+      "webp",
+      "/Users/amir/Projects/PodRacing/assets/source/inkstorm/vehicles/4eff45899ada40bb920c5c744663db90/processed/pilot-v4b/teemto-pilot-v4b-dedup.glb",
+      "/Users/amir/Projects/PodRacing/assets/source/inkstorm/vehicles/4eff45899ada40bb920c5c744663db90/processed/pilot-v4b/teemto-pilot-v4b-runtime.glb",
+      "--slots",
+      "baseColorTexture",
+      "--quality",
+      "88"
+    ]
+  ],
+  "geometrySimplified": false,
+  "materialsDeduplicated": false,
+  "files": [
+    {
+      "path": "assets/source/inkstorm/vehicles/4eff45899ada40bb920c5c744663db90/processed/pilot-v4b/teemto-pilot-material-v4b-normalized.glb",
+      "bytes": 12155896,
+      "sha256": "da971638d9d810fbfecf5a598c15b5fe4076eb7c7aa40ef149a77de7634b4fc4"
+    },
+    {
+      "path": "assets/source/inkstorm/vehicles/4eff45899ada40bb920c5c744663db90/processed/pilot-v4b/teemto-pilot-v4b-contract.glb",
+      "bytes": 12155848,
+      "sha256": "c009da178646b96f4346ce7ebbf6c4b118f11ad8d09dcd89336524ac2ddec21a"
+    },
+    {
+      "path": "assets/source/inkstorm/vehicles/4eff45899ada40bb920c5c744663db90/processed/pilot-v4b/teemto-pilot-v4b-tangents.glb",
+      "bytes": 12471028,
+      "sha256": "f39303c42a721991542bffb2552c0c60bd3a0705c6d6677d6e24e3162e228adb"
+    },
+    {
+      "path": "assets/source/inkstorm/vehicles/4eff45899ada40bb920c5c744663db90/processed/pilot-v4b/teemto-pilot-v4b-dedup.glb",
+      "bytes": 12471028,
+      "sha256": "f39303c42a721991542bffb2552c0c60bd3a0705c6d6677d6e24e3162e228adb"
+    },
+    {
+      "path": "assets/source/inkstorm/vehicles/4eff45899ada40bb920c5c744663db90/processed/pilot-v4b/teemto-pilot-v4b-runtime.glb",
+      "bytes": 5518932,
+      "sha256": "838d71f3ac2e79dda66ada37ac367fe66f0d9885b166b7fe12829416befcfa6c"
+    }
+  ]
+}

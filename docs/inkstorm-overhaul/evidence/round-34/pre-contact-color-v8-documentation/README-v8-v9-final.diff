@@ -1,0 +1,21 @@
+--- pre-v8/README.md
++++ README.md
+@@ -1,12 +1,14 @@
+ # Now This Is PodRacing — local Inkstorm overhaul
+ 
+-Current local evidence is the **8 September 2026 V5 partial checkpoint**: Blockrunner races/Continue, staged cadence and context recovery pass, while the exact resource plateau fails (+1 geometry/+2 textures at matching stages). **671 tests / 120 executed files**, typecheck/build pass for `index-CFofn-oM.js`, SHA256 `2d8ff97639d335f22e1c683562c418d3f55572251f1b55dc71268bda015d264b`. Final art remains unaccepted; there is no overhaul deployment.
++**The local overhaul remains incomplete, art is unaccepted, and no overhaul commit/push/deployment has occurred.** V8 contact-color source bakes, packages and local admission are complete; the fresh paired review finds all four comparisons tied, with both versions **5.5/10 overall vehicle, FAIL against 8/10**. No quality improvement is demonstrated.
+ 
+-**Actual fresh V5 still-image verdict: craft 5/10, world/route 6.5/10, materials 4.5/10, overall 5.5/10 — FAIL against 8/10.** The separate ephemeral read-only CLI review used a fresh temporary directory and 21 hash-verified attachments (13 actual V5 images + eight concepts). No prior task history or verdict was supplied or retrieved; recorded tool/file retrieval calls are zero. Generic user configuration may load. Transport retries preceded an exit-0 final review with all 21 images declared viewed and 13 individual observations. This is still-image criticism, not motion, physics or performance evidence; it does not replace or average the earlier prior-context reviews. [Actual fresh report](assets/source/inkstorm/blockrunner-round34/fresh-v5-review-preparation/cli-critic-attempt1/review.md).
++V8 passes 671 tests/120 executed files and image/UI checks. Its healthy instrumented resource run is non-reproduction only. The earlier V5 races/staged/context PASS and uninstrumented **+1 geometry/+2 textures resource FAIL** remain historical evidence. V9 Sobel is retained after a fresh paired review: salt/launch preferred, grid/Foundry exit tied, subtle improvement with broader in-game/world 6/10 FAIL8; no resource/performance acceptance.
+ 
+-Start with [HANDOVER](HANDOVER.md), [STATUS](docs/inkstorm-overhaul/STATUS.md), [ROUND34](docs/inkstorm-overhaul/ROUND34.md), [current images and review scope](docs/inkstorm-overhaul/CURRENT_VISUALS.md), [V5 technical evidence](docs/inkstorm-overhaul/FULL_RACE_PERFORMANCE_BLOCKRUNNER_V5_ROUND34.md), and the [catalogue/licences](docs/inkstorm-overhaul/VEHICLE_CATALOG.md). Four registered art families use imported, source-preserved hero/rival assets; this is separate from four driving classes. Later candidates cannot inherit frozen technical results.
++Start with [HANDOVER](HANDOVER.md), [STATUS](docs/inkstorm-overhaul/STATUS.md), [ROUND34](docs/inkstorm-overhaul/ROUND34.md), [images/reviews](docs/inkstorm-overhaul/CURRENT_VISUALS.md) and [catalogue/licences](docs/inkstorm-overhaul/VEHICLE_CATALOG.md). Four registered art families are separate from four driving classes. Results belong to their exact inputs. [Audited paired review](assets/source/inkstorm/blockrunner-round34/contact-color-v1-blind-review/audited-review-v1.json) · [V5 technical record](docs/inkstorm-overhaul/FULL_RACE_PERFORMANCE_BLOCKRUNNER_V5_ROUND34.md) · [V8 diagnostic](output/playwright/round34-blockrunner-contact-color-v8-resource-owner-attempt1/ANALYSIS-v1.md).
+ 
+-The earlier product README below is historical, including its all-procedural and release descriptions. It remains verbatim for provenance; the current handover above controls continuation. [Complete prior README](docs/inkstorm-overhaul/evidence/round-34/pre-blockrunner-v5-documentation/README.md).
++The earlier product README below is historical and remains verbatim. [Complete immediate pre-V8 README](docs/inkstorm-overhaul/evidence/round-34/pre-contact-color-v8-documentation/README.md).
++
++[V9 current review](assets/source/inkstorm/round34-distant-edge-diagnosis/blind-runtime-v9/cli-critic-attempt1/review.md).
+ 
+ ## Archived pre-overhaul product README — preserved verbatim
+ 

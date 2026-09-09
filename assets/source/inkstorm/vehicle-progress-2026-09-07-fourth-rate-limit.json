@@ -1,0 +1,82 @@
+{
+  "recordedAt": "2026-09-07T17:13:30+00:00",
+  "scope": "Official acquisition retry only; no runtime/public/dist changes. No source obtained.",
+  "countsBefore": {
+    "publicResults": 29,
+    "vehicleCandidates": 26,
+    "excludedNonVehicles": 3,
+    "downloaded": 2,
+    "blockedOrPending": 24,
+    "downloadStatuses": {
+      "downloaded": 2,
+      "pending_download": 23,
+      "rate_limited": 1
+    },
+    "mcpImportedSourceGlbs": 2,
+    "rawArchivesPreserved": 0,
+    "stylizationNeedsPermission": 0,
+    "publicAdaptationRestricted": 1,
+    "stylizedExports": 2,
+    "stylizedSourceStudies": 2,
+    "stylizedExportVariants": 4,
+    "driversAdded": 2,
+    "runtimeIntegrations": 2,
+    "driverInspections": 2
+  },
+  "countsAfter": {
+    "publicResults": 29,
+    "vehicleCandidates": 26,
+    "excludedNonVehicles": 3,
+    "downloaded": 2,
+    "blockedOrPending": 24,
+    "downloadStatuses": {
+      "downloaded": 2,
+      "pending_download": 23,
+      "rate_limited": 1
+    },
+    "mcpImportedSourceGlbs": 2,
+    "rawArchivesPreserved": 0,
+    "stylizationNeedsPermission": 0,
+    "publicAdaptationRestricted": 1,
+    "stylizedExports": 2,
+    "stylizedSourceStudies": 2,
+    "stylizedExportVariants": 4,
+    "driversAdded": 2,
+    "runtimeIntegrations": 2,
+    "driverInspections": 2
+  },
+  "manifestBeforeSha256": "fe0cffd505658b48b4bc9735fad5763322b86ac6b65bab549f533e675c4fd520",
+  "manifestAfterSha256": "31fae02956eec6605dbbd36efa07b58c91c61b23c0d743f63b950d1ba91d376f",
+  "immutableAttemptReceipts": [
+    {
+      "ordinal": 1,
+      "status": "rate_limited",
+      "httpStatus": 429,
+      "receipt": "vehicles/c2ca24c9b3c2416db0abe026d9f4b7ac/mcp-download.json",
+      "sha256": "9ae3c75275af73049c6793cd29be7c03f12635fc9ca7872d57d1cff33ba97e71"
+    },
+    {
+      "ordinal": 2,
+      "status": "rate_limited",
+      "httpStatus": 429,
+      "receipt": "vehicles/c2ca24c9b3c2416db0abe026d9f4b7ac/mcp-download-retry-20260907-1450.json",
+      "sha256": "53bc794ee95b8efc873ea228d37565de37508b1b0470558c61657b7c4fbffbd3"
+    },
+    {
+      "ordinal": 3,
+      "status": "rate_limited",
+      "httpStatus": 429,
+      "receipt": "vehicles/c2ca24c9b3c2416db0abe026d9f4b7ac/mcp-download-retry-20260907-1558.json",
+      "sha256": "190472579c32a38c064316c876575cda044e9042fcf25ef8a4744071bf06d765"
+    },
+    {
+      "ordinal": 4,
+      "status": "rate_limited",
+      "httpStatus": 429,
+      "receipt": "vehicles/c2ca24c9b3c2416db0abe026d9f4b7ac/mcp-download-retry-20260907-1713.json",
+      "sha256": "76e64392f29ca4f44ffc925394c2488417d8e6742ec63b165aac65cc67adf4b8"
+    }
+  ],
+  "contextVerifiedRestored": true,
+  "previousProgressReceiptsUnchanged": true
+}

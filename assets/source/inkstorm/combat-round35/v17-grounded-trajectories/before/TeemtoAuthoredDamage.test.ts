@@ -1,0 +1,147 @@
+import { Matrix4, Mesh, Object3D, Quaternion, Vector3, type Group } from 'three';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest';
+import { RaceSimulation } from '../../src/game/race/RaceSimulation';
+import { sampleTerrainHeight } from '../../src/render/terrain/terrainMath';
+import { WreckVisualPoseCache, WRECK_PRESENTATION_DURATION } from '../../src/render/combat/WreckVisualPose';
+import { TeemtoWreckBreakup } from '../../src/render/combat/TeemtoWreckBreakup';
+import { CinematicCamera, type CameraSubject } from '../../src/camera/CinematicCamera';
+
+const fileModule: string = 'node:fs';
+const { readFileSync } = await import(/* @vite-ignore */ fileModule);
+const variants = ['hero', 'rival'] as const;
+const sources = new Map<string, Group>();
+const privatePath = 'assets/source/inkstorm/combat-round35/authored-damage-v16/packaged-b/';
+
+async function load(path: string, stripImages = false): Promise<Group> {
+  const data = readFileSync(path);
+  if (!stripImages) return (await new GLTFLoader().parseAsync(data.buffer.slice(data.byteOffset, data.byteOffset + data.byteLength), '')).scene;
+  const size = data.readUInt32LE(12), json = JSON.parse(data.subarray(20, 20 + size).toString());
+  // Original names, hierarchy, geometry accessors and complete BIN are exact.
+  // CPU geometry tests remove only image/material references from a memory copy.
+  for (const mesh of json.meshes) for (const primitive of mesh.primitives) delete primitive.material;
+  delete json.materials; delete json.images; delete json.textures; delete json.samplers;
+  const text = new TextEncoder().encode(JSON.stringify(json)), padded = Math.ceil(text.byteLength / 4) * 4;
+  const binary = data.subarray(28 + size), output = new Uint8Array(28 + padded + binary.byteLength), h = new DataView(output.buffer);
+  h.setUint32(0, 0x46546c67, true); h.setUint32(4, 2, true); h.setUint32(8, output.byteLength, true);
+  h.setUint32(12, padded, true); h.setUint32(16, 0x4e4f534a, true); output.fill(32, 20, 20 + padded); output.set(text, 20);
+  h.setUint32(20 + padded, binary.byteLength, true); h.setUint32(24 + padded, 0x004e4942, true); output.set(binary, 28 + padded);
+  expect(binary.equals(output.subarray(28 + padded))).toBe(true);
+  return (await new GLTFLoader().parseAsync(output.buffer, '')).scene;
+}
+function meshes(root: Object3D): Mesh[] { const result: Mesh[] = []; root.traverse(o => { if (o instanceof Mesh) result.push(o); }); return result; }
+function fixture(name: typeof variants[number]) {
+  const root = sources.get(name)!.clone(true), original = meshes(root), nodes = new Map<string, Object3D>();
+  root.traverse(node => nodes.set(node.name, node)); root.updateMatrixWorld(true);
+  const cache = new WreckVisualPoseCache(); cache.refresh(root, original, 1);
+  const breakup = TeemtoWreckBreakup.create(root, nodes, original)!; expect(breakup).not.toBeNull();
+  const damageRoot = sources.get(`${name}-damage`)!.clone(true), damage = meshes(damageRoot); root.add(damageRoot);
+  expect(breakup.installDamageVariant(damage)).toBe(true);
+  return { root, original, damage, cache, breakup, all: [...original, ...damage] };
+}
+function race() { return new RaceSimulation({ terrain: { heightAt: sampleTerrainHeight }, seed: 1229867859,
+  totalLaps: 1, countdownSeconds: 3, competitionProfile: 'time-trial' }); }
+function step(sim: RaceSimulation, frame: number) { sim.step({ brake: 1, boost: frame >= 558 && frame <= 910 }); }
+function matrices(art: ReturnType<typeof fixture>) { return art.all.map(m => [...m.matrix.elements, ...m.position.toArray(), ...m.quaternion.toArray()]); }
+
+beforeAll(async () => {
+  for (const name of variants) {
+    sources.set(name, await load(`public/assets/inkstorm/vehicles/teemto-${name === 'hero' ? 'hero-open-v2' : 'rival'}.glb`, true));
+    sources.set(`${name}-damage`, await load(`${privatePath}teemto-damage-${name}-v16.glb`));
+  }
+});
+afterAll(() => { for (const root of sources.values()) for (const mesh of meshes(root)) {
+  mesh.geometry.dispose(); for (const material of Array.isArray(mesh.material) ? mesh.material : [mesh.material]) material.dispose();
+} });
+
+describe('actual authored Teemto damage packages', () => {
+  it.each(variants)('%s keeps intact birth/reset, original pilot and deterministic random-access transforms without vertex reads', name => {
+    const art = fixture(name), sim = race(); for (let frame = 1; frame <= 910; frame++) step(sim, frame);
+    const before = JSON.stringify(sim.state), rest = matrices(art), pilots = art.original.filter(m => m.name.startsWith('teemto-pilot-'));
+    const pilotParents = pilots.map(m => m.parent), pilotMatrices = pilots.map(m => m.matrix.clone());
+    const spies = art.all.map(m => vi.spyOn(m.geometry, 'getAttribute').mockImplementation(() => { throw new Error('Runtime vertex read'); }));
+    try {
+      const sample = (age: number) => { const remaining = WRECK_PRESENTATION_DURATION - age;
+        const pose = art.cache.update(sim.state.entries[0]!.vehicle, remaining, sim.terrain);
+        art.breakup.update(pose, remaining, sim.terrain); return pose; };
+      sample(0); expect(art.breakup.active).toBe(false); expect(art.breakup.damageVariantAvailable).toBe(true);
+      expect(art.damage.every(m => !m.visible)).toBe(true); expect(matrices(art)).toEqual(rest);
+      sample(.12); expect(art.breakup.damageVariantActive).toBe(true);
+      expect(art.damage.every(m => m.visible)).toBe(true);
+      expect(art.original.find(m => m.name === 'teemto-engine-right-body')!.visible).toBe(false);
+      expect(art.original.find(m => m.name === 'teemto-cockpit-body')!.visible).toBe(name === 'rival');
+      const early = matrices(art); sample(.8); sample(.12); expect(matrices(art)).toEqual(early);
+      for (const [i, pilot] of pilots.entries()) {
+        expect(pilot.parent).toBe(pilotParents[i]); expect(pilot.matrix.equals(pilotMatrices[i]!)).toBe(true); expect(pilot.visible).toBe(true);
+      }
+      const exhaust = new Vector3(4.025, .178, 5.638), rear = art.damage.find(m => m.name === 'teemto-damage-right-rear-v16')!;
+      const originalRear = sources.get(`${name}-damage`)!.getObjectByName(rear.name)!;
+      const expected = exhaust.clone().applyMatrix4(new Matrix4().multiplyMatrices(rear.matrix, originalRear.matrix.clone().invert()));
+      art.breakup.transformAttachment('exhaustRight', exhaust); expect(exhaust.distanceTo(expected)).toBeLessThan(1e-9);
+      sample(WRECK_PRESENTATION_DURATION); expect(art.breakup.damageVariantActive).toBe(false);
+      expect(art.original.every(m => m.visible)).toBe(true); expect(art.damage.every(m => !m.visible)).toBe(true);
+      expect(matrices(art)).toEqual(rest); art.breakup.reset(); expect(matrices(art)).toEqual(rest);
+      expect(JSON.stringify(sim.state)).toBe(before);
+    } finally { for (const spy of spies) spy.mockRestore(); art.breakup.reset(); }
+  });
+
+  it.each(variants)('%s contains every visible source vertex through actual wreck trajectory and side/chase camera aspects', name => {
+    const art = fixture(name), sim = race(), point = new Vector3(), body = new Matrix4(), world = new Matrix4();
+    const q = new Quaternion(), unit = new Vector3(1, 1, 1), statistics = new Map<string, { gap: number; frame: number; vertex: number }>();
+    const aspects = [1440 / 900, 16 / 9, 390 / 844, 844 / 390];
+    const rigs = aspects.map(aspect => { const camera = new CinematicCamera(); camera.camera.aspect = aspect; return camera; });
+    let positionsTested = 0, contactSamples = 0, cameraPositions = 0, maxQueries = 0;
+    try {
+      for (let frame = 1; frame <= 1168; frame++) {
+        step(sim, frame); if (frame < 910 || (frame % 6 && ![910, 911, 922, 943, 1168].includes(frame))) continue;
+        const entry = sim.state.entries[0]!, before = JSON.stringify(sim.state); let queries = 0;
+        const terrain = { heightAt: (x: number, z: number) => { queries++; return sim.terrain.heightAt(x, z); } };
+        const pose = art.cache.update(entry.vehicle, entry.galactic!.wreck.timer, terrain);
+        queries = 0; art.breakup.update(pose, entry.galactic!.wreck.timer, terrain); maxQueries = Math.max(maxQueries, queries);
+        if (pose.groundContact) contactSamples++;
+        art.root.updateMatrixWorld(true); body.compose(pose.position, q.setFromEuler(pose.rotation), unit);
+        for (const mesh of art.all) {
+          if (!mesh.visible) continue;
+          world.multiplyMatrices(body, mesh.matrixWorld);
+          const p = mesh.geometry.getAttribute('position');
+          for (let vertex = 0; vertex < p.count; vertex++) {
+            point.fromBufferAttribute(p, vertex).applyMatrix4(world);
+            const gap = point.y - sim.terrain.heightAt(point.x, point.z), old = statistics.get(mesh.name);
+            if (!old || gap < old.gap) statistics.set(mesh.name, { gap, frame, vertex });
+            positionsTested++;
+          }
+        }
+        const vehicle = entry.vehicle;
+        const subject: CameraSubject = { position: new Vector3(vehicle.position.x, vehicle.position.y, vehicle.position.z),
+          forward: pose.forward, velocity: new Vector3(), speed: 0, combatFocus: pose.center, combatForward: pose.forward,
+          combatRadius: pose.radius, combatBounds: pose.bounds, combatTerrain: sim.terrain };
+        if (frame % 12 === 0 || [910, 922, 943, 1168].includes(frame)) for (const rig of rigs) for (const mode of ['side', 'chase'] as const) {
+          rig.setMode(mode); rig.setCombatFraming(mode === 'side'); subject.wreckChase = mode === 'chase'; rig.snap(subject);
+          rig.camera.updateMatrixWorld(true);
+          for (const bound of pose.bounds) {
+            point.copy(bound).project(rig.camera); cameraPositions++;
+            expect(point.x, `${name}/${frame}/${mode}: horizontal safe bound`).toBeGreaterThanOrEqual(-.780001);
+            expect(point.x).toBeLessThanOrEqual(.780001); expect(point.y).toBeGreaterThanOrEqual(-.580001);
+            expect(point.y).toBeLessThanOrEqual(.700001); expect(point.z).toBeGreaterThan(-1); expect(point.z).toBeLessThan(1);
+          }
+          // Actual vertices are inside the tested transformed source boxes.
+          for (const mesh of art.all) if (mesh.visible) {
+            world.multiplyMatrices(body, mesh.matrixWorld); const p = mesh.geometry.getAttribute('position');
+            for (let vertex = 0; vertex < p.count; vertex++) {
+              point.fromBufferAttribute(p, vertex).applyMatrix4(world).project(rig.camera); cameraPositions++;
+              if (point.x < -.780001 || point.x > .780001 || point.y < -.580001 || point.y > .700001 || point.z <= -1 || point.z >= 1)
+                throw new Error(`${name}/${frame}/${mode}/${rig.camera.aspect}/${mesh.name}/${vertex}: clipped ${point.toArray()}`);
+            }
+          }
+        }
+        expect(JSON.stringify(sim.state)).toBe(before);
+      }
+      console.info('V16 actual authored damage geometry support/projection:', JSON.stringify({ name, positionsTested,
+        cameraPositions, contactSamples, maxQueries, minimumGapByMesh: Object.fromEntries(statistics) }));
+      expect(maxQueries).toBeLessThanOrEqual(name === 'hero' ? 296 : 222);
+      expect(contactSamples).toBeGreaterThan(0);
+      for (const [mesh, metric] of statistics) expect(metric.gap, `${name}/${mesh}/${metric.frame}: actual source no burial`).toBeGreaterThanOrEqual(-1e-6);
+      expect(statistics.get('teemto-damage-right-rear-v16')!.gap).toBeLessThan(.15);
+    } finally { art.breakup.reset(); for (const rig of rigs) rig.dispose(); }
+  }, 30_000);
+});

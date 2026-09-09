@@ -1,0 +1,151 @@
+{
+  "sourceSha256": "80557ea910b98cf95f69736cc9a955bff968b9bda6b037d4b9b20908746b2a34",
+  "coordinateMethod": "inverse V3 base affine; boot hand-deformation weight is zero",
+  "components": [
+    {
+      "vertices": 48,
+      "triangles": 92,
+      "canonicalBounds": [
+        [
+          -0.10199996732896374,
+          0.21199965692335554,
+          -0.24300002559538808
+        ],
+        [
+          -0.04799997037456881,
+          0.3029997524138419,
+          -0.19299980409683717
+        ]
+      ],
+      "topCapTrianglesNearZMinus0193": 10,
+      "trianglesStraddlingBootTopPlane": 0
+    },
+    {
+      "vertices": 12,
+      "triangles": 20,
+      "canonicalBounds": [
+        [
+          -0.09599996382190334,
+          0.24999957915275328,
+          -0.20399991435389364
+        ],
+        [
+          -0.053999966190707294,
+          0.2579996761198967,
+          -0.19199986119424142
+        ]
+      ],
+      "topCapTrianglesNearZMinus0193": 0,
+      "trianglesStraddlingBootTopPlane": 16
+    },
+    {
+      "vertices": 12,
+      "triangles": 20,
+      "canonicalBounds": [
+        [
+          -0.09599996382190334,
+          0.2599996849798387,
+          -0.20399991435389364
+        ],
+        [
+          -0.053999966190707294,
+          0.26799959736485635,
+          -0.19199973813949092
+        ]
+      ],
+      "topCapTrianglesNearZMinus0193": 0,
+      "trianglesStraddlingBootTopPlane": 16
+    },
+    {
+      "vertices": 12,
+      "triangles": 20,
+      "canonicalBounds": [
+        [
+          -0.09599996382190334,
+          0.26999966775217366,
+          -0.20399991435389364
+        ],
+        [
+          -0.053999966190707294,
+          0.2779997031919418,
+          -0.19199973813949092
+        ]
+      ],
+      "topCapTrianglesNearZMinus0193": 0,
+      "trianglesStraddlingBootTopPlane": 16
+    },
+    {
+      "vertices": 48,
+      "triangles": 92,
+      "canonicalBounds": [
+        [
+          0.04800003190194407,
+          0.21199965692335554,
+          -0.24300002559538808
+        ],
+        [
+          0.1020000442381828,
+          0.3029997524138419,
+          -0.19299980409683717
+        ]
+      ],
+      "topCapTrianglesNearZMinus0193": 10,
+      "trianglesStraddlingBootTopPlane": 0
+    },
+    {
+      "vertices": 12,
+      "triangles": 20,
+      "canonicalBounds": [
+        [
+          0.05400003540900446,
+          0.24999957915275328,
+          -0.20399991435389364
+        ],
+        [
+          0.09600003304020051,
+          0.2579996761198967,
+          -0.19199986119424142
+        ]
+      ],
+      "topCapTrianglesNearZMinus0193": 0,
+      "trianglesStraddlingBootTopPlane": 16
+    },
+    {
+      "vertices": 12,
+      "triangles": 20,
+      "canonicalBounds": [
+        [
+          0.05400003540900446,
+          0.2599996849798387,
+          -0.20399991435389364
+        ],
+        [
+          0.09600003304020051,
+          0.26799959736485635,
+          -0.19199973813949092
+        ]
+      ],
+      "topCapTrianglesNearZMinus0193": 0,
+      "trianglesStraddlingBootTopPlane": 16
+    },
+    {
+      "vertices": 12,
+      "triangles": 20,
+      "canonicalBounds": [
+        [
+          0.05400003540900446,
+          0.26999966775217366,
+          -0.20399991435389364
+        ],
+        [
+          0.09600003304020051,
+          0.2779997031919418,
+          -0.19199973813949092
+        ]
+      ],
+      "topCapTrianglesNearZMinus0193": 0,
+      "trianglesStraddlingBootTopPlane": 16
+    }
+  ],
+  "note": "Top-plane straddling shows strap geometry crosses boot-cap plane; counts alone are not full triangle-triangle intersection proof."
+}

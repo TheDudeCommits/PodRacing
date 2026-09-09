@@ -1,0 +1,253 @@
+{
+  "version": "V32 private per-piece presentation support",
+  "files": [
+    {
+      "path": "src/render/app/GameApp.ts",
+      "before": {
+        "sha256": "d289a9cfb8b683f0ab4309b4b9060fe02cfac4f091273b09b31c103f98a864a8",
+        "bytes": 175443
+      },
+      "candidate": {
+        "sha256": "f426d9024bf65413a5988c0076abd8db20d71f70c3b01824e1868a70f8f6fe7a",
+        "bytes": 175701
+      }
+    },
+    {
+      "path": "src/render/combat/TeemtoAuthoredDamage.ts",
+      "before": {
+        "sha256": "918c6904113bc77b34d35db1c6b6d024927e2ec71fd073799d9202ea9f0ce9a6",
+        "bytes": 27940
+      },
+      "candidate": {
+        "sha256": "008d11c218b4673f1984adf80ae0bf860b795cdf7a6409157605903997950cad",
+        "bytes": 30088
+      }
+    },
+    {
+      "path": "src/render/combat/WreckGroundContact.ts",
+      "before": {
+        "sha256": "7da1df16e489f21ac3ea1a0e174c7a6d4666a6fa20a1eb00aac2b150330a8b91",
+        "bytes": 2479
+      },
+      "candidate": {
+        "sha256": "7ab2320d7b62d770c6fd76fd3a9efdfe5c09538c49bed03a24c430078b6aa656",
+        "bytes": 5651
+      }
+    },
+    {
+      "path": "src/render/combat/WreckVisualPose.ts",
+      "before": {
+        "sha256": "e14f1c1cd2444c9d4d0fcd417092dd9263fa96783750871b9ffe7e8aa55e7b58",
+        "bytes": 11765
+      },
+      "candidate": {
+        "sha256": "969aec25ab34e210e6446ce1cafad45060e96849fcd1a2eb2739acc9e0f0cf9a",
+        "bytes": 11884
+      }
+    },
+    {
+      "path": "src/render/galactic/GalacticEffectsView.ts",
+      "before": {
+        "sha256": "892d90922e94b0b517fc3e14cd8f94ec57624f8717992566a2b11c6a0b8635dc",
+        "bytes": 98484
+      },
+      "candidate": {
+        "sha256": "a6d2868bf2ba903818bfe18b6f3ef20d5854c9eee9e07e0410c2c6ab8db3b5ca",
+        "bytes": 99576
+      }
+    },
+    {
+      "path": "tests/combat/TeemtoAuthoredDamage.test.ts",
+      "before": {
+        "sha256": "ce48b6a0bac37c752fbcd2581a598c7ab2d49c3d18aa9ae928f8cd175b87a214",
+        "bytes": 18366
+      },
+      "candidate": {
+        "sha256": "c9fad23f58411660634835d4b796c477b4f7f777c540e15c99f8e744c37d1817",
+        "bytes": 18452
+      }
+    },
+    {
+      "path": "tests/combat/TeemtoGroundEdges.test.ts",
+      "before": {
+        "sha256": "7cbc97c488e950f5cf9be8c8080891dd51676479b933e76ad124223ef5a23152",
+        "bytes": 7761
+      },
+      "candidate": {
+        "sha256": "c9656e88ab7f9b8c0c8e5956fe686fa36f53c64532d2091fe124350ae8b35602",
+        "bytes": 7848
+      }
+    },
+    {
+      "path": "tests/combat/TeemtoPresentationSupports.test.ts",
+      "before": null,
+      "candidate": {
+        "sha256": "f33821aae5bdc76519cc2bf51de4e4103aa0d0dc70e1fc1f0915e0acae7d97d5",
+        "bytes": 10715
+      }
+    },
+    {
+      "path": "tests/combat/TeemtoSupportSettle.test.ts",
+      "before": {
+        "sha256": "98debb1cd3e0d6b925563ce12c4b2b1c3e1b40e29b24bbe41498d2849c931306",
+        "bytes": 13331
+      },
+      "candidate": {
+        "sha256": "f3cef5133c7c283300727a073dad15d7027ff078c98fa4e836a690203260a632",
+        "bytes": 13413
+      }
+    },
+    {
+      "path": "tests/combat/WreckGroundContact.test.ts",
+      "before": {
+        "sha256": "dcb1df11624c8914c7608646a3f396409c35fc1100d318d1e9f766a04541210e",
+        "bytes": 3432
+      },
+      "candidate": {
+        "sha256": "170737b27a2bce8e9453fd392c848388bdcafe1bd722e309a38f4f39fea27924",
+        "bytes": 6072
+      }
+    },
+    {
+      "path": "tests/render/PerPieceContactEffects.test.ts",
+      "before": null,
+      "candidate": {
+        "sha256": "7b9af3109db108fae2933e2cb2408b4cecada5f9894eaacb84acbbf4f600fbad",
+        "bytes": 4439
+      }
+    },
+    {
+      "path": "tests/render/WreckContactVolume.test.ts",
+      "before": {
+        "sha256": "40a9a700f8106b093a830a94b5116aeef6e86f76989e9cf118e981f5a9d180c7",
+        "bytes": 12798
+      },
+      "candidate": {
+        "sha256": "6bba09ed95fe9ce53fc1d30bb5ce64fbd0d1ee1c2f76c58efd01522c6284ee22",
+        "bytes": 12798
+      }
+    }
+  ],
+  "patch": {
+    "path": "assets/source/inkstorm/combat-round35/v32-per-piece-support-preparation/v32-per-piece-support.patch",
+    "sha256": "754d1d9c9419bb6c011b219d13e08409e32731b24de6876a541c74f0110f0b1a",
+    "bytes": 54924
+  },
+  "evidence": [
+    {
+      "path": "assets/source/inkstorm/combat-round35/v32-per-piece-support-preparation/HANDOFF.md",
+      "sha256": "3dbbbe6ebcb8e88a5301637759113130819a10c88b6279c1990e5c1c4c302010",
+      "bytes": 7292
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/v32-per-piece-support-preparation/focused.log",
+      "sha256": "3beedae1dedd29e410c8b1cf563e17e66c4fe8aec105381db7f73f451384327b",
+      "bytes": 217
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/v32-per-piece-support-preparation/initial-focused.log",
+      "sha256": "4c3cad46b074b164f54f5c3a6958762f331900f51bea73a31ca52191a729b1c5",
+      "bytes": 2957
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/v32-per-piece-support-preparation/initial-identity-probe.json",
+      "sha256": "28667d746140e0390b5239413061cf0accb9eb426aab729b6bacfdd0392ffa3a",
+      "bytes": 64292
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/v32-per-piece-support-preparation/initial-identity-probe.log",
+      "sha256": "40fa81e642279739e28acdbf31466007e8e7c26d78af3a1f29752ca54c80cf7f",
+      "bytes": 215
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/v32-per-piece-support-preparation/initial-compatibility.log",
+      "sha256": "175d2c0e719bee423cee8a55ef51e78dc03202801a87c43188e413926da3fd0c",
+      "bytes": 9378
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/v32-per-piece-support-preparation/final-query-compatibility.log",
+      "sha256": "c15d6d42607c0300d9565701cb3caeb525482a1be70d622231de405a1ee02749",
+      "bytes": 219
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/v32-per-piece-support-preparation/final-typecheck.log",
+      "sha256": "5bdf9f01d7e6b259f8d940c3d4611aaea043a476370a35f67e3db81847fd5007",
+      "bytes": 73
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/v32-per-piece-support-preparation/final-identity-probe.log",
+      "sha256": "ea8dce500e0078cadf25d7c443300939d95c1c13e69bcc4c679782dbabaa606e",
+      "bytes": 215
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/v32-per-piece-support-preparation/identity-probe.json",
+      "sha256": "e27be77f7c8f61fe2034925812f2ec7e2dd50f36862aa39c2fc6de3e1ef79692",
+      "bytes": 64292
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/v32-per-piece-support-preparation/support-metrics.json",
+      "sha256": "30a41516756481a058f43ea170712b3fadeac2bbb65151253e1f1a484523aa43",
+      "bytes": 16779
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/v32-per-piece-support-preparation/identity-probe.test.ts",
+      "sha256": "0eabfb8cdef658f73587a214a11572355ac689fb948832e5c50e41cccf89319f",
+      "bytes": 3436
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/v32-per-piece-support-preparation/vitest.config.ts",
+      "sha256": "b8a7940519e766a00bd4ef41dfc1ff7476b8acd2efaa7b9e3589486ddfb41262",
+      "bytes": 1797
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/v32-per-piece-support-preparation/vitest.compat.config.ts",
+      "sha256": "958b3fdd8b3b55ded05aac06c4ce10f2d436b05c01807950e9f8915e6a702e6f",
+      "bytes": 2611
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/v32-per-piece-support-preparation/vitest.query-compat.config.ts",
+      "sha256": "13c347423ed861bd152b4b67ac3408a70711da83be63511ccd437c85bd7ecc29",
+      "bytes": 1954
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/v32-per-piece-support-preparation/vitest.probe.config.ts",
+      "sha256": "e7e8758f853d04772a614c4c00b16ca65bc9bd5a26f2c3c14d2893912dcfcc3a",
+      "bytes": 1791
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/v32-per-piece-support-preparation/typecheck.mjs",
+      "sha256": "2ab4bb80e403cf2b137490dba10b3a23ec0887f0f671b9a8fe3cafe8f6ec3d90",
+      "bytes": 1035
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/v32-per-piece-support-preparation/tsconfig.candidate.json",
+      "sha256": "7f3c039b21d2e475c86252082afeed38e1120db7959f802ebb3812bdb17aeea0",
+      "bytes": 602
+    }
+  ],
+  "contracts": {
+    "presentationOnly": true,
+    "partIds": [
+      0,
+      1,
+      2
+    ],
+    "witnessClearancesMetres": [
+      0.18,
+      0.18,
+      0.1
+    ],
+    "parentsPerPart": 2,
+    "cardsPerParent": 2,
+    "maxParents": 48,
+    "maxCards": 96,
+    "owners": 9,
+    "gritPerWreck": 10,
+    "changingAgeQueriesPerWreck": 54,
+    "changingAgeQueriesFullPool": 432,
+    "heldFxClockQueries": 0,
+    "additionalProducerCenterQueries": 2,
+    "producerQueriesHero": 461,
+    "producerQueriesRival": 404
+  }
+}

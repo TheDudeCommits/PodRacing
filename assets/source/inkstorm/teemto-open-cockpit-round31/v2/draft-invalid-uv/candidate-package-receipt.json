@@ -1,0 +1,19 @@
+{
+  "source": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/vehicles/4eff45899ada40bb920c5c744663db90/processed/pilot-v4c/teemto-pilot-v4c-runtime.glb",
+  "sourceSha256": "f3eb56a54b7dbb8f4a26263fb26f1f88b188db6bcc409910a3561ae939f1eef1",
+  "geometry": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/teemto-open-cockpit-round31/v2/teemto-open-cockpit-round31-v2-geometry.glb",
+  "geometrySha256": "7bebb7ea333fa5e16a58be455fcf752d05483746cd60389fbe5e6ded0c3df1c2",
+  "candidate": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/teemto-open-cockpit-round31/v2/teemto-open-cockpit-round31-v2-candidate.glb",
+  "candidateSha256": "6136e8cc50d5823a2b0c4c5e26eb3af3f4e790fb609efd29587477af18980c53",
+  "bytes": 7678320,
+  "originalBinChunkByteExact": true,
+  "preservedOriginalBinBytes": 6763760,
+  "originalEnginePilotMeshDefinitionsMaterialsTexturesAndAccessorsExact": true,
+  "unusedSourceCockpitMeshDefinitionOmitted": true,
+  "changedOriginalNode": "teemto-cockpit-body mesh reference; global mesh indices remapped after unused mesh omission",
+  "newNodes": [
+    "teemto-cockpit-graphite-v2"
+  ],
+  "alphaMode": "Every new material is OPAQUE; no transparency or runtime camera changes",
+  "status": "Source-only candidate; in-world visual and performance acceptance pending"
+}

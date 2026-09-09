@@ -1,0 +1,54 @@
+{
+  "status": "Actual twoV7color masters inspected; originalroughnessfilesreused",
+  "images": [
+    {
+      "owner": "body",
+      "oldSha256": "5afc8910cd48c2d4ca0f18aee07a41f79413813486ff30907e68a6fa726a330b",
+      "newSha256": "07243038165c77f64ecc3856a20a6e4d4e3baed3742dac394dc10fe3a5be7b72",
+      "newBytes": 1463920,
+      "shape": [
+        2048,
+        2048,
+        3
+      ],
+      "oldCoveredPixels": 947281,
+      "newCoveredPixels": 947281,
+      "coverageMaskExact": true,
+      "maximumEncodedRgbIncrease255": 0,
+      "minimumEncodedRgbChange255": -45,
+      "linearRatioQuantilesNonzeroChannels": {
+        "0": 0.5854480025258558,
+        "0.01": 0.6141031216927895,
+        "0.5": 0.8027681229403983,
+        "0.99": 1.0,
+        "1": 1.0
+      },
+      "scope": "Decoded image inspection, including baked margins; ratios quantized by8-bit PNG. Pixel identity is not a visual-parity assertion."
+    },
+    {
+      "owner": "pilot",
+      "oldSha256": "cbb30b8d23f9902e343d705eca901f3e51e6e83599150880eaa2be3a6c385761",
+      "newSha256": "27d3ed1a8582ba6140b138ab0754d65faff586d04895ae166d768148548a1822",
+      "newBytes": 586530,
+      "shape": [
+        1024,
+        1024,
+        3
+      ],
+      "oldCoveredPixels": 757157,
+      "newCoveredPixels": 757157,
+      "coverageMaskExact": true,
+      "maximumEncodedRgbIncrease255": 0,
+      "minimumEncodedRgbChange255": -37,
+      "linearRatioQuantilesNonzeroChannels": {
+        "0": 0.5783899558839705,
+        "0.01": 0.6139081183392594,
+        "0.5": 0.7034473574151915,
+        "0.99": 1.0,
+        "1": 1.0
+      },
+      "scope": "Decoded image inspection, including baked margins; ratios quantized by8-bit PNG. Pixel identity is not a visual-parity assertion."
+    }
+  ],
+  "imageEditingPerformed": false
+}

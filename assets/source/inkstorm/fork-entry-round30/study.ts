@@ -1,0 +1,17 @@
+import {writeFileSync} from 'node:fs';
+import {createProceduralPodraceCourse} from '../../../../src/game/race/course';
+import {createCourseGulfField} from '../../../../src/game/race/CourseGulfField';
+import {sampleTerrainHeight} from '../../../../src/render/terrain/terrainMath';
+import {getInkstormForkDividers} from '../../../../src/game/race/inkstormLayout';
+import {inkstormRoadCrossSection} from '../../../../src/render/inkstorm/InkstormRoad';
+import {groundInkstormButtress} from '../../../../src/render/inkstorm/InkstormRockGrounding';
+const folder='assets/source/inkstorm/fork-entry-round30';
+let field:ReturnType<typeof createCourseGulfField>=null;
+const ground=(x:number,z:number)=>sampleTerrainHeight(x,z,field);
+const course=createProceduralPodraceCourse({heightAt:ground},0x494e4b53);
+field=createCourseGulfField(course);course.refreshTerrainHeights({heightAt:sampleTerrainHeight});
+const branch=course.branches.find(b=>b.elevated)!;
+const rows=branch.points.map((p,i)=>{const {rightX,rightZ}=inkstormRoadCrossSection(branch.points,i,false),main=course.sampleAtProgress(p.canonicalProgress);return{index:i,...p,rightX,rightZ,groundCenter:ground(p.x,p.z),edgeGround:[-1,1].map(s=>ground(p.x+rightX*p.width*s,p.z+rightZ*p.width*s)),main:{x:main.x,z:main.z,y:main.y,width:main.width},gap:Math.hypot(p.x-main.x,p.z-main.z)-p.width-main.width};});
+const dividers=getInkstormForkDividers(course).map(d=>({...d,grounding:groundInkstormButtress(d,ground)}));
+writeFileSync(`${folder}/course-contact-study.json`,JSON.stringify({seed:course.seed,signature:course.signature,totalLength:course.totalLength,entryProgress:branch.entryProgress,exitProgress:branch.exitProgress,branchId:branch.id,rows,dividers},null,2)+'\n');
+console.log(JSON.stringify({totalLength:course.totalLength,rows:rows.map(r=>({i:r.index,t:r.routeProgress,y:r.y,ground:r.groundCenter,leftGap:r.y-r.edgeGround[0]!,rightGap:r.y-r.edgeGround[1]!,gap:r.gap})),dividers},null,2));

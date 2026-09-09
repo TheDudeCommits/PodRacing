@@ -1,0 +1,123 @@
+{
+  "mode": "baseline",
+  "sourceSha256": "a0ab709353a86372c02e238feaa76083f171f9be85c0a3a9c58a9b21d60ac357",
+  "signature": "2dacfc90",
+  "grids": [
+    {
+      "name": "launch",
+      "minX": 18042,
+      "minZ": 288,
+      "cellSize": 6,
+      "size": 417,
+      "centerX": 18752.63539651194,
+      "centerZ": 1736.6760947504665,
+      "depth": 170,
+      "filename": "baseline-launch.f32",
+      "sha256": "1508215a796d439b48aeebf7f510c8847ab057a296b138fb578b094c29efa572"
+    },
+    {
+      "name": "finish",
+      "minX": 17232,
+      "minZ": -1668,
+      "cellSize": 6,
+      "size": 257,
+      "centerX": 18000.06498369107,
+      "centerZ": -894.4647185787201,
+      "depth": 150,
+      "filename": "baseline-finish.f32",
+      "sha256": "bd9da2b5038d659fc1622390f211ba5e42bacac2a90288b9aaf2656af03abffa"
+    }
+  ],
+  "launchProfile": {
+    "startDistance": 1043.7588430595824,
+    "crestDistance": 1313.7588430595824,
+    "floorDistance": 1913.7588430595824,
+    "basinEndDistance": 2163.7588430595824,
+    "endDistance": 2863.7588430595824,
+    "crestHeight": -12.384682054095904,
+    "floorHeight": -106.3846820540959,
+    "endHeight": -7.548968169611921,
+    "fullWidth": 220,
+    "fadeWidth": 420
+  },
+  "anchor": {
+    "x": 18811.419391254596,
+    "y": -3.189518864041343,
+    "z": 1320.0276241060935,
+    "progress": 0.17968750000000008,
+    "distance": 1373.8916336327839,
+    "tangentX": 0.6455360372020446,
+    "tangentZ": 0.7637298113033698,
+    "rightX": 0.7637298113033698,
+    "rightZ": -0.6455360372020446,
+    "width": 30.13325846508867,
+    "tag": "launch-crest",
+    "curvature": 0.0020512812608616256
+  },
+  "cameras": [
+    {
+      "id": "05-launch",
+      "progress": 0.17968750000000008,
+      "position": [
+        18805.3636927033,
+        -4.769261381775102,
+        1303.0263772671685
+      ],
+      "quaternion": [
+        0.01697914493895082,
+        0.9381263833393148,
+        0.046474241330288574,
+        -0.34274005078574254
+      ],
+      "fov": 63.23400281110756,
+      "aspect": 1.6,
+      "near": 0.35,
+      "far": 18000,
+      "reconstructedPositionError": 2.4868995751603507e-14
+    },
+    {
+      "id": "launch-crest",
+      "progress": 0.169,
+      "position": [
+        18760.34373030681,
+        -2.349649855802377,
+        1236.0201191584333
+      ],
+      "quaternion": [
+        0.004666419367288055,
+        0.9627543133432152,
+        0.016650153854937053,
+        -0.26982425585171127
+      ],
+      "fov": 63.23400281110756,
+      "aspect": 1.6,
+      "near": 0.35,
+      "far": 18000,
+      "reconstructedPositionError": 0
+    },
+    {
+      "id": "launch-descent",
+      "progress": 0.218,
+      "position": [
+        19037.728283361997,
+        -60.9532722738044,
+        1471.8079469206396
+      ],
+      "quaternion": [
+        -0.03889349076677177,
+        -0.8329499587419182,
+        -0.05902967585552478,
+        0.5488143219488751
+      ],
+      "fov": 63.23400281110756,
+      "aspect": 1.6,
+      "near": 0.35,
+      "far": 18000,
+      "reconstructedPositionError": 0
+    }
+  ],
+  "cameraSource": "output/gauntlet/round27-cliff-normal/receipts.json",
+  "cameraSourceSha256": "336a08a7e1e725691d0cec35df68604ac5d8d28bf71a0928e99d54a1e999723e",
+  "cameraPositionsConfirmedAgainstCurrentActualCapture": true,
+  "limitation": "Isolated CPU field bake; no runtime source, browser or build mutation."
+}

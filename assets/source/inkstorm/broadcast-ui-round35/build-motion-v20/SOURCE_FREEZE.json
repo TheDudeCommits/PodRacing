@@ -1,0 +1,28 @@
+{
+  "frozenAt": "2026-09-09T04:06:43.823431+00:00",
+  "scope": "One existing Build-root animation declaration becomes none; its opaque background is visible immediately. Descendant panel entries and equipment feedback continue unchanged.",
+  "sources": {
+    "src/ui/broadcastStyles.ts": {
+      "sha256": "470456ff333642a491e7f5ea34cbdbfa2ffd3798715d32a73bb3d80ee6c1ef37",
+      "bytes": 75989
+    },
+    "src/ui/RaceHud.ts": {
+      "sha256": "d50d8ed42322b2d861491e9934c74da7af6956ef8f1f3110005ff8a16b748ebb",
+      "bytes": 118090
+    },
+    "src/ui/workshopGraphicStyles.ts": {
+      "sha256": "c026d0c35640b4ab1551d4aa0fa265c9cce03dcd970e85614f8195c6c016ffcb",
+      "bytes": 16190
+    }
+  },
+  "patchSha256": "31559f6c8f6afc0e1a6f28024d652cea68db51dcc5f5c6230d23c18a1ec79e54",
+  "checks": {
+    "typecheck": "PASS",
+    "postcssRules": 771,
+    "whitespace": "PASS",
+    "onlyOneSourceLineChanged": true,
+    "RaceHudAndWorkshopGraphicStylesUnchanged": true,
+    "panelEquipmentAndReducedMotionRulesPreserved": true
+  },
+  "nativeAcceptance": "PENDING joined V20 build. Verify opaque root from first visible frame while three panels still animate and settle; retain all equip/focus, room selector and narrow gates."
+}

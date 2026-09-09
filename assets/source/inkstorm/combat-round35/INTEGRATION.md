@@ -1,0 +1,29 @@
+# Combat round 35 private candidate
+
+`combat-round35.patch` is ready for root integration. It was checked with `git apply --check` against the live checkout. No live source, tests, browser, Blender, build, or performance run was changed or performed by this agent. `candidate-audit.json` pins every changed baseline and candidate source. The root's current RaceHud supplies the compatible `updateCombat` method; no HUD source is in this patch.
+
+## Implemented behavior
+
+- A local authoritative wreck starts an 820 ms wall-clock slow-motion shot only in solo after the existing mastery observer has invalidated that wrecked run. A local outgoing takedown can slow chaos gameplay, keeping the attacking driver's camera and controls. The controller never changes record eligibility, simulation snapshots, input, fixed delta, random state, or network state.
+- The scheduler integrates its incoming wall delta through an 80 ms entry, 540 ms hold at 0.18 speed, and 200 ms return. Fixed simulation ticks remain 1/120 s. A six-second wall cooldown prevents stacking. Menu, pause, capture, local finish, or role changes cancel the shot. Race restart clears its event cursor and cooldown. The camera restores the director's exact previous manual override. Explicit camera/capture commands terminate the temporary shot first.
+- Only a victim shot uses the side camera and letterbox. Both are suppressed by the saved reduced-motion setting, system reduced-motion preference, or motion intensity zero. Slow scheduling remains enabled under those comfort flags, matching the requested separation between camera motion and gameplay pacing. The attacking driver always keeps the driving view.
+- HUD cues update every display frame independently of the four-simulation-tick HUD cadence. All progress fields are wall-clock age from zero to one. Hit/shield-hit cues live 420 ms, wreck/takedown cues 1250 ms, EMP/repair cues 1000 ms. `cue` has `kind`, `title`, `detail`, `progress`; `cinematic` has `active`, `progress`, `letterbox`, `cameraCut`, `focusRacerId`; `timeScale` is the instantaneous visual pacing factor. The HUD may ignore extra fields.
+- Guests consume the host's once-only sequence journal for HUD, existing pooled one-shot effects, audio, and impulses. Host and guest schedulers remain real time. The protocol-v1 event parser accepts bounded finite JSON with a string event type; it has no event-type whitelist. Old hosts simply have no new pickups; old guests can ignore new semantic event types while retaining authoritative snapshots. Mixed-version visual parity is not claimed.
+
+## Distinct new chaos pickups
+
+EMP Cell is authored at progress .315 / lateral -9. It immediately pulses within a 42 m sphere, interrupts enemy boost/redline and weapons for 1.35 simulation seconds, and clears hostile nearby Heat Lance and Scrap Mine entities. It causes no direct hull damage. Pulse Shell blocks the interruption and spends .45 seconds of shield life. Wreck/recovery immunity and team allies are respected. Target event order is stable. Nearby ordnance is removed without spawning replacements or consuming RNG. EMP disruption now gates redline acceleration before it is calculated; the previous ionized path removed boost input only after that calculation.
+
+Repair + Cooling Salvage is authored at progress .805 / lateral +8. It restores up to .24 hull, vents up to .4 vehicle heat and .4 core heat, reduces the existing heat lockout by .8 seconds, and clears ionized status. It grants no permanent workshop part, ammunition, currency, or run token. Its event reports actual `repaired`, `cooled`, and `coreCooled` amounts, including a core-only vent when vehicle heat is zero.
+
+Both pickups are instantaneous, once per race, and use the existing deterministic pickup-claim boundary. They do not alter the six established pickup coordinates or consume RNG. Clean-race, time-trial, and training profiles continue to remove all pickups and random hazards. Wrecked racers cannot claim the new pickups. Existing pickup tie-breaking remains unchanged.
+
+Purple, flattened/tilted EMP hardware and upright green repair hardware reuse the existing instanced mine/salvage pool. Collection uses purple energy or green reward bursts and factual HUD cues. These are original additions requested during implementation; they are not claimed to appear in the supplied videos.
+
+## Verified and remaining
+
+The private path-preserving CPU overlay ran 31 tests: 14 new presentation tests, seven new pickup tests, and all 10 existing Galactic system tests. All passed. Tests cover event deduplication, no stacking, six-second admission boundary, 30/60/144 Hz integrated scheduling equivalence, solo/host/guest policy, comfort suppression, discontinuity cancellation, factual EMP/core-cooling cues, range/shield/recovery boundaries, pickup contention, team filtering, unchanged old locations/RNG, clean-profile removal, and full RaceSimulation save/restore replay equality. Targeted TypeScript validation includes the new modules/tests and the private GameApp/renderer import graph with root's current RaceHud. `validation-tests.json` is the raw Vitest JSON receipt.
+
+Root should run the integrated suite/build and check live solo victim/outgoing cues, exact camera restoration, pause/resume, reduced motion, manual cameras, new pickup visibility/readability, and host/guest feedback. No visual, audio-perceptual, multiplayer-session, GPU-cost, or performance acceptance is claimed here. The existing results replay still uses its prior sparse 12 Hz pose selection and fixed explosion timing; this patch prioritizes the requested live solo shot.
+
+The validation overlay contains read-only symlinks to unchanged live dependencies and private candidate replacements. Its results describe the pinned candidate at execution time; it is not an immutable deployment or a performance checkpoint.

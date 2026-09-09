@@ -1,0 +1,122 @@
+{
+  "pilotV4CBefore": {
+    "content": [
+      {
+        "type": "text",
+        "text": "Code executed successfully: {\"context\": {\"scene\": \"Cruise \\u2014 Going Merry source 4b2cb678\", \"viewLayer\": \"ViewLayer\", \"active\": \"Sketchfab_model.001\", \"selectedCount\": 15, \"objectCount\": 17}, \"suitColors\": [{\"color\": [0.017, 0.025, 0.033], \"count\": 2588}, {\"color\": [0.021, 0.031, 0.039], \"count\": 112}, {\"color\": [0.01, 0.015, 0.02], \"count\": 120}, {\"color\": [0.012, 0.017, 0.021], \"count\": 4941}, {\"color\": [0.024, 0.031, 0.035], \"count\": 144}, {\"color\": [0.009, 0.013, 0.016], \"count\": 100}, {\"color\": [0.012, 0.017, 0.022], \"count\": 234}, {\"color\": [0.013, 0.019, 0.024], \"count\": 150}, {\"color\": [0.07, 0.056, 0.033], \"count\": 414}], \"contextUnchanged\": true}\n"
+      }
+    ],
+    "structuredContent": {
+      "result": "Code executed successfully: {\"context\": {\"scene\": \"Cruise \\u2014 Going Merry source 4b2cb678\", \"viewLayer\": \"ViewLayer\", \"active\": \"Sketchfab_model.001\", \"selectedCount\": 15, \"objectCount\": 17}, \"suitColors\": [{\"color\": [0.017, 0.025, 0.033], \"count\": 2588}, {\"color\": [0.021, 0.031, 0.039], \"count\": 112}, {\"color\": [0.01, 0.015, 0.02], \"count\": 120}, {\"color\": [0.012, 0.017, 0.021], \"count\": 4941}, {\"color\": [0.024, 0.031, 0.035], \"count\": 144}, {\"color\": [0.009, 0.013, 0.016], \"count\": 100}, {\"color\": [0.012, 0.017, 0.022], \"count\": 234}, {\"color\": [0.013, 0.019, 0.024], \"count\": 150}, {\"color\": [0.07, 0.056, 0.033], \"count\": 414}], \"contextUnchanged\": true}\n"
+    },
+    "isError": false
+  },
+  "pilotV4CSetup": {
+    "content": [
+      {
+        "type": "text",
+        "text": "Code executed successfully: {\"action\": \"setup\", \"scene\": \"PodRacing \\u2014 Teemto pilot material v4c\", \"geometryAndUVPreservedExactly\": true, \"sourceAtlasCopied\": true, \"suitBaseLinear\": [0.065, 0.095, 0.13], \"changedMaterial\": \"suit color only\", \"normalAndRoughnessUnchanged\": true, \"otherFivePilotMaterialTreatmentsUnchanged\": true, \"sourceModified\": false, \"restoredContext\": {\"scene\": \"Cruise \\u2014 Going Merry source 4b2cb678\", \"viewLayer\": \"ViewLayer\", \"activeObject\": \"Sketchfab_model.001\", \"selectedCount\": 15, \"exactSelectionRestored\": true, \"objectCountUnchanged\": true, \"sourceObjectCount\": 17}}\n"
+      }
+    ],
+    "structuredContent": {
+      "result": "Code executed successfully: {\"action\": \"setup\", \"scene\": \"PodRacing \\u2014 Teemto pilot material v4c\", \"geometryAndUVPreservedExactly\": true, \"sourceAtlasCopied\": true, \"suitBaseLinear\": [0.065, 0.095, 0.13], \"changedMaterial\": \"suit color only\", \"normalAndRoughnessUnchanged\": true, \"otherFivePilotMaterialTreatmentsUnchanged\": true, \"sourceModified\": false, \"restoredContext\": {\"scene\": \"Cruise \\u2014 Going Merry source 4b2cb678\", \"viewLayer\": \"ViewLayer\", \"activeObject\": \"Sketchfab_model.001\", \"selectedCount\": 15, \"exactSelectionRestored\": true, \"objectCountUnchanged\": true, \"sourceObjectCount\": 17}}\n"
+    },
+    "isError": false
+  },
+  "pilotV4CBake": {
+    "content": [
+      {
+        "type": "text",
+        "text": "Error executing code: Communication error with Blender: Code execution error: Error: Uninitialized image \"Inkstorm original pilot color atlas v4c 2048\" from object \"pilot-material-v4c-suit\"\n"
+      }
+    ],
+    "structuredContent": {
+      "result": "Error executing code: Communication error with Blender: Code execution error: Error: Uninitialized image \"Inkstorm original pilot color atlas v4c 2048\" from object \"pilot-material-v4c-suit\"\n"
+    },
+    "isError": false
+  },
+  "pilotV4CInitialize": {
+    "content": [
+      {
+        "type": "text",
+        "text": "Code executed successfully: {\"initializedAtlas\": true, \"size\": [2048, 2048], \"fixedOnlyV4CMaterials\": 7, \"sourcePixelsEdited\": false, \"restoredContext\": {\"scene\": \"Cruise \\u2014 Going Merry source 4b2cb678\", \"layer\": \"ViewLayer\", \"active\": \"Sketchfab_model.001\", \"selectedCount\": 15, \"exactSelectionRestored\": true, \"objectCount\": 17}}\n"
+      }
+    ],
+    "structuredContent": {
+      "result": "Code executed successfully: {\"initializedAtlas\": true, \"size\": [2048, 2048], \"fixedOnlyV4CMaterials\": 7, \"sourcePixelsEdited\": false, \"restoredContext\": {\"scene\": \"Cruise \\u2014 Going Merry source 4b2cb678\", \"layer\": \"ViewLayer\", \"active\": \"Sketchfab_model.001\", \"selectedCount\": 15, \"exactSelectionRestored\": true, \"objectCount\": 17}}\n"
+    },
+    "isError": false
+  },
+  "pilotV4CBakeSuccess": {
+    "content": [
+      {
+        "type": "text",
+        "text": "Error executing code: Communication error with Blender: Code execution error: Error: Problem saving the bake map internally for object \"pilot-material-v4c-suit\"\n"
+      }
+    ],
+    "structuredContent": {
+      "result": "Error executing code: Communication error with Blender: Code execution error: Error: Problem saving the bake map internally for object \"pilot-material-v4c-suit\"\n"
+    },
+    "isError": false
+  },
+  "pilotV4CReload": {
+    "content": [
+      {
+        "type": "text",
+        "text": "Code executed successfully: {\"imageInitialized\": true, \"size\": [2048, 2048], \"restoredContext\": {\"scene\": \"Cruise \\u2014 Going Merry source 4b2cb678\", \"viewLayer\": \"ViewLayer\", \"activeObject\": \"Sketchfab_model.001\", \"selectedCount\": 15, \"objectCount\": 17, \"contextUnchanged\": true}}\n"
+      }
+    ],
+    "structuredContent": {
+      "result": "Code executed successfully: {\"imageInitialized\": true, \"size\": [2048, 2048], \"restoredContext\": {\"scene\": \"Cruise \\u2014 Going Merry source 4b2cb678\", \"viewLayer\": \"ViewLayer\", \"activeObject\": \"Sketchfab_model.001\", \"selectedCount\": 15, \"objectCount\": 17, \"contextUnchanged\": true}}\n"
+    },
+    "isError": false
+  },
+  "pilotV4CBakeFinal": {
+    "content": [
+      {
+        "type": "text",
+        "text": "Code executed successfully: Info: Baking map saved to internal image, save it externally or pack it\n{\"action\": \"bake\", \"atlas\": \"/Users/amir/Projects/PodRacing/assets/source/inkstorm/vehicles/4eff45899ada40bb920c5c744663db90/processed/pilot-v4c/pilot-color-atlas-v4c.png\", \"imageSize\": [2048, 2048], \"bakedObjects\": [\"pilot-material-v4c-suit\"], \"uvRepacked\": false, \"normalAndRoughnessUnchanged\": true, \"changedMaterial\": \"suit color only\", \"restoredContext\": {\"scene\": \"Cruise \\u2014 Going Merry source 4b2cb678\", \"viewLayer\": \"ViewLayer\", \"activeObject\": \"Sketchfab_model.001\", \"selectedCount\": 15, \"exactSelectionRestored\": true, \"objectCountUnchanged\": true, \"sourceObjectCount\": 17}}\n"
+      }
+    ],
+    "structuredContent": {
+      "result": "Code executed successfully: Info: Baking map saved to internal image, save it externally or pack it\n{\"action\": \"bake\", \"atlas\": \"/Users/amir/Projects/PodRacing/assets/source/inkstorm/vehicles/4eff45899ada40bb920c5c744663db90/processed/pilot-v4c/pilot-color-atlas-v4c.png\", \"imageSize\": [2048, 2048], \"bakedObjects\": [\"pilot-material-v4c-suit\"], \"uvRepacked\": false, \"normalAndRoughnessUnchanged\": true, \"changedMaterial\": \"suit color only\", \"restoredContext\": {\"scene\": \"Cruise \\u2014 Going Merry source 4b2cb678\", \"viewLayer\": \"ViewLayer\", \"activeObject\": \"Sketchfab_model.001\", \"selectedCount\": 15, \"exactSelectionRestored\": true, \"objectCountUnchanged\": true, \"sourceObjectCount\": 17}}\n"
+    },
+    "isError": false
+  },
+  "pilotV4Cpreview-side": {
+    "content": [
+      {
+        "type": "text",
+        "text": "Code executed successfully: {\"action\": \"preview-side\", \"image\": \"/Users/amir/Projects/PodRacing/assets/source/inkstorm/vehicles/4eff45899ada40bb920c5c744663db90/processed/pilot-v4c/review/teemto-pilot-side-v4c.png\", \"renderer\": \"CPU Cycles, 32 samples\", \"runtimeEvidence\": false, \"geometryModified\": false, \"restoredContext\": {\"scene\": \"Cruise \\u2014 Going Merry source 4b2cb678\", \"viewLayer\": \"ViewLayer\", \"activeObject\": \"Sketchfab_model.001\", \"selectedCount\": 15, \"exactSelectionRestored\": true, \"objectCountUnchanged\": true, \"sourceObjectCount\": 17}}\n"
+      }
+    ],
+    "structuredContent": {
+      "result": "Code executed successfully: {\"action\": \"preview-side\", \"image\": \"/Users/amir/Projects/PodRacing/assets/source/inkstorm/vehicles/4eff45899ada40bb920c5c744663db90/processed/pilot-v4c/review/teemto-pilot-side-v4c.png\", \"renderer\": \"CPU Cycles, 32 samples\", \"runtimeEvidence\": false, \"geometryModified\": false, \"restoredContext\": {\"scene\": \"Cruise \\u2014 Going Merry source 4b2cb678\", \"viewLayer\": \"ViewLayer\", \"activeObject\": \"Sketchfab_model.001\", \"selectedCount\": 15, \"exactSelectionRestored\": true, \"objectCountUnchanged\": true, \"sourceObjectCount\": 17}}\n"
+    },
+    "isError": false
+  },
+  "pilotV4Cpreview-front": {
+    "content": [
+      {
+        "type": "text",
+        "text": "Code executed successfully: {\"action\": \"preview-front\", \"image\": \"/Users/amir/Projects/PodRacing/assets/source/inkstorm/vehicles/4eff45899ada40bb920c5c744663db90/processed/pilot-v4c/review/teemto-pilot-front-quarter-v4c.png\", \"renderer\": \"CPU Cycles, 32 samples\", \"runtimeEvidence\": false, \"geometryModified\": false, \"restoredContext\": {\"scene\": \"Cruise \\u2014 Going Merry source 4b2cb678\", \"viewLayer\": \"ViewLayer\", \"activeObject\": \"Sketchfab_model.001\", \"selectedCount\": 15, \"exactSelectionRestored\": true, \"objectCountUnchanged\": true, \"sourceObjectCount\": 17}}\n"
+      }
+    ],
+    "structuredContent": {
+      "result": "Code executed successfully: {\"action\": \"preview-front\", \"image\": \"/Users/amir/Projects/PodRacing/assets/source/inkstorm/vehicles/4eff45899ada40bb920c5c744663db90/processed/pilot-v4c/review/teemto-pilot-front-quarter-v4c.png\", \"renderer\": \"CPU Cycles, 32 samples\", \"runtimeEvidence\": false, \"geometryModified\": false, \"restoredContext\": {\"scene\": \"Cruise \\u2014 Going Merry source 4b2cb678\", \"viewLayer\": \"ViewLayer\", \"activeObject\": \"Sketchfab_model.001\", \"selectedCount\": 15, \"exactSelectionRestored\": true, \"objectCountUnchanged\": true, \"sourceObjectCount\": 17}}\n"
+    },
+    "isError": false
+  },
+  "pilotV4Cpreview-full": {
+    "content": [
+      {
+        "type": "text",
+        "text": "Code executed successfully: {\"action\": \"preview-full\", \"image\": \"/Users/amir/Projects/PodRacing/assets/source/inkstorm/vehicles/4eff45899ada40bb920c5c744663db90/processed/pilot-v4c/review/teemto-pilot-full-v4c.png\", \"renderer\": \"CPU Cycles, 32 samples\", \"runtimeEvidence\": false, \"geometryModified\": false, \"restoredContext\": {\"scene\": \"Cruise \\u2014 Going Merry source 4b2cb678\", \"viewLayer\": \"ViewLayer\", \"activeObject\": \"Sketchfab_model.001\", \"selectedCount\": 15, \"exactSelectionRestored\": true, \"objectCountUnchanged\": true, \"sourceObjectCount\": 17}}\n"
+      }
+    ],
+    "structuredContent": {
+      "result": "Code executed successfully: {\"action\": \"preview-full\", \"image\": \"/Users/amir/Projects/PodRacing/assets/source/inkstorm/vehicles/4eff45899ada40bb920c5c744663db90/processed/pilot-v4c/review/teemto-pilot-full-v4c.png\", \"renderer\": \"CPU Cycles, 32 samples\", \"runtimeEvidence\": false, \"geometryModified\": false, \"restoredContext\": {\"scene\": \"Cruise \\u2014 Going Merry source 4b2cb678\", \"viewLayer\": \"ViewLayer\", \"activeObject\": \"Sketchfab_model.001\", \"selectedCount\": 15, \"exactSelectionRestored\": true, \"objectCountUnchanged\": true, \"sourceObjectCount\": 17}}\n"
+    },
+    "isError": false
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "stage": "Centrally applied V29 candidate; integrated validation and native acceptance pending",
+  "at": "2026-09-09T10:18:36.014586+00:00",
+  "patch": "assets/source/inkstorm/combat-round35/v29-contact-consequence-preparation/v29-low-contact-consequence.patch",
+  "patchSha256": "89d3378145935b870fb1a6c6751ac6994e403ac827387f606aa82bebca057b92",
+  "files": [
+    {
+      "path": "src/render/galactic/GalacticEffectsView.ts",
+      "before": "c52ffbc8fe45adaaafb9512b42b8e3929b5c0e7f356c2bec065fb57a978e087c",
+      "after": "a622e49ab442fbc8705a80b377fbf45eec83de24ad85b2dad015668766015a69"
+    },
+    {
+      "path": "tests/render/WreckFootprintEffects.test.ts",
+      "before": "9e0143320ee12a6ce8a281d09806db4435298ee7d2604a8f0f5e40e9b5d93eed",
+      "after": "3103c2b152645609d20dc63f1679cef0ac6c316b1ea7cb1994af197bc3ba05e7"
+    },
+    {
+      "path": "tests/render/WreckContactConsequence.test.ts",
+      "before": null,
+      "after": "7b5dcb2c12039f8afa5f1b51dd2818eca4a603dfe367c7e6751870a84c3d2dcf"
+    }
+  ]
+}

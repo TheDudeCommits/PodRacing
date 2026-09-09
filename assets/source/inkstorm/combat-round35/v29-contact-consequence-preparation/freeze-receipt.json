@@ -1,0 +1,73 @@
+{
+  "status": "private-source-frozen-for-central-review",
+  "frozenAtUtc": "2026-09-09T10:12:37.474238+00:00",
+  "targets": {
+    "src/render/galactic/GalacticEffectsView.ts": {
+      "beforeSha256": "c52ffbc8fe45adaaafb9512b42b8e3929b5c0e7f356c2bec065fb57a978e087c",
+      "candidateSha256": "a622e49ab442fbc8705a80b377fbf45eec83de24ad85b2dad015668766015a69"
+    },
+    "tests/render/WreckFootprintEffects.test.ts": {
+      "beforeSha256": "9e0143320ee12a6ce8a281d09806db4435298ee7d2604a8f0f5e40e9b5d93eed",
+      "candidateSha256": "3103c2b152645609d20dc63f1679cef0ac6c316b1ea7cb1994af197bc3ba05e7"
+    },
+    "tests/render/WreckContactConsequence.test.ts": {
+      "beforeSha256": null,
+      "candidateSha256": "7b5dcb2c12039f8afa5f1b51dd2818eca4a603dfe367c7e6751870a84c3d2dcf"
+    }
+  },
+  "artifacts": {
+    "v29-low-contact-consequence.patch": "89d3378145935b870fb1a6c6751ac6994e403ac827387f606aa82bebca057b92",
+    "HANDOFF.md": "de799dd03743d306c89d5c5578115a64e35050d62a17dd62475a18b44ac9d319",
+    "base-hashes.json": "4968f5340e95f87f679df3018fd8c86f75741a2467eb15049bc0a166737ff81c",
+    "candidate-hashes.json": "7a282bcc83ec96368928fe7b5b145b9195a511c3055e3c47e2a71cb3ff138be4",
+    "final-focused.log": "971828b950a7709df70f7df0e0ab8adffa209c452efcd77d8e08bb6f7801a2f6",
+    "final-compat.log": "48102bb4a617831d6cf75bd166767d4a7688fa52f171701c2a9f7afd3c338667",
+    "final-typecheck.log": "5bdf9f01d7e6b259f8d940c3d4611aaea043a476370a35f67e3db81847fd5007",
+    "apply-check.log": "ee1f874a8e893261a27c06e074f8dec124bc1540023b2eb44380960fdf0f5208",
+    "contact-metrics.json": "93fdbf698449dc81b5403d05837d2cb75269406d566f4e64d740d174fac4e721",
+    "diagnosis.json": "5b9275059532e29c5c7156a0fc3aa9eff0bae2402eed7e0a1b7d78ff113d6bdf",
+    "diagnosis.log": "5fe4bddc671cba3c59518a079f3d03c804c32dade1a3f3f0a6b2731a97663266",
+    "diagnose.ts": "2431fd242ab6d9fe95efb1b0655eeda0bb835890b7a588ba7b80f7f368d38036",
+    "run-diagnosis.mjs": "c53ae5dd0cd0d58f750c6f53587a08e6bcc9bb96a48be393babbf73ce1793836",
+    "initial-v28-effects-contracts.log": "b98ad13c8d269f0f4259973d197c5ecfe8fea5ca9cecd56c4c6f57adae09e239",
+    "initial-wrap-timing.log": "0e1a1d4c39c214b5ced1ece093efd29b366645e97f854e4243858b1c101cb2dd",
+    "initial-wrap-field-name.log": "5dcb57b557321bb7dd1625618d3ead2847368b2cd49893756f8b7411665638e7",
+    "vitest.config.ts": "653c7211c42cafde872d7eb03becf7f9d1dec9e54b0091dac45378ad5263388e",
+    "compat.config.ts": "64eed4ecb49c89c454788563fc0b35d6a749cf5024acd6ba8e4358c62e551963",
+    "typecheck.mjs": "6b9c2b51d67f494d492f1d0db0161bc8d5969478ac7ffc8bde3ab3327307d10d",
+    "tsconfig.candidate.json": "7f3c039b21d2e475c86252082afeed38e1120db7959f802ebb3812bdb17aeea0"
+  },
+  "validation": {
+    "focused": {
+      "files": 2,
+      "tests": 9,
+      "result": "PASS"
+    },
+    "unchangedCompatibility": {
+      "files": 7,
+      "tests": 47,
+      "result": "PASS"
+    },
+    "strictPrivateTypeScript": "PASS",
+    "gitApplyCheckWhitespaceError": "PASS",
+    "postTestChange": "Whitespace-only trailing blank removal in existing footprint test; no semantic source/test changes."
+  },
+  "scope": {
+    "liveWrites": false,
+    "browserBuildGpuMedia": false,
+    "newTerrainQueries": 0,
+    "newRuntimeGeometryScans": 0,
+    "children": 8,
+    "debrisCapacity": 64,
+    "plateCapacity": 16,
+    "newContactWitnesses": 0,
+    "genericBehavior": "Unchanged, including birth clocks and clean-history pool reuse",
+    "nativeVisualPerformanceAcceptance": false
+  },
+  "limits": [
+    "Effects use copied birth planes; outward terrain unmeasured.",
+    "Casing can initially occlude centre-band debris.",
+    "Cosmetic sheet expansion does not update the reported contact footprint.",
+    "No camera, rig, fracture root, physics, gameplay event or simulation changes."
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "extends": "/Users/amir/Projects/PodRacing/tsconfig.json",
+  "include": [
+    "baseline.ts",
+    "fov-only.ts",
+    "fov-aim-probe.ts",
+    "CompositionProbe.test.ts"
+  ]
+}

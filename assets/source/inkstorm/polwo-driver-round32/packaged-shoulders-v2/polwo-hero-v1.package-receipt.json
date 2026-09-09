@@ -1,0 +1,545 @@
+{
+  "status": "source candidate packaged; live visual/performance review pending",
+  "profile": "hero",
+  "input": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/polwo-driver-round32/packaged-shoulders-v2/polwo-shoulders-v2-tangent-repaired.glb",
+  "inputSha256": "d85ab8d3a3e0d310da7985145c9eac1f526b9e8c9d76ef47559f7f25fe4e76db",
+  "output": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/polwo-driver-round32/packaged-shoulders-v2/polwo-hero-v1.glb",
+  "outputSha256": "17e117cd9cbf86a2cf096ca6cdc0e46413b391395577b5f0774203ce7987f39f",
+  "inputBytes": 32272892,
+  "outputBytes": 10189760,
+  "inputStatistics": {
+    "triangles": 48975,
+    "bodyDraws": 2,
+    "pilotDraws": 6,
+    "opaqueDraws": 8,
+    "draws": [
+      {
+        "node": "polwo-body-0 fit-v3 paint-v1 shoulder-repair-v2",
+        "mesh": 0,
+        "pilot": false,
+        "triangles": 32520,
+        "vertices": 53865,
+        "tangents": true
+      },
+      {
+        "node": "polwo-body-1 fit-v3 paint-v1 shoulder-repair-v2",
+        "mesh": 1,
+        "pilot": false,
+        "triangles": 544,
+        "vertices": 982,
+        "tangents": true
+      },
+      {
+        "node": "polwo-pilot-accent.012 fit-v3 paint-v1 shoulder-repair-v2",
+        "mesh": 2,
+        "pilot": true,
+        "triangles": 188,
+        "vertices": 363,
+        "tangents": true
+      },
+      {
+        "node": "polwo-pilot-hardware.012 fit-v3 paint-v1 shoulder-repair-v2",
+        "mesh": 3,
+        "pilot": true,
+        "triangles": 1552,
+        "vertices": 1745,
+        "tangents": true
+      },
+      {
+        "node": "polwo-pilot-rubber.011 fit-v3 paint-v1 shoulder-repair-v2",
+        "mesh": 4,
+        "pilot": true,
+        "triangles": 2228,
+        "vertices": 2639,
+        "tangents": true
+      },
+      {
+        "node": "polwo-pilot-shell.012 fit-v3 paint-v1 shoulder-repair-v2",
+        "mesh": 5,
+        "pilot": true,
+        "triangles": 1444,
+        "vertices": 1928,
+        "tangents": true
+      },
+      {
+        "node": "polwo-pilot-suit.014 fit-v3 paint-v1 shoulder-repair-v2",
+        "mesh": 6,
+        "pilot": true,
+        "triangles": 9491,
+        "vertices": 13076,
+        "tangents": true
+      },
+      {
+        "node": "polwo-pilot-webbing.011 fit-v3 paint-v1 shoulder-repair-v2",
+        "mesh": 7,
+        "pilot": true,
+        "triangles": 1008,
+        "vertices": 1233,
+        "tangents": true
+      }
+    ],
+    "images": [
+      {
+        "index": 0,
+        "name": "Material_6_normal",
+        "role": [
+          "body",
+          "normal"
+        ],
+        "width": 4096,
+        "height": 4096,
+        "encodedBytes": 14704802,
+        "sha256": "411d4ee7db869d881cba0e0b7592c135f2481b771a9a0bf6ec80a43c8b386a75",
+        "rgba8Bytes": 67108864,
+        "rgba8FullMipBytes": 89478484
+      },
+      {
+        "index": 1,
+        "name": "polwo-inkstorm-orm-v1",
+        "role": [
+          "body",
+          "data"
+        ],
+        "width": 2048,
+        "height": 2048,
+        "encodedBytes": 5954253,
+        "sha256": "aaf2d4eb53f3d4408dd260e9c101bb8530ca924bfe8c53fdc9d117c368f866d0",
+        "rgba8Bytes": 16777216,
+        "rgba8FullMipBytes": 22369620
+      },
+      {
+        "index": 2,
+        "name": "polwo-inkstorm-base-color-v1",
+        "role": [
+          "body",
+          "color"
+        ],
+        "width": 2048,
+        "height": 2048,
+        "encodedBytes": 4659294,
+        "sha256": "f1ad598ae4836511040e3c8041b75ac10d27dd852d0650b72214a4321ff3da1e",
+        "rgba8Bytes": 16777216,
+        "rgba8FullMipBytes": 22369620
+      },
+      {
+        "index": 3,
+        "name": "pilot-normal-atlas-v4b",
+        "role": [
+          "pilot",
+          "normal"
+        ],
+        "width": 1024,
+        "height": 1024,
+        "encodedBytes": 931598,
+        "sha256": "129c56aba5d10f037a68ec7883e06641c4a357f9d8801e5b25a339c6320dfae5",
+        "rgba8Bytes": 4194304,
+        "rgba8FullMipBytes": 5592404
+      },
+      {
+        "index": 4,
+        "name": "pilot-color-atlas-v4c",
+        "role": [
+          "pilot",
+          "color"
+        ],
+        "width": 2048,
+        "height": 2048,
+        "encodedBytes": 1521750,
+        "sha256": "c3b038376a5774fb382b213e0a064c9f6313049043225c343a1624a34138a52c",
+        "rgba8Bytes": 16777216,
+        "rgba8FullMipBytes": 22369620
+      },
+      {
+        "index": 5,
+        "name": "pilot-roughness-atlas-v4b",
+        "role": [
+          "pilot",
+          "data"
+        ],
+        "width": 1024,
+        "height": 1024,
+        "encodedBytes": 555525,
+        "sha256": "0bad12d53c6a248eee0d8fba53de4d88a903cefb27a5762852bb60eba93f2ddb",
+        "rgba8Bytes": 4194304,
+        "rgba8FullMipBytes": 5592404
+      }
+    ],
+    "imageBytes": 28327222,
+    "rgba8Bytes": 125829120,
+    "rgba8FullMipBytes": 167772152,
+    "textureDefinitions": 21,
+    "uniqueImages": 6,
+    "allMeshDefinitionsReferenced": true
+  },
+  "outputStatistics": {
+    "triangles": 48975,
+    "bodyDraws": 2,
+    "pilotDraws": 6,
+    "opaqueDraws": 8,
+    "draws": [
+      {
+        "node": "polwo-body-0",
+        "mesh": 0,
+        "pilot": false,
+        "triangles": 32520,
+        "vertices": 53865,
+        "tangents": true
+      },
+      {
+        "node": "polwo-body-1",
+        "mesh": 1,
+        "pilot": false,
+        "triangles": 544,
+        "vertices": 982,
+        "tangents": true
+      },
+      {
+        "node": "polwo-pilot-accent",
+        "mesh": 2,
+        "pilot": true,
+        "triangles": 188,
+        "vertices": 363,
+        "tangents": true
+      },
+      {
+        "node": "polwo-pilot-hardware",
+        "mesh": 3,
+        "pilot": true,
+        "triangles": 1552,
+        "vertices": 1745,
+        "tangents": true
+      },
+      {
+        "node": "polwo-pilot-rubber",
+        "mesh": 4,
+        "pilot": true,
+        "triangles": 2228,
+        "vertices": 2639,
+        "tangents": true
+      },
+      {
+        "node": "polwo-pilot-shell",
+        "mesh": 5,
+        "pilot": true,
+        "triangles": 1444,
+        "vertices": 1928,
+        "tangents": true
+      },
+      {
+        "node": "polwo-pilot-suit",
+        "mesh": 6,
+        "pilot": true,
+        "triangles": 9491,
+        "vertices": 13076,
+        "tangents": true
+      },
+      {
+        "node": "polwo-pilot-webbing",
+        "mesh": 7,
+        "pilot": true,
+        "triangles": 1008,
+        "vertices": 1233,
+        "tangents": true
+      }
+    ],
+    "images": [
+      {
+        "index": 0,
+        "name": "Material_6_normal",
+        "role": [
+          "body",
+          "normal"
+        ],
+        "width": 1024,
+        "height": 1024,
+        "encodedBytes": 1747661,
+        "sha256": "2a420549bb8746c5ecab39c208d446a661d08d14cb1d96517eef58bc66ec7d6d",
+        "rgba8Bytes": 4194304,
+        "rgba8FullMipBytes": 5592404
+      },
+      {
+        "index": 1,
+        "name": "polwo-inkstorm-orm-v1",
+        "role": [
+          "body",
+          "data"
+        ],
+        "width": 1024,
+        "height": 1024,
+        "encodedBytes": 1577297,
+        "sha256": "f598238e458b7fa4c23013346d6b20c1f0c5c12bd396e476888768b4f5574977",
+        "rgba8Bytes": 4194304,
+        "rgba8FullMipBytes": 5592404
+      },
+      {
+        "index": 2,
+        "name": "polwo-inkstorm-base-color-v1",
+        "role": [
+          "body",
+          "color"
+        ],
+        "width": 1024,
+        "height": 1024,
+        "encodedBytes": 1341403,
+        "sha256": "ef374164322d1bba7e75459939ed5368db833b85845870da4c090ce83ba68d8c",
+        "rgba8Bytes": 4194304,
+        "rgba8FullMipBytes": 5592404
+      },
+      {
+        "index": 3,
+        "name": "pilot-normal-atlas-v4b",
+        "role": [
+          "pilot",
+          "normal"
+        ],
+        "width": 512,
+        "height": 512,
+        "encodedBytes": 201580,
+        "sha256": "59ab9fa090eb4b26d78ecdf1bcf3ff66c262837972ac199bea247f6f81ea60a8",
+        "rgba8Bytes": 1048576,
+        "rgba8FullMipBytes": 1398100
+      },
+      {
+        "index": 4,
+        "name": "pilot-color-atlas-v4c",
+        "role": [
+          "pilot",
+          "color"
+        ],
+        "width": 1024,
+        "height": 1024,
+        "encodedBytes": 1203726,
+        "sha256": "a9c2c523dd669b7d322c2b4d2fa88a0a4057c88ba86db8efce4246c8b6c60392",
+        "rgba8Bytes": 4194304,
+        "rgba8FullMipBytes": 5592404
+      },
+      {
+        "index": 5,
+        "name": "pilot-roughness-atlas-v4b",
+        "role": [
+          "pilot",
+          "data"
+        ],
+        "width": 512,
+        "height": 512,
+        "encodedBytes": 172940,
+        "sha256": "92458f3c56b91b22bab4f088e6722d1a762a33553db5910be127ae8ec85f7157",
+        "rgba8Bytes": 1048576,
+        "rgba8FullMipBytes": 1398100
+      }
+    ],
+    "imageBytes": 6244607,
+    "rgba8Bytes": 18874368,
+    "rgba8FullMipBytes": 25165816,
+    "textureDefinitions": 6,
+    "uniqueImages": 6,
+    "allMeshDefinitionsReferenced": true
+  },
+  "meshAccessorBytesExact": true,
+  "allNonImageBufferViewsExact": true,
+  "existingNodeTransformsHierarchyExact": true,
+  "normalMapChannelConvention": "RGB preserved; resized vectors renormalized; no green flip",
+  "ormChannelConvention": "R occlusion / G roughness / B metallic preserved, no floors added by packager",
+  "resampling": "Lanczos; sRGB color in linear light, ORM scalar channels in linear data, normal vectors renormalized",
+  "textureBudgetDefinition": "unique RGBA8 images with a complete mip chain; estimate, not measured GPU allocation",
+  "sourceTextureBytesPreservedInInput": true,
+  "nodeNameChanges": [
+    {
+      "from": "polwo-body-0 fit-v3 paint-v1 shoulder-repair-v2",
+      "to": "polwo-body-0"
+    },
+    {
+      "from": "polwo-body-1 fit-v3 paint-v1 shoulder-repair-v2",
+      "to": "polwo-body-1"
+    },
+    {
+      "from": "polwo-pilot-accent.012 fit-v3 paint-v1 shoulder-repair-v2",
+      "to": "polwo-pilot-accent"
+    },
+    {
+      "from": "polwo-pilot-hardware.012 fit-v3 paint-v1 shoulder-repair-v2",
+      "to": "polwo-pilot-hardware"
+    },
+    {
+      "from": "polwo-pilot-rubber.011 fit-v3 paint-v1 shoulder-repair-v2",
+      "to": "polwo-pilot-rubber"
+    },
+    {
+      "from": "polwo-pilot-shell.012 fit-v3 paint-v1 shoulder-repair-v2",
+      "to": "polwo-pilot-shell"
+    },
+    {
+      "from": "polwo-pilot-suit.014 fit-v3 paint-v1 shoulder-repair-v2",
+      "to": "polwo-pilot-suit"
+    },
+    {
+      "from": "polwo-pilot-webbing.011 fit-v3 paint-v1 shoulder-repair-v2",
+      "to": "polwo-pilot-webbing"
+    }
+  ],
+  "imageChanges": [
+    {
+      "image": 0,
+      "owner": "body",
+      "role": "normal",
+      "beforeSize": [
+        4096,
+        4096
+      ],
+      "afterSize": [
+        1024,
+        1024
+      ],
+      "inputSha256": "411d4ee7db869d881cba0e0b7592c135f2481b771a9a0bf6ec80a43c8b386a75",
+      "outputSha256": "2a420549bb8746c5ecab39c208d446a661d08d14cb1d96517eef58bc66ec7d6d"
+    },
+    {
+      "image": 1,
+      "owner": "body",
+      "role": "data",
+      "beforeSize": [
+        2048,
+        2048
+      ],
+      "afterSize": [
+        1024,
+        1024
+      ],
+      "inputSha256": "aaf2d4eb53f3d4408dd260e9c101bb8530ca924bfe8c53fdc9d117c368f866d0",
+      "outputSha256": "f598238e458b7fa4c23013346d6b20c1f0c5c12bd396e476888768b4f5574977"
+    },
+    {
+      "image": 2,
+      "owner": "body",
+      "role": "color",
+      "beforeSize": [
+        2048,
+        2048
+      ],
+      "afterSize": [
+        1024,
+        1024
+      ],
+      "inputSha256": "f1ad598ae4836511040e3c8041b75ac10d27dd852d0650b72214a4321ff3da1e",
+      "outputSha256": "ef374164322d1bba7e75459939ed5368db833b85845870da4c090ce83ba68d8c"
+    },
+    {
+      "image": 3,
+      "owner": "pilot",
+      "role": "normal",
+      "beforeSize": [
+        1024,
+        1024
+      ],
+      "afterSize": [
+        512,
+        512
+      ],
+      "inputSha256": "129c56aba5d10f037a68ec7883e06641c4a357f9d8801e5b25a339c6320dfae5",
+      "outputSha256": "59ab9fa090eb4b26d78ecdf1bcf3ff66c262837972ac199bea247f6f81ea60a8"
+    },
+    {
+      "image": 4,
+      "owner": "pilot",
+      "role": "color",
+      "beforeSize": [
+        2048,
+        2048
+      ],
+      "afterSize": [
+        1024,
+        1024
+      ],
+      "inputSha256": "c3b038376a5774fb382b213e0a064c9f6313049043225c343a1624a34138a52c",
+      "outputSha256": "a9c2c523dd669b7d322c2b4d2fa88a0a4057c88ba86db8efce4246c8b6c60392"
+    },
+    {
+      "image": 5,
+      "owner": "pilot",
+      "role": "data",
+      "beforeSize": [
+        1024,
+        1024
+      ],
+      "afterSize": [
+        512,
+        512
+      ],
+      "inputSha256": "0bad12d53c6a248eee0d8fba53de4d88a903cefb27a5762852bb60eba93f2ddb",
+      "outputSha256": "92458f3c56b91b22bab4f088e6722d1a762a33553db5910be127ae8ec85f7157"
+    }
+  ],
+  "runtimeContract": {
+    "embeddedPilotNodePrefix": "polwo-pilot-",
+    "status": "source-study root anchors supplied; nozzle/contact confirmation pending",
+    "visuallyAccepted": false,
+    "measurement": {
+      "scope": "DCC-derived source-study anchors in normalized glTF coordinates (+Y up, +Z forward); runtime effects placement not yet visually accepted.",
+      "basis": {
+        "pilot": "V3 pelvis target, not full seat-contact acceptance.",
+        "exhaust": "Original reacteur_low left/right engine bounding center X/Z and rear maximum Blender Y; inspect actual nozzle opening before runtime release.",
+        "coupling": "Original connecteur_elec_low inner X face and box center Y/Z."
+      },
+      "sourceUid": "5a3422df6f894b48b846d590cdc2bf4c"
+    },
+    "inputSha256": "87f6c34c017a7c87b5cf9f1d1ed50f6876604ae895026d7cf806b9d62ef3c179",
+    "attachments": {
+      "pilot": {
+        "node": "polwo-anchor-pilot",
+        "position": [
+          0,
+          0,
+          0
+        ]
+      },
+      "exhaustLeft": {
+        "node": "polwo-anchor-exhaustLeft",
+        "position": [
+          0,
+          0,
+          0
+        ]
+      },
+      "exhaustRight": {
+        "node": "polwo-anchor-exhaustRight",
+        "position": [
+          0,
+          0,
+          0
+        ]
+      },
+      "couplingLeft": {
+        "node": "polwo-anchor-couplingLeft",
+        "position": [
+          0,
+          0,
+          0
+        ]
+      },
+      "couplingRight": {
+        "node": "polwo-anchor-couplingRight",
+        "position": [
+          0,
+          0,
+          0
+        ]
+      }
+    }
+  },
+  "materialNames": [
+    "Polwo Inkstorm body paint-v1",
+    "antenne_low__0",
+    "Pilot atlas v4c runtime accent",
+    "Pilot atlas v4c runtime hardware",
+    "Pilot atlas v4c runtime rubber",
+    "Pilot atlas v4c runtime shell",
+    "Pilot atlas v4c runtime suit",
+    "Pilot atlas v4c runtime webbing"
+  ],
+  "runtimeIntegrated": false,
+  "limitations": [
+    "No browser import or perceptual test performed by this script",
+    "Reduced atlas resolution requires original/concept/actual gameplay comparison",
+    "Decoded budget counts unique image payloads; verify actual renderer allocations and texture sharing"
+  ]
+}

@@ -1,0 +1,534 @@
+{
+  "recordedAt": "2026-09-08T07:24:25.468520+00:00",
+  "counts": {
+    "publicResults": 29,
+    "vehicleCandidates": 26,
+    "excludedNonVehicles": 3,
+    "downloaded": 26,
+    "blockedOrPending": 0,
+    "downloadStatuses": {
+      "downloaded": 26
+    },
+    "mcpImportedSourceGlbs": 26,
+    "rawArchivesPreserved": 0,
+    "stylizationNeedsPermission": 0,
+    "publicAdaptationRestricted": 1,
+    "stylizedExports": 2,
+    "stylizedSourceStudies": 2,
+    "stylizedExportVariants": 4,
+    "driversAdded": 2,
+    "runtimeIntegrations": 2,
+    "driverInspections": 2,
+    "stylizedExportFiles": 8
+  },
+  "sourceFiles": [
+    {
+      "path": "vehicles/4eff45899ada40bb920c5c744663db90/imported-source.glb",
+      "bytes": 69550360,
+      "sha256": "b7e2cc046fd392659886b1af88bdda1117037009351493f69dccdf78c4c53836",
+      "uid": "4eff45899ada40bb920c5c744663db90",
+      "title": "Teemto Pagalies' Podracer",
+      "meshDefinitions": 72,
+      "materials": 3,
+      "headerTriangleSum": 43737,
+      "triangleScope": "Sum of indexed triangle primitive definitions; instances and nontriangle primitives are not counted.",
+      "sourceScenes": [
+        "PodRacing \u2014 source 4eff45899ada40bb920c5c744663db90"
+      ],
+      "metadata": {
+        "path": "vehicles/4eff45899ada40bb920c5c744663db90/official-metadata-20260908.json",
+        "bytes": 6375,
+        "sha256": "67cd2e66985ea6ffb696de55bc4e5c390ffb5c9ed1fbb74f81f6681faa3a847a"
+      }
+    },
+    {
+      "path": "vehicles/f97e3891a6a846ed97379e3cfa5931a0/imported-source.glb",
+      "bytes": 68689196,
+      "sha256": "4bc2a4caf9370e8eb3adbb112749790123a7b113ca005a07611bfefafa70aaae",
+      "uid": "f97e3891a6a846ed97379e3cfa5931a0",
+      "title": "Sebulba podracer star wars",
+      "meshDefinitions": 8,
+      "materials": 2,
+      "headerTriangleSum": 411899,
+      "triangleScope": "Sum of indexed triangle primitive definitions; instances and nontriangle primitives are not counted.",
+      "sourceScenes": [
+        "PodRacing \u2014 source f97e3891a6a846ed97379e3cfa5931a0"
+      ],
+      "metadata": {
+        "path": "vehicles/f97e3891a6a846ed97379e3cfa5931a0/official-metadata-20260908.json",
+        "bytes": 7707,
+        "sha256": "d1eb1bbf18bba12b2d384e00e83145785d765ecb13a4035dbf16c5a60ff43f90"
+      }
+    },
+    {
+      "path": "vehicles/c2ca24c9b3c2416db0abe026d9f4b7ac/source-imported.glb",
+      "bytes": 100954432,
+      "sha256": "00b5b9b5433169c8604c23a9fda128ce8364a6cd7694e7d147edb67a3652afa7",
+      "uid": "c2ca24c9b3c2416db0abe026d9f4b7ac",
+      "title": "BEN QUADINAROS PODRACER",
+      "meshDefinitions": 24,
+      "materials": 3,
+      "headerTriangleSum": 182540,
+      "triangleScope": "Sum of indexed triangle primitive definitions; instances and nontriangle primitives are not counted.",
+      "sourceScenes": [
+        "PodRacing \u2014 source c2ca24c9b3c2416db0abe026d9f4b7ac retry 20260908"
+      ],
+      "metadata": {
+        "path": "vehicles/c2ca24c9b3c2416db0abe026d9f4b7ac/official-metadata-20260908.json",
+        "bytes": 5557,
+        "sha256": "aa7b81b243ad6de230a5706f6c5ae25ce20f3d8e1c0b5e97c165af9d7c50ab55"
+      }
+    },
+    {
+      "path": "vehicles/25d51fbd4efc4c888ca4ff2549b1c6ae/source-imported.glb",
+      "bytes": 102188,
+      "sha256": "d46584d7ac25ea01855a51a09c7ed43668367bb966bce2fbd821b1fdc730b7bd",
+      "uid": "25d51fbd4efc4c888ca4ff2549b1c6ae",
+      "title": "Podracer",
+      "meshDefinitions": 29,
+      "materials": 1,
+      "headerTriangleSum": 1192,
+      "triangleScope": "Sum of indexed triangle primitive definitions; instances and nontriangle primitives are not counted.",
+      "sourceScenes": [
+        "PodRacing \u2014 source 25d51fbd retry 20260908 0710"
+      ],
+      "metadata": {
+        "path": "vehicles/25d51fbd4efc4c888ca4ff2549b1c6ae/official-metadata-20260908.json",
+        "bytes": 5932,
+        "sha256": "79f371d5771115aa309375c119de70a523d759787d11234de4822fa9b4e1112b"
+      }
+    },
+    {
+      "path": "vehicles/e377c2e49ad447caa0517b87562b3acc/source-imported.glb",
+      "bytes": 1565212,
+      "sha256": "ad9d4ff0a777d68eb90d25fe478973f0712f1ac04cd5dab5a1fbd643e9f5a122",
+      "uid": "e377c2e49ad447caa0517b87562b3acc",
+      "title": "Star Wars Galaxies - Anakin's Podracer",
+      "meshDefinitions": 2,
+      "materials": 2,
+      "headerTriangleSum": 2646,
+      "triangleScope": "Sum of indexed triangle primitive definitions; instances and nontriangle primitives are not counted.",
+      "sourceScenes": [
+        "PodRacing \u2014 source e377c2e49ad447caa0517b87562b3acc retry 20260908"
+      ],
+      "metadata": {
+        "path": "vehicles/e377c2e49ad447caa0517b87562b3acc/official-metadata-20260908.json",
+        "bytes": 7749,
+        "sha256": "ff1df9a86a4427921578ee87c103999dc498b9591c0479d66a57f455a96df49f"
+      }
+    },
+    {
+      "path": "vehicles/dd948b66950147b78ace05dfcb9ccbbb/source-imported.glb",
+      "bytes": 1142044,
+      "sha256": "97ab58243ef91f132d726a685d8400df62aaa1883cb549c7e291f54482e0112f",
+      "uid": "dd948b66950147b78ace05dfcb9ccbbb",
+      "title": "Anakin Podracer",
+      "meshDefinitions": 7,
+      "materials": 7,
+      "headerTriangleSum": 11840,
+      "triangleScope": "Sum of indexed triangle primitive definitions; instances and nontriangle primitives are not counted.",
+      "sourceScenes": [
+        "PodRacing \u2014 source dd948b66950147b78ace05dfcb9ccbbb retry 20260908"
+      ],
+      "metadata": {
+        "path": "vehicles/dd948b66950147b78ace05dfcb9ccbbb/official-metadata-20260908.json",
+        "bytes": 5545,
+        "sha256": "8c09813e5d2c72738c69060f5aee053f218ea571d9f848cbe0f4d0f5cac5db8b"
+      }
+    },
+    {
+      "path": "vehicles/4022e489f3d74eebb0aa3305f38dcc3f/source-imported.glb",
+      "bytes": 88738808,
+      "sha256": "9d3d34bf20102b41fc18f38fd9c21b0c68f2b64f25c650f3ebcb47b016c81451",
+      "uid": "4022e489f3d74eebb0aa3305f38dcc3f",
+      "title": "Ye Old Podracer",
+      "meshDefinitions": 110,
+      "materials": 2,
+      "headerTriangleSum": 169600,
+      "triangleScope": "Sum of indexed triangle primitive definitions; instances and nontriangle primitives are not counted.",
+      "sourceScenes": [
+        "PodRacing \u2014 source 4022e489f3d74eebb0aa3305f38dcc3f retry 20260908"
+      ],
+      "metadata": {
+        "path": "vehicles/4022e489f3d74eebb0aa3305f38dcc3f/official-metadata-20260908.json",
+        "bytes": 5050,
+        "sha256": "fbbd43b06f27c8e2bb16048fc28657c7aa01513c74fc120913a91761e283044a"
+      }
+    },
+    {
+      "path": "vehicles/fee6dfa2369149aa84e7f99d9bb35cb0/source-imported.glb",
+      "bytes": 168332124,
+      "sha256": "092e859b6844e596c2375448f9064971352e06cd9f0667e3968e4c75fd4013ab",
+      "uid": "fee6dfa2369149aa84e7f99d9bb35cb0",
+      "title": "Old Worn Out Spaceship",
+      "meshDefinitions": 5,
+      "materials": 3,
+      "headerTriangleSum": 246505,
+      "triangleScope": "Sum of indexed triangle primitive definitions; instances and nontriangle primitives are not counted.",
+      "sourceScenes": [
+        "PodRacing \u2014 source fee6dfa2369149aa84e7f99d9bb35cb0 retry 20260908"
+      ],
+      "metadata": {
+        "path": "vehicles/fee6dfa2369149aa84e7f99d9bb35cb0/official-metadata-20260908.json",
+        "bytes": 9530,
+        "sha256": "ec6b178f70271d39041adbe3b6f8ba54351f9f69d6b0d8e9e878fd07596214fa"
+      }
+    },
+    {
+      "path": "vehicles/7766ca8e7bd047f5ad4bdb86d11ec6d4/source-imported.glb",
+      "bytes": 1050620,
+      "sha256": "69302f8a9b56e793fc31a2e3c47a141233598924a96373d2415e68aee6b70791",
+      "uid": "7766ca8e7bd047f5ad4bdb86d11ec6d4",
+      "title": "Star Wars Galaxies - XJ-6 Airspeeder",
+      "meshDefinitions": 2,
+      "materials": 2,
+      "headerTriangleSum": 2767,
+      "triangleScope": "Sum of indexed triangle primitive definitions; instances and nontriangle primitives are not counted.",
+      "sourceScenes": [
+        "PodRacing \u2014 source 7766ca8e7bd047f5ad4bdb86d11ec6d4 retry 20260908"
+      ],
+      "metadata": {
+        "path": "vehicles/7766ca8e7bd047f5ad4bdb86d11ec6d4/official-metadata-20260908.json",
+        "bytes": 7119,
+        "sha256": "c142bec5c650f43a01f2434db1d30525b1e014cf51315a88fe9e8a138ffe5a45"
+      }
+    },
+    {
+      "path": "vehicles/dac6d14dcf914e88af8625b59f4020bc/source-imported.glb",
+      "bytes": 26795216,
+      "sha256": "d101d06650c0df3707e09dc52e6e73d84265c6527170d5142495fa32a0a66eec",
+      "uid": "dac6d14dcf914e88af8625b59f4020bc",
+      "title": "Anakins Pod Racer",
+      "meshDefinitions": 18,
+      "materials": 10,
+      "headerTriangleSum": 54036,
+      "triangleScope": "Sum of indexed triangle primitive definitions; instances and nontriangle primitives are not counted.",
+      "sourceScenes": [
+        "PodRacing \u2014 source dac6d14dcf914e88af8625b59f4020bc retry 20260908"
+      ],
+      "metadata": {
+        "path": "vehicles/dac6d14dcf914e88af8625b59f4020bc/official-metadata-20260908.json",
+        "bytes": 6111,
+        "sha256": "5701acea6856e5b7e9a5afad1e906341061c76979dd67e352092507636f1e5f7"
+      }
+    },
+    {
+      "path": "vehicles/39f96d4fcf00432dba3beb2e42163aa6/source-imported.glb",
+      "bytes": 25913648,
+      "sha256": "946db4b4800c23999e751708793a132880f692d4c594cfd077a5fee2c97fa5db",
+      "uid": "39f96d4fcf00432dba3beb2e42163aa6",
+      "title": "World Skills Pod Transporter",
+      "meshDefinitions": 1,
+      "materials": 1,
+      "headerTriangleSum": 19922,
+      "triangleScope": "Sum of indexed triangle primitive definitions; instances and nontriangle primitives are not counted.",
+      "sourceScenes": [
+        "PodRacing \u2014 source 39f96d4fcf00432dba3beb2e42163aa6 retry 20260908"
+      ],
+      "metadata": {
+        "path": "vehicles/39f96d4fcf00432dba3beb2e42163aa6/official-metadata-20260908.json",
+        "bytes": 6895,
+        "sha256": "84d4ef75dd2254902dc232a4c7ff6d9d85e9b2d9eb059f3123b7ca5f8e6470aa"
+      }
+    },
+    {
+      "path": "vehicles/5a3422df6f894b48b846d590cdc2bf4c/source-imported.glb",
+      "bytes": 51376460,
+      "sha256": "b0cc30db26ddb532629439378407e5ec86ce603c27038f0539ace5c99484b03c",
+      "uid": "5a3422df6f894b48b846d590cdc2bf4c",
+      "title": "Anakin's pod Star Wars",
+      "meshDefinitions": 30,
+      "materials": 2,
+      "headerTriangleSum": 33064,
+      "triangleScope": "Sum of indexed triangle primitive definitions; instances and nontriangle primitives are not counted.",
+      "sourceScenes": [
+        "PodRacing \u2014 source 5a3422df6f894b48b846d590cdc2bf4c retry 20260908"
+      ],
+      "metadata": {
+        "path": "vehicles/5a3422df6f894b48b846d590cdc2bf4c/official-metadata-20260908.json",
+        "bytes": 6608,
+        "sha256": "c20e05423327360e55094573618db4d1e89eec15b4373fe8c084934234b5a5fc"
+      }
+    },
+    {
+      "path": "vehicles/ce9c2d4e92a44dffbd78e6b29d6c0182/source-imported.glb",
+      "bytes": 37264,
+      "sha256": "0941d8e10ff377b5a2c1a7a7686b5236881264bdd192411cd7ed53855b163d15",
+      "uid": "ce9c2d4e92a44dffbd78e6b29d6c0182",
+      "title": "podracer",
+      "meshDefinitions": 1,
+      "materials": 1,
+      "headerTriangleSum": 620,
+      "triangleScope": "Sum of indexed triangle primitive definitions; instances and nontriangle primitives are not counted.",
+      "sourceScenes": [
+        "PodRacing \u2014 source ce9c2d4e92a44dffbd78e6b29d6c0182 retry 20260908"
+      ],
+      "metadata": {
+        "path": "vehicles/ce9c2d4e92a44dffbd78e6b29d6c0182/official-metadata-20260908.json",
+        "bytes": 4724,
+        "sha256": "4f73a2e6616ee8abf0b53ecca6375da96ef0428566dbbd7688ef4df94887e878"
+      }
+    },
+    {
+      "path": "vehicles/309c3c42bac24b5c801fcc09f875e6a7/source-imported.glb",
+      "bytes": 33950444,
+      "sha256": "7099b3d33ebae5e32e2e9133931f5d69cb11150232321625b40bc2138da1a9e3",
+      "uid": "309c3c42bac24b5c801fcc09f875e6a7",
+      "title": "Pod Racer - Star Wars Inspired Build",
+      "meshDefinitions": 179,
+      "materials": 3,
+      "headerTriangleSum": 647721,
+      "triangleScope": "Sum of indexed triangle primitive definitions; instances and nontriangle primitives are not counted.",
+      "sourceScenes": [
+        "PodRacing \u2014 source 309c3c42bac24b5c801fcc09f875e6a7 retry 20260908"
+      ],
+      "metadata": {
+        "path": "vehicles/309c3c42bac24b5c801fcc09f875e6a7/official-metadata-20260908.json",
+        "bytes": 7753,
+        "sha256": "01459f6d2d12e41769d733bde638d6bfae9df318a8497c62744e093ba9072546"
+      }
+    },
+    {
+      "path": "vehicles/6ea36ebb4e504fb8976d2b527b5e40dc/source-imported.glb",
+      "bytes": 19424512,
+      "sha256": "fbbd0e3c37ae1fad5e18d63e2a45c9f641a0868026aa5994093f267caf0dba5c",
+      "uid": "6ea36ebb4e504fb8976d2b527b5e40dc",
+      "title": "Star Wars Pod Racer",
+      "meshDefinitions": 8,
+      "materials": 1,
+      "headerTriangleSum": 624442,
+      "triangleScope": "Sum of indexed triangle primitive definitions; instances and nontriangle primitives are not counted.",
+      "sourceScenes": [
+        "PodRacing \u2014 source 6ea36ebb4e504fb8976d2b527b5e40dc retry 20260908"
+      ],
+      "metadata": {
+        "path": "vehicles/6ea36ebb4e504fb8976d2b527b5e40dc/official-metadata-20260908.json",
+        "bytes": 7535,
+        "sha256": "97eea84b43167a8e6a0a93fd48abcc388053a35ecd7e241c290fd2f51d852a3f"
+      }
+    },
+    {
+      "path": "vehicles/19a50e866e5d44cb8e4840b616cc8132/source-imported.glb",
+      "bytes": 15756,
+      "sha256": "34c023984adbd8ac679a126517df5abf788980168f146b9c4e5d0232e1215eb4",
+      "uid": "19a50e866e5d44cb8e4840b616cc8132",
+      "title": "Podracer stl file",
+      "meshDefinitions": 1,
+      "materials": 1,
+      "headerTriangleSum": 620,
+      "triangleScope": "Sum of indexed triangle primitive definitions; instances and nontriangle primitives are not counted.",
+      "sourceScenes": [
+        "PodRacing \u2014 source 19a50e866e5d44cb8e4840b616cc8132 retry 20260908"
+      ],
+      "metadata": {
+        "path": "vehicles/19a50e866e5d44cb8e4840b616cc8132/official-metadata-20260908.json",
+        "bytes": 4742,
+        "sha256": "3b468a418752b9b78af411e41866c4ec9f39ae0f4d1cccacfd8efd090b56be55"
+      }
+    },
+    {
+      "path": "vehicles/ff12ef200c994c8b9c6b61ea45702454/source-imported.glb",
+      "bytes": 37164,
+      "sha256": "c4ddf45428901b60436248edd0eec5c3175a7b6611132bd19be2c876953d705f",
+      "uid": "ff12ef200c994c8b9c6b61ea45702454",
+      "title": "Podracer obj file",
+      "meshDefinitions": 1,
+      "materials": 1,
+      "headerTriangleSum": 620,
+      "triangleScope": "Sum of indexed triangle primitive definitions; instances and nontriangle primitives are not counted.",
+      "sourceScenes": [
+        "PodRacing \u2014 source ff12ef200c994c8b9c6b61ea45702454 retry 20260908"
+      ],
+      "metadata": {
+        "path": "vehicles/ff12ef200c994c8b9c6b61ea45702454/official-metadata-20260908.json",
+        "bytes": 4741,
+        "sha256": "d827d856990d87dabc2309a33b81490578591aac96b0f132b7fcf59d712682e7"
+      }
+    },
+    {
+      "path": "vehicles/e10eb39da3cf48018ba79c341a867d45/source-imported.glb",
+      "bytes": 2387096,
+      "sha256": "487d91f4fcc23cccc276e37b66cbf4b560614c13639f42d24b66c59df5edf8bd",
+      "uid": "e10eb39da3cf48018ba79c341a867d45",
+      "title": "Yet Another Pod Racer",
+      "meshDefinitions": 13,
+      "materials": 1,
+      "headerTriangleSum": 57290,
+      "triangleScope": "Sum of indexed triangle primitive definitions; instances and nontriangle primitives are not counted.",
+      "sourceScenes": [
+        "PodRacing \u2014 source e10eb39da3cf48018ba79c341a867d45 retry 20260908"
+      ],
+      "metadata": {
+        "path": "vehicles/e10eb39da3cf48018ba79c341a867d45/official-metadata-20260908.json",
+        "bytes": 5593,
+        "sha256": "12720777f5a0dc975dc854e56389b15137f6d229dcc870c185cad54ca641c882"
+      }
+    },
+    {
+      "path": "vehicles/41071debeaf1499a9a1586b78ea18a09/source-imported.glb",
+      "bytes": 1558424,
+      "sha256": "a4ea3127cbce56a577c7bd363490b4a1f0463f5da9e6394c6e4e0c59b9fac63f",
+      "uid": "41071debeaf1499a9a1586b78ea18a09",
+      "title": "Star Wars - Ark Bumpy Rooses Pod Racer",
+      "meshDefinitions": 180,
+      "materials": 33,
+      "headerTriangleSum": 31984,
+      "triangleScope": "Sum of indexed triangle primitive definitions; instances and nontriangle primitives are not counted.",
+      "sourceScenes": [
+        "PodRacing \u2014 source 41071debeaf1499a9a1586b78ea18a09 retry 20260908"
+      ],
+      "metadata": {
+        "path": "vehicles/41071debeaf1499a9a1586b78ea18a09/official-metadata-20260908.json",
+        "bytes": 6532,
+        "sha256": "390245bb27b8fa2c2e496f689b87e4195e32b081893a88a48267c06cd1b2301f"
+      }
+    },
+    {
+      "path": "vehicles/a6f14ae799ab40d7ac425f043f824ff8/source-imported.glb",
+      "bytes": 2667212,
+      "sha256": "1ecf135bc63df02102f168b79ea869d98aba6d07bdc94b2e0c6f10478a13f96e",
+      "uid": "a6f14ae799ab40d7ac425f043f824ff8",
+      "title": "Pod Racer Colour",
+      "meshDefinitions": 59,
+      "materials": 20,
+      "headerTriangleSum": 48384,
+      "triangleScope": "Sum of indexed triangle primitive definitions; instances and nontriangle primitives are not counted.",
+      "sourceScenes": [
+        "PodRacing \u2014 source a6f14ae799ab40d7ac425f043f824ff8 retry 20260908"
+      ],
+      "metadata": {
+        "path": "vehicles/a6f14ae799ab40d7ac425f043f824ff8/official-metadata-20260908.json",
+        "bytes": 5233,
+        "sha256": "22455a384e9320326ab21ebb8b192fb530a0eb29e65ac52f8babd096e0e94258"
+      }
+    },
+    {
+      "path": "vehicles/e42fb924b344481ea013c58cb0f52ad7/source-imported.glb",
+      "bytes": 2868492,
+      "sha256": "2ed231e15b8bbab3f7b7028b73e8b6f442d532c9bc4d1fc0a2f5c40aeda49576",
+      "uid": "e42fb924b344481ea013c58cb0f52ad7",
+      "title": "Pod Racer",
+      "meshDefinitions": 51,
+      "materials": 51,
+      "headerTriangleSum": 48384,
+      "triangleScope": "Sum of indexed triangle primitive definitions; instances and nontriangle primitives are not counted.",
+      "sourceScenes": [
+        "PodRacing \u2014 source e42fb924b344481ea013c58cb0f52ad7 retry 20260908"
+      ],
+      "metadata": {
+        "path": "vehicles/e42fb924b344481ea013c58cb0f52ad7/official-metadata-20260908.json",
+        "bytes": 5220,
+        "sha256": "f84a1156e5720217bc1243adae5506d5e547d5dcccc9bbc54c780ce1f41677d6"
+      }
+    },
+    {
+      "path": "vehicles/5a927a9fa0984371bd970b31f5f06086/source-imported.glb",
+      "bytes": 17719864,
+      "sha256": "36c1b68e1856da7edb18b8f4d7670e78f85b463fff6169dad8752efef4ebe085",
+      "uid": "5a927a9fa0984371bd970b31f5f06086",
+      "title": "Spaceship(pod)",
+      "meshDefinitions": 5,
+      "materials": 3,
+      "headerTriangleSum": 113320,
+      "triangleScope": "Sum of indexed triangle primitive definitions; instances and nontriangle primitives are not counted.",
+      "sourceScenes": [
+        "PodRacing \u2014 source 5a927a9fa0984371bd970b31f5f06086 retry 20260908"
+      ],
+      "metadata": {
+        "path": "vehicles/5a927a9fa0984371bd970b31f5f06086/official-metadata-20260908.json",
+        "bytes": 6979,
+        "sha256": "cab5e61637b5548fb37433f2db1f4be8951c3263a47bac3ffdbdefcf713f2f1c"
+      }
+    },
+    {
+      "path": "vehicles/c0d192c145a44459a454627708e46cf5/source-imported.glb",
+      "bytes": 43852688,
+      "sha256": "1f042fefe261f1cba6733cddbfe8f1e1bd865254ced400f2c3179ead305751e3",
+      "uid": "c0d192c145a44459a454627708e46cf5",
+      "title": "Pog Racer",
+      "meshDefinitions": 8,
+      "materials": 1,
+      "headerTriangleSum": 35192,
+      "triangleScope": "Sum of indexed triangle primitive definitions; instances and nontriangle primitives are not counted.",
+      "sourceScenes": [
+        "PodRacing \u2014 source c0d192c145a44459a454627708e46cf5 retry 20260908"
+      ],
+      "metadata": {
+        "path": "vehicles/c0d192c145a44459a454627708e46cf5/official-metadata-20260908.json",
+        "bytes": 8107,
+        "sha256": "79ae066ee00fb0a179007c1567eb0d49c45d82808aebe8670a030476b62f8f6e"
+      }
+    },
+    {
+      "path": "vehicles/9ecf7f66246d4f30b990cc605359e3b6/source-imported.glb",
+      "bytes": 11535964,
+      "sha256": "3dc958df48197673ab0bcba786f8f365a167a35c5dbad5860fdf7288e3d2ae9f",
+      "uid": "9ecf7f66246d4f30b990cc605359e3b6",
+      "title": "Advanced X1",
+      "meshDefinitions": 94,
+      "materials": 3,
+      "headerTriangleSum": 26834,
+      "triangleScope": "Sum of indexed triangle primitive definitions; instances and nontriangle primitives are not counted.",
+      "sourceScenes": [
+        "PodRacing \u2014 source 9ecf7f66246d4f30b990cc605359e3b6 retry 20260908"
+      ],
+      "metadata": {
+        "path": "vehicles/9ecf7f66246d4f30b990cc605359e3b6/official-metadata-20260908.json",
+        "bytes": 6897,
+        "sha256": "39d6fa657554bd6a29223899d6bc6da9d9c5628dc8423de0493f8b92fa1ad72c"
+      }
+    },
+    {
+      "path": "vehicles/eb1a1861d3f140fa958ca7eb70a9f380/source-imported.glb",
+      "bytes": 7568868,
+      "sha256": "cd2514a9214990e6e099b1cc8510b63a2cb291b19f493c8f95dae0acce51de3b",
+      "uid": "eb1a1861d3f140fa958ca7eb70a9f380",
+      "title": "Now This Is Podracing MWRB",
+      "meshDefinitions": 38,
+      "materials": 5,
+      "headerTriangleSum": 19398,
+      "triangleScope": "Sum of indexed triangle primitive definitions; instances and nontriangle primitives are not counted.",
+      "sourceScenes": [
+        "PodRacing \u2014 source eb1a1861d3f140fa958ca7eb70a9f380 retry 20260908"
+      ],
+      "metadata": {
+        "path": "vehicles/eb1a1861d3f140fa958ca7eb70a9f380/official-metadata-20260908.json",
+        "bytes": 4758,
+        "sha256": "e46028c82d877b1cbf54d5aaa5adbaf6495f885efc6034fc7f03ba1cd291ca3f"
+      }
+    },
+    {
+      "path": "vehicles/0baa936f45434c7eb8d58c31890402a2/source-imported.glb",
+      "bytes": 896756,
+      "sha256": "21699f614c4ca68aca79a9f9e514d433db35f9ada2ca95e66061f5418f974d24",
+      "uid": "0baa936f45434c7eb8d58c31890402a2",
+      "title": "Now This Is Podracing MWRB",
+      "meshDefinitions": 36,
+      "materials": 5,
+      "headerTriangleSum": 19182,
+      "triangleScope": "Sum of indexed triangle primitive definitions; instances and nontriangle primitives are not counted.",
+      "sourceScenes": [
+        "PodRacing \u2014 source 0baa936f45434c7eb8d58c31890402a2 retry 20260908"
+      ],
+      "metadata": {
+        "path": "vehicles/0baa936f45434c7eb8d58c31890402a2/official-metadata-20260908.json",
+        "bytes": 4748,
+        "sha256": "12891e218002f2973f6a79a2989bb0f0b99ae1dbff7ff5bcc461a5a84c43a919"
+      }
+    }
+  ],
+  "catalogueRefresh": "sketchfab-search-20260908.json",
+  "catalogueResults": 29,
+  "catalogueMembershipChanged": false,
+  "newOfficialImports": 24,
+  "newRateLimits": 0,
+  "historicalRateLimits": 8,
+  "runtimeIntegrations": 2,
+  "rawArchivesPreserved": 0,
+  "scope": "Acquisition checkpoint only. Source files are not optimized or accepted runtime art.",
+  "priorManifest": {
+    "path": "vehicle-manifest-before-acquisition-20260908.json",
+    "bytes": 245001,
+    "sha256": "c2f335c1a357d3e4d7a4cc4d55f4eb8be07695437f76fc88c91e7784b637ca1d"
+  }
+}

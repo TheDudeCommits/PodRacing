@@ -1,0 +1,17 @@
+{
+  "status": "Prepared only; no packaging or validation execution",
+  "files": [
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/runtime-admission-preparation/run-private-package-v8.py",
+      "bytes": 3671,
+      "sha256": "a8b753fe77f3c7b5f11d6589248dd63bdfdc1e9319e4e0651e71a13fc3f8c2be"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/runtime-admission-preparation/verify-color-only-package-v8.py",
+      "bytes": 6183,
+      "sha256": "68559f09c4ae9434d86936939c1179b3c4f03ce08f0acd5f04e54944c2ac7fca"
+    }
+  ],
+  "preservedBaseline": "Actual V6 private hero/rival pinned by SHA; runtime still V5 with V6GLBs",
+  "scope": "Reuse exact previously calibrated geometry/index arrays; only new color master bytes allowed. Full validator/fixture sequence runs after actual V8 export."
+}

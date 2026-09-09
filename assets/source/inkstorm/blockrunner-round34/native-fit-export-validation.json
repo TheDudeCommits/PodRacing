@@ -1,0 +1,1781 @@
+{
+  "recordedAt": "2026-09-08T12:34:11.708948+00:00",
+  "scope": "Read-only external validation of privately preserved native Blockrunner fit GLB. No browser, Blender, network, source GLB mutation, public installation, normalization or paint.",
+  "outcome": "PASS native export validation",
+  "runtimeReady": false,
+  "runtimeReasons": [
+    "61 primitive draws before shadow/prepass multiplication",
+    "Unpainted original 20-material palette; no consolidated styled atlas",
+    "Original source placement and scale; gameplay normalization and anchors pending",
+    "No runtime asset admission, driving or performance acceptance"
+  ],
+  "inputs": [
+    {
+      "path": "assets/source/inkstorm/blockrunner-round34/blockrunner-fit-v1-native.glb",
+      "bytes": 2359536,
+      "sha256": "264f6b241cf7a690dc2814e5356118c0d13475fc1ef2cfe5690b8d67f87f80bf"
+    },
+    {
+      "path": "assets/source/inkstorm/vehicles/a6f14ae799ab40d7ac425f043f824ff8/source-imported.glb",
+      "bytes": 2667212,
+      "sha256": "1ecf135bc63df02102f168b79ea869d98aba6d07bdc94b2e0c6f10478a13f96e"
+    },
+    {
+      "path": "assets/source/inkstorm/blockrunner-round34/mcp-safe/control-fit-v1-receipt.json",
+      "bytes": 119669,
+      "sha256": "2c9145a02cb401f0f0f8b1893c11a88bbad7d12a1a0ae45ef71462b60a901db5"
+    },
+    {
+      "path": "assets/source/inkstorm/blockrunner-round34/mcp-safe/cleanup-v1-receipt.json",
+      "bytes": 389976,
+      "sha256": "223da3251d51e65d9eca8bcb605abb714af5b995fefaf7c787dd7b5909033ea1"
+    },
+    {
+      "path": "assets/source/inkstorm/blockrunner-round34/mcp-safe/fit-native-export-receipt.json",
+      "bytes": 875,
+      "sha256": "bec79969ad58ff2e3c8b3c54e040bb98d3b536e892b8f665cb0637fed5311e21"
+    }
+  ],
+  "validator": {
+    "uri": "assets/source/inkstorm/blockrunner-round34/blockrunner-fit-v1-native.glb",
+    "mimeType": "model/gltf-binary",
+    "validatorVersion": "2.0.0-dev.3.10",
+    "validatedAt": "2026-09-08T12:34:11.698Z",
+    "issues": {
+      "numErrors": 0,
+      "numWarnings": 0,
+      "numInfos": 54,
+      "numHints": 0,
+      "messages": [
+        {
+          "code": "UNUSED_OBJECT",
+          "message": "This object may be unused.",
+          "severity": 2,
+          "pointer": "/meshes/0/primitives/0/attributes/TEXCOORD_0"
+        },
+        {
+          "code": "UNUSED_OBJECT",
+          "message": "This object may be unused.",
+          "severity": 2,
+          "pointer": "/meshes/1/primitives/0/attributes/TEXCOORD_0"
+        },
+        {
+          "code": "UNUSED_OBJECT",
+          "message": "This object may be unused.",
+          "severity": 2,
+          "pointer": "/meshes/2/primitives/0/attributes/TEXCOORD_0"
+        },
+        {
+          "code": "UNUSED_OBJECT",
+          "message": "This object may be unused.",
+          "severity": 2,
+          "pointer": "/meshes/3/primitives/0/attributes/TEXCOORD_0"
+        },
+        {
+          "code": "UNUSED_OBJECT",
+          "message": "This object may be unused.",
+          "severity": 2,
+          "pointer": "/meshes/4/primitives/0/attributes/TEXCOORD_0"
+        },
+        {
+          "code": "UNUSED_OBJECT",
+          "message": "This object may be unused.",
+          "severity": 2,
+          "pointer": "/meshes/5/primitives/0/attributes/TEXCOORD_0"
+        },
+        {
+          "code": "UNUSED_OBJECT",
+          "message": "This object may be unused.",
+          "severity": 2,
+          "pointer": "/meshes/6/primitives/0/attributes/TEXCOORD_0"
+        },
+        {
+          "code": "UNUSED_OBJECT",
+          "message": "This object may be unused.",
+          "severity": 2,
+          "pointer": "/meshes/7/primitives/0/attributes/TEXCOORD_0"
+        },
+        {
+          "code": "UNUSED_OBJECT",
+          "message": "This object may be unused.",
+          "severity": 2,
+          "pointer": "/meshes/8/primitives/0/attributes/TEXCOORD_0"
+        },
+        {
+          "code": "UNUSED_OBJECT",
+          "message": "This object may be unused.",
+          "severity": 2,
+          "pointer": "/meshes/9/primitives/0/attributes/TEXCOORD_0"
+        },
+        {
+          "code": "UNUSED_OBJECT",
+          "message": "This object may be unused.",
+          "severity": 2,
+          "pointer": "/meshes/10/primitives/0/attributes/TEXCOORD_0"
+        },
+        {
+          "code": "UNUSED_OBJECT",
+          "message": "This object may be unused.",
+          "severity": 2,
+          "pointer": "/meshes/11/primitives/0/attributes/TEXCOORD_0"
+        },
+        {
+          "code": "UNUSED_OBJECT",
+          "message": "This object may be unused.",
+          "severity": 2,
+          "pointer": "/meshes/12/primitives/0/attributes/TEXCOORD_0"
+        },
+        {
+          "code": "UNUSED_OBJECT",
+          "message": "This object may be unused.",
+          "severity": 2,
+          "pointer": "/meshes/13/primitives/0/attributes/TEXCOORD_0"
+        },
+        {
+          "code": "UNUSED_OBJECT",
+          "message": "This object may be unused.",
+          "severity": 2,
+          "pointer": "/meshes/14/primitives/0/attributes/TEXCOORD_0"
+        },
+        {
+          "code": "UNUSED_OBJECT",
+          "message": "This object may be unused.",
+          "severity": 2,
+          "pointer": "/meshes/19/primitives/0/attributes/TEXCOORD_0"
+        },
+        {
+          "code": "UNUSED_OBJECT",
+          "message": "This object may be unused.",
+          "severity": 2,
+          "pointer": "/meshes/20/primitives/0/attributes/TEXCOORD_0"
+        },
+        {
+          "code": "UNUSED_OBJECT",
+          "message": "This object may be unused.",
+          "severity": 2,
+          "pointer": "/meshes/21/primitives/0/attributes/TEXCOORD_0"
+        },
+        {
+          "code": "UNUSED_OBJECT",
+          "message": "This object may be unused.",
+          "severity": 2,
+          "pointer": "/meshes/22/primitives/0/attributes/TEXCOORD_0"
+        },
+        {
+          "code": "UNUSED_OBJECT",
+          "message": "This object may be unused.",
+          "severity": 2,
+          "pointer": "/meshes/23/primitives/0/attributes/TEXCOORD_0"
+        },
+        {
+          "code": "UNUSED_OBJECT",
+          "message": "This object may be unused.",
+          "severity": 2,
+          "pointer": "/meshes/24/primitives/0/attributes/TEXCOORD_0"
+        },
+        {
+          "code": "UNUSED_OBJECT",
+          "message": "This object may be unused.",
+          "severity": 2,
+          "pointer": "/meshes/25/primitives/0/attributes/TEXCOORD_0"
+        },
+        {
+          "code": "UNUSED_OBJECT",
+          "message": "This object may be unused.",
+          "severity": 2,
+          "pointer": "/meshes/26/primitives/0/attributes/TEXCOORD_0"
+        },
+        {
+          "code": "UNUSED_OBJECT",
+          "message": "This object may be unused.",
+          "severity": 2,
+          "pointer": "/meshes/27/primitives/0/attributes/TEXCOORD_0"
+        },
+        {
+          "code": "UNUSED_OBJECT",
+          "message": "This object may be unused.",
+          "severity": 2,
+          "pointer": "/meshes/28/primitives/0/attributes/TEXCOORD_0"
+        },
+        {
+          "code": "UNUSED_OBJECT",
+          "message": "This object may be unused.",
+          "severity": 2,
+          "pointer": "/meshes/29/primitives/0/attributes/TEXCOORD_0"
+        },
+        {
+          "code": "UNUSED_OBJECT",
+          "message": "This object may be unused.",
+          "severity": 2,
+          "pointer": "/meshes/30/primitives/0/attributes/TEXCOORD_0"
+        },
+        {
+          "code": "UNUSED_OBJECT",
+          "message": "This object may be unused.",
+          "severity": 2,
+          "pointer": "/meshes/31/primitives/0/attributes/TEXCOORD_0"
+        },
+        {
+          "code": "UNUSED_OBJECT",
+          "message": "This object may be unused.",
+          "severity": 2,
+          "pointer": "/meshes/32/primitives/0/attributes/TEXCOORD_0"
+        },
+        {
+          "code": "UNUSED_OBJECT",
+          "message": "This object may be unused.",
+          "severity": 2,
+          "pointer": "/meshes/33/primitives/0/attributes/TEXCOORD_0"
+        },
+        {
+          "code": "UNUSED_OBJECT",
+          "message": "This object may be unused.",
+          "severity": 2,
+          "pointer": "/meshes/37/primitives/0/attributes/TEXCOORD_0"
+        },
+        {
+          "code": "UNUSED_OBJECT",
+          "message": "This object may be unused.",
+          "severity": 2,
+          "pointer": "/meshes/38/primitives/0/attributes/TEXCOORD_0"
+        },
+        {
+          "code": "UNUSED_OBJECT",
+          "message": "This object may be unused.",
+          "severity": 2,
+          "pointer": "/meshes/39/primitives/0/attributes/TEXCOORD_0"
+        },
+        {
+          "code": "UNUSED_OBJECT",
+          "message": "This object may be unused.",
+          "severity": 2,
+          "pointer": "/meshes/40/primitives/0/attributes/TEXCOORD_0"
+        },
+        {
+          "code": "UNUSED_OBJECT",
+          "message": "This object may be unused.",
+          "severity": 2,
+          "pointer": "/meshes/41/primitives/0/attributes/TEXCOORD_0"
+        },
+        {
+          "code": "UNUSED_OBJECT",
+          "message": "This object may be unused.",
+          "severity": 2,
+          "pointer": "/meshes/42/primitives/0/attributes/TEXCOORD_0"
+        },
+        {
+          "code": "UNUSED_OBJECT",
+          "message": "This object may be unused.",
+          "severity": 2,
+          "pointer": "/meshes/43/primitives/0/attributes/TEXCOORD_0"
+        },
+        {
+          "code": "UNUSED_OBJECT",
+          "message": "This object may be unused.",
+          "severity": 2,
+          "pointer": "/meshes/44/primitives/0/attributes/TEXCOORD_0"
+        },
+        {
+          "code": "UNUSED_OBJECT",
+          "message": "This object may be unused.",
+          "severity": 2,
+          "pointer": "/meshes/45/primitives/0/attributes/TEXCOORD_0"
+        },
+        {
+          "code": "UNUSED_OBJECT",
+          "message": "This object may be unused.",
+          "severity": 2,
+          "pointer": "/meshes/46/primitives/0/attributes/TEXCOORD_0"
+        },
+        {
+          "code": "UNUSED_OBJECT",
+          "message": "This object may be unused.",
+          "severity": 2,
+          "pointer": "/meshes/47/primitives/0/attributes/TEXCOORD_0"
+        },
+        {
+          "code": "UNUSED_OBJECT",
+          "message": "This object may be unused.",
+          "severity": 2,
+          "pointer": "/meshes/48/primitives/0/attributes/TEXCOORD_0"
+        },
+        {
+          "code": "UNUSED_OBJECT",
+          "message": "This object may be unused.",
+          "severity": 2,
+          "pointer": "/meshes/49/primitives/0/attributes/TEXCOORD_0"
+        },
+        {
+          "code": "UNUSED_OBJECT",
+          "message": "This object may be unused.",
+          "severity": 2,
+          "pointer": "/meshes/50/primitives/0/attributes/TEXCOORD_0"
+        },
+        {
+          "code": "UNUSED_OBJECT",
+          "message": "This object may be unused.",
+          "severity": 2,
+          "pointer": "/meshes/51/primitives/0/attributes/TEXCOORD_0"
+        },
+        {
+          "code": "UNUSED_OBJECT",
+          "message": "This object may be unused.",
+          "severity": 2,
+          "pointer": "/meshes/52/primitives/0/attributes/TEXCOORD_0"
+        },
+        {
+          "code": "UNUSED_OBJECT",
+          "message": "This object may be unused.",
+          "severity": 2,
+          "pointer": "/meshes/53/primitives/0/attributes/TEXCOORD_0"
+        },
+        {
+          "code": "UNUSED_OBJECT",
+          "message": "This object may be unused.",
+          "severity": 2,
+          "pointer": "/meshes/54/primitives/0/attributes/TEXCOORD_0"
+        },
+        {
+          "code": "UNUSED_OBJECT",
+          "message": "This object may be unused.",
+          "severity": 2,
+          "pointer": "/meshes/55/primitives/0/attributes/TEXCOORD_0"
+        },
+        {
+          "code": "UNUSED_OBJECT",
+          "message": "This object may be unused.",
+          "severity": 2,
+          "pointer": "/meshes/56/primitives/0/attributes/TEXCOORD_0"
+        },
+        {
+          "code": "UNUSED_OBJECT",
+          "message": "This object may be unused.",
+          "severity": 2,
+          "pointer": "/meshes/57/primitives/0/attributes/TEXCOORD_0"
+        },
+        {
+          "code": "UNUSED_OBJECT",
+          "message": "This object may be unused.",
+          "severity": 2,
+          "pointer": "/meshes/58/primitives/0/attributes/TEXCOORD_0"
+        },
+        {
+          "code": "UNUSED_OBJECT",
+          "message": "This object may be unused.",
+          "severity": 2,
+          "pointer": "/meshes/59/primitives/0/attributes/TEXCOORD_0"
+        },
+        {
+          "code": "UNUSED_OBJECT",
+          "message": "This object may be unused.",
+          "severity": 2,
+          "pointer": "/meshes/60/primitives/0/attributes/TEXCOORD_0"
+        }
+      ],
+      "truncated": false
+    },
+    "info": {
+      "version": "2.0",
+      "generator": "Khronos glTF Blender I/O v5.2.39",
+      "extensionsUsed": [
+        "KHR_materials_clearcoat"
+      ],
+      "resources": [
+        {
+          "pointer": "/buffers/0",
+          "mimeType": "application/gltf-buffer",
+          "storage": "glb",
+          "byteLength": 2293352
+        }
+      ],
+      "animationCount": 0,
+      "materialCount": 20,
+      "hasMorphTargets": false,
+      "hasSkins": false,
+      "hasTextures": false,
+      "hasDefaultScene": true,
+      "drawCallCount": 61,
+      "totalVertexCount": 68561,
+      "totalTriangleCount": 44028,
+      "maxUVs": 1,
+      "maxInfluences": 0,
+      "maxAttributes": 3
+    }
+  },
+  "checks": {
+    "glbKhronosNoErrorsOrWarnings": true,
+    "sixtyOneMeshNodes": true,
+    "trianglesMatch44028": true,
+    "boundsMatchFitWithin20Micrometers": true,
+    "all61NodeTransformsMatchFitWithin20Micrometers": true,
+    "all57RetainedSurfaceMultisetsExact": true,
+    "inputFilesUnchangedDuringValidation": true
+  },
+  "counts": {
+    "scenes": 1,
+    "nodes": 61,
+    "meshOccurrences": 61,
+    "meshes": 61,
+    "primitiveDraws": 61,
+    "triangles": 44028,
+    "accessorVertices": 68561,
+    "materials": 20,
+    "textures": 0,
+    "animations": 0,
+    "skins": 0
+  },
+  "bounds": {
+    "units": "metres",
+    "basis": "glTF scene-transformed Y-up coordinates; Blender (X,Y,Z) -> glTF (X,Z,-Y)",
+    "fitReceiptBlenderBounds": [
+      [
+        -2.9099459648132324,
+        -28.763988494873047,
+        0.021512573584914207
+      ],
+      [
+        2.958909034729004,
+        -16.763992309570312,
+        3.1749837398529053
+      ]
+    ],
+    "convertedFitBounds": [
+      [
+        -2.9099459648132324,
+        0.021512573584914207,
+        16.763992309570312
+      ],
+      [
+        2.958909034729004,
+        3.1749837398529053,
+        28.763988494873047
+      ]
+    ],
+    "exportedSceneBounds": [
+      [
+        -2.9099456327892312,
+        0.021512573445425787,
+        16.76399135371321
+      ],
+      [
+        2.958909327948845,
+        3.1749837474790183,
+        28.76398778274597
+      ]
+    ],
+    "maximumComponentDeltaMeters": 9.55857103690505e-07,
+    "comparisonToleranceMeters": 2e-05,
+    "toleranceScope": "20 micrometres for float32 import/export transform accumulation; no geometry/race criteria changed."
+  },
+  "transformComparison": {
+    "basisConversion": "C * recorded Blender matrixWorld * inverse(C); compared with composed glTF scene matrices on every exported POSITION vertex.",
+    "maximumSurfaceCoordinateDeltaMeters": 2.5449932945509346e-06,
+    "nodes": [
+      {
+        "node": "Blockrunner fit V1 pasted__L1x1Stud4_Black_Jets_0",
+        "maximumMatrixComponentDelta": 0.0,
+        "maximumSurfaceCoordinateDeltaMeters": 0.0
+      },
+      {
+        "node": "Blockrunner fit V1 pasted__L1x1Stud5_Black_Jets_0",
+        "maximumMatrixComponentDelta": 0.0,
+        "maximumSurfaceCoordinateDeltaMeters": 0.0
+      },
+      {
+        "node": "Blockrunner fit V1 pasted__L1x20_Black_Jets_0",
+        "maximumMatrixComponentDelta": 0.0,
+        "maximumSurfaceCoordinateDeltaMeters": 0.0
+      },
+      {
+        "node": "Blockrunner fit V1 pasted__L1x2_pasted__Lego_White23_0",
+        "maximumMatrixComponentDelta": 1.3242121344635626e-15,
+        "maximumSurfaceCoordinateDeltaMeters": 1.3322676295501878e-15
+      },
+      {
+        "node": "Blockrunner fit V1 pasted__L1x4F_phongE2_0",
+        "maximumMatrixComponentDelta": 7.973812131412128e-10,
+        "maximumSurfaceCoordinateDeltaMeters": 6.123902913657275e-07
+      },
+      {
+        "node": "Blockrunner fit V1 pasted__L2x2Circle_phongE1_0",
+        "maximumMatrixComponentDelta": 4.888779763303109e-09,
+        "maximumSurfaceCoordinateDeltaMeters": 2.1919420571947512e-06
+      },
+      {
+        "node": "Blockrunner fit V1 pasted__L2x2_pasted__Lego_White16_0",
+        "maximumMatrixComponentDelta": 0.0,
+        "maximumSurfaceCoordinateDeltaMeters": 0.0
+      },
+      {
+        "node": "Blockrunner fit V1 pasted__L2x3slope1_pasted__Lego_White24_0",
+        "maximumMatrixComponentDelta": 6.753481779885051e-14,
+        "maximumSurfaceCoordinateDeltaMeters": 6.755707104844078e-14
+      },
+      {
+        "node": "Blockrunner fit V1 pasted__L2x6_phongE2_0",
+        "maximumMatrixComponentDelta": 0.0,
+        "maximumSurfaceCoordinateDeltaMeters": 0.0
+      },
+      {
+        "node": "Blockrunner fit V1 pasted__L4x3Slope_pasted__Lego_White15_0",
+        "maximumMatrixComponentDelta": 0.0,
+        "maximumSurfaceCoordinateDeltaMeters": 0.0
+      },
+      {
+        "node": "Blockrunner fit V1 pasted__L4x3Slope_pasted__Lego_White22_0",
+        "maximumMatrixComponentDelta": 0.0,
+        "maximumSurfaceCoordinateDeltaMeters": 0.0
+      },
+      {
+        "node": "Blockrunner fit V1 pasted__L4x8F_pasted__Lego_White8_0",
+        "maximumMatrixComponentDelta": 0.0,
+        "maximumSurfaceCoordinateDeltaMeters": 0.0
+      },
+      {
+        "node": "Blockrunner fit V1 pasted__LegoTri19_pasted__Lego_White18_0",
+        "maximumMatrixComponentDelta": 7.973812131412128e-10,
+        "maximumSurfaceCoordinateDeltaMeters": 9.516858168190367e-07
+      },
+      {
+        "node": "Blockrunner fit V1 pasted__LegoTri36_lambert1_0",
+        "maximumMatrixComponentDelta": 0.0,
+        "maximumSurfaceCoordinateDeltaMeters": 0.0
+      },
+      {
+        "node": "Blockrunner fit V1 pasted__LegoTri39_pasted__Lego_White20_0",
+        "maximumMatrixComponentDelta": 0.0,
+        "maximumSurfaceCoordinateDeltaMeters": 0.0
+      },
+      {
+        "node": "Blockrunner fit V1 pasted__LegoTri8_lambert1_0",
+        "maximumMatrixComponentDelta": 3.7081154255014584e-16,
+        "maximumSurfaceCoordinateDeltaMeters": 3.090860900556436e-13
+      },
+      {
+        "node": "Blockrunner fit V1 pasted__LegoTri9_lambert1_0",
+        "maximumMatrixComponentDelta": 0.0,
+        "maximumSurfaceCoordinateDeltaMeters": 0.0
+      },
+      {
+        "node": "Blockrunner fit V1 pasted__brick230_phongE2_0",
+        "maximumMatrixComponentDelta": 0.0,
+        "maximumSurfaceCoordinateDeltaMeters": 0.0
+      },
+      {
+        "node": "Blockrunner fit V1 pasted__brick231_pasted__LegoWhite1_0",
+        "maximumMatrixComponentDelta": 0.0,
+        "maximumSurfaceCoordinateDeltaMeters": 0.0
+      },
+      {
+        "node": "Blockrunner fit V1 pasted__brick240_pasted__LegoWhite3_0",
+        "maximumMatrixComponentDelta": 0.0,
+        "maximumSurfaceCoordinateDeltaMeters": 0.0
+      },
+      {
+        "node": "Blockrunner fit V1 pasted__pCylinder4_Black_Jets_0",
+        "maximumMatrixComponentDelta": 7.973812131412128e-10,
+        "maximumSurfaceCoordinateDeltaMeters": 7.025926720416464e-07
+      },
+      {
+        "node": "Blockrunner fit V1 pasted__pasted__L1x1Stud4_Black_Jets_0",
+        "maximumMatrixComponentDelta": 0.0,
+        "maximumSurfaceCoordinateDeltaMeters": 0.0
+      },
+      {
+        "node": "Blockrunner fit V1 pasted__pasted__L1x1Stud5_Black_Jets_0",
+        "maximumMatrixComponentDelta": 0.0,
+        "maximumSurfaceCoordinateDeltaMeters": 0.0
+      },
+      {
+        "node": "Blockrunner fit V1 pasted__pasted__L1x20_Black_Jets_0",
+        "maximumMatrixComponentDelta": 0.0,
+        "maximumSurfaceCoordinateDeltaMeters": 0.0
+      },
+      {
+        "node": "Blockrunner fit V1 pasted__pasted__L1x4F_phongE2_0",
+        "maximumMatrixComponentDelta": 7.973811506911677e-10,
+        "maximumSurfaceCoordinateDeltaMeters": 6.030709762683273e-07
+      },
+      {
+        "node": "Blockrunner fit V1 pasted__pasted__L1x4F_phongE2_0.001",
+        "maximumMatrixComponentDelta": 1.758783491267954e-09,
+        "maximumSurfaceCoordinateDeltaMeters": 9.66271748836789e-07
+      },
+      {
+        "node": "Blockrunner fit V1 pasted__pasted__L2F_phongE2_0",
+        "maximumMatrixComponentDelta": 7.973811506911677e-10,
+        "maximumSurfaceCoordinateDeltaMeters": 6.475890685919694e-07
+      },
+      {
+        "node": "Blockrunner fit V1 pasted__pasted__L2x2Circle_phongE1_0",
+        "maximumMatrixComponentDelta": 4.888779290995632e-09,
+        "maximumSurfaceCoordinateDeltaMeters": 2.180381244443197e-06
+      },
+      {
+        "node": "Blockrunner fit V1 pasted__pasted__L2x2Circle_phongE1_0.001",
+        "maximumMatrixComponentDelta": 4.888779290995632e-09,
+        "maximumSurfaceCoordinateDeltaMeters": 2.1790514037611786e-06
+      },
+      {
+        "node": "Blockrunner fit V1 pasted__pasted__L2x2_pasted__pasted__Lego_White19_0",
+        "maximumMatrixComponentDelta": 0.0,
+        "maximumSurfaceCoordinateDeltaMeters": 0.0
+      },
+      {
+        "node": "Blockrunner fit V1 pasted__pasted__L2x6_phongE2_0",
+        "maximumMatrixComponentDelta": 0.0,
+        "maximumSurfaceCoordinateDeltaMeters": 0.0
+      },
+      {
+        "node": "Blockrunner fit V1 pasted__pasted__L4x8F_pasted__pasted__Lego_White8_0",
+        "maximumMatrixComponentDelta": 0.0,
+        "maximumSurfaceCoordinateDeltaMeters": 0.0
+      },
+      {
+        "node": "Blockrunner fit V1 pasted__pasted__LegoTri19_pasted__pasted__Lego_White18_0",
+        "maximumMatrixComponentDelta": 1.758783491267954e-09,
+        "maximumSurfaceCoordinateDeltaMeters": 2.4375361553641284e-06
+      },
+      {
+        "node": "Blockrunner fit V1 pasted__pasted__LegoTri8_lambert1_0",
+        "maximumMatrixComponentDelta": 3.7081154255014584e-16,
+        "maximumSurfaceCoordinateDeltaMeters": 3.090860900556436e-13
+      },
+      {
+        "node": "Blockrunner fit V1 pasted__pasted__LegoTri9_lambert1_0",
+        "maximumMatrixComponentDelta": 0.0,
+        "maximumSurfaceCoordinateDeltaMeters": 0.0
+      },
+      {
+        "node": "Blockrunner fit V1 pasted__pasted__brick230_phongE2_0",
+        "maximumMatrixComponentDelta": 0.0,
+        "maximumSurfaceCoordinateDeltaMeters": 0.0
+      },
+      {
+        "node": "Blockrunner fit V1 pasted__pasted__brick231_pasted__pasted__LegoWhite1_0",
+        "maximumMatrixComponentDelta": 0.0,
+        "maximumSurfaceCoordinateDeltaMeters": 0.0
+      },
+      {
+        "node": "Blockrunner fit V1 pasted__pasted__brick240_pasted__pasted__LegoWhite3_0",
+        "maximumMatrixComponentDelta": 0.0,
+        "maximumSurfaceCoordinateDeltaMeters": 0.0
+      },
+      {
+        "node": "Blockrunner fit V1 pasted__pasted__pCylinder4_Black_Jets_0",
+        "maximumMatrixComponentDelta": 1.758783491267954e-09,
+        "maximumSurfaceCoordinateDeltaMeters": 7.360147513679749e-07
+      },
+      {
+        "node": "Blockrunner fit V1 pasted__pasted__pasted__L1x4F_phongE2_0",
+        "maximumMatrixComponentDelta": 7.973811506911677e-10,
+        "maximumSurfaceCoordinateDeltaMeters": 5.935560771774817e-07
+      },
+      {
+        "node": "Blockrunner fit V1 pasted__pasted__pasted__L1x4F_phongE2_0.001",
+        "maximumMatrixComponentDelta": 1.758783491267954e-09,
+        "maximumSurfaceCoordinateDeltaMeters": 9.811749315247198e-07
+      },
+      {
+        "node": "Blockrunner fit V1 pasted__pasted__pasted__L2F_phongE2_0",
+        "maximumMatrixComponentDelta": 7.973811506911677e-10,
+        "maximumSurfaceCoordinateDeltaMeters": 6.495753517299363e-07
+      },
+      {
+        "node": "Blockrunner fit V1 pasted__pasted__pasted__L2F_phongE2_0.001",
+        "maximumMatrixComponentDelta": 1.758783491267954e-09,
+        "maximumSurfaceCoordinateDeltaMeters": 9.276901984378583e-07
+      },
+      {
+        "node": "Blockrunner fit V1 pasted__pasted__pasted__L2x2Circle_phongE1_0",
+        "maximumMatrixComponentDelta": 4.888779290995632e-09,
+        "maximumSurfaceCoordinateDeltaMeters": 2.1922832404985826e-06
+      },
+      {
+        "node": "Blockrunner fit V1 pasted__pasted__pasted__L2x2_pasted__pasted__pasted__Lego_White19_0",
+        "maximumMatrixComponentDelta": 0.0,
+        "maximumSurfaceCoordinateDeltaMeters": 0.0
+      },
+      {
+        "node": "Blockrunner fit V1 pasted__pasted__pasted__pasted__L1x4F_phongE2_0",
+        "maximumMatrixComponentDelta": 1.758783491267954e-09,
+        "maximumSurfaceCoordinateDeltaMeters": 9.953380697425018e-07
+      },
+      {
+        "node": "Blockrunner fit V1 pasted__pasted__pasted__pasted__L2F_phongE2_0",
+        "maximumMatrixComponentDelta": 7.973811506911677e-10,
+        "maximumSurfaceCoordinateDeltaMeters": 6.49455888179773e-07
+      },
+      {
+        "node": "Blockrunner fit V1 pasted__pasted__pasted__pasted__L2F_phongE2_0.001",
+        "maximumMatrixComponentDelta": 1.758783491267954e-09,
+        "maximumSurfaceCoordinateDeltaMeters": 9.279579309406927e-07
+      },
+      {
+        "node": "Blockrunner fit V1 pasted__pasted__pasted__pasted__L2x2Circle_phongE1_0",
+        "maximumMatrixComponentDelta": 4.888779290995632e-09,
+        "maximumSurfaceCoordinateDeltaMeters": 2.1918641943674544e-06
+      },
+      {
+        "node": "Blockrunner fit V1 pasted__pasted__pasted__pasted__pasted__L2F_phongE2_0",
+        "maximumMatrixComponentDelta": 1.758783491267954e-09,
+        "maximumSurfaceCoordinateDeltaMeters": 9.299874577095579e-07
+      },
+      {
+        "node": "Blockrunner fit V1 pasted__pasted__pasted__pasted__pasted__L2x2Circle_phongE1_0",
+        "maximumMatrixComponentDelta": 4.888779290995632e-09,
+        "maximumSurfaceCoordinateDeltaMeters": 2.191156296627028e-06
+      },
+      {
+        "node": "Blockrunner fit V1 pasted__pasted__pasted__pasted__pasted__pasted__L2x2Circle_phongE1_0",
+        "maximumMatrixComponentDelta": 4.116275945668809e-09,
+        "maximumSurfaceCoordinateDeltaMeters": 2.5449932945509346e-06
+      },
+      {
+        "node": "Blockrunner fit V1 pasted__pasted__pasted__pasted__pasted__pasted__pasted__L2x2Circle_phongE1_0",
+        "maximumMatrixComponentDelta": 4.116275945668809e-09,
+        "maximumSurfaceCoordinateDeltaMeters": 2.5449932945509346e-06
+      },
+      {
+        "node": "Blockrunner fit V1 pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__L2x2Circle_phongE1_0",
+        "maximumMatrixComponentDelta": 4.116275945668809e-09,
+        "maximumSurfaceCoordinateDeltaMeters": 2.5449932945509346e-06
+      },
+      {
+        "node": "Blockrunner fit V1 pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__L2x2Circle_phongE1_0.001",
+        "maximumMatrixComponentDelta": 4.116275945668809e-09,
+        "maximumSurfaceCoordinateDeltaMeters": 2.5449932945509346e-06
+      },
+      {
+        "node": "Blockrunner fit V1 pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__L2x2Circle_phongE1_0",
+        "maximumMatrixComponentDelta": 4.116275945668809e-09,
+        "maximumSurfaceCoordinateDeltaMeters": 2.5449932945509346e-06
+      },
+      {
+        "node": "Blockrunner fit V1 pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__L2x2Circle_phongE1_0",
+        "maximumMatrixComponentDelta": 4.116275945668809e-09,
+        "maximumSurfaceCoordinateDeltaMeters": 2.5449932945509346e-06
+      },
+      {
+        "node": "Blockrunner fit V1 pasted__pasted__pasted__pasted__pasted__polySurface97_phongE2_0",
+        "maximumMatrixComponentDelta": 7.973811506911677e-10,
+        "maximumSurfaceCoordinateDeltaMeters": 1.700582430430586e-07
+      },
+      {
+        "node": "Blockrunner fit V1 pasted__pasted__pasted__pasted__polySurface97_phongE2_0",
+        "maximumMatrixComponentDelta": 1.758783491267954e-09,
+        "maximumSurfaceCoordinateDeltaMeters": 1.6180801086784768e-06
+      },
+      {
+        "node": "Blockrunner fit V1 side mount negativeX",
+        "maximumMatrixComponentDelta": 0.0,
+        "maximumSurfaceCoordinateDeltaMeters": 0.0
+      },
+      {
+        "node": "Blockrunner fit V1 side mount positiveX",
+        "maximumMatrixComponentDelta": 0.0,
+        "maximumSurfaceCoordinateDeltaMeters": 0.0
+      }
+    ]
+  },
+  "retainedSurfaceComparison": {
+    "method": "Read original GLB index triangles and apply cleanup receipt sourcePolygonsKeptInCopiedOrder. Compare winding-sensitive cyclic-corner-canonical POSITION triangle multisets in common local glTF coordinates for all 57 unchanged fit objects, without rounding or welding. Match authored NORMAL vectors at the same canonical triangle corners. Coordinates exact; normals reported numerically, not asserted byte-identical.",
+    "scope": "Original pilot plus 56 body mesh occurrences; 43,084 retained triangles. Two edited grips and two added mounts (944 triangles) excluded from original-surface equality; all 61 still included in bounds/transforms/count/validator checks.",
+    "retainedObjects": 57,
+    "retainedTriangles": 43084,
+    "normalCornersCompared": 129252,
+    "normalCornersExactlyEqual": 129005,
+    "maximumNormalComponentDelta": 0.00041306018829345703,
+    "maximumNormalVectorDelta": 0.0004994323249520718,
+    "minimumNormalizedNormalDot": 0.9999998752836794,
+    "maximumOriginalSourceWorldToExportWorldCoordinateDeltaMeters": 1.524478044245825e-05,
+    "normalLimitations": "Original GLB normal floats can differ after Blender imported/split-normal encoding and glTF export. The actual cleanup receipt already records re-encoding differences for selected corner normals. This comparison quantifies direction drift; it cannot reconstruct every intermediate Bpy property or claim cryptographic equality to unrecorded live corner arrays.",
+    "objects": [
+      {
+        "sourceObject": "pasted__L1x1Stud4_Black_Jets_0",
+        "exportNode": "Blockrunner fit V1 pasted__L1x1Stud4_Black_Jets_0",
+        "role": "body",
+        "sourceTriangles": 1552,
+        "cleanupRetainedTriangles": 1552,
+        "exportTriangles": 1552,
+        "sourcePolygonsExcludedByCleanup": 0,
+        "exactLocalPositionWindingSensitiveTriangleMultisetMatch": true,
+        "normalCornersCompared": 4656,
+        "normalCornersExactlyEqual": 4656,
+        "maximumNormalComponentDelta": 0,
+        "maximumNormalVectorDelta": 0,
+        "minimumNormalizedNormalDot": 0.9999999999999998,
+        "maximumSourceWorldToExportWorldCoordinateDeltaMeters": 9.119456525041869e-06,
+        "unmatchedExamples": []
+      },
+      {
+        "sourceObject": "pasted__L1x1Stud5_Black_Jets_0",
+        "exportNode": "Blockrunner fit V1 pasted__L1x1Stud5_Black_Jets_0",
+        "role": "body",
+        "sourceTriangles": 1152,
+        "cleanupRetainedTriangles": 1152,
+        "exportTriangles": 1152,
+        "sourcePolygonsExcludedByCleanup": 0,
+        "exactLocalPositionWindingSensitiveTriangleMultisetMatch": true,
+        "normalCornersCompared": 3456,
+        "normalCornersExactlyEqual": 3456,
+        "maximumNormalComponentDelta": 0,
+        "maximumNormalVectorDelta": 0,
+        "minimumNormalizedNormalDot": 0.9999999999999998,
+        "maximumSourceWorldToExportWorldCoordinateDeltaMeters": 8.614729505751484e-06,
+        "unmatchedExamples": []
+      },
+      {
+        "sourceObject": "pasted__L1x20_Black_Jets_0",
+        "exportNode": "Blockrunner fit V1 pasted__L1x20_Black_Jets_0",
+        "role": "body",
+        "sourceTriangles": 1064,
+        "cleanupRetainedTriangles": 1064,
+        "exportTriangles": 1064,
+        "sourcePolygonsExcludedByCleanup": 0,
+        "exactLocalPositionWindingSensitiveTriangleMultisetMatch": true,
+        "normalCornersCompared": 3192,
+        "normalCornersExactlyEqual": 3192,
+        "maximumNormalComponentDelta": 0,
+        "maximumNormalVectorDelta": 0,
+        "minimumNormalizedNormalDot": 0.9999999999999998,
+        "maximumSourceWorldToExportWorldCoordinateDeltaMeters": 8.947415555127236e-06,
+        "unmatchedExamples": []
+      },
+      {
+        "sourceObject": "pasted__L1x2_pasted__Lego_White23_0",
+        "exportNode": "Blockrunner fit V1 pasted__L1x2_pasted__Lego_White23_0",
+        "role": "body",
+        "sourceTriangles": 228,
+        "cleanupRetainedTriangles": 228,
+        "exportTriangles": 228,
+        "sourcePolygonsExcludedByCleanup": 0,
+        "exactLocalPositionWindingSensitiveTriangleMultisetMatch": true,
+        "normalCornersCompared": 684,
+        "normalCornersExactlyEqual": 684,
+        "maximumNormalComponentDelta": 0,
+        "maximumNormalVectorDelta": 0,
+        "minimumNormalizedNormalDot": 0.9999999999999998,
+        "maximumSourceWorldToExportWorldCoordinateDeltaMeters": 1.424150028128679e-06,
+        "unmatchedExamples": []
+      },
+      {
+        "sourceObject": "pasted__L1x4F_phongE2_0",
+        "exportNode": "Blockrunner fit V1 pasted__L1x4F_phongE2_0",
+        "role": "body",
+        "sourceTriangles": 348,
+        "cleanupRetainedTriangles": 348,
+        "exportTriangles": 348,
+        "sourcePolygonsExcludedByCleanup": 0,
+        "exactLocalPositionWindingSensitiveTriangleMultisetMatch": true,
+        "normalCornersCompared": 1044,
+        "normalCornersExactlyEqual": 1044,
+        "maximumNormalComponentDelta": 0,
+        "maximumNormalVectorDelta": 0,
+        "minimumNormalizedNormalDot": 0.9999999999999998,
+        "maximumSourceWorldToExportWorldCoordinateDeltaMeters": 5.562964634719947e-06,
+        "unmatchedExamples": []
+      },
+      {
+        "sourceObject": "pasted__L2x2Circle_phongE1_0",
+        "exportNode": "Blockrunner fit V1 pasted__L2x2Circle_phongE1_0",
+        "role": "body",
+        "sourceTriangles": 360,
+        "cleanupRetainedTriangles": 360,
+        "exportTriangles": 360,
+        "sourcePolygonsExcludedByCleanup": 0,
+        "exactLocalPositionWindingSensitiveTriangleMultisetMatch": true,
+        "normalCornersCompared": 1080,
+        "normalCornersExactlyEqual": 1080,
+        "maximumNormalComponentDelta": 0,
+        "maximumNormalVectorDelta": 0,
+        "minimumNormalizedNormalDot": 0.9999999999999998,
+        "maximumSourceWorldToExportWorldCoordinateDeltaMeters": 7.646630180602187e-06,
+        "unmatchedExamples": []
+      },
+      {
+        "sourceObject": "pasted__L2x2_pasted__Lego_White16_0",
+        "exportNode": "Blockrunner fit V1 pasted__L2x2_pasted__Lego_White16_0",
+        "role": "body",
+        "sourceTriangles": 348,
+        "cleanupRetainedTriangles": 348,
+        "exportTriangles": 348,
+        "sourcePolygonsExcludedByCleanup": 0,
+        "exactLocalPositionWindingSensitiveTriangleMultisetMatch": true,
+        "normalCornersCompared": 1044,
+        "normalCornersExactlyEqual": 1044,
+        "maximumNormalComponentDelta": 0,
+        "maximumNormalVectorDelta": 0,
+        "minimumNormalizedNormalDot": 0.9999999999999998,
+        "maximumSourceWorldToExportWorldCoordinateDeltaMeters": 4.786298788417298e-07,
+        "unmatchedExamples": []
+      },
+      {
+        "sourceObject": "pasted__L2x3slope1_pasted__Lego_White24_0",
+        "exportNode": "Blockrunner fit V1 pasted__L2x3slope1_pasted__Lego_White24_0",
+        "role": "body",
+        "sourceTriangles": 260,
+        "cleanupRetainedTriangles": 260,
+        "exportTriangles": 260,
+        "sourcePolygonsExcludedByCleanup": 0,
+        "exactLocalPositionWindingSensitiveTriangleMultisetMatch": true,
+        "normalCornersCompared": 780,
+        "normalCornersExactlyEqual": 780,
+        "maximumNormalComponentDelta": 0,
+        "maximumNormalVectorDelta": 0,
+        "minimumNormalizedNormalDot": 0.9999999999999998,
+        "maximumSourceWorldToExportWorldCoordinateDeltaMeters": 3.7127893897093145e-06,
+        "unmatchedExamples": []
+      },
+      {
+        "sourceObject": "pasted__L2x6_phongE2_0",
+        "exportNode": "Blockrunner fit V1 pasted__L2x6_phongE2_0",
+        "role": "body",
+        "sourceTriangles": 828,
+        "cleanupRetainedTriangles": 828,
+        "exportTriangles": 828,
+        "sourcePolygonsExcludedByCleanup": 0,
+        "exactLocalPositionWindingSensitiveTriangleMultisetMatch": true,
+        "normalCornersCompared": 2484,
+        "normalCornersExactlyEqual": 2484,
+        "maximumNormalComponentDelta": 0,
+        "maximumNormalVectorDelta": 0,
+        "minimumNormalizedNormalDot": 0.9999999999999998,
+        "maximumSourceWorldToExportWorldCoordinateDeltaMeters": 4.32561936491993e-06,
+        "unmatchedExamples": []
+      },
+      {
+        "sourceObject": "pasted__L4x3Slope_pasted__Lego_White15_0",
+        "exportNode": "Blockrunner fit V1 pasted__L4x3Slope_pasted__Lego_White15_0",
+        "role": "body",
+        "sourceTriangles": 380,
+        "cleanupRetainedTriangles": 380,
+        "exportTriangles": 380,
+        "sourcePolygonsExcludedByCleanup": 0,
+        "exactLocalPositionWindingSensitiveTriangleMultisetMatch": true,
+        "normalCornersCompared": 1140,
+        "normalCornersExactlyEqual": 1140,
+        "maximumNormalComponentDelta": 0,
+        "maximumNormalVectorDelta": 0,
+        "minimumNormalizedNormalDot": 0.9999999999999998,
+        "maximumSourceWorldToExportWorldCoordinateDeltaMeters": 1.8328034450121322e-06,
+        "unmatchedExamples": []
+      },
+      {
+        "sourceObject": "pasted__L4x3Slope_pasted__Lego_White22_0",
+        "exportNode": "Blockrunner fit V1 pasted__L4x3Slope_pasted__Lego_White22_0",
+        "role": "body",
+        "sourceTriangles": 380,
+        "cleanupRetainedTriangles": 380,
+        "exportTriangles": 380,
+        "sourcePolygonsExcludedByCleanup": 0,
+        "exactLocalPositionWindingSensitiveTriangleMultisetMatch": true,
+        "normalCornersCompared": 1140,
+        "normalCornersExactlyEqual": 1140,
+        "maximumNormalComponentDelta": 0,
+        "maximumNormalVectorDelta": 0,
+        "minimumNormalizedNormalDot": 0.9999999999999998,
+        "maximumSourceWorldToExportWorldCoordinateDeltaMeters": 5.273038468089908e-07,
+        "unmatchedExamples": []
+      },
+      {
+        "sourceObject": "pasted__L4x8F_pasted__Lego_White8_0",
+        "exportNode": "Blockrunner fit V1 pasted__L4x8F_pasted__Lego_White8_0",
+        "role": "body",
+        "sourceTriangles": 2028,
+        "cleanupRetainedTriangles": 2028,
+        "exportTriangles": 2028,
+        "sourcePolygonsExcludedByCleanup": 0,
+        "exactLocalPositionWindingSensitiveTriangleMultisetMatch": true,
+        "normalCornersCompared": 6084,
+        "normalCornersExactlyEqual": 6084,
+        "maximumNormalComponentDelta": 0,
+        "maximumNormalVectorDelta": 0,
+        "minimumNormalizedNormalDot": 0.9999999999999998,
+        "maximumSourceWorldToExportWorldCoordinateDeltaMeters": 5.042196384863473e-06,
+        "unmatchedExamples": []
+      },
+      {
+        "sourceObject": "pasted__LegoTri19_pasted__Lego_White18_0",
+        "exportNode": "Blockrunner fit V1 pasted__LegoTri19_pasted__Lego_White18_0",
+        "role": "body",
+        "sourceTriangles": 936,
+        "cleanupRetainedTriangles": 936,
+        "exportTriangles": 936,
+        "sourcePolygonsExcludedByCleanup": 0,
+        "exactLocalPositionWindingSensitiveTriangleMultisetMatch": true,
+        "normalCornersCompared": 2808,
+        "normalCornersExactlyEqual": 2808,
+        "maximumNormalComponentDelta": 0,
+        "maximumNormalVectorDelta": 0,
+        "minimumNormalizedNormalDot": 0.9999999999999998,
+        "maximumSourceWorldToExportWorldCoordinateDeltaMeters": 8.060339716564613e-06,
+        "unmatchedExamples": []
+      },
+      {
+        "sourceObject": "pasted__LegoTri36_lambert1_0",
+        "exportNode": "Blockrunner fit V1 pasted__LegoTri36_lambert1_0",
+        "role": "original pilot after explicit cleanup",
+        "sourceTriangles": 8256,
+        "cleanupRetainedTriangles": 4128,
+        "exportTriangles": 4128,
+        "sourcePolygonsExcludedByCleanup": 4128,
+        "exactLocalPositionWindingSensitiveTriangleMultisetMatch": true,
+        "normalCornersCompared": 12384,
+        "normalCornersExactlyEqual": 12142,
+        "maximumNormalComponentDelta": 0.00041306018829345703,
+        "maximumNormalVectorDelta": 0.0004994323249520718,
+        "minimumNormalizedNormalDot": 0.9999998752836794,
+        "maximumSourceWorldToExportWorldCoordinateDeltaMeters": 1.8333847968676764e-06,
+        "unmatchedExamples": []
+      },
+      {
+        "sourceObject": "pasted__LegoTri39_pasted__Lego_White20_0",
+        "exportNode": "Blockrunner fit V1 pasted__LegoTri39_pasted__Lego_White20_0",
+        "role": "body",
+        "sourceTriangles": 348,
+        "cleanupRetainedTriangles": 348,
+        "exportTriangles": 348,
+        "sourcePolygonsExcludedByCleanup": 0,
+        "exactLocalPositionWindingSensitiveTriangleMultisetMatch": true,
+        "normalCornersCompared": 1044,
+        "normalCornersExactlyEqual": 1044,
+        "maximumNormalComponentDelta": 0,
+        "maximumNormalVectorDelta": 0,
+        "minimumNormalizedNormalDot": 0.9999999999999998,
+        "maximumSourceWorldToExportWorldCoordinateDeltaMeters": 4.011294734596049e-06,
+        "unmatchedExamples": []
+      },
+      {
+        "sourceObject": "pasted__LegoTri8_lambert1_0",
+        "exportNode": "Blockrunner fit V1 pasted__LegoTri8_lambert1_0",
+        "role": "body",
+        "sourceTriangles": 548,
+        "cleanupRetainedTriangles": 274,
+        "exportTriangles": 274,
+        "sourcePolygonsExcludedByCleanup": 274,
+        "exactLocalPositionWindingSensitiveTriangleMultisetMatch": true,
+        "normalCornersCompared": 822,
+        "normalCornersExactlyEqual": 821,
+        "maximumNormalComponentDelta": 8.782744407653809e-05,
+        "maximumNormalVectorDelta": 9.370461067426687e-05,
+        "minimumNormalizedNormalDot": 0.9999999956097253,
+        "maximumSourceWorldToExportWorldCoordinateDeltaMeters": 4.516531529219492e-06,
+        "unmatchedExamples": []
+      },
+      {
+        "sourceObject": "pasted__LegoTri9_lambert1_0",
+        "exportNode": "Blockrunner fit V1 pasted__LegoTri9_lambert1_0",
+        "role": "body",
+        "sourceTriangles": 152,
+        "cleanupRetainedTriangles": 76,
+        "exportTriangles": 76,
+        "sourcePolygonsExcludedByCleanup": 76,
+        "exactLocalPositionWindingSensitiveTriangleMultisetMatch": true,
+        "normalCornersCompared": 228,
+        "normalCornersExactlyEqual": 228,
+        "maximumNormalComponentDelta": 0,
+        "maximumNormalVectorDelta": 0,
+        "minimumNormalizedNormalDot": 0.9999999999999998,
+        "maximumSourceWorldToExportWorldCoordinateDeltaMeters": 4.255549459486474e-07,
+        "unmatchedExamples": []
+      },
+      {
+        "sourceObject": "pasted__brick231_pasted__LegoWhite1_0",
+        "exportNode": "Blockrunner fit V1 pasted__brick231_pasted__LegoWhite1_0",
+        "role": "body",
+        "sourceTriangles": 1612,
+        "cleanupRetainedTriangles": 1612,
+        "exportTriangles": 1612,
+        "sourcePolygonsExcludedByCleanup": 0,
+        "exactLocalPositionWindingSensitiveTriangleMultisetMatch": true,
+        "normalCornersCompared": 4836,
+        "normalCornersExactlyEqual": 4836,
+        "maximumNormalComponentDelta": 0,
+        "maximumNormalVectorDelta": 0,
+        "minimumNormalizedNormalDot": 0.9999999999999998,
+        "maximumSourceWorldToExportWorldCoordinateDeltaMeters": 3.656384137684654e-06,
+        "unmatchedExamples": []
+      },
+      {
+        "sourceObject": "pasted__brick240_pasted__LegoWhite3_0",
+        "exportNode": "Blockrunner fit V1 pasted__brick240_pasted__LegoWhite3_0",
+        "role": "body",
+        "sourceTriangles": 240,
+        "cleanupRetainedTriangles": 240,
+        "exportTriangles": 240,
+        "sourcePolygonsExcludedByCleanup": 0,
+        "exactLocalPositionWindingSensitiveTriangleMultisetMatch": true,
+        "normalCornersCompared": 720,
+        "normalCornersExactlyEqual": 720,
+        "maximumNormalComponentDelta": 0,
+        "maximumNormalVectorDelta": 0,
+        "minimumNormalizedNormalDot": 0.9999999999999998,
+        "maximumSourceWorldToExportWorldCoordinateDeltaMeters": 5.928498431728713e-06,
+        "unmatchedExamples": []
+      },
+      {
+        "sourceObject": "pasted__pCylinder4_Black_Jets_0",
+        "exportNode": "Blockrunner fit V1 pasted__pCylinder4_Black_Jets_0",
+        "role": "body",
+        "sourceTriangles": 708,
+        "cleanupRetainedTriangles": 708,
+        "exportTriangles": 708,
+        "sourcePolygonsExcludedByCleanup": 0,
+        "exactLocalPositionWindingSensitiveTriangleMultisetMatch": true,
+        "normalCornersCompared": 2124,
+        "normalCornersExactlyEqual": 2124,
+        "maximumNormalComponentDelta": 0,
+        "maximumNormalVectorDelta": 0,
+        "minimumNormalizedNormalDot": 0.9999999999999998,
+        "maximumSourceWorldToExportWorldCoordinateDeltaMeters": 5.796408380831508e-06,
+        "unmatchedExamples": []
+      },
+      {
+        "sourceObject": "pasted__pasted__L1x1Stud4_Black_Jets_0",
+        "exportNode": "Blockrunner fit V1 pasted__pasted__L1x1Stud4_Black_Jets_0",
+        "role": "body",
+        "sourceTriangles": 1552,
+        "cleanupRetainedTriangles": 1552,
+        "exportTriangles": 1552,
+        "sourcePolygonsExcludedByCleanup": 0,
+        "exactLocalPositionWindingSensitiveTriangleMultisetMatch": true,
+        "normalCornersCompared": 4656,
+        "normalCornersExactlyEqual": 4656,
+        "maximumNormalComponentDelta": 0,
+        "maximumNormalVectorDelta": 0,
+        "minimumNormalizedNormalDot": 0.9999999999999998,
+        "maximumSourceWorldToExportWorldCoordinateDeltaMeters": 7.016661857761619e-06,
+        "unmatchedExamples": []
+      },
+      {
+        "sourceObject": "pasted__pasted__L1x1Stud5_Black_Jets_0",
+        "exportNode": "Blockrunner fit V1 pasted__pasted__L1x1Stud5_Black_Jets_0",
+        "role": "body",
+        "sourceTriangles": 1152,
+        "cleanupRetainedTriangles": 1152,
+        "exportTriangles": 1152,
+        "sourcePolygonsExcludedByCleanup": 0,
+        "exactLocalPositionWindingSensitiveTriangleMultisetMatch": true,
+        "normalCornersCompared": 3456,
+        "normalCornersExactlyEqual": 3456,
+        "maximumNormalComponentDelta": 0,
+        "maximumNormalVectorDelta": 0,
+        "minimumNormalizedNormalDot": 0.9999999999999998,
+        "maximumSourceWorldToExportWorldCoordinateDeltaMeters": 6.511934838471234e-06,
+        "unmatchedExamples": []
+      },
+      {
+        "sourceObject": "pasted__pasted__L1x20_Black_Jets_0",
+        "exportNode": "Blockrunner fit V1 pasted__pasted__L1x20_Black_Jets_0",
+        "role": "body",
+        "sourceTriangles": 1064,
+        "cleanupRetainedTriangles": 1064,
+        "exportTriangles": 1064,
+        "sourcePolygonsExcludedByCleanup": 0,
+        "exactLocalPositionWindingSensitiveTriangleMultisetMatch": true,
+        "normalCornersCompared": 3192,
+        "normalCornersExactlyEqual": 3192,
+        "maximumNormalComponentDelta": 0,
+        "maximumNormalVectorDelta": 0,
+        "minimumNormalizedNormalDot": 0.9999999999999998,
+        "maximumSourceWorldToExportWorldCoordinateDeltaMeters": 6.844620887846986e-06,
+        "unmatchedExamples": []
+      },
+      {
+        "sourceObject": "pasted__pasted__L1x4F_phongE2_0",
+        "exportNode": "Blockrunner fit V1 pasted__pasted__L1x4F_phongE2_0",
+        "role": "body",
+        "sourceTriangles": 348,
+        "cleanupRetainedTriangles": 348,
+        "exportTriangles": 348,
+        "sourcePolygonsExcludedByCleanup": 0,
+        "exactLocalPositionWindingSensitiveTriangleMultisetMatch": true,
+        "normalCornersCompared": 1044,
+        "normalCornersExactlyEqual": 1044,
+        "maximumNormalComponentDelta": 0,
+        "maximumNormalVectorDelta": 0,
+        "minimumNormalizedNormalDot": 0.9999999999999998,
+        "maximumSourceWorldToExportWorldCoordinateDeltaMeters": 6.87059371884402e-06,
+        "unmatchedExamples": []
+      },
+      {
+        "sourceObject": "pasted__pasted__L1x4F_phongE2_0.001",
+        "exportNode": "Blockrunner fit V1 pasted__pasted__L1x4F_phongE2_0.001",
+        "role": "body",
+        "sourceTriangles": 348,
+        "cleanupRetainedTriangles": 348,
+        "exportTriangles": 348,
+        "sourcePolygonsExcludedByCleanup": 0,
+        "exactLocalPositionWindingSensitiveTriangleMultisetMatch": true,
+        "normalCornersCompared": 1044,
+        "normalCornersExactlyEqual": 1044,
+        "maximumNormalComponentDelta": 0,
+        "maximumNormalVectorDelta": 0,
+        "minimumNormalizedNormalDot": 0.9999999999999998,
+        "maximumSourceWorldToExportWorldCoordinateDeltaMeters": 5.2134634955791626e-06,
+        "unmatchedExamples": []
+      },
+      {
+        "sourceObject": "pasted__pasted__L2F_phongE2_0",
+        "exportNode": "Blockrunner fit V1 pasted__pasted__L2F_phongE2_0",
+        "role": "body",
+        "sourceTriangles": 228,
+        "cleanupRetainedTriangles": 228,
+        "exportTriangles": 228,
+        "sourcePolygonsExcludedByCleanup": 0,
+        "exactLocalPositionWindingSensitiveTriangleMultisetMatch": true,
+        "normalCornersCompared": 684,
+        "normalCornersExactlyEqual": 684,
+        "maximumNormalComponentDelta": 0,
+        "maximumNormalVectorDelta": 0,
+        "minimumNormalizedNormalDot": 0.9999999999999998,
+        "maximumSourceWorldToExportWorldCoordinateDeltaMeters": 8.593036604054305e-06,
+        "unmatchedExamples": []
+      },
+      {
+        "sourceObject": "pasted__pasted__L2x2Circle_phongE1_0",
+        "exportNode": "Blockrunner fit V1 pasted__pasted__L2x2Circle_phongE1_0",
+        "role": "body",
+        "sourceTriangles": 360,
+        "cleanupRetainedTriangles": 360,
+        "exportTriangles": 360,
+        "sourcePolygonsExcludedByCleanup": 0,
+        "exactLocalPositionWindingSensitiveTriangleMultisetMatch": true,
+        "normalCornersCompared": 1080,
+        "normalCornersExactlyEqual": 1080,
+        "maximumNormalComponentDelta": 0,
+        "maximumNormalVectorDelta": 0,
+        "minimumNormalizedNormalDot": 0.9999999999999998,
+        "maximumSourceWorldToExportWorldCoordinateDeltaMeters": 1.9712641261548924e-06,
+        "unmatchedExamples": []
+      },
+      {
+        "sourceObject": "pasted__pasted__L2x2Circle_phongE1_0.001",
+        "exportNode": "Blockrunner fit V1 pasted__pasted__L2x2Circle_phongE1_0.001",
+        "role": "body",
+        "sourceTriangles": 360,
+        "cleanupRetainedTriangles": 360,
+        "exportTriangles": 360,
+        "sourcePolygonsExcludedByCleanup": 0,
+        "exactLocalPositionWindingSensitiveTriangleMultisetMatch": true,
+        "normalCornersCompared": 1080,
+        "normalCornersExactlyEqual": 1080,
+        "maximumNormalComponentDelta": 0,
+        "maximumNormalVectorDelta": 0,
+        "minimumNormalizedNormalDot": 0.9999999999999998,
+        "maximumSourceWorldToExportWorldCoordinateDeltaMeters": 1.8972698698771495e-06,
+        "unmatchedExamples": []
+      },
+      {
+        "sourceObject": "pasted__pasted__L2x2_pasted__pasted__Lego_White19_0",
+        "exportNode": "Blockrunner fit V1 pasted__pasted__L2x2_pasted__pasted__Lego_White19_0",
+        "role": "body",
+        "sourceTriangles": 348,
+        "cleanupRetainedTriangles": 348,
+        "exportTriangles": 348,
+        "sourcePolygonsExcludedByCleanup": 0,
+        "exactLocalPositionWindingSensitiveTriangleMultisetMatch": true,
+        "normalCornersCompared": 1044,
+        "normalCornersExactlyEqual": 1044,
+        "maximumNormalComponentDelta": 0,
+        "maximumNormalVectorDelta": 0,
+        "minimumNormalizedNormalDot": 0.9999999999999998,
+        "maximumSourceWorldToExportWorldCoordinateDeltaMeters": 7.876065051704018e-06,
+        "unmatchedExamples": []
+      },
+      {
+        "sourceObject": "pasted__pasted__L2x6_phongE2_0",
+        "exportNode": "Blockrunner fit V1 pasted__pasted__L2x6_phongE2_0",
+        "role": "body",
+        "sourceTriangles": 828,
+        "cleanupRetainedTriangles": 828,
+        "exportTriangles": 828,
+        "sourcePolygonsExcludedByCleanup": 0,
+        "exactLocalPositionWindingSensitiveTriangleMultisetMatch": true,
+        "normalCornersCompared": 2484,
+        "normalCornersExactlyEqual": 2484,
+        "maximumNormalComponentDelta": 0,
+        "maximumNormalVectorDelta": 0,
+        "minimumNormalizedNormalDot": 0.9999999999999998,
+        "maximumSourceWorldToExportWorldCoordinateDeltaMeters": 5.832227479629637e-06,
+        "unmatchedExamples": []
+      },
+      {
+        "sourceObject": "pasted__pasted__L4x8F_pasted__pasted__Lego_White8_0",
+        "exportNode": "Blockrunner fit V1 pasted__pasted__L4x8F_pasted__pasted__Lego_White8_0",
+        "role": "body",
+        "sourceTriangles": 2028,
+        "cleanupRetainedTriangles": 2028,
+        "exportTriangles": 2028,
+        "sourcePolygonsExcludedByCleanup": 0,
+        "exactLocalPositionWindingSensitiveTriangleMultisetMatch": true,
+        "normalCornersCompared": 6084,
+        "normalCornersExactlyEqual": 6084,
+        "maximumNormalComponentDelta": 0,
+        "maximumNormalVectorDelta": 0,
+        "minimumNormalizedNormalDot": 0.9999999999999998,
+        "maximumSourceWorldToExportWorldCoordinateDeltaMeters": 5.338177537339561e-06,
+        "unmatchedExamples": []
+      },
+      {
+        "sourceObject": "pasted__pasted__LegoTri19_pasted__pasted__Lego_White18_0",
+        "exportNode": "Blockrunner fit V1 pasted__pasted__LegoTri19_pasted__pasted__Lego_White18_0",
+        "role": "body",
+        "sourceTriangles": 936,
+        "cleanupRetainedTriangles": 936,
+        "exportTriangles": 936,
+        "sourcePolygonsExcludedByCleanup": 0,
+        "exactLocalPositionWindingSensitiveTriangleMultisetMatch": true,
+        "normalCornersCompared": 2808,
+        "normalCornersExactlyEqual": 2808,
+        "maximumNormalComponentDelta": 0,
+        "maximumNormalVectorDelta": 0,
+        "minimumNormalizedNormalDot": 0.9999999999999998,
+        "maximumSourceWorldToExportWorldCoordinateDeltaMeters": 7.237729406028848e-06,
+        "unmatchedExamples": []
+      },
+      {
+        "sourceObject": "pasted__pasted__LegoTri8_lambert1_0",
+        "exportNode": "Blockrunner fit V1 pasted__pasted__LegoTri8_lambert1_0",
+        "role": "body",
+        "sourceTriangles": 548,
+        "cleanupRetainedTriangles": 274,
+        "exportTriangles": 274,
+        "sourcePolygonsExcludedByCleanup": 274,
+        "exactLocalPositionWindingSensitiveTriangleMultisetMatch": true,
+        "normalCornersCompared": 822,
+        "normalCornersExactlyEqual": 818,
+        "maximumNormalComponentDelta": 0.00012052059173583984,
+        "maximumNormalVectorDelta": 0.0001286065070774414,
+        "minimumNormalizedNormalDot": 0.9999999917301841,
+        "maximumSourceWorldToExportWorldCoordinateDeltaMeters": 3.89015125179526e-06,
+        "unmatchedExamples": []
+      },
+      {
+        "sourceObject": "pasted__pasted__LegoTri9_lambert1_0",
+        "exportNode": "Blockrunner fit V1 pasted__pasted__LegoTri9_lambert1_0",
+        "role": "body",
+        "sourceTriangles": 152,
+        "cleanupRetainedTriangles": 76,
+        "exportTriangles": 76,
+        "sourcePolygonsExcludedByCleanup": 76,
+        "exactLocalPositionWindingSensitiveTriangleMultisetMatch": true,
+        "normalCornersCompared": 228,
+        "normalCornersExactlyEqual": 228,
+        "maximumNormalComponentDelta": 0,
+        "maximumNormalVectorDelta": 0,
+        "minimumNormalizedNormalDot": 0.9999999999999998,
+        "maximumSourceWorldToExportWorldCoordinateDeltaMeters": 2.0739167272409986e-06,
+        "unmatchedExamples": []
+      },
+      {
+        "sourceObject": "pasted__pasted__brick231_pasted__pasted__LegoWhite1_0",
+        "exportNode": "Blockrunner fit V1 pasted__pasted__brick231_pasted__pasted__LegoWhite1_0",
+        "role": "body",
+        "sourceTriangles": 1612,
+        "cleanupRetainedTriangles": 1612,
+        "exportTriangles": 1612,
+        "sourcePolygonsExcludedByCleanup": 0,
+        "exactLocalPositionWindingSensitiveTriangleMultisetMatch": true,
+        "normalCornersCompared": 4836,
+        "normalCornersExactlyEqual": 4836,
+        "maximumNormalComponentDelta": 0,
+        "maximumNormalVectorDelta": 0,
+        "minimumNormalizedNormalDot": 0.9999999999999998,
+        "maximumSourceWorldToExportWorldCoordinateDeltaMeters": 1.987765017474885e-06,
+        "unmatchedExamples": []
+      },
+      {
+        "sourceObject": "pasted__pasted__brick240_pasted__pasted__LegoWhite3_0",
+        "exportNode": "Blockrunner fit V1 pasted__pasted__brick240_pasted__pasted__LegoWhite3_0",
+        "role": "body",
+        "sourceTriangles": 240,
+        "cleanupRetainedTriangles": 240,
+        "exportTriangles": 240,
+        "sourcePolygonsExcludedByCleanup": 0,
+        "exactLocalPositionWindingSensitiveTriangleMultisetMatch": true,
+        "normalCornersCompared": 720,
+        "normalCornersExactlyEqual": 720,
+        "maximumNormalComponentDelta": 0,
+        "maximumNormalVectorDelta": 0,
+        "minimumNormalizedNormalDot": 0.9999999999999998,
+        "maximumSourceWorldToExportWorldCoordinateDeltaMeters": 6.460668586782958e-06,
+        "unmatchedExamples": []
+      },
+      {
+        "sourceObject": "pasted__pasted__pCylinder4_Black_Jets_0",
+        "exportNode": "Blockrunner fit V1 pasted__pasted__pCylinder4_Black_Jets_0",
+        "role": "body",
+        "sourceTriangles": 708,
+        "cleanupRetainedTriangles": 708,
+        "exportTriangles": 708,
+        "sourcePolygonsExcludedByCleanup": 0,
+        "exactLocalPositionWindingSensitiveTriangleMultisetMatch": true,
+        "normalCornersCompared": 2124,
+        "normalCornersExactlyEqual": 2124,
+        "maximumNormalComponentDelta": 0,
+        "maximumNormalVectorDelta": 0,
+        "minimumNormalizedNormalDot": 0.9999999999999998,
+        "maximumSourceWorldToExportWorldCoordinateDeltaMeters": 8.795945650064141e-06,
+        "unmatchedExamples": []
+      },
+      {
+        "sourceObject": "pasted__pasted__pasted__L1x4F_phongE2_0",
+        "exportNode": "Blockrunner fit V1 pasted__pasted__pasted__L1x4F_phongE2_0",
+        "role": "body",
+        "sourceTriangles": 348,
+        "cleanupRetainedTriangles": 348,
+        "exportTriangles": 348,
+        "sourcePolygonsExcludedByCleanup": 0,
+        "exactLocalPositionWindingSensitiveTriangleMultisetMatch": true,
+        "normalCornersCompared": 1044,
+        "normalCornersExactlyEqual": 1044,
+        "maximumNormalComponentDelta": 0,
+        "maximumNormalVectorDelta": 0,
+        "minimumNormalizedNormalDot": 0.9999999999999998,
+        "maximumSourceWorldToExportWorldCoordinateDeltaMeters": 9.154460116178598e-06,
+        "unmatchedExamples": []
+      },
+      {
+        "sourceObject": "pasted__pasted__pasted__L1x4F_phongE2_0.001",
+        "exportNode": "Blockrunner fit V1 pasted__pasted__pasted__L1x4F_phongE2_0.001",
+        "role": "body",
+        "sourceTriangles": 348,
+        "cleanupRetainedTriangles": 348,
+        "exportTriangles": 348,
+        "sourcePolygonsExcludedByCleanup": 0,
+        "exactLocalPositionWindingSensitiveTriangleMultisetMatch": true,
+        "normalCornersCompared": 1044,
+        "normalCornersExactlyEqual": 1044,
+        "maximumNormalComponentDelta": 0,
+        "maximumNormalVectorDelta": 0,
+        "minimumNormalizedNormalDot": 0.9999999999999998,
+        "maximumSourceWorldToExportWorldCoordinateDeltaMeters": 5.367480557794124e-06,
+        "unmatchedExamples": []
+      },
+      {
+        "sourceObject": "pasted__pasted__pasted__L2F_phongE2_0",
+        "exportNode": "Blockrunner fit V1 pasted__pasted__pasted__L2F_phongE2_0",
+        "role": "body",
+        "sourceTriangles": 228,
+        "cleanupRetainedTriangles": 228,
+        "exportTriangles": 228,
+        "sourcePolygonsExcludedByCleanup": 0,
+        "exactLocalPositionWindingSensitiveTriangleMultisetMatch": true,
+        "normalCornersCompared": 684,
+        "normalCornersExactlyEqual": 684,
+        "maximumNormalComponentDelta": 0,
+        "maximumNormalVectorDelta": 0,
+        "minimumNormalizedNormalDot": 0.9999999999999998,
+        "maximumSourceWorldToExportWorldCoordinateDeltaMeters": 7.163233220808252e-06,
+        "unmatchedExamples": []
+      },
+      {
+        "sourceObject": "pasted__pasted__pasted__L2F_phongE2_0.001",
+        "exportNode": "Blockrunner fit V1 pasted__pasted__pasted__L2F_phongE2_0.001",
+        "role": "body",
+        "sourceTriangles": 228,
+        "cleanupRetainedTriangles": 228,
+        "exportTriangles": 228,
+        "sourcePolygonsExcludedByCleanup": 0,
+        "exactLocalPositionWindingSensitiveTriangleMultisetMatch": true,
+        "normalCornersCompared": 684,
+        "normalCornersExactlyEqual": 684,
+        "maximumNormalComponentDelta": 0,
+        "maximumNormalVectorDelta": 0,
+        "minimumNormalizedNormalDot": 0.9999999999999998,
+        "maximumSourceWorldToExportWorldCoordinateDeltaMeters": 7.146758701281897e-06,
+        "unmatchedExamples": []
+      },
+      {
+        "sourceObject": "pasted__pasted__pasted__L2x2Circle_phongE1_0",
+        "exportNode": "Blockrunner fit V1 pasted__pasted__pasted__L2x2Circle_phongE1_0",
+        "role": "body",
+        "sourceTriangles": 360,
+        "cleanupRetainedTriangles": 360,
+        "exportTriangles": 360,
+        "sourcePolygonsExcludedByCleanup": 0,
+        "exactLocalPositionWindingSensitiveTriangleMultisetMatch": true,
+        "normalCornersCompared": 1080,
+        "normalCornersExactlyEqual": 1080,
+        "maximumNormalComponentDelta": 0,
+        "maximumNormalVectorDelta": 0,
+        "minimumNormalizedNormalDot": 0.9999999999999998,
+        "maximumSourceWorldToExportWorldCoordinateDeltaMeters": 5.285885492867237e-06,
+        "unmatchedExamples": []
+      },
+      {
+        "sourceObject": "pasted__pasted__pasted__L2x2_pasted__pasted__pasted__Lego_White19_0",
+        "exportNode": "Blockrunner fit V1 pasted__pasted__pasted__L2x2_pasted__pasted__pasted__Lego_White19_0",
+        "role": "body",
+        "sourceTriangles": 348,
+        "cleanupRetainedTriangles": 348,
+        "exportTriangles": 348,
+        "sourcePolygonsExcludedByCleanup": 0,
+        "exactLocalPositionWindingSensitiveTriangleMultisetMatch": true,
+        "normalCornersCompared": 1044,
+        "normalCornersExactlyEqual": 1044,
+        "maximumNormalComponentDelta": 0,
+        "maximumNormalVectorDelta": 0,
+        "minimumNormalizedNormalDot": 0.9999999999999998,
+        "maximumSourceWorldToExportWorldCoordinateDeltaMeters": 8.221166407196279e-06,
+        "unmatchedExamples": []
+      },
+      {
+        "sourceObject": "pasted__pasted__pasted__pasted__L1x4F_phongE2_0",
+        "exportNode": "Blockrunner fit V1 pasted__pasted__pasted__pasted__L1x4F_phongE2_0",
+        "role": "body",
+        "sourceTriangles": 348,
+        "cleanupRetainedTriangles": 348,
+        "exportTriangles": 348,
+        "sourcePolygonsExcludedByCleanup": 0,
+        "exactLocalPositionWindingSensitiveTriangleMultisetMatch": true,
+        "normalCornersCompared": 1044,
+        "normalCornersExactlyEqual": 1044,
+        "maximumNormalComponentDelta": 0,
+        "maximumNormalVectorDelta": 0,
+        "minimumNormalizedNormalDot": 0.9999999999999998,
+        "maximumSourceWorldToExportWorldCoordinateDeltaMeters": 9.235878575708512e-06,
+        "unmatchedExamples": []
+      },
+      {
+        "sourceObject": "pasted__pasted__pasted__pasted__L2F_phongE2_0",
+        "exportNode": "Blockrunner fit V1 pasted__pasted__pasted__pasted__L2F_phongE2_0",
+        "role": "body",
+        "sourceTriangles": 228,
+        "cleanupRetainedTriangles": 228,
+        "exportTriangles": 228,
+        "sourcePolygonsExcludedByCleanup": 0,
+        "exactLocalPositionWindingSensitiveTriangleMultisetMatch": true,
+        "normalCornersCompared": 684,
+        "normalCornersExactlyEqual": 684,
+        "maximumNormalComponentDelta": 0,
+        "maximumNormalVectorDelta": 0,
+        "minimumNormalizedNormalDot": 0.9999999999999998,
+        "maximumSourceWorldToExportWorldCoordinateDeltaMeters": 3.2560871865428e-06,
+        "unmatchedExamples": []
+      },
+      {
+        "sourceObject": "pasted__pasted__pasted__pasted__L2F_phongE2_0.001",
+        "exportNode": "Blockrunner fit V1 pasted__pasted__pasted__pasted__L2F_phongE2_0.001",
+        "role": "body",
+        "sourceTriangles": 228,
+        "cleanupRetainedTriangles": 228,
+        "exportTriangles": 228,
+        "sourcePolygonsExcludedByCleanup": 0,
+        "exactLocalPositionWindingSensitiveTriangleMultisetMatch": true,
+        "normalCornersCompared": 684,
+        "normalCornersExactlyEqual": 684,
+        "maximumNormalComponentDelta": 0,
+        "maximumNormalVectorDelta": 0,
+        "minimumNormalizedNormalDot": 0.9999999999999998,
+        "maximumSourceWorldToExportWorldCoordinateDeltaMeters": 5.713467317036702e-06,
+        "unmatchedExamples": []
+      },
+      {
+        "sourceObject": "pasted__pasted__pasted__pasted__L2x2Circle_phongE1_0",
+        "exportNode": "Blockrunner fit V1 pasted__pasted__pasted__pasted__L2x2Circle_phongE1_0",
+        "role": "body",
+        "sourceTriangles": 360,
+        "cleanupRetainedTriangles": 360,
+        "exportTriangles": 360,
+        "sourcePolygonsExcludedByCleanup": 0,
+        "exactLocalPositionWindingSensitiveTriangleMultisetMatch": true,
+        "normalCornersCompared": 1080,
+        "normalCornersExactlyEqual": 1080,
+        "maximumNormalComponentDelta": 0,
+        "maximumNormalVectorDelta": 0,
+        "minimumNormalizedNormalDot": 0.9999999999999998,
+        "maximumSourceWorldToExportWorldCoordinateDeltaMeters": 3.218070446564525e-06,
+        "unmatchedExamples": []
+      },
+      {
+        "sourceObject": "pasted__pasted__pasted__pasted__pasted__L2F_phongE2_0",
+        "exportNode": "Blockrunner fit V1 pasted__pasted__pasted__pasted__pasted__L2F_phongE2_0",
+        "role": "body",
+        "sourceTriangles": 228,
+        "cleanupRetainedTriangles": 228,
+        "exportTriangles": 228,
+        "sourcePolygonsExcludedByCleanup": 0,
+        "exactLocalPositionWindingSensitiveTriangleMultisetMatch": true,
+        "normalCornersCompared": 684,
+        "normalCornersExactlyEqual": 684,
+        "maximumNormalComponentDelta": 0,
+        "maximumNormalVectorDelta": 0,
+        "minimumNormalizedNormalDot": 0.9999999999999998,
+        "maximumSourceWorldToExportWorldCoordinateDeltaMeters": 4.922336398038851e-06,
+        "unmatchedExamples": []
+      },
+      {
+        "sourceObject": "pasted__pasted__pasted__pasted__pasted__L2x2Circle_phongE1_0",
+        "exportNode": "Blockrunner fit V1 pasted__pasted__pasted__pasted__pasted__L2x2Circle_phongE1_0",
+        "role": "body",
+        "sourceTriangles": 360,
+        "cleanupRetainedTriangles": 360,
+        "exportTriangles": 360,
+        "sourcePolygonsExcludedByCleanup": 0,
+        "exactLocalPositionWindingSensitiveTriangleMultisetMatch": true,
+        "normalCornersCompared": 1080,
+        "normalCornersExactlyEqual": 1080,
+        "maximumNormalComponentDelta": 0,
+        "maximumNormalVectorDelta": 0,
+        "minimumNormalizedNormalDot": 0.9999999999999998,
+        "maximumSourceWorldToExportWorldCoordinateDeltaMeters": 8.567356843514062e-06,
+        "unmatchedExamples": []
+      },
+      {
+        "sourceObject": "pasted__pasted__pasted__pasted__pasted__pasted__L2x2Circle_phongE1_0",
+        "exportNode": "Blockrunner fit V1 pasted__pasted__pasted__pasted__pasted__pasted__L2x2Circle_phongE1_0",
+        "role": "body",
+        "sourceTriangles": 360,
+        "cleanupRetainedTriangles": 360,
+        "exportTriangles": 360,
+        "sourcePolygonsExcludedByCleanup": 0,
+        "exactLocalPositionWindingSensitiveTriangleMultisetMatch": true,
+        "normalCornersCompared": 1080,
+        "normalCornersExactlyEqual": 1080,
+        "maximumNormalComponentDelta": 0,
+        "maximumNormalVectorDelta": 0,
+        "minimumNormalizedNormalDot": 0.9999999999999998,
+        "maximumSourceWorldToExportWorldCoordinateDeltaMeters": 8.28096133886902e-06,
+        "unmatchedExamples": []
+      },
+      {
+        "sourceObject": "pasted__pasted__pasted__pasted__pasted__pasted__pasted__L2x2Circle_phongE1_0",
+        "exportNode": "Blockrunner fit V1 pasted__pasted__pasted__pasted__pasted__pasted__pasted__L2x2Circle_phongE1_0",
+        "role": "body",
+        "sourceTriangles": 360,
+        "cleanupRetainedTriangles": 360,
+        "exportTriangles": 360,
+        "sourcePolygonsExcludedByCleanup": 0,
+        "exactLocalPositionWindingSensitiveTriangleMultisetMatch": true,
+        "normalCornersCompared": 1080,
+        "normalCornersExactlyEqual": 1080,
+        "maximumNormalComponentDelta": 0,
+        "maximumNormalVectorDelta": 0,
+        "minimumNormalizedNormalDot": 0.9999999999999998,
+        "maximumSourceWorldToExportWorldCoordinateDeltaMeters": 3.9490114716045355e-06,
+        "unmatchedExamples": []
+      },
+      {
+        "sourceObject": "pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__L2x2Circle_phongE1_0",
+        "exportNode": "Blockrunner fit V1 pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__L2x2Circle_phongE1_0",
+        "role": "body",
+        "sourceTriangles": 360,
+        "cleanupRetainedTriangles": 360,
+        "exportTriangles": 360,
+        "sourcePolygonsExcludedByCleanup": 0,
+        "exactLocalPositionWindingSensitiveTriangleMultisetMatch": true,
+        "normalCornersCompared": 1080,
+        "normalCornersExactlyEqual": 1080,
+        "maximumNormalComponentDelta": 0,
+        "maximumNormalVectorDelta": 0,
+        "minimumNormalizedNormalDot": 0.9999999999999998,
+        "maximumSourceWorldToExportWorldCoordinateDeltaMeters": 5.194545789066751e-06,
+        "unmatchedExamples": []
+      },
+      {
+        "sourceObject": "pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__L2x2Circle_phongE1_0.001",
+        "exportNode": "Blockrunner fit V1 pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__L2x2Circle_phongE1_0.001",
+        "role": "body",
+        "sourceTriangles": 360,
+        "cleanupRetainedTriangles": 360,
+        "exportTriangles": 360,
+        "sourcePolygonsExcludedByCleanup": 0,
+        "exactLocalPositionWindingSensitiveTriangleMultisetMatch": true,
+        "normalCornersCompared": 1080,
+        "normalCornersExactlyEqual": 1080,
+        "maximumNormalComponentDelta": 0,
+        "maximumNormalVectorDelta": 0,
+        "minimumNormalizedNormalDot": 0.9999999999999998,
+        "maximumSourceWorldToExportWorldCoordinateDeltaMeters": 1.524478044245825e-05,
+        "unmatchedExamples": []
+      },
+      {
+        "sourceObject": "pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__L2x2Circle_phongE1_0",
+        "exportNode": "Blockrunner fit V1 pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__L2x2Circle_phongE1_0",
+        "role": "body",
+        "sourceTriangles": 360,
+        "cleanupRetainedTriangles": 360,
+        "exportTriangles": 360,
+        "sourcePolygonsExcludedByCleanup": 0,
+        "exactLocalPositionWindingSensitiveTriangleMultisetMatch": true,
+        "normalCornersCompared": 1080,
+        "normalCornersExactlyEqual": 1080,
+        "maximumNormalComponentDelta": 0,
+        "maximumNormalVectorDelta": 0,
+        "minimumNormalizedNormalDot": 0.9999999999999998,
+        "maximumSourceWorldToExportWorldCoordinateDeltaMeters": 3.823909167977035e-06,
+        "unmatchedExamples": []
+      },
+      {
+        "sourceObject": "pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__L2x2Circle_phongE1_0",
+        "exportNode": "Blockrunner fit V1 pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__L2x2Circle_phongE1_0",
+        "role": "body",
+        "sourceTriangles": 360,
+        "cleanupRetainedTriangles": 360,
+        "exportTriangles": 360,
+        "sourcePolygonsExcludedByCleanup": 0,
+        "exactLocalPositionWindingSensitiveTriangleMultisetMatch": true,
+        "normalCornersCompared": 1080,
+        "normalCornersExactlyEqual": 1080,
+        "maximumNormalComponentDelta": 0,
+        "maximumNormalVectorDelta": 0,
+        "minimumNormalizedNormalDot": 0.9999999999999998,
+        "maximumSourceWorldToExportWorldCoordinateDeltaMeters": 4.162381049610531e-06,
+        "unmatchedExamples": []
+      },
+      {
+        "sourceObject": "pasted__pasted__pasted__pasted__pasted__polySurface97_phongE2_0",
+        "exportNode": "Blockrunner fit V1 pasted__pasted__pasted__pasted__pasted__polySurface97_phongE2_0",
+        "role": "body",
+        "sourceTriangles": 3800,
+        "cleanupRetainedTriangles": 3800,
+        "exportTriangles": 3800,
+        "sourcePolygonsExcludedByCleanup": 0,
+        "exactLocalPositionWindingSensitiveTriangleMultisetMatch": true,
+        "normalCornersCompared": 11400,
+        "normalCornersExactlyEqual": 11400,
+        "maximumNormalComponentDelta": 0,
+        "maximumNormalVectorDelta": 0,
+        "minimumNormalizedNormalDot": 0.9999999999999998,
+        "maximumSourceWorldToExportWorldCoordinateDeltaMeters": 7.258348400540626e-06,
+        "unmatchedExamples": []
+      },
+      {
+        "sourceObject": "pasted__pasted__pasted__pasted__polySurface97_phongE2_0",
+        "exportNode": "Blockrunner fit V1 pasted__pasted__pasted__pasted__polySurface97_phongE2_0",
+        "role": "body",
+        "sourceTriangles": 3800,
+        "cleanupRetainedTriangles": 3800,
+        "exportTriangles": 3800,
+        "sourcePolygonsExcludedByCleanup": 0,
+        "exactLocalPositionWindingSensitiveTriangleMultisetMatch": true,
+        "normalCornersCompared": 11400,
+        "normalCornersExactlyEqual": 11400,
+        "maximumNormalComponentDelta": 0,
+        "maximumNormalVectorDelta": 0,
+        "minimumNormalizedNormalDot": 0.9999999999999998,
+        "maximumSourceWorldToExportWorldCoordinateDeltaMeters": 8.906383897056003e-06,
+        "unmatchedExamples": []
+      }
+    ]
+  },
+  "exportReceiptPreservation": {
+    "sourcePreservation": true,
+    "fitPreservation": true,
+    "fitCornerNormalsPreserved": true,
+    "globalPreservation": {
+      "changedCollections": [],
+      "changedScenes": [],
+      "contextRestored": true,
+      "preexistingMaterialsRetained": true,
+      "preexistingMeshesRetained": true,
+      "preexistingObjectsRetained": true,
+      "preexistingScenes": 142
+    },
+    "sharedBlendSaved": false,
+    "scope": "Receipt-reported noncryptographic structural checks; no live Blender access in this validation."
+  }
+}

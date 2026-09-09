@@ -1,0 +1,58 @@
+{
+  "status": "SOURCE_FROZEN_NATIVE_PENDING",
+  "recordedAt": "2026-09-08T22:57:27.737283+00:00",
+  "sources": [
+    {
+      "path": "src/ui/RaceHud.ts",
+      "beforeSha256": "0a2e915b26e5c0c50aa1430615af08fa7978a9c59a492e804b6b15df0bdaa9d9",
+      "sha256": "aa587cebc85da3940ae4a70e7afd0995c25c1bfa8a634dca36793bab4967c407",
+      "bytes": 118009
+    },
+    {
+      "path": "src/ui/broadcastStyles.ts",
+      "beforeSha256": "eaf1be63399d84d70d1c13187d75aa1c350987bb201cc464a25060f62c82ceec",
+      "sha256": "06fb4796a254a1be7aa48fef0aa9fd60a9c0468c078046c8d1c513ec16343e48",
+      "bytes": 75887
+    }
+  ],
+  "patchSha256": "4e1fcbc4e509b00a815b509fe971c500265578bcff8de91bed8f0cc82cabace6",
+  "unchangedUISources": [
+    {
+      "path": "src/ui/workshopGraphicStyles.ts",
+      "sha256": "c026d0c35640b4ab1551d4aa0fa265c9cce03dcd970e85614f8195c6c016ffcb"
+    },
+    {
+      "path": "src/ui/raceEventAtlasStyles.ts",
+      "sha256": "478d21bed4f791f07417ead6c762245ef36284de9d1de5a2caf135c98215c1fd"
+    }
+  ],
+  "changes": [
+    "40px filled amber stencil timing numerals with no dark outline shadow; one original shallow clipped teal glass and continuous rail; existing values/ratios/labels retained.",
+    "Same244x264 lower-right footprint/anchors, speed48px and connected original C dial around three aligned boost/heat/damage label-bar-number rows; localized shaped glass only.",
+    "Actual separate redline heat channel sits on the dial upper lip; all numeric bindings and readiness thresholds untouched.",
+    "Open lower-left readiness rings with E/Q/F, actual dynamic accessible weapon/shield identity and status, mine count, active-shield indication.",
+    "Route control moves into timing glass on desktop with44px target; narrow retains separate44px control. Brief launch-result strip simplified; launch charging/wrong-way/urgent/wreck/matte/threat logic untouched.",
+    "Horizontal heat/damage fill now explicitly follows existing --pod-meter-value instead of inherited base width100!important."
+  ],
+  "checks": {
+    "typecheck": "npm run typecheck PASS",
+    "regression": "4 files /29 tests PASS: threatLayout,hudModel,sessionHudModel,galacticHudModel",
+    "cssParse": "Final PostCSS771 rules PASS",
+    "svgParse": "PASS",
+    "hudLogicAndSelectors": "Before/after entire RaceHud is identical when its one decorative speed SVG is replaced by a placeholder; all data-hud selectors unchanged.",
+    "whitespace": "Final git diff --no-index --check PASS"
+  },
+  "nativeRequired": [
+    "Actual filled numeral appearance against bright sky/rock/shadow; no typography clipping.",
+    "Resource0/partial/full actual fill geometry against bound percentages and all3 visible numeric values; meter-head display:contents, actual row is .pod-hud__meter.",
+    "Desktop/mobile/short-landscape progression rail separation and three resource rows, route button44px reachability, E/Q/F/readiness/active shield/ammo visibility.",
+    "Existing dangerous-event/wreck/matte/threat/airborne/launchpriority and reduced-motion gates unchanged.",
+    "Fresh unchanged seven-image independent critic; no concept image substitutes for reference/native capture."
+  ],
+  "reference": {
+    "userHUD": "output/reference-ui-round35/UI-hud-full.png",
+    "v17Actual": "output/gauntlet/round35-broadcast-native-v17/06-desktop-live-race.png",
+    "additionalTargetOnly": "docs/inkstorm-overhaul/concepts/16-hud-instrument-target-round35.png"
+  },
+  "noBrowserBuildGPU": true
+}

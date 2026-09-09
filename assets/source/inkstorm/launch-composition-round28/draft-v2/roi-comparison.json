@@ -1,0 +1,60 @@
+{
+  "method": "Same saved camera rays through exact production clipmap triangles with baseline/candidate physical vertex displacement. Terrain-only, no scene occlusion or GPU rasterization.",
+  "results": [
+    {
+      "region": "launch-west-front",
+      "rays": 117,
+      "baselineHits": 116,
+      "candidateHits": 116,
+      "changed": 14,
+      "recedeOver25m": 2,
+      "maximumRecession": 54.2816136023082,
+      "maximumHeightReductionAtHit": 0.16937310423762142,
+      "candidateMaxPhysicalInterpolationError": 14.222481157979843
+    },
+    {
+      "region": "launch-east-front",
+      "rays": 117,
+      "baselineHits": 116,
+      "candidateHits": 115,
+      "changed": 0,
+      "recedeOver25m": 0,
+      "maximumRecession": 0,
+      "maximumHeightReductionAtHit": 0,
+      "candidateMaxPhysicalInterpolationError": 14.882435337010826
+    },
+    {
+      "region": "crest-west-front",
+      "rays": 117,
+      "baselineHits": 116,
+      "candidateHits": 116,
+      "changed": 17,
+      "recedeOver25m": 6,
+      "maximumRecession": 262.97137506405807,
+      "maximumHeightReductionAtHit": -0.05757908743875362,
+      "candidateMaxPhysicalInterpolationError": 23.55574624029684
+    },
+    {
+      "region": "crest-east-front",
+      "rays": 117,
+      "baselineHits": 108,
+      "candidateHits": 107,
+      "changed": 0,
+      "recedeOver25m": 0,
+      "maximumRecession": 0,
+      "maximumHeightReductionAtHit": 0,
+      "candidateMaxPhysicalInterpolationError": 13.531038682052952
+    },
+    {
+      "region": "descent-west-front",
+      "rays": 117,
+      "baselineHits": 104,
+      "candidateHits": 102,
+      "changed": 10,
+      "recedeOver25m": 3,
+      "maximumRecession": 41.063137079553826,
+      "maximumHeightReductionAtHit": -0.24336686920676698,
+      "candidateMaxPhysicalInterpolationError": 21.893170555955436
+    }
+  ]
+}

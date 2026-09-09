@@ -1,0 +1,89 @@
+{
+  "asset": "canyon-arch-v2.glb",
+  "status": "isolated candidate; no public/runtime integration",
+  "source": "original deterministic Blender MCP geometry",
+  "sourceScript": "scripts/blender/build-canyon-arch-v2.py",
+  "sourceSha256": "bae5483060010a9a178ba4ac4efc35f700b9abe28826194747ad300579be915d",
+  "sha256": "8c36d25b507eabb17f4c1e05677bdd9db4469f57589e5ef0a284b56f958046ff",
+  "bytes": 866036,
+  "originalPublicSha256": "36876e340a578993c9c3d01084029d1ca0b757ef140ae482bbd1e0e1ff6b0453",
+  "originalPublicPreserved": true,
+  "meshes": 1,
+  "primitives": 1,
+  "materials": 1,
+  "textures": 0,
+  "optimization": "glTF Transform 4.5.0 dedup + prune; no quantization, compression, simplification or normal regeneration",
+  "triangles": 23008,
+  "vertices": 20191,
+  "attributes": [
+    "POSITION",
+    "NORMAL",
+    "COLOR_0"
+  ],
+  "bounds": {
+    "min": [
+      -82.30957794189453,
+      0,
+      -14.731627464294434
+    ],
+    "max": [
+      85,
+      88.2624282836914,
+      16.103574752807617
+    ]
+  },
+  "normals": {
+    "minLength": 0.9999999056220749,
+    "maxLength": 1.0000001346607077
+  },
+  "color": {
+    "min": [
+      0.07888028770685196,
+      0.07178106158971786,
+      0.06310423463582993
+    ],
+    "max": [
+      0.26324462890625,
+      0.23955261707305908,
+      0.21059571206569672
+    ]
+  },
+  "topology": {
+    "weldPrecision": 5,
+    "weldedVertices": 11506,
+    "boundaryEdges": 0,
+    "nonManifoldEdges": 0,
+    "inconsistentWindingEdges": 0,
+    "degenerateTriangles": 0,
+    "connectedComponents": 1,
+    "signedVolume": 157432.52328965053,
+    "minimumTriangleArea": 0.30656447870224907
+  },
+  "clearance": {
+    "method": "13 separating axes per triangle against canonical protected box across full depth",
+    "reservedBox": {
+      "min": [
+        -44,
+        0,
+        -50
+      ],
+      "max": [
+        44,
+        24,
+        50
+      ]
+    },
+    "triangleIntersections": 0,
+    "minimumToeAbsX": 53,
+    "runtimeCurvedRouteSweep": "Not tested by asset staging; required before integration"
+  },
+  "validation": {
+    "library": "Khronos glTF Validator 2.0.0-dev.3.10",
+    "numErrors": 0,
+    "numWarnings": 0,
+    "numInfos": 0,
+    "numHints": 0,
+    "messages": [],
+    "truncated": false
+  }
+}

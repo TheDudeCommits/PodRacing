@@ -1,0 +1,355 @@
+{
+  "BlenderInvoked": false,
+  "instanceBudget": {
+    "additionalDrawCalls": 0,
+    "additionalMaterials": 0,
+    "allInstancesSinglePassAddedTriangles": 230400,
+    "allInstancesSinglePassTriangles": 359280,
+    "authoritativeSource": "output/gauntlet/foundry-round33-attribution.json",
+    "limit": "Upper bound assumes all18 banks visible; shadow/other passes multiply work. FPS still unmeasured.",
+    "newTextures": 0,
+    "pipeBankPlacements": 18,
+    "sourceSha256": "e0c43d20c81cef68797bc506b9533b103521e62c42c48f2930fe5a6115dec766"
+  },
+  "mcpScriptsSha256": {
+    "author-pipe-detail-mcp-safe.py": "107fab465c37138b02eda307165060145ea5f5c89951d5077c8c1d51797a96ba",
+    "export-render-pipe-detail-mcp-safe.py": "937b615b99a0ec0ca576e5a1b4d5a82fba8e60d26e115d80dd4d1780bd832724"
+  },
+  "minimumAddedTriangleArea": 0.004349259721539567,
+  "newGeometry": {
+    "addedBoundsBlender": [
+      [
+        -39.755562000000005,
+        45.74021013229549
+      ],
+      [
+        -15.35,
+        21.918402
+      ],
+      [
+        2.1,
+        45.48
+      ]
+    ],
+    "addedTriangles": 12800,
+    "addedVertices": 10622,
+    "candidateTriangles": 19960,
+    "floorMinimumZ": 2.1,
+    "groups": {
+      "free-terminal-0-inset-pressure-cap": 690,
+      "free-terminal-1-inset-pressure-cap": 690,
+      "free-terminal-2-inset-pressure-cap": 690,
+      "tank-0-crown-pressure-hardware": 504,
+      "tank-0-inspection-manway": 794,
+      "tank-0-split-bands-and-lugs": 1560,
+      "tank-0-supported-wrap-deck": 660,
+      "tank-1-crown-pressure-hardware": 504,
+      "tank-1-inspection-manway": 794,
+      "tank-1-split-bands-and-lugs": 1560,
+      "tank-1-supported-wrap-deck": 628,
+      "tank-2-crown-pressure-hardware": 504,
+      "tank-2-inspection-manway": 794,
+      "tank-2-split-bands-and-lugs": 1560,
+      "tank-2-supported-wrap-deck": 868
+    },
+    "retainedTriangles": 7160
+  },
+  "newGeometryClearance": {
+    "reservedCollectorAddedPolygonIntersections": 0,
+    "reservedCollectorXYBlender": [
+      [
+        -4.3,
+        4.3
+      ],
+      [
+        -21.3,
+        -12.7
+      ]
+    ],
+    "socketMinimumAddedRadialDistance": [
+      null,
+      13.365223484363185,
+      6.756571754517803
+    ],
+    "socketProtectedRadii": [
+      3.15,
+      1.95,
+      2.4
+    ],
+    "socketSlabHalfDepth": 1.0
+  },
+  "packerCPUSelftest": {
+    "classifier": {
+      "matchedRetainedTriangles": 7160,
+      "maximumMatchedPositionDelta": 0.0,
+      "nativeAdditionTriangles": 12800,
+      "nativeRetainedAttributes": {
+        "COLOR_0": {
+          "differentCorners": 0,
+          "exact": true,
+          "maximumComponentDelta": 0.0
+        },
+        "NORMAL": {
+          "differentCorners": 0,
+          "exact": true,
+          "maximumComponentDelta": 0.0
+        },
+        "POSITION": {
+          "differentCorners": 0,
+          "exact": true,
+          "maximumComponentDelta": 0.0
+        }
+      },
+      "nativeRetainedAttributesExact": true,
+      "positionMatchingTolerance": 2e-05,
+      "removedSourceTriangles": 0
+    },
+    "exactRecordProof": {
+      "addedVertices": 10622,
+      "additionAttributesAndWindingPreserved": true,
+      "boundsGltf": [
+        [
+          -47.0,
+          47.0
+        ],
+        [
+          0.0,
+          51.0
+        ],
+        [
+          -23.0,
+          20.20081901550293
+        ]
+      ],
+      "foundationFootprintPreserved": true,
+      "materials": 1,
+      "meshes": 1,
+      "primitives": 1,
+      "retainedAttributeSha256": {
+        "COLOR_0": "b76f39b27224255309ce0d2d063754d9a49d9ec5602e385df49ee340cfa495dd",
+        "NORMAL": "57ae789ce5b94cdbbc33535cbf32ec6a545ef81a230fdaf61ab6af2f36d1f51e",
+        "POSITION": "acaf2c02f95b30ffc77ee30c4f60f2dcb973be7d3c3468ee18e2f9b4a7d1dc07"
+      },
+      "retainedInterleavedRecordsSha256": "b1c23431d2fc71836ccf69516563f976efeface32f2186b998529c624bfe2864",
+      "retainedPositionNormalColorBytesExact": true,
+      "retainedVertices": 12789,
+      "textures": 0,
+      "triangles": 19960,
+      "vertices": 23411
+    },
+    "inMemoryPackedBytes": 963884,
+    "mutationRejection": {
+      "duplicate": "rejected",
+      "reversed": "rejected"
+    },
+    "noCandidateGLBWritten": true,
+    "scope": "Synthetic in-memory geometry only; not Blender-produced artifact or visual evidence."
+  },
+  "preservation": "All original geometry, source paint, exact foundation/asset envelope and connected socket regions retained.",
+  "renderedAcceptance": false,
+  "runtimeInstalled": false,
+  "safeModeAST": "pass; no filesystem/dynamic-code/bake/save APIs in MCP payloads",
+  "sourceBoundsBlender": [
+    [
+      -47.0,
+      47.0
+    ],
+    [
+      -20.20081901550293,
+      23.0
+    ],
+    [
+      0.0,
+      51.0
+    ]
+  ],
+  "sourceBytes": 504460,
+  "sourceMaterialSlots": 1,
+  "sourcePrimitives": 1,
+  "sourceSha256": "4b3510d0f8b10e1a44158edb0b0bbdc25bac33019176368638937ab1834a3b81",
+  "sourceTextures": 0,
+  "sourceTriangles": 7160,
+  "status": "CPU source preparation PASS; Blender has not been invoked",
+  "terminalAttribution": [
+    {
+      "addedTreatment": "none",
+      "axisBlender": [
+        -1,
+        0,
+        0
+      ],
+      "centerBlender": [
+        -42,
+        -9,
+        7
+      ],
+      "kind": "connected",
+      "radius": 3.0,
+      "sourcePreserved": true,
+      "sourceTriangles": [
+        2930,
+        2931,
+        2932,
+        2933,
+        2934,
+        2935,
+        2936,
+        2937,
+        2938,
+        2939,
+        2940,
+        2941,
+        2942,
+        2943
+      ]
+    },
+    {
+      "addedTreatment": "none",
+      "axisBlender": [
+        -1,
+        0,
+        0
+      ],
+      "centerBlender": [
+        -38,
+        -13,
+        19
+      ],
+      "kind": "connected",
+      "radius": 1.8,
+      "sourcePreserved": true,
+      "sourceTriangles": [
+        4066,
+        4067,
+        4068,
+        4069,
+        4070,
+        4071,
+        4072,
+        4073,
+        4074,
+        4075
+      ]
+    },
+    {
+      "addedTreatment": "none",
+      "axisBlender": [
+        -1,
+        0,
+        0
+      ],
+      "centerBlender": [
+        8,
+        -10,
+        30
+      ],
+      "kind": "connected",
+      "radius": 2.25,
+      "sourcePreserved": true,
+      "sourceTriangles": [
+        4806,
+        4807,
+        4808,
+        4809,
+        4810,
+        4811,
+        4812,
+        4813,
+        4814,
+        4815,
+        4816,
+        4817
+      ]
+    },
+    {
+      "addedTreatment": "paired annular flanges and inset pressure dish",
+      "axisBlender": [
+        0,
+        0,
+        1
+      ],
+      "centerBlender": [
+        1,
+        -9,
+        38
+      ],
+      "kind": "free",
+      "radius": 3.0,
+      "sourcePreserved": true,
+      "sourceTriangles": [
+        2944,
+        2945,
+        2946,
+        2947,
+        2948,
+        2949,
+        2950,
+        2951,
+        2952,
+        2953,
+        2954,
+        2955,
+        2956,
+        2957
+      ]
+    },
+    {
+      "addedTreatment": "paired annular flanges and inset pressure dish",
+      "axisBlender": [
+        0,
+        0,
+        -1
+      ],
+      "centerBlender": [
+        -10,
+        -13,
+        3
+      ],
+      "kind": "free",
+      "radius": 1.8,
+      "sourcePreserved": true,
+      "sourceTriangles": [
+        4076,
+        4077,
+        4078,
+        4079,
+        4080,
+        4081,
+        4082,
+        4083,
+        4084,
+        4085
+      ]
+    },
+    {
+      "addedTreatment": "paired annular flanges and inset pressure dish",
+      "axisBlender": [
+        0,
+        0,
+        -1
+      ],
+      "centerBlender": [
+        37,
+        -10,
+        10
+      ],
+      "kind": "free",
+      "radius": 2.25,
+      "sourcePreserved": true,
+      "sourceTriangles": [
+        4818,
+        4819,
+        4820,
+        4821,
+        4822,
+        4823,
+        4824,
+        4825,
+        4826,
+        4827,
+        4828,
+        4829
+      ]
+    }
+  ]
+}

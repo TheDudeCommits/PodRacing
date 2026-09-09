@@ -1,0 +1,76 @@
+{
+  "status": "PASS native header/finite-normal/warm-glass checks; oriented original-source check separate",
+  "artifact": "assets/source/inkstorm/foundry-service-round33/v2/foundry-service-gantry-v2-native.glb",
+  "bytes": 1332836,
+  "sha256": "51ef5f95695af7cbf0f26f095daa9249af6f373fae7b11567372b8bb7d043320",
+  "nodeNames": [
+    "foundry-service-gantry-v2"
+  ],
+  "meshes": 1,
+  "referencedPrimitives": 1,
+  "triangles": 19956,
+  "vertices": 33644,
+  "materials": [
+    {
+      "doubleSided": true,
+      "name": "Inkstorm_Industrial_Revision_Paint.003",
+      "pbrMetallicRoughness": {
+        "metallicFactor": 0,
+        "roughnessFactor": 0.8399999737739563
+      }
+    }
+  ],
+  "images": 0,
+  "animations": 0,
+  "attributes": {
+    "POSITION": {
+      "type": "VEC3",
+      "componentType": 5126,
+      "normalized": null
+    },
+    "NORMAL": {
+      "type": "VEC3",
+      "componentType": 5126,
+      "normalized": null
+    },
+    "COLOR_0": {
+      "type": "VEC3",
+      "componentType": 5126,
+      "normalized": null
+    }
+  },
+  "normals": {
+    "finite": true,
+    "zeroVectors": 0,
+    "nonUnitBeyond1e4": 0,
+    "minLength": 0.9999999418738815,
+    "maxLength": 1.000000131158968,
+    "maxLengthError": 1.3115896790871773e-07
+  },
+  "boundsGltf": [
+    [
+      -52.0,
+      52.0
+    ],
+    [
+      -25.0,
+      61.400001525878906
+    ],
+    [
+      -7.0,
+      7.0
+    ]
+  ],
+  "reservedWarmGlass": {
+    "triangles": 168,
+    "vertices": 192,
+    "linearRgbValues": [
+      [
+        1.0,
+        0.550000011920929,
+        0.0949999988079071
+      ]
+    ]
+  },
+  "sourcePublicOriginalSha256": "3d0cd999daf52b82ac0232c7316a5e4072c80bd83982f83cbaf4a1dcde11e862"
+}

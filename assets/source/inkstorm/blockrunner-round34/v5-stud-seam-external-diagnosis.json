@@ -1,0 +1,2277 @@
+{
+  "scope": "External geometry ray sampling; source camera from actual render, source-world vertices from actual master GLB local coordinates, no edits. Bilinear base RGB sampling tests wrap only; does not simulate Cycles shading or filtering. Ray pixel coordinates are top-left origin with pixel-center offset.",
+  "glb": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/exports/blockrunner-atlas-v5-round34-export-v1-normalized-master.glb",
+  "glbSha256": "b1dafc9ae1aed46ae5ac9a590380796291e86ed35781aee944552cf38d101017",
+  "cameraReceipt": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/mcp-safe/atlas-v5-driver-render-receipt.json",
+  "samplers": [
+    {
+      "magFilter": 9729,
+      "minFilter": 9987
+    }
+  ],
+  "sourceBounds": [
+    [
+      -2.9099459648132324,
+      -28.763988494873047,
+      0.021512573584914207
+    ],
+    [
+      2.958909034729004,
+      -16.763992309570312,
+      3.1749837398529053
+    ]
+  ],
+  "triangleCount": 44028,
+  "bodyOrderedPositionMaximumDifferenceFromActualV2Topology": 0.0,
+  "rays": [
+    {
+      "node": "Blockrunner normalized atlas-v5-round34-export-v1 body",
+      "primitive": 0,
+      "primitiveTriangle": 9329,
+      "material": 0,
+      "pixel": [
+        163,
+        600
+      ],
+      "globalTriangle": 9329,
+      "barycentric": [
+        0.4007086414348949,
+        0.11037334394568046,
+        0.4889180146194247
+      ],
+      "sourcePosition": [
+        -1.0870506115644378,
+        -20.908100498893926,
+        1.936097125089575
+      ],
+      "gltfUV": [
+        0.8040109841948632,
+        0.7178046895638175
+      ],
+      "triangleUV": [
+        [
+          0.8039677739143372,
+          0.7174803018569946
+        ],
+        [
+          0.8033329844474792,
+          0.7180213928222656
+        ],
+        [
+          0.8041994571685791,
+          0.7180216312408447
+        ]
+      ],
+      "distanceToAtlasBorderTexels": [
+        401.38550436892024,
+        577.9359957733018
+      ],
+      "renderRGB": [
+        127,
+        119,
+        104
+      ],
+      "sourceObject": "pasted__LegoTri19_pasted__Lego_White18_0",
+      "sourceObjectPolygon": 401,
+      "atlasBilinearRepeatRGB": [
+        230.0,
+        220.00000000000003,
+        198.99999999999997
+      ],
+      "atlasBilinearClampRGB": [
+        230.0,
+        220.00000000000003,
+        198.99999999999997
+      ]
+    },
+    {
+      "node": "Blockrunner normalized atlas-v5-round34-export-v1 body",
+      "primitive": 0,
+      "primitiveTriangle": 9329,
+      "material": 0,
+      "pixel": [
+        167,
+        600
+      ],
+      "globalTriangle": 9329,
+      "barycentric": [
+        0.1615365365922221,
+        0.1056555833164491,
+        0.7328078800913288
+      ],
+      "sourcePosition": [
+        -1.0787923019827443,
+        -20.902582340683704,
+        1.9364225460824127
+      ],
+      "gltfUV": [
+        0.8040704841773268,
+        0.7179341615767679
+      ],
+      "triangleUV": [
+        [
+          0.8039677739143372,
+          0.7174803018569946
+        ],
+        [
+          0.8033329844474792,
+          0.7180213928222656
+        ],
+        [
+          0.8041994571685791,
+          0.7180216312408447
+        ]
+      ],
+      "distanceToAtlasBorderTexels": [
+        401.2636484048346,
+        577.6708370907793
+      ],
+      "renderRGB": [
+        127,
+        120,
+        104
+      ],
+      "sourceObject": "pasted__LegoTri19_pasted__Lego_White18_0",
+      "sourceObjectPolygon": 401,
+      "atlasBilinearRepeatRGB": [
+        230.0,
+        220.0,
+        199.00000000000003
+      ],
+      "atlasBilinearClampRGB": [
+        230.0,
+        220.0,
+        199.00000000000003
+      ]
+    },
+    {
+      "node": "Blockrunner normalized atlas-v5-round34-export-v1 body",
+      "primitive": 0,
+      "primitiveTriangle": 9326,
+      "material": 0,
+      "pixel": [
+        170,
+        600
+      ],
+      "globalTriangle": 9326,
+      "barycentric": [
+        0.8957742677208076,
+        0.08540359951845243,
+        0.01882213276073996
+      ],
+      "sourcePosition": [
+        -1.0727804531389717,
+        -20.898205874570927,
+        1.9365127105719477
+      ],
+      "gltfUV": [
+        0.8888689570818963,
+        0.999989792908438
+      ],
+      "triangleUV": [
+        [
+          0.8887509107589722,
+          1.0
+        ],
+        [
+          0.8898835778236389,
+          0.9999997615814209
+        ],
+        [
+          0.8898832201957703,
+          0.9994587898254395
+        ]
+      ],
+      "distanceToAtlasBorderTexels": [
+        227.5963758962764,
+        0.02090412351890336
+      ],
+      "renderRGB": [
+        82,
+        79,
+        69
+      ],
+      "sourceObject": "pasted__LegoTri19_pasted__Lego_White18_0",
+      "sourceObjectPolygon": 398,
+      "atlasBilinearRepeatRGB": [
+        119.80794840934777,
+        114.59890717415874,
+        103.65992058026177
+      ],
+      "atlasBilinearClampRGB": [
+        230.0,
+        220.0,
+        199.0
+      ]
+    },
+    {
+      "node": "Blockrunner normalized atlas-v5-round34-export-v1 body",
+      "primitive": 0,
+      "primitiveTriangle": 9327,
+      "material": 0,
+      "pixel": [
+        172,
+        600
+      ],
+      "globalTriangle": 9327,
+      "barycentric": [
+        0.8550271582838755,
+        0.11599867523008568,
+        0.028974166486038774
+      ],
+      "sourcePosition": [
+        -1.0698703545872963,
+        -20.89385264495072,
+        1.9356439121755116
+      ],
+      "gltfUV": [
+        0.8888822467916219,
+        0.9999215444040129
+      ],
+      "triangleUV": [
+        [
+          0.8887509107589722,
+          1.0
+        ],
+        [
+          0.8898832201957703,
+          0.9994587898254395
+        ],
+        [
+          0.8887505531311035,
+          0.9994589686393738
+        ]
+      ],
+      "distanceToAtlasBorderTexels": [
+        227.56915857075842,
+        0.16067706058151998
+      ],
+      "renderRGB": [
+        84,
+        79,
+        68
+      ],
+      "sourceObject": "pasted__LegoTri19_pasted__Lego_White18_0",
+      "sourceObjectPolygon": 399,
+      "atlasBilinearRepeatRGB": [
+        151.9557239337496,
+        145.3489533279344,
+        131.47473505572248
+      ],
+      "atlasBilinearClampRGB": [
+        230.0,
+        220.0,
+        199.0
+      ]
+    },
+    {
+      "node": "Blockrunner normalized atlas-v5-round34-export-v1 body",
+      "primitive": 0,
+      "primitiveTriangle": 9327,
+      "material": 0,
+      "pixel": [
+        173,
+        600
+      ],
+      "globalTriangle": 9327,
+      "barycentric": [
+        0.791953061515532,
+        0.12188548653761926,
+        0.08616145194684875
+      ],
+      "sourcePosition": [
+        -1.068415334324836,
+        -20.891675992200042,
+        1.9352094884275166
+      ],
+      "gltfUV": [
+        0.8888888920318511,
+        0.9998874182869742
+      ],
+      "triangleUV": [
+        [
+          0.8887509107589722,
+          1.0
+        ],
+        [
+          0.8898832201957703,
+          0.9994587898254395
+        ],
+        [
+          0.8887505531311035,
+          0.9994589686393738
+        ]
+      ],
+      "distanceToAtlasBorderTexels": [
+        227.55554911876902,
+        0.23056734827673608
+      ],
+      "renderRGB": [
+        90,
+        85,
+        74
+      ],
+      "sourceObject": "pasted__LegoTri19_pasted__Lego_White18_0",
+      "sourceObjectPolygon": 399,
+      "atlasBilinearRepeatRGB": [
+        168.0304901036493,
+        160.72481662088194,
+        145.38290230707048
+      ],
+      "atlasBilinearClampRGB": [
+        230.0,
+        220.0,
+        199.0
+      ]
+    },
+    {
+      "node": "Blockrunner normalized atlas-v5-round34-export-v1 body",
+      "primitive": 0,
+      "primitiveTriangle": 9327,
+      "material": 0,
+      "pixel": [
+        174,
+        600
+      ],
+      "globalTriangle": 9327,
+      "barycentric": [
+        0.7288789647474178,
+        0.12777229784509822,
+        0.143348737407484
+      ],
+      "sourcePosition": [
+        -1.066960314062381,
+        -20.88949933944937,
+        1.9347750646795254
+      ],
+      "gltfUV": [
+        0.8888955372720801,
+        0.9998532921699356
+      ],
+      "triangleUV": [
+        [
+          0.8887509107589722,
+          1.0
+        ],
+        [
+          0.8898832201957703,
+          0.9994587898254395
+        ],
+        [
+          0.8887505531311035,
+          0.9994589686393738
+        ]
+      ],
+      "distanceToAtlasBorderTexels": [
+        227.54193966677985,
+        0.3004576359719522
+      ],
+      "renderRGB": [
+        100,
+        94,
+        83
+      ],
+      "sourceObject": "pasted__LegoTri19_pasted__Lego_White18_0",
+      "sourceObjectPolygon": 399,
+      "atlasBilinearRepeatRGB": [
+        184.105256273549,
+        176.10067991382948,
+        159.29106955841849
+      ],
+      "atlasBilinearClampRGB": [
+        230.0,
+        220.0,
+        199.0
+      ]
+    },
+    {
+      "node": "Blockrunner normalized atlas-v5-round34-export-v1 body",
+      "primitive": 0,
+      "primitiveTriangle": 9327,
+      "material": 0,
+      "pixel": [
+        175,
+        600
+      ],
+      "globalTriangle": 9327,
+      "barycentric": [
+        0.6658048679792707,
+        0.13365910915265364,
+        0.20053602286807554
+      ],
+      "sourcePosition": [
+        -1.0655052937999252,
+        -20.887322686698695,
+        1.934340640931529
+      ],
+      "gltfUV": [
+        0.8889021825123092,
+        0.9998191660528969
+      ],
+      "triangleUV": [
+        [
+          0.8887509107589722,
+          1.0
+        ],
+        [
+          0.8898832201957703,
+          0.9994587898254395
+        ],
+        [
+          0.8887505531311035,
+          0.9994589686393738
+        ]
+      ],
+      "distanceToAtlasBorderTexels": [
+        227.52833021479069,
+        0.3703479236671683
+      ],
+      "renderRGB": [
+        108,
+        102,
+        89
+      ],
+      "sourceObject": "pasted__LegoTri19_pasted__Lego_White18_0",
+      "sourceObjectPolygon": 399,
+      "atlasBilinearRepeatRGB": [
+        200.1800224434487,
+        191.47654320677702,
+        173.1992368097665
+      ],
+      "atlasBilinearClampRGB": [
+        230.0,
+        220.0,
+        199.0
+      ]
+    },
+    {
+      "node": "Blockrunner normalized atlas-v5-round34-export-v1 body",
+      "primitive": 0,
+      "primitiveTriangle": 9327,
+      "material": 0,
+      "pixel": [
+        177,
+        600
+      ],
+      "globalTriangle": 9327,
+      "barycentric": [
+        0.5396566744427913,
+        0.14543273176764432,
+        0.31491059378956443
+      ],
+      "sourcePosition": [
+        -1.0625952532750098,
+        -20.882969381197345,
+        1.9334717934355445
+      ],
+      "gltfUV": [
+        0.8889154729927676,
+        0.9997509138188198
+      ],
+      "triangleUV": [
+        [
+          0.8887509107589722,
+          1.0
+        ],
+        [
+          0.8898832201957703,
+          0.9994587898254395
+        ],
+        [
+          0.8887505531311035,
+          0.9994589686393738
+        ]
+      ],
+      "distanceToAtlasBorderTexels": [
+        227.5011113108119,
+        0.5101284990571457
+      ],
+      "renderRGB": [
+        126,
+        117,
+        101
+      ],
+      "sourceObject": "pasted__LegoTri19_pasted__Lego_White18_0",
+      "sourceObjectPolygon": 399,
+      "atlasBilinearRepeatRGB": [
+        230.0,
+        220.0,
+        199.0
+      ],
+      "atlasBilinearClampRGB": [
+        230.0,
+        220.0,
+        199.0
+      ]
+    },
+    {
+      "node": "Blockrunner normalized atlas-v5-round34-export-v1 body",
+      "primitive": 0,
+      "primitiveTriangle": 9327,
+      "material": 0,
+      "pixel": [
+        180,
+        600
+      ],
+      "globalTriangle": 9327,
+      "barycentric": [
+        0.35043438413790257,
+        0.16309316569023413,
+        0.4864724501718633
+      ],
+      "sourcePosition": [
+        -1.0582301924876325,
+        -20.876439422945307,
+        1.9321685221915603
+      ],
+      "gltfUV": [
+        0.888935408713455,
+        0.9996485354677035
+      ],
+      "triangleUV": [
+        [
+          0.8887509107589722,
+          1.0
+        ],
+        [
+          0.8898832201957703,
+          0.9994587898254395
+        ],
+        [
+          0.8887505531311035,
+          0.9994589686393738
+        ]
+      ],
+      "distanceToAtlasBorderTexels": [
+        227.46028295484416,
+        0.7197993621432488
+      ],
+      "renderRGB": [
+        125,
+        117,
+        102
+      ],
+      "sourceObject": "pasted__LegoTri19_pasted__Lego_White18_0",
+      "sourceObjectPolygon": 399,
+      "atlasBilinearRepeatRGB": [
+        230.0,
+        220.0,
+        199.0
+      ],
+      "atlasBilinearClampRGB": [
+        230.0,
+        220.0,
+        199.0
+      ]
+    },
+    {
+      "node": "Blockrunner normalized atlas-v5-round34-export-v1 body",
+      "primitive": 0,
+      "primitiveTriangle": 9329,
+      "material": 0,
+      "pixel": [
+        163,
+        610
+      ],
+      "globalTriangle": 9329,
+      "barycentric": [
+        0.3994448894609178,
+        0.4934239524709432,
+        0.10713115806813905
+      ],
+      "sourcePosition": [
+        -1.087006975810835,
+        -20.90815755943209,
+        1.9082721684175545
+      ],
+      "gltfUV": [
+        0.803679374081945,
+        0.717805282343513
+      ],
+      "triangleUV": [
+        [
+          0.8039677739143372,
+          0.7174803018569946
+        ],
+        [
+          0.8033329844474792,
+          0.7180213928222656
+        ],
+        [
+          0.8041994571685791,
+          0.7180216312408447
+        ]
+      ],
+      "distanceToAtlasBorderTexels": [
+        402.0646418801766,
+        577.9347817604853
+      ],
+      "renderRGB": [
+        130,
+        122,
+        106
+      ],
+      "sourceObject": "pasted__LegoTri19_pasted__Lego_White18_0",
+      "sourceObjectPolygon": 401,
+      "atlasBilinearRepeatRGB": [
+        230.0,
+        220.0,
+        199.0
+      ],
+      "atlasBilinearClampRGB": [
+        230.0,
+        220.0,
+        199.0
+      ]
+    },
+    {
+      "node": "Blockrunner normalized atlas-v5-round34-export-v1 body",
+      "primitive": 0,
+      "primitiveTriangle": 9329,
+      "material": 0,
+      "pixel": [
+        167,
+        610
+      ],
+      "globalTriangle": 9329,
+      "barycentric": [
+        0.1602727846183486,
+        0.4887061918416911,
+        0.35102102353996034
+      ],
+      "sourcePosition": [
+        -1.078748666229145,
+        -20.90263940122187,
+        1.908597589410394
+      ],
+      "gltfUV": [
+        0.8037388740644089,
+        0.7179347543564635
+      ],
+      "triangleUV": [
+        [
+          0.8039677739143372,
+          0.7174803018569946
+        ],
+        [
+          0.8033329844474792,
+          0.7180213928222656
+        ],
+        [
+          0.8041994571685791,
+          0.7180216312408447
+        ]
+      ],
+      "distanceToAtlasBorderTexels": [
+        401.94278591609054,
+        577.6696230779628
+      ],
+      "renderRGB": [
+        130,
+        122,
+        105
+      ],
+      "sourceObject": "pasted__LegoTri19_pasted__Lego_White18_0",
+      "sourceObjectPolygon": 401,
+      "atlasBilinearRepeatRGB": [
+        230.0,
+        220.0,
+        199.0
+      ],
+      "atlasBilinearClampRGB": [
+        230.0,
+        220.0,
+        199.0
+      ]
+    },
+    {
+      "node": "Blockrunner normalized atlas-v5-round34-export-v1 body",
+      "primitive": 0,
+      "primitiveTriangle": 9326,
+      "material": 0,
+      "pixel": [
+        170,
+        610
+      ],
+      "globalTriangle": 9326,
+      "barycentric": [
+        0.5125743204743701,
+        0.4672704123170777,
+        0.020155267208552187
+      ],
+      "sourcePosition": [
+        -1.0727496998228954,
+        -20.898246088844125,
+        1.9086768533783238
+      ],
+      "gltfUV": [
+        0.8893029945645584,
+        0.999988980358368
+      ],
+      "triangleUV": [
+        [
+          0.8887509107589722,
+          1.0
+        ],
+        [
+          0.8898835778236389,
+          0.9999997615814209
+        ],
+        [
+          0.8898832201957703,
+          0.9994587898254395
+        ]
+      ],
+      "distanceToAtlasBorderTexels": [
+        226.70746713178437,
+        0.022568226062276153
+      ],
+      "renderRGB": [
+        85,
+        81,
+        70
+      ],
+      "sourceObject": "pasted__LegoTri19_pasted__Lego_White18_0",
+      "sourceObjectPolygon": 398,
+      "atlasBilinearRepeatRGB": [
+        120.19069199432352,
+        114.96500973370075,
+        103.99107698639295
+      ],
+      "atlasBilinearClampRGB": [
+        230.0,
+        220.0,
+        199.0
+      ]
+    },
+    {
+      "node": "Blockrunner normalized atlas-v5-round34-export-v1 body",
+      "primitive": 0,
+      "primitiveTriangle": 9326,
+      "material": 0,
+      "pixel": [
+        172,
+        610
+      ],
+      "globalTriangle": 9326,
+      "barycentric": [
+        0.5008016081161131,
+        0.35289156230271074,
+        0.14630682958117622
+      ],
+      "sourcePosition": [
+        -1.0698395815842257,
+        -20.89389288496844,
+        1.907808071640108
+      ],
+      "gltfUV": [
+        0.8893162840127941,
+        0.9999207331193182
+      ],
+      "triangleUV": [
+        [
+          0.8887509107589722,
+          1.0
+        ],
+        [
+          0.8898835778236389,
+          0.9999997615814209
+        ],
+        [
+          0.8898832201957703,
+          0.9994587898254395
+        ]
+      ],
+      "distanceToAtlasBorderTexels": [
+        226.68025034179777,
+        0.16233857163638277
+      ],
+      "renderRGB": [
+        86,
+        80,
+        69
+      ],
+      "sourceObject": "pasted__LegoTri19_pasted__Lego_White18_0",
+      "sourceObjectPolygon": 398,
+      "atlasBilinearRepeatRGB": [
+        152.33787147636804,
+        145.7144857600042,
+        131.80537575564017
+      ],
+      "atlasBilinearClampRGB": [
+        230.0,
+        220.0,
+        199.0
+      ]
+    },
+    {
+      "node": "Blockrunner normalized atlas-v5-round34-export-v1 body",
+      "primitive": 0,
+      "primitiveTriangle": 9326,
+      "material": 0,
+      "pixel": [
+        173,
+        610
+      ],
+      "globalTriangle": 9326,
+      "barycentric": [
+        0.49491525193702834,
+        0.29570213729552725,
+        0.20938261076744438
+      ],
+      "sourcePosition": [
+        -1.0683845224648918,
+        -20.8917162830306,
+        1.907373680771003
+      ],
+      "gltfUV": [
+        0.8893229287369118,
+        0.9998866094997931
+      ],
+      "triangleUV": [
+        [
+          0.8887509107589722,
+          1.0
+        ],
+        [
+          0.8898835778236389,
+          0.9999997615814209
+        ],
+        [
+          0.8898832201957703,
+          0.9994587898254395
+        ]
+      ],
+      "distanceToAtlasBorderTexels": [
+        226.6666419468047,
+        0.23222374442366345
+      ],
+      "renderRGB": [
+        93,
+        87,
+        76
+      ],
+      "sourceObject": "pasted__LegoTri19_pasted__Lego_White18_0",
+      "sourceObjectPolygon": 398,
+      "atlasBilinearRepeatRGB": [
+        168.4114612174426,
+        161.08922377320596,
+        145.71252514030903
+      ],
+      "atlasBilinearClampRGB": [
+        230.0,
+        220.0,
+        199.0
+      ]
+    },
+    {
+      "node": "Blockrunner normalized atlas-v5-round34-export-v1 body",
+      "primitive": 0,
+      "primitiveTriangle": 9326,
+      "material": 0,
+      "pixel": [
+        174,
+        610
+      ],
+      "globalTriangle": 9326,
+      "barycentric": [
+        0.48902889575794345,
+        0.23851271228843113,
+        0.27245839195362537
+      ],
+      "sourcePosition": [
+        -1.0669294633455597,
+        -20.889539681092764,
+        1.9069392899018984
+      ],
+      "gltfUV": [
+        0.8893295734610295,
+        0.9998524858802683
+      ],
+      "triangleUV": [
+        [
+          0.8887509107589722,
+          1.0
+        ],
+        [
+          0.8898835778236389,
+          0.9999997615814209
+        ],
+        [
+          0.8898832201957703,
+          0.9994587898254395
+        ]
+      ],
+      "distanceToAtlasBorderTexels": [
+        226.65303355181163,
+        0.3021089172104894
+      ],
+      "renderRGB": [
+        102,
+        96,
+        84
+      ],
+      "sourceObject": "pasted__LegoTri19_pasted__Lego_White18_0",
+      "sourceObjectPolygon": 398,
+      "atlasBilinearRepeatRGB": [
+        184.48505095841256,
+        176.46396178630766,
+        159.6196745248874
+      ],
+      "atlasBilinearClampRGB": [
+        230.0,
+        220.0,
+        199.0
+      ]
+    },
+    {
+      "node": "Blockrunner normalized atlas-v5-round34-export-v1 body",
+      "primitive": 0,
+      "primitiveTriangle": 9326,
+      "material": 0,
+      "pixel": [
+        175,
+        610
+      ],
+      "globalTriangle": 9326,
+      "barycentric": [
+        0.4831425395788149,
+        0.181323287281335,
+        0.33553417313985
+      ],
+      "sourcePosition": [
+        -1.0654744042262267,
+        -20.887363079154927,
+        1.9065048990327904
+      ],
+      "gltfUV": [
+        0.8893362181851473,
+        0.9998183622607434
+      ],
+      "triangleUV": [
+        [
+          0.8887509107589722,
+          1.0
+        ],
+        [
+          0.8898835778236389,
+          0.9999997615814209
+        ],
+        [
+          0.8898832201957703,
+          0.9994587898254395
+        ]
+      ],
+      "distanceToAtlasBorderTexels": [
+        226.63942515681833,
+        0.3719940899975427
+      ],
+      "renderRGB": [
+        111,
+        104,
+        91
+      ],
+      "sourceObject": "pasted__LegoTri19_pasted__Lego_White18_0",
+      "sourceObjectPolygon": 398,
+      "atlasBilinearRepeatRGB": [
+        200.55864069943482,
+        191.8386997994594,
+        173.526823909511
+      ],
+      "atlasBilinearClampRGB": [
+        230.0,
+        220.0,
+        199.0
+      ]
+    },
+    {
+      "node": "Blockrunner normalized atlas-v5-round34-export-v1 body",
+      "primitive": 0,
+      "primitiveTriangle": 9326,
+      "material": 0,
+      "pixel": [
+        177,
+        610
+      ],
+      "globalTriangle": 9326,
+      "barycentric": [
+        0.471369827220602,
+        0.06694443726714278,
+        0.46168573551225517
+      ],
+      "sourcePosition": [
+        -1.0625642859875621,
+        -20.883009875279253,
+        1.905636117294578
+      ],
+      "gltfUV": [
+        0.8893495076333828,
+        0.9997501150216936
+      ],
+      "triangleUV": [
+        [
+          0.8887509107589722,
+          1.0
+        ],
+        [
+          0.8898835778236389,
+          0.9999997615814209
+        ],
+        [
+          0.8898832201957703,
+          0.9994587898254395
+        ]
+      ],
+      "distanceToAtlasBorderTexels": [
+        226.61220836683196,
+        0.5117644355714219
+      ],
+      "renderRGB": [
+        128,
+        120,
+        103
+      ],
+      "sourceObject": "pasted__LegoTri19_pasted__Lego_White18_0",
+      "sourceObjectPolygon": 398,
+      "atlasBilinearRepeatRGB": [
+        230.0,
+        220.0,
+        199.0
+      ],
+      "atlasBilinearClampRGB": [
+        230.0,
+        220.0,
+        199.0
+      ]
+    },
+    {
+      "node": "Blockrunner normalized atlas-v5-round34-export-v1 body",
+      "primitive": 0,
+      "primitiveTriangle": 9327,
+      "material": 0,
+      "pixel": [
+        180,
+        610
+      ],
+      "globalTriangle": 9327,
+      "barycentric": [
+        0.34909000244765365,
+        0.5462900739406302,
+        0.10461992361171615
+      ],
+      "sourcePosition": [
+        -1.0581991797153534,
+        -20.8764799765074,
+        1.9043328845377556
+      ],
+      "gltfUV": [
+        0.889369442749924,
+        0.9996477395941016
+      ],
+      "triangleUV": [
+        [
+          0.8887509107589722,
+          1.0
+        ],
+        [
+          0.8898832201957703,
+          0.9994587898254395
+        ],
+        [
+          0.8887505531311035,
+          0.9994589686393738
+        ]
+      ],
+      "distanceToAtlasBorderTexels": [
+        226.5713812481556,
+        0.7214293112799623
+      ],
+      "renderRGB": [
+        128,
+        120,
+        104
+      ],
+      "sourceObject": "pasted__LegoTri19_pasted__Lego_White18_0",
+      "sourceObjectPolygon": 399,
+      "atlasBilinearRepeatRGB": [
+        230.0,
+        220.0,
+        199.0
+      ],
+      "atlasBilinearClampRGB": [
+        230.0,
+        220.0,
+        199.0
+      ]
+    },
+    {
+      "node": "Blockrunner normalized atlas-v5-round34-export-v1 body",
+      "primitive": 0,
+      "primitiveTriangle": 9328,
+      "material": 0,
+      "pixel": [
+        163,
+        615
+      ],
+      "globalTriangle": 9328,
+      "barycentric": [
+        0.3150506109118594,
+        0.08375546713018336,
+        0.6011939219579573
+      ],
+      "sourcePosition": [
+        -1.086985158088676,
+        -20.90818608949894,
+        1.894359689950693
+      ],
+      "gltfUV": [
+        0.8035135755098429,
+        0.7178055774954676
+      ],
+      "triangleUV": [
+        [
+          0.8039677739143372,
+          0.7174803018569946
+        ],
+        [
+          0.8031013607978821,
+          0.7174800038337708
+        ],
+        [
+          0.8033329844474792,
+          0.7180213928222656
+        ]
+      ],
+      "distanceToAtlasBorderTexels": [
+        402.4041973558417,
+        577.9341772892824
+      ],
+      "renderRGB": [
+        131,
+        123,
+        107
+      ],
+      "sourceObject": "pasted__LegoTri19_pasted__Lego_White18_0",
+      "sourceObjectPolygon": 400,
+      "atlasBilinearRepeatRGB": [
+        230.00000000000003,
+        220.0,
+        199.0
+      ],
+      "atlasBilinearClampRGB": [
+        230.00000000000003,
+        220.0,
+        199.0
+      ]
+    },
+    {
+      "node": "Blockrunner normalized atlas-v5-round34-export-v1 body",
+      "primitive": 0,
+      "primitiveTriangle": 9329,
+      "material": 0,
+      "pixel": [
+        167,
+        615
+      ],
+      "globalTriangle": 9329,
+      "barycentric": [
+        0.15964090863129787,
+        0.6802314961043432,
+        0.16012759526435894
+      ],
+      "sourcePosition": [
+        -1.0787268483523416,
+        -20.90266793149095,
+        1.8946851110743819
+      ],
+      "gltfUV": [
+        0.8035730690079499,
+        0.7179350507463113
+      ],
+      "triangleUV": [
+        [
+          0.8039677739143372,
+          0.7174803018569946
+        ],
+        [
+          0.8033329844474792,
+          0.7180213928222656
+        ],
+        [
+          0.8041994571685791,
+          0.7180216312408447
+        ]
+      ],
+      "distanceToAtlasBorderTexels": [
+        402.2823546717186,
+        577.6690160715546
+      ],
+      "renderRGB": [
+        132,
+        124,
+        107
+      ],
+      "sourceObject": "pasted__LegoTri19_pasted__Lego_White18_0",
+      "sourceObjectPolygon": 401,
+      "atlasBilinearRepeatRGB": [
+        230.0,
+        220.0,
+        199.0
+      ],
+      "atlasBilinearClampRGB": [
+        230.0,
+        220.0,
+        199.0
+      ]
+    },
+    {
+      "node": "Blockrunner normalized atlas-v5-round34-export-v1 body",
+      "primitive": 0,
+      "primitiveTriangle": 9326,
+      "material": 0,
+      "pixel": [
+        170,
+        615
+      ],
+      "globalTriangle": 9326,
+      "barycentric": [
+        0.32097434685112924,
+        0.6582038187162156,
+        0.02082183443265515
+      ],
+      "sourcePosition": [
+        -1.0727343231648525,
+        -20.898266195980714,
+        1.8947589247815102
+      ],
+      "gltfUV": [
+        0.8895200133058894,
+        0.9999885740833327
+      ],
+      "triangleUV": [
+        [
+          0.8887509107589722,
+          1.0
+        ],
+        [
+          0.8898835778236389,
+          0.9999997615814209
+        ],
+        [
+          0.8898832201957703,
+          0.9994587898254395
+        ]
+      ],
+      "distanceToAtlasBorderTexels": [
+        226.26301274953858,
+        0.023400277334530983
+      ],
+      "renderRGB": [
+        87,
+        83,
+        72
+      ],
+      "sourceObject": "pasted__LegoTri19_pasted__Lego_White18_0",
+      "sourceObjectPolygon": 398,
+      "atlasBilinearRepeatRGB": [
+        120.38206378694213,
+        115.14806101359682,
+        104.15665518957167
+      ],
+      "atlasBilinearClampRGB": [
+        230.0,
+        220.0,
+        198.99999999999997
+      ]
+    },
+    {
+      "node": "Blockrunner normalized atlas-v5-round34-export-v1 body",
+      "primitive": 0,
+      "primitiveTriangle": 9326,
+      "material": 0,
+      "pixel": [
+        172,
+        615
+      ],
+      "globalTriangle": 9326,
+      "barycentric": [
+        0.30920163449300353,
+        0.543824968701936,
+        0.1469733968050605
+      ],
+      "sourcePosition": [
+        -1.069824204926188,
+        -20.89391299210504,
+        1.893890143043304
+      ],
+      "gltfUV": [
+        0.8895333027541249,
+        0.999920326844283
+      ],
+      "triangleUV": [
+        [
+          0.8887509107589722,
+          1.0
+        ],
+        [
+          0.8898835778236389,
+          0.9999997615814209
+        ],
+        [
+          0.8898832201957703,
+          0.9994587898254395
+        ]
+      ],
+      "distanceToAtlasBorderTexels": [
+        226.2357959595522,
+        0.16317062290841022
+      ],
+      "renderRGB": [
+        86,
+        81,
+        69
+      ],
+      "sourceObject": "pasted__LegoTri19_pasted__Lego_White18_0",
+      "sourceObjectPolygon": 398,
+      "atlasBilinearRepeatRGB": [
+        152.52924326893435,
+        145.89753703985025,
+        131.97095395877363
+      ],
+      "atlasBilinearClampRGB": [
+        230.0,
+        220.0,
+        199.0
+      ]
+    },
+    {
+      "node": "Blockrunner normalized atlas-v5-round34-export-v1 body",
+      "primitive": 0,
+      "primitiveTriangle": 9326,
+      "material": 0,
+      "pixel": [
+        173,
+        615
+      ],
+      "globalTriangle": 9326,
+      "barycentric": [
+        0.30331527831387517,
+        0.4866355436947525,
+        0.21004917799137235
+      ],
+      "sourcePosition": [
+        -1.068369145806853,
+        -20.8917363901672,
+        1.893455752174196
+      ],
+      "gltfUV": [
+        0.8895399474782427,
+        0.9998862032247581
+      ],
+      "triangleUV": [
+        [
+          0.8887509107589722,
+          1.0
+        ],
+        [
+          0.8898835778236389,
+          0.9999997615814209
+        ],
+        [
+          0.8898832201957703,
+          0.9994587898254395
+        ]
+      ],
+      "distanceToAtlasBorderTexels": [
+        226.2221875645589,
+        0.23305579569546353
+      ],
+      "renderRGB": [
+        95,
+        89,
+        77
+      ],
+      "sourceObject": "pasted__LegoTri19_pasted__Lego_White18_0",
+      "sourceObjectPolygon": 398,
+      "atlasBilinearRepeatRGB": [
+        168.6028330099566,
+        161.27227505300198,
+        145.87810334339724
+      ],
+      "atlasBilinearClampRGB": [
+        230.0,
+        220.0,
+        199.0
+      ]
+    },
+    {
+      "node": "Blockrunner normalized atlas-v5-round34-export-v1 body",
+      "primitive": 0,
+      "primitiveTriangle": 9326,
+      "material": 0,
+      "pixel": [
+        174,
+        615
+      ],
+      "globalTriangle": 9326,
+      "barycentric": [
+        0.2974289221347466,
+        0.429446118687569,
+        0.2731249591776844
+      ],
+      "sourcePosition": [
+        -1.0669140866875182,
+        -20.88955978822936,
+        1.893021361305088
+      ],
+      "gltfUV": [
+        0.8895465922023605,
+        0.9998520796052331
+      ],
+      "triangleUV": [
+        [
+          0.8887509107589722,
+          1.0
+        ],
+        [
+          0.8898835778236389,
+          0.9999997615814209
+        ],
+        [
+          0.8898832201957703,
+          0.9994587898254395
+        ]
+      ],
+      "distanceToAtlasBorderTexels": [
+        226.2085791695656,
+        0.30294096848251684
+      ],
+      "renderRGB": [
+        103,
+        98,
+        85
+      ],
+      "sourceObject": "pasted__LegoTri19_pasted__Lego_White18_0",
+      "sourceObjectPolygon": 398,
+      "atlasBilinearRepeatRGB": [
+        184.67642275097887,
+        176.6470130661537,
+        159.78525272802085
+      ],
+      "atlasBilinearClampRGB": [
+        230.0,
+        220.0,
+        199.0
+      ]
+    },
+    {
+      "node": "Blockrunner normalized atlas-v5-round34-export-v1 body",
+      "primitive": 0,
+      "primitiveTriangle": 9326,
+      "material": 0,
+      "pixel": [
+        175,
+        615
+      ],
+      "globalTriangle": 9326,
+      "barycentric": [
+        0.2915425659556182,
+        0.37225669368056025,
+        0.3362007403638215
+      ],
+      "sourcePosition": [
+        -1.0654590275681872,
+        -20.887383186291526,
+        1.8925869704359801
+      ],
+      "gltfUV": [
+        0.8895532369264784,
+        0.9998179559857083
+      ],
+      "triangleUV": [
+        [
+          0.8887509107589722,
+          1.0
+        ],
+        [
+          0.8898835778236389,
+          0.9999997615814209
+        ],
+        [
+          0.8898832201957703,
+          0.9994587898254395
+        ]
+      ],
+      "distanceToAtlasBorderTexels": [
+        226.1949707745723,
+        0.37282614126934277
+      ],
+      "renderRGB": [
+        112,
+        106,
+        92
+      ],
+      "sourceObject": "pasted__LegoTri19_pasted__Lego_White18_0",
+      "sourceObjectPolygon": 398,
+      "atlasBilinearRepeatRGB": [
+        200.75001249194884,
+        192.0217510792554,
+        173.6924021125992
+      ],
+      "atlasBilinearClampRGB": [
+        230.0,
+        220.0,
+        199.0
+      ]
+    },
+    {
+      "node": "Blockrunner normalized atlas-v5-round34-export-v1 body",
+      "primitive": 0,
+      "primitiveTriangle": 9326,
+      "material": 0,
+      "pixel": [
+        177,
+        615
+      ],
+      "globalTriangle": 9326,
+      "barycentric": [
+        0.27976985359736134,
+        0.25787784366628064,
+        0.462352302736358
+      ],
+      "sourcePosition": [
+        -1.0625489093295195,
+        -20.883029982415845,
+        1.8917181886977643
+      ],
+      "gltfUV": [
+        0.8895665263747139,
+        0.9997497087466585
+      ],
+      "triangleUV": [
+        [
+          0.8887509107589722,
+          1.0
+        ],
+        [
+          0.8898835778236389,
+          0.9999997615814209
+        ],
+        [
+          0.8898832201957703,
+          0.9994587898254395
+        ]
+      ],
+      "distanceToAtlasBorderTexels": [
+        226.16775398458594,
+        0.5125964868434494
+      ],
+      "renderRGB": [
+        130,
+        121,
+        104
+      ],
+      "sourceObject": "pasted__LegoTri19_pasted__Lego_White18_0",
+      "sourceObjectPolygon": 398,
+      "atlasBilinearRepeatRGB": [
+        230.0,
+        220.0,
+        199.0
+      ],
+      "atlasBilinearClampRGB": [
+        230.0,
+        220.0,
+        199.0
+      ]
+    },
+    {
+      "node": "Blockrunner normalized atlas-v5-round34-export-v1 body",
+      "primitive": 0,
+      "primitiveTriangle": 9326,
+      "material": 0,
+      "pixel": [
+        180,
+        615
+      ],
+      "globalTriangle": 9326,
+      "barycentric": [
+        0.262110785060107,
+        0.08630956864490494,
+        0.6515796462949881
+      ],
+      "sourcePosition": [
+        -1.058183731971522,
+        -20.876500176602335,
+        1.8904150160904503
+      ],
+      "gltfUV": [
+        0.8895864605470672,
+        0.9996473378880839
+      ],
+      "triangleUV": [
+        [
+          0.8887509107589722,
+          1.0
+        ],
+        [
+          0.8898835778236389,
+          0.9999997615814209
+        ],
+        [
+          0.8898832201957703,
+          0.9994587898254395
+        ]
+      ],
+      "distanceToAtlasBorderTexels": [
+        226.12692879960628,
+        0.7222520052041546
+      ],
+      "renderRGB": [
+        129,
+        121,
+        105
+      ],
+      "sourceObject": "pasted__LegoTri19_pasted__Lego_White18_0",
+      "sourceObjectPolygon": 398,
+      "atlasBilinearRepeatRGB": [
+        230.0,
+        220.0,
+        199.0
+      ],
+      "atlasBilinearClampRGB": [
+        230.0,
+        220.0,
+        199.0
+      ]
+    },
+    {
+      "node": "Blockrunner normalized atlas-v5-round34-export-v1 body",
+      "primitive": 0,
+      "primitiveTriangle": 9328,
+      "material": 0,
+      "pixel": [
+        163,
+        620
+      ],
+      "globalTriangle": 9328,
+      "barycentric": [
+        0.12352500501431007,
+        0.2746333912567487,
+        0.6018416037289412
+      ],
+      "sourcePosition": [
+        -1.0869633405643118,
+        -20.908214619307138,
+        1.8804472113164665
+      ],
+      "gltfUV": [
+        0.8033477852311718,
+        0.7178058710641679
+      ],
+      "triangleUV": [
+        [
+          0.8039677739143372,
+          0.7174803018569946
+        ],
+        [
+          0.8031013607978821,
+          0.7174800038337708
+        ],
+        [
+          0.8033329844474792,
+          0.7180213928222656
+        ]
+      ],
+      "distanceToAtlasBorderTexels": [
+        402.7437358465602,
+        577.9335760605841
+      ],
+      "renderRGB": [
+        132,
+        124,
+        107
+      ],
+      "sourceObject": "pasted__LegoTri19_pasted__Lego_White18_0",
+      "sourceObjectPolygon": 400,
+      "atlasBilinearRepeatRGB": [
+        230.0,
+        220.0,
+        199.0
+      ],
+      "atlasBilinearClampRGB": [
+        230.0,
+        220.0,
+        199.0
+      ]
+    },
+    {
+      "node": "Blockrunner normalized atlas-v5-round34-export-v1 body",
+      "primitive": 0,
+      "primitiveTriangle": 9328,
+      "material": 0,
+      "pixel": [
+        167,
+        620
+      ],
+      "globalTriangle": 9328,
+      "barycentric": [
+        0.12824315101917594,
+        0.030763334244969916,
+        0.8409935147358542
+      ],
+      "sourcePosition": [
+        -1.0787050305323376,
+        -20.90269646168575,
+        1.8807726326903031
+      ],
+      "gltfUV": [
+        0.8034072663331913,
+        0.7179353466814816
+      ],
+      "triangleUV": [
+        [
+          0.8039677739143372,
+          0.7174803018569946
+        ],
+        [
+          0.8031013607978821,
+          0.7174800038337708
+        ],
+        [
+          0.8033329844474792,
+          0.7180213928222656
+        ]
+      ],
+      "distanceToAtlasBorderTexels": [
+        402.6219185496243,
+        577.6684099963256
+      ],
+      "renderRGB": [
+        133,
+        125,
+        107
+      ],
+      "sourceObject": "pasted__LegoTri19_pasted__Lego_White18_0",
+      "sourceObjectPolygon": 400,
+      "atlasBilinearRepeatRGB": [
+        230.0,
+        220.0,
+        199.0
+      ],
+      "atlasBilinearClampRGB": [
+        230.0,
+        220.0,
+        199.0
+      ]
+    },
+    {
+      "node": "Blockrunner normalized atlas-v5-round34-export-v1 body",
+      "primitive": 0,
+      "primitiveTriangle": 9326,
+      "material": 0,
+      "pixel": [
+        170,
+        620
+      ],
+      "globalTriangle": 9326,
+      "barycentric": [
+        0.12937437322797593,
+        0.8491372251154409,
+        0.02148840165658319
+      ],
+      "sourcePosition": [
+        -1.0727189465068139,
+        -20.898286303117313,
+        1.8808409961847028
+      ],
+      "gltfUV": [
+        0.8897370320472204,
+        0.9999881678082978
+      ],
+      "triangleUV": [
+        [
+          0.8887509107589722,
+          1.0
+        ],
+        [
+          0.8898835778236389,
+          0.9999997615814209
+        ],
+        [
+          0.8898832201957703,
+          0.9994587898254395
+        ]
+      ],
+      "distanceToAtlasBorderTexels": [
+        225.81855836729255,
+        0.024232328606103692
+      ],
+      "renderRGB": [
+        87,
+        83,
+        71
+      ],
+      "sourceObject": "pasted__LegoTri19_pasted__Lego_White18_0",
+      "sourceObjectPolygon": 398,
+      "atlasBilinearRepeatRGB": [
+        120.57343557940385,
+        115.33111229334281,
+        104.32223339261463
+      ],
+      "atlasBilinearClampRGB": [
+        230.0,
+        220.0,
+        199.0
+      ]
+    },
+    {
+      "node": "Blockrunner normalized atlas-v5-round34-export-v1 body",
+      "primitive": 0,
+      "primitiveTriangle": 9326,
+      "material": 0,
+      "pixel": [
+        172,
+        620
+      ],
+      "globalTriangle": 9326,
+      "barycentric": [
+        0.11760166086971921,
+        0.734758375101336,
+        0.14763996402894478
+      ],
+      "sourcePosition": [
+        -1.0698088282681502,
+        -20.893933099241643,
+        1.8799722144464872
+      ],
+      "gltfUV": [
+        0.8897503214954561,
+        0.999919920569248
+      ],
+      "triangleUV": [
+        [
+          0.8887509107589722,
+          1.0
+        ],
+        [
+          0.8898835778236389,
+          0.9999997615814209
+        ],
+        [
+          0.8898832201957703,
+          0.9994587898254395
+        ]
+      ],
+      "distanceToAtlasBorderTexels": [
+        225.79134157730596,
+        0.16400267417998293
+      ],
+      "renderRGB": [
+        88,
+        82,
+        70
+      ],
+      "sourceObject": "pasted__LegoTri19_pasted__Lego_White18_0",
+      "sourceObjectPolygon": 398,
+      "atlasBilinearRepeatRGB": [
+        152.72061506139607,
+        146.08058831959625,
+        132.1365321618166
+      ],
+      "atlasBilinearClampRGB": [
+        230.0,
+        220.0,
+        199.0
+      ]
+    },
+    {
+      "node": "Blockrunner normalized atlas-v5-round34-export-v1 body",
+      "primitive": 0,
+      "primitiveTriangle": 9326,
+      "material": 0,
+      "pixel": [
+        173,
+        620
+      ],
+      "globalTriangle": 9326,
+      "barycentric": [
+        0.11171530469063437,
+        0.6775689500940651,
+        0.21071574521530048
+      ],
+      "sourcePosition": [
+        -1.0683537691488143,
+        -20.891756497303795,
+        1.8795378235773825
+      ],
+      "gltfUV": [
+        0.8897569662195738,
+        0.999885796949723
+      ],
+      "triangleUV": [
+        [
+          0.8887509107589722,
+          1.0
+        ],
+        [
+          0.8898835778236389,
+          0.9999997615814209
+        ],
+        [
+          0.8898832201957703,
+          0.9994587898254395
+        ]
+      ],
+      "distanceToAtlasBorderTexels": [
+        225.7777331823129,
+        0.2338878469672636
+      ],
+      "renderRGB": [
+        95,
+        89,
+        77
+      ],
+      "sourceObject": "pasted__LegoTri19_pasted__Lego_White18_0",
+      "sourceObjectPolygon": 398,
+      "atlasBilinearRepeatRGB": [
+        168.79420480247063,
+        161.455326332798,
+        146.04368154648546
+      ],
+      "atlasBilinearClampRGB": [
+        230.0,
+        220.0,
+        199.0
+      ]
+    },
+    {
+      "node": "Blockrunner normalized atlas-v5-round34-export-v1 body",
+      "primitive": 0,
+      "primitiveTriangle": 9326,
+      "material": 0,
+      "pixel": [
+        174,
+        620
+      ],
+      "globalTriangle": 9326,
+      "barycentric": [
+        0.10582894851146218,
+        0.620379525086969,
+        0.2737915264015688
+      ],
+      "sourcePosition": [
+        -1.0668987100294804,
+        -20.88957989536596,
+        1.8791034327082712
+      ],
+      "gltfUV": [
+        0.8897636109436916,
+        0.9998516733301981
+      ],
+      "triangleUV": [
+        [
+          0.8887509107589722,
+          1.0
+        ],
+        [
+          0.8898835778236389,
+          0.9999997615814209
+        ],
+        [
+          0.8898832201957703,
+          0.9994587898254395
+        ]
+      ],
+      "distanceToAtlasBorderTexels": [
+        225.7641247873196,
+        0.3037730197543169
+      ],
+      "renderRGB": [
+        104,
+        98,
+        85
+      ],
+      "sourceObject": "pasted__LegoTri19_pasted__Lego_White18_0",
+      "sourceObjectPolygon": 398,
+      "atlasBilinearRepeatRGB": [
+        184.8677945434929,
+        176.83006434594972,
+        159.95083093110907
+      ],
+      "atlasBilinearClampRGB": [
+        230.0,
+        220.0,
+        199.0
+      ]
+    },
+    {
+      "node": "Blockrunner normalized atlas-v5-round34-export-v1 body",
+      "primitive": 0,
+      "primitiveTriangle": 9326,
+      "material": 0,
+      "pixel": [
+        175,
+        620
+      ],
+      "globalTriangle": 9326,
+      "barycentric": [
+        0.09994259233237751,
+        0.5631901000799603,
+        0.3368673075876622
+      ],
+      "sourcePosition": [
+        -1.0654436509101506,
+        -20.887403293428125,
+        1.8786690418391667
+      ],
+      "gltfUV": [
+        0.8897702556678093,
+        0.9998175497106734
+      ],
+      "triangleUV": [
+        [
+          0.8887509107589722,
+          1.0
+        ],
+        [
+          0.8898835778236389,
+          0.9999997615814209
+        ],
+        [
+          0.8898832201957703,
+          0.9994587898254395
+        ]
+      ],
+      "distanceToAtlasBorderTexels": [
+        225.75051639232652,
+        0.3736581925409155
+      ],
+      "renderRGB": [
+        114,
+        107,
+        93
+      ],
+      "sourceObject": "pasted__LegoTri19_pasted__Lego_White18_0",
+      "sourceObjectPolygon": 398,
+      "atlasBilinearRepeatRGB": [
+        200.94138428441056,
+        192.2048023590014,
+        173.85798031564218
+      ],
+      "atlasBilinearClampRGB": [
+        230.0,
+        220.0,
+        199.0
+      ]
+    },
+    {
+      "node": "Blockrunner normalized atlas-v5-round34-export-v1 body",
+      "primitive": 0,
+      "primitiveTriangle": 9326,
+      "material": 0,
+      "pixel": [
+        177,
+        620
+      ],
+      "globalTriangle": 9326,
+      "barycentric": [
+        0.08816987997412051,
+        0.4488112500655933,
+        0.4630188699602862
+      ],
+      "sourcePosition": [
+        -1.0625335326714809,
+        -20.883050089552444,
+        1.8778002601009507
+      ],
+      "gltfUV": [
+        0.889783545116045,
+        0.9997493024716234
+      ],
+      "triangleUV": [
+        [
+          0.8887509107589722,
+          1.0
+        ],
+        [
+          0.8898835778236389,
+          0.9999997615814209
+        ],
+        [
+          0.8898832201957703,
+          0.9994587898254395
+        ]
+      ],
+      "distanceToAtlasBorderTexels": [
+        225.72329960233992,
+        0.5134285381152495
+      ],
+      "renderRGB": [
+        132,
+        123,
+        106
+      ],
+      "sourceObject": "pasted__LegoTri19_pasted__Lego_White18_0",
+      "sourceObjectPolygon": 398,
+      "atlasBilinearRepeatRGB": [
+        230.0,
+        220.0,
+        199.0
+      ],
+      "atlasBilinearClampRGB": [
+        230.0,
+        220.0,
+        199.0
+      ]
+    },
+    {
+      "node": "Blockrunner normalized atlas-v5-round34-export-v1 body",
+      "primitive": 0,
+      "primitiveTriangle": 9326,
+      "material": 0,
+      "pixel": [
+        180,
+        620
+      ],
+      "globalTriangle": 9326,
+      "barycentric": [
+        0.07051081143677884,
+        0.27724297504430495,
+        0.6522462135189162
+      ],
+      "sourcePosition": [
+        -1.058168355313483,
+        -20.876520283738934,
+        1.8764970874936302
+      ],
+      "gltfUV": [
+        0.8898034792883984,
+        0.9996469316130487
+      ],
+      "triangleUV": [
+        [
+          0.8887509107589722,
+          1.0
+        ],
+        [
+          0.8898835778236389,
+          0.9999997615814209
+        ],
+        [
+          0.8898832201957703,
+          0.9994587898254395
+        ]
+      ],
+      "distanceToAtlasBorderTexels": [
+        225.68247441736003,
+        0.723084056476182
+      ],
+      "renderRGB": [
+        133,
+        124,
+        107
+      ],
+      "sourceObject": "pasted__LegoTri19_pasted__Lego_White18_0",
+      "sourceObjectPolygon": 398,
+      "atlasBilinearRepeatRGB": [
+        230.0,
+        220.0,
+        199.0
+      ],
+      "atlasBilinearClampRGB": [
+        230.0,
+        220.0,
+        199.0
+      ]
+    }
+  ],
+  "seamCenter": {
+    "node": "Blockrunner normalized atlas-v5-round34-export-v1 body",
+    "primitive": 0,
+    "primitiveTriangle": 9326,
+    "material": 0,
+    "pixel": [
+      170,
+      615
+    ],
+    "globalTriangle": 9326,
+    "barycentric": [
+      0.32097434685112924,
+      0.6582038187162156,
+      0.02082183443265515
+    ],
+    "sourcePosition": [
+      -1.0727343231648525,
+      -20.898266195980714,
+      1.8947589247815102
+    ],
+    "gltfUV": [
+      0.8895200133058894,
+      0.9999885740833327
+    ],
+    "triangleUV": [
+      [
+        0.8887509107589722,
+        1.0
+      ],
+      [
+        0.8898835778236389,
+        0.9999997615814209
+      ],
+      [
+        0.8898832201957703,
+        0.9994587898254395
+      ]
+    ],
+    "distanceToAtlasBorderTexels": [
+      226.26301274953858,
+      0.023400277334530983
+    ],
+    "renderRGB": [
+      87,
+      83,
+      72
+    ],
+    "sourceObject": "pasted__LegoTri19_pasted__Lego_White18_0",
+    "sourceObjectPolygon": 398,
+    "atlasBilinearRepeatRGB": [
+      120.38206378694213,
+      115.14806101359682,
+      104.15665518957167
+    ],
+    "atlasBilinearClampRGB": [
+      230.0,
+      220.0,
+      198.99999999999997
+    ]
+  },
+  "seamCenterAtlasEdgeEvidence": {
+    "image": "blockrunner-body-color-v1-20260908-paint-v4b",
+    "size": [
+      2048,
+      2048
+    ],
+    "sampleColumn": 1821,
+    "lastImageRowRGB": [
+      230,
+      220,
+      199
+    ],
+    "firstOppositeImageRowRGB": [
+      0,
+      0,
+      0
+    ],
+    "bilinearDecodedLinearThenSrgbRepeatRGB": [
+      172.30457781993928,
+      164.668902056393,
+      148.6339829529457
+    ],
+    "bilinearDecodedLinearThenSrgbClampRGB": [
+      230.0,
+      220.0,
+      198.99999999999997
+    ],
+    "physicalInterpretation": "These two decoded-linear samples differ only by sampler wrap. No lighting, material response, geometry, normals, UV or atlas pixels have been changed."
+  }
+}

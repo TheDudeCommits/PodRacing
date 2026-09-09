@@ -1,0 +1,11 @@
+--- a/src/render/vehicles/RacerPresentation.ts
++++ b/src/render/vehicles/RacerPresentation.ts
+@@ -63,6 +63,8 @@
+   get appearanceStatus(): string { return this.effective === 'procedural' ? 'procedural' : this.imported.status; }
+   get breakupAvailable(): boolean { return this.importedActive && this.imported.wreckBreakupAvailable; }
+   get breakupActive(): boolean { return this.importedActive && this.imported.wreckBreakupActive; }
++  get damageVariantAvailable(): boolean { return this.importedActive && this.imported.damageVariantAvailable; }
++  get damageVariantActive(): boolean { return this.importedActive && this.imported.damageVariantActive; }
+   get geometryRevision(): number { return this.revision; }
+   get prepassMeshes(): readonly Mesh[] { return this.activePrepasses; }
+   get wakeAnchors(): readonly Group[] { return this.importedActive ? this.importedWake : this.procedural.wakeAnchors; }

@@ -1,0 +1,9 @@
+# V19 HUD source freeze
+
+The V18b frame made the timing rail appear olive over warm sky, and the rectangular resource backing still read separately from the curved speed instrument. V19 changes the rail to cooler deep petrol and replaces only the decorative resource-glass path with a C-shaped return following the existing outer contour. Its upper/right arc joins the rounded lower tray; the speed readout remains inside its existing oval. No outer instrument or gameplay-view anchor moves.
+
+The three actual resource rows retain their percentage text, bound fill widths and repaired block-level telemetry spans. Tracks now have capsule edges without a separate rectangular border. Desktop resource labels/readings increase to 13/16px with slightly wider label/value columns; timing labels increase to 13px. Existing narrow overrides remain. Route, OVER-REV, airborne feedback, threat direction/grouping/priority, accessible semantics and reduced-motion behavior remain unchanged. No Build, Map or Garage edits.
+
+Validation: TypeScript passes; four existing HUD/threat suites pass 29 tests; PostCSS parses 771 rules; SVG XML parses. RaceHud is byte-identical to V18b when the one decorative path is normalized. Exactly seven CSS lines differ, whitespace is clean, actual meter width/block rules remain, and the threat/reduced-motion tail is identical. Static source-over calculations show the new band retaining blue-green hue over three stated warm backgrounds; these are illustrative arithmetic, not native pixel/visual acceptance.
+
+Native resource widths, narrow row geometry, caption readability and visual composition must be checked against the next actual build. No browser/build was run by this agent. Prior V18b files, PASS17 receipt, unchanged FAIL critic result and raw audit remain preserved.

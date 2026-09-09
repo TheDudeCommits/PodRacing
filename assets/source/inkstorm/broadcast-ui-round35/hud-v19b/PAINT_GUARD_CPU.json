@@ -1,0 +1,73 @@
+{
+  "scope": "Actual extracted source assertions with bounded CPU evidence objects; no browser or paint proof",
+  "scriptSha256": "2b65778119f29ae94f20ee600d6518537c5e51571e1c1b93ec1719586a438eda",
+  "outcome": "PASS",
+  "cases": [
+    {
+      "name": "corrected lower speed context",
+      "expected": true,
+      "passes": true,
+      "error": null
+    },
+    {
+      "name": "actual V19 equal-z later-speed case",
+      "expected": false,
+      "passes": false,
+      "error": "actual V19 equal-z later-speed case: instrument glass paints over SHIFT / REDLINE"
+    },
+    {
+      "name": "speed above caption",
+      "expected": false,
+      "passes": false,
+      "error": "speed above caption: instrument glass paints over SHIFT / REDLINE"
+    },
+    {
+      "name": "unpositioned speed",
+      "expected": false,
+      "passes": false,
+      "error": "unpositioned speed: instrument glass paints over SHIFT / REDLINE"
+    },
+    {
+      "name": "auto speed z-index",
+      "expected": false,
+      "passes": false,
+      "error": "auto speed z-index: instrument glass paints over SHIFT / REDLINE"
+    },
+    {
+      "name": "different parents",
+      "expected": false,
+      "passes": false,
+      "error": "different parents: instrument glass paints over SHIFT / REDLINE"
+    },
+    {
+      "name": "caption hidden by ancestor",
+      "expected": false,
+      "passes": false,
+      "error": "caption hidden by ancestor: SHIFT / REDLINE caption is hidden or clipped"
+    },
+    {
+      "name": "caption clipped",
+      "expected": false,
+      "passes": false,
+      "error": "caption clipped: SHIFT / REDLINE caption is hidden or clipped"
+    },
+    {
+      "name": "caption offscreen",
+      "expected": false,
+      "passes": false,
+      "error": "caption offscreen: SHIFT / REDLINE caption is hidden or clipped"
+    },
+    {
+      "name": "zero text box",
+      "expected": false,
+      "passes": false,
+      "error": "zero text box: SHIFT / REDLINE caption is hidden or clipped"
+    },
+    {
+      "name": "nonoverlapping decoration",
+      "expected": true,
+      "passes": true,
+      "error": null
+    }
+  ]
+}

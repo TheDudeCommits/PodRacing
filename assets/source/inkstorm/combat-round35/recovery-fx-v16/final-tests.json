@@ -1,0 +1,13 @@
+{
+  "command": [
+    "npx",
+    "vitest",
+    "run",
+    "tests/render/GalacticEffectsView.test.ts",
+    "tests/render/GalacticEffectsContact.test.ts",
+    "--silent=false",
+    "--reporter=verbose"
+  ],
+  "exitCode": 0,
+  "elapsedSeconds": 1.959510087966919
+}

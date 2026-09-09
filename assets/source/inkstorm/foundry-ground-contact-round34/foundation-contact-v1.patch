@@ -1,0 +1,437 @@
+--- a/src/render/inkstorm/InkstormFoundations.ts
++++ b/src/render/inkstorm/InkstormFoundations.ts
+@@ -4,13 +4,15 @@
+ 
+ /** Buried foundations join rigid authored machinery to the analytic terrain. */
+ export function createInkstormFoundations(placements: readonly InkstormPlacement[], heightAt: (x: number, z: number) => number,
+-  pitAnchorHeight?: (id: string) => number | undefined): InstancedMesh {
++  pitAnchorHeight?: (id: string) => number | undefined, replacedPipeBankIds?: ReadonlySet<string>): InstancedMesh {
+   const geometry = new BoxGeometry(1, 1, 1);
+   const mesh = new InstancedMesh(geometry, new InkstormSurfaceMaterial(false, null, null, false, true), placements.length * 2);
+   mesh.name = 'Inkstorm grounded machinery foundations';
+   mesh.count = 0;
+   const matrix = new Matrix4(), position = new Vector3(), scale = new Vector3(), up = new Vector3(0, 1, 0), rotation = new Quaternion();
+   for (const p of placements) {
++    // Only IDs actually merged into the live Foundry mesh may omit a box.
++    if (p.family === 'pipe-bank' && replacedPipeBankIds?.has(p.id)) continue;
+     const sizes: Partial<Record<InkstormPlacement['family'], [number, number]>> = { 'pit-district': [120,36], 'pit-complex': [150, 61], 'pipe-bank': [94, 44], 'finish-tower': [30, 23] };
+     const dimensions = sizes[p.family];
+     const supports: number[][] = p.family === 'foundry-gantry' ? [[-46, 0, 12, 14], [46, 0, 12, 14]]
+--- a/src/render/inkstorm/InkstormFoundry.ts
++++ b/src/render/inkstorm/InkstormFoundry.ts
+@@ -7,6 +7,7 @@
+ import { getInkstormLayout, type InkstormPlacement } from '../../game/race/inkstormLayout';
+ import { InkstormSurfaceMaterial } from './InkstormSurfaceMaterial';
+ import { createInkstormPipeJoint } from './InkstormPipeJoint';
++import type { FoundationContactPlan } from './InkstormFoundationContact';
+ import { CEL_TERRAIN_EDGE_SUPPRESS_USER_DATA_KEY } from '../post/CelPrepassMaterial';
+ 
+ type HeightAt = (x: number, z: number) => number;
+@@ -164,7 +165,12 @@
+ }
+ 
+ /** One additional opaque material/mesh, no textures, images, lights or frame updates. */
+-export function createInkstormFoundry(course: PodraceCourse, heightAt: HeightAt): Mesh | null {
++export function createInkstormFoundry(course: PodraceCourse, heightAt: HeightAt, contact?: FoundationContactPlan): Mesh | null {
++  try { return createInkstormFoundryMesh(course, heightAt, contact); }
++  finally { contact?.geometry?.dispose(); }
++}
++
++function createInkstormFoundryMesh(course: PodraceCourse, heightAt: HeightAt, contact?: FoundationContactPlan): Mesh | null {
+   const plan = getInkstormFoundryPlan(course, heightAt);
+   if (!plan.pipes.length) return null;
+   const parts: BufferGeometry[] = [];
+@@ -217,13 +223,27 @@
+     geometry.applyMatrix4(new Matrix4().compose(new Vector3(...box.center), new Quaternion().setFromAxisAngle(UP, box.yaw), new Vector3(1, 1, 1)));
+     add(geometry, box.color);
+   }
+-  const geometry = mergeGeometries(parts, false);
++  let geometry = mergeGeometries(parts, false);
+   parts.forEach(part => part.dispose());
+   if (!geometry) throw new Error('Could not merge the foundry service network.');
++  let replacedPipeBankIds: ReadonlySet<string> = new Set<string>();
++  let contactFailure: string | null = null;
++  if (contact?.geometry) {
++    // Failure retains the old service mesh and an empty omission set. The
++    // caller therefore keeps every complete original foundation box.
++    try {
++      const merged = mergeGeometries([geometry, contact.geometry], false);
++      if (merged) { geometry.dispose(); geometry = merged; replacedPipeBankIds = new Set(contact.replacedIds); }
++      else contactFailure = 'Contact merge rejected; original boxes retained.';
++    } catch (error) { contactFailure = String(error); }
++  }
+   geometry.computeBoundingSphere(); geometry.computeBoundingBox();
+   const mesh = new Mesh(geometry, new InkstormSurfaceMaterial(false));
+   mesh.name = 'Inkstorm connected foundry pressure mains and service bridge';
+   mesh.userData[CEL_TERRAIN_EDGE_SUPPRESS_USER_DATA_KEY] = true;
+   mesh.userData.inkstormFoundryPlan = plan;
++  mesh.userData.inkstormFoundationReplacementIds = replacedPipeBankIds;
++  mesh.userData.inkstormFoundationContact = { banks: contact?.banks ?? [], rejected: contact?.rejected ?? [],
++    installedIds: [...replacedPipeBankIds], mergeFailure: contactFailure };
+   return mesh;
+ }
+--- a/src/render/inkstorm/InkstormWorld.ts
++++ b/src/render/inkstorm/InkstormWorld.ts
+@@ -7,6 +7,7 @@
+ import { createInkstormRoad } from './InkstormRoad';
+ import { createInkstormShadows } from './InkstormShadows';
+ import { createInkstormFoundations } from './InkstormFoundations';
++import { createInkstormFoundationContactPlan } from './InkstormFoundationContact';
+ import { createInkstormBridge } from './InkstormBridge';
+ import { createInkstormFoundry } from './InkstormFoundry';
+ import { getInkstormFoundryCorridorPlan } from './InkstormFoundryCorridor';
+@@ -116,10 +117,12 @@
+       if(branch.elevated)this.roads.push(createInkstormBridge(branch,this.heightAt,course));
+     }
+     this.roads.push(createInkstormShadows(getInkstormLayout(course),this.gulfUniforms));
+-    this.roads.push(createInkstormFoundations(getInkstormLayout(course), this.heightAt, this.pitAnchorHeight));
++    const foundationContact = createInkstormFoundationContactPlan(course, this.heightAt);
++    const foundry = createInkstormFoundry(course, this.heightAt, foundationContact);
++    const replacedPipeBankIds = foundry?.userData.inkstormFoundationReplacementIds as ReadonlySet<string> | undefined;
++    this.roads.push(createInkstormFoundations(getInkstormLayout(course), this.heightAt, this.pitAnchorHeight, replacedPipeBankIds));
+     const vistas=createInkstormVista(course, this.heightAt);
+     this.roads.push(...vistas);
+-    const foundry = createInkstormFoundry(course, this.heightAt);
+     if (foundry) this.roads.push(foundry);
+     const forkGuidance = createInkstormForkWayfinding(course, this.heightAt);
+     if (forkGuidance) this.roads.push(forkGuidance);
+--- /dev/null
++++ b/src/render/inkstorm/InkstormFoundationContact.ts
+@@ -0,0 +1,202 @@
++import { BufferGeometry, Color, Float32BufferAttribute } from 'three';
++import type { PodraceCourse } from '../../game/race/course';
++import { getInkstormLayout, type InkstormPlacement } from '../../game/race/inkstormLayout';
++
++type Point = readonly [number, number, number];
++interface LanePoint { x: number; z: number; width: number }
++interface Segment { a: LanePoint; b: LanePoint; allowance: number }
++interface OutlinePoint { x: number; z: number; groove: number }
++export interface FoundationContactBank {
++  id: string; triangles: number; top: number; bottom: number;
++  minimumRoadSafety: number; maximumProbeSpacing: number; minimumBurial: number;
++  maximumBurial: number; footprint: readonly [number, number];
++}
++export interface FoundationContactPlan {
++  /** Fresh geometry transferred to createInkstormFoundry, which always disposes it. */
++  geometry: BufferGeometry | null;
++  replacedIds: ReadonlySet<string>;
++  banks: FoundationContactBank[];
++  rejected: { id: string; reason: string; minimumRoadSafety?: number }[];
++}
++const CONCRETE = new Color('#957357');
++const RECESS = new Color('#57483f');
++const MAX_TRIANGLES = 512;
++const VEHICLE_HALF_WIDTH = 10.5;
++const SAFETY = 7;
++const PROBE_SPACING = 2;
++
++function segmentDistance(x: number, z: number, ax: number, az: number, bx: number, bz: number): number {
++  const dx = bx - ax, dz = bz - az;
++  const t = Math.max(0, Math.min(1, ((x - ax) * dx + (z - az) * dz) / (dx * dx + dz * dz || 1)));
++  return Math.hypot(x - ax - t * dx, z - az - t * dz);
++}
++/** Distance to the whole old foundation footprint, not only candidate vertices. */
++function boxSegmentDistance(p: InkstormPlacement, { a, b }: Segment): number {
++  const cos = Math.cos(p.yaw), sin = Math.sin(p.yaw);
++  const ax = (a.x - p.x) * cos - (a.z - p.z) * sin;
++  const az = (a.x - p.x) * sin + (a.z - p.z) * cos;
++  const bx = (b.x - p.x) * cos - (b.z - p.z) * sin;
++  const bz = (b.x - p.x) * sin + (b.z - p.z) * cos;
++  const hx = 47 * p.sx, hz = 22 * p.sz;
++  let enter = 0, leave = 1;
++  for (const [origin, direction, half] of [[ax, bx - ax, hx], [az, bz - az, hz]]) {
++    if (Math.abs(direction!) < 1e-12) {
++      if (Math.abs(origin!) > half!) { enter = 2; break; }
++    } else {
++      const t0 = (-half! - origin!) / direction!, t1 = (half! - origin!) / direction!;
++      enter = Math.max(enter, Math.min(t0, t1)); leave = Math.min(leave, Math.max(t0, t1));
++    }
++  }
++  if (enter <= leave) return 0;
++  const pointBox = (x: number, z: number) => Math.hypot(Math.max(0, Math.abs(x) - hx), Math.max(0, Math.abs(z) - hz));
++  return Math.min(pointBox(ax, az), pointBox(bx, bz),
++    ...[-hx, hx].flatMap(x => [-hz, hz].map(z => segmentDistance(x, z, ax, az, bx, bz))));
++}
++
++/** Closed square loft with three genuine recessed frontage joints. */
++function outline(): OutlinePoint[] {
++  const result: OutlinePoint[] = [];
++  for (const x of [-47, -94 / 3, -47 / 3, 0, 47 / 3, 94 / 3, 47]) result.push({ x, z: -22, groove: 0 });
++  for (const z of [-11, 0, 11, 22]) result.push({ x: 47, z, groove: 0 });
++  for (const x of [35.25, 24.05, 23.8, 23.2, 22.95, 11.75, .55, .3, -.3, -.55, -11.75, -22.95, -23.2, -23.8, -24.05, -35.25, -47]) {
++    const groove = [23.8, 23.2, .3, -.3, -23.2, -23.8].includes(x) ? 1 : 0;
++    result.push({ x, z: 22, groove });
++  }
++  for (const z of [11, 0, -11]) result.push({ x: -47, z, groove: 0 });
++  return result;
++}
++
++/** Build a single bank in its old rotated footprint; no layout or height writes. */
++export function buildFoundationContactBank(p: InkstormPlacement, heightAt: (x: number, z: number) => number,
++  minimumRoadSafety: number): { positions: number[]; normals: number[]; colors: number[]; terrainToe: Point[]; receipt: FoundationContactBank } {
++  if (p.family !== 'pipe-bank' || ![p.x, p.z, p.yaw, p.sx, p.sy, p.sz, minimumRoadSafety].every(Number.isFinite)
++    || p.sx <= 0 || p.sz <= 0 || minimumRoadSafety < SAFETY) throw new Error('Unsafe foundation placement.');
++  const cos = Math.cos(p.yaw), sin = Math.sin(p.yaw), hx = 47 * p.sx, hz = 22 * p.sz;
++  const world = (x: number, y: number, z: number): Point => [p.x + x * cos + z * sin, y, p.z - x * sin + z * cos];
++  const ground = (x: number, z: number): number => {
++    const q = world(x, 0, z), y = heightAt(q[0], q[2]);
++    if (!Number.isFinite(y)) throw new Error('Nonfinite foundation terrain.');
++    return y;
++  };
++  const top = ground(0, 0) + 1.5;
++  let bottom = top - 5;
++  for (const x of [-hx, 0, hx]) for (const z of [-hz, 0, hz]) bottom = Math.min(bottom, ground(x, z) - 4);
++  const boundary = outline(), n = boundary.length;
++  // Six millimetres inward guards the old footprint after Float32 packing
++  // at the flagship world coordinates; anchors keep their original heights.
++  const ringPoint = (q: OutlinePoint, inset: number): readonly [number, number] => [
++    q.x * p.sx - (Math.abs(q.x) === 47 ? Math.sign(q.x) * (inset + .006) : 0),
++    q.z * p.sz - (Math.abs(q.z) === 22 ? Math.sign(q.z) * (inset + .006) : 0),
++  ];
++  const foot = boundary.map(q => ringPoint(q, .65 + q.groove * .2));
++  const footY = foot.map(([x, z]) => Math.min(top - 1.2, ground(x, z) - .18));
++  // Probe every edge at <=2m without adding a vertex at every sample. Lower
++  // both ends by the worst sampled violation, so interpolation stays buried.
++  const lower = footY.map(() => 0);
++  let maximumProbeSpacing = 0;
++  for (let i = 0; i < n; i++) {
++    const j = (i + 1) % n, a = foot[i]!, b = foot[j]!;
++    const steps = Math.max(1, Math.ceil(Math.hypot(b[0] - a[0], b[1] - a[1]) / PROBE_SPACING));
++    maximumProbeSpacing = Math.max(maximumProbeSpacing, Math.hypot(b[0] - a[0], b[1] - a[1]) / steps);
++    for (let k = 0; k <= steps; k++) {
++      const t = k / steps, target = ground(a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t) - .15;
++      const violation = footY[i]! + (footY[j]! - footY[i]!) * t - target;
++      lower[i] = Math.max(lower[i]!, violation); lower[j] = Math.max(lower[j]!, violation);
++    }
++  }
++  for (let i = 0; i < n; i++) {
++    footY[i] = footY[i]! - lower[i]!;
++    if (footY[i]! <= bottom + .1) throw new Error('Terrain toe exceeds retained bottom; use original box.');
++  }
++  let minimumBurial = Infinity, maximumBurial = 0;
++  for (let i = 0; i < n; i++) {
++    const j = (i + 1) % n, a = foot[i]!, b = foot[j]!;
++    const steps = Math.max(1, Math.ceil(Math.hypot(b[0] - a[0], b[1] - a[1]) / PROBE_SPACING));
++    for (let k = 0; k <= steps; k++) {
++      const t = k / steps;
++      const burial = ground(a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t) - (footY[i]! + (footY[j]! - footY[i]!) * t);
++      minimumBurial = Math.min(minimumBurial, burial); maximumBurial = Math.max(maximumBurial, burial);
++    }
++  }
++  if (minimumBurial < .149) throw new Error('Unseated foundation edge.');
++  const vertices: Point[] = [];
++  for (let layer = 0; layer < 5; layer++) for (let i = 0; i < n; i++) {
++    const q = boundary[i]!;
++    const inset = layer === 2 ? .35 + q.groove * .3 : layer === 3 ? .65 + q.groove * .2 : 0;
++    const [x, z] = ringPoint(q, inset);
++    const y = layer === 0 ? top : layer === 1 ? top - .45 : layer === 2 ? top - .75 : layer === 3 ? footY[i]! : bottom;
++    if (Math.abs(x) > hx || Math.abs(z) > hz || y > top || y < bottom) throw new Error('Foundation left old envelope.');
++    vertices.push(world(x, y, z));
++  }
++  const topCenter = vertices.push(world(0, top, 0)) - 1, bottomCenter = vertices.push(world(0, bottom, 0)) - 1;
++  // Verify the actual uploaded positions, not only the double-precision plan.
++  for (let i = 0; i < vertices.length; i++) {
++    const q = vertices[i]!, packed: Point = [Math.fround(q[0]), Math.fround(q[1]), Math.fround(q[2])];
++    const dx = packed[0] - p.x, dz = packed[2] - p.z;
++    if (Math.abs(dx * cos - dz * sin) > hx || Math.abs(dx * sin + dz * cos) > hz) {
++      throw new Error('Packed foundation left the retained footprint.');
++    }
++    vertices[i] = packed;
++  }
++  const faces: { indices: readonly [number, number, number]; recess: boolean }[] = [];
++  for (let i = 0; i < n; i++) {
++    const j = (i + 1) % n;
++    faces.push({ indices: [topCenter, j, i], recess: false }, { indices: [bottomCenter, 4 * n + i, 4 * n + j], recess: false });
++    for (let layer = 0; layer < 4; layer++) {
++      const a = layer * n + i, b = layer * n + j, c = (layer + 1) * n + j, d = (layer + 1) * n + i;
++      const recess = layer === 1 || (layer === 2 && boundary[i]!.groove === 1 && boundary[j]!.groove === 1);
++      faces.push({ indices: [a, b, c], recess }, { indices: [a, c, d], recess });
++    }
++  }
++  if (faces.length > MAX_TRIANGLES) throw new Error('Foundation triangle cap exceeded.');
++  const positions: number[] = [], normals: number[] = [], colors: number[] = [];
++  for (const face of faces) {
++    const [a, b, c] = face.indices.map(i => vertices[i]!) as [Point, Point, Point];
++    const u = [b[0] - a[0], b[1] - a[1], b[2] - a[2]], v = [c[0] - a[0], c[1] - a[1], c[2] - a[2]];
++    const normal = [u[1]! * v[2]! - u[2]! * v[1]!, u[2]! * v[0]! - u[0]! * v[2]!, u[0]! * v[1]! - u[1]! * v[0]!];
++    const length = Math.hypot(...normal);
++    if (!Number.isFinite(length) || length < 1e-7) throw new Error('Degenerate foundation triangle.');
++    const tint = face.recess ? RECESS : CONCRETE;
++    for (const q of [a, b, c]) { positions.push(...q); normals.push(...normal.map(x => x / length)); colors.push(tint.r, tint.g, tint.b); }
++  }
++  return { positions, normals, colors, terrainToe: vertices.slice(3 * n, 4 * n), receipt: { id: p.id, triangles: faces.length, top, bottom, minimumRoadSafety,
++    maximumProbeSpacing, minimumBurial, maximumBurial, footprint: [hx * 2, hz * 2] } };
++}
++
++/** Flagship-only one-time geometry. A rejected bank retains its complete old box. */
++export function createInkstormFoundationContactPlan(course: PodraceCourse, heightAt: (x: number, z: number) => number): FoundationContactPlan {
++  const result: FoundationContactPlan = { geometry: null, replacedIds: new Set(), banks: [], rejected: [] };
++  if (course.seed !== 0x494e4b53) return result;
++  const ids = new Set<string>(), positions: number[] = [], normals: number[] = [], colors: number[] = [];
++  try {
++    const points = course.getRenderData(4096).points;
++    const segments: Segment[] = points.map((a, i) => {
++      const b = points[(i + 1) % points.length]!;
++      return { a, b, allowance: Math.hypot(a.x - b.x, a.z - b.z) + Math.abs(a.width - b.width) };
++    });
++    for (const branch of course.branches) for (let i = 1; i < branch.points.length; i++) {
++      segments.push({ a: branch.points[i - 1]!, b: branch.points[i]!, allowance: 0 });
++    }
++    for (const p of getInkstormLayout(course)) {
++      if (p.family !== 'pipe-bank') continue;
++      let minimumSafety = Infinity;
++      try {
++        for (const segment of segments) minimumSafety = Math.min(minimumSafety,
++          boxSegmentDistance(p, segment) - Math.max(segment.a.width, segment.b.width) - VEHICLE_HALF_WIDTH - segment.allowance);
++        const bank = buildFoundationContactBank(p, heightAt, minimumSafety);
++        positions.push(...bank.positions); normals.push(...bank.normals); colors.push(...bank.colors);
++        ids.add(p.id); result.banks.push(bank.receipt);
++      } catch (error) { result.rejected.push({ id: p.id, reason: String(error), minimumRoadSafety: Number.isFinite(minimumSafety) ? minimumSafety : undefined }); }
++    }
++    if (ids.size) {
++      const geometry = new BufferGeometry();
++      try {
++        geometry.setAttribute('position', new Float32BufferAttribute(positions, 3));
++        geometry.setAttribute('normal', new Float32BufferAttribute(normals, 3));
++        geometry.setAttribute('color', new Float32BufferAttribute(colors, 3));
++        geometry.computeBoundingBox(); geometry.computeBoundingSphere(); result.geometry = geometry; result.replacedIds = ids;
++      } catch (error) { geometry.dispose(); throw error; }
++    }
++  } catch (error) { result.rejected.push({ id: 'contact-plan', reason: String(error) }); }
++  return result;
++}
+--- /dev/null
++++ b/tests/render/inkstormFoundationContact.test.ts
+@@ -0,0 +1,132 @@
++import { afterAll, afterEach, beforeAll, describe, expect, it, vi } from 'vitest';
++import { BufferGeometry, Float32BufferAttribute, Matrix4, Mesh, Vector3 } from 'three';
++import { createProceduralPodraceCourse, type PodraceCourse } from '../../src/game/race/course';
++import { getInkstormLayout, type InkstormPlacement } from '../../src/game/race/inkstormLayout';
++import { sampleTerrainHeight } from '../../src/render/terrain/terrainMath';
++import { buildFoundationContactBank, createInkstormFoundationContactPlan, type FoundationContactPlan } from '../../src/render/inkstorm/InkstormFoundationContact';
++import { createInkstormFoundations } from '../../src/render/inkstorm/InkstormFoundations';
++import { createInkstormFoundry } from '../../src/render/inkstorm/InkstormFoundry';
++
++vi.mock('three/addons/utils/BufferGeometryUtils.js', async importOriginal => {
++  const actual = await importOriginal<typeof import('three/addons/utils/BufferGeometryUtils.js')>();
++  return { ...actual, mergeGeometries: (...args: Parameters<typeof actual.mergeGeometries>) => {
++    if (args[0].some(g => g.userData.throwContactMerge)) throw new Error('Injected contact merge failure');
++    return actual.mergeGeometries(...args);
++  } };
++});
++const placement: InkstormPlacement = { id: 'bank', family: 'pipe-bank', x: 1024, z: -731, yaw: .74, sx: .91, sy: 1, sz: 1.17, progress: .5 };
++const flatPlacement = { ...placement, x: 0, z: 0, yaw: 0, sx: 1, sz: 1 };
++const ground = (x: number, z: number) => .004 * x + Math.sin(z * .07) * .25;
++function release(mesh: Mesh): void { mesh.geometry.dispose(); for (const material of Array.isArray(mesh.material) ? mesh.material : [mesh.material]) material.dispose(); }
++function contact(geometry: BufferGeometry): FoundationContactPlan { return { geometry, replacedIds: new Set(['bank']), banks: [], rejected: [] }; }
++function makeGeometry(): BufferGeometry {
++  const bank = buildFoundationContactBank(placement, ground, 8);
++  return new BufferGeometry().setAttribute('position', new Float32BufferAttribute(bank.positions, 3))
++    .setAttribute('normal', new Float32BufferAttribute(bank.normals, 3)).setAttribute('color', new Float32BufferAttribute(bank.colors, 3));
++}
++
++describe('bounded Foundry foundation contact geometry', () => {
++  afterEach(() => vi.restoreAllMocks());
++  it.each([0, .74, -2.1])('is a closed outward surface inside the old packed footprint at yaw %s', yaw => {
++    const p = { ...placement, yaw }, bank = buildFoundationContactBank(p, ground, 8), edges = new Map<string, number[]>(), vertices = new Set<string>();
++    let volume = 0;
++    const cos = Math.cos(yaw), sin = Math.sin(yaw);
++    for (let i = 0; i < bank.positions.length; i += 9) {
++      const points = [0, 3, 6].map(offset => new Vector3(...bank.positions.slice(i + offset, i + offset + 3) as [number, number, number]));
++      const [a, b, c] = points as [Vector3, Vector3, Vector3];
++      const cross = b.clone().sub(a).cross(c.clone().sub(a));
++      expect(cross.length()).toBeGreaterThan(1e-7);
++      expect(cross.normalize().distanceTo(new Vector3(...bank.normals.slice(i, i + 3) as [number, number, number]))).toBeLessThan(1e-12);
++      volume += a.dot(b.clone().cross(c)) / 6;
++      const keys = points.map(q => q.toArray().join(','));
++      points.forEach((q, j) => {
++        expect([q.x, q.y, q.z].every(v => Number.isFinite(v) && Math.fround(v) === v)).toBe(true);
++        const dx = q.x - p.x, dz = q.z - p.z;
++        expect(Math.abs(dx * cos - dz * sin)).toBeLessThanOrEqual(47 * p.sx);
++        expect(Math.abs(dx * sin + dz * cos)).toBeLessThanOrEqual(22 * p.sz);
++        vertices.add(keys[j]!);
++        const next = keys[(j + 1) % 3]!, key = [keys[j]!, next].sort().join('|');
++        const uses = edges.get(key) ?? []; uses.push(keys[j]! < next ? 1 : -1); edges.set(key, uses);
++      });
++    }
++    for (const uses of edges.values()) { expect(uses).toHaveLength(2); expect(uses[0]! + uses[1]!).toBe(0); }
++    expect(volume).toBeGreaterThan(0);
++    expect(vertices.size - edges.size + bank.positions.length / 9).toBe(2);
++    expect(bank.positions.length / 9).toBeLessThanOrEqual(512);
++  });
++
++  it('buries the complete uploaded terrain toe under dense independent edge probes', () => {
++    const bank = buildFoundationContactBank(placement, ground, 8);
++    for (let i = 0; i < bank.terrainToe.length; i++) {
++      const a = bank.terrainToe[i]!, b = bank.terrainToe[(i + 1) % bank.terrainToe.length]!;
++      const steps = Math.ceil(Math.hypot(b[0] - a[0], b[2] - a[2]) / .25);
++      for (let k = 0; k <= steps; k++) {
++        const t = k / steps, x = a[0] + (b[0] - a[0]) * t, z = a[2] + (b[2] - a[2]) * t;
++        expect(ground(x, z) - (a[1] + (b[1] - a[1]) * t)).toBeGreaterThan(.1);
++      }
++    }
++  });
++  it('rejects unsafe, nonfinite and unsupported deep terrain instead of leaving a missing foundation', () => {
++    expect(() => buildFoundationContactBank(placement, ground, 6.99)).toThrow('Unsafe');
++    expect(() => buildFoundationContactBank(placement, () => NaN, 8)).toThrow('Nonfinite');
++    expect(() => buildFoundationContactBank(flatPlacement, (x, z) => Math.abs(x - 11.75) < 1 && z > 20 ? -20 : 0, 8)).toThrow('retained bottom');
++    const plan = createInkstormFoundationContactPlan({ seed: 2 } as PodraceCourse, () => { throw new Error('Must not sample generic course'); });
++    expect(plan.geometry).toBeNull(); expect(plan.replacedIds.size).toBe(0);
++  });
++  it('omits only installed pipe banks, retaining all other families and unchanged instance transforms', () => {
++    const placements: InkstormPlacement[] = [placement, { ...placement, id: 'other-bank', x: 1400 }, { ...placement, family: 'finish-tower', id: 'tower' }];
++    const baseline = createInkstormFoundations(placements, ground);
++    const omitted = createInkstormFoundations(placements, ground, undefined, new Set(['bank', 'tower', 'unknown']));
++    try {
++      expect(baseline.count).toBe(3); expect(omitted.count).toBe(2);
++      for (let i = 0; i < 2; i++) {
++        const a = new Matrix4(), b = new Matrix4(); baseline.getMatrixAt(i + 1, a); omitted.getMatrixAt(i, b);
++        expect(a.elements).toEqual(b.elements);
++      }
++    } finally { release(baseline); release(omitted); }
++  });
++});
++
++describe('Foundry contact transfer and fail-closed box omission', () => {
++  const course = createProceduralPodraceCourse({ heightAt: sampleTerrainHeight }, 0x494e4b53);
++  let baseline: Mesh;
++  beforeAll(() => { baseline = createInkstormFoundry(course, sampleTerrainHeight)!; });
++  afterAll(() => release(baseline));
++  afterEach(() => vi.restoreAllMocks());
++  it('transfers accepted surfaces to the existing single mesh without altering original triangle attributes', () => {
++    const geometry = makeGeometry(), count = geometry.getAttribute('position').count, dispose = vi.spyOn(geometry, 'dispose');
++    const result = createInkstormFoundry(course, sampleTerrainHeight, contact(geometry))!;
++    try {
++      expect(result.userData.inkstormFoundationReplacementIds).toEqual(new Set(['bank']));
++      expect(result.geometry.getAttribute('position').count).toBe(baseline.geometry.getAttribute('position').count + count);
++      for (const name of ['position', 'normal', 'color']) {
++        const before = baseline.geometry.getAttribute(name).array, after = result.geometry.getAttribute(name).array;
++        expect(Array.from(after.slice(0, before.length))).toEqual(Array.from(before));
++      }
++      expect(result.geometry.groups).toHaveLength(0); expect(Array.isArray(result.material)).toBe(false);
++      expect(dispose).toHaveBeenCalledTimes(1);
++    } finally { release(result); }
++  });
++  it.each(['null', 'throw'])('keeps the complete old Foundry mesh and every original box after %s merge failure', failure => {
++    const geometry = makeGeometry(), dispose = vi.spyOn(geometry, 'dispose');
++    if (failure === 'null') geometry.deleteAttribute('color'); else geometry.userData.throwContactMerge = true;
++    vi.spyOn(console, 'error').mockImplementation(() => {});
++    const result = createInkstormFoundry(course, sampleTerrainHeight, contact(geometry))!;
++    try {
++      expect(result.userData.inkstormFoundationReplacementIds.size).toBe(0);
++      expect(result.userData.inkstormFoundationContact.mergeFailure).toBeTruthy();
++      for (const name of ['position', 'normal', 'color']) expect(Array.from(result.geometry.getAttribute(name).array)).toEqual(Array.from(baseline.geometry.getAttribute(name).array));
++      const placements = getInkstormLayout(course);
++      const oldBoxes = createInkstormFoundations(placements, sampleTerrainHeight);
++      const fallback = createInkstormFoundations(placements, sampleTerrainHeight, undefined, result.userData.inkstormFoundationReplacementIds);
++      try { expect(fallback.count).toBe(oldBoxes.count); expect(Array.from(fallback.instanceMatrix.array)).toEqual(Array.from(oldBoxes.instanceMatrix.array)); }
++      finally { release(oldBoxes); release(fallback); }
++      expect(dispose).toHaveBeenCalledTimes(1);
++    } finally { release(result); }
++  });
++  it('disposes the offered geometry if the course has no Foundry mesh', () => {
++    const geometry = makeGeometry(), dispose = vi.spyOn(geometry, 'dispose');
++    expect(createInkstormFoundry({ seed: 2 } as PodraceCourse, sampleTerrainHeight, contact(geometry))).toBeNull();
++    expect(dispose).toHaveBeenCalledTimes(1);
++  });
++});

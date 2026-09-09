@@ -1,0 +1,276 @@
+{
+  "scope": "Implementation-aware matched actual source render assessment; pixel metrics do not establish runtime acceptance. No image modifications.",
+  "v5Image": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/paint-v1-driver-20260908-round34-atlas-v5.png",
+  "v6Image": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/paint-v1-driver-20260908-round34-clamp-v6.png",
+  "resolution": [
+    1280,
+    960
+  ],
+  "wholeFrameMeanAbsoluteChannelDifference": 0.017915581597222223,
+  "regions": {
+    "seam_strip": {
+      "xyxyExclusive": [
+        169,
+        600,
+        177,
+        621
+      ],
+      "pixelCount": 168,
+      "v5MeanRGB": [
+        100.42261904761905,
+        94.44047619047619,
+        81.86904761904762
+      ],
+      "v6MeanRGB": [
+        129.29761904761904,
+        121.42857142857143,
+        105.27380952380952
+      ],
+      "meanAbsoluteChannelDifference": 26.422619047619047,
+      "maxAbsoluteChannelDifference": 55.0
+    },
+    "left_ivory_flank": {
+      "xyxyExclusive": [
+        163,
+        600,
+        168,
+        621
+      ],
+      "pixelCount": 105,
+      "v5MeanRGB": [
+        130.14285714285714,
+        122.14285714285714,
+        105.88571428571429
+      ],
+      "v6MeanRGB": [
+        130.06666666666666,
+        122.06666666666666,
+        105.91428571428571
+      ],
+      "meanAbsoluteChannelDifference": 0.2126984126984127,
+      "maxAbsoluteChannelDifference": 1.0
+    },
+    "right_ivory_flank": {
+      "xyxyExclusive": [
+        177,
+        600,
+        182,
+        621
+      ],
+      "pixelCount": 105,
+      "v5MeanRGB": [
+        128.27619047619046,
+        120.07619047619048,
+        103.84761904761905
+      ],
+      "v6MeanRGB": [
+        128.0952380952381,
+        120.2,
+        103.95238095238095
+      ],
+      "meanAbsoluteChannelDifference": 0.30793650793650795,
+      "maxAbsoluteChannelDifference": 2.0
+    },
+    "whole_stud": {
+      "xyxyExclusive": [
+        118,
+        567,
+        210,
+        627
+      ],
+      "pixelCount": 5520,
+      "v5MeanRGB": [
+        116.11576086956522,
+        110.00452898550725,
+        97.08876811594203
+      ],
+      "v6MeanRGB": [
+        117.26739130434783,
+        111.09547101449276,
+        98.01449275362319
+      ],
+      "meanAbsoluteChannelDifference": 1.103804347826087,
+      "maxAbsoluteChannelDifference": 57.0
+    },
+    "pilot_control_region": {
+      "xyxyExclusive": [
+        425,
+        145,
+        890,
+        737
+      ],
+      "pixelCount": 275280,
+      "v5MeanRGB": [
+        68.2119151409474,
+        69.4973445219413,
+        68.28129904097646
+      ],
+      "v6MeanRGB": [
+        68.24182650392328,
+        69.52736123219994,
+        68.30946309212439
+      ],
+      "meanAbsoluteChannelDifference": 0.038300397171364915,
+      "maxAbsoluteChannelDifference": 23.0
+    }
+  },
+  "seamContrast": {
+    "v5": {
+      "lumaSeam": 94.8046226190476,
+      "lumaAdjacentFlankMean": 121.65884952380952,
+      "darkDeficit": 26.854226904761916,
+      "deficitPercentOfFlanks": 22.073385544802765
+    },
+    "v6": {
+      "lumaSeam": 121.93515714285715,
+      "lumaAdjacentFlankMean": 121.65335714285715,
+      "darkDeficit": -0.28180000000000405,
+      "deficitPercentOfFlanks": -0.231641778425471
+    }
+  },
+  "centerPixel": {
+    "xy": [
+      170,
+      615
+    ],
+    "v5RGB": [
+      87.0,
+      83.0,
+      72.0
+    ],
+    "v6RGB": [
+      131.0,
+      123.0,
+      107.0
+    ]
+  },
+  "row615Samples": [
+    {
+      "x": 163,
+      "v5": [
+        131.0,
+        123.0,
+        107.0
+      ],
+      "v6": [
+        131.0,
+        123.0,
+        107.0
+      ]
+    },
+    {
+      "x": 167,
+      "v5": [
+        132.0,
+        124.0,
+        107.0
+      ],
+      "v6": [
+        132.0,
+        124.0,
+        107.0
+      ]
+    },
+    {
+      "x": 169,
+      "v5": [
+        129.0,
+        121.0,
+        105.0
+      ],
+      "v6": [
+        131.0,
+        123.0,
+        107.0
+      ]
+    },
+    {
+      "x": 170,
+      "v5": [
+        87.0,
+        83.0,
+        72.0
+      ],
+      "v6": [
+        131.0,
+        123.0,
+        107.0
+      ]
+    },
+    {
+      "x": 172,
+      "v5": [
+        86.0,
+        81.0,
+        69.0
+      ],
+      "v6": [
+        131.0,
+        123.0,
+        106.0
+      ]
+    },
+    {
+      "x": 174,
+      "v5": [
+        103.0,
+        98.0,
+        85.0
+      ],
+      "v6": [
+        131.0,
+        123.0,
+        106.0
+      ]
+    },
+    {
+      "x": 176,
+      "v5": [
+        122.0,
+        114.0,
+        98.0
+      ],
+      "v6": [
+        130.0,
+        122.0,
+        105.0
+      ]
+    },
+    {
+      "x": 177,
+      "v5": [
+        130.0,
+        121.0,
+        104.0
+      ],
+      "v6": [
+        130.0,
+        122.0,
+        105.0
+      ]
+    },
+    {
+      "x": 180,
+      "v5": [
+        129.0,
+        121.0,
+        105.0
+      ],
+      "v6": [
+        130.0,
+        122.0,
+        105.0
+      ]
+    }
+  ],
+  "visuallyInspectedIndividually": true,
+  "actualCameraRecordsExactlyEqual": true,
+  "v6MasterSamplers": [
+    {
+      "magFilter": 9729,
+      "minFilter": 9987,
+      "wrapS": 33071,
+      "wrapT": 33071
+    }
+  ]
+}

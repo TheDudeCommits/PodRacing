@@ -1,0 +1,1 @@
+/Users/amir/Projects/PodRacing/src/game/settings/schema.ts

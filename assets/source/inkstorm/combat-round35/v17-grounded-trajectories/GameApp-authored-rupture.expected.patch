@@ -1,0 +1,78 @@
+--- a/src/render/app/GameApp.ts
++++ b/src/render/app/GameApp.ts
+@@ -3639,33 +3639,42 @@
+       if (!entry) continue;
+       let position = entry.vehicle.position;
+       let direction: Vector3 | undefined;
++      let surfaceNormal: Vector3 | undefined;
+       if (style === 'redline' || style === 'crash') {
+         const view = this.racerViews[racerIndex];
+-        // Events identify the racer, not a collision world point. Emit this
+-        // casing rupture from actual engine geometry, never an invented hit.
+-        const anchor = view?.importedActive
+-          ? view.imported.getAttachment('exhaustRight')
+-          : view?.procedural.getObjectByName('engine-right');
+-        if (view && anchor) {
+-          const local = view.worldToLocal(anchor.getWorldPosition(new Vector3()));
+-          const vehicle = entry.vehicle;
+-          // Resolve before the first rendered wreck frame too. The shared
+-          // renderer pose owns pivot/terrain clearance for body, camera and FX.
+-          const wreckPose = entry.galactic?.wreck.phase === 'wrecked'
+-            ? this.resolveWreckVisualPose(entry) : null;
+-          this.wreckRuptureDirection.set(0, 0, 1);
+-          if (wreckPose && view.importedActive) {
+-            this.wreckRuptureOrigin.set(0, 0, 0);
+-            view.imported.transformWreckAttachment('exhaustRight', this.wreckRuptureDirection);
+-            view.imported.transformWreckAttachment('exhaustRight', this.wreckRuptureOrigin);
+-            this.wreckRuptureDirection.sub(this.wreckRuptureOrigin).applyEuler(wreckPose.rotation).normalize();
+-          } else this.wreckRuptureDirection.set(Math.sin(vehicle.orientation.yaw), 0, Math.cos(vehicle.orientation.yaw));
+-          direction = this.wreckRuptureDirection;
+-          if (wreckPose) view.imported.transformWreckAttachment('exhaustRight', local);
+-          local.applyEuler(wreckPose?.rotation ?? new Euler(vehicle.orientation.pitch,
+-            vehicle.orientation.yaw, vehicle.orientation.roll + vehicle.orientation.bank, 'YXZ'));
+-          const origin = wreckPose?.position ?? vehicle.position;
+-          position = { x: origin.x + local.x, y: origin.y + local.y, z: origin.z + local.z };
++        const wreckPose = entry.galactic?.wreck.phase === 'wrecked'
++          ? this.resolveWreckVisualPose(entry) : null;
++        if (wreckPose?.rupture) {
++          // The authored cut witness already includes the displayed body and
++          // rear-section transforms. Keep its exact surface origin in world space.
++          position = wreckPose.rupture.position;
++          direction = wreckPose.rupture.direction;
++          surfaceNormal = wreckPose.rupture.direction;
++        } else {
++          // Events identify the racer, not a collision world point. Emit this
++          // casing rupture from actual engine geometry, never an invented hit.
++          const anchor = view?.importedActive
++            ? view.imported.getAttachment('exhaustRight')
++            : view?.procedural.getObjectByName('engine-right');
++          if (view && anchor) {
++            const local = view.worldToLocal(anchor.getWorldPosition(new Vector3()));
++            const vehicle = entry.vehicle;
++            // Resolve before the first rendered wreck frame too. The shared
++            // renderer pose owns pivot/terrain clearance for body, camera and FX.
++            this.wreckRuptureDirection.set(0, 0, 1);
++            if (wreckPose && view.importedActive) {
++              this.wreckRuptureOrigin.set(0, 0, 0);
++              view.imported.transformWreckAttachment('exhaustRight', this.wreckRuptureDirection);
++              view.imported.transformWreckAttachment('exhaustRight', this.wreckRuptureOrigin);
++              this.wreckRuptureDirection.sub(this.wreckRuptureOrigin).applyEuler(wreckPose.rotation).normalize();
++            } else this.wreckRuptureDirection.set(Math.sin(vehicle.orientation.yaw), 0, Math.cos(vehicle.orientation.yaw));
++            direction = this.wreckRuptureDirection;
++            if (wreckPose) view.imported.transformWreckAttachment('exhaustRight', local);
++            local.applyEuler(wreckPose?.rotation ?? new Euler(vehicle.orientation.pitch,
++              vehicle.orientation.yaw, vehicle.orientation.roll + vehicle.orientation.bank, 'YXZ'));
++            const origin = wreckPose?.position ?? vehicle.position;
++            position = { x: origin.x + local.x, y: origin.y + local.y, z: origin.z + local.z };
++          }
+         }
+       }
+       this.galacticEffects.emitCrash({
+@@ -3674,6 +3683,7 @@
+         position,
+         velocity: entry.vehicle.velocity,
+         direction,
++        surfaceNormal,
+         groundY: this.race.terrain.heightAt(position.x, position.z),
+         severity,
+         color,

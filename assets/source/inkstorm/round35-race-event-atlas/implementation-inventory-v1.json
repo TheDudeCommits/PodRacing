@@ -1,0 +1,31 @@
+{
+  "status": "IMPLEMENTED; typecheck and 7 tests pass, parent integration/browser pending",
+  "scope": "Only two new UI modules and one new test file. Reference overview and motion sheet individually viewed, used for palette/interaction study, no source textures or named tracks copied.",
+  "files": [
+    {
+      "path": "src/ui/RaceEventAtlas.ts",
+      "bytes": 11543,
+      "sha256": "7fd018e65e0e14f1201c2bd026b408ce7f4b4f85733c53e7f59cfd2bdb5f6b76"
+    },
+    {
+      "path": "src/ui/raceEventAtlasStyles.ts",
+      "bytes": 7962,
+      "sha256": "d2477e52b2bc0cb92b71b7c057ab781a5b03be141548b173ba89803e3388070b"
+    },
+    {
+      "path": "tests/ui/raceEventAtlas.test.ts",
+      "bytes": 4826,
+      "sha256": "81a5db920e1df346b4094977308eb621976f9402d8bde52d83d808df5b062334"
+    },
+    {
+      "path": "output/reference-ui-round35/UI2-overview.jpg",
+      "bytes": 305440,
+      "sha256": "a7f9c2506d0d94d4661cbb180c14657067dcfa3f63c125328224563c8ef4e5e4"
+    },
+    {
+      "path": "output/reference-ui-round35/UI2-map-motion.jpg",
+      "bytes": 249448,
+      "sha256": "dd720dcae4d7ded99027364c6af973e2546eebd2aed18278879b84545235535e"
+    }
+  ]
+}

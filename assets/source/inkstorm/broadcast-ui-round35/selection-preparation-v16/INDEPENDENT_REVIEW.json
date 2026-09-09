@@ -1,0 +1,14 @@
+{
+  "source": "src/render/app/GameApp.ts",
+  "sourceSha256": "f86586c8048f1ec41485bbb0be3f24ec0c0169888c618228b24fd15959675be2",
+  "baselineSha256": "5d6767b70f54687e3a4c803a5d4d718057167ff75154472adedef2751dd0318a",
+  "findings": [
+    {
+      "priority": "P2",
+      "finding": "Room exit rebuilt Expedition catalog placeholder instead of reserving the selected pending route.",
+      "status": "Corrected in reviewed source"
+    }
+  ],
+  "remainingMaterialFindings": [],
+  "scope": "CPU source review only; native and integrated tests pending."
+}

@@ -1,0 +1,92 @@
+--- a/src/camera/CinematicCamera.ts
++++ b/src/camera/CinematicCamera.ts
+@@ -96,6 +96,14 @@
+   return overlay;
+ }
+ 
++/** Authored chase composition in metres relative to the simulated subject.
++ * Speed, route preview, junction framing and comfort still use the shared rig. */
++export interface CameraChaseRig {
++  readonly boom: number;
++  readonly height: number;
++  readonly aimHeight: number;
++}
++
+ export interface CameraSubject {
+   position: Vector3;
+   forward: Vector3;
+@@ -108,6 +116,8 @@
+   junctionWeight?: number;
+   /** Extra eye clearance for a tall cockpit; affects chase composition only. */
+   chaseClearance?: number;
++  /** Optional base pose for an unusually shaped imported craft; chase only. */
++  chaseRig?: CameraChaseRig;
+ }
+ 
+ /**
+@@ -380,6 +390,10 @@
+       default: {
+         const speedT = MathUtils.smoothstep(subject.speed, 0, 230);
+         const clearance = MathUtils.clamp(Number.isFinite(subject.chaseClearance) ? subject.chaseClearance! : 0, 0, 6);
++        const requestedRig = subject.chaseRig;
++        const rig = requestedRig && Number.isFinite(requestedRig.boom) && requestedRig.boom > 0
++          && Number.isFinite(requestedRig.height) && requestedRig.height > 0
++          && Number.isFinite(requestedRig.aimHeight) ? requestedRig : undefined;
+         this.framingForward.copy(forward);
+         const junction=subject.junctionLookAhead;
+         if(junction && Number.isFinite(junction.x) && Number.isFinite(junction.z)){
+@@ -400,12 +414,12 @@
+         this.travelDirection.lerp(forward, 0.72).normalize();
+         this.travelDirection.lerp(this.framingForward, MathUtils.clamp(subject.junctionWeight??0,0,1)*.85).normalize();
+         position.copy(subject.position)
+-          .addScaledVector(this.framingForward, -16.5 - speedT * 0.8 - clearance * .45)
+-          .addScaledVector(UP, 7.1 + speedT * 0.5 + clearance + this.landingCompression)
++          .addScaledVector(this.framingForward, rig ? -rig.boom - speedT * 0.8 : -16.5 - speedT * 0.8 - clearance * .45)
++          .addScaledVector(UP, rig ? rig.height + speedT * 0.5 + this.landingCompression : 7.1 + speedT * 0.5 + clearance + this.landingCompression)
+           .addScaledVector(right, -0.35);
+         lookAt.copy(subject.position)
+           .addScaledVector(this.travelDirection, 34 + speedT * 18)
+-          .addScaledVector(UP, 5.8);
++          .addScaledVector(UP, rig?.aimHeight ?? 5.8);
+         const route = subject.routeLookAhead;
+         if (route && Number.isFinite(route.x) && Number.isFinite(route.y) && Number.isFinite(route.z)) {
+           // A bounded bias gives an apex preview without pulling the racer off
+--- a/src/render/app/GameApp.ts
++++ b/src/render/app/GameApp.ts
+@@ -11,7 +11,7 @@
+ import { RaceCameraDirector } from '../../camera/RaceCameraDirector';
+ import { PodracerAudio, type RivalAudioTelemetry } from '../../audio';
+ import { RaceMastery, masterySectorLabels, INKSTORM_HERO_SEED, type CompetitionProfile, type MasteryStartOptions } from '../../game/mastery';
+-import { loadVehicleAppearance, resolveRacerAppearancePreference, saveVehicleAppearance, vehicleChaseClearance, type VehicleAppearanceId } from '../../game/vehicleAppearance';
++import { loadVehicleAppearance, resolveRacerAppearancePreference, saveVehicleAppearance, vehicleChaseClearance, vehicleChaseRig, type VehicleAppearanceId } from '../../game/vehicleAppearance';
+ import { VehicleArtLibrary } from '../vehicles/VehicleArtLibrary';
+ import { RacerPresentation } from '../vehicles/RacerPresentation';
+ import { DEFAULT_PODRACER_CONFIG } from '../../game/simulation/config';
+@@ -3075,6 +3075,7 @@
+     this.subject.velocity.set(state.velocity.x, state.velocity.y, state.velocity.z);
+     this.subject.speed = state.telemetry.speed;
+     this.subject.chaseClearance = vehicleChaseClearance(this.playerView.activeAppearanceId);
++    this.subject.chaseRig = vehicleChaseRig(this.playerView.activeAppearanceId);
+     const entry = this.race.state.entries.find(candidate => candidate.vehicle === state);
+     this.subject.junctionLookAhead=undefined;this.subject.junctionWeight=0;
+     if(entry){
+--- a/src/game/vehicleAppearance.ts
++++ b/src/game/vehicleAppearance.ts
+@@ -1,3 +1,4 @@
++import type { CameraChaseRig } from '../camera/CinematicCamera';
+ import type { VehicleArtAttachment, VehicleArtDefinition, VehicleArtSurfaceStyle } from '../render/vehicles';
+ import { DEFAULT_CEL_PALETTE } from '../render/materials/celPalette';
+ import type { GalacticVehicleClass } from './galactic/types';
+@@ -51,6 +52,12 @@
+ export function vehicleChaseClearance(appearance: VehicleAppearanceId): number {
+   if (appearance === 'polwo') return 5.2;
+   return appearance === 'blockrunner' ? 4.8 : 0;
++}
++/** A close shoulder view clears the measured 5.146m source roof. The legacy
++ * clearance still supplies the existing descent horizon compensation. */
++const BLOCKRUNNER_CHASE_RIG: CameraChaseRig = Object.freeze({ boom: 11.3, height: 7.9, aimHeight: 1.4 });
++export function vehicleChaseRig(appearance: VehicleAppearanceId): CameraChaseRig | undefined {
++  return appearance === 'blockrunner' ? BLOCKRUNNER_CHASE_RIG : undefined;
+ }
+ const MAX_APPEARANCE_JSON_LENGTH = 1024;
+ 

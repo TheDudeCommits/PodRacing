@@ -1,0 +1,14 @@
+{
+  "argv": [
+    "npx",
+    "vitest",
+    "run",
+    "tests/render/GalacticEffectsView.test.ts",
+    "tests/render/GalacticEffectsContact.test.ts",
+    "--silent=false",
+    "--reporter=verbose"
+  ],
+  "exitCode": 1,
+  "scope": "Expected recovered-routing failure until owner applies the separate GameApp patch; no application source edited outside GalacticEffectsView.ts.",
+  "sourceSha256": "5e2d31d469649a174c1367333d836536c3fd0782d0a6b8537351419e36de132a"
+}

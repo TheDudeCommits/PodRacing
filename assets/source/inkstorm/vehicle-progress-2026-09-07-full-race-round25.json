@@ -1,0 +1,97 @@
+{
+  "recordedAt": "2026-09-07T16:59:51.158738+00:00",
+  "scope": "Record completed round25 local adaptive full-race performance for both already integrated vehicle appearances. No acquisition, export, public asset, runtime source, dist or deployment change.",
+  "beforeManifestSha256": "f0149d61993a2346fd964559ba6a3b4e29bd7de6338743f8c17ade0e3de26862",
+  "afterManifestSha256": "fe0cffd505658b48b4bc9735fad5763322b86ac6b65bab549f533e675c4fd520",
+  "previousProgressReceipt": "vehicle-progress-2026-09-07-sebulba-integration-round25.json",
+  "beforeCounts": {
+    "publicResults": 29,
+    "vehicleCandidates": 26,
+    "excludedNonVehicles": 3,
+    "downloaded": 2,
+    "blockedOrPending": 24,
+    "downloadStatuses": {
+      "downloaded": 2,
+      "pending_download": 23,
+      "rate_limited": 1
+    },
+    "mcpImportedSourceGlbs": 2,
+    "rawArchivesPreserved": 0,
+    "stylizationNeedsPermission": 0,
+    "publicAdaptationRestricted": 1,
+    "stylizedExports": 2,
+    "stylizedSourceStudies": 2,
+    "stylizedExportVariants": 4,
+    "driversAdded": 2,
+    "runtimeIntegrations": 2,
+    "driverInspections": 2
+  },
+  "afterCounts": {
+    "publicResults": 29,
+    "vehicleCandidates": 26,
+    "excludedNonVehicles": 3,
+    "downloaded": 2,
+    "blockedOrPending": 24,
+    "downloadStatuses": {
+      "downloaded": 2,
+      "pending_download": 23,
+      "rate_limited": 1
+    },
+    "mcpImportedSourceGlbs": 2,
+    "rawArchivesPreserved": 0,
+    "stylizationNeedsPermission": 0,
+    "publicAdaptationRestricted": 1,
+    "stylizedExports": 2,
+    "stylizedSourceStudies": 2,
+    "stylizedExportVariants": 4,
+    "driversAdded": 2,
+    "runtimeIntegrations": 2,
+    "driverInspections": 2
+  },
+  "performances": [
+    {
+      "uid": "4eff45899ada40bb920c5c744663db90",
+      "appearance": "teemto",
+      "receipt": "output/playwright/full-race-performance-round25-teemto/receipt.json",
+      "receiptSha256": "0f3d557c16018b5f1d4d06ed41a8adc83b3387074804ab8a7c47797069706c0f",
+      "outcome": "PASS"
+    },
+    {
+      "uid": "f97e3891a6a846ed97379e3cfa5931a0",
+      "appearance": "sebulba",
+      "receipt": "output/playwright/full-race-performance-round25-sebulba/receipt.json",
+      "receiptSha256": "3a9c8445c3144a0ddd4c039706a719c69efc695a08454e7ddda8d6c886094001",
+      "outcome": "PASS"
+    }
+  ],
+  "bundle": "index-DYsxLpxt.js",
+  "bundleSha256": "14c129a2de533fa5c3e4adbdacd1eb1e6cda21112df3fa7317b2e613ae1ac4b5",
+  "crossRunFreezeReceipt": "output/playwright/round25-freeze-comparison.json",
+  "crossRunFreezeReceiptSha256": "49edeb0253adc687224ca5372194f15b09a50a98f258a9efa5bda7415219366f",
+  "worldArtAcceptance": {
+    "round": 25,
+    "outcome": "FAIL",
+    "acceptedSections": 0,
+    "reviewedSections": 7,
+    "receipt": "docs/inkstorm-overhaul/BLIND_WORLD_ROUND25.md"
+  },
+  "pilotDetail": {
+    "candidate": "v2c",
+    "visualScore": 5.6,
+    "visualAcceptance": "FAIL",
+    "published": false
+  },
+  "pendingCatalogDownloads": 24,
+  "deployment": "none",
+  "nextWork": {
+    "round": 26,
+    "scope": "arch/fork",
+    "status": "released but not validated"
+  },
+  "immutablePriorProgressReceipts": {
+    "assets/source/inkstorm/vehicle-progress-2026-09-07-teemto-study-v1.json": "0b7318a8925ea699d77fb44c11197182ba42101cab4ef629070a14bc6a7889a1",
+    "assets/source/inkstorm/vehicle-progress-2026-09-07-teemto-export-v1.json": "9c1b989955d09ab1f7a360ef9511c81bea1aebf45880cc9f10121659b41658d2",
+    "assets/source/inkstorm/vehicle-progress-2026-09-07-sebulba-integration-round25.json": "6b6f215a525d4977b39d13abd225d632f74811408480f724969639b23823daa4",
+    "assets/source/inkstorm/vehicle-progress-2026-09-07-teemto-integration-sebulba-export.json": "7a3291e698bd3e8a5220df91b862cf9bcd6b7e6c9fdd7f356ee054c38d81cafd"
+  }
+}

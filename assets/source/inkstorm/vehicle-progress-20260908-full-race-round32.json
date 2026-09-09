@@ -1,0 +1,204 @@
+{
+  "recordedAt": "2026-09-08T09:37:06.321198+00:00",
+  "round": 32,
+  "scope": "Final frozen local technical checkpoint, not strict art acceptance or deployment. Source33/current later bundle excluded.",
+  "manifestBeforeSnapshot": "assets/source/inkstorm/vehicle-manifest-before-full-race-round32.json",
+  "manifestBeforeSha256": "be2de5f1a843bce8026995bcfead788caeeb69cb98033784e9d62a2a68ee4951",
+  "manifestPath": "assets/source/inkstorm/vehicle-manifest.json",
+  "manifestSha256": "17fbc2814a3776dca681c129d07a4adccf453750f9dbf12fe8c053d0a5fcf4b1",
+  "previousCounts": {
+    "publicResults": 29,
+    "vehicleCandidates": 26,
+    "excludedNonVehicles": 3,
+    "downloaded": 26,
+    "blockedOrPending": 0,
+    "downloadStatuses": {
+      "downloaded": 26
+    },
+    "mcpImportedSourceGlbs": 26,
+    "rawArchivesPreserved": 0,
+    "stylizationNeedsPermission": 0,
+    "publicAdaptationRestricted": 1,
+    "stylizedExports": 3,
+    "stylizedSourceStudies": 3,
+    "stylizedExportVariants": 6,
+    "driversAdded": 3,
+    "runtimeIntegrations": 3,
+    "driverInspections": 5,
+    "stylizedExportFiles": 10,
+    "sourceVisualInspections": 26
+  },
+  "counts": {
+    "publicResults": 29,
+    "vehicleCandidates": 26,
+    "excludedNonVehicles": 3,
+    "downloaded": 26,
+    "blockedOrPending": 0,
+    "downloadStatuses": {
+      "downloaded": 26
+    },
+    "mcpImportedSourceGlbs": 26,
+    "rawArchivesPreserved": 0,
+    "stylizationNeedsPermission": 0,
+    "publicAdaptationRestricted": 1,
+    "stylizedExports": 3,
+    "stylizedSourceStudies": 3,
+    "stylizedExportVariants": 6,
+    "driversAdded": 3,
+    "runtimeIntegrations": 3,
+    "driverInspections": 5,
+    "stylizedExportFiles": 10,
+    "sourceVisualInspections": 26
+  },
+  "topLevelCountsUnchanged": true,
+  "otherModelRecordsUnchanged": 28,
+  "allPriorHistoryPrefixesPreserved": true,
+  "polwoImmutableSourceAndVariantFieldsUnchanged": true,
+  "historicalRateLimitRequestsPreserved": 8,
+  "priorAcquisitionState": {
+    "method": "official_blender_mcp",
+    "status": "all_catalogue_candidate_sources_imported",
+    "lastAttemptUid": "0baa936f45434c7eb8d58c31890402a2",
+    "httpStatus": null,
+    "rawArchivesPreserved": 0,
+    "driverInspections": 2,
+    "runtimeIntegrations": 2,
+    "standaloneCliCompatibility": "Schema2 CLI refresh/resume preserves verified MCP source GLBs, acquisition history and independent archive/source/runtime counts. Token handling remains separate.",
+    "lastAttemptReceipt": "vehicles/0baa936f45434c7eb8d58c31890402a2/mcp-download-20260908.json",
+    "recordedAttemptCountForLastUid": 1,
+    "stylizedSourceStudies": 2,
+    "stylizedExports": 2,
+    "driversAdded": 2,
+    "contextRestoration": "All official imports used isolated intake scenes and restored the original active scene/layer/selection and cleared temporary configuration. Ben export observed one added object in an unrelated pre-existing Cruise scene; cause unestablished and object left untouched. All other recorded membership comparisons match.",
+    "stylizedExportVariants": 4,
+    "lastAttemptAt": "2026-09-08T07:24:25.468520+00:00",
+    "recordedRateLimitedRequestCount": 8,
+    "rateLimitedRequestsByUid": {
+      "c2ca24c9b3c2416db0abe026d9f4b7ac": 4,
+      "25d51fbd4efc4c888ca4ff2549b1c6ae": 4
+    },
+    "remainingWork": "24 newly imported families need occupancy inspection, bounded derivatives/LODs, anchors, runtime integration and visual acceptance. One BY-NC-ND asset remains restricted from public adapted distribution."
+  },
+  "currentAcquisitionState": {
+    "method": "official_blender_mcp",
+    "status": "all_catalogue_candidate_sources_imported",
+    "lastAttemptUid": "0baa936f45434c7eb8d58c31890402a2",
+    "httpStatus": null,
+    "rawArchivesPreserved": 0,
+    "driverInspections": 5,
+    "runtimeIntegrations": 3,
+    "standaloneCliCompatibility": "Schema2 CLI refresh/resume preserves verified MCP source GLBs, acquisition history and independent archive/source/runtime counts. Token handling remains separate.",
+    "lastAttemptReceipt": "vehicles/0baa936f45434c7eb8d58c31890402a2/mcp-download-20260908.json",
+    "recordedAttemptCountForLastUid": 1,
+    "stylizedSourceStudies": 3,
+    "stylizedExports": 3,
+    "driversAdded": 3,
+    "contextRestoration": "All official imports used isolated intake scenes and restored the original active scene/layer/selection and cleared temporary configuration. Ben export observed one added object in an unrelated pre-existing Cruise scene; cause unestablished and object left untouched. All other recorded membership comparisons match.",
+    "stylizedExportVariants": 6,
+    "lastAttemptAt": "2026-09-08T07:24:25.468520+00:00",
+    "recordedRateLimitedRequestCount": 8,
+    "rateLimitedRequestsByUid": {
+      "c2ca24c9b3c2416db0abe026d9f4b7ac": 4,
+      "25d51fbd4efc4c888ca4ff2549b1c6ae": 4
+    },
+    "remainingWork": "23 of the 26 imported source families still need bounded runtime derivatives/LODs, per-model occupancy/driver/anchor review and integration. Source visual inspections cover 26; only five source occupancy inspections are formal, leaving 21 new-source occupancies probable/obscured/unverified. Teemto/Sebulba/Polwo frozen round32 functional and full-race checks PASS; strict driver/vehicle/world art remains FAIL. One CC BY-NC-ND source remains private noncommercial adapted-study only, without public adaptation permission.",
+    "countsReconciledAt": "2026-09-08T09:37:06.321198+00:00",
+    "countsReconciliationReceipt": "vehicle-progress-20260908-full-race-round32.json"
+  },
+  "checkpoint": {
+    "lastCompletedRound": 32,
+    "scope": "Last fully verified frozen local technical/image/full-race checkpoint. Strict driver/vehicle/world art FAIL. Active round33 source changes and later bundles are unaccepted and excluded.",
+    "bundle": "index-1xbykiGm.js",
+    "bundleSha256": "f09516c19dc7c4b04372e7ee4416537444a9b989c404a05206088f9fb27855e0",
+    "bundleBytes": 1604509,
+    "verification": {
+      "tests": 618,
+      "files": 111,
+      "outcome": "PASS",
+      "log": "output/gauntlet/round32-final-verify.log",
+      "scope": "Final frozen32 verification only; not later round33 working files."
+    },
+    "fullRacePerformance": "PASS for six ordinary Teemto/Sebulba/Polwo Time Attack/Canyon Cup cadence gates and all three Continue flows; local adaptive RAF with Cup classification wait retained.",
+    "fullRacePerformanceReport": "docs/inkstorm-overhaul/FULL_RACE_PERFORMANCE_ROUND32.md",
+    "fullRacePerformanceProgressReceipt": "vehicle-progress-20260908-full-race-round32.json",
+    "finalFreezeComparison": "output/gauntlet/round32-freeze/complete-race-comparison.json",
+    "raceEvidenceInventory": "output/gauntlet/round32-freeze/race-evidence-inventory.json",
+    "frozenRuntimeSnapshot": "output/gauntlet/round32-frozen-runtime/inventory.json",
+    "artifactCounts": {
+      "source": 137,
+      "publicArt": 36,
+      "dist": 43,
+      "harness": 11,
+      "configuration": 4
+    },
+    "raceIntervalCounts": {
+      "rawRows": 37179,
+      "racingIntervals": 36065,
+      "racingOver25": 216,
+      "racingOver50": 0,
+      "countdownOver25": 5,
+      "countdownOver50": 0,
+      "resolutionSamples": 629
+    },
+    "worldArtAcceptance": {
+      "round": 32,
+      "outcome": "FAIL",
+      "acceptedSections": 0,
+      "reviewedSections": 7,
+      "receipt": "docs/inkstorm-overhaul/POLWO_REVISION3_REVIEW_ROUND32.md",
+      "reviewType": "independent implementation-aware, not fresh/blind",
+      "scope": "All seven original targets remain unmet; bounded exhaust/framing repair retained. No numerical mean fabricated for this review."
+    },
+    "latestFreshWorldArtAcceptance": {
+      "round": 31,
+      "outcome": "FAIL",
+      "acceptedSections": 0,
+      "reviewedSections": 7,
+      "meanScore": 4.79,
+      "receipt": "docs/inkstorm-overhaul/BLIND_WORLD_ROUND31.md"
+    },
+    "cockpitArtAcceptance": {
+      "outcome": "FAIL",
+      "score": 6,
+      "relativePreference": "V2 retained over V1",
+      "receipt": "docs/inkstorm-overhaul/BLIND_COCKPIT_V2_ROUND31.md"
+    },
+    "polwoSourceArtAcceptance": {
+      "outcome": "REVISE",
+      "strictGate": "FAIL",
+      "minimumCategoryScoreRequired": 8,
+      "scores": {
+        "materialConstruction": 6.0,
+        "fitPose": 6.5,
+        "targetPaletteDetail": 5.5
+      },
+      "receipt": "docs/inkstorm-overhaul/POLWO_SOURCE_REVIEW_ROUND32.md",
+      "reviewType": "implementation-aware static source review; not fresh or blind",
+      "scope": "Five final source renders against concept 10; does not certify in-world parity, complete body support, lifecycle or full-race performance.",
+      "aaaAccepted": false
+    },
+    "coverage": {
+      "sourceFamilies": 26,
+      "runtimeFamilies": 3,
+      "runtimePreparationPending": 23,
+      "formalSourceOccupancyInspections": 5,
+      "sourceVisualInspections": 26
+    },
+    "activeWork": {
+      "round": 33,
+      "status": "active_unaccepted",
+      "scope": "Working-source industrial presentation metadata, gantry appearance module/render batch and focused test differ from frozen32. First isolated authoring attempt failed normal re-encoding tolerance and was cleaned up; replacement source export/installation not complete at that handoff. Subsequent source/build state needs independent validation.",
+      "scopeAudit": "output/gauntlet/round32-freeze/documentation-audit.json"
+    },
+    "deployment": "none",
+    "pendingFreshBlindReview": {
+      "round": 32,
+      "status": "PENDING",
+      "scope": "Fresh worker started after earlier four-thread-cap failures, with no implementation/prior-review context; reviewing frozen32 nine images, supplementary concept10 and original seven targets. Earlier independent implementation-aware FAIL remains until a separate result is recorded."
+    }
+  },
+  "polwoLifecycleReceipt": "output/playwright/polwo-appearance-round32-final-v3/receipt.json",
+  "regressionWrapperReceipt": "output/playwright/round32-final-regressions-20260908T090832Z/wrapper-receipt.json",
+  "artAcceptance": "FAIL; source scores and driver acceptedPilotAdded:false retained",
+  "deployment": "none"
+}

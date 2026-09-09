@@ -1,0 +1,65 @@
+{
+  "damageExact": true,
+  "damageNormalsExact": true,
+  "newTextures": 0,
+  "nodes": [
+    {
+      "exportName": "V16_EXPORT_teemto-damage-cockpit-stubs-v16.001",
+      "materialBinding": "Inkstorm Teemto Cabina.010",
+      "pivotGame": [
+        0.008202791213989258,
+        2.0728046894073486,
+        -1.9336456060409546
+      ],
+      "runtimeName": "teemto-damage-cockpit-stubs-v16",
+      "triangles": 17902
+    },
+    {
+      "exportName": "V16_EXPORT_teemto-damage-severed-tethers-v16.001",
+      "materialBinding": "Inkstorm Teemto Cabina.010",
+      "pivotGame": [
+        -0.0006990432739257812,
+        4.08358097076416,
+        9.722213745117188
+      ],
+      "runtimeName": "teemto-damage-severed-tethers-v16",
+      "triangles": 395
+    },
+    {
+      "exportName": "V16_EXPORT_teemto-damage-right-front-v16.001",
+      "materialBinding": "Inkstorm Teemto Propulsores.010",
+      "pivotGame": [
+        3.8870832920074463,
+        2.6857428550720215,
+        18.848623275756836
+      ],
+      "runtimeName": "teemto-damage-right-front-v16",
+      "triangles": 7948
+    },
+    {
+      "exportName": "V16_EXPORT_teemto-damage-right-rear-v16.001",
+      "materialBinding": "Inkstorm Teemto Propulsores.010",
+      "pivotGame": [
+        4.016629219055176,
+        2.1277575492858887,
+        10.263803482055664
+      ],
+      "runtimeName": "teemto-damage-right-rear-v16",
+      "triangles": 4474
+    }
+  ],
+  "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/combat-round35/authored-damage-v16/teemto-damage-b-native.glb",
+  "preservation": {
+    "changedCollections": [],
+    "changedScenes": [],
+    "contextRestored": true,
+    "preexistingMaterialsRetained": true,
+    "preexistingMeshesRetained": true,
+    "preexistingObjectsRetained": true,
+    "preexistingScenes": 161
+  },
+  "result": "FINISHED",
+  "sourceExact": true,
+  "sourceNormalsExact": true,
+  "stage": "V16 geometry-only export B"
+}

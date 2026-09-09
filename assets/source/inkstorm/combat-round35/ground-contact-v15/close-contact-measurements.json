@@ -1,0 +1,3563 @@
+{
+  "wholeGeometry": [
+    [
+      {
+        "name": "teemto-hero-open-v2",
+        "samples": 26,
+        "minimumFullVertexGap": 0.09999999999889475,
+        "maximumActiveCameraRadius": 21.772207181966703,
+        "maximumExtraSupportQueries": 118
+      },
+      {
+        "name": "teemto-rival",
+        "samples": 26,
+        "minimumFullVertexGap": 0.09999999999918963,
+        "maximumActiveCameraRadius": 21.750001107775404,
+        "maximumExtraSupportQueries": 114
+      }
+    ]
+  ],
+  "camera": [
+    {
+      "desiredWidthFraction": [
+        0.65,
+        0.8
+      ],
+      "checkpointCountPerVariantAndAspect": 28,
+      "sourceProjectionScope": "Every admitted POSITION at 28 actual-terrain trajectory checkpoints; side view only in these width measurements.",
+      "heldShotSubsetScope": "Checkpoint frames910\u2013943 cover birth through approximately the native side-cut age; later side snapshots are additional fit stress coverage, not native video measurements.",
+      "measurements": {
+        "teemto-hero-open-v2/rigid/1.6": {
+          "samples": 28,
+          "minimumWidthFraction": 0.5933938386332321,
+          "maximumWidthFraction": 0.6293840203839618,
+          "minimumHeightFraction": 0.2548366291937765,
+          "maximumHeightFraction": 0.42115851026893514,
+          "minimumWidthFrame": 1126,
+          "maximumWidthFrame": 910,
+          "belowDesiredWidthFrames": [
+            910,
+            922,
+            934,
+            943,
+            946,
+            958,
+            970,
+            975,
+            982,
+            994,
+            1006,
+            1010,
+            1018,
+            1030,
+            1042,
+            1054,
+            1066,
+            1070,
+            1078,
+            1090,
+            1102,
+            1114,
+            1126,
+            1138,
+            1150,
+            1153,
+            1162,
+            1168
+          ],
+          "aboveDesiredWidthFrames": [],
+          "projectedSourcePositions": 2045344,
+          "checkpoints": [
+            {
+              "frame": 910,
+              "widthFraction": 0.6293840203839618,
+              "heightFraction": 0.26997289343416697
+            },
+            {
+              "frame": 922,
+              "widthFraction": 0.6249994086420887,
+              "heightFraction": 0.27677147180073625
+            },
+            {
+              "frame": 934,
+              "widthFraction": 0.6241776056782036,
+              "heightFraction": 0.27425589616314516
+            },
+            {
+              "frame": 943,
+              "widthFraction": 0.6251266997742598,
+              "heightFraction": 0.2679306597539574
+            },
+            {
+              "frame": 946,
+              "widthFraction": 0.6253320007506905,
+              "heightFraction": 0.26676857981068947
+            },
+            {
+              "frame": 958,
+              "widthFraction": 0.625865070872912,
+              "heightFraction": 0.26433904177509354
+            },
+            {
+              "frame": 970,
+              "widthFraction": 0.6265297519571548,
+              "heightFraction": 0.2619755185343533
+            },
+            {
+              "frame": 975,
+              "widthFraction": 0.6268383367022221,
+              "heightFraction": 0.26100777106594963
+            },
+            {
+              "frame": 982,
+              "widthFraction": 0.6273425100864876,
+              "heightFraction": 0.25951232895787557
+            },
+            {
+              "frame": 994,
+              "widthFraction": 0.628333799161658,
+              "heightFraction": 0.2564869499132505
+            },
+            {
+              "frame": 1006,
+              "widthFraction": 0.6288393611647267,
+              "heightFraction": 0.2548366291937765
+            },
+            {
+              "frame": 1010,
+              "widthFraction": 0.6283104007087448,
+              "heightFraction": 0.2571503667803517
+            },
+            {
+              "frame": 1018,
+              "widthFraction": 0.6269414868510493,
+              "heightFraction": 0.26313772991453127
+            },
+            {
+              "frame": 1030,
+              "widthFraction": 0.6243256150658736,
+              "heightFraction": 0.2746893112634421
+            },
+            {
+              "frame": 1042,
+              "widthFraction": 0.621187866310684,
+              "heightFraction": 0.28891530831201784
+            },
+            {
+              "frame": 1054,
+              "widthFraction": 0.6173108638325564,
+              "heightFraction": 0.30639042478601786
+            },
+            {
+              "frame": 1066,
+              "widthFraction": 0.6128917377223662,
+              "heightFraction": 0.3261092766932957
+            },
+            {
+              "frame": 1070,
+              "widthFraction": 0.6114304191099439,
+              "heightFraction": 0.3328025507466247
+            },
+            {
+              "frame": 1078,
+              "widthFraction": 0.6086059444888874,
+              "heightFraction": 0.3461623738514328
+            },
+            {
+              "frame": 1090,
+              "widthFraction": 0.60443451855381,
+              "heightFraction": 0.3667395370023887
+            },
+            {
+              "frame": 1102,
+              "widthFraction": 0.6000490774270537,
+              "heightFraction": 0.3872123928313678
+            },
+            {
+              "frame": 1114,
+              "widthFraction": 0.5962013068832126,
+              "heightFraction": 0.40571929740045354
+            },
+            {
+              "frame": 1126,
+              "widthFraction": 0.5933938386332321,
+              "heightFraction": 0.42115851026893514
+            },
+            {
+              "frame": 1138,
+              "widthFraction": 0.5975152297711068,
+              "heightFraction": 0.4142716814931339
+            },
+            {
+              "frame": 1150,
+              "widthFraction": 0.6082674961957938,
+              "heightFraction": 0.37594648015582344
+            },
+            {
+              "frame": 1153,
+              "widthFraction": 0.6102604473474244,
+              "heightFraction": 0.3639956967875754
+            },
+            {
+              "frame": 1162,
+              "widthFraction": 0.6150312039207445,
+              "heightFraction": 0.334471506162049
+            },
+            {
+              "frame": 1168,
+              "widthFraction": 0.6156416968031182,
+              "heightFraction": 0.3267511482144456
+            }
+          ]
+        },
+        "teemto-hero-open-v2/rigid/1.7777777777777777": {
+          "samples": 28,
+          "minimumWidthFraction": 0.546632513193454,
+          "maximumWidthFraction": 0.6043266968713703,
+          "minimumHeightFraction": 0.27137435661084647,
+          "maximumHeightFraction": 0.43978289100406864,
+          "minimumWidthFrame": 1138,
+          "maximumWidthFrame": 994,
+          "belowDesiredWidthFrames": [
+            910,
+            922,
+            934,
+            943,
+            946,
+            958,
+            970,
+            975,
+            982,
+            994,
+            1006,
+            1010,
+            1018,
+            1030,
+            1042,
+            1054,
+            1066,
+            1070,
+            1078,
+            1090,
+            1102,
+            1114,
+            1126,
+            1138,
+            1150,
+            1153,
+            1162,
+            1168
+          ],
+          "aboveDesiredWidthFrames": [],
+          "projectedSourcePositions": 2045344,
+          "checkpoints": [
+            {
+              "frame": 910,
+              "widthFraction": 0.6029937817020389,
+              "heightFraction": 0.2870180235948792
+            },
+            {
+              "frame": 922,
+              "widthFraction": 0.599512449642313,
+              "heightFraction": 0.29461095628624356
+            },
+            {
+              "frame": 934,
+              "widthFraction": 0.6000453701406161,
+              "heightFraction": 0.29221235627031583
+            },
+            {
+              "frame": 943,
+              "widthFraction": 0.6018037158034559,
+              "heightFraction": 0.2856058649179757
+            },
+            {
+              "frame": 946,
+              "widthFraction": 0.6021469409708642,
+              "heightFraction": 0.28438772332940665
+            },
+            {
+              "frame": 958,
+              "widthFraction": 0.6028372394751984,
+              "heightFraction": 0.281815096410273
+            },
+            {
+              "frame": 970,
+              "widthFraction": 0.6034440501024798,
+              "heightFraction": 0.2792733423962961
+            },
+            {
+              "frame": 975,
+              "widthFraction": 0.6036626799076497,
+              "heightFraction": 0.2782210348466049
+            },
+            {
+              "frame": 982,
+              "widthFraction": 0.60394910181143,
+              "heightFraction": 0.2765820287841143
+            },
+            {
+              "frame": 994,
+              "widthFraction": 0.6043266968713703,
+              "heightFraction": 0.2732419008284195
+            },
+            {
+              "frame": 1006,
+              "widthFraction": 0.604187839440328,
+              "heightFraction": 0.27137435661084647
+            },
+            {
+              "frame": 1010,
+              "widthFraction": 0.6036763167842025,
+              "heightFraction": 0.27384874205274323
+            },
+            {
+              "frame": 1018,
+              "widthFraction": 0.6023770590705895,
+              "heightFraction": 0.2802557855457377
+            },
+            {
+              "frame": 1030,
+              "widthFraction": 0.5998738347956405,
+              "heightFraction": 0.2926135464222811
+            },
+            {
+              "frame": 1042,
+              "widthFraction": 0.5968365337786524,
+              "heightFraction": 0.30782411062460857
+            },
+            {
+              "frame": 1054,
+              "widthFraction": 0.5931496623982833,
+              "heightFraction": 0.3265227363600619
+            },
+            {
+              "frame": 1066,
+              "widthFraction": 0.5889770247902271,
+              "heightFraction": 0.3476329877540504
+            },
+            {
+              "frame": 1070,
+              "widthFraction": 0.5875838208438969,
+              "heightFraction": 0.3547950137045487
+            },
+            {
+              "frame": 1078,
+              "widthFraction": 0.5848693085149492,
+              "heightFraction": 0.36912578777270627
+            },
+            {
+              "frame": 1090,
+              "widthFraction": 0.5808615080489006,
+              "heightFraction": 0.3908181505229008
+            },
+            {
+              "frame": 1102,
+              "widthFraction": 0.5767147737969048,
+              "heightFraction": 0.41271730192049827
+            },
+            {
+              "frame": 1114,
+              "widthFraction": 0.5730575485320653,
+              "heightFraction": 0.43250672037010507
+            },
+            {
+              "frame": 1126,
+              "widthFraction": 0.5583267817508446,
+              "heightFraction": 0.43978289100406864
+            },
+            {
+              "frame": 1138,
+              "widthFraction": 0.546632513193454,
+              "heightFraction": 0.42092628156980216
+            },
+            {
+              "frame": 1150,
+              "widthFraction": 0.547440746576212,
+              "heightFraction": 0.37594648015582344
+            },
+            {
+              "frame": 1153,
+              "widthFraction": 0.5492344026126833,
+              "heightFraction": 0.3639956967875754
+            },
+            {
+              "frame": 1162,
+              "widthFraction": 0.5535280835286639,
+              "heightFraction": 0.334471506162049
+            },
+            {
+              "frame": 1168,
+              "widthFraction": 0.5540775271228051,
+              "heightFraction": 0.3267511482144456
+            }
+          ]
+        },
+        "teemto-hero-open-v2/rigid/0.46208530805687204": {
+          "samples": 28,
+          "minimumWidthFraction": 0.6518892383430737,
+          "maximumWidthFraction": 0.6676630533996397,
+          "minimumHeightFraction": 0.08103943452458576,
+          "maximumHeightFraction": 0.1368330730538689,
+          "minimumWidthFrame": 1126,
+          "maximumWidthFrame": 910,
+          "belowDesiredWidthFrames": [],
+          "aboveDesiredWidthFrames": [],
+          "projectedSourcePositions": 2045344,
+          "checkpoints": [
+            {
+              "frame": 910,
+              "widthFraction": 0.6676630533996397,
+              "heightFraction": 0.0865417242471935
+            },
+            {
+              "frame": 922,
+              "widthFraction": 0.6646196400871985,
+              "heightFraction": 0.0871689193787194
+            },
+            {
+              "frame": 934,
+              "widthFraction": 0.6615709706154341,
+              "heightFraction": 0.08628706664636994
+            },
+            {
+              "frame": 943,
+              "widthFraction": 0.6593603790091913,
+              "heightFraction": 0.09039496504689787
+            },
+            {
+              "frame": 946,
+              "widthFraction": 0.6589866293925977,
+              "heightFraction": 0.09102848124262061
+            },
+            {
+              "frame": 958,
+              "widthFraction": 0.6585756461179367,
+              "heightFraction": 0.09159771028199945
+            },
+            {
+              "frame": 970,
+              "widthFraction": 0.6587778446173869,
+              "heightFraction": 0.09102445905126341
+            },
+            {
+              "frame": 975,
+              "widthFraction": 0.659056641124279,
+              "heightFraction": 0.09043593373316337
+            },
+            {
+              "frame": 982,
+              "widthFraction": 0.65973631224302,
+              "heightFraction": 0.08908484663447246
+            },
+            {
+              "frame": 994,
+              "widthFraction": 0.6617234622243324,
+              "heightFraction": 0.0851913047136225
+            },
+            {
+              "frame": 1006,
+              "widthFraction": 0.663911330312603,
+              "heightFraction": 0.08103943452458576
+            },
+            {
+              "frame": 1010,
+              "widthFraction": 0.6637678049744269,
+              "heightFraction": 0.08139773113685446
+            },
+            {
+              "frame": 1018,
+              "widthFraction": 0.6633116534962189,
+              "heightFraction": 0.08254113050271647
+            },
+            {
+              "frame": 1030,
+              "widthFraction": 0.6624872867677949,
+              "heightFraction": 0.08641800792725467
+            },
+            {
+              "frame": 1042,
+              "widthFraction": 0.6615442707616337,
+              "heightFraction": 0.09122117374898608
+            },
+            {
+              "frame": 1054,
+              "widthFraction": 0.6601791031830612,
+              "heightFraction": 0.0971691907282835
+            },
+            {
+              "frame": 1066,
+              "widthFraction": 0.6585612146214244,
+              "heightFraction": 0.10396008172863577
+            },
+            {
+              "frame": 1070,
+              "widthFraction": 0.6580382169144507,
+              "heightFraction": 0.10627807222775434
+            },
+            {
+              "frame": 1078,
+              "widthFraction": 0.6570204542792102,
+              "heightFraction": 0.11091527683844554
+            },
+            {
+              "frame": 1090,
+              "widthFraction": 0.6554427170475203,
+              "heightFraction": 0.11793656802383334
+            },
+            {
+              "frame": 1102,
+              "widthFraction": 0.6539786517698124,
+              "heightFraction": 0.12505458599441183
+            },
+            {
+              "frame": 1114,
+              "widthFraction": 0.6527704325215907,
+              "heightFraction": 0.13152267944530283
+            },
+            {
+              "frame": 1126,
+              "widthFraction": 0.6518892383430737,
+              "heightFraction": 0.1368330730538689
+            },
+            {
+              "frame": 1138,
+              "widthFraction": 0.6523696178010847,
+              "heightFraction": 0.13340843368671296
+            },
+            {
+              "frame": 1150,
+              "widthFraction": 0.6562404578949403,
+              "heightFraction": 0.11894761596370265
+            },
+            {
+              "frame": 1153,
+              "widthFraction": 0.6576601230591356,
+              "heightFraction": 0.1149551025570644
+            },
+            {
+              "frame": 1162,
+              "widthFraction": 0.6615021070943481,
+              "heightFraction": 0.10527556340777608
+            },
+            {
+              "frame": 1168,
+              "widthFraction": 0.6625612259986191,
+              "heightFraction": 0.10286013824978947
+            }
+          ]
+        },
+        "teemto-hero-open-v2/rigid/2.164102564102564": {
+          "samples": 28,
+          "minimumWidthFraction": 0.44905040578292976,
+          "maximumWidthFraction": 0.5593522494770163,
+          "minimumHeightFraction": 0.30324806630068457,
+          "maximumHeightFraction": 0.43978289100406864,
+          "minimumWidthFrame": 1138,
+          "maximumWidthFrame": 975,
+          "belowDesiredWidthFrames": [
+            910,
+            922,
+            934,
+            943,
+            946,
+            958,
+            970,
+            975,
+            982,
+            994,
+            1006,
+            1010,
+            1018,
+            1030,
+            1042,
+            1054,
+            1066,
+            1070,
+            1078,
+            1090,
+            1102,
+            1114,
+            1126,
+            1138,
+            1150,
+            1153,
+            1162,
+            1168
+          ],
+          "aboveDesiredWidthFrames": [],
+          "projectedSourcePositions": 2045344,
+          "checkpoints": [
+            {
+              "frame": 910,
+              "widthFraction": 0.5341768231603428,
+              "heightFraction": 0.3090254250778431
+            },
+            {
+              "frame": 922,
+              "widthFraction": 0.5514170519718042,
+              "heightFraction": 0.32918309302216187
+            },
+            {
+              "frame": 934,
+              "widthFraction": 0.554023760125927,
+              "heightFraction": 0.3268745348773501
+            },
+            {
+              "frame": 943,
+              "widthFraction": 0.5572526011539018,
+              "heightFraction": 0.3198104793159146
+            },
+            {
+              "frame": 946,
+              "widthFraction": 0.5578352231879973,
+              "heightFraction": 0.31849772586324715
+            },
+            {
+              "frame": 958,
+              "widthFraction": 0.5587933122115424,
+              "heightFraction": 0.3156630017107103
+            },
+            {
+              "frame": 970,
+              "widthFraction": 0.559293016395054,
+              "heightFraction": 0.31276889233347316
+            },
+            {
+              "frame": 975,
+              "widthFraction": 0.5593522494770163,
+              "heightFraction": 0.3115433190446366
+            },
+            {
+              "frame": 982,
+              "widthFraction": 0.559255816936671,
+              "heightFraction": 0.30960421016614365
+            },
+            {
+              "frame": 994,
+              "widthFraction": 0.55855295027256,
+              "heightFraction": 0.30559544193565613
+            },
+            {
+              "frame": 1006,
+              "widthFraction": 0.5572570178230025,
+              "heightFraction": 0.30324806630068457
+            },
+            {
+              "frame": 1010,
+              "widthFraction": 0.5567739628885979,
+              "heightFraction": 0.30603393360529874
+            },
+            {
+              "frame": 1018,
+              "widthFraction": 0.5555924064374052,
+              "heightFraction": 0.3132568825952039
+            },
+            {
+              "frame": 1030,
+              "widthFraction": 0.5532774110457875,
+              "heightFraction": 0.32717964427960405
+            },
+            {
+              "frame": 1042,
+              "widthFraction": 0.5504060403404235,
+              "heightFraction": 0.3442966808318998
+            },
+            {
+              "frame": 1054,
+              "widthFraction": 0.5470602212893216,
+              "heightFraction": 0.3654086282693721
+            },
+            {
+              "frame": 1066,
+              "widthFraction": 0.5433285623150619,
+              "heightFraction": 0.3892770925357616
+            },
+            {
+              "frame": 1070,
+              "widthFraction": 0.5420577597622973,
+              "heightFraction": 0.3973727864001336
+            },
+            {
+              "frame": 1078,
+              "widthFraction": 0.5363409358304497,
+              "heightFraction": 0.4111143840087853
+            },
+            {
+              "frame": 1090,
+              "widthFraction": 0.511470855815926,
+              "heightFraction": 0.41824166282693764
+            },
+            {
+              "frame": 1102,
+              "widthFraction": 0.49198111238826747,
+              "heightFraction": 0.4281127934800646
+            },
+            {
+              "frame": 1114,
+              "widthFraction": 0.4745917832806609,
+              "heightFraction": 0.4359293777490277
+            },
+            {
+              "frame": 1126,
+              "widthFraction": 0.4586570718964281,
+              "heightFraction": 0.43978289100406864
+            },
+            {
+              "frame": 1138,
+              "widthFraction": 0.44905040578292976,
+              "heightFraction": 0.42092628156980216
+            },
+            {
+              "frame": 1150,
+              "widthFraction": 0.4497143573769846,
+              "heightFraction": 0.37594648015582344
+            },
+            {
+              "frame": 1153,
+              "widthFraction": 0.45118781889193754,
+              "heightFraction": 0.3639956967875754
+            },
+            {
+              "frame": 1162,
+              "widthFraction": 0.45471501332529335,
+              "heightFraction": 0.334471506162049
+            },
+            {
+              "frame": 1168,
+              "widthFraction": 0.4551663729918827,
+              "heightFraction": 0.3267511482144456
+            }
+          ]
+        },
+        "sebulba-hero/rigid/1.6": {
+          "samples": 28,
+          "minimumWidthFraction": 0.5161152908007982,
+          "maximumWidthFraction": 0.6937779179486031,
+          "minimumHeightFraction": 0.36717655225358237,
+          "maximumHeightFraction": 0.5192694218735463,
+          "minimumWidthFrame": 1168,
+          "maximumWidthFrame": 1042,
+          "belowDesiredWidthFrames": [
+            910,
+            943,
+            946,
+            958,
+            970,
+            975,
+            982,
+            994,
+            1078,
+            1090,
+            1102,
+            1114,
+            1126,
+            1138,
+            1150,
+            1153,
+            1162,
+            1168
+          ],
+          "aboveDesiredWidthFrames": [],
+          "projectedSourcePositions": 1695624,
+          "checkpoints": [
+            {
+              "frame": 910,
+              "widthFraction": 0.5930061355514897,
+              "heightFraction": 0.3774079023383383
+            },
+            {
+              "frame": 922,
+              "widthFraction": 0.6532160419254851,
+              "heightFraction": 0.4333417924274824
+            },
+            {
+              "frame": 934,
+              "widthFraction": 0.6538132365097715,
+              "heightFraction": 0.4397741941607617
+            },
+            {
+              "frame": 943,
+              "widthFraction": 0.6036447007253947,
+              "heightFraction": 0.4129050257370436
+            },
+            {
+              "frame": 946,
+              "widthFraction": 0.5966198698341761,
+              "heightFraction": 0.40896016941092134
+            },
+            {
+              "frame": 958,
+              "widthFraction": 0.5877242082866925,
+              "heightFraction": 0.40307027976899457
+            },
+            {
+              "frame": 970,
+              "widthFraction": 0.5870054976234415,
+              "heightFraction": 0.4004800439132132
+            },
+            {
+              "frame": 975,
+              "widthFraction": 0.5891682816171373,
+              "heightFraction": 0.4003696052727178
+            },
+            {
+              "frame": 982,
+              "widthFraction": 0.5957298874765097,
+              "heightFraction": 0.4014263400623391
+            },
+            {
+              "frame": 994,
+              "widthFraction": 0.618846547380635,
+              "heightFraction": 0.4072515745271898
+            },
+            {
+              "frame": 1006,
+              "widthFraction": 0.652719897298413,
+              "heightFraction": 0.41846044652005826
+            },
+            {
+              "frame": 1010,
+              "widthFraction": 0.6556190636372208,
+              "heightFraction": 0.4223169850677146
+            },
+            {
+              "frame": 1018,
+              "widthFraction": 0.6616114074554584,
+              "heightFraction": 0.43169089800607585
+            },
+            {
+              "frame": 1030,
+              "widthFraction": 0.6749845295197034,
+              "heightFraction": 0.45130539237586703
+            },
+            {
+              "frame": 1042,
+              "widthFraction": 0.6937779179486031,
+              "heightFraction": 0.4787742823263348
+            },
+            {
+              "frame": 1054,
+              "widthFraction": 0.6900769203090761,
+              "heightFraction": 0.49587454785983304
+            },
+            {
+              "frame": 1066,
+              "widthFraction": 0.6705547668201648,
+              "heightFraction": 0.5039090183439774
+            },
+            {
+              "frame": 1070,
+              "widthFraction": 0.6626679032963216,
+              "heightFraction": 0.5053610462806807
+            },
+            {
+              "frame": 1078,
+              "widthFraction": 0.6454909275712188,
+              "heightFraction": 0.5065303964496157
+            },
+            {
+              "frame": 1090,
+              "widthFraction": 0.6213425888241191,
+              "heightFraction": 0.5083713190496043
+            },
+            {
+              "frame": 1102,
+              "widthFraction": 0.603980602864022,
+              "heightFraction": 0.5149700270127988
+            },
+            {
+              "frame": 1114,
+              "widthFraction": 0.5876106217853876,
+              "heightFraction": 0.5192694218735463
+            },
+            {
+              "frame": 1126,
+              "widthFraction": 0.570819262022122,
+              "heightFraction": 0.5186228637364231
+            },
+            {
+              "frame": 1138,
+              "widthFraction": 0.5511174340663334,
+              "heightFraction": 0.4888255052321071
+            },
+            {
+              "frame": 1150,
+              "widthFraction": 0.5323952524127096,
+              "heightFraction": 0.4287661821990948
+            },
+            {
+              "frame": 1153,
+              "widthFraction": 0.5285162944097108,
+              "heightFraction": 0.41357019500270803
+            },
+            {
+              "frame": 1162,
+              "widthFraction": 0.5190584312320243,
+              "heightFraction": 0.3768302395583558
+            },
+            {
+              "frame": 1168,
+              "widthFraction": 0.5161152908007982,
+              "heightFraction": 0.36717655225358237
+            }
+          ]
+        },
+        "sebulba-hero/rigid/1.7777777777777777": {
+          "samples": 28,
+          "minimumWidthFraction": 0.4645037617207206,
+          "maximumWidthFraction": 0.6254650747032163,
+          "minimumHeightFraction": 0.36717655225358237,
+          "maximumHeightFraction": 0.5192694218735463,
+          "minimumWidthFrame": 1168,
+          "maximumWidthFrame": 1042,
+          "belowDesiredWidthFrames": [
+            910,
+            922,
+            934,
+            943,
+            946,
+            958,
+            970,
+            975,
+            982,
+            994,
+            1006,
+            1010,
+            1018,
+            1030,
+            1042,
+            1054,
+            1066,
+            1070,
+            1078,
+            1090,
+            1102,
+            1114,
+            1126,
+            1138,
+            1150,
+            1153,
+            1162,
+            1168
+          ],
+          "aboveDesiredWidthFrames": [],
+          "projectedSourcePositions": 1695624,
+          "checkpoints": [
+            {
+              "frame": 910,
+              "widthFraction": 0.5337055219963371,
+              "heightFraction": 0.3774079023383383
+            },
+            {
+              "frame": 922,
+              "widthFraction": 0.5878944377329431,
+              "heightFraction": 0.4333417924274824
+            },
+            {
+              "frame": 934,
+              "widthFraction": 0.5884319128587836,
+              "heightFraction": 0.4397741941607617
+            },
+            {
+              "frame": 943,
+              "widthFraction": 0.5432802306528525,
+              "heightFraction": 0.4129050257370436
+            },
+            {
+              "frame": 946,
+              "widthFraction": 0.5369578828507593,
+              "heightFraction": 0.40896016941092134
+            },
+            {
+              "frame": 958,
+              "widthFraction": 0.528951787458027,
+              "heightFraction": 0.40307027976899457
+            },
+            {
+              "frame": 970,
+              "widthFraction": 0.5283049478610967,
+              "heightFraction": 0.4004800439132132
+            },
+            {
+              "frame": 975,
+              "widthFraction": 0.5302514534554226,
+              "heightFraction": 0.4003696052727178
+            },
+            {
+              "frame": 982,
+              "widthFraction": 0.5361568987288594,
+              "heightFraction": 0.4014263400623391
+            },
+            {
+              "frame": 994,
+              "widthFraction": 0.556961892642575,
+              "heightFraction": 0.4072515745271898
+            },
+            {
+              "frame": 1006,
+              "widthFraction": 0.5874479075685755,
+              "heightFraction": 0.41846044652005826
+            },
+            {
+              "frame": 1010,
+              "widthFraction": 0.5900571572735023,
+              "heightFraction": 0.4223169850677146
+            },
+            {
+              "frame": 1018,
+              "widthFraction": 0.5954502667099116,
+              "heightFraction": 0.43169089800607585
+            },
+            {
+              "frame": 1030,
+              "widthFraction": 0.6074860765677333,
+              "heightFraction": 0.45130539237586703
+            },
+            {
+              "frame": 1042,
+              "widthFraction": 0.6254650747032163,
+              "heightFraction": 0.4795987882545458
+            },
+            {
+              "frame": 1054,
+              "widthFraction": 0.6216032017953255,
+              "heightFraction": 0.49630559794487683
+            },
+            {
+              "frame": 1066,
+              "widthFraction": 0.6034992901381485,
+              "heightFraction": 0.5039090183439774
+            },
+            {
+              "frame": 1070,
+              "widthFraction": 0.5964011129666893,
+              "heightFraction": 0.5053610462806807
+            },
+            {
+              "frame": 1078,
+              "widthFraction": 0.5809418348140967,
+              "heightFraction": 0.5065303964496157
+            },
+            {
+              "frame": 1090,
+              "widthFraction": 0.559208329941707,
+              "heightFraction": 0.5083713190496043
+            },
+            {
+              "frame": 1102,
+              "widthFraction": 0.5435825425776202,
+              "heightFraction": 0.5149700270127988
+            },
+            {
+              "frame": 1114,
+              "widthFraction": 0.5288495596068493,
+              "heightFraction": 0.5192694218735463
+            },
+            {
+              "frame": 1126,
+              "widthFraction": 0.5137373358199101,
+              "heightFraction": 0.5186228637364231
+            },
+            {
+              "frame": 1138,
+              "widthFraction": 0.49600569065970035,
+              "heightFraction": 0.4888255052321071
+            },
+            {
+              "frame": 1150,
+              "widthFraction": 0.4791557271714394,
+              "heightFraction": 0.4287661821990948
+            },
+            {
+              "frame": 1153,
+              "widthFraction": 0.47566466496874077,
+              "heightFraction": 0.41357019500270803
+            },
+            {
+              "frame": 1162,
+              "widthFraction": 0.4671525881088202,
+              "heightFraction": 0.3768302395583558
+            },
+            {
+              "frame": 1168,
+              "widthFraction": 0.4645037617207206,
+              "heightFraction": 0.36717655225358237
+            }
+          ]
+        },
+        "sebulba-hero/rigid/0.46208530805687204": {
+          "samples": 28,
+          "minimumWidthFraction": 0.6324617223063518,
+          "maximumWidthFraction": 0.655545266180187,
+          "minimumHeightFraction": 0.11783844428883102,
+          "maximumHeightFraction": 0.16728707618256594,
+          "minimumWidthFrame": 1126,
+          "maximumWidthFrame": 910,
+          "belowDesiredWidthFrames": [
+            934,
+            943,
+            946,
+            958,
+            970,
+            975,
+            982,
+            994,
+            1018,
+            1030,
+            1042,
+            1054,
+            1066,
+            1070,
+            1078,
+            1090,
+            1102,
+            1114,
+            1126,
+            1138,
+            1150,
+            1153,
+            1162
+          ],
+          "aboveDesiredWidthFrames": [],
+          "projectedSourcePositions": 1695624,
+          "checkpoints": [
+            {
+              "frame": 910,
+              "widthFraction": 0.655545266180187,
+              "heightFraction": 0.11783844428883102
+            },
+            {
+              "frame": 922,
+              "widthFraction": 0.6511099876965664,
+              "heightFraction": 0.12457266130778678
+            },
+            {
+              "frame": 934,
+              "widthFraction": 0.6480753336484402,
+              "heightFraction": 0.13042119376268
+            },
+            {
+              "frame": 943,
+              "widthFraction": 0.646864090714218,
+              "heightFraction": 0.1329639303882604
+            },
+            {
+              "frame": 946,
+              "widthFraction": 0.6467161164957831,
+              "heightFraction": 0.13329630907201212
+            },
+            {
+              "frame": 958,
+              "widthFraction": 0.6466292083816103,
+              "heightFraction": 0.13339549219869662
+            },
+            {
+              "frame": 970,
+              "widthFraction": 0.6468564739483984,
+              "heightFraction": 0.13260824931514964
+            },
+            {
+              "frame": 975,
+              "widthFraction": 0.6470531920539258,
+              "heightFraction": 0.13200998273571432
+            },
+            {
+              "frame": 982,
+              "widthFraction": 0.647505855033096,
+              "heightFraction": 0.1307425140408407
+            },
+            {
+              "frame": 994,
+              "widthFraction": 0.6489355095469884,
+              "heightFraction": 0.12728085249227053
+            },
+            {
+              "frame": 1006,
+              "widthFraction": 0.6507705411013736,
+              "heightFraction": 0.12361150374274432
+            },
+            {
+              "frame": 1010,
+              "widthFraction": 0.6505690085814237,
+              "heightFraction": 0.12418135455985375
+            },
+            {
+              "frame": 1018,
+              "widthFraction": 0.64996792283633,
+              "heightFraction": 0.12579364871946289
+            },
+            {
+              "frame": 1030,
+              "widthFraction": 0.6488478646318859,
+              "heightFraction": 0.1287968202924026
+            },
+            {
+              "frame": 1042,
+              "widthFraction": 0.6475171003320481,
+              "heightFraction": 0.13230174667477693
+            },
+            {
+              "frame": 1054,
+              "widthFraction": 0.6456489632890703,
+              "heightFraction": 0.13700808340401022
+            },
+            {
+              "frame": 1066,
+              "widthFraction": 0.6434185244081629,
+              "heightFraction": 0.14253784084594318
+            },
+            {
+              "frame": 1070,
+              "widthFraction": 0.6426770974235837,
+              "heightFraction": 0.14433564594311127
+            },
+            {
+              "frame": 1078,
+              "widthFraction": 0.6412100707937806,
+              "heightFraction": 0.14778615889146565
+            },
+            {
+              "frame": 1090,
+              "widthFraction": 0.638927405879798,
+              "heightFraction": 0.1529864797502312
+            },
+            {
+              "frame": 1102,
+              "widthFraction": 0.6364975189947433,
+              "heightFraction": 0.15863787854997125
+            },
+            {
+              "frame": 1114,
+              "widthFraction": 0.6342867550574902,
+              "heightFraction": 0.16361249839272227
+            },
+            {
+              "frame": 1126,
+              "widthFraction": 0.6324617223063518,
+              "heightFraction": 0.16728707618256594
+            },
+            {
+              "frame": 1138,
+              "widthFraction": 0.6338549645010252,
+              "heightFraction": 0.1619395487424097
+            },
+            {
+              "frame": 1150,
+              "widthFraction": 0.6406336927454349,
+              "heightFraction": 0.1460128396528889
+            },
+            {
+              "frame": 1153,
+              "widthFraction": 0.6427949985138375,
+              "heightFraction": 0.14209999033321385
+            },
+            {
+              "frame": 1162,
+              "widthFraction": 0.6486080134485609,
+              "heightFraction": 0.13245674936644916
+            },
+            {
+              "frame": 1168,
+              "widthFraction": 0.6502291963307933,
+              "heightFraction": 0.12997310463052875
+            }
+          ]
+        },
+        "sebulba-hero/rigid/2.164102564102564": {
+          "samples": 28,
+          "minimumWidthFraction": 0.38158286902807914,
+          "maximumWidthFraction": 0.51381017195209,
+          "minimumHeightFraction": 0.36717655225358237,
+          "maximumHeightFraction": 0.5192694218735463,
+          "minimumWidthFrame": 1168,
+          "maximumWidthFrame": 1042,
+          "belowDesiredWidthFrames": [
+            910,
+            922,
+            934,
+            943,
+            946,
+            958,
+            970,
+            975,
+            982,
+            994,
+            1006,
+            1010,
+            1018,
+            1030,
+            1042,
+            1054,
+            1066,
+            1070,
+            1078,
+            1090,
+            1102,
+            1114,
+            1126,
+            1138,
+            1150,
+            1153,
+            1162,
+            1168
+          ],
+          "aboveDesiredWidthFrames": [],
+          "projectedSourcePositions": 1695624,
+          "checkpoints": [
+            {
+              "frame": 910,
+              "widthFraction": 0.4384310765214745,
+              "heightFraction": 0.3774079023383383
+            },
+            {
+              "frame": 922,
+              "widthFraction": 0.48294645753732834,
+              "heightFraction": 0.4333417924274824
+            },
+            {
+              "frame": 934,
+              "widthFraction": 0.4833879852868427,
+              "heightFraction": 0.4397741941607617
+            },
+            {
+              "frame": 943,
+              "widthFraction": 0.4462965559865513,
+              "heightFraction": 0.4129050257370436
+            },
+            {
+              "frame": 946,
+              "widthFraction": 0.4411028421522839,
+              "heightFraction": 0.40896016941092134
+            },
+            {
+              "frame": 958,
+              "widthFraction": 0.43452595494181945,
+              "heightFraction": 0.40307027976899457
+            },
+            {
+              "frame": 970,
+              "widthFraction": 0.4339945859206469,
+              "heightFraction": 0.4004800439132132
+            },
+            {
+              "frame": 975,
+              "widthFraction": 0.4355936110534316,
+              "heightFraction": 0.4003696052727178
+            },
+            {
+              "frame": 982,
+              "widthFraction": 0.4404448457172271,
+              "heightFraction": 0.4014263400623391
+            },
+            {
+              "frame": 994,
+              "widthFraction": 0.4575358359781009,
+              "heightFraction": 0.4072515745271898
+            },
+            {
+              "frame": 1006,
+              "widthFraction": 0.4825796397087818,
+              "heightFraction": 0.41846044652005826
+            },
+            {
+              "frame": 1010,
+              "widthFraction": 0.484723099182023,
+              "heightFraction": 0.4223169850677146
+            },
+            {
+              "frame": 1018,
+              "widthFraction": 0.48915345764479456,
+              "heightFraction": 0.43169089800607585
+            },
+            {
+              "frame": 1030,
+              "widthFraction": 0.49904069481077495,
+              "heightFraction": 0.45130539237586703
+            },
+            {
+              "frame": 1042,
+              "widthFraction": 0.51381017195209,
+              "heightFraction": 0.4795987882545458
+            },
+            {
+              "frame": 1054,
+              "widthFraction": 0.5106377013168553,
+              "heightFraction": 0.49630559794487683
+            },
+            {
+              "frame": 1066,
+              "widthFraction": 0.4957656095921599,
+              "heightFraction": 0.5039090183439774
+            },
+            {
+              "frame": 1070,
+              "widthFraction": 0.4899345635745319,
+              "heightFraction": 0.5053610462806807
+            },
+            {
+              "frame": 1078,
+              "widthFraction": 0.47723499858346025,
+              "heightFraction": 0.5065303964496157
+            },
+            {
+              "frame": 1090,
+              "widthFraction": 0.4593812505050354,
+              "heightFraction": 0.5083713190496043
+            },
+            {
+              "frame": 1102,
+              "widthFraction": 0.44654490069567443,
+              "heightFraction": 0.5149700270127988
+            },
+            {
+              "frame": 1114,
+              "widthFraction": 0.4344419762963063,
+              "heightFraction": 0.5192694218735463
+            },
+            {
+              "frame": 1126,
+              "widthFraction": 0.42202751125806204,
+              "heightFraction": 0.5186228637364231
+            },
+            {
+              "frame": 1138,
+              "widthFraction": 0.40746123087368724,
+              "heightFraction": 0.4888255052321071
+            },
+            {
+              "frame": 1150,
+              "widthFraction": 0.39361923875063015,
+              "heightFraction": 0.4287661821990948
+            },
+            {
+              "frame": 1153,
+              "widthFraction": 0.39075138354462025,
+              "heightFraction": 0.41357019500270803
+            },
+            {
+              "frame": 1162,
+              "widthFraction": 0.38375884015258566,
+              "heightFraction": 0.3768302395583558
+            },
+            {
+              "frame": 1168,
+              "widthFraction": 0.38158286902807914,
+              "heightFraction": 0.36717655225358237
+            }
+          ]
+        },
+        "polwo-hero-v1/rigid/1.6": {
+          "samples": 28,
+          "minimumWidthFraction": 0.6365692125579403,
+          "maximumWidthFraction": 0.6530048773417103,
+          "minimumHeightFraction": 0.14046866840471686,
+          "maximumHeightFraction": 0.24578309248337535,
+          "minimumWidthFrame": 1126,
+          "maximumWidthFrame": 982,
+          "belowDesiredWidthFrames": [
+            910,
+            922,
+            1042,
+            1054,
+            1066,
+            1070,
+            1078,
+            1090,
+            1102,
+            1114,
+            1126,
+            1138,
+            1150,
+            1153,
+            1162,
+            1168
+          ],
+          "aboveDesiredWidthFrames": [],
+          "projectedSourcePositions": 2123268,
+          "checkpoints": [
+            {
+              "frame": 910,
+              "widthFraction": 0.6494336376627255,
+              "heightFraction": 0.14046866840471686
+            },
+            {
+              "frame": 922,
+              "widthFraction": 0.6493486491982723,
+              "heightFraction": 0.1456128751051726
+            },
+            {
+              "frame": 934,
+              "widthFraction": 0.6502941926795729,
+              "heightFraction": 0.16857838255956145
+            },
+            {
+              "frame": 943,
+              "widthFraction": 0.6518603698278413,
+              "heightFraction": 0.18830347240115472
+            },
+            {
+              "frame": 946,
+              "widthFraction": 0.6521416006835498,
+              "heightFraction": 0.19135103755137736
+            },
+            {
+              "frame": 958,
+              "widthFraction": 0.652627593288081,
+              "heightFraction": 0.1957076586118752
+            },
+            {
+              "frame": 970,
+              "widthFraction": 0.6529327393288139,
+              "heightFraction": 0.1966592987522669
+            },
+            {
+              "frame": 975,
+              "widthFraction": 0.6529965064598864,
+              "heightFraction": 0.19600482410693543
+            },
+            {
+              "frame": 982,
+              "widthFraction": 0.6530048773417103,
+              "heightFraction": 0.19364602308804818
+            },
+            {
+              "frame": 994,
+              "widthFraction": 0.652714802311939,
+              "heightFraction": 0.18516536391176108
+            },
+            {
+              "frame": 1006,
+              "widthFraction": 0.6521197243954361,
+              "heightFraction": 0.1731844360614424
+            },
+            {
+              "frame": 1010,
+              "widthFraction": 0.6518651615120146,
+              "heightFraction": 0.17168727529257122
+            },
+            {
+              "frame": 1018,
+              "widthFraction": 0.6512384965645829,
+              "heightFraction": 0.16836859019107306
+            },
+            {
+              "frame": 1030,
+              "widthFraction": 0.6500222595114835,
+              "heightFraction": 0.16151083810426492
+            },
+            {
+              "frame": 1042,
+              "widthFraction": 0.6485463529816644,
+              "heightFraction": 0.16381799396030966
+            },
+            {
+              "frame": 1054,
+              "widthFraction": 0.6467997631365618,
+              "heightFraction": 0.17049167074926053
+            },
+            {
+              "frame": 1066,
+              "widthFraction": 0.6448795365598557,
+              "heightFraction": 0.17866910026880878
+            },
+            {
+              "frame": 1070,
+              "widthFraction": 0.6442412632350436,
+              "heightFraction": 0.1812184316750678
+            },
+            {
+              "frame": 1078,
+              "widthFraction": 0.6430060955431123,
+              "heightFraction": 0.18594596857899706
+            },
+            {
+              "frame": 1090,
+              "widthFraction": 0.6412124724766463,
+              "heightFraction": 0.1931742614025646
+            },
+            {
+              "frame": 1102,
+              "widthFraction": 0.6393428929275673,
+              "heightFraction": 0.21131122857681237
+            },
+            {
+              "frame": 1114,
+              "widthFraction": 0.63770920061473,
+              "heightFraction": 0.23019193201475946
+            },
+            {
+              "frame": 1126,
+              "widthFraction": 0.6365692125579403,
+              "heightFraction": 0.24578309248337535
+            },
+            {
+              "frame": 1138,
+              "widthFraction": 0.6372087490786498,
+              "heightFraction": 0.2369772957392826
+            },
+            {
+              "frame": 1150,
+              "widthFraction": 0.639103385838369,
+              "heightFraction": 0.19617822149854264
+            },
+            {
+              "frame": 1153,
+              "widthFraction": 0.6407194757505383,
+              "heightFraction": 0.1849774995745834
+            },
+            {
+              "frame": 1162,
+              "widthFraction": 0.6446832345176613,
+              "heightFraction": 0.16786464015328773
+            },
+            {
+              "frame": 1168,
+              "widthFraction": 0.645156643804205,
+              "heightFraction": 0.16634562623605706
+            }
+          ]
+        },
+        "polwo-hero-v1/rigid/1.7777777777777777": {
+          "samples": 28,
+          "minimumWidthFraction": 0.5734878741707823,
+          "maximumWidthFraction": 0.6300585024576584,
+          "minimumHeightFraction": 0.15042432554783064,
+          "maximumHeightFraction": 0.2500633660496638,
+          "minimumWidthFrame": 1138,
+          "maximumWidthFrame": 975,
+          "belowDesiredWidthFrames": [
+            910,
+            922,
+            934,
+            943,
+            946,
+            958,
+            970,
+            975,
+            982,
+            994,
+            1006,
+            1010,
+            1018,
+            1030,
+            1042,
+            1054,
+            1066,
+            1070,
+            1078,
+            1090,
+            1102,
+            1114,
+            1126,
+            1138,
+            1150,
+            1153,
+            1162,
+            1168
+          ],
+          "aboveDesiredWidthFrames": [],
+          "projectedSourcePositions": 2123268,
+          "checkpoints": [
+            {
+              "frame": 910,
+              "widthFraction": 0.6248219701603636,
+              "heightFraction": 0.15042432554783064
+            },
+            {
+              "frame": 922,
+              "widthFraction": 0.6252265644397574,
+              "heightFraction": 0.15308487654774586
+            },
+            {
+              "frame": 934,
+              "widthFraction": 0.6268059918218468,
+              "heightFraction": 0.17963909257903515
+            },
+            {
+              "frame": 943,
+              "widthFraction": 0.6288477668571366,
+              "heightFraction": 0.2008879495617626
+            },
+            {
+              "frame": 946,
+              "widthFraction": 0.6292110281873333,
+              "heightFraction": 0.20429233077354741
+            },
+            {
+              "frame": 958,
+              "widthFraction": 0.6297875874798793,
+              "heightFraction": 0.20902017666553407
+            },
+            {
+              "frame": 970,
+              "widthFraction": 0.6300518454754604,
+              "heightFraction": 0.21004541238189256
+            },
+            {
+              "frame": 975,
+              "widthFraction": 0.6300585024576584,
+              "heightFraction": 0.20933618862574538
+            },
+            {
+              "frame": 982,
+              "widthFraction": 0.6299313030917215,
+              "heightFraction": 0.2067850859593815
+            },
+            {
+              "frame": 994,
+              "widthFraction": 0.6292651054998631,
+              "heightFraction": 0.19749528413494488
+            },
+            {
+              "frame": 1006,
+              "widthFraction": 0.6283150284629075,
+              "heightFraction": 0.18460654783693287
+            },
+            {
+              "frame": 1010,
+              "widthFraction": 0.6280737544833972,
+              "heightFraction": 0.1829953749833128
+            },
+            {
+              "frame": 1018,
+              "widthFraction": 0.6274961410475601,
+              "heightFraction": 0.1794228618283717
+            },
+            {
+              "frame": 1030,
+              "widthFraction": 0.626360882606458,
+              "heightFraction": 0.17204032687762455
+            },
+            {
+              "frame": 1042,
+              "widthFraction": 0.6249600662809867,
+              "heightFraction": 0.17239207329278114
+            },
+            {
+              "frame": 1054,
+              "widthFraction": 0.6233454144059883,
+              "heightFraction": 0.1794565666926287
+            },
+            {
+              "frame": 1066,
+              "widthFraction": 0.6215450921380128,
+              "heightFraction": 0.18812149503058584
+            },
+            {
+              "frame": 1070,
+              "widthFraction": 0.6209523666360695,
+              "heightFraction": 0.19082285458061718
+            },
+            {
+              "frame": 1078,
+              "widthFraction": 0.6197909604441791,
+              "heightFraction": 0.19583169416891924
+            },
+            {
+              "frame": 1090,
+              "widthFraction": 0.6181052248518151,
+              "heightFraction": 0.203494203652931
+            },
+            {
+              "frame": 1102,
+              "widthFraction": 0.6163906042000962,
+              "heightFraction": 0.2253535751318254
+            },
+            {
+              "frame": 1114,
+              "widthFraction": 0.6005703089190375,
+              "heightFraction": 0.24022435162331734
+            },
+            {
+              "frame": 1126,
+              "widthFraction": 0.583475460247288,
+              "heightFraction": 0.2500633660496638
+            },
+            {
+              "frame": 1138,
+              "widthFraction": 0.5734878741707823,
+              "heightFraction": 0.2369772957392826
+            },
+            {
+              "frame": 1150,
+              "widthFraction": 0.5751930472545304,
+              "heightFraction": 0.19617822149854264
+            },
+            {
+              "frame": 1153,
+              "widthFraction": 0.5766475281754817,
+              "heightFraction": 0.1849774995745834
+            },
+            {
+              "frame": 1162,
+              "widthFraction": 0.5802149110658905,
+              "heightFraction": 0.16786464015328773
+            },
+            {
+              "frame": 1168,
+              "widthFraction": 0.5806409794238017,
+              "heightFraction": 0.16634562623605706
+            }
+          ]
+        },
+        "polwo-hero-v1/rigid/0.46208530805687204": {
+          "samples": 28,
+          "minimumWidthFraction": 0.6995883211208697,
+          "maximumWidthFraction": 0.709760239135695,
+          "minimumHeightFraction": 0.04756598478501478,
+          "maximumHeightFraction": 0.0824129733489674,
+          "minimumWidthFrame": 1168,
+          "maximumWidthFrame": 1126,
+          "belowDesiredWidthFrames": [],
+          "aboveDesiredWidthFrames": [],
+          "projectedSourcePositions": 2123268,
+          "checkpoints": [
+            {
+              "frame": 910,
+              "widthFraction": 0.7012032656750786,
+              "heightFraction": 0.04756598478501478
+            },
+            {
+              "frame": 922,
+              "widthFraction": 0.7034796191039768,
+              "heightFraction": 0.05406047667933424
+            },
+            {
+              "frame": 934,
+              "widthFraction": 0.7057245072745134,
+              "heightFraction": 0.06100720167483632
+            },
+            {
+              "frame": 943,
+              "widthFraction": 0.706792502100916,
+              "heightFraction": 0.06508084871613999
+            },
+            {
+              "frame": 946,
+              "widthFraction": 0.7069241982496715,
+              "heightFraction": 0.06568855477815724
+            },
+            {
+              "frame": 958,
+              "widthFraction": 0.7070163179635618,
+              "heightFraction": 0.06625600022106855
+            },
+            {
+              "frame": 970,
+              "widthFraction": 0.7068566690407792,
+              "heightFraction": 0.06574823298135608
+            },
+            {
+              "frame": 975,
+              "widthFraction": 0.7067173087502583,
+              "heightFraction": 0.06520715919735857
+            },
+            {
+              "frame": 982,
+              "widthFraction": 0.7064108793661833,
+              "heightFraction": 0.0639577021564271
+            },
+            {
+              "frame": 994,
+              "widthFraction": 0.7055459180321835,
+              "heightFraction": 0.060397633613712164
+            },
+            {
+              "frame": 1006,
+              "widthFraction": 0.7045461241110972,
+              "heightFraction": 0.05650072608377422
+            },
+            {
+              "frame": 1010,
+              "widthFraction": 0.7046060354113454,
+              "heightFraction": 0.05661221722517054
+            },
+            {
+              "frame": 1018,
+              "widthFraction": 0.704802900428322,
+              "heightFraction": 0.057494357155784034
+            },
+            {
+              "frame": 1030,
+              "widthFraction": 0.7051468742118345,
+              "heightFraction": 0.059074030344651196
+            },
+            {
+              "frame": 1042,
+              "widthFraction": 0.7054918990738155,
+              "heightFraction": 0.06080815031932201
+            },
+            {
+              "frame": 1054,
+              "widthFraction": 0.7060583687897644,
+              "heightFraction": 0.06340042316824476
+            },
+            {
+              "frame": 1066,
+              "widthFraction": 0.7068001604745499,
+              "heightFraction": 0.0665724499100929
+            },
+            {
+              "frame": 1070,
+              "widthFraction": 0.707019788240748,
+              "heightFraction": 0.06756549738904226
+            },
+            {
+              "frame": 1078,
+              "widthFraction": 0.7073923757634517,
+              "heightFraction": 0.06940904374142015
+            },
+            {
+              "frame": 1090,
+              "widthFraction": 0.7079508354319467,
+              "heightFraction": 0.07222030781975648
+            },
+            {
+              "frame": 1102,
+              "widthFraction": 0.7087603221095324,
+              "heightFraction": 0.07552889362664182
+            },
+            {
+              "frame": 1114,
+              "widthFraction": 0.7094415424709062,
+              "heightFraction": 0.07840728452040835
+            },
+            {
+              "frame": 1126,
+              "widthFraction": 0.709760239135695,
+              "heightFraction": 0.0824129733489674
+            },
+            {
+              "frame": 1138,
+              "widthFraction": 0.7076240106479477,
+              "heightFraction": 0.07885077472743258
+            },
+            {
+              "frame": 1150,
+              "widthFraction": 0.7032831455947154,
+              "heightFraction": 0.0649442434141753
+            },
+            {
+              "frame": 1153,
+              "widthFraction": 0.7022936111732468,
+              "heightFraction": 0.061160222192167435
+            },
+            {
+              "frame": 1162,
+              "widthFraction": 0.7001192946402712,
+              "heightFraction": 0.05737579441037842
+            },
+            {
+              "frame": 1168,
+              "widthFraction": 0.6995883211208697,
+              "heightFraction": 0.05715744598969465
+            }
+          ]
+        },
+        "polwo-hero-v1/rigid/2.164102564102564": {
+          "samples": 28,
+          "minimumWidthFraction": 0.4711116817832678,
+          "maximumWidthFraction": 0.5860874261171316,
+          "minimumHeightFraction": 0.1612207778636457,
+          "maximumHeightFraction": 0.2500633660496638,
+          "minimumWidthFrame": 1138,
+          "maximumWidthFrame": 970,
+          "belowDesiredWidthFrames": [
+            910,
+            922,
+            934,
+            943,
+            946,
+            958,
+            970,
+            975,
+            982,
+            994,
+            1006,
+            1010,
+            1018,
+            1030,
+            1042,
+            1054,
+            1066,
+            1070,
+            1078,
+            1090,
+            1102,
+            1114,
+            1126,
+            1138,
+            1150,
+            1153,
+            1162,
+            1168
+          ],
+          "aboveDesiredWidthFrames": [],
+          "projectedSourcePositions": 2123268,
+          "checkpoints": [
+            {
+              "frame": 910,
+              "widthFraction": 0.5492797475271114,
+              "heightFraction": 0.1612207778636457
+            },
+            {
+              "frame": 922,
+              "widthFraction": 0.5791227012040863,
+              "heightFraction": 0.16786892500495665
+            },
+            {
+              "frame": 934,
+              "widthFraction": 0.5818256998431565,
+              "heightFraction": 0.20102029199271304
+            },
+            {
+              "frame": 943,
+              "widthFraction": 0.5846547208989815,
+              "heightFraction": 0.22555675945048947
+            },
+            {
+              "frame": 946,
+              "widthFraction": 0.5851605515654845,
+              "heightFraction": 0.2295003497268813
+            },
+            {
+              "frame": 958,
+              "widthFraction": 0.5858947158116941,
+              "heightFraction": 0.2349291101695425
+            },
+            {
+              "frame": 970,
+              "widthFraction": 0.5860874261171316,
+              "heightFraction": 0.23610131907380472
+            },
+            {
+              "frame": 975,
+              "widthFraction": 0.5859944586598032,
+              "heightFraction": 0.2352831329884254
+            },
+            {
+              "frame": 982,
+              "widthFraction": 0.5856312862630569,
+              "heightFraction": 0.2323495216803541
+            },
+            {
+              "frame": 994,
+              "widthFraction": 0.5843360255935997,
+              "heightFraction": 0.22169336734459777
+            },
+            {
+              "frame": 1006,
+              "widthFraction": 0.5827485287978605,
+              "heightFraction": 0.20671131672346477
+            },
+            {
+              "frame": 1010,
+              "widthFraction": 0.5825304204062776,
+              "heightFraction": 0.2048744253390512
+            },
+            {
+              "frame": 1018,
+              "widthFraction": 0.5820378175773149,
+              "heightFraction": 0.20079872963124457
+            },
+            {
+              "frame": 1030,
+              "widthFraction": 0.5810430286668054,
+              "heightFraction": 0.19237598328333327
+            },
+            {
+              "frame": 1042,
+              "widthFraction": 0.5797725515106795,
+              "heightFraction": 0.18821946526039907
+            },
+            {
+              "frame": 1054,
+              "widthFraction": 0.578385828733252,
+              "heightFraction": 0.19601634923560957
+            },
+            {
+              "frame": 1066,
+              "widthFraction": 0.5703640308667103,
+              "heightFraction": 0.20393993900728502
+            },
+            {
+              "frame": 1070,
+              "widthFraction": 0.562856671330761,
+              "heightFraction": 0.20507784131126372
+            },
+            {
+              "frame": 1078,
+              "widthFraction": 0.5473920838646302,
+              "heightFraction": 0.20658022238765444
+            },
+            {
+              "frame": 1090,
+              "widthFraction": 0.5258178941076019,
+              "heightFraction": 0.20960454879915613
+            },
+            {
+              "frame": 1102,
+              "widthFraction": 0.5086813309992858,
+              "heightFraction": 0.22631920963231858
+            },
+            {
+              "frame": 1114,
+              "widthFraction": 0.4933594954785153,
+              "heightFraction": 0.24022435162331734
+            },
+            {
+              "frame": 1126,
+              "widthFraction": 0.47931633385243355,
+              "heightFraction": 0.2500633660496638
+            },
+            {
+              "frame": 1138,
+              "widthFraction": 0.4711116817832678,
+              "heightFraction": 0.2369772957392826
+            },
+            {
+              "frame": 1150,
+              "widthFraction": 0.4725124558804984,
+              "heightFraction": 0.19617822149854264
+            },
+            {
+              "frame": 1153,
+              "widthFraction": 0.4737072901283562,
+              "heightFraction": 0.1849774995745834
+            },
+            {
+              "frame": 1162,
+              "widthFraction": 0.4766378416339214,
+              "heightFraction": 0.16786464015328773
+            },
+            {
+              "frame": 1168,
+              "widthFraction": 0.47698785039553654,
+              "heightFraction": 0.16634562623605706
+            }
+          ]
+        },
+        "blockrunner-hero-v1/rigid/1.6": {
+          "samples": 28,
+          "minimumWidthFraction": 0.5550816690096245,
+          "maximumWidthFraction": 0.6673662296775797,
+          "minimumHeightFraction": 0.2680860228700406,
+          "maximumHeightFraction": 0.3387682310805056,
+          "minimumWidthFrame": 1168,
+          "maximumWidthFrame": 975,
+          "belowDesiredWidthFrames": [
+            910,
+            1066,
+            1070,
+            1078,
+            1090,
+            1102,
+            1114,
+            1126,
+            1138,
+            1150,
+            1153,
+            1162,
+            1168
+          ],
+          "aboveDesiredWidthFrames": [],
+          "projectedSourcePositions": 1896720,
+          "checkpoints": [
+            {
+              "frame": 910,
+              "widthFraction": 0.633412511699113,
+              "heightFraction": 0.27432905340460706
+            },
+            {
+              "frame": 922,
+              "widthFraction": 0.6572227087347962,
+              "heightFraction": 0.27784838660813355
+            },
+            {
+              "frame": 934,
+              "widthFraction": 0.6613168533909282,
+              "heightFraction": 0.2875819220537854
+            },
+            {
+              "frame": 943,
+              "widthFraction": 0.6651039451430506,
+              "heightFraction": 0.30145386850817363
+            },
+            {
+              "frame": 946,
+              "widthFraction": 0.6657322560582561,
+              "heightFraction": 0.30352577812748627
+            },
+            {
+              "frame": 958,
+              "widthFraction": 0.6667475995568015,
+              "heightFraction": 0.30575615456948785
+            },
+            {
+              "frame": 970,
+              "widthFraction": 0.6672923282820304,
+              "heightFraction": 0.3048093919492406
+            },
+            {
+              "frame": 975,
+              "widthFraction": 0.6673662296775797,
+              "heightFraction": 0.3034365614288819
+            },
+            {
+              "frame": 982,
+              "widthFraction": 0.6672710847188109,
+              "heightFraction": 0.3000641934271595
+            },
+            {
+              "frame": 994,
+              "widthFraction": 0.6663951925791689,
+              "heightFraction": 0.28981835709182246
+            },
+            {
+              "frame": 1006,
+              "widthFraction": 0.6645832125832234,
+              "heightFraction": 0.2774624743221227
+            },
+            {
+              "frame": 1010,
+              "widthFraction": 0.6640502534247223,
+              "heightFraction": 0.27779631361222473
+            },
+            {
+              "frame": 1018,
+              "widthFraction": 0.662770776046583,
+              "heightFraction": 0.27916442481114473
+            },
+            {
+              "frame": 1030,
+              "widthFraction": 0.6602557309174769,
+              "heightFraction": 0.28238572872652207
+            },
+            {
+              "frame": 1042,
+              "widthFraction": 0.6571193199315,
+              "heightFraction": 0.28603284608067475
+            },
+            {
+              "frame": 1054,
+              "widthFraction": 0.6535377381587181,
+              "heightFraction": 0.2916409807433879
+            },
+            {
+              "frame": 1066,
+              "widthFraction": 0.6496132901759852,
+              "heightFraction": 0.29844408770303876
+            },
+            {
+              "frame": 1070,
+              "widthFraction": 0.6482716923690328,
+              "heightFraction": 0.3004985052876385
+            },
+            {
+              "frame": 1078,
+              "widthFraction": 0.6456071567897723,
+              "heightFraction": 0.30420054080295234
+            },
+            {
+              "frame": 1090,
+              "widthFraction": 0.6333843578034125,
+              "heightFraction": 0.31417033691673435
+            },
+            {
+              "frame": 1102,
+              "widthFraction": 0.6146443663400347,
+              "heightFraction": 0.32457598217931993
+            },
+            {
+              "frame": 1114,
+              "widthFraction": 0.5974646275965012,
+              "heightFraction": 0.3333336571438784
+            },
+            {
+              "frame": 1126,
+              "widthFraction": 0.5808198506041888,
+              "heightFraction": 0.3387682310805056
+            },
+            {
+              "frame": 1138,
+              "widthFraction": 0.5660029649037047,
+              "heightFraction": 0.3248001716876955
+            },
+            {
+              "frame": 1150,
+              "widthFraction": 0.5570108136993444,
+              "heightFraction": 0.28896176161542064
+            },
+            {
+              "frame": 1153,
+              "widthFraction": 0.5565045956379528,
+              "heightFraction": 0.27999921258048566
+            },
+            {
+              "frame": 1162,
+              "widthFraction": 0.5557439382137294,
+              "heightFraction": 0.27064856978249896
+            },
+            {
+              "frame": 1168,
+              "widthFraction": 0.5550816690096245,
+              "heightFraction": 0.2680860228700406
+            }
+          ]
+        },
+        "blockrunner-hero-v1/rigid/1.7777777777777777": {
+          "samples": 28,
+          "minimumWidthFraction": 0.49957350210866475,
+          "maximumWidthFraction": 0.6443787804266736,
+          "minimumHeightFraction": 0.2680860228700406,
+          "maximumHeightFraction": 0.3387682310805056,
+          "minimumWidthFrame": 1168,
+          "maximumWidthFrame": 982,
+          "belowDesiredWidthFrames": [
+            910,
+            922,
+            934,
+            943,
+            946,
+            958,
+            970,
+            975,
+            982,
+            994,
+            1006,
+            1010,
+            1018,
+            1030,
+            1042,
+            1054,
+            1066,
+            1070,
+            1078,
+            1090,
+            1102,
+            1114,
+            1126,
+            1138,
+            1150,
+            1153,
+            1162,
+            1168
+          ],
+          "aboveDesiredWidthFrames": [],
+          "projectedSourcePositions": 1896720,
+          "checkpoints": [
+            {
+              "frame": 910,
+              "widthFraction": 0.5700712605291886,
+              "heightFraction": 0.27432905340460706
+            },
+            {
+              "frame": 922,
+              "widthFraction": 0.6153541828003055,
+              "heightFraction": 0.2897609672163599
+            },
+            {
+              "frame": 934,
+              "widthFraction": 0.63761919645971,
+              "heightFraction": 0.3062170216094814
+            },
+            {
+              "frame": 943,
+              "widthFraction": 0.6422942080924294,
+              "heightFraction": 0.32146237299407077
+            },
+            {
+              "frame": 946,
+              "widthFraction": 0.6430685442781117,
+              "heightFraction": 0.32374430104308455
+            },
+            {
+              "frame": 958,
+              "widthFraction": 0.6442479012913743,
+              "heightFraction": 0.3262091874018531
+            },
+            {
+              "frame": 970,
+              "widthFraction": 0.6426266044356459,
+              "heightFraction": 0.32421642001842543
+            },
+            {
+              "frame": 975,
+              "widthFraction": 0.644285700740889,
+              "heightFraction": 0.32347918516120555
+            },
+            {
+              "frame": 982,
+              "widthFraction": 0.6443787804266736,
+              "heightFraction": 0.3199705397619252
+            },
+            {
+              "frame": 994,
+              "widthFraction": 0.6428447543447255,
+              "heightFraction": 0.3087615779352162
+            },
+            {
+              "frame": 1006,
+              "widthFraction": 0.6403289758652203,
+              "heightFraction": 0.2953039589064589
+            },
+            {
+              "frame": 1010,
+              "widthFraction": 0.6398137552364251,
+              "heightFraction": 0.2956594985016993
+            },
+            {
+              "frame": 1018,
+              "widthFraction": 0.6386069523843083,
+              "heightFraction": 0.2971274886908676
+            },
+            {
+              "frame": 1030,
+              "widthFraction": 0.6362080391177021,
+              "heightFraction": 0.2999569380951396
+            },
+            {
+              "frame": 1042,
+              "widthFraction": 0.633172217462046,
+              "heightFraction": 0.3038480439974124
+            },
+            {
+              "frame": 1054,
+              "widthFraction": 0.629786524321761,
+              "heightFraction": 0.3098561315639922
+            },
+            {
+              "frame": 1066,
+              "widthFraction": 0.6156174538348825,
+              "heightFraction": 0.3124546663155886
+            },
+            {
+              "frame": 1070,
+              "widthFraction": 0.6081192944035505,
+              "heightFraction": 0.31178450491513465
+            },
+            {
+              "frame": 1078,
+              "widthFraction": 0.5922675688254544,
+              "heightFraction": 0.3094383035618873
+            },
+            {
+              "frame": 1090,
+              "widthFraction": 0.5700459220230756,
+              "heightFraction": 0.31417033691673435
+            },
+            {
+              "frame": 1102,
+              "widthFraction": 0.5531799297060279,
+              "heightFraction": 0.32457598217931993
+            },
+            {
+              "frame": 1114,
+              "widthFraction": 0.5377181648368528,
+              "heightFraction": 0.3333336571438784
+            },
+            {
+              "frame": 1126,
+              "widthFraction": 0.5227378655437778,
+              "heightFraction": 0.3387682310805056
+            },
+            {
+              "frame": 1138,
+              "widthFraction": 0.5094026684133319,
+              "heightFraction": 0.3248001716876955
+            },
+            {
+              "frame": 1150,
+              "widthFraction": 0.5013097323294191,
+              "heightFraction": 0.28896176161542064
+            },
+            {
+              "frame": 1153,
+              "widthFraction": 0.5008541360741532,
+              "heightFraction": 0.27999921258048566
+            },
+            {
+              "frame": 1162,
+              "widthFraction": 0.5001695443923565,
+              "heightFraction": 0.27064856978249896
+            },
+            {
+              "frame": 1168,
+              "widthFraction": 0.49957350210866475,
+              "heightFraction": 0.2680860228700406
+            }
+          ]
+        },
+        "blockrunner-hero-v1/rigid/0.46208530805687204": {
+          "samples": 28,
+          "minimumWidthFraction": 0.6948751296618191,
+          "maximumWidthFraction": 0.7021131702626866,
+          "minimumHeightFraction": 0.07695643238375141,
+          "maximumHeightFraction": 0.11989126438358672,
+          "minimumWidthFrame": 1150,
+          "maximumWidthFrame": 1006,
+          "belowDesiredWidthFrames": [],
+          "aboveDesiredWidthFrames": [],
+          "projectedSourcePositions": 1896720,
+          "checkpoints": [
+            {
+              "frame": 910,
+              "widthFraction": 0.7003420009670167,
+              "heightFraction": 0.07695643238375141
+            },
+            {
+              "frame": 922,
+              "widthFraction": 0.7007570522281192,
+              "heightFraction": 0.08208604735483059
+            },
+            {
+              "frame": 934,
+              "widthFraction": 0.7014355549004743,
+              "heightFraction": 0.08795846612793591
+            },
+            {
+              "frame": 943,
+              "widthFraction": 0.701630269598539,
+              "heightFraction": 0.09197107369937814
+            },
+            {
+              "frame": 946,
+              "widthFraction": 0.7018497901537153,
+              "heightFraction": 0.09312807455697225
+            },
+            {
+              "frame": 958,
+              "widthFraction": 0.7020855050908165,
+              "heightFraction": 0.09459174635945364
+            },
+            {
+              "frame": 970,
+              "widthFraction": 0.7020161805025193,
+              "heightFraction": 0.09462236523154154
+            },
+            {
+              "frame": 975,
+              "widthFraction": 0.7018982569829264,
+              "heightFraction": 0.09419700874336787
+            },
+            {
+              "frame": 982,
+              "widthFraction": 0.701733548584498,
+              "heightFraction": 0.09298124241633124
+            },
+            {
+              "frame": 994,
+              "widthFraction": 0.702001651599191,
+              "heightFraction": 0.08896750876638197
+            },
+            {
+              "frame": 1006,
+              "widthFraction": 0.7021131702626866,
+              "heightFraction": 0.08399415516055278
+            },
+            {
+              "frame": 1010,
+              "widthFraction": 0.7020223868373509,
+              "heightFraction": 0.0842388118930633
+            },
+            {
+              "frame": 1018,
+              "widthFraction": 0.7017899572247318,
+              "heightFraction": 0.08500240359588979
+            },
+            {
+              "frame": 1030,
+              "widthFraction": 0.7013368332304151,
+              "heightFraction": 0.08637033772827453
+            },
+            {
+              "frame": 1042,
+              "widthFraction": 0.7007546585293316,
+              "heightFraction": 0.08786813123544251
+            },
+            {
+              "frame": 1054,
+              "widthFraction": 0.7000707850007757,
+              "heightFraction": 0.09008159481953733
+            },
+            {
+              "frame": 1066,
+              "widthFraction": 0.6993428329975377,
+              "heightFraction": 0.09304811606879684
+            },
+            {
+              "frame": 1070,
+              "widthFraction": 0.6990857431241642,
+              "heightFraction": 0.0949759925075533
+            },
+            {
+              "frame": 1078,
+              "widthFraction": 0.6985566266573968,
+              "heightFraction": 0.09866192391710098
+            },
+            {
+              "frame": 1090,
+              "widthFraction": 0.6982945323463154,
+              "heightFraction": 0.10424936894364555
+            },
+            {
+              "frame": 1102,
+              "widthFraction": 0.6983220689375702,
+              "heightFraction": 0.11042383678600864
+            },
+            {
+              "frame": 1114,
+              "widthFraction": 0.6982930225154664,
+              "heightFraction": 0.11586997646608194
+            },
+            {
+              "frame": 1126,
+              "widthFraction": 0.6980067274916527,
+              "heightFraction": 0.11989126438358672
+            },
+            {
+              "frame": 1138,
+              "widthFraction": 0.6960177593510339,
+              "heightFraction": 0.11373148068000737
+            },
+            {
+              "frame": 1150,
+              "widthFraction": 0.6948751296618191,
+              "heightFraction": 0.09545741880651397
+            },
+            {
+              "frame": 1153,
+              "widthFraction": 0.6950054087913413,
+              "heightFraction": 0.09213146300965634
+            },
+            {
+              "frame": 1162,
+              "widthFraction": 0.6955207934464538,
+              "heightFraction": 0.08623149242005296
+            },
+            {
+              "frame": 1168,
+              "widthFraction": 0.6956670895789427,
+              "heightFraction": 0.08581738607825758
+            }
+          ]
+        },
+        "blockrunner-hero-v1/rigid/2.164102564102564": {
+          "samples": 28,
+          "minimumWidthFraction": 0.4103921344336511,
+          "maximumWidthFraction": 0.581765847335689,
+          "minimumHeightFraction": 0.2680860228700406,
+          "maximumHeightFraction": 0.3387682310805056,
+          "minimumWidthFrame": 1168,
+          "maximumWidthFrame": 934,
+          "belowDesiredWidthFrames": [
+            910,
+            922,
+            934,
+            943,
+            946,
+            958,
+            970,
+            975,
+            982,
+            994,
+            1006,
+            1010,
+            1018,
+            1030,
+            1042,
+            1054,
+            1066,
+            1070,
+            1078,
+            1090,
+            1102,
+            1114,
+            1126,
+            1138,
+            1150,
+            1153,
+            1162,
+            1168
+          ],
+          "aboveDesiredWidthFrames": [],
+          "projectedSourcePositions": 1896720,
+          "checkpoints": [
+            {
+              "frame": 910,
+              "widthFraction": 0.46830498495290956,
+              "heightFraction": 0.27432905340460706
+            },
+            {
+              "frame": 922,
+              "widthFraction": 0.5055042259970947,
+              "heightFraction": 0.2897609672163599
+            },
+            {
+              "frame": 934,
+              "widthFraction": 0.581765847335689,
+              "heightFraction": 0.33649430751983045
+            },
+            {
+              "frame": 943,
+              "widthFraction": 0.5449177710811364,
+              "heightFraction": 0.33095827900793096
+            },
+            {
+              "frame": 946,
+              "widthFraction": 0.5383340705137727,
+              "heightFraction": 0.3293154853692232
+            },
+            {
+              "frame": 958,
+              "widthFraction": 0.5296318399244673,
+              "heightFraction": 0.3264278905864363
+            },
+            {
+              "frame": 970,
+              "widthFraction": 0.527908111068772,
+              "heightFraction": 0.32421642001842543
+            },
+            {
+              "frame": 975,
+              "widthFraction": 0.5292710337839679,
+              "heightFraction": 0.32347918516120555
+            },
+            {
+              "frame": 982,
+              "widthFraction": 0.5341126050242561,
+              "heightFraction": 0.3225760806902156
+            },
+            {
+              "frame": 994,
+              "widthFraction": 0.5525336626526168,
+              "heightFraction": 0.3216345628419631
+            },
+            {
+              "frame": 1006,
+              "widthFraction": 0.5816214602209978,
+              "heightFraction": 0.32322103251204537
+            },
+            {
+              "frame": 1010,
+              "widthFraction": 0.5794944161070117,
+              "heightFraction": 0.32279084162362404
+            },
+            {
+              "frame": 1018,
+              "widthFraction": 0.572653117262518,
+              "heightFraction": 0.32152297409618164
+            },
+            {
+              "frame": 1030,
+              "widthFraction": 0.5584506240315161,
+              "heightFraction": 0.3179511974057658
+            },
+            {
+              "frame": 1042,
+              "widthFraction": 0.5396212032196467,
+              "heightFraction": 0.31378805252794195
+            },
+            {
+              "frame": 1054,
+              "widthFraction": 0.5222587984594779,
+              "heightFraction": 0.3124346071991734
+            },
+            {
+              "frame": 1066,
+              "widthFraction": 0.5057204992008513,
+              "heightFraction": 0.3124546663155886
+            },
+            {
+              "frame": 1070,
+              "widthFraction": 0.49956087375963143,
+              "heightFraction": 0.31178450491513465
+            },
+            {
+              "frame": 1078,
+              "widthFraction": 0.486538919098317,
+              "heightFraction": 0.3094383035618873
+            },
+            {
+              "frame": 1090,
+              "widthFraction": 0.46828416975039255,
+              "heightFraction": 0.31417033691673435
+            },
+            {
+              "frame": 1102,
+              "widthFraction": 0.45442901018504517,
+              "heightFraction": 0.32457598217931993
+            },
+            {
+              "frame": 1114,
+              "widthFraction": 0.441727402393618,
+              "heightFraction": 0.3333336571438784
+            },
+            {
+              "frame": 1126,
+              "widthFraction": 0.429421311347169,
+              "heightFraction": 0.3387682310805056
+            },
+            {
+              "frame": 1138,
+              "widthFraction": 0.41846664703781156,
+              "heightFraction": 0.3248001716876955
+            },
+            {
+              "frame": 1150,
+              "widthFraction": 0.411818421502833,
+              "heightFraction": 0.28896176161542064
+            },
+            {
+              "frame": 1153,
+              "widthFraction": 0.41144415601668394,
+              "heightFraction": 0.27999921258048566
+            },
+            {
+              "frame": 1162,
+              "widthFraction": 0.4108817742243668,
+              "heightFraction": 0.27064856978249896
+            },
+            {
+              "frame": 1168,
+              "widthFraction": 0.4103921344336511,
+              "heightFraction": 0.2680860228700406
+            }
+          ]
+        },
+        "teemto-hero-open-v2/separating/1.6": {
+          "samples": 28,
+          "minimumWidthFraction": 0.6235047645804933,
+          "maximumWidthFraction": 0.6687163323580136,
+          "minimumHeightFraction": 0.2681617571371228,
+          "maximumHeightFraction": 0.4218450253619919,
+          "minimumWidthFrame": 1126,
+          "maximumWidthFrame": 922,
+          "belowDesiredWidthFrames": [
+            910,
+            1042,
+            1054,
+            1066,
+            1070,
+            1078,
+            1090,
+            1102,
+            1114,
+            1126,
+            1138,
+            1162,
+            1168
+          ],
+          "aboveDesiredWidthFrames": [],
+          "projectedSourcePositions": 2045344,
+          "checkpoints": [
+            {
+              "frame": 910,
+              "widthFraction": 0.6293840203839618,
+              "heightFraction": 0.26997289343416697
+            },
+            {
+              "frame": 922,
+              "widthFraction": 0.6687163323580136,
+              "heightFraction": 0.27927155604700904
+            },
+            {
+              "frame": 934,
+              "widthFraction": 0.6593917216203428,
+              "heightFraction": 0.3074189806396824
+            },
+            {
+              "frame": 943,
+              "widthFraction": 0.6572034048415774,
+              "heightFraction": 0.31853582647706946
+            },
+            {
+              "frame": 946,
+              "widthFraction": 0.6567370289681629,
+              "heightFraction": 0.31832600711774217
+            },
+            {
+              "frame": 958,
+              "widthFraction": 0.6544768077647847,
+              "heightFraction": 0.304485218005516
+            },
+            {
+              "frame": 970,
+              "widthFraction": 0.6518582493385834,
+              "heightFraction": 0.2944862034979006
+            },
+            {
+              "frame": 975,
+              "widthFraction": 0.6520852420990442,
+              "heightFraction": 0.29247598133969305
+            },
+            {
+              "frame": 982,
+              "widthFraction": 0.6525581930346815,
+              "heightFraction": 0.28829648361294025
+            },
+            {
+              "frame": 994,
+              "widthFraction": 0.6541806967227817,
+              "heightFraction": 0.27738338174425015
+            },
+            {
+              "frame": 1006,
+              "widthFraction": 0.6566409329316318,
+              "heightFraction": 0.2681617571371228
+            },
+            {
+              "frame": 1010,
+              "widthFraction": 0.6562082278224071,
+              "heightFraction": 0.27022801714623235
+            },
+            {
+              "frame": 1018,
+              "widthFraction": 0.6549697255507114,
+              "heightFraction": 0.27491762244475515
+            },
+            {
+              "frame": 1030,
+              "widthFraction": 0.6526274807797108,
+              "heightFraction": 0.2856157132836014
+            },
+            {
+              "frame": 1042,
+              "widthFraction": 0.6498131079498272,
+              "heightFraction": 0.2985382180498246
+            },
+            {
+              "frame": 1054,
+              "widthFraction": 0.645971568105173,
+              "heightFraction": 0.31536406097932534
+            },
+            {
+              "frame": 1066,
+              "widthFraction": 0.6414034041240101,
+              "heightFraction": 0.33477824525520683
+            },
+            {
+              "frame": 1070,
+              "widthFraction": 0.6398800618956266,
+              "heightFraction": 0.34111997810371114
+            },
+            {
+              "frame": 1078,
+              "widthFraction": 0.6368781253323477,
+              "heightFraction": 0.3533537417206366
+            },
+            {
+              "frame": 1090,
+              "widthFraction": 0.6322586580074823,
+              "heightFraction": 0.3716370753235684
+            },
+            {
+              "frame": 1102,
+              "widthFraction": 0.6278917920577582,
+              "heightFraction": 0.3907756630682129
+            },
+            {
+              "frame": 1114,
+              "widthFraction": 0.6251347021187785,
+              "heightFraction": 0.40759864422924075
+            },
+            {
+              "frame": 1126,
+              "widthFraction": 0.6235047645804933,
+              "heightFraction": 0.420584055164679
+            },
+            {
+              "frame": 1138,
+              "widthFraction": 0.6472959975934913,
+              "heightFraction": 0.4218450253619919
+            },
+            {
+              "frame": 1150,
+              "widthFraction": 0.664763175733571,
+              "heightFraction": 0.38451760963629233
+            },
+            {
+              "frame": 1153,
+              "widthFraction": 0.6569192772062356,
+              "heightFraction": 0.3700080808732389
+            },
+            {
+              "frame": 1162,
+              "widthFraction": 0.6397349100435457,
+              "heightFraction": 0.3426248477002906
+            },
+            {
+              "frame": 1168,
+              "widthFraction": 0.6358755780337411,
+              "heightFraction": 0.33734653072229054
+            }
+          ]
+        },
+        "teemto-hero-open-v2/separating/1.7777777777777777": {
+          "samples": 28,
+          "minimumWidthFraction": 0.6029937817020389,
+          "maximumWidthFraction": 0.6738320452756956,
+          "minimumHeightFraction": 0.2870180235948792,
+          "maximumHeightFraction": 0.4722443617664632,
+          "minimumWidthFrame": 910,
+          "maximumWidthFrame": 922,
+          "belowDesiredWidthFrames": [
+            910,
+            1066,
+            1070,
+            1078,
+            1090,
+            1102,
+            1114,
+            1126,
+            1150,
+            1153,
+            1162,
+            1168
+          ],
+          "aboveDesiredWidthFrames": [],
+          "projectedSourcePositions": 2045344,
+          "checkpoints": [
+            {
+              "frame": 910,
+              "widthFraction": 0.6029937817020389,
+              "heightFraction": 0.2870180235948792
+            },
+            {
+              "frame": 922,
+              "widthFraction": 0.6738320452756956,
+              "heightFraction": 0.30546634471000644
+            },
+            {
+              "frame": 934,
+              "widthFraction": 0.6643086904425496,
+              "heightFraction": 0.3355967008178036
+            },
+            {
+              "frame": 943,
+              "widthFraction": 0.6622334708718484,
+              "heightFraction": 0.3477180854546138
+            },
+            {
+              "frame": 946,
+              "widthFraction": 0.6617972218894632,
+              "heightFraction": 0.3474974552400998
+            },
+            {
+              "frame": 958,
+              "widthFraction": 0.6595389494836348,
+              "heightFraction": 0.33237887488635903
+            },
+            {
+              "frame": 970,
+              "widthFraction": 0.6568626185595108,
+              "heightFraction": 0.3299827760191379
+            },
+            {
+              "frame": 975,
+              "widthFraction": 0.6570910440683153,
+              "heightFraction": 0.3277662661152812
+            },
+            {
+              "frame": 982,
+              "widthFraction": 0.6575558011280754,
+              "heightFraction": 0.3231637280485275
+            },
+            {
+              "frame": 994,
+              "widthFraction": 0.6591757033044667,
+              "heightFraction": 0.31118531774246094
+            },
+            {
+              "frame": 1006,
+              "widthFraction": 0.6616962284864225,
+              "heightFraction": 0.29957774747650523
+            },
+            {
+              "frame": 1010,
+              "widthFraction": 0.6612258583581352,
+              "heightFraction": 0.30194030283451945
+            },
+            {
+              "frame": 1018,
+              "widthFraction": 0.6598859793961529,
+              "heightFraction": 0.3084409687364546
+            },
+            {
+              "frame": 1030,
+              "widthFraction": 0.6573501983456356,
+              "heightFraction": 0.32062154014797695
+            },
+            {
+              "frame": 1042,
+              "widthFraction": 0.6543024327327684,
+              "heightFraction": 0.3349694290249796
+            },
+            {
+              "frame": 1054,
+              "widthFraction": 0.6501605887557859,
+              "heightFraction": 0.3536026901595099
+            },
+            {
+              "frame": 1066,
+              "widthFraction": 0.6452450644516228,
+              "heightFraction": 0.3750591109527044
+            },
+            {
+              "frame": 1070,
+              "widthFraction": 0.6436062809110881,
+              "heightFraction": 0.38206385531806775
+            },
+            {
+              "frame": 1078,
+              "widthFraction": 0.6403788254078354,
+              "heightFraction": 0.3955709199100868
+            },
+            {
+              "frame": 1090,
+              "widthFraction": 0.6354213134599064,
+              "heightFraction": 0.4157275357755019
+            },
+            {
+              "frame": 1102,
+              "widthFraction": 0.6307128066588603,
+              "heightFraction": 0.4367173075927886
+            },
+            {
+              "frame": 1114,
+              "widthFraction": 0.6276738598735594,
+              "heightFraction": 0.4549757750120507
+            },
+            {
+              "frame": 1126,
+              "widthFraction": 0.6258353358877822,
+              "heightFraction": 0.4690916032310872
+            },
+            {
+              "frame": 1138,
+              "widthFraction": 0.652273178448609,
+              "heightFraction": 0.4722443617664632
+            },
+            {
+              "frame": 1150,
+              "widthFraction": 0.6439128780045253,
+              "heightFraction": 0.4130895176650085
+            },
+            {
+              "frame": 1153,
+              "widthFraction": 0.6357050840768255,
+              "heightFraction": 0.3972240617793247
+            },
+            {
+              "frame": 1162,
+              "widthFraction": 0.6182287201314511,
+              "heightFraction": 0.36748027178928827
+            },
+            {
+              "frame": 1168,
+              "widthFraction": 0.6143104620345037,
+              "heightFraction": 0.3618071565020876
+            }
+          ]
+        },
+        "teemto-hero-open-v2/separating/0.46208530805687204": {
+          "samples": 28,
+          "minimumWidthFraction": 0.6163734943384471,
+          "maximumWidthFraction": 0.6938649876129053,
+          "minimumHeightFraction": 0.08364013157981354,
+          "maximumHeightFraction": 0.11964789121857757,
+          "minimumWidthFrame": 1126,
+          "maximumWidthFrame": 1168,
+          "belowDesiredWidthFrames": [
+            922,
+            934,
+            943,
+            946,
+            958,
+            970,
+            975,
+            982,
+            994,
+            1006,
+            1010,
+            1018,
+            1030,
+            1042,
+            1054,
+            1066,
+            1070,
+            1078,
+            1090,
+            1102,
+            1114,
+            1126,
+            1138
+          ],
+          "aboveDesiredWidthFrames": [],
+          "projectedSourcePositions": 2045344,
+          "checkpoints": [
+            {
+              "frame": 910,
+              "widthFraction": 0.6676630533996397,
+              "heightFraction": 0.0865417242471935
+            },
+            {
+              "frame": 922,
+              "widthFraction": 0.643189098442693,
+              "heightFraction": 0.09006236074498322
+            },
+            {
+              "frame": 934,
+              "widthFraction": 0.6401320680894367,
+              "heightFraction": 0.10061906065876629
+            },
+            {
+              "frame": 943,
+              "widthFraction": 0.636899313366573,
+              "heightFraction": 0.10411724711876476
+            },
+            {
+              "frame": 946,
+              "widthFraction": 0.6362121255663582,
+              "heightFraction": 0.1040122414318735
+            },
+            {
+              "frame": 958,
+              "widthFraction": 0.6338794094962421,
+              "heightFraction": 0.09947898326426005
+            },
+            {
+              "frame": 970,
+              "widthFraction": 0.631611099891425,
+              "heightFraction": 0.09202315813837195
+            },
+            {
+              "frame": 975,
+              "widthFraction": 0.6318948481000817,
+              "heightFraction": 0.0912110454235372
+            },
+            {
+              "frame": 982,
+              "widthFraction": 0.6325568762331895,
+              "heightFraction": 0.08929795387595021
+            },
+            {
+              "frame": 994,
+              "widthFraction": 0.6346244734376276,
+              "heightFraction": 0.08364013157981354
+            },
+            {
+              "frame": 1006,
+              "widthFraction": 0.6372754857924992,
+              "heightFraction": 0.0854588988270043
+            },
+            {
+              "frame": 1010,
+              "widthFraction": 0.6369943915282212,
+              "heightFraction": 0.0857416951770455
+            },
+            {
+              "frame": 1018,
+              "widthFraction": 0.6361490837235422,
+              "heightFraction": 0.08636698066244475
+            },
+            {
+              "frame": 1030,
+              "widthFraction": 0.6345735058002373,
+              "heightFraction": 0.08765876363118512
+            },
+            {
+              "frame": 1042,
+              "widthFraction": 0.6327094448725157,
+              "heightFraction": 0.09013014383508085
+            },
+            {
+              "frame": 1054,
+              "widthFraction": 0.6300595926953225,
+              "heightFraction": 0.09440982896993683
+            },
+            {
+              "frame": 1066,
+              "widthFraction": 0.6268860373681937,
+              "heightFraction": 0.0989327834545537
+            },
+            {
+              "frame": 1070,
+              "widthFraction": 0.6258366454427612,
+              "heightFraction": 0.10059416235401851
+            },
+            {
+              "frame": 1078,
+              "widthFraction": 0.6237759107864598,
+              "heightFraction": 0.1041044158792657
+            },
+            {
+              "frame": 1090,
+              "widthFraction": 0.6206081974535321,
+              "heightFraction": 0.10933688233788291
+            },
+            {
+              "frame": 1102,
+              "widthFraction": 0.6179166127789937,
+              "heightFraction": 0.11331706203497983
+            },
+            {
+              "frame": 1114,
+              "widthFraction": 0.6165620030766599,
+              "heightFraction": 0.11595755700724986
+            },
+            {
+              "frame": 1126,
+              "widthFraction": 0.6163734943384471,
+              "heightFraction": 0.11964789121857757
+            },
+            {
+              "frame": 1138,
+              "widthFraction": 0.6248634917111822,
+              "heightFraction": 0.11796329253775359
+            },
+            {
+              "frame": 1150,
+              "widthFraction": 0.6542727012627441,
+              "heightFraction": 0.11136064378139411
+            },
+            {
+              "frame": 1153,
+              "widthFraction": 0.6631156977085221,
+              "heightFraction": 0.11000985248022728
+            },
+            {
+              "frame": 1162,
+              "widthFraction": 0.6874881639127869,
+              "heightFraction": 0.10797648073323708
+            },
+            {
+              "frame": 1168,
+              "widthFraction": 0.6938649876129053,
+              "heightFraction": 0.10767860594683056
+            }
+          ]
+        },
+        "teemto-hero-open-v2/separating/2.164102564102564": {
+          "samples": 28,
+          "minimumWidthFraction": 0.5146783855267654,
+          "maximumWidthFraction": 0.6759505357293878,
+          "minimumHeightFraction": 0.3090254250778431,
+          "maximumHeightFraction": 0.4781490651294016,
+          "minimumWidthFrame": 1126,
+          "maximumWidthFrame": 934,
+          "belowDesiredWidthFrames": [
+            910,
+            1042,
+            1054,
+            1066,
+            1070,
+            1078,
+            1090,
+            1102,
+            1114,
+            1126,
+            1138,
+            1150,
+            1153,
+            1162,
+            1168
+          ],
+          "aboveDesiredWidthFrames": [],
+          "projectedSourcePositions": 2045344,
+          "checkpoints": [
+            {
+              "frame": 910,
+              "widthFraction": 0.5341768231603428,
+              "heightFraction": 0.3090254250778431
+            },
+            {
+              "frame": 922,
+              "widthFraction": 0.671275021302556,
+              "heightFraction": 0.3574137214365585
+            },
+            {
+              "frame": 934,
+              "widthFraction": 0.6759505357293878,
+              "heightFraction": 0.3936874807724059
+            },
+            {
+              "frame": 943,
+              "widthFraction": 0.6742623700647838,
+              "heightFraction": 0.4078323175541023
+            },
+            {
+              "frame": 946,
+              "widthFraction": 0.6739175542289662,
+              "heightFraction": 0.4075867563581866
+            },
+            {
+              "frame": 958,
+              "widthFraction": 0.6716860907097622,
+              "heightFraction": 0.40374940962717587
+            },
+            {
+              "frame": 970,
+              "widthFraction": 0.6688674868884452,
+              "heightFraction": 0.40991837605761766
+            },
+            {
+              "frame": 975,
+              "widthFraction": 0.669092810777028,
+              "heightFraction": 0.40725742006358717
+            },
+            {
+              "frame": 982,
+              "widthFraction": 0.6695189670185615,
+              "heightFraction": 0.4017437813715825
+            },
+            {
+              "frame": 994,
+              "widthFraction": 0.6710741614940664,
+              "heightFraction": 0.3875290644740859
+            },
+            {
+              "frame": 1006,
+              "widthFraction": 0.6736693000783245,
+              "heightFraction": 0.37413955696421597
+            },
+            {
+              "frame": 1010,
+              "widthFraction": 0.6731021904546245,
+              "heightFraction": 0.37702200485921045
+            },
+            {
+              "frame": 1018,
+              "widthFraction": 0.6715058791337554,
+              "heightFraction": 0.38492349433118284
+            },
+            {
+              "frame": 1030,
+              "widthFraction": 0.6684790903014572,
+              "heightFraction": 0.39972159083624575
+            },
+            {
+              "frame": 1042,
+              "widthFraction": 0.6487586054119923,
+              "heightFraction": 0.40669995885703203
+            },
+            {
+              "frame": 1054,
+              "widthFraction": 0.6214564613915294,
+              "heightFraction": 0.4131842574207202
+            },
+            {
+              "frame": 1066,
+              "widthFraction": 0.594521143251078,
+              "heightFraction": 0.42182937027526374
+            },
+            {
+              "frame": 1070,
+              "widthFraction": 0.5853747557628778,
+              "heightFraction": 0.4239925028036555
+            },
+            {
+              "frame": 1078,
+              "widthFraction": 0.5671737980393584,
+              "heightFraction": 0.4271517475700838
+            },
+            {
+              "frame": 1090,
+              "widthFraction": 0.5419509297540844,
+              "heightFraction": 0.43191362401028266
+            },
+            {
+              "frame": 1102,
+              "widthFraction": 0.5254125870237243,
+              "heightFraction": 0.44294461121380724
+            },
+            {
+              "frame": 1114,
+              "widthFraction": 0.518892994335864,
+              "heightFraction": 0.45787645348133854
+            },
+            {
+              "frame": 1126,
+              "widthFraction": 0.5146783855267654,
+              "heightFraction": 0.4696068108185019
+            },
+            {
+              "frame": 1138,
+              "widthFraction": 0.5425384020579977,
+              "heightFraction": 0.4781490651294016
+            },
+            {
+              "frame": 1150,
+              "widthFraction": 0.603431320682468,
+              "heightFraction": 0.4699077417472539
+            },
+            {
+              "frame": 1153,
+              "widthFraction": 0.594506937345989,
+              "heightFraction": 0.45087068458654583
+            },
+            {
+              "frame": 1162,
+              "widthFraction": 0.5766288715213912,
+              "heightFraction": 0.41639794446187345
+            },
+            {
+              "frame": 1168,
+              "widthFraction": 0.5657058692732684,
+              "heightFraction": 0.4050634300113872
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "rightEngine": [
+    {
+      "name": "teemto-hero-open-v2",
+      "nativeFrames": 259,
+      "sourcePositionsPerFrame": 13867,
+      "fullPositionProjections": 3591553,
+      "contactFrames": 197,
+      "minimumFullVertexGap": 0.09999999999999609,
+      "minimumSettledFullVertexGap": 0.09999999999999609,
+      "maximumSettledFullVertexGap": 0.1000000000000032,
+      "maximumContactDistanceToSource": 0.1000000000000032,
+      "firstContactFrame": 930,
+      "lastContactFrame": 1126
+    },
+    {
+      "name": "teemto-rival",
+      "nativeFrames": 259,
+      "sourcePositionsPerFrame": 9618,
+      "fullPositionProjections": 2491062,
+      "contactFrames": 197,
+      "minimumFullVertexGap": 0.09999999999999609,
+      "minimumSettledFullVertexGap": 0.09999999999999609,
+      "maximumSettledFullVertexGap": 0.10000000000054321,
+      "maximumContactDistanceToSource": 0.10000000000000497,
+      "firstContactFrame": 930,
+      "lastContactFrame": 1126
+    }
+  ],
+  "downwardSettle": [
+    [
+      {
+        "name": "teemto-hero-open-v2",
+        "inputLiftMetres": 2,
+        "rightEngineWorldShiftMetres": 3.552713678800501e-15,
+        "airborneInputLiftMetres": 20,
+        "cappedDescentMetres": 8.000000000000004,
+        "airborneContact": false
+      },
+      {
+        "name": "teemto-rival",
+        "inputLiftMetres": 2,
+        "rightEngineWorldShiftMetres": 3.552713678800501e-15,
+        "airborneInputLiftMetres": 20,
+        "cappedDescentMetres": 8,
+        "airborneContact": false
+      }
+    ]
+  ]
+}

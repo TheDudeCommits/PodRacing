@@ -1,0 +1,13 @@
+--- a/src/render/inkstorm/InkstormWorld.ts
++++ b/src/render/inkstorm/InkstormWorld.ts
+@@ -126,7 +126,9 @@
+       const needsGrounding=p.family==='canyon-buttress'
+         ||(p.family==='fractured-spire'&&p.id.startsWith('launch-composition-'));
+       const grounded=needsGrounding?groundInkstormButtress(p,this.heightAt,fixedRockCrowns.get(p.id)):null;
+-      position.set(p.x,grounded?.baseY??this.heightAt(p.x,p.z)+(p.family==='pit-district'?1.55:-1.5),p.z);
++      // The pit slab starts at local Y=0. Seat it 5 cm into the foundation
++      // top (+1.5); the former -1.5 transform buried the pad and repair gear.
++      position.set(p.x,grounded?.baseY??this.heightAt(p.x,p.z)+(p.family==='pit-district'?1.55:p.family==='pit-complex'?1.45:-1.5),p.z);
+       rotation.setFromAxisAngle(up,p.yaw);scale.set(p.sx,grounded?.scaleY??p.sy,p.sz);
+       matrix.compose(position,rotation,scale);batch.setMatrixAt(batch.count++,matrix);
+       this.instances.push({family:p.family,matrix:matrix.clone(),sphere:batch.geometry.boundingSphere!.clone().applyMatrix4(matrix)});

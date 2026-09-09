@@ -1,0 +1,23 @@
+<!doctype html><html><head><meta charset="utf-8"><title>V30 component preview</title><style>body{margin:0;background:#201c20;color:#eee;font:16px system-ui}header{padding:16px}b{color:#ffd293}canvas{display:block}button{margin:0 8px 8px 0;padding:8px}#status{white-space:pre-wrap;font:13px monospace}</style></head><body><header><b>V30 COMPONENT ONLY — closed contact dust material</b><div>Actual rear footprint + terrain sampler; no vehicle/casing occlusion, native camera orientation, gameplay or FPS claim.</div><button id="peak">Impulse .4083 s</button><button id="aftermath">Aftermath 1.2083 s</button><button id="context">Lose and restore owned WebGL context</button><div id="status">Loading</div></header><script type="module">
+import * as THREE from '/node_modules/three/build/three.module.js';
+import {GalacticEffectsView} from './candidate/src/render/galactic/GalacticEffectsView.ts';
+import {RaceSimulation} from '/src/game/race/RaceSimulation.ts';
+import {sampleTerrainHeight} from '/src/render/terrain/terrainMath.ts';
+const evidence=await (await fetch('./diagnosis.json')).json(),f=evidence.birth.footprint;
+const sim=new RaceSimulation({terrain:{heightAt:sampleTerrainHeight},seed:1229867859,totalLaps:1,countdownSeconds:3,competitionProfile:'time-trial'});
+const fx=new GalacticEffectsView(),v=a=>new THREE.Vector3(...a),footprint={center:v(f.center),axis:v(f.axis),halfLength:f.halfLength,halfWidth:f.halfWidth,edges:f.edges.map(v)};
+fx.emitWreckGroundContact(0,v(evidence.birth.witness),v(evidence.birth.direction),footprint,{terrain:sim.terrain,owner:0,sequence:1});
+const scene=new THREE.Scene();scene.background=new THREE.Color('#b38253');scene.add(fx);
+const ground=new THREE.PlaneGeometry(24,18,24,18);ground.rotateX(-Math.PI/2);
+const attr=ground.getAttribute('position');for(let i=0;i<attr.count;i++){const x=attr.getX(i)+f.center[0],z=attr.getZ(i)+f.center[2];attr.setXYZ(i,x,sim.terrain.heightAt(x,z),z);}ground.computeVertexNormals();
+const floor=new THREE.Mesh(ground,new THREE.MeshBasicMaterial({color:'#b57b43',side:THREE.DoubleSide}));scene.add(floor);
+const renderer=new THREE.WebGLRenderer({antialias:true,preserveDrawingBuffer:true});renderer.setSize(1120,630);document.body.append(renderer.domElement);
+const camera=new THREE.PerspectiveCamera(45,1120/630,.1,120);camera.position.fromArray(evidence.rows.find(r=>r.phase==='debris-return').native.cameraPosition);camera.lookAt(f.center[0],f.center[1]+.8,f.center[2]);
+let age=.408333333333;
+function render(){fx.update(age);renderer.render(scene,camera);const gl=renderer.getContext();window.previewState={age,dustInstances:fx.contactDust.count,drawCalls:renderer.info.render.calls,triangles:renderer.info.render.triangles,programErrors:renderer.info.programs.filter(p=>p.diagnostics?.runnable===false).length,glError:gl.getError(),contextLost:gl.isContextLost()};document.querySelector('#status').textContent=JSON.stringify(window.previewState);return window.previewState;}
+window.setPreviewAge=a=>{age=a;return render();};
+document.querySelector('#peak').onclick=()=>window.setPreviewAge(.408333333333);document.querySelector('#aftermath').onclick=()=>window.setPreviewAge(1.208333333333);
+window.cyclePreviewContext=async()=>{const gl=renderer.getContext(),extension=gl.getExtension('WEBGL_lose_context');if(!extension)throw Error('Context-loss extension unavailable');const restored=new Promise(resolve=>renderer.domElement.addEventListener('webglcontextrestored',()=>setTimeout(resolve,50),{once:true}));renderer.domElement.addEventListener('webglcontextlost',()=>setTimeout(()=>extension.restoreContext(),100),{once:true});extension.loseContext();await restored;return render();};document.querySelector('#context').onclick=window.cyclePreviewContext;
+window.addEventListener('pagehide',()=>{fx.dispose();ground.dispose();floor.material.dispose();renderer.dispose();});
+render();window.previewReady=true;
+</script></body></html>

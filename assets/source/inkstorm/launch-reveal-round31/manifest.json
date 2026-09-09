@@ -1,0 +1,44 @@
+{
+  "status": "Source candidate only; root runtime/public remain frozen round30; no art/driving acceptance",
+  "candidates": {
+    "CourseGulfField.ts": {
+      "target": "src/game/race/CourseGulfField.ts",
+      "originalSha256": "4804ca75b6003ad640b452c8cecbaa373d3f2df042a1574d7359a89b6a5f40f8",
+      "candidateSha256": "bcffab83e4d1c157177df74a26ed00a3960080e70b9a662589a7c91143e970fe"
+    },
+    "events.ts": {
+      "target": "src/game/mastery/events.ts",
+      "originalSha256": "0114cf9b0f625462680aef9afc3e94d41f5ff655f42f9e3c5ef02cba46dd31a3",
+      "candidateSha256": "a9dd34b0e6c97eb09f4cae4be6fd96dd42b8c74d0588c22a7a4643c1da12e72d"
+    }
+  },
+  "artifacts": {
+    "CourseGulfField.ts": "bcffab83e4d1c157177df74a26ed00a3960080e70b9a662589a7c91143e970fe",
+    "events.ts": "a9dd34b0e6c97eb09f4cae4be6fd96dd42b8c74d0588c22a7a4643c1da12e72d",
+    "integration.diff": "a89fcf5b2dce62105270ade029369ccebb463c035d1ef352ad236498fcab72e9",
+    "trace.ts": "6a92fd26fe2fa92a4549eaff2c7f3bcc7683f59539f2cc22efd242a10efe8bd6",
+    "audit.ts": "d8b2d3756641bb83cde879a97a9a2c5093aa4a8f1850fab4d4e2ee528d0f1380",
+    "migration-audit.ts": "a088b8fffb351433e997a6c44f0be2cc7bcdee383999a027b849006755a5c183",
+    "cpu-loader.mjs": "bebf9ba0900128650e594a4a6db6b66254ac58087478cdfe83f00627ca8aed62",
+    "cpu-receipt.json": "b6b52d66376378ea802f19d5b956b35fb63166847d2614e4777ef0257c2a0c91",
+    "migration-receipt.json": "9289a9bd13028c75f8df9afac0074a5978f854861e9ca426032ab75761849b82",
+    "longitudinal.json": "65be85192b2ece8a7fe0b00b6236ba7d5934126543ed76cea2428ee067243dd5",
+    "profile.svg": "5ced9612c92080b3cac9e81c9fa0ff15fd52017d687aad540ea1e88546a0fdc0"
+  },
+  "sourceReferences": {
+    "src/render/terrain/CourseGulfTextures.ts": "9e6548b4d0125f224b9adbc2f07a3c55d159c572564d267ecc3833286e54ff26",
+    "src/render/terrain/TerrainSystem.ts": "13c6b41e9e3a82a019fed0ae19a2bcb3135eba16cd4684a7fbb08d06f6881d7e",
+    "src/render/terrain/terrainShaderChunks.ts": "15b74f643cde0b76a679665e99fd8ed8e827d846b609c335ee61f39029627ec8",
+    "src/camera/CinematicCamera.ts": "6029048bd3c2bd846c9ad5703594851ccca872635f08d72d3ba2f61712e45eba",
+    "src/render/inkstorm/InkstormVista.ts": "cdd3cb7284f5c1f0b871f527abc465adad63030f1b2915fa1b59a2a5d1a5f49e",
+    "src/game/mastery/storage.ts": "f6aa34445b281e20d9d066812d9c605d066f6386dcb5a96c73cae1465341da7c",
+    "output/gauntlet/round-30-fork-foundry-v3-complete/receipts.json": "083ef006f65b5c1a7ed761b8a35c7606e1efcbdc46ec41d81e8b1a0fcd3ed704"
+  },
+  "validation": {
+    "strictCandidateTypecheck": "passed before root quiet window",
+    "cpuFieldAndCorridor": "passed before root quiet window",
+    "migration": "passed before root quiet window",
+    "newGpuDriving": "not run"
+  },
+  "scope": "Only field and generator edition diff may be integrated; snapshots/control/attempts/receipts are not runtime targets."
+}

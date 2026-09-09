@@ -1,0 +1,63 @@
+{
+  "scope": "Arithmetic source-over color compositing against stated illustrative backgrounds, not sampled frame pixels or visual acceptance",
+  "outcome": "Deep petrol retained across selected warm backgrounds",
+  "cases": [
+    {
+      "background": "bright sky",
+      "backgroundRgb": [
+        255,
+        244,
+        210
+      ],
+      "beforeRgb": [
+        88,
+        111,
+        107
+      ],
+      "afterRgb": [
+        30,
+        80,
+        99
+      ],
+      "amberContrastAfter": 7.013880465044724
+    },
+    {
+      "background": "sand",
+      "backgroundRgb": [
+        249,
+        196,
+        123
+      ],
+      "beforeRgb": [
+        86,
+        98,
+        83
+      ],
+      "afterRgb": [
+        30,
+        75,
+        91
+      ],
+      "amberContrastAfter": 7.553187981815992
+    },
+    {
+      "background": "sunset",
+      "backgroundRgb": [
+        247,
+        170,
+        90
+      ],
+      "beforeRgb": [
+        85,
+        91,
+        73
+      ],
+      "afterRgb": [
+        30,
+        73,
+        87
+      ],
+      "amberContrastAfter": 7.788513870111903
+    }
+  ]
+}

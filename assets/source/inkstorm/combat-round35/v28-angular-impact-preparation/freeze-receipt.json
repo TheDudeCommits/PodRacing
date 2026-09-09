@@ -1,0 +1,134 @@
+{
+  "scope": "Private V28 candidate only; root owns central application and native acceptance.",
+  "frozenAt": "2026-09-09T09:26:31.286356+00:00",
+  "patchSha256": "4890cbf4a68532e8fab8cbcac6df574052290866dde76f6fc1c8d8fd2dde3ddf",
+  "files": [
+    {
+      "path": "src/render/combat/TeemtoStrikeMotion.ts",
+      "beforeSha256": "7073f4700efcc0f876d0e3859167f45898c6313f7585af4d45ad057d9cad241c",
+      "afterSha256": "efa2c8e2c52e6b46c348b54458ef2a7a0c1cf984e67a909d1ce7c634608a82bd"
+    },
+    {
+      "path": "src/render/combat/TeemtoAuthoredDamage.ts",
+      "beforeSha256": "920a7e2a2689374a947e240265ec66829aeb0a3d8d369c33d7534eb0ba82891b",
+      "afterSha256": "f7a37f5be10d89e92ba8189b7860917c3fc99d03afce7fc880506c95358e7b59"
+    },
+    {
+      "path": "tests/combat/TeemtoSupportSettle.test.ts",
+      "beforeSha256": "adeed98a68da395c4cc1b06f10daef9ced205606596648ad01beb312b15bb4ed",
+      "afterSha256": "052ff5b14dfd6a9f84f2745d386ea14ffab3b6806c7ba126f1f0120e247d0fdd"
+    },
+    {
+      "path": "tests/combat/TeemtoAuthoredDamage.test.ts",
+      "beforeSha256": "66373c3ae9e505d44d4f447858126325d27ad87798578fb3573062eacce65738",
+      "afterSha256": "ce48b6a0bac37c752fbcd2581a598c7ab2d49c3d18aa9ae928f8cd175b87a214"
+    },
+    {
+      "path": "tests/combat/TeemtoFrontCatch.test.ts",
+      "beforeSha256": null,
+      "afterSha256": "f5217aee783f97c1f36e143738874457c4cf50f6cd9f418665db3bcfb02445d6"
+    }
+  ],
+  "checks": {
+    "focused": {
+      "passed": 12,
+      "files": 2
+    },
+    "compatibility": {
+      "passed": 16,
+      "files": 5
+    },
+    "cameraUnchanged": {
+      "passed": 4,
+      "files": 1
+    },
+    "strictTypeScript": "PASS",
+    "liveBaseHashes": "MATCH",
+    "gitApplyCheckWhitespaceError": "PASS"
+  },
+  "fixedAuthoredQueryMax": {
+    "hero": 459,
+    "rival": 402,
+    "previousHero": 348,
+    "previousRival": 300,
+    "extraFrontCacheHero": 111,
+    "extraFrontCacheRival": 102
+  },
+  "frontTravelCapMetres": 4.4,
+  "measuredTerminalFrontTravelMetres": {
+    "hero": 4.381656618218209,
+    "rival": 4.389205482435449
+  },
+  "sourceProjectionScope": "Actual full front source hulls in fixed runtime side camera, centers aligned; no native/gameplay image claim.",
+  "nativeAcceptance": "NOT RUN; no FPS or art-score claim",
+  "artifacts": {
+    "v28-angular-impact.patch": {
+      "sha256": "4890cbf4a68532e8fab8cbcac6df574052290866dde76f6fc1c8d8fd2dde3ddf",
+      "bytes": 25100
+    },
+    "HANDOFF.md": {
+      "sha256": "9dd6350265d03a01d4061775e01ceb9e9c74e8ac29dc5092d5c4d8aea36e4947",
+      "bytes": 4940
+    },
+    "base-hashes.json": {
+      "sha256": "89b4a12abe7caa01601d9a937df44b4df9305373c04e383709e1fe6da422e2cc",
+      "bytes": 509
+    },
+    "final-focused.log": {
+      "sha256": "2801dadf69ebe192e3c7cb1d873709ff742e15fdb9756240e4d5b31e9bd94ffa",
+      "bytes": 217
+    },
+    "final-compat.log": {
+      "sha256": "fe2cdba55f20672d0d4cec8e2b03581b7a45206d0dd0f7faf65c6253c1f4a23b",
+      "bytes": 219
+    },
+    "final-camera.log": {
+      "sha256": "ba1c01eca880781044b9c6682c8b83e1748bf14e5fe9ac5dbea5aa011d8631dd",
+      "bytes": 215
+    },
+    "final-typecheck.log": {
+      "sha256": "8943a88672288ba53fd3bf3f59711ddbde1ba2356deea6e752ab8f1cb168272f",
+      "bytes": 67
+    },
+    "support-metrics.json": {
+      "sha256": "22dc75740190ca01f0a4362678e73f68d7e26e61dc5e21ff352b08e41da83b01",
+      "bytes": 1977
+    },
+    "front-projection.json": {
+      "sha256": "86d69df6f7ec0a00a37616aaa2479ae1c9f6c0f5c80d623f4b3ddf0defa805b0",
+      "bytes": 50790
+    },
+    "actual-front-source-projection.png": {
+      "sha256": "1b31337b04975b625820ebb4b32034a490e0fbf645baa0c437a40ad604c43a3d",
+      "bytes": 66090
+    },
+    "final-contact-bands.json": {
+      "sha256": "24a24d3c27ad97e24cbbb8991feb59967c66f1f9c35574ecd7fbcdc7007e7cac",
+      "bytes": 3583
+    },
+    "initial-v27-contracts.log": {
+      "sha256": "eb8d4a4cf298bfd5e028119cf29f0cc9d3ba01606e314e6edcb3ae6ce0b87718",
+      "bytes": 4821
+    },
+    "initial-projection-assumptions.log": {
+      "sha256": "3bdf176b8f8b155136fa10ddd8842a4200b8f981a728c3e2ce5c8b658eb1e76e",
+      "bytes": 2662
+    },
+    "initial-balanced-projection-assumption.log": {
+      "sha256": "066d6f95973fa4ae95af8dd5277477a355d6245b1c51271df018648da6b39729",
+      "bytes": 2503
+    },
+    "initial-compat-query-budget.log": {
+      "sha256": "0ee01b070cbac48a5974a59ecc41e5fcac27f6e45b164f1088fe8f55f7d9e24f",
+      "bytes": 5271
+    },
+    "first-trial-without-front-balance/compat.log": {
+      "sha256": "ba49d902d00d547ea4f03ce604ea0ec1faefef4f34898cffee626bde87a3aea0",
+      "bytes": 2361
+    },
+    "late-support-pivot-balance/balanced-center-arc.json": {
+      "sha256": "6bd3b8ae2e68e2d0834cf3281d8d9510a60d8065b1a6b4e0259d5b0abb023d8f",
+      "bytes": 106260
+    }
+  }
+}

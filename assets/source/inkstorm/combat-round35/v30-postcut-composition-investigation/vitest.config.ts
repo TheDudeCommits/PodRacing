@@ -1,0 +1,1 @@
+import{defineConfig}from'vitest/config';export default defineConfig({test:{maxWorkers:1,fileParallelism:false,include:['assets/source/inkstorm/combat-round35/v30-postcut-composition-investigation/*.test.ts']}});

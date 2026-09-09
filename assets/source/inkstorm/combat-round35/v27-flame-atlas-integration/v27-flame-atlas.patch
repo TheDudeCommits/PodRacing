@@ -1,0 +1,537 @@
+--- a/src/render/app/GameApp.ts
++++ b/src/render/app/GameApp.ts
+@@ -302,7 +302,9 @@
+   private readonly courseView = new RaceCourseView();
+   private readonly speedStreaks = new SpeedStreaks();
+   private readonly contactShadows = new GroundContactShadows(RACE_PRESENTATION_CAPACITY);
+-  private readonly galacticEffects = new GalacticEffectsView();
++  private readonly galacticEffects = new GalacticEffectsView({
++    flameAtlas: { url: '/assets/fx/inkstorm/rupture-flame-v1.png' },
++  });
+   private readonly galacticShieldPool = Array.from({ length: RACE_PRESENTATION_CAPACITY * 2 }, () => ({
+     position: { x: 0, y: 0, z: 0 }, radius: 10, intensity: 1, phase: 0, color: '#72f4ff',
+     mode: 'shield' as 'shield' | 'recovery' | 'redline',
+@@ -3840,6 +3842,7 @@
+         },
+       },
+       game: {
++        flameAtlas: this.galacticEffects.flameAtlasDiagnostics,
+         milestone: 9,
+         vehiclePresentation: {
+           selected: this.vehicleAppearance,
+--- a/src/render/galactic/GalacticEffectsView.ts
++++ b/src/render/galactic/GalacticEffectsView.ts
+@@ -26,6 +26,7 @@
+   TubeGeometry,
+   Vector3,
+ } from 'three';
++import { RUPTURE_ATLAS_GLSL, RUPTURE_FLAME_ATLAS, RuptureFlameAtlas, type RuptureAtlasOptions } from './RuptureFlameAtlas';
+ import type { WreckGroundFootprint } from '../combat/WreckGroundContact';
+ import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
+ import { CEL_POST_EXCLUDE_USER_DATA_KEY } from '../materials/InvertedHullOutline';
+@@ -350,6 +351,9 @@
+   geometry.setAttribute('aEffectSurface', new InstancedBufferAttribute(new Float32Array(
+     (GALACTIC_EFFECT_CAPACITY.explosionPlates + GALACTIC_EFFECT_CAPACITY.hazardPlumes) * 3,
+   ), 3).setUsage(DynamicDrawUsage));
++  geometry.setAttribute('aRuptureAtlasSpan', new InstancedBufferAttribute(new Float32Array(
++    (GALACTIC_EFFECT_CAPACITY.explosionPlates + GALACTIC_EFFECT_CAPACITY.hazardPlumes) * 2,
++  ), 2).setUsage(DynamicDrawUsage));
+   return geometry;
+ }
+ 
+@@ -407,25 +411,30 @@
+   return result;
+ }
+ 
+-function createAtmosphericMaterial(): MeshBasicMaterial {
++function createAtmosphericMaterial(atlas: RuptureFlameAtlas): MeshBasicMaterial {
+   const result = material(1);
+   result.name = 'Painterly dust and impact wash';
+   result.transparent = true;
+   result.onBeforeCompile = (shader) => {
++    Object.assign(shader.uniforms, atlas.uniforms);
+     shader.vertexShader = shader.vertexShader.replace('#include <common>', `
+       #include <common>
+       attribute vec3 aEffectSurface;
++      attribute vec2 aRuptureAtlasSpan;
++      varying vec2 vRuptureAtlasSpan;
+       varying vec3 vEffectSurface;
+       varying vec2 vEffectUv;
+     `).replace('#include <begin_vertex>', `
+       #include <begin_vertex>
+       vEffectSurface = aEffectSurface;
++      vRuptureAtlasSpan = aRuptureAtlasSpan;
+       vEffectUv = uv;
+     `);
+     shader.fragmentShader = shader.fragmentShader.replace('#include <common>', `
+       #include <common>
+       varying vec3 vEffectSurface;
+       varying vec2 vEffectUv;
++      ${RUPTURE_ATLAS_GLSL}
+       float paintHash(vec2 p) { return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
+       float paintNoise(vec2 p) {
+         vec2 cell = floor(p), f = fract(p);
+@@ -440,7 +449,13 @@
+       float grain = paintNoise(p * vec2(16.0, 10.0) + vEffectSurface.z);
+       float radius = length(p);
+       float alpha;
+-      if (vEffectSurface.x > 7.5) {
++      if (uRuptureAtlasReady > 0.5 && vEffectSurface.x > 5.5 && vEffectSurface.x < 7.5) {
++        vec4 ink = ruptureArtwork(vEffectSurface.x, vEffectSurface.z, p);
++        alpha = ink.a;
++        // Crossfades use premultiplied colors; the material still outputs
++        // straight alpha through Three's existing transparent blend state.
++        diffuseColor.rgb = ink.rgb / max(ink.a, 0.00001);
++      } else if (vEffectSurface.x > 7.5) {
+         // Two bounded smoke plates, each a different collection of billows.
+         // The winning lobe supplies a curved light response, rather than one
+         // height ramp across an opaque column. This is authored sprite shading,
+@@ -566,7 +581,7 @@
+       if (diffuseColor.a < 0.008) discard;
+     `);
+   };
+-  result.customProgramCacheKey = () => 'painterly-atmosphere-curling-rupture-v8';
++  result.customProgramCacheKey = () => 'painterly-atmosphere-rooted-atlas-v9';
+   return result;
+ }
+ 
+@@ -686,9 +701,11 @@
+     GALACTIC_EFFECT_CAPACITY.crashDebris,
+   ), 'galactic-crash-debris', 30);
+ 
++  private readonly ruptureFlameAtlas = new RuptureFlameAtlas();
++
+   readonly explosionPlates = prepare(new InstancedMesh(
+     createExplosionPlateGeometry(),
+-    createAtmosphericMaterial(),
++    createAtmosphericMaterial(this.ruptureFlameAtlas),
+     GALACTIC_EFFECT_CAPACITY.explosionPlates + GALACTIC_EFFECT_CAPACITY.hazardPlumes,
+   ), 'galactic-explosion-plates', 31);
+ 
+@@ -767,8 +784,10 @@
+   private readonly color = new Color();
+   private visibilityCamera: Camera | null = null;
+ 
+-  constructor() {
++  constructor(options?: { readonly flameAtlas?: RuptureAtlasOptions }) {
+     super();
++    // Boot/warmup request only. Pure CPU/default views perform no image I/O.
++    if (options?.flameAtlas) this.ruptureFlameAtlas.load(options.flameAtlas);
+     this.name = 'galactic-effects';
+     // Solid hazard matter must occlude outlines too, not only the beauty pass.
+     this.hazardBodies.userData[CEL_POST_EXCLUDE_USER_DATA_KEY] = false;
+@@ -788,6 +807,8 @@
+       this.explosionPlates,
+     );
+   }
++
++  get flameAtlasDiagnostics() { return this.ruptureFlameAtlas.diagnostics; }
+ 
+   setState(state: Readonly<GalacticEffectsState>): void {
+     this.setShields(state.shields ?? EMPTY_STATES);
+@@ -1224,6 +1245,7 @@
+   }
+ 
+   dispose(): void {
++    this.ruptureFlameAtlas.dispose();
+     for (const child of this.children) {
+       if (!(child instanceof InstancedMesh)) continue;
+       child.geometry.dispose();
+@@ -1703,7 +1725,11 @@
+             size, size * (smoke ? 1.22 : flash ? .82 : .70), size, slot.r, slot.g, slot.b);
+           // Authored branches consume actual event age, so a moving root cannot
+           // restart the pressure/fire progression. Legacy seed semantics stay unchanged.
+-          this.writeEffectSurface(plateCount, smoke ? (slot.contactLayer === 2 ? 8 : 9) : flash ? 6 : 7, opacity, age);
++          const severity = slot.scale / (flash ? RUPTURE_FLASH_SCALE : 2.45);
++          const pixelsPerWorld = RUPTURE_FLAME_ATLAS.pixelsPerWorldAtUnitSeverity / severity;
++          this.writeEffectSurface(plateCount, smoke ? (slot.contactLayer === 2 ? 8 : 9) : flash ? 6 : 7, opacity, age,
++            smoke ? 0 : size * pixelsPerWorld,
++            smoke ? 0 : size * (flash ? .82 : .70) * pixelsPerWorld);
+           plateCount++;
+           continue;
+         }
+@@ -1762,9 +1788,11 @@
+     }
+     this.dirty(this.explosionPlates, plateCount);
+     this.explosionPlates.geometry.getAttribute('aEffectSurface').needsUpdate = true;
+-  }
+-
+-  private writeEffectSurface(index: number, kind: number, opacity: number, seed: number): void {
++    this.explosionPlates.geometry.getAttribute('aRuptureAtlasSpan').needsUpdate = true;
++  }
++
++  private writeEffectSurface(index: number, kind: number, opacity: number, seed: number, spanX = 0, spanY = 0): void {
+     this.explosionPlates.geometry.getAttribute('aEffectSurface').setXYZ(index, kind, opacity, seed);
+-  }
+-}
++    this.explosionPlates.geometry.getAttribute('aRuptureAtlasSpan').setXY(index, spanX, spanY);
++  }
++}
+--- /dev/null
++++ b/src/render/galactic/RuptureFlameAtlas.ts
+@@ -0,0 +1,130 @@
++import { ClampToEdgeWrapping, LinearFilter, SRGBColorSpace, Texture, TextureLoader } from 'three';
++
++/** Original pixels are immutable. Rectangles use top-left PNG coordinates. */
++export const RUPTURE_FLAME_ATLAS = {
++  sha256: 'f14657a3388bf9618d0206806c7b9c54856bd7f54c98596ea1790d85c97dd4c5',
++  width: 1254, height: 1254,
++  // At severity2 one source pixel spans1/120m. The same scale applies to all
++  // four drawings despite their unequal rectangles and existing plate pulses.
++  pixelsPerWorldAtUnitSeverity: 240,
++  frames: [
++    { rect: [245, 126, 619, 539], root: [266, 349] },
++    { rect: [860, 102, 1254, 489], root: [882, 349] },
++    { rect: [194, 730, 720, 1134], root: [231, 969] },
++    { rect: [860, 814, 1201, 1117], root: [889, 969] },
++  ],
++} as const;
++
++export interface RuptureAtlasOptions {
++  readonly url: string;
++  readonly loader?: Pick<TextureLoader, 'load'>;
++}
++
++/** One view owns one optional texture. No work or request occurs by default. */
++export class RuptureFlameAtlas {
++  readonly uniforms = {
++    uRuptureAtlas: { value: null as Texture | null },
++    uRuptureAtlasReady: { value: 0 },
++  };
++  private status: 'disabled' | 'loading' | 'ready' | 'error' | 'disposed' = 'disabled';
++  private url: string | null = null;
++  private pending: Texture | null = null;
++  private readonly released = new WeakSet<Texture>();
++
++  load(options: RuptureAtlasOptions): void {
++    // A view has one boot request; retries/replacements require a new owner.
++    if (this.status !== 'disabled') return;
++    this.url = options.url;
++    this.status = 'loading';
++    let completed = false;
++    const accept = (texture: Texture): void => {
++      completed = true;
++      if (this.status !== 'loading') { this.release(texture); return; }
++      const image = texture.image as { width?: number; height?: number } | undefined;
++      if (image?.width !== RUPTURE_FLAME_ATLAS.width || image.height !== RUPTURE_FLAME_ATLAS.height) {
++        this.status = 'error'; this.release(texture); this.pending = null; return;
++      }
++      texture.colorSpace = SRGBColorSpace;
++      texture.flipY = false; // UV y follows the PNG's top-down pixel metadata.
++      texture.premultiplyAlpha = false;
++      texture.wrapS = ClampToEdgeWrapping; texture.wrapT = ClampToEdgeWrapping;
++      texture.minFilter = LinearFilter; texture.magFilter = LinearFilter;
++      texture.generateMipmaps = false; // No cross-rectangle atlas mip bleeding.
++      texture.needsUpdate = true;
++      this.pending = null;
++      this.uniforms.uRuptureAtlas.value = texture;
++      this.uniforms.uRuptureAtlasReady.value = 1;
++      this.status = 'ready';
++    };
++    const reject = (): void => {
++      completed = true;
++      if (this.status !== 'loading') return;
++      this.status = 'error';
++      if (this.pending) this.release(this.pending);
++      this.pending = null;
++    };
++    try {
++      const texture = (options.loader ?? new TextureLoader()).load(options.url, accept, undefined, reject);
++      // Also safe for test/custom loaders that complete synchronously.
++      if (!completed) this.pending = texture;
++      else if (this.uniforms.uRuptureAtlas.value !== texture) this.release(texture);
++    } catch { reject(); }
++  }
++
++  get diagnostics() {
++    return { status: this.status, url: this.url,
++      width: this.status === 'ready' ? RUPTURE_FLAME_ATLAS.width : 0,
++      height: this.status === 'ready' ? RUPTURE_FLAME_ATLAS.height : 0,
++      frameCount: this.status === 'ready' ? RUPTURE_FLAME_ATLAS.frames.length : 0 };
++  }
++
++  dispose(): void {
++    if (this.status === 'disposed') return;
++    this.status = 'disposed';
++    this.uniforms.uRuptureAtlasReady.value = 0;
++    if (this.pending) this.release(this.pending);
++    if (this.uniforms.uRuptureAtlas.value) this.release(this.uniforms.uRuptureAtlas.value);
++    this.pending = null; this.uniforms.uRuptureAtlas.value = null;
++  }
++
++  private release(texture: Texture): void {
++    if (this.released.has(texture)) return;
++    this.released.add(texture); texture.dispose();
++  }
++}
++
++// Shared by the GPU shader and metadata tests. No texture-coordinate rewrite,
++// world transform, per-hit texture allocation or mutable per-event phase clock.
++export const RUPTURE_ATLAS_GLSL = `
++  uniform sampler2D uRuptureAtlas;
++  uniform float uRuptureAtlasReady;
++  varying vec2 vRuptureAtlasSpan;
++  vec4 ruptureFrame(float frame, vec2 local) {
++    vec4 rect;
++    vec2 root;
++    ${RUPTURE_FLAME_ATLAS.frames.map((f, i) => `${i ? 'else ' : ''}if (frame < ${i + .5}) {
++      rect = vec4(${f.rect.map(n => n.toFixed(1)).join(', ')});
++      root = vec2(${f.root.map(n => n.toFixed(1)).join(', ')});
++    }`).join('\n')}
++    else { return vec4(0.0); }
++    vec2 pixel = root + vec2(local.x, -local.y) * vRuptureAtlasSpan;
++    // Pixel indices address centers, with explicit outside transparency even
++    // when bilinear sampling would otherwise see a neighboring drawing.
++    if (any(lessThan(pixel, rect.xy)) || any(greaterThanEqual(pixel, rect.zw))) return vec4(0.0);
++    vec2 uv = (clamp(pixel, rect.xy, rect.zw - 1.0) + 0.5) / ${RUPTURE_FLAME_ATLAS.width.toFixed(1)};
++    vec4 texel = texture2D(uRuptureAtlas, uv);
++    // sRGB texture hardware decoding preserves the painted source colors.
++    return vec4(texel.rgb * texel.a, texel.a);
++  }
++  vec4 ruptureArtwork(float kind, float age, vec2 local) {
++    if (kind < 6.5) return ruptureFrame(0.0, local);
++    // Existing fire slot age; loading cannot restart these transitions.
++    float second = smoothstep(0.24, 0.40, age);
++    float embers = smoothstep(1.35, 1.65, age);
++    if (age < 0.24) return ruptureFrame(1.0, local);
++    if (age < 0.40) return mix(ruptureFrame(1.0, local), ruptureFrame(2.0, local), second);
++    if (age < 1.35) return ruptureFrame(2.0, local);
++    if (age < 1.65) return mix(ruptureFrame(2.0, local), ruptureFrame(3.0, local), embers);
++    return ruptureFrame(3.0, local);
++  }
++`;
+--- /dev/null
++++ b/tests/render/RuptureAtlasIntegration.test.ts
+@@ -0,0 +1,82 @@
++import { Matrix4, MeshBasicMaterial, PerspectiveCamera, ShaderLib, Texture, UniformsUtils, Vector3 } from 'three';
++import { describe, expect, it } from 'vitest';
++import { GalacticEffectsView } from '../../src/render/galactic/GalacticEffectsView';
++import { type RuptureAtlasOptions } from '../../src/render/galactic/RuptureFlameAtlas';
++
++function pendingTexture() {
++  const texture = new Texture({ width: 1254, height: 1254 } as HTMLImageElement);
++  let done: ((value: Texture<HTMLImageElement>) => void) | undefined;
++  const loader: NonNullable<RuptureAtlasOptions['loader']> = { load: (_url, ok) => { done = ok; return texture; } };
++  return { loader, ready: () => done?.(texture) };
++}
++const event = Object.freeze({ type: 'crash' as const, time: 4, position: Object.freeze({ x: 0, y: 8, z: 0 }),
++  groundY: 0, severity: 2, style: 'redline' as const,
++  surfaceNormal: Object.freeze({ x: 1, y: 0, z: 0 }), wreckOwner: 0, wreckSequence: 7 });
++function state(view: GalacticEffectsView) {
++  return [view.explosionPlates, view.crashDebris].map(m => ({ count: m.count,
++    matrices: Array.from(m.instanceMatrix.array.slice(0, m.count * 16)),
++    colors: Array.from(m.instanceColor?.array.slice(0, m.count * 3) ?? []),
++    surface: Array.from(m.geometry.getAttribute('aEffectSurface')?.array.slice(0, m.count * 3) ?? []),
++  }));
++}
++
++describe('rooted artwork on the existing authored plates', () => {
++  it('keeps every live matrix/color/age/pool identical before and after a mid-event texture completion', () => {
++    const pending = pendingTexture(), fallback = new GalacticEffectsView();
++    const trial = new GalacticEffectsView({ flameAtlas: { url: '/trial.png', loader: pending.loader } });
++    const camera = new PerspectiveCamera(60, 1.6, .35, 1000);
++    camera.position.set(0, 15, 35); camera.lookAt(0, 8, 0); camera.updateMatrixWorld();
++    try {
++      fallback.emitCrash(event); trial.emitCrash(event);
++      for (const age of [0, .08, .3, .7, 1.5, 2.3]) {
++        fallback.update(4 + age, camera); trial.update(4 + age, camera);
++        expect(state(trial)).toEqual(state(fallback));
++        if (age === .7) {
++          const before = state(trial); pending.ready(); trial.update(4 + age, camera);
++          expect(state(trial)).toEqual(before); expect(trial.flameAtlasDiagnostics.status).toBe('ready');
++        }
++      }
++      expect(trial.children).toHaveLength(8); expect(trial.explosionPlates.count).toBe(0);
++      trial.syncWreckRupture(0, -1); trial.clearEffects(); expect(trial.crashDebris.count).toBe(0);
++    } finally { trial.dispose(); fallback.dispose(); }
++  });
++
++  it('maps all four measured roots to the same plate center with shared pixels/world despite unequal rectangles and pulse/stretch', () => {
++    const view = new GalacticEffectsView(), camera = new PerspectiveCamera();
++    camera.position.set(15, 18, 30); camera.lookAt(0, 8, 0); camera.updateMatrixWorld();
++    const matrix = new Matrix4(), axis = new Vector3();
++    try {
++      view.emitCrash(event);
++      for (const age of [0, .08, .25, .6, 1.6]) {
++        view.update(4 + age, camera);
++        const span = view.explosionPlates.geometry.getAttribute('aRuptureAtlasSpan');
++        const kind = view.explosionPlates.geometry.getAttribute('aEffectSurface');
++        for (let i = 0; i < view.explosionPlates.count; i++) {
++          if (kind.getX(i) < 6 || kind.getX(i) > 7) { expect(span.getX(i)).toBe(0); continue; }
++          view.explosionPlates.getMatrixAt(i, matrix);
++          const metresPerPixelX = axis.setFromMatrixColumn(matrix, 0).length() / span.getX(i);
++          const metresPerPixelY = axis.setFromMatrixColumn(matrix, 1).length() / span.getY(i);
++          expect(metresPerPixelX).toBeCloseTo(1 / 120, 7); expect(metresPerPixelY).toBeCloseTo(1 / 120, 7);
++
++        }
++      }
++      const mat = view.explosionPlates.material as MeshBasicMaterial;
++      expect(mat.depthTest).toBe(true); expect(mat.depthWrite).toBe(false);
++    } finally { view.dispose(); }
++  });
++
++  it('updates the compiled shader uniform in place and keeps the non-atlas procedural branch available', () => {
++    const pending = pendingTexture(), view = new GalacticEffectsView({ flameAtlas: { url: '/trial.png', loader: pending.loader } });
++    try {
++      const material = view.explosionPlates.material as MeshBasicMaterial;
++      const shader = { vertexShader: ShaderLib.basic.vertexShader, fragmentShader: ShaderLib.basic.fragmentShader,
++        uniforms: UniformsUtils.clone(ShaderLib.basic.uniforms) } as Parameters<typeof material.onBeforeCompile>[0];
++      material.onBeforeCompile(shader, undefined as never);
++      expect(shader.uniforms.uRuptureAtlasReady!.value).toBe(0);
++      pending.ready(); expect(shader.uniforms.uRuptureAtlasReady!.value).toBe(1);
++      expect(shader.fragmentShader).toContain('vEffectSurface.x > 5.5 && vEffectSurface.x < 7.5');
++      expect(shader.fragmentShader).toContain('else if (vEffectSurface.x > 7.5)');
++      view.dispose(); expect(shader.uniforms.uRuptureAtlasReady!.value).toBe(0);
++    } finally { if (view.flameAtlasDiagnostics.status !== 'disposed') view.dispose(); }
++  });
++});
+--- /dev/null
++++ b/tests/render/RuptureAtlasPixels.test.ts
+@@ -0,0 +1,82 @@
++import { describe, expect, it } from 'vitest';
++import { RUPTURE_FLAME_ATLAS } from '../../src/render/galactic/RuptureFlameAtlas';
++
++const fileModule: string = 'node:fs', cryptoModule: string = 'node:crypto', zlibModule: string = 'node:zlib', bufferModule: string = 'node:buffer';
++const { readFileSync } = await import(/* @vite-ignore */ fileModule);
++const { createHash } = await import(/* @vite-ignore */ cryptoModule);
++const { inflateSync } = await import(/* @vite-ignore */ zlibModule);
++const { Buffer } = await import(/* @vite-ignore */ bufferModule);
++
++/** Test-only RGBA8 PNG decoding. Reads the actual immutable asset, writes no image. */
++function decodeSource() {
++  const file = readFileSync('assets/source/inkstorm/combat-round35/v27-flame-atlas-candidate/flame-atlas-raw-v1.png');
++  expect(createHash('sha256').update(file).digest('hex')).toBe(RUPTURE_FLAME_ATLAS.sha256);
++  expect(file.subarray(0, 8).toString('hex')).toBe('89504e470d0a1a0a');
++  expect(file.readUInt32BE(16)).toBe(1254); expect(file.readUInt32BE(20)).toBe(1254);
++  expect([...file.subarray(24, 29)]).toEqual([8, 6, 0, 0, 0]); // RGBA8, no interlace
++  const chunks: Uint8Array[] = [];
++  for (let at = 8; at < file.length;) {
++    const length = file.readUInt32BE(at), type = file.toString('ascii', at + 4, at + 8);
++    if (type === 'IDAT') chunks.push(file.subarray(at + 8, at + 8 + length));
++    at += length + 12;
++  }
++  const scan = inflateSync(Buffer.concat(chunks)), width = 1254, stride = width * 4;
++  expect(scan.length).toBe((stride + 1) * 1254);
++  const rgba = new Uint8Array(stride * 1254);
++  for (let y = 0; y < 1254; y++) {
++    const filter = scan[y * (stride + 1)]!; if (filter > 4) throw new Error('Unexpected PNG filter');
++    for (let x = 0; x < stride; x++) {
++      const a = x >= 4 ? rgba[y * stride + x - 4]! : 0;
++      const b = y ? rgba[(y - 1) * stride + x]! : 0;
++      const c = y && x >= 4 ? rgba[(y - 1) * stride + x - 4]! : 0;
++      let predictor = 0;
++      if (filter === 1) predictor = a;
++      if (filter === 2) predictor = b;
++      if (filter === 3) predictor = Math.floor((a + b) / 2);
++      if (filter === 4) {
++        const p = a + b - c, pa = Math.abs(p - a), pb = Math.abs(p - b), pc = Math.abs(p - c);
++        predictor = pa <= pb && pa <= pc ? a : pb <= pc ? b : c;
++      }
++      rgba[y * stride + x] = (scan[y * (stride + 1) + 1 + x]! + predictor) & 255;
++    }
++  }
++  return rgba;
++}
++
++describe('actual generated PNG sampling authority', () => {
++  it('isolates every meaningful alpha pixel, preserves hot witnesses and fits all artwork within existing hot plate/ground envelopes', () => {
++    const rgba = decodeSource(), frames = RUPTURE_FLAME_ATLAS.frames;
++    const counts = [0, 0, 0, 0], extrema = frames.map(() => ({ x: 0, y: 0, radius: 0, borderAlpha: 0 }));
++    let outside = 0, overlaps = 0, imageBorder = 0;
++    for (let y = 0; y < 1254; y++) for (let x = 0; x < 1254; x++) {
++      const alpha = rgba[(y * 1254 + x) * 4 + 3]!;
++      if (!x || !y || x === 1253 || y === 1253) imageBorder = Math.max(imageBorder, alpha);
++      let owners = 0;
++      for (let i = 0; i < frames.length; i++) {
++        const f = frames[i]!, [x0, y0, x1, y1] = f.rect;
++        if (x < x0 || x >= x1 || y < y0 || y >= y1) continue;
++        const e = extrema[i]!;
++        if (x === x0 || x === x1 - 1 || y === y0 || y === y1 - 1) e.borderAlpha = Math.max(e.borderAlpha, alpha);
++        if (alpha <= 2) continue; // 2/255 < existing shader discard .008
++        owners++; counts[i]!++;
++        const dx = Math.abs(x - f.root[0]), dy = Math.abs(y - f.root[1]);
++        e.x = Math.max(e.x, dx); e.y = Math.max(e.y, dy); e.radius = Math.max(e.radius, Math.hypot(dx, dy));
++      }
++      if (alpha > 2 && !owners) outside++;
++      if (owners > 1) overlaps++;
++    }
++    expect(outside).toBe(0); expect(overlaps).toBe(0); expect(imageBorder).toBe(0);
++    for (let i = 0; i < frames.length; i++) {
++      const f = frames[i]!, e = extrema[i]!, at = (f.root[1] * 1254 + f.root[0]) * 4;
++      expect(counts[i]).toBeGreaterThan(1000); expect(rgba[at + 3]).toBeGreaterThan(200);
++      expect(rgba[at]).toBeGreaterThan(240); expect(rgba[at + 1]).toBeGreaterThan(210);
++      expect(e.borderAlpha).toBeLessThanOrEqual(2);
++      // Ratios cancel severity; this checks the smallest existing pulsing plate.
++      const halfX = (i === 0 ? 3.6 * .78 : 2.45 * .85) * 240;
++      const halfY = halfX * (i === 0 ? .82 : .70);
++      expect(e.x).toBeLessThan(halfX - 1); expect(e.y).toBeLessThan(halfY - 1);
++      // Existing source-ground hot-volume clearance .64*3.6 per severity.
++      expect(e.radius / 240).toBeLessThan(3.6 * .64);
++    }
++  });
++});
+--- /dev/null
++++ b/tests/render/RuptureFlameAtlas.test.ts
+@@ -0,0 +1,62 @@
++import { ClampToEdgeWrapping, LinearFilter, SRGBColorSpace, Texture } from 'three';
++import { describe, expect, it, vi } from 'vitest';
++import { RuptureFlameAtlas, type RuptureAtlasOptions } from '../../src/render/galactic/RuptureFlameAtlas';
++
++function loaderFixture() {
++  const texture = new Texture({ width: 1254, height: 1254 } as HTMLImageElement);
++  const dispose = vi.spyOn(texture, 'dispose');
++  let succeed: ((value: Texture<HTMLImageElement>) => void) | undefined;
++  let fail: (() => void) | undefined;
++  const load = vi.fn<NonNullable<RuptureAtlasOptions['loader']>['load']>((_url, ok, _progress, error) => {
++    succeed = ok; fail = () => error?.(new Error('offline')); return texture;
++  });
++  return { texture, dispose, load, succeed: () => succeed?.(texture), fail: () => fail?.() };
++}
++
++describe('one owned optional rupture atlas', () => {
++  it('stays disabled without a boot request and copies scalar diagnostics', () => {
++    const owner = new RuptureFlameAtlas();
++    const d = owner.diagnostics; expect(d).toEqual({ status: 'disabled', url: null, width: 0, height: 0, frameCount: 0 });
++    d.width = 99; expect(owner.diagnostics.width).toBe(0);
++    expect(owner.uniforms.uRuptureAtlasReady.value).toBe(0); owner.dispose();
++  });
++  it('assigns the actual loaded texture before ready, uses straight sRGB/linear sampling and disposes once', () => {
++    const f = loaderFixture(), owner = new RuptureFlameAtlas();
++    owner.load({ url: '/test.png', loader: f }); owner.load({ url: '/ignored.png', loader: f });
++    expect(f.load).toHaveBeenCalledTimes(1); expect(owner.diagnostics.status).toBe('loading');
++    expect(owner.uniforms.uRuptureAtlasReady.value).toBe(0);
++    f.succeed(); expect(owner.uniforms.uRuptureAtlas.value).toBe(f.texture);
++    expect(owner.uniforms.uRuptureAtlasReady.value).toBe(1);
++    expect(owner.diagnostics).toEqual({ status: 'ready', url: '/test.png', width: 1254, height: 1254, frameCount: 4 });
++    expect(f.texture.colorSpace).toBe(SRGBColorSpace); expect(f.texture.flipY).toBe(false);
++    expect(f.texture.premultiplyAlpha).toBe(false); expect(f.texture.generateMipmaps).toBe(false);
++    expect(f.texture.minFilter).toBe(LinearFilter); expect(f.texture.magFilter).toBe(LinearFilter);
++    expect(f.texture.wrapS).toBe(ClampToEdgeWrapping); expect(f.texture.wrapT).toBe(ClampToEdgeWrapping);
++    owner.dispose(); owner.dispose(); expect(f.dispose).toHaveBeenCalledTimes(1);
++    expect(owner.uniforms.uRuptureAtlas.value).toBeNull(); expect(owner.uniforms.uRuptureAtlasReady.value).toBe(0);
++  });
++  it('keeps the procedural fallback on network error and releases the failed handle', () => {
++    const f = loaderFixture(), owner = new RuptureFlameAtlas(); owner.load({ url: '/missing.png', loader: f });
++    f.fail(); expect(owner.diagnostics.status).toBe('error'); expect(owner.uniforms.uRuptureAtlasReady.value).toBe(0);
++    owner.dispose(); expect(f.dispose).toHaveBeenCalledTimes(1);
++  });
++  it('cannot resurrect a disposed view after delayed decode or failure', () => {
++    const f = loaderFixture(), owner = new RuptureFlameAtlas(); owner.load({ url: '/late.png', loader: f });
++    owner.dispose(); f.succeed(); f.fail(); owner.dispose();
++    expect(f.dispose).toHaveBeenCalledTimes(1); expect(owner.diagnostics.status).toBe('disposed');
++    expect(owner.uniforms.uRuptureAtlas.value).toBeNull(); expect(owner.uniforms.uRuptureAtlasReady.value).toBe(0);
++  });
++  it('rejects unexpected decoded dimensions without exposing an atlas-ready diagnostic', () => {
++    const f = loaderFixture(), owner = new RuptureFlameAtlas(); f.texture.image = { width: 1024, height: 1024 } as HTMLImageElement;
++    owner.load({ url: '/wrong.png', loader: f }); f.succeed();
++    expect(owner.diagnostics.status).toBe('error'); expect(f.dispose).toHaveBeenCalledTimes(1);
++    expect(owner.uniforms.uRuptureAtlasReady.value).toBe(0); owner.dispose();
++  });
++  it('handles synchronous loader completion and thrown start failures without retaining a second texture', () => {
++    const f = loaderFixture(), owner = new RuptureFlameAtlas();
++    owner.load({ url: '/sync.png', loader: { load: (_url, ok) => { ok?.(f.texture); return f.texture; } } });
++    expect(owner.diagnostics.status).toBe('ready'); owner.dispose(); expect(f.dispose).toHaveBeenCalledTimes(1);
++    const error = new RuptureFlameAtlas(); error.load({ url: '/throws.png', loader: { load: () => { throw new Error('start'); } } });
++    expect(error.diagnostics.status).toBe('error'); error.dispose();
++  });
++});

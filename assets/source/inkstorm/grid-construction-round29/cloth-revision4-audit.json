@@ -1,0 +1,176 @@
+{
+  "revision": 4,
+  "cloth": [
+    {
+      "family": "pit-complex",
+      "centerBlender": [
+        -48,
+        -12.1,
+        16.65
+      ],
+      "shellTriangles": 212,
+      "nominalPerimeterThickness": 0.03,
+      "signedVolume": 10.08001911164076,
+      "expectedVolume": 10.08,
+      "predecessorWarpEnvelopeVolume": 0,
+      "maximumInteriorThickness": 0.03,
+      "frontSideSeparationSamples": 320,
+      "minimumUpperSeparation": 0.0149993896484375,
+      "minimumLowerSeparation": 0.014999389648433947,
+      "creamTopTriangles": 20,
+      "creamBottomTriangles": 20,
+      "undersideColorMultiplier": 0.68,
+      "closedDirectedEdges": true
+    },
+    {
+      "family": "pit-complex",
+      "centerBlender": [
+        -6,
+        -11.1,
+        14.1
+      ],
+      "shellTriangles": 212,
+      "nominalPerimeterThickness": 0.03,
+      "signedVolume": 8.567978336330407,
+      "expectedVolume": 8.567999999999998,
+      "predecessorWarpEnvelopeVolume": 0,
+      "maximumInteriorThickness": 0.03,
+      "frontSideSeparationSamples": 320,
+      "minimumUpperSeparation": 0.014999389648435724,
+      "minimumLowerSeparation": 0.014999389648435724,
+      "creamTopTriangles": 20,
+      "creamBottomTriangles": 20,
+      "undersideColorMultiplier": 0.68,
+      "closedDirectedEdges": true
+    },
+    {
+      "family": "pit-complex",
+      "centerBlender": [
+        38,
+        -12.1,
+        19.2
+      ],
+      "shellTriangles": 212,
+      "nominalPerimeterThickness": 0.03,
+      "signedVolume": 13.910401254284837,
+      "expectedVolume": 13.9104,
+      "predecessorWarpEnvelopeVolume": 0,
+      "maximumInteriorThickness": 0.03,
+      "frontSideSeparationSamples": 320,
+      "minimumUpperSeparation": 0.014999389648430395,
+      "minimumLowerSeparation": 0.014999389648433947,
+      "creamTopTriangles": 20,
+      "creamBottomTriangles": 20,
+      "undersideColorMultiplier": 0.68,
+      "closedDirectedEdges": true
+    },
+    {
+      "family": "pit-district",
+      "centerBlender": [
+        -39.4,
+        3,
+        11
+      ],
+      "shellTriangles": 412,
+      "nominalPerimeterThickness": 0.03,
+      "signedVolume": 16.983213077640077,
+      "expectedVolume": 16.98321237696807,
+      "predecessorWarpEnvelopeVolume": 6.855512376968068,
+      "maximumInteriorThickness": 0.19525992710341697,
+      "frontSideSeparationSamples": 1344,
+      "minimumUpperSeparation": 0.014999389648433947,
+      "minimumLowerSeparation": 0.014999389648435724,
+      "creamTopTriangles": 26,
+      "creamBottomTriangles": 26,
+      "undersideColorMultiplier": 0.68,
+      "closedDirectedEdges": true
+    },
+    {
+      "family": "pit-district",
+      "centerBlender": [
+        -2.4,
+        7,
+        16
+      ],
+      "shellTriangles": 412,
+      "nominalPerimeterThickness": 0.03,
+      "signedVolume": 22.993967670528793,
+      "expectedVolume": 22.993946503195055,
+      "predecessorWarpEnvelopeVolume": 9.322946503195059,
+      "maximumInteriorThickness": 0.20127188165046458,
+      "frontSideSeparationSamples": 1344,
+      "minimumUpperSeparation": 0.014999389648435724,
+      "minimumLowerSeparation": 0.014999389648433947,
+      "creamTopTriangles": 24,
+      "creamBottomTriangles": 24,
+      "undersideColorMultiplier": 0.68,
+      "closedDirectedEdges": true
+    },
+    {
+      "family": "pit-district",
+      "centerBlender": [
+        37.6,
+        0,
+        12.8
+      ],
+      "shellTriangles": 412,
+      "nominalPerimeterThickness": 0.03,
+      "signedVolume": 16.98342175091463,
+      "expectedVolume": 16.983428847311295,
+      "predecessorWarpEnvelopeVolume": 6.855728847311294,
+      "maximumInteriorThickness": 0.19506393703858446,
+      "frontSideSeparationSamples": 1344,
+      "minimumUpperSeparation": 0.014999389648435724,
+      "minimumLowerSeparation": 0.014999389648435724,
+      "creamTopTriangles": 14,
+      "creamBottomTriangles": 14,
+      "undersideColorMultiplier": 0.68,
+      "closedDirectedEdges": true
+    },
+    {
+      "family": "pit-district",
+      "centerBlender": [
+        -17,
+        9,
+        26
+      ],
+      "shellTriangles": 412,
+      "nominalPerimeterThickness": 0.03,
+      "signedVolume": 31.045502458693512,
+      "expectedVolume": 31.04558592847252,
+      "predecessorWarpEnvelopeVolume": 12.56558592847252,
+      "maximumInteriorThickness": 0.20235089925838487,
+      "frontSideSeparationSamples": 1344,
+      "minimumUpperSeparation": 0.014999389648433947,
+      "minimumLowerSeparation": 0.014999389648430395,
+      "creamTopTriangles": 28,
+      "creamBottomTriangles": 28,
+      "undersideColorMultiplier": 0.68,
+      "closedDirectedEdges": true
+    }
+  ],
+  "nonClothPreservation": [
+    {
+      "family": "pit-complex",
+      "unchangedTriangles": 3792,
+      "trianglePositionNormalColorSha256": "ec5190971ea86830ee4532fd66e2abaf74cc2bfcfa5cfcc6f4cef7304b2daf40",
+      "oldOverlaySha256": "5ef7a4849bb42da9272270c81bd16258d58e41998b73b4c4f361df59d8f4403d",
+      "currentOverlaySha256": "041b623978b5f9082925ce015a7d0edd6241d65c4a26561bf1bb2441ca534f14"
+    },
+    {
+      "family": "pit-district",
+      "unchangedTriangles": 1536,
+      "trianglePositionNormalColorSha256": "0d4a6c70cdf119855261e7fefa9b4edfeaa25292cedd33afd32affdbb596e997",
+      "oldOverlaySha256": "bda92a8cc3d84859c8721a70a89ddc58e57a50815ef54c25be0e70ab97688c7b",
+      "currentOverlaySha256": "76420c2aeb852ed21fe4acd418e7e234d715f1b860418dc626f541cf3ce8d5d2"
+    },
+    {
+      "family": "foundry-gantry",
+      "unchangedTriangles": 1806,
+      "trianglePositionNormalColorSha256": "1dc1bec13c538001dc5406a35d4a4ca2c6bb88323faae348095c5891c8ac71f5",
+      "oldOverlaySha256": "856b320af118d132fd4f685fb3bcc1f2aa22c91ecf868893ad5ff2ef9da41131",
+      "currentOverlaySha256": "703999115d9ffd54fcce9c1b57de456e27b29fa577b376c34f549ccd24e33a5f"
+    }
+  ],
+  "status": "CPU PASS; actual-game cloth acceptance pending"
+}

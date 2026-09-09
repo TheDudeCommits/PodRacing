@@ -1,0 +1,23 @@
+{
+  "scope": "V18b; three CSS changes from fully tested V18. Typecheck/build pass; gameplay/combat/asset modules unchanged.",
+  "files": [
+    {
+      "source": "dist/index.html",
+      "copy": "assets/source/inkstorm/combat-round35/v18b-frozen-bundle/index.html",
+      "sha256": "8b22da81a9d6c3900bdc5ca6aee53bfdd92c253bba7022635e675ef63837d465",
+      "bytes": 748
+    },
+    {
+      "source": "dist/assets/index-CNULz2QF.js",
+      "copy": "assets/source/inkstorm/combat-round35/v18b-frozen-bundle/index-CNULz2QF.js",
+      "sha256": "2b24bc133e26c91368f07e932ae40838fa6ab060c84088d1a6572f6fb189c72f",
+      "bytes": 1806989
+    },
+    {
+      "source": "dist/assets/index-CNULz2QF.js.map",
+      "copy": "assets/source/inkstorm/combat-round35/v18b-frozen-bundle/index-CNULz2QF.js.map",
+      "sha256": "9c07b43368a7b6acd3bc261be77ab93bbb97d7bd8dc1f17431924aba5f498a0e",
+      "bytes": 6113223
+    }
+  ]
+}

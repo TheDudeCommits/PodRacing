@@ -1,0 +1,32 @@
+--- a/tests/render/GalacticEffectsView.test.ts
++++ b/tests/render/GalacticEffectsView.test.ts
+@@ -384,7 +384,7 @@
+     view.dispose();
+   });
+ 
+-  it('uses the sampled engine groundpoint for a directional spark fan and two low dust lobes', () => {
++  it('uses the sampled engine groundpoint for readable sparks, a low scrape, and a raised sand fan', () => {
+     const view = new GalacticEffectsView(), matrix = new Matrix4(), point = new Vector3(), size = new Vector3();
+     const position = Object.freeze({ x: 20, y: -12, z: 3 });
+     const direction = Object.freeze({ x: 0, y: 0, z: 1 });
+@@ -396,7 +396,10 @@
+       view.crashDebris.getMatrixAt(i, matrix); matrix.decompose(point, new Quaternion(), size);
+       expect(point.z).toBeLessThan(position.z);
+       expect(point.y).toBeGreaterThan(position.y);
+-      expect(size.z / size.x).toBeGreaterThan(20);
++      // Contact sparks must remain streaks while being wide enough to read
++      // beside the imported engine; the former >20 ratio forced subpixel width.
++      expect(size.z / size.x).toBeGreaterThan(10);
++      expect(size.x).toBeGreaterThanOrEqual(.34 * .26 - 1e-7);
+       expect(view.crashDebris.geometry.getAttribute('aFragmentMetal').getX(i)).toBe(0);
+     }
+     const surface = view.explosionPlates.geometry.getAttribute('aEffectSurface');
+@@ -404,7 +407,7 @@
+       view.explosionPlates.getMatrixAt(i, matrix); matrix.decompose(point, new Quaternion(), size);
+       expect(point.z).toBeLessThan(position.z);
+       expect(point.y - position.y).toBeLessThan(3);
+-      expect(size.y / size.x).toBeCloseTo(.48, 5);
++      expect(size.y / size.x).toBeCloseTo(i === 0 ? .18 : .54, 5);
+       expect(surface.getX(i)).toBe(1);
+       expect(surface.getY(i)).toBeLessThanOrEqual(Math.fround(.67));
+     }

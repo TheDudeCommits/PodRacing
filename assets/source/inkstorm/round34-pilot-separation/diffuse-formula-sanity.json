@@ -1,0 +1,222 @@
+{
+  "scope": "CPU formula sanity check only, not rendered A/B or sampled actual V8 texture. Uses documented pre-AO source base swatches, illustrative AO factors, 8-bit linear ramp encoding, existing baseColor modulation and exact sun shade vector. Excludes additive highlights, tint, post-processing and haze.",
+  "formula": "round8(linear(ramp)) * ((1-strength) + strength * linear(authoredBase) * ao) * sunShade",
+  "rows": [
+    {
+      "role": "suit",
+      "illustrativeAuthoredBase": "#606B76",
+      "illustrativeBakedAoFactor": 1,
+      "sunVisibility": 1,
+      "oldDiffuseFourBandsSrgb": [
+        "#374353",
+        "#46515c",
+        "#555c5f",
+        "#606565"
+      ],
+      "candidateDiffuseFourBandsSrgb": [
+        "#485263",
+        "#5d6772",
+        "#6f757b",
+        "#7d7f7c"
+      ]
+    },
+    {
+      "role": "suit",
+      "illustrativeAuthoredBase": "#606B76",
+      "illustrativeBakedAoFactor": 1,
+      "sunVisibility": 0,
+      "oldDiffuseFourBandsSrgb": [
+        "#20253d",
+        "#2a2e44",
+        "#343547",
+        "#3b3b4c"
+      ],
+      "candidateDiffuseFourBandsSrgb": [
+        "#2b2f4a",
+        "#393d55",
+        "#45465d",
+        "#4f4c5e"
+      ]
+    },
+    {
+      "role": "suit",
+      "illustrativeAuthoredBase": "#606B76",
+      "illustrativeBakedAoFactor": 0.75,
+      "sunVisibility": 1,
+      "oldDiffuseFourBandsSrgb": [
+        "#2f3948",
+        "#3d4650",
+        "#4a5053",
+        "#545858"
+      ],
+      "candidateDiffuseFourBandsSrgb": [
+        "#444d5c",
+        "#58616a",
+        "#696f73",
+        "#777875"
+      ]
+    },
+    {
+      "role": "suit",
+      "illustrativeAuthoredBase": "#606B76",
+      "illustrativeBakedAoFactor": 0.75,
+      "sunVisibility": 0,
+      "oldDiffuseFourBandsSrgb": [
+        "#1b2035",
+        "#24273b",
+        "#2d2e3d",
+        "#333342"
+      ],
+      "candidateDiffuseFourBandsSrgb": [
+        "#292c45",
+        "#363950",
+        "#424156",
+        "#4b4758"
+      ]
+    },
+    {
+      "role": "suit",
+      "illustrativeAuthoredBase": "#606B76",
+      "illustrativeBakedAoFactor": 0.62,
+      "sunVisibility": 1,
+      "oldDiffuseFourBandsSrgb": [
+        "#2b3441",
+        "#373f48",
+        "#43494b",
+        "#4c5050"
+      ],
+      "candidateDiffuseFourBandsSrgb": [
+        "#424a59",
+        "#555e66",
+        "#666b6f",
+        "#737470"
+      ]
+    },
+    {
+      "role": "suit",
+      "illustrativeAuthoredBase": "#606B76",
+      "illustrativeBakedAoFactor": 0.62,
+      "sunVisibility": 0,
+      "oldDiffuseFourBandsSrgb": [
+        "#181c30",
+        "#202335",
+        "#282938",
+        "#2e2e3c"
+      ],
+      "candidateDiffuseFourBandsSrgb": [
+        "#272a42",
+        "#34374d",
+        "#403f53",
+        "#494554"
+      ]
+    },
+    {
+      "role": "helmet",
+      "illustrativeAuthoredBase": "#99A2A5",
+      "illustrativeBakedAoFactor": 1,
+      "sunVisibility": 1,
+      "oldDiffuseFourBandsSrgb": [
+        "#2e3746",
+        "#5a5f68",
+        "#7f8482",
+        "#999b92"
+      ],
+      "candidateDiffuseFourBandsSrgb": [
+        "#566373",
+        "#727e87",
+        "#8d9595",
+        "#a2a299"
+      ]
+    },
+    {
+      "role": "helmet",
+      "illustrativeAuthoredBase": "#99A2A5",
+      "illustrativeBakedAoFactor": 1,
+      "sunVisibility": 0,
+      "oldDiffuseFourBandsSrgb": [
+        "#1a1e33",
+        "#37384e",
+        "#504f62",
+        "#625e6f"
+      ],
+      "candidateDiffuseFourBandsSrgb": [
+        "#353a56",
+        "#474c66",
+        "#5a5a71",
+        "#676274"
+      ]
+    },
+    {
+      "role": "helmet",
+      "illustrativeAuthoredBase": "#99A2A5",
+      "illustrativeBakedAoFactor": 0.75,
+      "sunVisibility": 1,
+      "oldDiffuseFourBandsSrgb": [
+        "#272f3c",
+        "#4e535a",
+        "#6f7472",
+        "#868880"
+      ],
+      "candidateDiffuseFourBandsSrgb": [
+        "#4d5866",
+        "#667179",
+        "#7f8685",
+        "#919189"
+      ]
+    },
+    {
+      "role": "helmet",
+      "illustrativeAuthoredBase": "#99A2A5",
+      "illustrativeBakedAoFactor": 0.75,
+      "sunVisibility": 0,
+      "oldDiffuseFourBandsSrgb": [
+        "#16192c",
+        "#2f3043",
+        "#464556",
+        "#555261"
+      ],
+      "candidateDiffuseFourBandsSrgb": [
+        "#2f334d",
+        "#3f435b",
+        "#505065",
+        "#5c5868"
+      ]
+    },
+    {
+      "role": "helmet",
+      "illustrativeAuthoredBase": "#99A2A5",
+      "illustrativeBakedAoFactor": 0.62,
+      "sunVisibility": 1,
+      "oldDiffuseFourBandsSrgb": [
+        "#232b36",
+        "#474b52",
+        "#666a68",
+        "#7b7c75"
+      ],
+      "candidateDiffuseFourBandsSrgb": [
+        "#47525f",
+        "#5f6970",
+        "#777d7c",
+        "#888880"
+      ]
+    },
+    {
+      "role": "helmet",
+      "illustrativeAuthoredBase": "#99A2A5",
+      "illustrativeBakedAoFactor": 0.62,
+      "sunVisibility": 0,
+      "oldDiffuseFourBandsSrgb": [
+        "#131627",
+        "#2b2b3d",
+        "#3f3e4e",
+        "#4d4a58"
+      ],
+      "candidateDiffuseFourBandsSrgb": [
+        "#2b2f47",
+        "#3b3e55",
+        "#4b4a5e",
+        "#565260"
+      ]
+    }
+  ]
+}

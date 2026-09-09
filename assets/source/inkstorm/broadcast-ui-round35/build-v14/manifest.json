@@ -1,0 +1,22 @@
+{
+  "scope": [
+    "src/ui/workshopSymbols.ts"
+  ],
+  "sourceHashes": {
+    "before": "0248849b5595cfb561141d1b7c78a705f7930605e10d0f297c2106df759729c1",
+    "after": "4b532469a7fd8e3c416f4a6369a46be82a59ee646110d0d923a875af52dd884a"
+  },
+  "cataloguePath": "src/game/galactic/workshop.ts",
+  "catalogueSha256": "baf2bcf6d0e65bec5dadde9b1497884d1d9770ce0729db6b4b179aadf35aeaed",
+  "validation": {
+    "typecheck": "pass",
+    "catalogueCoverage": "20 of 20",
+    "distinctVariants": 20,
+    "svgXml": "20 of 20 pass",
+    "fallbackIdentity": "all five byte-identical",
+    "unknownAndWrongBayIds": "fallback pass",
+    "gitDiffCheck": "pass",
+    "browser": "not run; parent owns visual acceptance",
+    "build": "not run"
+  }
+}

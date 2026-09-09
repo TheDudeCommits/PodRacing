@@ -1,0 +1,178 @@
+{
+  "stage": "Private V22 candidate; root integration and native evidence pending",
+  "checks": {
+    "focusedTests": 40,
+    "testFiles": 6,
+    "typecheck": "PASS",
+    "applyCheck": "PASS",
+    "visual": "NOT RUN",
+    "performance": "NOT RUN"
+  },
+  "actualGeometry": [
+    {
+      "name": "hero",
+      "minimum": 0.09625589276868673,
+      "checked": 978858,
+      "maxQueries": 348,
+      "bands": [
+        {
+          "frame": 984,
+          "mesh": "teemto-engine-left-body",
+          "length": 15.182406155885474,
+          "near": 353
+        },
+        {
+          "frame": 984,
+          "mesh": "teemto-damage-right-front-v16",
+          "length": 6.861972858458103,
+          "near": 125
+        },
+        {
+          "frame": 984,
+          "mesh": "teemto-damage-right-rear-v16",
+          "length": 9.76900169138753,
+          "near": 964
+        },
+        {
+          "frame": 1018,
+          "mesh": "teemto-engine-left-body",
+          "length": 15.182121462162286,
+          "near": 351
+        },
+        {
+          "frame": 1018,
+          "mesh": "teemto-damage-right-front-v16",
+          "length": 6.858172693284359,
+          "near": 128
+        },
+        {
+          "frame": 1018,
+          "mesh": "teemto-damage-right-rear-v16",
+          "length": 9.76854718489085,
+          "near": 964
+        }
+      ]
+    },
+    {
+      "name": "rival",
+      "minimum": 0.09999999999892673,
+      "checked": 498328,
+      "maxQueries": 300,
+      "bands": [
+        {
+          "frame": 984,
+          "mesh": "teemto-engine-left-body",
+          "length": 14.623593836487089,
+          "near": 286
+        },
+        {
+          "frame": 984,
+          "mesh": "teemto-damage-right-front-v16",
+          "length": 6.856574500183342,
+          "near": 37
+        },
+        {
+          "frame": 984,
+          "mesh": "teemto-damage-right-rear-v16",
+          "length": 9.977220452790789,
+          "near": 576
+        },
+        {
+          "frame": 1018,
+          "mesh": "teemto-engine-left-body",
+          "length": 14.609433030386754,
+          "near": 285
+        },
+        {
+          "frame": 1018,
+          "mesh": "teemto-damage-right-front-v16",
+          "length": 6.852720461552963,
+          "near": 37
+        },
+        {
+          "frame": 1018,
+          "mesh": "teemto-damage-right-rear-v16",
+          "length": 9.990483851086537,
+          "near": 579
+        }
+      ]
+    }
+  ],
+  "files": [
+    {
+      "path": "v22-broad-contact.patch",
+      "bytes": 28286,
+      "sha256": "4f88e8b9dc1f4ae8260ebeb4ecf13a73e07c5cc3821caf09276693bf588020cb"
+    },
+    {
+      "path": "v22-gameapp-footprint-adapter.patch",
+      "bytes": 597,
+      "sha256": "29fae18abcd1b67fabb60d6a8c458e6048f0d8745c84a6ad935eaeb027691270"
+    },
+    {
+      "path": "candidate-inputs.json",
+      "bytes": 1565,
+      "sha256": "3bd393966fbb8dd12abed90ceae81abe6a09517a4abe19d924c4583bbfa7af03"
+    },
+    {
+      "path": "HANDOFF.md",
+      "bytes": 5658,
+      "sha256": "586e40e3669f4f7d67f61a2f4ecc10bb4ca516b965c016dc4548ff70cd2537d9"
+    },
+    {
+      "path": "terrain-shadow-audit.md",
+      "bytes": 7657,
+      "sha256": "4492ef89a348ef4cd5b2bc5f387925befb63991a5fef4e42260b3e3e1dee71e4"
+    },
+    {
+      "path": "shape-support.json",
+      "bytes": 28020,
+      "sha256": "d80ac2a50b0cb89e9b7300937a6ccbbfc7232cb725e3d099cfa3b904b4598be2"
+    },
+    {
+      "path": "actual-support-final-hero.json",
+      "bytes": 900,
+      "sha256": "f7266a38b6e0d5668d6f010667e57c2dfa985418c2b270703c88a651a46bf1d0"
+    },
+    {
+      "path": "actual-support-final-rival.json",
+      "bytes": 901,
+      "sha256": "972d3b8000b06b60b89e6b39ac4c32b0795b5f8820f220db8fb676b45cf9fc17"
+    },
+    {
+      "path": "focused-initial.log",
+      "bytes": 2572,
+      "sha256": "10ea66019a1baab2e2b6224d61382177d086937ceecd7f78e81e7726b11475fc"
+    },
+    {
+      "path": "focused-v2.log",
+      "bytes": 217,
+      "sha256": "d54abb5d8da5dffdce2adc86eda04562e3c89aba9b4f2426316971782d6b2adb"
+    },
+    {
+      "path": "geometry-receipt.log",
+      "bytes": 215,
+      "sha256": "ed9e814f16d0b6cb48f338d4d56a6bcd5ee5d3e887d66b6d1cbe82d7f3db3736"
+    },
+    {
+      "path": "typecheck-initial.log",
+      "bytes": 332,
+      "sha256": "2354e3d0178ab9e7f009b1004f80b76f769dd78f3fd0e485101996f587fd658c"
+    },
+    {
+      "path": "typecheck-final.log",
+      "bytes": 412,
+      "sha256": "4b955d5e84e4a056005607fdaa6d93a10f0ae1538a397f5967b5eb7a33330a0e"
+    },
+    {
+      "path": "typecheck-final-remap.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "v22-broad-contact-initial-diff-header.patch",
+      "bytes": 28314,
+      "sha256": "dc89ed96555ee7f6d3210c8ff164d3893f19534d74c8459d159596c9485b0e9f"
+    }
+  ]
+}

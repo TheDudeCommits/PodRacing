@@ -1,0 +1,32 @@
+{
+  "recordedAt": "2026-09-07T15:58:56Z",
+  "uid": "c2ca24c9b3c2416db0abe026d9f4b7ac",
+  "method": "official_blender_mcp",
+  "targetSize": 12,
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "Error: Download request failed with status code 429"
+      }
+    ],
+    "structuredContent": {
+      "result": "Error: Download request failed with status code 429"
+    },
+    "isError": false
+  },
+  "contextVerification": {
+    "content": [
+      {
+        "type": "text",
+        "text": "Code executed successfully: {\"scene\": \"Cruise \\u2014 Going Merry source 4b2cb678\", \"objects\": 17, \"viewLayer\": \"ViewLayer\", \"activeObject\": \"Sketchfab_model.001\", \"selectedCount\": 15, \"intakeObjects\": 0, \"temporaryConfigurationEmpty\": true, \"quarryObjects\": 166}\n"
+      }
+    ],
+    "structuredContent": {
+      "result": "Code executed successfully: {\"scene\": \"Cruise \\u2014 Going Merry source 4b2cb678\", \"objects\": 17, \"viewLayer\": \"ViewLayer\", \"activeObject\": \"Sketchfab_model.001\", \"selectedCount\": 15, \"intakeObjects\": 0, \"temporaryConfigurationEmpty\": true, \"quarryObjects\": 166}\n"
+    },
+    "isError": false
+  },
+  "scope": "Third official download attempt, after more than one hour since prior retry. HTTP429, no imported objects.",
+  "setupIssue": "Intended context retention used bpy.app.driver_namespace, which safe mode rejected before mutation. Download was nevertheless called in the unchanged active Cruise scene and failed429 before import. This was a sequencing error; future download must depend on verified successful intake setup. No credentials copied or exposed; original context and empty intake verified after failure."
+}

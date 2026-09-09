@@ -1,0 +1,14 @@
+{
+  "status": "PASS",
+  "scope": "Actual native used only as read-only in-memory fixture; no GLB output or Blender calls",
+  "tests": [
+    "actual native drift detected without output",
+    "in-memory repair restores18324V2triangles and keeps1548new triangles exact",
+    "reject reversed retained triangle",
+    "reject duplicate retained triangle",
+    "reject lower added hoist geometry",
+    "both original inputs byte exact"
+  ],
+  "durationSeconds": 3.777,
+  "packerSha256": "821daa5a7c6d4901d28a7d82345baa40dcaaaf75d0da0bd3423b55d777848850"
+}

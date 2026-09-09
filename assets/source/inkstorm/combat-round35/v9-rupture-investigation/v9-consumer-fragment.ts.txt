@@ -1,0 +1,117 @@
+  private consumeGalacticEffects(events: readonly GalacticEvent[], time: number): void {
+    for (const event of events) {
+      let racerId: string | null = null;
+      let style: 'crash' | 'mine' | 'sand' | 'rock' | 'redline' | 'reward' | 'energy' = 'crash';
+      let severity = 1;
+      let color = '#ff6a2d';
+      switch (event.type) {
+        case 'scrap-mine-triggered':
+          racerId = event.racerId;
+          style = 'mine';
+          severity = 1.85;
+          color = '#ff631c';
+          break;
+        case 'hazard-hit':
+          racerId = event.racerId;
+          style = event.hazard === 'rockfall' ? 'rock' : 'sand';
+          severity = 1.35 + event.intensity * 0.45;
+          color = event.hazard === 'rockfall' ? '#7b3a27' : '#ffd071';
+          break;
+        case 'redline-explosion':
+          racerId = event.racerId;
+          style = 'redline';
+          severity = 2;
+          color = '#ff2f18';
+          break;
+        case 'wreck':
+          if (event.cause === 'redline-explosion') continue;
+          racerId = event.racerId;
+          style = event.cause === 'rockfall' ? 'rock' : 'crash';
+          severity = event.cause === 'rockfall' ? 1.65 : 1.8;
+          color = event.racerId === this.localRacerId() ? '#ff6a2d' : '#58d8ff';
+          break;
+        case 'emp-pulse':
+          racerId = event.racerId;
+          style = 'energy';
+          severity = 1.8;
+          color = '#bb66ff';
+          break;
+        case 'emp-hit':
+          racerId = event.targetId;
+          style = 'energy';
+          severity = event.blocked ? 0.7 : 1.1;
+          color = event.blocked ? '#58efff' : '#bb66ff';
+          break;
+        case 'repair-salvage-collected':
+          racerId = event.racerId;
+          style = 'reward';
+          severity = 1.35;
+          color = '#8fff45';
+          break;
+        case 'upgrade-collected':
+          racerId = event.racerId;
+          style = 'reward';
+          severity = 1.55;
+          color = '#ffd34d';
+          break;
+        case 'recovered':
+          racerId = event.racerId;
+          style = 'energy';
+          severity = 1.4;
+          color = '#60ff91';
+          break;
+        case 'shield-block':
+          racerId = event.racerId;
+          style = 'energy';
+          severity = 1.05;
+          color = '#58efff';
+          break;
+        case 'weapon-hit':
+          if (event.weapon === 'scrap-mine') continue;
+          racerId = event.targetId;
+          style = 'energy';
+          severity = event.shielded ? 0.9 : 1.2;
+          color = event.shielded ? '#58efff' : '#ff6940';
+          break;
+        default:
+          continue;
+      }
+      const racerIndex = this.race.state.entries.findIndex((candidate) => candidate.id === racerId);
+      const entry = this.race.state.entries[racerIndex];
+      if (!entry) continue;
+      let position = entry.vehicle.position;
+      if (style === 'redline' || style === 'crash') {
+        const view = this.racerViews[racerIndex];
+        // Events identify the racer, not a collision world point. Emit this
+        // casing rupture from actual engine geometry, never an invented hit.
+        const anchor = view?.importedActive
+          ? view.imported.getAttachment('exhaustRight')
+          : view?.procedural.getObjectByName('engine-right');
+        if (view && anchor) {
+          const local = view.worldToLocal(anchor.getWorldPosition(new Vector3()));
+          const vehicle = entry.vehicle;
+          const wrecked = entry.galactic?.wreck.phase === 'wrecked';
+          // Match the displayed YXZ pose on the event's simulation tick. The
+          // previous render may still show the intact, pre-wreck orientation.
+          local.applyEuler(new Euler(
+            vehicle.orientation.pitch + (wrecked ? 0.34 + Math.sin(time * 5.1 + racerIndex) * 0.16 : 0),
+            vehicle.orientation.yaw + (wrecked ? time * 1.25 : 0),
+            vehicle.orientation.roll + vehicle.orientation.bank
+              + (wrecked ? -0.92 + Math.sin(time * 7.4 + racerIndex) * 0.34 : 0),
+            'YXZ',
+          ));
+          position = { x: vehicle.position.x + local.x, y: vehicle.position.y + local.y, z: vehicle.position.z + local.z };
+        }
+      }
+      this.galacticEffects.emitCrash({
+        type: 'crash',
+        time,
+        position,
+        velocity: entry.vehicle.velocity,
+        groundY: this.race.terrain.heightAt(position.x, position.z),
+        severity,
+        color,
+        style,
+      });
+    }
+  }

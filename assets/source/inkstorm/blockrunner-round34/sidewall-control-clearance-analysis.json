@@ -1,0 +1,445 @@
+{
+  "sourceSha256": "1ecf135bc63df02102f168b79ea869d98aba6d07bdc94b2e0c6f10478a13f96e",
+  "sourceUnchanged": true,
+  "scope": "External original-source capsule diagnostic. No Blender/mesh/runtime edits. Capsule ends conservatively overestimate source flat/tapered control ends. Full-radius support joints included. Candidate still needs actual derivative mesh and render review.",
+  "results": [
+    {
+      "side": "negativeX",
+      "controlObject": "pasted__brick230_phongE2_0",
+      "gripBottom": [
+        -0.2615363992448276,
+        -20.55003789210642,
+        2.242410121027933
+      ],
+      "gripTop": [
+        -0.3505770841507285,
+        -20.625890821508698,
+        2.572285990913229
+      ],
+      "gripAxis": [
+        -0.2544019568740028,
+        -0.21672265543508448,
+        0.9425024853865605
+      ],
+      "gripLength": 0.35,
+      "gripRadius": 0.06558262603576406,
+      "profileSides": 20,
+      "endBevelLength": 0.01183,
+      "mountJoint": [
+        -0.2653524285979376,
+        -20.553288731937947,
+        2.2565476583087314
+      ],
+      "mountRadius": 0.035,
+      "wallContact": {
+        "object": "pasted__pasted__pasted__pasted__pasted__polySurface97_phongE2_0",
+        "sourceTriangleIndex": 1810,
+        "point": [
+          -1.3879467788704751,
+          -20.553288731937947,
+          2.2565476583087314
+        ],
+        "distanceAlongRay": 1.1225943502725375,
+        "triangle": [
+          [
+            -1.3879467043055433,
+            -21.34211916948768,
+            2.9157895149143247
+          ],
+          [
+            -1.3879467487387271,
+            -21.342119169487685,
+            0.864658982084358
+          ],
+          [
+            -1.3879470417872342,
+            -17.507504976730402,
+            0.8646590709507251
+          ]
+        ]
+      },
+      "wallRayHits": [
+        {
+          "object": "pasted__pasted__pasted__pasted__pasted__polySurface97_phongE2_0",
+          "sourceTriangleIndex": 1810,
+          "point": [
+            -1.3879467788704751,
+            -20.553288731937947,
+            2.2565476583087314
+          ],
+          "distanceAlongRay": 1.1225943502725375,
+          "triangle": [
+            [
+              -1.3879467043055433,
+              -21.34211916948768,
+              2.9157895149143247
+            ],
+            [
+              -1.3879467487387271,
+              -21.342119169487685,
+              0.864658982084358
+            ],
+            [
+              -1.3879470417872342,
+              -17.507504976730402,
+              0.8646590709507251
+            ]
+          ]
+        },
+        {
+          "object": "pasted__pasted__pasted__pasted__pasted__polySurface97_phongE2_0",
+          "sourceTriangleIndex": 1807,
+          "point": [
+            -1.4206992168502146,
+            -20.553288731937947,
+            2.2565476583087314
+          ],
+          "distanceAlongRay": 1.155346788252277,
+          "triangle": [
+            [
+              -1.420699635956729,
+              -17.464824511237776,
+              1.868779861442087
+            ],
+            [
+              -1.4206989817082518,
+              -21.342119173888236,
+              0.836075737732135
+            ],
+            [
+              -1.420699159440987,
+              -21.34211917388826,
+              2.944374269994759
+            ]
+          ]
+        }
+      ],
+      "supportAxisLength": 1.1225943502725375,
+      "segments": [
+        {
+          "capsuleRadius": 0.06558262603576406,
+          "broadphasePadding": 0.025,
+          "exactTriangleTests": 232,
+          "contacts": [],
+          "countsByObject": {},
+          "closestSurfaceWithinPaddedBroadphase": {
+            "object": "pasted__LegoTri36_lambert1_0",
+            "sourceTriangleIndex": 5222,
+            "axisDistance": 0.06846328128834558,
+            "capsuleClearance": 0.002880655252581521,
+            "axisPoint": [
+              -0.2856136138773882,
+              -20.570549046795506,
+              2.33161082888103
+            ],
+            "surfacePoint": [
+              -0.2332628648836408,
+              -20.532784904956724,
+              2.3544250690774766
+            ]
+          },
+          "label": "grip",
+          "p": [
+            -0.2615363992448276,
+            -20.55003789210642,
+            2.242410121027933
+          ],
+          "q": [
+            -0.3505770841507285,
+            -20.625890821508698,
+            2.572285990913229
+          ]
+        },
+        {
+          "capsuleRadius": 0.035,
+          "broadphasePadding": 0.025,
+          "exactTriangleTests": 49,
+          "contacts": [
+            {
+              "object": "pasted__pasted__pasted__pasted__pasted__polySurface97_phongE2_0",
+              "sourceTriangleIndex": 1807,
+              "axisDistance": 0.03275243797973861,
+              "capsuleClearance": -0.0022475620202613913,
+              "axisPoint": [
+                -1.3879467788704751,
+                -20.553288731937947,
+                2.2565476583087314
+              ],
+              "surfacePoint": [
+                -1.4206992168502133,
+                -20.553288736729137,
+                2.256547655547652
+              ]
+            },
+            {
+              "object": "pasted__pasted__pasted__pasted__pasted__polySurface97_phongE2_0",
+              "sourceTriangleIndex": 1810,
+              "axisDistance": 0.0,
+              "capsuleClearance": -0.035,
+              "axisPoint": [
+                -1.387946778870475,
+                -20.553288731937947,
+                2.2565476583087314
+              ],
+              "surfacePoint": [
+                -1.387946778870475,
+                -20.553288731937947,
+                2.2565476583087314
+              ]
+            }
+          ],
+          "countsByObject": {
+            "pasted__pasted__pasted__pasted__pasted__polySurface97_phongE2_0": 2
+          },
+          "closestSurfaceWithinPaddedBroadphase": {
+            "object": "pasted__pasted__pasted__pasted__pasted__polySurface97_phongE2_0",
+            "sourceTriangleIndex": 1810,
+            "axisDistance": 0.0,
+            "capsuleClearance": -0.035,
+            "axisPoint": [
+              -1.387946778870475,
+              -20.553288731937947,
+              2.2565476583087314
+            ],
+            "surfacePoint": [
+              -1.387946778870475,
+              -20.553288731937947,
+              2.2565476583087314
+            ]
+          },
+          "label": "wall_support",
+          "p": [
+            -0.2653524285979376,
+            -20.553288731937947,
+            2.2565476583087314
+          ],
+          "q": [
+            -1.3879467788704751,
+            -20.553288731937947,
+            2.2565476583087314
+          ]
+        }
+      ],
+      "mountContactPolicy": "Support stops at measured inner wall surface; capsule overlap with that exact wall is intended contact and is reported. Other surfaces are unexpected. Support-to-grip overlap is deliberate mechanical engagement."
+    },
+    {
+      "side": "positiveX",
+      "controlObject": "pasted__pasted__brick230_phongE2_0",
+      "gripBottom": [
+        0.4684797129977237,
+        -20.546814594753737,
+        2.2287800934963977
+      ],
+      "gripTop": [
+        0.47173794083023,
+        -20.62171848911295,
+        2.570655495596659
+      ],
+      "gripAxis": [
+        0.009309222378589492,
+        -0.21401112674060732,
+        0.976786863143604
+      ],
+      "gripLength": 0.35,
+      "gripRadius": 0.06558262603576406,
+      "profileSides": 20,
+      "endBevelLength": 0.01183,
+      "mountJoint": [
+        0.4686193513334025,
+        -20.550024761654846,
+        2.2434318964435516
+      ],
+      "mountRadius": 0.035,
+      "wallContact": {
+        "object": "pasted__pasted__pasted__pasted__polySurface97_phongE2_0",
+        "sourceTriangleIndex": 1810,
+        "point": [
+          1.5496850968005047,
+          -20.550024761654846,
+          2.2434318964435516
+        ],
+        "distanceAlongRay": 1.0810657454671022,
+        "triangle": [
+          [
+            1.54968545759216,
+            -21.353077098808576,
+            2.919546784841582
+          ],
+          [
+            1.5496840357302784,
+            -21.353077098808384,
+            0.8684163408779806
+          ],
+          [
+            1.5496845509447523,
+            -17.51846255058568,
+            0.868416340877982
+          ]
+        ]
+      },
+      "wallRayHits": [
+        {
+          "object": "pasted__pasted__pasted__pasted__polySurface97_phongE2_0",
+          "sourceTriangleIndex": 1810,
+          "point": [
+            1.5496850968005047,
+            -20.550024761654846,
+            2.2434318964435516
+          ],
+          "distanceAlongRay": 1.0810657454671022,
+          "triangle": [
+            [
+              1.54968545759216,
+              -21.353077098808576,
+              2.919546784841582
+            ],
+            [
+              1.5496840357302784,
+              -21.353077098808384,
+              0.8684163408779806
+            ],
+            [
+              1.5496845509447523,
+              -17.51846255058568,
+              0.868416340877982
+            ]
+          ]
+        },
+        {
+          "object": "pasted__pasted__pasted__pasted__polySurface97_phongE2_0",
+          "sourceTriangleIndex": 1807,
+          "point": [
+            1.582436732062478,
+            -20.550024761654846,
+            2.2434318964435516
+          ],
+          "distanceAlongRay": 1.1138173807290754,
+          "triangle": [
+            [
+              1.5824371451142472,
+              -17.475782085093055,
+              1.8725371313693437
+            ],
+            [
+              1.5824366241652736,
+              -21.35307710320898,
+              0.8398330076593923
+            ],
+            [
+              1.5824366241652736,
+              -21.353077103208985,
+              2.948131539922016
+            ]
+          ]
+        }
+      ],
+      "supportAxisLength": 1.0810657454671022,
+      "segments": [
+        {
+          "capsuleRadius": 0.06558262603576406,
+          "broadphasePadding": 0.025,
+          "exactTriangleTests": 210,
+          "contacts": [],
+          "countsByObject": {},
+          "closestSurfaceWithinPaddedBroadphase": {
+            "object": "pasted__LegoTri36_lambert1_0",
+            "sourceTriangleIndex": 84,
+            "axisDistance": 0.06677865698030205,
+            "capsuleClearance": 0.0011960309445379902,
+            "axisPoint": [
+              0.4713226904836813,
+              -20.612172235846007,
+              2.5270846078329825
+            ],
+            "surfacePoint": [
+              0.5368766782125055,
+              -20.62446277614041,
+              2.5237670273571378
+            ]
+          },
+          "label": "grip",
+          "p": [
+            0.4684797129977237,
+            -20.546814594753737,
+            2.2287800934963977
+          ],
+          "q": [
+            0.47173794083023,
+            -20.62171848911295,
+            2.570655495596659
+          ]
+        },
+        {
+          "capsuleRadius": 0.035,
+          "broadphasePadding": 0.025,
+          "exactTriangleTests": 19,
+          "contacts": [
+            {
+              "object": "pasted__pasted__pasted__pasted__polySurface97_phongE2_0",
+              "sourceTriangleIndex": 1807,
+              "axisDistance": 0.032751635261973076,
+              "capsuleClearance": -0.002248364738026927,
+              "axisPoint": [
+                1.5496850968005047,
+                -20.550024761654846,
+                2.2434318964435516
+              ],
+              "surfacePoint": [
+                1.5824367320624775,
+                -20.55002476605532,
+                2.2434318964435516
+              ]
+            },
+            {
+              "object": "pasted__pasted__pasted__pasted__polySurface97_phongE2_0",
+              "sourceTriangleIndex": 1810,
+              "axisDistance": 0.0,
+              "capsuleClearance": -0.035,
+              "axisPoint": [
+                1.5496850968005045,
+                -20.550024761654846,
+                2.2434318964435516
+              ],
+              "surfacePoint": [
+                1.5496850968005045,
+                -20.550024761654846,
+                2.2434318964435516
+              ]
+            }
+          ],
+          "countsByObject": {
+            "pasted__pasted__pasted__pasted__polySurface97_phongE2_0": 2
+          },
+          "closestSurfaceWithinPaddedBroadphase": {
+            "object": "pasted__pasted__pasted__pasted__polySurface97_phongE2_0",
+            "sourceTriangleIndex": 1810,
+            "axisDistance": 0.0,
+            "capsuleClearance": -0.035,
+            "axisPoint": [
+              1.5496850968005045,
+              -20.550024761654846,
+              2.2434318964435516
+            ],
+            "surfacePoint": [
+              1.5496850968005045,
+              -20.550024761654846,
+              2.2434318964435516
+            ]
+          },
+          "label": "wall_support",
+          "p": [
+            0.4686193513334025,
+            -20.550024761654846,
+            2.2434318964435516
+          ],
+          "q": [
+            1.5496850968005047,
+            -20.550024761654846,
+            2.2434318964435516
+          ]
+        }
+      ],
+      "mountContactPolicy": "Support stops at measured inner wall surface; capsule overlap with that exact wall is intended contact and is reported. Other surfaces are unexpected. Support-to-grip overlap is deliberate mechanical engagement."
+    }
+  ]
+}

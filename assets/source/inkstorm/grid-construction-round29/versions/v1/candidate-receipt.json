@@ -1,0 +1,145 @@
+{
+  "date": "2026-09-08",
+  "status": "CANDIDATES VALIDATED; NOT PUBLISHED; NO VISUAL OR PERFORMANCE ACCEPTANCE",
+  "userPrompt": "Use Blender MCP and Codex imagegen skill to generate concept images of the target art style for each section. Keep Iterateing until in-world screenshots look as close as possible to those, at 40-60fps.",
+  "source": "Original Blender MCP authored additive construction in an isolated scene; no downloads",
+  "sourceScript": "build_grid_detail.py",
+  "sourceScriptSha256": "8750e937a03c63ed3ca177d406eddef604a86b9c8cbb5d78d6bc592df2f27ac6",
+  "mergeScriptSha256": "8d0039b1d0f0005caeefd8c14245928cc0953698ad50babe22ce2459e8e2d6a7",
+  "blenderReceipt": "blender-export-receipt.txt",
+  "preservedPredecessors": "predecessors/",
+  "optimization": "glTF Transform 4.5.0 exact-prefix concatenation plus dedup/prune; no remesh, simplify or quantization",
+  "deliveryIncrease": 769316,
+  "maximumAllPlacementExtraTriangles": 35008,
+  "extraDrawCalls": 0,
+  "extraMaterials": 0,
+  "extraTextures": 0,
+  "assets": [
+    {
+      "family": "pit-complex",
+      "candidatePath": "assets/source/inkstorm/grid-construction-round29/candidates/pit-complex.glb",
+      "predecessorSha256": "5cebe6dce3a0a27a7d887f4f9a6fbfde6e29512cd47a039b79c4dbadbfe39acd",
+      "overlaySha256": "0a6c3f14f00c5f95248a40b1b7a4ac2b37470e40f81e2b4d2ac0165c05aaf529",
+      "candidateSha256": "b1505ca4381287bfd321171655b808ead8a9b80fb15473e6b1fa8c1bab293f95",
+      "predecessorBytes": 513368,
+      "overlayBytes": 355420,
+      "candidateBytes": 867536,
+      "originalTriangles": 7032,
+      "addedTriangles": 4908,
+      "triangles": 11940,
+      "vertices": 22078,
+      "meshes": 1,
+      "primitives": 1,
+      "materials": 1,
+      "textures": 0,
+      "uvStatus": "No TEXCOORD attributes in either predecessor or overlay; original vertex-color/local-position shader contract preserved",
+      "bounds": {
+        "min": [
+          -71,
+          0,
+          -32.5
+        ],
+        "max": [
+          79,
+          47,
+          28
+        ]
+      },
+      "maxNormalLengthError": 1.207730937480278e-7,
+      "preservation": "Every predecessor POSITION/NORMAL/COLOR_0 byte and every original index retained as exact prefixes after final GLB roundtrip; hierarchy and original material retained",
+      "runtimeAssetUnchanged": true,
+      "validation": {
+        "numErrors": 0,
+        "numWarnings": 0,
+        "numInfos": 0,
+        "numHints": 0,
+        "messages": [],
+        "truncated": false
+      }
+    },
+    {
+      "family": "pit-district",
+      "candidatePath": "assets/source/inkstorm/grid-construction-round29/candidates/pit-district.glb",
+      "predecessorSha256": "947b7b7043775f0f4cdb007e30c055f6cfe485bddc6dcf6632f131a88833d2a0",
+      "overlaySha256": "d33dd48023865918013ad577c9bc72228e3419bf8cf08d1de15e32298fc36722",
+      "candidateSha256": "963b874b93cac38ef28254b080c1df3ab2274b3d6b4aed62d23b4e887d10391c",
+      "predecessorBytes": 990016,
+      "overlayBytes": 294968,
+      "candidateBytes": 1283732,
+      "originalTriangles": 13254,
+      "addedTriangles": 4168,
+      "triangles": 17422,
+      "vertices": 32724,
+      "meshes": 1,
+      "primitives": 1,
+      "materials": 1,
+      "textures": 0,
+      "uvStatus": "No TEXCOORD attributes in either predecessor or overlay; original vertex-color/local-position shader contract preserved",
+      "bounds": {
+        "min": [
+          -56.81999969482422,
+          0,
+          -18
+        ],
+        "max": [
+          58.25,
+          34.05223083496094,
+          12.535015106201172
+        ]
+      },
+      "maxNormalLengthError": 1.08710165092063e-7,
+      "preservation": "Every predecessor POSITION/NORMAL/COLOR_0 byte and every original index retained as exact prefixes after final GLB roundtrip; hierarchy and original material retained",
+      "runtimeAssetUnchanged": true,
+      "validation": {
+        "numErrors": 0,
+        "numWarnings": 0,
+        "numInfos": 0,
+        "numHints": 0,
+        "messages": [],
+        "truncated": false
+      }
+    },
+    {
+      "family": "foundry-gantry",
+      "candidatePath": "assets/source/inkstorm/grid-construction-round29/candidates/foundry-gantry.glb",
+      "predecessorSha256": "5270c5d9073016f374e4c17a7240160ae68898e802ca219b4393821a56a59bc6",
+      "overlaySha256": "cb62817f69e5682a9bd03c22ac5b5fbe50a7eb0c1d973718098cb4531820091a",
+      "candidateSha256": "724ee4777dd40dcbeea4749efb21c8be88b4794e34c53f7977df62475c10d617",
+      "predecessorBytes": 317292,
+      "overlayBytes": 122688,
+      "candidateBytes": 438724,
+      "originalTriangles": 4494,
+      "addedTriangles": 1806,
+      "triangles": 6300,
+      "vertices": 11106,
+      "meshes": 1,
+      "primitives": 1,
+      "materials": 1,
+      "textures": 0,
+      "uvStatus": "No TEXCOORD attributes in either predecessor or overlay; original vertex-color/local-position shader contract preserved",
+      "bounds": {
+        "min": [
+          -52,
+          -25,
+          -7
+        ],
+        "max": [
+          52,
+          54.30417251586914,
+          7
+        ]
+      },
+      "maxNormalLengthError": 9.999998984433489e-8,
+      "preservation": "Every predecessor POSITION/NORMAL/COLOR_0 byte and every original index retained as exact prefixes after final GLB roundtrip; hierarchy and original material retained",
+      "runtimeAssetUnchanged": true,
+      "validation": {
+        "numErrors": 0,
+        "numWarnings": 0,
+        "numInfos": 0,
+        "numHints": 0,
+        "messages": [],
+        "truncated": false
+      }
+    }
+  ]
+}

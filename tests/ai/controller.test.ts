@@ -6,7 +6,8 @@ import {
   type AIMistakeKind,
   type AIPersonality,
 } from '../../src/game/ai';
-import { createPodraceCourse } from '../../src/game/race';
+import { createPodraceCourse, createProceduralPodraceCourse } from '../../src/game/race';
+import { DEFAULT_PODRACER_CONFIG } from '../../src/game/simulation/config';
 
 const flat = { heightAt: () => 0 };
 const course = createPodraceCourse(flat);
@@ -123,7 +124,11 @@ describe('spline-following AI controllers', () => {
 
     const result = stepAIController(state, context);
 
-    expect(result.state.telemetry.targetProgress).toBeCloseTo(checkpoint.progress, 8);
+    // Aim along the road through the gate. Snapping the pursuit point to a
+    // gate 105 m ahead would cut the inside of the approaching corner.
+    const targetDistance = (result.state.telemetry.targetProgress - approach.progress) * course.totalLength;
+    expect(targetDistance).toBeGreaterThan(20);
+    expect(targetDistance).toBeLessThan(77);
     expect(Math.abs(result.state.telemetry.desiredLaneOffset)).toBeLessThan(13);
   });
 
@@ -149,5 +154,51 @@ describe('spline-following AI controllers', () => {
       }
     }
     expect(kinds).toEqual(new Set(['bad-line', 'marker-clip', 'mistimed-boost', 'awkward-landing']));
+  });
+
+  it('plans braking against the actual vehicle turning authority before a bend', () => {
+    const context = contextAt(0.25);
+    context.self.speed = 160;
+    const agile = stepAIController(createAIControllerState('clean', 99), {
+      ...context, vehicleConfig: DEFAULT_PODRACER_CONFIG,
+    });
+    const heavy = stepAIController(createAIControllerState('clean', 99), {
+      ...context, vehicleConfig: { ...DEFAULT_PODRACER_CONFIG,
+        steeringRateLowSpeed: DEFAULT_PODRACER_CONFIG.steeringRateLowSpeed * 0.45,
+        steeringRateHighSpeed: DEFAULT_PODRACER_CONFIG.steeringRateHighSpeed * 0.45,
+        brakeAcceleration: DEFAULT_PODRACER_CONFIG.brakeAcceleration * 0.6 },
+    });
+    expect(heavy.state.telemetry.targetSpeed).toBeLessThan(agile.state.telemetry.targetSpeed);
+    expect(heavy.input.brake).toBeGreaterThan(agile.input.brake);
+  });
+
+  it('carries its pursuit target beyond a branch merge instead of orbiting its endpoint', () => {
+    const branchCourse = createProceduralPodraceCourse(flat, 0x474c4153);
+    const branch = branchCourse.branches[0]!;
+    const end = branch.points.at(-1)!;
+    const context = contextAt(branch.exitProgress - 0.0001);
+    context.course = branchCourse;
+    context.self.x = end.x;
+    context.self.z = end.z;
+    context.self.courseProgress = branch.exitProgress - 0.0001;
+    context.self.unwrappedProgress = context.self.courseProgress;
+    const state = createAIControllerState('clean', 99);
+    state.activeBranchId = branch.id;
+    const decision = stepAIController(state, context);
+    expect(decision.state.telemetry.targetProgress).toBeGreaterThan(branch.exitProgress);
+  });
+
+  it('abandons a failed branch after recovery without immediately selecting it again', () => {
+    const branchCourse = createProceduralPodraceCourse(flat, 0x474c4153);
+    const branch = branchCourse.branches[0]!;
+    const context = contextAt(branch.entryProgress - 0.005);
+    context.course = branchCourse;
+    context.self.courseProgress = branch.entryProgress - 0.005;
+    const state = createAIControllerState('clean', 99);
+    state.activeBranchId = branch.id;
+    state.previousCourseProgress = branch.entryProgress + 0.04;
+    state.lastBranchDecisionKey = `0:${branch.id}`;
+    const decision = stepAIController(state, context);
+    expect(decision.state.telemetry.routeBranchId).toBeNull();
   });
 });

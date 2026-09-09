@@ -1,0 +1,64 @@
+--- a/src/render/app/GameApp.ts
++++ b/src/render/app/GameApp.ts
+@@ -976,6 +976,7 @@
+     }
+     this.subject.combatFocus = undefined;
+     this.subject.combatForward = undefined;
++    this.subject.combatImpactPosition = undefined;
+     this.subject.combatRadius = undefined;
+     this.subject.combatBounds = undefined;
+     this.subject.combatTerrain = undefined;
+@@ -1018,7 +1019,6 @@
+       time: presentationTime,
+     });
+     this.syncGalacticEffects(presentationTime);
+-    this.galacticEffects.update(presentationTime, this.cameraRig.camera);
+     this.updateGroundDust();
+     this.dust.update({
+       time: presentationTime,
+@@ -1047,7 +1047,10 @@
+       const view = this.racerViews[racerIndex];
+       const entry = this.race.state.entries[racerIndex];
+       if (view) view.visible = Boolean(entry);
+-      if (!view || !entry) { view?.syncVisibility(); continue; }
++      if (!view || !entry) {
++        this.galacticEffects.syncWreckRupture(racerIndex, -1);
++        view?.syncVisibility(); continue;
++      }
+       const input = this.lastRaceInputs[entry.id] ?? NEUTRAL_PLAYER_INPUT;
+       const vehicle = entry.vehicle;
+       const replayPose = replayFrame?.racers.find((pose) => pose.id === entry.id);
+@@ -1079,6 +1082,7 @@
+         entry.id, appearanceLocalRacerId, this.vehicleAppearance, appearanceHumanMembers,
+       ));
+       const wreckPose = wrecked && !replayFrame ? this.resolveWreckVisualPose(entry, renderExtrapolation) : null;
++      this.galacticEffects.syncWreckRupture(racerIndex, galacticState?.wreck.crashCount ?? -1, wreckPose?.rupture);
+       if (!this.paused && wreckPose?.groundContact && this.wreckGroundContacts.take(
+         entry.id, this.simulationFrame, galacticState!.wreck.crashCount, wreckPose.groundContact,
+       )) {
+@@ -1133,6 +1137,8 @@
+         });
+       }
+     }
++    // Follow the same current pose used by the vehicle before uploading FX.
++    this.galacticEffects.update(presentationTime, this.cameraRig.camera);
+     this.ghostView.setVehicleClass(this.selectedVehicleClass());
+     this.ghostView.setPose(!this.captureMode && !this.awaitingRaceStart && this.room.lobby.role === 'solo'
+       && this.race.state.phase === 'racing' && !replayFrame
+@@ -3218,6 +3224,7 @@
+     const pose = this.resolveWreckVisualPose(entry, extrapolationSeconds);
+     this.subject.combatFocus = pose.center;
+     this.subject.combatForward = pose.forward;
++    this.subject.combatImpactPosition = pose.rupture?.position;
+     this.subject.combatRadius = pose.radius;
+     this.subject.combatBounds = pose.bounds;
+     this.subject.combatTerrain = this.race.terrain;
+@@ -3684,6 +3691,8 @@
+         velocity: entry.vehicle.velocity,
+         direction,
+         surfaceNormal,
++        wreckOwner: surfaceNormal ? racerIndex : undefined,
++        wreckSequence: surfaceNormal ? entry.galactic?.wreck.crashCount : undefined,
+         groundY: this.race.terrain.heightAt(position.x, position.z),
+         severity,
+         color,

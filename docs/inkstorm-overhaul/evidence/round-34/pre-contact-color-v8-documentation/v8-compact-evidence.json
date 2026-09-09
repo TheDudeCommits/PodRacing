@@ -1,0 +1,137 @@
+{
+  "scope": "Saved V8 source/package/test/capture evidence inventory, not a new runtime freeze or art verdict.",
+  "captures": [
+    {
+      "path": "output/gauntlet/round34-blockrunner-contact-color-v1/captures/01-grid.png",
+      "bytes": 3242840,
+      "sha256": "0d924732033c8a275af4b33145c7e6ecce7c84a04d89a751b3169254572f6bee"
+    },
+    {
+      "path": "output/gauntlet/round34-blockrunner-contact-color-v1/captures/02-salt-run.png",
+      "bytes": 2903597,
+      "sha256": "fca51d32eb3ab9e4a4ae708680edbc3900f0f421f9ad97658a8e7bd8bc61974b"
+    },
+    {
+      "path": "output/gauntlet/round34-blockrunner-contact-color-v1/captures/03-canyon.png",
+      "bytes": 3138348,
+      "sha256": "d3ed70e4e4add72bee21454416afd49b45aeaa5535744886becf1c0df620775a"
+    },
+    {
+      "path": "output/gauntlet/round34-blockrunner-contact-color-v1/captures/04-fork.png",
+      "bytes": 3056027,
+      "sha256": "a19e7a608715af879a1e2e920b8f99fb1f93a844f572d392fe7849320ff3e342"
+    },
+    {
+      "path": "output/gauntlet/round34-blockrunner-contact-color-v1/captures/05-launch.png",
+      "bytes": 3229918,
+      "sha256": "4922249d6af1633d8273396b39d2e5dc216b61350065fb95c524ae8fb0292e46"
+    },
+    {
+      "path": "output/gauntlet/round34-blockrunner-contact-color-v1/captures/06-foundry.png",
+      "bytes": 3066960,
+      "sha256": "09590da9c817704326344c8de06783eb8d5bd65c554abef4c2680c45048401de"
+    },
+    {
+      "path": "output/gauntlet/round34-blockrunner-contact-color-v1/captures/07-finish.png",
+      "bytes": 3141183,
+      "sha256": "c025de509795040b5a463bd47ebdbb7ca106a49c671ddd640ef3d63b4934fefb"
+    },
+    {
+      "path": "output/gauntlet/round34-blockrunner-contact-color-v1/captures/foundry-approach.png",
+      "bytes": 3223550,
+      "sha256": "f3cc9331618a9c130ce666608703abd7e664b191762675eee60cbdafdab7b497"
+    },
+    {
+      "path": "output/gauntlet/round34-blockrunner-contact-color-v1/captures/foundry-exit.png",
+      "bytes": 2922018,
+      "sha256": "7bb27980b2fc7ce3961c99dbfdcbba8e3a834285d6fd1f376c433f96f2769fb1"
+    },
+    {
+      "path": "output/gauntlet/round34-blockrunner-contact-color-v1/captures/foundry-middle.png",
+      "bytes": 3067891,
+      "sha256": "9e7eb2a3017e9b32c097fa9e05499f3a81f7ab851c607449068193f4cb823dbe"
+    },
+    {
+      "path": "output/gauntlet/round34-blockrunner-contact-color-v1/captures/foundry-near-span.png",
+      "bytes": 2995212,
+      "sha256": "2efb57fa52cb167a5e72be1b1e3b5798364e829ce426e73d0012e5b26b47c880"
+    },
+    {
+      "path": "output/gauntlet/round34-blockrunner-contact-color-v1/captures/garage.png",
+      "bytes": 1055712,
+      "sha256": "3514f01bc3e975320b31938f05e1525bf4ab9caef6cae820e9e7ad09686bbe0b"
+    },
+    {
+      "path": "output/gauntlet/round34-blockrunner-contact-color-v1/captures/live-drive.png",
+      "bytes": 2437643,
+      "sha256": "bae2eb984fcd16c3728e12b5a9c039a6c0bd378d0b850313e40bcb543962af22"
+    }
+  ],
+  "captureReceipt": {
+    "path": "output/gauntlet/round34-blockrunner-contact-color-v1/captures/receipts.json",
+    "bytes": 518070,
+    "sha256": "4b83682714baccb18e2496169871acc08356cea7a846841b3698ab953a282110"
+  },
+  "garageReceipt": {
+    "path": "output/gauntlet/round34-blockrunner-contact-color-v1/garage-inspection/receipt.json",
+    "bytes": 3609,
+    "sha256": "26529a2392fa935012cb067520601972262ee19bf52bfe4f1090b2ee75980826"
+  },
+  "verify": {
+    "path": "output/gauntlet/round34-blockrunner-contact-color-v1/verify.log",
+    "bytes": 1386,
+    "sha256": "c3f8c96ef9b201f58cc40a175385c78e01e52df040bde0c0e928a7b9ae1fdf3c"
+  },
+  "admission": {
+    "path": "output/gauntlet/round34-blockrunner-contact-color-v1/admission.json",
+    "bytes": 2082,
+    "sha256": "ca3037edcdf24c299721099a78004d8fb770dd01099f67ed28f68aa6719e9ad2"
+  },
+  "pairedReviewAudit": {
+    "path": "assets/source/inkstorm/blockrunner-round34/contact-color-v1-blind-review/audited-review-v1.json",
+    "bytes": 8494,
+    "sha256": "0d31a7d9cb5ac224dd30d7bc8ce328d7526756d1629f1b8231dece8cfab3a7e0"
+  },
+  "lineage": [
+    {
+      "path": "assets/source/inkstorm/blockrunner-round34/mcp-safe/contact-author-v7-receipt.json",
+      "bytes": 68012,
+      "sha256": "640ccbd730e00a5ec21d70b2b49f15f4c95a18058409145d88e0d98fcd68e691"
+    },
+    {
+      "path": "assets/source/inkstorm/blockrunner-round34/mcp-safe/bake-v7-body-color-receipt.json",
+      "bytes": 9334,
+      "sha256": "5faa8508cc844857111efba66ab28d9f18d6177b964a7377d519081298242f9a"
+    },
+    {
+      "path": "assets/source/inkstorm/blockrunner-round34/mcp-safe/bake-v7-pilot-color-receipt.json",
+      "bytes": 10308,
+      "sha256": "ab4affd3d05d58678cb6df0b482cf6d2f0c71b93aeeddb28f6c248bba0d37e15"
+    },
+    {
+      "path": "assets/source/inkstorm/blockrunner-round34/mcp-safe/contact-atlas-v8-receipt.json",
+      "bytes": 63489,
+      "sha256": "de5d517c4c27790bc8695b3029551d5e300203632c006ba9c143839e358b64cd"
+    },
+    {
+      "path": "assets/source/inkstorm/blockrunner-round34/runtime-admission-preparation/export-atlas-v8-v1-receipt.json",
+      "bytes": 54675,
+      "sha256": "20c0477807fab77f5bf8429c62b7c684f79698b4cc34abf35f811a70c1b3ea8d"
+    },
+    {
+      "path": "assets/source/inkstorm/blockrunner-round34/runtime-admission-preparation/packaged-atlas-v8-v1/pipeline-steps.json",
+      "bytes": 709,
+      "sha256": "9a955a33c5f158c8c303207aa513ec5670479f35837bf793da096c7f11cc257e"
+    },
+    {
+      "path": "assets/source/inkstorm/blockrunner-round34/runtime-admission-preparation/packaged-atlas-v8-v1/color-only-vs-v6-validation.json",
+      "bytes": 2569,
+      "sha256": "2b6b75823ed92bb9fea2814c98c8831faa88a5f27d89b787f5fd908578633ad0"
+    }
+  ],
+  "diagnostic": {
+    "path": "output/playwright/round34-blockrunner-contact-color-v8-resource-owner-attempt1/analysis-evidence-receipt-v1.json",
+    "bytes": 1713,
+    "sha256": "6d6ed99189fc25aab9a444b66cbdb973e7852a873b97cef846debc7dce020793"
+  }
+}

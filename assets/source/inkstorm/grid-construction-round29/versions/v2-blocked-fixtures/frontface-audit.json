@@ -1,0 +1,31 @@
+{
+  "directory": ".",
+  "overlaySha256s": {
+    "pit-complex": "8b5e31d19d59244c03aa2a957551f24f35dea1ea5d071caf6328c4010fabf172",
+    "pit-district": "3b59a19cf2bb9a7a0d710c3b997e350db374eb45fd3bff8646035d815390b0aa",
+    "foundry-gantry": "7d5fe8cb3a6080f5bef2d48be283a9cd8adb11e2031472e0df95ba4cb68bd12f"
+  },
+  "ring": {
+    "triangles": 112,
+    "expectedTriangles": 112,
+    "wrongFaces": 0,
+    "wrongSurfaces": [],
+    "signedVolume": 0.3322208159919707,
+    "expectedVolume": 0.33221957243744493,
+    "inconsistentDirectedEdges": 0,
+    "nearestFrontSideZ": 0.25,
+    "expectedFrontZ": 0.25,
+    "openBoreBothDirections": true
+  },
+  "cloth": {
+    "triangles": 212,
+    "expectedTriangles": 212,
+    "wrongFaces": 0,
+    "wrongSurfaces": [],
+    "signedVolume": 84.00000572204618,
+    "expectedVolume": 84,
+    "inconsistentDirectedEdges": 0,
+    "nearestFrontSideTopY": 15.861371358235678,
+    "expectedTopY": 15.861371358235676
+  }
+}

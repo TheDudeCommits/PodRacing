@@ -1,0 +1,160 @@
+{
+  "scope": "CPU installed-GLTFLoader geometry check. Native framing, perceptual quality and cadence unverified for V17.",
+  "nativeTrajectoryFrames": [
+    910,
+    1168
+  ],
+  "everyNativeTickChecked": true,
+  "cameraAspects": [
+    1.6,
+    1.7777777777777777,
+    0.46208530805687204,
+    2.164102564102564
+  ],
+  "variants": [
+    {
+      "name": "hero",
+      "positionsTested": 23442946,
+      "cameraPositions": 18708648,
+      "contactSamples": 200,
+      "maxQueries": 238,
+      "settledMaximumGap": {
+        "teemto-engine-left-body": 0.18000000000000682,
+        "teemto-damage-right-front-v16": 0.180000000001467,
+        "teemto-damage-right-rear-v16": 0.10000000000088072,
+        "teemto-damage-severed-tethers-v16": 0.1800000000013977
+      },
+      "minimumGapByMesh": {
+        "teemto-cockpit-body": {
+          "gap": 3.195075102030648,
+          "frame": 910,
+          "vertex": 19527
+        },
+        "teemto-cockpit-graphite-v2": {
+          "gap": 1.5596010969259755,
+          "frame": 1098,
+          "vertex": 151
+        },
+        "teemto-engine-left-body": {
+          "gap": 0.17999999999999616,
+          "frame": 958,
+          "vertex": 13559
+        },
+        "teemto-engine-right-body": {
+          "gap": 2.4169158898666545,
+          "frame": 910,
+          "vertex": 3018
+        },
+        "teemto-pilot-accent003": {
+          "gap": 1.7972785187110834,
+          "frame": 1098,
+          "vertex": 158
+        },
+        "teemto-pilot-hardware003": {
+          "gap": 2.1029927107058093,
+          "frame": 1098,
+          "vertex": 1499
+        },
+        "teemto-pilot-rubber002": {
+          "gap": 1.9473764900615667,
+          "frame": 1098,
+          "vertex": 1216
+        },
+        "teemto-pilot-shell003": {
+          "gap": 1.835757778974635,
+          "frame": 1098,
+          "vertex": 827
+        },
+        "teemto-pilot-suit005": {
+          "gap": 1.732095482369873,
+          "frame": 1098,
+          "vertex": 890
+        },
+        "teemto-pilot-webbing002": {
+          "gap": 1.8281470881170137,
+          "frame": 1098,
+          "vertex": 391
+        },
+        "teemto-damage-cockpit-stubs-v16": {
+          "gap": 0.5500000245671561,
+          "frame": 1098,
+          "vertex": 31843
+        },
+        "teemto-damage-right-front-v16": {
+          "gap": 0.1799999999979125,
+          "frame": 1002,
+          "vertex": 2522
+        },
+        "teemto-damage-right-rear-v16": {
+          "gap": 0.05941883149808369,
+          "frame": 952,
+          "vertex": 305
+        },
+        "teemto-damage-severed-tethers-v16": {
+          "gap": 0.17999999999895167,
+          "frame": 984,
+          "vertex": 341
+        }
+      }
+    },
+    {
+      "name": "rival",
+      "positionsTested": 11808368,
+      "cameraPositions": 9465688,
+      "contactSamples": 200,
+      "maxQueries": 197,
+      "settledMaximumGap": {
+        "teemto-engine-left-body": 0.18000000000000327,
+        "teemto-damage-right-front-v16": 0.1800000000016393,
+        "teemto-damage-right-rear-v16": 0.10000000000121823
+      },
+      "minimumGapByMesh": {
+        "teemto-cockpit-body": {
+          "gap": 0.5325900421483976,
+          "frame": 1126,
+          "vertex": 15660
+        },
+        "teemto-engine-left-body": {
+          "gap": 0.1799999999999944,
+          "frame": 1026,
+          "vertex": 9524
+        },
+        "teemto-engine-right-body": {
+          "gap": 2.4169158898666545,
+          "frame": 910,
+          "vertex": 2306
+        },
+        "teemto-pilot-helmet001": {
+          "gap": 1.906088966244246,
+          "frame": 1108,
+          "vertex": 256
+        },
+        "teemto-pilot-orange001": {
+          "gap": 1.61625044165147,
+          "frame": 1108,
+          "vertex": 467
+        },
+        "teemto-pilot-suit001": {
+          "gap": 1.5985968666514925,
+          "frame": 1109,
+          "vertex": 182
+        },
+        "teemto-pilot-visor001": {
+          "gap": 2.472595485256454,
+          "frame": 1108,
+          "vertex": 107
+        },
+        "teemto-damage-right-front-v16": {
+          "gap": 0.1799999999976123,
+          "frame": 972,
+          "vertex": 2149
+        },
+        "teemto-damage-right-rear-v16": {
+          "gap": 0.09999999999872955,
+          "frame": 1054,
+          "vertex": 191
+        }
+      }
+    }
+  ]
+}

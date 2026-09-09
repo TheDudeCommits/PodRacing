@@ -1,0 +1,253 @@
+{
+  "bakedImagePacked": true,
+  "bodyMeshName": "blockrunner-body-paint-v7",
+  "channel": "color",
+  "colorSpace": "sRGB",
+  "contactBakeScope": "New color-only EMIT image from final AO-composited output. Both source owners renderable; AO16 and Cycles1 samples. Original V4B roughness masters reused unchanged, not rebaked.",
+  "contactGraphSignatures": {
+    "Blockrunner V7 pilot gloves": "9fd08fe1499de0e6",
+    "Blockrunner V7 pilot helmet": "0000de7725f9048d",
+    "Blockrunner V7 pilot suit": "7601f0731c919721",
+    "Blockrunner V7 pilot visor": "02277c94692cd40a",
+    "Blockrunner V7 procedural graphite": "1045a5d78e155809",
+    "Blockrunner V7 procedural ivory": "fbb65de16364955e",
+    "Blockrunner V7 procedural oxblood": "2cc49dca0705fec7"
+  },
+  "contactSettings": {
+    "distanceSourceWorldUnits": 0.16,
+    "inside": false,
+    "normalInput": "unlinked source shading normal",
+    "onlyLocal": false,
+    "samples": 16,
+    "strength": 0.38
+  },
+  "existingPackedImagesPreserved": true,
+  "extendedContactGraphsRestored": true,
+  "fitCornerNormalsPreserved": true,
+  "fitPreservation": true,
+  "globalPreservation": {
+    "changedCollections": [],
+    "changedScenes": [],
+    "contextRestored": true,
+    "preexistingMaterialsRetained": true,
+    "preexistingMeshesRetained": true,
+    "preexistingObjectsRetained": true,
+    "preexistingScenes": 153
+  },
+  "imageName": "Blockrunner body color 20260908-contact-v7",
+  "linkedPaintImages": {
+    "Blockrunner body color 20260908-contact-v7": {
+      "colorSpace": "sRGB",
+      "filepath": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/blockrunner-body-color-v1-20260908-contact-v7.png",
+      "name": "Blockrunner body color 20260908-contact-v7",
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    "Blockrunner body roughness 20260908-paint-v4b": {
+      "colorSpace": "Non-Color",
+      "filepath": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/blockrunner-body-roughness-v1-20260908-paint-v4b.png",
+      "name": "Blockrunner body roughness 20260908-paint-v4b",
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    "Blockrunner pilot roughness 20260908-paint-v4b": {
+      "colorSpace": "Non-Color",
+      "filepath": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/blockrunner-pilot-roughness-v1-20260908-paint-v4b.png",
+      "name": "Blockrunner pilot roughness 20260908-paint-v4b",
+      "size": [
+        1024,
+        1024
+      ]
+    }
+  },
+  "meshObjects": 2,
+  "newImageRetained": true,
+  "outputFileWriteStarted": true,
+  "owner": "body",
+  "ownerObject": "blockrunner-body-paint-v7",
+  "ownerPolygonMaterialIndicesPreserved": true,
+  "packedImageRecords": {
+    "Blockrunner body color 20260908-contact-v7": {
+      "alphaMode": "STRAIGHT",
+      "colorSpace": "sRGB",
+      "filepath": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/blockrunner-body-color-v1-20260908-contact-v7.png",
+      "isDirty": false,
+      "isFloat": false,
+      "name": "Blockrunner body color 20260908-contact-v7",
+      "packedBytes": 1463920,
+      "packedBytesFnv1a64": "52dec6b0386861c7",
+      "size": [
+        2048,
+        2048
+      ],
+      "source": "FILE"
+    },
+    "Blockrunner body roughness 20260908-paint-v4b": {
+      "alphaMode": "STRAIGHT",
+      "colorSpace": "Non-Color",
+      "filepath": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/blockrunner-body-roughness-v1-20260908-paint-v4b.png",
+      "isDirty": false,
+      "isFloat": false,
+      "name": "Blockrunner body roughness 20260908-paint-v4b",
+      "packedBytes": 725949,
+      "packedBytesFnv1a64": "04069c49d4dc15a1",
+      "size": [
+        2048,
+        2048
+      ],
+      "source": "FILE"
+    },
+    "Blockrunner pilot roughness 20260908-paint-v4b": {
+      "alphaMode": "STRAIGHT",
+      "colorSpace": "Non-Color",
+      "filepath": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/blockrunner-pilot-roughness-v1-20260908-paint-v4b.png",
+      "isDirty": false,
+      "isFloat": false,
+      "name": "Blockrunner pilot roughness 20260908-paint-v4b",
+      "packedBytes": 210771,
+      "packedBytesFnv1a64": "0dba79cafd39d4d8",
+      "size": [
+        1024,
+        1024
+      ],
+      "source": "FILE"
+    }
+  },
+  "paintAttributeSignatures": {
+    "blockrunner-body-paint-v7": {
+      "Inkstorm V4 Edge Distance": {
+        "colorsFnv1a64": "77a01b45d7ba2a4d",
+        "dataType": "FLOAT_COLOR",
+        "domain": "CORNER",
+        "length": 119700
+      },
+      "Inkstorm V4 Edge Strength": {
+        "colorsFnv1a64": "18c936df184555bb",
+        "dataType": "FLOAT_COLOR",
+        "domain": "CORNER",
+        "length": 119700
+      }
+    },
+    "blockrunner-pilot-paint-v7": {
+      "Inkstorm V4 Edge Distance": {
+        "colorsFnv1a64": "95983b52da7ef3fd",
+        "dataType": "FLOAT_COLOR",
+        "domain": "CORNER",
+        "length": 12384
+      },
+      "Inkstorm V4 Edge Strength": {
+        "colorsFnv1a64": "85ef768c1f7a2843",
+        "dataType": "FLOAT_COLOR",
+        "domain": "CORNER",
+        "length": 12384
+      }
+    }
+  },
+  "paintBakeSettingsRestored": true,
+  "paintCornerNormalSignature": {
+    "blockrunner-body-paint-v7": "ab241654681768cb",
+    "blockrunner-pilot-paint-v7": "2a1f1ceb2412b23f"
+  },
+  "paintCornerNormalsPreserved": true,
+  "paintLayerSelectionRestored": true,
+  "paintMeshUvAndMaterialSlotsPreserved": true,
+  "paintSignature": {
+    "algorithm": "FNV-1a-64 over canonical ASCII JSON; non-cryptographic",
+    "materialsFnv1a64": {
+      "Blockrunner V7 pilot gloves": "20422db9e50bdc3e",
+      "Blockrunner V7 pilot helmet": "72ea1798c2e63929",
+      "Blockrunner V7 pilot suit": "92c880be5594ed04",
+      "Blockrunner V7 pilot visor": "0a01e69a5dc5c9f0",
+      "Blockrunner V7 procedural graphite": "6b7ae634e9293669",
+      "Blockrunner V7 procedural ivory": "842976ea1910960e",
+      "Blockrunner V7 procedural oxblood": "e767c2a3855906ae"
+    },
+    "meshesFnv1a64": {
+      "blockrunner-body-paint-v7 geometry": "f10ebe7a8d81bf68",
+      "blockrunner-pilot-paint-v7 geometry": "9c960f8dfab1e4ac"
+    },
+    "objectsFnv1a64": "dbd5d5afdd3d5ca5"
+  },
+  "partialOutputMayExistOnFailure": false,
+  "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/blockrunner-body-color-v1-20260908-contact-v7.png",
+  "pilotMeshName": "blockrunner-pilot-paint-v7",
+  "proceduralGraphsRestored": true,
+  "resolution": [
+    2048,
+    2048
+  ],
+  "restorationErrors": [],
+  "retainedBakeImageNodes": [
+    {
+      "material": "Blockrunner V7 procedural oxblood",
+      "node": "Bake body color 20260908-contact-v7"
+    },
+    {
+      "material": "Blockrunner V7 procedural ivory",
+      "node": "Bake body color 20260908-contact-v7"
+    },
+    {
+      "material": "Blockrunner V7 procedural graphite",
+      "node": "Bake body color 20260908-contact-v7"
+    }
+  ],
+  "reusedRoughnessMasterAuthority": {
+    "body": {
+      "image": {
+        "alphaMode": "STRAIGHT",
+        "colorSpace": "Non-Color",
+        "filepath": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/blockrunner-body-roughness-v1-20260908-paint-v4b.png",
+        "isDirty": false,
+        "isFloat": false,
+        "name": "Blockrunner body roughness 20260908-paint-v4b",
+        "packedBytes": 725949,
+        "packedBytesFnv1a64": "04069c49d4dc15a1",
+        "size": [
+          2048,
+          2048
+        ],
+        "source": "FILE"
+      },
+      "receipt": "bake-v4b-body-roughness-receipt.json",
+      "receiptSha256": "7a8ff057914b25703fef17bb18c7be251e573d0261cf9cda6525d59ae84d644e",
+      "reuseType": "same unchanged V4B roughness master; no V7 roughness bake claimed"
+    },
+    "pilot": {
+      "image": {
+        "alphaMode": "STRAIGHT",
+        "colorSpace": "Non-Color",
+        "filepath": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/blockrunner-pilot-roughness-v1-20260908-paint-v4b.png",
+        "isDirty": false,
+        "isFloat": false,
+        "name": "Blockrunner pilot roughness 20260908-paint-v4b",
+        "packedBytes": 210771,
+        "packedBytesFnv1a64": "0dba79cafd39d4d8",
+        "size": [
+          1024,
+          1024
+        ],
+        "source": "FILE"
+      },
+      "receipt": "bake-v4b-pilot-roughness-receipt.json",
+      "receiptSha256": "568129f1f868890694383d555bcabe68d7e8c0a69f0177426f107ca492c1a1bc",
+      "reuseType": "same unchanged V4B roughness master; no V7 roughness bake claimed"
+    }
+  },
+  "roughnessChannelContract": "Roughness emitted as grayscale linear data; G is the glTF/runtime roughness channel.",
+  "runtimeReady": false,
+  "scope": "One newly baked private atlas channel. No final material replacement, normalized export, runtime or visual acceptance.",
+  "sharedBlendSaved": false,
+  "sourceCornerNormalsPreserved": true,
+  "sourcePreservation": true,
+  "sourceUid": "a6f14ae799ab40d7ac425f043f824ff8",
+  "stage": "atlas-channel-emission-bake",
+  "status": "one atlas channel baked; final atlas materials and image review pending",
+  "targetScene": "PodRacing — Blockrunner short contact color round34 V7",
+  "triangles": 44028,
+  "untouchedOwnerContactGraphsExact": true,
+  "v4bGeometryNormalsMasksGraphsAndImagesPreserved": true
+}

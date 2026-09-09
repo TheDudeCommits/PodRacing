@@ -1,0 +1,1269 @@
+{
+  "bodyMeshName": "blockrunner-body-paint-v4b",
+  "fitCornerNormalsPreserved": true,
+  "fitPreservation": true,
+  "globalPreservation": {
+    "changedCollections": [],
+    "changedScenes": [],
+    "contextRestored": true,
+    "preexistingMaterialsRetained": true,
+    "preexistingMeshesRetained": true,
+    "preexistingObjectsRetained": true,
+    "preexistingScenes": 147
+  },
+  "linkedPaintImages": {},
+  "materialChanges": [
+    {
+      "material": "Blockrunner V4B procedural oxblood",
+      "newBreakup": "clamp((noise - .47) * 7)",
+      "oldBreakup": ".55 + .45 * clamp((noise - .35) * 3.3)",
+      "removedFloorNodes": [
+        "Math.025",
+        "Math.026"
+      ],
+      "retained": "Same continuous world-space noise, selected edges, widths, contact strengths, pigment/roughness branches and final wear multiplier.",
+      "scaleNode": "Math.022",
+      "thresholdNode": "Math.021"
+    },
+    {
+      "material": "Blockrunner V4B procedural ivory",
+      "newBreakup": "clamp((noise - .47) * 7)",
+      "oldBreakup": ".55 + .45 * clamp((noise - .35) * 3.3)",
+      "removedFloorNodes": [
+        "Math.025",
+        "Math.026"
+      ],
+      "retained": "Same continuous world-space noise, selected edges, widths, contact strengths, pigment/roughness branches and final wear multiplier.",
+      "scaleNode": "Math.022",
+      "thresholdNode": "Math.021"
+    },
+    {
+      "material": "Blockrunner V4B procedural graphite",
+      "newBreakup": "clamp((noise - .47) * 7)",
+      "oldBreakup": ".55 + .45 * clamp((noise - .35) * 3.3)",
+      "removedFloorNodes": [
+        "Math.025",
+        "Math.026"
+      ],
+      "retained": "Same continuous world-space noise, selected edges, widths, contact strengths, pigment/roughness branches and final wear multiplier.",
+      "scaleNode": "Math.022",
+      "thresholdNode": "Math.021"
+    }
+  ],
+  "materialSlots": {
+    "body": 3,
+    "pilot": 4
+  },
+  "meshObjects": 2,
+  "newSceneRetained": true,
+  "normalEncodingBudget": {
+    "degrees": 0.1,
+    "evidence": "normal-parity-diagnostic-receipt.json",
+    "priorGuardVectorChord": 0.001,
+    "reason": "Disposable mirrored-source experiment isolated three custom-normal encoding corners at maximum0.001252061 vector difference (~0.07174 degrees), without direction recalculation. The explicit0.1degree DCC encoding budget replaces the stricter failed trial; UV reuses original requested world normals to avoid cumulative encoding.",
+    "vectorChord": 0.001745328
+  },
+  "normalEncodingBudgetInherited": {
+    "degrees": 0.1,
+    "evidence": "normal-parity-diagnostic-receipt.json",
+    "priorGuardVectorChord": 0.001,
+    "reason": "Disposable mirrored-source experiment isolated three custom-normal encoding corners at maximum0.001252061 vector difference (~0.07174 degrees), without direction recalculation. The explicit0.1degree DCC encoding budget replaces the stricter failed trial; UV reuses original requested world normals to avoid cumulative encoding.",
+    "vectorChord": 0.001745328
+  },
+  "normalized": false,
+  "objectLineage": [
+    {
+      "copiedCornerOrderFromSource": [
+        0,
+        1,
+        2
+      ],
+      "copiedObject": "blockrunner-body-paint-v2",
+      "exactPositionVertices": 858,
+      "firstCopiedPolygon": 0,
+      "fitObject": "Blockrunner fit V1 pasted__L1x1Stud4_Black_Jets_0",
+      "materialRole": "source color family",
+      "polygonCount": 1552,
+      "referencedVertexIndices": 2072,
+      "sourceObject": "pasted__L1x1Stud4_Black_Jets_0",
+      "sourcePolygonOrderRetained": true,
+      "sourceTransformMirrored": false
+    },
+    {
+      "copiedCornerOrderFromSource": [
+        0,
+        1,
+        2
+      ],
+      "copiedObject": "blockrunner-body-paint-v2",
+      "exactPositionVertices": 594,
+      "firstCopiedPolygon": 1552,
+      "fitObject": "Blockrunner fit V1 pasted__L1x1Stud5_Black_Jets_0",
+      "materialRole": "source color family",
+      "polygonCount": 1152,
+      "referencedVertexIndices": 1507,
+      "sourceObject": "pasted__L1x1Stud5_Black_Jets_0",
+      "sourcePolygonOrderRetained": true,
+      "sourceTransformMirrored": false
+    },
+    {
+      "copiedCornerOrderFromSource": [
+        0,
+        1,
+        2
+      ],
+      "copiedObject": "blockrunner-body-paint-v2",
+      "exactPositionVertices": 592,
+      "firstCopiedPolygon": 2704,
+      "fitObject": "Blockrunner fit V1 pasted__L1x20_Black_Jets_0",
+      "materialRole": "source color family",
+      "polygonCount": 1064,
+      "referencedVertexIndices": 1453,
+      "sourceObject": "pasted__L1x20_Black_Jets_0",
+      "sourcePolygonOrderRetained": true,
+      "sourceTransformMirrored": false
+    },
+    {
+      "copiedCornerOrderFromSource": [
+        0,
+        1,
+        2
+      ],
+      "copiedObject": "blockrunner-body-paint-v2",
+      "exactPositionVertices": 130,
+      "firstCopiedPolygon": 3768,
+      "fitObject": "Blockrunner fit V1 pasted__L1x2_pasted__Lego_White23_0",
+      "materialRole": "source color family",
+      "polygonCount": 228,
+      "referencedVertexIndices": 293,
+      "sourceObject": "pasted__L1x2_pasted__Lego_White23_0",
+      "sourcePolygonOrderRetained": true,
+      "sourceTransformMirrored": false
+    },
+    {
+      "copiedCornerOrderFromSource": [
+        0,
+        1,
+        2
+      ],
+      "copiedObject": "blockrunner-body-paint-v2",
+      "exactPositionVertices": 204,
+      "firstCopiedPolygon": 3996,
+      "fitObject": "Blockrunner fit V1 pasted__L1x4F_phongE2_0",
+      "materialRole": "source color family",
+      "polygonCount": 348,
+      "referencedVertexIndices": 455,
+      "sourceObject": "pasted__L1x4F_phongE2_0",
+      "sourcePolygonOrderRetained": true,
+      "sourceTransformMirrored": false
+    },
+    {
+      "copiedCornerOrderFromSource": [
+        0,
+        1,
+        2
+      ],
+      "copiedObject": "blockrunner-body-paint-v2",
+      "exactPositionVertices": 182,
+      "firstCopiedPolygon": 4344,
+      "fitObject": "Blockrunner fit V1 pasted__L2x2Circle_phongE1_0",
+      "materialRole": "source color family",
+      "polygonCount": 360,
+      "referencedVertexIndices": 567,
+      "sourceObject": "pasted__L2x2Circle_phongE1_0",
+      "sourcePolygonOrderRetained": true,
+      "sourceTransformMirrored": false
+    },
+    {
+      "copiedCornerOrderFromSource": [
+        0,
+        1,
+        2
+      ],
+      "copiedObject": "blockrunner-body-paint-v2",
+      "exactPositionVertices": 204,
+      "firstCopiedPolygon": 4704,
+      "fitObject": "Blockrunner fit V1 pasted__L2x2_pasted__Lego_White16_0",
+      "materialRole": "source color family",
+      "polygonCount": 348,
+      "referencedVertexIndices": 455,
+      "sourceObject": "pasted__L2x2_pasted__Lego_White16_0",
+      "sourcePolygonOrderRetained": true,
+      "sourceTransformMirrored": false
+    },
+    {
+      "copiedCornerOrderFromSource": [
+        0,
+        1,
+        2
+      ],
+      "copiedObject": "blockrunner-body-paint-v2",
+      "exactPositionVertices": 146,
+      "firstCopiedPolygon": 5052,
+      "fitObject": "Blockrunner fit V1 pasted__L2x3slope1_pasted__Lego_White24_0",
+      "materialRole": "source color family",
+      "polygonCount": 260,
+      "referencedVertexIndices": 346,
+      "sourceObject": "pasted__L2x3slope1_pasted__Lego_White24_0",
+      "sourcePolygonOrderRetained": true,
+      "sourceTransformMirrored": false
+    },
+    {
+      "copiedCornerOrderFromSource": [
+        0,
+        1,
+        2
+      ],
+      "copiedObject": "blockrunner-body-paint-v2",
+      "exactPositionVertices": 500,
+      "firstCopiedPolygon": 5312,
+      "fitObject": "Blockrunner fit V1 pasted__L2x6_phongE2_0",
+      "materialRole": "source color family",
+      "polygonCount": 828,
+      "referencedVertexIndices": 1103,
+      "sourceObject": "pasted__L2x6_phongE2_0",
+      "sourcePolygonOrderRetained": true,
+      "sourceTransformMirrored": false
+    },
+    {
+      "copiedCornerOrderFromSource": [
+        0,
+        1,
+        2
+      ],
+      "copiedObject": "blockrunner-body-paint-v2",
+      "exactPositionVertices": 220,
+      "firstCopiedPolygon": 6140,
+      "fitObject": "Blockrunner fit V1 pasted__L4x3Slope_pasted__Lego_White15_0",
+      "materialRole": "source color family",
+      "polygonCount": 380,
+      "referencedVertexIndices": 508,
+      "sourceObject": "pasted__L4x3Slope_pasted__Lego_White15_0",
+      "sourcePolygonOrderRetained": true,
+      "sourceTransformMirrored": false
+    },
+    {
+      "copiedCornerOrderFromSource": [
+        0,
+        1,
+        2
+      ],
+      "copiedObject": "blockrunner-body-paint-v2",
+      "exactPositionVertices": 220,
+      "firstCopiedPolygon": 6520,
+      "fitObject": "Blockrunner fit V1 pasted__L4x3Slope_pasted__Lego_White22_0",
+      "materialRole": "source color family",
+      "polygonCount": 380,
+      "referencedVertexIndices": 508,
+      "sourceObject": "pasted__L4x3Slope_pasted__Lego_White22_0",
+      "sourcePolygonOrderRetained": true,
+      "sourceTransformMirrored": false
+    },
+    {
+      "copiedCornerOrderFromSource": [
+        0,
+        1,
+        2
+      ],
+      "copiedObject": "blockrunner-body-paint-v2",
+      "exactPositionVertices": 1240,
+      "firstCopiedPolygon": 6900,
+      "fitObject": "Blockrunner fit V1 pasted__L4x8F_pasted__Lego_White8_0",
+      "materialRole": "source color family",
+      "polygonCount": 2028,
+      "referencedVertexIndices": 2723,
+      "sourceObject": "pasted__L4x8F_pasted__Lego_White8_0",
+      "sourcePolygonOrderRetained": true,
+      "sourceTransformMirrored": false
+    },
+    {
+      "copiedCornerOrderFromSource": [
+        0,
+        1,
+        2
+      ],
+      "copiedObject": "blockrunner-body-paint-v2",
+      "exactPositionVertices": 568,
+      "firstCopiedPolygon": 8928,
+      "fitObject": "Blockrunner fit V1 pasted__LegoTri19_pasted__Lego_White18_0",
+      "materialRole": "source color family",
+      "polygonCount": 936,
+      "referencedVertexIndices": 1214,
+      "sourceObject": "pasted__LegoTri19_pasted__Lego_White18_0",
+      "sourcePolygonOrderRetained": true,
+      "sourceTransformMirrored": false
+    },
+    {
+      "copiedCornerOrderFromSource": [
+        0,
+        1,
+        2
+      ],
+      "copiedObject": "blockrunner-body-paint-v2",
+      "exactPositionVertices": 204,
+      "firstCopiedPolygon": 9864,
+      "fitObject": "Blockrunner fit V1 pasted__LegoTri39_pasted__Lego_White20_0",
+      "materialRole": "source color family",
+      "polygonCount": 348,
+      "referencedVertexIndices": 455,
+      "sourceObject": "pasted__LegoTri39_pasted__Lego_White20_0",
+      "sourcePolygonOrderRetained": true,
+      "sourceTransformMirrored": false
+    },
+    {
+      "copiedCornerOrderFromSource": [
+        0,
+        1,
+        2
+      ],
+      "copiedObject": "blockrunner-body-paint-v2",
+      "exactPositionVertices": 218,
+      "firstCopiedPolygon": 10212,
+      "fitObject": "Blockrunner fit V1 pasted__LegoTri8_lambert1_0",
+      "materialRole": "source color family",
+      "polygonCount": 274,
+      "referencedVertexIndices": 783,
+      "sourceObject": "pasted__LegoTri8_lambert1_0",
+      "sourcePolygonOrderRetained": true,
+      "sourceTransformMirrored": false
+    },
+    {
+      "copiedCornerOrderFromSource": [
+        0,
+        1,
+        2
+      ],
+      "copiedObject": "blockrunner-body-paint-v2",
+      "exactPositionVertices": 54,
+      "firstCopiedPolygon": 10486,
+      "fitObject": "Blockrunner fit V1 pasted__LegoTri9_lambert1_0",
+      "materialRole": "source color family",
+      "polygonCount": 76,
+      "referencedVertexIndices": 130,
+      "sourceObject": "pasted__LegoTri9_lambert1_0",
+      "sourcePolygonOrderRetained": true,
+      "sourceTransformMirrored": false
+    },
+    {
+      "copiedCornerOrderFromSource": [
+        0,
+        1,
+        2
+      ],
+      "copiedObject": "blockrunner-body-paint-v2",
+      "exactPositionVertices": 120,
+      "firstCopiedPolygon": 10562,
+      "fitObject": "Blockrunner fit V1 pasted__brick230_phongE2_0",
+      "materialRole": "source color family",
+      "polygonCount": 236,
+      "referencedVertexIndices": 256,
+      "sourceObject": "pasted__brick230_phongE2_0",
+      "sourcePolygonOrderRetained": true,
+      "sourceTransformMirrored": false
+    },
+    {
+      "copiedCornerOrderFromSource": [
+        0,
+        1,
+        2
+      ],
+      "copiedObject": "blockrunner-body-paint-v2",
+      "exactPositionVertices": 976,
+      "firstCopiedPolygon": 10798,
+      "fitObject": "Blockrunner fit V1 pasted__brick231_pasted__LegoWhite1_0",
+      "materialRole": "source color family",
+      "polygonCount": 1612,
+      "referencedVertexIndices": 2137,
+      "sourceObject": "pasted__brick231_pasted__LegoWhite1_0",
+      "sourcePolygonOrderRetained": true,
+      "sourceTransformMirrored": false
+    },
+    {
+      "copiedCornerOrderFromSource": [
+        0,
+        1,
+        2
+      ],
+      "copiedObject": "blockrunner-body-paint-v2",
+      "exactPositionVertices": 129,
+      "firstCopiedPolygon": 12410,
+      "fitObject": "Blockrunner fit V1 pasted__brick240_pasted__LegoWhite3_0",
+      "materialRole": "source color family",
+      "polygonCount": 240,
+      "referencedVertexIndices": 327,
+      "sourceObject": "pasted__brick240_pasted__LegoWhite3_0",
+      "sourcePolygonOrderRetained": true,
+      "sourceTransformMirrored": false
+    },
+    {
+      "copiedCornerOrderFromSource": [
+        0,
+        1,
+        2
+      ],
+      "copiedObject": "blockrunner-body-paint-v2",
+      "exactPositionVertices": 372,
+      "firstCopiedPolygon": 12650,
+      "fitObject": "Blockrunner fit V1 pasted__pCylinder4_Black_Jets_0",
+      "materialRole": "source color family",
+      "polygonCount": 708,
+      "referencedVertexIndices": 908,
+      "sourceObject": "pasted__pCylinder4_Black_Jets_0",
+      "sourcePolygonOrderRetained": true,
+      "sourceTransformMirrored": false
+    },
+    {
+      "copiedCornerOrderFromSource": [
+        0,
+        1,
+        2
+      ],
+      "copiedObject": "blockrunner-body-paint-v2",
+      "exactPositionVertices": 858,
+      "firstCopiedPolygon": 13358,
+      "fitObject": "Blockrunner fit V1 pasted__pasted__L1x1Stud4_Black_Jets_0",
+      "materialRole": "source color family",
+      "polygonCount": 1552,
+      "referencedVertexIndices": 2072,
+      "sourceObject": "pasted__pasted__L1x1Stud4_Black_Jets_0",
+      "sourcePolygonOrderRetained": true,
+      "sourceTransformMirrored": false
+    },
+    {
+      "copiedCornerOrderFromSource": [
+        0,
+        1,
+        2
+      ],
+      "copiedObject": "blockrunner-body-paint-v2",
+      "exactPositionVertices": 594,
+      "firstCopiedPolygon": 14910,
+      "fitObject": "Blockrunner fit V1 pasted__pasted__L1x1Stud5_Black_Jets_0",
+      "materialRole": "source color family",
+      "polygonCount": 1152,
+      "referencedVertexIndices": 1507,
+      "sourceObject": "pasted__pasted__L1x1Stud5_Black_Jets_0",
+      "sourcePolygonOrderRetained": true,
+      "sourceTransformMirrored": false
+    },
+    {
+      "copiedCornerOrderFromSource": [
+        0,
+        1,
+        2
+      ],
+      "copiedObject": "blockrunner-body-paint-v2",
+      "exactPositionVertices": 592,
+      "firstCopiedPolygon": 16062,
+      "fitObject": "Blockrunner fit V1 pasted__pasted__L1x20_Black_Jets_0",
+      "materialRole": "source color family",
+      "polygonCount": 1064,
+      "referencedVertexIndices": 1453,
+      "sourceObject": "pasted__pasted__L1x20_Black_Jets_0",
+      "sourcePolygonOrderRetained": true,
+      "sourceTransformMirrored": false
+    },
+    {
+      "copiedCornerOrderFromSource": [
+        0,
+        1,
+        2
+      ],
+      "copiedObject": "blockrunner-body-paint-v2",
+      "exactPositionVertices": 204,
+      "firstCopiedPolygon": 17126,
+      "fitObject": "Blockrunner fit V1 pasted__pasted__L1x4F_phongE2_0",
+      "materialRole": "source color family",
+      "polygonCount": 348,
+      "referencedVertexIndices": 455,
+      "sourceObject": "pasted__pasted__L1x4F_phongE2_0",
+      "sourcePolygonOrderRetained": true,
+      "sourceTransformMirrored": false
+    },
+    {
+      "copiedCornerOrderFromSource": [
+        0,
+        2,
+        1
+      ],
+      "copiedObject": "blockrunner-body-paint-v2",
+      "exactPositionVertices": 204,
+      "firstCopiedPolygon": 17474,
+      "fitObject": "Blockrunner fit V1 pasted__pasted__L1x4F_phongE2_0.001",
+      "materialRole": "source color family",
+      "polygonCount": 348,
+      "referencedVertexIndices": 455,
+      "sourceObject": "pasted__pasted__L1x4F_phongE2_0.001",
+      "sourcePolygonOrderRetained": true,
+      "sourceTransformMirrored": true
+    },
+    {
+      "copiedCornerOrderFromSource": [
+        0,
+        1,
+        2
+      ],
+      "copiedObject": "blockrunner-body-paint-v2",
+      "exactPositionVertices": 130,
+      "firstCopiedPolygon": 17822,
+      "fitObject": "Blockrunner fit V1 pasted__pasted__L2F_phongE2_0",
+      "materialRole": "source color family",
+      "polygonCount": 228,
+      "referencedVertexIndices": 293,
+      "sourceObject": "pasted__pasted__L2F_phongE2_0",
+      "sourcePolygonOrderRetained": true,
+      "sourceTransformMirrored": false
+    },
+    {
+      "copiedCornerOrderFromSource": [
+        0,
+        1,
+        2
+      ],
+      "copiedObject": "blockrunner-body-paint-v2",
+      "exactPositionVertices": 182,
+      "firstCopiedPolygon": 18050,
+      "fitObject": "Blockrunner fit V1 pasted__pasted__L2x2Circle_phongE1_0",
+      "materialRole": "source color family",
+      "polygonCount": 360,
+      "referencedVertexIndices": 563,
+      "sourceObject": "pasted__pasted__L2x2Circle_phongE1_0",
+      "sourcePolygonOrderRetained": true,
+      "sourceTransformMirrored": false
+    },
+    {
+      "copiedCornerOrderFromSource": [
+        0,
+        1,
+        2
+      ],
+      "copiedObject": "blockrunner-body-paint-v2",
+      "exactPositionVertices": 182,
+      "firstCopiedPolygon": 18410,
+      "fitObject": "Blockrunner fit V1 pasted__pasted__L2x2Circle_phongE1_0.001",
+      "materialRole": "source color family",
+      "polygonCount": 360,
+      "referencedVertexIndices": 579,
+      "sourceObject": "pasted__pasted__L2x2Circle_phongE1_0.001",
+      "sourcePolygonOrderRetained": true,
+      "sourceTransformMirrored": false
+    },
+    {
+      "copiedCornerOrderFromSource": [
+        0,
+        1,
+        2
+      ],
+      "copiedObject": "blockrunner-body-paint-v2",
+      "exactPositionVertices": 204,
+      "firstCopiedPolygon": 18770,
+      "fitObject": "Blockrunner fit V1 pasted__pasted__L2x2_pasted__pasted__Lego_White19_0",
+      "materialRole": "source color family",
+      "polygonCount": 348,
+      "referencedVertexIndices": 455,
+      "sourceObject": "pasted__pasted__L2x2_pasted__pasted__Lego_White19_0",
+      "sourcePolygonOrderRetained": true,
+      "sourceTransformMirrored": false
+    },
+    {
+      "copiedCornerOrderFromSource": [
+        0,
+        1,
+        2
+      ],
+      "copiedObject": "blockrunner-body-paint-v2",
+      "exactPositionVertices": 500,
+      "firstCopiedPolygon": 19118,
+      "fitObject": "Blockrunner fit V1 pasted__pasted__L2x6_phongE2_0",
+      "materialRole": "source color family",
+      "polygonCount": 828,
+      "referencedVertexIndices": 1103,
+      "sourceObject": "pasted__pasted__L2x6_phongE2_0",
+      "sourcePolygonOrderRetained": true,
+      "sourceTransformMirrored": false
+    },
+    {
+      "copiedCornerOrderFromSource": [
+        0,
+        1,
+        2
+      ],
+      "copiedObject": "blockrunner-body-paint-v2",
+      "exactPositionVertices": 1240,
+      "firstCopiedPolygon": 19946,
+      "fitObject": "Blockrunner fit V1 pasted__pasted__L4x8F_pasted__pasted__Lego_White8_0",
+      "materialRole": "source color family",
+      "polygonCount": 2028,
+      "referencedVertexIndices": 2723,
+      "sourceObject": "pasted__pasted__L4x8F_pasted__pasted__Lego_White8_0",
+      "sourcePolygonOrderRetained": true,
+      "sourceTransformMirrored": false
+    },
+    {
+      "copiedCornerOrderFromSource": [
+        0,
+        2,
+        1
+      ],
+      "copiedObject": "blockrunner-body-paint-v2",
+      "exactPositionVertices": 568,
+      "firstCopiedPolygon": 21974,
+      "fitObject": "Blockrunner fit V1 pasted__pasted__LegoTri19_pasted__pasted__Lego_White18_0",
+      "materialRole": "source color family",
+      "polygonCount": 936,
+      "referencedVertexIndices": 1214,
+      "sourceObject": "pasted__pasted__LegoTri19_pasted__pasted__Lego_White18_0",
+      "sourcePolygonOrderRetained": true,
+      "sourceTransformMirrored": true
+    },
+    {
+      "copiedCornerOrderFromSource": [
+        0,
+        1,
+        2
+      ],
+      "copiedObject": "blockrunner-body-paint-v2",
+      "exactPositionVertices": 218,
+      "firstCopiedPolygon": 22910,
+      "fitObject": "Blockrunner fit V1 pasted__pasted__LegoTri8_lambert1_0",
+      "materialRole": "source color family",
+      "polygonCount": 274,
+      "referencedVertexIndices": 782,
+      "sourceObject": "pasted__pasted__LegoTri8_lambert1_0",
+      "sourcePolygonOrderRetained": true,
+      "sourceTransformMirrored": false
+    },
+    {
+      "copiedCornerOrderFromSource": [
+        0,
+        1,
+        2
+      ],
+      "copiedObject": "blockrunner-body-paint-v2",
+      "exactPositionVertices": 54,
+      "firstCopiedPolygon": 23184,
+      "fitObject": "Blockrunner fit V1 pasted__pasted__LegoTri9_lambert1_0",
+      "materialRole": "source color family",
+      "polygonCount": 76,
+      "referencedVertexIndices": 130,
+      "sourceObject": "pasted__pasted__LegoTri9_lambert1_0",
+      "sourcePolygonOrderRetained": true,
+      "sourceTransformMirrored": false
+    },
+    {
+      "copiedCornerOrderFromSource": [
+        0,
+        1,
+        2
+      ],
+      "copiedObject": "blockrunner-body-paint-v2",
+      "exactPositionVertices": 120,
+      "firstCopiedPolygon": 23260,
+      "fitObject": "Blockrunner fit V1 pasted__pasted__brick230_phongE2_0",
+      "materialRole": "source color family",
+      "polygonCount": 236,
+      "referencedVertexIndices": 256,
+      "sourceObject": "pasted__pasted__brick230_phongE2_0",
+      "sourcePolygonOrderRetained": true,
+      "sourceTransformMirrored": false
+    },
+    {
+      "copiedCornerOrderFromSource": [
+        0,
+        1,
+        2
+      ],
+      "copiedObject": "blockrunner-body-paint-v2",
+      "exactPositionVertices": 976,
+      "firstCopiedPolygon": 23496,
+      "fitObject": "Blockrunner fit V1 pasted__pasted__brick231_pasted__pasted__LegoWhite1_0",
+      "materialRole": "source color family",
+      "polygonCount": 1612,
+      "referencedVertexIndices": 2137,
+      "sourceObject": "pasted__pasted__brick231_pasted__pasted__LegoWhite1_0",
+      "sourcePolygonOrderRetained": true,
+      "sourceTransformMirrored": false
+    },
+    {
+      "copiedCornerOrderFromSource": [
+        0,
+        1,
+        2
+      ],
+      "copiedObject": "blockrunner-body-paint-v2",
+      "exactPositionVertices": 129,
+      "firstCopiedPolygon": 25108,
+      "fitObject": "Blockrunner fit V1 pasted__pasted__brick240_pasted__pasted__LegoWhite3_0",
+      "materialRole": "source color family",
+      "polygonCount": 240,
+      "referencedVertexIndices": 327,
+      "sourceObject": "pasted__pasted__brick240_pasted__pasted__LegoWhite3_0",
+      "sourcePolygonOrderRetained": true,
+      "sourceTransformMirrored": false
+    },
+    {
+      "copiedCornerOrderFromSource": [
+        0,
+        2,
+        1
+      ],
+      "copiedObject": "blockrunner-body-paint-v2",
+      "exactPositionVertices": 372,
+      "firstCopiedPolygon": 25348,
+      "fitObject": "Blockrunner fit V1 pasted__pasted__pCylinder4_Black_Jets_0",
+      "materialRole": "source color family",
+      "polygonCount": 708,
+      "referencedVertexIndices": 908,
+      "sourceObject": "pasted__pasted__pCylinder4_Black_Jets_0",
+      "sourcePolygonOrderRetained": true,
+      "sourceTransformMirrored": true
+    },
+    {
+      "copiedCornerOrderFromSource": [
+        0,
+        1,
+        2
+      ],
+      "copiedObject": "blockrunner-body-paint-v2",
+      "exactPositionVertices": 204,
+      "firstCopiedPolygon": 26056,
+      "fitObject": "Blockrunner fit V1 pasted__pasted__pasted__L1x4F_phongE2_0",
+      "materialRole": "source color family",
+      "polygonCount": 348,
+      "referencedVertexIndices": 455,
+      "sourceObject": "pasted__pasted__pasted__L1x4F_phongE2_0",
+      "sourcePolygonOrderRetained": true,
+      "sourceTransformMirrored": false
+    },
+    {
+      "copiedCornerOrderFromSource": [
+        0,
+        2,
+        1
+      ],
+      "copiedObject": "blockrunner-body-paint-v2",
+      "exactPositionVertices": 204,
+      "firstCopiedPolygon": 26404,
+      "fitObject": "Blockrunner fit V1 pasted__pasted__pasted__L1x4F_phongE2_0.001",
+      "materialRole": "source color family",
+      "polygonCount": 348,
+      "referencedVertexIndices": 455,
+      "sourceObject": "pasted__pasted__pasted__L1x4F_phongE2_0.001",
+      "sourcePolygonOrderRetained": true,
+      "sourceTransformMirrored": true
+    },
+    {
+      "copiedCornerOrderFromSource": [
+        0,
+        1,
+        2
+      ],
+      "copiedObject": "blockrunner-body-paint-v2",
+      "exactPositionVertices": 130,
+      "firstCopiedPolygon": 26752,
+      "fitObject": "Blockrunner fit V1 pasted__pasted__pasted__L2F_phongE2_0",
+      "materialRole": "source color family",
+      "polygonCount": 228,
+      "referencedVertexIndices": 293,
+      "sourceObject": "pasted__pasted__pasted__L2F_phongE2_0",
+      "sourcePolygonOrderRetained": true,
+      "sourceTransformMirrored": false
+    },
+    {
+      "copiedCornerOrderFromSource": [
+        0,
+        2,
+        1
+      ],
+      "copiedObject": "blockrunner-body-paint-v2",
+      "exactPositionVertices": 130,
+      "firstCopiedPolygon": 26980,
+      "fitObject": "Blockrunner fit V1 pasted__pasted__pasted__L2F_phongE2_0.001",
+      "materialRole": "source color family",
+      "polygonCount": 228,
+      "referencedVertexIndices": 293,
+      "sourceObject": "pasted__pasted__pasted__L2F_phongE2_0.001",
+      "sourcePolygonOrderRetained": true,
+      "sourceTransformMirrored": true
+    },
+    {
+      "copiedCornerOrderFromSource": [
+        0,
+        1,
+        2
+      ],
+      "copiedObject": "blockrunner-body-paint-v2",
+      "exactPositionVertices": 182,
+      "firstCopiedPolygon": 27208,
+      "fitObject": "Blockrunner fit V1 pasted__pasted__pasted__L2x2Circle_phongE1_0",
+      "materialRole": "source color family",
+      "polygonCount": 360,
+      "referencedVertexIndices": 567,
+      "sourceObject": "pasted__pasted__pasted__L2x2Circle_phongE1_0",
+      "sourcePolygonOrderRetained": true,
+      "sourceTransformMirrored": false
+    },
+    {
+      "copiedCornerOrderFromSource": [
+        0,
+        1,
+        2
+      ],
+      "copiedObject": "blockrunner-body-paint-v2",
+      "exactPositionVertices": 204,
+      "firstCopiedPolygon": 27568,
+      "fitObject": "Blockrunner fit V1 pasted__pasted__pasted__L2x2_pasted__pasted__pasted__Lego_White19_0",
+      "materialRole": "source color family",
+      "polygonCount": 348,
+      "referencedVertexIndices": 455,
+      "sourceObject": "pasted__pasted__pasted__L2x2_pasted__pasted__pasted__Lego_White19_0",
+      "sourcePolygonOrderRetained": true,
+      "sourceTransformMirrored": false
+    },
+    {
+      "copiedCornerOrderFromSource": [
+        0,
+        2,
+        1
+      ],
+      "copiedObject": "blockrunner-body-paint-v2",
+      "exactPositionVertices": 204,
+      "firstCopiedPolygon": 27916,
+      "fitObject": "Blockrunner fit V1 pasted__pasted__pasted__pasted__L1x4F_phongE2_0",
+      "materialRole": "source color family",
+      "polygonCount": 348,
+      "referencedVertexIndices": 455,
+      "sourceObject": "pasted__pasted__pasted__pasted__L1x4F_phongE2_0",
+      "sourcePolygonOrderRetained": true,
+      "sourceTransformMirrored": true
+    },
+    {
+      "copiedCornerOrderFromSource": [
+        0,
+        1,
+        2
+      ],
+      "copiedObject": "blockrunner-body-paint-v2",
+      "exactPositionVertices": 130,
+      "firstCopiedPolygon": 28264,
+      "fitObject": "Blockrunner fit V1 pasted__pasted__pasted__pasted__L2F_phongE2_0",
+      "materialRole": "source color family",
+      "polygonCount": 228,
+      "referencedVertexIndices": 293,
+      "sourceObject": "pasted__pasted__pasted__pasted__L2F_phongE2_0",
+      "sourcePolygonOrderRetained": true,
+      "sourceTransformMirrored": false
+    },
+    {
+      "copiedCornerOrderFromSource": [
+        0,
+        2,
+        1
+      ],
+      "copiedObject": "blockrunner-body-paint-v2",
+      "exactPositionVertices": 130,
+      "firstCopiedPolygon": 28492,
+      "fitObject": "Blockrunner fit V1 pasted__pasted__pasted__pasted__L2F_phongE2_0.001",
+      "materialRole": "source color family",
+      "polygonCount": 228,
+      "referencedVertexIndices": 293,
+      "sourceObject": "pasted__pasted__pasted__pasted__L2F_phongE2_0.001",
+      "sourcePolygonOrderRetained": true,
+      "sourceTransformMirrored": true
+    },
+    {
+      "copiedCornerOrderFromSource": [
+        0,
+        1,
+        2
+      ],
+      "copiedObject": "blockrunner-body-paint-v2",
+      "exactPositionVertices": 182,
+      "firstCopiedPolygon": 28720,
+      "fitObject": "Blockrunner fit V1 pasted__pasted__pasted__pasted__L2x2Circle_phongE1_0",
+      "materialRole": "source color family",
+      "polygonCount": 360,
+      "referencedVertexIndices": 583,
+      "sourceObject": "pasted__pasted__pasted__pasted__L2x2Circle_phongE1_0",
+      "sourcePolygonOrderRetained": true,
+      "sourceTransformMirrored": false
+    },
+    {
+      "copiedCornerOrderFromSource": [
+        0,
+        2,
+        1
+      ],
+      "copiedObject": "blockrunner-body-paint-v2",
+      "exactPositionVertices": 130,
+      "firstCopiedPolygon": 29080,
+      "fitObject": "Blockrunner fit V1 pasted__pasted__pasted__pasted__pasted__L2F_phongE2_0",
+      "materialRole": "source color family",
+      "polygonCount": 228,
+      "referencedVertexIndices": 293,
+      "sourceObject": "pasted__pasted__pasted__pasted__pasted__L2F_phongE2_0",
+      "sourcePolygonOrderRetained": true,
+      "sourceTransformMirrored": true
+    },
+    {
+      "copiedCornerOrderFromSource": [
+        0,
+        1,
+        2
+      ],
+      "copiedObject": "blockrunner-body-paint-v2",
+      "exactPositionVertices": 182,
+      "firstCopiedPolygon": 29308,
+      "fitObject": "Blockrunner fit V1 pasted__pasted__pasted__pasted__pasted__L2x2Circle_phongE1_0",
+      "materialRole": "source color family",
+      "polygonCount": 360,
+      "referencedVertexIndices": 575,
+      "sourceObject": "pasted__pasted__pasted__pasted__pasted__L2x2Circle_phongE1_0",
+      "sourcePolygonOrderRetained": true,
+      "sourceTransformMirrored": false
+    },
+    {
+      "copiedCornerOrderFromSource": [
+        0,
+        1,
+        2
+      ],
+      "copiedObject": "blockrunner-body-paint-v2",
+      "exactPositionVertices": 182,
+      "firstCopiedPolygon": 29668,
+      "fitObject": "Blockrunner fit V1 pasted__pasted__pasted__pasted__pasted__pasted__L2x2Circle_phongE1_0",
+      "materialRole": "source color family",
+      "polygonCount": 360,
+      "referencedVertexIndices": 570,
+      "sourceObject": "pasted__pasted__pasted__pasted__pasted__pasted__L2x2Circle_phongE1_0",
+      "sourcePolygonOrderRetained": true,
+      "sourceTransformMirrored": false
+    },
+    {
+      "copiedCornerOrderFromSource": [
+        0,
+        1,
+        2
+      ],
+      "copiedObject": "blockrunner-body-paint-v2",
+      "exactPositionVertices": 182,
+      "firstCopiedPolygon": 30028,
+      "fitObject": "Blockrunner fit V1 pasted__pasted__pasted__pasted__pasted__pasted__pasted__L2x2Circle_phongE1_0",
+      "materialRole": "source color family",
+      "polygonCount": 360,
+      "referencedVertexIndices": 570,
+      "sourceObject": "pasted__pasted__pasted__pasted__pasted__pasted__pasted__L2x2Circle_phongE1_0",
+      "sourcePolygonOrderRetained": true,
+      "sourceTransformMirrored": false
+    },
+    {
+      "copiedCornerOrderFromSource": [
+        0,
+        1,
+        2
+      ],
+      "copiedObject": "blockrunner-body-paint-v2",
+      "exactPositionVertices": 182,
+      "firstCopiedPolygon": 30388,
+      "fitObject": "Blockrunner fit V1 pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__L2x2Circle_phongE1_0",
+      "materialRole": "source color family",
+      "polygonCount": 360,
+      "referencedVertexIndices": 570,
+      "sourceObject": "pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__L2x2Circle_phongE1_0",
+      "sourcePolygonOrderRetained": true,
+      "sourceTransformMirrored": false
+    },
+    {
+      "copiedCornerOrderFromSource": [
+        0,
+        1,
+        2
+      ],
+      "copiedObject": "blockrunner-body-paint-v2",
+      "exactPositionVertices": 182,
+      "firstCopiedPolygon": 30748,
+      "fitObject": "Blockrunner fit V1 pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__L2x2Circle_phongE1_0.001",
+      "materialRole": "source color family",
+      "polygonCount": 360,
+      "referencedVertexIndices": 570,
+      "sourceObject": "pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__L2x2Circle_phongE1_0.001",
+      "sourcePolygonOrderRetained": true,
+      "sourceTransformMirrored": false
+    },
+    {
+      "copiedCornerOrderFromSource": [
+        0,
+        1,
+        2
+      ],
+      "copiedObject": "blockrunner-body-paint-v2",
+      "exactPositionVertices": 182,
+      "firstCopiedPolygon": 31108,
+      "fitObject": "Blockrunner fit V1 pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__L2x2Circle_phongE1_0",
+      "materialRole": "source color family",
+      "polygonCount": 360,
+      "referencedVertexIndices": 570,
+      "sourceObject": "pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__L2x2Circle_phongE1_0",
+      "sourcePolygonOrderRetained": true,
+      "sourceTransformMirrored": false
+    },
+    {
+      "copiedCornerOrderFromSource": [
+        0,
+        1,
+        2
+      ],
+      "copiedObject": "blockrunner-body-paint-v2",
+      "exactPositionVertices": 182,
+      "firstCopiedPolygon": 31468,
+      "fitObject": "Blockrunner fit V1 pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__L2x2Circle_phongE1_0",
+      "materialRole": "source color family",
+      "polygonCount": 360,
+      "referencedVertexIndices": 570,
+      "sourceObject": "pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__L2x2Circle_phongE1_0",
+      "sourcePolygonOrderRetained": true,
+      "sourceTransformMirrored": false
+    },
+    {
+      "copiedCornerOrderFromSource": [
+        0,
+        1,
+        2
+      ],
+      "copiedObject": "blockrunner-body-paint-v2",
+      "exactPositionVertices": 2329,
+      "firstCopiedPolygon": 31828,
+      "fitObject": "Blockrunner fit V1 pasted__pasted__pasted__pasted__pasted__polySurface97_phongE2_0",
+      "materialRole": "source color family",
+      "polygonCount": 3800,
+      "referencedVertexIndices": 5104,
+      "sourceObject": "pasted__pasted__pasted__pasted__pasted__polySurface97_phongE2_0",
+      "sourcePolygonOrderRetained": true,
+      "sourceTransformMirrored": false
+    },
+    {
+      "copiedCornerOrderFromSource": [
+        0,
+        2,
+        1
+      ],
+      "copiedObject": "blockrunner-body-paint-v2",
+      "exactPositionVertices": 2329,
+      "firstCopiedPolygon": 35628,
+      "fitObject": "Blockrunner fit V1 pasted__pasted__pasted__pasted__polySurface97_phongE2_0",
+      "materialRole": "source color family",
+      "polygonCount": 3800,
+      "referencedVertexIndices": 5104,
+      "sourceObject": "pasted__pasted__pasted__pasted__polySurface97_phongE2_0",
+      "sourcePolygonOrderRetained": true,
+      "sourceTransformMirrored": true
+    },
+    {
+      "copiedCornerOrderFromSource": [
+        0,
+        1,
+        2
+      ],
+      "copiedObject": "blockrunner-body-paint-v2",
+      "exactPositionVertices": 120,
+      "firstCopiedPolygon": 39428,
+      "fitObject": "Blockrunner fit V1 side mount negativeX",
+      "materialRole": "source color family",
+      "polygonCount": 236,
+      "referencedVertexIndices": 256,
+      "sourceObject": "added-control-mount-negativeX",
+      "sourcePolygonOrderRetained": true,
+      "sourceTransformMirrored": false
+    },
+    {
+      "copiedCornerOrderFromSource": [
+        0,
+        1,
+        2
+      ],
+      "copiedObject": "blockrunner-body-paint-v2",
+      "exactPositionVertices": 120,
+      "firstCopiedPolygon": 39664,
+      "fitObject": "Blockrunner fit V1 side mount positiveX",
+      "materialRole": "source color family",
+      "polygonCount": 236,
+      "referencedVertexIndices": 256,
+      "sourceObject": "added-control-mount-positiveX",
+      "sourcePolygonOrderRetained": true,
+      "sourceTransformMirrored": false
+    },
+    {
+      "copiedCornerOrderFromSource": [
+        0,
+        1,
+        2
+      ],
+      "copiedObject": "blockrunner-pilot-paint-v2",
+      "exactPositionVertices": 2845,
+      "firstCopiedPolygon": 0,
+      "fitObject": "Blockrunner fit V1 pasted__LegoTri36_lambert1_0",
+      "materialRole": "pilot exact face mask",
+      "polygonCount": 4128,
+      "referencedVertexIndices": 10243,
+      "sourceObject": "pasted__LegoTri36_lambert1_0",
+      "sourcePolygonOrderRetained": true,
+      "sourceTransformMirrored": false
+    }
+  ],
+  "objectLineageScope": "Source/fit to V2 ranges; parentOwnerCopies maps V2 to V4; ownerCopies maps V4 to V4B. Polygon and corner identities remain unchanged.",
+  "ownerCopies": [
+    {
+      "copiedObject": "blockrunner-body-paint-v4b",
+      "geometryUvNormalsMaskValuesMaterialIndicesExact": true,
+      "geometryUvSignatureFnv1a64": "6fc76454b8f4da67",
+      "normalReencodingPerformed": false,
+      "sourceObject": "blockrunner-body-paint-v4",
+      "sourcePolygonToCopiedPolygon": "identity; same corner order",
+      "triangles": 39900
+    },
+    {
+      "copiedObject": "blockrunner-pilot-paint-v4b",
+      "geometryUvNormalsMaskValuesMaterialIndicesExact": true,
+      "geometryUvSignatureFnv1a64": "1e2a1f5441a8c5a3",
+      "normalReencodingPerformed": false,
+      "sourceObject": "blockrunner-pilot-paint-v4",
+      "sourcePolygonToCopiedPolygon": "identity; same corner order",
+      "triangles": 4128
+    }
+  ],
+  "paintAttributeSignatures": {
+    "blockrunner-body-paint-v4b": {
+      "Inkstorm V4 Edge Distance": {
+        "colorsFnv1a64": "77a01b45d7ba2a4d",
+        "dataType": "FLOAT_COLOR",
+        "domain": "CORNER",
+        "length": 119700
+      },
+      "Inkstorm V4 Edge Strength": {
+        "colorsFnv1a64": "18c936df184555bb",
+        "dataType": "FLOAT_COLOR",
+        "domain": "CORNER",
+        "length": 119700
+      }
+    },
+    "blockrunner-pilot-paint-v4b": {
+      "Inkstorm V4 Edge Distance": {
+        "colorsFnv1a64": "95983b52da7ef3fd",
+        "dataType": "FLOAT_COLOR",
+        "domain": "CORNER",
+        "length": 12384
+      },
+      "Inkstorm V4 Edge Strength": {
+        "colorsFnv1a64": "85ef768c1f7a2843",
+        "dataType": "FLOAT_COLOR",
+        "domain": "CORNER",
+        "length": 12384
+      }
+    }
+  },
+  "paintBounds": [
+    [
+      -2.9099459648132324,
+      -28.763988494873047,
+      0.021512573584914207
+    ],
+    [
+      2.958909034729004,
+      -16.763992309570312,
+      3.1749837398529053
+    ]
+  ],
+  "paintCornerNormalSignature": {
+    "blockrunner-body-paint-v4b": "ab241654681768cb",
+    "blockrunner-pilot-paint-v4b": "2a1f1ceb2412b23f"
+  },
+  "paintSignature": {
+    "algorithm": "FNV-1a-64 over canonical ASCII JSON; non-cryptographic",
+    "materialsFnv1a64": {
+      "Blockrunner V4B pilot gloves": "7c5b108f9565bf70",
+      "Blockrunner V4B pilot helmet": "4315fa4a95ff4b35",
+      "Blockrunner V4B pilot suit": "32e0764d7d2b6342",
+      "Blockrunner V4B pilot visor": "ae961cd5906928ae",
+      "Blockrunner V4B procedural graphite": "c9abffc5ad07769c",
+      "Blockrunner V4B procedural ivory": "d61254cc30576c89",
+      "Blockrunner V4B procedural oxblood": "5ea96a85cbbe439d"
+    },
+    "meshesFnv1a64": {
+      "blockrunner-body-paint-v4b geometry": "c084403b40f882e3",
+      "blockrunner-pilot-paint-v4b geometry": "894945bd36291aee"
+    },
+    "objectsFnv1a64": "890a4a28e5ecb2ce"
+  },
+  "parentOwnerCopies": [
+    {
+      "copiedObject": "blockrunner-body-paint-v4",
+      "cornerNormalsFnv1a64": "ab241654681768cb",
+      "geometryUvAndMaterialIndicesFnv1a64": "e5a085235a90b103",
+      "geometryUvNormalsMaterialIndicesExact": true,
+      "masks": {
+        "distanceMaximumRequested": 42.14559830074684,
+        "distanceMaximumStored": 42.145599365234375,
+        "joinWidthSourceUnits": 0.065,
+        "pointWeldPerformed": false,
+        "records": 6163,
+        "subdivisionOrUvChange": false,
+        "wearWidthSourceUnits": 0.055
+      },
+      "normalReencodingPerformed": false,
+      "sourceObject": "blockrunner-body-paint-v2",
+      "sourcePolygonToCopiedPolygon": "identity; same corner order",
+      "triangles": 39900
+    },
+    {
+      "copiedObject": "blockrunner-pilot-paint-v4",
+      "cornerNormalsFnv1a64": "2a1f1ceb2412b23f",
+      "geometryUvAndMaterialIndicesFnv1a64": "da72bb27dc69b4fe",
+      "geometryUvNormalsMaterialIndicesExact": true,
+      "masks": {
+        "distanceMaximumRequested": 1,
+        "distanceMaximumStored": 1,
+        "joinWidthSourceUnits": 0.018,
+        "pointWeldPerformed": false,
+        "records": 462,
+        "subdivisionOrUvChange": false,
+        "wearWidthSourceUnits": 0.022
+      },
+      "normalReencodingPerformed": false,
+      "sourceObject": "blockrunner-pilot-paint-v2",
+      "sourcePolygonToCopiedPolygon": "identity; same corner order",
+      "triangles": 4128
+    }
+  ],
+  "parentPaintAttributesPreserved": true,
+  "parentPaintCornerNormalsPreserved": true,
+  "parentPaintPreserved": true,
+  "parentPaintScene": "PodRacing — Blockrunner geometry-aware Inkstorm paint round34 V4",
+  "parentPaintSignature": {
+    "algorithm": "FNV-1a-64 over canonical ASCII JSON; non-cryptographic",
+    "materialsFnv1a64": {
+      "Blockrunner V4 pilot gloves": "12ce528dc497461e",
+      "Blockrunner V4 pilot helmet": "847d3c81ac8a353d",
+      "Blockrunner V4 pilot suit": "ed01dd1da35550e2",
+      "Blockrunner V4 pilot visor": "6671bdeffca984be",
+      "Blockrunner V4 procedural graphite": "835237c774a3e89f",
+      "Blockrunner V4 procedural ivory": "4dfd230f7a600000",
+      "Blockrunner V4 procedural oxblood": "2f8a6388add08086"
+    },
+    "meshesFnv1a64": {
+      "blockrunner-body-paint-v4 geometry": "822eb3fafe54d29b",
+      "blockrunner-pilot-paint-v4 geometry": "99ccdd2fa02a3f5e"
+    },
+    "objectsFnv1a64": "e36b876a6695edd8"
+  },
+  "pilotMeshName": "blockrunner-pilot-paint-v4b",
+  "runtimeReady": false,
+  "scope": "New V4B copy changes only the three body breakup branches. Original V4 remains intact. No mask, geometry, UV, normal, palette, bake, normalization or export change.",
+  "sharedBlendSaved": false,
+  "sourceCornerNormalsPreserved": true,
+  "sourcePreservation": true,
+  "sourceUid": "a6f14ae799ab40d7ac425f043f824ff8",
+  "stage": "copy-zero-gap-breakup-v4b",
+  "status": "V4B copy with zero-including breakup created; actual matched appearance review pending",
+  "targetScene": "PodRacing — Blockrunner localized broken paint round34 V4B",
+  "triangles": 44028
+}

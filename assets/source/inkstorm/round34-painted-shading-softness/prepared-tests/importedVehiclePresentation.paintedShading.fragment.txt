@@ -1,0 +1,102 @@
+// Prepared insertion for tests/render/importedVehiclePresentation.test.ts.
+// Uses that file's existing imports and artFixture/source helpers. Not a standalone test module.
+describe('exact authored material painted shading', () => {
+  it('applies softness only to the exact material name and preserves fallback values for case and suffix mismatches', async () => {
+    const f = artFixture(); f.material.name = 'Authored Cloth';
+    const trim = f.material.clone(); trim.name = 'Authored Cloth trim';
+    f.meshes[1]!.material = trim;
+    const library = new VehicleArtLibrary({ load: async () => f.root });
+    const presentation = new ImportedVehiclePresentation(library, { materialOptions: {
+      paintedShadingSoftness: .2, wear: .4, specularStrength: .32,
+    } });
+    expect(await presentation.setSource({ ...source('painted-name-match'), surfaceStyles: {
+      'Authored Cloth': { paintedShadingSoftness: .8 },
+      'authored cloth trim': { paintedShadingSoftness: 1 },
+    } })).toBe('ready');
+    const cloth = presentation.geometryMeshes[0]!.material as CelMaterial;
+    const untouched = presentation.geometryMeshes[1]!.material as CelMaterial;
+    expect(cloth.uniforms.uPaintedShadingSoftness?.value).toBe(.8);
+    expect(untouched.uniforms.uPaintedShadingSoftness?.value).toBe(.2);
+    for (const material of [cloth, untouched]) {
+      expect(material.uniforms.uBaseColorMap?.value).toBe(f.map);
+      expect(material.uniforms.uWear?.value).toBe(.4);
+      expect(material.uniforms.uSpecularStrength?.value).toBe(.32);
+    }
+    expect(presentation.statistics.opaqueDraws).toBe(2);
+    expect(presentation.statistics.triangles).toBe(24);
+    presentation.dispose(); library.dispose();
+  });
+
+  it.each([0, 1])('accepts painted softness boundary %s without changing another lease or its borrowed maps', async (paintedShadingSoftness) => {
+    const f = artFixture(); f.material.name = 'Authored Cloth';
+    const roughness = new Texture(); f.material.roughnessMap = roughness; f.material.roughness = .7;
+    f.map.offset.set(.2, .3); f.map.repeat.set(2, -1);
+    roughness.matrixAutoUpdate = false; roughness.matrix.set(2, 0, .1, 0, 3, .2, 0, 0, 1);
+    const originalMapMatrix = f.map.matrix.clone(), originalRoughnessMatrix = roughness.matrix.clone();
+    const roughnessDisposed = vi.spyOn(roughness, 'dispose');
+    const load = vi.fn().mockResolvedValue(f.root);
+    const library = new VehicleArtLibrary({ load });
+    const styled = new ImportedVehiclePresentation(library);
+    const unstyled = new ImportedVehiclePresentation(library);
+    expect(await styled.setSource({ ...source('shared-paint'), surfaceStyles: {
+      'Authored Cloth': { paintedShadingSoftness },
+    } })).toBe('ready');
+    expect(await unstyled.setSource(source('shared-paint'))).toBe('ready');
+    expect(load).toHaveBeenCalledTimes(1);
+    const painted = styled.materials[0]!, legacy = unstyled.materials[0]!;
+    expect(painted.uniforms.uPaintedShadingSoftness?.value).toBe(paintedShadingSoftness === 0 ? undefined : paintedShadingSoftness);
+    expect(legacy.uniforms.uPaintedShadingSoftness).toBeUndefined();
+    expect(painted).not.toBe(legacy);
+    expect(painted.uniforms.uRamp?.value).not.toBe(legacy.uniforms.uRamp?.value);
+    const legacyBytes = (legacy.uniforms.uRamp?.value.image.data as Uint8Array).slice();
+    for (const presentation of [styled, unstyled]) {
+      const material = presentation.materials[0]!;
+      expect(presentation.geometryMeshes[0]!.geometry).toBe(f.geometry);
+      expect(material.uniforms.uBaseColorMap?.value).toBe(f.map);
+      expect(material.uniforms.uRoughnessMap?.value).toBe(roughness);
+      expect(material.uniforms.uRoughness?.value).toBe(.7);
+      expect(material.uniforms.uBaseColorStrength?.value).toBe(1);
+      expect(material.uniforms.uBaseColorUvTransform?.value).toEqual(new Matrix3().setUvTransform(.2, .3, 2, -1, 0, 0, 0));
+      expect(material.uniforms.uRoughnessUvTransform?.value).toEqual(originalRoughnessMatrix);
+    }
+    if (paintedShadingSoftness === 0) {
+      expect(painted.fragmentShader).toBe(legacy.fragmentShader);
+      expect(painted.uniforms.uRamp?.value.image.data).toEqual(legacyBytes);
+    } else {
+      expect(painted.fragmentShader).not.toBe(legacy.fragmentShader);
+      expect(painted.uniforms.uRamp?.value.image.data).not.toEqual(legacyBytes);
+    }
+    painted.setPalette(CEL_PALETTES.rivalTeal);
+    expect(legacy.uniforms.uRamp?.value.image.data).toEqual(legacyBytes);
+    expect(f.material.map).toBe(f.map); expect(f.material.roughnessMap).toBe(roughness);
+    expect(f.map.matrix).toEqual(originalMapMatrix); expect(roughness.matrix).toEqual(originalRoughnessMatrix);
+    styled.dispose();
+    expect(f.disposed.map).not.toHaveBeenCalled(); expect(roughnessDisposed).not.toHaveBeenCalled();
+    expect(unstyled.status).toBe('ready');
+    unstyled.dispose(); library.dispose();
+    expect(f.disposed.map).toHaveBeenCalledTimes(1); expect(roughnessDisposed).toHaveBeenCalledTimes(1);
+  });
+
+  it.each([-.01, 1.01, Number.NaN, Number.POSITIVE_INFINITY, Number.NEGATIVE_INFINITY])(
+    'rejects painted softness %s before replacing prior ready art and releases the failed lease', async (paintedShadingSoftness) => {
+      const prior = artFixture(), candidate = artFixture(); candidate.material.name = 'Authored Cloth';
+      const library = new VehicleArtLibrary({
+        load: vi.fn().mockResolvedValueOnce(prior.root).mockResolvedValueOnce(candidate.root), maxIdleEntries: 0,
+      });
+      const changed = vi.fn();
+      const presentation = new ImportedVehiclePresentation(library, { onGeometryChanged: changed });
+      await presentation.setSource(source('prior'));
+      const liveMeshes = presentation.geometryMeshes;
+      expect(await presentation.setSource({ ...source('bad-paint-softness'), surfaceStyles: {
+        'Authored Cloth': { paintedShadingSoftness },
+      } })).toBe('error');
+      expect(presentation.error?.message).toContain('paintedShadingSoftness must be finite and between 0 and 1');
+      expect(presentation.activeSource?.id).toBe('prior');
+      expect(presentation.geometryMeshes).toBe(liveMeshes);
+      expect(presentation.geometryRevision).toBe(1); expect(changed).toHaveBeenCalledTimes(1);
+      expect(prior.disposed.map).not.toHaveBeenCalled();
+      for (const disposed of Object.values(candidate.disposed)) expect(disposed).toHaveBeenCalledTimes(1);
+      presentation.dispose(); library.dispose();
+    },
+  );
+});

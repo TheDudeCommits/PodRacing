@@ -3,6 +3,7 @@ import {
   BackSide,
   Bone,
   BoxGeometry,
+  DataTexture,
   GLSL3,
   InstancedMesh,
   Mesh,
@@ -88,7 +89,9 @@ describe('cel material contracts', () => {
     expect(material.fragmentShader).toContain('step(uSpecularCutoff');
     expect(material.fragmentShader).toContain('step(uRimCutoff');
     expect(material.fragmentShader).toContain('texture2D(uMatcap');
-    expect(material.fragmentShader).not.toMatch(/samplerCube|roughness|metalness/i);
+    expect(material.fragmentShader).not.toMatch(/samplerCube|metalness/i);
+    expect(material.defines.USE_CEL_ROUGHNESS).toBeUndefined();
+    expect(material.defines.USE_CEL_NORMAL_MAP).toBeUndefined();
     material.setPalette(CEL_PALETTES.rivalTeal);
     expect(material.palette).toBe(CEL_PALETTES.rivalTeal);
     material.dispose();
@@ -171,6 +174,42 @@ describe('inverted hull outline contracts', () => {
     handle.dispose();
     geometry.dispose();
     (source.material as MeshBasicMaterial).dispose();
+  });
+
+  it('releases an instanced hull once without releasing its live source resources', () => {
+    const geometry = new BoxGeometry();
+    const beauty = new MeshBasicMaterial();
+    const source = new InstancedMesh(geometry, beauty, 2);
+    const morphTexture = new DataTexture(new Float32Array(2), 1, 2);
+    source.morphTexture = morphTexture;
+    const handle = createInvertedHullOutline(source);
+    const hull = handle.mesh as InstancedMesh;
+    let hullDisposals = 0;
+    let sourceResourceDisposals = 0;
+    geometry.addEventListener('dispose', () => { sourceResourceDisposals += 1; });
+    beauty.addEventListener('dispose', () => { sourceResourceDisposals += 1; });
+    morphTexture.addEventListener('dispose', () => { sourceResourceDisposals += 1; });
+    hull.addEventListener('dispose', () => {
+      hullDisposals += 1;
+      // Three removes these attributes on the instance's dispose event. The
+      // outline must stop borrowing them before releasing its own GPU state.
+      expect(hull.instanceMatrix).not.toBe(source.instanceMatrix);
+      expect(hull.morphTexture).toBeNull();
+    });
+
+    handle.dispose();
+    handle.dispose();
+    handle.sync();
+
+    expect(hullDisposals).toBe(1);
+    expect(sourceResourceDisposals).toBe(0);
+    expect(hull.instanceMatrix).not.toBe(source.instanceMatrix);
+    expect(hull.morphTexture).toBeNull();
+    expect(source.morphTexture).toBe(morphTexture);
+    expect(source.children).not.toContain(hull);
+    source.dispose();
+    geometry.dispose();
+    beauty.dispose();
   });
 
   it('shares an in-code pilot skeleton with its outline hull', () => {

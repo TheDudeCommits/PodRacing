@@ -1,0 +1,22 @@
+{
+  "preparedOnly": true,
+  "blenderExecuted": false,
+  "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/mcp-safe/11-copy-finalize-atlas-v3.py",
+  "bytes": 18479,
+  "sha256External": "477bee8902a3d53a6bd5fa33688e586818678af3d9c4dc46d94dc030c681036b",
+  "astParsePass": true,
+  "mcpPolicyStaticPass": true,
+  "violations": [],
+  "noBlenderOperators": true,
+  "normalReencodingAbsent": true,
+  "imageSaveOrPackAbsent": true,
+  "allMaterialIndicesExplicitAfterSlotReplacement": true,
+  "actualFourBakeReceiptsPinnedByCanonicalJsonFnv": true,
+  "actualFourImageIdentitiesPinnedByCanonicalJsonFnv": true,
+  "status": "Ready for root review/execution using exact actual completed V2 bake inputs; no execution by this reviewer.",
+  "unverified": [
+    "Blender material/node behavior and exact mesh-copy corner normal retention require root execution.",
+    "Atlas appearance, export parity and runtime readiness remain unverified."
+  ],
+  "intentionalMaterialIndexLayerExcludedFromGeometryOnlySignature": true
+}

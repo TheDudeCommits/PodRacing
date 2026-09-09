@@ -1,0 +1,60 @@
+--- a/src/render/objects/RaceCourseView.ts
++++ b/src/render/objects/RaceCourseView.ts
+@@ -1076,7 +1076,7 @@
+       uniforms: {
+         uColor: { value: new Color('#251627') },
+         uFarWidthGain: { value: 0.93 },
+-        uHalfHeight: { value: 4.8 },
++        uHalfHeight: { value: 2.4 },
+         uFarHeightGain: { value: 1.72 },
+         uDetailFadeStart: { value: 420 },
+         uDetailFadeEnd: { value: 670 },
+@@ -1094,7 +1094,7 @@
+       uniforms: {
+         uColor: { value: new Color('#ffd391') },
+         uFarWidthGain: { value: 1.18 },
+-        uHalfHeight: { value: 1.75 },
++        uHalfHeight: { value: .7 },
+         uFarHeightGain: { value: 1.18 },
+         uDetailFadeStart: { value: 420 },
+         uDetailFadeEnd: { value: 670 },
+@@ -1103,8 +1103,8 @@
+       depthWrite: false,
+       toneMapped: false,
+     });
+-    this.pylonBodies = new InstancedMesh(new ConeGeometry(0.92, 9.6, 5), bodyMaterial, count);
+-    this.pylonLights = new InstancedMesh(new CylinderGeometry(0.34, 0.34, 3.5, 5), lightMaterial, count);
++    this.pylonBodies = new InstancedMesh(new ConeGeometry(.62, 4.8, 5), bodyMaterial, count);
++    this.pylonLights = new InstancedMesh(new CylinderGeometry(.24, .24, 1.4, 5), lightMaterial, count);
+     const farMarkerMaterial = new ShaderMaterial({
+       name: 'Coherent far pylon impostors',
+       vertexShader: farPylonVertex,
+@@ -1113,9 +1113,9 @@
+         uInkColor: { value: new Color('#251627') },
+         uLightColor: { value: new Color('#ffd391') },
+         uViewportSize: { value: this.viewportSize },
+-        // One coherent 4.6 x 14 CSS-pixel sign replaces the separate body/cap
++        // One coherent 3.6 x 9 CSS-pixel sign replaces the separate body/cap
+         // geometry before either component can collapse to a one-pixel mark.
+-        uMarkerSizePx: { value: new Vector2(4.6, 14) },
++        uMarkerSizePx: { value: new Vector2(3.6, 9) },
+       },
+       transparent: true,
+       depthWrite: false,
+@@ -1155,14 +1155,14 @@
+         if(groundPylonConflictsWithBridge(branches,pylonX,pylonZ,this.heightAt(pylonX,pylonZ)))continue;
+         position.set(
+           pylonX,
+-          this.heightAt(pylonX, pylonZ) + 4.6,
++          this.heightAt(pylonX, pylonZ) + 2.2,
+           pylonZ,
+         );
+         scale.set(1, 1, 1);
+         rotation.identity();
+         matrix.compose(position, rotation, scale);
+         this.pylonBodies.setMatrixAt(instance, matrix);
+-        position.y += 3.55;
++        position.y += 2.0;
+         matrix.compose(position, rotation, scale);
+         this.pylonLights.setMatrixAt(instance, matrix);
+         position.y = this.heightAt(pylonX, pylonZ) + 0.16;

@@ -1,0 +1,46 @@
+{
+  "status": "AUTHOR_EXECUTED_MATCHED_RENDERS_PENDING",
+  "sourceUid": "e42fb924b344481ea013c58cb0f52ad7",
+  "targetScene": "PodRacing \u2014 Blockrunner Ivory palette copy V1 e42fb924b344481ea013c58cb0f52ad7",
+  "actualCounts": {
+    "materials": 9,
+    "meshes": 53,
+    "objects": 57,
+    "triangles": 44028
+  },
+  "historiesPreserved": true,
+  "artAccepted": false,
+  "runtimeReady": false,
+  "files": [
+    {
+      "path": "01-fresh-read-raw.json",
+      "bytes": 1453,
+      "sha256": "0cbbffc359b85aefacf38be38c9320f490d026c3bc169969922c4e0dad33fd6d"
+    },
+    {
+      "path": "operation-inputs.json",
+      "bytes": 284895,
+      "sha256": "03a2b6cf14c30bd61eb113309258496592a8c6620d7e2bbbcd3b0b12bac4bc62"
+    },
+    {
+      "path": "02-author-composed.py",
+      "bytes": 169575,
+      "sha256": "171cfb4a0356010d9ca1ec2fa58478812b89335426f6aeb548bfb1e199f1fcea"
+    },
+    {
+      "path": "02-author-executed-receipt.json",
+      "bytes": 94026,
+      "sha256": "20c2dc9853f8d75a0cd1a7686183e7075de414a6793bebacfda21e907d35261a"
+    },
+    {
+      "path": "03-render-driver-composed.py",
+      "bytes": 149871,
+      "sha256": "6f05bacf7e4a597f3ebcf7beb9ba487faf9316f5faa412da4cd16806ad7a44d7"
+    },
+    {
+      "path": "03-render-fullcraft-composed.py",
+      "bytes": 152738,
+      "sha256": "d986f0d1c5dcfec84440db35e5a5098f9ae7abb58c4933c4b9c4205488aece67"
+    }
+  ]
+}

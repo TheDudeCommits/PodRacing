@@ -1,0 +1,9 @@
+{
+  "extends": "/Users/amir/Projects/PodRacing/tsconfig.json",
+  "include": [
+    "test-runtime/CinematicCamera.ts",
+    "test-runtime/TeemtoAuthoredDamage.ts",
+    "test-runtime/GalacticEffectsView.ts",
+    "contactBeat.test.ts"
+  ]
+}

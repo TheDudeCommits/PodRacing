@@ -1,0 +1,93 @@
+--- pre-v8/docs/inkstorm-overhaul/CURRENT_VISUALS.md
++++ docs/inkstorm-overhaul/CURRENT_VISUALS.md
+@@ -1,68 +1,70 @@
+-# Inkstorm runtime images — Blockrunner V5, 8 September 2026
++# Inkstorm reviewed runtime images — V8 contact-color experiment, 8 September 2026
+ 
+-These **13 unedited actual game PNGs** belong to `index-CFofn-oM.js`, SHA256 `2d8ff97639d335f22e1c683562c418d3f55572251f1b55dc71268bda015d264b`. [Capture receipt](../../output/gauntlet/round34-blockrunner-admission-v1/captures-material-framing-v5/receipts.json) records zero errors. Page viewport is 1440×900 CSS at DPR 1.5; staged main-renderer snapshots separately record DPR 2 with adaptive rendering disabled for capture. This is distinct from the adaptive performance runs. V5 uses a larger broadside garage portrait and separate narrow layout; chase clearance remains 4.8 m and public V6 assets are unchanged.
++These **13 unedited actual V8 game PNGs** belong to `index-CFofn-oM.js`, SHA256 `2d8ff97639d335f22e1c683562c418d3f55572251f1b55dc71268bda015d264b`, with new V8 body/pilot color payloads in both Blockrunner GLBs. [Capture receipt](../../output/gauntlet/round34-blockrunner-contact-color-v1/captures/receipts.json) has empty errors. Page viewport1440×900 at DPR1.5; main-renderer capture settings are distinct from adaptive performance runs. Geometry, chase and framing remain V5/V6-era dimensions; no art improvement is inferred from export completion.
+ 
+-**Actual fresh V5 still-image verdict: craft 5/10, world/route 6.5/10, materials 4.5/10, overall 5.5/10 — FAIL against 8/10.** The separate ephemeral read-only CLI review used a fresh temporary directory and 21 hash-verified attachments (13 actual V5 images + eight concepts). No prior task history or verdict was supplied or retrieved; recorded tool/file retrieval calls are zero. Generic user configuration may load. Transport retries preceded an exit-0 final review with all 21 images declared viewed and 13 individual observations. This is still-image criticism, not motion, physics or performance evidence; it does not replace or average the earlier prior-context reviews. [Actual fresh report](../../assets/source/inkstorm/blockrunner-round34/fresh-v5-review-preparation/cli-critic-attempt1/review.md).
++**The fresh paired contact-color review demonstrates no quality improvement:** all four pairs tie. Both V8 (A) and V5/V6-assets (B) score **materials 5/10, pilot readability 6/10, overall vehicle 5.5/10 — FAIL against 8/10**. The critic declared all nine attachments examined: eight actual images in four pairs plus generated concept12. [Review](../../assets/source/inkstorm/blockrunner-round34/contact-color-v1-blind-review/cli-critic-attempt1/review.md) · [Audited attachment/event proof](../../assets/source/inkstorm/blockrunner-round34/contact-color-v1-blind-review/audited-review-v1.json).
+ 
+-The independent **V4 full-image review is 6/10 craft, 5/10 material parity, 6/10 world parity and 6/10 overall: FAIL against 8/10**. The reviewer disclosed prior source/documentation/V3 context; it is not fresh blind. The separate V5 review opened only the default and narrow garage PNGs, with prior context and the intended change disclosed. It finds improved default pilot inspection and resolved descriptor/model overlap, but unfinished materials. It gives no V5 race/world score or overall art PASS. [V4 full-image review](../../output/gauntlet/round34-blockrunner-admission-v1/captures-material-framing-v4/INDEPENDENT_MATERIAL_WORLD_V4_REVIEW.md) · [V5 garage addendum](../../output/gauntlet/round34-blockrunner-admission-v1/garage-inspection-v5/INDEPENDENT_GARAGE_V5_ADDENDUM.md). The numeric V4 scores are not V5 race/world scores. Those prior-context reports supply no fresh V5 verdict; the separate fresh review above does. Original targets remain unaccepted.
++That paired review covers garage,grid,Foundry middle and exit only, with one concept image. It is not a fresh review of all13 V8 frames, the original seven world concepts, narrow UI, motion or performance. The earlier fresh V5 overall5.5 FAIL and prior-context V4/V5-garage findings remain historical, not averaged. [Complete V5 gallery/review document](evidence/round-34/pre-contact-color-v8-documentation/CURRENT_VISUALS.md).
+ 
+-The [V5 technical attempt](FULL_RACE_PERFORMANCE_BLOCKRUNNER_V5_ROUND34.md) passes races/Continue, staged cadence and context recovery, but fails resource plateau (+1 geometry/+2 textures at matching stages). Its frozen files and raw intervals own those results; these images are not timing evidence. Staged 410 KPH/zero-clock stills and one short ordinary Start/W frame are not full races, motion or FPS evidence.
++V8's single healthy instrumented resource run is **diagnostic non-reproduction only**. Historical V5 timing PASS and resource +1geometry/+2textures FAIL remain unchanged. [V8 diagnostic](../../output/playwright/round34-blockrunner-contact-color-v8-resource-owner-attempt1/ANALYSIS-v1.md) · [V5 performance/failure](FULL_RACE_PERFORMANCE_BLOCKRUNNER_V5_ROUND34.md). These staged stills and one short ordinary Start/W frame are not full races, motion or FPS evidence.
+ 
+-The garage reviewer viewed the earlier V5 default/narrow PNGs only. The [later readiness probe](../../output/gauntlet/round34-blockrunner-admission-v1/garage-inspection-v5-readiness/receipt.json) separately proves a 6 px descriptor/model gap and Start reachable after ordinary scroll on a 390×844 viewport, correcting the prior uncertainty without claiming a new critic inspection. It closed browser/server with no errors. The taller-page tradeoff remains visible.
++The separate [V8 garage/UI probe](../../output/gauntlet/round34-blockrunner-contact-color-v1/garage-inspection/receipt.json) confirms6px descriptor/model separation, no horizontal overflow at390px and Start reachable after actual scroll. It closed browser/server with empty errors. That probe is functional evidence, not an additional critic review; the taller-page tradeoff remains.
+ 
+-[Round scope](ROUND34.md) · [Acceptance](STATUS.md) · [Byte-preserved V3 gallery document](evidence/round-34/pre-blockrunner-v5-documentation/CURRENT_VISUALS.md). **8 September source update:** V7 short-contact colour was actually authored and one matched neutral driver render completed, preserving all 153 pre-existing scene histories and original context. This is an unbaked source candidate: no V7 export, package, public asset, runtime admission or art PASS. The live tested bundle remains V5. [Author receipt](../../assets/source/inkstorm/blockrunner-round34/mcp-safe/contact-author-v7-receipt.json) · [Matched render receipt](../../assets/source/inkstorm/blockrunner-round34/mcp-safe/contact-v7-driver-render-receipt.json). The V7 neutral source render is separate from this V5 runtime gallery.
++V7 contact-color body/pilot bakes, V8 atlas/export/packages and public admission have actually executed. [Source/package lineage](ROUND34.md). **V9 Sobel is subsequent current working code with separate captures; this gallery remains the audited V8 experiment, not a V9 acceptance claim.** [V9 candidate captures](../../output/gauntlet/round34-sobel-stencil-v9/captures/receipts.json).
++
++[Round scope](ROUND34.md) · [Acceptance](STATUS.md) · [Pre-V8 gallery](evidence/round-34/pre-contact-color-v8-documentation/CURRENT_VISUALS.md). No quality improvement demonstrated, final art PASS, commit, push or deployment.
+ 
+ ## Garage
+ 
+-![Garage — actual V5 runtime](../../output/gauntlet/round34-blockrunner-admission-v1/captures-material-framing-v5/garage.png)
++![Garage — actual V8 contact-color runtime](../../output/gauntlet/round34-blockrunner-contact-color-v1/captures/garage.png)
+ 
+ ## Grid
+ 
+-![Grid — actual V5 runtime](../../output/gauntlet/round34-blockrunner-admission-v1/captures-material-framing-v5/01-grid.png)
++![Grid — actual V8 contact-color runtime](../../output/gauntlet/round34-blockrunner-contact-color-v1/captures/01-grid.png)
+ 
+ ## Salt run
+ 
+-![Salt run — actual V5 runtime](../../output/gauntlet/round34-blockrunner-admission-v1/captures-material-framing-v5/02-salt-run.png)
++![Salt run — actual V8 contact-color runtime](../../output/gauntlet/round34-blockrunner-contact-color-v1/captures/02-salt-run.png)
+ 
+ ## Canyon
+ 
+-![Canyon — actual V5 runtime](../../output/gauntlet/round34-blockrunner-admission-v1/captures-material-framing-v5/03-canyon.png)
++![Canyon — actual V8 contact-color runtime](../../output/gauntlet/round34-blockrunner-contact-color-v1/captures/03-canyon.png)
+ 
+ ## Fork
+ 
+-![Fork — actual V5 runtime](../../output/gauntlet/round34-blockrunner-admission-v1/captures-material-framing-v5/04-fork.png)
++![Fork — actual V8 contact-color runtime](../../output/gauntlet/round34-blockrunner-contact-color-v1/captures/04-fork.png)
+ 
+ ## Launch
+ 
+-![Launch — actual V5 runtime](../../output/gauntlet/round34-blockrunner-admission-v1/captures-material-framing-v5/05-launch.png)
++![Launch — actual V8 contact-color runtime](../../output/gauntlet/round34-blockrunner-contact-color-v1/captures/05-launch.png)
+ 
+ ## Foundry
+ 
+-![Foundry — actual V5 runtime](../../output/gauntlet/round34-blockrunner-admission-v1/captures-material-framing-v5/06-foundry.png)
++![Foundry — actual V8 contact-color runtime](../../output/gauntlet/round34-blockrunner-contact-color-v1/captures/06-foundry.png)
+ 
+ ## Foundry approach
+ 
+-![Foundry approach — actual V5 runtime](../../output/gauntlet/round34-blockrunner-admission-v1/captures-material-framing-v5/foundry-approach.png)
++![Foundry approach — actual V8 contact-color runtime](../../output/gauntlet/round34-blockrunner-contact-color-v1/captures/foundry-approach.png)
+ 
+ ## Foundry near span
+ 
+-![Foundry near span — actual V5 runtime](../../output/gauntlet/round34-blockrunner-admission-v1/captures-material-framing-v5/foundry-near-span.png)
++![Foundry near span — actual V8 contact-color runtime](../../output/gauntlet/round34-blockrunner-contact-color-v1/captures/foundry-near-span.png)
+ 
+ ## Foundry middle
+ 
+-![Foundry middle — actual V5 runtime](../../output/gauntlet/round34-blockrunner-admission-v1/captures-material-framing-v5/foundry-middle.png)
++![Foundry middle — actual V8 contact-color runtime](../../output/gauntlet/round34-blockrunner-contact-color-v1/captures/foundry-middle.png)
+ 
+ ## Foundry exit
+ 
+-![Foundry exit — actual V5 runtime](../../output/gauntlet/round34-blockrunner-admission-v1/captures-material-framing-v5/foundry-exit.png)
++![Foundry exit — actual V8 contact-color runtime](../../output/gauntlet/round34-blockrunner-contact-color-v1/captures/foundry-exit.png)
+ 
+ ## Finish
+ 
+-![Finish — actual V5 runtime](../../output/gauntlet/round34-blockrunner-admission-v1/captures-material-framing-v5/07-finish.png)
++![Finish — actual V8 contact-color runtime](../../output/gauntlet/round34-blockrunner-contact-color-v1/captures/07-finish.png)
+ 
+ ## Short ordinary Start/W capture
+ 
+-![Short ordinary Start/W capture — actual V5 runtime](../../output/gauntlet/round34-blockrunner-admission-v1/captures-material-framing-v5/live-drive.png)
++![Short ordinary Start/W capture — actual V8 contact-color runtime](../../output/gauntlet/round34-blockrunner-contact-color-v1/captures/live-drive.png)
+ 
+ ## Separate source and target references
+ 

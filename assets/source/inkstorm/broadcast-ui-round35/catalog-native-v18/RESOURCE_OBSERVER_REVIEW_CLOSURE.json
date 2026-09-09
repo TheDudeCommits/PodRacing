@@ -1,0 +1,25 @@
+{
+  "reviewedAt": "2026-09-08T23:11:06.481207+00:00",
+  "status": "P2_CLOSED_BY_STATIC_SOURCE_REVIEW_NATIVE_PENDING",
+  "source": "/Users/amir/Projects/PodRacing/scripts/inkstorm-broadcast-ui.mjs",
+  "sourceSha256": "2474aa9b66cadf588f4c53086754c710cfe7ba6586452be5da9c7609b3ae1460",
+  "sourceBytes": 42450,
+  "syntax": "PASS",
+  "geometryHelperCpuCases": 10,
+  "geometryHelperCpuOutcome": "PASS",
+  "evidence": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/broadcast-ui-round35/catalog-native-v18/RESOURCE_OBSERVER_GEOMETRY_CPU.json",
+  "verified": [
+    "Each sampled meter saves actual row, label, track and numeric-value boxes plus own/ancestor hidden and clip reasons.",
+    "The finish gate rejects hidden, clipped or out-of-viewport row, label, track and value evidence.",
+    "display:contents skips only clipping-box checks while retaining visibility and opacity checks.",
+    "Label, track and number must share vertical center within three pixels.",
+    "Legitimate zero-valued fills are not required to have positive width; track and number remain positive-size required.",
+    "Previous native binding/range/zero-partial-full heat assertions remain intact."
+  ],
+  "provenanceCorrection": "The initial finding was reported from the tool-read version without inspect. The subsequently copied file resource-observer-reviewed-initial.mjs and its SHA 568ce4a2885f88acf4bde77fcffc13f3714854e00169a7e02208656511767970 already contained root's first row/track/value visibility fix due a concurrent edit before preservation. The initial JSON/MD incorrectly associated the earlier finding with that intermediate hash. Both are retained unchanged except this explicit appended correction; do not treat that SHA as proof of the original missing-helper version. The closure snapshot is exact and checked against source.",
+  "limits": [
+    "CPU geometry/style objects validate the extracted helper predicates, not rendered game geometry or visual appearance.",
+    "Checks cover recorded geometry and computed visibility, not unrelated overlay occlusion, contrast, or physical-touch/60FPS claims.",
+    "Native execution is pending and critic remains unreleased."
+  ]
+}

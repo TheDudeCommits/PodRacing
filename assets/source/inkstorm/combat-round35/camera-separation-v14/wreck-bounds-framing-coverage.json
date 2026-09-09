@@ -1,0 +1,148 @@
+{
+  "outcome": "PASS geometric projection suite; desired composition width has disclosed misses",
+  "tests": 5,
+  "lastRunLog": "wreck-bounds-framing-checkpoint-run.log",
+  "typecheck": "PASS; log prior to final data-only checkpoint instrumentation; parent owns final combined typecheck",
+  "sourceGeometry": {
+    "uniquePositionsAcrossFourFamilies": 277177,
+    "variants": [
+      "teemto rigid",
+      "sebulba rigid",
+      "polwo rigid",
+      "blockrunner rigid",
+      "installed-loader teemto articulated"
+    ],
+    "admissionScope": "Actual hero Teemto original geometry/hierarchy/BIN via installed GLTFLoader with in-memory image/material removal; other families reconstruct all POSITION streams and hierarchy/transforms from admitted GLBs."
+  },
+  "coverage": {
+    "aspects": [
+      1.6,
+      1.7777777777777777,
+      0.46208530805687204,
+      2.164102564102564
+    ],
+    "checkpointCountPerVariant": 28,
+    "snapshotCameraModes": [
+      "combat side",
+      "protected wreck chase"
+    ],
+    "allPositionProjectionsInSnapshotSweep": 78450400,
+    "dynamicCheckpointFrames": [
+      910,
+      1181
+    ],
+    "dynamicUpdatesPerAspect": 272,
+    "dynamicFullSourceFrames": [
+      910,
+      912,
+      924,
+      936,
+      943,
+      944,
+      948,
+      960,
+      972,
+      984,
+      996,
+      1008,
+      1020,
+      1032,
+      1044,
+      1056,
+      1068,
+      1080,
+      1092,
+      1104,
+      1116,
+      1128,
+      1140,
+      1152,
+      1164,
+      1168,
+      1169,
+      1176,
+      1181
+    ],
+    "dynamicAllPositionProjections": 8473568,
+    "dynamicCorners": "Every source box corner on every sequential update. Teemto has24 when articulated and8 when intact.",
+    "safeNdcRectangle": {
+      "x": [
+        -0.78,
+        0.78
+      ],
+      "y": [
+        -0.58,
+        0.7
+      ]
+    },
+    "assertions": [
+      "All finite source projections inside safe NDC rectangle and between near/far planes",
+      "Eye above actual terrain at every snapped checkpoint",
+      "Sequential side/chase spring preserves safe corner containment; all POSITION verified periodically and at transition endpoints",
+      "Intact recovery uses remaining2.15 with breakup reset",
+      "Valid bounds ignore radius1 versus1000",
+      "Camera leaves inputs and race state unchanged",
+      "Ordinary/replay views ignore stale combat bounds",
+      "Empty/missing/nonfinite bounds retain finite fallback"
+    ]
+  },
+  "compositionFinding": {
+    "desiredViewportWidth": [
+      0.65,
+      0.8
+    ],
+    "targetMetUniversally": false,
+    "allSideSweep": "wreck-bounds-framing-projections.json",
+    "earlySideCutSubset": "wreck-bounds-framing-held-shot-summary.json",
+    "heldShotSeparatingTeemto": "Landscape1.6,16:9,short-landscape sampled frames922/934/943 meet65\u201380%; exact birth910 is smaller. Portrait frames922/934/943 are below65%. Full-age hypothetical side snapshots also have additional misses.",
+    "assertionPolicy": "Containment assertions were fixed before execution and unchanged. Desired width misses are separately preserved as composition findings; no artistic acceptance is inferred."
+  },
+  "limitations": [
+    "No browser, build, GPU, screenshot, native-video, audio or FPS testing was performed.",
+    "Other families are geometric substitutions on the native Teemto input/terrain fixture, not independent driving evidence.",
+    "Projection validates visibility bounds, not occlusion by gantry/scenery, perceptual excitement, reference parity or owner acceptance.",
+    "CPU sequential updates are not a reconstruction of recorded wall-clock slow-motion cadence."
+  ],
+  "files": [
+    {
+      "path": "tests/camera/WreckBoundsFraming.test.ts",
+      "bytes": 20738,
+      "sha256": "d3a2766d1c10add1b35df699a4ce74242b4e5b774e7e4f1e6e8668b09c802736"
+    },
+    {
+      "path": "src/camera/CinematicCamera.ts",
+      "bytes": 28427,
+      "sha256": "f160d558384d86ed2d16b118e5f8d2b1788d257b1e228a90f3d94d3568d75040"
+    },
+    {
+      "path": "src/render/combat/WreckVisualPose.ts",
+      "bytes": 9593,
+      "sha256": "16fe2c934948fd27c83c8a3eb07586faba53a99135e742f8b26cdf52b7b2faf3"
+    },
+    {
+      "path": "src/render/combat/TeemtoWreckBreakup.ts",
+      "bytes": 8882,
+      "sha256": "8074c6aec3d2d0062a26a56f9fdd6eeb2de19d87ee85f0b6631ab2a8cac9d4ab"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/camera-separation-v14/wreck-bounds-framing-checkpoint-run.log",
+      "bytes": 59490,
+      "sha256": "faa08be9d3da8d8e33cbfa8bc20f4f718156ca45627832f15c5176c34039e8b7"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/camera-separation-v14/wreck-bounds-framing-typecheck.log",
+      "bytes": 57,
+      "sha256": "fa95b29726a1ab8891b320173cad4ef80c08c37ec637f2c438a5294fb97ce445"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/camera-separation-v14/wreck-bounds-framing-projections.json",
+      "bytes": 94005,
+      "sha256": "0b939f417745b829c85cff7374cb38caef8d7397d1cd804b442d3f526c4eb88b"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/camera-separation-v14/wreck-bounds-framing-held-shot-summary.json",
+      "bytes": 9106,
+      "sha256": "e78d65bdd1201e5fa8dadd8bbc28e2abcc85d4997815558db44279ae495f5623"
+    }
+  ]
+}

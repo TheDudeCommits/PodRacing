@@ -1,0 +1,150 @@
+[
+  {
+    "label": "hero/932/1.6",
+    "principalSourcePositions": 35884,
+    "completeVisibleSourcePositions": 90581,
+    "principalWidthFraction": 0.6286194543702794,
+    "baselinePrincipalWidthFraction": 0.384782313224895,
+    "desiredWidthFraction": [
+      0.65,
+      0.75
+    ],
+    "candidateCamera": [
+      18625.829064785972,
+      -11.176062447875337,
+      35.49433935948909
+    ],
+    "baselineCamera": [
+      18634.205762166992,
+      -4.753857814712891,
+      42.17844160952026
+    ],
+    "candidateDistanceToImpactCenter": 26.419361619533102,
+    "baselineDistanceToImpactCenter": 37.36138635767397,
+    "candidateConstraintsAtCurrentAngle": {
+      "horizontalDistance": 26.044472942684525,
+      "verticalDistance": 21.221980693938,
+      "fullNearDistance": 14.866381900736213,
+      "fittedDistance": 26.044472942684525,
+      "actualAxialDistance": 26.044472942684546,
+      "extraDistanceAboveGeometricFit": 2.1316282072803006e-14
+    },
+    "scope": "Same actual source pose, complete principal-engine POSITION extents from the existing source-safety pass; both cameras share birth and side/chase history. Source projection only, not native pixels."
+  },
+  {
+    "label": "hero/932/1.6",
+    "candidateEyeGround": 6.323048737660317,
+    "baselineEyeGround": 11.690792930705381
+  },
+  {
+    "label": "hero/1067/1.6",
+    "principalSourcePositions": 35884,
+    "completeVisibleSourcePositions": 90581,
+    "principalWidthFraction": 0.6132837578909675,
+    "baselinePrincipalWidthFraction": 0.39976657538953475,
+    "desiredWidthFraction": [
+      0.65,
+      0.75
+    ],
+    "candidateCamera": [
+      18628.23058856218,
+      -10.943600304053021,
+      31.133999448493675
+    ],
+    "baselineCamera": [
+      18632.421552831976,
+      -5.121201227260186,
+      43.623623409941615
+    ],
+    "candidateDistanceToImpactCenter": 27.682474167575382,
+    "baselineDistanceToImpactCenter": 36.29044405609992,
+    "candidateConstraintsAtCurrentAngle": {
+      "horizontalDistance": 27.34854396715748,
+      "verticalDistance": 21.08130892223338,
+      "fullNearDistance": 14.422119124040346,
+      "fittedDistance": 27.34854396715748,
+      "actualAxialDistance": 27.34854396716069,
+      "extraDistanceAboveGeometricFit": 3.211653165635653e-12
+    },
+    "scope": "Same actual source pose, complete principal-engine POSITION extents from the existing source-safety pass; both cameras share birth and side/chase history. Source projection only, not native pixels."
+  },
+  {
+    "label": "hero/1067/1.6",
+    "candidateEyeGround": 6.362625851644161,
+    "baselineEyeGround": 11.386931096239291
+  },
+  {
+    "label": "rival/932/1.6",
+    "principalSourcePositions": 22750,
+    "completeVisibleSourcePositions": 45605,
+    "principalWidthFraction": 0.6293293665542613,
+    "baselinePrincipalWidthFraction": 0.37346376463897957,
+    "desiredWidthFraction": [
+      0.65,
+      0.75
+    ],
+    "candidateCamera": [
+      18625.78223614229,
+      -11.194912285386799,
+      35.50872505986811
+    ],
+    "baselineCamera": [
+      18635.095689843256,
+      -4.179196026606705,
+      42.57543599931225
+    ],
+    "candidateDistanceToImpactCenter": 26.371292973652928,
+    "baselineDistanceToImpactCenter": 38.42638345447654,
+    "candidateConstraintsAtCurrentAngle": {
+      "horizontalDistance": 25.99631044456041,
+      "verticalDistance": 21.204426830314365,
+      "fullNearDistance": 14.860520002500024,
+      "fittedDistance": 25.99631044456041,
+      "actualAxialDistance": 25.996310444558453,
+      "extraDistanceAboveGeometricFit": -1.957545237019076e-12
+    },
+    "scope": "Same actual source pose, complete principal-engine POSITION extents from the existing source-safety pass; both cameras share birth and side/chase history. Source projection only, not native pixels."
+  },
+  {
+    "label": "rival/932/1.6",
+    "candidateEyeGround": 6.305119760810662,
+    "baselineEyeGround": 12.10651982794426
+  },
+  {
+    "label": "rival/1067/1.6",
+    "principalSourcePositions": 22750,
+    "completeVisibleSourcePositions": 45605,
+    "principalWidthFraction": 0.6138994754126172,
+    "baselinePrincipalWidthFraction": 0.4012481045611767,
+    "desiredWidthFraction": [
+      0.65,
+      0.75
+    ],
+    "candidateCamera": [
+      18628.204937129583,
+      -10.99109452330126,
+      31.153222911556885
+    ],
+    "baselineCamera": [
+      18632.27561985511,
+      -5.202168794910935,
+      43.60390759745343
+    ],
+    "candidateDistanceToImpactCenter": 27.653943225275892,
+    "baselineDistanceToImpactCenter": 36.12838872351652,
+    "candidateConstraintsAtCurrentAngle": {
+      "horizontalDistance": 27.313659820563597,
+      "verticalDistance": 20.963456773768883,
+      "fullNearDistance": 14.419763586308543,
+      "fittedDistance": 27.313659820563597,
+      "actualAxialDistance": 27.313659820560346,
+      "extraDistanceAboveGeometricFit": -3.2507330161024584e-12
+    },
+    "scope": "Same actual source pose, complete principal-engine POSITION extents from the existing source-safety pass; both cameras share birth and side/chase history. Source projection only, not native pixels."
+  },
+  {
+    "label": "rival/1067/1.6",
+    "candidateEyeGround": 6.316852603232594,
+    "baselineEyeGround": 11.330547577060411
+  }
+]

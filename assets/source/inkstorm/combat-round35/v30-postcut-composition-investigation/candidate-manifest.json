@@ -1,0 +1,44 @@
+{
+  "stage": "PRIVATE V30 camera candidate; not applied",
+  "scope": "One existing source file and one new regression test; no GameApp/rig/FX/UI/geometry changes",
+  "patch": {
+    "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/combat-round35/v30-postcut-composition-investigation/v30-authored-camera-lens-placement.patch",
+    "bytes": 13513,
+    "sha256": "9708248914ced8e35c3c9587b725e4f99a385cd2a86b55e01b339cdf409b8cae"
+  },
+  "checks": {
+    "focused": "41 tests / 7 files PASS",
+    "strengthenedIntactRecovery": "4 tests / 1 file PASS",
+    "projection": "3 tests / 1 file PASS",
+    "typescript": "candidate and numerical probe PASS",
+    "applyCheck": {
+      "command": "git apply --check assets/source/inkstorm/combat-round35/v30-postcut-composition-investigation/v30-authored-camera-lens-placement.patch",
+      "exitCode": 0
+    }
+  },
+  "visualAcceptance": "Pending native V30. V29 remains 5/10 FAIL8.",
+  "files": [
+    {
+      "path": "src/camera/CinematicCamera.ts",
+      "before": {
+        "bytes": 36339,
+        "sha256": "2bd0b85a1dc5ea3bcc44426801ae42c93016d3c26960a5a00e1edfb14584ff3b"
+      },
+      "candidate": {
+        "bytes": 37510,
+        "sha256": "68427aec3f812e6dd2d10c8a387f83003a366d8bd4a5756117cff4b128c3dbd2"
+      },
+      "candidatePath": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/combat-round35/v30-postcut-composition-investigation/candidate/src/camera/CinematicCamera.ts"
+    },
+    {
+      "path": "tests/camera/AuthoredWreckLens.test.ts",
+      "before": null,
+      "candidate": {
+        "bytes": 9843,
+        "sha256": "f189a2d49f2c1a6bf0397649880546db014d9892f1ea892bfaed627ffe4d5f26"
+      },
+      "candidatePath": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/combat-round35/v30-postcut-composition-investigation/candidate/tests/camera/AuthoredWreckLens.test.ts"
+    }
+  ],
+  "createdUTC": "2026-09-09T10:55:22.280968+00:00"
+}

@@ -1,0 +1,108 @@
+{
+  "capturedAt": "2026-09-07T14:19:16.706642+00:00",
+  "scope": "Official MCP import provenance and read-only JSON/header/count/hash inspection of saved source GLBs. No image decode, GPU load, geometry normalization, driver inspection, stylization or runtime integration performed by this audit.",
+  "counts": {
+    "publicResults": 29,
+    "vehicleCandidates": 26,
+    "excludedNonVehicles": 3,
+    "downloaded": 2,
+    "blockedOrPending": 24,
+    "downloadStatuses": {
+      "downloaded": 2,
+      "pending_download": 23,
+      "rate_limited": 1
+    },
+    "mcpImportedSourceGlbs": 2,
+    "rawArchivesPreserved": 0,
+    "stylizationNeedsPermission": 0,
+    "publicAdaptationRestricted": 1,
+    "stylizedExports": 0,
+    "runtimeIntegrations": 0,
+    "driverInspections": 0
+  },
+  "models": [
+    {
+      "uid": "4eff45899ada40bb920c5c744663db90",
+      "title": "Teemto Pagalies' Podracer",
+      "sourceReceipt": "vehicles/4eff45899ada40bb920c5c744663db90/source-receipt.json",
+      "sha256": "b7e2cc046fd392659886b1af88bdda1117037009351493f69dccdf78c4c53836",
+      "bytes": 69550360,
+      "glbCounts": {
+        "scenes": 1,
+        "nodes": 183,
+        "defaultSceneReachableNodes": 183,
+        "meshNodesInDefaultScene": 72,
+        "meshes": 72,
+        "primitives": 72,
+        "trianglesAcrossMeshDefinitions": 43737,
+        "trianglesInstancedInDefaultScene": 43737,
+        "positionAccessorVerticesAcrossPrimitives": 47715,
+        "materials": 3,
+        "images": 9,
+        "textures": 10,
+        "animations": 1,
+        "skins": 1,
+        "nonTrianglePrimitives": 0
+      },
+      "blenderSceneCounts": {
+        "export": "{'FINISHED'}",
+        "scene": "PodRacing — source 4eff45899ada40bb920c5c744663db90",
+        "objects": 150,
+        "meshes": 72,
+        "triangles": 43737,
+        "animations": 4,
+        "materials": [
+          "Cabina",
+          "Propulsores",
+          "Rayos"
+        ]
+      },
+      "exportWarnings": 3
+    },
+    {
+      "uid": "f97e3891a6a846ed97379e3cfa5931a0",
+      "title": "Sebulba podracer star wars",
+      "sourceReceipt": "vehicles/f97e3891a6a846ed97379e3cfa5931a0/source-receipt.json",
+      "sha256": "4bc2a4caf9370e8eb3adbb112749790123a7b113ca005a07611bfefafa70aaae",
+      "bytes": 68689196,
+      "glbCounts": {
+        "scenes": 1,
+        "nodes": 12,
+        "defaultSceneReachableNodes": 12,
+        "meshNodesInDefaultScene": 8,
+        "meshes": 8,
+        "primitives": 8,
+        "trianglesAcrossMeshDefinitions": 411899,
+        "trianglesInstancedInDefaultScene": 411899,
+        "positionAccessorVerticesAcrossPrimitives": 526971,
+        "materials": 2,
+        "images": 8,
+        "textures": 8,
+        "animations": 0,
+        "skins": 0,
+        "nonTrianglePrimitives": 0
+      },
+      "blenderSceneCounts": {
+        "export": "{'FINISHED'}",
+        "scene": "PodRacing — source f97e3891a6a846ed97379e3cfa5931a0",
+        "objects": 12,
+        "mesh_count": 8,
+        "triangles": 411899,
+        "materials": [
+          "Material_765",
+          "Material_805"
+        ]
+      },
+      "exportWarnings": 3
+    }
+  ],
+  "stopReason": {
+    "uid": "c2ca24c9b3c2416db0abe026d9f4b7ac",
+    "httpStatus": 429,
+    "receipt": "vehicles/c2ca24c9b3c2416db0abe026d9f4b7ac/mcp-download.json"
+  },
+  "rawArchivesPreserved": 0,
+  "manifestSha256": "e37eaa37283b88914e62a13a70d5d14311d3c7e99f26cb3d9da20d721561a0e9",
+  "licenseScopeAmendedAt": "2026-09-07T14:36:40.940585+00:00",
+  "licenseScopeAmendment": "Anakin fblupi official metadata verifies CC BY-NC-ND4.0: private noncommercial adaptations allowed; adapted assets excluded from public distribution without additional permission."
+}

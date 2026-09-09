@@ -1,0 +1,27 @@
+diff --git a/assets/source/inkstorm/broadcast-ui-round35/atlas-expanded-v16b/before/raceEventAtlasStyles.ts b/src/ui/raceEventAtlasStyles.ts
+index dcb0292..dbb66a2 100644
+--- a/assets/source/inkstorm/broadcast-ui-round35/atlas-expanded-v16b/before/raceEventAtlasStyles.ts
++++ b/src/ui/raceEventAtlasStyles.ts
+@@ -165,6 +165,22 @@ export const RACE_EVENT_ATLAS_CSS = /* css */ `
+  .race-event-atlas__viewport { flex:0 0 auto; min-height:360px; }
+  .race-event-atlas__map { height:360px; }
+ }
++/* Saved routes form a real flowing calendar once the orbital set is full. */
++.race-event-atlas.has-expanded-calendar .race-event-atlas__viewport { flex:0 0 auto; min-height:0; }
++.race-event-atlas.has-expanded-calendar .race-event-atlas__map { min-width:0; min-height:0; height:auto; }
++.race-event-atlas.has-expanded-calendar .race-event-atlas__orbits { display:none; }
++.race-event-atlas.has-expanded-calendar [data-atlas=events] { display:grid; grid-template-columns:repeat(auto-fit,minmax(168px,1fr)); gap:18px; padding:30px clamp(22px,4vw,64px); }
++.race-event-atlas.has-expanded-calendar .race-event-atlas__event { position:relative; left:auto; top:auto; transform:none; display:flex; flex-direction:column; align-items:center; width:100%; min-width:0; min-height:194px; padding:20px 12px 12px; border:1px solid #24424933; border-radius:6px; background:#24424907; transition:background-color 260ms var(--ui-settle),border-color 260ms var(--ui-settle); }
++.race-event-atlas.has-expanded-calendar .race-event-atlas__event.is-selected { background:#d2dbcd; border-color:var(--atlas-red); }
++.race-event-atlas.has-expanded-calendar .race-event-atlas__event:not(.is-selected) .race-event-atlas__disc { transform:none; }
++.race-event-atlas.has-expanded-calendar .race-event-atlas__event.is-selected .race-event-atlas__disc { transform:scale(1.15); }
++.race-event-atlas.has-expanded-calendar .race-event-atlas__event .race-event-atlas__name { margin:20px 0 0; padding:3px 0; width:100%; background:none; transform:none; overflow-wrap:anywhere; }
++.race-event-atlas.has-expanded-calendar .race-event-atlas__event.is-selected .race-event-atlas__name { font-size:17px; }
++.race-event-atlas.has-expanded-calendar .race-event-atlas__event .race-event-atlas__marker { transform:none; height:auto; min-height:24px; line-height:1.2; }
++@media (max-width:720px) {
++ .race-event-atlas.has-expanded-calendar [data-atlas=events] { grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:14px; padding:24px 20px; }
++ .race-event-atlas.has-expanded-calendar .race-event-atlas__event { padding-left:10px; padding-right:10px; }
++}
+ .pod-hud.is-reduced-motion .race-event-atlas *,.pod-hud.is-reduced-motion .race-event-atlas *::before,.pod-hud.is-reduced-motion .race-event-atlas *::after { animation:none!important; transition:none!important; }
+ @media (prefers-reduced-motion:reduce) { .race-event-atlas *,.race-event-atlas *::before,.race-event-atlas *::after { animation:none!important; transition:none!important; } }
+ `;

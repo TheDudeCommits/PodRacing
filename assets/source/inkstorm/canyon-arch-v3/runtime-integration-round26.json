@@ -1,0 +1,58 @@
+{
+  "recordedAt": "2026-09-07T17:43:22.200134+00:00",
+  "runtimeAsset": "public/assets/inkstorm/canyon-arch-v3.glb",
+  "bytes": 1260384,
+  "sha256": "1b950e08b0004fec5590b1167a7c1f7311c0389a2d48b2e43c387c1ef82d9b01",
+  "family": "canyon-arch",
+  "loader": "src/render/inkstorm/InkstormWorld.ts",
+  "originalPreserved": {
+    "path": "public/assets/inkstorm/canyon-arch.glb",
+    "sha256": "36876e340a578993c9c3d01084029d1ca0b757ef140ae482bbd1e0e1ff6b0453"
+  },
+  "placements": "existing family transforms unchanged",
+  "geometry": {
+    "triangles": 37800,
+    "primitives": 1,
+    "materials": 1,
+    "closedComponents": 9
+  },
+  "clearanceReceipt": "output/arch-v3/clearance/clearance.json",
+  "captureReceipt": "output/gauntlet/round-26/receipts.json",
+  "buildSha256": "749fd90ba1b87928161c6732fd18c6a8376acb03fe64c3cb7dd8e9b6d660d49e",
+  "validation": {
+    "tests": 519,
+    "files": 92,
+    "typecheck": "PASS",
+    "build": "PASS",
+    "diffCheck": "PASS",
+    "capturedImages": 17,
+    "browserErrors": []
+  },
+  "artAcceptance": {
+    "status": "FAIL",
+    "review": "docs/inkstorm-overhaul/BLIND_WORLD_ROUND26.md",
+    "acceptedSections": 0,
+    "sections": 7,
+    "archFinding": "coherent integrated scan assembly; overall canyon still below target"
+  },
+  "fullRacePerformance": {
+    "status": "PASS local adaptive cadence gates",
+    "report": "docs/inkstorm-overhaul/FULL_RACE_PERFORMANCE_ROUND26.md",
+    "appearances": [
+      "teemto",
+      "sebulba"
+    ],
+    "races": 4,
+    "meanHz": "approximately 60",
+    "p95Ms": 16.7,
+    "above25msRacing": 0,
+    "requestedDpr": 2,
+    "observedDprRange": [
+      1,
+      2
+    ],
+    "rawRows": 24554,
+    "scope": "exact frozen round26 only; no GPU-time, fixed-DPR or other-device claim"
+  },
+  "acceptanceUpdatedAt": "2026-09-07T18:22:00Z"
+}

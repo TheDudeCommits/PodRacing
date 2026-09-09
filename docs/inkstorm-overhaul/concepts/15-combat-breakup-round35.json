@@ -1,0 +1,39 @@
+{
+  "kind": "Supplemental target-only crash concept; not implemented game evidence",
+  "tool": "Codex built-in imagegen",
+  "useCase": "stylized-concept",
+  "generatedAt": "2026-09-08T20:08:32.069434+00:00",
+  "output": "docs/inkstorm-overhaul/concepts/15-combat-breakup-round35.png",
+  "originalOutput": "/Users/amir/.codex/generated_images/01a08293-68ca-7571-9e94-c4ff77043eb8/exec-a435b9e4-d885-4be9-a0ae-d8a7ce3bb564.png",
+  "initialGeneration": {
+    "path": "/Users/amir/.codex/generated_images/01a08293-68ca-7571-9e94-c4ff77043eb8/exec-b8ba444d-1c8a-4d63-a9c6-b8ab54dcde74.png",
+    "sha256": "10e206a04a80e87627cec4f3fd5a54dc199869f19f4510d5189f82fe869336f8",
+    "selected": false
+  },
+  "generationMode": "New image generated from a textual spec after visual inspection of existing art targets, followed by one focused imagegen edit to sever both tow linkages and simplify shading.",
+  "referenceImagesInspected": [
+    {
+      "path": "docs/inkstorm-overhaul/concepts/13-solid-effects-round34.png",
+      "sha256": "3f2223264e2c7ee7f39f4144668305392ec6f9474253ef493e463959f0ef13d6",
+      "role": "Existing art and material identity"
+    },
+    {
+      "path": "docs/inkstorm-overhaul/concepts/vehicles/teemto-inkstorm.png",
+      "sha256": "5ad41e9cbf5d852aa81e1bb8c71359edd9699bd6021ec500f45c48b47d04cb9f",
+      "role": "Existing art and material identity"
+    },
+    {
+      "path": "output/playwright/round35-combat-v13/solo-chase-wreck.png",
+      "sha256": "1f6bafbccd4413d2e6e77957de98078bf0bfb13db0dee4de6019395b856b1b75",
+      "role": "Actual current gameplay scale only; not an edit target"
+    }
+  ],
+  "editTarget": "/Users/amir/.codex/generated_images/01a08293-68ca-7571-9e94-c4ff77043eb8/exec-b8ba444d-1c8a-4d63-a9c6-b8ab54dcde74.png",
+  "bytes": 2391059,
+  "width": 1672,
+  "height": 941,
+  "sha256": "58071c4900aa860046111fd96ccdeb3b7268898d70b9805e0917a320b0e86d6a",
+  "limits": "Target concept only. Does not prove native fracture physics, render quality, collision behavior, performance, or any gameplay acceptance. Existing concepts and production source/assets remain unchanged.",
+  "prompt": "Use case: stylized-concept.\nAsset type: one original 16:9 crash-spectacle target image for the Inkstorm desert racing videogame, preferably 2048 by 1152. This is art-direction guidance only, never an edited gameplay screenshot or implementation evidence.\n\nPrimary request: Show the decisive instant when a two-engine hovering racer breaks apart at speed on a sunlit desert canyon racing lane. Make the physical breakup immediately legible from one clean low cinematic three-quarter camera, a few meters above the sand: two LARGE separate engine masses travel in clearly different airborne directions, not a symmetric pair flying intact. One tilted oval engine is rolling nose-up away from the center; the other has yawed sideways closer to the track. A short trail of curved broken tow hardware and several varied metal casing fragments bridges them back toward the rear cockpit. Engine silhouettes must remain clearly visible outside the compact fire source. The vehicle spans about half the width of the frame so its mechanical scale reads clearly. The lane remains visible through and around the action.\n\nPreserve the established vehicle language: TWO bulbous streamlined oval engines, long red articulated tow arms, and a distinctive upright circular rear cockpit ring, dusty desaturated blue enamel with bone cream ceramic panels, burnt-orange repair accents, dark iron seams, broad painted scuffs and sparse localized chips. Show both tow arms severed with unmistakable separation and staggered rotation of the main bodies. The circular cockpit remains a separate readable sliding silhouette in the middle distance; no visible injury or ejected human.\n\nEffects: a concentrated white-yellow core at the broken engine connection, angular amber and orange flame tongues wrapping only the torn connection and a portion of one engine, two uneven lobes of dense charcoal smoke that rise and drift behind it, a low ochre sand wake and several grounded dust contacts. Favor a few readable large masses, medium fragments and tiny chips. The white hot region is small and tightly contained. Small brief sparks add direction, not a field of spark confetti. Do not hide the breakup behind a giant fireball.\n\nScene and art identity: restrained inked cel and painterly game art, warm copper sandstone canyon, bold layered rock strata, desaturated plum and petrol shadow planes, warm dusty sand with broad authored strokes. A few simple distant copper industrial pipes and scaffold shapes can quietly establish the racing world. Selective thin dark ink only at important mechanical silhouette and contact seams, broad painted material color blocks, convincing three-dimensional forms, clean controlled edges, achievable stylized real-time spectacle. Late afternoon sun, clear atmospheric depth, warm edges and cool shadow recesses.\n\nComposition: one single coherent landscape action scene, not a multi-panel sheet; dynamic asymmetric diagonal breakup with generous canyon and track context. Everything mechanically readable. No motion blur over the large engine bodies. No text, no labels, no logos, no UI, no HUD, no borders, no watermarks. Avoid photorealism, RTX rendering, photographic lens effects, screen-space bloom, pastel glowing clouds, regular polyhedron particles, thick black wireframe triangulation, spherical candy smoke and excessive debris.",
+  "revisionPrompt": "Edit this generated concept image into the final Inkstorm crash target. Preserve its single 16:9 composition, large left engine lifted up, lower right engine yawed across the track, circular rear cockpit in the center, blue/cream/orange paint, sandstone canyon, compact amber-white source fire, charcoal smoke, and low ground dust. Make only these focused corrections:\n1. BOTH red tow linkages must be mechanically severed. Create an obvious band of open air between EACH engine and the rear cockpit's broken tow arm. Show jagged broken red arm ends facing each other across the gap, with no unbroken cable or rod bridging either gap. The left engine has fully detached and is throwing up-left; the right engine has fully detached and is tumbling down-right. A few short loose rods and torn casing plates can fly independently. These are two separated engine wreck masses, no longer a stretched intact vehicle.\n2. Push the rendering toward restrained inked cel/painterly game concept art: broad authored brush color fields, clear two-to-three-step shadow groupings, simplified panel wear and canyon strata, selective thin charcoal contour accents at mechanical silhouettes. Keep the dimensional form but reduce photographic microtexture and realistic volumetric haze. No extra bloom, no lens flare, no motion blur.\nDo not add anything else. No text, logos, UI, borders or watermarks. Final image is art-direction guidance only, not a native game screenshot."
+}

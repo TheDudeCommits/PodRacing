@@ -1,0 +1,56 @@
+{
+  "recordedAt": "2026-09-07 17:13:30 UTC",
+  "uid": "c2ca24c9b3c2416db0abe026d9f4b7ac",
+  "method": "official_blender_mcp",
+  "targetSize": 12,
+  "attempt": 4,
+  "setup": {
+    "content": [
+      {
+        "type": "text",
+        "text": "Code executed successfully: {\"activeScene\": \"PodRacing \\u2014 source c2ca24c9 retry 1712\", \"objects\": 0, \"configured\": true}\n"
+      }
+    ],
+    "structuredContent": {
+      "result": "Code executed successfully: {\"activeScene\": \"PodRacing \\u2014 source c2ca24c9 retry 1712\", \"objects\": 0, \"configured\": true}\n"
+    },
+    "isError": false
+  },
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "Error: Download request failed with status code 429"
+      }
+    ],
+    "structuredContent": {
+      "result": "Error: Download request failed with status code 429"
+    },
+    "isError": false
+  },
+  "contextBefore": {
+    "content": [
+      {
+        "type": "text",
+        "text": "Code executed successfully: {\"scene\": \"Cruise \\u2014 Going Merry source 4b2cb678\", \"viewLayer\": \"ViewLayer\", \"active\": \"Sketchfab_model.001\", \"selected\": [\"Sketchfab_model.001\", \"cd32016bfac44aaea241abaa77bd8b56.fbx\", \"RootNode\", \"Object016\", \"Object_4\", \"Object016_02 - Default_0\", \"Plane038\", \"Object_7\", \"Plane038_02 - Default_0\", \"Plane045\", \"Object_10\", \"Plane045_02 - Default_0\", \"Plane056\", \"Object_13\", \"Plane056_02 - Default_0\"], \"objects\": 17, \"intakes\": [{\"name\": \"Cruise \\u2014 Sketchfab Intake\", \"objects\": 116}], \"configured\": true}\n"
+      }
+    ],
+    "structuredContent": {
+      "result": "Code executed successfully: {\"scene\": \"Cruise \\u2014 Going Merry source 4b2cb678\", \"viewLayer\": \"ViewLayer\", \"active\": \"Sketchfab_model.001\", \"selected\": [\"Sketchfab_model.001\", \"cd32016bfac44aaea241abaa77bd8b56.fbx\", \"RootNode\", \"Object016\", \"Object_4\", \"Object016_02 - Default_0\", \"Plane038\", \"Object_7\", \"Plane038_02 - Default_0\", \"Plane045\", \"Object_10\", \"Plane045_02 - Default_0\", \"Plane056\", \"Object_13\", \"Plane056_02 - Default_0\"], \"objects\": 17, \"intakes\": [{\"name\": \"Cruise \\u2014 Sketchfab Intake\", \"objects\": 116}], \"configured\": true}\n"
+    },
+    "isError": false
+  },
+  "contextVerification": {
+    "content": [
+      {
+        "type": "text",
+        "text": "Code executed successfully: {\"scene\": \"Cruise \\u2014 Going Merry source 4b2cb678\", \"viewLayer\": \"ViewLayer\", \"active\": \"Sketchfab_model.001\", \"selected\": [\"Sketchfab_model.001\", \"cd32016bfac44aaea241abaa77bd8b56.fbx\", \"RootNode\", \"Object016\", \"Object_4\", \"Object016_02 - Default_0\", \"Plane038\", \"Object_7\", \"Plane038_02 - Default_0\", \"Plane045\", \"Object_10\", \"Plane045_02 - Default_0\", \"Plane056\", \"Object_13\", \"Plane056_02 - Default_0\"], \"objects\": 17, \"intakeObjects\": 0, \"temporaryConfigurationEmpty\": true, \"quarryObjects\": 166}\n"
+      }
+    ],
+    "structuredContent": {
+      "result": "Code executed successfully: {\"scene\": \"Cruise \\u2014 Going Merry source 4b2cb678\", \"viewLayer\": \"ViewLayer\", \"active\": \"Sketchfab_model.001\", \"selected\": [\"Sketchfab_model.001\", \"cd32016bfac44aaea241abaa77bd8b56.fbx\", \"RootNode\", \"Object016\", \"Object_4\", \"Object016_02 - Default_0\", \"Plane038\", \"Object_7\", \"Plane038_02 - Default_0\", \"Plane045\", \"Object_10\", \"Plane045_02 - Default_0\", \"Plane056\", \"Object_13\", \"Plane056_02 - Default_0\"], \"objects\": 17, \"intakeObjects\": 0, \"temporaryConfigurationEmpty\": true, \"quarryObjects\": 166}\n"
+    },
+    "isError": false
+  },
+  "scope": "One official retry after more than 73 minutes. Successful isolated empty-scene setup was explicitly verified before download. HTTP429; no imported objects. Temporary configuration cleared and original context restored."
+}

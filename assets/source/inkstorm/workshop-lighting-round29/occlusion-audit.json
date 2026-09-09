@@ -1,0 +1,4993 @@
+{
+  "status": "EXACT_TRIANGLE_SOURCE_OCCLUSION_STUDY",
+  "assets": [
+    {
+      "file": "predecessors/pit-district.glb",
+      "sha256": "947b7b7043775f0f4cdb007e30c055f6cfe485bddc6dcf6632f131a88833d2a0",
+      "triangles": 13254,
+      "clothTriangles": 560
+    },
+    {
+      "file": "candidates/pit-district.glb",
+      "sha256": "c5aa216edc139efe484981b390946f3a7464587ab508fe5ffec2d8c999240447",
+      "triangles": 17494,
+      "clothTriangles": 1284
+    },
+    {
+      "file": "versions/v1/candidates/pit-district.glb",
+      "sha256": "963b874b93cac38ef28254b080c1df3ab2274b3d6b4aed62d23b4e887d10391c",
+      "triangles": 17422,
+      "clothTriangles": 1284
+    }
+  ],
+  "counts": {
+    "current-v2": {
+      "sourceClothBlocked": 18,
+      "candidateClothBlocked": 18,
+      "candidateClear": 0,
+      "candidateOtherOccluded": 0,
+      "testedReceivers": 18
+    },
+    "proposed-lower-service-rail": {
+      "sourceClothBlocked": 0,
+      "candidateClothBlocked": 0,
+      "candidateClear": 13,
+      "candidateOtherOccluded": 5,
+      "testedReceivers": 18
+    }
+  },
+  "lensAreaSummary": {
+    "testedRays": 162,
+    "clothBlockedRays": 0
+  },
+  "results": [
+    {
+      "fixture": "district-task-1",
+      "anchor": "current-v2",
+      "source": [
+        -36,
+        11.38,
+        -2
+      ],
+      "receiver": "rear bench top",
+      "target": [
+        -37,
+        2.45,
+        -10
+      ],
+      "asset": "predecessors/pit-district.glb",
+      "clear": false,
+      "firstHit": {
+        "distance": 0.9248972254701289,
+        "point": [
+          -36.076876188210484,
+          10.693495639280382,
+          -2.6150095056838683
+        ],
+        "triangle": 484,
+        "cloth": true
+      },
+      "clothHits": 2
+    },
+    {
+      "fixture": "district-task-1",
+      "anchor": "current-v2",
+      "source": [
+        -36,
+        11.38,
+        -2
+      ],
+      "receiver": "original engine crown",
+      "target": [
+        -40,
+        4.325,
+        -6
+      ],
+      "asset": "predecessors/pit-district.glb",
+      "clear": false,
+      "firstHit": {
+        "distance": 1.0436220424386167,
+        "point": [
+          -36.46163444114836,
+          10.56579225442457,
+          -2.461634441148366
+        ],
+        "triangle": 485,
+        "cloth": true
+      },
+      "clothHits": 2
+    },
+    {
+      "fixture": "district-task-1",
+      "anchor": "current-v2",
+      "source": [
+        -36,
+        11.38,
+        -2
+      ],
+      "receiver": "floor below emitter",
+      "target": [
+        -36,
+        0.4,
+        -4
+      ],
+      "asset": "predecessors/pit-district.glb",
+      "clear": false,
+      "firstHit": {
+        "distance": 1.048884208136945,
+        "point": [
+          -36,
+          10.348094588950287,
+          -2.18796091275951
+        ],
+        "triangle": 485,
+        "cloth": true
+      },
+      "clothHits": 2
+    },
+    {
+      "fixture": "district-task-1",
+      "anchor": "current-v2",
+      "source": [
+        -36,
+        11.38,
+        -2
+      ],
+      "receiver": "left interior aisle",
+      "target": [
+        -45,
+        0.4,
+        -7
+      ],
+      "asset": "predecessors/pit-district.glb",
+      "clear": false,
+      "firstHit": {
+        "distance": 1.193008457746733,
+        "point": [
+          -36.713335816820866,
+          10.50973030347854,
+          -2.396297676011594
+        ],
+        "triangle": 485,
+        "cloth": true
+      },
+      "clothHits": 2
+    },
+    {
+      "fixture": "district-task-1",
+      "anchor": "current-v2",
+      "source": [
+        -36,
+        11.38,
+        -2
+      ],
+      "receiver": "front apron",
+      "target": [
+        -36,
+        0.4,
+        4
+      ],
+      "asset": "predecessors/pit-district.glb",
+      "clear": false,
+      "firstHit": {
+        "distance": 2.2907235518767344,
+        "point": [
+          -36,
+          9.369824108899378,
+          -0.9015432289067635
+        ],
+        "triangle": 533,
+        "cloth": true
+      },
+      "clothHits": 2
+    },
+    {
+      "fixture": "district-task-1",
+      "anchor": "current-v2",
+      "source": [
+        -36,
+        11.38,
+        -2
+      ],
+      "receiver": "near front worker torso",
+      "target": [
+        -35,
+        1.2,
+        3
+      ],
+      "asset": "predecessors/pit-district.glb",
+      "clear": false,
+      "firstHit": {
+        "distance": 2.1170173800134813,
+        "point": [
+          -35.81406221946442,
+          9.487153394147796,
+          -1.0703110973221008
+        ],
+        "triangle": 532,
+        "cloth": true
+      },
+      "clothHits": 2
+    },
+    {
+      "fixture": "district-task-1",
+      "anchor": "current-v2",
+      "source": [
+        -36,
+        11.38,
+        -2
+      ],
+      "receiver": "rear bench top",
+      "target": [
+        -37,
+        2.45,
+        -10
+      ],
+      "asset": "candidates/pit-district.glb",
+      "clear": false,
+      "firstHit": {
+        "distance": 0.8541222719454266,
+        "point": [
+          -36.070993471192935,
+          10.746028302247058,
+          -2.567947769543509
+        ],
+        "triangle": 13268,
+        "cloth": true
+      },
+      "clothHits": 4
+    },
+    {
+      "fixture": "district-task-1",
+      "anchor": "current-v2",
+      "source": [
+        -36,
+        11.38,
+        -2
+      ],
+      "receiver": "original engine crown",
+      "target": [
+        -40,
+        4.325,
+        -6
+      ],
+      "asset": "candidates/pit-district.glb",
+      "clear": false,
+      "firstHit": {
+        "distance": 0.9643597256085771,
+        "point": [
+          -36.42657364917002,
+          10.627630726276385,
+          -2.4265736491700163
+        ],
+        "triangle": 13269,
+        "cloth": true
+      },
+      "clothHits": 4
+    },
+    {
+      "fixture": "district-task-1",
+      "anchor": "current-v2",
+      "source": [
+        -36,
+        11.38,
+        -2
+      ],
+      "receiver": "floor below emitter",
+      "target": [
+        -36,
+        0.4,
+        -4
+      ],
+      "asset": "candidates/pit-district.glb",
+      "clear": false,
+      "firstHit": {
+        "distance": 0.9692222337413934,
+        "point": [
+          -36,
+          10.426467036352928,
+          -2.173685421429339
+        ],
+        "triangle": 13269,
+        "cloth": true
+      },
+      "clothHits": 4
+    },
+    {
+      "fixture": "district-task-1",
+      "anchor": "current-v2",
+      "source": [
+        -36,
+        11.38,
+        -2
+      ],
+      "receiver": "left interior aisle",
+      "target": [
+        -45,
+        0.4,
+        -7
+      ],
+      "asset": "candidates/pit-district.glb",
+      "clear": false,
+      "firstHit": {
+        "distance": 1.1024003539375382,
+        "point": [
+          -36.65915849282821,
+          10.575826638749579,
+          -2.3661991626823418
+        ],
+        "triangle": 13269,
+        "cloth": true
+      },
+      "clothHits": 4
+    },
+    {
+      "fixture": "district-task-1",
+      "anchor": "current-v2",
+      "source": [
+        -36,
+        11.38,
+        -2
+      ],
+      "receiver": "front apron",
+      "target": [
+        -36,
+        0.4,
+        4
+      ],
+      "asset": "candidates/pit-district.glb",
+      "clear": false,
+      "firstHit": {
+        "distance": 2.1270767225648384,
+        "point": [
+          -36,
+          9.51342891475573,
+          -0.9800158004129671
+        ],
+        "triangle": 13292,
+        "cloth": true
+      },
+      "clothHits": 4
+    },
+    {
+      "fixture": "district-task-1",
+      "anchor": "current-v2",
+      "source": [
+        -36,
+        11.38,
+        -2
+      ],
+      "receiver": "near front worker torso",
+      "target": [
+        -35,
+        1.2,
+        3
+      ],
+      "asset": "candidates/pit-district.glb",
+      "clear": false,
+      "firstHit": {
+        "distance": 1.9658569744139631,
+        "point": [
+          -35.827338648173686,
+          9.622307438408155,
+          -1.1366932408684456
+        ],
+        "triangle": 13292,
+        "cloth": true
+      },
+      "clothHits": 4
+    },
+    {
+      "fixture": "district-task-1",
+      "anchor": "proposed-lower-service-rail",
+      "source": [
+        -36,
+        8.08,
+        -4
+      ],
+      "receiver": "rear bench top",
+      "target": [
+        -37,
+        2.45,
+        -10
+      ],
+      "asset": "predecessors/pit-district.glb",
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-1",
+      "anchor": "proposed-lower-service-rail",
+      "source": [
+        -36,
+        8.08,
+        -4
+      ],
+      "receiver": "original engine crown",
+      "target": [
+        -40,
+        4.325,
+        -6
+      ],
+      "asset": "predecessors/pit-district.glb",
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-1",
+      "anchor": "proposed-lower-service-rail",
+      "source": [
+        -36,
+        8.08,
+        -4
+      ],
+      "receiver": "floor below emitter",
+      "target": [
+        -36,
+        0.4,
+        -4
+      ],
+      "asset": "predecessors/pit-district.glb",
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-1",
+      "anchor": "proposed-lower-service-rail",
+      "source": [
+        -36,
+        8.08,
+        -4
+      ],
+      "receiver": "left interior aisle",
+      "target": [
+        -45,
+        0.4,
+        -7
+      ],
+      "asset": "predecessors/pit-district.glb",
+      "clear": false,
+      "firstHit": {
+        "distance": 7.5269329321033736,
+        "point": [
+          -41.55000114440918,
+          3.343999023437501,
+          -5.850000381469727
+        ],
+        "triangle": 1944,
+        "cloth": false
+      },
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-1",
+      "anchor": "proposed-lower-service-rail",
+      "source": [
+        -36,
+        8.08,
+        -4
+      ],
+      "receiver": "front apron",
+      "target": [
+        -36,
+        0.4,
+        4
+      ],
+      "asset": "predecessors/pit-district.glb",
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-1",
+      "anchor": "proposed-lower-service-rail",
+      "source": [
+        -36,
+        8.08,
+        -4
+      ],
+      "receiver": "near front worker torso",
+      "target": [
+        -35,
+        1.2,
+        3
+      ],
+      "asset": "predecessors/pit-district.glb",
+      "clear": false,
+      "firstHit": {
+        "distance": 9.654409225131932,
+        "point": [
+          -35.02142858505249,
+          1.347428665161134,
+          2.849999904632568
+        ],
+        "triangle": 2749,
+        "cloth": false
+      },
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-1",
+      "anchor": "proposed-lower-service-rail",
+      "source": [
+        -36,
+        8.08,
+        -4
+      ],
+      "receiver": "rear bench top",
+      "target": [
+        -37,
+        2.45,
+        -10
+      ],
+      "asset": "candidates/pit-district.glb",
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-1",
+      "anchor": "proposed-lower-service-rail",
+      "source": [
+        -36,
+        8.08,
+        -4
+      ],
+      "receiver": "original engine crown",
+      "target": [
+        -40,
+        4.325,
+        -6
+      ],
+      "asset": "candidates/pit-district.glb",
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-1",
+      "anchor": "proposed-lower-service-rail",
+      "source": [
+        -36,
+        8.08,
+        -4
+      ],
+      "receiver": "floor below emitter",
+      "target": [
+        -36,
+        0.4,
+        -4
+      ],
+      "asset": "candidates/pit-district.glb",
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-1",
+      "anchor": "proposed-lower-service-rail",
+      "source": [
+        -36,
+        8.08,
+        -4
+      ],
+      "receiver": "left interior aisle",
+      "target": [
+        -45,
+        0.4,
+        -7
+      ],
+      "asset": "candidates/pit-district.glb",
+      "clear": false,
+      "firstHit": {
+        "distance": 7.5269329321033736,
+        "point": [
+          -41.55000114440918,
+          3.343999023437501,
+          -5.850000381469727
+        ],
+        "triangle": 1944,
+        "cloth": false
+      },
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-1",
+      "anchor": "proposed-lower-service-rail",
+      "source": [
+        -36,
+        8.08,
+        -4
+      ],
+      "receiver": "front apron",
+      "target": [
+        -36,
+        0.4,
+        4
+      ],
+      "asset": "candidates/pit-district.glb",
+      "clear": false,
+      "firstHit": {
+        "distance": 10.22328742926401,
+        "point": [
+          -36,
+          1.0000480665028793,
+          3.3749499307261672
+        ],
+        "triangle": 16171,
+        "cloth": false
+      },
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-1",
+      "anchor": "proposed-lower-service-rail",
+      "source": [
+        -36,
+        8.08,
+        -4
+      ],
+      "receiver": "near front worker torso",
+      "target": [
+        -35,
+        1.2,
+        3
+      ],
+      "asset": "candidates/pit-district.glb",
+      "clear": false,
+      "firstHit": {
+        "distance": 9.654409225131932,
+        "point": [
+          -35.02142858505249,
+          1.347428665161134,
+          2.849999904632568
+        ],
+        "triangle": 2749,
+        "cloth": false
+      },
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-1",
+      "anchor": "proposed-lower-service-rail",
+      "source": [
+        -36,
+        8.08,
+        -4
+      ],
+      "support": {
+        "asset": "versions/v1/candidates/pit-district.glb",
+        "railUnderside": 8.393935203552246,
+        "bodyTop": 8.44,
+        "overlap": 0.04606479644775341
+      }
+    },
+    {
+      "fixture": "district-task-2",
+      "anchor": "current-v2",
+      "source": [
+        1,
+        16.38,
+        -6
+      ],
+      "receiver": "rear bench top",
+      "target": [
+        0,
+        2.45,
+        -14
+      ],
+      "asset": "predecessors/pit-district.glb",
+      "clear": false,
+      "firstHit": {
+        "distance": 0.8379817742245251,
+        "point": [
+          0.9479348588904175,
+          15.654732584343515,
+          -6.41652112887666
+        ],
+        "triangle": 3723,
+        "cloth": true
+      },
+      "clothHits": 2
+    },
+    {
+      "fixture": "district-task-2",
+      "anchor": "current-v2",
+      "source": [
+        1,
+        16.38,
+        -6
+      ],
+      "receiver": "original engine crown",
+      "target": [
+        -3,
+        4.325,
+        -10
+      ],
+      "asset": "predecessors/pit-district.glb",
+      "clear": false,
+      "firstHit": {
+        "distance": 0.9110330787818992,
+        "point": [
+          0.7263398430464034,
+          15.555256701981099,
+          -6.273660156953596
+        ],
+        "triangle": 3723,
+        "cloth": true
+      },
+      "clothHits": 2
+    },
+    {
+      "fixture": "district-task-2",
+      "anchor": "current-v2",
+      "source": [
+        1,
+        16.38,
+        -6
+      ],
+      "receiver": "floor below emitter",
+      "target": [
+        1,
+        0.4,
+        -8
+      ],
+      "asset": "predecessors/pit-district.glb",
+      "clear": false,
+      "firstHit": {
+        "distance": 0.922081808349757,
+        "point": [
+          1,
+          15.465056249002552,
+          -6.11451110775938
+        ],
+        "triangle": 3723,
+        "cloth": true
+      },
+      "clothHits": 2
+    },
+    {
+      "fixture": "district-task-2",
+      "anchor": "current-v2",
+      "source": [
+        1,
+        16.38,
+        -6
+      ],
+      "receiver": "left interior aisle",
+      "target": [
+        -8,
+        0.4,
+        -11
+      ],
+      "asset": "predecessors/pit-district.glb",
+      "clear": false,
+      "firstHit": {
+        "distance": 0.9987606382172799,
+        "point": [
+          0.5271388343227684,
+          15.540408730275315,
+          -6.262700647598462
+        ],
+        "triangle": 3723,
+        "cloth": true
+      },
+      "clothHits": 2
+    },
+    {
+      "fixture": "district-task-2",
+      "anchor": "current-v2",
+      "source": [
+        1,
+        16.38,
+        -6
+      ],
+      "receiver": "front apron",
+      "target": [
+        1,
+        0.4,
+        0
+      ],
+      "asset": "predecessors/pit-district.glb",
+      "clear": false,
+      "firstHit": {
+        "distance": 1.385154760129307,
+        "point": [
+          1,
+          15.083239385764804,
+          -5.513106152352242
+        ],
+        "triangle": 3723,
+        "cloth": true
+      },
+      "clothHits": 2
+    },
+    {
+      "fixture": "district-task-2",
+      "anchor": "current-v2",
+      "source": [
+        1,
+        16.38,
+        -6
+      ],
+      "receiver": "near front worker torso",
+      "target": [
+        2,
+        1.2,
+        -1
+      ],
+      "asset": "predecessors/pit-district.glb",
+      "clear": false,
+      "firstHit": {
+        "distance": 1.3130208092918683,
+        "point": [
+          1.0819945828091826,
+          15.135322232956607,
+          -5.5900270859540875
+        ],
+        "triangle": 3723,
+        "cloth": true
+      },
+      "clothHits": 2
+    },
+    {
+      "fixture": "district-task-2",
+      "anchor": "current-v2",
+      "source": [
+        1,
+        16.38,
+        -6
+      ],
+      "receiver": "rear bench top",
+      "target": [
+        0,
+        2.45,
+        -14
+      ],
+      "asset": "candidates/pit-district.glb",
+      "clear": false,
+      "firstHit": {
+        "distance": 0.7616198157315005,
+        "point": [
+          0.9526793488860652,
+          15.720823329982888,
+          -6.378565208911478
+        ],
+        "triangle": 13945,
+        "cloth": true
+      },
+      "clothHits": 4
+    },
+    {
+      "fixture": "district-task-2",
+      "anchor": "current-v2",
+      "source": [
+        1,
+        16.38,
+        -6
+      ],
+      "receiver": "original engine crown",
+      "target": [
+        -3,
+        4.325,
+        -10
+      ],
+      "asset": "candidates/pit-district.glb",
+      "clear": false,
+      "firstHit": {
+        "distance": 0.8280143668065294,
+        "point": [
+          0.7512773719664747,
+          15.630412179763963,
+          -6.2487226280335255
+        ],
+        "triangle": 13945,
+        "cloth": true
+      },
+      "clothHits": 4
+    },
+    {
+      "fixture": "district-task-2",
+      "anchor": "current-v2",
+      "source": [
+        1,
+        16.38,
+        -6
+      ],
+      "receiver": "floor below emitter",
+      "target": [
+        1,
+        0.4,
+        -8
+      ],
+      "asset": "candidates/pit-district.glb",
+      "clear": false,
+      "firstHit": {
+        "distance": 0.8380562536674401,
+        "point": [
+          1,
+          15.548431341629387,
+          -6.104076177518224
+        ],
+        "triangle": 13945,
+        "cloth": true
+      },
+      "clothHits": 4
+    },
+    {
+      "fixture": "district-task-2",
+      "anchor": "current-v2",
+      "source": [
+        1,
+        16.38,
+        -6
+      ],
+      "receiver": "left interior aisle",
+      "target": [
+        -8,
+        0.4,
+        -11
+      ],
+      "asset": "candidates/pit-district.glb",
+      "clear": false,
+      "firstHit": {
+        "distance": 0.9077477423431617,
+        "point": [
+          0.570228702293049,
+          15.616917184738103,
+          -6.238761832059417
+        ],
+        "triangle": 13945,
+        "cloth": true
+      },
+      "clothHits": 4
+    },
+    {
+      "fixture": "district-task-2",
+      "anchor": "current-v2",
+      "source": [
+        1,
+        16.38,
+        -6
+      ],
+      "receiver": "front apron",
+      "target": [
+        1,
+        0.4,
+        0
+      ],
+      "asset": "candidates/pit-district.glb",
+      "clear": false,
+      "firstHit": {
+        "distance": 1.2589316214381598,
+        "point": [
+          1,
+          15.201407549764433,
+          -5.557474674504793
+        ],
+        "triangle": 13945,
+        "cloth": true
+      },
+      "clothHits": 4
+    },
+    {
+      "fixture": "district-task-2",
+      "anchor": "current-v2",
+      "source": [
+        1,
+        16.38,
+        -6
+      ],
+      "receiver": "near front worker torso",
+      "target": [
+        2,
+        1.2,
+        -1
+      ],
+      "asset": "candidates/pit-district.glb",
+      "clear": false,
+      "firstHit": {
+        "distance": 1.1933708451695586,
+        "point": [
+          1.0745227675706766,
+          15.248744388277128,
+          -5.6273861621466175
+        ],
+        "triangle": 13945,
+        "cloth": true
+      },
+      "clothHits": 4
+    },
+    {
+      "fixture": "district-task-2",
+      "anchor": "proposed-lower-service-rail",
+      "source": [
+        1,
+        13.08,
+        -8
+      ],
+      "receiver": "rear bench top",
+      "target": [
+        0,
+        2.45,
+        -14
+      ],
+      "asset": "predecessors/pit-district.glb",
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-2",
+      "anchor": "proposed-lower-service-rail",
+      "source": [
+        1,
+        13.08,
+        -8
+      ],
+      "receiver": "original engine crown",
+      "target": [
+        -3,
+        4.325,
+        -10
+      ],
+      "asset": "predecessors/pit-district.glb",
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-2",
+      "anchor": "proposed-lower-service-rail",
+      "source": [
+        1,
+        13.08,
+        -8
+      ],
+      "receiver": "floor below emitter",
+      "target": [
+        1,
+        0.4,
+        -8
+      ],
+      "asset": "predecessors/pit-district.glb",
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-2",
+      "anchor": "proposed-lower-service-rail",
+      "source": [
+        1,
+        13.08,
+        -8
+      ],
+      "receiver": "left interior aisle",
+      "target": [
+        -8,
+        0.4,
+        -11
+      ],
+      "asset": "predecessors/pit-district.glb",
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-2",
+      "anchor": "proposed-lower-service-rail",
+      "source": [
+        1,
+        13.08,
+        -8
+      ],
+      "receiver": "front apron",
+      "target": [
+        1,
+        0.4,
+        0
+      ],
+      "asset": "predecessors/pit-district.glb",
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-2",
+      "anchor": "proposed-lower-service-rail",
+      "source": [
+        1,
+        13.08,
+        -8
+      ],
+      "receiver": "near front worker torso",
+      "target": [
+        2,
+        1.2,
+        -1
+      ],
+      "asset": "predecessors/pit-district.glb",
+      "clear": false,
+      "firstHit": {
+        "distance": 13.433553631834219,
+        "point": [
+          1.9716760196367114,
+          1.5364888867158708,
+          -1.1982678625430214
+        ],
+        "triangle": 6017,
+        "cloth": false
+      },
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-2",
+      "anchor": "proposed-lower-service-rail",
+      "source": [
+        1,
+        13.08,
+        -8
+      ],
+      "receiver": "rear bench top",
+      "target": [
+        0,
+        2.45,
+        -14
+      ],
+      "asset": "candidates/pit-district.glb",
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-2",
+      "anchor": "proposed-lower-service-rail",
+      "source": [
+        1,
+        13.08,
+        -8
+      ],
+      "receiver": "original engine crown",
+      "target": [
+        -3,
+        4.325,
+        -10
+      ],
+      "asset": "candidates/pit-district.glb",
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-2",
+      "anchor": "proposed-lower-service-rail",
+      "source": [
+        1,
+        13.08,
+        -8
+      ],
+      "receiver": "floor below emitter",
+      "target": [
+        1,
+        0.4,
+        -8
+      ],
+      "asset": "candidates/pit-district.glb",
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-2",
+      "anchor": "proposed-lower-service-rail",
+      "source": [
+        1,
+        13.08,
+        -8
+      ],
+      "receiver": "left interior aisle",
+      "target": [
+        -8,
+        0.4,
+        -11
+      ],
+      "asset": "candidates/pit-district.glb",
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-2",
+      "anchor": "proposed-lower-service-rail",
+      "source": [
+        1,
+        13.08,
+        -8
+      ],
+      "receiver": "front apron",
+      "target": [
+        1,
+        0.4,
+        0
+      ],
+      "asset": "candidates/pit-district.glb",
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-2",
+      "anchor": "proposed-lower-service-rail",
+      "source": [
+        1,
+        13.08,
+        -8
+      ],
+      "receiver": "near front worker torso",
+      "target": [
+        2,
+        1.2,
+        -1
+      ],
+      "asset": "candidates/pit-district.glb",
+      "clear": false,
+      "firstHit": {
+        "distance": 13.433553631834219,
+        "point": [
+          1.9716760196367114,
+          1.5364888867158708,
+          -1.1982678625430214
+        ],
+        "triangle": 6017,
+        "cloth": false
+      },
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-2",
+      "anchor": "proposed-lower-service-rail",
+      "source": [
+        1,
+        13.08,
+        -8
+      ],
+      "support": {
+        "asset": "versions/v1/candidates/pit-district.glb",
+        "railUnderside": 13.393935203552246,
+        "bodyTop": 13.44,
+        "overlap": 0.04606479644775341
+      }
+    },
+    {
+      "fixture": "district-task-3",
+      "anchor": "current-v2",
+      "source": [
+        41,
+        13.18,
+        1
+      ],
+      "receiver": "rear bench top",
+      "target": [
+        40,
+        2.45,
+        -7
+      ],
+      "asset": "predecessors/pit-district.glb",
+      "clear": false,
+      "firstHit": {
+        "distance": 0.9070102037141822,
+        "point": [
+          40.932420394474704,
+          12.454870832713535,
+          0.4593631557976039
+        ],
+        "triangle": 6960,
+        "cloth": true
+      },
+      "clothHits": 2
+    },
+    {
+      "fixture": "district-task-3",
+      "anchor": "current-v2",
+      "source": [
+        41,
+        13.18,
+        1
+      ],
+      "receiver": "original engine crown",
+      "target": [
+        37,
+        4.325,
+        -3
+      ],
+      "asset": "predecessors/pit-district.glb",
+      "clear": false,
+      "firstHit": {
+        "distance": 1.0356699926418995,
+        "point": [
+          40.60574685744559,
+          12.307222105670169,
+          0.6057468574455878
+        ],
+        "triangle": 6961,
+        "cloth": true
+      },
+      "clothHits": 2
+    },
+    {
+      "fixture": "district-task-3",
+      "anchor": "current-v2",
+      "source": [
+        41,
+        13.18,
+        1
+      ],
+      "receiver": "floor below emitter",
+      "target": [
+        41,
+        0.4,
+        -1
+      ],
+      "asset": "predecessors/pit-district.glb",
+      "clear": false,
+      "firstHit": {
+        "distance": 1.0575454633481833,
+        "point": [
+          41,
+          12.135171353792115,
+          0.836490039717076
+        ],
+        "triangle": 6961,
+        "cloth": true
+      },
+      "clothHits": 2
+    },
+    {
+      "fixture": "district-task-3",
+      "anchor": "current-v2",
+      "source": [
+        41,
+        13.18,
+        1
+      ],
+      "receiver": "left interior aisle",
+      "target": [
+        32,
+        0.4,
+        -4
+      ],
+      "asset": "predecessors/pit-district.glb",
+      "clear": false,
+      "firstHit": {
+        "distance": 1.1816460063775105,
+        "point": [
+          40.35197937987274,
+          12.259810719419281,
+          0.639988544373741
+        ],
+        "triangle": 6961,
+        "cloth": true
+      },
+      "clothHits": 2
+    },
+    {
+      "fixture": "district-task-3",
+      "anchor": "current-v2",
+      "source": [
+        41,
+        13.18,
+        1
+      ],
+      "receiver": "front apron",
+      "target": [
+        41,
+        0.4,
+        7
+      ],
+      "asset": "predecessors/pit-district.glb",
+      "clear": false,
+      "firstHit": {
+        "distance": 2.0756961381940022,
+        "point": [
+          41,
+          11.301072422184285,
+          1.882125623387659
+        ],
+        "triangle": 7008,
+        "cloth": true
+      },
+      "clothHits": 2
+    },
+    {
+      "fixture": "district-task-3",
+      "anchor": "current-v2",
+      "source": [
+        41,
+        13.18,
+        1
+      ],
+      "receiver": "near front worker torso",
+      "target": [
+        42,
+        1.2,
+        6
+      ],
+      "asset": "predecessors/pit-district.glb",
+      "clear": false,
+      "firstHit": {
+        "distance": 1.934145340235043,
+        "point": [
+          41.14855186944969,
+          11.40034860399264,
+          1.74275934724848
+        ],
+        "triangle": 7008,
+        "cloth": true
+      },
+      "clothHits": 2
+    },
+    {
+      "fixture": "district-task-3",
+      "anchor": "current-v2",
+      "source": [
+        41,
+        13.18,
+        1
+      ],
+      "receiver": "rear bench top",
+      "target": [
+        40,
+        2.45,
+        -7
+      ],
+      "asset": "candidates/pit-district.glb",
+      "clear": false,
+      "firstHit": {
+        "distance": 0.836850425940935,
+        "point": [
+          40.93764786610208,
+          12.510961603275307,
+          0.5011829288166321
+        ],
+        "triangle": 14621,
+        "cloth": true
+      },
+      "clothHits": 4
+    },
+    {
+      "fixture": "district-task-3",
+      "anchor": "current-v2",
+      "source": [
+        41,
+        13.18,
+        1
+      ],
+      "receiver": "original engine crown",
+      "target": [
+        37,
+        4.325,
+        -3
+      ],
+      "asset": "candidates/pit-district.glb",
+      "clear": false,
+      "firstHit": {
+        "distance": 0.9570990587536291,
+        "point": [
+          40.63565680735142,
+          12.373435257274188,
+          0.6356568073514122
+        ],
+        "triangle": 14621,
+        "cloth": true
+      },
+      "clothHits": 4
+    },
+    {
+      "fixture": "district-task-3",
+      "anchor": "current-v2",
+      "source": [
+        41,
+        13.18,
+        1
+      ],
+      "receiver": "floor below emitter",
+      "target": [
+        41,
+        0.4,
+        -1
+      ],
+      "asset": "candidates/pit-district.glb",
+      "clear": false,
+      "firstHit": {
+        "distance": 0.9773149504677171,
+        "point": [
+          41,
+          12.214437107428905,
+          0.8488946959982637
+        ],
+        "triangle": 14621,
+        "cloth": true
+      },
+      "clothHits": 4
+    },
+    {
+      "fixture": "district-task-3",
+      "anchor": "current-v2",
+      "source": [
+        41,
+        13.18,
+        1
+      ],
+      "receiver": "left interior aisle",
+      "target": [
+        32,
+        0.4,
+        -4
+      ],
+      "asset": "candidates/pit-district.glb",
+      "clear": false,
+      "firstHit": {
+        "distance": 1.0920006261830075,
+        "point": [
+          40.40114135778461,
+          12.329620728054145,
+          0.6673007543247832
+        ],
+        "triangle": 14621,
+        "cloth": true
+      },
+      "clothHits": 4
+    },
+    {
+      "fixture": "district-task-3",
+      "anchor": "current-v2",
+      "source": [
+        41,
+        13.18,
+        1
+      ],
+      "receiver": "front apron",
+      "target": [
+        41,
+        0.4,
+        7
+      ],
+      "asset": "candidates/pit-district.glb",
+      "clear": false,
+      "firstHit": {
+        "distance": 1.9337878016030658,
+        "point": [
+          41,
+          11.429528356671236,
+          1.8218176729243027
+        ],
+        "triangle": 14644,
+        "cloth": true
+      },
+      "clothHits": 4
+    },
+    {
+      "fixture": "district-task-3",
+      "anchor": "current-v2",
+      "source": [
+        41,
+        13.18,
+        1
+      ],
+      "receiver": "near front worker torso",
+      "target": [
+        42,
+        1.2,
+        6
+      ],
+      "asset": "candidates/pit-district.glb",
+      "clear": false,
+      "firstHit": {
+        "distance": 1.8019143537686555,
+        "point": [
+          41.13839587970573,
+          11.522017361125307,
+          1.6919793985286695
+        ],
+        "triangle": 14644,
+        "cloth": true
+      },
+      "clothHits": 4
+    },
+    {
+      "fixture": "district-task-3",
+      "anchor": "proposed-lower-service-rail",
+      "source": [
+        41,
+        9.88,
+        -1
+      ],
+      "receiver": "rear bench top",
+      "target": [
+        40,
+        2.45,
+        -7
+      ],
+      "asset": "predecessors/pit-district.glb",
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-3",
+      "anchor": "proposed-lower-service-rail",
+      "source": [
+        41,
+        9.88,
+        -1
+      ],
+      "receiver": "original engine crown",
+      "target": [
+        37,
+        4.325,
+        -3
+      ],
+      "asset": "predecessors/pit-district.glb",
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-3",
+      "anchor": "proposed-lower-service-rail",
+      "source": [
+        41,
+        9.88,
+        -1
+      ],
+      "receiver": "floor below emitter",
+      "target": [
+        41,
+        0.4,
+        -1
+      ],
+      "asset": "predecessors/pit-district.glb",
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-3",
+      "anchor": "proposed-lower-service-rail",
+      "source": [
+        41,
+        9.88,
+        -1
+      ],
+      "receiver": "left interior aisle",
+      "target": [
+        32,
+        0.4,
+        -4
+      ],
+      "asset": "predecessors/pit-district.glb",
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-3",
+      "anchor": "proposed-lower-service-rail",
+      "source": [
+        41,
+        9.88,
+        -1
+      ],
+      "receiver": "front apron",
+      "target": [
+        41,
+        0.4,
+        7
+      ],
+      "asset": "predecessors/pit-district.glb",
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-3",
+      "anchor": "proposed-lower-service-rail",
+      "source": [
+        41,
+        9.88,
+        -1
+      ],
+      "receiver": "near front worker torso",
+      "target": [
+        42,
+        1.2,
+        6
+      ],
+      "asset": "predecessors/pit-district.glb",
+      "clear": false,
+      "firstHit": {
+        "distance": 10.955735242268874,
+        "point": [
+          41.97857141494751,
+          1.3860001182556143,
+          5.849999904632569
+        ],
+        "triangle": 9225,
+        "cloth": false
+      },
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-3",
+      "anchor": "proposed-lower-service-rail",
+      "source": [
+        41,
+        9.88,
+        -1
+      ],
+      "receiver": "rear bench top",
+      "target": [
+        40,
+        2.45,
+        -7
+      ],
+      "asset": "candidates/pit-district.glb",
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-3",
+      "anchor": "proposed-lower-service-rail",
+      "source": [
+        41,
+        9.88,
+        -1
+      ],
+      "receiver": "original engine crown",
+      "target": [
+        37,
+        4.325,
+        -3
+      ],
+      "asset": "candidates/pit-district.glb",
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-3",
+      "anchor": "proposed-lower-service-rail",
+      "source": [
+        41,
+        9.88,
+        -1
+      ],
+      "receiver": "floor below emitter",
+      "target": [
+        41,
+        0.4,
+        -1
+      ],
+      "asset": "candidates/pit-district.glb",
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-3",
+      "anchor": "proposed-lower-service-rail",
+      "source": [
+        41,
+        9.88,
+        -1
+      ],
+      "receiver": "left interior aisle",
+      "target": [
+        32,
+        0.4,
+        -4
+      ],
+      "asset": "candidates/pit-district.glb",
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-3",
+      "anchor": "proposed-lower-service-rail",
+      "source": [
+        41,
+        9.88,
+        -1
+      ],
+      "receiver": "front apron",
+      "target": [
+        41,
+        0.4,
+        7
+      ],
+      "asset": "candidates/pit-district.glb",
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-3",
+      "anchor": "proposed-lower-service-rail",
+      "source": [
+        41,
+        9.88,
+        -1
+      ],
+      "receiver": "near front worker torso",
+      "target": [
+        42,
+        1.2,
+        6
+      ],
+      "asset": "candidates/pit-district.glb",
+      "clear": false,
+      "firstHit": {
+        "distance": 10.955735242268874,
+        "point": [
+          41.97857141494751,
+          1.3860001182556143,
+          5.849999904632569
+        ],
+        "triangle": 9225,
+        "cloth": false
+      },
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-3",
+      "anchor": "proposed-lower-service-rail",
+      "source": [
+        41,
+        9.88,
+        -1
+      ],
+      "support": {
+        "asset": "versions/v1/candidates/pit-district.glb",
+        "railUnderside": 10.19393539428711,
+        "bodyTop": 10.24,
+        "overlap": 0.04606460571289084
+      }
+    }
+  ],
+  "lensAreaRays": [
+    {
+      "fixture": "district-task-1",
+      "source": [
+        -37.04,
+        8.08,
+        -4.33
+      ],
+      "receiver": "rear bench top",
+      "target": [
+        -37,
+        2.45,
+        -10
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-1",
+      "source": [
+        -37.04,
+        8.08,
+        -4.33
+      ],
+      "receiver": "original engine crown",
+      "target": [
+        -40,
+        4.325,
+        -6
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-1",
+      "source": [
+        -37.04,
+        8.08,
+        -4.33
+      ],
+      "receiver": "floor below emitter",
+      "target": [
+        -36,
+        0.4,
+        -4
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-1",
+      "source": [
+        -37.04,
+        8.08,
+        -4.33
+      ],
+      "receiver": "left interior aisle",
+      "target": [
+        -45,
+        0.4,
+        -7
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-1",
+      "source": [
+        -37.04,
+        8.08,
+        -4.33
+      ],
+      "receiver": "front apron",
+      "target": [
+        -36,
+        0.4,
+        4
+      ],
+      "clear": false,
+      "firstHit": {
+        "distance": 10.50710339953283,
+        "point": [
+          -36.079581640576954,
+          0.9876798073375026,
+          3.3625816673019004
+        ],
+        "triangle": 16171,
+        "cloth": false
+      },
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-1",
+      "source": [
+        -37.04,
+        8.08,
+        -4.33
+      ],
+      "receiver": "near front worker torso",
+      "target": [
+        -35,
+        1.2,
+        3
+      ],
+      "clear": false,
+      "firstHit": {
+        "distance": 10.048002273955088,
+        "point": [
+          -35.04174627483623,
+          1.340791358271205,
+          2.8499999046325684
+        ],
+        "triangle": 2749,
+        "cloth": false
+      },
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-1",
+      "source": [
+        -37.04,
+        8.08,
+        -4
+      ],
+      "receiver": "rear bench top",
+      "target": [
+        -37,
+        2.45,
+        -10
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-1",
+      "source": [
+        -37.04,
+        8.08,
+        -4
+      ],
+      "receiver": "original engine crown",
+      "target": [
+        -40,
+        4.325,
+        -6
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-1",
+      "source": [
+        -37.04,
+        8.08,
+        -4
+      ],
+      "receiver": "floor below emitter",
+      "target": [
+        -36,
+        0.4,
+        -4
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-1",
+      "source": [
+        -37.04,
+        8.08,
+        -4
+      ],
+      "receiver": "left interior aisle",
+      "target": [
+        -45,
+        0.4,
+        -7
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-1",
+      "source": [
+        -37.04,
+        8.08,
+        -4
+      ],
+      "receiver": "front apron",
+      "target": [
+        -36,
+        0.4,
+        4
+      ],
+      "clear": false,
+      "firstHit": {
+        "distance": 10.268144668968768,
+        "point": [
+          -36.0812565090056,
+          1.0000480665028766,
+          3.37494993072617
+        ],
+        "triangle": 16171,
+        "cloth": false
+      },
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-1",
+      "source": [
+        -37.04,
+        8.08,
+        -4
+      ],
+      "receiver": "near front worker torso",
+      "target": [
+        -35,
+        1.2,
+        3
+      ],
+      "clear": false,
+      "firstHit": {
+        "distance": 9.8099527019378,
+        "point": [
+          -35.04371431350708,
+          1.3474286651611314,
+          2.849999904632568
+        ],
+        "triangle": 2749,
+        "cloth": false
+      },
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-1",
+      "source": [
+        -37.04,
+        8.08,
+        -3.67
+      ],
+      "receiver": "rear bench top",
+      "target": [
+        -37,
+        2.45,
+        -10
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-1",
+      "source": [
+        -37.04,
+        8.08,
+        -3.67
+      ],
+      "receiver": "original engine crown",
+      "target": [
+        -40,
+        4.325,
+        -6
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-1",
+      "source": [
+        -37.04,
+        8.08,
+        -3.67
+      ],
+      "receiver": "floor below emitter",
+      "target": [
+        -36,
+        0.4,
+        -4
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-1",
+      "source": [
+        -37.04,
+        8.08,
+        -3.67
+      ],
+      "receiver": "left interior aisle",
+      "target": [
+        -45,
+        0.4,
+        -7
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-1",
+      "source": [
+        -37.04,
+        8.08,
+        -3.67
+      ],
+      "receiver": "front apron",
+      "target": [
+        -36,
+        0.4,
+        4
+      ],
+      "clear": false,
+      "firstHit": {
+        "distance": 10.033559251140794,
+        "point": [
+          -36.08300339130867,
+          1.0129481204332578,
+          3.3878499890985565
+        ],
+        "triangle": 16171,
+        "cloth": false
+      },
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-1",
+      "source": [
+        -37.04,
+        8.08,
+        -3.67
+      ],
+      "receiver": "near front worker torso",
+      "target": [
+        -35,
+        1.2,
+        3
+      ],
+      "clear": false,
+      "firstHit": {
+        "distance": 9.576861657014677,
+        "point": [
+          -35.04587709063712,
+          1.3547227370506638,
+          2.8499999046325684
+        ],
+        "triangle": 2749,
+        "cloth": false
+      },
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-1",
+      "source": [
+        -36,
+        8.08,
+        -4.33
+      ],
+      "receiver": "rear bench top",
+      "target": [
+        -37,
+        2.45,
+        -10
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-1",
+      "source": [
+        -36,
+        8.08,
+        -4.33
+      ],
+      "receiver": "original engine crown",
+      "target": [
+        -40,
+        4.325,
+        -6
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-1",
+      "source": [
+        -36,
+        8.08,
+        -4.33
+      ],
+      "receiver": "floor below emitter",
+      "target": [
+        -36,
+        0.4,
+        -4
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-1",
+      "source": [
+        -36,
+        8.08,
+        -4.33
+      ],
+      "receiver": "left interior aisle",
+      "target": [
+        -45,
+        0.4,
+        -7
+      ],
+      "clear": false,
+      "firstHit": {
+        "distance": 6.904869138547155,
+        "point": [
+          -41.12359679147099,
+          3.707864071278088,
+          -5.850000381469727
+        ],
+        "triangle": 1944,
+        "cloth": false
+      },
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-1",
+      "source": [
+        -36,
+        8.08,
+        -4.33
+      ],
+      "receiver": "front apron",
+      "target": [
+        -36,
+        0.4,
+        4
+      ],
+      "clear": false,
+      "firstHit": {
+        "distance": 10.463117051020575,
+        "point": [
+          -36,
+          0.9876798073375035,
+          3.3625816673019013
+        ],
+        "triangle": 16171,
+        "cloth": false
+      },
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-1",
+      "source": [
+        -36,
+        8.08,
+        -4.33
+      ],
+      "receiver": "near front worker torso",
+      "target": [
+        -35,
+        1.2,
+        3
+      ],
+      "clear": false,
+      "firstHit": {
+        "distance": 9.895899291950325,
+        "point": [
+          -35.02046386021384,
+          1.340791358271204,
+          2.8499999046325684
+        ],
+        "triangle": 2749,
+        "cloth": false
+      },
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-1",
+      "source": [
+        -36,
+        8.08,
+        -4
+      ],
+      "receiver": "rear bench top",
+      "target": [
+        -37,
+        2.45,
+        -10
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-1",
+      "source": [
+        -36,
+        8.08,
+        -4
+      ],
+      "receiver": "original engine crown",
+      "target": [
+        -40,
+        4.325,
+        -6
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-1",
+      "source": [
+        -36,
+        8.08,
+        -4
+      ],
+      "receiver": "floor below emitter",
+      "target": [
+        -36,
+        0.4,
+        -4
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-1",
+      "source": [
+        -36,
+        8.08,
+        -4
+      ],
+      "receiver": "left interior aisle",
+      "target": [
+        -45,
+        0.4,
+        -7
+      ],
+      "clear": false,
+      "firstHit": {
+        "distance": 7.5269329321033736,
+        "point": [
+          -41.55000114440918,
+          3.343999023437501,
+          -5.850000381469727
+        ],
+        "triangle": 1944,
+        "cloth": false
+      },
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-1",
+      "source": [
+        -36,
+        8.08,
+        -4
+      ],
+      "receiver": "front apron",
+      "target": [
+        -36,
+        0.4,
+        4
+      ],
+      "clear": false,
+      "firstHit": {
+        "distance": 10.22328742926401,
+        "point": [
+          -36,
+          1.0000480665028793,
+          3.3749499307261672
+        ],
+        "triangle": 16171,
+        "cloth": false
+      },
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-1",
+      "source": [
+        -36,
+        8.08,
+        -4
+      ],
+      "receiver": "near front worker torso",
+      "target": [
+        -35,
+        1.2,
+        3
+      ],
+      "clear": false,
+      "firstHit": {
+        "distance": 9.654409225131932,
+        "point": [
+          -35.02142858505249,
+          1.347428665161134,
+          2.849999904632568
+        ],
+        "triangle": 2749,
+        "cloth": false
+      },
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-1",
+      "source": [
+        -36,
+        8.08,
+        -3.67
+      ],
+      "receiver": "rear bench top",
+      "target": [
+        -37,
+        2.45,
+        -10
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-1",
+      "source": [
+        -36,
+        8.08,
+        -3.67
+      ],
+      "receiver": "original engine crown",
+      "target": [
+        -40,
+        4.325,
+        -6
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-1",
+      "source": [
+        -36,
+        8.08,
+        -3.67
+      ],
+      "receiver": "floor below emitter",
+      "target": [
+        -36,
+        0.4,
+        -4
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-1",
+      "source": [
+        -36,
+        8.08,
+        -3.67
+      ],
+      "receiver": "left interior aisle",
+      "target": [
+        -45,
+        0.4,
+        -7
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-1",
+      "source": [
+        -36,
+        8.08,
+        -3.67
+      ],
+      "receiver": "front apron",
+      "target": [
+        -36,
+        0.4,
+        4
+      ],
+      "clear": false,
+      "firstHit": {
+        "distance": 9.987816014380039,
+        "point": [
+          -36,
+          1.012948120433256,
+          3.387849989098558
+        ],
+        "triangle": 16171,
+        "cloth": false
+      },
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-1",
+      "source": [
+        -36,
+        8.08,
+        -3.67
+      ],
+      "receiver": "near front worker torso",
+      "target": [
+        -35,
+        1.2,
+        3
+      ],
+      "clear": false,
+      "firstHit": {
+        "distance": 9.417817221887681,
+        "point": [
+          -35.02248876992016,
+          1.3547227370506656,
+          2.849999904632567
+        ],
+        "triangle": 2749,
+        "cloth": false
+      },
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-1",
+      "source": [
+        -34.96,
+        8.08,
+        -4.33
+      ],
+      "receiver": "rear bench top",
+      "target": [
+        -37,
+        2.45,
+        -10
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-1",
+      "source": [
+        -34.96,
+        8.08,
+        -4.33
+      ],
+      "receiver": "original engine crown",
+      "target": [
+        -40,
+        4.325,
+        -6
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-1",
+      "source": [
+        -34.96,
+        8.08,
+        -4.33
+      ],
+      "receiver": "floor below emitter",
+      "target": [
+        -36,
+        0.4,
+        -4
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-1",
+      "source": [
+        -34.96,
+        8.08,
+        -4.33
+      ],
+      "receiver": "left interior aisle",
+      "target": [
+        -45,
+        0.4,
+        -7
+      ],
+      "clear": false,
+      "firstHit": {
+        "distance": 6.768969185616676,
+        "point": [
+          -40.220309512838845,
+          4.056177583804553,
+          -5.728907011880448
+        ],
+        "triangle": 1768,
+        "cloth": false
+      },
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-1",
+      "source": [
+        -34.96,
+        8.08,
+        -4.33
+      ],
+      "receiver": "front apron",
+      "target": [
+        -36,
+        0.4,
+        4
+      ],
+      "clear": false,
+      "firstHit": {
+        "distance": 10.50710339953283,
+        "point": [
+          -35.920418359423046,
+          0.9876798073375026,
+          3.3625816673019004
+        ],
+        "triangle": 16171,
+        "cloth": false
+      },
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-1",
+      "source": [
+        -34.96,
+        8.08,
+        -4.33
+      ],
+      "receiver": "near front worker torso",
+      "target": [
+        -35,
+        1.2,
+        3
+      ],
+      "clear": false,
+      "firstHit": {
+        "distance": 9.847378683332657,
+        "point": [
+          -34.99918144559145,
+          1.340791358271204,
+          2.8499999046325684
+        ],
+        "triangle": 2749,
+        "cloth": false
+      },
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-1",
+      "source": [
+        -34.96,
+        8.08,
+        -4
+      ],
+      "receiver": "rear bench top",
+      "target": [
+        -37,
+        2.45,
+        -10
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-1",
+      "source": [
+        -34.96,
+        8.08,
+        -4
+      ],
+      "receiver": "original engine crown",
+      "target": [
+        -40,
+        4.325,
+        -6
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-1",
+      "source": [
+        -34.96,
+        8.08,
+        -4
+      ],
+      "receiver": "floor below emitter",
+      "target": [
+        -36,
+        0.4,
+        -4
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-1",
+      "source": [
+        -34.96,
+        8.08,
+        -4
+      ],
+      "receiver": "left interior aisle",
+      "target": [
+        -45,
+        0.4,
+        -7
+      ],
+      "clear": false,
+      "firstHit": {
+        "distance": 6.806803651539314,
+        "point": [
+          -40.22030951283884,
+          4.056177583804553,
+          -5.571805631326346
+        ],
+        "triangle": 1768,
+        "cloth": false
+      },
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-1",
+      "source": [
+        -34.96,
+        8.08,
+        -4
+      ],
+      "receiver": "front apron",
+      "target": [
+        -36,
+        0.4,
+        4
+      ],
+      "clear": false,
+      "firstHit": {
+        "distance": 10.268144668968768,
+        "point": [
+          -35.9187434909944,
+          1.0000480665028766,
+          3.37494993072617
+        ],
+        "triangle": 16171,
+        "cloth": false
+      },
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-1",
+      "source": [
+        -34.96,
+        8.08,
+        -4
+      ],
+      "receiver": "near front worker torso",
+      "target": [
+        -35,
+        1.2,
+        3
+      ],
+      "clear": false,
+      "firstHit": {
+        "distance": 9.60476692249129,
+        "point": [
+          -34.9991428565979,
+          1.347428665161134,
+          2.8499999046325675
+        ],
+        "triangle": 2749,
+        "cloth": false
+      },
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-1",
+      "source": [
+        -34.96,
+        8.08,
+        -3.67
+      ],
+      "receiver": "rear bench top",
+      "target": [
+        -37,
+        2.45,
+        -10
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-1",
+      "source": [
+        -34.96,
+        8.08,
+        -3.67
+      ],
+      "receiver": "original engine crown",
+      "target": [
+        -40,
+        4.325,
+        -6
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-1",
+      "source": [
+        -34.96,
+        8.08,
+        -3.67
+      ],
+      "receiver": "floor below emitter",
+      "target": [
+        -36,
+        0.4,
+        -4
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-1",
+      "source": [
+        -34.96,
+        8.08,
+        -3.67
+      ],
+      "receiver": "left interior aisle",
+      "target": [
+        -45,
+        0.4,
+        -7
+      ],
+      "clear": false,
+      "firstHit": {
+        "distance": 6.848795217452663,
+        "point": [
+          -40.22030951283884,
+          4.056177583804554,
+          -5.414704250772244
+        ],
+        "triangle": 1768,
+        "cloth": false
+      },
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-1",
+      "source": [
+        -34.96,
+        8.08,
+        -3.67
+      ],
+      "receiver": "front apron",
+      "target": [
+        -36,
+        0.4,
+        4
+      ],
+      "clear": false,
+      "firstHit": {
+        "distance": 10.033559251140794,
+        "point": [
+          -35.91699660869133,
+          1.0129481204332578,
+          3.3878499890985565
+        ],
+        "triangle": 16171,
+        "cloth": false
+      },
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-1",
+      "source": [
+        -34.96,
+        8.08,
+        -3.67
+      ],
+      "receiver": "near front worker torso",
+      "target": [
+        -35,
+        1.2,
+        3
+      ],
+      "clear": false,
+      "firstHit": {
+        "distance": 9.367031646422463,
+        "point": [
+          -34.99910044920319,
+          1.3547227370506638,
+          2.8499999046325684
+        ],
+        "triangle": 2749,
+        "cloth": false
+      },
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-2",
+      "source": [
+        -0.040000000000000036,
+        13.08,
+        -8.33
+      ],
+      "receiver": "rear bench top",
+      "target": [
+        0,
+        2.45,
+        -14
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-2",
+      "source": [
+        -0.040000000000000036,
+        13.08,
+        -8.33
+      ],
+      "receiver": "original engine crown",
+      "target": [
+        -3,
+        4.325,
+        -10
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-2",
+      "source": [
+        -0.040000000000000036,
+        13.08,
+        -8.33
+      ],
+      "receiver": "floor below emitter",
+      "target": [
+        1,
+        0.4,
+        -8
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-2",
+      "source": [
+        -0.040000000000000036,
+        13.08,
+        -8.33
+      ],
+      "receiver": "left interior aisle",
+      "target": [
+        -8,
+        0.4,
+        -11
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-2",
+      "source": [
+        -0.040000000000000036,
+        13.08,
+        -8.33
+      ],
+      "receiver": "front apron",
+      "target": [
+        1,
+        0.4,
+        0
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-2",
+      "source": [
+        -0.040000000000000036,
+        13.08,
+        -8.33
+      ],
+      "receiver": "near front worker torso",
+      "target": [
+        2,
+        1.2,
+        -1
+      ],
+      "clear": false,
+      "firstHit": {
+        "distance": 13.745220707733136,
+        "point": [
+          1.9475962924265904,
+          1.5051745323392662,
+          -1.1882937139770053
+        ],
+        "triangle": 6016,
+        "cloth": false
+      },
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-2",
+      "source": [
+        -0.040000000000000036,
+        13.08,
+        -8
+      ],
+      "receiver": "rear bench top",
+      "target": [
+        0,
+        2.45,
+        -14
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-2",
+      "source": [
+        -0.040000000000000036,
+        13.08,
+        -8
+      ],
+      "receiver": "original engine crown",
+      "target": [
+        -3,
+        4.325,
+        -10
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-2",
+      "source": [
+        -0.040000000000000036,
+        13.08,
+        -8
+      ],
+      "receiver": "floor below emitter",
+      "target": [
+        1,
+        0.4,
+        -8
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-2",
+      "source": [
+        -0.040000000000000036,
+        13.08,
+        -8
+      ],
+      "receiver": "left interior aisle",
+      "target": [
+        -8,
+        0.4,
+        -11
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-2",
+      "source": [
+        -0.040000000000000036,
+        13.08,
+        -8
+      ],
+      "receiver": "front apron",
+      "target": [
+        1,
+        0.4,
+        0
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-2",
+      "source": [
+        -0.040000000000000036,
+        13.08,
+        -8
+      ],
+      "receiver": "near front worker torso",
+      "target": [
+        2,
+        1.2,
+        -1
+      ],
+      "clear": false,
+      "firstHit": {
+        "distance": 13.565881354938131,
+        "point": [
+          1.9453919287247192,
+          1.5180117091913417,
+          -1.1873806367289053
+        ],
+        "triangle": 6016,
+        "cloth": false
+      },
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-2",
+      "source": [
+        -0.040000000000000036,
+        13.08,
+        -7.67
+      ],
+      "receiver": "rear bench top",
+      "target": [
+        0,
+        2.45,
+        -14
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-2",
+      "source": [
+        -0.040000000000000036,
+        13.08,
+        -7.67
+      ],
+      "receiver": "original engine crown",
+      "target": [
+        -3,
+        4.325,
+        -10
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-2",
+      "source": [
+        -0.040000000000000036,
+        13.08,
+        -7.67
+      ],
+      "receiver": "floor below emitter",
+      "target": [
+        1,
+        0.4,
+        -8
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-2",
+      "source": [
+        -0.040000000000000036,
+        13.08,
+        -7.67
+      ],
+      "receiver": "left interior aisle",
+      "target": [
+        -8,
+        0.4,
+        -11
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-2",
+      "source": [
+        -0.040000000000000036,
+        13.08,
+        -7.67
+      ],
+      "receiver": "front apron",
+      "target": [
+        1,
+        0.4,
+        0
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-2",
+      "source": [
+        -0.040000000000000036,
+        13.08,
+        -7.67
+      ],
+      "receiver": "near front worker torso",
+      "target": [
+        2,
+        1.2,
+        -1
+      ],
+      "clear": false,
+      "firstHit": {
+        "distance": 13.391278845672664,
+        "point": [
+          1.942993968096857,
+          1.5319763034359504,
+          -1.186387369016649
+        ],
+        "triangle": 6016,
+        "cloth": false
+      },
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-2",
+      "source": [
+        1,
+        13.08,
+        -8.33
+      ],
+      "receiver": "rear bench top",
+      "target": [
+        0,
+        2.45,
+        -14
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-2",
+      "source": [
+        1,
+        13.08,
+        -8.33
+      ],
+      "receiver": "original engine crown",
+      "target": [
+        -3,
+        4.325,
+        -10
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-2",
+      "source": [
+        1,
+        13.08,
+        -8.33
+      ],
+      "receiver": "floor below emitter",
+      "target": [
+        1,
+        0.4,
+        -8
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-2",
+      "source": [
+        1,
+        13.08,
+        -8.33
+      ],
+      "receiver": "left interior aisle",
+      "target": [
+        -8,
+        0.4,
+        -11
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-2",
+      "source": [
+        1,
+        13.08,
+        -8.33
+      ],
+      "receiver": "front apron",
+      "target": [
+        1,
+        0.4,
+        0
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-2",
+      "source": [
+        1,
+        13.08,
+        -8.33
+      ],
+      "receiver": "near front worker torso",
+      "target": [
+        2,
+        1.2,
+        -1
+      ],
+      "clear": false,
+      "firstHit": {
+        "distance": 13.615611056079008,
+        "point": [
+          1.9728829741577694,
+          1.5221502670056992,
+          -1.1987677994235506
+        ],
+        "triangle": 6016,
+        "cloth": false
+      },
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-2",
+      "source": [
+        1,
+        13.08,
+        -8
+      ],
+      "receiver": "rear bench top",
+      "target": [
+        0,
+        2.45,
+        -14
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-2",
+      "source": [
+        1,
+        13.08,
+        -8
+      ],
+      "receiver": "original engine crown",
+      "target": [
+        -3,
+        4.325,
+        -10
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-2",
+      "source": [
+        1,
+        13.08,
+        -8
+      ],
+      "receiver": "floor below emitter",
+      "target": [
+        1,
+        0.4,
+        -8
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-2",
+      "source": [
+        1,
+        13.08,
+        -8
+      ],
+      "receiver": "left interior aisle",
+      "target": [
+        -8,
+        0.4,
+        -11
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-2",
+      "source": [
+        1,
+        13.08,
+        -8
+      ],
+      "receiver": "front apron",
+      "target": [
+        1,
+        0.4,
+        0
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-2",
+      "source": [
+        1,
+        13.08,
+        -8
+      ],
+      "receiver": "near front worker torso",
+      "target": [
+        2,
+        1.2,
+        -1
+      ],
+      "clear": false,
+      "firstHit": {
+        "distance": 13.433553631834219,
+        "point": [
+          1.9716760196367114,
+          1.5364888867158708,
+          -1.1982678625430214
+        ],
+        "triangle": 6017,
+        "cloth": false
+      },
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-2",
+      "source": [
+        1,
+        13.08,
+        -7.67
+      ],
+      "receiver": "rear bench top",
+      "target": [
+        0,
+        2.45,
+        -14
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-2",
+      "source": [
+        1,
+        13.08,
+        -7.67
+      ],
+      "receiver": "original engine crown",
+      "target": [
+        -3,
+        4.325,
+        -10
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-2",
+      "source": [
+        1,
+        13.08,
+        -7.67
+      ],
+      "receiver": "floor below emitter",
+      "target": [
+        1,
+        0.4,
+        -8
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-2",
+      "source": [
+        1,
+        13.08,
+        -7.67
+      ],
+      "receiver": "left interior aisle",
+      "target": [
+        -8,
+        0.4,
+        -11
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-2",
+      "source": [
+        1,
+        13.08,
+        -7.67
+      ],
+      "receiver": "front apron",
+      "target": [
+        1,
+        0.4,
+        0
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-2",
+      "source": [
+        1,
+        13.08,
+        -7.67
+      ],
+      "receiver": "near front worker torso",
+      "target": [
+        2,
+        1.2,
+        -1
+      ],
+      "clear": false,
+      "firstHit": {
+        "distance": 13.256055237008557,
+        "point": [
+          1.9703566193259179,
+          1.5521633624080913,
+          -1.1977213490961267
+        ],
+        "triangle": 6017,
+        "cloth": false
+      },
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-2",
+      "source": [
+        2.04,
+        13.08,
+        -8.33
+      ],
+      "receiver": "rear bench top",
+      "target": [
+        0,
+        2.45,
+        -14
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-2",
+      "source": [
+        2.04,
+        13.08,
+        -8.33
+      ],
+      "receiver": "original engine crown",
+      "target": [
+        -3,
+        4.325,
+        -10
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-2",
+      "source": [
+        2.04,
+        13.08,
+        -8.33
+      ],
+      "receiver": "floor below emitter",
+      "target": [
+        1,
+        0.4,
+        -8
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-2",
+      "source": [
+        2.04,
+        13.08,
+        -8.33
+      ],
+      "receiver": "left interior aisle",
+      "target": [
+        -8,
+        0.4,
+        -11
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-2",
+      "source": [
+        2.04,
+        13.08,
+        -8.33
+      ],
+      "receiver": "front apron",
+      "target": [
+        1,
+        0.4,
+        0
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-2",
+      "source": [
+        2.04,
+        13.08,
+        -8.33
+      ],
+      "receiver": "near front worker torso",
+      "target": [
+        2,
+        1.2,
+        -1
+      ],
+      "clear": false,
+      "firstHit": {
+        "distance": 13.56037543352767,
+        "point": [
+          2.00114339115793,
+          1.5395871739051081,
+          -1.2095264296906088
+        ],
+        "triangle": 6014,
+        "cloth": false
+      },
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-2",
+      "source": [
+        2.04,
+        13.08,
+        -8
+      ],
+      "receiver": "rear bench top",
+      "target": [
+        0,
+        2.45,
+        -14
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-2",
+      "source": [
+        2.04,
+        13.08,
+        -8
+      ],
+      "receiver": "original engine crown",
+      "target": [
+        -3,
+        4.325,
+        -10
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-2",
+      "source": [
+        2.04,
+        13.08,
+        -8
+      ],
+      "receiver": "floor below emitter",
+      "target": [
+        1,
+        0.4,
+        -8
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-2",
+      "source": [
+        2.04,
+        13.08,
+        -8
+      ],
+      "receiver": "left interior aisle",
+      "target": [
+        -8,
+        0.4,
+        -11
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-2",
+      "source": [
+        2.04,
+        13.08,
+        -8
+      ],
+      "receiver": "front apron",
+      "target": [
+        1,
+        0.4,
+        0
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-2",
+      "source": [
+        2.04,
+        13.08,
+        -8
+      ],
+      "receiver": "near front worker torso",
+      "target": [
+        2,
+        1.2,
+        -1
+      ],
+      "clear": false,
+      "firstHit": {
+        "distance": 13.376288417040337,
+        "point": [
+          2.0011971666008983,
+          1.555558480466809,
+          -1.2095041551572105
+        ],
+        "triangle": 6014,
+        "cloth": false
+      },
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-2",
+      "source": [
+        2.04,
+        13.08,
+        -7.67
+      ],
+      "receiver": "rear bench top",
+      "target": [
+        0,
+        2.45,
+        -14
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-2",
+      "source": [
+        2.04,
+        13.08,
+        -7.67
+      ],
+      "receiver": "original engine crown",
+      "target": [
+        -3,
+        4.325,
+        -10
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-2",
+      "source": [
+        2.04,
+        13.08,
+        -7.67
+      ],
+      "receiver": "floor below emitter",
+      "target": [
+        1,
+        0.4,
+        -8
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-2",
+      "source": [
+        2.04,
+        13.08,
+        -7.67
+      ],
+      "receiver": "left interior aisle",
+      "target": [
+        -8,
+        0.4,
+        -11
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-2",
+      "source": [
+        2.04,
+        13.08,
+        -7.67
+      ],
+      "receiver": "front apron",
+      "target": [
+        1,
+        0.4,
+        0
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-2",
+      "source": [
+        2.04,
+        13.08,
+        -7.67
+      ],
+      "receiver": "near front worker torso",
+      "target": [
+        2,
+        1.2,
+        -1
+      ],
+      "clear": false,
+      "firstHit": {
+        "distance": 13.196530902333157,
+        "point": [
+          2.001256249967067,
+          1.573106240219028,
+          -1.209479682008495
+        ],
+        "triangle": 6014,
+        "cloth": false
+      },
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-3",
+      "source": [
+        39.96,
+        9.88,
+        -1.33
+      ],
+      "receiver": "rear bench top",
+      "target": [
+        40,
+        2.45,
+        -7
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-3",
+      "source": [
+        39.96,
+        9.88,
+        -1.33
+      ],
+      "receiver": "original engine crown",
+      "target": [
+        37,
+        4.325,
+        -3
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-3",
+      "source": [
+        39.96,
+        9.88,
+        -1.33
+      ],
+      "receiver": "floor below emitter",
+      "target": [
+        41,
+        0.4,
+        -1
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-3",
+      "source": [
+        39.96,
+        9.88,
+        -1.33
+      ],
+      "receiver": "left interior aisle",
+      "target": [
+        32,
+        0.4,
+        -4
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-3",
+      "source": [
+        39.96,
+        9.88,
+        -1.33
+      ],
+      "receiver": "front apron",
+      "target": [
+        41,
+        0.4,
+        7
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-3",
+      "source": [
+        39.96,
+        9.88,
+        -1.33
+      ],
+      "receiver": "near front worker torso",
+      "target": [
+        42,
+        1.2,
+        6
+      ],
+      "clear": false,
+      "firstHit": {
+        "distance": 11.306448381429101,
+        "point": [
+          41.95825372516377,
+          1.3776263066561132,
+          5.8499999046325675
+        ],
+        "triangle": 9225,
+        "cloth": false
+      },
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-3",
+      "source": [
+        39.96,
+        9.88,
+        -1
+      ],
+      "receiver": "rear bench top",
+      "target": [
+        40,
+        2.45,
+        -7
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-3",
+      "source": [
+        39.96,
+        9.88,
+        -1
+      ],
+      "receiver": "original engine crown",
+      "target": [
+        37,
+        4.325,
+        -3
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-3",
+      "source": [
+        39.96,
+        9.88,
+        -1
+      ],
+      "receiver": "floor below emitter",
+      "target": [
+        41,
+        0.4,
+        -1
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-3",
+      "source": [
+        39.96,
+        9.88,
+        -1
+      ],
+      "receiver": "left interior aisle",
+      "target": [
+        32,
+        0.4,
+        -4
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-3",
+      "source": [
+        39.96,
+        9.88,
+        -1
+      ],
+      "receiver": "front apron",
+      "target": [
+        41,
+        0.4,
+        7
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-3",
+      "source": [
+        39.96,
+        9.88,
+        -1
+      ],
+      "receiver": "near front worker torso",
+      "target": [
+        42,
+        1.2,
+        6
+      ],
+      "clear": false,
+      "firstHit": {
+        "distance": 11.093046886524744,
+        "point": [
+          41.95628568649292,
+          1.3860001182556143,
+          5.8499999046325675
+        ],
+        "triangle": 9225,
+        "cloth": false
+      },
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-3",
+      "source": [
+        39.96,
+        9.88,
+        -0.6699999999999999
+      ],
+      "receiver": "rear bench top",
+      "target": [
+        40,
+        2.45,
+        -7
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-3",
+      "source": [
+        39.96,
+        9.88,
+        -0.6699999999999999
+      ],
+      "receiver": "original engine crown",
+      "target": [
+        37,
+        4.325,
+        -3
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-3",
+      "source": [
+        39.96,
+        9.88,
+        -0.6699999999999999
+      ],
+      "receiver": "floor below emitter",
+      "target": [
+        41,
+        0.4,
+        -1
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-3",
+      "source": [
+        39.96,
+        9.88,
+        -0.6699999999999999
+      ],
+      "receiver": "left interior aisle",
+      "target": [
+        32,
+        0.4,
+        -4
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-3",
+      "source": [
+        39.96,
+        9.88,
+        -0.6699999999999999
+      ],
+      "receiver": "front apron",
+      "target": [
+        41,
+        0.4,
+        7
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-3",
+      "source": [
+        39.96,
+        9.88,
+        -0.6699999999999999
+      ],
+      "receiver": "near front worker torso",
+      "target": [
+        42,
+        1.2,
+        6
+      ],
+      "clear": false,
+      "firstHit": {
+        "distance": 10.885052580401787,
+        "point": [
+          41.954170511395155,
+          1.3949999809265154,
+          5.850155544610616
+        ],
+        "triangle": 9229,
+        "cloth": false
+      },
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-3",
+      "source": [
+        41,
+        9.88,
+        -1.33
+      ],
+      "receiver": "rear bench top",
+      "target": [
+        40,
+        2.45,
+        -7
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-3",
+      "source": [
+        41,
+        9.88,
+        -1.33
+      ],
+      "receiver": "original engine crown",
+      "target": [
+        37,
+        4.325,
+        -3
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-3",
+      "source": [
+        41,
+        9.88,
+        -1.33
+      ],
+      "receiver": "floor below emitter",
+      "target": [
+        41,
+        0.4,
+        -1
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-3",
+      "source": [
+        41,
+        9.88,
+        -1.33
+      ],
+      "receiver": "left interior aisle",
+      "target": [
+        32,
+        0.4,
+        -4
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-3",
+      "source": [
+        41,
+        9.88,
+        -1.33
+      ],
+      "receiver": "front apron",
+      "target": [
+        41,
+        0.4,
+        7
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-3",
+      "source": [
+        41,
+        9.88,
+        -1.33
+      ],
+      "receiver": "near front worker torso",
+      "target": [
+        42,
+        1.2,
+        6
+      ],
+      "clear": false,
+      "firstHit": {
+        "distance": 11.17149265321949,
+        "point": [
+          41.97953613978616,
+          1.3776263066561132,
+          5.849999904632568
+        ],
+        "triangle": 9225,
+        "cloth": false
+      },
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-3",
+      "source": [
+        41,
+        9.88,
+        -1
+      ],
+      "receiver": "rear bench top",
+      "target": [
+        40,
+        2.45,
+        -7
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-3",
+      "source": [
+        41,
+        9.88,
+        -1
+      ],
+      "receiver": "original engine crown",
+      "target": [
+        37,
+        4.325,
+        -3
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-3",
+      "source": [
+        41,
+        9.88,
+        -1
+      ],
+      "receiver": "floor below emitter",
+      "target": [
+        41,
+        0.4,
+        -1
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-3",
+      "source": [
+        41,
+        9.88,
+        -1
+      ],
+      "receiver": "left interior aisle",
+      "target": [
+        32,
+        0.4,
+        -4
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-3",
+      "source": [
+        41,
+        9.88,
+        -1
+      ],
+      "receiver": "front apron",
+      "target": [
+        41,
+        0.4,
+        7
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-3",
+      "source": [
+        41,
+        9.88,
+        -1
+      ],
+      "receiver": "near front worker torso",
+      "target": [
+        42,
+        1.2,
+        6
+      ],
+      "clear": false,
+      "firstHit": {
+        "distance": 10.955735242268874,
+        "point": [
+          41.97857141494751,
+          1.3860001182556143,
+          5.849999904632569
+        ],
+        "triangle": 9225,
+        "cloth": false
+      },
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-3",
+      "source": [
+        41,
+        9.88,
+        -0.6699999999999999
+      ],
+      "receiver": "rear bench top",
+      "target": [
+        40,
+        2.45,
+        -7
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-3",
+      "source": [
+        41,
+        9.88,
+        -0.6699999999999999
+      ],
+      "receiver": "original engine crown",
+      "target": [
+        37,
+        4.325,
+        -3
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-3",
+      "source": [
+        41,
+        9.88,
+        -0.6699999999999999
+      ],
+      "receiver": "floor below emitter",
+      "target": [
+        41,
+        0.4,
+        -1
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-3",
+      "source": [
+        41,
+        9.88,
+        -0.6699999999999999
+      ],
+      "receiver": "left interior aisle",
+      "target": [
+        32,
+        0.4,
+        -4
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-3",
+      "source": [
+        41,
+        9.88,
+        -0.6699999999999999
+      ],
+      "receiver": "front apron",
+      "target": [
+        41,
+        0.4,
+        7
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-3",
+      "source": [
+        41,
+        9.88,
+        -0.6699999999999999
+      ],
+      "receiver": "near front worker torso",
+      "target": [
+        42,
+        1.2,
+        6
+      ],
+      "clear": false,
+      "firstHit": {
+        "distance": 10.745381681178602,
+        "point": [
+          41.97753456440939,
+          1.3949999809265137,
+          5.850155544610615
+        ],
+        "triangle": 9229,
+        "cloth": false
+      },
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-3",
+      "source": [
+        42.04,
+        9.88,
+        -1.33
+      ],
+      "receiver": "rear bench top",
+      "target": [
+        40,
+        2.45,
+        -7
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-3",
+      "source": [
+        42.04,
+        9.88,
+        -1.33
+      ],
+      "receiver": "original engine crown",
+      "target": [
+        37,
+        4.325,
+        -3
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-3",
+      "source": [
+        42.04,
+        9.88,
+        -1.33
+      ],
+      "receiver": "floor below emitter",
+      "target": [
+        41,
+        0.4,
+        -1
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-3",
+      "source": [
+        42.04,
+        9.88,
+        -1.33
+      ],
+      "receiver": "left interior aisle",
+      "target": [
+        32,
+        0.4,
+        -4
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-3",
+      "source": [
+        42.04,
+        9.88,
+        -1.33
+      ],
+      "receiver": "front apron",
+      "target": [
+        41,
+        0.4,
+        7
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-3",
+      "source": [
+        42.04,
+        9.88,
+        -1.33
+      ],
+      "receiver": "near front worker torso",
+      "target": [
+        42,
+        1.2,
+        6
+      ],
+      "clear": false,
+      "firstHit": {
+        "distance": 11.128535044536118,
+        "point": [
+          42.00081855440855,
+          1.3776263066561132,
+          5.849999904632568
+        ],
+        "triangle": 9225,
+        "cloth": false
+      },
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-3",
+      "source": [
+        42.04,
+        9.88,
+        -1
+      ],
+      "receiver": "rear bench top",
+      "target": [
+        40,
+        2.45,
+        -7
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-3",
+      "source": [
+        42.04,
+        9.88,
+        -1
+      ],
+      "receiver": "original engine crown",
+      "target": [
+        37,
+        4.325,
+        -3
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-3",
+      "source": [
+        42.04,
+        9.88,
+        -1
+      ],
+      "receiver": "floor below emitter",
+      "target": [
+        41,
+        0.4,
+        -1
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-3",
+      "source": [
+        42.04,
+        9.88,
+        -1
+      ],
+      "receiver": "left interior aisle",
+      "target": [
+        32,
+        0.4,
+        -4
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-3",
+      "source": [
+        42.04,
+        9.88,
+        -1
+      ],
+      "receiver": "front apron",
+      "target": [
+        41,
+        0.4,
+        7
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-3",
+      "source": [
+        42.04,
+        9.88,
+        -1
+      ],
+      "receiver": "near front worker torso",
+      "target": [
+        42,
+        1.2,
+        6
+      ],
+      "clear": false,
+      "firstHit": {
+        "distance": 10.912014701592115,
+        "point": [
+          42.0008571434021,
+          1.386000118255616,
+          5.849999904632568
+        ],
+        "triangle": 9225,
+        "cloth": false
+      },
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-3",
+      "source": [
+        42.04,
+        9.88,
+        -0.6699999999999999
+      ],
+      "receiver": "rear bench top",
+      "target": [
+        40,
+        2.45,
+        -7
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-3",
+      "source": [
+        42.04,
+        9.88,
+        -0.6699999999999999
+      ],
+      "receiver": "original engine crown",
+      "target": [
+        37,
+        4.325,
+        -3
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-3",
+      "source": [
+        42.04,
+        9.88,
+        -0.6699999999999999
+      ],
+      "receiver": "floor below emitter",
+      "target": [
+        41,
+        0.4,
+        -1
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-3",
+      "source": [
+        42.04,
+        9.88,
+        -0.6699999999999999
+      ],
+      "receiver": "left interior aisle",
+      "target": [
+        32,
+        0.4,
+        -4
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-3",
+      "source": [
+        42.04,
+        9.88,
+        -0.6699999999999999
+      ],
+      "receiver": "front apron",
+      "target": [
+        41,
+        0.4,
+        7
+      ],
+      "clear": true,
+      "firstHit": null,
+      "clothHits": 0
+    },
+    {
+      "fixture": "district-task-3",
+      "source": [
+        42.04,
+        9.88,
+        -0.6699999999999999
+      ],
+      "receiver": "near front worker torso",
+      "target": [
+        42,
+        1.2,
+        6
+      ],
+      "clear": false,
+      "firstHit": {
+        "distance": 10.700896344125244,
+        "point": [
+          42.00089861742362,
+          1.3949999809265137,
+          5.850155544610616
+        ],
+        "triangle": 9229,
+        "cloth": false
+      },
+      "clothHits": 0
+    }
+  ],
+  "limitations": [
+    "Fixed sample rays are not exhaustive visibility proof",
+    "Double-sided physical occluders include the existing nonshadowed local-light limitation",
+    "Geometry snapshot paths/SHA256 identify the exact tested revision"
+  ]
+}

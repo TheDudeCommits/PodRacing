@@ -1,0 +1,155 @@
+{
+  "schemaVersion": 1,
+  "createdAt": "2026-09-08T22:17:13.282216+00:00",
+  "scope": "V17 CPU contact eligibility and authored rupture event/FX contract; owned source/test changes frozen.",
+  "ownedFiles": [
+    "src/render/combat/WreckGroundContact.ts",
+    "tests/combat/WreckGroundContact.test.ts",
+    "tests/combat/AuthoredRupture.test.ts"
+  ],
+  "sourceAndTestHashes": [
+    {
+      "path": "src/render/combat/WreckGroundContact.ts",
+      "bytes": 2065,
+      "sha256": "5d83c70c8b29e87e90e059e6873a9113b692537f3903ef9c14f05a4526fae075"
+    },
+    {
+      "path": "tests/combat/WreckGroundContact.test.ts",
+      "bytes": 3432,
+      "sha256": "dcb1df11624c8914c7608646a3f396409c35fc1100d318d1e9f766a04541210e"
+    },
+    {
+      "path": "tests/combat/AuthoredRupture.test.ts",
+      "bytes": 10323,
+      "sha256": "a6cfecb5e2163aa34d33b7f7dd34b9872f65023ccc9360e8f9c9c8d28209c0e0"
+    },
+    {
+      "path": "src/render/combat/WreckVisualPose.ts",
+      "bytes": 10130,
+      "sha256": "62a12bace03826040cf95dc9c3a8301a25b1fdea6c2323e487c9e962f30a5f8a"
+    },
+    {
+      "path": "src/render/combat/TeemtoAuthoredDamage.ts",
+      "bytes": 13094,
+      "sha256": "54a869f30bb293615f4efa0f0d87d110dea5ec09b369cc9a739b0f7377d28921"
+    },
+    {
+      "path": "src/render/galactic/GalacticEffectsView.ts",
+      "bytes": 64948,
+      "sha256": "c1ff7a7f4710d937324ba751b246ef27cff97bd0f966cca067c26c5f9d8ac9b9"
+    },
+    {
+      "path": "src/render/app/GameApp.ts",
+      "bytes": 173781,
+      "sha256": "f3b821d06a919c4334f18eb5506036a8cbc148282dddd0dd09975a3c9ac00e58"
+    },
+    {
+      "path": "tests/render/GalacticEffectsContact.test.ts",
+      "bytes": 9723,
+      "sha256": "a03252958ae8374e3a6613945228583d0e100136ef8855771ef1115e7b6e5dc4"
+    },
+    {
+      "path": "tests/render/GalacticEffectsView.test.ts",
+      "bytes": 30433,
+      "sha256": "6ff0f39dcb14a199f36851e363b3e61367549fcb89b864c045bc93d16d429839"
+    }
+  ],
+  "changes": [
+    "Contact gate rejects horizontal direction length below .001 before consuming the authoritative wreck identity.",
+    "Regression exercises zero, vertical, subthreshold and nonfinite directions, exact emitter threshold, repeat suppression and next-crash rearming.",
+    "New authored rupture tests use the actual FX renderer and GameApp event adapter without constructing a WebGL renderer."
+  ],
+  "results": {
+    "initialContactRegression": {
+      "passed": 3,
+      "failed": 1,
+      "reason": "The original gate consumed a zero-direction contact rejected by the emitter."
+    },
+    "initialAuthoredAndGate": {
+      "passed": 12,
+      "failed": 3,
+      "reasons": [
+        "Both vertical surface normals opened fragments horizontally.",
+        "GameApp required an exhaust attachment before resolving authored rupture."
+      ]
+    },
+    "finalCombined": {
+      "passed": 45,
+      "failed": 0,
+      "testFiles": 4,
+      "command": "npx vitest run tests/combat/AuthoredRupture.test.ts tests/combat/WreckGroundContact.test.ts tests/render/GalacticEffectsContact.test.ts tests/render/GalacticEffectsView.test.ts"
+    },
+    "typecheck": "PASS",
+    "diffCheck": "PASS"
+  },
+  "verifiedContracts": [
+    "First authored flash is at exact supplied world origin at event birth; no ground-clearance inflation.",
+    "Birth displacement and initial motion lie in outward half-space for horizontal, upward, downward and rotated 3D normals.",
+    "Scaling a valid normal by 10 leaves rendered state identical.",
+    "Zero and nonfinite normals produce the same complete visible matrices/colors/effect attributes as the generic no-normal branch.",
+    "The generic no-normal branch retains its historical ground+4.648m full-severity flash placement.",
+    "Energy hit, persistent EMP mine and shield visible states match with and without supplied surface normal.",
+    "Repeated burst/contact ring wrap, reset and reuse preserve all eight mesh, geometry, material, instance-buffer and geometry-attribute identities.",
+    "The actual GameApp prototype uses authored world position/direction without a nozzle, body-transform duplication or simulation/pose mutation; paired redline/wreck emits once."
+  ],
+  "privateAdapterPatch": "assets/source/inkstorm/combat-round35/v17-grounded-trajectories/GameApp-authored-rupture.expected.patch",
+  "adapterPatchAppliedBy": "root; child did not edit GameApp",
+  "evidence": [
+    {
+      "path": "assets/source/inkstorm/combat-round35/v17-grounded-trajectories/before/contact-gate-snapshot.json",
+      "bytes": 331,
+      "sha256": "cd717f77c0b77bdb973a4c63ed5e95ea280945b535e40db8c797688d0d91b95d"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/v17-grounded-trajectories/contact-gate-before-guard.log",
+      "bytes": 1247,
+      "sha256": "5bd728bec486c0631b59a3a28fcaf70eadfd62b0ad3dc7c4aeb371e09448beb0"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/v17-grounded-trajectories/contact-gate-after-guard.log",
+      "bytes": 210,
+      "sha256": "c73b8db3cc0a4fb2b8106f5ad4cbd193c8e24fe5afac110f35d247457fcbd156"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/v17-grounded-trajectories/authored-rupture-initial-tests.log",
+      "bytes": 2345,
+      "sha256": "fb66cd1d3001e569e9365346eb84b1b29b09e45a3cd6d04f2a10c4947e2f2985"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/v17-grounded-trajectories/authored-rupture-initial-typecheck.log",
+      "bytes": 57,
+      "sha256": "fa95b29726a1ab8891b320173cad4ef80c08c37ec637f2c438a5294fb97ce445"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/v17-grounded-trajectories/authored-rupture-routing-tests.log",
+      "bytes": 227,
+      "sha256": "f8789d4f8d61343c363e1834d04fe90e1aff2a7c59101d46587cb72500d41662"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/v17-grounded-trajectories/authored-rupture-combined-tests.log",
+      "bytes": 217,
+      "sha256": "1164d628abdf4fd5bd90345142be2bcf0ee3e53347d00d6403842337ef2bd379"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/v17-grounded-trajectories/authored-rupture-final-typecheck.log",
+      "bytes": 57,
+      "sha256": "fa95b29726a1ab8891b320173cad4ef80c08c37ec637f2c438a5294fb97ce445"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/v17-grounded-trajectories/authored-rupture-final-diffcheck.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/v17-grounded-trajectories/GameApp-authored-rupture.expected.patch",
+      "bytes": 4756,
+      "sha256": "a46d101ad553b84d22227f3e862660ce3883a322c06d734f4857c0e089a0bfd9"
+    }
+  ],
+  "limitations": [
+    "No browser, build, GPU rendering, video, visual acceptance or FPS measurement performed.",
+    "Authored asset cut geometry and full-mass terrain contacts are parent-owned tests; this suite tests supplied world-witness routing and FX behavior.",
+    "Resource identity checks establish fixed GPU resource reuse, not a complete heap-allocation profile.",
+    "Runtime helper/FX/GameApp source hashes are the state tested here; subsequent parent changes require appropriate revalidation."
+  ]
+}

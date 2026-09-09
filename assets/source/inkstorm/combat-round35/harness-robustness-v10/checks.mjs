@@ -1,0 +1,27 @@
+import fs from 'node:fs';
+import vm from 'node:vm';
+import assert from 'node:assert/strict';
+import {EventEmitter} from 'node:events';
+const ui=fs.readFileSync('scripts/inkstorm-broadcast-ui.mjs','utf8');
+const combat=fs.readFileSync('scripts/inkstorm-combat.mjs','utf8');
+const selection=combat.slice(combat.indexOf('const cases ='),combat.indexOf('const receipt ='));
+for(const value of ['',','])assert.throws(()=>vm.runInNewContext(selection,{process:{env:{INKSTORM_COMBAT_CASES:value}}}),/at least one/);
+vm.runInNewContext(selection,{process:{env:{}}});
+vm.runInNewContext(selection,{process:{env:{INKSTORM_COMBAT_CASES:'solo-chase',INKSTORM_COMBAT_CADENCE:'1'}}});
+const order=[],server=new EventEmitter();server.pid=999;server.exitCode=null;server.signalCode=null;
+server.kill=signal=>{order.push(signal);if(signal==='SIGKILL')queueMicrotask(()=>{server.signalCode=signal;server.emit('exit');});};
+const video={path:async()=>{order.push('video.path');return 'retained-failure.webm';}};
+const page={setDefaultTimeout(){},video:()=>video,on(){},goto:async()=>{throw Error('deliberate boot failure');}};
+const desktop={newPage:async()=>page,close:async()=>order.push('desktop.close')};
+const receipt={outcome:'FAIL'};
+const context=vm.createContext({server,receipt,desktop,browser:{close:async()=>order.push('browser.close')},desktopVideo:undefined,closing:undefined,spawnError:undefined,out:'unused',url:'unused',
+ assert:(value,message)=>assert.ok(value,message),writeFile:async()=>order.push('receipt.write'),setTimeout:fn=>queueMicrotask(fn)});
+const close=ui.slice(ui.indexOf('const closeOwned ='),ui.indexOf('for (const [signal'));
+const boot=ui.slice(ui.indexOf('async function boot('),ui.indexOf('\ntry {\n  let serving'));
+vm.runInContext(close+'\n'+boot+'\nglobalThis.runClose=closeOwned;globalThis.runBoot=boot;',context);
+await assert.rejects(context.runBoot(desktop),/deliberate boot failure/);
+await assert.rejects(context.runClose(),/Owned cleanup incomplete/);
+assert.equal(receipt.desktopVideo,'retained-failure.webm');assert.equal(receipt.cleanup.browserClosed,true);assert.equal(receipt.cleanup.serverExited,true);
+assert.ok(order.indexOf('desktop.close')<order.indexOf('browser.close'));
+assert.ok(order.indexOf('SIGKILL')<order.indexOf('receipt.write'));
+console.log(JSON.stringify({checks:['empty/comma-only case lists reject before runtime','default and explicit solo cadence selections remain valid','early boot failure retains video handle/path','desktop context flushes before browser close','SIGTERM timeout awaits owned SIGKILL before receipt'],outcome:'PASS',order,cleanup:receipt.cleanup},null,2));

@@ -1,0 +1,193 @@
+{
+  "scope": "Synthetic 3x3 scalar/vector evaluation of the source equations; no actual G-buffer or GPU output sampled. Establishes the code mechanism, not complete attribution of a screenshot.",
+  "configFromGameApp": {
+    "normalWeight": 0.38,
+    "depthWeight": 7.2,
+    "edgeThreshold": 0.16,
+    "edgeSoftness": 0.022,
+    "opacity": 0.74,
+    "hullSuppression": 0.08,
+    "silhouetteDepthThreshold": 0.12,
+    "terrainSuppression": 0.08
+  },
+  "geometryDepth": 0.25,
+  "normalGeometry": [
+    0,
+    1,
+    0
+  ],
+  "normalBackground": [
+    0,
+    0,
+    1
+  ],
+  "stencilOrder": [
+    [
+      "00",
+      "10",
+      "20"
+    ],
+    [
+      "01",
+      "11",
+      "21"
+    ],
+    [
+      "02",
+      "12",
+      "22"
+    ]
+  ],
+  "legacyClassSamples": [
+    "10",
+    "01",
+    "11",
+    "21",
+    "12"
+  ],
+  "candidateClassSamples": [
+    "00",
+    "10",
+    "20",
+    "01",
+    "11",
+    "21",
+    "02",
+    "12",
+    "22"
+  ],
+  "singleUpperLeftGeometrySample": {
+    "oldClass": 0,
+    "newClass": 0.5,
+    "normalEdge": 0.3535533905932738,
+    "relativeDepthEdge": 0.1875,
+    "combinedEdge": 1.484350288425444,
+    "oldInkWeight": 0.74,
+    "newInkWeight": 0.05919999999999997,
+    "centreIsSky": true
+  },
+  "legacyVsCandidateInkRatio": 12.500000000000007,
+  "enumeration": [
+    {
+      "class": 0,
+      "syntheticNeighborhoods": 512,
+      "changedClassificationCount": 0,
+      "unsuppressedVisibleDiagonalNeighborhoods": 0,
+      "examples": []
+    },
+    {
+      "class": 0.5,
+      "syntheticNeighborhoods": 512,
+      "changedClassificationCount": 15,
+      "unsuppressedVisibleDiagonalNeighborhoods": 12,
+      "examples": [
+        {
+          "occupancyBits": 1,
+          "oldClass": 0,
+          "newClass": 0.5,
+          "normalEdge": 0.3535533905932738,
+          "relativeDepthEdge": 0.1875,
+          "combinedEdge": 1.484350288425444,
+          "oldInkWeight": 0.74,
+          "newInkWeight": 0.05919999999999997,
+          "centreIsSky": true
+        },
+        {
+          "occupancyBits": 4,
+          "oldClass": 0,
+          "newClass": 0.5,
+          "normalEdge": 0.3535533905932738,
+          "relativeDepthEdge": 0.1875,
+          "combinedEdge": 1.484350288425444,
+          "oldInkWeight": 0.74,
+          "newInkWeight": 0.05919999999999997,
+          "centreIsSky": true
+        },
+        {
+          "occupancyBits": 5,
+          "oldClass": 0,
+          "newClass": 0.5,
+          "normalEdge": 0.3535533905932738,
+          "relativeDepthEdge": 0.1875,
+          "combinedEdge": 1.484350288425444,
+          "oldInkWeight": 0.74,
+          "newInkWeight": 0.05919999999999997,
+          "centreIsSky": true
+        },
+        {
+          "occupancyBits": 64,
+          "oldClass": 0,
+          "newClass": 0.5,
+          "normalEdge": 0.3535533905932738,
+          "relativeDepthEdge": 0.1875,
+          "combinedEdge": 1.484350288425444,
+          "oldInkWeight": 0.74,
+          "newInkWeight": 0.05919999999999997,
+          "centreIsSky": true
+        }
+      ]
+    },
+    {
+      "class": 1,
+      "syntheticNeighborhoods": 512,
+      "changedClassificationCount": 15,
+      "unsuppressedVisibleDiagonalNeighborhoods": 12,
+      "examples": [
+        {
+          "occupancyBits": 1,
+          "oldClass": 0,
+          "newClass": 1,
+          "normalEdge": 0.3535533905932738,
+          "relativeDepthEdge": 0.1875,
+          "combinedEdge": 1.484350288425444,
+          "oldInkWeight": 0.74,
+          "newInkWeight": 0.05919999999999997,
+          "centreIsSky": true
+        },
+        {
+          "occupancyBits": 4,
+          "oldClass": 0,
+          "newClass": 1,
+          "normalEdge": 0.3535533905932738,
+          "relativeDepthEdge": 0.1875,
+          "combinedEdge": 1.484350288425444,
+          "oldInkWeight": 0.74,
+          "newInkWeight": 0.05919999999999997,
+          "centreIsSky": true
+        },
+        {
+          "occupancyBits": 5,
+          "oldClass": 0,
+          "newClass": 1,
+          "normalEdge": 0.3535533905932738,
+          "relativeDepthEdge": 0.1875,
+          "combinedEdge": 1.484350288425444,
+          "oldInkWeight": 0.74,
+          "newInkWeight": 0.05919999999999997,
+          "centreIsSky": true
+        },
+        {
+          "occupancyBits": 64,
+          "oldClass": 0,
+          "newClass": 1,
+          "normalEdge": 0.3535533905932738,
+          "relativeDepthEdge": 0.1875,
+          "combinedEdge": 1.484350288425444,
+          "oldInkWeight": 0.74,
+          "newInkWeight": 0.05919999999999997,
+          "centreIsSky": true
+        }
+      ]
+    }
+  ],
+  "checks": {
+    "genericClassUnchangedForAll512Neighborhoods": true,
+    "existingAxialOrCenterClassUnchanged": true,
+    "noNewInkWeightIncreaseInHomogeneousClassCases": true
+  },
+  "sourceTextureInvocationsPerMainExcludingContactFunction": {
+    "legacy": 23,
+    "candidate": 18,
+    "scope": "Counts explicit helper-expanded source lookups; compiler CSE may already remove duplicates. No GPU speedup claim."
+  }
+}

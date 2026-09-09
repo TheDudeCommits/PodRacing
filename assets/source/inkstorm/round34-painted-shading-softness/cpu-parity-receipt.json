@@ -1,0 +1,614 @@
+{
+  "scope": "CPU-only actual baseline/candidate TypeScript modules using native Node loader; no GPU shader execution or visual/performance acceptance.",
+  "legacyCases": [
+    {
+      "bands": [
+        "#142238",
+        "#234563",
+        "#386f91",
+        "#648fa7"
+      ],
+      "wear": 0,
+      "softness": "omitted",
+      "rampSha256": "c604455995ee1e1a05c36f01eec73e38b34f465f5bfdafe72569a570d955e2d2",
+      "legacyShaderBytesExact": true,
+      "uniformKeysExact": true,
+      "uniformValuesExact": true,
+      "definesExact": true
+    },
+    {
+      "bands": [
+        "#142238",
+        "#234563",
+        "#386f91",
+        "#648fa7"
+      ],
+      "wear": 0,
+      "softness": 0,
+      "rampSha256": "c604455995ee1e1a05c36f01eec73e38b34f465f5bfdafe72569a570d955e2d2",
+      "legacyShaderBytesExact": true,
+      "uniformKeysExact": true,
+      "uniformValuesExact": true,
+      "definesExact": true
+    },
+    {
+      "bands": [
+        "#142238",
+        "#234563",
+        "#386f91",
+        "#648fa7"
+      ],
+      "wear": 0.5,
+      "softness": "omitted",
+      "rampSha256": "c604455995ee1e1a05c36f01eec73e38b34f465f5bfdafe72569a570d955e2d2",
+      "legacyShaderBytesExact": true,
+      "uniformKeysExact": true,
+      "uniformValuesExact": true,
+      "definesExact": true
+    },
+    {
+      "bands": [
+        "#142238",
+        "#234563",
+        "#386f91",
+        "#648fa7"
+      ],
+      "wear": 0.5,
+      "softness": 0,
+      "rampSha256": "c604455995ee1e1a05c36f01eec73e38b34f465f5bfdafe72569a570d955e2d2",
+      "legacyShaderBytesExact": true,
+      "uniformKeysExact": true,
+      "uniformValuesExact": true,
+      "definesExact": true
+    },
+    {
+      "bands": [
+        "#142238",
+        "#234563",
+        "#386f91",
+        "#648fa7"
+      ],
+      "wear": 1,
+      "softness": "omitted",
+      "rampSha256": "c604455995ee1e1a05c36f01eec73e38b34f465f5bfdafe72569a570d955e2d2",
+      "legacyShaderBytesExact": true,
+      "uniformKeysExact": true,
+      "uniformValuesExact": true,
+      "definesExact": true
+    },
+    {
+      "bands": [
+        "#142238",
+        "#234563",
+        "#386f91",
+        "#648fa7"
+      ],
+      "wear": 1,
+      "softness": 0,
+      "rampSha256": "c604455995ee1e1a05c36f01eec73e38b34f465f5bfdafe72569a570d955e2d2",
+      "legacyShaderBytesExact": true,
+      "uniformKeysExact": true,
+      "uniformValuesExact": true,
+      "definesExact": true
+    },
+    {
+      "bands": [
+        "#10202b",
+        "#174f58",
+        "#25958a",
+        "#92e0ac"
+      ],
+      "wear": 0,
+      "softness": "omitted",
+      "rampSha256": "7f3e8f9429198bc9d333281719eff8067f4e3dd802fd7b080aced4fa2f8a4e83",
+      "legacyShaderBytesExact": true,
+      "uniformKeysExact": true,
+      "uniformValuesExact": true,
+      "definesExact": true
+    },
+    {
+      "bands": [
+        "#10202b",
+        "#174f58",
+        "#25958a",
+        "#92e0ac"
+      ],
+      "wear": 0,
+      "softness": 0,
+      "rampSha256": "7f3e8f9429198bc9d333281719eff8067f4e3dd802fd7b080aced4fa2f8a4e83",
+      "legacyShaderBytesExact": true,
+      "uniformKeysExact": true,
+      "uniformValuesExact": true,
+      "definesExact": true
+    },
+    {
+      "bands": [
+        "#10202b",
+        "#174f58",
+        "#25958a",
+        "#92e0ac"
+      ],
+      "wear": 0.5,
+      "softness": "omitted",
+      "rampSha256": "7f3e8f9429198bc9d333281719eff8067f4e3dd802fd7b080aced4fa2f8a4e83",
+      "legacyShaderBytesExact": true,
+      "uniformKeysExact": true,
+      "uniformValuesExact": true,
+      "definesExact": true
+    },
+    {
+      "bands": [
+        "#10202b",
+        "#174f58",
+        "#25958a",
+        "#92e0ac"
+      ],
+      "wear": 0.5,
+      "softness": 0,
+      "rampSha256": "7f3e8f9429198bc9d333281719eff8067f4e3dd802fd7b080aced4fa2f8a4e83",
+      "legacyShaderBytesExact": true,
+      "uniformKeysExact": true,
+      "uniformValuesExact": true,
+      "definesExact": true
+    },
+    {
+      "bands": [
+        "#10202b",
+        "#174f58",
+        "#25958a",
+        "#92e0ac"
+      ],
+      "wear": 1,
+      "softness": "omitted",
+      "rampSha256": "7f3e8f9429198bc9d333281719eff8067f4e3dd802fd7b080aced4fa2f8a4e83",
+      "legacyShaderBytesExact": true,
+      "uniformKeysExact": true,
+      "uniformValuesExact": true,
+      "definesExact": true
+    },
+    {
+      "bands": [
+        "#10202b",
+        "#174f58",
+        "#25958a",
+        "#92e0ac"
+      ],
+      "wear": 1,
+      "softness": 0,
+      "rampSha256": "7f3e8f9429198bc9d333281719eff8067f4e3dd802fd7b080aced4fa2f8a4e83",
+      "legacyShaderBytesExact": true,
+      "uniformKeysExact": true,
+      "uniformValuesExact": true,
+      "definesExact": true
+    },
+    {
+      "bands": [
+        "#302038",
+        "#853c37",
+        "#de613d",
+        "#ffc487"
+      ],
+      "wear": 0,
+      "softness": "omitted",
+      "rampSha256": "f5f746635345b848c52abb9dc4573e30791dbb21d5efe1eeb3e40e1c618cc82d",
+      "legacyShaderBytesExact": true,
+      "uniformKeysExact": true,
+      "uniformValuesExact": true,
+      "definesExact": true
+    },
+    {
+      "bands": [
+        "#302038",
+        "#853c37",
+        "#de613d",
+        "#ffc487"
+      ],
+      "wear": 0,
+      "softness": 0,
+      "rampSha256": "f5f746635345b848c52abb9dc4573e30791dbb21d5efe1eeb3e40e1c618cc82d",
+      "legacyShaderBytesExact": true,
+      "uniformKeysExact": true,
+      "uniformValuesExact": true,
+      "definesExact": true
+    },
+    {
+      "bands": [
+        "#302038",
+        "#853c37",
+        "#de613d",
+        "#ffc487"
+      ],
+      "wear": 0.5,
+      "softness": "omitted",
+      "rampSha256": "f5f746635345b848c52abb9dc4573e30791dbb21d5efe1eeb3e40e1c618cc82d",
+      "legacyShaderBytesExact": true,
+      "uniformKeysExact": true,
+      "uniformValuesExact": true,
+      "definesExact": true
+    },
+    {
+      "bands": [
+        "#302038",
+        "#853c37",
+        "#de613d",
+        "#ffc487"
+      ],
+      "wear": 0.5,
+      "softness": 0,
+      "rampSha256": "f5f746635345b848c52abb9dc4573e30791dbb21d5efe1eeb3e40e1c618cc82d",
+      "legacyShaderBytesExact": true,
+      "uniformKeysExact": true,
+      "uniformValuesExact": true,
+      "definesExact": true
+    },
+    {
+      "bands": [
+        "#302038",
+        "#853c37",
+        "#de613d",
+        "#ffc487"
+      ],
+      "wear": 1,
+      "softness": "omitted",
+      "rampSha256": "f5f746635345b848c52abb9dc4573e30791dbb21d5efe1eeb3e40e1c618cc82d",
+      "legacyShaderBytesExact": true,
+      "uniformKeysExact": true,
+      "uniformValuesExact": true,
+      "definesExact": true
+    },
+    {
+      "bands": [
+        "#302038",
+        "#853c37",
+        "#de613d",
+        "#ffc487"
+      ],
+      "wear": 1,
+      "softness": 0,
+      "rampSha256": "f5f746635345b848c52abb9dc4573e30791dbb21d5efe1eeb3e40e1c618cc82d",
+      "legacyShaderBytesExact": true,
+      "uniformKeysExact": true,
+      "uniformValuesExact": true,
+      "definesExact": true
+    },
+    {
+      "bands": [
+        "#151526",
+        "#303247",
+        "#646071",
+        "#b8a98c"
+      ],
+      "wear": 0,
+      "softness": "omitted",
+      "rampSha256": "33a7362d7bdad8fd1f54010ea91095b2c93d2dd245dbce3ec6c2fcdbcffabb55",
+      "legacyShaderBytesExact": true,
+      "uniformKeysExact": true,
+      "uniformValuesExact": true,
+      "definesExact": true
+    },
+    {
+      "bands": [
+        "#151526",
+        "#303247",
+        "#646071",
+        "#b8a98c"
+      ],
+      "wear": 0,
+      "softness": 0,
+      "rampSha256": "33a7362d7bdad8fd1f54010ea91095b2c93d2dd245dbce3ec6c2fcdbcffabb55",
+      "legacyShaderBytesExact": true,
+      "uniformKeysExact": true,
+      "uniformValuesExact": true,
+      "definesExact": true
+    },
+    {
+      "bands": [
+        "#151526",
+        "#303247",
+        "#646071",
+        "#b8a98c"
+      ],
+      "wear": 0.5,
+      "softness": "omitted",
+      "rampSha256": "33a7362d7bdad8fd1f54010ea91095b2c93d2dd245dbce3ec6c2fcdbcffabb55",
+      "legacyShaderBytesExact": true,
+      "uniformKeysExact": true,
+      "uniformValuesExact": true,
+      "definesExact": true
+    },
+    {
+      "bands": [
+        "#151526",
+        "#303247",
+        "#646071",
+        "#b8a98c"
+      ],
+      "wear": 0.5,
+      "softness": 0,
+      "rampSha256": "33a7362d7bdad8fd1f54010ea91095b2c93d2dd245dbce3ec6c2fcdbcffabb55",
+      "legacyShaderBytesExact": true,
+      "uniformKeysExact": true,
+      "uniformValuesExact": true,
+      "definesExact": true
+    },
+    {
+      "bands": [
+        "#151526",
+        "#303247",
+        "#646071",
+        "#b8a98c"
+      ],
+      "wear": 1,
+      "softness": "omitted",
+      "rampSha256": "33a7362d7bdad8fd1f54010ea91095b2c93d2dd245dbce3ec6c2fcdbcffabb55",
+      "legacyShaderBytesExact": true,
+      "uniformKeysExact": true,
+      "uniformValuesExact": true,
+      "definesExact": true
+    },
+    {
+      "bands": [
+        "#151526",
+        "#303247",
+        "#646071",
+        "#b8a98c"
+      ],
+      "wear": 1,
+      "softness": 0,
+      "rampSha256": "33a7362d7bdad8fd1f54010ea91095b2c93d2dd245dbce3ec6c2fcdbcffabb55",
+      "legacyShaderBytesExact": true,
+      "uniformKeysExact": true,
+      "uniformValuesExact": true,
+      "definesExact": true
+    },
+    {
+      "bands": [
+        "#342947",
+        "#854658",
+        "#d97149",
+        "#ffc48c"
+      ],
+      "wear": 0,
+      "softness": "omitted",
+      "rampSha256": "cbf6a2bc3eb2b9e5e227529e27a29ad0844a44bd34c628689216ce48fc5fe775",
+      "legacyShaderBytesExact": true,
+      "uniformKeysExact": true,
+      "uniformValuesExact": true,
+      "definesExact": true
+    },
+    {
+      "bands": [
+        "#342947",
+        "#854658",
+        "#d97149",
+        "#ffc48c"
+      ],
+      "wear": 0,
+      "softness": 0,
+      "rampSha256": "cbf6a2bc3eb2b9e5e227529e27a29ad0844a44bd34c628689216ce48fc5fe775",
+      "legacyShaderBytesExact": true,
+      "uniformKeysExact": true,
+      "uniformValuesExact": true,
+      "definesExact": true
+    },
+    {
+      "bands": [
+        "#342947",
+        "#854658",
+        "#d97149",
+        "#ffc48c"
+      ],
+      "wear": 0.5,
+      "softness": "omitted",
+      "rampSha256": "cbf6a2bc3eb2b9e5e227529e27a29ad0844a44bd34c628689216ce48fc5fe775",
+      "legacyShaderBytesExact": true,
+      "uniformKeysExact": true,
+      "uniformValuesExact": true,
+      "definesExact": true
+    },
+    {
+      "bands": [
+        "#342947",
+        "#854658",
+        "#d97149",
+        "#ffc48c"
+      ],
+      "wear": 0.5,
+      "softness": 0,
+      "rampSha256": "cbf6a2bc3eb2b9e5e227529e27a29ad0844a44bd34c628689216ce48fc5fe775",
+      "legacyShaderBytesExact": true,
+      "uniformKeysExact": true,
+      "uniformValuesExact": true,
+      "definesExact": true
+    },
+    {
+      "bands": [
+        "#342947",
+        "#854658",
+        "#d97149",
+        "#ffc48c"
+      ],
+      "wear": 1,
+      "softness": "omitted",
+      "rampSha256": "cbf6a2bc3eb2b9e5e227529e27a29ad0844a44bd34c628689216ce48fc5fe775",
+      "legacyShaderBytesExact": true,
+      "uniformKeysExact": true,
+      "uniformValuesExact": true,
+      "definesExact": true
+    },
+    {
+      "bands": [
+        "#342947",
+        "#854658",
+        "#d97149",
+        "#ffc48c"
+      ],
+      "wear": 1,
+      "softness": 0,
+      "rampSha256": "cbf6a2bc3eb2b9e5e227529e27a29ad0844a44bd34c628689216ce48fc5fe775",
+      "legacyShaderBytesExact": true,
+      "uniformKeysExact": true,
+      "uniformValuesExact": true,
+      "definesExact": true
+    },
+    {
+      "bands": [
+        "#102331",
+        "#17535a",
+        "#179979",
+        "#70f4a2"
+      ],
+      "wear": 0,
+      "softness": "omitted",
+      "rampSha256": "66e9abc0992f32a5f3273715d8ad5fa1bb03c6bf8ed52dd06efd80b773594715",
+      "legacyShaderBytesExact": true,
+      "uniformKeysExact": true,
+      "uniformValuesExact": true,
+      "definesExact": true
+    },
+    {
+      "bands": [
+        "#102331",
+        "#17535a",
+        "#179979",
+        "#70f4a2"
+      ],
+      "wear": 0,
+      "softness": 0,
+      "rampSha256": "66e9abc0992f32a5f3273715d8ad5fa1bb03c6bf8ed52dd06efd80b773594715",
+      "legacyShaderBytesExact": true,
+      "uniformKeysExact": true,
+      "uniformValuesExact": true,
+      "definesExact": true
+    },
+    {
+      "bands": [
+        "#102331",
+        "#17535a",
+        "#179979",
+        "#70f4a2"
+      ],
+      "wear": 0.5,
+      "softness": "omitted",
+      "rampSha256": "66e9abc0992f32a5f3273715d8ad5fa1bb03c6bf8ed52dd06efd80b773594715",
+      "legacyShaderBytesExact": true,
+      "uniformKeysExact": true,
+      "uniformValuesExact": true,
+      "definesExact": true
+    },
+    {
+      "bands": [
+        "#102331",
+        "#17535a",
+        "#179979",
+        "#70f4a2"
+      ],
+      "wear": 0.5,
+      "softness": 0,
+      "rampSha256": "66e9abc0992f32a5f3273715d8ad5fa1bb03c6bf8ed52dd06efd80b773594715",
+      "legacyShaderBytesExact": true,
+      "uniformKeysExact": true,
+      "uniformValuesExact": true,
+      "definesExact": true
+    },
+    {
+      "bands": [
+        "#102331",
+        "#17535a",
+        "#179979",
+        "#70f4a2"
+      ],
+      "wear": 1,
+      "softness": "omitted",
+      "rampSha256": "66e9abc0992f32a5f3273715d8ad5fa1bb03c6bf8ed52dd06efd80b773594715",
+      "legacyShaderBytesExact": true,
+      "uniformKeysExact": true,
+      "uniformValuesExact": true,
+      "definesExact": true
+    },
+    {
+      "bands": [
+        "#102331",
+        "#17535a",
+        "#179979",
+        "#70f4a2"
+      ],
+      "wear": 1,
+      "softness": 0,
+      "rampSha256": "66e9abc0992f32a5f3273715d8ad5fa1bb03c6bf8ed52dd06efd80b773594715",
+      "legacyShaderBytesExact": true,
+      "uniformKeysExact": true,
+      "uniformValuesExact": true,
+      "definesExact": true
+    }
+  ],
+  "invalidBounds": [
+    {
+      "value": "-0.01",
+      "materialRejected": true,
+      "rampRejected": true
+    },
+    {
+      "value": "1.01",
+      "materialRejected": true,
+      "rampRejected": true
+    },
+    {
+      "value": "NaN",
+      "materialRejected": true,
+      "rampRejected": true
+    },
+    {
+      "value": "Infinity",
+      "materialRejected": true,
+      "rampRejected": true
+    },
+    {
+      "value": "-Infinity",
+      "materialRejected": true,
+      "rampRejected": true
+    }
+  ],
+  "softPath": {
+    "rampFetches": 1,
+    "rampDimensions": [
+      256,
+      1
+    ],
+    "wearStillZero": true,
+    "setPaletteRetainsTextureAndSoftness": true,
+    "borrowedMapsNotDisposed": true
+  },
+  "monotoneGrayscaleRamps": [
+    {
+      "softness": 0,
+      "levels": 4,
+      "maxByteStep": 107,
+      "rampSha256": "51810d62f536953b1dd33e0578ef3b82212cfd24b2755c2b9d23bd80b619431b"
+    },
+    {
+      "softness": 0.45,
+      "levels": 60,
+      "maxByteStep": 7,
+      "rampSha256": "d01e0dbb4d5cba5c4b9fae5eeb29aa0c3c67db64f3246f69dc5023192022ceeb"
+    },
+    {
+      "softness": 0.75,
+      "levels": 98,
+      "maxByteStep": 5,
+      "rampSha256": "91e70e180e3f0f76f2986f8182e588892da878f7c089756cf615724e4a61369e"
+    },
+    {
+      "softness": 0.85,
+      "levels": 108,
+      "maxByteStep": 4,
+      "rampSha256": "19c61f3aa6ed830f077e1e6b6ad2e2e370cf25a05c910632735cdcab158f898a"
+    },
+    {
+      "softness": 1,
+      "levels": 125,
+      "maxByteStep": 4,
+      "rampSha256": "ad5799d18a66d4f86e7550f6d6edb273326460d5f32834a644d888c96d1c8e1e"
+    }
+  ]
+}

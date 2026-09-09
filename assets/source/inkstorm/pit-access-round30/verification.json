@@ -1,0 +1,8 @@
+{
+  "cpuStudyExecution": "PASS: Vite SSR executed study.ts and wrote proposal.json without browser or GPU",
+  "standaloneTypecheck": "NOT VERIFIED: isolated TypeScript cannot resolve node:fs/node:crypto because @types/node is unavailable in this checkout; retry with explicit --types node confirms missing type definitions. No dependencies were installed.",
+  "gulfHashes": "PASS: both frozen arrays compared against expected SHA-256 during study execution",
+  "runtimePublicChanges": false,
+  "sourceStageOnly": true,
+  "terrainMeshPhysicsVisualAcceptance": false
+}

@@ -1,0 +1,48 @@
+{
+  "sourcePreservationPass": true,
+  "checks": [
+    {
+      "file": "assets/source/inkstorm/polwo-driver-round32/polwo-driver-fit-v1.glb",
+      "sha256": "613150987120ca89f9bb2c2085441f6fb0af0c56e77111dbe027348be260e49b",
+      "exactAgainstPrePackagingHash": true
+    },
+    {
+      "file": "assets/source/inkstorm/polwo-driver-round32/polwo-driver-fit-v2.glb",
+      "sha256": "15f8713535806584ca90cb2b2f8aa7099b752170de937cb35108a6224d39d31f",
+      "exactAgainstPrePackagingHash": true
+    },
+    {
+      "file": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/polwo-driver-round32/polwo-inkstorm-shoulders-v2-native.glb",
+      "sha256": "c498176511f7582f2f058ece457c1231a89b439180bd8c3fa7652d47de0816da",
+      "exactAgainstRepairReceipt": true
+    },
+    {
+      "file": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/polwo-driver-round32/packaged-shoulders-v2/polwo-shoulders-v2-tangent-repaired.glb",
+      "sha256": "d85ab8d3a3e0d310da7985145c9eac1f526b9e8c9d76ef47559f7f25fe4e76db",
+      "exactAgainstRepairReceipt": true
+    },
+    {
+      "file": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/polwo-driver-round32/packaged-shoulders-v2/polwo-hero-v1.glb",
+      "sha256": "17e117cd9cbf86a2cf096ca6cdc0e46413b391395577b5f0774203ce7987f39f",
+      "exactAgainstPackageReceipt": true
+    },
+    {
+      "file": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/polwo-driver-round32/packaged-shoulders-v2/polwo-rival-v1.glb",
+      "sha256": "b9a2f310ffd43477091575a52f1cb6804ec9fafca6fcf31093072b7f43e6d502",
+      "exactAgainstPackageReceipt": true
+    }
+  ],
+  "masterImagesObservedUnmodifiedByThisTask": [
+    {
+      "file": "assets/source/inkstorm/polwo-driver-round32/polwo-inkstorm-base-color-v1.png",
+      "sha256": "f1ad598ae4836511040e3c8041b75ac10d27dd852d0650b72214a4321ff3da1e"
+    },
+    {
+      "file": "assets/source/inkstorm/polwo-driver-round32/polwo-inkstorm-orm-v1.png",
+      "sha256": "aaf2d4eb53f3d4408dd260e9c101bb8530ca924bfe8c53fdc9d117c368f866d0"
+    }
+  ],
+  "publicRuntimeWritesByThisTask": false,
+  "blenderMutationsByThisTask": false,
+  "browserUseByThisTask": false
+}

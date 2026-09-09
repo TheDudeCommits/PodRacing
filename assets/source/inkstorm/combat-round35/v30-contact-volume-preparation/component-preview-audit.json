@@ -1,0 +1,276 @@
+{
+  "scope": "Isolated FX at observed V29 camera position, chosen look target, actual reconstructed rear birth footprint and physical terrain. No vehicle, native camera orientation, casing occlusion, gameplay, FPS or concept acceptance.",
+  "previews": [
+    {
+      "path": "output/playwright/round35-combat-v30-component",
+      "assessment": "Smooth single mounds; rejected as stone-like.",
+      "states": [
+        {
+          "ready": true,
+          "state": {
+            "age": 0.408333333333,
+            "dustInstances": 5,
+            "drawCalls": 3,
+            "triangles": 1596,
+            "programErrors": 0,
+            "glError": 0,
+            "contextLost": false
+          }
+        },
+        {
+          "age": 0.058333333333,
+          "dustInstances": 5,
+          "drawCalls": 3,
+          "triangles": 1596,
+          "programErrors": 0,
+          "glError": 0,
+          "contextLost": false
+        },
+        {
+          "age": 0.14,
+          "dustInstances": 5,
+          "drawCalls": 3,
+          "triangles": 1596,
+          "programErrors": 0,
+          "glError": 0,
+          "contextLost": false
+        },
+        {
+          "age": 0.408333333333,
+          "dustInstances": 5,
+          "drawCalls": 3,
+          "triangles": 1596,
+          "programErrors": 0,
+          "glError": 0,
+          "contextLost": false
+        },
+        {
+          "age": 1.208333333333,
+          "dustInstances": 5,
+          "drawCalls": 2,
+          "triangles": 1584,
+          "programErrors": 0,
+          "glError": 0,
+          "contextLost": false
+        },
+        {
+          "age": 1.208333333333,
+          "dustInstances": 5,
+          "drawCalls": 2,
+          "triangles": 1584,
+          "programErrors": 0,
+          "glError": 0,
+          "contextLost": false
+        }
+      ],
+      "closed": true,
+      "commandReceipt": {
+        "sha256": "469810053346160f8aa219856780f68a1ac05a986bc768f005acfa1f84ba3394",
+        "bytes": 9665
+      },
+      "images": [
+        {
+          "path": "output/playwright/round35-combat-v30-component/component-age0.06.png",
+          "sha256": "fd9d293f19ffa484a760d5dcfaa496c41381144523eeff6e7f2bb611a95e5169",
+          "bytes": 43089
+        },
+        {
+          "path": "output/playwright/round35-combat-v30-component/component-age0.14.png",
+          "sha256": "6ad91e9448888294b51a6e8154fc546606bfea679adfa7aa191e499ece120bcd",
+          "bytes": 53004
+        },
+        {
+          "path": "output/playwright/round35-combat-v30-component/component-age0.41.png",
+          "sha256": "cd5fedf8b4b394cb726ca685d7cad6783ca893b748e056553bed6c84e012fec6",
+          "bytes": 53435
+        },
+        {
+          "path": "output/playwright/round35-combat-v30-component/component-age1.21.png",
+          "sha256": "4c308a0564d28ba917f3873fbb1fb3a3c038890c9e01116d75157d55ef2af5f7",
+          "bytes": 45365
+        }
+      ]
+    },
+    {
+      "path": "output/playwright/round35-combat-v30-component-refined",
+      "assessment": "Scalloped single caps with excess fine normal contrast; craggy/rock-like.",
+      "states": [
+        {
+          "ready": true,
+          "state": {
+            "age": 0,
+            "dustInstances": 5,
+            "drawCalls": 3,
+            "triangles": 2264,
+            "programErrors": 0,
+            "glError": 0,
+            "contextLost": false
+          }
+        },
+        {
+          "age": 0.058333333333,
+          "dustInstances": 5,
+          "drawCalls": 3,
+          "triangles": 2264,
+          "programErrors": 0,
+          "glError": 0,
+          "contextLost": false
+        },
+        {
+          "age": 0.14,
+          "dustInstances": 5,
+          "drawCalls": 3,
+          "triangles": 2264,
+          "programErrors": 0,
+          "glError": 0,
+          "contextLost": false
+        },
+        {
+          "age": 0.408333333333,
+          "dustInstances": 5,
+          "drawCalls": 3,
+          "triangles": 2156,
+          "programErrors": 0,
+          "glError": 0,
+          "contextLost": false
+        },
+        {
+          "age": 1.208333333333,
+          "dustInstances": 5,
+          "drawCalls": 2,
+          "triangles": 2144,
+          "programErrors": 0,
+          "glError": 0,
+          "contextLost": false
+        },
+        {
+          "age": 1.208333333333,
+          "dustInstances": 5,
+          "drawCalls": 2,
+          "triangles": 2144,
+          "programErrors": 0,
+          "glError": 0,
+          "contextLost": false
+        }
+      ],
+      "closed": true,
+      "commandReceipt": {
+        "sha256": "bd6ca41d27a23576587bd4f654c4d8548405892a0cb4cd07f180afa7503be057",
+        "bytes": 9791
+      },
+      "images": [
+        {
+          "path": "output/playwright/round35-combat-v30-component-refined/component-age0.06.png",
+          "sha256": "91ed5b33cc4dedbfa253b80fac1cf0356eff217df3ccabc9acf5b377a5e363fe",
+          "bytes": 46306
+        },
+        {
+          "path": "output/playwright/round35-combat-v30-component-refined/component-age0.14.png",
+          "sha256": "b7cec22631509927302b5379b8cc5878dc44185f51e842e8942fa3149eef7ea3",
+          "bytes": 55473
+        },
+        {
+          "path": "output/playwright/round35-combat-v30-component-refined/component-age0.41.png",
+          "sha256": "db3272c2adea7046a99f623fd3727d9f21b8bb99977e28d1322292c1a552b146",
+          "bytes": 54150
+        },
+        {
+          "path": "output/playwright/round35-combat-v30-component-refined/component-age1.21.png",
+          "sha256": "67da68814f0506086ab2052ae7cd20accfffd126154148d85774b77ca6ee4b7d",
+          "bytes": 47940
+        }
+      ]
+    },
+    {
+      "path": "output/playwright/round35-combat-v30-component-billows",
+      "assessment": "Final four rounded closed subcaps per lobe. More shoulders, but mound-like-core risk remains; no native acceptance.",
+      "states": [
+        {
+          "ready": true,
+          "state": {
+            "age": 0,
+            "dustInstances": 5,
+            "drawCalls": 3,
+            "triangles": 2264,
+            "programErrors": 0,
+            "glError": 0,
+            "contextLost": false
+          }
+        },
+        {
+          "age": 0.058333333333,
+          "dustInstances": 5,
+          "drawCalls": 3,
+          "triangles": 2264,
+          "programErrors": 0,
+          "glError": 0,
+          "contextLost": false
+        },
+        {
+          "age": 0.14,
+          "dustInstances": 5,
+          "drawCalls": 3,
+          "triangles": 2264,
+          "programErrors": 0,
+          "glError": 0,
+          "contextLost": false
+        },
+        {
+          "age": 0.408333333333,
+          "dustInstances": 5,
+          "drawCalls": 3,
+          "triangles": 2156,
+          "programErrors": 0,
+          "glError": 0,
+          "contextLost": false
+        },
+        {
+          "age": 1.208333333333,
+          "dustInstances": 5,
+          "drawCalls": 2,
+          "triangles": 2144,
+          "programErrors": 0,
+          "glError": 0,
+          "contextLost": false
+        },
+        {
+          "age": 1.208333333333,
+          "dustInstances": 5,
+          "drawCalls": 2,
+          "triangles": 2144,
+          "programErrors": 0,
+          "glError": 0,
+          "contextLost": false
+        }
+      ],
+      "closed": true,
+      "commandReceipt": {
+        "sha256": "f97a74e9fed55ce1cf7d2b7302881830725f466ec03f4af627c89ab3256e6ee7",
+        "bytes": 9791
+      },
+      "images": [
+        {
+          "path": "output/playwright/round35-combat-v30-component-billows/component-age0.06.png",
+          "sha256": "854f7e64b6c99935391cbf442563514c7f3e04173e810c09f36f40e91a81dc24",
+          "bytes": 44820
+        },
+        {
+          "path": "output/playwright/round35-combat-v30-component-billows/component-age0.14.png",
+          "sha256": "16043b63274b5ceafe544cbdca18edde7851832064c024b3bfa1974afac60a1b",
+          "bytes": 50332
+        },
+        {
+          "path": "output/playwright/round35-combat-v30-component-billows/component-age0.41.png",
+          "sha256": "318491fdc6de059a12b65c5e14d85e99700f8998f95b7023b8d8de47664e9ea0",
+          "bytes": 48849
+        },
+        {
+          "path": "output/playwright/round35-combat-v30-component-billows/component-age1.21.png",
+          "sha256": "51835c24ab1860922ebc5b51f2d514aaf094931ea527bdfde4338dfb1ba6492a",
+          "bytes": 44768
+        }
+      ]
+    }
+  ],
+  "cleanup": "Every owned browser was closed; server sessions completed after explicit owned SIGTERM (PTY reported143). Final preview has zero browser errors/warnings, zero program/GL errors, and context restoration success. First preview favicon404 and duplicate Three warning preserved."
+}

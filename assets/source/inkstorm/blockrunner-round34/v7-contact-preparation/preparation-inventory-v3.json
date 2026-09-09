@@ -1,0 +1,157 @@
+{
+  "stage": "V7 short contact color preparation",
+  "status": "prepared only; no Blender execution",
+  "supersedesRejectedBeforeExecutionPayload": "15b-author-contact-v7-composed-payload.py",
+  "safeModeCorrection": "Removed module-as-value preflight; actual nodes.new plus all AO property/socket assertions remain transactional",
+  "transactionFix": "Cleanup nested finally; success only after all source/context/image/graph guards pass",
+  "sourceUid": "a6f14ae799ab40d7ac425f043f824ff8",
+  "parentScene": "PodRacing \u2014 Blockrunner localized broken paint round34 V4B",
+  "preparedTargetScene": "PodRacing \u2014 Blockrunner short contact color round34 V7",
+  "parentWas148thHistoricalScene": true,
+  "currentSceneInventory": "captured dynamically on later execution; every preexisting scene preserved",
+  "payload": {
+    "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/mcp-safe/15c-author-contact-v7-composed-payload.py",
+    "bytes": 109947,
+    "sha256": "9e31ccfd91efb6c2b740c41a67e165a688f381322e6c207d56953c7ecd5fea5d"
+  },
+  "fragments": [
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/mcp-safe/00-source-reference.py",
+      "bytes": 20886,
+      "sha256": "1e102e361460a5540776f5d45289f4b458ddb10f3355d6421e3c096a762d87b8"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/mcp-safe/01-source-guard.py",
+      "bytes": 10293,
+      "sha256": "2a16250b35ebc55240477f5aebc16b81d83dc475d14f290c803c86abf6fd2e89"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/mcp-safe/13-v4-attribute-signatures.py",
+      "bytes": 945,
+      "sha256": "edf0140332615bf6d14beebbb891f2a409bd6458edf23b17b1b92bcb84f75dca"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/mcp-safe/14-atlas-wrap-guards.py",
+      "bytes": 4267,
+      "sha256": "31fd32887302053ea98f888900514edef3c02588b0912b777b59a6736bff8ca2"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/mcp-safe/15-ao-contact-guards.py",
+      "bytes": 4294,
+      "sha256": "1327ab853a5e49f8f6e02b0b6666bb6628f0020b4371f8578581960d20edb3b2"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/mcp-safe/15c-copy-contact-color-v7-safe-types.py",
+      "bytes": 19046,
+      "sha256": "8294bc6fde3ed76f76ddbf0708c5e9d7b59f2953d5840433bc5ac95dcdbffbd8"
+    }
+  ],
+  "externalComposer": {
+    "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/mcp-safe/15c-compose-contact-v7.py",
+    "bytes": 8247,
+    "sha256": "42f50779e6668e6a33fa87960901f780fef6c795ca814c5e1713a86506a4e367"
+  },
+  "receiptInputs": [
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/mcp-safe/audit-receipt.json",
+      "bytes": 3447423,
+      "sha256": "c76e04780c5e3c58887b112a450bddfbafb1b959529c7666f6773991611ce227"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/mcp-safe/control-fit-v1-receipt.json",
+      "bytes": 119669,
+      "sha256": "2c9145a02cb401f0f0f8b1893c11a88bbad7d12a1a0ae45ef71462b60a901db5"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/mcp-safe/paint-author-v4b-receipt.json",
+      "bytes": 43218,
+      "sha256": "a20d12c3b8e1dcaacc474bdcb822cdaac2a86d5185494ae15aa5858be4d479d9"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/mcp-safe/bake-v4b-pilot-roughness-receipt.json",
+      "bytes": 5606,
+      "sha256": "568129f1f868890694383d555bcabe68d7e8c0a69f0177426f107ca492c1a1bc"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/mcp-safe/bake-v4b-body-roughness-receipt.json",
+      "bytes": 4797,
+      "sha256": "7a8ff057914b25703fef17bb18c7be251e573d0261cf9cda6525d59ae84d644e"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/mcp-safe/atlas-clamp-v6-receipt.json",
+      "bytes": 48589,
+      "sha256": "9c192a1e90b489324e685830e9fa4127dfc4f268ea5a4153fbd328f616732a91"
+    }
+  ],
+  "imageInputs": [
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/blockrunner-body-color-v1-20260908-paint-v4b.png",
+      "bytes": 788958,
+      "sha256": "5afc8910cd48c2d4ca0f18aee07a41f79413813486ff30907e68a6fa726a330b"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/blockrunner-body-roughness-v1-20260908-paint-v4b.png",
+      "bytes": 725949,
+      "sha256": "c93768657a8a47eba2def2187be05f6dd786909a93149eb949cf72d9e6c07b18"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/blockrunner-pilot-color-v1-20260908-paint-v4b.png",
+      "bytes": 213414,
+      "sha256": "cbb30b8d23f9902e343d705eca901f3e51e6e83599150880eaa2be3a6c385761"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/blockrunner-pilot-roughness-v1-20260908-paint-v4b.png",
+      "bytes": 210771,
+      "sha256": "556cac9d55ab318bfc56166c2153b8df85c03da658a04209b5a9a1a5d8c7963e"
+    }
+  ],
+  "staticValidation": {
+    "astParse": true,
+    "allowedImportsOnly": [
+      "bpy",
+      "collections",
+      "json",
+      "math",
+      "mathutils"
+    ],
+    "noLambdaDunderOrFileIO": true,
+    "noBpyOperators": true,
+    "lessThan200000Utf8Bytes": true
+  },
+  "changeContract": {
+    "objects": 2,
+    "triangles": 44028,
+    "materialSlots": {
+      "body": 3,
+      "pilot": 4
+    },
+    "addedNodes": {
+      "ShaderNodeAmbientOcclusion": 7,
+      "ShaderNodeMixRGB": 7
+    },
+    "renamedOldColorNodes": 7,
+    "removedDisconnectedOldColorBakeNodes": 7,
+    "retainedDisconnectedRoughnessBakeNodes": 7,
+    "distanceSourceWorldUnits": 0.16,
+    "strength": 0.38,
+    "samples": 16,
+    "inside": false,
+    "onlyLocal": false,
+    "normalInputUnlinked": true,
+    "newImages": 0,
+    "newBakes": 0,
+    "newExports": 0
+  },
+  "laterRequiredChecks": [
+    "Current installed Blender version and AO socket/property compatibility",
+    "Actual guard-complete author receipt",
+    "Matched actual neutral views and color bakes with both owners present",
+    "Reused roughness receipt lineage in finalizer, not synthetic bake receipts",
+    "Clamp atlas image nodes; judge contacts at final runtime atlas resolutions",
+    "In-game material review and unchanged runtime geometry/normal metadata"
+  ],
+  "primaryReferencesProvidedByParent": [
+    "https://docs.blender.org/manual/en/latest/render/shader_nodes/input/ao.html",
+    "https://docs.blender.org/api/current/bpy.types.ShaderNodeAmbientOcclusion.html"
+  ]
+}

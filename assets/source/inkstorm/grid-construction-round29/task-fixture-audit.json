@@ -1,0 +1,103 @@
+{
+  "status": "PASS exact exported lens planes/normals/areas and existing-crossbeam body contacts",
+  "sharedAnchorSha256": "2fafc4be49abd590acd62ff3a8c9e4672d6b27d6d929d334d5e5232584f8d8b1",
+  "fixtures": [
+    {
+      "id": "pit-task-1",
+      "family": "pit-complex",
+      "emitterGLB": [
+        -50,
+        9.44,
+        -3
+      ],
+      "undersideTriangles": 2,
+      "emittingArea": 1.427998601913714,
+      "downwardNormals": true,
+      "beamUndersideGLBY": 9.611095428466797,
+      "bodyTopGLBY": 9.799999999999999,
+      "beamBodyVerticalOverlap": 0.18890457153320206,
+      "supportSource": "predecessors/pit-complex.glb"
+    },
+    {
+      "id": "pit-task-2",
+      "family": "pit-complex",
+      "emitterGLB": [
+        -8,
+        9.44,
+        -3
+      ],
+      "undersideTriangles": 2,
+      "emittingArea": 1.427999898910457,
+      "downwardNormals": true,
+      "beamUndersideGLBY": 9.611095428466797,
+      "bodyTopGLBY": 9.799999999999999,
+      "beamBodyVerticalOverlap": 0.18890457153320206,
+      "supportSource": "predecessors/pit-complex.glb"
+    },
+    {
+      "id": "pit-task-3",
+      "family": "pit-complex",
+      "emitterGLB": [
+        36,
+        9.44,
+        -6
+      ],
+      "undersideTriangles": 2,
+      "emittingArea": 1.4279996032710187,
+      "downwardNormals": true,
+      "beamUndersideGLBY": 9.611095428466797,
+      "bodyTopGLBY": 9.799999999999999,
+      "beamBodyVerticalOverlap": 0.18890457153320206,
+      "supportSource": "predecessors/pit-complex.glb"
+    },
+    {
+      "id": "district-task-1",
+      "family": "pit-district",
+      "emitterGLB": [
+        -36,
+        8.08,
+        -4
+      ],
+      "undersideTriangles": 2,
+      "emittingArea": 1.4279991025923664,
+      "downwardNormals": true,
+      "beamUndersideGLBY": 8.393935203552246,
+      "bodyTopGLBY": 8.44,
+      "beamBodyVerticalOverlap": 0.04606479644775341,
+      "supportSource": "versions/v1/candidates/pit-district.glb"
+    },
+    {
+      "id": "district-task-2",
+      "family": "pit-district",
+      "emitterGLB": [
+        1,
+        13.08,
+        -8
+      ],
+      "undersideTriangles": 2,
+      "emittingArea": 1.428000608950839,
+      "downwardNormals": true,
+      "beamUndersideGLBY": 13.393935203552246,
+      "bodyTopGLBY": 13.44,
+      "beamBodyVerticalOverlap": 0.04606479644775341,
+      "supportSource": "versions/v1/candidates/pit-district.glb"
+    },
+    {
+      "id": "district-task-3",
+      "family": "pit-district",
+      "emitterGLB": [
+        41,
+        9.88,
+        -1
+      ],
+      "undersideTriangles": 2,
+      "emittingArea": 1.4279989774227033,
+      "downwardNormals": true,
+      "beamUndersideGLBY": 10.19393539428711,
+      "bodyTopGLBY": 10.24,
+      "beamBodyVerticalOverlap": 0.04606460571289084,
+      "supportSource": "versions/v1/candidates/pit-district.glb"
+    }
+  ],
+  "limitation": "This is emitter geometry/contact validation, not a light-occlusion or visual acceptance test."
+}

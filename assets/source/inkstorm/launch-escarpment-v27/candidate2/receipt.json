@@ -1,0 +1,29 @@
+{
+  "sourceSha256": "a0ab709353a86372c02e238feaa76083f171f9be85c0a3a9c58a9b21d60ac357",
+  "focusedTests": {
+    "files": 9,
+    "passed": 31,
+    "failed": 0
+  },
+  "typecheck": "pass",
+  "gitDiffCheck": "pass",
+  "actualLaunchImage": "output/gauntlet/round27-nozzle-v1/05-launch.png",
+  "actualLaunchImageSha256": "5a7c6cdffaaa4ffd59669fb3c0bf1d21b4bc79c73161a874ab0e37ccbdd73e3d",
+  "artAcceptance": false,
+  "browserOrBlenderRunByThisSubtask": false,
+  "files": {
+    "LaunchBasinPlan.ts": "a0ab709353a86372c02e238feaa76083f171f9be85c0a3a9c58a9b21d60ac357",
+    "candidate1-delta.json": "5685da6a7249fe245e8b7fb26bba0143fccaf7036e69f284fbb7aa1a1d07fb5c",
+    "candidate2-field.json": "bc09f9e70c025758b44c0a1babc51cc250d636431e2ed8ad4d0a20452f75fece",
+    "candidate2-finish.f32": "bd9da2b5038d659fc1622390f211ba5e42bacac2a90288b9aaf2656af03abffa",
+    "candidate2-launch.f32": "1508215a796d439b48aeebf7f510c8847ab057a296b138fb578b094c29efa572",
+    "candidate2-preservation.json": "54172a512459bc5ca5ba38386af9c83d54b3caf3fbf7b3b0bb1fdd7bf31cf070",
+    "candidate2-roi-comparison.json": "0cbe84cd1ebf8feadd6f492ea73df40b8861971898a1e4dddf96c4ec58de3131",
+    "candidate2-roi.json": "6457669094b37a63c02e11435a267cdb89ded6932196debd11ee986ec9e83ab1",
+    "capture-field.ts": "ddc4f7998230bd6ee60f49a881b60255c02671d309fe3fe9365f37c1a4a4e910",
+    "compare-fields.ts": "b9ea666e9f885aee6db73c6e567c0dd66e76710c5703fb4d3af59f437212e724",
+    "compare-rois.py": "bdeb36e876a070531195e594299aa11fec542929eb014848c21d670ac80ade61",
+    "launchEscarpment.test.ts": "34f81124baac7110bbb09f8645c7f265922f96ddc1940990aff4d563eb6380ce",
+    "project-terrain.ts": "51ae87f5b26713b3aa38f52b2ae2570c6c420d3dcfad3c191a56fa971adc85e4"
+  }
+}

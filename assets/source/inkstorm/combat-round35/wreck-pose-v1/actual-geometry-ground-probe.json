@@ -1,0 +1,2100 @@
+{
+  "scope": "Read-only CPU normal-input reproduction. All POSITION occurrences in actual admitted rigid GLB sampled against the instance race terrain at displayed root pose. Counts are vertex occurrences, not triangle/surface-area shares. This proves point penetration when negative; absence of negative vertices alone would not prove complete triangle/terrain clearance. No DCC/browser/runtime/source edits. No collision/physics change or visual acceptance claim.",
+  "source": {
+    "path": "public/assets/inkstorm/vehicles/teemto-hero-open-v2.glb",
+    "bytes": 7698824,
+    "sha256": "af5d69514a51f7e9c089a1710e1587f46e053412b488268dc433f029576c0a7e"
+  },
+  "inputs": {
+    "seed": 1229867859,
+    "totalLaps": 1,
+    "countdownSeconds": 3,
+    "competitionProfile": "time-trial",
+    "brake": "all frames",
+    "boost": "558..910 inclusive"
+  },
+  "snapshotMatches": [
+    {
+      "frame": 557,
+      "positionMaxError": 0,
+      "yawError": 0,
+      "raceTimeError": 0
+    },
+    {
+      "frame": 922,
+      "positionMaxError": 0,
+      "yawError": 0,
+      "raceTimeError": 0
+    },
+    {
+      "frame": 1153,
+      "positionMaxError": 0,
+      "yawError": 0,
+      "raceTimeError": 0
+    }
+  ],
+  "rows": [
+    {
+      "frame": 557,
+      "simulationTime": 4.641666666666667,
+      "raceTime": 1.63333333333333,
+      "wreckPhase": "running",
+      "position": {
+        "x": 18604.780333722712,
+        "y": -11.046060717422462,
+        "z": -27.157748552111173
+      },
+      "authoritativeOrientation": {
+        "yaw": -0.11186657909571007,
+        "pitch": -0.0658056765114265,
+        "roll": 0.08596315584903969,
+        "bank": 0
+      },
+      "displayEulerYXZ": [
+        -0.0658056765114265,
+        -0.11186657909571007,
+        0.08596315584903969
+      ],
+      "newPose": null,
+      "minVertexClearance": 1.319958796842693,
+      "verticalLiftForMinimumPointClearance05": 0,
+      "positionOccurrences": 73048,
+      "belowTerrain": 0,
+      "meshes": [
+        {
+          "name": "teemto-cockpit-body",
+          "positionOccurrences": 25119,
+          "belowTerrain": 0,
+          "minClearance": 3.2008540566102752,
+          "worstPoint": {
+            "local": [
+              0.2332887500524521,
+              1.0026960372924805,
+              -5.288839817047119
+            ],
+            "world": [
+              18605.52237131519,
+              -10.377027779828044,
+              -32.45240857275926
+            ],
+            "terrainY": -13.57788183643832
+          }
+        },
+        {
+          "name": "teemto-engine-left-body",
+          "positionOccurrences": 13967,
+          "belowTerrain": 0,
+          "minClearance": 1.319958796842693,
+          "worstPoint": {
+            "local": [
+              -4.641645431518555,
+              0.13802313804626465,
+              17.16961669921875
+            ],
+            "world": [
+              18598.258487027317,
+              -10.177458594261168,
+              -10.632897377892562
+            ],
+            "terrainY": -11.49741739110386
+          }
+        },
+        {
+          "name": "teemto-engine-right-body",
+          "positionOccurrences": 13867,
+          "belowTerrain": 0,
+          "minClearance": 2.4344566084066184,
+          "worstPoint": {
+            "local": [
+              3.5020289421081543,
+              0.20789813995361328,
+              10.097341537475586
+            ],
+            "world": [
+              18607.108851259312,
+              -9.875371595946627,
+              -16.790915499775807
+            ],
+            "terrainY": -12.309828204353245
+          }
+        },
+        {
+          "name": "teemto-pilot-accent.003",
+          "positionOccurrences": 301,
+          "belowTerrain": 0,
+          "minClearance": 4.389974524207226,
+          "worstPoint": {
+            "local": [
+              0.23000000417232513,
+              2.1751253604888916,
+              -5.253326892852783
+            ],
+            "world": [
+              18605.423699623,
+              -9.209402455326755,
+              -32.50511056768052
+            ],
+            "terrainY": -13.59937697953398
+          }
+        },
+        {
+          "name": "teemto-pilot-hardware.003",
+          "positionOccurrences": 1587,
+          "belowTerrain": 0,
+          "minClearance": 4.653690040137917,
+          "worstPoint": {
+            "local": [
+              -1.1431032120867712e-8,
+              2.403860569000244,
+              -5.069243907928467
+            ],
+            "world": [
+              18605.1574879807,
+              -8.9896045937828,
+              -32.36394892383039
+            ],
+            "terrainY": -13.643294633920718
+          }
+        },
+        {
+          "name": "teemto-pilot-rubber.002",
+          "positionOccurrences": 2524,
+          "belowTerrain": 0,
+          "minClearance": 4.54438474400609,
+          "worstPoint": {
+            "local": [
+              0.22573675215244293,
+              2.297743320465088,
+              -4.33704948425293
+            ],
+            "world": [
+              18605.307845144453,
+              -9.027614177708895,
+              -31.60613982796884
+            ],
+            "terrainY": -13.571998921714984
+          }
+        },
+        {
+          "name": "teemto-pilot-shell.003",
+          "positionOccurrences": 1558,
+          "belowTerrain": 0,
+          "minClearance": 4.423768132650704,
+          "worstPoint": {
+            "local": [
+              0.2056249976158142,
+              2.2050418853759766,
+              -5.224207878112793
+            ],
+            "world": [
+              18605.393973738082,
+              -9.17983434089256,
+              -32.48104493243087
+            ],
+            "terrainY": -13.603602473543264
+          }
+        },
+        {
+          "name": "teemto-pilot-suit.005",
+          "positionOccurrences": 12692,
+          "belowTerrain": 0,
+          "minClearance": 4.292059623011816,
+          "worstPoint": {
+            "local": [
+              0.09487903863191605,
+              2.064603328704834,
+              -5.28869104385376
+            ],
+            "world": [
+              18605.302394662387,
+              -9.333179543507722,
+              -32.54619288730899
+            ],
+            "terrainY": -13.625239166519538
+          }
+        },
+        {
+          "name": "teemto-pilot-webbing.002",
+          "positionOccurrences": 1037,
+          "belowTerrain": 0,
+          "minClearance": 4.416999895196605,
+          "worstPoint": {
+            "local": [
+              0.022499989718198776,
+              2.174072027206421,
+              -5.099301338195801
+            ],
+            "world": [
+              18605.201052219214,
+              -9.21809802122677,
+              -32.37421458715468
+            ],
+            "terrainY": -13.635097916423375
+          }
+        },
+        {
+          "name": "teemto-cockpit-graphite-v2",
+          "positionOccurrences": 396,
+          "belowTerrain": 0,
+          "minClearance": 4.293039999304673,
+          "worstPoint": {
+            "local": [
+              0.1550000011920929,
+              2.124769449234009,
+              -7.064000129699707
+            ],
+            "world": [
+              18605.55501858832,
+              -9.384955797866729,
+              -34.3047312616463
+            ],
+            "terrainY": -13.677995797171402
+          }
+        }
+      ]
+    },
+    {
+      "frame": 910,
+      "simulationTime": 7.583333333333333,
+      "raceTime": 4.575000000000017,
+      "wreckPhase": "wrecked",
+      "position": {
+        "x": 18600.171130179115,
+        "y": -10.899386940635921,
+        "z": 13.883536453583945
+      },
+      "authoritativeOrientation": {
+        "yaw": -0.09869157909571014,
+        "pitch": -0.04031148446446282,
+        "roll": -0.1697173875307071,
+        "bank": 0
+      },
+      "displayEulerYXZ": [
+        -0.04031148446446282,
+        -0.09869157909571014,
+        -0.1697173875307071
+      ],
+      "newPose": {
+        "position": [
+          18600.171130179115,
+          -10.899386940635921,
+          13.883536453583945
+        ],
+        "center": [
+          18599.849497014682,
+          -7.964445834120353,
+          21.450802320537463
+        ],
+        "groundCorrection": 0,
+        "supportCount": 60
+      },
+      "minVertexClearance": 2.4169158898666545,
+      "verticalLiftForMinimumPointClearance05": 0,
+      "positionOccurrences": 73048,
+      "belowTerrain": 0,
+      "meshes": [
+        {
+          "name": "teemto-cockpit-body",
+          "positionOccurrences": 25119,
+          "belowTerrain": 0,
+          "minClearance": 3.195075102030648,
+          "worstPoint": {
+            "local": [
+              -0.16334043443202972,
+              1.0046395063400269,
+              -4.939310550689697
+            ],
+            "world": [
+              18600.670105234665,
+              -10.081476603291776,
+              8.932292577003267
+            ],
+            "terrainY": -13.276551705322424
+          }
+        },
+        {
+          "name": "teemto-engine-left-body",
+          "positionOccurrences": 13967,
+          "belowTerrain": 0,
+          "minClearance": 2.9771597064841355,
+          "worstPoint": {
+            "local": [
+              -3.547011375427246,
+              0.3465611934661865,
+              5.2692060470581055
+            ],
+            "world": [
+              18596.23531763691,
+              -9.747113454540766,
+              18.74641339737586
+            ],
+            "terrainY": -12.724273161024902
+          }
+        },
+        {
+          "name": "teemto-engine-right-body",
+          "positionOccurrences": 13867,
+          "belowTerrain": 0,
+          "minClearance": 2.4169158898666545,
+          "worstPoint": {
+            "local": [
+              4.536060810089111,
+              0.30088305473327637,
+              5.304086685180664
+            ],
+            "world": [
+              18604.146777215854,
+              -11.154845531929105,
+              19.621888603526916
+            ],
+            "terrainY": -13.57176142179576
+          }
+        },
+        {
+          "name": "teemto-pilot-accent.003",
+          "positionOccurrences": 301,
+          "belowTerrain": 0,
+          "minClearance": 4.434627942564653,
+          "worstPoint": {
+            "local": [
+              -0.23000000417232513,
+              2.1751253604888916,
+              -5.253326892852783
+            ],
+            "world": [
+              18600.837001727836,
+              -8.930150024087979,
+              8.58634523313156
+            ],
+            "terrainY": -13.364777966652632
+          }
+        },
+        {
+          "name": "teemto-pilot-hardware.003",
+          "positionOccurrences": 1587,
+          "belowTerrain": 0,
+          "minClearance": 4.649691931558255,
+          "worstPoint": {
+            "local": [
+              -1.1431032120867712e-8,
+              2.403860569000244,
+              -5.069243907928467
+            ],
+            "world": [
+              18601.08365808201,
+              -8.736281978519465,
+              8.788043427137396
+            ],
+            "terrainY": -13.38597391007772
+          }
+        },
+        {
+          "name": "teemto-pilot-rubber.002",
+          "positionOccurrences": 2524,
+          "belowTerrain": 0,
+          "minClearance": 4.445408075832221,
+          "worstPoint": {
+            "local": [
+              -0.18750007450580597,
+              2.29592227935791,
+              -4.345102787017822
+            ],
+            "world": [
+              18600.810019319855,
+              -8.781755996388506,
+              9.491066365996396
+            ],
+            "terrainY": -13.227164072220727
+          }
+        },
+        {
+          "name": "teemto-pilot-shell.003",
+          "positionOccurrences": 1558,
+          "belowTerrain": 0,
+          "minClearance": 4.461726086995368,
+          "worstPoint": {
+            "local": [
+              -0.2056249976158142,
+              2.2050418853759766,
+              -5.224208354949951
+            ],
+            "world": [
+              18600.86317202677,
+              -8.903627471643494,
+              8.617146179889993
+            ],
+            "terrainY": -13.365353558638862
+          }
+        },
+        {
+          "name": "teemto-pilot-suit.005",
+          "positionOccurrences": 12692,
+          "belowTerrain": 0,
+          "minClearance": 4.266236497513569,
+          "worstPoint": {
+            "local": [
+              -0.16650636494159698,
+              2.0830631256103516,
+              -4.686323165893555
+            ],
+            "world": [
+              18600.82757939263,
+              -9.00868087470792,
+              9.158834751637684
+            ],
+            "terrainY": -13.27491737222149
+          }
+        },
+        {
+          "name": "teemto-pilot-webbing.002",
+          "positionOccurrences": 1037,
+          "belowTerrain": 0,
+          "minClearance": 4.417043941373507,
+          "worstPoint": {
+            "local": [
+              -0.021150007843971252,
+              2.1739208698272705,
+              -5.09856653213501
+            ],
+            "world": [
+              18601.026265788252,
+              -8.960346215449158,
+              8.761952312933388
+            ],
+            "terrainY": -13.377390156822665
+          }
+        },
+        {
+          "name": "teemto-cockpit-graphite-v2",
+          "positionOccurrences": 396,
+          "belowTerrain": 0,
+          "minClearance": 4.557299387797913,
+          "worstPoint": {
+            "local": [
+              0.125,
+              2.4852163791656494,
+              -3.436000108718872
+            ],
+            "world": [
+              18601.05937651755,
+              -8.61143536155394,
+              10.423143670615325
+            ],
+            "terrainY": -13.168734749351854
+          }
+        }
+      ]
+    },
+    {
+      "frame": 922,
+      "simulationTime": 7.683333333333334,
+      "raceTime": 4.675000000000022,
+      "wreckPhase": "wrecked",
+      "position": {
+        "x": 18600.13744955193,
+        "y": -10.18700433948426,
+        "z": 14.706374232596215
+      },
+      "authoritativeOrientation": {
+        "yaw": 0.0030769097051424055,
+        "pitch": -0.043514113784079385,
+        "roll": -0.2336567161620741,
+        "bank": 0
+      },
+      "displayEulerYXZ": [
+        -0.03785630874124209,
+        0.003973297075361,
+        -0.25817394812212574
+      ],
+      "newPose": {
+        "position": [
+          18600.06716935204,
+          -10.279312675471616,
+          14.690164944942813
+        ],
+        "center": [
+          18600.7532712518,
+          -7.410779683153732,
+          22.258627308426558
+        ],
+        "groundCorrection": -0.15039062499999897,
+        "supportCount": 60
+      },
+      "minVertexClearance": 2.6687050727664268,
+      "verticalLiftForMinimumPointClearance05": 0,
+      "positionOccurrences": 73048,
+      "belowTerrain": 0,
+      "meshes": [
+        {
+          "name": "teemto-cockpit-body",
+          "positionOccurrences": 25119,
+          "belowTerrain": 0,
+          "minClearance": 3.5929546310382587,
+          "worstPoint": {
+            "local": [
+              0.24174617230892181,
+              1.001510739326477,
+              -4.936898231506348
+            ],
+            "world": [
+              18600.53686283429,
+              -9.56021338011771,
+              9.720586154218461
+            ],
+            "terrainY": -13.15316801115597
+          }
+        },
+        {
+          "name": "teemto-engine-left-body",
+          "positionOccurrences": 13967,
+          "belowTerrain": 0,
+          "minClearance": 4.017871165267676,
+          "worstPoint": {
+            "local": [
+              -3.547011375427246,
+              0.3465611934661865,
+              5.2692060470581055
+            ],
+            "world": [
+              18596.746956997093,
+              -8.840094342291492,
+              19.921872814470184
+            ],
+            "terrainY": -12.857965507559168
+          }
+        },
+        {
+          "name": "teemto-engine-right-body",
+          "positionOccurrences": 13867,
+          "belowTerrain": 0,
+          "minClearance": 2.6687050727664268,
+          "worstPoint": {
+            "local": [
+              4.536060810089111,
+              0.30088305473327637,
+              5.304086685180664
+            ],
+            "world": [
+              18604.550870002447,
+              -10.945161417234504,
+              20.005500097122766
+            ],
+            "terrainY": -13.61386649000093
+          }
+        },
+        {
+          "name": "teemto-pilot-accent.003",
+          "positionOccurrences": 301,
+          "belowTerrain": 0,
+          "minClearance": 4.811346726177842,
+          "worstPoint": {
+            "local": [
+              0.23000000417232513,
+              2.1751253604888916,
+              -5.253326892852783
+            ],
+            "world": [
+              18600.823718176074,
+              -8.435287034916318,
+              9.360182103247892
+            ],
+            "terrainY": -13.24663376109416
+          }
+        },
+        {
+          "name": "teemto-pilot-hardware.003",
+          "positionOccurrences": 1587,
+          "belowTerrain": 0,
+          "minClearance": 5.046294560788015,
+          "worstPoint": {
+            "local": [
+              -1.1431032120867712e-8,
+              2.403860569000244,
+              -5.069243907928467
+            ],
+            "world": [
+              18600.66043059412,
+              -8.148643539741041,
+              9.53419078228833
+            ],
+            "terrainY": -13.194938100529056
+          }
+        },
+        {
+          "name": "teemto-pilot-rubber.002",
+          "positionOccurrences": 2524,
+          "belowTerrain": 0,
+          "minClearance": 4.868350526540047,
+          "worstPoint": {
+            "local": [
+              0.22573675215244293,
+              2.297743320465088,
+              -4.33704948425293
+            ],
+            "world": [
+              18600.854522294892,
+              -8.281051552260429,
+              10.271159683153524
+            ],
+            "terrainY": -13.149402078800476
+          }
+        },
+        {
+          "name": "teemto-pilot-shell.003",
+          "positionOccurrences": 1558,
+          "belowTerrain": 0,
+          "minClearance": 4.8409130382411085,
+          "worstPoint": {
+            "local": [
+              0.2056249976158142,
+              2.2050418853759766,
+              -5.224207878112793
+            ],
+            "world": [
+              18600.80789961703,
+              -8.399061800937986,
+              9.388013057926415
+            ],
+            "terrainY": -13.239974839179094
+          }
+        },
+        {
+          "name": "teemto-pilot-suit.005",
+          "positionOccurrences": 12692,
+          "belowTerrain": 0,
+          "minClearance": 4.675034915499747,
+          "worstPoint": {
+            "local": [
+              0.20048405230045319,
+              2.083052396774292,
+              -4.689785003662109
+            ],
+            "world": [
+              18600.773922971384,
+              -8.495385718369295,
+              9.926606563146816
+            ],
+            "terrainY": -13.170420633869043
+          }
+        },
+        {
+          "name": "teemto-pilot-webbing.002",
+          "positionOccurrences": 1037,
+          "belowTerrain": 0,
+          "minClearance": 4.813404394388673,
+          "worstPoint": {
+            "local": [
+              0.02114998921751976,
+              2.1739208698272705,
+              -5.09856653213501
+            ],
+            "world": [
+              18600.622090602752,
+              -8.377309084041618,
+              9.513659879107465
+            ],
+            "terrainY": -13.190713478430292
+          }
+        },
+        {
+          "name": "teemto-cockpit-graphite-v2",
+          "positionOccurrences": 396,
+          "belowTerrain": 0,
+          "minClearance": 4.99557613477244,
+          "worstPoint": {
+            "local": [
+              0.1550000011920929,
+              2.124769449234009,
+              -7.064000129699707
+            ],
+            "world": [
+              18600.731163142096,
+              -8.53333325274365,
+              7.552277572103021
+            ],
+            "terrainY": -13.52890938751609
+          }
+        }
+      ]
+    },
+    {
+      "frame": 943,
+      "simulationTime": 7.858333333333333,
+      "raceTime": 4.850000000000031,
+      "wreckPhase": "wrecked",
+      "position": {
+        "x": 18600.146944912514,
+        "y": -9.51615775975657,
+        "z": 15.075286382043856
+      },
+      "authoritativeOrientation": {
+        "yaw": 0.06038623850310776,
+        "pitch": -0.06217061431486858,
+        "roll": -0.21911173790380484,
+        "bank": 0
+      },
+      "displayEulerYXZ": [
+        -0.00641349873717343,
+        0.08576452770520697,
+        -0.44954209774189724
+      ],
+      "newPose": {
+        "position": [
+          18599.36656353384,
+          -9.854415004265325,
+          14.992505725661434
+        ],
+        "center": [
+          18601.15318761181,
+          -7.397188907444942,
+          22.525822007715945
+        ],
+        "groundCorrection": -0.9563903808593693,
+        "supportCount": 60
+      },
+      "minVertexClearance": 2.002602332490948,
+      "verticalLiftForMinimumPointClearance05": 0,
+      "positionOccurrences": 73048,
+      "belowTerrain": 0,
+      "meshes": [
+        {
+          "name": "teemto-cockpit-body",
+          "positionOccurrences": 25119,
+          "belowTerrain": 0,
+          "minClearance": 3.8996030107368913,
+          "worstPoint": {
+            "local": [
+              0.41322842240333557,
+              1.045646071434021,
+              -4.942325115203857
+            ],
+            "world": [
+              18599.76632015713,
+              -9.123940640428758,
+              9.992774450275045
+            ],
+            "terrainY": -13.02354365116565
+          }
+        },
+        {
+          "name": "teemto-engine-left-body",
+          "positionOccurrences": 13967,
+          "belowTerrain": 0,
+          "minClearance": 4.955842866683916,
+          "worstPoint": {
+            "local": [
+              -3.443018913269043,
+              0.3914046287536621,
+              5.2596025466918945
+            ],
+            "world": [
+              18596.895989899647,
+              -7.97202892940029,
+              20.47191120006221
+            ],
+            "terrainY": -12.927871796084206
+          }
+        },
+        {
+          "name": "teemto-engine-right-body",
+          "positionOccurrences": 13867,
+          "belowTerrain": 0,
+          "minClearance": 2.002602332490948,
+          "worstPoint": {
+            "local": [
+              4.536060810089111,
+              0.30088305473327637,
+              5.304086685180664
+            ],
+            "world": [
+              18604.022472255525,
+              -11.520532956380583,
+              19.926700573289402
+            ],
+            "terrainY": -13.523135288871531
+          }
+        },
+        {
+          "name": "teemto-pilot-accent.003",
+          "positionOccurrences": 301,
+          "belowTerrain": 0,
+          "minClearance": 5.061365844567277,
+          "worstPoint": {
+            "local": [
+              0.23000000417232513,
+              2.1751253604888916,
+              -5.253326892852783
+            ],
+            "world": [
+              18600.06367523943,
+              -8.029074098249968,
+              9.64800578406868
+            ],
+            "terrainY": -13.090439942817245
+          }
+        },
+        {
+          "name": "teemto-pilot-hardware.003",
+          "positionOccurrences": 1587,
+          "belowTerrain": 0,
+          "minClearance": 5.338332426632774,
+          "worstPoint": {
+            "local": [
+              0.011249988339841366,
+              2.4068009853363037,
+              -5.06990909576416
+            ],
+            "world": [
+              18599.98323264103,
+              -7.724187723219537,
+              9.837057468924272
+            ],
+            "terrainY": -13.062520149852311
+          }
+        },
+        {
+          "name": "teemto-pilot-rubber.002",
+          "positionOccurrences": 2524,
+          "belowTerrain": 0,
+          "minClearance": 5.120810102531853,
+          "worstPoint": {
+            "local": [
+              0.2421443909406662,
+              2.3033227920532227,
+              -4.312377452850342
+            ],
+            "world": [
+              18600.210615674176,
+              -7.9128584824586,
+              10.57906451235278
+            ],
+            "terrainY": -13.033668584990453
+          }
+        },
+        {
+          "name": "teemto-pilot-shell.003",
+          "positionOccurrences": 1558,
+          "belowTerrain": 0,
+          "minClearance": 5.095386050000471,
+          "worstPoint": {
+            "local": [
+              0.2056249976158142,
+              2.2050418853759766,
+              -5.224207878112793
+            ],
+            "world": [
+              18600.057228855672,
+              -7.991351676497198,
+              9.677544224428546
+            ],
+            "terrainY": -13.086737726497669
+          }
+        },
+        {
+          "name": "teemto-pilot-suit.005",
+          "positionOccurrences": 12692,
+          "belowTerrain": 0,
+          "minClearance": 4.9438940844432455,
+          "worstPoint": {
+            "local": [
+              0.20048405230045319,
+              2.083052396774292,
+              -4.689785003662109
+            ],
+            "world": [
+              18600.045636171704,
+              -8.095557318664396,
+              10.215617144396724
+            ],
+            "terrainY": -13.039451403107641
+          }
+        },
+        {
+          "name": "teemto-pilot-webbing.002",
+          "positionOccurrences": 1037,
+          "belowTerrain": 0,
+          "minClearance": 5.091061337034338,
+          "worstPoint": {
+            "local": [
+              0.22259870171546936,
+              2.204576253890991,
+              -5.241283893585205
+            ],
+            "world": [
+              18600.070799961624,
+              -7.9992563785989255,
+              9.659288964476776
+            ],
+            "terrainY": -13.090317715633264
+          }
+        },
+        {
+          "name": "teemto-cockpit-graphite-v2",
+          "positionOccurrences": 396,
+          "belowTerrain": 0,
+          "minClearance": 5.233842673754923,
+          "worstPoint": {
+            "local": [
+              0.1550000011920929,
+              2.124769449234009,
+              -7.064000129699707
+            ],
+            "world": [
+              18599.819482128783,
+              -8.053447876618282,
+              7.85176695459207
+            ],
+            "terrainY": -13.287290550373205
+          }
+        }
+      ]
+    },
+    {
+      "frame": 975,
+      "simulationTime": 8.125,
+      "raceTime": 5.116666666666711,
+      "wreckPhase": "wrecked",
+      "position": {
+        "x": 18600.146944912514,
+        "y": -9.764970130768301,
+        "z": 15.075286382043856
+      },
+      "authoritativeOrientation": {
+        "yaw": 0.07478266032476988,
+        "pitch": -0.09031530682321634,
+        "roll": -0.1483247652344223,
+        "bank": 0
+      },
+      "displayEulerYXZ": [
+        0.0025834042449616457,
+        0.17193337165147676,
+        -0.4678547942071686
+      ],
+      "newPose": {
+        "position": [
+          18598.593108589892,
+          -11.13721895956358,
+          15.066705390952688
+        ],
+        "center": [
+          18601.068415804148,
+          -8.770178687716069,
+          22.43222060978436
+        ],
+        "groundCorrection": -2.3229261544703315,
+        "supportCount": 60
+      },
+      "minVertexClearance": 0.5500000000000007,
+      "verticalLiftForMinimumPointClearance05": 0,
+      "positionOccurrences": 73048,
+      "belowTerrain": 0,
+      "meshes": [
+        {
+          "name": "teemto-cockpit-body",
+          "positionOccurrences": 25119,
+          "belowTerrain": 0,
+          "minClearance": 2.5260160432250895,
+          "worstPoint": {
+            "local": [
+              0.41322842240333557,
+              1.045646071434021,
+              -4.942325115203857
+            ],
+            "world": [
+              18598.575860382,
+              -10.377529545061448,
+              10.05538964825795
+            ],
+            "terrainY": -12.903545588286537
+          }
+        },
+        {
+          "name": "teemto-engine-left-body",
+          "positionOccurrences": 13967,
+          "belowTerrain": 0,
+          "minClearance": 3.702738347535984,
+          "worstPoint": {
+            "local": [
+              -3.443018913269043,
+              0.3914046287536621,
+              5.2596025466918945
+            ],
+            "world": [
+              18596.63999370617,
+              -9.248762202402801,
+              20.749140528903453
+            ],
+            "terrainY": -12.951500549938785
+          }
+        },
+        {
+          "name": "teemto-engine-right-body",
+          "positionOccurrences": 13867,
+          "belowTerrain": 0,
+          "minClearance": 0.5500000000000007,
+          "worstPoint": {
+            "local": [
+              4.524835586547852,
+              0.19954586029052734,
+              10.099373817443848
+            ],
+            "world": [
+              18604.38786055681,
+              -13.025778346618111,
+              24.306050617946674
+            ],
+            "terrainY": -13.575778346618112
+          }
+        },
+        {
+          "name": "teemto-pilot-accent.003",
+          "positionOccurrences": 301,
+          "belowTerrain": 0,
+          "minClearance": 3.6713860302463015,
+          "worstPoint": {
+            "local": [
+              0.23000000417232513,
+              2.1751253604888916,
+              -5.253326892852783
+            ],
+            "world": [
+              18598.863861188718,
+              -9.285995811347346,
+              9.692584098623268
+            ],
+            "terrainY": -12.957381841593648
+          }
+        },
+        {
+          "name": "teemto-pilot-hardware.003",
+          "positionOccurrences": 1587,
+          "belowTerrain": 0,
+          "minClearance": 3.9555756871421046,
+          "worstPoint": {
+            "local": [
+              0.011249988339841366,
+              2.4068009853363037,
+              -5.06990909576416
+            ],
+            "world": [
+              18598.80595152607,
+              -8.981041152980378,
+              9.889602829144291
+            ],
+            "terrainY": -12.936616840122483
+          }
+        },
+        {
+          "name": "teemto-pilot-rubber.002",
+          "positionOccurrences": 2524,
+          "belowTerrain": 0,
+          "minClearance": 3.7293072289467197,
+          "worstPoint": {
+            "local": [
+              0.2421443909406662,
+              2.3033227920532227,
+              -4.312377452850342
+            ],
+            "world": [
+              18599.092534151972,
+              -9.179482761494029,
+              10.608188577816534
+            ],
+            "terrainY": -12.908789990440749
+          }
+        },
+        {
+          "name": "teemto-pilot-shell.003",
+          "positionOccurrences": 1558,
+          "belowTerrain": 0,
+          "minClearance": 3.7063135492691597,
+          "worstPoint": {
+            "local": [
+              0.2056249976158142,
+              2.2050418853759766,
+              -5.224207878112793
+            ],
+            "world": [
+              18598.86071750022,
+              -9.248377073582292,
+              9.722783506183275
+            ],
+            "terrainY": -12.954690622851452
+          }
+        },
+        {
+          "name": "teemto-pilot-suit.005",
+          "positionOccurrences": 12692,
+          "belowTerrain": 0,
+          "minClearance": 3.5593673812915156,
+          "worstPoint": {
+            "local": [
+              0.20048405230045319,
+              2.083052396774292,
+              -4.689785003662109
+            ],
+            "world": [
+              18598.893379564866,
+              -9.356319147208804,
+              10.259250999754475
+            ],
+            "terrainY": -12.91568652850032
+          }
+        },
+        {
+          "name": "teemto-pilot-webbing.002",
+          "positionOccurrences": 1037,
+          "belowTerrain": 0,
+          "minClearance": 3.700872162531553,
+          "worstPoint": {
+            "local": [
+              0.22259870171546936,
+              2.204576253890991,
+              -5.241283893585205
+            ],
+            "world": [
+              18598.872511861377,
+              -9.256403202410134,
+              9.703382783286065
+            ],
+            "terrainY": -12.957275364941687
+          }
+        },
+        {
+          "name": "teemto-cockpit-graphite-v2",
+          "positionOccurrences": 396,
+          "belowTerrain": 0,
+          "minClearance": 3.7948252628481836,
+          "worstPoint": {
+            "local": [
+              0.1550000011920929,
+              2.124769449234009,
+              -7.064000129699707
+            ],
+            "world": [
+              18598.465746021888,
+              -9.292439681370245,
+              7.9239232833852595
+            ],
+            "terrainY": -13.087264944218429
+          }
+        }
+      ]
+    },
+    {
+      "frame": 1010,
+      "simulationTime": 8.416666666666666,
+      "raceTime": 5.408333333333392,
+      "wreckPhase": "wrecked",
+      "position": {
+        "x": 18600.146944912514,
+        "y": -10.256511411083826,
+        "z": 15.075286382043856
+      },
+      "authoritativeOrientation": {
+        "yaw": 0.07622427387342867,
+        "pitch": -0.10392502884695441,
+        "roll": -0.11431539630474863,
+        "bank": 0
+      },
+      "displayEulerYXZ": [
+        -0.0073515634712042754,
+        0.2923771974899341,
+        -0.34058956628444387
+      ],
+      "newPose": {
+        "position": [
+          18597.949867784675,
+          -11.778459186495173,
+          15.30987434100793
+        ],
+        "center": [
+          18600.985848778426,
+          -9.204940995579303,
+          22.390881572959252
+        ],
+        "groundCorrection": -2.3775908811910087,
+        "supportCount": 60
+      },
+      "minVertexClearance": 0.5499999999999989,
+      "verticalLiftForMinimumPointClearance05": 0,
+      "positionOccurrences": 73048,
+      "belowTerrain": 0,
+      "meshes": [
+        {
+          "name": "teemto-cockpit-body",
+          "positionOccurrences": 25119,
+          "belowTerrain": 0,
+          "minClearance": 1.822108893752132,
+          "worstPoint": {
+            "local": [
+              0.41322842240333557,
+              1.045646071434021,
+              -4.942325115203857
+            ],
+            "world": [
+              18597.23101666403,
+              -10.967269625364601,
+              10.358517401498736
+            ],
+            "terrainY": -12.789378519116733
+          }
+        },
+        {
+          "name": "teemto-engine-left-body",
+          "positionOccurrences": 13967,
+          "belowTerrain": 0,
+          "minClearance": 2.7877607822514374,
+          "worstPoint": {
+            "local": [
+              -3.547011375427246,
+              0.3465611934661865,
+              5.2692060470581055
+            ],
+            "world": [
+              18596.374837006348,
+              -10.228255700059414,
+              21.274945499221246
+            ],
+            "terrainY": -13.016016482310851
+          }
+        },
+        {
+          "name": "teemto-engine-right-body",
+          "positionOccurrences": 13867,
+          "belowTerrain": 0,
+          "minClearance": 0.5499999999999989,
+          "worstPoint": {
+            "local": [
+              4.536060810089111,
+              0.30088305473327637,
+              5.304086685180664
+            ],
+            "world": [
+              18603.671525779908,
+              -12.971071911918678,
+              19.136102055364866
+            ],
+            "terrainY": -13.521071911918677
+          }
+        },
+        {
+          "name": "teemto-pilot-accent.003",
+          "positionOccurrences": 301,
+          "belowTerrain": 0,
+          "minClearance": 2.975965887084614,
+          "worstPoint": {
+            "local": [
+              0.23000000417232513,
+              2.1751253604888916,
+              -5.253326892852783
+            ],
+            "world": [
+              18597.334902288418,
+              -9.843780618876425,
+              9.993827872311563
+            ],
+            "terrainY": -12.819746505961039
+          }
+        },
+        {
+          "name": "teemto-pilot-hardware.003",
+          "positionOccurrences": 1587,
+          "belowTerrain": 0,
+          "minClearance": 3.250316021866203,
+          "worstPoint": {
+            "local": [
+              0.011249988339841366,
+              2.4068009853363037,
+              -5.06990909576416
+            ],
+            "world": [
+              18597.263820626515,
+              -9.551000532190114,
+              10.204527827331482
+            ],
+            "terrainY": -12.801316554056317
+          }
+        },
+        {
+          "name": "teemto-pilot-rubber.002",
+          "positionOccurrences": 2524,
+          "belowTerrain": 0,
+          "minClearance": 3.056102259282433,
+          "worstPoint": {
+            "local": [
+              0.22573675215244293,
+              2.297743320465088,
+              -4.33704948425293
+            ],
+            "world": [
+              18597.634118837716,
+              -9.720049135275637,
+              10.859724867068369
+            ],
+            "terrainY": -12.77615139455807
+          }
+        },
+        {
+          "name": "teemto-pilot-shell.003",
+          "positionOccurrences": 1558,
+          "belowTerrain": 0,
+          "minClearance": 3.0100718855089,
+          "worstPoint": {
+            "local": [
+              0.2056249976158142,
+              2.2050418853759766,
+              -5.224207878112793
+            ],
+            "world": [
+              18597.330787475294,
+              -9.807227179317461,
+              10.025196181076318
+            ],
+            "terrainY": -12.817299064826361
+          }
+        },
+        {
+          "name": "teemto-pilot-suit.005",
+          "positionOccurrences": 12692,
+          "belowTerrain": 0,
+          "minClearance": 2.870219120406018,
+          "worstPoint": {
+            "local": [
+              0.20048405230045319,
+              2.083052396774292,
+              -4.689785003662109
+            ],
+            "world": [
+              18597.44139931718,
+              -9.916560169134236,
+              10.550864318931549
+            ],
+            "terrainY": -12.786779289540254
+          }
+        },
+        {
+          "name": "teemto-pilot-webbing.002",
+          "positionOccurrences": 1037,
+          "belowTerrain": 0,
+          "minClearance": 3.005889097940525,
+          "worstPoint": {
+            "local": [
+              0.22259870171546936,
+              2.204576253890991,
+              -5.241283893585205
+            ],
+            "world": [
+              18597.341049540017,
+              -9.813461377652477,
+              10.004321829667237
+            ],
+            "terrainY": -12.819350475593001
+          }
+        },
+        {
+          "name": "teemto-cockpit-graphite-v2",
+          "positionOccurrences": 396,
+          "belowTerrain": 0,
+          "minClearance": 3.0158778679724882,
+          "worstPoint": {
+            "local": [
+              0.1550000011920929,
+              2.124769449234009,
+              -7.064000129699707
+            ],
+            "world": [
+              18596.729275753514,
+              -9.879501319243992,
+              8.285425454651222
+            ],
+            "terrainY": -12.89537918721648
+          }
+        }
+      ]
+    },
+    {
+      "frame": 1070,
+      "simulationTime": 8.916666666666666,
+      "raceTime": 5.908333333333417,
+      "wreckPhase": "wrecked",
+      "position": {
+        "x": 18600.146944912514,
+        "y": -10.40222928947887,
+        "z": 15.075286382043856
+      },
+      "authoritativeOrientation": {
+        "yaw": 0.07634612023830245,
+        "pitch": -0.10755356851808512,
+        "roll": -0.11249802926133101,
+        "bank": 0
+      },
+      "displayEulerYXZ": [
+        -0.0868778538889958,
+        0.5426829162216733,
+        -0.33877219924102625
+      ],
+      "newPose": {
+        "position": [
+          18596.40771709211,
+          -12.08427677592358,
+          16.463856518718092
+        ],
+        "center": [
+          18600.98098568223,
+          -8.909151622560874,
+          22.37863754217367
+        ],
+        "groundCorrection": -1.9632611067874712,
+        "supportCount": 60
+      },
+      "minVertexClearance": 0.5500000000000007,
+      "verticalLiftForMinimumPointClearance05": 0,
+      "positionOccurrences": 73048,
+      "belowTerrain": 0,
+      "meshes": [
+        {
+          "name": "teemto-cockpit-body",
+          "positionOccurrences": 25119,
+          "belowTerrain": 0,
+          "minClearance": 1.0426291041943774,
+          "worstPoint": {
+            "local": [
+              0.06624999642372131,
+              1.0549999475479126,
+              -7.389999866485596
+            ],
+            "world": [
+              18592.915794188757,
+              -11.75614598685593,
+              9.873840084722108
+            ],
+            "terrainY": -12.798775091050308
+          }
+        },
+        {
+          "name": "teemto-engine-left-body",
+          "positionOccurrences": 13967,
+          "belowTerrain": 0,
+          "minClearance": 3.1072972515431996,
+          "worstPoint": {
+            "local": [
+              -3.443018913269043,
+              0.3914046287536621,
+              5.2596025466918945
+            ],
+            "world": [
+              18596.376515785865,
+              -10.120241417757041,
+              22.4482184195448
+            ],
+            "terrainY": -13.227538669300241
+          }
+        },
+        {
+          "name": "teemto-engine-right-body",
+          "positionOccurrences": 13867,
+          "belowTerrain": 0,
+          "minClearance": 0.5500000000000007,
+          "worstPoint": {
+            "local": [
+              4.536060810089111,
+              0.30088305473327637,
+              5.304086685180664
+            ],
+            "world": [
+              18602.940638134398,
+              -12.843117577190068,
+              18.818600059509457
+            ],
+            "terrainY": -13.393117577190068
+          }
+        },
+        {
+          "name": "teemto-pilot-accent.003",
+          "positionOccurrences": 301,
+          "belowTerrain": 0,
+          "minClearance": 2.223536309494108,
+          "worstPoint": {
+            "local": [
+              0.23000000417232513,
+              2.1751253604888916,
+              -5.253326892852783
+            ],
+            "world": [
+              18594.421205445156,
+              -10.572486686470405,
+              11.350171352335533
+            ],
+            "terrainY": -12.796022995964513
+          }
+        },
+        {
+          "name": "teemto-pilot-hardware.003",
+          "positionOccurrences": 1587,
+          "belowTerrain": 0,
+          "minClearance": 2.528159229247958,
+          "worstPoint": {
+            "local": [
+              0.011249988339841366,
+              2.4068009853363037,
+              -5.06990909576416
+            ],
+            "world": [
+              18594.391778735662,
+              -10.266465043979819,
+              11.551794952045094
+            ],
+            "terrainY": -12.794624273227777
+          }
+        },
+        {
+          "name": "teemto-pilot-rubber.002",
+          "positionOccurrences": 2524,
+          "belowTerrain": 0,
+          "minClearance": 2.3583922155629793,
+          "worstPoint": {
+            "local": [
+              0.2421443909406662,
+              2.3033227920532227,
+              -4.312377452850342
+            ],
+            "world": [
+              18594.946366208344,
+              -10.374407419792286,
+              12.116290594457446
+            ],
+            "terrainY": -12.732799635355265
+          }
+        },
+        {
+          "name": "teemto-pilot-shell.003",
+          "positionOccurrences": 1558,
+          "belowTerrain": 0,
+          "minClearance": 2.261680556327068,
+          "worstPoint": {
+            "local": [
+              0.2056249976158142,
+              2.2050418853759766,
+              -5.224207878112793
+            ],
+            "world": [
+              18594.423386555627,
+              -10.533780337714399,
+              11.379052449067895
+            ],
+            "terrainY": -12.795460894041467
+          }
+        },
+        {
+          "name": "teemto-pilot-suit.005",
+          "positionOccurrences": 12692,
+          "belowTerrain": 0,
+          "minClearance": 2.1605181254150043,
+          "worstPoint": {
+            "local": [
+              0.14886407554149628,
+              2.0733115673065186,
+              -5.250182151794434
+            ],
+            "world": [
+              18594.331413834836,
+              -10.64101654522682,
+              11.414979546017912
+            ],
+            "terrainY": -12.801534670641825
+          }
+        },
+        {
+          "name": "teemto-pilot-webbing.002",
+          "positionOccurrences": 1037,
+          "belowTerrain": 0,
+          "minClearance": 2.254105892826395,
+          "worstPoint": {
+            "local": [
+              0.22259870171546936,
+              2.204576253890991,
+              -5.241283893585205
+            ],
+            "world": [
+              18594.428450002186,
+              -10.541319095137165,
+              11.356749032436658
+            ],
+            "terrainY": -12.79542498796356
+          }
+        },
+        {
+          "name": "teemto-cockpit-graphite-v2",
+          "positionOccurrences": 396,
+          "belowTerrain": 0,
+          "minClearance": 2.038413042334712,
+          "worstPoint": {
+            "local": [
+              0.1550000011920929,
+              2.124769449234009,
+              -7.064000129699707
+            ],
+            "world": [
+              18593.415743352398,
+              -10.752080312400901,
+              9.852342791240783
+            ],
+            "terrainY": -12.790493354735613
+          }
+        }
+      ]
+    },
+    {
+      "frame": 1153,
+      "simulationTime": 9.608333333333333,
+      "raceTime": 6.600000000000118,
+      "wreckPhase": "wrecked",
+      "position": {
+        "x": 18600.146944912514,
+        "y": -10.39808679708862,
+        "z": 15.075286382043856
+      },
+      "authoritativeOrientation": {
+        "yaw": 0.07634770277715397,
+        "pitch": -0.10734814580698293,
+        "roll": -0.1133626370655771,
+        "bank": 0
+      },
+      "displayEulerYXZ": [
+        -0.13554225442484363,
+        0.2888351307689879,
+        -0.1793317828322566
+      ],
+      "newPose": {
+        "position": [
+          18598.4863404655,
+          -11.095866847606255,
+          15.558526736596477
+        ],
+        "center": [
+          18600.983335897727,
+          -7.459338291639048,
+          22.379194868489165
+        ],
+        "groundCorrection": -0.5158442106064299,
+        "supportCount": 60
+      },
+      "minVertexClearance": 1.8035014317735047,
+      "verticalLiftForMinimumPointClearance05": 0,
+      "positionOccurrences": 73048,
+      "belowTerrain": 0,
+      "meshes": [
+        {
+          "name": "teemto-cockpit-body",
+          "positionOccurrences": 25119,
+          "belowTerrain": 0,
+          "minClearance": 1.8035014317735047,
+          "worstPoint": {
+            "local": [
+              0.06624999642372131,
+              1.0549999475479126,
+              -7.389999866485596
+            ],
+            "world": [
+              18596.604084514962,
+              -11.077608693441796,
+              8.334518766329445
+            ],
+            "terrainY": -12.8811101252153
+          }
+        },
+        {
+          "name": "teemto-engine-left-body",
+          "positionOccurrences": 13967,
+          "belowTerrain": 0,
+          "minClearance": 3.630438841848619,
+          "worstPoint": {
+            "local": [
+              -3.547011375427246,
+              0.3465611934661865,
+              5.2692060470581055
+            ],
+            "world": [
+              18596.649658646067,
+              -9.419090778418823,
+              21.41352021503404
+            ],
+            "terrainY": -13.049529620267442
+          }
+        },
+        {
+          "name": "teemto-engine-right-body",
+          "positionOccurrences": 13867,
+          "belowTerrain": 0,
+          "minClearance": 2.7267516763764075,
+          "worstPoint": {
+            "local": [
+              3.511517286300659,
+              0.3092491626739502,
+              5.302051544189453
+            ],
+            "world": [
+              18603.360051941403,
+              -10.698526341376382,
+              19.636172656193754
+            ],
+            "terrainY": -13.42527801775279
+          }
+        },
+        {
+          "name": "teemto-pilot-accent.003",
+          "positionOccurrences": 301,
+          "belowTerrain": 0,
+          "minClearance": 3.0950034647289737,
+          "worstPoint": {
+            "local": [
+              0.23000000417232513,
+              2.1751253604888916,
+              -5.253326892852783
+            ],
+            "world": [
+              18597.511778743632,
+              -9.725772446753316,
+              10.122113897053197
+            ],
+            "terrainY": -12.82077591148229
+          }
+        },
+        {
+          "name": "teemto-pilot-hardware.003",
+          "positionOccurrences": 1587,
+          "belowTerrain": 0,
+          "minClearance": 3.3622458002384192,
+          "worstPoint": {
+            "local": [
+              -1.1431032120867712e-8,
+              2.403860569000244,
+              -5.069243907928467
+            ],
+            "world": [
+              18597.37566259705,
+              -9.437245705482482,
+              10.315326376826128
+            ],
+            "terrainY": -12.799491505720901
+          }
+        },
+        {
+          "name": "teemto-pilot-rubber.002",
+          "positionOccurrences": 2524,
+          "belowTerrain": 0,
+          "minClearance": 3.295532383788851,
+          "worstPoint": {
+            "local": [
+              0.22573675215244293,
+              2.297743320465088,
+              -4.33704948425293
+            ],
+            "world": [
+              18597.78264507807,
+              -9.48165964113621,
+              10.971618456157165
+            ],
+            "terrainY": -12.77719202492506
+          }
+        },
+        {
+          "name": "teemto-pilot-shell.003",
+          "positionOccurrences": 1558,
+          "belowTerrain": 0,
+          "minClearance": 3.129697317833921,
+          "worstPoint": {
+            "local": [
+              0.2056249976158142,
+              2.2050418853759766,
+              -5.224207878112793
+            ],
+            "world": [
+              18597.50082109712,
+              -9.688362951025928,
+              10.150706134421952
+            ],
+            "terrainY": -12.818060268859849
+          }
+        },
+        {
+          "name": "teemto-pilot-suit.005",
+          "positionOccurrences": 12692,
+          "belowTerrain": 0,
+          "minClearance": 2.9961405735810267,
+          "worstPoint": {
+            "local": [
+              0.09487903863191605,
+              2.064603328704834,
+              -5.28869104385376
+            ],
+            "world": [
+              18597.358712159727,
+              -9.814422537104317,
+              10.142975354021399
+            ],
+            "terrainY": -12.810563110685344
+          }
+        },
+        {
+          "name": "teemto-pilot-webbing.002",
+          "positionOccurrences": 1037,
+          "belowTerrain": 0,
+          "minClearance": 3.124836460391027,
+          "worstPoint": {
+            "local": [
+              0.19500000774860382,
+              2.200869083404541,
+              -5.245820045471191
+            ],
+            "world": [
+              18597.48407171675,
+              -9.693473756961968,
+              10.133655434034218
+            ],
+            "terrainY": -12.818310217352995
+          }
+        },
+        {
+          "name": "teemto-cockpit-graphite-v2",
+          "positionOccurrences": 396,
+          "belowTerrain": 0,
+          "minClearance": 2.8962843846760364,
+          "worstPoint": {
+            "local": [
+              0.1550000011920929,
+              2.124769449234009,
+              -7.064000129699707
+            ],
+            "world": [
+              18596.922806352515,
+              -10.006283098813336,
+              8.430628282138333
+            ],
+            "terrainY": -12.902567483489372
+          }
+        }
+      ]
+    },
+    {
+      "frame": 1169,
+      "simulationTime": 9.741666666666667,
+      "raceTime": 6.733333333333458,
+      "wreckPhase": "recovering",
+      "position": {
+        "x": 18603.435611755107,
+        "y": -9.338399181135117,
+        "z": -10.213802511245468
+      },
+      "authoritativeOrientation": {
+        "yaw": -0.04762988648670374,
+        "pitch": 0,
+        "roll": 0,
+        "bank": 0
+      },
+      "displayEulerYXZ": [
+        0,
+        -0.04762988648670374,
+        0
+      ],
+      "newPose": null,
+      "minVertexClearance": 2.846545715533928,
+      "verticalLiftForMinimumPointClearance05": 0,
+      "positionOccurrences": 73048,
+      "belowTerrain": 0,
+      "meshes": [
+        {
+          "name": "teemto-cockpit-body",
+          "positionOccurrences": 25119,
+          "belowTerrain": 0,
+          "minClearance": 3.5608319805342354,
+          "worstPoint": {
+            "local": [
+              -0.2262045294046402,
+              1.0053223371505737,
+              -4.937817573547363
+            ],
+            "world": [
+              18603.444762537587,
+              -8.333076843984543,
+              -15.156790184903613
+            ],
+            "terrainY": -11.893908824518778
+          }
+        },
+        {
+          "name": "teemto-engine-left-body",
+          "positionOccurrences": 13967,
+          "belowTerrain": 0,
+          "minClearance": 2.846545715533928,
+          "worstPoint": {
+            "local": [
+              -4.571556091308594,
+              0.3549070358276367,
+              5.267200469970703
+            ],
+            "world": [
+              18598.618458898818,
+              -8.98349214530748,
+              -5.170235891681651
+            ],
+            "terrainY": -11.830037860841408
+          }
+        },
+        {
+          "name": "teemto-engine-right-body",
+          "positionOccurrences": 13867,
+          "belowTerrain": 0,
+          "minClearance": 3.7962269505894373,
+          "worstPoint": {
+            "local": [
+              3.511517286300659,
+              0.3092491626739502,
+              5.302051544189453
+            ],
+            "world": [
+              18606.690706029753,
+              -9.029150018461166,
+              -4.750574025047493
+            ],
+            "terrainY": -12.825376969050604
+          }
+        },
+        {
+          "name": "teemto-pilot-accent.003",
+          "positionOccurrences": 301,
+          "belowTerrain": 0,
+          "minClearance": 4.772070131786457,
+          "worstPoint": {
+            "local": [
+              -0.23000000417232513,
+              2.1751253604888916,
+              -5.253326892852783
+            ],
+            "world": [
+              18603.455993358955,
+              -7.163273820646225,
+              -15.472122398368558
+            ],
+            "terrainY": -11.935343952432682
+          }
+        },
+        {
+          "name": "teemto-pilot-hardware.003",
+          "positionOccurrences": 1587,
+          "belowTerrain": 0,
+          "minClearance": 4.984460067430543,
+          "worstPoint": {
+            "local": [
+              -1.1431032120867712e-8,
+              2.403860569000244,
+              -5.069243907928467
+            ],
+            "world": [
+              18603.676967974403,
+              -6.934538612134872,
+              -15.27729744789518
+            ],
+            "terrainY": -11.918998679565416
+          }
+        },
+        {
+          "name": "teemto-pilot-rubber.002",
+          "positionOccurrences": 2524,
+          "belowTerrain": 0,
+          "minClearance": 4.785778641985038,
+          "worstPoint": {
+            "local": [
+              -0.22573690116405487,
+              2.297743320465088,
+              -4.33704948425293
+            ],
+            "world": [
+              18603.41662593755,
+              -7.040655860670029,
+              -14.55668115520242
+            ],
+            "terrainY": -11.826434502655067
+          }
+        },
+        {
+          "name": "teemto-pilot-shell.003",
+          "positionOccurrences": 1558,
+          "belowTerrain": 0,
+          "minClearance": 4.798688762626812,
+          "worstPoint": {
+            "local": [
+              -0.2056249976158142,
+              2.2050418853759766,
+              -5.224208354949951
+            ],
+            "world": [
+              18603.478954333772,
+              -7.13335729575914,
+              -15.441876343590236
+            ],
+            "terrainY": -11.932046058385952
+          }
+        },
+        {
+          "name": "teemto-pilot-suit.005",
+          "positionOccurrences": 12692,
+          "belowTerrain": 0,
+          "minClearance": 4.609879525033971,
+          "worstPoint": {
+            "local": [
+              -0.20314370095729828,
+              2.0886070728302,
+              -4.641447067260742
+            ],
+            "world": [
+              18603.45368645614,
+              -7.249792108304916,
+              -14.85965781964719
+            ],
+            "terrainY": -11.859671633338888
+          }
+        },
+        {
+          "name": "teemto-pilot-webbing.002",
+          "positionOccurrences": 1037,
+          "belowTerrain": 0,
+          "minClearance": 4.7573796306483995,
+          "worstPoint": {
+            "local": [
+              -0.021150007843971252,
+              2.1739208698272705,
+              -5.09856653213501
+            ],
+            "world": [
+              18603.657238069212,
+              -7.164478311307846,
+              -15.307593808730527
+            ],
+            "terrainY": -11.921857941956246
+          }
+        },
+        {
+          "name": "teemto-cockpit-graphite-v2",
+          "positionOccurrences": 396,
+          "belowTerrain": 0,
+          "minClearance": 4.912653049700765,
+          "worstPoint": {
+            "local": [
+              -0.07500000298023224,
+              2.4852497577667236,
+              -3.436000108718872
+            ],
+            "world": [
+              18603.52429123233,
+              -6.853149423368393,
+              -13.649476782459564
+            ],
+            "terrainY": -11.765802473069158
+          }
+        }
+      ]
+    }
+  ]
+}

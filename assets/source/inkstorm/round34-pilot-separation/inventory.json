@@ -1,0 +1,65 @@
+{
+  "scope": "Private preparation and input evidence; parent subsequently applied the patch. No visual/performance acceptance claim.",
+  "files": [
+    {
+      "path": "PILOT_SEPARATION_CANDIDATE.md",
+      "bytes": 3603,
+      "sha256": "d4469ad8bd5555047f28fbeba5986eb54760f62b0416dd019df14d09ffa0a189"
+    },
+    {
+      "path": "baseline/src/game/vehicleAppearance.ts",
+      "bytes": 13971,
+      "sha256": "e34fe080ac704fffa0d4ad4008cad2f0d49b154c052fa5eabe633abe45d834de"
+    },
+    {
+      "path": "baseline/src/render/vehicles/ImportedVehiclePresentation.ts",
+      "bytes": 23384,
+      "sha256": "715e86ca1e83a450480fb373dc25da45ba2359fc3a3d9aeda8464a066c699ab9"
+    },
+    {
+      "path": "baseline/tests/render/importedVehiclePresentation.test.ts",
+      "bytes": 24080,
+      "sha256": "bc2a65a260aeddf2f94d832e1272e07937973dadf3131f7f4208ed9a130705bc"
+    },
+    {
+      "path": "blockrunner-pilot-separation-v1.patch",
+      "bytes": 9430,
+      "sha256": "167fd87636668b3b3183948c4025322db7788e43910e4a96cc8bdccb50488ea9"
+    },
+    {
+      "path": "candidate/src/game/vehicleAppearance.ts",
+      "bytes": 14646,
+      "sha256": "d60711be193329f77b2f1d1eba01e798db69793e5273d1ba199141c5422f59b2"
+    },
+    {
+      "path": "candidate/src/render/vehicles/ImportedVehiclePresentation.ts",
+      "bytes": 23931,
+      "sha256": "309490a5d92445704a0107cbb363e1f32776b66fc3ca8548c7666a7ffb1e4d0e"
+    },
+    {
+      "path": "candidate/tests/render/importedVehiclePresentation.test.ts",
+      "bytes": 27489,
+      "sha256": "c0bda12e6ba71876e0d282d80ede4966154b79f44fb32336accd5395e3b384da"
+    },
+    {
+      "path": "candidate-inputs.json",
+      "bytes": 766,
+      "sha256": "2073a20694775ef8c90e979b6a19d4d4a9fdd83e2c1ac107672cb79994e4ff35"
+    },
+    {
+      "path": "diffuse-formula-sanity.json",
+      "bytes": 5113,
+      "sha256": "9bb6064186cb9828a003b2848a53c93fdd1a9a4ef26d3a553ff7667d6f26e23c"
+    },
+    {
+      "path": "prepare-candidate.py",
+      "bytes": 8371,
+      "sha256": "ede7863359c9f7ac501bca337aadf3ca1f32f0875118b6fd5eed9dba1792e7bb"
+    },
+    {
+      "path": "viewed-inputs.json",
+      "bytes": 3344,
+      "sha256": "1329c8ffda98b3ea433a2b8ef17ae6e90dbbaabbce5542ad0ac34f2895529d2f"
+    }
+  ]
+}

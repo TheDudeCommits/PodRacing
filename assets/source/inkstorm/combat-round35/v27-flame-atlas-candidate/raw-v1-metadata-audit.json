@@ -1,0 +1,162 @@
+{
+  "outcome": "PASS for approved nonuniform metadata sampling; raw equal-grid/512 contract failed and is not relabeled",
+  "source": {
+    "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/combat-round35/v27-flame-atlas-candidate/flame-atlas-raw-v1.png",
+    "bytes": 578105,
+    "sha256": "f14657a3388bf9618d0206806c7b9c54856bd7f54c98596ea1790d85c97dd4c5"
+  },
+  "mode": "RGBA",
+  "width": 1254,
+  "height": 1254,
+  "alphaExtrema": [
+    0,
+    255
+  ],
+  "alphaRule": "Source byte alpha<=2 is below existing shader .008 discard at maximum opacity. No source pixels edited.",
+  "pixelsAbove2OutsideOrOverlappingFrames": 0,
+  "outerEdgeMaximumAlpha": 0,
+  "separatorBandsMaximumAlpha": {
+    "upperX716to723": 1,
+    "lowerX776to783": 1,
+    "Y623to630": 1
+  },
+  "frames": [
+    {
+      "rect": [
+        245,
+        126,
+        619,
+        539
+      ],
+      "root": [
+        266,
+        349
+      ],
+      "meaningfulAlphaPixels": 45844,
+      "boundsAlphaAbove2": [
+        259,
+        139,
+        604,
+        523
+      ],
+      "borderMaximumAlpha": 0,
+      "rootRgba": [
+        253,
+        229,
+        143,
+        247
+      ],
+      "maximumAbsRootOffsetPixels": [
+        337,
+        210
+      ],
+      "maximumRootRadiusPixels": 341.9546753591768,
+      "maximumRootRadiusMetresAtSeverity2": 2.849622294659807
+    },
+    {
+      "rect": [
+        860,
+        102,
+        1254,
+        489
+      ],
+      "root": [
+        882,
+        349
+      ],
+      "meaningfulAlphaPixels": 56871,
+      "boundsAlphaAbove2": [
+        874,
+        114,
+        1242,
+        475
+      ],
+      "borderMaximumAlpha": 0,
+      "rootRgba": [
+        252,
+        219,
+        126,
+        250
+      ],
+      "maximumAbsRootOffsetPixels": [
+        359,
+        235
+      ],
+      "maximumRootRadiusPixels": 374.32205385202724,
+      "maximumRootRadiusMetresAtSeverity2": 3.1193504487668937
+    },
+    {
+      "rect": [
+        194,
+        730,
+        720,
+        1134
+      ],
+      "root": [
+        231,
+        969
+      ],
+      "meaningfulAlphaPixels": 93255,
+      "boundsAlphaAbove2": [
+        210,
+        743,
+        706,
+        1121
+      ],
+      "borderMaximumAlpha": 1,
+      "rootRgba": [
+        253,
+        231,
+        122,
+        247
+      ],
+      "maximumAbsRootOffsetPixels": [
+        474,
+        226
+      ],
+      "maximumRootRadiusPixels": 475.85712141356044,
+      "maximumRootRadiusMetresAtSeverity2": 3.9654760117796704
+    },
+    {
+      "rect": [
+        860,
+        814,
+        1201,
+        1117
+      ],
+      "root": [
+        889,
+        969
+      ],
+      "meaningfulAlphaPixels": 15999,
+      "boundsAlphaAbove2": [
+        874,
+        830,
+        1187,
+        1101
+      ],
+      "borderMaximumAlpha": 0,
+      "rootRgba": [
+        255,
+        245,
+        129,
+        253
+      ],
+      "maximumAbsRootOffsetPixels": [
+        297,
+        139
+      ],
+      "maximumRootRadiusPixels": 297.28437564056406,
+      "maximumRootRadiusMetresAtSeverity2": 2.4773697970047004
+    }
+  ],
+  "metadataAuthority": {
+    "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/combat-round35/v27-flame-atlas-integration/candidate/src/render/galactic/RuptureFlameAtlas.ts",
+    "bytes": 5842,
+    "sha256": "1b31608f0bb490ffbe0810c42412fcac785906f0d9f85bd7881ffe2a0a71375d"
+  },
+  "rootAuthority": "Visually selected left ignition witnesses near parent-suggested roots, refined to actual alpha>200 ivory pixels. These are authored sampling datums, not automatically discovered physical geometry.",
+  "pixelScale": "severity/240 metres per PNG pixel; severity2=1/120m. Matrix pulses/stretch are canceled in source-coordinate spans; existing world matrices are unchanged.",
+  "sampling": "flipY=false top-down pixel indices, plus half texel, per-frame clamp and transparent outside rectangle, linear sRGB sampling, no generated mipmaps",
+  "limitations": "Still a private art trial. No native/GPU texture upload or visual acceptance in this audit. Tiny source alpha specks remain in immutable PNG."
+}

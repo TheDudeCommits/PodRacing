@@ -1,0 +1,34 @@
+{
+  "status": "UV_TRANSFER_VALIDATED_NOT_BAKE_OR_RUNTIME_ACCEPTANCE",
+  "sourceSha256": "ea94400e38bf6cf5998f84cbd2cffd342054760e17c43c0f4b75ac636212d1dc",
+  "outputSha256": "e0a5a2260058876c14ede8f9f65c1268fa8dd4192e1b2c5a6e5b661da27a98e4",
+  "triangles": 12012,
+  "sourceVertices": 22906,
+  "vertices": 23202,
+  "vertexGrowth": 296,
+  "bytes": 1094204,
+  "originalCornerAttributesExact": true,
+  "uv0AliasesUv1": true,
+  "uvOriginConversion": "V_glTF=1-V_Blender; runtime texture.flipY=false",
+  "validation": {
+    "numErrors": 0,
+    "numWarnings": 0,
+    "numInfos": 2,
+    "numHints": 0,
+    "messages": [
+      {
+        "code": "UNUSED_OBJECT",
+        "message": "This object may be unused.",
+        "severity": 2,
+        "pointer": "/meshes/0/primitives/0/attributes/TEXCOORD_0"
+      },
+      {
+        "code": "UNUSED_OBJECT",
+        "message": "This object may be unused.",
+        "severity": 2,
+        "pointer": "/meshes/0/primitives/0/attributes/TEXCOORD_1"
+      }
+    ],
+    "truncated": false
+  }
+}

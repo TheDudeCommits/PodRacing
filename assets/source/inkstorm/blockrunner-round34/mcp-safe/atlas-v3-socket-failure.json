@@ -1,0 +1,1 @@
+{"status":"failed; new copy rolled back","reason":"Blender disabled Weight socket is iterable but not available by name lookup","verification":{"sceneCount":144,"activeScene":"Cruise — Going Merry source 4b2cb678","v3Present":false},"fix":"Match each destination socket by its identifier through iteration; retain equality check across all inherited response values."}

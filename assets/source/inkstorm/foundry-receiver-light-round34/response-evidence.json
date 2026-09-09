@@ -1,0 +1,148 @@
+{
+  "status": "PASS",
+  "scope": "Independent CPU analogue of staged local profile, evaluated at every original GLB triangle centroid. Not a raster shader compile, image/render or visual acceptance. Centroid counts are not screen area or coverage guarantees; actual occlusion and camera still need A/B.",
+  "records": [
+    {
+      "family": "pipe-bank",
+      "scale": [
+        1,
+        1.15,
+        1
+      ],
+      "source": "public/assets/inkstorm/pipe-bank-detail-v1.glb",
+      "bytes": 1329140,
+      "sha256": "7a28b2e2f3ce25b173ed21033cbe0d28e7341197407b5e86d2400848dba8d946",
+      "triangleCentroids": 19960,
+      "nonLampCentroidsWithCoolResponseAbove0_01": 543,
+      "nonLampCentroidsWithContactAbove0_10": 1640,
+      "maxCool": 0.9800455892824471,
+      "maxContact": 1,
+      "meanCool": 0.0033252671375777003,
+      "meanContact": 0.06173331359540728
+    },
+    {
+      "family": "pipe-bank",
+      "scale": [
+        1,
+        1.85,
+        1
+      ],
+      "source": "public/assets/inkstorm/pipe-bank-detail-v1.glb",
+      "bytes": 1329140,
+      "sha256": "7a28b2e2f3ce25b173ed21033cbe0d28e7341197407b5e86d2400848dba8d946",
+      "triangleCentroids": 19960,
+      "nonLampCentroidsWithCoolResponseAbove0_01": 409,
+      "nonLampCentroidsWithContactAbove0_10": 1640,
+      "maxCool": 0.950165039686284,
+      "maxContact": 1,
+      "meanCool": 0.0024202998531536704,
+      "meanContact": 0.06173331359540728
+    },
+    {
+      "family": "service-gantry",
+      "scale": [
+        0.78,
+        1.05,
+        1
+      ],
+      "source": "public/assets/inkstorm/foundry-service-gantry-v3.glb",
+      "bytes": 1327988,
+      "sha256": "55d694f8406d9a2ff819ba7d262d86e30f0bc8bafd543699a8ceff83da2380b4",
+      "triangleCentroids": 19872,
+      "nonLampCentroidsWithCoolResponseAbove0_01": 105,
+      "nonLampCentroidsWithContactAbove0_10": 0,
+      "maxCool": 0.44804023138224536,
+      "maxContact": 0,
+      "meanCool": 0.0008942222182555954,
+      "meanContact": 0.0
+    }
+  ],
+  "fixtureReceiverChecks": [
+    {
+      "family": "pipe-bank",
+      "source": [
+        -27,
+        17.6,
+        3.32
+      ],
+      "frontReceiver30cmResponse": 0.9864652516896837,
+      "reversedNormal": 0,
+      "receiver3mBehindGlass": 0
+    },
+    {
+      "family": "pipe-bank",
+      "source": [
+        17,
+        24.2,
+        5.32
+      ],
+      "frontReceiver30cmResponse": 0.9873163143951112,
+      "reversedNormal": 0,
+      "receiver3mBehindGlass": 0
+    },
+    {
+      "family": "pipe-bank",
+      "source": [
+        25,
+        4.6,
+        16.23
+      ],
+      "frontReceiver30cmResponse": 0.9829831287128712,
+      "reversedNormal": 0,
+      "receiver3mBehindGlass": 0
+    },
+    {
+      "family": "pipe-bank",
+      "source": [
+        37,
+        12.1,
+        -4.68
+      ],
+      "frontReceiver30cmResponse": 0.9829831287128712,
+      "reversedNormal": 0,
+      "receiver3mBehindGlass": 0
+    },
+    {
+      "family": "service-gantry",
+      "source": [
+        -46,
+        29,
+        3.42
+      ],
+      "frontReceiver30cmResponse": 0.9864652516896837,
+      "reversedNormal": 0,
+      "receiver3mBehindGlass": 0
+    },
+    {
+      "family": "service-gantry",
+      "source": [
+        46,
+        29,
+        3.42
+      ],
+      "frontReceiver30cmResponse": 0.9864652516896837,
+      "reversedNormal": 0,
+      "receiver3mBehindGlass": 0
+    }
+  ],
+  "analyticChecks": [
+    "Finite normalized response on all centroids and specified actual instance scales",
+    "Original lens colors excluded from receiver/contact response",
+    "Front-normal response, reversed-normal zero, behind-envelope zero",
+    "Band contact versus blank shell and horizontal cap guards"
+  ],
+  "budget": {
+    "trianglesAdded": 0,
+    "drawCallsAdded": 0,
+    "texturesAdded": 0,
+    "newGLBOrGeometryAttributes": 0,
+    "newUniforms": 0,
+    "perFrameWorkAdded": 0,
+    "additionalVaryingFloatsPerOptedFamily": 3,
+    "shaderProgramCountExpectedDelta": 1,
+    "programExplanation": "Pipe-bank becomes a new variant; existing warm service-gantry variant is replaced by its finish variant. Existing generic machinery and original grid gantry are unchanged.",
+    "maxStripEvaluationsPerPipeFragment": 4,
+    "maxStripEvaluationsPerGantryFragment": 2,
+    "maxAnalyticContactShellEvaluationsPerPipeFragment": 3
+  }
+}

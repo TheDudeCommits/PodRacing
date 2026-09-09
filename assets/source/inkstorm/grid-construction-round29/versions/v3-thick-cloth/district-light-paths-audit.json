@@ -1,0 +1,167 @@
+{
+  "status": "PASS: all 9 rejected anchor paths hit opaque geometry; all 9 corrected anchor paths are clear",
+  "method": "Actual final candidate triangles, FrontSide segment rays; skip self intersection within 12mm",
+  "limitation": "Selected source-to-work-area paths only; this does not establish shadows/occlusion for every receiver or visual acceptance.",
+  "variants": [
+    {
+      "name": "rejected-v2",
+      "candidateSha256": "2ac76f281193d72216ff6c8bc2c14db123d58c8881f6e7b951a6ef1dd73ff705",
+      "clearPaths": 0,
+      "totalPaths": 9,
+      "paths": [
+        {
+          "fixture": "district-task-1",
+          "target": "above-engine",
+          "clear": false,
+          "nearestHitGLB": [
+            -36.438312762493645,
+            10.637059867573273,
+            -2.438312762493645
+          ]
+        },
+        {
+          "fixture": "district-task-1",
+          "target": "above-bench",
+          "clear": false,
+          "nearestHitGLB": [
+            -36.071933839423764,
+            10.75201758183054,
+            -2.575470715390114
+          ]
+        },
+        {
+          "fixture": "district-task-1",
+          "target": "work-aisle",
+          "clear": false,
+          "nearestHitGLB": [
+            -35.722618598703,
+            10.43875244493218,
+            -2.1849209341980003
+          ]
+        },
+        {
+          "fixture": "district-task-2",
+          "target": "above-engine",
+          "clear": false,
+          "nearestHitGLB": [
+            0.7464473172270455,
+            15.633287349233647,
+            -6.253552682772955
+          ]
+        },
+        {
+          "fixture": "district-task-2",
+          "target": "above-bench",
+          "clear": false,
+          "nearestHitGLB": [
+            0.9521751168120043,
+            15.723364353828817,
+            -6.382599065503966
+          ]
+        },
+        {
+          "fixture": "district-task-2",
+          "target": "work-aisle",
+          "clear": false,
+          "nearestHitGLB": [
+            1.1625324931847163,
+            15.557585584485334,
+            -6.1083549954564775
+          ]
+        },
+        {
+          "fixture": "district-task-3",
+          "target": "above-engine",
+          "clear": false,
+          "nearestHitGLB": [
+            40.627137709521975,
+            12.38021038692464,
+            0.6271377095219767
+          ]
+        },
+        {
+          "fixture": "district-task-3",
+          "target": "above-bench",
+          "clear": false,
+          "nearestHitGLB": [
+            40.93693046385285,
+            12.515877784370549,
+            0.4954437108228298
+          ]
+        },
+        {
+          "fixture": "district-task-3",
+          "target": "work-aisle",
+          "clear": false,
+          "nearestHitGLB": [
+            41.23626106209584,
+            12.236530825363946,
+            0.8424926252694402
+          ]
+        }
+      ]
+    },
+    {
+      "name": "current-v3",
+      "candidateSha256": "c5aa216edc139efe484981b390946f3a7464587ab508fe5ffec2d8c999240447",
+      "clearPaths": 9,
+      "totalPaths": 9,
+      "paths": [
+        {
+          "fixture": "district-task-1",
+          "target": "above-engine",
+          "clear": true,
+          "nearestHitGLB": null
+        },
+        {
+          "fixture": "district-task-1",
+          "target": "above-bench",
+          "clear": true,
+          "nearestHitGLB": null
+        },
+        {
+          "fixture": "district-task-1",
+          "target": "work-aisle",
+          "clear": true,
+          "nearestHitGLB": null
+        },
+        {
+          "fixture": "district-task-2",
+          "target": "above-engine",
+          "clear": true,
+          "nearestHitGLB": null
+        },
+        {
+          "fixture": "district-task-2",
+          "target": "above-bench",
+          "clear": true,
+          "nearestHitGLB": null
+        },
+        {
+          "fixture": "district-task-2",
+          "target": "work-aisle",
+          "clear": true,
+          "nearestHitGLB": null
+        },
+        {
+          "fixture": "district-task-3",
+          "target": "above-engine",
+          "clear": true,
+          "nearestHitGLB": null
+        },
+        {
+          "fixture": "district-task-3",
+          "target": "above-bench",
+          "clear": true,
+          "nearestHitGLB": null
+        },
+        {
+          "fixture": "district-task-3",
+          "target": "work-aisle",
+          "clear": true,
+          "nearestHitGLB": null
+        }
+      ]
+    }
+  ]
+}

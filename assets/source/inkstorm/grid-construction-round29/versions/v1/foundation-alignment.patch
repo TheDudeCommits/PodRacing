@@ -1,0 +1,11 @@
+--- a/src/render/inkstorm/InkstormFoundations.ts
++++ b/src/render/inkstorm/InkstormFoundations.ts
+@@ -13,6 +13,8 @@
+     const sizes: Partial<Record<InkstormPlacement['family'], [number, number]>> = { 'pit-district': [120,36], 'pit-complex': [150, 61], 'pipe-bank': [94, 44], 'finish-tower': [30, 23] };
+     const dimensions = sizes[p.family];
+     const supports: number[][] = p.family === 'foundry-gantry' ? [[-46, 0, 12, 14], [46, 0, 12, 14]]
++      // The hangar slab is offset within its source GLB, unlike the other pads.
++      : p.family === 'pit-complex' ? [[4, -2.25, 150, 60.5]]
+       : dimensions ? [[0, 0, dimensions[0]!, dimensions[1]!]] : [];
+     const top = heightAt(p.x, p.z) + 1.5;
+     for (const [localX = 0, localZ = 0, width = 1, depth = 1] of supports) {

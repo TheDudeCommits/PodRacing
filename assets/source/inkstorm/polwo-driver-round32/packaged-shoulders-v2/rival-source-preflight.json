@@ -1,0 +1,188 @@
+{
+  "file": "assets/source/inkstorm/polwo-driver-round32/packaged-shoulders-v2/polwo-rival-v1.glb",
+  "sha256": "b9a2f310ffd43477091575a52f1cb6804ec9fafca6fcf31093072b7f43e6d502",
+  "bytes": 4188076,
+  "statistics": {
+    "triangles": 28830,
+    "bodyDraws": 2,
+    "pilotDraws": 6,
+    "opaqueDraws": 8,
+    "draws": [
+      {
+        "node": "polwo-body-0",
+        "mesh": 0,
+        "pilot": false,
+        "triangles": 19199,
+        "vertices": 32032,
+        "tangents": true
+      },
+      {
+        "node": "polwo-body-1",
+        "mesh": 1,
+        "pilot": false,
+        "triangles": 544,
+        "vertices": 982,
+        "tangents": true
+      },
+      {
+        "node": "polwo-pilot-accent",
+        "mesh": 2,
+        "pilot": true,
+        "triangles": 188,
+        "vertices": 363,
+        "tangents": true
+      },
+      {
+        "node": "polwo-pilot-hardware",
+        "mesh": 3,
+        "pilot": true,
+        "triangles": 1100,
+        "vertices": 1416,
+        "tangents": true
+      },
+      {
+        "node": "polwo-pilot-rubber",
+        "mesh": 4,
+        "pilot": true,
+        "triangles": 1000,
+        "vertices": 1225,
+        "tangents": true
+      },
+      {
+        "node": "polwo-pilot-shell",
+        "mesh": 5,
+        "pilot": true,
+        "triangles": 1100,
+        "vertices": 1346,
+        "tangents": true
+      },
+      {
+        "node": "polwo-pilot-suit",
+        "mesh": 6,
+        "pilot": true,
+        "triangles": 5000,
+        "vertices": 6675,
+        "tangents": true
+      },
+      {
+        "node": "polwo-pilot-webbing",
+        "mesh": 7,
+        "pilot": true,
+        "triangles": 699,
+        "vertices": 1039,
+        "tangents": true
+      }
+    ],
+    "images": [
+      {
+        "index": 0,
+        "name": "Material_6_normal",
+        "role": [
+          "body",
+          "normal"
+        ],
+        "width": 512,
+        "height": 512,
+        "encodedBytes": 468899,
+        "sha256": "1d2c1b417c473f3f745ab5d922a92ba748e31c318609255e1a6074909acf1c58",
+        "rgba8Bytes": 1048576,
+        "rgba8FullMipBytes": 1398100
+      },
+      {
+        "index": 1,
+        "name": "polwo-inkstorm-orm-v1",
+        "role": [
+          "body",
+          "data"
+        ],
+        "width": 512,
+        "height": 512,
+        "encodedBytes": 458385,
+        "sha256": "67bef9e2fe3aee278866a432ab2ab1e9f43f52a6303e2e4cfadc5e82ee52bec1",
+        "rgba8Bytes": 1048576,
+        "rgba8FullMipBytes": 1398100
+      },
+      {
+        "index": 2,
+        "name": "polwo-inkstorm-base-color-v1",
+        "role": [
+          "body",
+          "color"
+        ],
+        "width": 512,
+        "height": 512,
+        "encodedBytes": 397106,
+        "sha256": "25eaefe085fd5ce857d46048fbabc3916301e06c3b45af02bf23941268c12757",
+        "rgba8Bytes": 1048576,
+        "rgba8FullMipBytes": 1398100
+      },
+      {
+        "index": 3,
+        "name": "pilot-normal-atlas-v4b",
+        "role": [
+          "pilot",
+          "normal"
+        ],
+        "width": 256,
+        "height": 256,
+        "encodedBytes": 55106,
+        "sha256": "b318f97e92f7568ead411efa81d4123fb27c11f5e06d38004f2850768d6c1f23",
+        "rgba8Bytes": 262144,
+        "rgba8FullMipBytes": 349524
+      },
+      {
+        "index": 4,
+        "name": "pilot-color-atlas-v4c",
+        "role": [
+          "pilot",
+          "color"
+        ],
+        "width": 512,
+        "height": 512,
+        "encodedBytes": 406096,
+        "sha256": "4e9ffeb6fe1fa502b645ccecdca5390db85813635471906746bc29d0e7ed1372",
+        "rgba8Bytes": 1048576,
+        "rgba8FullMipBytes": 1398100
+      },
+      {
+        "index": 5,
+        "name": "pilot-roughness-atlas-v4b",
+        "role": [
+          "pilot",
+          "data"
+        ],
+        "width": 256,
+        "height": 256,
+        "encodedBytes": 55602,
+        "sha256": "df943d57030865e0da91a1773e62b92ef2eec0c8402293c5c70053b40858e803",
+        "rgba8Bytes": 262144,
+        "rgba8FullMipBytes": 349524
+      }
+    ],
+    "imageBytes": 1841194,
+    "rgba8Bytes": 4718592,
+    "rgba8FullMipBytes": 6291448,
+    "textureDefinitions": 6,
+    "uniqueImages": 6,
+    "allMeshDefinitionsReferenced": true
+  },
+  "preservation": {
+    "baselineSha256": "7a77b0ec4a3e697c06ef801e2b854f1807c622231e56aa29a83c7ebe870b256e",
+    "meshAndAccessorPayloadsExact": true,
+    "existingNodeTransformsHierarchyExact": true,
+    "materialFactorsAndTextureBindingsExact": true,
+    "imageChannelRolesExact": true
+  },
+  "sourcePreflightPass": true,
+  "failures": [],
+  "measuredRuntimeGpuAllocation": false,
+  "liveImportOrVisualAcceptance": false,
+  "embeddedPilotNodePrefix": "polwo-pilot-",
+  "anchorNodes": [
+    "polwo-anchor-pilot",
+    "polwo-anchor-exhaustLeft",
+    "polwo-anchor-exhaustRight",
+    "polwo-anchor-couplingLeft",
+    "polwo-anchor-couplingRight"
+  ]
+}

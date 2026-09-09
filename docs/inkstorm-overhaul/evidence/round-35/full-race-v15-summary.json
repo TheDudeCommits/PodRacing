@@ -1,0 +1,154 @@
+{
+  "outcome": "PASS",
+  "build": [
+    {
+      "url": "http://127.0.0.1:56662/assets/index-U_bStFYH.js",
+      "sha256": "fb724c688802d97917a2632826be07f8d7567b6b3d70cf7ebd3810ca534bbf2d"
+    }
+  ],
+  "device": {
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/152.0.0.0 Safari/537.36",
+    "hardwareConcurrency": 10,
+    "requestedDpr": 2,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "canvas": {
+      "width": 2520,
+      "height": 1575
+    },
+    "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M4, Unspecified Version)",
+    "vendor": "Google Inc. (Apple)",
+    "webglVersion": "WebGL 2.0 (OpenGL ES 3.0 Chromium)"
+  },
+  "method": "Native requestAnimationFrame intervals across each complete ordinary racing phase, including transient slow frames and post-player classification grace. Countdown reported separately; no warmup removal or interior exclusions. Read-only snapshot/input-controller overhead is included. No GPU timer queries or physical presentation timestamps.",
+  "races": {
+    "time-attack": {
+      "summary": {
+        "racing": {
+          "phase": "racing",
+          "samples": 3792,
+          "durationMs": 63747.4,
+          "averageFps": 59.484778987064566,
+          "p50Ms": 16.69999999999709,
+          "p95Ms": 16.799999999995634,
+          "p99Ms": 16.80000000000291,
+          "maxMs": 33.400000000001455,
+          "over25ms": 33,
+          "over33ms": 11,
+          "over50ms": 0,
+          "firstRaceTime": 0,
+          "lastRaceTime": 63.73333333333036
+        },
+        "countdown": {
+          "phase": "countdown",
+          "samples": 160,
+          "durationMs": 2699.8999999999996,
+          "averageFps": 59.26145412793067,
+          "p50Ms": 16.699999999999818,
+          "p95Ms": 16.799999999999272,
+          "p99Ms": 16.800000000000182,
+          "maxMs": 50,
+          "over25ms": 1,
+          "over33ms": 1,
+          "over50ms": 0,
+          "firstRaceTime": 0,
+          "lastRaceTime": 0
+        }
+      },
+      "acceptance": {
+        "outcome": "PASS",
+        "criteria": {
+          "minimumMeanHz": 40,
+          "maximumP95Ms": 25,
+          "boundaryToleranceSeconds": 0.05
+        },
+        "issues": []
+      },
+      "racingDpr": [
+        1,
+        2
+      ]
+    },
+    "cup-round-1": {
+      "summary": {
+        "racing": {
+          "phase": "racing",
+          "samples": 8131,
+          "durationMs": 137594.49999999997,
+          "averageFps": 59.093931806867296,
+          "p50Ms": 16.699999999982538,
+          "p95Ms": 16.79999999998836,
+          "p99Ms": 33.29999999998836,
+          "maxMs": 33.40000000002328,
+          "over25ms": 125,
+          "over33ms": 43,
+          "over50ms": 0,
+          "firstRaceTime": 0,
+          "lastRaceTime": 137.58333333337254
+        },
+        "countdown": {
+          "phase": "countdown",
+          "samples": 162,
+          "durationMs": 2716.5,
+          "averageFps": 59.635560463832135,
+          "p50Ms": 16.69999999999709,
+          "p95Ms": 16.70000000001164,
+          "p99Ms": 16.80000000000291,
+          "maxMs": 33.30000000000291,
+          "over25ms": 1,
+          "over33ms": 0,
+          "over50ms": 0,
+          "firstRaceTime": 0,
+          "lastRaceTime": 0
+        }
+      },
+      "acceptance": {
+        "outcome": "PASS",
+        "criteria": {
+          "minimumMeanHz": 40,
+          "maximumP95Ms": 25,
+          "boundaryToleranceSeconds": 0.05
+        },
+        "issues": []
+      },
+      "racingDpr": [
+        1.75,
+        2
+      ]
+    }
+  },
+  "cleanup": {
+    "recordedAt": "2026-09-08T21:02:12.928696+00:00",
+    "port": 56662,
+    "unrelated5211": "Never signalled or adopted",
+    "ownedProcessGroup": 69970,
+    "actions": [],
+    "remainingOwnedPids": [],
+    "remainingOwnedGroup": false,
+    "ownedPortListening": false,
+    "unrelated5211ListeningReadOnly": false
+  },
+  "frozenGroups": {
+    "time-attack": {
+      "build": true,
+      "source": true,
+      "public": true,
+      "dist": true,
+      "harness": true,
+      "configuration": true,
+      "tests": true
+    },
+    "cup-round-1": {
+      "build": true,
+      "source": true,
+      "public": true,
+      "dist": true,
+      "harness": true,
+      "configuration": true,
+      "tests": true
+    }
+  },
+  "receiptSha256": "05e0e9c60374ad28522aaa8ae9f0e585eda15fda94aeb0d84e327ffa09055355"
+}

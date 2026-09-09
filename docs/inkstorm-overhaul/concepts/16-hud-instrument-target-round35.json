@@ -1,0 +1,30 @@
+{
+  "kind": "target-only UI mockup",
+  "tool": "built-in image_gen",
+  "references": [
+    {
+      "path": "output/gauntlet/round35-broadcast-native-v17/06-desktop-live-race.png",
+      "sha256": "046599e69734c321b159e9eab2d77b8d378c675d2b5e5557f5d621dbee42a720",
+      "role": "edit target current runtime"
+    },
+    {
+      "path": "output/reference-ui-round35/UI-hud-full.png",
+      "sha256": "d35ba42eaf89d6e2c695ec2f4f877fd79358baaa1f56f5ba245aafcb41668770",
+      "role": "user-video style reference"
+    },
+    {
+      "path": "docs/inkstorm-overhaul/concepts/16-hud-instrument-target-round35.png",
+      "sha256": "339def93286be20a429398cc376d24a3d314d0acec4b52588d9e2be8b83bc798",
+      "role": "generated concept"
+    }
+  ],
+  "intent": "Larger filled amber timing numerals in one shallow shaped petrol band; connected speed/resource instrument; open ability emblems; retain real values, controls and unobstructed racing view.",
+  "limits": [
+    "Generator altered vehicle and scenery despite preservation request; those regions are not an implementation target or parity evidence.",
+    "Generated keyboard glyphs are malformed; actual E/Q/F labels must remain readable.",
+    "HULL 80 is only a concept equivalent of 20 percent damage; do not silently relabel actual damage values.",
+    "Not a screenshot, working implementation, motion or performance evidence.",
+    "Original user-video images and unchanged blind-critic prompt remain the acceptance references."
+  ],
+  "prompt": "Create one polished UI-mockup concept, landscape 16:10, for the current Inkstorm podracing game. IMAGE 1 is the EDIT TARGET: retain its exact game world, orange sky, terrain, pylons, racer and camera view as closely as possible; modify ONLY the HUD overlay. IMAGE 2 is STYLE REFERENCE for instruments, not source artwork to reproduce. Build a coherent premium amber-and-petrol racing HUD: a single shallow translucent deep petrol timing ribbon across the upper screen with an original sculpted thin amber lower contour; large bold FILLED amber stencil numerals 1/1 left, 0:01.41 center, 1/8 right, small clean LAP / TIME / POS underneath, no black text outlines. One compact bottom-right open curved speed instrument shows 289 KPH with BOOST 86%, HEAT 100%, HULL 80% integrated as very clear secondary segmented channels in the same authored instrument. Three bottom-left original delicate amber outline ability emblems with recognizable E LANCE, Q SHIELD, F MINE and mine count 3, no separate dark cards. One small route arrow and 171 M near right timing, single concise OVER-REV warning under the timing band at left. Preserve large unobstructed racing view. Crisp purposeful UI hierarchy, generous negative space, no glow soup, no generic dashboard cards, no extra menus, no logos, no watermarks. This is a TARGET CONCEPT, not evidence of implemented functionality. Keep the existing game scene unchanged; do not improve the background or vehicle quality."
+}

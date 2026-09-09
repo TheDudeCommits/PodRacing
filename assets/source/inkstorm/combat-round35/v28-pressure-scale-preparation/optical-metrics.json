@@ -1,0 +1,44 @@
+{
+  "scope": "CPU optical/geometry contracts only; not native perceptual or ground-visibility acceptance",
+  "pressure": {
+    "scale": 1.8,
+    "durationSeconds": 0.085,
+    "radiusAtSeverity2Metres": 5.1293201303876526
+  },
+  "fire": {
+    "startSeconds": 0.065,
+    "durationSeconds": 2.05,
+    "initialScale": 1.6,
+    "terminalScale": 1.15,
+    "contractionEndFireAgeSeconds": 0.6,
+    "jetInitialRadiusAtSeverity2Metres": 4.99096071802703,
+    "brokenFirstSolidRadiusAtSeverity2Metres": 5.022936281587583,
+    "conservativeAllPhaseRadiusAtSeverity2Metres": 6.344761618847473
+  },
+  "leaders": {
+    "indices": [
+      1,
+      7,
+      13
+    ],
+    "oldSector": [
+      1,
+      1,
+      1
+    ],
+    "candidateSector": [
+      0,
+      2,
+      4
+    ],
+    "scaleMultiplier": 1.15
+  },
+  "budgets": {
+    "drawOwners": 8,
+    "rupturePlates": 4,
+    "birthFragmentSlots": 18,
+    "newTextures": 0,
+    "newSceneObjects": 0,
+    "newTerrainQueries": 0
+  }
+}

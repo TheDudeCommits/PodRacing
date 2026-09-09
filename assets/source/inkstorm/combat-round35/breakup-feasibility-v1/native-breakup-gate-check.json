@@ -1,0 +1,19 @@
+{
+  "scope": "CPU gate check only. Actual V12 missing diagnostics correctly fails the new activation requirement; synthetic controls exercise acceptance/rejection without changing native evidence.",
+  "actualV12UnderNewGate": {
+    "outcome": "FAIL",
+    "issues": [
+      "Teemto engine breakup was not available and active across at least three non-birth wreck-shot samples."
+    ],
+    "breakup": {
+      "samples": 25,
+      "firstFrame": 913,
+      "lastFrame": 943,
+      "allTeemto": false,
+      "allAvailable": false,
+      "allActive": false
+    }
+  },
+  "syntheticTrue": "PASS",
+  "syntheticOneInactive": "FAIL"
+}

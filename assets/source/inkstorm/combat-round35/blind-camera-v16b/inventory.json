@@ -1,0 +1,49 @@
+{
+  "workdir": "/var/folders/8_/sqnvwbyn5qv5slnnkk73035c0000gn/T/pod-combat-v16b-critic-ud85_r03",
+  "images": [
+    {
+      "original": "/Users/amir/Projects/PodRacing/output/playwright/round35-combat-v16b/temporal-review/entry-pts10.36.png",
+      "attachment": "/var/folders/8_/sqnvwbyn5qv5slnnkk73035c0000gn/T/pod-combat-v16b-critic-ud85_r03/image-01.png",
+      "sha256": "e601e1c81d56ae905e08efdb3f0d084682b3437bd3b43478fd8cdfa6009efbd1",
+      "bytes": 827517
+    },
+    {
+      "original": "/Users/amir/Projects/PodRacing/output/playwright/round35-combat-v16b/temporal-review/early-impact-pts10.40.png",
+      "attachment": "/var/folders/8_/sqnvwbyn5qv5slnnkk73035c0000gn/T/pod-combat-v16b-critic-ud85_r03/image-02.png",
+      "sha256": "50614cff54ac892b4f44e9a5bdb7749445c033275a735ebca46069079c7ff93e",
+      "bytes": 865864
+    },
+    {
+      "original": "/Users/amir/Projects/PodRacing/output/playwright/round35-combat-v16b/temporal-review/hold-pts10.88.png",
+      "attachment": "/var/folders/8_/sqnvwbyn5qv5slnnkk73035c0000gn/T/pod-combat-v16b-critic-ud85_r03/image-03.png",
+      "sha256": "bbaeb1a7a1b676929f070494d89f0fdd9bfd0fb9b7d28d5098b192b9cd3b9f2d",
+      "bytes": 1044582
+    },
+    {
+      "original": "/Users/amir/Projects/PodRacing/output/playwright/round35-combat-v16b/temporal-review/debris-return-pts11.40.png",
+      "attachment": "/var/folders/8_/sqnvwbyn5qv5slnnkk73035c0000gn/T/pod-combat-v16b-critic-ud85_r03/image-04.png",
+      "sha256": "ae6d1c8461a9d521cdcbc8aedc20afe7a4f66f6fa4dae3ad08271c2b0a934cbc",
+      "bytes": 1234208
+    },
+    {
+      "original": "/Users/amir/Projects/PodRacing/output/playwright/round35-combat-v16b/temporal-review/settled-pts12.20.png",
+      "attachment": "/var/folders/8_/sqnvwbyn5qv5slnnkk73035c0000gn/T/pod-combat-v16b-critic-ud85_r03/image-05.png",
+      "sha256": "f9fd27e3eb8f58fb8a33dcb737903728b3036e3834ca6538363199dda8bdad49",
+      "bytes": 1284613
+    },
+    {
+      "original": "/Users/amir/Projects/PodRacing/output/playwright/round35-combat-v16b/temporal-review/recovery-pts13.24.png",
+      "attachment": "/var/folders/8_/sqnvwbyn5qv5slnnkk73035c0000gn/T/pod-combat-v16b-critic-ud85_r03/image-06.png",
+      "sha256": "970d02f7ab825ca47ce9d6d2da2cdda51fa131e6972be8fed3c2b818e674044d",
+      "bytes": 981980
+    },
+    {
+      "original": "/Users/amir/Projects/PodRacing/output/reference-ui-round35/UI-takedown-motion.jpg",
+      "attachment": "/var/folders/8_/sqnvwbyn5qv5slnnkk73035c0000gn/T/pod-combat-v16b-critic-ud85_r03/image-07.jpg",
+      "sha256": "065476fff16d5986a4173ba374dd308b326d976687db4413f1b9b0f81b8bcb21",
+      "bytes": 271125
+    }
+  ],
+  "promptSha256": "336d5a5414ac6dfc77d745415ae2f54504635d9434cc8ce94b0921f34ed359b4",
+  "scope": "Fresh separate ephemeral read-only image critic. Exact unchanged V10\u2013V15 prompt and user reference; six actual V16b recorded frames phase-matched, not clock-matched. Additional recovery/driving frames are not critic inputs. No implementation/history/prior verdict or root observations provided; audit raw events."
+}

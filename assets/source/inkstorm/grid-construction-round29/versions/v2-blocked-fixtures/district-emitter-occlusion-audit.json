@@ -1,0 +1,420 @@
+{
+  "candidateSha256": "2ac76f281193d72216ff6c8bc2c14db123d58c8881f6e7b951a6ef1dd73ff705",
+  "method": "Actual candidate triangles, FrontSide ray to target segment, skip self surface within 12mm; no browser/GPU.",
+  "paths": [
+    {
+      "bay": 1,
+      "variant": "v2-above-awning",
+      "sourceBlender": [
+        -36,
+        2,
+        11.38
+      ],
+      "targetName": "above-engine",
+      "targetBlender": [
+        -40,
+        6,
+        4.6
+      ],
+      "clear": false,
+      "firstHitBlender": [
+        -36.438312762493645,
+        2.438312762493645,
+        10.637059867573273
+      ],
+      "firstHitNormalGLB": [
+        -0.008759463529385128,
+        0.7753163129442551,
+        0.6315123804655007
+      ],
+      "distance": 0.9675723207594692
+    },
+    {
+      "bay": 1,
+      "variant": "v2-above-awning",
+      "sourceBlender": [
+        -36,
+        2,
+        11.38
+      ],
+      "targetName": "above-bench",
+      "targetBlender": [
+        -37,
+        10,
+        2.65
+      ],
+      "clear": false,
+      "firstHitBlender": [
+        -36.071933839423764,
+        2.575470715390114,
+        10.75201758183054
+      ],
+      "firstHitNormalGLB": [
+        0,
+        0.7823416789706654,
+        0.622849498149722
+      ],
+      "distance": 0.8548116395182142
+    },
+    {
+      "bay": 1,
+      "variant": "v2-above-awning",
+      "sourceBlender": [
+        -36,
+        2,
+        11.38
+      ],
+      "targetName": "work-aisle",
+      "targetBlender": [
+        -33,
+        4,
+        1.2
+      ],
+      "clear": false,
+      "firstHitBlender": [
+        -35.722618598703,
+        2.1849209341980003,
+        10.43875244493218
+      ],
+      "firstHitNormalGLB": [
+        -0.008759463529385128,
+        0.7753163129442551,
+        0.6315123804655007
+      ],
+      "distance": 0.998540511752678
+    },
+    {
+      "bay": 1,
+      "variant": "proposed-lower-rail",
+      "sourceBlender": [
+        -36,
+        4,
+        8.08
+      ],
+      "targetName": "above-engine",
+      "targetBlender": [
+        -40,
+        6,
+        4.6
+      ],
+      "clear": true,
+      "firstHitBlender": null,
+      "firstHitNormalGLB": null,
+      "distance": null
+    },
+    {
+      "bay": 1,
+      "variant": "proposed-lower-rail",
+      "sourceBlender": [
+        -36,
+        4,
+        8.08
+      ],
+      "targetName": "above-bench",
+      "targetBlender": [
+        -37,
+        10,
+        2.65
+      ],
+      "clear": true,
+      "firstHitBlender": null,
+      "firstHitNormalGLB": null,
+      "distance": null
+    },
+    {
+      "bay": 1,
+      "variant": "proposed-lower-rail",
+      "sourceBlender": [
+        -36,
+        4,
+        8.08
+      ],
+      "targetName": "work-aisle",
+      "targetBlender": [
+        -33,
+        4,
+        1.2
+      ],
+      "clear": true,
+      "firstHitBlender": null,
+      "firstHitNormalGLB": null,
+      "distance": null
+    },
+    {
+      "bay": 2,
+      "variant": "v2-above-awning",
+      "sourceBlender": [
+        1,
+        6,
+        16.38
+      ],
+      "targetName": "above-engine",
+      "targetBlender": [
+        -3,
+        10,
+        4.6
+      ],
+      "clear": false,
+      "firstHitBlender": [
+        0.7464473172270455,
+        6.253552682772955,
+        15.633287349233647
+      ],
+      "firstHitNormalGLB": [
+        -0.03342031512478231,
+        0.8437585351027104,
+        0.5356814510306366
+      ],
+      "distance": 0.828346370003054
+    },
+    {
+      "bay": 2,
+      "variant": "v2-above-awning",
+      "sourceBlender": [
+        1,
+        6,
+        16.38
+      ],
+      "targetName": "above-bench",
+      "targetBlender": [
+        0,
+        14,
+        2.65
+      ],
+      "clear": false,
+      "firstHitBlender": [
+        0.9521751168120043,
+        6.382599065503966,
+        15.723364353828817
+      ],
+      "firstHitNormalGLB": [
+        -0.03342031512478231,
+        0.8437585351027104,
+        0.5356814510306366
+      ],
+      "distance": 0.7614720193146292
+    },
+    {
+      "bay": 2,
+      "variant": "v2-above-awning",
+      "sourceBlender": [
+        1,
+        6,
+        16.38
+      ],
+      "targetName": "work-aisle",
+      "targetBlender": [
+        4,
+        8,
+        1.2
+      ],
+      "clear": false,
+      "firstHitBlender": [
+        1.1625324931847163,
+        6.1083549954564775,
+        15.557585584485334
+      ],
+      "firstHitNormalGLB": [
+        -0.03342031512478231,
+        0.8437585351027104,
+        0.5356814510306366
+      ],
+      "distance": 0.8452946747895319
+    },
+    {
+      "bay": 2,
+      "variant": "proposed-lower-rail",
+      "sourceBlender": [
+        1,
+        8,
+        13.08
+      ],
+      "targetName": "above-engine",
+      "targetBlender": [
+        -3,
+        10,
+        4.6
+      ],
+      "clear": true,
+      "firstHitBlender": null,
+      "firstHitNormalGLB": null,
+      "distance": null
+    },
+    {
+      "bay": 2,
+      "variant": "proposed-lower-rail",
+      "sourceBlender": [
+        1,
+        8,
+        13.08
+      ],
+      "targetName": "above-bench",
+      "targetBlender": [
+        0,
+        14,
+        2.65
+      ],
+      "clear": true,
+      "firstHitBlender": null,
+      "firstHitNormalGLB": null,
+      "distance": null
+    },
+    {
+      "bay": 2,
+      "variant": "proposed-lower-rail",
+      "sourceBlender": [
+        1,
+        8,
+        13.08
+      ],
+      "targetName": "work-aisle",
+      "targetBlender": [
+        4,
+        8,
+        1.2
+      ],
+      "clear": true,
+      "firstHitBlender": null,
+      "firstHitNormalGLB": null,
+      "distance": null
+    },
+    {
+      "bay": 3,
+      "variant": "v2-above-awning",
+      "sourceBlender": [
+        41,
+        -1,
+        13.180000000000001
+      ],
+      "targetName": "above-engine",
+      "targetBlender": [
+        37,
+        3,
+        4.6
+      ],
+      "clear": false,
+      "firstHitBlender": [
+        40.627137709521975,
+        -0.6271377095219761,
+        12.38021038692464
+      ],
+      "firstHitNormalGLB": [
+        -0.05290772354574414,
+        0.7551216379261694,
+        0.653446313575114
+      ],
+      "distance": 0.9579749477435588
+    },
+    {
+      "bay": 3,
+      "variant": "v2-above-awning",
+      "sourceBlender": [
+        41,
+        -1,
+        13.180000000000001
+      ],
+      "targetName": "above-bench",
+      "targetBlender": [
+        40,
+        7,
+        2.65
+      ],
+      "clear": false,
+      "firstHitBlender": [
+        40.93693046385285,
+        -0.4954437108228291,
+        12.51587778437055
+      ],
+      "firstHitNormalGLB": [
+        -0.05290772354574414,
+        0.7551216379261694,
+        0.653446313575114
+      ],
+      "distance": 0.8364287971074551
+    },
+    {
+      "bay": 3,
+      "variant": "v2-above-awning",
+      "sourceBlender": [
+        41,
+        -1,
+        13.180000000000001
+      ],
+      "targetName": "work-aisle",
+      "targetBlender": [
+        44,
+        1,
+        1.2
+      ],
+      "clear": false,
+      "firstHitBlender": [
+        41.23626106209584,
+        -0.84249262526944,
+        12.236530825363946
+      ],
+      "firstHitNormalGLB": [
+        -0.05290772354574414,
+        0.7551216379261694,
+        0.653446313575114
+      ],
+      "distance": 0.9852725237443738
+    },
+    {
+      "bay": 3,
+      "variant": "proposed-lower-rail",
+      "sourceBlender": [
+        41,
+        1,
+        9.88
+      ],
+      "targetName": "above-engine",
+      "targetBlender": [
+        37,
+        3,
+        4.6
+      ],
+      "clear": true,
+      "firstHitBlender": null,
+      "firstHitNormalGLB": null,
+      "distance": null
+    },
+    {
+      "bay": 3,
+      "variant": "proposed-lower-rail",
+      "sourceBlender": [
+        41,
+        1,
+        9.88
+      ],
+      "targetName": "above-bench",
+      "targetBlender": [
+        40,
+        7,
+        2.65
+      ],
+      "clear": true,
+      "firstHitBlender": null,
+      "firstHitNormalGLB": null,
+      "distance": null
+    },
+    {
+      "bay": 3,
+      "variant": "proposed-lower-rail",
+      "sourceBlender": [
+        41,
+        1,
+        9.88
+      ],
+      "targetName": "work-aisle",
+      "targetBlender": [
+        44,
+        1,
+        1.2
+      ],
+      "clear": true,
+      "firstHitBlender": null,
+      "firstHitNormalGLB": null,
+      "distance": null
+    }
+  ]
+}

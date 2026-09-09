@@ -1,0 +1,398 @@
+{
+  "recordedAt": "2026-09-07T17:59:42.400877+00:00",
+  "scope": "Completed round26 technical checkpoint; both current runtime appearances; no acquisition, paint, geometry or driver count change. Round27 source is active and unvalidated.",
+  "beforeManifestSha256": "31fae02956eec6605dbbd36efa07b58c91c61b23c0d743f63b950d1ba91d376f",
+  "afterManifestSha256": "121d99f24de97f97f06a043f21d00f8ab758e835cee9a2003462f470ddecfb0e",
+  "previousProgressReceipt": "vehicle-progress-2026-09-07-fourth-rate-limit.json",
+  "beforeCounts": {
+    "publicResults": 29,
+    "vehicleCandidates": 26,
+    "excludedNonVehicles": 3,
+    "downloaded": 2,
+    "blockedOrPending": 24,
+    "downloadStatuses": {
+      "downloaded": 2,
+      "pending_download": 23,
+      "rate_limited": 1
+    },
+    "mcpImportedSourceGlbs": 2,
+    "rawArchivesPreserved": 0,
+    "stylizationNeedsPermission": 0,
+    "publicAdaptationRestricted": 1,
+    "stylizedExports": 2,
+    "stylizedSourceStudies": 2,
+    "stylizedExportVariants": 4,
+    "driversAdded": 2,
+    "runtimeIntegrations": 2,
+    "driverInspections": 2
+  },
+  "afterCounts": {
+    "publicResults": 29,
+    "vehicleCandidates": 26,
+    "excludedNonVehicles": 3,
+    "downloaded": 2,
+    "blockedOrPending": 24,
+    "downloadStatuses": {
+      "downloaded": 2,
+      "pending_download": 23,
+      "rate_limited": 1
+    },
+    "mcpImportedSourceGlbs": 2,
+    "rawArchivesPreserved": 0,
+    "stylizationNeedsPermission": 0,
+    "publicAdaptationRestricted": 1,
+    "stylizedExports": 2,
+    "stylizedSourceStudies": 2,
+    "stylizedExportVariants": 4,
+    "driversAdded": 2,
+    "runtimeIntegrations": 2,
+    "driverInspections": 2
+  },
+  "performances": [
+    {
+      "uid": "4eff45899ada40bb920c5c744663db90",
+      "appearance": "teemto",
+      "receipt": "output/playwright/full-race-performance-round26-teemto/receipt.json",
+      "receiptSha256": "1d254c510c73d50d88ba43f2f98446c03ba7832d8a488adb4b74f8cb18337167",
+      "outcome": "PASS",
+      "races": {
+        "time-attack": {
+          "rawReceipt": "output/playwright/full-race-performance-round26-teemto/time-attack.json",
+          "rawReceiptSha256": "3504a2571cd025ba87a01f6e56ee9aa6ad28869c3f1ecf84636c344708af885b",
+          "gate": {
+            "outcome": "PASS",
+            "criteria": {
+              "minimumMeanHz": 40,
+              "maximumP95Ms": 25,
+              "boundaryToleranceSeconds": 0.05
+            },
+            "issues": []
+          },
+          "racingCadence": {
+            "phase": "racing",
+            "samples": 3802,
+            "durationMs": 63364.1,
+            "averageFps": 60.00243039828547,
+            "p50Ms": 16.69999999999709,
+            "p95Ms": 16.70000000001164,
+            "p99Ms": 16.80000000000291,
+            "maxMs": 16.80000000000291,
+            "over25ms": 0,
+            "over33ms": 0,
+            "over50ms": 0,
+            "firstRaceTime": 0,
+            "lastRaceTime": 63.34166666666371
+          },
+          "rawRows": 4004
+        },
+        "cup-round-1": {
+          "rawReceipt": "output/playwright/full-race-performance-round26-teemto/cup-round-1.json",
+          "rawReceiptSha256": "7a229ec21334ae6d48f33f1eee02c187dc52135e19fcc364efd1febd528e3d8c",
+          "gate": {
+            "outcome": "PASS",
+            "criteria": {
+              "minimumMeanHz": 40,
+              "maximumP95Ms": 25,
+              "boundaryToleranceSeconds": 0.05
+            },
+            "issues": []
+          },
+          "racingCadence": {
+            "phase": "racing",
+            "samples": 8048,
+            "durationMs": 134128,
+            "averageFps": 60.00238578074675,
+            "p50Ms": 16.699999999982538,
+            "p95Ms": 16.70000000001164,
+            "p99Ms": 16.800000000017462,
+            "maxMs": 16.800000000017462,
+            "over25ms": 0,
+            "over33ms": 0,
+            "over50ms": 0,
+            "firstRaceTime": 0.016666666666666666,
+            "lastRaceTime": 134.13333333337567
+          },
+          "rawRows": 8270
+        }
+      }
+    },
+    {
+      "uid": "f97e3891a6a846ed97379e3cfa5931a0",
+      "appearance": "sebulba",
+      "receipt": "output/playwright/full-race-performance-round26-sebulba/receipt.json",
+      "receiptSha256": "c928a1edad66b3ceca78157d3ecd2140ed47503129f588a8b4921fde9f4a7bf3",
+      "outcome": "PASS",
+      "races": {
+        "time-attack": {
+          "rawReceipt": "output/playwright/full-race-performance-round26-sebulba/time-attack.json",
+          "rawReceiptSha256": "54be98ce229bfb4382c14b2799b86006e939c66bfdec57302669d91399a78006",
+          "gate": {
+            "outcome": "PASS",
+            "criteria": {
+              "minimumMeanHz": 40,
+              "maximumP95Ms": 25,
+              "boundaryToleranceSeconds": 0.05
+            },
+            "issues": []
+          },
+          "racingCadence": {
+            "phase": "racing",
+            "samples": 3798,
+            "durationMs": 63297.600000000006,
+            "averageFps": 60.002274967771285,
+            "p50Ms": 16.69999999999709,
+            "p95Ms": 16.70000000001164,
+            "p99Ms": 16.80000000000291,
+            "maxMs": 16.80000000000291,
+            "over25ms": 0,
+            "over33ms": 0,
+            "over50ms": 0,
+            "firstRaceTime": 0.016666666666666666,
+            "lastRaceTime": 63.29999999999705
+          },
+          "rawRows": 4007
+        },
+        "cup-round-1": {
+          "rawReceipt": "output/playwright/full-race-performance-round26-sebulba/cup-round-1.json",
+          "rawReceiptSha256": "7ea149624199cb01258331c1e84518da0ae734d44d8dd8856f14cf3b8945b007",
+          "gate": {
+            "outcome": "PASS",
+            "criteria": {
+              "minimumMeanHz": 40,
+              "maximumP95Ms": 25,
+              "boundaryToleranceSeconds": 0.05
+            },
+            "issues": []
+          },
+          "racingCadence": {
+            "phase": "racing",
+            "samples": 8048,
+            "durationMs": 134128,
+            "averageFps": 60.00238578074675,
+            "p50Ms": 16.699999999982538,
+            "p95Ms": 16.70000000001164,
+            "p99Ms": 16.800000000017462,
+            "maxMs": 16.800000000017462,
+            "over25ms": 0,
+            "over33ms": 0,
+            "over50ms": 0,
+            "firstRaceTime": 0.016666666666666666,
+            "lastRaceTime": 134.13333333337567
+          },
+          "rawRows": 8273
+        }
+      }
+    }
+  ],
+  "bundle": "index-BlxCUBzh.js",
+  "bundleSha256": "749fd90ba1b87928161c6732fd18c6a8376acb03fe64c3cb7dd8e9b6d660d49e",
+  "bundleBytes": 1548009,
+  "crossRunFreezeReceipt": "output/playwright/full-race-performance-round26-freeze-comparison.json",
+  "crossRunFreezeReceiptSha256": "39fa88f203f7e615ecc5f15ac5546bc70404b8eef3b00fe4e39ef4b085bc2f19",
+  "validation": {
+    "tests": 519,
+    "files": 92,
+    "typecheck": "PASS",
+    "build": "PASS",
+    "diffCheck": "PASS",
+    "scope": "Root combined round26 validation, before active round27 changes",
+    "sourceReceipt": "assets/source/inkstorm/canyon-arch-v3/runtime-integration-round26.json"
+  },
+  "worldCapture": {
+    "round": 26,
+    "sectionViews": 7,
+    "supplementalViews": 8,
+    "garageViews": 1,
+    "liveDriveViews": 1,
+    "pngCount": 17,
+    "browserErrors": [],
+    "receipt": {
+      "path": "output/gauntlet/round-26/receipts.json",
+      "bytes": 695243,
+      "sha256": "5c6538336d4b1ab8c275b1b20e91945407e1eb5ee7fbe02f6f92a2b434246974"
+    },
+    "images": [
+      {
+        "source": "output/gauntlet/round-26/01-grid.png",
+        "copy": "docs/inkstorm-overhaul/evidence/round-26/01-grid.png",
+        "sha256": "b76db771239882e90a734d7560c5bdf1f77c34dd5019b609f1134a66a2630af0",
+        "copySha256": "b76db771239882e90a734d7560c5bdf1f77c34dd5019b609f1134a66a2630af0"
+      },
+      {
+        "source": "output/gauntlet/round-26/02-salt-run.png",
+        "copy": "docs/inkstorm-overhaul/evidence/round-26/02-salt-run.png",
+        "sha256": "010b46bb4a11f707c4daa4ff0deb7c7aee49e3ef986250c55d156c00fa6b6d00",
+        "copySha256": "010b46bb4a11f707c4daa4ff0deb7c7aee49e3ef986250c55d156c00fa6b6d00"
+      },
+      {
+        "source": "output/gauntlet/round-26/03-canyon.png",
+        "copy": "docs/inkstorm-overhaul/evidence/round-26/03-canyon.png",
+        "sha256": "3230dcc29de6cdb91ba79d2b17ef350c33bcf4484071ba9fa099d499ae0df559",
+        "copySha256": "3230dcc29de6cdb91ba79d2b17ef350c33bcf4484071ba9fa099d499ae0df559"
+      },
+      {
+        "source": "output/gauntlet/round-26/04-fork.png",
+        "copy": "docs/inkstorm-overhaul/evidence/round-26/04-fork.png",
+        "sha256": "a27665dd086a8b9c9d864b6915f0b7b83d9abde73ede9d46957bb51a4db5cee7",
+        "copySha256": "a27665dd086a8b9c9d864b6915f0b7b83d9abde73ede9d46957bb51a4db5cee7"
+      },
+      {
+        "source": "output/gauntlet/round-26/05-launch.png",
+        "copy": "docs/inkstorm-overhaul/evidence/round-26/05-launch.png",
+        "sha256": "466706c3be8f6a67705a075d15b053d85d3c8b9581f1fb19a3462315a9de9bb2",
+        "copySha256": "466706c3be8f6a67705a075d15b053d85d3c8b9581f1fb19a3462315a9de9bb2"
+      },
+      {
+        "source": "output/gauntlet/round-26/06-foundry.png",
+        "copy": "docs/inkstorm-overhaul/evidence/round-26/06-foundry.png",
+        "sha256": "973916637d689d249ccb0374e5802ab6ce671fbc9d3c6de570151535f9bf56bb",
+        "copySha256": "973916637d689d249ccb0374e5802ab6ce671fbc9d3c6de570151535f9bf56bb"
+      },
+      {
+        "source": "output/gauntlet/round-26/07-finish.png",
+        "copy": "docs/inkstorm-overhaul/evidence/round-26/07-finish.png",
+        "sha256": "59114d5b99678fb75f73d72175356e8a7ff2bc35236e9e837cfdea929619210a",
+        "copySha256": "59114d5b99678fb75f73d72175356e8a7ff2bc35236e9e837cfdea929619210a"
+      },
+      {
+        "source": "output/gauntlet/round-26/canyon-arch-approach.png",
+        "copy": "docs/inkstorm-overhaul/evidence/round-26/canyon-arch-approach.png",
+        "sha256": "259bdf7826f0eae81ea52fecab0f06d8150839b60f15d518198e1ce6c3f2c24c",
+        "copySha256": "259bdf7826f0eae81ea52fecab0f06d8150839b60f15d518198e1ce6c3f2c24c"
+      },
+      {
+        "source": "output/gauntlet/round-26/canyon-arch-beyond.png",
+        "copy": "docs/inkstorm-overhaul/evidence/round-26/canyon-arch-beyond.png",
+        "sha256": "d2bda1f04b9c0cdb4c55bb71cfb2a844da04308b8c59e3e2169fb81c5fb94486",
+        "copySha256": "d2bda1f04b9c0cdb4c55bb71cfb2a844da04308b8c59e3e2169fb81c5fb94486"
+      },
+      {
+        "source": "output/gauntlet/round-26/canyon-arch-under.png",
+        "copy": "docs/inkstorm-overhaul/evidence/round-26/canyon-arch-under.png",
+        "sha256": "a8564d13d5b61f5efd9ca59a0e77092a76e0904d8e5da084478b66f8f65ef5be",
+        "copySha256": "a8564d13d5b61f5efd9ca59a0e77092a76e0904d8e5da084478b66f8f65ef5be"
+      },
+      {
+        "source": "output/gauntlet/round-26/fork-after-entry.png",
+        "copy": "docs/inkstorm-overhaul/evidence/round-26/fork-after-entry.png",
+        "sha256": "8118789d4ffe4107c459ea0d080efe9ded532102fbc49c6817f6bd502507de17",
+        "copySha256": "8118789d4ffe4107c459ea0d080efe9ded532102fbc49c6817f6bd502507de17"
+      },
+      {
+        "source": "output/gauntlet/round-26/fork-approach.png",
+        "copy": "docs/inkstorm-overhaul/evidence/round-26/fork-approach.png",
+        "sha256": "84f0d1ae4413d45b573eeca320ffd58666eedac11f0325eeca3369714036e8a9",
+        "copySha256": "84f0d1ae4413d45b573eeca320ffd58666eedac11f0325eeca3369714036e8a9"
+      },
+      {
+        "source": "output/gauntlet/round-26/garage.png",
+        "copy": "docs/inkstorm-overhaul/evidence/round-26/garage.png",
+        "sha256": "d050063a5245d017b4df9bf62ec4125c18b543ff8b2035a733b6f9abdd649d99",
+        "copySha256": "d050063a5245d017b4df9bf62ec4125c18b543ff8b2035a733b6f9abdd649d99"
+      },
+      {
+        "source": "output/gauntlet/round-26/launch-approach.png",
+        "copy": "docs/inkstorm-overhaul/evidence/round-26/launch-approach.png",
+        "sha256": "8876901d0fff98e7e781e1018d8b2240fb17c3b18e91c86d93c91a47f23e23d2",
+        "copySha256": "8876901d0fff98e7e781e1018d8b2240fb17c3b18e91c86d93c91a47f23e23d2"
+      },
+      {
+        "source": "output/gauntlet/round-26/launch-crest.png",
+        "copy": "docs/inkstorm-overhaul/evidence/round-26/launch-crest.png",
+        "sha256": "6b039f1937938d122554dd0d638bd283667ba917f3c9cf14ea088079c7118c21",
+        "copySha256": "6b039f1937938d122554dd0d638bd283667ba917f3c9cf14ea088079c7118c21"
+      },
+      {
+        "source": "output/gauntlet/round-26/launch-descent.png",
+        "copy": "docs/inkstorm-overhaul/evidence/round-26/launch-descent.png",
+        "sha256": "04bf4e24a93a08975acd4d1a519f0018fdd7bb166ba89b2500d8f548f6626d54",
+        "copySha256": "04bf4e24a93a08975acd4d1a519f0018fdd7bb166ba89b2500d8f548f6626d54"
+      },
+      {
+        "source": "output/gauntlet/round-26/live-drive.png",
+        "copy": "docs/inkstorm-overhaul/evidence/round-26/live-drive.png",
+        "sha256": "52b6e3016fda860c814746e211fd23960a43ae9b673fc9264f1a08fa557e9c6b",
+        "copySha256": "52b6e3016fda860c814746e211fd23960a43ae9b673fc9264f1a08fa557e9c6b"
+      }
+    ]
+  },
+  "worldArtAcceptance": {
+    "round": 26,
+    "outcome": "FAIL",
+    "acceptedSections": 0,
+    "reviewedSections": 7,
+    "receipt": {
+      "path": "docs/inkstorm-overhaul/BLIND_WORLD_ROUND26.md",
+      "bytes": 12601,
+      "sha256": "136b137a9be5c6c74e0f01073356e713af3a80efdb291881b96f12b7a366214b"
+    }
+  },
+  "archIntegration": {
+    "runtimeAsset": "public/assets/inkstorm/canyon-arch-v3.glb",
+    "originalPreserved": "public/assets/inkstorm/canyon-arch.glb",
+    "receipt": "assets/source/inkstorm/canyon-arch-v3/runtime-integration-round26.json",
+    "scope": "Round26 source uses normalized v3 sibling; original retained."
+  },
+  "pilotDetail": {
+    "previousCandidate": "v2c",
+    "visualScore": 5.6,
+    "visualAcceptance": "FAIL",
+    "published": false,
+    "newCandidate": "v3",
+    "newCandidateStatus": "isolated construction in progress; not public and not accepted"
+  },
+  "pendingCatalogDownloads": 24,
+  "deployment": "none",
+  "nextWork": {
+    "round": 27,
+    "status": "active, outside last completed round26 freeze",
+    "scope": [
+      "LaunchBasinPlan.ts broken escarpment/front candidate in progress",
+      "PodracerView.ts engine-cap shading with smaller hot core and annular band in progress",
+      "Isolated pilot v3 construction study in progress; unpublished"
+    ],
+    "acceptance": "requires its own combined tests/build/captures/fresh criticism/full-race timing; no inherited round26 pass"
+  },
+  "acquisitionStatePreserved": {
+    "method": "official_blender_mcp",
+    "status": "stopped_after_rate_limit",
+    "lastAttemptUid": "c2ca24c9b3c2416db0abe026d9f4b7ac",
+    "httpStatus": 429,
+    "rawArchivesPreserved": 0,
+    "driverInspections": 2,
+    "runtimeIntegrations": 2,
+    "standaloneCliCompatibility": "Schema2 CLI refresh/resume preserves verified MCP source GLBs, acquisition history and independent archive/source/runtime counts. Token handling remains separate.",
+    "lastAttemptReceipt": "vehicles/c2ca24c9b3c2416db0abe026d9f4b7ac/mcp-download-retry-20260907-1713.json",
+    "recordedAttemptCountForLastUid": 4,
+    "stylizedSourceStudies": 2,
+    "stylizedExports": 2,
+    "driversAdded": 2,
+    "contextRestoration": "Fourth official attempt used a verified empty isolated scene before download. HTTP429 imported no objects; temporary configuration cleared and original scene/layer/active/selected objects restored exactly.",
+    "stylizedExportVariants": 4,
+    "lastAttemptAt": "2026-09-07T17:13:30+00:00"
+  },
+  "immutablePriorProgressReceipts": {
+    "assets/source/inkstorm/vehicle-progress-2026-09-07-fourth-rate-limit.json": "f1c585b8db2887c0098999bec9e83325180b95e386185b9ae73db14e904fa8b4",
+    "assets/source/inkstorm/vehicle-progress-2026-09-07-full-race-round25.json": "365ae0f9c2c5aca25e1af8a2e76ad7dc59aa49c09b7e8e550ad2fca06b70302a",
+    "assets/source/inkstorm/vehicle-progress-2026-09-07-sebulba-integration-round25.json": "6b6f215a525d4977b39d13abd225d632f74811408480f724969639b23823daa4",
+    "assets/source/inkstorm/vehicle-progress-2026-09-07-teemto-export-v1.json": "9c1b989955d09ab1f7a360ef9511c81bea1aebf45880cc9f10121659b41658d2",
+    "assets/source/inkstorm/vehicle-progress-2026-09-07-teemto-integration-sebulba-export.json": "7a3291e698bd3e8a5220df91b862cf9bcd6b7e6c9fdd7f356ee054c38d81cafd",
+    "assets/source/inkstorm/vehicle-progress-2026-09-07-teemto-study-v1.json": "0b7318a8925ea699d77fb44c11197182ba42101cab4ef629070a14bc6a7889a1"
+  },
+  "benRequestAndMetadataReceiptsPreserved": {
+    "assets/source/inkstorm/vehicles/c2ca24c9b3c2416db0abe026d9f4b7ac/mcp-download-retry-20260907-1450.json": "53bc794ee95b8efc873ea228d37565de37508b1b0470558c61657b7c4fbffbd3",
+    "assets/source/inkstorm/vehicles/c2ca24c9b3c2416db0abe026d9f4b7ac/mcp-download-retry-20260907-1558.json": "190472579c32a38c064316c876575cda044e9042fcf25ef8a4744071bf06d765",
+    "assets/source/inkstorm/vehicles/c2ca24c9b3c2416db0abe026d9f4b7ac/mcp-download-retry-20260907-1713.json": "76e64392f29ca4f44ffc925394c2488417d8e6742ec63b165aac65cc67adf4b8",
+    "assets/source/inkstorm/vehicles/c2ca24c9b3c2416db0abe026d9f4b7ac/mcp-download.json": "9ae3c75275af73049c6793cd29be7c03f12635fc9ca7872d57d1cff33ba97e71",
+    "assets/source/inkstorm/vehicles/c2ca24c9b3c2416db0abe026d9f4b7ac/metadata-receipt.json": "ce628086641be8d51bbe2e592d48660c7ececfcb665440a6316265af717115d1",
+    "assets/source/inkstorm/vehicles/c2ca24c9b3c2416db0abe026d9f4b7ac/model-metadata.json": "2f08959a730588fbf45a780064ab3283c5721571dcf47d910751fe062988e234"
+  },
+  "preservationChecks": {
+    "allPreviousProgressAndBenReceiptsUnchanged": true,
+    "allModelSourceLicenseDownloadPaintGeometryDriverFieldsUnchanged": true,
+    "allPriorRuntimeIntegrationHistoryEntriesUnchanged": true,
+    "countsUnchanged": true,
+    "acquisitionStateUnchanged": true,
+    "all17CopiedPngHashesMatch": true
+  }
+}

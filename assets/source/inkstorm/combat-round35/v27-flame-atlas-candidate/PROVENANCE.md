@@ -1,0 +1,12 @@
+# Private generated rupture artwork — 2026-09-09
+
+Created with the built-in imagegen tool for the user's requested Inkstorm visual iteration. The system imagegen and game-studio sprite-pipeline skills were read. [Target17](../../../../../docs/inkstorm-overhaul/concepts/17-directional-rupture-v25-target.png) was visually studied for palette and shape language, then described in the original text prompt. It was not submitted as an image input to the initial brand-new generation. The corrective edit used raw-v1 as its sole image input.
+
+- [Raw-v1](flame-atlas-raw-v1.png): untouched1254×1254 RGBA PNG,578,105B, SHA256 `f14657a3388bf9618d0206806c7b9c54856bd7f54c98596ea1790d85c97dd4c5`. Four crisp painted drawings were individually assessed in the full-resolution atlas. Actual transparency is present. The requested1024/512 uniform grid and aligned roots failed. Parent subsequently authorized separate metadata rectangles and rooted sampling as a private trial, retaining every pixel.
+- [Raw-v2](flame-atlas-raw-v2.png): one targeted correction, untouched1254×1254 RGB PNG,1,672,302B, SHA256 `78f89afb178e1ccc9fa4e52e9e9de80911ae65d9a71bb4f103f4e26eb7954d84`. **Rejected**: checkerboard is baked into RGB; no alpha. No further generation or pixel repair was performed.
+
+Originals remain in `/Users/amir/.codex/generated_images/01a08094-5bf5-77e1-a26d-bb3689ac4568/` as `exec-35f848ba-951e-40f8-99e6-b49c1cd67d2e.png` and `exec-fb3dd468-5bd8-4c02-8f02-d55425cf8a90.png`. Prompt files and raw receipts are retained beside these copies. No external stock imagery, vehicle parts, textures or claimed third-party license were incorporated into the generated drawings.
+
+[The read-only pixel audit](raw-v1-metadata-audit.json) verifies all211,969 source pixels above alpha2 belong to exactly one proposed rectangle. Source edges have alpha0; separator bands peak at alpha1. The jet has12px padding for alpha>2 (14px at alpha>8). Metadata crops have border alpha≤1. Four actual ivory pixel witnesses define the sampling roots. These are authored datums, not inferred vehicle geometry.
+
+No raster file was normalized, cropped, resized or repainted in Python. The inspection script only reads pixels and writes JSON. The proposed shader samples the unchanged PNG with separate UV rectangles, transparent outside each rectangle, and a shared source-pixel/world scale. This document establishes provenance and bounded sampling, **not native visual acceptance or public admission**. The standard V26 critic did not receive this artwork or Target17.

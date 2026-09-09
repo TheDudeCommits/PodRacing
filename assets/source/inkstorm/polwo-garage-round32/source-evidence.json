@@ -1,0 +1,55 @@
+{
+  "date": "2026-09-08",
+  "scope": "CPU/source evidence only; browser/build not run by this task",
+  "failedLifecycleReceipt": "output/playwright/polwo-appearance-round32-final/receipt.json",
+  "failedLifecycleReceiptSha256": "e38ccfe6cb1f42485976673048f175ab1c9804b328cf8decaa41321bcfff2d2d",
+  "preservedSources": {
+    "assets/source/inkstorm/polwo-garage-round32/polwo-appearance-acceptance.before-ordinal.mjs": "d811fcda19777bdcf5dbd8e0e06165745a0f6e2030b22d8c003a44d65be2ab87",
+    "assets/source/inkstorm/polwo-garage-round32/VehicleCardPreview.before.ts": "bacd3b3ad6915fdb3d3bc0fbcee1993519f4ba1794ef03bd20339e6cb9a23aa5"
+  },
+  "testedHeroSha256": "17e117cd9cbf86a2cf096ca6cdc0e46413b391395577b5f0774203ce7987f39f",
+  "validation": {
+    "focusedFiles": 3,
+    "focusedTests": 12,
+    "result": "PASS",
+    "typecheck": "PASS",
+    "harnessSyntax": "PASS",
+    "harnessNoLaunchCheck": "PASS"
+  },
+  "framing": {
+    "hostAspect": 3.5,
+    "oldActualPathHorizontalCoverage": 0.4625380689382209,
+    "newActualPathHorizontalCoverageAssertedGreaterThan": 0.85,
+    "coverageGainAssertedGreaterThan": 1.75,
+    "anglesDegrees": [
+      0,
+      30,
+      60,
+      90,
+      120,
+      150,
+      180,
+      210,
+      240,
+      270,
+      300,
+      330
+    ],
+    "hostAspects": [
+      1,
+      3.5
+    ],
+    "allPackagedVerticesContained": true,
+    "browserVisualAcceptance": "PENDING"
+  },
+  "cupScopeRepair": {
+    "failedReceipt": "output/playwright/polwo-appearance-round32-revision1/receipt.json",
+    "failedReceiptSha256": "7195e613f5ecb9ccf8c3499eff81a9f699f2f28e2b2f2b8da29dd1ff872424ce",
+    "preservedHarness": "assets/source/inkstorm/polwo-garage-round32/polwo-appearance-acceptance.before-cup-scope-revision1.mjs",
+    "preservedHarnessSha256": "cdbfea588964aaa27407c8b523aba33dd661b1277667307e4016f4732daa8ba1",
+    "failure": "Initial rival readiness wait timed out: Time Attack has only the player entry; absent AI correctly remains procedural without downloading Polwo rival.",
+    "change": "All rival waits removed from hero lifecycle. After hero Retry and all appearance/identity/storage checks, the actual UI selects Canyon Cup with explicit event/profile/laps/+1 ordinal transition; requires eight entries and ai-sola index4, rival geometry and matching browser payload SHA.",
+    "staticValidation": "Syntax, --check no-launch load, whitespace PASS. One rival-ready call, located only in the final Cup stage.",
+    "browserRun": "NOT RUN"
+  }
+}

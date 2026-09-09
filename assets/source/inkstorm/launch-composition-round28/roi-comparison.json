@@ -1,0 +1,55 @@
+{
+  "method": "Same saved camera rays through exact production clipmap triangles with baseline/candidate physical vertex displacement. Terrain-only, no scene occlusion or GPU rasterization.",
+  "results": [
+    {
+      "region": "launch-west-front",
+      "rays": 117,
+      "baselineHits": 116,
+      "candidateHits": 114,
+      "changed": 39,
+      "recedeOver25m": 4,
+      "maximumRecession": 54.2816136023082,
+      "candidateMaxPhysicalInterpolationError": 14.222481157979843
+    },
+    {
+      "region": "launch-east-front",
+      "rays": 117,
+      "baselineHits": 116,
+      "candidateHits": 115,
+      "changed": 28,
+      "recedeOver25m": 0,
+      "maximumRecession": 8.970729485735319,
+      "candidateMaxPhysicalInterpolationError": 14.43506534739994
+    },
+    {
+      "region": "crest-west-front",
+      "rays": 117,
+      "baselineHits": 116,
+      "candidateHits": 109,
+      "changed": 48,
+      "recedeOver25m": 8,
+      "maximumRecession": 262.97137506405807,
+      "candidateMaxPhysicalInterpolationError": 23.55574624029684
+    },
+    {
+      "region": "crest-east-front",
+      "rays": 117,
+      "baselineHits": 108,
+      "candidateHits": 107,
+      "changed": 15,
+      "recedeOver25m": 0,
+      "maximumRecession": 7.951416783191235,
+      "candidateMaxPhysicalInterpolationError": 13.531038682052952
+    },
+    {
+      "region": "descent-west-front",
+      "rays": 117,
+      "baselineHits": 104,
+      "candidateHits": 94,
+      "changed": 34,
+      "recedeOver25m": 3,
+      "maximumRecession": 41.063137079553826,
+      "candidateMaxPhysicalInterpolationError": 21.893170555955436
+    }
+  ]
+}

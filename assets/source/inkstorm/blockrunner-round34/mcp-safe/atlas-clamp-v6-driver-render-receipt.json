@@ -1,0 +1,283 @@
+{
+  "atlasGraphSignatures": {
+    "Blockrunner V6 body atlas": "770e439ce32723b7",
+    "Blockrunner V6 pilot gloves atlas": "865fd0f8c2ef0822",
+    "Blockrunner V6 pilot helmet atlas": "cd444e3416cc4811",
+    "Blockrunner V6 pilot suit atlas": "cfd2bcc8d8c42cf5",
+    "Blockrunner V6 pilot visor atlas": "16015003e707f0ed"
+  },
+  "atlasGraphsPreserved": true,
+  "atlasPackedImageRecords": {
+    "Blockrunner body color 20260908-paint-v4b": {
+      "alphaMode": "STRAIGHT",
+      "colorSpace": "sRGB",
+      "filepath": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/blockrunner-body-color-v1-20260908-paint-v4b.png",
+      "isDirty": false,
+      "isFloat": false,
+      "name": "Blockrunner body color 20260908-paint-v4b",
+      "packedBytes": 788958,
+      "packedBytesFnv1a64": "d1ace48b9a3432ac",
+      "size": [
+        2048,
+        2048
+      ],
+      "source": "FILE"
+    },
+    "Blockrunner body roughness 20260908-paint-v4b": {
+      "alphaMode": "STRAIGHT",
+      "colorSpace": "Non-Color",
+      "filepath": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/blockrunner-body-roughness-v1-20260908-paint-v4b.png",
+      "isDirty": false,
+      "isFloat": false,
+      "name": "Blockrunner body roughness 20260908-paint-v4b",
+      "packedBytes": 725949,
+      "packedBytesFnv1a64": "04069c49d4dc15a1",
+      "size": [
+        2048,
+        2048
+      ],
+      "source": "FILE"
+    },
+    "Blockrunner pilot color 20260908-paint-v4b": {
+      "alphaMode": "STRAIGHT",
+      "colorSpace": "sRGB",
+      "filepath": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/blockrunner-pilot-color-v1-20260908-paint-v4b.png",
+      "isDirty": false,
+      "isFloat": false,
+      "name": "Blockrunner pilot color 20260908-paint-v4b",
+      "packedBytes": 213414,
+      "packedBytesFnv1a64": "990dcafd2474527f",
+      "size": [
+        1024,
+        1024
+      ],
+      "source": "FILE"
+    },
+    "Blockrunner pilot roughness 20260908-paint-v4b": {
+      "alphaMode": "STRAIGHT",
+      "colorSpace": "Non-Color",
+      "filepath": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/blockrunner-pilot-roughness-v1-20260908-paint-v4b.png",
+      "isDirty": false,
+      "isFloat": false,
+      "name": "Blockrunner pilot roughness 20260908-paint-v4b",
+      "packedBytes": 210771,
+      "packedBytesFnv1a64": "0dba79cafd39d4d8",
+      "size": [
+        1024,
+        1024
+      ],
+      "source": "FILE"
+    }
+  },
+  "atlasPackedImagesPreserved": true,
+  "boundsMaximumEncodingDifference": 0,
+  "camera": {
+    "aspect": 1.3333333333333333,
+    "fitHeight": 1.949913203716278,
+    "fitWidth": 1.465846061706543,
+    "location": [
+      16.275789260864258,
+      -41.669532775878906,
+      16.16980743408203
+    ],
+    "orthoScale": 3.171858787536621,
+    "orthoScaleMeaning": "horizontal span; vertical span = orthoScale / aspect",
+    "resolution": [
+      1280,
+      960
+    ],
+    "rotationEuler": [
+      1.0960146188735962,
+      -3.494679745585927e-8,
+      0.65284663438797
+    ],
+    "sensorFit": "HORIZONTAL",
+    "target": [
+      0.0679481029510498,
+      -20.47466278076172,
+      2.4554805755615234
+    ]
+  },
+  "cameraBasis": "Source Blender coordinates; front/rear follow the actual front engine group at negative Y. No gameplay normalization.",
+  "exactOriginalCameraReused": true,
+  "fitCornerNormalsPreserved": true,
+  "fitPreservation": true,
+  "focusObjects": [
+    "blockrunner-pilot-paint-v6"
+  ],
+  "focusRoleAcceptance": "retained source pilot",
+  "globalPreservation": {
+    "changedCollections": [],
+    "changedScenes": [],
+    "contextRestored": true,
+    "preexistingMaterialsRetained": true,
+    "preexistingMeshesRetained": true,
+    "preexistingObjectsRetained": true,
+    "preexistingScenes": 151
+  },
+  "imageGuardScope": "Exact actual packed-image records including encoded bytes FNV, plus identities/dimensions/color spaces; explicit shader extension and other graph properties guarded before/after. No image write.",
+  "lighting": {
+    "device": "CPU",
+    "engine": "CYCLES",
+    "exposure": 0,
+    "gamma": 1,
+    "lightColors": [
+      [
+        1,
+        1,
+        1
+      ],
+      [
+        1,
+        1,
+        1
+      ]
+    ],
+    "look": "None",
+    "repainted": false,
+    "samples": 16,
+    "sourceMaterialInputsUnchanged": true,
+    "viewTransform": "Standard",
+    "worldColor": [
+      0.16,
+      0.16,
+      0.16
+    ],
+    "worldStrength": 0.55
+  },
+  "linkedPaintImages": {
+    "Blockrunner body color 20260908-paint-v4b": {
+      "colorSpace": "sRGB",
+      "filepath": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/blockrunner-body-color-v1-20260908-paint-v4b.png",
+      "name": "Blockrunner body color 20260908-paint-v4b",
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    "Blockrunner body roughness 20260908-paint-v4b": {
+      "colorSpace": "Non-Color",
+      "filepath": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/blockrunner-body-roughness-v1-20260908-paint-v4b.png",
+      "name": "Blockrunner body roughness 20260908-paint-v4b",
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    "Blockrunner pilot color 20260908-paint-v4b": {
+      "colorSpace": "sRGB",
+      "filepath": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/blockrunner-pilot-color-v1-20260908-paint-v4b.png",
+      "name": "Blockrunner pilot color 20260908-paint-v4b",
+      "size": [
+        1024,
+        1024
+      ]
+    },
+    "Blockrunner pilot roughness 20260908-paint-v4b": {
+      "colorSpace": "Non-Color",
+      "filepath": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/blockrunner-pilot-roughness-v1-20260908-paint-v4b.png",
+      "name": "Blockrunner pilot roughness 20260908-paint-v4b",
+      "size": [
+        1024,
+        1024
+      ]
+    }
+  },
+  "objectCopies": [
+    {
+      "sourceMesh": "blockrunner-body-paint-v6 geometry",
+      "sourceObject": "blockrunner-body-paint-v6",
+      "temporaryMesh": "blockrunner-body-paint-v6 geometry.001",
+      "temporaryObject": "Blockrunner neutral copy blockrunner-body-paint-v6"
+    },
+    {
+      "sourceMesh": "blockrunner-pilot-paint-v6 geometry",
+      "sourceObject": "blockrunner-pilot-paint-v6",
+      "temporaryMesh": "blockrunner-pilot-paint-v6 geometry.001",
+      "temporaryObject": "Blockrunner neutral copy blockrunner-pilot-paint-v6"
+    }
+  ],
+  "originalSourceBoundsForLighting": [
+    [
+      -2.9099459648132324,
+      -28.763988494873047,
+      0.021512573584914207
+    ],
+    [
+      2.958909034729004,
+      -16.763992309570312,
+      3.1749837398529053
+    ]
+  ],
+  "paintAttributeSignatures": {
+    "blockrunner-body-paint-v6": {
+      "Inkstorm V4 Edge Distance": {
+        "colorsFnv1a64": "77a01b45d7ba2a4d",
+        "dataType": "FLOAT_COLOR",
+        "domain": "CORNER",
+        "length": 119700
+      },
+      "Inkstorm V4 Edge Strength": {
+        "colorsFnv1a64": "18c936df184555bb",
+        "dataType": "FLOAT_COLOR",
+        "domain": "CORNER",
+        "length": 119700
+      }
+    },
+    "blockrunner-pilot-paint-v6": {
+      "Inkstorm V4 Edge Distance": {
+        "colorsFnv1a64": "95983b52da7ef3fd",
+        "dataType": "FLOAT_COLOR",
+        "domain": "CORNER",
+        "length": 12384
+      },
+      "Inkstorm V4 Edge Strength": {
+        "colorsFnv1a64": "85ef768c1f7a2843",
+        "dataType": "FLOAT_COLOR",
+        "domain": "CORNER",
+        "length": 12384
+      }
+    }
+  },
+  "paintCornerNormalsPreserved": true,
+  "paintPreservation": true,
+  "parentPaintAttributeValuesPreserved": true,
+  "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/paint-v1-driver-20260908-round34-clamp-v6.png",
+  "runtimeReady": false,
+  "scope": "Painted source copy under the exact prior neutral-view camera and lighting; style, export and gameplay acceptance pending.",
+  "sharedBlendSaved": false,
+  "signatureAlgorithm": "FNV-1a-64 over canonical ASCII JSON; non-cryptographic",
+  "sourceBounds": [
+    [
+      -2.9099459648132324,
+      -28.763988494873047,
+      0.021512573584914207
+    ],
+    [
+      2.958909034729004,
+      -16.763992309570312,
+      3.1749837398529053
+    ]
+  ],
+  "sourceComparisonPath": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/paint-v1-driver-20260908-round34-atlas-v5.png",
+  "sourceCornerNormalsPreserved": true,
+  "sourcePreservation": true,
+  "sourcePreservationScope": "Matching FNV-1a-64 structural signatures; not byte equality or a cryptographic proof.",
+  "sourceUid": "a6f14ae799ab40d7ac425f043f824ff8",
+  "stage": "paint-neutral-comparison",
+  "status": "rendered; human inspection pending",
+  "targetBounds": [
+    [
+      -0.44040727615356445,
+      -20.714107513427734,
+      1.7359771728515625
+    ],
+    [
+      0.5763034820556641,
+      -19.866472244262695,
+      3.1749837398529053
+    ]
+  ],
+  "temporarySceneRemoved": true,
+  "view": "driver"
+}

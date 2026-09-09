@@ -1,0 +1,18 @@
+{
+  "status": "preintegration study clear for 18 placements, not art or performance acceptance",
+  "generatedAt": "2026-09-07T17:34:17.738Z",
+  "placements": 18,
+  "unsafePlacements": [],
+  "regression": {
+    "command": "npx vitest run tests/race/inkstormCanyonComposition.test.ts",
+    "filesPassed": 1,
+    "testsPassed": 11
+  },
+  "sha256": {
+    "assets/source/inkstorm/canyon-arch-v3/canyon-arch-v3-normalized.glb": "1b950e08b0004fec5590b1167a7c1f7311c0389a2d48b2e43c387c1ef82d9b01",
+    "assets/source/inkstorm/canyon-arch-v3/normalized-value-receipt.json": "c257830eddc5f6ef8a05064678138a799b4907e597a690c30f6d8876d07bb9a3",
+    "output/arch-v3/clearance/clearance.json": "da464642bab5c541b5191f6cc2066149138d35726697aeb27757b8a74dac4086",
+    "scripts/inkstorm-arch-clearance.ts": "d0ca3f960c7885b68b4412c3a95bbf56c8cbe04b7238d689b2afdafb1cf8a565",
+    "docs/inkstorm-overhaul/CANYON_ARCH_V3_CLEARANCE.md": "8d015880ec8914fda860fb25683c0e39a8d7539a6f7efc1c6a6a613862c3e1e6"
+  }
+}

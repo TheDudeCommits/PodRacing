@@ -1,0 +1,25 @@
+--- a/src/render/app/GameApp.ts
++++ b/src/render/app/GameApp.ts
+@@ -993,13 +993,21 @@
+       && !this.settings.comfort.reducedMotion && this.combatSystemMotion?.matches !== true
+       && this.settings.comfort.motionIntensity > 0 && this.race.state.phase === 'racing'
+       && (playerWreck?.phase === 'wrecked' || playerWreck?.phase === 'recovering');
++    // The completed victim recovery is an edited return to ordinary chase.
++    // Interpolating from the opposite-side fitted wreck eye crosses the long
++    // engine envelope after its protection is removed. Cut once to the exact
++    // existing chase pose; cancellation/manual/replay paths retain their policy.
++    const recoveredChase = this.combatChaseRecovery && playerWreck?.phase === 'running'
++      && this.cameraMode === 'chase' && !this.paused && !this.captureMode && !replayFrame
++      && !this.settings.comfort.reducedMotion && this.combatSystemMotion?.matches !== true
++      && this.settings.comfort.motionIntensity > 0 && this.race.state.phase === 'racing';
+     if (!stillWrecked) this.combatChaseRecovery = false;
+     const wreckChase = stillWrecked && !combatCut && !replayFrame && this.cameraMode === 'chase';
+     if (wreckChase) {
+       this.syncCombatCameraSubject(renderExtrapolation);
+       this.subject.wreckChase = true;
+     }
+-    if (replayFrame || (cutChanged && !wreckChase)) {
++    if (replayFrame || recoveredChase || (cutChanged && !wreckChase)) {
+       // Highlight poses come from a ring buffer and may move several metres
+       // between presented samples. A gameplay spring chases that historical
+       // subject from the live results orbit, making the event recede into a

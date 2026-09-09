@@ -1,0 +1,47 @@
+{
+  "status": "Camera test/source handoff frozen; root owns GameApp application and integrated build",
+  "scope": "Existing ordinary chase snap once on actual completed armed victim recovery; no changes to CinematicCamera.ts formulas, assets, physics or simulation",
+  "files": [
+    {
+      "path": "tests/camera/WreckBoundsFraming.test.ts",
+      "bytes": 24190,
+      "sha256": "f82da8b1ad7dfaf7e1c24a8b7c29c49501fc3eac9b0b69234d5265fed4be676f"
+    },
+    {
+      "path": "src/camera/CinematicCamera.ts",
+      "bytes": 29212,
+      "sha256": "7eeaa8f9f058eb370e7a9802e2fd869255393a9532b053109d6b541187e0670c"
+    }
+  ],
+  "patch": {
+    "path": "assets/source/inkstorm/combat-round35/v19-recovery-camera/GameApp-recovery-chase.patch",
+    "bytes": 1680,
+    "sha256": "9ef359b22d62166ed8ac7fafdaeff4932ce45093045b848b1607627cf108a345"
+  },
+  "patchInput": {
+    "path": "src/render/app/GameApp.ts",
+    "sha256": "094c764f963137da919ab2b1e869bf0b9eaab93b4d14eb6bd5a57d09b1088fcb",
+    "bytes": 174376,
+    "expectedOutputSha256": "9dad5a44a82c00b4310fa2a97822899bd3c4321528a4ded27e74da8ce25f1698",
+    "scope": "Single running-phase boundary snap only; no ordinary camera formula change"
+  },
+  "validation": {
+    "selectedTests": "11 PASS, 11 unrelated skipped across2files",
+    "typecheck": "PASS",
+    "diffCheck": "PASS",
+    "coverage": "All4 admitted model position streams and4aspects; snap endpoint source-projection parity and30moving chase updates with real clearances/route/junction. Sim unchanged. Native framing acceptance pending."
+  },
+  "evidence": [
+    {
+      "path": "assets/source/inkstorm/combat-round35/v19-recovery-camera/camera-final.log",
+      "bytes": 230,
+      "sha256": "0cec7f5dc22bf5301a47c9936c8328c700ecf74496a43daa2e3f8c4b967fe165"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/v19-recovery-camera/typecheck-final.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "independentReview": "Main branch single-shot and policy guards confirmed. Visibility handler existing cancellation leaves recovery armed; parent notified to route it through cancelCombatCut. No unrelated replay/manual changes requested."
+}

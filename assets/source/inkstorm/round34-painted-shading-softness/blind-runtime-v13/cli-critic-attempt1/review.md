@@ -1,0 +1,27 @@
+I examined **all nine images**: eight actual game frames individually, plus Image 9 as the finish/style target. Scores assess the vehicle, excluding the environment and UI; they do not require matching the target’s geometry.
+
+| Image | Observation | Materials /10 | Overall vehicle /10 |
+|---|---|---:|---:|
+| **1** | Engines have relatively continuous curvature and soft highlights. Cream plates and circular inserts read clearly, but surfaces resemble clean molded plastic; the pilot’s helmet, clothing and cockpit lack material separation. | **5.5** | **6.2** |
+| **2** | Engines have more explicit light/dark bands and harder highlight shapes. These strengthen graphic planes but expose faceting and make the highlights look painted onto the surface. The cockpit remains comparatively flat. | **5.4** | **6.1** |
+| **3** | Helmet dome and cream cockpit studs remain readable against the sand. Dark rails frame the pilot effectively, but engines lack convincing metal response and the pilot reads as a largely uniform gray figurine. | **5.6** | **6.2** |
+| **4** | Similar clarity of helmet, studs and cockpit boundaries. Broad cream surfaces provide useful value separation, while engine shading and pilot materials still feel simplified. No substantial finish advantage is apparent. | **5.6** | **6.2** |
+| **5** | Open lighting exposes the cockpit’s construction clearly. Helmet shading suggests roundness, but the large cream rear panel feels blank and the engines’ red pigment has little surface character. | **5.5** | **6.1** |
+| **6** | Pilot silhouette and cockpit layout remain legible. Cream panels, gray pilot and red engines separate by color more than by material response; curvature is serviceable but lacks the target’s richness. | **5.5** | **6.1** |
+| **7** | Stronger shadow gives the vehicle more weight, but dark rails and engine recesses lose internal separation. Helmet highlights survive; the clothing and cockpit interior remain visually underdeveloped. | **5.4** | **6.0** |
+| **8** | The shadowed vehicle retains its broad silhouette and cream graphic planes. Engine curvature and pilot articulation are less clear than the studs and outer panels; material distinctions remain weak. | **5.4** | **6.0** |
+
+**Pair preferences**
+
+- **1 vs 2 → Image 1. Moderate confidence.** Its smoother engine highlight transitions describe rounded shells more convincingly. Image 2 offers stronger graphic segmentation, but its abrupt bands and flattened highlight patches are a comparative regression in curvature.
+- **3 vs 4 → TIE. Moderate confidence.** Helmet sheen, cockpit separation and engine finish appear effectively equivalent at the supplied scale. Neither shows a persuasive material advantage.
+- **5 vs 6 → TIE. Moderate confidence.** Both preserve the same useful cream/dark framing and share the same blank panel surfaces. Any shading differences are too slight to establish a meaningful improvement or regression.
+- **7 vs 8 → TIE. Moderate confidence.** Both gain solidity from shadow while sacrificing detail in the dark assembly. I cannot confidently distinguish a better surface treatment.
+
+**Neither treatment reaches 8/10 relative to Image 9.** The target combines readable large planes with curved highlights, worn pigment, exposed edges and localized surface variation. The actual vehicles establish the color scheme and construction, but mostly retain a clean plastic appearance. The target’s dramatic lighting contributes substantially to its appeal; wear alone would not close the gap.
+
+The three highest-impact improvements are:
+
+1. **Improve engine and helmet curvature through highlight design.** Use broad, controlled transitions around rounded forms; reserve hard shading breaks for actual edges and deliberate graphic accents.
+2. **Separate painted metal, bare metal and clothing.** Give engine paint restrained roughness variation, selective exposed edges, a distinct helmet/visor response, and softer, less reflective pilot clothing.
+3. **Strengthen cockpit depth and surface hierarchy.** Clarify the seat, hands, torso and control recesses with localized contact shadows and value separation. Add sparse, purposeful wear to large cream/red panels while preserving their clean graphic readability.

@@ -1,0 +1,716 @@
+{
+  "scope": "External read-only exact source geometry; flat-plane roll comparison, triangle-area-weighted surface heights, not mass center or visual proof",
+  "parts": [
+    {
+      "source": "public/assets/inkstorm/vehicles/teemto-hero-open-v2.glb",
+      "sha256": "af5d69514a51f7e9c089a1710e1587f46e053412b488268dc433f029576c0a7e",
+      "name": "teemto-engine-left-body",
+      "vertices": 13967,
+      "triangles": 11790,
+      "bounds": [
+        [
+          -6.54527473449707,
+          0.07286620140075684,
+          5.0940141677856445
+        ],
+        [
+          -1.3186402320861816,
+          5.191770553588867,
+          22.738540649414062
+        ]
+      ],
+      "rows": [
+        {
+          "rollDegrees": 0,
+          "height": 5.11890435218811,
+          "areaWeightedMeanHeight": 2.4505733883044414,
+          "areaWeightedGapP10": 0.6874186197916666,
+          "surfaceAreaFractionBelowHalfMetre": 0.06259912181830886,
+          "supportBandXSpan": 1.8272945880889893,
+          "supportBandZSpan": 13.060426712036133
+        },
+        {
+          "rollDegrees": 15,
+          "height": 5.080653384500869,
+          "areaWeightedMeanHeight": 2.456067299633535,
+          "areaWeightedGapP10": 0.6553940279559669,
+          "surfaceAreaFractionBelowHalfMetre": 0.05638487597349487,
+          "supportBandXSpan": 2.9495993468439994,
+          "supportBandZSpan": 13.06933307647705
+        },
+        {
+          "rollDegrees": 30,
+          "height": 5.227686101250498,
+          "areaWeightedMeanHeight": 2.63371488722556,
+          "areaWeightedGapP10": 0.8051392784543883,
+          "surfaceAreaFractionBelowHalfMetre": 0.028120572904596564,
+          "supportBandXSpan": 2.1032349405869066,
+          "supportBandZSpan": 7.772089958190918
+        },
+        {
+          "rollDegrees": 45,
+          "height": 5.398846247186756,
+          "areaWeightedMeanHeight": 2.849071642919851,
+          "areaWeightedGapP10": 1.0229126113164941,
+          "surfaceAreaFractionBelowHalfMetre": 0.017156218170878174,
+          "supportBandXSpan": 0.4401865748822047,
+          "supportBandZSpan": 5.838656425476074
+        },
+        {
+          "rollDegrees": 60,
+          "height": 5.65791285589419,
+          "areaWeightedMeanHeight": 2.87026887446266,
+          "areaWeightedGapP10": 1.0208769702822176,
+          "surfaceAreaFractionBelowHalfMetre": 0.02817946181518084,
+          "supportBandXSpan": 0.6593444368074879,
+          "supportBandZSpan": 6.859942436218262
+        },
+        {
+          "rollDegrees": 75,
+          "height": 5.555102912407134,
+          "areaWeightedMeanHeight": 2.695862025554427,
+          "areaWeightedGapP10": 0.7839415897287827,
+          "surfaceAreaFractionBelowHalfMetre": 0.05771960108119045,
+          "supportBandXSpan": 1.5477226221754532,
+          "supportBandZSpan": 8.727011680603027
+        },
+        {
+          "rollDegrees": 90,
+          "height": 5.226634502410889,
+          "areaWeightedMeanHeight": 2.490649251457039,
+          "areaWeightedGapP10": 0.4983803431193037,
+          "surfaceAreaFractionBelowHalfMetre": 0.10029577438024177,
+          "supportBandXSpan": 2.704285144805908,
+          "supportBandZSpan": 5.051148414611816
+        },
+        {
+          "rollDegrees": 105,
+          "height": 5.1111248488299035,
+          "areaWeightedMeanHeight": 2.445569210448484,
+          "areaWeightedGapP10": 0.5356151042306632,
+          "surfaceAreaFractionBelowHalfMetre": 0.09227937971951453,
+          "supportBandXSpan": 2.3825940675611994,
+          "supportBandZSpan": 6.145920753479004
+        },
+        {
+          "rollDegrees": 120,
+          "height": 5.290443898785388,
+          "areaWeightedMeanHeight": 2.43723209581678,
+          "areaWeightedGapP10": 0.5860881366491624,
+          "surfaceAreaFractionBelowHalfMetre": 0.07922069657545704,
+          "supportBandXSpan": 2.6328439659305527,
+          "supportBandZSpan": 5.304836273193359
+        },
+        {
+          "rollDegrees": 135,
+          "height": 5.313220203989842,
+          "areaWeightedMeanHeight": 2.4667939056509116,
+          "areaWeightedGapP10": 0.6212255528708495,
+          "surfaceAreaFractionBelowHalfMetre": 0.07076370706544124,
+          "supportBandXSpan": 2.2504537355373833,
+          "supportBandZSpan": 3.5802993774414062
+        },
+        {
+          "rollDegrees": 150,
+          "height": 5.2541605516737135,
+          "areaWeightedMeanHeight": 2.608499006254391,
+          "areaWeightedGapP10": 0.7341129495399059,
+          "surfaceAreaFractionBelowHalfMetre": 0.056572443034296475,
+          "supportBandXSpan": 2.0730725098644154,
+          "supportBandZSpan": 5.538738250732422
+        },
+        {
+          "rollDegrees": 165,
+          "height": 5.067619688193874,
+          "areaWeightedMeanHeight": 2.6181781002521562,
+          "areaWeightedGapP10": 0.745619620295078,
+          "surfaceAreaFractionBelowHalfMetre": 0.05731734993159446,
+          "supportBandXSpan": 1.8622208249139072,
+          "supportBandZSpan": 7.026333808898926
+        },
+        {
+          "rollDegrees": 180,
+          "height": 5.11890435218811,
+          "areaWeightedMeanHeight": 2.6683309638836694,
+          "areaWeightedGapP10": 0.7839566866556806,
+          "surfaceAreaFractionBelowHalfMetre": 0.05301820990598361,
+          "supportBandXSpan": 2.08668303489685,
+          "supportBandZSpan": 7.026333808898926
+        },
+        {
+          "rollDegrees": 195,
+          "height": 5.080653384500869,
+          "areaWeightedMeanHeight": 2.6245860848673344,
+          "areaWeightedGapP10": 0.7622581387305281,
+          "surfaceAreaFractionBelowHalfMetre": 0.05619139257708527,
+          "supportBandXSpan": 1.5147418066394356,
+          "supportBandZSpan": 7.026333808898926
+        },
+        {
+          "rollDegrees": 210,
+          "height": 5.227686101250499,
+          "areaWeightedMeanHeight": 2.593971214024938,
+          "areaWeightedGapP10": 0.7382441097176557,
+          "surfaceAreaFractionBelowHalfMetre": 0.0577259203502479,
+          "supportBandXSpan": 2.10978591641531,
+          "supportBandZSpan": 6.9665021896362305
+        },
+        {
+          "rollDegrees": 225,
+          "height": 5.398846247186757,
+          "areaWeightedMeanHeight": 2.5497746042669056,
+          "areaWeightedGapP10": 0.69688010127647,
+          "surfaceAreaFractionBelowHalfMetre": 0.0620990131223161,
+          "supportBandXSpan": 2.502973122348827,
+          "supportBandZSpan": 3.672863006591797
+        },
+        {
+          "rollDegrees": 240,
+          "height": 5.657912855894191,
+          "areaWeightedMeanHeight": 2.787643981431529,
+          "areaWeightedGapP10": 0.9500566468764655,
+          "surfaceAreaFractionBelowHalfMetre": 0.012694999618978344,
+          "supportBandXSpan": 0.5449829295302036,
+          "supportBandZSpan": 0.7518463134765625
+        },
+        {
+          "rollDegrees": 255,
+          "height": 5.5551029124071345,
+          "areaWeightedMeanHeight": 2.859240886852707,
+          "areaWeightedGapP10": 0.9727116071225167,
+          "surfaceAreaFractionBelowHalfMetre": 0.0036429913507647744,
+          "supportBandXSpan": 0.5439527948456924,
+          "supportBandZSpan": 0.7518463134765625
+        },
+        {
+          "rollDegrees": 270,
+          "height": 5.22663450241089,
+          "areaWeightedMeanHeight": 2.7359852509538496,
+          "areaWeightedGapP10": 0.7408028443654382,
+          "surfaceAreaFractionBelowHalfMetre": 0.043586481010369355,
+          "supportBandXSpan": 1.524932861328125,
+          "supportBandZSpan": 3.1156539916992188
+        },
+        {
+          "rollDegrees": 285,
+          "height": 5.111124848829904,
+          "areaWeightedMeanHeight": 2.6655556383814196,
+          "areaWeightedGapP10": 0.7486333299542909,
+          "surfaceAreaFractionBelowHalfMetre": 0.06217789769573017,
+          "supportBandXSpan": 2.602363702169401,
+          "supportBandZSpan": 8.727568626403809
+        },
+        {
+          "rollDegrees": 300,
+          "height": 5.290443898785388,
+          "areaWeightedMeanHeight": 2.853211802968608,
+          "areaWeightedGapP10": 1.0114493626794678,
+          "surfaceAreaFractionBelowHalfMetre": 0.02817945368330655,
+          "supportBandXSpan": 0.645079728871661,
+          "supportBandZSpan": 6.8612470626831055
+        },
+        {
+          "rollDegrees": 315,
+          "height": 5.313220203989842,
+          "areaWeightedMeanHeight": 2.8464262983389306,
+          "areaWeightedGapP10": 1.0279973757082426,
+          "surfaceAreaFractionBelowHalfMetre": 0.017156222124950313,
+          "supportBandXSpan": 0.42300237751364594,
+          "supportBandZSpan": 5.839716911315918
+        },
+        {
+          "rollDegrees": 330,
+          "height": 5.254160551673714,
+          "areaWeightedMeanHeight": 2.6456615454193235,
+          "areaWeightedGapP10": 0.8350086705145332,
+          "surfaceAreaFractionBelowHalfMetre": 0.02570305344303076,
+          "supportBandXSpan": 1.8543975758001725,
+          "supportBandZSpan": 6.686842918395996
+        },
+        {
+          "rollDegrees": 345,
+          "height": 5.067619688193874,
+          "areaWeightedMeanHeight": 2.4494415879417173,
+          "areaWeightedGapP10": 0.6309537069404978,
+          "surfaceAreaFractionBelowHalfMetre": 0.05718734648193125,
+          "supportBandXSpan": 2.9548604347118737,
+          "supportBandZSpan": 13.078734397888184
+        }
+      ]
+    },
+    {
+      "source": "assets/source/inkstorm/combat-round35/authored-damage-v16/packaged-b/teemto-damage-hero-v16.glb",
+      "sha256": "31cf1c7bfb3ea539d19598b466abd9eaec1b8e5f0c4ece58e9014c686c3c13d8",
+      "name": "teemto-damage-right-front-v16",
+      "vertices": 14086,
+      "triangles": 7948,
+      "bounds": [
+        [
+          1.2777190208435059,
+          0.12051224708557129,
+          14.960724830627441
+        ],
+        [
+          6.496447563171387,
+          5.250973701477051,
+          22.736522674560547
+        ]
+      ],
+      "rows": [
+        {
+          "rollDegrees": 0,
+          "height": 5.1304614543914795,
+          "areaWeightedMeanHeight": 2.919929285652063,
+          "areaWeightedGapP10": 1.0796756744384766,
+          "surfaceAreaFractionBelowHalfMetre": 0.042302117120534034,
+          "supportBandXSpan": 1.8272945880889893,
+          "supportBandZSpan": 3.2711315155029297
+        },
+        {
+          "rollDegrees": 15,
+          "height": 5.091769796227468,
+          "areaWeightedMeanHeight": 2.906291040279353,
+          "areaWeightedGapP10": 1.0083996295685105,
+          "surfaceAreaFractionBelowHalfMetre": 0.040669485764329,
+          "supportBandXSpan": 2.9460826199922527,
+          "supportBandZSpan": 3.2711315155029297
+        },
+        {
+          "rollDegrees": 30,
+          "height": 5.267226918352243,
+          "areaWeightedMeanHeight": 3.0455343855346566,
+          "areaWeightedGapP10": 1.101878324237118,
+          "surfaceAreaFractionBelowHalfMetre": 0.023919281772134704,
+          "supportBandXSpan": 2.07871134891153,
+          "supportBandZSpan": 3.0975046157836914
+        },
+        {
+          "rollDegrees": 45,
+          "height": 5.3287339531645195,
+          "areaWeightedMeanHeight": 3.181124082012453,
+          "areaWeightedGapP10": 1.1701839838445949,
+          "surfaceAreaFractionBelowHalfMetre": 0.01031851220896022,
+          "supportBandXSpan": 0.3130234637786514,
+          "supportBandZSpan": 1.1575288772583008
+        },
+        {
+          "rollDegrees": 60,
+          "height": 5.292694950532539,
+          "areaWeightedMeanHeight": 3.099925429357209,
+          "areaWeightedGapP10": 1.028230194863921,
+          "surfaceAreaFractionBelowHalfMetre": 0.019690130784056053,
+          "supportBandXSpan": 0.5999571449988126,
+          "supportBandZSpan": 2.1766481399536133
+        },
+        {
+          "rollDegrees": 75,
+          "height": 5.12577777261351,
+          "areaWeightedMeanHeight": 2.807471981560261,
+          "areaWeightedGapP10": 0.7370429041769122,
+          "surfaceAreaFractionBelowHalfMetre": 0.0532247098219958,
+          "supportBandXSpan": 2.6292556990246343,
+          "supportBandZSpan": 4.0427141189575195
+        },
+        {
+          "rollDegrees": 90,
+          "height": 5.218728542327881,
+          "areaWeightedMeanHeight": 2.7370581297686076,
+          "areaWeightedGapP10": 0.6888834238052368,
+          "surfaceAreaFractionBelowHalfMetre": 0.06052455899287804,
+          "supportBandXSpan": 1.5465564727783203,
+          "supportBandZSpan": 3.1057205200195312
+        },
+        {
+          "rollDegrees": 105,
+          "height": 5.555784621116387,
+          "areaWeightedMeanHeight": 2.751465120126404,
+          "areaWeightedGapP10": 0.8109506716644228,
+          "surfaceAreaFractionBelowHalfMetre": 0.0056677083708852345,
+          "supportBandXSpan": 0.5419102444400576,
+          "supportBandZSpan": 0.7505378723144531
+        },
+        {
+          "rollDegrees": 120,
+          "height": 5.687807620556165,
+          "areaWeightedMeanHeight": 2.5805692045782176,
+          "areaWeightedGapP10": 0.7842149573828021,
+          "surfaceAreaFractionBelowHalfMetre": 0.01923372593251199,
+          "supportBandXSpan": 0.5454716107248925,
+          "supportBandZSpan": 0.7505378723144531
+        },
+        {
+          "rollDegrees": 135,
+          "height": 5.450087205494543,
+          "areaWeightedMeanHeight": 2.251683037623257,
+          "areaWeightedGapP10": 0.540614197905559,
+          "surfaceAreaFractionBelowHalfMetre": 0.09070078184263071,
+          "supportBandXSpan": 2.5097081044471703,
+          "supportBandZSpan": 3.667938232421875
+        },
+        {
+          "rollDegrees": 150,
+          "height": 5.293468116817218,
+          "areaWeightedMeanHeight": 2.221864155480221,
+          "areaWeightedGapP10": 0.5579282887147494,
+          "surfaceAreaFractionBelowHalfMetre": 0.08467597994213825,
+          "supportBandXSpan": 2.0437080080134304,
+          "supportBandZSpan": 5.524772644042969
+        },
+        {
+          "rollDegrees": 165,
+          "height": 5.090364977315375,
+          "areaWeightedMeanHeight": 2.183389657751093,
+          "areaWeightedGapP10": 0.5600952044053424,
+          "surfaceAreaFractionBelowHalfMetre": 0.08876746150306225,
+          "supportBandXSpan": 1.835277771296639,
+          "supportBandZSpan": 7.025332450866699
+        },
+        {
+          "rollDegrees": 180,
+          "height": 5.1304614543914795,
+          "areaWeightedMeanHeight": 2.210532168739417,
+          "areaWeightedGapP10": 0.550984064737956,
+          "surfaceAreaFractionBelowHalfMetre": 0.08076283907107962,
+          "supportBandXSpan": 2.201734066009522,
+          "supportBandZSpan": 7.025332450866699
+        },
+        {
+          "rollDegrees": 195,
+          "height": 5.091769796227469,
+          "areaWeightedMeanHeight": 2.1854787559481155,
+          "areaWeightedGapP10": 0.5591439643647371,
+          "surfaceAreaFractionBelowHalfMetre": 0.08740813711835237,
+          "supportBandXSpan": 1.5293018652798662,
+          "supportBandZSpan": 7.025332450866699
+        },
+        {
+          "rollDegrees": 210,
+          "height": 5.267226918352244,
+          "areaWeightedMeanHeight": 2.2216925328175874,
+          "areaWeightedGapP10": 0.5701203882787738,
+          "surfaceAreaFractionBelowHalfMetre": 0.08288052827655772,
+          "supportBandXSpan": 2.046986918835758,
+          "supportBandZSpan": 5.5396881103515625
+        },
+        {
+          "rollDegrees": 225,
+          "height": 5.32873395316452,
+          "areaWeightedMeanHeight": 2.1476098711520675,
+          "areaWeightedGapP10": 0.4424070394491526,
+          "surfaceAreaFractionBelowHalfMetre": 0.11021900199989236,
+          "supportBandXSpan": 2.279188782502534,
+          "supportBandZSpan": 3.90557861328125
+        },
+        {
+          "rollDegrees": 240,
+          "height": 5.292694950532539,
+          "areaWeightedMeanHeight": 2.1927695211753293,
+          "areaWeightedGapP10": 0.42272174316014866,
+          "surfaceAreaFractionBelowHalfMetre": 0.12398431677297386,
+          "supportBandXSpan": 2.206774849762039,
+          "supportBandZSpan": 5.2960205078125
+        },
+        {
+          "rollDegrees": 255,
+          "height": 5.12577777261351,
+          "areaWeightedMeanHeight": 2.318305791053249,
+          "areaWeightedGapP10": 0.3841339333117233,
+          "surfaceAreaFractionBelowHalfMetre": 0.13848930308414156,
+          "supportBandXSpan": 2.420935221563789,
+          "supportBandZSpan": 6.214620590209961
+        },
+        {
+          "rollDegrees": 270,
+          "height": 5.21872854232788,
+          "areaWeightedMeanHeight": 2.4816704125592732,
+          "areaWeightedGapP10": 0.4182370503743478,
+          "surfaceAreaFractionBelowHalfMetre": 0.12239502265431242,
+          "supportBandXSpan": 2.740870475769043,
+          "supportBandZSpan": 5.124635696411133
+        },
+        {
+          "rollDegrees": 285,
+          "height": 5.555784621116388,
+          "areaWeightedMeanHeight": 2.8043195009899837,
+          "areaWeightedGapP10": 0.7348713871591119,
+          "surfaceAreaFractionBelowHalfMetre": 0.05695213435423902,
+          "supportBandXSpan": 1.5643855094935741,
+          "supportBandZSpan": 4.150626182556152
+        },
+        {
+          "rollDegrees": 300,
+          "height": 5.687807620556165,
+          "areaWeightedMeanHeight": 3.107238415977948,
+          "areaWeightedGapP10": 1.0322633362663796,
+          "surfaceAreaFractionBelowHalfMetre": 0.023750461562671268,
+          "supportBandXSpan": 0.598855465856257,
+          "supportBandZSpan": 2.2834463119506836
+        },
+        {
+          "rollDegrees": 315,
+          "height": 5.450087205494544,
+          "areaWeightedMeanHeight": 3.198404167871287,
+          "areaWeightedGapP10": 1.1614718930826053,
+          "surfaceAreaFractionBelowHalfMetre": 0.010837123419620835,
+          "supportBandXSpan": 0.3124371168221689,
+          "supportBandZSpan": 1.2640867233276367
+        },
+        {
+          "rollDegrees": 330,
+          "height": 5.293468116817218,
+          "areaWeightedMeanHeight": 3.071603961336998,
+          "areaWeightedGapP10": 1.0860904552846624,
+          "surfaceAreaFractionBelowHalfMetre": 0.01704255103975728,
+          "supportBandXSpan": 1.8510550973258244,
+          "supportBandZSpan": 2.1182851791381836
+        },
+        {
+          "rollDegrees": 345,
+          "height": 5.090364977315376,
+          "areaWeightedMeanHeight": 2.9069753195642827,
+          "areaWeightedGapP10": 0.9986483226530539,
+          "surfaceAreaFractionBelowHalfMetre": 0.04017335064890379,
+          "supportBandXSpan": 2.9512407643224634,
+          "supportBandZSpan": 3.2711315155029297
+        }
+      ]
+    },
+    {
+      "source": "assets/source/inkstorm/combat-round35/authored-damage-v16/packaged-b/teemto-damage-hero-v16.glb",
+      "sha256": "31cf1c7bfb3ea539d19598b466abd9eaec1b8e5f0c4ece58e9014c686c3c13d8",
+      "name": "teemto-damage-right-rear-v16",
+      "vertices": 7831,
+      "triangles": 4474,
+      "bounds": [
+        [
+          1.582594633102417,
+          0.11396288871765137,
+          5.1262664794921875
+        ],
+        [
+          6.450664043426514,
+          4.141551971435547,
+          15.40134048461914
+        ]
+      ],
+      "rows": [
+        {
+          "rollDegrees": 0,
+          "height": 4.0275890827178955,
+          "areaWeightedMeanHeight": 1.6713628340996112,
+          "areaWeightedGapP10": 0.47578493754069007,
+          "surfaceAreaFractionBelowHalfMetre": 0.1185156071879335,
+          "supportBandXSpan": 1.2537076473236084,
+          "supportBandZSpan": 10.024724960327148
+        },
+        {
+          "rollDegrees": 15,
+          "height": 4.031463478026019,
+          "areaWeightedMeanHeight": 1.6799252452141453,
+          "areaWeightedGapP10": 0.49636027051925913,
+          "surfaceAreaFractionBelowHalfMetre": 0.10193831705700282,
+          "supportBandXSpan": 2.898159910847461,
+          "supportBandZSpan": 10.051671028137207
+        },
+        {
+          "rollDegrees": 30,
+          "height": 4.252179660747965,
+          "areaWeightedMeanHeight": 1.9492088723998546,
+          "areaWeightedGapP10": 0.6069472707412675,
+          "surfaceAreaFractionBelowHalfMetre": 0.05277256899089335,
+          "supportBandXSpan": 0.23658954420520995,
+          "supportBandZSpan": 4.72194766998291
+        },
+        {
+          "rollDegrees": 45,
+          "height": 4.635136079862685,
+          "areaWeightedMeanHeight": 2.281139312072494,
+          "areaWeightedGapP10": 0.9252595434285116,
+          "surfaceAreaFractionBelowHalfMetre": 0.02917628769540598,
+          "supportBandXSpan": 0.18743765633377052,
+          "supportBandZSpan": 4.72194766998291
+        },
+        {
+          "rollDegrees": 60,
+          "height": 4.814520920843677,
+          "areaWeightedMeanHeight": 2.4576138773883467,
+          "areaWeightedGapP10": 1.006471154887486,
+          "surfaceAreaFractionBelowHalfMetre": 0.04913778451589941,
+          "supportBandXSpan": 0.12551220193855755,
+          "supportBandZSpan": 4.72194766998291
+        },
+        {
+          "rollDegrees": 75,
+          "height": 4.8544694271783815,
+          "areaWeightedMeanHeight": 2.4666061183591443,
+          "areaWeightedGapP10": 0.8647183726560774,
+          "surfaceAreaFractionBelowHalfMetre": 0.0702808076229723,
+          "supportBandXSpan": 1.0645614847149425,
+          "supportBandZSpan": 4.740078926086426
+        },
+        {
+          "rollDegrees": 90,
+          "height": 4.868069410324097,
+          "areaWeightedMeanHeight": 2.4281413607184468,
+          "areaWeightedGapP10": 0.6184597810109456,
+          "surfaceAreaFractionBelowHalfMetre": 0.07337392115659386,
+          "supportBandXSpan": 1.7644174098968506,
+          "supportBandZSpan": 0.36321449279785156
+        },
+        {
+          "rollDegrees": 105,
+          "height": 4.846669981650397,
+          "areaWeightedMeanHeight": 2.3750003286855783,
+          "areaWeightedGapP10": 0.5706196373863526,
+          "surfaceAreaFractionBelowHalfMetre": 0.09289291559927952,
+          "supportBandXSpan": 1.5324155477465697,
+          "supportBandZSpan": 0.3865194320678711
+        },
+        {
+          "rollDegrees": 120,
+          "height": 4.827807963812022,
+          "areaWeightedMeanHeight": 2.3555836252560103,
+          "areaWeightedGapP10": 0.7216945312773093,
+          "surfaceAreaFractionBelowHalfMetre": 0.05342866861122669,
+          "supportBandXSpan": 1.574089611884315,
+          "supportBandZSpan": 0.3865194320678711
+        },
+        {
+          "rollDegrees": 135,
+          "height": 4.656721672621236,
+          "areaWeightedMeanHeight": 2.352420651602732,
+          "areaWeightedGapP10": 0.874848203686813,
+          "surfaceAreaFractionBelowHalfMetre": 0.020421468759732157,
+          "supportBandXSpan": 2.1945752751942456,
+          "supportBandZSpan": 0.4845466613769531
+        },
+        {
+          "rollDegrees": 150,
+          "height": 4.269171229819484,
+          "areaWeightedMeanHeight": 2.2898278328834136,
+          "areaWeightedGapP10": 0.9134168911797095,
+          "surfaceAreaFractionBelowHalfMetre": 0.03618144507228541,
+          "supportBandXSpan": 2.235741449404971,
+          "supportBandZSpan": 0.6422786712646484
+        },
+        {
+          "rollDegrees": 165,
+          "height": 4.033097948456217,
+          "areaWeightedMeanHeight": 2.351106337381971,
+          "areaWeightedGapP10": 0.9938861200715783,
+          "surfaceAreaFractionBelowHalfMetre": 0.024952140983764023,
+          "supportBandXSpan": 1.6033269862970525,
+          "supportBandZSpan": 0.6637668609619141
+        },
+        {
+          "rollDegrees": 180,
+          "height": 4.0275890827178955,
+          "areaWeightedMeanHeight": 2.356226248618284,
+          "areaWeightedGapP10": 0.8658397197723384,
+          "surfaceAreaFractionBelowHalfMetre": 0.024546926967572755,
+          "supportBandXSpan": 1.4052023887634282,
+          "supportBandZSpan": 0.6375188827514648
+        },
+        {
+          "rollDegrees": 195,
+          "height": 4.031463478026019,
+          "areaWeightedMeanHeight": 2.351538232811875,
+          "areaWeightedGapP10": 0.9987056260226765,
+          "surfaceAreaFractionBelowHalfMetre": 0.022074685848207213,
+          "supportBandXSpan": 1.603030597415629,
+          "supportBandZSpan": 0.6328573226928711
+        },
+        {
+          "rollDegrees": 210,
+          "height": 4.252179660747966,
+          "areaWeightedMeanHeight": 2.3029707883481105,
+          "areaWeightedGapP10": 0.9236290110474137,
+          "surfaceAreaFractionBelowHalfMetre": 0.03301062455243531,
+          "supportBandXSpan": 2.2330533122545795,
+          "supportBandZSpan": 0.6085920333862305
+        },
+        {
+          "rollDegrees": 225,
+          "height": 4.635136079862685,
+          "areaWeightedMeanHeight": 2.35399676779019,
+          "areaWeightedGapP10": 0.8533676408747501,
+          "surfaceAreaFractionBelowHalfMetre": 0.01695695066961958,
+          "supportBandXSpan": 2.1907871164500863,
+          "supportBandZSpan": 0.4462747573852539
+        },
+        {
+          "rollDegrees": 240,
+          "height": 4.814520920843677,
+          "areaWeightedMeanHeight": 2.356907043455331,
+          "areaWeightedGapP10": 0.729660014759336,
+          "surfaceAreaFractionBelowHalfMetre": 0.05003265719467321,
+          "supportBandXSpan": 2.059138885868098,
+          "supportBandZSpan": 0.2915802001953125
+        },
+        {
+          "rollDegrees": 255,
+          "height": 4.854469427178381,
+          "areaWeightedMeanHeight": 2.387863308819236,
+          "areaWeightedGapP10": 0.5757623484162409,
+          "surfaceAreaFractionBelowHalfMetre": 0.08956126837038833,
+          "supportBandXSpan": 1.4981869588813912,
+          "supportBandZSpan": 0.2915802001953125
+        },
+        {
+          "rollDegrees": 270,
+          "height": 4.868069410324097,
+          "areaWeightedMeanHeight": 2.43992804960565,
+          "areaWeightedGapP10": 0.6629508336385088,
+          "surfaceAreaFractionBelowHalfMetre": 0.06938385908459625,
+          "supportBandXSpan": 1.7627294063568113,
+          "supportBandZSpan": 0.2756376266479492
+        },
+        {
+          "rollDegrees": 285,
+          "height": 4.846669981650399,
+          "areaWeightedMeanHeight": 2.471669652964821,
+          "areaWeightedGapP10": 0.8328429519026175,
+          "surfaceAreaFractionBelowHalfMetre": 0.06746101612129149,
+          "supportBandXSpan": 1.0578617395665488,
+          "supportBandZSpan": 4.644278526306152
+        },
+        {
+          "rollDegrees": 300,
+          "height": 4.827807963812022,
+          "areaWeightedMeanHeight": 2.4722243385560128,
+          "areaWeightedGapP10": 1.0231682217487323,
+          "surfaceAreaFractionBelowHalfMetre": 0.046923599231317135,
+          "supportBandXSpan": 0.11204015286523994,
+          "supportBandZSpan": 4.578273773193359
+        },
+        {
+          "rollDegrees": 315,
+          "height": 4.656721672621236,
+          "areaWeightedMeanHeight": 2.304301021018504,
+          "areaWeightedGapP10": 0.923436495545122,
+          "surfaceAreaFractionBelowHalfMetre": 0.029001359300123705,
+          "supportBandXSpan": 0.17067501174401656,
+          "supportBandZSpan": 4.578273773193359
+        },
+        {
+          "rollDegrees": 330,
+          "height": 4.269171229819484,
+          "areaWeightedMeanHeight": 1.9793433969360716,
+          "areaWeightedGapP10": 0.6260222608120745,
+          "surfaceAreaFractionBelowHalfMetre": 0.04834058902407954,
+          "supportBandXSpan": 0.21767865062623315,
+          "supportBandZSpan": 4.578273773193359
+        },
+        {
+          "rollDegrees": 345,
+          "height": 4.033097948456217,
+          "areaWeightedMeanHeight": 1.6819916110742466,
+          "areaWeightedGapP10": 0.4795772555887108,
+          "surfaceAreaFractionBelowHalfMetre": 0.10340015924930715,
+          "supportBandXSpan": 2.876397977422521,
+          "supportBandZSpan": 9.97700023651123
+        }
+      ]
+    }
+  ]
+}

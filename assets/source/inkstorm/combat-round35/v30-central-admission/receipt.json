@@ -1,0 +1,119 @@
+{
+  "groups": [
+    {
+      "manifest": "assets/source/inkstorm/combat-round35/v30-postcut-composition-investigation/candidate-manifest.json",
+      "manifestSha256": "8d17dfdd40364d716bd1ab0f9886113e2199f502faef70b6a05fc56b0a6c926b",
+      "patch": "assets/source/inkstorm/combat-round35/v30-postcut-composition-investigation/v30-authored-camera-lens-placement.patch",
+      "patchSha256": "9708248914ced8e35c3c9587b725e4f99a385cd2a86b55e01b339cdf409b8cae",
+      "files": [
+        {
+          "path": "src/camera/CinematicCamera.ts",
+          "before": "2bd0b85a1dc5ea3bcc44426801ae42c93016d3c26960a5a00e1edfb14584ff3b",
+          "after": "68427aec3f812e6dd2d10c8a387f83003a366d8bd4a5756117cff4b128c3dbd2"
+        },
+        {
+          "path": "tests/camera/AuthoredWreckLens.test.ts",
+          "before": null,
+          "after": "f189a2d49f2c1a6bf0397649880546db014d9892f1ea892bfaed627ffe4d5f26"
+        }
+      ],
+      "stage": "Centrally applied V30 candidate; integrated/native/visual/performance validation pending",
+      "at": "2026-09-09T11:10:18.170529+00:00"
+    },
+    {
+      "manifest": "output/critics/ui-countdown-threat-v30/SOURCE_FREEZE.json",
+      "manifestSha256": "27f3def9a4a931ea7d71cc1e5ed25ccc7990de0fef2c0f9e9010bbce9e856f8e",
+      "patch": "output/critics/ui-countdown-threat-v30/COUNTDOWN_THREAT.patch",
+      "patchSha256": "6343e2692b726b5243da2122d7b0d2d49b1ce75c034cb5ae77ab92f3b3aa42bf",
+      "files": [
+        {
+          "path": "src/ui/RaceHud.ts",
+          "before": "30b8de037b69aece96d1c5fbefd4911e54608377005629204adbff19d6374bb4",
+          "after": "d1828008f52e291b7e2b4f5ad922ba77496bd81edf4d652894d0977b06060b26"
+        }
+      ],
+      "stage": "Centrally applied V30 candidate; integrated/native/visual/performance validation pending",
+      "at": "2026-09-09T11:10:18.180499+00:00"
+    },
+    {
+      "manifest": "assets/source/inkstorm/combat-round35/v30-contact-volume-preparation/FROZEN-MANIFEST.json",
+      "manifestSha256": "d18532478337f4f7b75300fc3c83ad682dff5d38bb77a80dc5f612a58d89acde",
+      "patch": "assets/source/inkstorm/combat-round35/v30-contact-volume-preparation/v30-contact-volume.patch",
+      "patchSha256": "4841cfa1a549437c0795cd06afb83e9e909694c411847862262962a5e00fd426",
+      "files": [
+        {
+          "path": "src/render/app/GameApp.ts",
+          "before": "43b880c9018fec9f6d83157e5185633dac47b42df536f2556512214b9468f949",
+          "after": "d289a9cfb8b683f0ab4309b4b9060fe02cfac4f091273b09b31c103f98a864a8"
+        },
+        {
+          "path": "src/render/galactic/GalacticEffectsView.ts",
+          "before": "a622e49ab442fbc8705a80b377fbf45eec83de24ad85b2dad015668766015a69",
+          "after": "c3d67f5247327e10aa4e05acec3f95e9735ae1a946a85769d325ed33dd354aff"
+        },
+        {
+          "path": "src/render/galactic/SolidEffectGeometry.ts",
+          "before": "89257c89d5f86b4df46ce7a22559df777367f54303feb445f4f7bb94c20ead69",
+          "after": "95447f705aa91ab46eb849ebecf023da23b2a59f971569fe10e861d727b86175"
+        },
+        {
+          "path": "src/render/galactic/SolidEffectMaterial.ts",
+          "before": "1edd33576ef64bcb5a0479363dc3c83175cbdf394be32e89fe27d23b2b7fd214",
+          "after": "26ec19fa19c7531333d11a65af34654c546c2ea371cba9cf9c08d6ae6095d4e6"
+        },
+        {
+          "path": "tests/combat/AuthoredAftermath.test.ts",
+          "before": "fee964f7ab0a3bdcdcf01c5357b17ffd927849ecd7b52c9f825374b9a5a11cb9",
+          "after": "f7f709c58b63c45e71be3af3d79762bc87134bbf2e5b3466cb8acec27e863d8e"
+        },
+        {
+          "path": "tests/combat/WreckContactBeat.test.ts",
+          "before": "bf8dbcb740d6146b144461b242e58f804d2dccdf03c825d005a88362108cd2dd",
+          "after": "2dd6aa6fe76e3fa690e476db0944bd363b94296088d3f8c88e0c1c85d97216fc"
+        },
+        {
+          "path": "tests/render/AuthoredRuptureBeat.test.ts",
+          "before": "7c4355d763e207e7b2c27147eb85f8ba1d426606910d5910d01cc455756e61d2",
+          "after": "f685deba6e60b7fbeb85692ee6b03048883aa997fa37e869b0ff7683b55f5938"
+        },
+        {
+          "path": "tests/render/GalacticEffectsContact.test.ts",
+          "before": "a03252958ae8374e3a6613945228583d0e100136ef8855771ef1115e7b6e5dc4",
+          "after": "bfc81d65db8fbe11e1d3ca69fc9b62c71bbebc76f2b5de17bc98895722fdb4de"
+        },
+        {
+          "path": "tests/render/GalacticEffectsView.test.ts",
+          "before": "d435b0dd24ad2be091923ba257211d579181cd8389ec101d0420124b986ef329",
+          "after": "573c272eb7f8e6069b2eacea2800df90d3315a8a63af2bae5064a224cf01eb6a"
+        },
+        {
+          "path": "tests/render/RuptureAtlasIntegration.test.ts",
+          "before": "295e76481c9514590170488174ffd93b9ba2ad9edc983901a0ce7bf0de24df26",
+          "after": "ca17b4bd219237931640a4cefd98e53125eaa6647eb7b4b0458b9a931b87ff2a"
+        },
+        {
+          "path": "tests/render/RupturePressureScale.test.ts",
+          "before": "af94f77b5c5524e58c0b04ac3c7495dd731604097d024bad6eb0e4e487b551e9",
+          "after": "eeecddd1c312f576e14bd2221088ef8b236a902a4b93d8b66654269b268a143c"
+        },
+        {
+          "path": "tests/render/WreckContactConsequence.test.ts",
+          "before": "7b5dcb2c12039f8afa5f1b51dd2818eca4a603dfe367c7e6751870a84c3d2dcf",
+          "after": "f58d11e04168a07c6aa116f755c8fe25ab9b5acd06aa494c52057a0dc1f7aa7b"
+        },
+        {
+          "path": "tests/render/WreckContactVolume.test.ts",
+          "before": null,
+          "after": "0fec48cfd074e390726a68f5099911e96c474d971b495017be0d28ad52b78e5a"
+        },
+        {
+          "path": "tests/render/WreckFootprintEffects.test.ts",
+          "before": "3103c2b152645609d20dc63f1679cef0ac6c316b1ea7cb1994af197bc3ba05e7",
+          "after": "739b834d455df940fe705caab6291367728b107e9f0a137b08f2a77c6ad2c25b"
+        }
+      ],
+      "stage": "Centrally applied V30 candidate; integrated/native/visual/performance validation pending",
+      "at": "2026-09-09T11:10:18.193236+00:00"
+    }
+  ]
+}

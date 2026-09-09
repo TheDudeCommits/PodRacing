@@ -1,0 +1,31 @@
+{
+  "scope": "Private copied candidate modules and two test files; unchanged runtime dependencies symlinked read-only. No live source/test edits, browser, GLSL execution or project-wide verification.",
+  "checks": [
+    {
+      "label": "typecheck",
+      "argv": [
+        "/Users/amir/Projects/PodRacing/node_modules/.bin/tsc",
+        "--noEmit",
+        "--project",
+        "/Users/amir/Projects/PodRacing/assets/source/inkstorm/round34-painted-shading-softness/check-workspace/tsconfig.json"
+      ],
+      "exitCode": 0,
+      "log": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/round34-painted-shading-softness/typecheck-private-v1.log",
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "tests",
+      "argv": [
+        "/Users/amir/Projects/PodRacing/node_modules/.bin/vitest",
+        "run",
+        "--root",
+        "/Users/amir/Projects/PodRacing/assets/source/inkstorm/round34-painted-shading-softness/check-workspace",
+        "--config",
+        "/Users/amir/Projects/PodRacing/assets/source/inkstorm/round34-painted-shading-softness/check-workspace/vitest.config.mts"
+      ],
+      "exitCode": 0,
+      "log": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/round34-painted-shading-softness/tests-private-v1.log",
+      "logSha256": "0dde6fb0199558616d18a815a58b7b6a86ce0a130e29b06c912a48fdda4f1ea5"
+    }
+  ]
+}

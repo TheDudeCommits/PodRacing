@@ -1,0 +1,24 @@
+{
+  "scope": [
+    "src/ui/workshopGraphicStyles.ts",
+    "src/ui/workshopSymbols.ts"
+  ],
+  "validation": {
+    "typecheck": "pass",
+    "postcss_parse": "pass: 91 rules",
+    "svg_xml": "pass: five equipment marks",
+    "git_diff_check": "pass",
+    "browser": "not run; parent owns browser validation",
+    "build": "not run; V12 outgoing gameplay remains pinned"
+  },
+  "files": {
+    "workshopGraphicStyles.ts": {
+      "before": "f40a6991585d307f7faae9171362d7ebc05f11c64b8db8848463a5eb2e5c8b57",
+      "after": "308e6313673bcb4750e9805e966cca5f6ef7d9d78e968c53c7feaeb8b79f972e"
+    },
+    "workshopSymbols.ts": {
+      "before": "1f8bb956307212b99687039563d8461e38f7304a2925f7fa30ea9521fc50cb66",
+      "after": "0248849b5595cfb561141d1b7c78a705f7930605e10d0f297c2106df759729c1"
+    }
+  }
+}

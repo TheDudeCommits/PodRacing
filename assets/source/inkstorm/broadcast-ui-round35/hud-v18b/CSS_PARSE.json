@@ -1,0 +1,37 @@
+{
+  "outcome": "PASS",
+  "rules": 771,
+  "fillDeclarations": {
+    "display": {
+      "value": "block",
+      "important": false
+    },
+    "width": {
+      "value": "var(--pod-meter-value,0%)",
+      "important": true
+    },
+    "height": {
+      "value": "100%",
+      "important": false
+    }
+  },
+  "changedLines": [
+    {
+      "line": 690,
+      "before": ".pod-hud__driving-instruments .pod-hud__telemetry .pod-hud__meter-fill { width:var(--pod-meter-value,0%)!important; height:100%; }",
+      "after": ".pod-hud__driving-instruments .pod-hud__telemetry .pod-hud__meter-fill { display:block; width:var(--pod-meter-value,0%)!important; height:100%; }"
+    },
+    {
+      "line": 786,
+      "before": ".pod-hud__driving-instruments>.pod-hud__redline-heat>span { padding:0; border-radius:0; background:none; text-shadow:0 1px 0 #112e36; }",
+      "after": ".pod-hud__driving-instruments>.pod-hud__redline-heat>span { padding:2px 4px; border-radius:2px; background:#112e36e6; color:#ffe39b; text-shadow:none; }"
+    },
+    {
+      "line": 794,
+      "before": ".pod-hud__system-label { bottom:6px; padding:0; background:none; overflow:visible; text-overflow:clip; color:#ffe39b; font:700 11px/1.2 Inkstorm UI,sans-serif; text-shadow:0 1px 0 #112e36; }",
+      "after": ".pod-hud__system-label { left:50%; right:auto; bottom:6px; width:max-content; max-width:100%; padding:2px 4px; border-radius:2px; background:#112e36e6; overflow:visible; text-overflow:clip; color:#ffe39b; font:700 12px/1.2 Inkstorm UI,sans-serif; text-shadow:none; transform:translateX(-50%); }"
+    }
+  ],
+  "RaceHudUnchanged": true,
+  "scope": "CSS syntax and bounded source-delta proof; native bars and daylight readability pending root capture"
+}

@@ -1,0 +1,89 @@
+--- assets/source/inkstorm/combat-round35/recovery-fx-v16/before/GalacticEffectsView.test.ts
++++ tests/render/GalacticEffectsView.test.ts
+@@ -275,6 +275,86 @@
+     expect(view.children.filter((child) => child instanceof InstancedMesh))
+       .toHaveLength(GALACTIC_EFFECT_DRAW_CALL_BUDGET);
+     view.dispose();
++  });
++});
++
++describe('compact recovery energy cue', () => {
++  it.each([.2, 1.4, 2])('uses only two small transparent surface pulses at severity%s and expires within .4 seconds', severity => {
++    const view = new GalacticEffectsView(), matrix = new Matrix4(), position = new Vector3(), scale = new Vector3(), rotation = new Quaternion();
++    const event = Object.freeze({ type: 'crash' as const, time: 1, position: Object.freeze({ x: 20, y: 8, z: -4 }),
++      velocity: Object.freeze({ x: 60, y: 20, z: -30 }), groundY: 2, severity, style: 'recovery' as const, color: '#60ff91' });
++    const before = JSON.stringify(event), children = [...view.children];
++    view.emitCrash(event);
++    const surface = view.explosionPlates.geometry.getAttribute('aEffectSurface');
++    for (const age of [0, .02, .04, .1, .2, .3, .37]) {
++      view.update(1 + age);
++      expect(view.crashDebris.count, `recovery must not emit opaque ballistic casing at age${age}`).toBe(0);
++      expect(view.explosionPlates.count).toBeGreaterThan(0);
++      expect(view.explosionPlates.count).toBeLessThanOrEqual(2);
++      for (let index = 0; index < view.explosionPlates.count; index++) {
++        view.explosionPlates.getMatrixAt(index, matrix); matrix.decompose(position, rotation, scale);
++        expect(position.x).toBe(20); expect(position.z).toBe(-4);
++        expect(position.y).toBeGreaterThan(2);
++        expect(position.y).toBeLessThanOrEqual(2.82 + 1e-6);
++        // The shared plane is2×2: even maximum severity stays below4.6m across.
++        expect(Math.max(scale.x, scale.y, scale.z)).toBeLessThanOrEqual(2.3 + 1e-6);
++        expect(new Vector3(0, 0, 1).applyQuaternion(rotation).y).toBeCloseTo(1, 6);
++        expect(surface.getX(index)).toBe(0);
++        expect(surface.getY(index)).toBeGreaterThanOrEqual(0);
++        expect(surface.getY(index)).toBeLessThanOrEqual(.42 + 1e-6);
++      }
++    }
++    view.update(1.4);
++    expect(view.explosionPlates.count).toBe(0); expect(view.crashDebris.count).toBe(0);
++    expect(view.children).toEqual(children); expect(view.children).toHaveLength(GALACTIC_EFFECT_DRAW_CALL_BUDGET);
++    expect((view.explosionPlates.material as MeshBasicMaterial).transparent).toBe(true);
++    expect((view.explosionPlates.material as MeshBasicMaterial).depthWrite).toBe(false);
++    expect((view.explosionPlates.material as MeshBasicMaterial).depthTest).toBe(true);
++    expect(JSON.stringify(event)).toBe(before);
++    view.dispose();
++  });
++
++  it('uses explicit recovery semantics rather than changing green energy hits or existing casing', () => {
++    const energy = new GalacticEffectsView(), recovery = new GalacticEffectsView();
++    for (const [view, style] of [[energy, 'energy'], [recovery, 'recovery']] as const) {
++      view.emitCrash({ type: 'crash', time: 1, position: { x: 0, y: 5, z: 0 }, groundY: 0, severity: 1.4, color: '#60ff91', style });
++      view.update(1.14);
++    }
++    expect(energy.crashDebris.count).toBe(15); expect(energy.explosionPlates.count).toBe(4);
++    expect(recovery.crashDebris.count).toBe(0); expect(recovery.explosionPlates.count).toBe(2);
++    energy.dispose(); recovery.dispose();
++    const mixed = new GalacticEffectsView();
++    mixed.emitCrash({ type: 'crash', time: 2, position: { x: 0, y: 8, z: 0 }, severity: 2, style: 'redline' });
++    mixed.update(2.08);
++    const matrices = mixed.crashDebris.instanceMatrix.array.slice(), colors = mixed.crashDebris.instanceColor!.array.slice();
++    mixed.emitCrash({ type: 'crash', time: 2.08, position: { x: 4, y: 3, z: 2 }, style: 'recovery' });
++    mixed.update(2.08);
++    expect(mixed.crashDebris.count).toBe(18);
++    expect(mixed.crashDebris.instanceMatrix.array).toEqual(matrices);
++    expect(mixed.crashDebris.instanceColor!.array).toEqual(colors);
++    mixed.dispose();
++  });
++
++  it('wraps repeated recovery pulses in the existing pool and clears without adding resources', () => {
++    const a = new GalacticEffectsView(), b = new GalacticEffectsView();
++    const geometry = a.children.map(child => (child as InstancedMesh).geometry);
++    const materials = a.children.map(child => (child as InstancedMesh).material);
++    for (const view of [a, b]) for (let index = 0; index < 20; index++) {
++      view.emitCrash({ type: 'crash', time: 1, position: { x: index, y: 3, z: 0 }, groundY: 0, style: 'recovery' });
++    }
++    a.update(1.1); b.update(1.1);
++    expect(a.explosionPlates.count).toBe(GALACTIC_EFFECT_CAPACITY.explosionPlates);
++    expect(a.crashDebris.count).toBe(0);
++    expect(a.children).toHaveLength(GALACTIC_EFFECT_DRAW_CALL_BUDGET);
++    expect(a.children.map(child => (child as InstancedMesh).geometry)).toEqual(geometry);
++    expect(a.children.map(child => (child as InstancedMesh).material)).toEqual(materials);
++    expect(a.explosionPlates.instanceMatrix.array).toEqual(b.explosionPlates.instanceMatrix.array);
++    expect(a.explosionPlates.instanceColor!.array).toEqual(b.explosionPlates.instanceColor!.array);
++    a.clearEffects(); a.update(1.2);
++    expect(a.explosionPlates.count).toBe(0); expect(a.crashDebris.count).toBe(0);
++    b.update(1.4);
++    expect(b.explosionPlates.count).toBe(0); expect(b.crashDebris.count).toBe(0);
++    a.dispose(); b.dispose();
+   });
+ });
+ 

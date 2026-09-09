@@ -1,0 +1,132 @@
+--- a/src/render/galactic/GalacticEffectsView.ts
++++ b/src/render/galactic/GalacticEffectsView.ts
+@@ -99,6 +99,8 @@
+   readonly time: number;
+   readonly position: GalacticPoint;
+   readonly velocity?: GalacticPoint;
++  /** Optional authored engine-facing direction for a rupture cone. */
++  readonly direction?: GalacticPoint;
+   readonly groundY?: number;
+   readonly severity?: number;
+   readonly color?: GalacticEffectColor;
+@@ -217,6 +219,8 @@
+   style: GalacticBurstStyle;
+   billboard: boolean;
+   contactLayer: number;
++  vx: number;
++  vz: number;
+ }
+ 
+ const EMPTY_STATES: readonly never[] = [];
+@@ -618,6 +622,8 @@
+       style: 'crash',
+       billboard: false,
+       contactLayer: -1,
++      vx: 0,
++      vz: 0,
+       r: 1,
+       g: 0.3,
+       b: 0.1,
+@@ -806,10 +812,14 @@
+       if (!slot) break;
+       this.debrisCursor = (this.debrisCursor + 1) % this.debrisSlots.length;
+       const seed = this.eventSequence * 31 + fragment * 7;
+-      const angle = hash01(seed) * Math.PI * 2;
++      const directed = contactBurst && event.direction && Number.isFinite(event.direction.x + event.direction.z)
++        && Math.hypot(event.direction.x, event.direction.z) > .001;
++      const angle = directed
++        ? Math.atan2(-event.direction!.z, -event.direction!.x) + (hash01(seed) - .5) * 2.4
++        : hash01(seed) * Math.PI * 2;
+       const spark = contactBurst ? fragment % 6 === 0 : fragment % 4 === 0;
+       const radial = contactBurst
+-        ? ((spark ? 20 : 10) + hash01(seed + 1) * (spark ? 16 : 10)) * Math.sqrt(severity)
++        ? ((spark ? 24 : 18) + hash01(seed + 1) * (spark ? 16 : 12)) * Math.sqrt(severity)
+         : (5.5 + hash01(seed + 1) * 11) * severity * radialScale;
+       slot.active = true;
+       slot.startTime = finite(event.time, 0);
+@@ -819,6 +829,13 @@
+       slot.x = finite(event.position.x, 0);
+       slot.y = burstY;
+       slot.z = finite(event.position.z, 0);
++      if (contactBurst) {
++        // Open casing fragments already occupy a short rupture cone at birth,
++        // so the slow-motion impact reads before the flare has disappeared.
++        const opening = (.8 + hash01(seed + 14) * .7) * Math.sqrt(severity);
++        slot.x += Math.cos(angle) * opening;
++        slot.z += Math.sin(angle) * opening;
++      }
+       slot.vx = finite(event.velocity?.x, 0) * inheritedVelocity + Math.cos(angle) * radial;
+       slot.vy = finite(event.velocity?.y, 0) * 0.12
+         + (contactBurst ? (4 + hash01(seed + 3) * 8) * Math.sqrt(severity)
+@@ -860,6 +877,7 @@
+       this.explosionCursor = (this.explosionCursor + 1) % this.explosionSlots.length;
+       slot.active = true;
+       slot.contactLayer = contactBurst ? plate : -1;
++      slot.vx = 0; slot.vz = 0;
+       if (contactBurst) {
+         // A hot core, amber pressure flare and two smoke lobes read against
+         // the full-size engines. Their four slots and lifetimes stay bounded.
+@@ -900,6 +918,44 @@
+       slot.r = style === 'rock' ? this.color.r : plate === 0 ? 1 : this.color.r;
+       slot.g = style === 'rock' ? this.color.g : plate === 0 ? (style === 'reward' ? 0.86 : 1) : this.color.g;
+       slot.b = style === 'rock' ? this.color.b : plate === 0 ? (style === 'reward' ? 0.24 : style === 'energy' ? 1 : 0.46) : this.color.b;
++    }
++  }
++
++  /** One sampled engine/sand presentation contact. Reuses ten debris slots and
++   * two dust plates; no new mesh, material, timer or per-frame event allocation.
++   * The caller deduplicates the actual wreck identity before calling this.
++   */
++  emitWreckGroundContact(time: number, position: GalacticPoint, direction: GalacticPoint): void {
++    if (!Number.isFinite(time + position.x + position.y + position.z + direction.x + direction.z)) return;
++    const length = Math.hypot(direction.x, direction.z);
++    if (length < .001) return;
++    const dx = -direction.x / length, dz = -direction.z / length;
++    const heading = Math.atan2(dz, dx);
++    this.eventSequence++;
++    for (let index = 0; index < 10; index++) {
++      const slot = this.debrisSlots[this.debrisCursor]!;
++      this.debrisCursor = (this.debrisCursor + 1) % this.debrisSlots.length;
++      const seed = this.eventSequence * 31 + index * 7;
++      const angle = heading + (hash01(seed) - .5) * 1.8;
++      const speed = 12 + hash01(seed + 1) * 14;
++      slot.active = true; slot.startTime = time; slot.duration = .28 + hash01(seed + 2) * .20;
++      slot.x = position.x; slot.y = position.y + .18; slot.z = position.z;
++      slot.vx = Math.cos(angle) * speed; slot.vz = Math.sin(angle) * speed;
++      slot.vy = 2 + hash01(seed + 3) * 4;
++      slot.rx = 0; slot.ry = 0; slot.rz = 0; slot.ax = 0; slot.ay = 0; slot.az = 0;
++      slot.scale = .34 + hash01(seed + 4) * .20;
++      slot.groundY = position.y; slot.metal = false; slot.spark = true;
++      slot.r = 1; slot.g = index % 3 === 0 ? .87 : .48; slot.b = index % 3 === 0 ? .5 : .09;
++    }
++    for (let index = 0; index < 2; index++) {
++      const slot = this.explosionSlots[this.explosionCursor]!;
++      this.explosionCursor = (this.explosionCursor + 1) % this.explosionSlots.length;
++      slot.active = true; slot.startTime = time + index * .04; slot.duration = index === 0 ? .85 : 1.15;
++      slot.x = position.x + dx * index * .7; slot.z = position.z + dz * index * .7;
++      slot.y = position.y + .08; slot.vx = dx * (index === 0 ? 3.2 : 4.8); slot.vz = dz * (index === 0 ? 3.2 : 4.8);
++      slot.scale = index === 0 ? 3.8 : 4.6;
++      slot.style = 'sand'; slot.billboard = true; slot.contactLayer = 4 + index;
++      slot.r = .43; slot.g = .27; slot.b = .13;
+     }
+   }
+ 
+@@ -1350,6 +1406,18 @@
+           continue;
+         }
+         const progress = MathUtils.clamp(age / slot.duration, 0, 1);
++        if (slot.contactLayer >= 4) {
++          const width = slot.scale * (.45 + progress * .70);
++          const height = width * .48;
++          const x = slot.x + slot.vx * age, z = slot.z + slot.vz * age;
++          const y = slot.y + height * .78;
++          if (!this.isVisible(x, y, z, width * 1.5, EFFECT_VISIBILITY_DISTANCE.crashes)) continue;
++          this.writeInstance(this.explosionPlates, plateCount, x, y, z,
++            this.billboardQuaternion, width, height, width, slot.r, slot.g, slot.b);
++          this.writeEffectSurface(plateCount, 1, .67 * (1 - MathUtils.smoothstep(progress, .25, 1)), slot.startTime * 1.37);
++          plateCount++;
++          continue;
++        }
+         if (slot.contactLayer >= 0) {
+           const smoke = slot.contactLayer > 1;
+           const flash = slot.contactLayer === 0;

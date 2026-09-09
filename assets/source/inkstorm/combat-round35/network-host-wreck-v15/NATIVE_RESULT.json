@@ -1,0 +1,54 @@
+{
+  "receipt": "output/playwright/round35-network-combat-v15/receipt.json",
+  "receiptSha256": "00dcfa4103a16998d07b4be0ed45d64bdf682d512e1fb514699be635eea1ee56",
+  "harness": "assets/source/inkstorm/combat-round35/network-host-wreck-v15/executed-harness.mjs",
+  "harnessSha256": "d0f3fcfed39108d1ad8595391fe2004504d1dedc9a9646719985074361e010e2",
+  "outcome": "PASS",
+  "build": [
+    {
+      "scripts": [
+        {
+          "url": "http://127.0.0.1:5198/assets/index-U_bStFYH.js",
+          "sha256": "fb724c688802d97917a2632826be07f8d7567b6b3d70cf7ebd3810ca534bbf2d"
+        }
+      ],
+      "browser": "152.0.7977.83",
+      "node": "v24.19.0",
+      "os": {
+        "platform": "darwin",
+        "release": "25.6.0",
+        "architecture": "arm64"
+      },
+      "page": {
+        "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/152.0.0.0 Safari/537.36",
+        "width": 1280,
+        "height": 800,
+        "devicePixelRatio": 1,
+        "hardwareConcurrency": 10
+      }
+    },
+    {
+      "scripts": [
+        {
+          "url": "http://127.0.0.1:5198/assets/index-U_bStFYH.js",
+          "sha256": "fb724c688802d97917a2632826be07f8d7567b6b3d70cf7ebd3810ca534bbf2d"
+        }
+      ],
+      "browser": "152.0.7977.83",
+      "node": "v24.19.0",
+      "os": {
+        "platform": "darwin",
+        "release": "25.6.0",
+        "architecture": "arm64"
+      },
+      "page": {
+        "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/152.0.0.0 Safari/537.36",
+        "width": 1280,
+        "height": 800,
+        "devicePixelRatio": 1,
+        "hardwareConcurrency": 10
+      }
+    }
+  ],
+  "scope": "V15 native two-context evidence; recovery endpoint numbers asserted at execution, endpoint positions not retained. Independent review closes cue and camera findings only."
+}

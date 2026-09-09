@@ -1,0 +1,54 @@
+{
+  "originalGeometry": true,
+  "tool": "Blender MCP",
+  "source": "build_landmarks.py",
+  "status": "Historical first landmark export. The pit-complex, pipe-bank and foundry-gantry entries below are superseded by industrial-revision-receipt.json; finish-tower remains current.",
+  "currentIndustrialReceipt": "industrial-revision-receipt.json",
+  "optimization": "glTF Transform 4.5.0 dedup + prune on three new landmarks; original gantry isolated re-export",
+  "assets": [
+    {
+      "name": "pit-complex",
+      "bytes": 217892,
+      "triangles": 2802,
+      "meshes": 1,
+      "primitives": 1,
+      "nodes": [
+        "pit-complex"
+      ],
+      "vertexColors": "COLOR_0"
+    },
+    {
+      "name": "pipe-bank",
+      "bytes": 232940,
+      "triangles": 3364,
+      "meshes": 1,
+      "primitives": 1,
+      "nodes": [
+        "pipe-bank"
+      ],
+      "vertexColors": "COLOR_0"
+    },
+    {
+      "name": "finish-tower",
+      "bytes": 68484,
+      "triangles": 868,
+      "meshes": 1,
+      "primitives": 1,
+      "nodes": [
+        "finish-tower"
+      ],
+      "vertexColors": "COLOR_0"
+    },
+    {
+      "name": "foundry-gantry",
+      "bytes": 138736,
+      "triangles": 1320,
+      "meshes": 1,
+      "primitives": 4,
+      "nodes": [
+        "foundry-gantry"
+      ],
+      "vertexColors": "COLOR_0"
+    }
+  ]
+}

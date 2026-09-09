@@ -14,6 +14,15 @@ function entry(id: string, finishTime: number | null = null): HighlightEntryLike
 }
 
 describe('RaceHighlightRecorder', () => {
+  it('displays the authoritative finish clock without shifting the replay timeline', () => {
+    const recorder = new RaceHighlightRecorder(), entries = [entry('player',63.316)];
+    recorder.recordFrame(66.325, entries);
+    recorder.consumeEvents(66.325,[{type:'finish',racerId:'player',totalTime:63.316}],63.32);
+    const result = recorder.snapshot(entries);
+    expect(result.moments[0]?.raceTime).toBe(63.316);
+    expect(result.moments[0]?.time).toBe(66.325);
+    expect(result.frames[result.moments[0]!.frameIndex]?.time).toBe(66.325);
+  });
   it('keeps bounded sparse JSON pose history', () => {
     const recorder = new RaceHighlightRecorder({ historySeconds: 4, sampleHz: 5 });
     const entries = [entry('player'), entry('rival')];

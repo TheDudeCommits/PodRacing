@@ -1,0 +1,37 @@
+{
+  "scope": "CPU-loaded actual hero/rival geometry against real admitted terrain and unmodified RaceSimulation; wall values are scheduled pacing arithmetic, not native footage.",
+  "records": [
+    {
+      "name": "hero",
+      "candidate": {
+        "frame": 919,
+        "age": 0.07499999999999973,
+        "pacedWallMs": 416.6666666666652,
+        "minimumRearGap": 0.09670425961584783
+      },
+      "baseline": {
+        "frame": 927,
+        "age": 0.14166666666666616,
+        "pacedWallMs": 787.0370370370343,
+        "minimumRearGap": 0.09700655090854049
+      },
+      "note": "Wall values are scheduled .18 pacing calculations, not native video measurements."
+    },
+    {
+      "name": "rival",
+      "candidate": {
+        "frame": 919,
+        "age": 0.07499999999999973,
+        "pacedWallMs": 416.6666666666652,
+        "minimumRearGap": 0.09999999999999964
+      },
+      "baseline": {
+        "frame": 927,
+        "age": 0.14166666666666616,
+        "pacedWallMs": 787.0370370370343,
+        "minimumRearGap": 0.09999999999999964
+      },
+      "note": "Wall values are scheduled .18 pacing calculations, not native video measurements."
+    }
+  ]
+}

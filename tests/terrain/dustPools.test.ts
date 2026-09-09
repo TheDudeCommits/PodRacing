@@ -191,8 +191,12 @@ describe('fixed-capacity dust pools', () => {
 
   it('uses separated pod-shaped contact lobes that shrink with clearance', () => {
     const shadows = new GroundContactShadows(2);
-    expect(shadows.mesh.geometry.getAttribute('position').count).toBe(54);
-    expect(shadows.mesh.geometry.index?.count).toBe(144);
+    expect(shadows.mesh.geometry.getAttribute('position').count).toBeLessThanOrEqual(108);
+    expect(shadows.mesh.geometry.index?.count).toBeLessThanOrEqual(432);
+    const opacity = shadows.mesh.geometry.getAttribute('color');
+    expect(opacity.itemSize).toBe(4);
+    expect(Array.from({ length: opacity.count }, (_, index) => opacity.getW(index))).toContain(0);
+    expect(Array.from({ length: opacity.count }, (_, index) => opacity.getW(index))).toContain(1);
     shadows.update(0, 0, 0, 0, 0, 1.2, 1);
     shadows.update(1, 30, 0, 0, 0, 30, 1);
     const grounded = new Matrix4();

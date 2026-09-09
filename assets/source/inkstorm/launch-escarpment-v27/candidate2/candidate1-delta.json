@@ -1,0 +1,47 @@
+{
+  "beforeSourceSha256": "c14f456e553894e2db3a2e4b7aa4bbfd877ae06e24309f795b33c788c19e461a",
+  "afterSourceSha256": "a0ab709353a86372c02e238feaa76083f171f9be85c0a3a9c58a9b21d60ac357",
+  "terrainOnly": true,
+  "regions": [
+    {
+      "id": "launch-west-front",
+      "bothHit": 116,
+      "changed5m": 46,
+      "deeper25m": 27,
+      "maxRecess": 276.37690852022183,
+      "maxAdvance": -141.00338805554304
+    },
+    {
+      "id": "launch-east-front",
+      "bothHit": 116,
+      "changed5m": 33,
+      "deeper25m": 3,
+      "maxRecess": 128.99285842619076,
+      "maxAdvance": -87.13362173172925
+    },
+    {
+      "id": "crest-west-front",
+      "bothHit": 116,
+      "changed5m": 52,
+      "deeper25m": 34,
+      "maxRecess": 275.3938741661807,
+      "maxAdvance": -160.32709058706587
+    },
+    {
+      "id": "crest-east-front",
+      "bothHit": 108,
+      "changed5m": 32,
+      "deeper25m": 3,
+      "maxRecess": 29.139280462491,
+      "maxAdvance": -45.74680308678319
+    },
+    {
+      "id": "descent-west-front",
+      "bothHit": 104,
+      "changed5m": 49,
+      "deeper25m": 30,
+      "maxRecess": 299.52161745673175,
+      "maxAdvance": -137.5632979078831
+    }
+  ]
+}

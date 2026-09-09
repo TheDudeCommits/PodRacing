@@ -1,0 +1,26 @@
+--- a/src/game/race/RaceSimulation.ts
++++ b/src/game/race/RaceSimulation.ts
+@@ -742,7 +742,11 @@
+ 
+       if (action.recoverNow) completeGalacticRecovery(this.galacticFor(entry), entry.vehicle);
+       for (const vehicleEvent of vehicleResult.events) {
+-        if (vehicleEvent.type === 'collision' && vehicleEvent.sourceId) {
++        // Contact events also identify pylons, cliffs and authored scenery.
++        // Keep that physical provenance, but only a roster member can earn an
++        // assist or replace the most recent racer that pushed this victim.
++        if (vehicleEvent.type === 'collision' && vehicleEvent.sourceId
++          && vehicleEvent.sourceId !== entry.id && this.entriesById.has(vehicleEvent.sourceId)) {
+           noteGalacticRacerAggression(this.galacticFor(entry), vehicleEvent.sourceId);
+         }
+         if (
+@@ -757,7 +761,9 @@
+         }
+       }
+       const collisionSource = vehicleResult.events.find(
+-        (event): event is Extract<PodracerEvent, { type: 'collision' }> => event.type === 'collision',
++        (event): event is Extract<PodracerEvent, { type: 'collision' }> => event.type === 'collision'
++          && event.sourceId != null && event.sourceId !== entry.id
++          && this.entriesById.has(event.sourceId),
+       )?.sourceId ?? null;
+       const impact = latestImpact[entryIndex];
+       galacticEvents.push(...beginGalacticWreck(

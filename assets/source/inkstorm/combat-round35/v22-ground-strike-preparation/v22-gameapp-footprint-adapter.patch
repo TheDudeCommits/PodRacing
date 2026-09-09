@@ -1,0 +1,12 @@
+diff --git a/src/render/app/GameApp.ts b/src/render/app/GameApp.ts
+--- a/src/render/app/GameApp.ts
++++ b/src/render/app/GameApp.ts
+@@ -1095,7 +1095,7 @@
+         entry.id, this.simulationFrame, galacticState!.wreck.crashCount, wreckPose.groundContact,
+       )) {
+         this.galacticEffects.emitWreckGroundContact(presentationTime,
+-          wreckPose.groundContact.position, wreckPose.groundContact.direction);
++          wreckPose.groundContact.position, wreckPose.groundContact.direction, wreckPose.groundContact.footprint);
+       }
+       this.contactShadows.update(
+         racerIndex,

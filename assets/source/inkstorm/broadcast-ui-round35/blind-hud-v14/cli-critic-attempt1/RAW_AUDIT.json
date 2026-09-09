@@ -1,0 +1,87 @@
+{
+  "auditedAt": "2026-09-08T20:30:19.916790+00:00",
+  "threadId": "01a082b5-922d-77b3-8c95-fa053ebeda0d",
+  "eventCount": 4,
+  "eventTypes": {
+    "thread.started": 1,
+    "turn.started": 1,
+    "item.completed": 1,
+    "turn.completed": 1
+  },
+  "itemTypes": {
+    "agent_message": 1
+  },
+  "nonMessageItems": [],
+  "extraRetrievalObserved": false,
+  "agentMessageCount": 1,
+  "finalEventTextMatchesReviewIgnoringTrailingNewlines": true,
+  "attachmentCount": 7,
+  "attachments": [
+    {
+      "image": 1,
+      "expectedSha256": "7c0e2970d2febd7967b23b146c9f877af4e6e1054a4e649727f8b366eb0d5003",
+      "original": "7c0e2970d2febd7967b23b146c9f877af4e6e1054a4e649727f8b366eb0d5003",
+      "attachment": "7c0e2970d2febd7967b23b146c9f877af4e6e1054a4e649727f8b366eb0d5003",
+      "bothMatch": true
+    },
+    {
+      "image": 2,
+      "expectedSha256": "d35ba42eaf89d6e2c695ec2f4f877fd79358baaa1f56f5ba245aafcb41668770",
+      "original": "d35ba42eaf89d6e2c695ec2f4f877fd79358baaa1f56f5ba245aafcb41668770",
+      "attachment": "d35ba42eaf89d6e2c695ec2f4f877fd79358baaa1f56f5ba245aafcb41668770",
+      "bothMatch": true
+    },
+    {
+      "image": 3,
+      "expectedSha256": "0ea74628c38e4469e95a6e69e5404cba9c9aac96cc0f98888b82a594953a7125",
+      "original": "0ea74628c38e4469e95a6e69e5404cba9c9aac96cc0f98888b82a594953a7125",
+      "attachment": "0ea74628c38e4469e95a6e69e5404cba9c9aac96cc0f98888b82a594953a7125",
+      "bothMatch": true
+    },
+    {
+      "image": 4,
+      "expectedSha256": "650455603dfd2592ac09672617adb0d03045da7d41730a85c6fb0513e1ba0da4",
+      "original": "650455603dfd2592ac09672617adb0d03045da7d41730a85c6fb0513e1ba0da4",
+      "attachment": "650455603dfd2592ac09672617adb0d03045da7d41730a85c6fb0513e1ba0da4",
+      "bothMatch": true
+    },
+    {
+      "image": 5,
+      "expectedSha256": "da7e594575964a6cc23312faeeb8493c66de61e0a9097bdb98b7907b07e7c538",
+      "original": "da7e594575964a6cc23312faeeb8493c66de61e0a9097bdb98b7907b07e7c538",
+      "attachment": "da7e594575964a6cc23312faeeb8493c66de61e0a9097bdb98b7907b07e7c538",
+      "bothMatch": true
+    },
+    {
+      "image": 6,
+      "expectedSha256": "dce0c433baef209fcad3cc137f820496f794c74bcb7c99455e687953620187ef",
+      "original": "dce0c433baef209fcad3cc137f820496f794c74bcb7c99455e687953620187ef",
+      "attachment": "dce0c433baef209fcad3cc137f820496f794c74bcb7c99455e687953620187ef",
+      "bothMatch": true
+    },
+    {
+      "image": 7,
+      "expectedSha256": "7707111be6c2b2086d5c620bb7b702b274a4afabfbd7c066f1b748f40e734121",
+      "original": "7707111be6c2b2086d5c620bb7b702b274a4afabfbd7c066f1b748f40e734121",
+      "attachment": "7707111be6c2b2086d5c620bb7b702b274a4afabfbd7c066f1b748f40e734121",
+      "bothMatch": true
+    }
+  ],
+  "allAttachmentHashesMatch": true,
+  "promptMatchesV10Bytes": true,
+  "promptSha256": "379fe9118dc4303f1021fe2dbba6b094f5a9d1670d75042618b66acc78b1046e",
+  "promptMatchesInvocationHash": true,
+  "readOnlySandbox": true,
+  "ephemeralProcess": true,
+  "returncode": 0,
+  "rawHashes": {
+    "events.jsonl": "e97eea78c13345e3b8fb89c62cd8a244b0b851f355c6063035dad561c8f2826f",
+    "review.md": "fbe636cb974d7a1f431ff19545d84758f4d87aa2438c9d9e6d887e9a04aba47e",
+    "invocation.json": "fc273291448cadd56f32c83bd1fe1cf00d025c202de478b17f0f7b1365d9c58d"
+  },
+  "inventorySha256": "8bfd7c007baf9742c9aaf684c29640af766e9cc7988f53c133e5524b787645fb",
+  "captureReceiptSha256Matches": true,
+  "buildSha256": "a0a190f2637399270af5b9d893c77bf02d07f262ad2e59d7e854d707f85ab39e",
+  "reviewVerdictPreserved": "**Verdict: FAIL.** The palette and graphic motifs form a coherent family, but none of the four surfaces reaches **8/10 in both style and readability**.",
+  "notes": "Review bytes preserved exactly. All originals and neutral attachments independently rehashed. Only final agent_message is recorded; no tool use, commands, file reads, searches or extra retrieval appear in raw events. Generic Codex startup configuration may load; this audit does not assert its absence."
+}

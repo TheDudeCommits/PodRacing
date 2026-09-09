@@ -1,0 +1,786 @@
+{
+  "sourceUid": "e42fb924b344481ea013c58cb0f52ad7",
+  "sourceScene": "PodRacing \u2014 source e42fb924b344481ea013c58cb0f52ad7 retry 20260908",
+  "targetScene": "PodRacing \u2014 Blockrunner Ivory source copy V1 e42fb924b344481ea013c58cb0f52ad7",
+  "objectPrefix": "Blockrunner Ivory source V1 ",
+  "sourceGlbSha256": "2ed231e15b8bbab3f7b7028b73e8b6f442d532c9bc4d1fc0a2f5c40aeda49576",
+  "auditReceiptSha256": "f5375ba02bd017af32f833af96b2f7ccf4ab61d505acf754ee9ad48cae621079",
+  "normalSampleReceiptSha256": "6f0be7447392eb2779bd35b8b927ca013c7fd988a41904bf873423cd8f922e82",
+  "sourceSignature": {
+    "algorithm": "FNV-1a-64 over canonical ASCII JSON; non-cryptographic",
+    "materialsFnv1a64": {
+      "lambert1.002": "39a62bfe6310aed6",
+      "pasted__LegoWhite1.001": "2e64e9defa8451f3",
+      "pasted__LegoWhite3.001": "8507f76fca6ddd6d",
+      "pasted__LegoWhite4": "3d89d9612d134265",
+      "pasted__Lego_White12": "61c3cde1e73fdc23",
+      "pasted__Lego_White15.001": "cc1c8c6814734c3b",
+      "pasted__Lego_White16.001": "a84aa217880d8448",
+      "pasted__Lego_White18.001": "c920f6c29e05da32",
+      "pasted__Lego_White19": "87ea0c5daaef6bfc",
+      "pasted__Lego_White20.001": "fa03cc6f64776ddf",
+      "pasted__Lego_White22.001": "c6a0df6e6fc52d29",
+      "pasted__Lego_White23.001": "e77bf9537e8200fc",
+      "pasted__Lego_White24.001": "978d2368e934a3c3",
+      "pasted__Lego_White25": "04e09d60b5e87461",
+      "pasted__Lego_White7": "76cd95d1071d3f47",
+      "pasted__Lego_White8.001": "c78127755e46e687",
+      "pasted__Lego_White9": "797b1e38ec17184d",
+      "pasted__pasted__LegoWhite1.001": "1c47281497e31f0a",
+      "pasted__pasted__LegoWhite3.001": "6292f58165f7e5d4",
+      "pasted__pasted__LegoWhite4": "e367d1fdbf915950",
+      "pasted__pasted__Lego_White12": "65c0a68a79d0864a",
+      "pasted__pasted__Lego_White14": "afb5c1216e036660",
+      "pasted__pasted__Lego_White16": "b574194203bfd176",
+      "pasted__pasted__Lego_White18.001": "4931bb430895948f",
+      "pasted__pasted__Lego_White19.001": "c4e83d88ce6d4382",
+      "pasted__pasted__Lego_White20": "5e0afb69fc903595",
+      "pasted__pasted__Lego_White25": "112e2ef171bdb588",
+      "pasted__pasted__Lego_White26": "6f421e2e79609877",
+      "pasted__pasted__Lego_White7": "0f1bf1e9b9b4d060",
+      "pasted__pasted__Lego_White8.001": "2a5aba707de25aac",
+      "pasted__pasted__Lego_White9": "31316177c911cbe2",
+      "pasted__pasted__pasted__Lego_White12": "af71a84e889e9d67",
+      "pasted__pasted__pasted__Lego_White14": "535226e03e64d705",
+      "pasted__pasted__pasted__Lego_White15": "eb26c55ab6cc750c",
+      "pasted__pasted__pasted__Lego_White16": "8c145d3753906a0b",
+      "pasted__pasted__pasted__Lego_White19.001": "3abdff85446d74ab",
+      "pasted__pasted__pasted__Lego_White25": "811db75fc408463d",
+      "pasted__pasted__pasted__pasted__Lego_White11": "7569e043e0c7efc9",
+      "pasted__pasted__pasted__pasted__Lego_White14": "4033279429aaa464",
+      "pasted__pasted__pasted__pasted__Lego_White15": "b9c1689d9fe118bd",
+      "pasted__pasted__pasted__pasted__Lego_White16": "98dc9b98715ef63a",
+      "pasted__pasted__pasted__pasted__Lego_White25": "23ca769892a5478c",
+      "pasted__pasted__pasted__pasted__pasted__Lego_White11": "46064cdbad001e1c",
+      "pasted__pasted__pasted__pasted__pasted__Lego_White14": "4788a24a9aa63e21",
+      "pasted__pasted__pasted__pasted__pasted__Lego_White25": "747bb148e6cb5019",
+      "pasted__pasted__pasted__pasted__pasted__pasted__Lego_White25": "477dbedc856b0a60",
+      "pasted__pasted__pasted__pasted__pasted__pasted__pasted__Lego_White25": "308a2247cf35a815",
+      "pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__Lego_White25": "6c2f978f47f305c4",
+      "pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__Lego_White26": "08f0c8b969edc3e3",
+      "pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__Lego_White25": "60c35fd95f6d4771",
+      "pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__Lego_White25": "f5a85b024e41b778"
+    },
+    "meshesFnv1a64": {
+      "pasted__L2x3slope2_lambert1_0": "67fd2da0bf899610",
+      "pasted__L2x3slope2_pasted__LegoWhite1_0": "0913fe471aab38a6",
+      "pasted__L2x3slope2_pasted__LegoWhite3_0": "2147053ec36150df",
+      "pasted__L2x3slope2_pasted__LegoWhite4_0": "6c54943ec1599bcf",
+      "pasted__L2x3slope2_pasted__Lego_White12_0": "4bc58ea5e07e402b",
+      "pasted__L2x3slope2_pasted__Lego_White15_0": "054b23f0390c35bc",
+      "pasted__L2x3slope2_pasted__Lego_White16_0": "ba3fe5c1b4cda66b",
+      "pasted__L2x3slope2_pasted__Lego_White18_0": "ca4f0fb8b724ab3a",
+      "pasted__L2x3slope2_pasted__Lego_White19_0": "e0e99b3430e84def",
+      "pasted__L2x3slope2_pasted__Lego_White20_0": "dfdebfc83f876639",
+      "pasted__L2x3slope2_pasted__Lego_White22_0": "a46102c8c380ac59",
+      "pasted__L2x3slope2_pasted__Lego_White23_0": "0f3608e2c4f1ecaf",
+      "pasted__L2x3slope2_pasted__Lego_White24_0": "d2cc9ea49baec9d2",
+      "pasted__L2x3slope2_pasted__Lego_White25_0": "73910da45f0c7ac8",
+      "pasted__L2x3slope2_pasted__Lego_White7_0": "66dc0b0d8f903183",
+      "pasted__L2x3slope2_pasted__Lego_White8_0": "e175d00c1834b6e4",
+      "pasted__L2x3slope2_pasted__Lego_White9_0": "e820f73c82c516e9",
+      "pasted__L2x3slope2_pasted__pasted__LegoWhite1_0": "457e2df12982e376",
+      "pasted__L2x3slope2_pasted__pasted__LegoWhite3_0": "09fecdd243b615f1",
+      "pasted__L2x3slope2_pasted__pasted__LegoWhite4_0": "8d6baceeb233ce01",
+      "pasted__L2x3slope2_pasted__pasted__Lego_White12_0": "443aa3044b11ce8b",
+      "pasted__L2x3slope2_pasted__pasted__Lego_White14_0": "0470bc9c2cfaba4c",
+      "pasted__L2x3slope2_pasted__pasted__Lego_White16_0": "b5d9ede588c2f8ca",
+      "pasted__L2x3slope2_pasted__pasted__Lego_White18_0": "5ba68ea060f532ec",
+      "pasted__L2x3slope2_pasted__pasted__Lego_White19_0": "3fec2e751cb62081",
+      "pasted__L2x3slope2_pasted__pasted__Lego_White20_0": "a16ff14611b568ce",
+      "pasted__L2x3slope2_pasted__pasted__Lego_White25_0": "8409c6947be7442a",
+      "pasted__L2x3slope2_pasted__pasted__Lego_White26_0": "3e919f3f632388ff",
+      "pasted__L2x3slope2_pasted__pasted__Lego_White7_0": "dab4923aa59bb602",
+      "pasted__L2x3slope2_pasted__pasted__Lego_White8_0": "71c5d5ade6194ce2",
+      "pasted__L2x3slope2_pasted__pasted__Lego_White9_0": "266d3218e39a3354",
+      "pasted__L2x3slope2_pasted__pasted__pasted__Lego_White12_0": "b6578440a8140da2",
+      "pasted__L2x3slope2_pasted__pasted__pasted__Lego_White14_0": "21d1877c23258da2",
+      "pasted__L2x3slope2_pasted__pasted__pasted__Lego_White15_0": "abd40576bac68ea5",
+      "pasted__L2x3slope2_pasted__pasted__pasted__Lego_White16_0": "3f3b391eb22b96d4",
+      "pasted__L2x3slope2_pasted__pasted__pasted__Lego_White19_0": "c4d0baf996fd50d8",
+      "pasted__L2x3slope2_pasted__pasted__pasted__Lego_White25_0": "0bf68ff04cf9af46",
+      "pasted__L2x3slope2_pasted__pasted__pasted__pasted__Lego_White11_0": "9877a3550fda0c97",
+      "pasted__L2x3slope2_pasted__pasted__pasted__pasted__Lego_White14_0": "63299d1b7d4f9b1b",
+      "pasted__L2x3slope2_pasted__pasted__pasted__pasted__Lego_White15_0": "503a8ab530bd6d3e",
+      "pasted__L2x3slope2_pasted__pasted__pasted__pasted__Lego_White16_0": "5ee1187333e4da0b",
+      "pasted__L2x3slope2_pasted__pasted__pasted__pasted__Lego_White25_0": "8c4f094d2038718f",
+      "pasted__L2x3slope2_pasted__pasted__pasted__pasted__pasted__Lego_White11_0": "e8e35853546b1c68",
+      "pasted__L2x3slope2_pasted__pasted__pasted__pasted__pasted__Lego_White14_0": "e5fd963edf59dc7c",
+      "pasted__L2x3slope2_pasted__pasted__pasted__pasted__pasted__Lego_White25_0": "e7b0ac45e95f5e2b",
+      "pasted__L2x3slope2_pasted__pasted__pasted__pasted__pasted__pasted__Lego_White25_0": "504ef0323110df24",
+      "pasted__L2x3slope2_pasted__pasted__pasted__pasted__pasted__pasted__pasted__Lego_White25_0": "b45eded8b4e3b95c",
+      "pasted__L2x3slope2_pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__Lego_White25_0": "599350cac7c679f6",
+      "pasted__L2x3slope2_pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__Lego_White26_0": "995865eabc386e88",
+      "pasted__L2x3slope2_pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__Lego_White25_0": "3cf9a02a878823ed",
+      "pasted__L2x3slope2_pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__Lego_White25_0": "89f840db8b0588af"
+    },
+    "objectsFnv1a64": "7a1811af8c772245"
+  },
+  "cornerNormals": {
+    "pasted__L2x3slope2_lambert1_0": {
+      "cornerCount": 28968,
+      "cornerNormalsFnv1a64": "b966dd79e22d9b4b",
+      "hasCustomNormals": true
+    },
+    "pasted__L2x3slope2_pasted__LegoWhite1_0": {
+      "cornerCount": 4836,
+      "cornerNormalsFnv1a64": "b6e4a59d53cf16cb",
+      "hasCustomNormals": true
+    },
+    "pasted__L2x3slope2_pasted__LegoWhite3_0": {
+      "cornerCount": 720,
+      "cornerNormalsFnv1a64": "3c4611f43d131b62",
+      "hasCustomNormals": true
+    },
+    "pasted__L2x3slope2_pasted__LegoWhite4_0": {
+      "cornerCount": 708,
+      "cornerNormalsFnv1a64": "c6acda9b553f7f50",
+      "hasCustomNormals": true
+    },
+    "pasted__L2x3slope2_pasted__Lego_White12_0": {
+      "cornerCount": 1044,
+      "cornerNormalsFnv1a64": "30fd8e2fbd6ac3f1",
+      "hasCustomNormals": true
+    },
+    "pasted__L2x3slope2_pasted__Lego_White15_0": {
+      "cornerCount": 1140,
+      "cornerNormalsFnv1a64": "2bd28b68c0f219bb",
+      "hasCustomNormals": true
+    },
+    "pasted__L2x3slope2_pasted__Lego_White16_0": {
+      "cornerCount": 1044,
+      "cornerNormalsFnv1a64": "48c4a2089ce59d32",
+      "hasCustomNormals": true
+    },
+    "pasted__L2x3slope2_pasted__Lego_White18_0": {
+      "cornerCount": 2808,
+      "cornerNormalsFnv1a64": "5e8016d53d249b24",
+      "hasCustomNormals": true
+    },
+    "pasted__L2x3slope2_pasted__Lego_White19_0": {
+      "cornerCount": 2124,
+      "cornerNormalsFnv1a64": "68d76bd040a410b5",
+      "hasCustomNormals": true
+    },
+    "pasted__L2x3slope2_pasted__Lego_White20_0": {
+      "cornerCount": 1044,
+      "cornerNormalsFnv1a64": "9a7c9142501f5ad3",
+      "hasCustomNormals": true
+    },
+    "pasted__L2x3slope2_pasted__Lego_White22_0": {
+      "cornerCount": 1140,
+      "cornerNormalsFnv1a64": "a938bf342b78f1c5",
+      "hasCustomNormals": true
+    },
+    "pasted__L2x3slope2_pasted__Lego_White23_0": {
+      "cornerCount": 684,
+      "cornerNormalsFnv1a64": "57a42388b8c1ac72",
+      "hasCustomNormals": true
+    },
+    "pasted__L2x3slope2_pasted__Lego_White24_0": {
+      "cornerCount": 780,
+      "cornerNormalsFnv1a64": "867378f1a2e047de",
+      "hasCustomNormals": true
+    },
+    "pasted__L2x3slope2_pasted__Lego_White25_0": {
+      "cornerCount": 1080,
+      "cornerNormalsFnv1a64": "6e8340e0a8d7b263",
+      "hasCustomNormals": true
+    },
+    "pasted__L2x3slope2_pasted__Lego_White7_0": {
+      "cornerCount": 11304,
+      "cornerNormalsFnv1a64": "1bc2b25fe6fda29e",
+      "hasCustomNormals": true
+    },
+    "pasted__L2x3slope2_pasted__Lego_White8_0": {
+      "cornerCount": 6084,
+      "cornerNormalsFnv1a64": "e7c1bf11c20f42a3",
+      "hasCustomNormals": true
+    },
+    "pasted__L2x3slope2_pasted__Lego_White9_0": {
+      "cornerCount": 2484,
+      "cornerNormalsFnv1a64": "d8258ccb49f44781",
+      "hasCustomNormals": true
+    },
+    "pasted__L2x3slope2_pasted__pasted__LegoWhite1_0": {
+      "cornerCount": 4836,
+      "cornerNormalsFnv1a64": "738a4c877bc1c1bb",
+      "hasCustomNormals": true
+    },
+    "pasted__L2x3slope2_pasted__pasted__LegoWhite3_0": {
+      "cornerCount": 720,
+      "cornerNormalsFnv1a64": "0be435c685b699d5",
+      "hasCustomNormals": true
+    },
+    "pasted__L2x3slope2_pasted__pasted__LegoWhite4_0": {
+      "cornerCount": 708,
+      "cornerNormalsFnv1a64": "6285dc0acca751b7",
+      "hasCustomNormals": true
+    },
+    "pasted__L2x3slope2_pasted__pasted__Lego_White12_0": {
+      "cornerCount": 1044,
+      "cornerNormalsFnv1a64": "2f51dd59fbb7a633",
+      "hasCustomNormals": true
+    },
+    "pasted__L2x3slope2_pasted__pasted__Lego_White14_0": {
+      "cornerCount": 684,
+      "cornerNormalsFnv1a64": "3540545055579095",
+      "hasCustomNormals": true
+    },
+    "pasted__L2x3slope2_pasted__pasted__Lego_White16_0": {
+      "cornerCount": 1044,
+      "cornerNormalsFnv1a64": "93f3d637652fb360",
+      "hasCustomNormals": true
+    },
+    "pasted__L2x3slope2_pasted__pasted__Lego_White18_0": {
+      "cornerCount": 2808,
+      "cornerNormalsFnv1a64": "1916c9a284f2e44c",
+      "hasCustomNormals": true
+    },
+    "pasted__L2x3slope2_pasted__pasted__Lego_White19_0": {
+      "cornerCount": 1044,
+      "cornerNormalsFnv1a64": "450f96a01b8e4258",
+      "hasCustomNormals": true
+    },
+    "pasted__L2x3slope2_pasted__pasted__Lego_White20_0": {
+      "cornerCount": 2124,
+      "cornerNormalsFnv1a64": "88beba74289eb6a7",
+      "hasCustomNormals": true
+    },
+    "pasted__L2x3slope2_pasted__pasted__Lego_White25_0": {
+      "cornerCount": 1080,
+      "cornerNormalsFnv1a64": "bfa4b452eb09c970",
+      "hasCustomNormals": true
+    },
+    "pasted__L2x3slope2_pasted__pasted__Lego_White26_0": {
+      "cornerCount": 1080,
+      "cornerNormalsFnv1a64": "78fbc730085e047b",
+      "hasCustomNormals": true
+    },
+    "pasted__L2x3slope2_pasted__pasted__Lego_White7_0": {
+      "cornerCount": 11304,
+      "cornerNormalsFnv1a64": "ec9ca588cdad7e9f",
+      "hasCustomNormals": true
+    },
+    "pasted__L2x3slope2_pasted__pasted__Lego_White8_0": {
+      "cornerCount": 6084,
+      "cornerNormalsFnv1a64": "e8a229a1f9869693",
+      "hasCustomNormals": true
+    },
+    "pasted__L2x3slope2_pasted__pasted__Lego_White9_0": {
+      "cornerCount": 2484,
+      "cornerNormalsFnv1a64": "cdf95c6183b288b3",
+      "hasCustomNormals": true
+    },
+    "pasted__L2x3slope2_pasted__pasted__pasted__Lego_White12_0": {
+      "cornerCount": 1044,
+      "cornerNormalsFnv1a64": "05747f312dc32c6b",
+      "hasCustomNormals": true
+    },
+    "pasted__L2x3slope2_pasted__pasted__pasted__Lego_White14_0": {
+      "cornerCount": 684,
+      "cornerNormalsFnv1a64": "6b7a6a04e6e116b7",
+      "hasCustomNormals": true
+    },
+    "pasted__L2x3slope2_pasted__pasted__pasted__Lego_White15_0": {
+      "cornerCount": 1044,
+      "cornerNormalsFnv1a64": "fee622d4ca983367",
+      "hasCustomNormals": true
+    },
+    "pasted__L2x3slope2_pasted__pasted__pasted__Lego_White16_0": {
+      "cornerCount": 684,
+      "cornerNormalsFnv1a64": "9f60ea1601dd1b34",
+      "hasCustomNormals": true
+    },
+    "pasted__L2x3slope2_pasted__pasted__pasted__Lego_White19_0": {
+      "cornerCount": 1044,
+      "cornerNormalsFnv1a64": "a2760196a97ac3e8",
+      "hasCustomNormals": true
+    },
+    "pasted__L2x3slope2_pasted__pasted__pasted__Lego_White25_0": {
+      "cornerCount": 1080,
+      "cornerNormalsFnv1a64": "68f62f84b51348e7",
+      "hasCustomNormals": true
+    },
+    "pasted__L2x3slope2_pasted__pasted__pasted__pasted__Lego_White11_0": {
+      "cornerCount": 11400,
+      "cornerNormalsFnv1a64": "38f8fa5dc75adedf",
+      "hasCustomNormals": true
+    },
+    "pasted__L2x3slope2_pasted__pasted__pasted__pasted__Lego_White14_0": {
+      "cornerCount": 684,
+      "cornerNormalsFnv1a64": "ec462f1146fa16fb",
+      "hasCustomNormals": true
+    },
+    "pasted__L2x3slope2_pasted__pasted__pasted__pasted__Lego_White15_0": {
+      "cornerCount": 1044,
+      "cornerNormalsFnv1a64": "c76f76fa963f7c08",
+      "hasCustomNormals": true
+    },
+    "pasted__L2x3slope2_pasted__pasted__pasted__pasted__Lego_White16_0": {
+      "cornerCount": 684,
+      "cornerNormalsFnv1a64": "4cd5f3504ca5166a",
+      "hasCustomNormals": true
+    },
+    "pasted__L2x3slope2_pasted__pasted__pasted__pasted__Lego_White25_0": {
+      "cornerCount": 1080,
+      "cornerNormalsFnv1a64": "1c1d762c16c735f0",
+      "hasCustomNormals": true
+    },
+    "pasted__L2x3slope2_pasted__pasted__pasted__pasted__pasted__Lego_White11_0": {
+      "cornerCount": 11400,
+      "cornerNormalsFnv1a64": "150898d7aa6fba1a",
+      "hasCustomNormals": true
+    },
+    "pasted__L2x3slope2_pasted__pasted__pasted__pasted__pasted__Lego_White14_0": {
+      "cornerCount": 684,
+      "cornerNormalsFnv1a64": "cebed9ab001b1914",
+      "hasCustomNormals": true
+    },
+    "pasted__L2x3slope2_pasted__pasted__pasted__pasted__pasted__Lego_White25_0": {
+      "cornerCount": 1080,
+      "cornerNormalsFnv1a64": "c2c80fe85b8ea973",
+      "hasCustomNormals": true
+    },
+    "pasted__L2x3slope2_pasted__pasted__pasted__pasted__pasted__pasted__Lego_White25_0": {
+      "cornerCount": 1080,
+      "cornerNormalsFnv1a64": "54fc201aa40668bc",
+      "hasCustomNormals": true
+    },
+    "pasted__L2x3slope2_pasted__pasted__pasted__pasted__pasted__pasted__pasted__Lego_White25_0": {
+      "cornerCount": 1080,
+      "cornerNormalsFnv1a64": "3b6659f3ab5b3db1",
+      "hasCustomNormals": true
+    },
+    "pasted__L2x3slope2_pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__Lego_White25_0": {
+      "cornerCount": 1080,
+      "cornerNormalsFnv1a64": "2f02b88ff1aed378",
+      "hasCustomNormals": true
+    },
+    "pasted__L2x3slope2_pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__Lego_White26_0": {
+      "cornerCount": 1080,
+      "cornerNormalsFnv1a64": "10e1a71ac0ca2070",
+      "hasCustomNormals": true
+    },
+    "pasted__L2x3slope2_pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__Lego_White25_0": {
+      "cornerCount": 1080,
+      "cornerNormalsFnv1a64": "831c0924acc92bd1",
+      "hasCustomNormals": true
+    },
+    "pasted__L2x3slope2_pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__Lego_White25_0": {
+      "cornerCount": 1080,
+      "cornerNormalsFnv1a64": "d6fea65d2c0ff23f",
+      "hasCustomNormals": true
+    }
+  },
+  "meshes": [
+    {
+      "name": "pasted__L2x3slope2_lambert1_0",
+      "triangles": 9656,
+      "firstGlobalTriangle": 0,
+      "positionFnv": "3175e7c06687cdfd",
+      "uvFnv": "e51f01c4085c0c6d",
+      "triangulationFnv": "7cacb2f008039a30"
+    },
+    {
+      "name": "pasted__L2x3slope2_pasted__Lego_White7_0",
+      "triangles": 3768,
+      "firstGlobalTriangle": 9656,
+      "positionFnv": "a6ed690130cc67a1",
+      "uvFnv": "f6de85f87c99ff57",
+      "triangulationFnv": "530e24661fb5b332"
+    },
+    {
+      "name": "pasted__L2x3slope2_pasted__Lego_White8_0",
+      "triangles": 2028,
+      "firstGlobalTriangle": 13424,
+      "positionFnv": "84b8ad3a7cb29361",
+      "uvFnv": "447604b6dee29631",
+      "triangulationFnv": "fd50b8c0e840532f"
+    },
+    {
+      "name": "pasted__L2x3slope2_pasted__Lego_White9_0",
+      "triangles": 828,
+      "firstGlobalTriangle": 15452,
+      "positionFnv": "2401d6978d674e45",
+      "uvFnv": "34040b7d98e23ced",
+      "triangulationFnv": "b167f7f4c6e65738"
+    },
+    {
+      "name": "pasted__L2x3slope2_pasted__Lego_White12_0",
+      "triangles": 348,
+      "firstGlobalTriangle": 16280,
+      "positionFnv": "159f5beb4e4312ab",
+      "uvFnv": "e7aafc8f733274c1",
+      "triangulationFnv": "d938cba490fed3ee"
+    },
+    {
+      "name": "pasted__L2x3slope2_pasted__Lego_White15_0",
+      "triangles": 380,
+      "firstGlobalTriangle": 16628,
+      "positionFnv": "ade52b17a633d74e",
+      "uvFnv": "6b2de35df9c8043c",
+      "triangulationFnv": "e69c483134a21a7f"
+    },
+    {
+      "name": "pasted__L2x3slope2_pasted__Lego_White16_0",
+      "triangles": 348,
+      "firstGlobalTriangle": 17008,
+      "positionFnv": "2bc3fda0506951d0",
+      "uvFnv": "e7aafc8f733274c1",
+      "triangulationFnv": "d938cba490fed3ee"
+    },
+    {
+      "name": "pasted__L2x3slope2_pasted__Lego_White18_0",
+      "triangles": 936,
+      "firstGlobalTriangle": 17356,
+      "positionFnv": "9ffc2ca5f04efa69",
+      "uvFnv": "8b0686d72214bc4d",
+      "triangulationFnv": "1514aac33c6e0751"
+    },
+    {
+      "name": "pasted__L2x3slope2_pasted__Lego_White19_0",
+      "triangles": 708,
+      "firstGlobalTriangle": 18292,
+      "positionFnv": "16157f5080bb8ac9",
+      "uvFnv": "5182e7414a0ca4bc",
+      "triangulationFnv": "a92ddac239aaa2c6"
+    },
+    {
+      "name": "pasted__L2x3slope2_pasted__Lego_White20_0",
+      "triangles": 348,
+      "firstGlobalTriangle": 19000,
+      "positionFnv": "a323a78b9700df88",
+      "uvFnv": "171a0db538516439",
+      "triangulationFnv": "e02430107b3c8ddf"
+    },
+    {
+      "name": "pasted__L2x3slope2_pasted__Lego_White22_0",
+      "triangles": 380,
+      "firstGlobalTriangle": 19348,
+      "positionFnv": "2a9a018f07f18294",
+      "uvFnv": "6b2de35df9c8043c",
+      "triangulationFnv": "e69c483134a21a7f"
+    },
+    {
+      "name": "pasted__L2x3slope2_pasted__Lego_White23_0",
+      "triangles": 228,
+      "firstGlobalTriangle": 19728,
+      "positionFnv": "9fbc54416b3cdc80",
+      "uvFnv": "aec4ac9fe2e28c31",
+      "triangulationFnv": "cda0e69bfc6530aa"
+    },
+    {
+      "name": "pasted__L2x3slope2_pasted__Lego_White24_0",
+      "triangles": 260,
+      "firstGlobalTriangle": 19956,
+      "positionFnv": "00992a77df80af10",
+      "uvFnv": "1c56e9b5a1ff2238",
+      "triangulationFnv": "e3ea9a16ebeaa59b"
+    },
+    {
+      "name": "pasted__L2x3slope2_pasted__Lego_White25_0",
+      "triangles": 360,
+      "firstGlobalTriangle": 20216,
+      "positionFnv": "9c157c041a6d1726",
+      "uvFnv": "825107a65a70810a",
+      "triangulationFnv": "96c21f7bb5b5bd7a"
+    },
+    {
+      "name": "pasted__L2x3slope2_pasted__LegoWhite1_0",
+      "triangles": 1612,
+      "firstGlobalTriangle": 20576,
+      "positionFnv": "878729d9dd84a84e",
+      "uvFnv": "7425d5e5d9c53c26",
+      "triangulationFnv": "6d4bafb85aadcae4"
+    },
+    {
+      "name": "pasted__L2x3slope2_pasted__LegoWhite3_0",
+      "triangles": 240,
+      "firstGlobalTriangle": 22188,
+      "positionFnv": "a64282c3935f8927",
+      "uvFnv": "a18dbab129d75563",
+      "triangulationFnv": "792c3c8dc6c53d31"
+    },
+    {
+      "name": "pasted__L2x3slope2_pasted__LegoWhite4_0",
+      "triangles": 236,
+      "firstGlobalTriangle": 22428,
+      "positionFnv": "49f2d495855b5873",
+      "uvFnv": "48d694cea7b410e0",
+      "triangulationFnv": "ff29c9f0441447e2"
+    },
+    {
+      "name": "pasted__L2x3slope2_pasted__pasted__Lego_White7_0",
+      "triangles": 3768,
+      "firstGlobalTriangle": 22664,
+      "positionFnv": "ad2877e7d427be59",
+      "uvFnv": "f6de85f87c99ff57",
+      "triangulationFnv": "530e24661fb5b332"
+    },
+    {
+      "name": "pasted__L2x3slope2_pasted__pasted__Lego_White8_0",
+      "triangles": 2028,
+      "firstGlobalTriangle": 26432,
+      "positionFnv": "3450a8b64cbb105e",
+      "uvFnv": "447604b6dee29631",
+      "triangulationFnv": "fd50b8c0e840532f"
+    },
+    {
+      "name": "pasted__L2x3slope2_pasted__pasted__Lego_White9_0",
+      "triangles": 828,
+      "firstGlobalTriangle": 28460,
+      "positionFnv": "133bf219711b3f95",
+      "uvFnv": "34040b7d98e23ced",
+      "triangulationFnv": "b167f7f4c6e65738"
+    },
+    {
+      "name": "pasted__L2x3slope2_pasted__pasted__Lego_White12_0",
+      "triangles": 348,
+      "firstGlobalTriangle": 29288,
+      "positionFnv": "46896a989a381cd1",
+      "uvFnv": "e7aafc8f733274c1",
+      "triangulationFnv": "d938cba490fed3ee"
+    },
+    {
+      "name": "pasted__L2x3slope2_pasted__pasted__Lego_White14_0",
+      "triangles": 228,
+      "firstGlobalTriangle": 29636,
+      "positionFnv": "fefdd9d4782873ee",
+      "uvFnv": "aec4ac9fe2e28c31",
+      "triangulationFnv": "cda0e69bfc6530aa"
+    },
+    {
+      "name": "pasted__L2x3slope2_pasted__pasted__Lego_White16_0",
+      "triangles": 348,
+      "firstGlobalTriangle": 29864,
+      "positionFnv": "3ab272d0732c4828",
+      "uvFnv": "055dead886509797",
+      "triangulationFnv": "2b81619c2994acee"
+    },
+    {
+      "name": "pasted__L2x3slope2_pasted__pasted__Lego_White18_0",
+      "triangles": 936,
+      "firstGlobalTriangle": 30212,
+      "positionFnv": "a6b74afdfe96ee67",
+      "uvFnv": "8b0686d72214bc4d",
+      "triangulationFnv": "e007883bd4c99087"
+    },
+    {
+      "name": "pasted__L2x3slope2_pasted__pasted__Lego_White19_0",
+      "triangles": 348,
+      "firstGlobalTriangle": 31148,
+      "positionFnv": "a07283078503e886",
+      "uvFnv": "e7aafc8f733274c1",
+      "triangulationFnv": "d938cba490fed3ee"
+    },
+    {
+      "name": "pasted__L2x3slope2_pasted__pasted__Lego_White20_0",
+      "triangles": 708,
+      "firstGlobalTriangle": 31496,
+      "positionFnv": "3a3c0ec80f82151c",
+      "uvFnv": "d2ed647d3e91dfcc",
+      "triangulationFnv": "fe70e15cd4dbcaab"
+    },
+    {
+      "name": "pasted__L2x3slope2_pasted__pasted__Lego_White25_0",
+      "triangles": 360,
+      "firstGlobalTriangle": 32204,
+      "positionFnv": "495df6778bb09f49",
+      "uvFnv": "825107a65a70810a",
+      "triangulationFnv": "b71082d836b2fbe0"
+    },
+    {
+      "name": "pasted__L2x3slope2_pasted__pasted__Lego_White26_0",
+      "triangles": 360,
+      "firstGlobalTriangle": 32564,
+      "positionFnv": "43c066015d96d363",
+      "uvFnv": "825107a65a70810a",
+      "triangulationFnv": "db94ca32556a683b"
+    },
+    {
+      "name": "pasted__L2x3slope2_pasted__pasted__LegoWhite1_0",
+      "triangles": 1612,
+      "firstGlobalTriangle": 32924,
+      "positionFnv": "f58e2020ad888210",
+      "uvFnv": "7425d5e5d9c53c26",
+      "triangulationFnv": "6d4bafb85aadcae4"
+    },
+    {
+      "name": "pasted__L2x3slope2_pasted__pasted__LegoWhite3_0",
+      "triangles": 240,
+      "firstGlobalTriangle": 34536,
+      "positionFnv": "ec8a6eed41c4d62f",
+      "uvFnv": "a18dbab129d75563",
+      "triangulationFnv": "792c3c8dc6c53d31"
+    },
+    {
+      "name": "pasted__L2x3slope2_pasted__pasted__LegoWhite4_0",
+      "triangles": 236,
+      "firstGlobalTriangle": 34776,
+      "positionFnv": "c31a3a9ea2b0757b",
+      "uvFnv": "48d694cea7b410e0",
+      "triangulationFnv": "ff29c9f0441447e2"
+    },
+    {
+      "name": "pasted__L2x3slope2_pasted__pasted__pasted__Lego_White12_0",
+      "triangles": 348,
+      "firstGlobalTriangle": 35012,
+      "positionFnv": "017f0b32bcffde7b",
+      "uvFnv": "e7aafc8f733274c1",
+      "triangulationFnv": "d938cba490fed3ee"
+    },
+    {
+      "name": "pasted__L2x3slope2_pasted__pasted__pasted__Lego_White14_0",
+      "triangles": 228,
+      "firstGlobalTriangle": 35360,
+      "positionFnv": "fa3be8280ba9bf18",
+      "uvFnv": "aec4ac9fe2e28c31",
+      "triangulationFnv": "cda0e69bfc6530aa"
+    },
+    {
+      "name": "pasted__L2x3slope2_pasted__pasted__pasted__Lego_White15_0",
+      "triangles": 348,
+      "firstGlobalTriangle": 35588,
+      "positionFnv": "416c4d5773312fb9",
+      "uvFnv": "055dead886509797",
+      "triangulationFnv": "2b81619c2994acee"
+    },
+    {
+      "name": "pasted__L2x3slope2_pasted__pasted__pasted__Lego_White16_0",
+      "triangles": 228,
+      "firstGlobalTriangle": 35936,
+      "positionFnv": "598179c540de7c62",
+      "uvFnv": "5cfd0b8d8109721b",
+      "triangulationFnv": "f0cfe12ab1d18532"
+    },
+    {
+      "name": "pasted__L2x3slope2_pasted__pasted__pasted__Lego_White19_0",
+      "triangles": 348,
+      "firstGlobalTriangle": 36164,
+      "positionFnv": "453eefe4f01acf47",
+      "uvFnv": "e7aafc8f733274c1",
+      "triangulationFnv": "d938cba490fed3ee"
+    },
+    {
+      "name": "pasted__L2x3slope2_pasted__pasted__pasted__Lego_White25_0",
+      "triangles": 360,
+      "firstGlobalTriangle": 36512,
+      "positionFnv": "1995c55cfd43378f",
+      "uvFnv": "825107a65a70810a",
+      "triangulationFnv": "3efc0667143b6c2d"
+    },
+    {
+      "name": "pasted__L2x3slope2_pasted__pasted__pasted__pasted__Lego_White11_0",
+      "triangles": 3800,
+      "firstGlobalTriangle": 36872,
+      "positionFnv": "b4a2893165c9d84d",
+      "uvFnv": "c66f938a20b27161",
+      "triangulationFnv": "6ec0ff1106777dc0"
+    },
+    {
+      "name": "pasted__L2x3slope2_pasted__pasted__pasted__pasted__Lego_White14_0",
+      "triangles": 228,
+      "firstGlobalTriangle": 40672,
+      "positionFnv": "f641062d61e60cc3",
+      "uvFnv": "aec4ac9fe2e28c31",
+      "triangulationFnv": "cda0e69bfc6530aa"
+    },
+    {
+      "name": "pasted__L2x3slope2_pasted__pasted__pasted__pasted__Lego_White15_0",
+      "triangles": 348,
+      "firstGlobalTriangle": 40900,
+      "positionFnv": "d6d21774e511272d",
+      "uvFnv": "055dead886509797",
+      "triangulationFnv": "2b81619c2994acee"
+    },
+    {
+      "name": "pasted__L2x3slope2_pasted__pasted__pasted__pasted__Lego_White16_0",
+      "triangles": 228,
+      "firstGlobalTriangle": 41248,
+      "positionFnv": "5bd496839c31568d",
+      "uvFnv": "5cfd0b8d8109721b",
+      "triangulationFnv": "f0cfe12ab1d18532"
+    },
+    {
+      "name": "pasted__L2x3slope2_pasted__pasted__pasted__pasted__Lego_White25_0",
+      "triangles": 360,
+      "firstGlobalTriangle": 41476,
+      "positionFnv": "621a921479e2fbe7",
+      "uvFnv": "825107a65a70810a",
+      "triangulationFnv": "55427ac654290825"
+    },
+    {
+      "name": "pasted__L2x3slope2_pasted__pasted__pasted__pasted__pasted__Lego_White11_0",
+      "triangles": 3800,
+      "firstGlobalTriangle": 41836,
+      "positionFnv": "2d65aac1abe685a5",
+      "uvFnv": "ed8c607bbb0e40f3",
+      "triangulationFnv": "ec8a344444263ed0"
+    },
+    {
+      "name": "pasted__L2x3slope2_pasted__pasted__pasted__pasted__pasted__Lego_White14_0",
+      "triangles": 228,
+      "firstGlobalTriangle": 45636,
+      "positionFnv": "f9ff2c56e0a9dcb6",
+      "uvFnv": "5cfd0b8d8109721b",
+      "triangulationFnv": "f0cfe12ab1d18532"
+    },
+    {
+      "name": "pasted__L2x3slope2_pasted__pasted__pasted__pasted__pasted__Lego_White25_0",
+      "triangles": 360,
+      "firstGlobalTriangle": 45864,
+      "positionFnv": "b08522bd0a91aa7c",
+      "uvFnv": "825107a65a70810a",
+      "triangulationFnv": "89afc3cc530484f3"
+    },
+    {
+      "name": "pasted__L2x3slope2_pasted__pasted__pasted__pasted__pasted__pasted__Lego_White25_0",
+      "triangles": 360,
+      "firstGlobalTriangle": 46224,
+      "positionFnv": "e454d31b9a6be79c",
+      "uvFnv": "825107a65a70810a",
+      "triangulationFnv": "ae1354d520f1eec2"
+    },
+    {
+      "name": "pasted__L2x3slope2_pasted__pasted__pasted__pasted__pasted__pasted__pasted__Lego_White25_0",
+      "triangles": 360,
+      "firstGlobalTriangle": 46584,
+      "positionFnv": "830c42ff17b57820",
+      "uvFnv": "825107a65a70810a",
+      "triangulationFnv": "ae1354d520f1eec2"
+    },
+    {
+      "name": "pasted__L2x3slope2_pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__Lego_White25_0",
+      "triangles": 360,
+      "firstGlobalTriangle": 46944,
+      "positionFnv": "faba58b161e8c09c",
+      "uvFnv": "825107a65a70810a",
+      "triangulationFnv": "ae1354d520f1eec2"
+    },
+    {
+      "name": "pasted__L2x3slope2_pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__Lego_White26_0",
+      "triangles": 360,
+      "firstGlobalTriangle": 47304,
+      "positionFnv": "9bc3eec300aabb0b",
+      "uvFnv": "825107a65a70810a",
+      "triangulationFnv": "ae1354d520f1eec2"
+    },
+    {
+      "name": "pasted__L2x3slope2_pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__Lego_White25_0",
+      "triangles": 360,
+      "firstGlobalTriangle": 47664,
+      "positionFnv": "d527f775543ce810",
+      "uvFnv": "825107a65a70810a",
+      "triangulationFnv": "ae1354d520f1eec2"
+    },
+    {
+      "name": "pasted__L2x3slope2_pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__Lego_White25_0",
+      "triangles": 360,
+      "firstGlobalTriangle": 48024,
+      "positionFnv": "435e9adbf61f8e1d",
+      "uvFnv": "825107a65a70810a",
+      "triangulationFnv": "ae1354d520f1eec2"
+    }
+  ]
+}

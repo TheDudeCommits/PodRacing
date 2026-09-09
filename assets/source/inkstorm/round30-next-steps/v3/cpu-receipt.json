@@ -1,0 +1,95 @@
+{
+  "scope": "CPU source candidate only: no browser, GPU, Blender, render, timing or art acceptance",
+  "clearanceRule": "Vertices and triangle centroids must stay 2m outside the road edge or at least 30m above installed terrain",
+  "seed": 1229867859,
+  "bankIds": [
+    "inkstorm-pipe-bank-227",
+    "inkstorm-pipe-bank-228",
+    "inkstorm-pipe-bank-230",
+    "inkstorm-pipe-bank-233",
+    "inkstorm-pipe-bank-235",
+    "inkstorm-pipe-bank-237",
+    "inkstorm-pipe-bank-239",
+    "inkstorm-pipe-bank-241",
+    "inkstorm-pipe-bank-243",
+    "inkstorm-pipe-bank-229",
+    "inkstorm-pipe-bank-231",
+    "inkstorm-pipe-bank-232",
+    "inkstorm-pipe-bank-234",
+    "inkstorm-pipe-bank-236",
+    "inkstorm-pipe-bank-238",
+    "inkstorm-pipe-bank-240",
+    "inkstorm-pipe-bank-242",
+    "inkstorm-pipe-bank-244"
+  ],
+  "sockets": 54,
+  "pipeRuns": 75,
+  "boxes": 19,
+  "triangles": 46788,
+  "vertices": 140364,
+  "materials": 1,
+  "additionalMeshes": 1,
+  "additionalTextures": 0,
+  "additionalLights": 0,
+  "perFrameUpdates": 0,
+  "geometryBytes": 5053104,
+  "bounds": {
+    "min": [
+      19522.693359375,
+      -14.718767166137695,
+      -779.6039428710938
+    ],
+    "max": [
+      19867.888671875,
+      68.76985931396484,
+      -51.773826599121094
+    ]
+  },
+  "minimumLowVertexOrCentroidClearance": 7.840575026154433,
+  "minimumOverheadVertexOrCentroidHeight": 31.775250539536295,
+  "nonfinite": 0,
+  "failures": [],
+  "removedArtInstances": [],
+  "geometryBudget": 50000,
+  "budgetPassed": true,
+  "clearancePassed": true,
+  "limitations": [
+    "Per-vertex and triangle-centroid checks are not swept-pod or triangle-volume collision proof.",
+    "Root must validate actual camera composition, graphics lifecycle and full-race cadence.",
+    "Existing collision placement list, gulf arrays, terrain and physics were not edited.",
+    "The distant launch basin has not been recomposed by this near-foundry candidate."
+  ],
+  "hashes": {
+    "candidate": "bc7a7659a59ef4609fc65044b5778bac83e6fd66b2aeab8a29d41f961e549450",
+    "pipeBankGlb": "4b3510d0f8b10e1a44158edb0b0bbdc25bac33019176368638937ab1834a3b81"
+  },
+  "attachmentRayProbe": {
+    "scope": "9 rays per actual scaled aperture; hit before original cap along its measured outward normal",
+    "total": 486,
+    "hits": 486,
+    "misses": []
+  },
+  "v2Preservation": {
+    "parts": 52,
+    "changedParts": [],
+    "originalTriangles": 20868,
+    "missingTriangles": 0,
+    "positionsNormalsColorsByteExact": true
+  },
+  "bankCoverage": {
+    "actualBanks": 18,
+    "connectedBanks": 18,
+    "unconnectedIds": []
+  },
+  "adjacentRouteAudit": {
+    "segmentCount": 4168,
+    "adjacentProbes": 7663806,
+    "minAdjacentOverhead": 33.886696643632675,
+    "minAdjacentLowClearance": 17.71003206292104,
+    "failures": [],
+    "passed": true,
+    "scope": "All nearby conservative main and branch capsules at4096 main rows plus actual branch rows; discrete vertices/centroids, not swept volumes"
+  },
+  "strictTypecheck": "PASS",
+  "previousFailedAdjacentAudit": "attempt-1-adjacent-clearance/cpu-receipt.json"
+}

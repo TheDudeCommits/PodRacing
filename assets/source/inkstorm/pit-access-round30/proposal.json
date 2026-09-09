@@ -1,0 +1,466 @@
+{
+  "status": "source proposal; not implemented; endpoint and placement evidence only",
+  "gulfArrays": [
+    {
+      "name": "launch",
+      "sha256": "0cb508909165f1c2fda5fbcd9c01c2a7b9db6915f78b8578b03571a8a96b649b"
+    },
+    {
+      "name": "finish",
+      "sha256": "bd9da2b5038d659fc1622390f211ba5e42bacac2a90288b9aaf2656af03abffa"
+    }
+  ],
+  "modules": [
+    {
+      "parentId": "inkstorm-pit-complex-215",
+      "bay": "left",
+      "sourceXBounds": [
+        -71,
+        -24.5
+      ],
+      "sourceZBounds": [
+        -32.5,
+        28
+      ],
+      "sourceEntranceX": -47,
+      "width": 3.2,
+      "floorHeight": -10.672173622807456,
+      "anchorHeight": -13.122173622807455,
+      "rigidYShift": -19.202968108464656,
+      "rays": [
+        {
+          "across": -1.6,
+          "out": 17.59999999999998,
+          "x": 18560.416758002266,
+          "z": -45.031386935100926,
+          "height": -11.164243973903663,
+          "clearance": 16.43076674593287
+        },
+        {
+          "across": -0.8,
+          "out": 17.299999999999976,
+          "x": 18560.558507639747,
+          "z": -45.87394674916322,
+          "height": -10.990074947282658,
+          "clearance": 16.420478358127845
+        },
+        {
+          "across": 0,
+          "out": 16.99999999999997,
+          "x": 18560.700257277233,
+          "z": -46.7165065632255,
+          "height": -10.822173622807457,
+          "clearance": 16.410405933684387
+        },
+        {
+          "across": 0.8,
+          "out": 16.699999999999967,
+          "x": 18560.842006914718,
+          "z": -47.55906637728779,
+          "height": -10.673425677021925,
+          "clearance": 16.4105885232835
+        },
+        {
+          "across": 1.6,
+          "out": 16.399999999999963,
+          "x": 18560.983756552203,
+          "z": -48.40162619135009,
+          "height": -10.556056570330252,
+          "clearance": 16.426497555013796
+        }
+      ],
+      "maxEndpointGrade": 0.027958542675920846,
+      "oldMaxEndpointGrade": 1.163832381462652,
+      "corePerimeterMinimumRoadClearance": 26.594468415583442,
+      "bridgeMinimumRoadClearance": 16.467080017428493,
+      "protectedRawIntrusion": null,
+      "maxRawCut": 4.50404006241857
+    },
+    {
+      "parentId": "inkstorm-pit-complex-215",
+      "bay": "middle",
+      "sourceXBounds": [
+        -24.5,
+        14
+      ],
+      "sourceZBounds": [
+        -32.5,
+        28
+      ],
+      "sourceEntranceX": -5,
+      "width": 3.2,
+      "floorHeight": -6.9789439687567665,
+      "anchorHeight": -9.428943968756766,
+      "rigidYShift": -15.509738454413966,
+      "rays": [
+        {
+          "across": -1.6,
+          "out": 7.799999999999988,
+          "x": 18573.00595864427,
+          "z": -86.28125999181879,
+          "height": -7.128943968756767,
+          "clearance": 16.496043071382232
+        },
+        {
+          "across": -0.8,
+          "out": 7.799999999999988,
+          "x": 18573.407238265318,
+          "z": -86.97333994798768,
+          "height": -7.153379635302732,
+          "clearance": 16.43076342885169
+        },
+        {
+          "across": 0,
+          "out": 7.699999999999989,
+          "x": 18573.722007891844,
+          "z": -87.71557985678771,
+          "height": -7.137922982691048,
+          "clearance": 16.465170476503907
+        },
+        {
+          "across": 0.8,
+          "out": 7.699999999999989,
+          "x": 18574.12328751289,
+          "z": -88.40765981295661,
+          "height": -7.085958744747405,
+          "clearance": 16.407484866397333
+        },
+        {
+          "across": 1.6,
+          "out": 7.599999999999989,
+          "x": 18574.438057139425,
+          "z": -89.14989972175664,
+          "height": -6.99705632418968,
+          "clearance": 16.46342628387312
+        }
+      ],
+      "maxEndpointGrade": 0.02236354699307258,
+      "oldMaxEndpointGrade": 2.04313826445354,
+      "corePerimeterMinimumRoadClearance": 24.013749006271084,
+      "bridgeMinimumRoadClearance": 16.480596688654536,
+      "protectedRawIntrusion": null,
+      "maxRawCut": 2.012245699117514
+    },
+    {
+      "parentId": "inkstorm-pit-complex-215",
+      "bay": "right",
+      "sourceXBounds": [
+        14,
+        79
+      ],
+      "sourceZBounds": [
+        -32.5,
+        28
+      ],
+      "sourceEntranceX": 39,
+      "width": 3.2,
+      "floorHeight": -7.064649519093059,
+      "anchorHeight": -9.514649519093059,
+      "rigidYShift": -15.59544400475026,
+      "rays": [
+        {
+          "across": -1.6,
+          "out": 14.799999999999963,
+          "x": 18601.132037418443,
+          "z": -120.83446089692923,
+          "height": -6.4182925873714325,
+          "clearance": 16.433347761345445
+        },
+        {
+          "across": -0.8,
+          "out": 15.099999999999962,
+          "x": 18601.792847023054,
+          "z": -121.37606099520477,
+          "height": -6.807385259609996,
+          "clearance": 16.450732812295733
+        },
+        {
+          "across": 0,
+          "out": 15.399999999999961,
+          "x": 18602.453656627666,
+          "z": -121.91766109348028,
+          "height": -7.21464951909306,
+          "clearance": 16.483818402456215
+        },
+        {
+          "across": 0.8,
+          "out": 15.79999999999996,
+          "x": 18603.2009762268,
+          "z": -122.40910123912467,
+          "height": -7.624155017074365,
+          "clearance": 16.435167740005113
+        },
+        {
+          "across": 1.6,
+          "out": 16.09999999999996,
+          "x": 18603.861785831414,
+          "z": -122.95070133740018,
+          "height": -7.983435012292139,
+          "clearance": 16.47842574875405
+        }
+      ],
+      "maxEndpointGrade": 0.057067421937831174,
+      "oldMaxEndpointGrade": 1.0257285402453031,
+      "corePerimeterMinimumRoadClearance": 24.911885732546594,
+      "bridgeMinimumRoadClearance": 16.47996905255213,
+      "protectedRawIntrusion": null,
+      "maxRawCut": 1.2648634213848364
+    },
+    {
+      "parentId": "inkstorm-pit-complex-216",
+      "bay": "left",
+      "sourceXBounds": [
+        -71,
+        -24.5
+      ],
+      "sourceZBounds": [
+        -32.5,
+        28
+      ],
+      "sourceEntranceX": -47,
+      "width": 3.2,
+      "floorHeight": -18.821804160417656,
+      "anchorHeight": -21.271804160417656,
+      "rigidYShift": -7.657983473478836,
+      "rays": [
+        {
+          "across": -1.6,
+          "out": 7.19999999999999,
+          "x": 18573.215068666006,
+          "z": 219.30791687680428,
+          "height": -18.58187837397092,
+          "clearance": 16.494047612417468
+        },
+        {
+          "across": -0.8,
+          "out": 7.19999999999999,
+          "x": 18573.12706919923,
+          "z": 218.51277154804535,
+          "height": -18.784916435790695,
+          "clearance": 16.499569677932794
+        },
+        {
+          "across": 0,
+          "out": 7.29999999999999,
+          "x": 18573.13846289855,
+          "z": 217.70662628593942,
+          "height": -18.971804160417655,
+          "clearance": 16.40453677936726
+        },
+        {
+          "across": 0.8,
+          "out": 7.29999999999999,
+          "x": 18573.050463431773,
+          "z": 216.91148095718052,
+          "height": -19.17709327995388,
+          "clearance": 16.409518022911705
+        },
+        {
+          "across": 1.6,
+          "out": 7.29999999999999,
+          "x": 18572.962463965,
+          "z": 216.11633562842158,
+          "height": -19.385193809444218,
+          "clearance": 16.414521412488277
+        }
+      ],
+      "maxEndpointGrade": 0.07717666425021398,
+      "oldMaxEndpointGrade": 1.1262154962336177,
+      "corePerimeterMinimumRoadClearance": 23.526657963704302,
+      "bridgeMinimumRoadClearance": 16.454536857575736,
+      "protectedRawIntrusion": null,
+      "maxRawCut": 0
+    },
+    {
+      "parentId": "inkstorm-pit-complex-216",
+      "bay": "middle",
+      "sourceXBounds": [
+        -24.5,
+        14
+      ],
+      "sourceZBounds": [
+        -32.5,
+        28
+      ],
+      "sourceEntranceX": -5,
+      "width": 3.2,
+      "floorHeight": -21.360308497793916,
+      "anchorHeight": -23.810308497793915,
+      "rigidYShift": -10.196487810855096,
+      "rays": [
+        {
+          "across": -1.6,
+          "out": 7.499999999999989,
+          "x": 18568.89327615855,
+          "z": 177.5297873169197,
+          "height": -21.31840842913275,
+          "clearance": 16.45416246352383
+        },
+        {
+          "across": -0.8,
+          "out": 7.499999999999989,
+          "x": 18568.805276691775,
+          "z": 176.73464198816077,
+          "height": -21.407609564123945,
+          "clearance": 16.45957802018827
+        },
+        {
+          "across": 0,
+          "out": 7.499999999999989,
+          "x": 18568.717277224998,
+          "z": 175.93949665940184,
+          "height": -21.510308497793915,
+          "clearance": 16.464999018080963
+        },
+        {
+          "across": 0.8,
+          "out": 7.499999999999989,
+          "x": 18568.629277758224,
+          "z": 175.14435133064293,
+          "height": -21.624070130828397,
+          "clearance": 16.470425275928502
+        },
+        {
+          "across": 1.6,
+          "out": 7.499999999999989,
+          "x": 18568.541278291446,
+          "z": 174.349206001884,
+          "height": -21.739525111046863,
+          "clearance": 16.475856612483028
+        }
+      ],
+      "maxEndpointGrade": 0.05056221510039296,
+      "oldMaxEndpointGrade": 1.4100939232144076,
+      "corePerimeterMinimumRoadClearance": 23.841543557015,
+      "bridgeMinimumRoadClearance": 16.70416330881785,
+      "protectedRawIntrusion": null,
+      "maxRawCut": 0.003948173948330691
+    },
+    {
+      "parentId": "inkstorm-pit-complex-216",
+      "bay": "right",
+      "sourceXBounds": [
+        14,
+        79
+      ],
+      "sourceZBounds": [
+        -32.5,
+        28
+      ],
+      "sourceEntranceX": 39,
+      "width": 3.2,
+      "floorHeight": -14.432734132742217,
+      "anchorHeight": -16.88273413274222,
+      "rigidYShift": -3.2689134458033973,
+      "rays": [
+        {
+          "across": -1.6,
+          "out": 7.899999999999988,
+          "x": 18564.45087815025,
+          "z": 133.7527945017908,
+          "height": -14.709707010226072,
+          "clearance": 16.472670240165872
+        },
+        {
+          "across": -0.8,
+          "out": 7.899999999999988,
+          "x": 18564.362878683474,
+          "z": 132.95764917303185,
+          "height": -14.644336166441258,
+          "clearance": 16.483698809425267
+        },
+        {
+          "across": 0,
+          "out": 7.899999999999988,
+          "x": 18564.2748792167,
+          "z": 132.16250384427292,
+          "height": -14.582734132742218,
+          "clearance": 16.494722295857855
+        },
+        {
+          "across": 0.8,
+          "out": 7.999999999999988,
+          "x": 18564.286272916015,
+          "z": 131.35635858216702,
+          "height": -14.527328843374672,
+          "clearance": 16.405747079008083
+        },
+        {
+          "across": 1.6,
+          "out": 7.999999999999988,
+          "x": 18564.198273449238,
+          "z": 130.56121325340808,
+          "height": -14.482552320020304,
+          "clearance": 16.41675977281972
+        }
+      ],
+      "maxEndpointGrade": 0.035059857909348804,
+      "oldMaxEndpointGrade": 0.44884637003636174,
+      "corePerimeterMinimumRoadClearance": 24.113651428340273,
+      "bridgeMinimumRoadClearance": 16.62266034154406,
+      "protectedRawIntrusion": null,
+      "maxRawCut": 0.5545974067826869
+    }
+  ],
+  "districtMove": {
+    "id": "inkstorm-pit-district-218",
+    "localX": 16,
+    "worldDelta": [
+      -0.9637077084007615,
+      -15.970950737284433
+    ],
+    "newCenter": [
+      18525.354181766044,
+      36.48192690837028
+    ],
+    "yaw": 1.6310645368839496,
+    "savedAnchor": -3.7059709498365088,
+    "minimumRoadClearance": 29.9812149122714,
+    "separatingAxisGapToOtherPads": [
+      {
+        "id": "inkstorm-pit-complex-215",
+        "before": 43.11633500444577,
+        "after": 27.116335004446
+      },
+      {
+        "id": "inkstorm-pit-complex-216",
+        "before": -0.6437465477461046,
+        "after": 15.336294251076197
+      },
+      {
+        "id": "inkstorm-pit-complex-217",
+        "before": 113.2001481895968,
+        "after": 113.55995302751762
+      },
+      {
+        "id": "inkstorm-pit-district-219",
+        "before": 123.0983399694851,
+        "after": 123.0983399694851
+      },
+      {
+        "id": "inkstorm-pit-district-220",
+        "before": 169.56266256381673,
+        "after": 185.55858495226857
+      },
+      {
+        "id": "inkstorm-pit-district-221",
+        "before": 199.01600840267088,
+        "after": 215.0157346812391
+      }
+    ]
+  },
+  "invariants": {
+    "runtimeWrites": false,
+    "courseMutation": false,
+    "gulfMutation": false,
+    "samplerOrAllocationChange": false,
+    "fieldImplemented": false,
+    "terrainMeshValidated": false,
+    "assetPartitionValidated": false,
+    "physicsAccessImplemented": false
+  },
+  "nextImplementation": {
+    "guard": "Keep literal-zero field support within road edge + 10 m shoulder + sqrt(2) atlas footprint + 4 m normal margin; do not inherit old 215/216 plateau offsets.",
+    "atlas": "Rebuild one bounded composite atlas from raw terrain plus gulf; all surviving slab ceilings symmetric. Existing 1 m R32F sampler and 1024 dimension / 524288 texel cap unchanged."
+  }
+}

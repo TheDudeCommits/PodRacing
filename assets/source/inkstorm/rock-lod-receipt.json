@@ -1,0 +1,264 @@
+{
+  "sourceScript": "build_rock_lods.mjs",
+  "purpose": "Distant LODs of the original Inkstorm fractured rocks; full-detail assets remain unchanged",
+  "regeneration": [
+    "npm install --prefix /tmp/inkstorm-rock-lod-tools --no-audit --no-fund --save-exact meshoptimizer@1.2.0 @gltf-transform/core@4.5.0 @gltf-transform/functions@4.5.0 gltf-validator@2.0.0-dev.3.10",
+    "node assets/source/inkstorm/build_rock_lods.mjs /tmp/inkstorm-rock-lod-tools"
+  ],
+  "assets": [
+    {
+      "asset": "canyon-buttress-lod.glb",
+      "sourceAsset": "canyon-buttress.glb",
+      "sourceSha256": "a65200e93cf582925bd4ee496e9a91569152156e59c56a23a157bd8a66b708e2",
+      "sourceUnchanged": true,
+      "source": {
+        "meshCount": 1,
+        "primitiveCount": 1,
+        "materialCount": 1,
+        "vertices": 18544,
+        "triangles": 7990,
+        "attributes": [
+          "POSITION",
+          "NORMAL",
+          "COLOR_0"
+        ],
+        "bounds": {
+          "min": [
+            -40,
+            0,
+            -50
+          ],
+          "max": [
+            40,
+            120,
+            50
+          ]
+        },
+        "normals": {
+          "minimumLength": 0.9999999216135063,
+          "maximumLength": 1.0000001491905908,
+          "finite": true
+        },
+        "colors": {
+          "min": [
+            0.2506326735019684,
+            0.12505708634853363,
+            0.10996466875076294
+          ],
+          "max": [
+            0.8319985866546631,
+            0.3909390866756439,
+            0.2617208659648895
+          ],
+          "finite": true,
+          "withinUnitRange": true
+        }
+      },
+      "output": {
+        "bytes": 126372,
+        "sha256": "a358427e62edcfaf1a1e3308b3662ecd9715078c6066717099f9902a3c671e7c",
+        "meshCount": 1,
+        "primitiveCount": 1,
+        "materialCount": 1,
+        "vertices": 3181,
+        "triangles": 1798,
+        "attributes": [
+          "POSITION",
+          "NORMAL",
+          "COLOR_0"
+        ],
+        "bounds": {
+          "min": [
+            -40,
+            0,
+            -50
+          ],
+          "max": [
+            40,
+            120,
+            50
+          ]
+        },
+        "normals": {
+          "minimumLength": 0.9999999233413923,
+          "maximumLength": 1.0000001227170177,
+          "finite": true
+        },
+        "colors": {
+          "min": [
+            0.2506326735019684,
+            0.12505708634853363,
+            0.10996466875076294
+          ],
+          "max": [
+            0.8319985866546631,
+            0.3909390866756439,
+            0.2617208659648895
+          ],
+          "finite": true,
+          "withinUnitRange": true
+        }
+      },
+      "triangleReductionPercent": 77.49687108886107,
+      "method": {
+        "library": "meshoptimizer 1.2.0",
+        "operation": "simplifyWithAttributes",
+        "flags": [
+          "Permissive"
+        ],
+        "normalWeights": [
+          0.1,
+          0.1,
+          0.1
+        ],
+        "colorWeights": [
+          0.6,
+          0.6,
+          0.6
+        ],
+        "targetTriangles": 1798,
+        "errorLimit": 0.02,
+        "relativeAttributeAwareError": 0.01351242046803236,
+        "positionsNormalsAndColors": "Selected original vertex values, unchanged; no attribute interpolation",
+        "boundingExtrema": "Locked; output bounds and ground origin exactly match source",
+        "isolatedComponentPruning": false,
+        "serialization": "glTF Transform 4.5.0 compactPrimitive + dedup + prune"
+      },
+      "validation": {
+        "library": "Khronos glTF Validator 2.0.0-dev.3.10",
+        "errors": 0,
+        "warnings": 0,
+        "infos": 0,
+        "hints": 0,
+        "messages": []
+      }
+    },
+    {
+      "asset": "sandstone-scree-lod.glb",
+      "sourceAsset": "sandstone-scree.glb",
+      "sourceSha256": "b6a3688af319752f7a4d02d95d1600225310b22e573adecc5274a04fbdf5af7c",
+      "sourceUnchanged": true,
+      "source": {
+        "meshCount": 1,
+        "primitiveCount": 1,
+        "materialCount": 1,
+        "vertices": 15642,
+        "triangles": 5852,
+        "attributes": [
+          "POSITION",
+          "NORMAL",
+          "COLOR_0"
+        ],
+        "bounds": {
+          "min": [
+            -17.5,
+            0,
+            -11
+          ],
+          "max": [
+            17.5,
+            12,
+            11
+          ]
+        },
+        "normals": {
+          "minimumLength": 0.9999999123601209,
+          "maximumLength": 1.0000001309514723,
+          "finite": true
+        },
+        "colors": {
+          "min": [
+            0.2503891587257385,
+            0.12518680095672607,
+            0.11340267956256866
+          ],
+          "max": [
+            0.8304182887077332,
+            0.3901965320110321,
+            0.2614787817001343
+          ],
+          "finite": true,
+          "withinUnitRange": true
+        }
+      },
+      "output": {
+        "bytes": 94152,
+        "sha256": "1cd793662a4707a87fda35a84dda546b5fb9c047c64d99816e2a0f19a88915b7",
+        "meshCount": 1,
+        "primitiveCount": 1,
+        "materialCount": 1,
+        "vertices": 2386,
+        "triangles": 1198,
+        "attributes": [
+          "POSITION",
+          "NORMAL",
+          "COLOR_0"
+        ],
+        "bounds": {
+          "min": [
+            -17.5,
+            0,
+            -11
+          ],
+          "max": [
+            17.5,
+            12,
+            11
+          ]
+        },
+        "normals": {
+          "minimumLength": 0.99999991875097,
+          "maximumLength": 1.0000001270384877,
+          "finite": true
+        },
+        "colors": {
+          "min": [
+            0.2503891587257385,
+            0.12518680095672607,
+            0.11340267956256866
+          ],
+          "max": [
+            0.8304182887077332,
+            0.3901965320110321,
+            0.2614787817001343
+          ],
+          "finite": true,
+          "withinUnitRange": true
+        }
+      },
+      "triangleReductionPercent": 79.52836637047163,
+      "method": {
+        "library": "meshoptimizer 1.2.0",
+        "operation": "simplifyWithAttributes",
+        "flags": [
+          "Permissive"
+        ],
+        "normalWeights": [
+          0.1,
+          0.1,
+          0.1
+        ],
+        "colorWeights": [
+          0.6,
+          0.6,
+          0.6
+        ],
+        "targetTriangles": 1198,
+        "errorLimit": 0.02,
+        "relativeAttributeAwareError": 0.011386062018573284,
+        "positionsNormalsAndColors": "Selected original vertex values, unchanged; no attribute interpolation",
+        "boundingExtrema": "Locked; output bounds and ground origin exactly match source",
+        "isolatedComponentPruning": false,
+        "serialization": "glTF Transform 4.5.0 compactPrimitive + dedup + prune"
+      },
+      "validation": {
+        "library": "Khronos glTF Validator 2.0.0-dev.3.10",
+        "errors": 0,
+        "warnings": 0,
+        "infos": 0,
+        "hints": 0,
+        "messages": []
+      }
+    }
+  ]
+}

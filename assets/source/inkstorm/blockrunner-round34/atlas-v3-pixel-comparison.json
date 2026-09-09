@@ -1,0 +1,33 @@
+{
+  "scope": "Whole-frame numerical matched-render comparison; does not replace foreground visual review or art acceptance. Background pixels included.",
+  "comparisons": [
+    {
+      "view": "fullcraft",
+      "wholeFrameMeanAbsolute8BitChannelDifference": 0.025381401909722223,
+      "p99AbsoluteChannelDifference": 1.0,
+      "maxAbsoluteChannelDifference": 42.0,
+      "pixelFractionAnyChannelDifferenceOver16": 6.266276041666666e-05
+    },
+    {
+      "view": "driver",
+      "wholeFrameMeanAbsolute8BitChannelDifference": 0.11217447916666666,
+      "p99AbsoluteChannelDifference": 1.0,
+      "maxAbsoluteChannelDifference": 51.0,
+      "pixelFractionAnyChannelDifferenceOver16": 0.00021240234375
+    },
+    {
+      "view": "front",
+      "wholeFrameMeanAbsolute8BitChannelDifference": 0.02804931640625,
+      "p99AbsoluteChannelDifference": 1.0,
+      "maxAbsoluteChannelDifference": 35.0,
+      "pixelFractionAnyChannelDifferenceOver16": 6.103515625e-05
+    },
+    {
+      "view": "rear",
+      "wholeFrameMeanAbsolute8BitChannelDifference": 0.04613959418402778,
+      "p99AbsoluteChannelDifference": 1.0,
+      "maxAbsoluteChannelDifference": 43.0,
+      "pixelFractionAnyChannelDifferenceOver16": 0.0004630533854166667
+    }
+  ]
+}

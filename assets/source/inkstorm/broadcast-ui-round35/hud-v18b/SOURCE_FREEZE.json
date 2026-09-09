@@ -1,0 +1,72 @@
+{
+  "frozenAt": "2026-09-08T23:15:18.708180+00:00",
+  "scope": "V18b minimal inline-span bar correction and localized daylight caption backing. Three CSS lines changed.",
+  "sources": {
+    "src/ui/broadcastStyles.ts": {
+      "sha256": "93b2f44b7ba26961b71002cb4d70c7bfaa86a9e3d2bc4556eee7f55c7f6e6952",
+      "bytes": 76023
+    },
+    "src/ui/RaceHud.ts": {
+      "sha256": "aa587cebc85da3940ae4a70e7afd0995c25c1bfa8a634dca36793bab4967c407",
+      "bytes": 118009
+    }
+  },
+  "unchangedOtherUi": {
+    "workshopGraphicStyles.ts": "c026d0c35640b4ab1551d4aa0fa265c9cce03dcd970e85614f8195c6c016ffcb",
+    "raceEventAtlasStyles.ts": "478d21bed4f791f07417ead6c762245ef36284de9d1de5a2caf135c98215c1fd"
+  },
+  "patchSha256": "f6bba2903edb25978be9437f38e50a5846cc1dad3a3ac34da3f45c28dd1e3aa8",
+  "checks": {
+    "typecheck": "PASS",
+    "postcssRules": 771,
+    "whitespace": "PASS",
+    "onlyThreeCssLinesChanged": true,
+    "RaceHudUnchanged": true
+  },
+  "failedNativeV18": {
+    "outcome": "FAIL",
+    "captureCount": 6,
+    "errors": [],
+    "cleanup": {
+      "browserClosed": true,
+      "serverExited": true,
+      "errors": []
+    },
+    "error": "Error: heat: visible fill 0.00% does not follow bound 4.1%",
+    "samples": 165,
+    "ranges": {
+      "boost": {
+        "bound": [
+          64.1,
+          100
+        ],
+        "fillWidth": [
+          54.265625,
+          85
+        ]
+      },
+      "heat": {
+        "bound": [
+          0,
+          100
+        ],
+        "fillWidth": [
+          0,
+          0
+        ]
+      },
+      "damage": {
+        "bound": [
+          0,
+          4.3
+        ],
+        "fillWidth": [
+          0,
+          0
+        ]
+      }
+    }
+  },
+  "nativeV18b": "PENDING_ROOT_BUILD_AND_CAPTURE",
+  "critic": "NOT_INVOKED; hold original prepared V18 protocol until root releases V18b actual captures"
+}

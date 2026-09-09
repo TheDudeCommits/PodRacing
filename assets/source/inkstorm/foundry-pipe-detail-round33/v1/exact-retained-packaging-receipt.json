@@ -1,0 +1,100 @@
+{
+  "boundsGltf": [
+    [
+      -47.0,
+      47.0
+    ],
+    [
+      0.0,
+      51.0
+    ],
+    [
+      -23.0,
+      20.20081901550293
+    ]
+  ],
+  "final": {
+    "addedVertices": 20754,
+    "additionAttributesAndWindingPreserved": true,
+    "boundsGltf": [
+      [
+        -47.0,
+        47.0
+      ],
+      [
+        0.0,
+        51.0
+      ],
+      [
+        -23.0,
+        20.20081901550293
+      ]
+    ],
+    "foundationFootprintPreserved": true,
+    "materials": 1,
+    "meshes": 1,
+    "primitives": 1,
+    "retainedAttributeSha256": {
+      "COLOR_0": "b76f39b27224255309ce0d2d063754d9a49d9ec5602e385df49ee340cfa495dd",
+      "NORMAL": "57ae789ce5b94cdbbc33535cbf32ec6a545ef81a230fdaf61ab6af2f36d1f51e",
+      "POSITION": "acaf2c02f95b30ffc77ee30c4f60f2dcb973be7d3c3468ee18e2f9b4a7d1dc07"
+    },
+    "retainedInterleavedRecordsSha256": "b1c23431d2fc71836ccf69516563f976efeface32f2186b998529c624bfe2864",
+    "retainedPositionNormalColorBytesExact": true,
+    "retainedVertices": 12789,
+    "textures": 0,
+    "triangles": 19960,
+    "vertices": 33543
+  },
+  "foundationFootprintPreserved": true,
+  "matchedRetainedTriangles": 7160,
+  "maximumMatchedPositionDelta": 0.0,
+  "nativeAdditionTriangles": 12800,
+  "nativeFormats": {
+    "COLOR_0": {
+      "componentType": 5126,
+      "normalized": null,
+      "type": "VEC3"
+    },
+    "NORMAL": {
+      "componentType": 5126,
+      "normalized": null,
+      "type": "VEC3"
+    },
+    "POSITION": {
+      "componentType": 5126,
+      "normalized": null,
+      "type": "VEC3"
+    }
+  },
+  "nativeInputPreserved": true,
+  "nativePath": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/foundry-pipe-detail-round33/v1/pipe-bank-detail-v1-native.glb",
+  "nativeRetainedAttributes": {
+    "COLOR_0": {
+      "differentCorners": 21480,
+      "exact": false,
+      "maximumComponentDelta": 0.004356741905212402
+    },
+    "NORMAL": {
+      "differentCorners": 2451,
+      "exact": false,
+      "maximumComponentDelta": 0.00020159780979156494
+    },
+    "POSITION": {
+      "differentCorners": 0,
+      "exact": true,
+      "maximumComponentDelta": 0.0
+    }
+  },
+  "nativeRetainedAttributesExact": false,
+  "nativeSha256": "7afc03433332005a2c68d4247ca1a5ddc8c36570426968ec67390cc3ffff20ea",
+  "outputBytes": 1329140,
+  "outputPath": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/foundry-pipe-detail-round33/v1/pipe-bank-detail-v1-exact-retained.glb",
+  "outputSha256": "7a28b2e2f3ce25b173ed21033cbe0d28e7341197407b5e86d2400848dba8d946",
+  "packerSha256": "4061c0cf3f25d3286c61ef2414635242f66dc5268e7663780b1b4b528213d974",
+  "positionMatchingTolerance": 2e-05,
+  "removedSourceTriangles": 0,
+  "scope": "Source-only exact retained attribute check/repair; no Blender, runtime install, render or art acceptance.",
+  "sourceSha256": "4b3510d0f8b10e1a44158edb0b0bbdc25bac33019176368638937ab1834a3b81",
+  "status": "retained-attributes-restored"
+}

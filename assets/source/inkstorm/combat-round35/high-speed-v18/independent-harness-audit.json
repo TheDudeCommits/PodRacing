@@ -1,0 +1,100 @@
+{
+  "scope": "Independent read-only review of optional high-speed harness delta; no runtime/source edits or native execution.",
+  "outcome": "PASS",
+  "current": {
+    "path": "/Users/amir/Projects/PodRacing/scripts/inkstorm-combat.mjs",
+    "bytes": 25625,
+    "sha256": "48c9a6fcd68eb4f60227275f2b6769e3ebde7af56f4bff020b70a63f8fe4c77f"
+  },
+  "preservedV18": {
+    "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/combat-round35/high-speed-v18/executed-combat-harness-v18.mjs",
+    "bytes": 24348,
+    "sha256": "4a5f247710b60cfe38bd795c3cf0dd9a403adbbb9e5bbb0523312c100100b615"
+  },
+  "checks": [
+    {
+      "name": "Default selection remains exactly original four cases",
+      "pass": true
+    },
+    {
+      "name": "High-speed requires explicit opt-in",
+      "pass": true
+    },
+    {
+      "name": "solo-chase old analysis unchanged except added null highSpeed output",
+      "pass": true
+    },
+    {
+      "name": "solo-manual-camera old analysis unchanged except added null highSpeed output",
+      "pass": true
+    },
+    {
+      "name": "solo-reduced-motion old analysis unchanged except added null highSpeed output",
+      "pass": true
+    },
+    {
+      "name": "solo-pause-cancel old analysis unchanged except added null highSpeed output",
+      "pass": true
+    },
+    {
+      "name": "Synthetic valid >30m/s case retains passing original and authored gates",
+      "pass": true
+    },
+    {
+      "name": "High-speed gate rejects undefined",
+      "pass": true
+    },
+    {
+      "name": "High-speed gate rejects null",
+      "pass": true
+    },
+    {
+      "name": "High-speed gate rejects NaN",
+      "pass": true
+    },
+    {
+      "name": "High-speed gate rejects 30",
+      "pass": true
+    },
+    {
+      "name": "High-speed gate rejects -45",
+      "pass": true
+    },
+    {
+      "name": "Strict >30 gate accepts 30.0001m/s",
+      "pass": true
+    },
+    {
+      "name": "120ms pre-impact sample gap rejected",
+      "pass": true
+    },
+    {
+      "name": "High-speed rejects rigid fallback even with speed and pacing valid",
+      "pass": true
+    },
+    {
+      "name": "High-speed rejects unavailable authored damage",
+      "pass": true
+    },
+    {
+      "name": "Original reduced motion pause pace camera restoration and letterbox gate block byte-identical",
+      "pass": true
+    },
+    {
+      "name": "Original sampling interval remains25ms",
+      "pass": true
+    }
+  ],
+  "findings": [],
+  "review": {
+    "defaultCases": "Exact original four remain default; explicit INKSTORM_COMBAT_CASES=solo-high-speed opts in. Existing native cadence restriction remains solo-chase only.",
+    "ordinaryInput": "New case releases S and holds W after actual countdown (raceTime>0.1), then uses unchanged1300ms prewindow and native Shift to cause actual overheat. No health/heat/position/speed writes, event injection, course staging or simulation stepping added.",
+    "speedGate": "Last running sample strictly before authoritative wreck frame must have finite speed>30m/s and nonnegative cue gap<120ms. Matching actual redline explosion/wreck is still required. This is sampled pre-impact speed, not exact instantaneous collision speed.",
+    "authoredGate": "Accelerating case now shares original solo-chase requirement:>=3 already-rendered non-birth matte wreck samples, Teemto, breakup/damage available+active, no damage error. Valid fallback cannot count as acceptance.",
+    "unchangedGates": "Existing scheduling windows/thresholds, pause/reduced-motion behavior, shot camera, camera restoration, matte duration, full recovery and ordinary drive assertions remain unchanged. Baseline output gains highSpeed:null; each saved V18 baseline analysis is otherwise exactly reproduced.",
+    "observer": "Adds read-only speed scalar and copied three-component position to existing25ms observer. No observer frequency or scheduling measurement formula changes. This extra observation work remains included in native measurements.",
+    "samplingLimit": "<120ms pre-cue criterion provides a bounded sampled pre-impact witness; it cannot prove speed continuously or at the exact physics tick. Existing screenshot/recording overhead remains excluded from performance acceptance by original scope.",
+    "critic": "No critic code or criteria changes are present in this source delta; four-case default selection preserved. This review does not constitute high-speed native or visual acceptance."
+  },
+  "cpuTests": "Synthetic derivatives of saved V18 samples are in-memory analyzer contract tests only. They are not native evidence and are not written over recordings."
+}

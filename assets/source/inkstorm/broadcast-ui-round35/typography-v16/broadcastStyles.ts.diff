@@ -1,0 +1,169 @@
+--- before/src/ui/broadcastStyles.ts
++++ after/src/ui/broadcastStyles.ts
+@@ -2,9 +2,10 @@
+ export const BROADCAST_HUD_CSS = /* css */ `
+ @font-face { font-family:Inkstorm Display; src:url('/fonts/inkstorm/BlackOpsOne-Regular.ttf') format('truetype'); font-display:swap; }
+ @font-face { font-family:Inkstorm Instrument; src:url('/fonts/inkstorm/SairaStencilOne-Regular.ttf') format('truetype'); font-display:swap; }
++@font-face { font-family:Inkstorm Plate; src:url('/fonts/inkstorm/RussoOne-Regular.ttf') format('truetype'); font-style:normal; font-weight:400; font-display:swap; }
+ @font-face { font-family:Inkstorm UI; src:url('/fonts/inkstorm/ChakraPetch-Regular.ttf') format('truetype'); font-weight:400; font-display:swap; }
+ @font-face { font-family:Inkstorm UI; src:url('/fonts/inkstorm/ChakraPetch-Bold.ttf') format('truetype'); font-weight:700; font-display:swap; }
+-.pod-hud { --pod-paper:#f5d58e; --pod-sand:#f5d58e; --pod-orange:#ef9d67; --pod-sky:#a5e0d4; --pod-green:#bce5b9; --pod-panel:#1e393ee8; --ui-paper:#e8e7dc; --ui-ink:#1a292d; --ui-teal:#28444a; --ui-rust:#b54a36; font-family:Inkstorm UI,sans-serif; }
++.pod-hud { --pod-paper:#f5d58e; --pod-sand:#f5d58e; --pod-orange:#ef9d67; --pod-sky:#a5e0d4; --pod-green:#bce5b9; --pod-panel:#1e393ee8; --ui-paper:#e8e7dc; --ui-ink:#1a292d; --ui-teal:#28444a; --ui-rust:#b54a36; --ui-heading:Inkstorm Plate,"Arial Black",sans-serif; --ui-settle:cubic-bezier(.22,.68,.21,1); font-family:Inkstorm UI,sans-serif; }
+ .pod-hud button,.pod-hud select,.pod-hud input { font-family:inherit; }
+ .pod-hud__vehicle-select { padding:26px 34px; background:var(--ui-paper); color:var(--ui-ink); }
+ .pod-hud__vehicle-select::before { opacity:.4; background:repeating-radial-gradient(ellipse at 24% 47%,transparent 0 88px,#2941472b 89px 90px,transparent 91px 150px); }
+@@ -635,42 +636,125 @@
+ }
+ @media (max-width:760px) { .pod-hud__garage-name { bottom:74px; } }
+ 
+-/* V15: transparent instrument lettering and a restrained utility layer. */
+-.pod-hud__detail-toggle { border:0; background:transparent; padding:7px 0; font-size:12px; font-weight:700; letter-spacing:.08em; text-shadow:0 1px 3px #0b2026,0 0 8px #0b2026; }
+-.pod-hud__corner { background:transparent; border:0; text-shadow:0 1px 3px #0b2026,0 0 8px #0b2026; }
+-.pod-hud__corner-distance { font-size:16px; }
+-.pod-hud__corner-tag { font-size:12px; }
+-.pod-hud__launch[data-stage=result] { background:linear-gradient(90deg,#17363ec9,transparent); border:0; border-radius:0; padding:7px 10px; }
+-.pod-hud__launch[data-stage=result] header>strong { font:700 18px Inkstorm UI,sans-serif; }
+-.pod-hud__launch[data-stage=result] footer { color:#ffe8ac; text-shadow:0 1px 3px #0b2026; }
+-.pod-hud__driving-instruments .pod-hud__telemetry>.pod-hud__meter,
+-.pod-hud__driving-instruments .pod-hud__telemetry.is-hot .pod-hud__meter--heat { border:0; border-radius:0; background:transparent; box-shadow:none; padding:5px 4px; }
+-.pod-hud__driving-instruments .pod-hud__telemetry .pod-hud__meter-head { text-shadow:0 1px 3px #0b2026,0 0 7px #0b2026; }
+-.pod-hud__driving-instruments .pod-hud__telemetry .pod-hud__meter-track { display:block; border:0; background:#17363ed9; height:3px; }
+-.pod-hud__combat-slot { background:linear-gradient(155deg,#17363e77,transparent 85%); border-color:#f5d58ea8; border-radius:22px 5px 22px 5px; box-shadow:none; }
+-.pod-hud__combat-key { background:#17363ec4; border:0; font-size:13px; }
+-.pod-hud__system-label { text-shadow:0 1px 3px #0b2026,0 0 7px #0b2026; }
+-.pod-hud__threat-cue { background:transparent; box-shadow:none; border:0; text-shadow:0 1px 4px #0b2026; }
+-.pod-hud__threat-cue span { background:transparent; font-size:11px; font-weight:700; text-shadow:0 1px 4px #0b2026; }
++/* Broad equipment lettering carries the menus; stencil numerals remain instruments. */
++.pod-hud__vehicle-select-head h1 { font:400 clamp(32px,3.35vw,50px)/1 var(--ui-heading); letter-spacing:-.015em; }
++.pod-hud__garage-bay,.pod-hud__mastery>.pod-hud__eyebrow,.pod-hud__vehicle-cards::before { font:400 14px/1.3 var(--ui-heading); letter-spacing:.015em; }
++.pod-hud__garage-name h2 { font:400 clamp(30px,3.1vw,44px)/1.08 var(--ui-heading); letter-spacing:0; }
++.pod-hud__garage-name p { font-size:15px; line-height:1.45; }
++.pod-hud__mastery h2 { font:400 clamp(24px,2vw,29px)/1.15 var(--ui-heading); letter-spacing:0; overflow-wrap:normal; }
++.pod-hud__garage-nav button,.pod-hud__start-button { font-family:var(--ui-heading); font-weight:400; letter-spacing:.015em; }
++.pod-hud__start-button { font-size:19px; }
+ .pod-hud__garage-hero,.pod-hud__mastery { border-radius:12px; }
+-.pod-hud__garage-bay { font-size:14px; letter-spacing:.06em; }
+-.pod-hud__appearance { opacity:.95; }
+-.pod-hud__appearance button { border-color:transparent; min-height:34px; padding:5px 10px; }
++.pod-hud__appearance { opacity:1; }
++.pod-hud__appearance button { border-color:transparent; min-height:36px; padding:6px 10px; }
+ .pod-hud__appearance button:not([aria-pressed=true]) { background:transparent; border-bottom:1px solid #c8d5c655; }
++.pod-hud__appearance button,.pod-hud__vehicle-card,.pod-hud__event-list button { transition:background-color 220ms var(--ui-settle),color 220ms var(--ui-settle),box-shadow 220ms var(--ui-settle); }
+ .pod-hud__garage-stats { gap:16px; }
+ .pod-hud__garage-stats span { font-size:13px; }
+-.pod-hud__garage-stats b { font-size:18px; }
+-.pod-hud__event-heading { font-size:12px; }
+-.pod-hud__vehicle-cards::before { font-size:14px; letter-spacing:.05em; }
+-.pod-hud__vehicle-card h2 { font-size:17px; }
++.pod-hud__garage-stats b { font:400 18px/1 var(--ui-heading); }
++.pod-hud__garage-stats i { background:repeating-linear-gradient(90deg,transparent 0 calc(20% - 4px),#19323a calc(20% - 4px) 20%),linear-gradient(90deg,#d4dbbc var(--rating),#e4ead921 var(--rating)); }
++.pod-hud__event-heading { font-size:13px; }
++.pod-hud__vehicle-card { height:auto; min-height:112px; }
++.pod-hud__vehicle-card h2 { font:400 16px/1.2 var(--ui-heading); letter-spacing:0; overflow-wrap:normal; max-width:72%; }
++.pod-hud__event-list button strong { font-size:17px; line-height:1.25; }
++.pod-hud__personal-record>span { font-size:12px; }
++.pod-hud__vehicle-select.is-visible .pod-hud__mastery { animation:instrument-enter 340ms 50ms var(--ui-settle) both; }
++.pod-hud__vehicle-select.is-visible .pod-hud__vehicle-cards { animation:instrument-enter 340ms 90ms var(--ui-settle) both; }
++
++/* One housing holds the complete lower-right instrument, with no separate meter cards. */
++.pod-hud__driving-instruments { width:244px; height:264px; background:#112e36ed; border:1px solid #f5d58e66; border-radius:22px 78px 12px 12px; box-shadow:inset 0 0 0 4px #081f262e; filter:none; }
++.pod-hud__driving-instruments>.pod-hud__redline-heat { top:10px; left:16px; right:28px; width:auto; min-height:0; height:17px; padding:0; transform:none; display:flex; align-items:center; gap:9px; box-shadow:none; border:0; background:none; }
++.pod-hud__driving-instruments>.pod-hud__redline-heat>span { flex:0 0 auto; font:700 12px/1.2 Inkstorm UI,sans-serif; letter-spacing:.025em; }
++.pod-hud__driving-instruments>.pod-hud__redline-heat::after { content:none; }
++.pod-hud__driving-instruments>.pod-hud__redline-heat .pod-hud__redline-track { flex:1; height:4px; border:0; transform:none; }
++.pod-hud__driving-instruments>.pod-hud__speed { inset:30px 12px auto; height:183px; }
++.pod-hud__driving-instruments .pod-hud__speed-ring { width:216px; height:140px; }
++.pod-hud__driving-instruments .pod-hud__speed-dial { stroke-width:1.6; }
++.pod-hud__driving-instruments .pod-hud__speed-dial>path:nth-of-type(3) { display:none; }
++.pod-hud__driving-instruments .pod-hud__speed-dial .dial-fill { fill:#183940; }
++.pod-hud__driving-instruments .pod-hud__speed-dial .dial-track { stroke:#f5d58e33; stroke-width:3; }
++.pod-hud__driving-instruments .pod-hud__speed-dial .dial-charge { stroke-width:3; }
++.pod-hud__driving-instruments .pod-hud__speed-readout { top:49px; left:31px; width:147px; }
++.pod-hud__driving-instruments .pod-hud__speed-number { font-size:48px; }
++.pod-hud__driving-instruments .pod-hud__speed-unit { font:700 11px/1 Inkstorm UI,sans-serif; }
++.pod-hud__driving-instruments .pod-hud__speed>.pod-hud__meter--boost { padding:0; background:none; border:0; border-radius:0; }
++.pod-hud__driving-instruments>.pod-hud__telemetry { left:12px; right:12px; bottom:12px; gap:14px; }
++.pod-hud__driving-instruments .pod-hud__telemetry>.pod-hud__meter { width:calc((100% - 14px)/2); padding:0; background:none; border:0; border-radius:0; box-shadow:none; }
++.pod-hud__driving-instruments .pod-hud__meter-head { display:flex; justify-content:space-between; gap:4px; text-shadow:none; }
++.pod-hud__driving-instruments .pod-hud__meter-head .pod-hud__label { font:400 12px/1.25 var(--ui-heading); letter-spacing:0; }
++.pod-hud__driving-instruments .pod-hud__meter-value { font:400 15px/1.15 var(--ui-heading); letter-spacing:0; }
++.pod-hud__driving-instruments .pod-hud__meter-track,.pod-hud__driving-instruments .pod-hud__telemetry .pod-hud__meter-track { height:5px; margin-top:5px; background:#d8ddbb24; border:0; transform:none; }
++.pod-hud__driving-instruments .pod-hud__telemetry.is-hot .pod-hud__meter--heat { background:none; box-shadow:none; outline:0; }
++.pod-hud__driving-instruments .pod-hud__telemetry.is-hot .pod-hud__meter--heat .pod-hud__meter-head { color:#ffb794; }
++.pod-hud__driving-instruments .pod-hud__speed>.pod-hud__meter--drift { top:-77px; padding:7px 10px; border-radius:5px; background:#112e36ed; }
++.pod-hud__flight { bottom:300px; width:244px; }
++.pod-hud__race-stat .pod-hud__label,.pod-hud__race-time>.pod-hud__label { font:400 12px/1.25 var(--ui-heading); letter-spacing:.035em; }
++
++/* Brief guidance keeps its backing over sky, dust, and sunlit rock. */
++.pod-hud__detail-toggle { border:0; background:#112e36eb; border-radius:4px; padding:7px 10px; font:700 13px/1.2 Inkstorm UI,sans-serif; letter-spacing:.04em; text-shadow:none; }
++.pod-hud__corner { background:#112e36e6; border:0; border-radius:4px; text-shadow:none; padding:8px 10px; }
++.pod-hud__corner-distance { font:400 16px/1.15 var(--ui-heading); }
++.pod-hud__corner-tag { font-size:13px; line-height:1.2; }
++.pod-hud__launch[data-stage=result] { background:#112e36eb; border:0; border-left:3px solid #ef9d67; border-radius:4px; padding:10px 12px; }
++.pod-hud__launch[data-stage=result] header>strong { font:400 19px/1.15 var(--ui-heading); }
++.pod-hud__launch[data-stage=result] footer { color:#ffe8ac; text-shadow:none; }
++.pod-hud__combat-slot { background:#112e36c9; border-color:#f5d58e99; border-radius:20px 5px 20px 5px; box-shadow:none; }
++.pod-hud__combat-key { background:#112e36; border:0; font-size:13px; }
++.pod-hud__system-label { font:400 11px/1.2 var(--ui-heading); text-shadow:none; }
++.pod-hud__threat-cue { background:#112e36e8; box-shadow:none; border:0; border-left:2px solid #ef9d67; border-radius:3px; text-shadow:none; }
++.pod-hud__threat-cue span { background:none; font:700 12px/1.3 Inkstorm UI,sans-serif; text-shadow:none; }
++.pod-hud__combat-feedback>strong { font:400 17px/1.2 var(--ui-heading); letter-spacing:.015em; }
++.pod-hud__combat-feedback[data-kind=takedown]>strong,.pod-hud__combat-feedback[data-kind=wreck]>strong,.pod-hud.has-wreck-state>.pod-hud__galactic-alert>strong { font:400 24px/1.15 var(--ui-heading); letter-spacing:.015em; }
++@media (min-width:1280px) {
++ .pod-hud__vehicle-select-frame { grid-template-columns:minmax(0,1fr) 312px; }
++}
+ @media (max-width:760px), (max-height:540px) {
+- .pod-hud__garage-bay { font-size:12px; }
++ .pod-hud__garage-bay,.pod-hud__mastery>.pod-hud__eyebrow,.pod-hud__vehicle-cards::before { font-size:12px; }
+  .pod-hud__garage-stats { gap:8px; }
+  .pod-hud__garage-stats span { font-size:10px; }
+  .pod-hud__garage-stats b { font-size:14px; }
+  .pod-hud__vehicle-card h2 { font-size:14px; }
+- .pod-hud__detail-toggle { font-size:10px; }
+- .pod-hud__corner-distance { font-size:13px; }
+- .pod-hud__corner-tag { font-size:10px; }
+-}
++ .pod-hud__vehicle-card { height:auto; min-height:116px; }
++ .pod-hud__detail-toggle { font-size:11px; padding:6px 8px; }
++ .pod-hud__corner-distance { font-size:14px; }
++ .pod-hud__corner-tag { font-size:11px; }
++ .pod-hud__driving-instruments { width:180px; height:224px; border-radius:18px 56px 10px 10px; }
++ .pod-hud__driving-instruments>.pod-hud__redline-heat { top:10px; left:10px; right:18px; gap:5px; }
++ .pod-hud__driving-instruments>.pod-hud__redline-heat>span { font-size:10px; }
++ .pod-hud__driving-instruments>.pod-hud__speed { inset:29px 9px auto; height:143px; }
++ .pod-hud__driving-instruments .pod-hud__speed-ring { width:160px; height:104px; }
++ .pod-hud__driving-instruments .pod-hud__speed-readout { left:22px; top:37px; width:111px; }
++ .pod-hud__driving-instruments .pod-hud__speed-number { font-size:35px; }
++ .pod-hud__driving-instruments .pod-hud__speed-unit { font-size:9px; }
++ .pod-hud__driving-instruments>.pod-hud__telemetry { left:9px; right:9px; bottom:12px; gap:8px; }
++ .pod-hud__driving-instruments .pod-hud__telemetry>.pod-hud__meter { width:calc((100% - 8px)/2); padding:0; }
++ .pod-hud__driving-instruments .pod-hud__meter-head .pod-hud__label { font-size:10px; }
++ .pod-hud__driving-instruments .pod-hud__meter-value { font:700 12px/1.15 Inkstorm UI,sans-serif; }
++ .pod-hud__driving-instruments .pod-hud__speed>.pod-hud__meter--drift { top:-72px; }
++ .pod-hud__flight { width:180px; bottom:254px; }
++ .pod-hud__race-stat .pod-hud__label,.pod-hud__race-time>.pod-hud__label { font-size:10px; }
++ .pod-hud__system-label { font:700 10px/1.2 Inkstorm UI,sans-serif; }
++}
++@media (max-width:760px) {
++ .pod-hud__vehicle-select-head h1 { font-size:34px; }
++ .pod-hud__garage-name { bottom:74px; }
++ .pod-hud__garage-name h2 { font-size:29px; }
++ .pod-hud__garage-name p { font-size:13px; }
++ .pod-hud__garage-stats { grid-template-columns:repeat(3,minmax(0,1fr)); row-gap:10px; }
++ .pod-hud__mastery h2 { font-size:26px; }
++ .pod-hud__vehicle-card h2 { max-width:100%; }
++}
++@media (max-height:540px) and (min-width:761px) {
++ .pod-hud__driving-instruments { width:174px; height:189px; }
++ .pod-hud__driving-instruments>.pod-hud__redline-heat { top:7px; }
++ .pod-hud__driving-instruments>.pod-hud__speed { top:22px; height:119px; }
++ .pod-hud__driving-instruments .pod-hud__speed-ring { width:154px; height:89px; }
++ .pod-hud__driving-instruments .pod-hud__speed-readout { top:29px; }
++ .pod-hud__driving-instruments .pod-hud__speed-number { font-size:30px; }
++ .pod-hud__driving-instruments>.pod-hud__telemetry { bottom:9px; }
++ .pod-hud__driving-instruments .pod-hud__speed>.pod-hud__meter--drift { top:-62px; }
++ .pod-hud__flight { top:153px; bottom:auto; }
++}
++.pod-hud.is-reduced-motion *,.pod-hud.is-reduced-motion *::before,.pod-hud.is-reduced-motion *::after { animation:none!important; transition:none!important; }
++@media (prefers-reduced-motion:reduce) { .pod-hud *,.pod-hud *::before,.pod-hud *::after { animation:none!important; transition:none!important; } }
+ `;

@@ -1,0 +1,78 @@
+{
+  "status": "PREPARED NOT EXECUTED; WAIT FOR ROOT GPU GO",
+  "mcpExecuted": false,
+  "cleanupReceiptPath": "assets/source/inkstorm/blockrunner-ivory-round34/cleanup-mcp-preparation-v1/02b-cleanup-json-value-guard-executed-v2-receipt.json",
+  "cleanupReceiptSha256": "72f9efa252dcb233d7b95b484a8c9d766d42269bd7b250f59a8ec9040301c4e3",
+  "sourceBounds": [
+    [
+      -2.9344284534454346,
+      -6.2063446044921875,
+      0.021512577310204506
+    ],
+    [
+      2.934427261352539,
+      5.793654918670654,
+      3.1749844551086426
+    ]
+  ],
+  "driverBounds": [
+    [
+      -1.3729336261749268,
+      1.4747941493988037,
+      1.7359775304794312
+    ],
+    [
+      1.4614063501358032,
+      5.788147926330566,
+      3.1749844551086426
+    ]
+  ],
+  "renderSettings": {
+    "resolution": [
+      768,
+      576
+    ],
+    "engine": "CYCLES",
+    "device": "CPU",
+    "samples": 16,
+    "seed": 3401
+  },
+  "payloads": [
+    {
+      "variant": "source",
+      "view": "fullcraft",
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-ivory-round34/neutral-comparison-preparation-v1/source-fullcraft-neutral-prepared-v1.py",
+      "outputPng": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-ivory-round34/neutral-comparison-v1/ivory-source-fullcraft-neutral-v1.png",
+      "bytes": 125309,
+      "sha256": "7d79c4ac02f3e6c78dcf91f6600ff7829bdbcd71e07a5de25ae482aa9414f257",
+      "astSafeChecksPassed": true
+    },
+    {
+      "variant": "cleanup",
+      "view": "fullcraft",
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-ivory-round34/neutral-comparison-preparation-v1/cleanup-fullcraft-neutral-prepared-v1.py",
+      "outputPng": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-ivory-round34/neutral-comparison-v1/ivory-cleanup-fullcraft-neutral-v1.png",
+      "bytes": 125312,
+      "sha256": "2ac0f8ecf7c104b17826f16b72a7150b939882a52d072503b1e6b05c82d1ac35",
+      "astSafeChecksPassed": true
+    },
+    {
+      "variant": "source",
+      "view": "driver",
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-ivory-round34/neutral-comparison-preparation-v1/source-driver-neutral-prepared-v1.py",
+      "outputPng": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-ivory-round34/neutral-comparison-v1/ivory-source-driver-neutral-v1.png",
+      "bytes": 122400,
+      "sha256": "94893ed044aa20ea9148c690893cf56cd158a8751ae0d5094050309120f4e806",
+      "astSafeChecksPassed": true
+    },
+    {
+      "variant": "cleanup",
+      "view": "driver",
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-ivory-round34/neutral-comparison-preparation-v1/cleanup-driver-neutral-prepared-v1.py",
+      "outputPng": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-ivory-round34/neutral-comparison-v1/ivory-cleanup-driver-neutral-v1.png",
+      "bytes": 122403,
+      "sha256": "8325906ea0930ce10077d57ba8326276f2936c4c10e5e4c6ae1d39969a5e880a",
+      "astSafeChecksPassed": true
+    }
+  ]
+}

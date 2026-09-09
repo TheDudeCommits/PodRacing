@@ -1,0 +1,77 @@
+{
+  "status": "PREPARATION ONLY",
+  "scope": "Existing comparison/metadata reused; no geometry rescan or DCC/runtime/public mutation",
+  "files": [
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/vehicles/e42fb924b344481ea013c58cb0f52ad7/source-imported.glb",
+      "bytes": 2868492,
+      "sha256": "2ed231e15b8bbab3f7b7028b73e8b6f442d532c9bc4d1fc0a2f5c40aeda49576"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/vehicles/e42fb924b344481ea013c58cb0f52ad7/mcp-download-20260908.json",
+      "bytes": 7569,
+      "sha256": "96e77c9b38a4f62852fb650d604f474fe1a062afe94dc4f79a68abb87ddfa15f"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/vehicles/e42fb924b344481ea013c58cb0f52ad7/official-metadata-20260908.json",
+      "bytes": 5220,
+      "sha256": "f84a1156e5720217bc1243adae5506d5e547d5dcccc9bbc54c780ce1f41677d6"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/IVORY_VARIANT_SOURCE_COMPARISON.md",
+      "bytes": 5584,
+      "sha256": "74ef7766829fe31990e3c59736eca628cf13526ac3d7589383a5d3e2a89d8578"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/original-variant-comparison.json",
+      "bytes": 346779,
+      "sha256": "4140dcea23c652cf3b6d245ce7bb3acc0d761cbb4979e2aba5e8af3d9342a221"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/original-variant-unmatched-refinement.json",
+      "bytes": 6721,
+      "sha256": "4706e02ee78d151bf0db15d93c5152450517e7239475401532fd62c1b570207d"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/original-variant-correspondence-analysis-copy.npz",
+      "bytes": 1550152,
+      "sha256": "a04697feaf205e01878e79603a8871087ef0d5802f660ec5ad81f254ac3033e7"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/pilot-paint-face-lineage-v1.json",
+      "bytes": 358220,
+      "sha256": "eea796bcca117f9726a183dfae27d0ded8a427b6bdcec3fa53d3ab009d83c7b8"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/control-fit-reference.json",
+      "bytes": 3899,
+      "sha256": "1ef9a7d9aa5c7d9c95de2568a50a7e001818f5faa5faf4e24dc9abff1eb4325e"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/src/render/vehicles/RacerPresentation.ts",
+      "bytes": 11718,
+      "sha256": "215bc54cfa1bebe3f7bc3ac20534142dc6b24bcc831beb5bd7d497fb545f34e6"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/src/render/vehicles/ImportedVehiclePresentation.ts",
+      "bytes": 23384,
+      "sha256": "715e86ca1e83a450480fb373dc25da45ba2359fc3a3d9aeda8464a066c699ab9"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-ivory-round34/preparation-v1/PLAN.md",
+      "bytes": 7817,
+      "sha256": "df2f4e312a27d3434b4ed5cb5803791b1038231f3f4dcbfcd6e3edc9d17dd3ca"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-ivory-round34/preparation-v1/operation-inputs.json",
+      "bytes": 78154,
+      "sha256": "2418b46aad6eb89ba43f6f982ddef8995a905a32114af9ded53d5bc05ecd068c"
+    }
+  ],
+  "validation": {
+    "jsonCountsAndPilotBodyPartition": "PASS",
+    "allLocalReportLinks": "PASS",
+    "noMcpExecuted": true,
+    "noRuntimeRegistration": true
+  }
+}

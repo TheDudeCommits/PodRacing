@@ -1,0 +1,23 @@
+{
+  "scope": "Roster validation of physical collision aggression and direct takedown source. Physical collision events retain original scenery source IDs. Recent real racer assists remain active; scenery cannot overwrite or refresh them.",
+  "nativeBug": "V18b high-speed: redline wreck frame910 takedownBy inkstorm-roadside-shard-13; preserved failed attribution screenshot.",
+  "tests": "Four new physical-contact regressions failed before fix; 26 focused tests pass afterwards. Synthetic position/damage fixture tests are not native gameplay proof.",
+  "files": [
+    {
+      "path": "assets/source/inkstorm/combat-round35/attribution-v19/RaceSimulation.before.ts",
+      "sha256": "bb65528c57623190accdbc2b85e03583889c1b7f5409b4a09ef800e33f98b2de"
+    },
+    {
+      "path": "src/game/race/RaceSimulation.ts",
+      "sha256": "8c9fbbc85cc32b856194397092d8386f82d7017d30224a040958886b5514f5fa"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/attribution-v19/RaceSimulation-attribution.patch",
+      "sha256": "00ab90d83c6872f62e8bc41f01daff3b2a9a9e591c8addebd1f4e4e8587a8e8c"
+    },
+    {
+      "path": "tests/race/takedownAttribution.test.ts",
+      "sha256": "b1e91a0b18cfaa12088b9bd12944b59862ba1d92ab2973deda24586178561a12"
+    }
+  ]
+}

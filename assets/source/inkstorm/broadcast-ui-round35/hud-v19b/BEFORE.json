@@ -1,0 +1,21 @@
+{
+  "preservedAt": "2026-09-08T23:39:42.456645+00:00",
+  "sources": {
+    "broadcastStyles.ts": {
+      "sha256": "3a962dea33886361329f4fbec6de75c155c69c41e0bd53db483636e630f325a2",
+      "bytes": 76009
+    },
+    "RaceHud.ts": {
+      "sha256": "d50d8ed42322b2d861491e9934c74da7af6956ef8f1f3110005ff8a16b748ebb",
+      "bytes": 118090
+    }
+  },
+  "nativeReceipt": {
+    "path": "/Users/amir/Projects/PodRacing/output/gauntlet/round35-broadcast-native-v19/receipt.json",
+    "sha256": "81fd94f2ba08b1ecdff2fe3047e3a5585dac36c224b8e6921f14591b2c048f20",
+    "functionalOutcome": "PASS",
+    "visualOutcome": "Visible SHIFT / REDLINE caption occluded by later speed SVG; blind review held"
+  },
+  "nativeFrameSha256": "c6eb6aae2ffaed33228f9a750bea4379df28a0b5a16d24ffeddf4a420d173e06",
+  "scope": "One CSS z-index property on speed sibling; no geometry, style/backing or semantic change"
+}

@@ -1,0 +1,11 @@
+--- before/HANDOVER.md
++++ after/HANDOVER.md
+@@ -1,6 +1,8 @@
+ # PodRacing handover — 8 September 2026 V5 partial checkpoint
+ 
+ **The full Inkstorm overhaul remains incomplete and final art is unaccepted.** Colour Blockrunner is locally registered with V6 atlas packages and its original minifigure. **V5 attempt 1 is a partial technical checkpoint:** two complete races/actual Continue, seven staged cadence checks and Foundry context recovery PASS; the unchanged resource plateau gate FAILS. Each matching cycle 3 section retains **+1 geometry / +2 textures / 0 programs** versus cycle 2; final garage totals match. The owner/cause is unresolved and a leak is not established. No retry, added wait or relaxed gate replaced the failure.
++
++**Actual fresh V5 still-image verdict: craft 5/10, world/route 6.5/10, materials 4.5/10, overall 5.5/10 — FAIL against 8/10.** The separate ephemeral read-only CLI review used a fresh temporary directory and 21 hash-verified attachments (13 actual V5 images + eight concepts). No prior task history or verdict was supplied or retrieved; recorded tool/file retrieval calls are zero. Generic user configuration may load. Transport retries preceded an exit-0 final review with all 21 images declared viewed and 13 individual observations. This is still-image criticism, not motion, physics or performance evidence; it does not replace or average the earlier prior-context reviews. [Actual fresh report](assets/source/inkstorm/blockrunner-round34/fresh-v5-review-preparation/cli-critic-attempt1/review.md).
+ 
+ Tested bundle **`index-CFofn-oM.js`**, **1,620,221 bytes**, SHA256 `2d8ff97639d335f22e1c683562c418d3f55572251f1b55dc71268bda015d264b`; **671 tests / 120 executed files**, typecheck/build PASS. Results belong to the frozen V5 files and do not transfer to later working-tree changes. [Exact V5 report](docs/inkstorm-overhaul/FULL_RACE_PERFORMANCE_BLOCKRUNNER_V5_ROUND34.md) · [503-file frozen runtime](output/gauntlet/round34-blockrunner-material-framing-v5-attempt1-frozen-runtime/inventory.json). All four owned browsers, servers, process groups and ports are closed; port 5211 was never targeted.
+ 

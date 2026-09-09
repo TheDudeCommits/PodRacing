@@ -1,0 +1,2207 @@
+{
+  "sourceSha256": "1ecf135bc63df02102f168b79ea869d98aba6d07bdc94b2e0c6f10478a13f96e",
+  "sourceUnchanged": true,
+  "scope": "External original-source capsules; source pilot unchanged; no Blender/geometry export; candidate not yet accepted. Exact source duplicate triangle positions counted once. Capsule ends overestimate flat/tapered ends.",
+  "results": [
+    {
+      "side": "negativeX",
+      "controlObject": "pasted__brick230_phongE2_0",
+      "points": [
+        [
+          -0.2738000054006306,
+          -21.017806124248064,
+          1.7679590595600154
+        ],
+        [
+          -0.2738000054006306,
+          -21.017806124248064,
+          2.16
+        ],
+        [
+          -0.27680051665726774,
+          -20.563041251432523,
+          2.2989602701511265
+        ],
+        [
+          -0.3556651232882086,
+          -20.630225274617402,
+          2.5911360406209605
+        ]
+      ],
+      "profileSides": 20,
+      "sourceShaftRadius": 0.06558262603576406,
+      "segments": [
+        {
+          "capsuleRadius": 0.06558262603576406,
+          "broadphasePadding": 0.025,
+          "exactTriangleTests": 139,
+          "contacts": [
+            {
+              "object": "pasted__L4x8F_pasted__Lego_White8_0",
+              "sourceTriangleIndex": 1746,
+              "axisDistance": 0.03952566906915066,
+              "capsuleClearance": -0.026056956966613407,
+              "axisPoint": [
+                -0.2738000054006306,
+                -21.017806124248064,
+                1.7679590595600154
+              ],
+              "surfacePoint": [
+                -0.27380000540063065,
+                -21.017806129254552,
+                1.728433390490865
+              ]
+            },
+            {
+              "object": "pasted__brick240_pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 0,
+              "axisDistance": 0.005609937740973998,
+              "capsuleClearance": -0.059972688294790064,
+              "axisPoint": [
+                -0.2738000054006306,
+                -21.017806124248064,
+                1.8912601065325014
+              ],
+              "surfacePoint": [
+                -0.2693023206773013,
+                -21.01445318023017,
+                1.8912601065325014
+              ]
+            },
+            {
+              "object": "pasted__brick240_pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 1,
+              "axisDistance": 0.005609937740973998,
+              "capsuleClearance": -0.059972688294790064,
+              "axisPoint": [
+                -0.2738000054006306,
+                -21.017806124248064,
+                1.8912601065325014
+              ],
+              "surfacePoint": [
+                -0.2693023206773013,
+                -21.01445318023017,
+                1.8912601065325014
+              ]
+            },
+            {
+              "object": "pasted__brick240_pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 2,
+              "axisDistance": 0.005609937740973998,
+              "capsuleClearance": -0.059972688294790064,
+              "axisPoint": [
+                -0.2738000054006306,
+                -21.017806124248064,
+                1.8912601065325014
+              ],
+              "surfacePoint": [
+                -0.2693023206773013,
+                -21.01445318023017,
+                1.8912601065325014
+              ]
+            },
+            {
+              "object": "pasted__brick240_pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 3,
+              "axisDistance": 0.0051525626394935764,
+              "capsuleClearance": -0.06043006339627049,
+              "axisPoint": [
+                -0.2738000054006306,
+                -21.017806124248064,
+                1.8912601065325014
+              ],
+              "surfacePoint": [
+                -0.271223753081305,
+                -21.013343857364397,
+                1.8912601065325014
+              ]
+            },
+            {
+              "object": "pasted__brick240_pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 4,
+              "axisDistance": 0.0033529440178945435,
+              "capsuleClearance": -0.06222968201786952,
+              "axisPoint": [
+                -0.2738000054006306,
+                -21.017806124248064,
+                1.8912601065325014
+              ],
+              "surfacePoint": [
+                -0.2738000054006306,
+                -21.01445318023017,
+                1.8912601065325014
+              ]
+            },
+            {
+              "object": "pasted__brick240_pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 5,
+              "axisDistance": 0.0006549285452470641,
+              "capsuleClearance": -0.064927697490517,
+              "axisPoint": [
+                -0.2738000054006306,
+                -21.017806124248064,
+                1.8912601065325014
+              ],
+              "surfacePoint": [
+                -0.27412746598708715,
+                -21.017238937362023,
+                1.8912601065325014
+              ]
+            },
+            {
+              "object": "pasted__brick240_pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 6,
+              "axisDistance": 0.0,
+              "capsuleClearance": -0.06558262603576406,
+              "axisPoint": [
+                -0.2738000054006306,
+                -21.017806124248064,
+                1.8912601065325014
+              ],
+              "surfacePoint": [
+                -0.2738000054006306,
+                -21.017806124248064,
+                1.8912601065325014
+              ]
+            },
+            {
+              "object": "pasted__brick240_pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 7,
+              "axisDistance": 0.0022185452423479483,
+              "capsuleClearance": -0.06336408079341611,
+              "axisPoint": [
+                -0.2738000054006306,
+                -21.017806124248064,
+                1.8912601065325014
+              ],
+              "surfacePoint": [
+                -0.271878708662881,
+                -21.018915431165855,
+                1.8912601065325014
+              ]
+            },
+            {
+              "object": "pasted__brick240_pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 8,
+              "axisDistance": 0.004497684723329287,
+              "capsuleClearance": -0.061084941312434776,
+              "axisPoint": [
+                -0.2738000054006306,
+                -21.017806124248064,
+                1.8912601065325014
+              ],
+              "surfacePoint": [
+                -0.2693023206773013,
+                -21.017806124248064,
+                1.8912601065325014
+              ]
+            },
+            {
+              "object": "pasted__brick240_pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 9,
+              "axisDistance": 0.00557156536364767,
+              "capsuleClearance": -0.060011060672116395,
+              "axisPoint": [
+                -0.2738000054006306,
+                -21.017806124248064,
+                1.8912601065325014
+              ],
+              "surfacePoint": [
+                -0.2689748207407415,
+                -21.01502045851087,
+                1.8912601065325014
+              ]
+            },
+            {
+              "object": "pasted__brick240_pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 10,
+              "axisDistance": 0.005609937740973998,
+              "capsuleClearance": -0.059972688294790064,
+              "axisPoint": [
+                -0.2738000054006306,
+                -21.017806124248064,
+                1.8912601065325014
+              ],
+              "surfacePoint": [
+                -0.2693023206773013,
+                -21.01445318023017,
+                1.8912601065325014
+              ]
+            },
+            {
+              "object": "pasted__brick240_pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 11,
+              "axisDistance": 0.005609937740973998,
+              "capsuleClearance": -0.059972688294790064,
+              "axisPoint": [
+                -0.2738000054006306,
+                -21.017806124248064,
+                1.8912601065325014
+              ],
+              "surfacePoint": [
+                -0.2693023206773013,
+                -21.01445318023017,
+                1.8912601065325014
+              ]
+            },
+            {
+              "object": "pasted__brick240_pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 71,
+              "axisDistance": 0.06445764963581209,
+              "capsuleClearance": -0.001124976399951974,
+              "axisPoint": [
+                -0.2738000054006306,
+                -21.017806124248064,
+                1.9201037293352177
+              ],
+              "surfacePoint": [
+                -0.2571221127044437,
+                -20.955543483027284,
+                1.9201037293352177
+              ]
+            },
+            {
+              "object": "pasted__brick240_pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 72,
+              "axisDistance": 0.06526461824530251,
+              "capsuleClearance": -0.0003180077904615525,
+              "axisPoint": [
+                -0.2738000054006306,
+                -21.017806124248064,
+                1.9201037293352177
+              ],
+              "surfacePoint": [
+                -0.21075728584773237,
+                -21.000921637105137,
+                1.9201037293352177
+              ]
+            },
+            {
+              "object": "pasted__brick240_pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 75,
+              "axisDistance": 0.06213068829376532,
+              "capsuleClearance": -0.0034519377419987424,
+              "axisPoint": [
+                -0.2738000054006306,
+                -21.017806124248064,
+                1.9201037293352177
+              ],
+              "surfacePoint": [
+                -0.28987435792248417,
+                -20.957790812711256,
+                1.9201037293352177
+              ]
+            },
+            {
+              "object": "pasted__brick240_pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 76,
+              "axisDistance": 0.06306679929056265,
+              "capsuleClearance": -0.0025158267452014133,
+              "axisPoint": [
+                -0.2738000054006306,
+                -21.017806124248064,
+                1.9204769565139952
+              ],
+              "surfacePoint": [
+                -0.3014190798773843,
+                -20.96110861197633,
+                1.9204769565139952
+              ]
+            },
+            {
+              "object": "pasted__brick240_pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 77,
+              "axisDistance": 0.05924768315304183,
+              "capsuleClearance": -0.006334942882722232,
+              "axisPoint": [
+                -0.2738000054006306,
+                -21.017806124248064,
+                1.9201037293352177
+              ],
+              "surfacePoint": [
+                -0.31569427909822007,
+                -20.975911520892087,
+                1.9201037293352177
+              ]
+            },
+            {
+              "object": "pasted__brick240_pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 78,
+              "axisDistance": 0.060171027954944195,
+              "capsuleClearance": -0.005411598080819868,
+              "axisPoint": [
+                -0.2738000054006306,
+                -21.017806124248064,
+                1.920406549990059
+              ],
+              "surfacePoint": [
+                -0.3236681328034471,
+                -20.984135328675475,
+                1.920406549990059
+              ]
+            },
+            {
+              "object": "pasted__brick240_pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 79,
+              "axisDistance": 0.0565800501289642,
+              "capsuleClearance": -0.009002575906799863,
+              "axisPoint": [
+                -0.2738000054006306,
+                -21.017806124248064,
+                1.9201037293352177
+              ],
+              "surfacePoint": [
+                -0.32845264684384184,
+                -21.00316403232526,
+                1.9201037293352177
+              ]
+            },
+            {
+              "object": "pasted__brick240_pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 80,
+              "axisDistance": 0.05777451439996239,
+              "capsuleClearance": -0.007808111635801675,
+              "axisPoint": [
+                -0.2738000054006306,
+                -21.017806124248064,
+                1.9201037293352177
+              ],
+              "surfacePoint": [
+                -0.3314771436840469,
+                -21.01445318023017,
+                1.9201037293352177
+              ]
+            },
+            {
+              "object": "pasted__brick240_pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 81,
+              "axisDistance": 0.05484466409059455,
+              "capsuleClearance": -0.010737961945169516,
+              "axisPoint": [
+                -0.2738000054006306,
+                -21.017806124248064,
+                1.9201037293352177
+              ],
+              "surfacePoint": [
+                -0.3267763770154412,
+                -21.03199912356955,
+                1.9201037293352177
+              ]
+            },
+            {
+              "object": "pasted__brick240_pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 82,
+              "axisDistance": 0.056608086434597055,
+              "capsuleClearance": -0.008974539601167009,
+              "axisPoint": [
+                -0.2738000054006306,
+                -21.017806124248064,
+                1.9201037293352177
+              ],
+              "surfacePoint": [
+                -0.32314840969670744,
+                -21.045540767624495,
+                1.9201037293352177
+              ]
+            },
+            {
+              "object": "pasted__brick240_pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 83,
+              "axisDistance": 0.05450493056938542,
+              "capsuleClearance": -0.011077695466378643,
+              "axisPoint": [
+                -0.2738000054006306,
+                -21.017806124248064,
+                1.9201037293352177
+              ],
+              "surfacePoint": [
+                -0.31233825164681156,
+                -21.05634948985931,
+                1.9201037293352177
+              ]
+            },
+            {
+              "object": "pasted__brick240_pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 84,
+              "axisDistance": 0.057063782519723,
+              "capsuleClearance": -0.008518843516041062,
+              "axisPoint": [
+                -0.2738000054006306,
+                -21.017806124248064,
+                1.9201037293352177
+              ],
+              "surfacePoint": [
+                -0.30038990991341574,
+                -21.068296244603033,
+                1.9201037293352177
+              ]
+            },
+            {
+              "object": "pasted__brick240_pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 85,
+              "axisDistance": 0.05565252383772776,
+              "capsuleClearance": -0.009930102198036306,
+              "axisPoint": [
+                -0.2738000054006306,
+                -21.017806124248064,
+                1.9201037293352177
+              ],
+              "surfacePoint": [
+                -0.288207513546832,
+                -21.07156137625683,
+                1.9201037293352177
+              ]
+            },
+            {
+              "object": "pasted__brick240_pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 86,
+              "axisDistance": 0.058993931897421026,
+              "capsuleClearance": -0.0065886941383430375,
+              "axisPoint": [
+                -0.2738000054006306,
+                -21.017806124248064,
+                1.9201037293352177
+              ],
+              "surfacePoint": [
+                -0.2693023206773013,
+                -21.076628355018812,
+                1.9201037293352177
+              ]
+            },
+            {
+              "object": "pasted__brick240_pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 87,
+              "axisDistance": 0.057981010068430164,
+              "capsuleClearance": -0.0076016159673338995,
+              "axisPoint": [
+                -0.2738000054006306,
+                -21.017806124248064,
+                1.9201037293352177
+              ],
+              "surfacePoint": [
+                -0.2587883298691825,
+                -21.073810116304827,
+                1.9201037293352177
+              ]
+            },
+            {
+              "object": "pasted__brick240_pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 88,
+              "axisDistance": 0.06176851096339633,
+              "capsuleClearance": -0.0038141150723677367,
+              "axisPoint": [
+                -0.2738000054006306,
+                -21.017806124248064,
+                1.9201037293352177
+              ],
+              "surfacePoint": [
+                -0.23821775289778868,
+                -21.068296244603033,
+                1.9201037293352177
+              ]
+            },
+            {
+              "object": "pasted__brick240_pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 89,
+              "axisDistance": 0.06086305849564901,
+              "capsuleClearance": -0.004719567540115051,
+              "axisPoint": [
+                -0.2738000054006306,
+                -21.017806124248064,
+                1.9201037293352177
+              ],
+              "surfacePoint": [
+                -0.2307661823850226,
+                -21.06084566381468,
+                1.9201037293352177
+              ]
+            },
+            {
+              "object": "pasted__brick240_pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 90,
+              "axisDistance": 0.06459763014639014,
+              "capsuleClearance": -0.0009849958893739241,
+              "axisPoint": [
+                -0.2738000054006306,
+                -21.017806124248064,
+                1.9201037293352177
+              ],
+              "surfacePoint": [
+                -0.21545925311449654,
+                -21.045540767624495,
+                1.9201037293352177
+              ]
+            },
+            {
+              "object": "pasted__brick240_pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 91,
+              "axisDistance": 0.06352975051196746,
+              "capsuleClearance": -0.002052875523796599,
+              "axisPoint": [
+                -0.2738000054006306,
+                -21.017806124248064,
+                1.9201037293352177
+              ],
+              "surfacePoint": [
+                -0.21243309094572474,
+                -21.03424178700918,
+                1.9201037293352177
+              ]
+            },
+            {
+              "object": "pasted__brick240_pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 118,
+              "axisDistance": 0.06445764963581209,
+              "capsuleClearance": -0.001124976399951974,
+              "axisPoint": [
+                -0.2738000054006306,
+                -21.017806124248064,
+                1.9025622203955512
+              ],
+              "surfacePoint": [
+                -0.2571221127044437,
+                -20.955543483027284,
+                1.9025622203955512
+              ]
+            },
+            {
+              "object": "pasted__brick240_pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 119,
+              "axisDistance": 0.06445764963581209,
+              "capsuleClearance": -0.001124976399951974,
+              "axisPoint": [
+                -0.2738000054006306,
+                -21.017806124248064,
+                1.8912601065325014
+              ],
+              "surfacePoint": [
+                -0.2571221127044437,
+                -20.955543483027284,
+                1.8912601065325014
+              ]
+            },
+            {
+              "object": "pasted__brick240_pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 120,
+              "axisDistance": 0.06213068829376532,
+              "capsuleClearance": -0.0034519377419987424,
+              "axisPoint": [
+                -0.2738000054006306,
+                -21.017806124248064,
+                1.9201037293352177
+              ],
+              "surfacePoint": [
+                -0.28987435792248417,
+                -20.957790812711256,
+                1.9201037293352177
+              ]
+            },
+            {
+              "object": "pasted__brick240_pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 121,
+              "axisDistance": 0.06213068829376532,
+              "capsuleClearance": -0.0034519377419987424,
+              "axisPoint": [
+                -0.2738000054006306,
+                -21.017806124248064,
+                1.8912601065325014
+              ],
+              "surfacePoint": [
+                -0.28987435792248417,
+                -20.957790812711256,
+                1.8912601065325014
+              ]
+            },
+            {
+              "object": "pasted__brick240_pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 122,
+              "axisDistance": 0.05924768315304183,
+              "capsuleClearance": -0.006334942882722232,
+              "axisPoint": [
+                -0.2738000054006306,
+                -21.017806124248064,
+                1.900707307945259
+              ],
+              "surfacePoint": [
+                -0.31569427909822007,
+                -20.975911520892087,
+                1.900707307945259
+              ]
+            },
+            {
+              "object": "pasted__brick240_pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 123,
+              "axisDistance": 0.05924768315304183,
+              "capsuleClearance": -0.006334942882722232,
+              "axisPoint": [
+                -0.2738000054006306,
+                -21.017806124248064,
+                1.8912601065325014
+              ],
+              "surfacePoint": [
+                -0.31569427909822007,
+                -20.975911520892087,
+                1.8912601065325014
+              ]
+            },
+            {
+              "object": "pasted__brick240_pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 124,
+              "axisDistance": 0.0565800501289642,
+              "capsuleClearance": -0.009002575906799863,
+              "axisPoint": [
+                -0.2738000054006306,
+                -21.017806124248064,
+                1.901734381033223
+              ],
+              "surfacePoint": [
+                -0.32845264684384184,
+                -21.00316403232526,
+                1.901734381033223
+              ]
+            },
+            {
+              "object": "pasted__brick240_pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 125,
+              "axisDistance": 0.0565800501289642,
+              "capsuleClearance": -0.009002575906799863,
+              "axisPoint": [
+                -0.2738000054006306,
+                -21.017806124248064,
+                1.8912601065325014
+              ],
+              "surfacePoint": [
+                -0.32845264684384184,
+                -21.00316403232526,
+                1.8912601065325014
+              ]
+            },
+            {
+              "object": "pasted__brick240_pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 126,
+              "axisDistance": 0.05484466409059455,
+              "capsuleClearance": -0.010737961945169516,
+              "axisPoint": [
+                -0.2738000054006306,
+                -21.017806124248064,
+                1.903824287480195
+              ],
+              "surfacePoint": [
+                -0.3267763770154412,
+                -21.03199912356955,
+                1.903824287480195
+              ]
+            },
+            {
+              "object": "pasted__brick240_pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 127,
+              "axisDistance": 0.05484466409059455,
+              "capsuleClearance": -0.010737961945169516,
+              "axisPoint": [
+                -0.2738000054006306,
+                -21.017806124248064,
+                1.8912601065325014
+              ],
+              "surfacePoint": [
+                -0.3267763770154412,
+                -21.03199912356955,
+                1.8912601065325014
+              ]
+            },
+            {
+              "object": "pasted__brick240_pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 128,
+              "axisDistance": 0.05450493056938542,
+              "capsuleClearance": -0.011077695466378643,
+              "axisPoint": [
+                -0.2738000054006306,
+                -21.017806124248064,
+                1.9064031724356871
+              ],
+              "surfacePoint": [
+                -0.31233825164681156,
+                -21.05634948985931,
+                1.9064031724356871
+              ]
+            },
+            {
+              "object": "pasted__brick240_pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 129,
+              "axisDistance": 0.05450493056938542,
+              "capsuleClearance": -0.011077695466378643,
+              "axisPoint": [
+                -0.2738000054006306,
+                -21.017806124248064,
+                1.8912601065325014
+              ],
+              "surfacePoint": [
+                -0.31233825164681156,
+                -21.05634948985931,
+                1.8912601065325014
+              ]
+            },
+            {
+              "object": "pasted__brick240_pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 130,
+              "axisDistance": 0.05565252383772776,
+              "capsuleClearance": -0.009930102198036306,
+              "axisPoint": [
+                -0.2738000054006306,
+                -21.017806124248064,
+                1.9088006835132303
+              ],
+              "surfacePoint": [
+                -0.288207513546832,
+                -21.07156137625683,
+                1.9088006835132303
+              ]
+            },
+            {
+              "object": "pasted__brick240_pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 131,
+              "axisDistance": 0.05565252383772776,
+              "capsuleClearance": -0.009930102198036306,
+              "axisPoint": [
+                -0.2738000054006306,
+                -21.017806124248064,
+                1.8912601065325014
+              ],
+              "surfacePoint": [
+                -0.288207513546832,
+                -21.07156137625683,
+                1.8912601065325014
+              ]
+            },
+            {
+              "object": "pasted__brick240_pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 132,
+              "axisDistance": 0.05798101006843015,
+              "capsuleClearance": -0.007601615967333913,
+              "axisPoint": [
+                -0.2738000054006306,
+                -21.017806124248064,
+                1.9201037293352177
+              ],
+              "surfacePoint": [
+                -0.25878832986918254,
+                -21.073810116304827,
+                1.9201037293352177
+              ]
+            },
+            {
+              "object": "pasted__brick240_pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 133,
+              "axisDistance": 0.05798101006843015,
+              "capsuleClearance": -0.007601615967333913,
+              "axisPoint": [
+                -0.2738000054006306,
+                -21.017806124248064,
+                1.9103477119065153
+              ],
+              "surfacePoint": [
+                -0.25878832986918254,
+                -21.073810116304827,
+                1.9103477119065153
+              ]
+            },
+            {
+              "object": "pasted__brick240_pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 134,
+              "axisDistance": 0.06086305849564901,
+              "capsuleClearance": -0.004719567540115051,
+              "axisPoint": [
+                -0.2738000054006306,
+                -21.017806124248064,
+                1.910659772518879
+              ],
+              "surfacePoint": [
+                -0.2307661823850226,
+                -21.06084566381468,
+                1.9106597725188788
+              ]
+            },
+            {
+              "object": "pasted__brick240_pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 135,
+              "axisDistance": 0.06086305849564901,
+              "capsuleClearance": -0.004719567540115051,
+              "axisPoint": [
+                -0.2738000054006306,
+                -21.017806124248064,
+                1.8912601065325014
+              ],
+              "surfacePoint": [
+                -0.2307661823850226,
+                -21.06084566381468,
+                1.8912601065325014
+              ]
+            },
+            {
+              "object": "pasted__brick240_pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 136,
+              "axisDistance": 0.06352975051196746,
+              "capsuleClearance": -0.002052875523796599,
+              "axisPoint": [
+                -0.2738000054006306,
+                -21.017806124248064,
+                1.909620331868908
+              ],
+              "surfacePoint": [
+                -0.21243309094572474,
+                -21.03424178700918,
+                1.909620331868908
+              ]
+            },
+            {
+              "object": "pasted__brick240_pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 137,
+              "axisDistance": 0.06352975051196746,
+              "capsuleClearance": -0.002052875523796599,
+              "axisPoint": [
+                -0.2738000054006306,
+                -21.017806124248064,
+                1.8912601065325014
+              ],
+              "surfacePoint": [
+                -0.21243309094572474,
+                -21.03424178700918,
+                1.8912601065325014
+              ]
+            },
+            {
+              "object": "pasted__brick240_pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 138,
+              "axisDistance": 0.06526461824530251,
+              "capsuleClearance": -0.0003180077904615525,
+              "axisPoint": [
+                -0.2738000054006306,
+                -21.017806124248064,
+                1.9075489202119984
+              ],
+              "surfacePoint": [
+                -0.21075728584773237,
+                -21.000921637105137,
+                1.9075489202119982
+              ]
+            },
+            {
+              "object": "pasted__brick240_pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 139,
+              "axisDistance": 0.06526461824530251,
+              "capsuleClearance": -0.0003180077904615525,
+              "axisPoint": [
+                -0.2738000054006306,
+                -21.017806124248064,
+                1.8912601065325014
+              ],
+              "surfacePoint": [
+                -0.21075728584773237,
+                -21.000921637105137,
+                1.8912601065325014
+              ]
+            },
+            {
+              "object": "pasted__brick240_pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 198,
+              "axisDistance": 0.0,
+              "capsuleClearance": -0.06558262603576406,
+              "axisPoint": [
+                -0.2738000054006306,
+                -21.017806124248064,
+                1.8681939416323838
+              ],
+              "surfacePoint": [
+                -0.2738000054006306,
+                -21.017806124248064,
+                1.8681939416323838
+              ]
+            },
+            {
+              "object": "pasted__brick240_pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 199,
+              "axisDistance": 0.0003838155410507449,
+              "capsuleClearance": -0.06519881049471332,
+              "axisPoint": [
+                -0.2738000054006306,
+                -21.017806124248064,
+                1.8681939416323838
+              ],
+              "surfacePoint": [
+                -0.27407166220384566,
+                -21.017534984153613,
+                1.8681939416323838
+              ]
+            },
+            {
+              "object": "pasted__brick240_pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 202,
+              "axisDistance": 0.006766252462698901,
+              "capsuleClearance": -0.05881637357306516,
+              "axisPoint": [
+                -0.2738000054006306,
+                -21.017806124248064,
+                1.8201933631249723
+              ],
+              "surfacePoint": [
+                -0.2691203871887213,
+                -21.012919065236783,
+                1.8201933631249723
+              ]
+            },
+            {
+              "object": "pasted__brick240_pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 203,
+              "axisDistance": 0.0,
+              "capsuleClearance": -0.06558262603576406,
+              "axisPoint": [
+                -0.2738000054006306,
+                -21.017806124248064,
+                1.8201933631249723
+              ],
+              "surfacePoint": [
+                -0.2738000054006306,
+                -21.017806124248064,
+                1.8201933631249723
+              ]
+            }
+          ],
+          "countsByObject": {
+            "pasted__L4x8F_pasted__Lego_White8_0": 1,
+            "pasted__brick240_pasted__LegoWhite3_0": 57
+          },
+          "closestSurfaceWithinPaddedBroadphase": {
+            "object": "pasted__brick240_pasted__LegoWhite3_0",
+            "sourceTriangleIndex": 6,
+            "axisDistance": 0.0,
+            "capsuleClearance": -0.06558262603576406,
+            "axisPoint": [
+              -0.2738000054006306,
+              -21.017806124248064,
+              1.8912601065325014
+            ],
+            "surfacePoint": [
+              -0.2738000054006306,
+              -21.017806124248064,
+              1.8912601065325014
+            ]
+          },
+          "label": "stem",
+          "p": [
+            -0.2738000054006306,
+            -21.017806124248064,
+            1.7679590595600154
+          ],
+          "q": [
+            -0.2738000054006306,
+            -21.017806124248064,
+            2.16
+          ]
+        },
+        {
+          "capsuleRadius": 0.06558262603576406,
+          "broadphasePadding": 0.025,
+          "exactTriangleTests": 156,
+          "contacts": [
+            {
+              "object": "pasted__LegoTri36_lambert1_0",
+              "sourceTriangleIndex": 6182,
+              "axisDistance": 0.06482114137340131,
+              "capsuleClearance": -0.0007614846623627547,
+              "axisPoint": [
+                -0.2764259574867469,
+                -20.619810361419038,
+                2.2816136118414714
+              ],
+              "surfacePoint": [
+                -0.3197930385348817,
+                -20.63415060886647,
+                2.3276074587501765
+              ]
+            },
+            {
+              "object": "pasted__LegoTri36_lambert1_0",
+              "sourceTriangleIndex": 6184,
+              "axisDistance": 0.06482114137340131,
+              "capsuleClearance": -0.0007614846623627547,
+              "axisPoint": [
+                -0.2764259574867469,
+                -20.619810361419038,
+                2.2816136118414714
+              ],
+              "surfacePoint": [
+                -0.3197930385348817,
+                -20.63415060886647,
+                2.3276074587501765
+              ]
+            },
+            {
+              "object": "pasted__LegoTri36_lambert1_0",
+              "sourceTriangleIndex": 6332,
+              "axisDistance": 0.06482114137340131,
+              "capsuleClearance": -0.0007614846623627547,
+              "axisPoint": [
+                -0.2764259574867469,
+                -20.619810361419038,
+                2.2816136118414714
+              ],
+              "surfacePoint": [
+                -0.3197930385348817,
+                -20.63415060886647,
+                2.3276074587501765
+              ]
+            },
+            {
+              "object": "pasted__LegoTri36_lambert1_0",
+              "sourceTriangleIndex": 6338,
+              "axisDistance": 0.06482114137340131,
+              "capsuleClearance": -0.0007614846623627547,
+              "axisPoint": [
+                -0.2764259574867469,
+                -20.619810361419038,
+                2.2816136118414714
+              ],
+              "surfacePoint": [
+                -0.3197930385348817,
+                -20.63415060886647,
+                2.3276074587501765
+              ]
+            },
+            {
+              "object": "pasted__LegoTri36_lambert1_0",
+              "sourceTriangleIndex": 6340,
+              "axisDistance": 0.06482114137340131,
+              "capsuleClearance": -0.0007614846623627547,
+              "axisPoint": [
+                -0.2764259574867469,
+                -20.619810361419038,
+                2.2816136118414714
+              ],
+              "surfacePoint": [
+                -0.3197930385348817,
+                -20.63415060886647,
+                2.3276074587501765
+              ]
+            }
+          ],
+          "countsByObject": {
+            "pasted__LegoTri36_lambert1_0": 5
+          },
+          "closestSurfaceWithinPaddedBroadphase": {
+            "object": "pasted__LegoTri36_lambert1_0",
+            "sourceTriangleIndex": 6182,
+            "axisDistance": 0.06482114137340131,
+            "capsuleClearance": -0.0007614846623627547,
+            "axisPoint": [
+              -0.2764259574867469,
+              -20.619810361419038,
+              2.2816136118414714
+            ],
+            "surfacePoint": [
+              -0.3197930385348817,
+              -20.63415060886647,
+              2.3276074587501765
+            ]
+          },
+          "label": "bridge",
+          "p": [
+            -0.2738000054006306,
+            -21.017806124248064,
+            2.16
+          ],
+          "q": [
+            -0.27680051665726774,
+            -20.563041251432523,
+            2.2989602701511265
+          ]
+        },
+        {
+          "capsuleRadius": 0.06558262603576406,
+          "broadphasePadding": 0.025,
+          "exactTriangleTests": 206,
+          "contacts": [],
+          "countsByObject": {},
+          "closestSurfaceWithinPaddedBroadphase": {
+            "object": "pasted__LegoTri36_lambert1_0",
+            "sourceTriangleIndex": 5222,
+            "axisDistance": 0.06846328128834707,
+            "capsuleClearance": 0.002880655252583006,
+            "axisPoint": [
+              -0.28561361387738815,
+              -20.570549046795506,
+              2.3316108288810296
+            ],
+            "surfacePoint": [
+              -0.23326286488364156,
+              -20.53278490495672,
+              2.3544250690774766
+            ]
+          },
+          "label": "grip",
+          "p": [
+            -0.27680051665726774,
+            -20.563041251432523,
+            2.2989602701511265
+          ],
+          "q": [
+            -0.3556651232882086,
+            -20.630225274617402,
+            2.5911360406209605
+          ]
+        }
+      ],
+      "cornerJointPolicy": "Union of adjoining segment capsules includes a full-radius sphere at each junction. It conservatively bounds round joints but does not prove a miter flare is contained."
+    },
+    {
+      "side": "positiveX",
+      "controlObject": "pasted__pasted__brick230_phongE2_0",
+      "points": [
+        [
+          0.41932784892818803,
+          -21.017802554568487,
+          1.7679588815860463
+        ],
+        [
+          0.41932784892818803,
+          -21.017802554568487,
+          2.16
+        ],
+        [
+          0.46903826634043905,
+          -20.559655262358174,
+          2.287387305285014
+        ],
+        [
+          0.4719241252778018,
+          -20.625998711647764,
+          2.590191232859531
+        ]
+      ],
+      "profileSides": 20,
+      "sourceShaftRadius": 0.06558262603576406,
+      "segments": [
+        {
+          "capsuleRadius": 0.06558262603576406,
+          "broadphasePadding": 0.025,
+          "exactTriangleTests": 135,
+          "contacts": [
+            {
+              "object": "pasted__pasted__L4x8F_pasted__pasted__Lego_White8_0",
+              "sourceTriangleIndex": 1747,
+              "axisDistance": 0.03952540495657581,
+              "capsuleClearance": -0.02605722107918825,
+              "axisPoint": [
+                0.41932784892818803,
+                -21.017802554568487,
+                1.7679588815860463
+              ],
+              "surfacePoint": [
+                0.41932783886391173,
+                -21.017802554568487,
+                1.7284334766294718
+              ]
+            },
+            {
+              "object": "pasted__pasted__brick240_pasted__pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 0,
+              "axisDistance": 0.009741161420580048,
+              "capsuleClearance": -0.055841464615184015,
+              "axisPoint": [
+                0.41932784892818803,
+                -21.017802554568487,
+                1.8912603636696297
+              ],
+              "surfacePoint": [
+                0.42847488955378354,
+                -21.014452648060015,
+                1.8912603636696297
+              ]
+            },
+            {
+              "object": "pasted__pasted__brick240_pasted__pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 1,
+              "axisDistance": 0.009741161420580048,
+              "capsuleClearance": -0.055841464615184015,
+              "axisPoint": [
+                0.41932784892818803,
+                -21.017802554568487,
+                1.8912603636696297
+              ],
+              "surfacePoint": [
+                0.42847488955378354,
+                -21.014452648060015,
+                1.8912603636696297
+              ]
+            },
+            {
+              "object": "pasted__pasted__brick240_pasted__pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 2,
+              "axisDistance": 0.009596531198311064,
+              "capsuleClearance": -0.055986094837452996,
+              "axisPoint": [
+                0.41932784892818803,
+                -21.017802554568487,
+                1.8912603636696297
+              ],
+              "surfacePoint": [
+                0.42763871281401317,
+                -21.013004330677145,
+                1.8912603636696297
+              ]
+            },
+            {
+              "object": "pasted__pasted__brick240_pasted__pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 3,
+              "axisDistance": 0.007474583852235315,
+              "capsuleClearance": -0.058108042183528746,
+              "axisPoint": [
+                0.41932784892818803,
+                -21.017802554568487,
+                1.8912603636696297
+              ],
+              "surfacePoint": [
+                0.4230650987847373,
+                -21.01132935078104,
+                1.8912603636696297
+              ]
+            },
+            {
+              "object": "pasted__pasted__brick240_pasted__pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 4,
+              "axisDistance": 0.0033499065084718893,
+              "capsuleClearance": -0.062232719527292174,
+              "axisPoint": [
+                0.41932784892818803,
+                -21.017802554568487,
+                1.8912603636696297
+              ],
+              "surfacePoint": [
+                0.41932784892818803,
+                -21.014452648060015,
+                1.8912603636696297
+              ]
+            },
+            {
+              "object": "pasted__pasted__brick240_pasted__pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 5,
+              "axisDistance": 0.0,
+              "capsuleClearance": -0.06558262603576406,
+              "axisPoint": [
+                0.41932784892818803,
+                -21.017802554568487,
+                1.8912603636696297
+              ],
+              "surfacePoint": [
+                0.41932784892818803,
+                -21.017802554568487,
+                1.8912603636696297
+              ]
+            },
+            {
+              "object": "pasted__pasted__brick240_pasted__pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 6,
+              "axisDistance": 0.001672353807883283,
+              "capsuleClearance": -0.06391027222788077,
+              "axisPoint": [
+                0.41932784892818803,
+                -21.017802554568487,
+                1.8912603636696297
+              ],
+              "surfacePoint": [
+                0.42016401641953827,
+                -21.01925086088455,
+                1.8912603636696297
+              ]
+            },
+            {
+              "object": "pasted__pasted__brick240_pasted__pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 7,
+              "axisDistance": 0.006246482868906474,
+              "capsuleClearance": -0.05933614316685759,
+              "axisPoint": [
+                0.41932784892818803,
+                -21.017802554568487,
+                1.8912603636696297
+              ],
+              "surfacePoint": [
+                0.4247374060241425,
+                -21.02092589256767,
+                1.8912603636696297
+              ]
+            },
+            {
+              "object": "pasted__pasted__brick240_pasted__pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 8,
+              "axisDistance": 0.009147040625595515,
+              "capsuleClearance": -0.05643558541016855,
+              "axisPoint": [
+                0.41932784892818803,
+                -21.017802554568487,
+                1.8912603636696297
+              ],
+              "surfacePoint": [
+                0.42847488955378354,
+                -21.017802554568487,
+                1.8912603636696297
+              ]
+            },
+            {
+              "object": "pasted__pasted__brick240_pasted__pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 9,
+              "axisDistance": 0.009741161420580048,
+              "capsuleClearance": -0.055841464615184015,
+              "axisPoint": [
+                0.41932784892818803,
+                -21.017802554568487,
+                1.8912603636696297
+              ],
+              "surfacePoint": [
+                0.42847488955378354,
+                -21.014452648060015,
+                1.8912603636696297
+              ]
+            },
+            {
+              "object": "pasted__pasted__brick240_pasted__pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 10,
+              "axisDistance": 0.009741161420580048,
+              "capsuleClearance": -0.055841464615184015,
+              "axisPoint": [
+                0.41932784892818803,
+                -21.017802554568487,
+                1.8912603636696297
+              ],
+              "surfacePoint": [
+                0.42847488955378354,
+                -21.014452648060015,
+                1.8912603636696297
+              ]
+            },
+            {
+              "object": "pasted__pasted__brick240_pasted__pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 11,
+              "axisDistance": 0.009741161420580048,
+              "capsuleClearance": -0.055841464615184015,
+              "axisPoint": [
+                0.41932784892818803,
+                -21.017802554568487,
+                1.8912603636696297
+              ],
+              "surfacePoint": [
+                0.42847488955378354,
+                -21.014452648060015,
+                1.8912603636696297
+              ]
+            },
+            {
+              "object": "pasted__pasted__brick240_pasted__pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 75,
+              "axisDistance": 0.06092488026388274,
+              "capsuleClearance": -0.004657745771881321,
+              "axisPoint": [
+                0.41932784892818803,
+                -21.017802554568487,
+                1.920103986472346
+              ],
+              "surfacePoint": [
+                0.40356546113549374,
+                -20.95895199665914,
+                1.920103986472346
+              ]
+            },
+            {
+              "object": "pasted__pasted__brick240_pasted__pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 76,
+              "axisDistance": 0.061027959082913454,
+              "capsuleClearance": -0.00455466695285061,
+              "axisPoint": [
+                0.41932784892818803,
+                -21.017802554568487,
+                1.9218394960347305
+              ],
+              "surfacePoint": [
+                0.3926016512134505,
+                -20.96293797450504,
+                1.9218394960347305
+              ]
+            },
+            {
+              "object": "pasted__pasted__brick240_pasted__pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 77,
+              "axisDistance": 0.05595795714913883,
+              "capsuleClearance": -0.009624668886625234,
+              "axisPoint": [
+                0.41932784892818803,
+                -21.017802554568487,
+                1.920103986472346
+              ],
+              "surfacePoint": [
+                0.3797597536440488,
+                -20.978234147930234,
+                1.920103986472346
+              ]
+            },
+            {
+              "object": "pasted__pasted__brick240_pasted__pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 78,
+              "axisDistance": 0.05631606725844691,
+              "capsuleClearance": -0.009266558777317156,
+              "axisPoint": [
+                0.41932784892818803,
+                -21.017802554568487,
+                1.9212542642399446
+              ],
+              "surfacePoint": [
+                0.3726546091262558,
+                -20.986288936593883,
+                1.9212542642399446
+              ]
+            },
+            {
+              "object": "pasted__pasted__brick240_pasted__pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 79,
+              "axisDistance": 0.05208828923477378,
+              "capsuleClearance": -0.013494336800990284,
+              "axisPoint": [
+                0.41932784892818803,
+                -21.017802554568487,
+                1.920103986472346
+              ],
+              "surfacePoint": [
+                0.3690139558077387,
+                -21.004322864866218,
+                1.920103986472346
+              ]
+            },
+            {
+              "object": "pasted__pasted__brick240_pasted__pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 80,
+              "axisDistance": 0.05313348829013688,
+              "capsuleClearance": -0.012449137745627184,
+              "axisPoint": [
+                0.41932784892818803,
+                -21.017802554568487,
+                1.920103986472346
+              ],
+              "surfacePoint": [
+                0.36630006654703795,
+                -21.014452648060015,
+                1.920103986472346
+              ]
+            },
+            {
+              "object": "pasted__pasted__brick240_pasted__pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 81,
+              "axisDistance": 0.050354475322695214,
+              "capsuleClearance": -0.01522815071306885,
+              "axisPoint": [
+                0.41932784892818803,
+                -21.017802554568487,
+                1.920103986472346
+              ],
+              "surfacePoint": [
+                0.37068870706458806,
+                -21.030833558512793,
+                1.920103986472346
+              ]
+            },
+            {
+              "object": "pasted__pasted__brick240_pasted__pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 82,
+              "axisDistance": 0.05260592997217731,
+              "capsuleClearance": -0.012976696063586757,
+              "axisPoint": [
+                0.41932784892818803,
+                -21.017802554568487,
+                1.920103986472346
+              ],
+              "surfacePoint": [
+                0.3746288005343774,
+                -21.04554023545434,
+                1.920103986472346
+              ]
+            },
+            {
+              "object": "pasted__pasted__brick240_pasted__pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 83,
+              "axisDistance": 0.051219705821075566,
+              "capsuleClearance": -0.014362920214688497,
+              "axisPoint": [
+                0.41932784892818803,
+                -21.017802554568487,
+                1.920103986472346
+              ],
+              "surfacePoint": [
+                0.38311245309208564,
+                -21.054022761205555,
+                1.920103986472346
+              ]
+            },
+            {
+              "object": "pasted__pasted__brick240_pasted__pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 84,
+              "axisDistance": 0.05505403404337304,
+              "capsuleClearance": -0.01052859199239102,
+              "axisPoint": [
+                0.41932784892818803,
+                -21.017802554568487,
+                1.920103986472346
+              ],
+              "surfacePoint": [
+                0.3973873003176691,
+                -21.068295712432878,
+                1.920103986472346
+              ]
+            },
+            {
+              "object": "pasted__pasted__brick240_pasted__pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 85,
+              "axisDistance": 0.05445181726875471,
+              "capsuleClearance": -0.01113080876700935,
+              "axisPoint": [
+                0.41932784892818803,
+                -21.017802554568487,
+                1.920103986472346
+              ],
+              "surfacePoint": [
+                0.4052311836419465,
+                -21.070398033762782,
+                1.920103986472346
+              ]
+            },
+            {
+              "object": "pasted__pasted__brick240_pasted__pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 86,
+              "axisDistance": 0.059532180712958044,
+              "capsuleClearance": -0.0060504453228060195,
+              "axisPoint": [
+                0.41932784892818803,
+                -21.017802554568487,
+                1.920103986472346
+              ],
+              "surfacePoint": [
+                0.42847488955378354,
+                -21.076627822848657,
+                1.920103986472346
+              ]
+            },
+            {
+              "object": "pasted__pasted__brick240_pasted__pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 87,
+              "axisDistance": 0.05918769368442841,
+              "capsuleClearance": -0.006394932351335654,
+              "axisPoint": [
+                0.41932784892818803,
+                -21.017802554568487,
+                1.920103986472346
+              ],
+              "surfacePoint": [
+                0.4346519430065208,
+                -21.074972085127694,
+                1.920103986472346
+              ]
+            },
+            {
+              "object": "pasted__pasted__brick240_pasted__pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 88,
+              "axisDistance": 0.06456114393333116,
+              "capsuleClearance": -0.0010214821024328996,
+              "axisPoint": [
+                0.41932784892818803,
+                -21.017802554568487,
+                1.920103986472346
+              ],
+              "surfacePoint": [
+                0.4595594573332962,
+                -21.068295712432878,
+                1.920103986472346
+              ]
+            },
+            {
+              "object": "pasted__pasted__brick240_pasted__pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 89,
+              "axisDistance": 0.06415257921626784,
+              "capsuleClearance": -0.0014300468194962251,
+              "axisPoint": [
+                0.41932784892818803,
+                -21.017802554568487,
+                1.920103986472346
+              ],
+              "surfacePoint": [
+                0.4646875598632704,
+                -21.063168291022173,
+                1.920103986472346
+              ]
+            },
+            {
+              "object": "pasted__pasted__brick240_pasted__pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 101,
+              "axisDistance": 0.06431859470187182,
+              "capsuleClearance": -0.001264031333892246,
+              "axisPoint": [
+                0.41932784892818803,
+                -21.017802554568487,
+                1.9323341089215185
+              ],
+              "surfacePoint": [
+                0.3572001339351724,
+                -21.001158376782538,
+                1.9323341089215185
+              ]
+            },
+            {
+              "object": "pasted__pasted__brick240_pasted__pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 102,
+              "axisDistance": 0.0652625907631206,
+              "capsuleClearance": -0.00032003527264345966,
+              "axisPoint": [
+                0.41932784892818803,
+                -21.017802554568487,
+                1.9323341089215185
+              ],
+              "surfacePoint": [
+                0.3636628681324896,
+                -21.051870364391384,
+                1.9323341089215185
+              ]
+            },
+            {
+              "object": "pasted__pasted__brick240_pasted__pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 103,
+              "axisDistance": 0.06258483668829119,
+              "capsuleClearance": -0.0029977893474728706,
+              "axisPoint": [
+                0.41932784892818803,
+                -21.017802554568487,
+                1.9323341089215185
+              ],
+              "surfacePoint": [
+                0.35887483507306067,
+                -21.03399807552744,
+                1.9323341089215185
+              ]
+            },
+            {
+              "object": "pasted__pasted__brick240_pasted__pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 105,
+              "axisDistance": 0.06345026794461371,
+              "capsuleClearance": -0.002132358091150352,
+              "axisPoint": [
+                0.41932784892818803,
+                -21.017802554568487,
+                1.9323341089215185
+              ],
+              "surfacePoint": [
+                0.37446289989625414,
+                -21.062669834969746,
+                1.9323341089215185
+              ]
+            },
+            {
+              "object": "pasted__pasted__brick240_pasted__pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 120,
+              "axisDistance": 0.06092488026388274,
+              "capsuleClearance": -0.004657745771881321,
+              "axisPoint": [
+                0.41932784892818803,
+                -21.017802554568487,
+                1.8969925720724878
+              ],
+              "surfacePoint": [
+                0.40356546113549374,
+                -20.95895199665914,
+                1.8969925720724878
+              ]
+            },
+            {
+              "object": "pasted__pasted__brick240_pasted__pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 121,
+              "axisDistance": 0.06092488026388273,
+              "capsuleClearance": -0.0046577457718813345,
+              "axisPoint": [
+                0.41932784892818803,
+                -21.017802554568487,
+                1.8969925720724878
+              ],
+              "surfacePoint": [
+                0.4035654611354938,
+                -20.95895199665914,
+                1.8969925720724878
+              ]
+            },
+            {
+              "object": "pasted__pasted__brick240_pasted__pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 122,
+              "axisDistance": 0.05595795714913883,
+              "capsuleClearance": -0.009624668886625234,
+              "axisPoint": [
+                0.41932784892818803,
+                -21.017802554568487,
+                1.8977632209547324
+              ],
+              "surfacePoint": [
+                0.3797597536440488,
+                -20.978234147930234,
+                1.8977632209547324
+              ]
+            },
+            {
+              "object": "pasted__pasted__brick240_pasted__pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 123,
+              "axisDistance": 0.05595795714913883,
+              "capsuleClearance": -0.009624668886625234,
+              "axisPoint": [
+                0.41932784892818803,
+                -21.017802554568487,
+                1.8912603636696297
+              ],
+              "surfacePoint": [
+                0.3797597536440488,
+                -20.978234147930234,
+                1.8912603636696297
+              ]
+            },
+            {
+              "object": "pasted__pasted__brick240_pasted__pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 124,
+              "axisDistance": 0.05208828923477378,
+              "capsuleClearance": -0.013494336800990284,
+              "axisPoint": [
+                0.41932784892818803,
+                -21.017802554568487,
+                1.9006589587361773
+              ],
+              "surfacePoint": [
+                0.3690139558077387,
+                -21.004322864866218,
+                1.9006589587361773
+              ]
+            },
+            {
+              "object": "pasted__pasted__brick240_pasted__pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 125,
+              "axisDistance": 0.05208828923477378,
+              "capsuleClearance": -0.013494336800990284,
+              "axisPoint": [
+                0.41932784892818803,
+                -21.017802554568487,
+                1.8912603636696297
+              ],
+              "surfacePoint": [
+                0.3690139558077387,
+                -21.004322864866218,
+                1.8912603636696297
+              ]
+            },
+            {
+              "object": "pasted__pasted__brick240_pasted__pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 126,
+              "axisDistance": 0.050354475322695214,
+              "capsuleClearance": -0.01522815071306885,
+              "axisPoint": [
+                0.41932784892818803,
+                -21.017802554568487,
+                1.904905483086675
+              ],
+              "surfacePoint": [
+                0.37068870706458806,
+                -21.030833558512793,
+                1.904905483086675
+              ]
+            },
+            {
+              "object": "pasted__pasted__brick240_pasted__pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 127,
+              "axisDistance": 0.050354475322695214,
+              "capsuleClearance": -0.01522815071306885,
+              "axisPoint": [
+                0.41932784892818803,
+                -21.017802554568487,
+                1.8912603636696297
+              ],
+              "surfacePoint": [
+                0.37068870706458806,
+                -21.030833558512793,
+                1.8912603636696297
+              ]
+            },
+            {
+              "object": "pasted__pasted__brick240_pasted__pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 128,
+              "axisDistance": 0.051219705821075566,
+              "capsuleClearance": -0.014362920214688497,
+              "axisPoint": [
+                0.41932784892818803,
+                -21.017802554568487,
+                1.9093519915388537
+              ],
+              "surfacePoint": [
+                0.38311245309208564,
+                -21.054022761205555,
+                1.9093519915388537
+              ]
+            },
+            {
+              "object": "pasted__pasted__brick240_pasted__pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 129,
+              "axisDistance": 0.051219705821075566,
+              "capsuleClearance": -0.014362920214688497,
+              "axisPoint": [
+                0.41932784892818803,
+                -21.017802554568487,
+                1.8912603636696297
+              ],
+              "surfacePoint": [
+                0.38311245309208564,
+                -21.054022761205555,
+                1.8912603636696297
+              ]
+            },
+            {
+              "object": "pasted__pasted__brick240_pasted__pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 130,
+              "axisDistance": 0.05445181726875471,
+              "capsuleClearance": -0.01113080876700935,
+              "axisPoint": [
+                0.41932784892818803,
+                -21.017802554568487,
+                1.9128262908557574
+              ],
+              "surfacePoint": [
+                0.4052311836419465,
+                -21.070398033762782,
+                1.9128262908557574
+              ]
+            },
+            {
+              "object": "pasted__pasted__brick240_pasted__pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 131,
+              "axisDistance": 0.05445181726875471,
+              "capsuleClearance": -0.01113080876700935,
+              "axisPoint": [
+                0.41932784892818803,
+                -21.017802554568487,
+                1.8912603636696297
+              ],
+              "surfacePoint": [
+                0.4052311836419465,
+                -21.070398033762782,
+                1.8912603636696297
+              ]
+            },
+            {
+              "object": "pasted__pasted__brick240_pasted__pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 132,
+              "axisDistance": 0.059187693684428395,
+              "capsuleClearance": -0.006394932351335668,
+              "axisPoint": [
+                0.41932784892818803,
+                -21.017802554568487,
+                1.914372248425134
+              ],
+              "surfacePoint": [
+                0.43465194300652077,
+                -21.074972085127694,
+                1.914372248425134
+              ]
+            },
+            {
+              "object": "pasted__pasted__brick240_pasted__pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 133,
+              "axisDistance": 0.059187693684428395,
+              "capsuleClearance": -0.006394932351335668,
+              "axisPoint": [
+                0.41932784892818803,
+                -21.017802554568487,
+                1.914372248425134
+              ],
+              "surfacePoint": [
+                0.43465194300652077,
+                -21.074972085127694,
+                1.914372248425134
+              ]
+            },
+            {
+              "object": "pasted__pasted__brick240_pasted__pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 134,
+              "axisDistance": 0.06415257921626784,
+              "capsuleClearance": -0.0014300468194962251,
+              "axisPoint": [
+                0.41932784892818803,
+                -21.017802554568487,
+                1.9136047419493472
+              ],
+              "surfacePoint": [
+                0.4646875598632704,
+                -21.063168291022173,
+                1.9136047419493472
+              ]
+            },
+            {
+              "object": "pasted__pasted__brick240_pasted__pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 135,
+              "axisDistance": 0.0641525792162678,
+              "capsuleClearance": -0.0014300468194962668,
+              "axisPoint": [
+                0.41932784892818803,
+                -21.017802554568487,
+                1.9136047419493472
+              ],
+              "surfacePoint": [
+                0.46468755986327037,
+                -21.063168291022173,
+                1.9136047419493472
+              ]
+            },
+            {
+              "object": "pasted__pasted__brick240_pasted__pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 198,
+              "axisDistance": 0.0029090494340016193,
+              "capsuleClearance": -0.06267357660176244,
+              "axisPoint": [
+                0.41932784892818803,
+                -21.017802554568487,
+                1.868194198769512
+              ],
+              "surfacePoint": [
+                0.4213868147206362,
+                -21.019857604075188,
+                1.868194198769512
+              ]
+            },
+            {
+              "object": "pasted__pasted__brick240_pasted__pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 199,
+              "axisDistance": 0.0,
+              "capsuleClearance": -0.06558262603576406,
+              "axisPoint": [
+                0.41932784892818803,
+                -21.017802554568487,
+                1.868194198769512
+              ],
+              "surfacePoint": [
+                0.41932784892818803,
+                -21.017802554568487,
+                1.868194198769512
+              ]
+            },
+            {
+              "object": "pasted__pasted__brick240_pasted__pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 202,
+              "axisDistance": 0.009979606706567506,
+              "capsuleClearance": -0.055603019329196555,
+              "axisPoint": [
+                0.41932784892818803,
+                -21.017802554568487,
+                1.8201936202621005
+              ],
+              "surfacePoint": [
+                0.4262298599821942,
+                -21.010594587210893,
+                1.8201936202621005
+              ]
+            },
+            {
+              "object": "pasted__pasted__brick240_pasted__pasted__LegoWhite3_0",
+              "sourceTriangleIndex": 203,
+              "axisDistance": 0.0,
+              "capsuleClearance": -0.06558262603576406,
+              "axisPoint": [
+                0.41932784892818803,
+                -21.017802554568487,
+                1.8201936202621005
+              ],
+              "surfacePoint": [
+                0.41932784892818803,
+                -21.017802554568487,
+                1.8201936202621005
+              ]
+            }
+          ],
+          "countsByObject": {
+            "pasted__pasted__L4x8F_pasted__pasted__Lego_White8_0": 1,
+            "pasted__pasted__brick240_pasted__pasted__LegoWhite3_0": 51
+          },
+          "closestSurfaceWithinPaddedBroadphase": {
+            "object": "pasted__pasted__brick240_pasted__pasted__LegoWhite3_0",
+            "sourceTriangleIndex": 5,
+            "axisDistance": 0.0,
+            "capsuleClearance": -0.06558262603576406,
+            "axisPoint": [
+              0.41932784892818803,
+              -21.017802554568487,
+              1.8912603636696297
+            ],
+            "surfacePoint": [
+              0.41932784892818803,
+              -21.017802554568487,
+              1.8912603636696297
+            ]
+          },
+          "label": "stem",
+          "p": [
+            0.41932784892818803,
+            -21.017802554568487,
+            1.7679588815860463
+          ],
+          "q": [
+            0.41932784892818803,
+            -21.017802554568487,
+            2.16
+          ]
+        },
+        {
+          "capsuleRadius": 0.06558262603576406,
+          "broadphasePadding": 0.025,
+          "exactTriangleTests": 164,
+          "contacts": [
+            {
+              "object": "pasted__LegoTri36_lambert1_0",
+              "sourceTriangleIndex": 134,
+              "axisDistance": 0.0645700673562696,
+              "capsuleClearance": -0.0010125586794944574,
+              "axisPoint": [
+                0.4627053365593909,
+                -20.6180215924351,
+                2.271158617187776
+              ],
+              "surfacePoint": [
+                0.4326541619941926,
+                -20.63028172278433,
+                2.3269789513811956
+              ]
+            },
+            {
+              "object": "pasted__LegoTri36_lambert1_0",
+              "sourceTriangleIndex": 136,
+              "axisDistance": 0.0645700673562696,
+              "capsuleClearance": -0.0010125586794944574,
+              "axisPoint": [
+                0.4627053365593909,
+                -20.6180215924351,
+                2.271158617187776
+              ],
+              "surfacePoint": [
+                0.4326541619941926,
+                -20.63028172278433,
+                2.3269789513811956
+              ]
+            },
+            {
+              "object": "pasted__LegoTri36_lambert1_0",
+              "sourceTriangleIndex": 210,
+              "axisDistance": 0.0645700673562696,
+              "capsuleClearance": -0.0010125586794944574,
+              "axisPoint": [
+                0.4627053365593909,
+                -20.6180215924351,
+                2.271158617187776
+              ],
+              "surfacePoint": [
+                0.4326541619941926,
+                -20.63028172278433,
+                2.3269789513811956
+              ]
+            },
+            {
+              "object": "pasted__LegoTri36_lambert1_0",
+              "sourceTriangleIndex": 216,
+              "axisDistance": 0.0645700673562696,
+              "capsuleClearance": -0.0010125586794944574,
+              "axisPoint": [
+                0.4627053365593909,
+                -20.6180215924351,
+                2.271158617187776
+              ],
+              "surfacePoint": [
+                0.4326541619941926,
+                -20.63028172278433,
+                2.3269789513811956
+              ]
+            },
+            {
+              "object": "pasted__LegoTri36_lambert1_0",
+              "sourceTriangleIndex": 218,
+              "axisDistance": 0.0645700673562696,
+              "capsuleClearance": -0.0010125586794944574,
+              "axisPoint": [
+                0.4627053365593909,
+                -20.6180215924351,
+                2.271158617187776
+              ],
+              "surfacePoint": [
+                0.4326541619941926,
+                -20.63028172278433,
+                2.3269789513811956
+              ]
+            }
+          ],
+          "countsByObject": {
+            "pasted__LegoTri36_lambert1_0": 5
+          },
+          "closestSurfaceWithinPaddedBroadphase": {
+            "object": "pasted__LegoTri36_lambert1_0",
+            "sourceTriangleIndex": 134,
+            "axisDistance": 0.0645700673562696,
+            "capsuleClearance": -0.0010125586794944574,
+            "axisPoint": [
+              0.4627053365593909,
+              -20.6180215924351,
+              2.271158617187776
+            ],
+            "surfacePoint": [
+              0.4326541619941926,
+              -20.63028172278433,
+              2.3269789513811956
+            ]
+          },
+          "label": "bridge",
+          "p": [
+            0.41932784892818803,
+            -21.017802554568487,
+            2.16
+          ],
+          "q": [
+            0.46903826634043905,
+            -20.559655262358174,
+            2.287387305285014
+          ]
+        },
+        {
+          "capsuleRadius": 0.06558262603576406,
+          "broadphasePadding": 0.025,
+          "exactTriangleTests": 198,
+          "contacts": [],
+          "countsByObject": {},
+          "closestSurfaceWithinPaddedBroadphase": {
+            "object": "pasted__LegoTri36_lambert1_0",
+            "sourceTriangleIndex": 84,
+            "axisDistance": 0.0667786569803018,
+            "capsuleClearance": 0.0011960309445377404,
+            "axisPoint": [
+              0.4713226904836813,
+              -20.612172235846007,
+              2.527084607832982
+            ],
+            "surfacePoint": [
+              0.5368766782125053,
+              -20.62446277614041,
+              2.5237670273571378
+            ]
+          },
+          "label": "grip",
+          "p": [
+            0.46903826634043905,
+            -20.559655262358174,
+            2.287387305285014
+          ],
+          "q": [
+            0.4719241252778018,
+            -20.625998711647764,
+            2.590191232859531
+          ]
+        }
+      ],
+      "cornerJointPolicy": "Union of adjoining segment capsules includes a full-radius sphere at each junction. It conservatively bounds round joints but does not prove a miter flare is contained."
+    }
+  ]
+}

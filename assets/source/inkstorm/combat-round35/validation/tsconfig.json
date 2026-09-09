@@ -1,0 +1,1 @@
+{"extends": "../../../../../tsconfig.json", "include": ["src/game/galactic/combatPickups.ts", "src/render/combat/CombatPresentationController.ts", "tests/combat/CombatPresentationController.test.ts", "tests/galactic/combatPickups.test.ts", "src/render/app/GameApp.ts", "src/render/galactic/GalacticEffectsView.ts"], "compilerOptions": {"preserveSymlinks": true}}

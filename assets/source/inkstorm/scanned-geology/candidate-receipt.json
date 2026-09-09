@@ -1,0 +1,209 @@
+{
+  "date": "2026-09-07",
+  "status": "Staged art experiments only; not accepted or published",
+  "provenance": "CC0 Poly Haven scans; raw URLs, original provider MD5, SHA and local original-file archives in source-download-receipt.json",
+  "sourceScript": "build_closed_masses.py",
+  "sourceScriptSha256": "787d4d1f42dc917d5d9f5034bc238f39fea69d1ab3f6b92a3f1c787468b2ec93",
+  "paint": "Original diffuse luminance and ARM red ambient occlusion sampled into restricted vertex colors; moss/green source chroma discarded; no raster images edited or shipped",
+  "mesh": "Actual source fracture geometry reduced to about 15.3k front triangles, curved around a broad mass, paired with an asymmetric reversed rear, closed by authored faceted flanks/crown; no open boundary or non-manifold edges before glTF export",
+  "blenderTopology": [
+    {
+      "source": "rock_face_01",
+      "removedScanOverlapAndPinchFaces": 1,
+      "highBoundaryEdges": 0,
+      "highNonManifoldEdges": 0,
+      "signedVolume": 475202.7718560386
+    },
+    {
+      "source": "rock_face_02",
+      "removedScanOverlapAndPinchFaces": 26,
+      "highBoundaryEdges": 0,
+      "highNonManifoldEdges": 0,
+      "signedVolume": 514424.93178212177
+    }
+  ],
+  "visualLimitation": "Real irregular fracture detail is stronger on the scanned faces, but the backed crown/flanks still look manufactured. Review before any replacement; neutral asset renders do not establish in-world quality or concept parity.",
+  "performance": "High assets are about 4.2 times the old 7990-triangle broad buttress; 4.2k LODs also exceed the old 1798-triangle LOD. No FPS claim; use sparse near landmarks if accepted and benchmark actual runtime.",
+  "assets": [
+    {
+      "sourceAsset": "rock_face_01",
+      "rawSha256": "9cfe5a874ed67c9faf79d4b0d4f8c8be82a05a510162031245ba9f0fe6106a13",
+      "high": {
+        "asset": "candidate-1-high.glb",
+        "sha256": "a7aa00cb4309be08330d13acb2d86362c24b3dc3242d4687a514791b3abf71f9",
+        "bytes": 1119788,
+        "triangles": 34924,
+        "vertices": 25254,
+        "meshes": 1,
+        "primitives": 1,
+        "materials": 1,
+        "textures": 0,
+        "attributes": [
+          "POSITION",
+          "NORMAL",
+          "COLOR_0"
+        ],
+        "bounds": {
+          "min": [
+            -40,
+            0,
+            -50
+          ],
+          "max": [
+            40,
+            120,
+            50
+          ]
+        },
+        "normals": {
+          "min": 0.9999999158643434,
+          "max": 1.000000135946228
+        },
+        "validation": {
+          "numErrors": 0,
+          "numWarnings": 0,
+          "numInfos": 0,
+          "numHints": 0,
+          "messages": [],
+          "truncated": false
+        }
+      },
+      "lod": {
+        "asset": "candidate-1-lod.glb",
+        "sha256": "de03f3088d435282038efbd69cf0d86657f33e49d019ec25d1418176bd7a438b",
+        "bytes": 140236,
+        "triangles": 4200,
+        "vertices": 3165,
+        "meshes": 1,
+        "primitives": 1,
+        "materials": 1,
+        "textures": 0,
+        "attributes": [
+          "POSITION",
+          "NORMAL",
+          "COLOR_0"
+        ],
+        "bounds": {
+          "min": [
+            -40,
+            0,
+            -50
+          ],
+          "max": [
+            40,
+            120,
+            50
+          ]
+        },
+        "normals": {
+          "min": 0.9999999600994417,
+          "max": 1.000000042033745
+        },
+        "validation": {
+          "numErrors": 0,
+          "numWarnings": 0,
+          "numInfos": 0,
+          "numHints": 0,
+          "messages": [],
+          "truncated": false
+        },
+        "relativeAttributeAwareError": 0.010147172957658768,
+        "boundsNormalizationScales": [
+          1.0006173604978315,
+          1.0034385549403326,
+          1.0006399050662433
+        ]
+      }
+    },
+    {
+      "sourceAsset": "rock_face_02",
+      "rawSha256": "16078310beb7fd312c7a5cb432fb494f22c866e5b11ccdb02a380bc4dca4765d",
+      "high": {
+        "asset": "candidate-2-high.glb",
+        "sha256": "bb1bd17ec9ff7552b6601e6843c36617635cfb6bc11dd3dc6c8a78c8086a1a62",
+        "bytes": 1066772,
+        "triangles": 33888,
+        "vertices": 23954,
+        "meshes": 1,
+        "primitives": 1,
+        "materials": 1,
+        "textures": 0,
+        "attributes": [
+          "POSITION",
+          "NORMAL",
+          "COLOR_0"
+        ],
+        "bounds": {
+          "min": [
+            -40,
+            0,
+            -50
+          ],
+          "max": [
+            40,
+            120,
+            50
+          ]
+        },
+        "normals": {
+          "min": 0.9999999130262063,
+          "max": 1.000000140566529
+        },
+        "validation": {
+          "numErrors": 0,
+          "numWarnings": 0,
+          "numInfos": 0,
+          "numHints": 0,
+          "messages": [],
+          "truncated": false
+        }
+      },
+      "lod": {
+        "asset": "candidate-2-lod.glb",
+        "sha256": "ec0a9c3f9643cf3490302d2acc1222b6b9e1d3638babc77b4736c040289b1dd0",
+        "bytes": 146464,
+        "triangles": 4200,
+        "vertices": 3338,
+        "meshes": 1,
+        "primitives": 1,
+        "materials": 1,
+        "textures": 0,
+        "attributes": [
+          "POSITION",
+          "NORMAL",
+          "COLOR_0"
+        ],
+        "bounds": {
+          "min": [
+            -40,
+            0,
+            -50
+          ],
+          "max": [
+            40,
+            120,
+            50
+          ]
+        },
+        "normals": {
+          "min": 0.9999999562571585,
+          "max": 1.0000000396149755
+        },
+        "validation": {
+          "numErrors": 0,
+          "numWarnings": 0,
+          "numInfos": 0,
+          "numHints": 0,
+          "messages": [],
+          "truncated": false
+        },
+        "relativeAttributeAwareError": 0.012647190131247044,
+        "boundsNormalizationScales": [
+          1.0035932926925855,
+          1.004478880153483,
+          1.0012495758485207
+        ]
+      }
+    }
+  ]
+}

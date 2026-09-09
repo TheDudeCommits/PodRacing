@@ -1,0 +1,83 @@
+{
+  "groups": [
+    {
+      "stage": "Centrally applied V29 candidate; integrated validation and native acceptance pending",
+      "at": "2026-09-09T10:18:35.992147+00:00",
+      "patch": "assets/source/inkstorm/combat-round35/v29-two-beat-camera-preparation/v29-two-beat-camera-v2.patch",
+      "patchSha256": "041087a276e296909b542124d3e33746fb5beecae93d327e78ea6125acb248a9",
+      "files": [
+        {
+          "path": "src/camera/CinematicCamera.ts",
+          "before": "862a5787a34d6d767841b87b738a38d82b5b1bf074b1e54454f2a5f47bd9ecf9",
+          "after": "2bd0b85a1dc5ea3bcc44426801ae42c93016d3c26960a5a00e1edfb14584ff3b"
+        },
+        {
+          "path": "src/render/combat/TeemtoAuthoredDamage.ts",
+          "before": "f7a37f5be10d89e92ba8189b7860917c3fc99d03afce7fc880506c95358e7b59",
+          "after": "918c6904113bc77b34d35db1c6b6d024927e2ec71fd073799d9202ea9f0ce9a6"
+        },
+        {
+          "path": "src/render/combat/WreckVisualPose.ts",
+          "before": "2f634e7cbd07d166ecf2beaf16b02031b6e320c3c30aa16b074c7c10d5729e90",
+          "after": "e14f1c1cd2444c9d4d0fcd417092dd9263fa96783750871b9ffe7e8aa55e7b58"
+        },
+        {
+          "path": "tests/camera/TeemtoImpactFraming.test.ts",
+          "before": "fcbe52c429ef175fbbcc609d1f3b4d82de91f2fba4a7e6b993c498967324a91c",
+          "after": "7eb5d1e43cfd3515d6b0820238835413796586ed2d04dbf430623be42dd2e061"
+        },
+        {
+          "path": "tests/camera/TeemtoTwoBeatCamera.test.ts",
+          "before": null,
+          "after": "90f25e89dfda836d8b1f29d2db549d56e54f073a89cb0cf68b682a954173bf82"
+        }
+      ]
+    },
+    {
+      "stage": "Centrally applied V29 candidate; integrated validation and native acceptance pending",
+      "at": "2026-09-09T10:18:36.003888+00:00",
+      "patch": "output/critics/ui-threat-availability-v29/COMPACT_THREATS.patch",
+      "patchSha256": "e6b90c207614603a93a19225f53bf55a0838edc4d85fbc52c40fee5cbe1b0a73",
+      "files": [
+        {
+          "path": "src/ui/RaceHud.ts",
+          "before": "13f90eba907f2c515e84a02c6052b4458dda38744263881abd4ea5f97c717753",
+          "after": "30b8de037b69aece96d1c5fbefd4911e54608377005629204adbff19d6374bb4"
+        },
+        {
+          "path": "src/ui/threatLayout.ts",
+          "before": "76387452b421877917bc2237647bf4a33f6db61eca192a8c4b1e25f96ee14303",
+          "after": "facece02d5084d914511f8d4b4bab545bf6b042283686be8a12d0844ad02617a"
+        },
+        {
+          "path": "tests/ui/threatLayout.test.ts",
+          "before": "14a67f7b3c2dd1d1c9b802561f8329bd9bd28aa9aee31cd24d7f8b51d8fa1731",
+          "after": "b2357ff335984f3a162944fee940e3bb8f8c8bb74db9fa545322c6a0178bc3a8"
+        }
+      ]
+    },
+    {
+      "stage": "Centrally applied V29 candidate; integrated validation and native acceptance pending",
+      "at": "2026-09-09T10:18:36.014586+00:00",
+      "patch": "assets/source/inkstorm/combat-round35/v29-contact-consequence-preparation/v29-low-contact-consequence.patch",
+      "patchSha256": "89d3378145935b870fb1a6c6751ac6994e403ac827387f606aa82bebca057b92",
+      "files": [
+        {
+          "path": "src/render/galactic/GalacticEffectsView.ts",
+          "before": "c52ffbc8fe45adaaafb9512b42b8e3929b5c0e7f356c2bec065fb57a978e087c",
+          "after": "a622e49ab442fbc8705a80b377fbf45eec83de24ad85b2dad015668766015a69"
+        },
+        {
+          "path": "tests/render/WreckFootprintEffects.test.ts",
+          "before": "9e0143320ee12a6ce8a281d09806db4435298ee7d2604a8f0f5e40e9b5d93eed",
+          "after": "3103c2b152645609d20dc63f1679cef0ac6c316b1ea7cb1994af197bc3ba05e7"
+        },
+        {
+          "path": "tests/render/WreckContactConsequence.test.ts",
+          "before": null,
+          "after": "7b5dcb2c12039f8afa5f1b51dd2818eca4a603dfe367c7e6751870a84c3d2dcf"
+        }
+      ]
+    }
+  ]
+}

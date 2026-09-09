@@ -1,0 +1,101 @@
+{
+  "status": "PRIVATE FROZEN CANDIDATE; no live/public admission or native visual claim",
+  "patch": {
+    "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/combat-round35/v27-flame-atlas-integration/v27-flame-atlas.patch",
+    "bytes": 28187,
+    "sha256": "1d33e14be0abfdbf0f83beba0764e7ae0633c0ce19f4464908cccc00039fc2c1"
+  },
+  "files": [
+    {
+      "destination": "src/render/app/GameApp.ts",
+      "before": {
+        "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/combat-round35/v27-flame-atlas-integration/before/src/render/app/GameApp.ts",
+        "bytes": 175201,
+        "sha256": "6ad516d7a8579583711d18bab55ee82f475f98f85ccb4c3ebcf7929f4ad1f90a"
+      },
+      "candidate": {
+        "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/combat-round35/v27-flame-atlas-integration/candidate/src/render/app/GameApp.ts",
+        "bytes": 175339,
+        "sha256": "43b880c9018fec9f6d83157e5185633dac47b42df536f2556512214b9468f949"
+      }
+    },
+    {
+      "destination": "src/render/galactic/GalacticEffectsView.ts",
+      "before": {
+        "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/combat-round35/v27-flame-atlas-integration/before/src/render/galactic/GalacticEffectsView.ts",
+        "bytes": 81212,
+        "sha256": "e5f45006f2105c091c0e351305161297a63e8729dc08650759951403fe573ad9"
+      },
+      "candidate": {
+        "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/combat-round35/v27-flame-atlas-integration/candidate/src/render/galactic/GalacticEffectsView.ts",
+        "bytes": 83092,
+        "sha256": "aa4d086d6ef893268fc47a410e1cd574a6c883bffd77af4dd843cd6fea13420b"
+      }
+    },
+    {
+      "destination": "src/render/galactic/RuptureFlameAtlas.ts",
+      "before": null,
+      "candidate": {
+        "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/combat-round35/v27-flame-atlas-integration/candidate/src/render/galactic/RuptureFlameAtlas.ts",
+        "bytes": 5842,
+        "sha256": "1b31608f0bb490ffbe0810c42412fcac785906f0d9f85bd7881ffe2a0a71375d"
+      }
+    },
+    {
+      "destination": "tests/render/RuptureAtlasIntegration.test.ts",
+      "before": null,
+      "candidate": {
+        "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/combat-round35/v27-flame-atlas-integration/candidate/tests/render/RuptureAtlasIntegration.test.ts",
+        "bytes": 5083,
+        "sha256": "a84d67274761f24de1cecc669410c30ec9ed12134836c4ea39f8855cc1d55954"
+      }
+    },
+    {
+      "destination": "tests/render/RuptureAtlasPixels.test.ts",
+      "before": null,
+      "candidate": {
+        "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/combat-round35/v27-flame-atlas-integration/candidate/tests/render/RuptureAtlasPixels.test.ts",
+        "bytes": 4615,
+        "sha256": "822f8bb9405f5f893d378f0c9d749a6abede09353c5c54ae118929d13bf05f5d"
+      }
+    },
+    {
+      "destination": "tests/render/RuptureFlameAtlas.test.ts",
+      "before": null,
+      "candidate": {
+        "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/combat-round35/v27-flame-atlas-integration/candidate/tests/render/RuptureFlameAtlas.test.ts",
+        "bytes": 4494,
+        "sha256": "41d0cc180d7fe189692c748ae2b3ca901dcc196bcc6ad581dc21c3aa14176ad8"
+      }
+    }
+  ],
+  "tests": {
+    "focused": "51 tests /9files PASS",
+    "log": {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/combat-round35/v27-flame-atlas-integration/focused-v2.log",
+      "bytes": 217,
+      "sha256": "c22a7bff85418690dd61c03b2b693b22891aa12e65e3af6182d33905f013f4b6"
+    },
+    "typecheck": "PASS",
+    "typecheckLog": {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/combat-round35/v27-flame-atlas-integration/typecheck-v2.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "asset": {
+    "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/combat-round35/v27-flame-atlas-candidate/flame-atlas-raw-v1.png",
+    "bytes": 578105,
+    "sha256": "f14657a3388bf9618d0206806c7b9c54856bd7f54c98596ea1790d85c97dd4c5"
+  },
+  "pixelAudit": {
+    "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/combat-round35/v27-flame-atlas-candidate/raw-v1-metadata-audit.json",
+    "bytes": 4073,
+    "sha256": "ef278297386e2b295a1778325194a844e9ebb25a392bff70bdeeb8648185401c"
+  },
+  "handoff": {
+    "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/combat-round35/v27-flame-atlas-integration/HANDOFF.md",
+    "bytes": 4108,
+    "sha256": "537f67ee3a9e54ae842df18ef1fd92741b9d046a09b9179e047a5c8d326463ec"
+  }
+}

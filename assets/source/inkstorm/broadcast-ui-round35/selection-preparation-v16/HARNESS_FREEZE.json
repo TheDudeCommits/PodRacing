@@ -1,0 +1,26 @@
+{
+  "files": [
+    {
+      "source": "scripts/inkstorm-outgoing-takedown.ts",
+      "beforeSha256": "d6165fa7682c44581c915f972032848730017fec311923e1f8d2dd34fd6c204f",
+      "afterSha256": "6010609aaef719cbdf869ecb7e967698bd123d3c73f99c95e307500b5a49f496",
+      "bytes": 21524,
+      "nodeSyntaxCheck": true,
+      "whitespaceCheck": true,
+      "driverFrameBodyUnchanged": true,
+      "acceptanceBodyUnchanged": true
+    },
+    {
+      "source": "scripts/inkstorm-pickups.ts",
+      "beforeSha256": "051f685f0b344e358d9612e32d498451b44d0749ce781aadb2bf4af4bf04fb33",
+      "afterSha256": "3f688b8352a55c6a9eb26cfaf624255234325df9246ebff732d1d10322281419",
+      "bytes": 22743,
+      "nodeSyntaxCheck": true,
+      "whitespaceCheck": true,
+      "driverFrameBodyUnchanged": true,
+      "acceptanceBodyUnchanged": true
+    }
+  ],
+  "typecheck": "Not claimed: standalone tsc is blocked by missing @types/node; existing pickup fixture type errors also remain. Syntax checks passed with Node. No dependency/build/browser/runtime edits.",
+  "nativeValidation": "Pending actual runs on frozen integrated dist."
+}

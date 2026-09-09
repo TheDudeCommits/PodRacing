@@ -1,0 +1,43 @@
+{
+  "status": "PREPARED NOT EXECUTED",
+  "mcpExecuted": false,
+  "payload": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-ivory-round34/control-fit-preparation-v1/01-ivory-isolated-control-fit-prepared-v1.py",
+  "bytes": 177910,
+  "sha256": "4580bf1b005be525a52e836e4d5b52776ac0aefeb3bcb2af7f0efaa080b10996",
+  "astParsedAndCompiledOnly": true,
+  "safeImports": [
+    "bpy",
+    "json",
+    "math",
+    "mathutils.Vector"
+  ],
+  "computedAttributes": false,
+  "all12DatablockSetsAndFreshContextGuarded": true,
+  "existingThreeIvoryScenesGuarded": true,
+  "originalNodeTransformsPreserved": 55,
+  "changedExistingControlMeshes": 2,
+  "newMountMeshes": 2,
+  "expectedAddedIds": {
+    "scenes": 1,
+    "objects": 57,
+    "meshes": 53,
+    "materials": 51
+  },
+  "targetCounts": {
+    "objects": 57,
+    "meshes": 53,
+    "materials": 51,
+    "triangles": 44028
+  },
+  "cleanupReceiptSha256": "72f9efa252dcb233d7b95b484a8c9d766d42269bd7b250f59a8ec9040301c4e3",
+  "offlineMeasurementsSha256": "579394d46c8843de79a2bb7f20b66a5b0ff4d2d3c509669d50190a85b4f86b67",
+  "liveClearanceAgreementMetres": 1e-05,
+  "normalPolicy": "Measure four own disposable profile encodings in same invocation; retained fit must reproduce those exact JSON values. Encoding angles reported separately, no Colour tolerance, normal/visual review remains pending.",
+  "receiptPolicy": "Always print final JSON without terminal rethrow; acceptance false and rollback path retained on failures.",
+  "invocation": [
+    "Wait for root GPU/Blender release.",
+    "Execute exact payload once, save actual returned JSON and executed payload.",
+    "Inspect fitConstructedAndAudited, actual clearances, normal differences, all preservation guards and expected ID additions.",
+    "Only then render matched neutral driver/fullcraft for fit inspection; no mask or paint in this payload."
+  ]
+}

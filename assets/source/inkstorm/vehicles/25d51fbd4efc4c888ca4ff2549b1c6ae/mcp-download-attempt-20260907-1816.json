@@ -1,0 +1,88 @@
+{
+  "recordedAt": "2026-09-07 18:16:10 UTC",
+  "uid": "25d51fbd4efc4c888ca4ff2549b1c6ae",
+  "title": "Podracer",
+  "author": "JakacBatko",
+  "method": "official_blender_mcp",
+  "targetSize": 12,
+  "attempt": 1,
+  "requestInCurrentIntake": 1,
+  "backoffSincePreviousOfficialRequestSeconds": 3760,
+  "setup": {
+    "activeScene": "PodRacing — source 25d51fbd intake 1815",
+    "objects": 0,
+    "configured": true
+  },
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "Error: Download request failed with status code 429"
+      }
+    ],
+    "structuredContent": {
+      "result": "Error: Download request failed with status code 429"
+    },
+    "isError": false
+  },
+  "contextBefore": {
+    "scene": "Cruise — Going Merry source 4b2cb678",
+    "viewLayer": "ViewLayer",
+    "active": "Sketchfab_model.001",
+    "selected": [
+      "Sketchfab_model.001",
+      "cd32016bfac44aaea241abaa77bd8b56.fbx",
+      "RootNode",
+      "Object016",
+      "Object_4",
+      "Object016_02 - Default_0",
+      "Plane038",
+      "Object_7",
+      "Plane038_02 - Default_0",
+      "Plane045",
+      "Object_10",
+      "Plane045_02 - Default_0",
+      "Plane056",
+      "Object_13",
+      "Plane056_02 - Default_0"
+    ]
+  },
+  "contextVerification": {
+    "scene": "Cruise — Going Merry source 4b2cb678",
+    "viewLayer": "ViewLayer",
+    "active": "Sketchfab_model.001",
+    "selected": [
+      "Sketchfab_model.001",
+      "cd32016bfac44aaea241abaa77bd8b56.fbx",
+      "RootNode",
+      "Object016",
+      "Object_4",
+      "Object016_02 - Default_0",
+      "Plane038",
+      "Object_7",
+      "Plane038_02 - Default_0",
+      "Plane045",
+      "Object_10",
+      "Plane045_02 - Default_0",
+      "Plane056",
+      "Object_13",
+      "Plane056_02 - Default_0"
+    ],
+    "objects": 17,
+    "intakeObjects": 0,
+    "temporaryConfigurationEmpty": true,
+    "quarryObjects": 166
+  },
+  "contextComparison": {
+    "originalSceneMembershipChanged": [],
+    "addedScenes": [
+      "PodRacing — source 25d51fbd intake 1815"
+    ],
+    "originalSceneCount": 78,
+    "contextExact": true
+  },
+  "sourceImported": false,
+  "sourceGlb": null,
+  "rawArchivePreserved": false,
+  "scope": "One official request for the next saved unattempted candidate after more than one hour since the previous official request. Successful isolated empty-scene setup verified before download. HTTP 429; no imported objects. No alternative credentials, network path, unofficial source or repeated retry used. Temporary configuration cleared and original context restored. All 78 original scenes retain identical object membership. No full Blender file save, source export, render, or browser use."
+}

@@ -1,0 +1,46 @@
+{
+  "stage": "V17 renderer candidate, CPU verified, native visual acceptance pending",
+  "validation": "88 tests across10 files PASS; tsc noEmit PASS; scoped diff-check PASS",
+  "files": [
+    {
+      "path": "src/render/combat/TeemtoAuthoredDamage.ts",
+      "bytes": 12707,
+      "sha256": "4b2d9e1a54f312575f03e044d3bd7f2a50804c56534ed4f20cfc696a36dcfc78"
+    },
+    {
+      "path": "src/render/combat/WreckVisualPose.ts",
+      "bytes": 10353,
+      "sha256": "bbc539ab304fbd9b95116f09e685b4eb9f3ae2b875d5664072d950ec78b71f2d"
+    },
+    {
+      "path": "src/render/combat/WreckGroundContact.ts",
+      "bytes": 2065,
+      "sha256": "5d83c70c8b29e87e90e059e6873a9113b692537f3903ef9c14f05a4526fae075"
+    },
+    {
+      "path": "src/render/galactic/GalacticEffectsView.ts",
+      "bytes": 64948,
+      "sha256": "c1ff7a7f4710d937324ba751b246ef27cff97bd0f966cca067c26c5f9d8ac9b9"
+    },
+    {
+      "path": "tests/combat/TeemtoAuthoredDamage.test.ts",
+      "bytes": 14460,
+      "sha256": "cebf7b5cee14ea0ca13e52dc73ef8e5266778349188cf05ffd81f8813a246680"
+    },
+    {
+      "path": "tests/combat/AuthoredRupture.test.ts",
+      "bytes": 10323,
+      "sha256": "a6cfecb5e2163aa34d33b7f7dd34b9872f65023ccc9360e8f9c9c8d28209c0e0"
+    },
+    {
+      "path": "tests/combat/WreckGroundContact.test.ts",
+      "bytes": 3432,
+      "sha256": "dcb1df11624c8914c7608646a3f396409c35fc1100d318d1e9f766a04541210e"
+    },
+    {
+      "path": "src/render/app/GameApp.ts",
+      "bytes": 173781,
+      "sha256": "f3b821d06a919c4334f18eb5506036a8cbc148282dddd0dd09975a3c9ac00e58"
+    }
+  ]
+}

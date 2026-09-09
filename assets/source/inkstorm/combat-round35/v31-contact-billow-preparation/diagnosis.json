@@ -1,0 +1,58 @@
+{
+  "birth": {
+    "frame": 920,
+    "witness": [
+      18604.638206536303,
+      -13.541637197722302,
+      23.346492799652697
+    ],
+    "direction": [
+      0.9690140918746623,
+      0,
+      -0.24700544477465222
+    ],
+    "footprint": {
+      "center": [
+        18604.714036776008,
+        -13.548739667934417,
+        23.25438091654792
+      ],
+      "axis": [
+        -0.6118269354135042,
+        0,
+        0.7909916567843936
+      ],
+      "halfLength": 1.5275428902131598,
+      "halfWidth": 0.5113702284435114,
+      "edges": [
+        [
+          18600.67805432477,
+          -13.529446741523468,
+          24.51522082570685
+        ],
+        [
+          18604.596682738316,
+          -14.029343631093912,
+          27.40514843682308
+        ]
+      ]
+    },
+    "positionDifference": 0,
+    "nativeFrame": 920
+  },
+  "rows": [
+    {
+      "phase": "debris-return",
+      "native": {
+        "frame": 969,
+        "wallMs": 11663.8,
+        "cameraPosition": [
+          18627.292385532623,
+          -9.25189197067709,
+          27.651508510057557
+        ]
+      }
+    }
+  ],
+  "scope": "Actual V30 input reconstruction. Camera position from recorded sample closest first-native-wreck+1040ms; approximate video/native clock map, no recorded quaternion. Component target is chosen, not native pixel matching."
+}

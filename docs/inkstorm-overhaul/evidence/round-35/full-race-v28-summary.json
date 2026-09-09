@@ -1,0 +1,203 @@
+{
+  "build": "index-C6Q9wPWG.js",
+  "sha256": "77f0ed1228afb3909953ae940451e2b1b3cd76b552688ea7d1a154a68debd87d",
+  "scope": "Native RAF racing intervals, including all ordinary driving and post-player classification grace; no warmup/interior exclusions. M4 requested1440x900DPR2 adaptive. No capture/recording during collection. Not physical scanout timestamps.",
+  "races": {
+    "time-attack": {
+      "rawPath": "output/playwright/round35-ui-combat-full-race-v28/time-attack.json",
+      "rawSha256": "b00a2cfebe22f003ffa2c63ce19a549e256fa4dcacbcfd1a6d3693d712cf1fdc",
+      "samples": 3794,
+      "durationMs": 63730.9,
+      "meanHz": 59.53156161296953,
+      "p95Ms": 16.799999999995634,
+      "p99Ms": 16.80000000000291,
+      "maxMs": 33.400000000001455,
+      "over25Ms": 30,
+      "over50Ms": 0,
+      "rendererExtrema": {
+        "minDpr": 1,
+        "maxDpr": 2,
+        "maxCalls": 100,
+        "maxTriangles": 4919217
+      },
+      "acceptance": {
+        "outcome": "PASS",
+        "criteria": {
+          "minimumMeanHz": 40,
+          "maximumP95Ms": 25,
+          "boundaryToleranceSeconds": 0.05
+        },
+        "issues": []
+      }
+    },
+    "cup-round-1": {
+      "rawPath": "output/playwright/round35-ui-combat-full-race-v28/cup-round-1.json",
+      "rawSha256": "e421aa4952eda75d8ccace580d6abe920a78818cf83a9fcff3bc1b8ca18a75d8",
+      "samples": 8169,
+      "durationMs": 138111.3,
+      "meanHz": 59.14794806797127,
+      "p95Ms": 16.79999999998836,
+      "p99Ms": 33.30000000000291,
+      "maxMs": 33.40000000002328,
+      "over25Ms": 118,
+      "over50Ms": 0,
+      "rendererExtrema": {
+        "minDpr": 1.875,
+        "maxDpr": 2,
+        "maxCalls": 254,
+        "maxTriangles": 4979453
+      },
+      "acceptance": {
+        "outcome": "PASS",
+        "criteria": {
+          "minimumMeanHz": 40,
+          "maximumP95Ms": 25,
+          "boundaryToleranceSeconds": 0.05
+        },
+        "issues": []
+      }
+    }
+  },
+  "device": {
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+    "hardwareConcurrency": 10,
+    "requestedDpr": 2,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "canvas": {
+      "width": 2520,
+      "height": 1575
+    },
+    "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M4, Unspecified Version)",
+    "vendor": "Google Inc. (Apple)",
+    "webglVersion": "WebGL 2.0 (OpenGL ES 3.0 Chromium)"
+  },
+  "outcome": "PASS",
+  "errors": [],
+  "adapterCleanup": {
+    "browserCreated": true,
+    "browserClosed": true,
+    "serverPid": 50742,
+    "serverExitObserved": true,
+    "errors": [],
+    "scope": "Only this adapter browser/server; wrapper owns residual descendants."
+  },
+  "wrapperCleanup": {
+    "recordedAt": "2026-09-09T09:46:03.791496+00:00",
+    "port": 63470,
+    "unrelated5211": "Never signalled or adopted",
+    "ownedProcessGroup": 50687,
+    "actions": [],
+    "remainingOwnedPids": [],
+    "remainingOwnedGroup": false,
+    "ownedPortListening": false,
+    "unrelated5211ListeningReadOnly": false
+  },
+  "freezeComparisons": [
+    {
+      "recordedAt": "2026-09-09T09:46:00.049172+00:00",
+      "stage": "after-cup-round-1",
+      "unchanged": {
+        "build": true,
+        "source": true,
+        "public": true,
+        "dist": true,
+        "harness": true,
+        "configuration": true,
+        "tests": true
+      },
+      "expected": {
+        "path": "dist/assets/index-C6Q9wPWG.js",
+        "sha256": "77f0ed1228afb3909953ae940451e2b1b3cd76b552688ea7d1a154a68debd87d"
+      },
+      "scope": "Filesystem boundary check outside measured race/section sampling."
+    },
+    {
+      "recordedAt": "2026-09-09T09:43:36.135630+00:00",
+      "stage": "after-time-attack",
+      "unchanged": {
+        "build": true,
+        "source": true,
+        "public": true,
+        "dist": true,
+        "harness": true,
+        "configuration": true,
+        "tests": true
+      },
+      "expected": {
+        "path": "dist/assets/index-C6Q9wPWG.js",
+        "sha256": "77f0ed1228afb3909953ae940451e2b1b3cd76b552688ea7d1a154a68debd87d"
+      },
+      "scope": "Filesystem boundary check outside measured race/section sampling."
+    },
+    {
+      "recordedAt": "2026-09-09T09:43:36.482952+00:00",
+      "stage": "before-cup-round-1",
+      "unchanged": {
+        "build": true,
+        "source": true,
+        "public": true,
+        "dist": true,
+        "harness": true,
+        "configuration": true,
+        "tests": true
+      },
+      "expected": {
+        "path": "dist/assets/index-C6Q9wPWG.js",
+        "sha256": "77f0ed1228afb3909953ae940451e2b1b3cd76b552688ea7d1a154a68debd87d"
+      },
+      "scope": "Filesystem boundary check outside measured race/section sampling."
+    },
+    {
+      "recordedAt": "2026-09-09T09:42:27.558682+00:00",
+      "stage": "before-time-attack",
+      "unchanged": {
+        "build": true,
+        "source": true,
+        "public": true,
+        "dist": true,
+        "harness": true,
+        "configuration": true,
+        "tests": true
+      },
+      "expected": {
+        "path": "dist/assets/index-C6Q9wPWG.js",
+        "sha256": "77f0ed1228afb3909953ae940451e2b1b3cd76b552688ea7d1a154a68debd87d"
+      },
+      "scope": "Filesystem boundary check outside measured race/section sampling."
+    }
+  ],
+  "shortCrashCadence": {
+    "before": {
+      "samples": 58,
+      "durationMs": 966.6000000000004,
+      "meanHz": 60.0041382164287,
+      "p95Ms": 16.700000000000728,
+      "maximumMs": 16.799999999999272,
+      "over25Ms": 0
+    },
+    "cinematic": {
+      "samples": 49,
+      "durationMs": 816.7000000000007,
+      "meanHz": 59.99755112036238,
+      "p95Ms": 16.700000000000728,
+      "maximumMs": 16.80000000000109,
+      "over25Ms": 0
+    },
+    "return": {
+      "samples": 54,
+      "durationMs": 899.8999999999996,
+      "meanHz": 60.00666740748974,
+      "p95Ms": 16.700000000000728,
+      "maximumMs": 16.80000000000109,
+      "over25Ms": 0
+    }
+  },
+  "shortCrashCadenceCleanup": {
+    "browserClosed": true,
+    "serverExited": true,
+    "errors": []
+  }
+}

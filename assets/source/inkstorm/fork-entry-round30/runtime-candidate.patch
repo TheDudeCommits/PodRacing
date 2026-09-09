@@ -1,0 +1,359 @@
+--- a/src/render/inkstorm/InkstormBridge.ts
++++ b/src/render/inkstorm/InkstormBridge.ts
+@@ -1,13 +1,15 @@
+ import { BoxGeometry, BufferAttribute, BufferGeometry, Color, InstancedMesh, Matrix4, Quaternion, Vector3 } from 'three';
+ import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
+ import type { CourseRenderBranch } from '../../game/race/types';
++import type { PodraceCourse } from '../../game/race/course';
++import { createInkstormForkFoundation } from './InkstormForkFoundation';
+ import { InkstormSurfaceMaterial } from './InkstormSurfaceMaterial';
+ import { inkstormRoadCrossSection } from './InkstormRoad';
+ 
+ type Point = readonly [number, number, number];
+ 
+ /** Joined slab and low trim share the road's rows; branch points remain physics authority. */
+-export function createInkstormBridge(branch: CourseRenderBranch, heightAt: (x: number, z: number) => number): InstancedMesh {
++export function createInkstormBridge(branch: CourseRenderBranch, heightAt: (x: number, z: number) => number, course?: PodraceCourse): InstancedMesh {
+   const vertices: number[] = [], colors: number[] = [], pieces: BufferGeometry[] = [];
+   const steel = new Color('#303349'), trim = new Color('#d39865');
+   const rows = branch.points.map((point, index) => ({ point,
+@@ -76,7 +78,16 @@
+   const geometry = mergeGeometries(pieces, false);
+   for (const piece of pieces) piece.dispose();
+   if (!geometry) throw new Error('Unable to join the Inkstorm bridge.');
+-  const mesh = new InstancedMesh(geometry, new InkstormSurfaceMaterial(false), 1);
++  const foundation = course ? createInkstormForkFoundation(branch, heightAt, course) : null;
++  const joined = foundation ? mergeGeometries([geometry, foundation], true) : geometry;
++  if (!joined) throw new Error('Unable to join the Inkstorm fork foundation.');
++  if (foundation) { geometry.dispose(); foundation.dispose(); }
++  // Original bridge geometry and paint occupy group 0 without alteration.
++  // One added stone group uses the existing rock shader and shared paint.
++  const material = foundation
++    ? [new InkstormSurfaceMaterial(false), new InkstormSurfaceMaterial(true)]
++    : new InkstormSurfaceMaterial(false);
++  const mesh = new InstancedMesh(joined, material, 1);
+   mesh.name = `Inkstorm raised fork / ${branch.label}`;
+   mesh.setMatrixAt(0, new Matrix4()); mesh.instanceMatrix.needsUpdate = true;
+   mesh.computeBoundingSphere(); return mesh;
+--- a/src/render/inkstorm/InkstormWorld.ts
++++ b/src/render/inkstorm/InkstormWorld.ts
+@@ -109,7 +109,7 @@
+     const roadData=course.getRenderData(1536);this.roads.push(createInkstormRoad(roadData.points,true,false,this.gulfUniforms));
+     for(const branch of roadData.branches??[]){
+       this.roads.push(createInkstormRoad(branch.points.map(p=>({...p,progress:p.canonicalProgress,tag:'recovery-straight' as const})),false,branch.elevated,this.gulfUniforms));
+-      if(branch.elevated)this.roads.push(createInkstormBridge(branch,this.heightAt));
++      if(branch.elevated)this.roads.push(createInkstormBridge(branch,this.heightAt,course));
+     }
+     this.roads.push(createInkstormShadows(getInkstormLayout(course),this.gulfUniforms));
+     this.roads.push(createInkstormFoundations(getInkstormLayout(course), this.heightAt, this.pitAnchorHeight));
+--- /dev/null
++++ b/src/render/inkstorm/InkstormForkFoundation.ts
+@@ -0,0 +1,115 @@
++import {BufferAttribute,BufferGeometry,Color,Vector3} from 'three';
++import type {CourseRenderBranch} from '../../game/race/types';
++import type {PodraceCourse} from '../../game/race/course';
++import {inkstormRoadCrossSection} from './InkstormRoad';
++import {sampleBridgeSurface} from '../../game/race/bridgeSurface';
++import {FORK_ISLAND_CONTACTS} from './ForkIslandContacts';
++
++type Point=readonly[number,number,number];
++type HeightAt=(x:number,z:number)=>number;
++const smooth=(a:number,b:number,x:number)=>{const t=Math.max(0,Math.min(1,(x-a)/(b-a)));return t*t*(3-2*t);};
++
++/** Render-only closed support beneath the unchanged elevated physics deck. */
++export function createInkstormForkFoundation(branch:CourseRenderBranch,heightAt:HeightAt,course:PodraceCourse):BufferGeometry|null{
++ if(course.seed!==0x494e4b53||branch.id!=='branch-1-shortcut')return null;
++ const positions:number[]=[],colors:number[]=[],kinds:number[]=[];
++ const palette=['#8e654b','#aa7953','#795640','#93694d'].map(c=>new Color(c));
++ const a=new Vector3(),b=new Vector3(),c=new Vector3();
++ const triangle=(p:Point,q:Point,r:Point,color:Color,kind:number)=>{
++  p=safePoint(p);q=safePoint(q);r=safePoint(r);
++  a.fromArray(p);b.fromArray(q).sub(a);c.fromArray(r).sub(a);if(b.cross(c).lengthSq()<1e-12)return;
++  for(const v of (kind===1?[p,r,q]:[p,q,r])){positions.push(...v);colors.push(color.r,color.g,color.b);kinds.push(kind);}
++ };
++ const quad=(p:Point,q:Point,r:Point,s:Point,color:Color,kind:number)=>{triangle(p,q,r,color,kind);triangle(p,r,s,color,kind);};
++ const roadRows=branch.points.map((p,i)=>({...p,...inkstormRoadCrossSection(branch.points,i,false)}));
++ const canonical=course.getRenderData(1536).points;
++ const clearance=(x:number,z:number)=>{let value=Infinity;for(let i=0;i<canonical.length;i++){const p=canonical[i]!,q=canonical[(i+1)%canonical.length]!,dx=q.x-p.x,dz=q.z-p.z,t=Math.max(0,Math.min(1,((x-p.x)*dx+(z-p.z)*dz)/Math.max(1e-8,dx*dx+dz*dz)));value=Math.min(value,Math.hypot(x-p.x-dx*t,z-p.z-dz*t)-Math.max(p.width,q.width));}return value;};
++ // Added stone stays below the exact road physics, including the finite end
++ // planes. Quantize X/Z first because world coordinates are ultimately Float32.
++ // At the shared entry/exit the stone settles under terrain; it never forms a
++ // new obstacle on the canonical racing lane.
++ const ceilings=new Map<string,number>();
++ const safePoint=(p:Point):Point=>{
++  const x=Math.fround(p[0]),z=Math.fround(p[2]),key=x+','+z;
++  let ceiling=ceilings.get(key);
++  if(ceiling===undefined){
++   const deck=sampleBridgeSurface(course.branches,x,z);ceiling=deck?deck.height-.45:Infinity;
++   if(clearance(x,z)<1)ceiling=Math.min(ceiling,heightAt(x,z)-.35);
++   ceilings.set(key,ceiling);
++  }
++  return [x,Math.fround(Math.min(p[1],ceiling)),z];
++ };
++ const rings:Point[][]=[],footPoints:Point[]=[];
++ for(let index=0;index<roadRows.length-1;index++){
++  const p=roadRows[index]!,q=roadRows[index+1]!,steps=Math.max(1,Math.ceil(Math.hypot(q.x-p.x,q.z-p.z)/4));
++  for(let step=0;step<steps+(index===roadRows.length-2?1:0);step++){
++   const t=step/steps,x=p.x+(q.x-p.x)*t,y=p.y+(q.y-p.y)*t,z=p.z+(q.z-p.z)*t,width=p.width+(q.width-p.width)*t;
++   // Interpolate the actual road-row boundaries instead of inventing a new
++   // tangent. This retains the deck's miter and finite entry/exit planes.
++   const edges=[-1,1].map(side=>({x:p.x+p.rightX*p.width*side+(q.x+q.rightX*q.width*side-p.x-p.rightX*p.width*side)*t,z:p.z+p.rightZ*p.width*side+(q.z+q.rightZ*q.width*side-p.z-p.rightZ*p.width*side)*t}));
++   const rightX=(edges[1]!.x-edges[0]!.x)/(2*width),rightZ=(edges[1]!.z-edges[0]!.z)/(2*width);
++   const at=(side:number,extra:number,height:number):Point=>[x+rightX*(side*width+extra),height,z+rightZ*(side*width+extra)];
++   const ground=edges.map(e=>heightAt(e.x,e.z));
++   const cap=y-.22;
++   // Flared toes are buried; where routes overlap, all visible material stays
++   // within the existing bridge footprint and below its legal surface.
++   const flares=edges.map(e=>smooth(4,12,clearance(e.x,e.z))*2.2);
++   const ring:Point[]=[at(-1,.10,cap),at(1,-.10,cap)];
++   for(const side of [1,-1]){
++    const k=side===1?1:0,edge=edges[k]!,flare=flares[k]!,footX=edge.x+rightX*side*flare,footZ=edge.z+rightZ*side*flare;
++    let bottom=Math.min(heightAt(footX,footZ),ground[k]!)-1.25;
++    // Preserve a closed, buried foundation even on a bank which rises over
++    // the deck edge. No new top surface may rise above the original deck.
++    bottom=Math.min(bottom,cap-.10);
++    const height=cap-bottom;
++    const band=(fraction:number,extra:number):Point=>at(side,side*extra,Math.min(cap-.04,bottom+height*fraction));
++    if(side===1)ring.push(band(.78,flare*.12),band(.38,flare*.62),at(side,side*flare,bottom));
++    else ring.push(at(side,side*flare,bottom),band(.38,flare*.62),band(.78,flare*.12));
++   }
++   rings.push(ring);footPoints.push(safePoint(ring[4]!),safePoint(ring[5]!));
++  }
++ }
++ // Ring order is clockwise when viewed along the branch: outward normals.
++ for(let i=0;i<rings.length-1;i++)for(let j=0;j<rings[i]!.length;j++){
++  const k=(j+1)%rings[i]!.length;quad(rings[i]![j]!,rings[i+1]![j]!,rings[i+1]![k]!,rings[i]![k]!,palette[j%palette.length]!,0);
++ }
++ for(const [index,reverse]of [[0,false],[rings.length-1,true]]as const){const ring=rings[index]!;for(let i=1;i<ring.length-1;i++)reverse?triangle(ring[0]!,ring[i+1]!,ring[i]!,palette[0]!,0):triangle(ring[0]!,ring[i]!,ring[i+1]!,palette[0]!,0);}
++
++ // A closed rock buttress connects the causeway flank to measured triangles
++ // of the existing island scan. Ends settle into true terrain. These contacts
++ // are authored for the flagship seed and pinned to its source GLB hash.
++ const matches=FORK_ISLAND_CONTACTS.every(contact=>{
++  const i=Math.floor(contact.row),t=contact.row-i,p=roadRows[i]!,q=roadRows[i+1]!;
++  return Math.hypot(p.x+(q.x-p.x)*t-contact.center[0],p.z+(q.z-p.z)*t-contact.center[1])<.01
++   &&Math.abs(p.y+(q.y-p.y)*t-.45-contact.start[1])<.01;
++ });
++ if(matches){
++  const top:Point[][]=[],bottom:Point[][]=[];const across=12;
++  for(let row=0;row<FORK_ISLAND_CONTACTS.length;row++){
++   const contact=FORK_ISLAND_CONTACTS[row]!,blend=smooth(0,2,row)*(1-smooth(FORK_ISLAND_CONTACTS.length-3,FORK_ISLAND_CONTACTS.length-1,row));
++   top[row]=[];bottom[row]=[];
++   for(let j=0;j<=across;j++){
++    const t=j/across,x=contact.start[0]+(contact.inside[0]-contact.start[0])*t,z=contact.start[2]+(contact.inside[2]-contact.start[2])*t,g=heightAt(x,z);
++    // The diagonal spur has a shallow saddle, visible depth and a planted toe;
++    // it is not a vertical backdrop or a road painted over empty space.
++    const maxTop=contact.start[1],rise=Math.max(0,maxTop-g),saddle=Math.sin(t*Math.PI)*Math.min(4.5,rise*.35);
++    const h=Math.min(maxTop,g+(rise-saddle)*blend);
++    top[row]![j]=[x,h,z];bottom[row]![j]=[x,Math.min(g-1.25,h-.1),z];
++   }
++  }
++  for(let row=0;row<top.length-1;row++)for(let j=0;j<across;j++){
++   quad(top[row]![j]!,top[row+1]![j]!,top[row+1]![j+1]!,top[row]![j+1]!,palette[0]!,1);
++   quad(bottom[row]![j+1]!,bottom[row+1]![j+1]!,bottom[row+1]![j]!,bottom[row]![j]!,palette[2]!,1);
++  }
++  for(let row=0;row<top.length-1;row++)for(const j of [0,across]){
++   if(j===0)quad(bottom[row]![j]!,bottom[row+1]![j]!,top[row+1]![j]!,top[row]![j]!,palette[0]!,1);
++   else quad(top[row]![j]!,top[row+1]![j]!,bottom[row+1]![j]!,bottom[row]![j]!,palette[0]!,1);
++  }
++  for(const row of [0,top.length-1])for(let j=0;j<across;j++){
++   if(row===0)quad(bottom[row]![j+1]!,bottom[row]![j]!,top[row]![j]!,top[row]![j+1]!,palette[0]!,1);
++   else quad(bottom[row]![j]!,bottom[row]![j+1]!,top[row]![j+1]!,top[row]![j]!,palette[0]!,1);
++  }
++ }
++ const geometry=new BufferGeometry();geometry.setAttribute('position',new BufferAttribute(new Float32Array(positions),3));geometry.setAttribute('color',new BufferAttribute(new Float32Array(colors),3));geometry.computeVertexNormals();geometry.computeBoundingBox();geometry.computeBoundingSphere();
++ geometry.userData={scope:'view-only flagship fork support',triangleKinds:kinds.filter((_,i)=>i%3===0),footPoints,islandConnected:matches,sourceContacts:FORK_ISLAND_CONTACTS.length};return geometry;
++}
+--- /dev/null
++++ b/src/render/inkstorm/ForkIslandContacts.ts
+@@ -0,0 +1,190 @@
++/** Actual source triangle contacts; canyon-buttress SHA256 ad9f484c3cd751e9042ecc332e9517c7c21d34919758dfdaa89bde77f153a5e6. */
++export const FORK_ISLAND_CONTACTS=[
++  {
++    "row": 5,
++    "center": [
++      18486.30655655581,
++      -847.5163962105269
++    ],
++    "start": [
++      18475.26154855846,
++      8.342260414309207,
++      -849.9034023559987
++    ],
++    "inside": [
++      18423.562704927896,
++      8.342260414309207,
++      -805.696826423318
++    ]
++  },
++  {
++    "row": 5.5,
++    "center": [
++      18483.893699084587,
++      -837.4339889214793
++    ],
++    "start": [
++      18472.935160267974,
++      9.763386209996053,
++      -840.1908761162733
++    ],
++    "inside": [
++      18419.119961739645,
++      9.763386209996053,
++      -799.3248121321851
++    ]
++  },
++  {
++    "row": 6,
++    "center": [
++      18481.480841613364,
++      -827.3515816324318
++    ],
++    "start": [
++      18470.62115505854,
++      11.184512005682901,
++      -830.4752346110774
++    ],
++    "inside": [
++      18416.81027524882,
++      11.184512005682901,
++      -795.0756446771037
++    ]
++  },
++  {
++    "row": 6.5,
++    "center": [
++      18478.230460031504,
++      -817.745181803039
++    ],
++    "start": [
++      18467.538283544025,
++      12.900839897028938,
++      -821.4013221122492
++    ],
++    "inside": [
++      18412.261607804234,
++      12.900839897028938,
++      -790.2093349925217
++    ]
++  },
++  {
++    "row": 7,
++    "center": [
++      18474.980078449647,
++      -808.1387819736464
++    ],
++    "start": [
++      18464.481504187395,
++      14.617167788374976,
++      -812.3184875206848
++    ],
++    "inside": [
++      18407.94177065731,
++      14.617167788374976,
++      -786.1718775342996
++    ]
++  },
++  {
++    "row": 7.5,
++    "center": [
++      18470.602725776273,
++      -798.5858573888967
++    ],
++    "start": [
++      18460.27191041652,
++      16.655871593073567,
++      -803.1645312146525
++    ],
++    "inside": [
++      18402.706149952377,
++      16.655871593073567,
++      -782.6412668590301
++    ]
++  },
++  {
++    "row": 8,
++    "center": [
++      18466.225373102898,
++      -789.032932804147
++    ],
++    "start": [
++      18456.07747175006,
++      18.694575397772155,
++      -794.0038580835187
++    ],
++    "inside": [
++      18402.352639679222,
++      18.694575397772155,
++      -781.3002379488372
++    ]
++  },
++  {
++    "row": 8.5,
++    "center": [
++      18461.029580513445,
++      -779.0427485502514
++    ],
++    "start": [
++      18450.912773108663,
++      20.573661323305814,
++      -784.0766543831572
++    ],
++    "inside": [
++      18401.83519448406,
++      20.573661323305814,
++      -779.7532452717595
++    ]
++  },
++  {
++    "row": 9,
++    "center": [
++      18455.833787923995,
++      -769.0525642963559
++    ],
++    "start": [
++      18445.748465336506,
++      22.452747248839472,
++      -774.1492561946674
++    ],
++    "inside": [
++      18401.386580111557,
++      22.452747248839472,
++      -778.0934830626135
++    ]
++  },
++  {
++    "row": 9.5,
++    "center": [
++      18450.485209535513,
++      -758.1775707218967
++    ],
++    "start": [
++      18440.264851423795,
++      23.723964175645644,
++      -762.997765745781
++    ],
++    "inside": [
++      18399.824808672376,
++      23.723964175645644,
++      -776.3926703057128
++    ]
++  },
++  {
++    "row": 10,
++    "center": [
++      18445.13663114703,
++      -747.3025771474374
++    ],
++    "start": [
++      18434.788816145094,
++      24.99518110245182,
++      -751.8427010098153
++    ],
++    "inside": [
++      18398.935135541098,
++      24.99518110245182,
++      -774.644843017471
++    ]
++  }
++] as const;

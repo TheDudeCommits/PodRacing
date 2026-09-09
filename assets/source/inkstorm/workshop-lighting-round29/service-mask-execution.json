@@ -1,0 +1,61 @@
+{
+  "status": "SERVICE_MASK_CORRECTION_VALIDATED_AWAITING_ROOT_IN_WORLD_AB",
+  "runtimeFilesEdited": [
+    "src/render/inkstorm/InkstormSurfaceMaterial.ts"
+  ],
+  "runtimeMaterialSha256": "bf63c30c6c1e273275389e3468866ceb3dd9864ca5ef32fc091e8f66fdbf7d3a",
+  "checks": {
+    "typecheck": "PASS",
+    "focusedDiffCheck": "PASS",
+    "actualGpuProbe": "PASS"
+  },
+  "totalAuditedVertices": 83689,
+  "oldMisclassifiedVertexEntries": 8654,
+  "lampStrengthAndAnchorChanges": false,
+  "assets": [
+    {
+      "path": "public/assets/inkstorm/pit-complex.glb",
+      "sha256": "57866979d90b8dd2f1be5204df496307ec89b8c3f847900c5a154566fdd8129a",
+      "matchesAuditedAsset": true
+    },
+    {
+      "path": "public/assets/inkstorm/pit-district.glb",
+      "sha256": "c5aa216edc139efe484981b390946f3a7464587ab508fe5ffec2d8c999240447",
+      "matchesAuditedAsset": true
+    },
+    {
+      "path": "public/assets/inkstorm/foundry-gantry.glb",
+      "sha256": "3d0cd999daf52b82ac0232c7316a5e4072c80bd83982f83cbaf4a1dcde11e862",
+      "matchesAuditedAsset": true
+    },
+    {
+      "path": "public/assets/inkstorm/pipe-bank.glb",
+      "sha256": "4b3510d0f8b10e1a44158edb0b0bbdc25bac33019176368638937ab1834a3b81",
+      "matchesAuditedAsset": true
+    },
+    {
+      "path": "public/assets/inkstorm/finish-tower.glb",
+      "sha256": "b2100d2c3415ac0cdb8f0fd573ac292583cf7858812b5452f05363698b8885e8",
+      "matchesAuditedAsset": true
+    },
+    {
+      "path": "public/assets/inkstorm/refinery-stack.glb",
+      "sha256": "0f52f2e0cc195a5fe36853f543cfad8e4c9a2391d5083b016f71ffe4f1f7f781",
+      "matchesAuditedAsset": true
+    }
+  ],
+  "stagedFileSha256s": {
+    "service-mask-audit.json": "016a81b88c2a8cb7f535e27193f207089b999c4b8fde2f05e44eed6df4f3b5a0",
+    "service-probe-palette.json": "275d51bd9975a9fabe23d1c54f624d5e573dcb41e49da45acb4b5944b619bb5c",
+    "audit-service-mask.mjs": "3ac381adf75687048124c8fad9e428916976478b29c488c564733cd0de025cf4",
+    "service-probe-client.mjs": "be89adac35ae513508bb2106905e61d2bcfac1b05eb73567592c494a660228bb",
+    "service-probe-original.ts": "557d81fb05af55ada90c1f212372ce107dbab2698186897aefe98832dc1218db",
+    "gpu-service-probe.json": "6eb7ce34ba584306ea4bd825b537002808e7a5df1d85dd2528d91e838b986073",
+    "gpu-service-probe.png": "7c163109564e49df077b8a358be200b3fea47f8ae4db697fe10a0500f959388c",
+    "service-mask-correction.patch": "80de1f91eef6ab9e28dece5dcce6006dbd95f4fc9665f999c769ba1588d4de1e"
+  },
+  "browserClosed": true,
+  "probeServerStopped": true,
+  "consoleOnlyNonShaderError": "favicon.ico404",
+  "limits": "Controlled material probe, not in-world art/parity/FPS acceptance; wear comparison includes enamel sheen."
+}

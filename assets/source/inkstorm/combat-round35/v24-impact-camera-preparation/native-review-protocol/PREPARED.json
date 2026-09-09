@@ -1,0 +1,20 @@
+{
+  "status": "PREPARED ONLY; awaiting root native-four-case receipt and source WebM completion/release",
+  "expectedEvidenceRoot": "output/playwright/round35-combat-v24",
+  "case": "solo-chase",
+  "phaseOffsetsSeconds": [
+    0,
+    0.04,
+    0.52,
+    1.04,
+    1.84,
+    2.88
+  ],
+  "firstCutRule": "Visually locate first source-video cut. Never use native wall clock or select a preferred shot.",
+  "promptSha256": "336d5a5414ac6dfc77d745415ae2f54504635d9434cc8ce94b0921f34ed359b4",
+  "reference": "/Users/amir/Projects/PodRacing/output/reference-ui-round35/UI-takedown-motion.jpg",
+  "referenceSha256": "065476fff16d5986a4173ba374dd308b326d976687db4413f1b9b0f81b8bcb21",
+  "extractor": "assets/source/inkstorm/combat-round35/v19-recovery-camera/prepare-temporal-review.py",
+  "critic": "Separate ephemeral image-only process, exact six native phases plus unchanged reference; audit original/attachment hashes, argv, raw events and final text.",
+  "scope": "Implementation-aware dense review separate from fresh image-only critic; no source changes, browser, decode, encode or critic execution yet."
+}

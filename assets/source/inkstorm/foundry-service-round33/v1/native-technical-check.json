@@ -1,0 +1,86 @@
+{
+  "status": "PASS",
+  "artifact": "assets/source/inkstorm/foundry-service-round33/v1/foundry-service-gantry-v1-native.glb",
+  "bytes": 439424,
+  "sha256": "41f52534400704655d551e4d1feabae61d6102506d2ed2496938e1aeaf48c01c",
+  "nodeNames": [
+    "foundry-service-gantry-v1"
+  ],
+  "meshes": 1,
+  "referencedPrimitives": 1,
+  "triangles": 6500,
+  "vertices": 11074,
+  "materials": [
+    {
+      "doubleSided": true,
+      "name": "Inkstorm_Industrial_Revision_Paint.001",
+      "pbrMetallicRoughness": {
+        "metallicFactor": 0,
+        "roughnessFactor": 0.8399999737739563
+      }
+    }
+  ],
+  "images": 0,
+  "animations": 0,
+  "attributes": {
+    "POSITION": {
+      "type": "VEC3",
+      "componentType": 5126,
+      "normalized": null
+    },
+    "NORMAL": {
+      "type": "VEC3",
+      "componentType": 5126,
+      "normalized": null
+    },
+    "COLOR_0": {
+      "type": "VEC3",
+      "componentType": 5126,
+      "normalized": null
+    }
+  },
+  "normals": {
+    "finite": true,
+    "zeroVectors": 0,
+    "nonUnitBeyond1e4": 0,
+    "minLength": 0.9999999418738815,
+    "maxLength": 1.0000001109759231,
+    "maxLengthError": 1.1097592311770654e-07
+  },
+  "geometry": {
+    "boundsGltf": [
+      [
+        -52.0,
+        52.0
+      ],
+      [
+        -25.0,
+        61.45000076293945
+      ],
+      [
+        -7.0,
+        7.0
+      ]
+    ],
+    "clippedOpenCorridorMinimumY": 39.66999816894531
+  },
+  "inputs": {
+    "predecessors/foundry-gantry-round32.glb": {
+      "bytes": 438724,
+      "sha256": "3d0cd999daf52b82ac0232c7316a5e4072c80bd83982f83cbaf4a1dcde11e862"
+    },
+    "failed-normal-reencode-v1/author-service-gantry-mcp-safe.py": {
+      "bytes": 26668,
+      "sha256": "8ae49a85e052ec86bcb76aca5e57c3f88515bbf6fdc7d8100537b70366b11da0"
+    },
+    "author-service-gantry-mcp-safe.py": {
+      "bytes": 27925,
+      "sha256": "3fd60dd4b3b1b15355ee47f927299fd6c9629665859797d2acc8a591e20f4e09"
+    },
+    "export-render-service-gantry-mcp-safe.py": {
+      "bytes": 14110,
+      "sha256": "5c0c7768231f77d4518878d3a5031c811969e01b6210e738adc02829ad64b306"
+    }
+  },
+  "publicOriginalSha256": "3d0cd999daf52b82ac0232c7316a5e4072c80bd83982f83cbaf4a1dcde11e862"
+}

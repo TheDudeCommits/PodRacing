@@ -1,0 +1,7 @@
+{
+  "extends": "/Users/amir/Projects/PodRacing/tsconfig.json",
+  "include": [
+    "test-runtime/*.ts",
+    "portable-test-check/*.ts"
+  ]
+}

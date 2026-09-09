@@ -1,0 +1,32 @@
+{
+  "scope": "Final private balanced-aim V24 source and camera QA; no live edits/browser/build/GPU. CPU released.",
+  "validation": {
+    "newActualCameraTests": 4,
+    "unchangedCameraTests": 25,
+    "runtimeFiles": 4,
+    "typescript": "PASS",
+    "newTestWhitespace": "PASS"
+  },
+  "targetWidthFraction": [
+    0.65,
+    0.75
+  ],
+  "targetMetAtMeasuredSourcePoses": false,
+  "files": {
+    "candidate/src/camera/CinematicCamera.ts": "862a5787a34d6d767841b87b738a38d82b5b1bf074b1e54454f2a5f47bd9ecf9",
+    "candidate/src/render/app/GameApp.ts": "6ad516d7a8579583711d18bab55ee82f475f98f85ccb4c3ebcf7929f4ad1f90a",
+    "candidate/src/render/combat/WreckVisualPose.ts": "2f634e7cbd07d166ecf2beaf16b02031b6e320c3c30aa16b074c7c10d5729e90",
+    "candidate/src/render/combat/TeemtoAuthoredDamage.ts": "8823718236f00cad5dafc109056ca554c67fb09ad30462069bb1180281703841",
+    "candidate/tests/camera/TeemtoImpactFraming.test.ts": "fcbe52c429ef175fbbcc609d1f3b4d82de91f2fba4a7e6b993c498967324a91c",
+    "candidate/tests/fixtures/teemtoActualCamera.ts": "2c67ce683eae39dafec9060ad5848d7e66a14067b29eac1d4d3ac2716d1ac03f",
+    "same-snapshot-metrics.json": "7af6bda10aaa80fd5ea2cf689514e86fc2d54759382a0fbd554381b7575a8667",
+    "focused-final.log": "fe65d2f3f00d05593fdf6b1d112e4b12b887ce095f73ccbe213aedd3355b1879",
+    "compatibility-tests.log": "c0759331290f0b6e57b4ab97d090b87ab888b3bdfde95b72353aa4eea8852b91",
+    "typecheck-final.log": "3885676a8746bf95d2b45be70bcfd15d8a44e988ba2df606be6c27b5b5cba5bf",
+    "vitest.config.ts": "b8a198bd14c5ec820a606074dc0c3e5aeb5521e2674ac69875ed8c73c096d551",
+    "vitest.compat.config.ts": "9018dc367e7c82cdbe394bbd72e4893ed10a5cae2590e91a8f6874304d5bba15",
+    "tsconfig.candidate.json": "4a40b9c10fed76b4594a32bb4647632bcda7f3b7984507a295dbc0f185622313",
+    "typecheck.mjs": "af60387fb1b8c19748fe256f2a34d2d8192056ff0e871539114e28f72d9bf7f9",
+    "QA.md": "96703197c17b173b3d072dd69345c1a092b39cbc1246de956d8d2196fa4d0e79"
+  }
+}

@@ -1,0 +1,68 @@
+[
+  {
+    "asset": "canyon-buttress.glb",
+    "bytes": 716600,
+    "sha256": "a65200e93cf582925bd4ee496e9a91569152156e59c56a23a157bd8a66b708e2",
+    "meshes": [
+      "canyon-buttress-mesh"
+    ],
+    "nodes": [
+      "canyon-buttress"
+    ],
+    "meshCount": 1,
+    "primitiveCount": 1,
+    "materialCount": 1,
+    "vertices": 18544,
+    "triangles": 7990,
+    "vertexColorAttribute": "COLOR_0",
+    "meshBoundsGltf": {
+      "min": [
+        -40,
+        0,
+        -50
+      ],
+      "max": [
+        40,
+        120,
+        50
+      ]
+    },
+    "source": "Original Blender geometry built through Blender MCP",
+    "sourceScript": "build_fractured_rocks.py",
+    "refinement": "glTF Transform 4.5.0 dedup + prune; mixed smooth walls and hard fracture planes",
+    "validation": "Khronos glTF validator: zero errors, warnings, infos or hints"
+  },
+  {
+    "asset": "sandstone-scree.glb",
+    "bytes": 599300,
+    "sha256": "b6a3688af319752f7a4d02d95d1600225310b22e573adecc5274a04fbdf5af7c",
+    "meshes": [
+      "sandstone-scree-mesh"
+    ],
+    "nodes": [
+      "sandstone-scree"
+    ],
+    "meshCount": 1,
+    "primitiveCount": 1,
+    "materialCount": 1,
+    "vertices": 15642,
+    "triangles": 5852,
+    "vertexColorAttribute": "COLOR_0",
+    "meshBoundsGltf": {
+      "min": [
+        -17.5,
+        0,
+        -11
+      ],
+      "max": [
+        17.5,
+        12,
+        11
+      ]
+    },
+    "source": "Original Blender geometry built through Blender MCP",
+    "sourceScript": "build_fractured_rocks.py",
+    "refinement": "glTF Transform 4.5.0 dedup + prune; mixed smooth walls and hard fracture planes",
+    "validation": "Khronos glTF validator: zero errors, warnings, infos or hints"
+  }
+]

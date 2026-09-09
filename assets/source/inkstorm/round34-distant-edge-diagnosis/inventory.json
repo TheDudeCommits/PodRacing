@@ -1,0 +1,131 @@
+{
+  "status": "private candidate prepared; not applied or runtime validated",
+  "observedImageCount": 1,
+  "reviewScope": "Actual image independently viewed with prior project context; no fresh blind claim; attempted secondary agent unavailable at thread limit",
+  "inputs": [
+    {
+      "path": "/Users/amir/Projects/PodRacing/output/gauntlet/round34-blockrunner-admission-v1/captures-material-framing-v5/live-drive.png",
+      "bytes": 2426813,
+      "sha256": "44f3daf0a10d5c6b98b3c7bf16a66f559d7538e833485b9fe739fc34c1ffb359"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/output/gauntlet/round34-blockrunner-admission-v1/captures-material-framing-v5/receipts.json",
+      "bytes": 518008,
+      "sha256": "fc7f86aceae0e67ac599e4002aab90e32163c958ce3af7f25d3d3fb2e8c0568a"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/output/gauntlet/round34-blockrunner-material-framing-v5-attempt1-frozen-runtime/inventory.json",
+      "bytes": 97399,
+      "sha256": "ad4f840b52540f406f69e3e3d0004e24a3297c9e630d588e0ebe8d36e22e0bdc"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/output/gauntlet/round34-blockrunner-material-framing-v5-attempt1-frozen-runtime/src/render/post/sobelShader.ts",
+      "bytes": 5259,
+      "sha256": "11fd6df224b590c1c2de291e196d2543d321f70ddd6995163f2c16b4272af053"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/src/render/post/sobelShader.ts",
+      "bytes": 5259,
+      "sha256": "11fd6df224b590c1c2de291e196d2543d321f70ddd6995163f2c16b4272af053"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/src/render/post/SobelEdgePass.ts",
+      "bytes": 6848,
+      "sha256": "321a28d079297c17b84b022bc5ff3391ff10487ffa4c5ad7312b2910c4592b94"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/src/render/post/CelPrepassMaterial.ts",
+      "bytes": 6687,
+      "sha256": "e45992947ed671bae9feff07a68504cc55673b7489a199ce6b340e44998ea91c"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/src/render/post/CelPostPipeline.ts",
+      "bytes": 13096,
+      "sha256": "d58ad1b4666c8cc42eb0fae253cce98b6d8108776e15bc8200a6f2a4a3683eff"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/src/render/app/createRenderer.ts",
+      "bytes": 794,
+      "sha256": "891dfeb5b4ab52ff234e5aefa6ba777beba1bed4ac16286b5f0859df974814a0"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/src/render/app/GameApp.ts",
+      "bytes": 159109,
+      "sha256": "0d87e236bdf0f27a73aa2a4fd24c63dc5c8a5be7c7c6bd255f8612ce46730fd9"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/src/render/inkstorm/InkstormWorld.ts",
+      "bytes": 16050,
+      "sha256": "c402c85ecbd13e6d4f4fb63a702cc7d1a447a4e509d6459e4265642fe10d15a5"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/src/render/inkstorm/InkstormVista.ts",
+      "bytes": 41254,
+      "sha256": "cdd3cb7284f5c1f0b871f527abc465adad63030f1b2915fa1b59a2a5d1a5f49e"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/src/render/inkstorm/InkstormFoundry.ts",
+      "bytes": 13556,
+      "sha256": "a97c0c6e99b43453da4fd3d50570aefd01c6889d82b2411b42bf286318570d47"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/src/render/inkstorm/InkstormSurfaceMaterial.ts",
+      "bytes": 16923,
+      "sha256": "b8bfbc87654537f6825e4a91ce858d7558ab89137c483e117a0e93f2bd6f82cb"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/src/render/objects/DesertLandmarks.ts",
+      "bytes": 17078,
+      "sha256": "6c8bd8965970f1d567171f945d501880a8cfe752131807e527a0888154a1d17c"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/src/diagnostics/performance/PerformanceGovernor.ts",
+      "bytes": 16317,
+      "sha256": "75999182b488655ea94d54b73a078710bacacfdb7e9e0defdcd5de9174225395"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/round34-distant-edge-diagnosis/DIAGNOSIS.md",
+      "bytes": 7332,
+      "sha256": "b9ad185d2c5cad1b8e2c7240640bc69ad11f781773a630e4f06b30a31978de27"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/round34-distant-edge-diagnosis/prepare-candidate.py",
+      "bytes": 4015,
+      "sha256": "0b734290e34fddc490a41546472a66638c64d0e238e7f43acfdd0da688c39369"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/round34-distant-edge-diagnosis/reproduce-kernel-classification.py",
+      "bytes": 5147,
+      "sha256": "5f2430172177dbccbd9cceeb8d88ff4b68be648ce99b2be0c5969b0f4e899dc7"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/round34-distant-edge-diagnosis/numeric-reproduction.json",
+      "bytes": 4993,
+      "sha256": "3a1ea5075697f012b3cc26df2356c86e9be014c71a6967d00c8fe7804ec3c34e"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/round34-distant-edge-diagnosis/candidate/sobelShader.ts",
+      "bytes": 5989,
+      "sha256": "d7999ee30930c955dfdff8c83ef8229c53eb74992c91906d1abc7812752794f6"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/round34-distant-edge-diagnosis/sobel-complete-stencil-classification.patch",
+      "bytes": 3152,
+      "sha256": "45a9f0e9f5f55b1e0b31b199c65df6f3db77c1d8107c82d4ace03fd63d731d2d"
+    }
+  ],
+  "validation": {
+    "numericKernelReproduction": true,
+    "sourceMatchesFrozenV5": true,
+    "capturedBundleMatchesFrozenInventory": true,
+    "gitApplyCheckOnly": true,
+    "sourceUnchanged": true,
+    "localReportLinksChecked": true,
+    "buildOrTestsRun": false,
+    "browserOrMcpUsed": false,
+    "runtimeVisualFixConfirmed": false,
+    "performanceImprovementMeasured": false
+  }
+}

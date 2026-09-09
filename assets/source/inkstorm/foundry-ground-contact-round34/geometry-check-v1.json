@@ -1,0 +1,407 @@
+{
+  "scope": "CPU-only actual candidate geometry and unchanged course/terrain modules. Complete coordinate-welded edge incidence/orientation and actual Float32 positions checked. Dense toe probes .25m; not a continuous terrain proof, GPU render or performance gate.",
+  "sourceHashes": [
+    {
+      "path": "src/render/inkstorm/InkstormFoundations.ts",
+      "sha256": "2cd39d1d43e1573689a26a4bc2e7ff44d622930c39265db8a9d53bbfcfef1b7e"
+    },
+    {
+      "path": "src/render/inkstorm/InkstormFoundry.ts",
+      "sha256": "a97c0c6e99b43453da4fd3d50570aefd01c6889d82b2411b42bf286318570d47"
+    },
+    {
+      "path": "src/render/inkstorm/InkstormWorld.ts",
+      "sha256": "c402c85ecbd13e6d4f4fb63a702cc7d1a447a4e509d6459e4265642fe10d15a5"
+    },
+    {
+      "path": "src/game/race/course.ts",
+      "sha256": "c1030fcc0ea2ee7d6e0487b6b7332fd29a36947c41bc4847defa9535d6bd12d3"
+    },
+    {
+      "path": "src/game/race/inkstormLayout.ts",
+      "sha256": "a8a116265b0664d8d213f954a0898f7cc79315feca3f5e7e7e5bf33fc647f32d"
+    },
+    {
+      "path": "public/assets/inkstorm/pipe-bank-detail-v1.glb",
+      "sha256": "7a28b2e2f3ce25b173ed21033cbe0d28e7341197407b5e86d2400848dba8d946"
+    }
+  ],
+  "synthetic": [
+    {
+      "id": "synthetic-0",
+      "triangles": 310,
+      "uniqueVertices": 157,
+      "edges": 465,
+      "badEdges": 0,
+      "eulerCharacteristic": 2,
+      "signedVolume": 24137.160875656762,
+      "minimumArea": 0.05624997615814209,
+      "maximumOutside": 0,
+      "maximumNormalError": 0,
+      "minimumToeBurialAtQuarterMetreProbes": 0.14996178511063607
+    },
+    {
+      "id": "synthetic-0.74",
+      "triangles": 310,
+      "uniqueVertices": 157,
+      "edges": 465,
+      "badEdges": 0,
+      "eulerCharacteristic": 2,
+      "signedVolume": 31886.139988972136,
+      "minimumArea": 0.056078911472070225,
+      "maximumOutside": 0,
+      "maximumNormalError": 0,
+      "minimumToeBurialAtQuarterMetreProbes": 0.14996410393850945
+    },
+    {
+      "id": "synthetic--2.1",
+      "triangles": 310,
+      "uniqueVertices": 157,
+      "edges": 465,
+      "badEdges": 0,
+      "eulerCharacteristic": 2,
+      "signedVolume": 31286.48249516273,
+      "minimumArea": 0.05611040908736725,
+      "maximumOutside": 0,
+      "maximumNormalError": 0,
+      "minimumToeBurialAtQuarterMetreProbes": 0.14971119924234388
+    }
+  ],
+  "course": {
+    "seed": 1229867859,
+    "totalLength": 7646.005613260706,
+    "referencePlacementTuplesExact": true
+  },
+  "buildCpuMs": 37.612333000000035,
+  "accepted": [
+    {
+      "id": "inkstorm-pipe-bank-227",
+      "triangles": 310,
+      "top": -5.745777552140449,
+      "bottom": -14.027493465704755,
+      "minimumRoadSafety": 17.607232451538067,
+      "maximumProbeSpacing": 1.9583333333333333,
+      "minimumBurial": 0.15000000000000036,
+      "maximumBurial": 6.473582824347003,
+      "footprint": [
+        94,
+        44
+      ],
+      "uniqueVertices": 157,
+      "edges": 465,
+      "badEdges": 0,
+      "eulerCharacteristic": 2,
+      "signedVolume": 33490.198846742096,
+      "minimumArea": 0.05620486858593803,
+      "maximumOutside": 0,
+      "maximumNormalError": 0,
+      "minimumToeBurialAtQuarterMetreProbes": 0.14356969574398093
+    },
+    {
+      "id": "inkstorm-pipe-bank-229",
+      "triangles": 310,
+      "top": -15.338506959981984,
+      "bottom": -26.6742032615225,
+      "minimumRoadSafety": 14.036186456847048,
+      "maximumProbeSpacing": 1.9583333333333333,
+      "minimumBurial": 0.14999999999999858,
+      "maximumBurial": 4.656945475584159,
+      "footprint": [
+        94,
+        44
+      ],
+      "uniqueVertices": 157,
+      "edges": 465,
+      "badEdges": 0,
+      "eulerCharacteristic": 2,
+      "signedVolume": 45729.31854024388,
+      "minimumArea": 0.05593403843774281,
+      "maximumOutside": 0,
+      "maximumNormalError": 0,
+      "minimumToeBurialAtQuarterMetreProbes": 0.1260075892315342
+    },
+    {
+      "id": "inkstorm-pipe-bank-230",
+      "triangles": 310,
+      "top": -5.318861543141519,
+      "bottom": -17.815651914300012,
+      "minimumRoadSafety": 8.566492751854998,
+      "maximumProbeSpacing": 1.9583333333333333,
+      "minimumBurial": 0.15000000000000036,
+      "maximumBurial": 7.286088318867457,
+      "footprint": [
+        94,
+        44
+      ],
+      "uniqueVertices": 157,
+      "edges": 465,
+      "badEdges": 0,
+      "eulerCharacteristic": 2,
+      "signedVolume": 50482.01876246687,
+      "minimumArea": 0.05600766041867948,
+      "maximumOutside": 0,
+      "maximumNormalError": 0,
+      "minimumToeBurialAtQuarterMetreProbes": 0.11089912765431009
+    },
+    {
+      "id": "inkstorm-pipe-bank-231",
+      "triangles": 310,
+      "top": -16.02686682577413,
+      "bottom": -26.098544703382643,
+      "minimumRoadSafety": 17.52511691769964,
+      "maximumProbeSpacing": 1.9583333333333333,
+      "minimumBurial": 0.14999999999999858,
+      "maximumBurial": 6.0412760620099775,
+      "footprint": [
+        94,
+        44
+      ],
+      "uniqueVertices": 157,
+      "edges": 465,
+      "badEdges": 0,
+      "eulerCharacteristic": 2,
+      "signedVolume": 40728.871323144915,
+      "minimumArea": 0.05639429587131733,
+      "maximumOutside": 0,
+      "maximumNormalError": 0,
+      "minimumToeBurialAtQuarterMetreProbes": 0.145904923059458
+    },
+    {
+      "id": "inkstorm-pipe-bank-232",
+      "triangles": 310,
+      "top": 10.368897799700367,
+      "bottom": -12.459542764908234,
+      "minimumRoadSafety": 17.616919337599995,
+      "maximumProbeSpacing": 1.9583333333333333,
+      "minimumBurial": 0.15000000000000013,
+      "maximumBurial": 10.567225023092533,
+      "footprint": [
+        94,
+        44
+      ],
+      "uniqueVertices": 157,
+      "edges": 465,
+      "badEdges": 0,
+      "eulerCharacteristic": 2,
+      "signedVolume": 92108.33329888115,
+      "minimumArea": 0.0562933106507125,
+      "maximumOutside": 0,
+      "maximumNormalError": 0,
+      "minimumToeBurialAtQuarterMetreProbes": 0.1310530410758517
+    },
+    {
+      "id": "inkstorm-pipe-bank-234",
+      "triangles": 310,
+      "top": 0.05772719826287087,
+      "bottom": -11.81394817830445,
+      "minimumRoadSafety": 17.573661327133575,
+      "maximumProbeSpacing": 1.9583333333333333,
+      "minimumBurial": 0.1499999999999999,
+      "maximumBurial": 7.097960516465176,
+      "footprint": [
+        94,
+        44
+      ],
+      "uniqueVertices": 157,
+      "edges": 465,
+      "badEdges": 0,
+      "eulerCharacteristic": 2,
+      "signedVolume": 47957.200364298784,
+      "minimumArea": 0.05627662793965592,
+      "maximumOutside": 0,
+      "maximumNormalError": 0,
+      "minimumToeBurialAtQuarterMetreProbes": 0.1236148246446458
+    },
+    {
+      "id": "inkstorm-pipe-bank-235",
+      "triangles": 310,
+      "top": -11.47417869135764,
+      "bottom": -26.004907160234456,
+      "minimumRoadSafety": 17.582230102889834,
+      "maximumProbeSpacing": 1.9583333333333333,
+      "minimumBurial": 0.14999999999999858,
+      "maximumBurial": 9.491757876245448,
+      "footprint": [
+        94,
+        44
+      ],
+      "uniqueVertices": 157,
+      "edges": 465,
+      "badEdges": 0,
+      "eulerCharacteristic": 2,
+      "signedVolume": 58673.987364473054,
+      "minimumArea": 0.056099932372610566,
+      "maximumOutside": 0,
+      "maximumNormalError": 0,
+      "minimumToeBurialAtQuarterMetreProbes": 0.14017941038503068
+    },
+    {
+      "id": "inkstorm-pipe-bank-236",
+      "triangles": 310,
+      "top": 5.804870783788552,
+      "bottom": -7.03968939344608,
+      "minimumRoadSafety": 12.286955181396802,
+      "maximumProbeSpacing": 1.9583333333333333,
+      "minimumBurial": 0.1499999999999999,
+      "maximumBurial": 1.4236038491773746,
+      "footprint": [
+        94,
+        44
+      ],
+      "uniqueVertices": 157,
+      "edges": 465,
+      "badEdges": 0,
+      "eulerCharacteristic": 2,
+      "signedVolume": 51770.27466697292,
+      "minimumArea": 0.05609981348155734,
+      "maximumOutside": 0,
+      "maximumNormalError": 0,
+      "minimumToeBurialAtQuarterMetreProbes": 0.135608587594997
+    },
+    {
+      "id": "inkstorm-pipe-bank-237",
+      "triangles": 310,
+      "top": -18.039755895979937,
+      "bottom": -29.562968400419045,
+      "minimumRoadSafety": 17.627628791459987,
+      "maximumProbeSpacing": 1.9583333333333333,
+      "minimumBurial": 0.14999999999999858,
+      "maximumBurial": 12.53329663737447,
+      "footprint": [
+        94,
+        44
+      ],
+      "uniqueVertices": 157,
+      "edges": 465,
+      "badEdges": 0,
+      "eulerCharacteristic": 2,
+      "signedVolume": 46508.050747204434,
+      "minimumArea": 0.056160979018160584,
+      "maximumOutside": 0,
+      "maximumNormalError": 0,
+      "minimumToeBurialAtQuarterMetreProbes": 0.14262189250535684
+    },
+    {
+      "id": "inkstorm-pipe-bank-239",
+      "triangles": 310,
+      "top": -7.54774154545991,
+      "bottom": -19.269013796045673,
+      "minimumRoadSafety": 17.197395832263357,
+      "maximumProbeSpacing": 1.9583333333333333,
+      "minimumBurial": 0.15000000000000036,
+      "maximumBurial": 9.453029382899103,
+      "footprint": [
+        94,
+        44
+      ],
+      "uniqueVertices": 157,
+      "edges": 465,
+      "badEdges": 0,
+      "eulerCharacteristic": 2,
+      "signedVolume": 47343.036764337696,
+      "minimumArea": 0.056211011147179725,
+      "maximumOutside": 0,
+      "maximumNormalError": 0,
+      "minimumToeBurialAtQuarterMetreProbes": 0.1297830944275269
+    },
+    {
+      "id": "inkstorm-pipe-bank-240",
+      "triangles": 310,
+      "top": 5.935667733860285,
+      "bottom": -3.603514294888111,
+      "minimumRoadSafety": 12.209269873630083,
+      "maximumProbeSpacing": 1.9583333333333333,
+      "minimumBurial": 0.1499999999999999,
+      "maximumBurial": 1.3984531829363271,
+      "footprint": [
+        94,
+        44
+      ],
+      "uniqueVertices": 157,
+      "edges": 465,
+      "badEdges": 0,
+      "eulerCharacteristic": 2,
+      "signedVolume": 38469.36391415496,
+      "minimumArea": 0.05621095158388689,
+      "maximumOutside": 0,
+      "maximumNormalError": 0,
+      "minimumToeBurialAtQuarterMetreProbes": 0.1271165556271816
+    },
+    {
+      "id": "inkstorm-pipe-bank-241",
+      "triangles": 310,
+      "top": -5.822840512132446,
+      "bottom": -14.73398458099608,
+      "minimumRoadSafety": 17.04320319143608,
+      "maximumProbeSpacing": 1.9583333333333333,
+      "minimumBurial": 0.15000000000000036,
+      "maximumBurial": 5.44927107260813,
+      "footprint": [
+        94,
+        44
+      ],
+      "uniqueVertices": 157,
+      "edges": 465,
+      "badEdges": 0,
+      "eulerCharacteristic": 2,
+      "signedVolume": 36021.52172173983,
+      "minimumArea": 0.05609245920595312,
+      "maximumOutside": 0,
+      "maximumNormalError": 0,
+      "minimumToeBurialAtQuarterMetreProbes": 0.12715869742982555
+    },
+    {
+      "id": "inkstorm-pipe-bank-243",
+      "triangles": 310,
+      "top": -0.8167294056379575,
+      "bottom": -9.077715084598125,
+      "minimumRoadSafety": 17.46073293496367,
+      "maximumProbeSpacing": 1.9583333333333333,
+      "minimumBurial": 0.1499999999999999,
+      "maximumBurial": 9.590990618207151,
+      "footprint": [
+        94,
+        44
+      ],
+      "uniqueVertices": 157,
+      "edges": 465,
+      "badEdges": 0,
+      "eulerCharacteristic": 2,
+      "signedVolume": 33384.97129225728,
+      "minimumArea": 0.056120942789314815,
+      "maximumOutside": 0,
+      "maximumNormalError": 0,
+      "minimumToeBurialAtQuarterMetreProbes": 0.13781971843366803
+    }
+  ],
+  "rejected": [
+    {
+      "id": "inkstorm-pipe-bank-228",
+      "reason": "Error: Terrain toe exceeds retained bottom; use original box.",
+      "minimumRoadSafety": 17.536140441168307
+    },
+    {
+      "id": "inkstorm-pipe-bank-233",
+      "reason": "Error: Unsafe foundation placement.",
+      "minimumRoadSafety": -8.598395202570002
+    },
+    {
+      "id": "inkstorm-pipe-bank-238",
+      "reason": "Error: Unsafe foundation placement.",
+      "minimumRoadSafety": -0.3640699157945855
+    },
+    {
+      "id": "inkstorm-pipe-bank-242",
+      "reason": "Error: Unsafe foundation placement.",
+      "minimumRoadSafety": 5.005385189578474
+    },
+    {
+      "id": "inkstorm-pipe-bank-244",
+      "reason": "Error: Unsafe foundation placement.",
+      "minimumRoadSafety": 1.8528635180442876
+    }
+  ],
+  "totalTriangles": 4030,
+  "netTriangles": 3874,
+  "uploadedGeometryBytes": 435240
+}

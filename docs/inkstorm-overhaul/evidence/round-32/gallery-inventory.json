@@ -1,0 +1,101 @@
+{
+  "recordedAt": "2026-09-08T09:14:56.553646+00:00",
+  "build": {
+    "path": "dist/assets/index-1xbykiGm.js",
+    "bytes": 1604509,
+    "sha256": "f09516c19dc7c4b04372e7ee4416537444a9b989c404a05206088f9fb27855e0"
+  },
+  "source": "output/gauntlet/round-32-polwo-revision3",
+  "pngCount": 9,
+  "byteExactCopies": true,
+  "files": [
+    {
+      "source": "output/gauntlet/round-32-polwo-revision3/01-grid.png",
+      "path": "docs/inkstorm-overhaul/evidence/round-32/01-grid.png",
+      "bytes": 3280150,
+      "sha256": "f6b3f2776ec8af82da1026ac8b55d04b2fdb83ba3607b7891314b0f5ec3e7a9e",
+      "width": 2160,
+      "height": 1350
+    },
+    {
+      "source": "output/gauntlet/round-32-polwo-revision3/02-salt-run.png",
+      "path": "docs/inkstorm-overhaul/evidence/round-32/02-salt-run.png",
+      "bytes": 2985943,
+      "sha256": "9ecb539b760a9df5a9dda95c33530dabbfbe55b83075f56fbbcf87514f2b7b27",
+      "width": 2160,
+      "height": 1350
+    },
+    {
+      "source": "output/gauntlet/round-32-polwo-revision3/03-canyon.png",
+      "path": "docs/inkstorm-overhaul/evidence/round-32/03-canyon.png",
+      "bytes": 3207063,
+      "sha256": "d8e8b9a5a715bba5f815e0cdbebce501b4c1e6e39f62e740f3de31b731e93493",
+      "width": 2160,
+      "height": 1350
+    },
+    {
+      "source": "output/gauntlet/round-32-polwo-revision3/04-fork.png",
+      "path": "docs/inkstorm-overhaul/evidence/round-32/04-fork.png",
+      "bytes": 3125087,
+      "sha256": "cb45c6d0bcf5f9f5a8ef26abe78b699f9c8f342c3ef7860c8feff2ff0b884c18",
+      "width": 2160,
+      "height": 1350
+    },
+    {
+      "source": "output/gauntlet/round-32-polwo-revision3/05-launch.png",
+      "path": "docs/inkstorm-overhaul/evidence/round-32/05-launch.png",
+      "bytes": 3286410,
+      "sha256": "c7a424dc986c06a8f59ccae7791106882ff13b35eec79c91bb0a7bd828382836",
+      "width": 2160,
+      "height": 1350
+    },
+    {
+      "source": "output/gauntlet/round-32-polwo-revision3/06-foundry.png",
+      "path": "docs/inkstorm-overhaul/evidence/round-32/06-foundry.png",
+      "bytes": 2958879,
+      "sha256": "6ca2fbc3109f4ca43af7352c7a26b52c69f50c0a2e4831be365da6a2efaf3132",
+      "width": 2160,
+      "height": 1350
+    },
+    {
+      "source": "output/gauntlet/round-32-polwo-revision3/07-finish.png",
+      "path": "docs/inkstorm-overhaul/evidence/round-32/07-finish.png",
+      "bytes": 3206838,
+      "sha256": "3264189dc0d48e9e96f4c3289a71f5f9f252e1486722404080ca163a1b053243",
+      "width": 2160,
+      "height": 1350
+    },
+    {
+      "source": "output/gauntlet/round-32-polwo-revision3/garage.png",
+      "path": "docs/inkstorm-overhaul/evidence/round-32/garage.png",
+      "bytes": 1057494,
+      "sha256": "58a28604ff9c3bcff067b617499e97a506f4d2fccde09ac84c5a3ce05780bf36",
+      "width": 2160,
+      "height": 1350
+    },
+    {
+      "source": "output/gauntlet/round-32-polwo-revision3/live-drive.png",
+      "path": "docs/inkstorm-overhaul/evidence/round-32/live-drive.png",
+      "bytes": 2484012,
+      "sha256": "d1d96ab80eae14d49abf0756139dea4384aea6d94e72089b8f6cb31fcdd40d09",
+      "width": 2160,
+      "height": 1350
+    }
+  ],
+  "criticScope": "Fresh blind BLIND_POLWO_FINAL_ROUND32.md: strict FAIL at 8/10, holistic overall5.8; approximate vehicle6.5/world5.5/gameplay driver4.5. No original world target accepted. Stills only; no motion/contact/performance inference.",
+  "captureScope": "Seven time-zero staged chase views at simulationFrame2400, one garage image, one short live-drive still. Not all-route motion, completed-lap or performance evidence.",
+  "fullRacePerformance": "PASS for six ordinary race cadence gates and three Continue flows on the separately frozen round32 artifacts; these PNGs are not performance evidence.",
+  "fullRacePerformanceReport": "docs/inkstorm-overhaul/FULL_RACE_PERFORMANCE_ROUND32.md",
+  "raceEvidenceInventory": "output/gauntlet/round32-freeze/race-evidence-inventory.json",
+  "frozenRuntimeSnapshot": "output/gauntlet/round32-frozen-runtime/inventory.json",
+  "performanceFinalizedAt": "2026-09-08T09:34:59.568744+00:00",
+  "criticHistory": [
+    {
+      "scope": "POLWO_REVISION3_REVIEW_ROUND32.md: independent implementation-aware comparison, not fresh or blind. Retain bounded exhaust/framing repair; strict vehicle/world target parity FAIL for all seven original targets.",
+      "recordedAt": "2026-09-08T09:14:56.553646+00:00"
+    }
+  ],
+  "criticReceipt": "docs/inkstorm-overhaul/BLIND_POLWO_FINAL_ROUND32.md",
+  "criticSha256": "9b8ea71970a1fa3175ec2ba6c81fac53f849fd9056c55750546a61d6c32bfcd5",
+  "criticHashProof": "docs/inkstorm-overhaul/evidence/round-32/blind-review-inventory.json"
+}

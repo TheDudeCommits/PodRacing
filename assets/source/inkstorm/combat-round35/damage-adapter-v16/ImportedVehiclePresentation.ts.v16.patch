@@ -1,0 +1,278 @@
+--- a/src/render/vehicles/ImportedVehiclePresentation.ts
++++ b/src/render/vehicles/ImportedVehiclePresentation.ts
+@@ -43,6 +43,8 @@
+ }
+ 
+ export interface VehicleArtDefinition extends VehicleArtSource {
++  /** Optional rigid replacement geometry. Failure leaves the intact source playable. */
++  readonly damageVariant?: VehicleArtSource;
+   /** Source already includes a constructed cowl/throat; do not add a second lip. */
+   readonly hasAuthoredExhaustHardware?: boolean;
+   /** Optional clear circular radius in normalized root-space metres, shared by
+@@ -89,7 +91,10 @@
+ 
+ interface PreparedArt {
+   readonly lease: VehicleArtLease;
++  readonly damageLease: VehicleArtLease | null;
++  readonly damageError: Error | null;
+   readonly exhaustRadialScale: number;
++  readonly originalMeshes: readonly Mesh[];
+   readonly meshes: readonly Mesh[];
+   readonly shadowMeshes: readonly Mesh[];
+   readonly proxies: readonly Mesh[];
+@@ -98,6 +103,8 @@
+   readonly attachments: ReadonlyMap<string, Group>;
+   readonly nodes: ReadonlyMap<string, Object3D>;
+   readonly statistics: ImportedVehicleStatistics;
++  readonly damageStatistics: ImportedVehicleStatistics | null;
++  readonly residentStatistics: ImportedVehicleStatistics;
+   readonly wreckBreakup: TeemtoWreckBreakup | null;
+ }
+ 
+@@ -110,6 +117,25 @@
+   ...DEFAULT_CEL_PALETTE,
+   diffuseBands: ['#565656', '#929292', '#c7c7c7', '#ffffff'] as const,
+ };
++
++const DAMAGE_MATERIAL_SOURCES = Object.freeze({
++  'teemto-damage-cockpit-stubs-v16': 'teemto-cockpit-body',
++  'teemto-damage-severed-tethers-v16': 'teemto-cockpit-body',
++  'teemto-damage-right-front-v16': 'teemto-engine-right-body',
++  'teemto-damage-right-rear-v16': 'teemto-engine-right-body',
++} as const);
++
++function triangleCount(mesh: Mesh): number {
++  const count = mesh.geometry.index?.count ?? mesh.geometry.getAttribute('position')?.count ?? 0;
++  const start = Math.max(0, mesh.geometry.drawRange.start);
++  return Math.max(0, Math.floor((Math.min(count, start + mesh.geometry.drawRange.count) - start) / 3));
++}
++
++function artStatistics(meshes: readonly Mesh[], shadowMeshes: readonly Mesh[]): ImportedVehicleStatistics {
++  return Object.freeze({ meshes: meshes.length, opaqueDraws: meshes.length, bodyDraws: shadowMeshes.length,
++    pilotDraws: meshes.length - shadowMeshes.length, triangles: meshes.reduce((sum, mesh) => sum + triangleCount(mesh), 0),
++    prepassDraws: meshes.length, shadowSourceMeshes: shadowMeshes.length });
++}
+ 
+ type ImportedSurfaceMaterial = Material & {
+   color?: Color;
+@@ -251,6 +277,7 @@
+   for (const material of art.materials) material.dispose();
+   art.hiddenMaterial.dispose();
+   // Proxies and beauty meshes borrow template geometry; only the lease may release it.
++  art.damageLease?.release();
+   art.lease.release();
+ }
+ 
+@@ -295,25 +322,34 @@
+   get activeSource(): VehicleArtSource | null { return this.active?.lease.source ?? null; }
+   get geometryRevision(): number { return this.revision; }
+   get exhaustRadialScale(): number { return this.active?.exhaustRadialScale ?? .54; }
+-  get geometryMeshes(): readonly Mesh[] { return this.active?.meshes ?? EMPTY_MESHES; }
++  /** Intact geometry only: the rigid pose cache deliberately ignores visibility. */
++  get geometryMeshes(): readonly Mesh[] { return this.active?.originalMeshes ?? EMPTY_MESHES; }
+   get prepassMeshes(): readonly Mesh[] { return this.active?.proxies ?? EMPTY_MESHES; }
+   get materials(): readonly CelMaterial[] { return this.active?.materials ?? EMPTY_MATERIALS; }
+-  get statistics(): ImportedVehicleStatistics { return this.active?.statistics ?? EMPTY_STATISTICS; }
++  get statistics(): ImportedVehicleStatistics {
++    const active = this.active;
++    return (active?.wreckBreakup?.damageVariantActive ? active.damageStatistics : null) ?? active?.statistics ?? EMPTY_STATISTICS;
++  }
++  get residentStatistics(): ImportedVehicleStatistics { return this.active?.residentStatistics ?? EMPTY_STATISTICS; }
++  get damageVariantAvailable(): boolean { return this.active?.wreckBreakup?.damageVariantAvailable ?? false; }
++  get damageVariantActive(): boolean { return this.active?.wreckBreakup?.damageVariantActive ?? false; }
++  get damageVariantError(): Error | null { return this.active?.damageError ?? null; }
+   get hasEmbeddedPilot(): boolean { return (this.active?.statistics.pilotDraws ?? 0) > 0; }
+   get wreckBreakupActive(): boolean { return this.active?.wreckBreakup?.active ?? false; }
+   get wreckBreakupAvailable(): boolean { return this.active?.wreckBreakup !== null && this.active?.wreckBreakup !== undefined; }
+ 
+   updateWreckBreakup(pose: WreckVisualPose, remaining: number, terrain: { heightAt(x: number, z: number): number }, extrapolation = 0): void {
+     this.active?.wreckBreakup?.update(pose, remaining, terrain, extrapolation);
+-  }
+-
+-  resetWreckBreakup(): void { this.active?.wreckBreakup?.reset(); }
++    this.syncPrepassVisibility();
++  }
++
++  resetWreckBreakup(): void { this.active?.wreckBreakup?.reset(); this.syncPrepassVisibility(); }
+ 
+   /** Root-space copy only; authored anchor groups and source definitions stay exact. */
+   transformWreckAttachment(name: string, point: Vector3): void { this.active?.wreckBreakup?.transformAttachment(name, point); }
+ 
+   /** The caller explicitly binds static atlas uniforms to materials after each geometry change. */
+-  getOpaqueMeshes(): readonly Mesh[] { return this.geometryMeshes; }
++  getOpaqueMeshes(): readonly Mesh[] { return this.active?.meshes ?? EMPTY_MESHES; }
+   getShadowMeshes(): readonly Mesh[] { return this.active?.shadowMeshes ?? EMPTY_MESHES; }
+   getShadowRoot(): Object3D | null { return this.active ? this : null; }
+   getAttachment(name: string): Group | undefined { return this.active?.attachments.get(name); }
+@@ -333,15 +369,34 @@
+     this.statusValue = 'loading';
+     this.errorValue = null;
+     let prepared: PreparedArt;
++    let lease: VehicleArtLease | null = null;
++    let damageLease: VehicleArtLease | null = null;
++    let damageError: Error | null = null;
++    // Both requests share the generation's cancellation. Optional failure is
++    // consumed immediately, including while the intact request is pending.
++    const damageRequest = definition.damageVariant
++      ? this.library.acquire(definition.damageVariant, { signal: pending.signal }).catch((error: unknown) => {
++        damageError = error instanceof Error ? error : new Error(String(error));
++        return null;
++      }) : null;
+     try {
+-      const lease = await this.library.acquire(definition, { signal: pending.signal });
++      lease = await this.library.acquire(definition, { signal: pending.signal });
++      damageLease = await damageRequest;
+       if (generation !== this.generation || pending.signal.aborted) {
++        damageLease?.release();
+         lease.release();
+         return this.statusValue;
+       }
+-      try { prepared = this.prepare(lease, definition); } catch (error) { lease.release(); throw error; }
++      prepared = this.prepare(lease, definition, damageLease, damageError);
+     } catch (error) {
+-      if (generation !== this.generation || pending.signal.aborted) return this.statusValue;
++      // Abort a still-pending optional acquisition, then drain any lease that
++      // already resolved before the intact load/validation failed.
++      const cancelled = pending.signal.aborted;
++      pending.abort();
++      damageLease ??= await damageRequest;
++      damageLease?.release();
++      lease?.release();
++      if (generation !== this.generation || cancelled) return this.statusValue;
+       this.pending = null;
+       this.statusValue = 'error';
+       this.errorValue = error instanceof Error ? error : new Error(String(error));
+@@ -399,14 +454,15 @@
+         revision: this.revision,
+         previousPrepassMeshes: previous?.proxies ?? EMPTY_MESHES,
+         prepassMeshes: this.prepassMeshes,
+-        opaqueMeshes: this.geometryMeshes,
++        opaqueMeshes: this.getOpaqueMeshes(),
+       });
+     } finally {
+       if (previous) releasePrepared(previous);
+     }
+   }
+ 
+-  private prepare(lease: VehicleArtLease, definition: VehicleArtDefinition): PreparedArt {
++  private prepare(lease: VehicleArtLease, definition: VehicleArtDefinition,
++    damageLease: VehicleArtLease | null, damageError: Error | null): PreparedArt {
+     const exhaustRadialScale = prepareExhaustRadialScale(definition, lease.root);
+     const surfaceStyles = prepareSurfaceStyles(definition.surfaceStyles);
+     const meshes: Mesh[] = [];
+@@ -469,11 +525,13 @@
+     }
+ 
+     const converted = new Map<string, CelMaterial>();
++    const sourceMaterials = new Map<Mesh, ImportedSurfaceMaterial>();
+     const proxies: Mesh[] = [];
+     const hiddenMaterial = new MeshBasicMaterial({ name: 'ImportedVehiclePrepassOnly', visible: false });
+     try {
+       for (const source of meshes) {
+         const original = source.material as ImportedSurfaceMaterial;
++        sourceMaterials.set(source, original);
+         // Match GLTFLoader's frame selection and retain its signed normalScale
+         // exactly. Authored tangents and derivatives differ under shear.
+         const normalMapTangents = !!original.normalMap && !!source.geometry.getAttribute('tangent');
+@@ -519,12 +577,96 @@
+       hiddenMaterial.dispose();
+       throw error;
+     }
++    const originalMeshes = Object.freeze([...meshes]);
++    const statistics = artStatistics(meshes, shadowMeshes);
++    const wreckBreakup = definition.id === 'teemto' ? TeemtoWreckBreakup.create(lease.root, nodes, originalMeshes) : null;
++    let damageStatistics: ImportedVehicleStatistics | null = null;
++    let installedDamageLease: VehicleArtLease | null = null;
++    if (damageLease) {
++      const damageProxies: Mesh[] = [];
++      try {
++        if (!wreckBreakup) throw new Error('Damage variant requires the supported intact Teemto hierarchy.');
++        const damage = this.prepareDamage(damageLease, originalMeshes, shadowMeshes, sourceMaterials);
++        // The helper measures authored pivots in this same intact root space.
++        lease.root.add(damageLease.root);
++        for (const source of damage.meshes) {
++          source.userData[CEL_POST_EXCLUDE_USER_DATA_KEY] = true;
++          const proxy = new Mesh(source.geometry, hiddenMaterial);
++          proxy.name = `ImportedVehiclePrepass:${source.name}`;
++          proxy.userData.inkstormRacerShadowExclude = true;
++          source.add(proxy);
++          damageProxies.push(proxy);
++        }
++        if (!wreckBreakup.installDamageVariant(damage.meshes)) throw new Error('Damage variant helper rejected its authored hierarchy.');
++        for (const source of damage.meshes) nodes.set(source.name, source);
++        meshes.push(...damage.meshes); shadowMeshes.push(...damage.meshes); proxies.push(...damageProxies);
++        installedDamageLease = damageLease;
++        damageStatistics = damage.statistics;
++      } catch (error) {
++        wreckBreakup?.reset();
++        for (const proxy of damageProxies) proxy.removeFromParent();
++        damageLease.release();
++        damageError = error instanceof Error ? error : new Error(String(error));
++      }
++    }
+     return {
+-      lease, exhaustRadialScale, meshes: Object.freeze(meshes), shadowMeshes: Object.freeze(shadowMeshes), proxies: Object.freeze(proxies),
++      lease, damageLease: installedDamageLease, damageError, exhaustRadialScale, originalMeshes,
++      meshes: Object.freeze(meshes), shadowMeshes: Object.freeze(shadowMeshes), proxies: Object.freeze(proxies),
+       materials: Object.freeze(Array.from(converted.values())), hiddenMaterial, attachments, nodes,
+-      statistics: Object.freeze({ meshes: meshes.length, opaqueDraws: meshes.length, bodyDraws, pilotDraws, triangles,
+-        prepassDraws: proxies.length, shadowSourceMeshes: shadowMeshes.length }),
+-      wreckBreakup: definition.id === 'teemto' ? TeemtoWreckBreakup.create(lease.root, nodes, meshes) : null,
++      statistics, damageStatistics, residentStatistics: artStatistics(meshes, shadowMeshes), wreckBreakup,
+     };
+   }
+-}
++
++  private prepareDamage(lease: VehicleArtLease, originalMeshes: readonly Mesh[], originalShadows: readonly Mesh[],
++    sourceMaterials: ReadonlyMap<Mesh, ImportedSurfaceMaterial>): { meshes: Mesh[]; statistics: ImportedVehicleStatistics } {
++    const meshes: Mesh[] = [], names = new Set<string>();
++    lease.root.traverse(object => {
++      if (object.matrixAutoUpdate) object.updateMatrix();
++      if (!object.matrix.elements.every(Number.isFinite)) throw new Error('Damage variant has a non-finite authored transform.');
++      if (!(object instanceof Mesh)) return;
++      const name = object.name as keyof typeof DAMAGE_MATERIAL_SOURCES;
++      if (!Object.hasOwn(DAMAGE_MATERIAL_SOURCES, name) || names.has(name)) throw new Error('Damage variant requires exact unique authored mesh names.');
++      names.add(name);
++      const source = originalMeshes.find(mesh => mesh.name === DAMAGE_MATERIAL_SOURCES[name]);
++      const material = source && sourceMaterials.get(source);
++      if (!source || !material) throw new Error('Damage variant cannot resolve its original surface material.');
++      const position = object.geometry.getAttribute('position'), normal = object.geometry.getAttribute('normal');
++      const uv = object.geometry.getAttribute('uv');
++      if (!position || position.itemSize !== 3 || !position.count || !normal || normal.itemSize !== 3
++        || normal.count !== position.count || !uv || uv.itemSize !== 2 || uv.count !== position.count) {
++        throw new Error('Damage variant requires complete authored positions, normals and UVs.');
++      }
++      for (let index = 0; index < position.count; index++) {
++        if (![position.getX(index), position.getY(index), position.getZ(index),
++          normal.getX(index), normal.getY(index), normal.getZ(index), uv.getX(index), uv.getY(index)].every(Number.isFinite)) {
++          throw new Error('Damage variant contains non-finite positions, normals or UVs.');
++        }
++      }
++      const indices = object.geometry.index;
++      if (indices) for (let index = 0; index < indices.count; index++) {
++        const value = indices.getX(index);
++        if (!Number.isInteger(value) || value < 0 || value >= position.count) throw new Error('Damage variant has an invalid triangle index.');
++      }
++      if (!triangleCount(object)) throw new Error('Damage variant has no triangle geometry.');
++      validateSurfaceMaps(object, material);
++      if (material.normalMap && source.geometry.hasAttribute('tangent') && !object.geometry.hasAttribute('tangent')) {
++        throw new Error('Damage variant must preserve the borrowed material tangent frame.');
++      }
++      object.material = source.material;
++      meshes.push(object);
++    });
++    const cockpit = names.has('teemto-damage-cockpit-stubs-v16'), tethers = names.has('teemto-damage-severed-tethers-v16');
++    if (!names.has('teemto-damage-right-front-v16') || !names.has('teemto-damage-right-rear-v16')
++      || cockpit !== tethers || meshes.length !== (cockpit ? 4 : 2)) {
++      throw new Error('Damage variant requires two engine fragments with an optional complete cockpit/tether pair.');
++    }
++    const replaced = new Set<string>(meshes.map(mesh => DAMAGE_MATERIAL_SOURCES[mesh.name as keyof typeof DAMAGE_MATERIAL_SOURCES]));
++    const statistics = artStatistics([...originalMeshes.filter(mesh => !replaced.has(mesh.name)), ...meshes],
++      [...originalShadows.filter(mesh => !replaced.has(mesh.name)), ...meshes]);
++    if (statistics.opaqueDraws > this.maxOpaqueDraws || statistics.bodyDraws > this.maxBodyDraws
++      || statistics.pilotDraws > this.maxPilotDraws || statistics.triangles > this.maxTriangles) {
++      throw new Error(`Damage replacement exceeds its budget: ${statistics.opaqueDraws}/${this.maxOpaqueDraws} total draws, ${statistics.bodyDraws}/${this.maxBodyDraws} body, ${statistics.pilotDraws}/${this.maxPilotDraws} pilot, ${statistics.triangles}/${this.maxTriangles} triangles.`);
++    }
++    return { meshes, statistics };
++  }
++}

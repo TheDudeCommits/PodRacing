@@ -1,0 +1,814 @@
+{
+  "scope": "One reconstructed hero pose at frame1067, three source meshes; actual recorded camera origin; vehicle-only ray occlusion, no camera orientation/projection, scenery or GPU readback.",
+  "nativeFrame": 1067,
+  "nativeWallMs": 12316.8,
+  "phaseImage": "output/playwright/round35-combat-v22/temporal-review/settled-pts12.24.png",
+  "clockAssociation": "Approximate: first visible cut PTS10.40 vs native estimated wall10467.1ms. This is the closest raw sample, not an exact image/pose timestamp match.",
+  "nativeRoot": [
+    18600.146944912514,
+    -10.401951432896295,
+    15.075286382043856
+  ],
+  "camera": [
+    18632.55712714071,
+    -5.134568943024893,
+    43.17454624485601
+  ],
+  "cameraHorizontalDirection": [
+    0.7555686678424175,
+    0,
+    0.6550694529397891
+  ],
+  "cameraElevationFromRootDegrees": 7.000695196661119,
+  "reconstructedBasePosition": [
+    18600.146944912514,
+    -10.401951432896295,
+    15.075286382043856
+  ],
+  "sourcePositionErrorBeforeRecordedPositionOverride": 0,
+  "reconstructedOrientation": {
+    "yaw": 0.07634573438451353,
+    "pitch": -0.10754656754457319,
+    "roll": -0.11260952857850044,
+    "bank": 0
+  },
+  "remaining": 0.8416666666666712,
+  "renderedParentPosition": [
+    18596.473731799586,
+    -12.061554104096663,
+    16.392554518829755
+  ],
+  "renderedParentEuler": [
+    -0.08152367202027604,
+    0.530146138602487,
+    -0.33888369855819567,
+    "YXZ"
+  ],
+  "sourceVersion": "V23 source has the identical V22 engine transforms; V23 adds only cosmetic edge roots. No native quaternion was recorded.",
+  "visibilityMethod": "Full source vertex clearance; each of six longitudinal bins selects the two lowest mean-gap camera-facing triangle centroids. Their exact terrain gaps and line of sight are checked against all visible vehicle meshes. Unselected surfaces and scenery can limit conclusions.",
+  "visibilityRays": 39,
+  "reports": [
+    {
+      "mesh": "teemto-engine-left-body",
+      "vertices": 13967,
+      "triangles": 11790,
+      "worldMatrix": [
+        0.880885857478694,
+        -0.25881760573339935,
+        0.3962998272223403,
+        0,
+        0.23461326935412358,
+        0.9659204544903768,
+        0.10933567322733034,
+        0,
+        -0.41109210639100763,
+        -0.003335050154759628,
+        0.9115877124574846,
+        0,
+        18603.123552302583,
+        -14.201463682213221,
+        18.370910396097067,
+        1
+      ],
+      "minimumGap": 0.17999999999969774,
+      "minimumPoint": [
+        18597.91421898739,
+        -12.966257211457124,
+        21.806465389166508
+      ],
+      "minimumPointVisibility": {
+        "visibleFromRecordedCamera": true,
+        "occluder": null,
+        "occluderMetresBeforePoint": null
+      },
+      "nearGroundVertexCount": 352,
+      "cameraAlongAxis": 0.273072739394063,
+      "cameraAcrossAxis": 0.9619933882308247,
+      "verifiedFrontLowerSurfaceCandidates": 1,
+      "frontLowerGapRange": [
+        0.29916437449777433,
+        0.29916437449777433
+      ],
+      "sections": [
+        {
+          "section": 0,
+          "sourceZRange": [
+            5.0940141677856445,
+            8.03476858139038
+          ],
+          "candidates": [
+            {
+              "triangle": 11529,
+              "rankGap": 0.3013202428997328,
+              "point": [
+                18597.87372718416,
+                -12.883105742876118,
+                22.038951223995767
+              ],
+              "actualGap": 0.29916437449777433,
+              "visibleFromRecordedCamera": true,
+              "occluder": null,
+              "occluderMetresBeforePoint": null
+            },
+            {
+              "triangle": 11399,
+              "rankGap": 0.3217927180358367,
+              "point": [
+                18597.87204279299,
+                -12.861617153485867,
+                22.032626163611155
+              ],
+              "actualGap": 0.3196105529349289,
+              "visibleFromRecordedCamera": false,
+              "occluder": "teemto-engine-left-body",
+              "occluderMetresBeforePoint": 0.10744668420436909
+            }
+          ]
+        },
+        {
+          "section": 1,
+          "sourceZRange": [
+            8.03476858139038,
+            10.975522994995117
+          ],
+          "candidates": [
+            {
+              "triangle": 11514,
+              "rankGap": 0.8519674100776081,
+              "point": [
+                18596.54161019122,
+                -12.9525533093876,
+                24.937140942681687
+              ],
+              "actualGap": 0.8529065023446254,
+              "visibleFromRecordedCamera": false,
+              "occluder": "teemto-engine-left-body",
+              "occluderMetresBeforePoint": 1.243968573603837
+            },
+            {
+              "triangle": 11534,
+              "rankGap": 0.9692713311528252,
+              "point": [
+                18596.661100479447,
+                -12.843056686578773,
+                24.959225094979026
+              ],
+              "actualGap": 0.9676208777914503,
+              "visibleFromRecordedCamera": false,
+              "occluder": "teemto-engine-left-body",
+              "occluderMetresBeforePoint": 1.107997595573785
+            }
+          ]
+        },
+        {
+          "section": 2,
+          "sourceZRange": [
+            10.975522994995117,
+            13.916277408599854
+          ],
+          "candidates": [
+            {
+              "triangle": 4556,
+              "rankGap": 1.1146947246276184,
+              "point": [
+                18594.413451745866,
+                -13.158751541297065,
+                28.808388791548673
+              ],
+              "actualGap": 1.1147119292906922,
+              "visibleFromRecordedCamera": false,
+              "occluder": "teemto-damage-right-front-v16",
+              "occluderMetresBeforePoint": 13.723698860492881
+            },
+            {
+              "triangle": 8524,
+              "rankGap": 1.1209880578748657,
+              "point": [
+                18594.42965968105,
+                -13.153977505638021,
+                28.78939871607743
+              ],
+              "actualGap": 1.1210043993940602,
+              "visibleFromRecordedCamera": false,
+              "occluder": "teemto-damage-right-front-v16",
+              "occluderMetresBeforePoint": 13.712784882492915
+            }
+          ]
+        },
+        {
+          "section": 3,
+          "sourceZRange": [
+            13.916277408599854,
+            16.85703182220459
+          ],
+          "candidates": [
+            {
+              "triangle": 11158,
+              "rankGap": 1.2003402589133618,
+              "point": [
+                18593.852377473027,
+                -12.961508645110694,
+                31.328614918786286
+              ],
+              "actualGap": 1.2525516066405764,
+              "visibleFromRecordedCamera": false,
+              "occluder": "teemto-damage-right-front-v16",
+              "occluderMetresBeforePoint": 12.435557744118615
+            },
+            {
+              "triangle": 4635,
+              "rankGap": 1.2110968418111288,
+              "point": [
+                18593.988893666392,
+                -13.023905382364818,
+                29.896637986036296
+              ],
+              "actualGap": 1.2338710418703922,
+              "visibleFromRecordedCamera": false,
+              "occluder": "teemto-engine-left-body",
+              "occluderMetresBeforePoint": 2.252604077849533
+            }
+          ]
+        },
+        {
+          "section": 4,
+          "sourceZRange": [
+            16.85703182220459,
+            19.797786235809326
+          ],
+          "candidates": [
+            {
+              "triangle": 10789,
+              "rankGap": 0.27047104609871236,
+              "point": [
+                18591.810330024076,
+                -12.911390706100633,
+                33.34998703395045
+              ],
+              "actualGap": 0.26995654535203073,
+              "visibleFromRecordedCamera": false,
+              "occluder": "teemto-engine-left-body",
+              "occluderMetresBeforePoint": 3.0192594124418406
+            },
+            {
+              "triangle": 3923,
+              "rankGap": 0.31974416781747667,
+              "point": [
+                18591.589982079167,
+                -12.794352163764046,
+                33.175128150908364
+              ],
+              "actualGap": 0.319742728228249,
+              "visibleFromRecordedCamera": false,
+              "occluder": "teemto-engine-left-body",
+              "occluderMetresBeforePoint": 3.3673386289948297
+            }
+          ]
+        },
+        {
+          "section": 5,
+          "sourceZRange": [
+            19.797786235809326,
+            22.738540649414062
+          ],
+          "candidates": [
+            {
+              "triangle": 7779,
+              "rankGap": 0.2942781782730659,
+              "point": [
+                18591.141017158305,
+                -12.454045546267276,
+                34.76607837360123
+              ],
+              "actualGap": 0.2941683643078523,
+              "visibleFromRecordedCamera": false,
+              "occluder": "teemto-engine-left-body",
+              "occluderMetresBeforePoint": 3.0989274284447035
+            },
+            {
+              "triangle": 3811,
+              "rankGap": 0.3103210538720358,
+              "point": [
+                18591.14585969878,
+                -12.437076330760984,
+                34.8025228106159
+              ],
+              "actualGap": 0.3102370589885588,
+              "visibleFromRecordedCamera": false,
+              "occluder": "teemto-engine-left-body",
+              "occluderMetresBeforePoint": 3.0750050073926687
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "mesh": "teemto-damage-right-front-v16",
+      "vertices": 14086,
+      "triangles": 7948,
+      "worldMatrix": [
+        -0.7162072559894826,
+        0.25194687682459327,
+        0.650822508619938,
+        0,
+        -0.3402462638681447,
+        -0.9402785451176794,
+        -0.010427728187361707,
+        0,
+        0.6093272079858119,
+        -0.22890834159050177,
+        0.7591583001973312,
+        0,
+        18608.57855488669,
+        -13.591830288597034,
+        35.696303223655335,
+        1
+      ],
+      "minimumGap": 0.1799999999996551,
+      "minimumPoint": [
+        18610.008979674032,
+        -16.75792104274322,
+        38.713638232320896
+      ],
+      "minimumPointVisibility": {
+        "visibleFromRecordedCamera": true,
+        "occluder": null,
+        "occluderMetresBeforePoint": null
+      },
+      "nearGroundVertexCount": 130,
+      "cameraAlongAxis": 0.8297492584164873,
+      "cameraAcrossAxis": 0.5581363347402581,
+      "verifiedFrontLowerSurfaceCandidates": 3,
+      "frontLowerGapRange": [
+        0.1941194197319831,
+        0.4415192395928713
+      ],
+      "sections": [
+        {
+          "section": 0,
+          "sourceZRange": [
+            -3.8878984451293945,
+            -2.59193213780721
+          ],
+          "candidates": [
+            {
+              "triangle": 7512,
+              "rankGap": 0.44684512316864894,
+              "point": [
+                18605.98574918518,
+                -15.162526894494812,
+                33.38544910633399
+              ],
+              "actualGap": 0.4464711907473813,
+              "visibleFromRecordedCamera": false,
+              "occluder": "teemto-damage-right-front-v16",
+              "occluderMetresBeforePoint": 5.612239323550902
+            },
+            {
+              "triangle": 7631,
+              "rankGap": 0.44948868208733,
+              "point": [
+                18605.918242184624,
+                -15.202129349638172,
+                33.533813924223246
+              ],
+              "actualGap": 0.44939353957202854,
+              "visibleFromRecordedCamera": false,
+              "occluder": "teemto-damage-right-front-v16",
+              "occluderMetresBeforePoint": 5.095743857643178
+            }
+          ]
+        },
+        {
+          "section": 1,
+          "sourceZRange": [
+            -2.59193213780721,
+            -1.295965830485026
+          ],
+          "candidates": [
+            {
+              "triangle": 7604,
+              "rankGap": 0.4599528893406604,
+              "point": [
+                18606.633793496887,
+                -15.479052136708868,
+                34.379550729437966
+              ],
+              "actualGap": 0.45994184302139907,
+              "visibleFromRecordedCamera": false,
+              "occluder": "teemto-damage-right-front-v16",
+              "occluderMetresBeforePoint": 4.632118638165171
+            },
+            {
+              "triangle": 7600,
+              "rankGap": 0.462889186706087,
+              "point": [
+                18606.732649770733,
+                -15.51804388793067,
+                34.5029578352711
+              ],
+              "actualGap": 0.462850544662496,
+              "visibleFromRecordedCamera": false,
+              "occluder": "teemto-damage-right-front-v16",
+              "occluderMetresBeforePoint": 4.567493999588297
+            }
+          ]
+        },
+        {
+          "section": 2,
+          "sourceZRange": [
+            -1.295965830485026,
+            4.76837158203125e-7
+          ],
+          "candidates": [
+            {
+              "triangle": 1762,
+              "rankGap": 0.4596726965747475,
+              "point": [
+                18607.61902675116,
+                -15.861869235185582,
+                35.536542601969224
+              ],
+              "actualGap": 0.46370991386191385,
+              "visibleFromRecordedCamera": false,
+              "occluder": "teemto-damage-right-front-v16",
+              "occluderMetresBeforePoint": 3.9505228553304974
+            },
+            {
+              "triangle": 1718,
+              "rankGap": 0.4778040130607497,
+              "point": [
+                18607.119590343777,
+                -15.57452320801857,
+                34.605932822019255
+              ],
+              "actualGap": 0.47779715319939164,
+              "visibleFromRecordedCamera": false,
+              "occluder": "teemto-damage-right-front-v16",
+              "occluderMetresBeforePoint": 4.073844885242178
+            }
+          ]
+        },
+        {
+          "section": 3,
+          "sourceZRange": [
+            4.76837158203125e-7,
+            1.2959667841593427
+          ],
+          "candidates": [
+            {
+              "triangle": 1756,
+              "rankGap": 0.3919951010807298,
+              "point": [
+                18608.022692925588,
+                -16.06860466258983,
+                35.95338806414568
+              ],
+              "actualGap": 0.3922502020460854,
+              "visibleFromRecordedCamera": false,
+              "occluder": "teemto-damage-right-front-v16",
+              "occluderMetresBeforePoint": 3.5674798538513173
+            },
+            {
+              "triangle": 1682,
+              "rankGap": 0.41643639551287376,
+              "point": [
+                18608.017930171183,
+                -16.067695296966097,
+                36.14829233288735
+              ],
+              "actualGap": 0.41610606438795017,
+              "visibleFromRecordedCamera": false,
+              "occluder": "teemto-damage-right-front-v16",
+              "occluderMetresBeforePoint": 2.431768908598034
+            }
+          ]
+        },
+        {
+          "section": 4,
+          "sourceZRange": [
+            1.2959667841593427,
+            2.5919330914815264
+          ],
+          "candidates": [
+            {
+              "triangle": 1449,
+              "rankGap": 0.436667341031639,
+              "point": [
+                18609.378544987252,
+                -16.396932405829787,
+                37.327817158060924
+              ],
+              "actualGap": 0.4415192395928713,
+              "visibleFromRecordedCamera": true,
+              "occluder": null,
+              "occluderMetresBeforePoint": null
+            },
+            {
+              "triangle": 1241,
+              "rankGap": 0.4948316323038,
+              "point": [
+                18609.0285785342,
+                -16.249654374701933,
+                36.833194266266815
+              ],
+              "actualGap": 0.4985227908862413,
+              "visibleFromRecordedCamera": false,
+              "occluder": "teemto-damage-right-front-v16",
+              "occluderMetresBeforePoint": 1.066701840409543
+            }
+          ]
+        },
+        {
+          "section": 5,
+          "sourceZRange": [
+            2.5919330914815264,
+            3.887899398803711
+          ],
+          "candidates": [
+            {
+              "triangle": 1271,
+              "rankGap": 0.19412164281071873,
+              "point": [
+                18610.070840417233,
+                -16.76115121257329,
+                38.63696687901312
+              ],
+              "actualGap": 0.1941194197319831,
+              "visibleFromRecordedCamera": true,
+              "occluder": null,
+              "occluderMetresBeforePoint": null
+            },
+            {
+              "triangle": 1274,
+              "rankGap": 0.19970418622341768,
+              "point": [
+                18610.15469483994,
+                -16.77948089797593,
+                38.52496128147926
+              ],
+              "actualGap": 0.1997087794580601,
+              "visibleFromRecordedCamera": true,
+              "occluder": null,
+              "occluderMetresBeforePoint": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "mesh": "teemto-damage-right-rear-v16",
+      "vertices": 7831,
+      "triangles": 4474,
+      "worldMatrix": [
+        0.8399233994881239,
+        5.551115123125783e-17,
+        0.542704968645316,
+        0,
+        0.06333786333123693,
+        0.9931663035235373,
+        -0.09802555082235628,
+        0,
+        -0.5389962876133259,
+        0.11670772701664958,
+        0.8341836179125435,
+        0,
+        18606.73434495174,
+        -11.79434102518327,
+        20.067988563704294,
+        1
+      ],
+      "minimumGap": 0.10000000000042952,
+      "minimumPoint": [
+        18604.818590599833,
+        -13.452862558351715,
+        22.525871673310174
+      ],
+      "minimumPointVisibility": {
+        "visibleFromRecordedCamera": false,
+        "occluder": "teemto-damage-right-rear-v16",
+        "occluderMetresBeforePoint": 0.8935729381075532
+      },
+      "nearGroundVertexCount": 964,
+      "cameraAlongAxis": 0.15565214667055638,
+      "cameraAcrossAxis": 0.987811930094412,
+      "verifiedFrontLowerSurfaceCandidates": 1,
+      "frontLowerGapRange": [
+        0.6325619690321034,
+        0.6325619690321034
+      ],
+      "sections": [
+        {
+          "section": 0,
+          "sourceZRange": [
+            -5.137537002563477,
+            -3.4250246683756513
+          ],
+          "candidates": [
+            {
+              "triangle": 441,
+              "rankGap": 0.45544622072588403,
+              "point": [
+                18608.792495626752,
+                -14.046153470137515,
+                16.033178978999402
+              ],
+              "actualGap": 0.457051919390457,
+              "visibleFromRecordedCamera": false,
+              "occluder": "teemto-damage-right-rear-v16",
+              "occluderMetresBeforePoint": 1.1968537606013498
+            },
+            {
+              "triangle": 447,
+              "rankGap": 0.46228110258434657,
+              "point": [
+                18608.736554085546,
+                -14.036330472845211,
+                15.99362499038363
+              ],
+              "actualGap": 0.46368543607070833,
+              "visibleFromRecordedCamera": false,
+              "occluder": "teemto-damage-right-rear-v16",
+              "occluderMetresBeforePoint": 1.2606485477904528
+            }
+          ]
+        },
+        {
+          "section": 1,
+          "sourceZRange": [
+            -3.4250246683756513,
+            -1.7125123341878257
+          ],
+          "candidates": [
+            {
+              "triangle": 559,
+              "rankGap": 0.5881521298385005,
+              "point": [
+                18607.972170248402,
+                -13.72817141937712,
+                17.63799066191298
+              ],
+              "actualGap": 0.6061784708711784,
+              "visibleFromRecordedCamera": false,
+              "occluder": "teemto-damage-right-rear-v16",
+              "occluderMetresBeforePoint": 1.8179276243756277
+            },
+            {
+              "triangle": 508,
+              "rankGap": 0.6155089501530959,
+              "point": [
+                18608.693370596127,
+                -13.757911727423298,
+                18.116567493100924
+              ],
+              "actualGap": 0.6325619690321034,
+              "visibleFromRecordedCamera": true,
+              "occluder": null,
+              "occluderMetresBeforePoint": null
+            }
+          ]
+        },
+        {
+          "section": 2,
+          "sourceZRange": [
+            -1.7125123341878257,
+            0
+          ],
+          "candidates": [
+            {
+              "triangle": 451,
+              "rankGap": 0.4438022623997077,
+              "point": [
+                18607.176584392175,
+                -13.700893226285405,
+                18.76402834287717
+              ],
+              "actualGap": 0.45595583533296136,
+              "visibleFromRecordedCamera": false,
+              "occluder": "teemto-damage-right-rear-v16",
+              "occluderMetresBeforePoint": 2.210072133317709
+            },
+            {
+              "triangle": 729,
+              "rankGap": 0.4734027899543521,
+              "point": [
+                18606.75029057438,
+                -13.554228339987604,
+                19.962693301673117
+              ],
+              "actualGap": 0.4734438964604042,
+              "visibleFromRecordedCamera": false,
+              "occluder": "teemto-damage-right-rear-v16",
+              "occluderMetresBeforePoint": 0.7281620279094341
+            }
+          ]
+        },
+        {
+          "section": 3,
+          "sourceZRange": [
+            0,
+            1.7125123341878252
+          ],
+          "candidates": [
+            {
+              "triangle": 453,
+              "rankGap": 0.48295941918530855,
+              "point": [
+                18606.210608353875,
+                -13.425385911744872,
+                20.352676817578846
+              ],
+              "actualGap": 0.48485780444210214,
+              "visibleFromRecordedCamera": false,
+              "occluder": "teemto-damage-right-rear-v16",
+              "occluderMetresBeforePoint": 2.4741211880955944
+            },
+            {
+              "triangle": 869,
+              "rankGap": 0.49681090140733275,
+              "point": [
+                18606.544914733313,
+                -13.461719633892358,
+                20.47670402757563
+              ],
+              "actualGap": 0.4995601987264795,
+              "visibleFromRecordedCamera": false,
+              "occluder": "teemto-damage-right-rear-v16",
+              "occluderMetresBeforePoint": 2.1046227361571184
+            }
+          ]
+        },
+        {
+          "section": 4,
+          "sourceZRange": [
+            1.7125123341878252,
+            3.4250246683756504
+          ],
+          "candidates": [
+            {
+              "triangle": 1544,
+              "rankGap": 0.11453423746403324,
+              "point": [
+                18604.86142545129,
+                -13.445521927543371,
+                22.522588680099602
+              ],
+              "actualGap": 0.1145058213795842,
+              "visibleFromRecordedCamera": false,
+              "occluder": "teemto-damage-right-rear-v16",
+              "occluderMetresBeforePoint": 0.8545736610715267
+            },
+            {
+              "triangle": 3208,
+              "rankGap": 0.12248004619512247,
+              "point": [
+                18604.87860784901,
+                -13.440500383921144,
+                22.50894057496882
+              ],
+              "actualGap": 0.12245706991800631,
+              "visibleFromRecordedCamera": false,
+              "occluder": "teemto-damage-right-rear-v16",
+              "occluderMetresBeforePoint": 0.8671679284316625
+            }
+          ]
+        },
+        {
+          "section": 5,
+          "sourceZRange": [
+            3.4250246683756504,
+            5.137537002563477
+          ],
+          "candidates": [
+            {
+              "triangle": 3289,
+              "rankGap": 0.24553637111802828,
+              "point": [
+                18604.53809325824,
+                -13.292190835046668,
+                23.00150224563545
+              ],
+              "actualGap": 0.2231157283854195,
+              "visibleFromRecordedCamera": false,
+              "occluder": "teemto-damage-right-rear-v16",
+              "occluderMetresBeforePoint": 0.8736335939866962
+            },
+            {
+              "triangle": 3286,
+              "rankGap": 0.26801514966513434,
+              "point": [
+                18604.545530167416,
+                -13.2707022435164,
+                22.997341003115793
+              ],
+              "actualGap": 0.24556980279345986,
+              "visibleFromRecordedCamera": false,
+              "occluder": "teemto-damage-right-rear-v16",
+              "occluderMetresBeforePoint": 0.9193952366512264
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

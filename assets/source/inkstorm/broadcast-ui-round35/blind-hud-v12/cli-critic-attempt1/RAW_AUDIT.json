@@ -1,0 +1,12 @@
+{
+  "eventTypes": [
+    "thread.started",
+    "turn.started",
+    "item.completed",
+    "turn.completed"
+  ],
+  "itemTypes": [
+    "agent_message"
+  ],
+  "notes": "Independent image-only CLI; all seven examined; raw events audited for extra retrieval."
+}

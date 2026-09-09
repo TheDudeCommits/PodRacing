@@ -1,0 +1,370 @@
+{
+  "stage": "private V21 principal strike preparation; parent integration pending actual build/native review",
+  "date": "2026-09-09",
+  "patch": {
+    "path": "v21-principal-strike.patch",
+    "bytes": 25945,
+    "sha256": "fe9107e8266d5ce1fda668d6e209a5382c59b5a9c689f42d52085a7317532aa6"
+  },
+  "checks": {
+    "tests": 118,
+    "files": 13,
+    "durationSeconds": 46.54,
+    "typecheck": "PASS",
+    "patchApplyCheck": "PASS",
+    "native": "NOT RUN for this candidate",
+    "visualAcceptance": "PENDING; V20 baseline critic remains 4.5/10 FAIL8"
+  },
+  "restFrame": "fixed simulation base only; moving authoritative base still transports fragments",
+  "metrics": [
+    {
+      "kind": "V21 actual authored damage geometry support/projection",
+      "values": {
+        "name": "hero",
+        "positionsTested": 23442946,
+        "cameraPositions": 18708648,
+        "contactSamples": 207,
+        "maxQueries": 244,
+        "settledMaximumGap": {
+          "teemto-engine-left-body": 0.11127543615419278,
+          "teemto-damage-right-front-v16": 0.180000000003103,
+          "teemto-damage-right-rear-v16": 0.09242013923229031,
+          "teemto-damage-severed-tethers-v16": 0.1800000000013977
+        },
+        "minimumGapByMesh": {
+          "teemto-cockpit-body": {
+            "gap": 3.195075102030648,
+            "frame": 910,
+            "vertex": 19527
+          },
+          "teemto-cockpit-graphite-v2": {
+            "gap": 1.5596010969259755,
+            "frame": 1098,
+            "vertex": 151
+          },
+          "teemto-engine-left-body": {
+            "gap": 0.10612939288312084,
+            "frame": 1047,
+            "vertex": 2124
+          },
+          "teemto-engine-right-body": {
+            "gap": 2.4169158898666545,
+            "frame": 910,
+            "vertex": 3018
+          },
+          "teemto-pilot-accent003": {
+            "gap": 1.7972785187110834,
+            "frame": 1098,
+            "vertex": 158
+          },
+          "teemto-pilot-hardware003": {
+            "gap": 2.1029927107058093,
+            "frame": 1098,
+            "vertex": 1499
+          },
+          "teemto-pilot-rubber002": {
+            "gap": 1.9473764900615667,
+            "frame": 1098,
+            "vertex": 1216
+          },
+          "teemto-pilot-shell003": {
+            "gap": 1.835757778974635,
+            "frame": 1098,
+            "vertex": 827
+          },
+          "teemto-pilot-suit005": {
+            "gap": 1.732095482369873,
+            "frame": 1098,
+            "vertex": 890
+          },
+          "teemto-pilot-webbing002": {
+            "gap": 1.8281470881170137,
+            "frame": 1098,
+            "vertex": 391
+          },
+          "teemto-damage-cockpit-stubs-v16": {
+            "gap": 0.5500000245671561,
+            "frame": 1098,
+            "vertex": 31843
+          },
+          "teemto-damage-right-front-v16": {
+            "gap": 0.17999999999709004,
+            "frame": 942,
+            "vertex": 2522
+          },
+          "teemto-damage-right-rear-v16": {
+            "gap": 0.08995604758482045,
+            "frame": 919,
+            "vertex": 301
+          },
+          "teemto-damage-severed-tethers-v16": {
+            "gap": 0.17999999999895167,
+            "frame": 984,
+            "vertex": 341
+          }
+        }
+      }
+    },
+    {
+      "kind": "V21 actual authored damage geometry support/projection",
+      "values": {
+        "name": "rival",
+        "positionsTested": 11808368,
+        "cameraPositions": 9465688,
+        "contactSamples": 207,
+        "maxQueries": 203,
+        "settledMaximumGap": {
+          "teemto-engine-left-body": 0.17673125759719355,
+          "teemto-damage-right-front-v16": 0.18000000000395389,
+          "teemto-damage-right-rear-v16": 0.10000000000321307
+        },
+        "minimumGapByMesh": {
+          "teemto-cockpit-body": {
+            "gap": 0.5325900421483976,
+            "frame": 1126,
+            "vertex": 15660
+          },
+          "teemto-engine-left-body": {
+            "gap": 0.16828443917538394,
+            "frame": 1047,
+            "vertex": 1806
+          },
+          "teemto-engine-right-body": {
+            "gap": 2.4169158898666545,
+            "frame": 910,
+            "vertex": 2306
+          },
+          "teemto-pilot-helmet001": {
+            "gap": 1.906088966244246,
+            "frame": 1108,
+            "vertex": 256
+          },
+          "teemto-pilot-orange001": {
+            "gap": 1.61625044165147,
+            "frame": 1108,
+            "vertex": 467
+          },
+          "teemto-pilot-suit001": {
+            "gap": 1.5985968666514925,
+            "frame": 1109,
+            "vertex": 182
+          },
+          "teemto-pilot-visor001": {
+            "gap": 2.472595485256454,
+            "frame": 1108,
+            "vertex": 107
+          },
+          "teemto-damage-right-front-v16": {
+            "gap": 0.1799999999947115,
+            "frame": 960,
+            "vertex": 2149
+          },
+          "teemto-damage-right-rear-v16": {
+            "gap": 0.09999999999705622,
+            "frame": 1051,
+            "vertex": 185
+          }
+        }
+      }
+    },
+    {
+      "kind": "Actual principal strike/arrest",
+      "values": {
+        "name": "hero",
+        "birthY": -9.068139447093273,
+        "strikeY": -11.573423772170367,
+        "terminalWorldDrift": 3.802668872489512e-12,
+        "terminalAngularDrift": 5.960464477539063e-08,
+        "worldDirectionDot": 1
+      }
+    },
+    {
+      "kind": "Actual principal strike/arrest",
+      "values": {
+        "name": "rival",
+        "birthY": -9.058194158981358,
+        "strikeY": -11.535033217709756,
+        "terminalWorldDrift": 7.81665819948773e-12,
+        "terminalAngularDrift": 4.2146848510894035e-08,
+        "worldDirectionDot": 1
+      }
+    }
+  ],
+  "files": [
+    {
+      "path": "HANDOFF.md",
+      "bytes": 5733,
+      "sha256": "7d4584cceea1dcd7a715d2d2abc5e6b60c1220a769b1aec9201b8213bea0bd8e"
+    },
+    {
+      "path": "actual-geometry-initial.log",
+      "bytes": 2829,
+      "sha256": "23547b284e6310dda749869dbbab01e638258bcd518b27aa73a633c73acf4041"
+    },
+    {
+      "path": "actualGeometry.test.ts",
+      "bytes": 18323,
+      "sha256": "1c83d9f0161e22e3eb404e36c7dee88bc81b5e975349cd4639376292f7086cf0"
+    },
+    {
+      "path": "actualGeometryInitial.test.ts",
+      "bytes": 15263,
+      "sha256": "18f6ea87f39eef72a3a3d40f1ed74e3bcb8ec86e58c917853a9ea0c889491c88"
+    },
+    {
+      "path": "before/src/render/combat/TeemtoAuthoredDamage.ts",
+      "bytes": 14232,
+      "sha256": "a6d5aab8c29469c17e2927cc45a5c192c952030d3b074aa47f158a0065d1d85b"
+    },
+    {
+      "path": "before/src/render/combat/WreckVisualPose.ts",
+      "bytes": 10353,
+      "sha256": "bbc539ab304fbd9b95116f09e685b4eb9f3ae2b875d5664072d950ec78b71f2d"
+    },
+    {
+      "path": "before/src/render/galactic/GalacticEffectsView.ts",
+      "bytes": 69606,
+      "sha256": "5b6d1a2fdf2f9ebf8e41f3d10fc1c07752ff9da5e35ef5b228cbfa003ba9dee9"
+    },
+    {
+      "path": "before/tests/combat/TeemtoAuthoredDamage.test.ts",
+      "bytes": 15138,
+      "sha256": "3ec7ade8d52447506dc1580a63285ac2b75d305b8483af83323565c0ac58713b"
+    },
+    {
+      "path": "before/tests/combat/WreckContactBeat.test.ts",
+      "bytes": 5334,
+      "sha256": "bf8dbcb740d6146b144461b242e58f804d2dccdf03c825d005a88362108cd2dd"
+    },
+    {
+      "path": "before/tests/render/GalacticEffectsView.test.ts",
+      "bytes": 30675,
+      "sha256": "41cf61cf921cd29b5fed7bece860c706d1f2931ab9d8b3bf7e9ac162273cdea2"
+    },
+    {
+      "path": "candidate/src/render/combat/TeemtoAuthoredDamage.ts",
+      "bytes": 16975,
+      "sha256": "956308ccd776bcfafb34600965d3a553c8f822ddec7bf8c907a75c2f6381a259"
+    },
+    {
+      "path": "candidate/src/render/combat/TeemtoStrikeMotion.ts",
+      "bytes": 1475,
+      "sha256": "b4b365f82a0d620cbc3cac4c8f38769918adf901ba6029b1a4c88c5174df7c26"
+    },
+    {
+      "path": "candidate/src/render/combat/WreckVisualPose.ts",
+      "bytes": 11302,
+      "sha256": "c185b74ea1294056d8d6289037025565d22d6d04affdce61b37de12bc5bf3ce2"
+    },
+    {
+      "path": "candidate/src/render/galactic/GalacticEffectsView.ts",
+      "bytes": 70224,
+      "sha256": "3e305a7b5b7f2d737ca299db83c9afe89f21a20e46a9e4d194417f80ee6b42f9"
+    },
+    {
+      "path": "candidate/tests/combat/TeemtoAuthoredDamage.test.ts",
+      "bytes": 18198,
+      "sha256": "07b5d44c939e7f921069452ff724e2e549cd6066c12b8723eddb5e3c1a96f2b5"
+    },
+    {
+      "path": "candidate/tests/combat/TeemtoStrikeMotion.test.ts",
+      "bytes": 1652,
+      "sha256": "5b63510332317c0c7b5843139ff6713503aa1102457a31ba5ee22d6f2916bca3"
+    },
+    {
+      "path": "candidate/tests/combat/WreckContactBeat.test.ts",
+      "bytes": 5334,
+      "sha256": "bf8dbcb740d6146b144461b242e58f804d2dccdf03c825d005a88362108cd2dd"
+    },
+    {
+      "path": "candidate/tests/render/GalacticEffectsView.test.ts",
+      "bytes": 30675,
+      "sha256": "d435b0dd24ad2be091923ba257211d579181cd8389ec101d0420124b986ef329"
+    },
+    {
+      "path": "candidate-inputs.json",
+      "bytes": 1571,
+      "sha256": "cbeea12e596ec17c933d365d9930f899a6610ae3b82b613d4066d2fda35021f8"
+    },
+    {
+      "path": "effectRegression.test.ts",
+      "bytes": 30700,
+      "sha256": "894b2ac097e33e61ccea41586d3a74fd7e135efda69865156e89f38734fbde69"
+    },
+    {
+      "path": "focused-final.log",
+      "bytes": 63522,
+      "sha256": "7ddeb3a3c5df72f50497a27d66e40f323f7ae9bcaa0f8814897a1beb36cf76bc"
+    },
+    {
+      "path": "focused-v2.log",
+      "bytes": 5718,
+      "sha256": "155d7b40c074ea6674454fed6547bcb88aef301f3655626e6996483a1ca42fd0"
+    },
+    {
+      "path": "refresh-private-tests.py",
+      "bytes": 1084,
+      "sha256": "2d7cb819496ce02803baa6e7a8e0679196c41a777cce7b147dcfd198820b14d9"
+    },
+    {
+      "path": "strikeMotion.test.ts",
+      "bytes": 1677,
+      "sha256": "d6ca2d0edb0c636ca3cc2890d05b9829840e0fc4fbd8256a6c6a42d0425b862f"
+    },
+    {
+      "path": "test-runtime/GalacticEffectsView.ts",
+      "bytes": 70478,
+      "sha256": "cba2c0da5d2320220eea3bdc8e7ea1a5a8c62ecf52e56e34a747ac390c4de81e"
+    },
+    {
+      "path": "test-runtime/TeemtoAuthoredDamage.ts",
+      "bytes": 16975,
+      "sha256": "956308ccd776bcfafb34600965d3a553c8f822ddec7bf8c907a75c2f6381a259"
+    },
+    {
+      "path": "test-runtime/TeemtoStrikeMotion.ts",
+      "bytes": 1475,
+      "sha256": "b4b365f82a0d620cbc3cac4c8f38769918adf901ba6029b1a4c88c5174df7c26"
+    },
+    {
+      "path": "test-runtime/WreckVisualPose.ts",
+      "bytes": 11378,
+      "sha256": "3404db60fb4e75107592e6ef7e48b7a6746a015f4f8a4c06c1fce6d5b978e88a"
+    },
+    {
+      "path": "tsconfig.candidate.json",
+      "bytes": 108,
+      "sha256": "fb846fe7360bf4cd9f51f4a79ef327e4fdad56e4db37fef2bca56684bfe5a672"
+    },
+    {
+      "path": "typecheck-final.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "typecheck-initial.log",
+      "bytes": 648,
+      "sha256": "76b98f0053517ab690b6147d56e79227bcff3f1d84e41bc0656702b6c888e4db"
+    },
+    {
+      "path": "typecheck-v2.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "v20-source-curve-diagnosis.json",
+      "bytes": 884,
+      "sha256": "13f46dafc7ca0a1ec90e8d78e490c20d5e0ab44bf0738fd507e15f1e97052fac"
+    },
+    {
+      "path": "v21-principal-strike.patch",
+      "bytes": 25945,
+      "sha256": "fe9107e8266d5ce1fda668d6e209a5382c59b5a9c689f42d52085a7317532aa6"
+    },
+    {
+      "path": "vitest.config.ts",
+      "bytes": 1135,
+      "sha256": "102066bc1ad10986818b36abff17c27afa75f0c92fdaf941cf5bc441c23b2341"
+    }
+  ]
+}

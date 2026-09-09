@@ -1,0 +1,95 @@
+--- pre-v8/docs/inkstorm-overhaul/CURRENT_VISUALS.md
++++ docs/inkstorm-overhaul/CURRENT_VISUALS.md
+@@ -1,68 +1,72 @@
+-# Inkstorm runtime images — Blockrunner V5, 8 September 2026
++# Inkstorm runtime images — retained V9 Sobel candidate, 8 September 2026
+ 
+-These **13 unedited actual game PNGs** belong to `index-CFofn-oM.js`, SHA256 `2d8ff97639d335f22e1c683562c418d3f55572251f1b55dc71268bda015d264b`. [Capture receipt](../../output/gauntlet/round34-blockrunner-admission-v1/captures-material-framing-v5/receipts.json) records zero errors. Page viewport is 1440×900 CSS at DPR 1.5; staged main-renderer snapshots separately record DPR 2 with adaptive rendering disabled for capture. This is distinct from the adaptive performance runs. V5 uses a larger broadside garage portrait and separate narrow layout; chase clearance remains 4.8 m and public V6 assets are unchanged.
++These **13 unedited actual V9 game PNGs** belong to `index-BQvDRTNC.js`, SHA256 `56d196f442cdfcc34edc732b536ec23a3d65f5c6c94d87ac075369a9c8093d97`, with the V8 contact-color vehicle GLBs. [Capture receipt](../../output/gauntlet/round34-sobel-stencil-v9/captures/receipts.json) has empty errors. Page viewport is 1440×900 at DPR 1.5; these image settings differ from adaptive benchmark runs. All eleven staged camera/vehicle poses match V8; the stencil affects only a small fraction of pixels. These stills and one short Start/W frame are not full races or motion/performance acceptance.
+ 
+-**Actual fresh V5 still-image verdict: craft 5/10, world/route 6.5/10, materials 4.5/10, overall 5.5/10 — FAIL against 8/10.** The separate ephemeral read-only CLI review used a fresh temporary directory and 21 hash-verified attachments (13 actual V5 images + eight concepts). No prior task history or verdict was supplied or retrieved; recorded tool/file retrieval calls are zero. Generic user configuration may load. Transport retries preceded an exit-0 final review with all 21 images declared viewed and 13 individual observations. This is still-image criticism, not motion, physics or performance evidence; it does not replace or average the earlier prior-context reviews. [Actual fresh report](../../assets/source/inkstorm/blockrunner-round34/fresh-v5-review-preparation/cli-critic-attempt1/review.md).
++**Current working candidate: retained V9 Sobel stencil.** Root applied and verified this separate change after the V8 diagnostic: **671 tests / 120 executed files**, typecheck/build PASS. Bundle `index-BQvDRTNC.js` is **1,620,951 bytes**, SHA256 `56d196f442cdfcc34edc732b536ec23a3d65f5c6c94d87ac075369a9c8093d97`; V8 vehicle GLBs remain. All 13 V9 captures have empty errors and the owned browser/server/port 5186 closed. The fresh paired edge review prefers V9 in salt and launch, ties grid and Foundry exit, and finds no convincing foreground-edge regression; the improvement is subtle. Its broader in-game/world score is **6/10, FAIL against 8/10**, a different scope from V8's vehicle 5.5 review. [V9 verify](../../output/gauntlet/round34-sobel-stencil-v9/verify.log) · [Matched capture comparison](../../output/gauntlet/round34-sobel-stencil-v9/matched-runtime-comparison.json) · [Fresh V9 review](../../assets/source/inkstorm/round34-distant-edge-diagnosis/blind-runtime-v9/cli-critic-attempt1/review.md) · [Audited V9 receipt](../../assets/source/inkstorm/round34-distant-edge-diagnosis/blind-runtime-v9/cli-critic-attempt1/audited-review-receipt.json). The 481-interval short capture is not a full-race or resource benchmark. No V9 resource/performance acceptance or transfer of V5/V8 results is claimed.
+ 
+-The independent **V4 full-image review is 6/10 craft, 5/10 material parity, 6/10 world parity and 6/10 overall: FAIL against 8/10**. The reviewer disclosed prior source/documentation/V3 context; it is not fresh blind. The separate V5 review opened only the default and narrow garage PNGs, with prior context and the intended change disclosed. It finds improved default pilot inspection and resolved descriptor/model overlap, but unfinished materials. It gives no V5 race/world score or overall art PASS. [V4 full-image review](../../output/gauntlet/round34-blockrunner-admission-v1/captures-material-framing-v4/INDEPENDENT_MATERIAL_WORLD_V4_REVIEW.md) · [V5 garage addendum](../../output/gauntlet/round34-blockrunner-admission-v1/garage-inspection-v5/INDEPENDENT_GARAGE_V5_ADDENDUM.md). The numeric V4 scores are not V5 race/world scores. Those prior-context reports supply no fresh V5 verdict; the separate fresh review above does. Original targets remain unaccepted.
++**The fresh paired contact-color review demonstrates no quality improvement:** all four pairs tie. Both V8 (A) and V5/V6-assets (B) score **materials 5/10, pilot readability 6/10, overall vehicle 5.5/10 — FAIL against 8/10**. The critic declared all nine attachments examined: eight actual images in four pairs plus generated concept12. [Review](../../assets/source/inkstorm/blockrunner-round34/contact-color-v1-blind-review/cli-critic-attempt1/review.md) · [Audited attachment/event proof](../../assets/source/inkstorm/blockrunner-round34/contact-color-v1-blind-review/audited-review-v1.json).
+ 
+-The [V5 technical attempt](FULL_RACE_PERFORMANCE_BLOCKRUNNER_V5_ROUND34.md) passes races/Continue, staged cadence and context recovery, but fails resource plateau (+1 geometry/+2 textures at matching stages). Its frozen files and raw intervals own those results; these images are not timing evidence. Staged 410 KPH/zero-clock stills and one short ordinary Start/W frame are not full races, motion or FPS evidence.
++That paired review covers garage, grid, Foundry middle and exit only, with one concept image. It is not a fresh review of all 13 V8 frames, the original seven world concepts, narrow UI, motion or performance. The earlier fresh V5 overall 5.5 FAIL and prior-context V4/V5-garage findings remain historical, not averaged. [Complete V5 gallery/review document](evidence/round-34/pre-contact-color-v8-documentation/CURRENT_VISUALS.md).
+ 
+-The garage reviewer viewed the earlier V5 default/narrow PNGs only. The [later readiness probe](../../output/gauntlet/round34-blockrunner-admission-v1/garage-inspection-v5-readiness/receipt.json) separately proves a 6 px descriptor/model gap and Start reachable after ordinary scroll on a 390×844 viewport, correcting the prior uncertainty without claiming a new critic inspection. It closed browser/server with no errors. The taller-page tradeoff remains visible.
++V8's single healthy instrumented resource run is **diagnostic non-reproduction only**. Historical V5 timing PASS and resource +1 geometry/+2 textures FAIL remain unchanged. [V8 diagnostic](../../output/playwright/round34-blockrunner-contact-color-v8-resource-owner-attempt1/ANALYSIS-v1.md) · [V5 performance/failure](FULL_RACE_PERFORMANCE_BLOCKRUNNER_V5_ROUND34.md). These staged stills and one short ordinary Start/W frame are not full races, motion or FPS evidence.
+ 
+-[Round scope](ROUND34.md) · [Acceptance](STATUS.md) · [Byte-preserved V3 gallery document](evidence/round-34/pre-blockrunner-v5-documentation/CURRENT_VISUALS.md). **8 September source update:** V7 short-contact colour was actually authored and one matched neutral driver render completed, preserving all 153 pre-existing scene histories and original context. This is an unbaked source candidate: no V7 export, package, public asset, runtime admission or art PASS. The live tested bundle remains V5. [Author receipt](../../assets/source/inkstorm/blockrunner-round34/mcp-safe/contact-author-v7-receipt.json) · [Matched render receipt](../../assets/source/inkstorm/blockrunner-round34/mcp-safe/contact-v7-driver-render-receipt.json). The V7 neutral source render is separate from this V5 runtime gallery.
++The separate [V8 garage/UI probe](../../output/gauntlet/round34-blockrunner-contact-color-v1/garage-inspection/receipt.json) confirms 6 px descriptor/model separation, no horizontal overflow at 390 px and Start reachable after actual scroll. It closed browser/server with empty errors. That probe is functional evidence, not an additional critic review; the taller-page tradeoff remains.
++
++V7 contact-color body/pilot bakes, V8 atlas/export/packages and public admission have actually executed. [Source/package lineage](ROUND34.md). The V8 experiment and its thirteen source PNGs remain preserved in the [V8 capture inventory](evidence/round-34/pre-contact-color-v8-documentation/v8-compact-evidence.json).
++
++[Round scope](ROUND34.md) · [Acceptance](STATUS.md) · [Pre-V8 gallery](evidence/round-34/pre-contact-color-v8-documentation/CURRENT_VISUALS.md). V8 color quality did not improve in its paired review; V9 edges improved subtly in two pairs. Neither result meets final art acceptance. No commit, push or deployment.
+ 
+ ## Garage
+ 
+-![Garage — actual V5 runtime](../../output/gauntlet/round34-blockrunner-admission-v1/captures-material-framing-v5/garage.png)
++![Garage — actual V9 Sobel runtime](../../output/gauntlet/round34-sobel-stencil-v9/captures/garage.png)
+ 
+ ## Grid
+ 
+-![Grid — actual V5 runtime](../../output/gauntlet/round34-blockrunner-admission-v1/captures-material-framing-v5/01-grid.png)
++![Grid — actual V9 Sobel runtime](../../output/gauntlet/round34-sobel-stencil-v9/captures/01-grid.png)
+ 
+ ## Salt run
+ 
+-![Salt run — actual V5 runtime](../../output/gauntlet/round34-blockrunner-admission-v1/captures-material-framing-v5/02-salt-run.png)
++![Salt run — actual V9 Sobel runtime](../../output/gauntlet/round34-sobel-stencil-v9/captures/02-salt-run.png)
+ 
+ ## Canyon
+ 
+-![Canyon — actual V5 runtime](../../output/gauntlet/round34-blockrunner-admission-v1/captures-material-framing-v5/03-canyon.png)
++![Canyon — actual V9 Sobel runtime](../../output/gauntlet/round34-sobel-stencil-v9/captures/03-canyon.png)
+ 
+ ## Fork
+ 
+-![Fork — actual V5 runtime](../../output/gauntlet/round34-blockrunner-admission-v1/captures-material-framing-v5/04-fork.png)
++![Fork — actual V9 Sobel runtime](../../output/gauntlet/round34-sobel-stencil-v9/captures/04-fork.png)
+ 
+ ## Launch
+ 
+-![Launch — actual V5 runtime](../../output/gauntlet/round34-blockrunner-admission-v1/captures-material-framing-v5/05-launch.png)
++![Launch — actual V9 Sobel runtime](../../output/gauntlet/round34-sobel-stencil-v9/captures/05-launch.png)
+ 
+ ## Foundry
+ 
+-![Foundry — actual V5 runtime](../../output/gauntlet/round34-blockrunner-admission-v1/captures-material-framing-v5/06-foundry.png)
++![Foundry — actual V9 Sobel runtime](../../output/gauntlet/round34-sobel-stencil-v9/captures/06-foundry.png)
+ 
+ ## Foundry approach
+ 
+-![Foundry approach — actual V5 runtime](../../output/gauntlet/round34-blockrunner-admission-v1/captures-material-framing-v5/foundry-approach.png)
++![Foundry approach — actual V9 Sobel runtime](../../output/gauntlet/round34-sobel-stencil-v9/captures/foundry-approach.png)
+ 
+ ## Foundry near span
+ 
+-![Foundry near span — actual V5 runtime](../../output/gauntlet/round34-blockrunner-admission-v1/captures-material-framing-v5/foundry-near-span.png)
++![Foundry near span — actual V9 Sobel runtime](../../output/gauntlet/round34-sobel-stencil-v9/captures/foundry-near-span.png)
+ 
+ ## Foundry middle
+ 
+-![Foundry middle — actual V5 runtime](../../output/gauntlet/round34-blockrunner-admission-v1/captures-material-framing-v5/foundry-middle.png)
++![Foundry middle — actual V9 Sobel runtime](../../output/gauntlet/round34-sobel-stencil-v9/captures/foundry-middle.png)
+ 
+ ## Foundry exit
+ 
+-![Foundry exit — actual V5 runtime](../../output/gauntlet/round34-blockrunner-admission-v1/captures-material-framing-v5/foundry-exit.png)
++![Foundry exit — actual V9 Sobel runtime](../../output/gauntlet/round34-sobel-stencil-v9/captures/foundry-exit.png)
+ 
+ ## Finish
+ 
+-![Finish — actual V5 runtime](../../output/gauntlet/round34-blockrunner-admission-v1/captures-material-framing-v5/07-finish.png)
++![Finish — actual V9 Sobel runtime](../../output/gauntlet/round34-sobel-stencil-v9/captures/07-finish.png)
+ 
+ ## Short ordinary Start/W capture
+ 
+-![Short ordinary Start/W capture — actual V5 runtime](../../output/gauntlet/round34-blockrunner-admission-v1/captures-material-framing-v5/live-drive.png)
++![Short ordinary Start/W capture — actual V9 Sobel runtime](../../output/gauntlet/round34-sobel-stencil-v9/captures/live-drive.png)
+ 
+ ## Separate source and target references
+ 

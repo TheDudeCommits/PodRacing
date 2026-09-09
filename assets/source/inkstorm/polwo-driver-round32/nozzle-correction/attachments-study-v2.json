@@ -1,0 +1,55 @@
+{
+  "scope": "Corrected external runtime attachment metadata from preserved original rear fan geometry; prior exported empty markers remain unused source-study metadata.",
+  "sourceUid": "5a3422df6f894b48b846d590cdc2bf4c",
+  "normalization": {
+    "scale": 2.5,
+    "translationBlender": [
+      0,
+      -11.9,
+      1.6775319933891297
+    ]
+  },
+  "attachments": {
+    "pilot": {
+      "position": [
+        0,
+        4.2725324630737305,
+        -5.199999809265137
+      ]
+    },
+    "exhaustLeft": {
+      "position": [
+        -3.929196834564209,
+        1.6775317192077637,
+        8.135646316150098
+      ]
+    },
+    "exhaustRight": {
+      "position": [
+        3.929197072982788,
+        1.677531659603119,
+        8.135646316150098
+      ]
+    },
+    "couplingLeft": {
+      "position": [
+        -3.0361387729644775,
+        1.6775315403938293,
+        14.65654182434082
+      ]
+    },
+    "couplingRight": {
+      "position": [
+        3.0361380577087402,
+        1.6775315403938293,
+        14.65653944015503
+      ]
+    }
+  },
+  "basis": {
+    "pilot": "V3 pelvis target, not full seat-contact acceptance.",
+    "exhaust": "Center plane of source helice_arriere039_low_Material #6_0, normalized from original GLB node transforms; prior reacteur_low bound selected the aft spike tip instead of the engine mouth.",
+    "coupling": "Original connecteur_elec_low inner X face and box center Y/Z."
+  },
+  "sourceBoundsReceipt": "output/gauntlet/round32-polwo-source-bounds.json"
+}

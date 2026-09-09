@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "scope": "CPU uniform identity, independent setter reset and disposal only; no GPU launched",
+  "disposalEvents": {
+    "gulf0-first": 1,
+    "gulf1-first": 1,
+    "pit-first": 1,
+    "gulf0-second": 1,
+    "gulf1-second": 1,
+    "pit-second": 1
+  }
+}

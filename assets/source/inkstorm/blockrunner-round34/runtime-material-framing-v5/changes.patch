@@ -1,0 +1,34 @@
+--- a/src/ui/VehicleCardPreview.ts
++++ b/src/ui/VehicleCardPreview.ts
+@@ -677,9 +677,9 @@
+     // Its opposite rear quarter spreads both engines and cockpit across the
+     // wide host, facing the existing key light without changing any materials.
+     if (vehicle.activeAppearanceId === 'polwo') cameraDirection.set(-1.5, 0.5, -0.5);
+-    // The tall rear wedges conceal Blockrunner's cockpit and front intakes.
+-    // A broad front quarter exposes those source features in the same host.
+-    else if (vehicle.activeAppearanceId === 'blockrunner') cameraDirection.set(-1.8, 1.05, 0.25);
++    // The raised broadside view clears the tall cockpit walls and spreads the
++    // long craft across the inspection bay; orbit controls expose the intakes.
++    else if (vehicle.activeAppearanceId === 'blockrunner') cameraDirection.set(-1.6838457268119895, 1.05, -0.6834936490538903);
+     else cameraDirection.set(0.7, 0.38, -1);
+     cameraDirection.normalize().applyAxisAngle(worldUp, angle * Math.PI / 180);
+     vehicle.visible = true;
+--- a/src/ui/inkstormStyles.ts
++++ b/src/ui/inkstormStyles.ts
+@@ -413,11 +413,12 @@
+   .pod-hud__vehicle-select-head h1 { font-size:39px; }
+   .pod-hud__vehicle-select-head h1 small { font-size:10px; }
+   .pod-hud__garage-edition { display:none; }
+-  .pod-hud__garage-hero { min-height:300px; flex-shrink:0; order:1; }
+-  .pod-hud__garage-name { left:15px; right:15px; max-width:none; }
++  .pod-hud__garage-hero { min-height:300px; flex-shrink:0; order:1; display:flex; flex-direction:column; padding-top:50px; }
++  .pod-hud__appearance { position:relative; inset:auto; margin:0 15px; }
++  .pod-hud__garage-name { position:relative; inset:auto; max-width:none; margin:8px 15px 18px; }
+   .pod-hud__garage-name h2 { font-size:34px; }
+-  .pod-hud__garage-model { left:0; right:0; top:25px; bottom:80px; }
+-  .pod-hud__garage-stats { padding:11px 15px; }
++  .pod-hud__garage-model { position:relative; inset:auto; height:180px; flex-shrink:0; margin-top:6px; }
++  .pod-hud__garage-stats { position:relative; inset:auto; margin-top:auto; padding:11px 15px; }
+   .pod-hud__vehicle-cards { order:2; gap:8px; }
+   .pod-hud__vehicle-card { height:84px; min-height:84px; }
+   .pod-hud__vehicle-card h2 { font-size:16px; max-width:100%; }

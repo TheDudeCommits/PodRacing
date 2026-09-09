@@ -1,0 +1,328 @@
+--- a/src/render/galactic/GalacticEffectsView.ts
++++ b/src/render/galactic/GalacticEffectsView.ts
+@@ -216,6 +216,7 @@
+   spark: boolean;
+   ember: boolean;
+   contactSpark: boolean;
++  contactGround: boolean;
+   authoredEjection: boolean;
+   emberPhase: number;
+   wreckOwner: number;
+@@ -404,10 +405,12 @@
+     `).replace('#include <color_fragment>', `
+       #include <color_fragment>
+       float sun = max(0.0, dot(normalize(vFragmentNormal), normalize(vec3(-.42, .76, -.5))));
+-      diffuseColor.rgb *= mix(1.0, .32 + sun * .86, vFragmentMetal);
++      // 0: existing hot fragment, 1: casing, 2: contact sand clod.
++      // Both solid kinds receive the same actual world-sun facet response.
++      diffuseColor.rgb *= mix(1.0, .32 + sun * .86, min(vFragmentMetal, 1.0));
+     `);
+   };
+-  result.customProgramCacheKey = () => 'inkstorm-crash-casing-v1';
++  result.customProgramCacheKey = () => 'inkstorm-crash-casing-contact-grit-v2';
+   return result;
+ }
+ 
+@@ -449,7 +452,22 @@
+       float grain = paintNoise(p * vec2(16.0, 10.0) + vEffectSurface.z);
+       float radius = length(p);
+       float alpha;
+-      if (uRuptureAtlasReady > 0.5 && vEffectSurface.x > 5.5 && vEffectSurface.x < 7.5) {
++      if (vEffectSurface.x > 9.5) {
++        // Low directional ejecta occupies a world sheet, not a vertical
++        // curtain. Unequal rolling heads break its outer edge; the open skirt
++        // still reveals the sand and source casing behind the impulse.
++        float t = (p.y + 1.0) * 0.5;
++        float settling = step(10.5, vEffectSurface.x);
++        float head = 0.68 + 0.12 * sin(p.x * 5.2 + vEffectSurface.z)
++          + 0.08 * sin(p.x * 9.1 - vEffectSurface.z * 0.7);
++        float lateral = 1.0 - smoothstep(0.72, 1.0, abs(p.x) + (brush - 0.5) * 0.12);
++        float front = 1.0 - smoothstep(head - 0.14, head + 0.12, t);
++        float channels = smoothstep(0.18, 0.55, grain + brush * 0.22);
++        alpha = lateral * front * smoothstep(0.0, 0.055, t)
++          * mix(0.52 + 0.48 * channels, 0.40 + 0.60 * brush, settling);
++        diffuseColor.rgb *= mix(0.58, 1.25, smoothstep(0.02, 0.72, t))
++          * (0.88 + grain * 0.18);
++      } else if (uRuptureAtlasReady > 0.5 && vEffectSurface.x > 5.5 && vEffectSurface.x < 7.5) {
+         vec4 ink = ruptureArtwork(vEffectSurface.x, vEffectSurface.z, p);
+         alpha = ink.a;
+         // Crossfades use premultiplied colors; the material still outputs
+@@ -581,7 +599,7 @@
+       if (diffuseColor.a < 0.008) discard;
+     `);
+   };
+-  result.customProgramCacheKey = () => 'painterly-atmosphere-rooted-atlas-v9';
++  result.customProgramCacheKey = () => 'painterly-atmosphere-low-contact-v10';
+   return result;
+ }
+ 
+@@ -731,7 +749,7 @@
+   );
+   private readonly debrisSlots = Array.from(
+     { length: GALACTIC_EFFECT_CAPACITY.crashDebris },
+-    (): DebrisSlot => ({ active: false, startTime: 0, duration: 0, x: 0, y: 0, z: 0, vx: 0, vy: 0, vz: 0, rx: 0, ry: 0, rz: 0, ax: 0, ay: 0, az: 0, scale: 1, groundY: 0, metal: false, spark: false, ember: false, contactSpark: false, authoredEjection: false, emberPhase: 0, wreckOwner: -1, wreckSequence: -1, r: 1, g: 0.3, b: 0.1 }),
++    (): DebrisSlot => ({ active: false, startTime: 0, duration: 0, x: 0, y: 0, z: 0, vx: 0, vy: 0, vz: 0, rx: 0, ry: 0, rz: 0, ax: 0, ay: 0, az: 0, scale: 1, groundY: 0, metal: false, spark: false, ember: false, contactSpark: false, contactGround: false, authoredEjection: false, emberPhase: 0, wreckOwner: -1, wreckSequence: -1, r: 1, g: 0.3, b: 0.1 }),
+   );
+   private readonly explosionSlots = Array.from(
+     { length: GALACTIC_EFFECT_CAPACITY.explosionPlates },
+@@ -982,7 +1000,7 @@
+         ? ((spark ? 24 : 18) + hash01(seed + 1) * (spark ? 16 : 12)) * Math.sqrt(severity)
+         : (5.5 + hash01(seed + 1) * 11) * severity * radialScale;
+       slot.active = true;
+-      slot.contactSpark = false;
++      slot.contactSpark = false; slot.contactGround = false;
+       slot.authoredEjection = authoredSurface;
+       slot.ember = ember; slot.emberPhase = ember && fragment === fragmentCount - 1 ? .21 : 0; slot.wreckOwner = ember ? event.wreckOwner! : -1;
+       slot.wreckSequence = ember ? event.wreckSequence! : -1;
+@@ -1168,7 +1186,21 @@
+       slot.scale = .34 + hash01(seed + 4) * .20;
+       slot.groundY = origin.y; slot.metal = false; slot.spark = true; slot.contactSpark = true; slot.authoredEjection = false;
+       slot.ember = false; slot.emberPhase = 0; slot.wreckOwner = -1; slot.wreckSequence = -1;
++      slot.contactGround = !!span;
+       slot.r = 1; slot.g = index % 3 === 0 ? .87 : .48; slot.b = index % 3 === 0 ? .5 : .09;
++      if (span) {
++        // Same ten entries: three raking casing pieces and seven short sand
++        // clods. The measured birth band is unchanged; these are departing
++        // particles, not additional contact witnesses or gameplay impacts.
++        const casing = index < 3, rakeSpeed = casing ? 10 + hash01(seed + 1) * 5 : 5 + hash01(seed + 1) * 5;
++        slot.vx = Math.cos(angle) * rakeSpeed; slot.vz = Math.sin(angle) * rakeSpeed;
++        slot.vy = 2 + hash01(seed + 3) * 2;
++        slot.rx = hash01(seed + 5) * 2; slot.ry = hash01(seed + 6) * 6; slot.rz = hash01(seed + 7) * 2;
++        slot.ax = (hash01(seed + 8) - .5) * 8; slot.ay = (hash01(seed + 9) - .5) * 6; slot.az = (hash01(seed + 10) - .5) * 8;
++        slot.scale = casing ? .60 + hash01(seed + 4) * .18 : .20 + hash01(seed + 4) * .16;
++        slot.metal = casing; slot.spark = false; slot.contactSpark = false;
++        slot.r = casing ? .14 : .52; slot.g = casing ? .12 : .31; slot.b = casing ? .10 : .12;
++      }
+     }
+     for (let index = 0; index < 2; index++) {
+       const slot = this.explosionSlots[this.explosionCursor]!;
+@@ -1632,14 +1664,14 @@
+       const motionAge = slot.ember ? (age + slot.emberPhase) % .42 : age;
+       // Free casing loses horizontal velocity, then falls. Its actual birth
+       // impulse remains distinct from the two retained moving-root embers.
+-      const travelAge = slot.authoredEjection && slot.metal
+-        ? -Math.expm1(-2.2 * motionAge) / 2.2 : motionAge;
++      const travelAge = slot.contactGround ? -Math.expm1(-4 * motionAge) / 4
++        : slot.authoredEjection && slot.metal ? -Math.expm1(-2.2 * motionAge) / 2.2 : motionAge;
+       const x = slot.x + slot.vx * travelAge;
+       // Retained embers start at the moving fracture, not the terrain height
+       // sampled at its birth. A stale floor would detach them on a descent.
+       let y = slot.ember ? slot.y + Math.max(0, slot.vy) * motionAge - 1.5 * motionAge * motionAge
+         : Math.max(slot.groundY + 0.04, slot.y + slot.vy * motionAge
+-          - (slot.authoredEjection && slot.metal ? 17 : 7.2) * motionAge * motionAge);
++          - (slot.contactGround || slot.authoredEjection && slot.metal ? 17 : 7.2) * motionAge * motionAge);
+       const z = slot.z + slot.vz * travelAge;
+       this.euler.set(slot.rx + slot.ax * age, slot.ry + slot.ay * age, slot.rz + slot.az * age);
+       this.tempQuaternion.setFromEuler(this.euler);
+@@ -1649,23 +1681,26 @@
+       }
+       const progress = age / slot.duration;
+       const fade = slot.ember ? (1 - motionAge / .42) * (1 - MathUtils.smoothstep(progress, .8, 1))
+-        : slot.metal ? 1 : MathUtils.clamp(1 - progress, 0.12, 1);
++        : slot.metal || slot.contactGround ? 1 : MathUtils.clamp(1 - progress, 0.12, 1);
+       // Metal holds its value while tumbling, then contracts over the last
+       // quarter of its life instead of becoming black floating rectangles.
+-      const size = slot.scale * (slot.metal ? 1 - MathUtils.smoothstep(progress, 0.75, 1) : 1);
+-      if (slot.authoredEjection && slot.metal) {
++      const size = slot.scale * (slot.metal || slot.contactGround ? 1 - MathUtils.smoothstep(progress, 0.75, 1) : 1);
++      if (slot.contactGround || slot.authoredEjection && slot.metal) {
++        // Contact clods use only the sampled birth plane. Terrain away from
++        // that plane is not queried or asserted here. Full rotated support
++        // prevents the primitive from being buried by its own floor clamp.
+         // Analytic support of the existing bent primitive's local bounds:
+         // x±.5, y±.332, z±.85. No vertex scan or terrain query per frame.
+         this.tempMatrix.makeRotationFromQuaternion(this.tempQuaternion);
+         const e = this.tempMatrix.elements;
+-        const support = size * (Math.abs(e[1]!) * .5 + Math.abs(e[5]!) * .332 * .65 + Math.abs(e[9]!) * .85);
++        const support = size * (Math.abs(e[1]!) * .5 + Math.abs(e[5]!) * .332 * (slot.metal ? .65 : 1) + Math.abs(e[9]!) * .85);
+         y = Math.max(y, slot.groundY + .04 + support);
+       }
+       if (!this.isVisible(x, y, z, slot.scale * 1.4, EFFECT_VISIBILITY_DISTANCE.crashes)) continue;
+       this.writeInstance(this.crashDebris, debrisCount, x, y, z, this.tempQuaternion,
+         size * (slot.spark ? slot.contactSpark ? .26 : .09 : 1), size * (slot.spark ? slot.contactSpark ? .32 : .12 : slot.metal ? .65 : 1),
+         size * (slot.spark ? 2.8 : 1), slot.r * fade, slot.g * fade, slot.b * fade);
+-      this.crashDebris.geometry.getAttribute('aFragmentMetal').setX(debrisCount, slot.metal ? 1 : 0);
++      this.crashDebris.geometry.getAttribute('aFragmentMetal').setX(debrisCount, slot.contactGround && !slot.metal ? 2 : slot.metal ? 1 : 0);
+       debrisCount += 1;
+     }
+     this.dirty(this.crashDebris, debrisCount);
+@@ -1689,8 +1724,34 @@
+           // world departure direction and feathered dust shader.
+           const scrape = slot.contactLayer === 4;
+           const broad = slot.contactHalfLength > 0;
+-          const width = broad ? slot.contactHalfLength * (scrape ? .95 + progress * .30 : .80 + progress * .40)
+-            : slot.scale * (scrape ? .50 + progress * .70 : .30 + progress * .65);
++          if (broad) {
++            // The same two measured edge roots stay fixed. Cosmetic sand
++            // expands outward and along the birth band; it does not enlarge
++            // the reported contact footprint or move an engine/heat root.
++            const expansion = -Math.expm1(-7 * age);
++            const width = slot.contactHalfLength + (scrape ? 1.8 : 2.6) * expansion;
++            const reach = .35 + (scrape ? 3.6 : 4.6) * expansion;
++            const liftPhase = MathUtils.clamp(age / (scrape ? .32 : .5), 0, 1);
++            const rise = (scrape ? .16 : .12) + (scrape ? 1.14 : .65) * Math.sin(Math.PI * liftPhase);
++            const across = slot.vx * slot.nz - slot.vz * slot.nx;
++            const sign = Math.abs(across) > .001 ? Math.sign(across) : scrape ? -1 : 1;
++            const inverseAxisLength = 1 / Math.hypot(slot.nx, slot.nz);
++            const outX = slot.nz * sign * inverseAxisLength, outZ = -slot.nx * sign * inverseAxisLength;
++            const x = slot.x + outX * reach * .5, y = slot.y + rise * .5, z = slot.z + outZ * reach * .5;
++            if (!this.isVisible(x, y, z, Math.hypot(width, reach * .5, rise * .5), EFFECT_VISIBILITY_DISTANCE.crashes)) continue;
++            this.direction.set(slot.nx, 0, slot.nz).normalize();
++            this.ruptureAxis.set(outX * reach, rise, outZ * reach).normalize();
++            this.ruptureEjection.crossVectors(this.direction, this.ruptureAxis).normalize();
++            this.tempMatrix.makeBasis(this.direction, this.ruptureAxis, this.ruptureEjection);
++            this.tempQuaternion.setFromRotationMatrix(this.tempMatrix);
++            this.writeInstance(this.explosionPlates, plateCount, x, y, z, this.tempQuaternion,
++              width, Math.hypot(reach, rise) * .5, width, slot.r, slot.g, slot.b);
++            this.writeEffectSurface(plateCount, scrape ? 10 : 11, .82
++              * (1 - MathUtils.smoothstep(progress, .25, 1)), slot.startTime * 1.37);
++            plateCount++;
++            continue;
++          }
++          const width = slot.scale * (scrape ? .50 + progress * .70 : .30 + progress * .65);
+           const height = broad ? (scrape ? .35 + slot.contactHalfWidth * .4 + progress * .7 : 1.4 + progress * 1.8)
+             : width * (scrape ? .18 : .54);
+           const x = slot.x + slot.vx * age, z = slot.z + slot.vz * age;
+--- a/tests/render/WreckFootprintEffects.test.ts
++++ b/tests/render/WreckFootprintEffects.test.ts
+@@ -3,7 +3,7 @@
+ import { GalacticEffectsView } from '../../src/render/galactic/GalacticEffectsView';
+ 
+ describe('Measured casing ejecta footprint',()=>{
+- it('distributes existing sparks and two upright plates along the source ground band, without retaining mutable pose data',()=>{
++ it('distributes ten solid fragments and two low outward sheets along the source ground band, without retaining mutable pose data',()=>{
+   const view=new GalacticEffectsView(), camera=new PerspectiveCamera(60,1.6,.1,200),m=new Matrix4(),q=new Quaternion(),s=new Vector3(),p=new Vector3();
+   camera.position.set(18,12,30);camera.lookAt(0,0,0);camera.updateMatrixWorld(true);
+   const witness=new Vector3(0,3,-5),footprint={center:new Vector3(0,3,0),axis:new Vector3(0,0,1),halfLength:5,halfWidth:.7};
+@@ -19,7 +19,7 @@
+     view.explosionPlates.getMatrixAt(i,m);m.decompose(p,q,s);expect(s.x*2).toBeGreaterThan(8);
+     expect(Math.abs(new Vector3(1,0,0).applyQuaternion(q).z)).toBeCloseTo(1,6);
+     for(const x of[-1,1])for(const y of[-1,1])expect(new Vector3(x,y,0).applyMatrix4(m).y).toBeGreaterThan(3.03);
+-    expect(view.explosionPlates.geometry.getAttribute('aEffectSurface').getX(i)).toBe(5);
++    expect(view.explosionPlates.geometry.getAttribute('aEffectSurface').getX(i)).toBe(10+i);
+    }
+    view.clearEffects();view.update(10,camera);expect(view.explosionPlates.count).toBe(0);expect(view.crashDebris.count).toBe(0);
+   }finally{view.dispose();}
+@@ -57,11 +57,15 @@
+     const xs:number[]=[];
+     for(let i=0;i<2;i++){
+      view.explosionPlates.getMatrixAt(i,m);m.decompose(p,q,s);xs.push(p.x);
+-     const age=time-4-i*.04;
+-     expect(p.x).toBeCloseTo(i===0?-2-age*3.2:2.3+age*4.8,5);expect(p.z).toBeCloseTo(i===0?1:2,5);
+-     const bottom=new Vector3(0,-1,0).applyMatrix4(m);expect(bottom.y).toBeCloseTo((i===0?2.6:3.4)+.08+s.y*.05,5);
++
++     expect((p.x-(i===0?-2:2.3))*(i===0?-1:1)).toBeGreaterThan(0);
++     expect(Math.abs(p.x-(i===0?-2:2.3))).toBeLessThan(2.5);expect(p.z).toBeCloseTo(i===0?1:2,5);
++     const bottom=new Vector3(0,-1,0).applyMatrix4(m);
++     expect(bottom.x).toBeCloseTo(i===0?-2:2.3,5);expect(bottom.z).toBeCloseTo(i===0?1:2,5);
++     expect(bottom.y).toBeCloseTo((i===0?2.6:3.4)+.08,5);
++     const top=new Vector3(0,1,0).applyMatrix4(m);expect(top.y-bottom.y).toBeLessThanOrEqual(1.300001);
+      expect(Math.abs(new Vector3(1,0,0).applyQuaternion(q).z)).toBeCloseTo(1,6);
+-     expect(view.explosionPlates.geometry.getAttribute('aEffectSurface').getX(i)).toBe(5);
++     expect(view.explosionPlates.geometry.getAttribute('aEffectSurface').getX(i)).toBe(10+i);
+     }
+     positions.push(xs);
+    }
+--- /dev/null
++++ b/tests/render/WreckContactConsequence.test.ts
+@@ -0,0 +1,100 @@
++import { Matrix4, Quaternion, Vector3 } from 'three';
++import { afterAll, describe, expect, it, vi } from 'vitest';
++import { GalacticEffectsView, GALACTIC_EFFECT_CAPACITY } from '../../src/render/galactic/GalacticEffectsView';
++import { fixture, race, step, variants } from '../fixtures/teemtoActualCamera';
++const rows: unknown[] = [];
++afterAll(async () => {
++  const path = (globalThis as unknown as { process?: { env: Record<string, string | undefined> } }).process?.env.V29_CONTACT_METRICS_PATH;
++  if (path) { const module: string = 'node:fs'; const {writeFileSync} = await import(/* @vite-ignore */ module); writeFileSync(path, JSON.stringify(rows, null, 2)+'\n'); }
++});
++interface Slot {active:boolean;startTime:number;duration:number;groundY:number;contactGround:boolean;metal:boolean;spark:boolean;wreckOwner:number;wreckSequence:number;x:number;z:number;}
++describe('Actual first-contact sand consequence', () => {
++  it.each(variants)('%s keeps the measured birth band/roots, low expanding sheets, and solid fragments above their sampled birth plane', name => {
++    const art=fixture(name),sim=race(),fx=new GalacticEffectsView();for(let frame=1;frame<=910;frame++)step(sim,frame);
++    const pose=art.cache.update(sim.state.entries[0]!.vehicle,2.15-.075,sim.terrain);art.breakup.update(pose,2.15-.075,sim.terrain);
++    const contact=pose.groundContact!,f=contact.footprint!,before=JSON.stringify(f),roots=f.edges!.map(e=>e.clone().add(new Vector3(0,.08,0)));
++    const children=fx.children.slice(),geometry=fx.crashDebris.geometry,source=geometry.getAttribute('position');
++    const positions=Array.from({length:source.count},(_,i)=>new Vector3().fromBufferAttribute(source,i));
++    const getAttribute=geometry.getAttribute.bind(geometry),m=new Matrix4(),p=new Vector3(),q=new Quaternion(),s=new Vector3();
++    const slots=(fx as unknown as {debrisSlots:Slot[]}).debrisSlots;
++    const metric:unknown[]=[];let minimum=Infinity,maximumRise=0,maximumWidth=0;
++    try {
++      expect(f.halfLength).toBeGreaterThan(1);expect(f.halfLength).toBeLessThan(2);
++      fx.emitWreckGroundContact(4,contact.position,contact.direction,f);
++      const born=slots.filter(s=>s.active);expect(born).toHaveLength(10);
++      expect(born.filter(s=>s.metal)).toHaveLength(3);expect(born.filter(s=>!s.metal)).toHaveLength(7);
++      expect(born.every(s=>s.contactGround&&!s.spark&&s.wreckOwner===-1&&s.wreckSequence===-1)).toBe(true);
++      let lastWidth=[0,0];
++      for(const age of[0,.05,.09,.16,.25,.32,.47,.7,1.0]){
++        const spy=vi.spyOn(geometry,'getAttribute').mockImplementation(key=>{if(key==='position')throw new Error('Runtime geometry scan');return getAttribute(key);});
++        try{fx.update(4+age);}finally{spy.mockRestore();}
++        expect(fx.children).toEqual(children);expect(children).toHaveLength(8);
++        const active=born.filter(s=>age>=s.startTime-4&&age<=s.duration+s.startTime-4);
++        expect(fx.crashDebris.count).toBe(active.length);
++        for(let i=0;i<active.length;i++){
++          fx.crashDebris.getMatrixAt(i,m);m.decompose(p,q,s);
++          for(const local of positions){const gap=local.clone().applyMatrix4(m).y-active[i]!.groundY;minimum=Math.min(minimum,gap);expect(gap).toBeGreaterThan(.03995);}
++          expect(s.z/s.x).toBeCloseTo(1,6); // Actual bent primitive supplies shape; no needle stretch.
++          expect(Math.hypot(p.x-active[i]!.x,p.z-active[i]!.z)).toBeLessThan(3.8);
++          expect(fx.crashDebris.geometry.getAttribute('aFragmentMetal').getX(i)).toBe(active[i]!.metal?1:2);
++        }
++        const sheets=[];
++        for(let i=0;i<fx.explosionPlates.count;i++){
++          const kind=fx.explosionPlates.geometry.getAttribute('aEffectSurface').getX(i),index=kind-10;
++          expect([10,11]).toContain(kind);fx.explosionPlates.getMatrixAt(i,m);m.decompose(p,q,s);
++          const root=new Vector3(0,-1,0).applyMatrix4(m),top=new Vector3(0,1,0).applyMatrix4(m),rise=top.y-root.y,width=2*s.x;
++          expect(root.distanceTo(roots[index]!)).toBeLessThan(.002);expect(rise).toBeGreaterThanOrEqual(.11999);expect(rise).toBeLessThanOrEqual(1.30001);
++          expect(width).toBeGreaterThanOrEqual(lastWidth[index]!-1e-5);lastWidth[index]=width;
++          const axial=new Vector3(1,0,0).applyQuaternion(q);expect(Math.abs(axial.dot(f.axis))).toBeCloseTo(1,6);
++          for(const x of[-1,1])for(const y of[-1,1])expect(new Vector3(x,y,0).applyMatrix4(m).y).toBeGreaterThan(roots[index]!.y-.00001);
++          if(age>=.7){expect(rise).toBeLessThan(.121);expect(width).toBeGreaterThan(7.5);}
++          maximumRise=Math.max(maximumRise,rise);maximumWidth=Math.max(maximumWidth,width);
++          sheets.push({kind,width,rise,root:root.toArray()});
++        }
++        metric.push({age,fragments:fx.crashDebris.count,sheets});
++        const repeat=[...fx.explosionPlates.instanceMatrix.array,...fx.crashDebris.instanceMatrix.array];fx.update(4+age);
++        expect([...fx.explosionPlates.instanceMatrix.array,...fx.crashDebris.instanceMatrix.array]).toEqual(repeat);
++      }
++      expect(JSON.stringify(f)).toBe(before);
++      const material=fx.explosionPlates.material;expect(Array.isArray(material)).toBe(false);if(Array.isArray(material))throw new Error('material array');
++      expect(material.depthTest).toBe(true);expect(material.depthWrite).toBe(false);
++      expect(GALACTIC_EFFECT_CAPACITY.crashDebris).toBe(64);expect(GALACTIC_EFFECT_CAPACITY.explosionPlates).toBe(16);
++      fx.update(5.20);expect(fx.crashDebris.count).toBe(0);expect(fx.explosionPlates.count).toBe(0);
++      rows.push({name,actualBirthFootprint:JSON.parse(before),minimumPrimitiveGapToSampledPlane:minimum,maximumRise,maximumWidth,metric,
++        scope:'Actual hero/rival first-contact footprint; complete existing fragment primitive checked against sampled birth plane only. No unsampled terrain clearance or native pixels claimed.'});
++    }finally{fx.dispose();art.breakup.reset();}
++  });
++  it('handles a valid near-unit footprint with departure parallel to its axis without shear or non-finite basis',()=>{
++    const fx=new GalacticEffectsView(),m=new Matrix4(),p=new Vector3(),q=new Quaternion(),s=new Vector3();
++    try{
++      fx.emitWreckGroundContact(1,new Vector3(),new Vector3(0,0,1),{center:new Vector3(),axis:new Vector3(0,0,.9995),halfLength:1.5,halfWidth:.5});fx.update(1.1);
++      for(let i=0;i<2;i++){fx.explosionPlates.getMatrixAt(i,m);expect(m.elements.every(Number.isFinite)).toBe(true);m.decompose(p,q,s);expect(q.length()).toBeCloseTo(1,6);
++        const a=new Vector3().setFromMatrixColumn(m,0).normalize(),b=new Vector3().setFromMatrixColumn(m,1).normalize();expect(a.dot(b)).toBeCloseTo(0,6);}
++    }finally{fx.dispose();}
++  });
++  it.each(['point','rupture'] as const)('overwrites contact-only state when reused by %s effects',kind=>{
++    const a=new GalacticEffectsView(),b=new GalacticEffectsView(),p=new Vector3(0,0,0),direction=new Vector3(1,0,0);
++    try{
++      a.emitWreckGroundContact(1,p,direction,{center:p,axis:new Vector3(0,0,1),halfLength:1.5,halfWidth:.5});
++      b.emitWreckGroundContact(1,p,direction);
++      for(let i=0;i<9;i++)for(const fx of[a,b]){
++        if(kind==='point')fx.emitWreckGroundContact(4+i*.01,p,direction);
++        else fx.emitCrash({type:'crash',time:4+i*.01,position:p,groundY:0,severity:2,style:'redline'});
++      }
++      a.update(4.12);b.update(4.12);
++      expect((a as unknown as {debrisSlots:Slot[]}).debrisSlots.every(s=>!s.contactGround)).toBe(true);
++      expect(a.crashDebris.count).toBe(64);
++      // Generic crash plates retain staggered births: allocated capacity is not
++      // the number visible at this timestamp. Reuse must match a clean history.
++      expect(a.explosionPlates.count).toBe(b.explosionPlates.count);
++      expect(a.explosionPlates.count).toBeGreaterThan(0);
++      expect(a.explosionPlates.count).toBeLessThanOrEqual(GALACTIC_EFFECT_CAPACITY.explosionPlates);
++      expect((a as unknown as {explosionSlots: unknown[]}).explosionSlots).toHaveLength(16);
++      expect([...a.crashDebris.instanceMatrix.array]).toEqual([...b.crashDebris.instanceMatrix.array]);
++      expect([...a.explosionPlates.instanceMatrix.array]).toEqual([...b.explosionPlates.instanceMatrix.array]);
++      expect([...a.crashDebris.geometry.getAttribute('aFragmentMetal').array]).toEqual([...b.crashDebris.geometry.getAttribute('aFragmentMetal').array]);
++      expect([...a.explosionPlates.geometry.getAttribute('aEffectSurface').array]).toEqual([...b.explosionPlates.geometry.getAttribute('aEffectSurface').array]);
++    }finally{a.dispose();b.dispose();}
++  });
++
++});

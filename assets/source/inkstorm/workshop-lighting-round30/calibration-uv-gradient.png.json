@@ -1,0 +1,46 @@
+{
+  "status": "ENCODED_NO_CLIPPING",
+  "sourceEXR": "calibration-uv-gradient.exr",
+  "sourceEXRSha256": "693c7857087c4f1e5e0d9c851d86ebb916accf9a899d96affbe6aa68bcb247c8",
+  "outputPNG": "calibration-uv-gradient.png",
+  "outputSha256": "cae3e19317c0d0f3d57f36bd3014a7f984e1aa628c85963361221be67ce09449",
+  "width": 64,
+  "height": 64,
+  "decodeRange": 1,
+  "gain": 1,
+  "encoding": "sRGB transfer(linear white diffuse response * gain / decodeRange), RGB8 PNG; no view transform",
+  "orientation": "Three EXRLoader bottom-up -> PNG top-down; glTF UV V=1-BlenderV; runtime flipY=false",
+  "nonFinite": 0,
+  "negative": 0,
+  "clippedChannels": 0,
+  "maximumLinear": 0.99365234375,
+  "nonzeroPixels": 4096,
+  "redNonzeroPercentiles": {
+    "p10": 0.1015625,
+    "p50": 0.4921875,
+    "p90": 0.8984375,
+    "p99": 0.9921875
+  },
+  "quantization": {
+    "maximumLinearError": 0.004134055381966317,
+    "meanLinearError": 0.0009930630981405942
+  },
+  "pngBytes": 7888,
+  "gpuRGBA8WithMipsBytes": 21845.333333333332,
+  "samples": [
+    {
+      "x": 0,
+      "y": 0,
+      "linear": [
+        0.00785064697265625,
+        0.9921875,
+        0
+      ],
+      "encoded": [
+        22,
+        254,
+        0
+      ]
+    }
+  ]
+}

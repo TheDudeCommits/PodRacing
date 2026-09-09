@@ -1,0 +1,73 @@
+--- assets/source/inkstorm/combat-round35/recovery-fx-v16/before/GalacticEffectsView.ts
++++ src/render/galactic/GalacticEffectsView.ts
+@@ -45,7 +45,7 @@
+ }
+ 
+ export type GalacticEffectColor = number | string;
+-export type GalacticBurstStyle = 'crash' | 'mine' | 'sand' | 'rock' | 'redline' | 'reward' | 'energy';
++export type GalacticBurstStyle = 'crash' | 'mine' | 'sand' | 'rock' | 'redline' | 'reward' | 'energy' | 'recovery';
+ 
+ export interface ShieldEffectState {
+   readonly position: GalacticPoint;
+@@ -775,8 +775,11 @@
+     const burstY = contactBurst && Number.isFinite(event.groundY)
+       ? Math.max(authoredY, event.groundY! + severity * RUPTURE_FLASH_SCALE * RUPTURE_FLASH_CORE_RADIUS + 0.04)
+       : authoredY;
+-    const fragmentCount = Math.min(18, Math.max(7, Math.round((style === 'rock' ? 9 : 11) * severity)));
+-    const fallbackColor = style === 'reward' || style === 'energy'
++    // Recovery restores the craft; it does not tear off opaque casing. The
++    // former energy route launched green chunks through the returning camera.
++    const fragmentCount = style === 'recovery' ? 0
++      : Math.min(18, Math.max(7, Math.round((style === 'rock' ? 9 : 11) * severity)));
++    const fallbackColor = style === 'recovery' ? '#60ff91' : style === 'reward' || style === 'energy'
+       ? '#55ffc1'
+       : style === 'sand'
+         ? '#ffd071'
+@@ -870,7 +873,7 @@
+       }
+     }
+ 
+-    const plateCount = style === 'rock' ? 2 : contactBurst || style === 'reward' || style === 'energy' ? 4 : 3;
++    const plateCount = style === 'rock' || style === 'recovery' ? 2 : contactBurst || style === 'reward' || style === 'energy' ? 4 : 3;
+     for (let plate = 0; plate < plateCount; plate += 1) {
+       const slot = this.explosionSlots[this.explosionCursor];
+       if (!slot) break;
+@@ -892,6 +895,21 @@
+         slot.r = [1, 1, 0.075, 0.14][plate]!;
+         slot.g = [0.9, 0.42, 0.065, 0.11][plate]!;
+         slot.b = [0.62, 0.08, 0.055, 0.085][plate]!;
++        continue;
++      }
++      if (style === 'recovery') {
++        // Two small surface pulses share the existing transparent plate pool.
++        // Keep them below the pilot and expire before ordinary driving
++        // resumes; no ballistic fragments or independent recovery timer.
++        slot.startTime = finite(event.time, 0) + plate * .04;
++        slot.duration = .26 + plate * .08;
++        slot.x = finite(event.position.x, 0);
++        slot.y = finite(event.groundY, authoredY - 1) + .12 + plate * .15;
++        slot.z = finite(event.position.z, 0);
++        slot.scale = severity * (.9 + plate * .25);
++        slot.style = style;
++        slot.billboard = false;
++        slot.r = this.color.r; slot.g = this.color.g; slot.b = this.color.b;
+         continue;
+       }
+       slot.startTime = finite(event.time, 0) + plate * 0.035;
+@@ -1439,6 +1457,16 @@
+           plateCount += 1;
+           continue;
+         }
++        if (slot.style === 'recovery') {
++          const size = slot.scale * (.65 + progress * .35);
++          const y = slot.y + progress * .55;
++          if (!this.isVisible(slot.x, y, slot.z, size * 1.42, EFFECT_VISIBILITY_DISTANCE.crashes)) continue;
++          this.writeInstance(this.explosionPlates, plateCount, slot.x, y, slot.z,
++            GROUND_RING, size, size, size, slot.r, slot.g, slot.b);
++          this.writeEffectSurface(plateCount, 0, .42 * (1 - progress) * (1 - progress), slot.startTime * 1.37);
++          plateCount++;
++          continue;
++        }
+         const groundedMine = slot.style === 'mine';
+         const installation = slot.style === 'reward';
+         const size = installation

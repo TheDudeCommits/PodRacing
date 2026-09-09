@@ -1,0 +1,152 @@
+--- /dev/null
++++ b/src/render/inkstorm/InkstormFoundryFinish.ts
+@@ -0,0 +1,69 @@
++/** Source-local coordinates from the installed pipe-bank and service-gantry
++ * GLBs. Presentation only: no scene objects, light lists, textures or collision.
++ */
++export type InkstormFoundryFinish = 'pipe-bank' | 'service-gantry' | null;
++export const INKSTORM_FOUNDRY_STRIPS = {
++  'pipe-bank': [
++    { center: [-27, 17.6, 3.32], halfWidth: 2, range: 7 },
++    { center: [17, 24.2, 5.32], halfWidth: 2.6, range: 8 },
++    { center: [25, 4.6, 16.23], halfWidth: 1.5, range: 5 },
++    { center: [37, 12.1, -4.68], halfWidth: 1.2, range: 5 },
++  ],
++  'service-gantry': [
++    { center: [-46, 29, 3.42], halfWidth: 1.25, range: 7 },
++    { center: [46, 29, 3.42], halfWidth: 1.25, range: 7 },
++  ],
++} as const;
++
++const glsl = (value: number) => Number.isInteger(value) ? `${value}.0` : String(value);
++const strips = (family: Exclude<InkstormFoundryFinish, null>) => INKSTORM_FOUNDRY_STRIPS[family].map(lamp =>
++  `light += inkstormFoundryStrip(vec3(${lamp.center.map(glsl).join(',')}), ${glsl(lamp.halfWidth)}, ${glsl(lamp.range)});`).join('\n');
++
++export const INKSTORM_FOUNDRY_FINISH_GLSL = `
++#ifdef INKSTORM_FOUNDRY_FINISH
++varying vec3 vFoundryScale;
++
++float inkstormFoundryStrip(vec3 center, float halfWidth, float range) {
++  // Closest point on the actual cyan strip. Scale its extent with the module,
++  // but keep the receiver falloff in world metres under nonuniform instancing.
++  vec3 source = center + vec3(clamp(vLocal.x-center.x,-halfWidth,halfWidth),0.,0.);
++  vec3 d = (source-vLocal)*vFoundryScale;
++  float d2 = max(dot(d,d),.04);
++  vec3 receiverNormal = normalize(vPaintNormal / max(vFoundryScale,vec3(.001)));
++  float facing = max(0.,dot(receiverNormal,d*inversesqrt(d2)));
++  float cutoff = max(0.,1.-d2/(range*range));
++  // Restrict to the fixture's front service surface. This is an authored wash,
++  // not a ray-traced light: nearby opaque detail is not a runtime occluder.
++  float depth = abs((vLocal.z-center.z)*vFoundryScale.z);
++  float envelope = 1.-smoothstep(1.2,2.5,depth);
++  return facing*cutoff*cutoff*envelope/(1.+d2/9.);
++}
++
++float inkstormFoundryShellContact(vec2 center, float radius, float height, float deck) {
++  vec2 radial = vLocal.xz-center;
++  float r = length(radial);
++  // These are painted contact accents on the retained vessel shell at the
++  // exact split-band heights and supported deck. They are not new mesh seams
++  // or a claim of sampled ambient occlusion. Never affect caps or railings.
++  float shell = 1.-smoothstep(.12,.55,abs(r-radius));
++  float upright = 1.-smoothstep(.18,.55,abs(normalize(vPaintNormal).y));
++  float bandDistance = min(abs(vLocal.y-4.),min(abs(vLocal.y-12.),abs(vLocal.y-(height-7.))));
++  float band = 1.-smoothstep(.24,1.35,bandDistance);
++  float belowDeck = smoothstep(deck-2.,deck-.45,vLocal.y)*(1.-smoothstep(deck-.35,deck+.1,vLocal.y));
++  return shell*upright*max(band,belowDeck);
++}
++
++vec2 inkstormFoundryFinish() {
++  float light=0.; float contact=0.;
++  #if INKSTORM_FOUNDRY_FINISH == 1
++  ${strips('pipe-bank')}
++  contact=max(inkstormFoundryShellContact(vec2(-27.,-7.),10.,32.,24.),
++    max(inkstormFoundryShellContact(vec2(17.,-8.),13.,44.,35.),
++        inkstormFoundryShellContact(vec2(37.,-11.),6.,22.,13.)));
++  #else
++  ${strips('service-gantry')}
++  #endif
++  return vec2(min(light,1.),contact);
++}
++#endif
++`;
+--- a/src/render/inkstorm/InkstormSurfaceMaterial.ts
++++ b/src/render/inkstorm/InkstormSurfaceMaterial.ts
+@@ -1,3 +1,4 @@
++import { INKSTORM_FOUNDRY_FINISH_GLSL, type InkstormFoundryFinish } from './InkstormFoundryFinish';
+ import { INKSTORM_GEOLOGY_GLSL } from './InkstormGeologyShader';
+ import { createInkstormRacerShadowUniforms, INKSTORM_RACER_SHADOW_GLSL } from './InkstormRacerShadow';
+ import { Color, RepeatWrapping, ShaderMaterial, SRGBColorSpace, TextureLoader, Vector3, type Texture } from 'three';
+@@ -32,16 +33,19 @@
+ 
+ /** Vertex-painted Blender surfaces with broad violet shade and eroded strata. */
+ export class InkstormSurfaceMaterial extends ShaderMaterial {
+-  constructor(stone = true, workshopFamily: 'pit-complex' | 'pit-district' | null = null, workshopBake: { texture: Texture; decodeRange: number; intensity?: number } | null = null, foundryEmission = false, foundationPaint = false) {
++  constructor(stone = true, workshopFamily: 'pit-complex' | 'pit-district' | null = null, workshopBake: { texture: Texture; decodeRange: number; intensity?: number } | null = null, foundryEmission = false, foundationPaint = false, foundryFinish: InkstormFoundryFinish = null) {
+     super({
+       name: stone ? 'Inkstorm painted sandstone' : 'Inkstorm worn machinery',
+       vertexColors: true, toneMapped: false,
+-      defines: { ...(!stone && workshopFamily ? { INKSTORM_WORKSHOP_FAMILY: workshopFamily === 'pit-complex' ? 1 : 2, ...(workshopBake ? { INKSTORM_WORKSHOP_BAKE: 1 } : {}) } : {}), ...(!stone && foundryEmission ? { INKSTORM_FOUNDRY_EMISSION: 1 } : {}), ...(!stone && foundationPaint ? { INKSTORM_FOUNDATION_METERS: 1 } : {}) },
++      defines: { ...(!stone && foundryFinish ? { INKSTORM_FOUNDRY_FINISH: foundryFinish === 'pipe-bank' ? 1 : 2 } : {}), ...(!stone && workshopFamily ? { INKSTORM_WORKSHOP_FAMILY: workshopFamily === 'pit-complex' ? 1 : 2, ...(workshopBake ? { INKSTORM_WORKSHOP_BAKE: 1 } : {}) } : {}), ...(!stone && foundryEmission ? { INKSTORM_FOUNDRY_EMISSION: 1 } : {}), ...(!stone && foundationPaint ? { INKSTORM_FOUNDATION_METERS: 1 } : {}) },
+       uniforms: { uWorkshopBake: { value: workshopBake?.texture ?? null }, uWorkshopDecodeRange: { value: workshopBake?.decodeRange ?? 4 }, uWorkshopIntensity: { value: workshopBake?.intensity ?? 1 }, ...createInkstormShadowUniforms(), ...createInkstormRacerShadowUniforms(), ...machineryPaintUniforms, uPaint: rockPaintUniforms.uRockPaint, uRockBeds: rockPaintUniforms.uRockBeds, uPaintReady: rockPaintUniforms.uRockPaintReady, uStone: { value: stone ? 1 : 0 }, uSun: { value: new Vector3(-.42, .76, -.5).normalize() }, uHaze: { value: new Color('#b79cb8') } },
+       vertexShader: `
+         #include <common>
+         #include <color_pars_vertex>
+         varying vec3 vWorld; varying vec3 vNormal; varying vec3 vLocal; varying vec3 vPaintNormal;
++        #ifdef INKSTORM_FOUNDRY_FINISH
++        varying vec3 vFoundryScale;
++        #endif
+         #ifdef INKSTORM_WORKSHOP_FAMILY
+         #ifdef INKSTORM_WORKSHOP_BAKE
+         #ifndef USE_UV1
+@@ -60,6 +64,13 @@
+           n=mat3(instanceMatrix)*(n / vec3(dot(instanceMatrix[0].xyz,instanceMatrix[0].xyz),dot(instanceMatrix[1].xyz,instanceMatrix[1].xyz),dot(instanceMatrix[2].xyz,instanceMatrix[2].xyz)));
+           #endif
+           vWorld=(modelMatrix*p).xyz;vLocal=position;vNormal=normalize(mat3(modelMatrix)*n);vPaintNormal=normal;
++          #ifdef INKSTORM_FOUNDRY_FINISH
++          mat4 foundryTransform=modelMatrix;
++          #ifdef USE_INSTANCING
++          foundryTransform=modelMatrix*instanceMatrix;
++          #endif
++          vFoundryScale=vec3(length(foundryTransform[0].xyz),length(foundryTransform[1].xyz),length(foundryTransform[2].xyz));
++          #endif
+           // Unit-box foundations need world-metre wear density. Keep the
+           // original local axes so paint rotates with each installed support;
+           // top anchoring makes vertical wear independent of buried depth.
+@@ -97,6 +108,7 @@
+ ${INKSTORM_RACER_SHADOW_GLSL}
+ ${INKSTORM_GEOLOGY_GLSL}
+         varying vec3 vWorld;varying vec3 vNormal;varying vec3 vLocal;varying vec3 vPaintNormal;
++        ${INKSTORM_FOUNDRY_FINISH_GLSL}
+         uniform float uStone;uniform vec3 uSun;uniform vec3 uHaze;uniform sampler2D uPaint;uniform sampler2D uRockBeds;uniform float uPaintReady;
+         uniform sampler2D uMachineryPaint;uniform float uMachineryPaintReady;
+         float hash(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}
+@@ -275,6 +287,17 @@
+           vec3 halfLight=normalize(uSun+normalize(cameraPosition-vWorld));
+           float sheen=pow(max(0.,dot(n,halfLight)),18.);
+           color+=vec3(.23,.14,.085)*smoothstep(.18,.72,sheen)*machinery*visibility*smoothstep(.45,.72,enamel);
++          #ifdef INKSTORM_FOUNDRY_FINISH
++          vec2 foundryFinish=inkstormFoundryFinish();
++          // Broad contact separation remains legible when micro-wear mips out.
++          // Preserve both authored glass palettes and the existing sun shadows.
++          float foundryPaint=(1.-service)*(1.-warmService);
++          color*=1.-foundryFinish.y*.46*foundryPaint;
++          // A localized cyan receiver response, in linear color before haze.
++          // Exposed sunlight reduces its prominence; no global ambient lift.
++          color+=base*vec3(.16,.90,1.15)*foundryFinish.x*3.2
++            *mix(1.,.45,lit)*foundryPaint;
++          #endif
+           // Painted service lights are small areas authored into industrial
+           // vertex colors; retain their signal even on an occluded underside.
+           color=mix(color,base*1.12,service*.72);
+--- a/src/render/inkstorm/InkstormWorld.ts
++++ b/src/render/inkstorm/InkstormWorld.ts
+@@ -99,7 +99,7 @@
+       const stone=i<5||family==='canyon-buttress'||family==='sandstone-scree'||family==='fractured-spire';
+       const batch=new InstancedMesh(geometry,new InkstormSurfaceMaterial(stone, family==='pit-complex'||family==='pit-district'?family:null,
+         family==='pit-complex'?{texture:this.workshopTexture,decodeRange:4,intensity:4}:null,
+-        family===INKSTORM_SERVICE_GANTRY),512);
++        family===INKSTORM_SERVICE_GANTRY, false, family==='pipe-bank'?'pipe-bank':family===INKSTORM_SERVICE_GANTRY?'service-gantry':null),512);
+       batch.name=`Inkstorm / ${modelIds[i]}`;batch.count=0;
+       batch.userData[CEL_TERRAIN_EDGE_SUPPRESS_USER_DATA_KEY]=true;
+       (distant?this.distantBatches:this.batches).set(family,batch);this.add(batch);

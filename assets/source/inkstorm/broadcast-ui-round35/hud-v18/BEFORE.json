@@ -1,0 +1,16 @@
+{
+  "recordedAt": "2026-09-08T22:45:41.749419+00:00",
+  "sources": [
+    {
+      "path": "src/ui/broadcastStyles.ts",
+      "sha256": "eaf1be63399d84d70d1c13187d75aa1c350987bb201cc464a25060f62c82ceec",
+      "bytes": 70090
+    },
+    {
+      "path": "src/ui/RaceHud.ts",
+      "sha256": "0a2e915b26e5c0c50aa1430615af08fa7978a9c59a492e804b6b15df0bdaa9d9",
+      "bytes": 117892
+    }
+  ],
+  "scope": "V18 HUD only; root authorization after read-only reference study; no Build/Map/Garage or gameplay/motion/threat logic changes."
+}

@@ -1,0 +1,28 @@
+--- a/src/game/race/CourseGulfField.ts
++++ b/src/game/race/CourseGulfField.ts
+@@ -94,8 +94,13 @@
+     // zero-grade 600m smoothstep hid the bowl behind its convex shoulder.
+     const span = profile.floorDistance - profile.crestDistance;
+     const u = distance - profile.crestDistance, round = Math.min(30, span * .2);
+-    const descent = u < round ? u * u / (round * span)
++    let descent = u < round ? u * u / (round * span)
+       : (round + 2 * (u - round) - (u - round) ** 2 / (span - round)) / span;
++    // A longer leading radius preserves the preceding salt-road sightline.
++    // Rejoin the original escarpment within 30m rather than lifting the whole
++    // 600m descent back across the newly opened basin view.
++    if (u < 30) descent += (u * u / (72 * span) - descent)
++      * (1 - smoother((u - 12) / 18));
+     return Math.min(0, profile.crestHeight + (profile.floorHeight - profile.crestHeight) * descent - baseHeight);
+   }
+   if (distance < profile.basinEndDistance) return Math.min(0, profile.floorHeight - baseHeight);
+@@ -323,7 +328,9 @@
+     if (clearance <= 0) continue;
+     const across = 1 - smoother((Math.abs(right) - 140) / 110);
+     const exit = 1 - smoother((forward - 1160) / 220);
+-    const blend = smoother(clearance / 12) * across * exit;
++    // Resolve the bank over eight field cells. The previous two-cell cut
++    // made an almost vertical trench immediately outside the lane guard.
++    const blend = smoother(clearance / 48) * across * exit;
+     const target = profile.crestHeight + (profile.floorHeight - 48 - profile.crestHeight)
+       * smoother((forward + 100) / 420);
+     const index = row * grid.size + column, existing = grid.values[index]!;

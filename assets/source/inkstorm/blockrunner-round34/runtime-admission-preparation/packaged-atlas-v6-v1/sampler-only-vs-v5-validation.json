@@ -1,0 +1,150 @@
+{
+  "scope": "CPU sampler-only package comparison against immutable V5; no visible seam/art/runtime acceptance.",
+  "outcome": "PASS",
+  "packages": {
+    "hero": {
+      "reference": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/runtime-admission-preparation/packaged-atlas-v5-v1/blockrunner-hero-v1.glb",
+      "referenceSha256": "576c198464696004a46c8adc14f48d54004ea16bd1cb86b15ddeaad102a7c908",
+      "candidate": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/runtime-admission-preparation/packaged-atlas-v6-v1/blockrunner-hero-v1.glb",
+      "candidateSha256": "7eeca075e2a8ea9b1b11e381ff447d6ec7bb83d8f73f6ddb41f843b4cbadfeb4",
+      "candidateBytes": 3693000,
+      "previousSamplers": [
+        {
+          "magFilter": 9729,
+          "minFilter": 9987
+        }
+      ],
+      "samplers": [
+        {
+          "magFilter": 9729,
+          "minFilter": 9987,
+          "wrapS": 33071,
+          "wrapT": 33071
+        }
+      ],
+      "comparisons": {
+        "images": {
+          "exact": true,
+          "referenceSha256": "01ac542cc6e249462160a3dad976776cda68a25e47c97a5fe832e1e9e52cb109",
+          "candidateSha256": "01ac542cc6e249462160a3dad976776cda68a25e47c97a5fe832e1e9e52cb109"
+        },
+        "materials": {
+          "exact": true,
+          "referenceSha256": "0bd4501feffd8910ad702c7293f105553251825375b1990d0f5a672e1d633258",
+          "candidateSha256": "0bd4501feffd8910ad702c7293f105553251825375b1990d0f5a672e1d633258"
+        },
+        "geometry": {
+          "exact": true,
+          "referenceSha256": "04747f4897c6d8454821b0fa75ee95a86f8ff340ad5de89ac3afb960145757db",
+          "candidateSha256": "04747f4897c6d8454821b0fa75ee95a86f8ff340ad5de89ac3afb960145757db"
+        },
+        "extensionsUsed": {
+          "exact": true,
+          "referenceSha256": "a87c9c1c6c80afbcbde837fec1546c169ec5967aac1309b028c1b21775e3e7be",
+          "candidateSha256": "a87c9c1c6c80afbcbde837fec1546c169ec5967aac1309b028c1b21775e3e7be"
+        },
+        "extensionsRequired": {
+          "exact": true,
+          "referenceSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "candidateSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        }
+      },
+      "atlasPayloads": [
+        {
+          "mimeType": "image/png",
+          "bytes": 767762,
+          "sha256": "1307c7458707e50c6db3ccc4458e43d171e8f546da968c6ba42259460eeb1755"
+        },
+        {
+          "mimeType": "image/png",
+          "bytes": 165694,
+          "sha256": "bfa1a89663806eff17940168b2c1faa0058dc30ee47b85e41dc56a9db536460b"
+        },
+        {
+          "mimeType": "image/png",
+          "bytes": 193765,
+          "sha256": "4546006bdf4779b9f9634fe3a7c968fae7d36557ed49b31f6b0c5c802f4a6830"
+        },
+        {
+          "mimeType": "image/png",
+          "bytes": 126417,
+          "sha256": "e53a3d875f4f19a2c51e52893594c78235dfd49699c7a4915f172a48cf0e85f2"
+        }
+      ],
+      "outcome": "PASS"
+    },
+    "rival": {
+      "reference": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/runtime-admission-preparation/packaged-atlas-v5-v1/blockrunner-rival-v1.glb",
+      "referenceSha256": "a411d5bee15f6b1d10fab253002aaef6f014e69055ce24bc001011c8d88b92dc",
+      "candidate": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/runtime-admission-preparation/packaged-atlas-v6-v1/blockrunner-rival-v1.glb",
+      "candidateSha256": "ae90b8f56c2ebca7e128aeee14c6a6e5c59d473a6a0898f8fc64dfbfc283342a",
+      "candidateBytes": 3228580,
+      "previousSamplers": [
+        {
+          "magFilter": 9729,
+          "minFilter": 9987,
+          "wrapS": 10497,
+          "wrapT": 10497
+        }
+      ],
+      "samplers": [
+        {
+          "magFilter": 9729,
+          "minFilter": 9987,
+          "wrapS": 33071,
+          "wrapT": 33071
+        }
+      ],
+      "comparisons": {
+        "images": {
+          "exact": true,
+          "referenceSha256": "9181b9f57f918c0d92cab79118736ecd032e910d0672325b3fac4de24e676a40",
+          "candidateSha256": "9181b9f57f918c0d92cab79118736ecd032e910d0672325b3fac4de24e676a40"
+        },
+        "materials": {
+          "exact": true,
+          "referenceSha256": "2645344e0fff41961a8384dd4a5e11c1cd73463a9275e23e08a867267d542f9d",
+          "candidateSha256": "2645344e0fff41961a8384dd4a5e11c1cd73463a9275e23e08a867267d542f9d"
+        },
+        "geometry": {
+          "exact": true,
+          "referenceSha256": "ecda4ec1ca1d483585571725d626ff13c539124d4d0f8e4eb67d51564f0492e7",
+          "candidateSha256": "ecda4ec1ca1d483585571725d626ff13c539124d4d0f8e4eb67d51564f0492e7"
+        },
+        "extensionsUsed": {
+          "exact": true,
+          "referenceSha256": "a87c9c1c6c80afbcbde837fec1546c169ec5967aac1309b028c1b21775e3e7be",
+          "candidateSha256": "a87c9c1c6c80afbcbde837fec1546c169ec5967aac1309b028c1b21775e3e7be"
+        },
+        "extensionsRequired": {
+          "exact": true,
+          "referenceSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "candidateSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        }
+      },
+      "atlasPayloads": [
+        {
+          "mimeType": "image/png",
+          "bytes": 390036,
+          "sha256": "2142bed5a0c2554ae638db3805d772d3ac1023f7d83df12dcaf52a760dc83d2e"
+        },
+        {
+          "mimeType": "image/png",
+          "bytes": 60742,
+          "sha256": "0665416ab2b89789ef8255523c2fc2c4da27faf89a6eb4c95eb13635e1b354e6"
+        },
+        {
+          "mimeType": "image/png",
+          "bytes": 217563,
+          "sha256": "6322df24a95c6c580fb402cef3aa756725fd9182344594ee1e8a718a7b290e8e"
+        },
+        {
+          "mimeType": "image/png",
+          "bytes": 53658,
+          "sha256": "897e60a05d626760c55be11cee80395548bf9fb5de0bfa30e9cccc52fa8fd501"
+        }
+      ],
+      "outcome": "PASS"
+    }
+  }
+}

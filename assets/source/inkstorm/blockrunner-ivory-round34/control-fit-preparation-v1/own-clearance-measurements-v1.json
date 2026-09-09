@@ -1,0 +1,294 @@
+{
+  "status": "OFFLINE OWN GEOMETRY MEASURED; LIVE FIT NOT EXECUTED",
+  "sourceUid": "e42fb924b344481ea013c58cb0f52ad7",
+  "sourceGlbSha256": "2ed231e15b8bbab3f7b7028b73e8b6f442d532c9bc4d1fc0a2f5c40aeda49576",
+  "cleanupReceiptSha256": "72f9efa252dcb233d7b95b484a8c9d766d42269bd7b250f59a8ec9040301c4e3",
+  "retainedTrianglesUsed": 43556,
+  "coordinateBasis": "Own GLB local(x,-z,y), own audited Blender world matrices. Source geometry approximated by exported float32 positions; live recheck required.",
+  "controls": [
+    {
+      "side": "negativeX",
+      "sourceControl": "pasted__L2x3slope2_pasted__LegoWhite4_0",
+      "wallSourceObject": "pasted__L2x3slope2_pasted__pasted__pasted__pasted__pasted__Lego_White11_0",
+      "sourceControlTriangles": 236,
+      "originalBaseCenter": [
+        -0.29828028726751654,
+        1.5398387200156094,
+        1.7679596769016115
+      ],
+      "originalLength": 1.1385558805371687,
+      "originalAxialLevels": [
+        0.0,
+        0.011826,
+        1.126718,
+        1.138556
+      ],
+      "originalLowerBevelLength": 0.011826,
+      "originalUpperBevelLength": 0.01183788053716861,
+      "originalShaftRadius": 0.06558223389632803,
+      "gripBase": [
+        -0.2860198946625962,
+        2.0076017553189622,
+        2.2424105629527133
+      ],
+      "gripTip": [
+        -0.37506057956849714,
+        1.931748825916685,
+        2.5722864328380095
+      ],
+      "gripAxis": [
+        -0.2544019568740031,
+        -0.21672265543507793,
+        0.9425024853865618
+      ],
+      "gripLength": 0.3499999999999995,
+      "mountStart": [
+        -0.28983592401570624,
+        2.004350915487436,
+        2.2565481002335117
+      ],
+      "mountEnd": [
+        -1.4144287417171217,
+        2.004350915487436,
+        2.2565481002335117
+      ],
+      "mountRadius": 0.035,
+      "wallContact": [
+        -1.4124287417171217,
+        2.004350915487436,
+        2.2565481002335117
+      ],
+      "wallSourcePolygon": 1810,
+      "wallThicknessAtAxis": 0.032752595316196675,
+      "wallEmbedDepth": 0.002,
+      "gripCapsuleClearances": {
+        "testedTrianglesAfterAabbFilter": 381,
+        "searchScope": "All43556 retained triangles considered by expanded capsule AABB; detailed distances within radius+0.1m only. Unreported surfaces are outside that AABB, not claimed exact global minima.",
+        "minimaWithinSearch": {
+          "unintendedSurface": {
+            "capsuleClearance": 0.04858127477584015,
+            "sourceObject": "pasted__L2x3slope2_lambert1_0",
+            "sourcePolygon": 5070,
+            "role": "body"
+          },
+          "intendedHand": {
+            "capsuleClearance": 0.0028858931025810275,
+            "sourceObject": "pasted__L2x3slope2_lambert1_0",
+            "sourcePolygon": 6622,
+            "role": "glove-negativeX"
+          }
+        }
+      },
+      "mountCapsuleClearancesExcludingIntentionalWall": {
+        "testedTrianglesAfterAabbFilter": 237,
+        "searchScope": "All43556 retained triangles considered by expanded capsule AABB; detailed distances within radius+0.1m only. Unreported surfaces are outside that AABB, not claimed exact global minima.",
+        "minimaWithinSearch": {
+          "unintendedSurface": {
+            "capsuleClearance": 0.01575836409422105,
+            "sourceObject": "pasted__L2x3slope2_lambert1_0",
+            "sourcePolygon": 9514,
+            "role": "glove-negativeX"
+          }
+        }
+      },
+      "originalControlCapsuleContext": {
+        "testedTrianglesAfterAabbFilter": 214,
+        "searchScope": "All43556 retained triangles considered by expanded capsule AABB; detailed distances within radius+0.1m only. Unreported surfaces are outside that AABB, not claimed exact global minima.",
+        "minimaWithinSearch": {
+          "unintendedSurface": {
+            "capsuleClearance": -0.06558223389632803,
+            "sourceObject": "pasted__L2x3slope2_pasted__LegoWhite3_0",
+            "sourcePolygon": 6,
+            "role": "body"
+          }
+        }
+      },
+      "profileEnvelopeChecks": [
+        {
+          "role": "grip",
+          "bounds": [
+            [
+              -0.43516388607426815,
+              1.8710816349435642,
+              2.2245286291115947
+            ],
+            [
+              -0.22591375564072402,
+              2.068273275905524,
+              2.59016909012817
+            ]
+          ],
+          "allProfileVerticesInsideCapsule": true,
+          "completeProfileMaximumSegmentDistance": 0.0655822338963281,
+          "worldPositionsSha256": "62ce826507276195acdefc673fe1077ae8d07679967905c1384e006241d4f0c5"
+        },
+        {
+          "role": "mount",
+          "bounds": [
+            [
+              -1.4144287417171217,
+              1.969637881700164,
+              2.2218350747728146
+            ],
+            [
+              -0.28983592401570624,
+              2.0390639492747082,
+              2.291261125694209
+            ]
+          ],
+          "allProfileVerticesInsideCapsule": true,
+          "completeProfileMaximumSegmentDistance": 0.03499999999999992,
+          "worldPositionsSha256": "7e82e3b5b0e6b50d59469aad62b8a7ea086d318556749895823d18cc3f4efa22"
+        }
+      ],
+      "candidateOrigin": "Prepared seed endpoints, now checked against own pinned GLB retained triangles; mount contact derived fresh from own sidewall. No original pose/beam transform changes."
+    },
+    {
+      "side": "positiveX",
+      "sourceControl": "pasted__L2x3slope2_pasted__pasted__LegoWhite4_0",
+      "wallSourceObject": "pasted__L2x3slope2_pasted__pasted__pasted__pasted__Lego_White11_0",
+      "sourceControlTriangles": 236,
+      "originalBaseCenter": [
+        0.39484766637451685,
+        1.5398387200156094,
+        1.7679596769016115
+      ],
+      "originalLength": 1.1385558805371687,
+      "originalAxialLevels": [
+        0.0,
+        0.011826,
+        1.126718,
+        1.138556
+      ],
+      "originalLowerBevelLength": 0.011826,
+      "originalUpperBevelLength": 0.01183788053716861,
+      "originalShaftRadius": 0.06558223389632803,
+      "gripBase": [
+        0.44399621757995505,
+        2.0108250526716454,
+        2.228780535421178
+      ],
+      "gripTip": [
+        0.4472544454124614,
+        1.935921158312432,
+        2.5706559375214395
+      ],
+      "gripAxis": [
+        0.009309222378589548,
+        -0.21401112674060926,
+        0.9767868631436034
+      ],
+      "gripLength": 0.35000000000000026,
+      "mountStart": [
+        0.44413585591563387,
+        2.0076148857705363,
+        2.243432338368332
+      ],
+      "mountEnd": [
+        1.527211037124791,
+        2.0076148857705363,
+        2.243432338368332
+      ],
+      "mountRadius": 0.035,
+      "wallContact": [
+        1.525211037124791,
+        2.0076148857705363,
+        2.243432338368332
+      ],
+      "wallSourcePolygon": 1811,
+      "wallThicknessAtAxis": 0.032752595316196675,
+      "wallEmbedDepth": 0.002,
+      "gripCapsuleClearances": {
+        "testedTrianglesAfterAabbFilter": 381,
+        "searchScope": "All43556 retained triangles considered by expanded capsule AABB; detailed distances within radius+0.1m only. Unreported surfaces are outside that AABB, not claimed exact global minima.",
+        "minimaWithinSearch": {
+          "intendedHand": {
+            "capsuleClearance": 0.0011960602479151178,
+            "sourceObject": "pasted__L2x3slope2_lambert1_0",
+            "sourcePolygon": 1484,
+            "role": "glove-positiveX"
+          },
+          "unintendedSurface": {
+            "capsuleClearance": 0.051801764716782175,
+            "sourceObject": "pasted__L2x3slope2_lambert1_0",
+            "sourcePolygon": 9056,
+            "role": "body"
+          }
+        }
+      },
+      "mountCapsuleClearancesExcludingIntentionalWall": {
+        "testedTrianglesAfterAabbFilter": 230,
+        "searchScope": "All43556 retained triangles considered by expanded capsule AABB; detailed distances within radius+0.1m only. Unreported surfaces are outside that AABB, not claimed exact global minima.",
+        "minimaWithinSearch": {
+          "unintendedSurface": {
+            "capsuleClearance": 0.04393243725076934,
+            "sourceObject": "pasted__L2x3slope2_lambert1_0",
+            "sourcePolygon": 1400,
+            "role": "glove-positiveX"
+          }
+        }
+      },
+      "originalControlCapsuleContext": {
+        "testedTrianglesAfterAabbFilter": 231,
+        "searchScope": "All43556 retained triangles considered by expanded capsule AABB; detailed distances within radius+0.1m only. Unreported surfaces are outside that AABB, not claimed exact global minima.",
+        "minimaWithinSearch": {
+          "unintendedSurface": {
+            "capsuleClearance": -0.06558223389632803,
+            "sourceObject": "pasted__L2x3slope2_pasted__pasted__LegoWhite3_0",
+            "sourcePolygon": 5,
+            "role": "body"
+          }
+        }
+      },
+      "profileEnvelopeChecks": [
+        {
+          "role": "grip",
+          "bounds": [
+            [
+              0.37907308005435514,
+              1.8749101018010594,
+              2.2173561357580502
+            ],
+            [
+              0.5121746182306505,
+              2.071840073140353,
+              2.5820803371845673
+            ]
+          ],
+          "allProfileVerticesInsideCapsule": true,
+          "completeProfileMaximumSegmentDistance": 0.06558223389632815,
+          "worldPositionsSha256": "e04f15b73d6f6cdfd2df7adda53275526c086fb1d9715430f5d29297b59e101e"
+        },
+        {
+          "role": "mount",
+          "bounds": [
+            [
+              0.44413585591563387,
+              1.9729018519832642,
+              2.208719312907635
+            ],
+            [
+              1.527211037124791,
+              2.0423279195578083,
+              2.278145363829029
+            ]
+          ],
+          "allProfileVerticesInsideCapsule": true,
+          "completeProfileMaximumSegmentDistance": 0.03499999999999992,
+          "worldPositionsSha256": "7135d0e0331b8f375606c40c19bf4dd110098ae105ab7703464418c4428fc0e3"
+        }
+      ],
+      "candidateOrigin": "Prepared seed endpoints, now checked against own pinned GLB retained triangles; mount contact derived fresh from own sidewall. No original pose/beam transform changes."
+    }
+  ],
+  "plannedTargetCounts": {
+    "objects": 57,
+    "meshes": 53,
+    "materials": 51,
+    "triangles": 44028
+  },
+  "sourceTransformsPolicy": "All55 existing node transforms/parents remain exact. Reshape only two control meshes in their existing local coordinate frames; add two own source-profile mounts under copied parents. Pilot/seat and all beams unchanged.",
+  "sourceNormalsPolicy": "No Colour normals/tolerance. Existing49 untargeted cleanup mesh corner normals exact; changed source-profile normals need their own measured encoding evidence before bound fit execution.",
+  "mcpExecuted": false,
+  "artAccepted": false
+}

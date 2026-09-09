@@ -1,0 +1,12 @@
+{
+  "recordedAt": "2026-09-08T14:50:52.000516+00:00",
+  "allEightAppliedHashesStillMatch": true,
+  "gitDiffCheck": {
+    "command": "git diff --check -- <eight authorized destinations>",
+    "exitCode": 0,
+    "output": ""
+  },
+  "activeMarkdownWhitespaceCheck": "PASS",
+  "localLinks": 113,
+  "scope": "Documentation/manifest verification only; no code tests/build/browser or asset authoring rerun"
+}

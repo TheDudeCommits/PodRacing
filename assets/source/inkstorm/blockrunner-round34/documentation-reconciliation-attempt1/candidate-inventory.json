@@ -1,0 +1,172 @@
+{
+  "status": "prepared_for_hash_guarded_application",
+  "recordedAt": "2026-09-08T14:43:56.403597+00:00",
+  "scope": "Dated tested checkpoint only. Full-race/Continue, staged and context PASS; exact resource plateau FAIL; visual6/10 FAIL8. Not final overhaul. Later working-tree changes do not inherit this evidence.",
+  "backupInventory": {
+    "path": "docs/inkstorm-overhaul/evidence/round-34/pre-blockrunner-admission-documentation/inventory.json",
+    "bytes": 2180,
+    "sha256": "279c68019ab5ce216e52438e652062f379de76a9480daa32cc8a5d9919f604bf"
+  },
+  "historicalTailBytes": 9333,
+  "historicalTailSha256": "ae67e1e01f16a115cbecbe514529e50a2d1bb450e7605f323471a7b332cc726b",
+  "sourceSnapshotAndLiveFilesMatch": true,
+  "original29DownloadAndReportedLicenseRecordsPreserved": true,
+  "originalProgressHistoryPreserved": true,
+  "priorAcceptanceCheckpointPreserved": true,
+  "counts": {
+    "publicResults": 29,
+    "vehicleCandidates": 26,
+    "excludedNonVehicles": 3,
+    "downloaded": 26,
+    "blockedOrPending": 0,
+    "downloadStatuses": {
+      "downloaded": 26
+    },
+    "mcpImportedSourceGlbs": 26,
+    "rawArchivesPreserved": 0,
+    "stylizationNeedsPermission": 0,
+    "publicAdaptationRestricted": 1,
+    "stylizedExports": 4,
+    "stylizedSourceStudies": 4,
+    "stylizedExportVariants": 8,
+    "driversAdded": 3,
+    "runtimeIntegrations": 4,
+    "driverInspections": 5,
+    "stylizedExportFiles": 12,
+    "sourceVisualInspections": 26,
+    "originalSourceDriversRetained": 1,
+    "runtimePreparationPending": 22
+  },
+  "activeMarkdownLocalLinksChecked": 113,
+  "authority": [
+    {
+      "path": "docs/inkstorm-overhaul/FULL_RACE_PERFORMANCE_BLOCKRUNNER_ROUND34.md",
+      "bytes": 10198,
+      "sha256": "d9d29d1ac147e2dfaeaeabfd086ae422f65c0796a25cb40729a4825ab402ce92"
+    },
+    {
+      "path": "docs/inkstorm-overhaul/BLOCKRUNNER_INGAME_FRAMING_V3_REVIEW_ROUND34.md",
+      "bytes": 11143,
+      "sha256": "4ed8d70fae5f3e0f0f7eed1dc8aca8e9569aa3db763328629cc4102bb0767ee2"
+    },
+    {
+      "path": "output/playwright/blockrunner-final-framing-v3-attempt1-round34-verification-summary.json",
+      "bytes": 111439,
+      "sha256": "ee09ed352d1cea6c4cf480dc1797a4168148299ce98d98e3ecf3f2e2c31884c9"
+    },
+    {
+      "path": "output/gauntlet/round34-blockrunner-final-framing-v3-attempt1-frozen-runtime/inventory.json",
+      "bytes": 97290,
+      "sha256": "fb8b4b820300b830cf7732974af714549de6935abbbc6b8e913af17f2298613c"
+    },
+    {
+      "path": "output/gauntlet/round34-blockrunner-final-framing-v3-attempt1-frozen-runtime/verification-evidence-inventory.json",
+      "bytes": 30313,
+      "sha256": "abf630de96cdad2e77254613a632806321bd8094d43efdc126e7d27eacb041cf"
+    },
+    {
+      "path": "output/gauntlet/round34-blockrunner-admission-v1/verify-framing-v3.log",
+      "bytes": 1387,
+      "sha256": "9d6f175441757347ded7b499c0863c0ab2ac101ff3a0911fe05283050cd562b9"
+    },
+    {
+      "path": "output/gauntlet/round34-blockrunner-admission-v1/captures-framing-v3/receipts.json",
+      "bytes": 518059,
+      "sha256": "f86e5e23e742699a658bdc60e2b28225475f8caf5a95924106e9d21de250bcd0"
+    },
+    {
+      "path": "output/gauntlet/round34-blockrunner-admission-v1/public-admission.json",
+      "bytes": 568,
+      "sha256": "a16cb6416d4ea8c94121bc3782a3e9ccc77907396c29313e7e6384e5964fc0d4"
+    },
+    {
+      "path": "assets/source/inkstorm/blockrunner-round34/runtime-admission-preparation/export-atlas-v6-v1-receipt.json",
+      "bytes": 52122,
+      "sha256": "166778f5669a0b46e1c80bf2de8e0ba69dc7cea1fa01332cac556e7831372b48"
+    },
+    {
+      "path": "assets/source/inkstorm/blockrunner-round34/runtime-admission-preparation/packaged-atlas-v6-v1/blockrunner-hero-v1.package-receipt.json",
+      "bytes": 39168,
+      "sha256": "b6a24eeb6355917c793cb1447f6d5638c2996413b1fbf7a629843f5867f7a8a5"
+    },
+    {
+      "path": "assets/source/inkstorm/blockrunner-round34/runtime-admission-preparation/packaged-atlas-v6-v1/blockrunner-hero-v1.khronos.json",
+      "bytes": 2342,
+      "sha256": "50be3b1666b25ff71e0fc9d92b5b5a9ea7d26b2a0d6dceb4da3278d04bfab6bb"
+    },
+    {
+      "path": "assets/source/inkstorm/blockrunner-round34/runtime-admission-preparation/packaged-atlas-v6-v1/blockrunner-rival-v1.package-receipt.json",
+      "bytes": 39450,
+      "sha256": "f0c9edf66868afe08780b86330f58acd6de4280b8dfb57c402183a20f4d67222"
+    },
+    {
+      "path": "assets/source/inkstorm/blockrunner-round34/runtime-admission-preparation/packaged-atlas-v6-v1/blockrunner-rival-v1.khronos.json",
+      "bytes": 2328,
+      "sha256": "eada364b6b505ac1313f3db0bba9fe860cdaa9077c78ad7dea138def26fda21b"
+    }
+  ],
+  "candidateFiles": [
+    {
+      "destination": "HANDOVER.md",
+      "candidate": "assets/source/inkstorm/blockrunner-round34/documentation-reconciliation-attempt1/files/HANDOVER.md",
+      "bytes": 14121,
+      "sha256": "3b485fbda94100f3f7b991d272a7b88b8f80e0a562af47c5f5d8021315d5b24d",
+      "beforeSha256": "47ec8be764b324fd685f17f60c34744d96030e3dbf84acadcec95eb30f350c08"
+    },
+    {
+      "destination": "docs/inkstorm-overhaul/STATUS.md",
+      "candidate": "assets/source/inkstorm/blockrunner-round34/documentation-reconciliation-attempt1/files/docs/inkstorm-overhaul/STATUS.md",
+      "bytes": 5636,
+      "sha256": "102a61838cf20a4844d8be5ea611553db20bc7efc9009ec0e74fc71fca5c94dc",
+      "beforeSha256": "323910c184e6b1c72b79a8fb096173990c99cd2a4a077c8ea4343d870af99e4c"
+    },
+    {
+      "destination": "docs/inkstorm-overhaul/ROUND34.md",
+      "candidate": "assets/source/inkstorm/blockrunner-round34/documentation-reconciliation-attempt1/files/docs/inkstorm-overhaul/ROUND34.md",
+      "bytes": 8951,
+      "sha256": "ea33a7265fc249ab877556f1543bf397e789507429539b53ad65ef0fbc66d483",
+      "beforeSha256": "aa7d5f1e62c6501f18547ffb88be1b977f1c805b45a6c780a29355fbc94b4342"
+    },
+    {
+      "destination": "docs/inkstorm-overhaul/BLOCKRUNNER_CLEANUP_ROUND34.md",
+      "candidate": "assets/source/inkstorm/blockrunner-round34/documentation-reconciliation-attempt1/files/docs/inkstorm-overhaul/BLOCKRUNNER_CLEANUP_ROUND34.md",
+      "bytes": 7073,
+      "sha256": "7cab6c79854572efd76de69d77eeedc9ade3abc0bbf15652b4289b94f47ae7af",
+      "beforeSha256": "88bab4ac9805cfbd62639050dac227336ce89ff02d8352dd8a46bb9e2f8d597f"
+    },
+    {
+      "destination": "docs/inkstorm-overhaul/CURRENT_VISUALS.md",
+      "candidate": "assets/source/inkstorm/blockrunner-round34/documentation-reconciliation-attempt1/files/docs/inkstorm-overhaul/CURRENT_VISUALS.md",
+      "bytes": 4189,
+      "sha256": "43972a9060a1238e8bd99545ee82a5f8ad6e81793e6fe19b73ba969c17c2d3d2",
+      "beforeSha256": "f8e2463bd9a6def100a9ee3779d07fcbf74a35724d203feb3ea2bbd8943812ca"
+    },
+    {
+      "destination": "docs/inkstorm-overhaul/VEHICLE_CATALOG.md",
+      "candidate": "assets/source/inkstorm/blockrunner-round34/documentation-reconciliation-attempt1/files/docs/inkstorm-overhaul/VEHICLE_CATALOG.md",
+      "bytes": 17703,
+      "sha256": "877dcc13719a044bae6d7904391e46df50e55dceef640354a973403a05cfc32c",
+      "beforeSha256": "285e35d09e819227acdde7ea74fb64ec28dd3f1b30bfda92a050cd5a6a124da5"
+    },
+    {
+      "destination": "assets/source/inkstorm/vehicle-manifest.json",
+      "candidate": "assets/source/inkstorm/blockrunner-round34/documentation-reconciliation-attempt1/files/assets/source/inkstorm/vehicle-manifest.json",
+      "bytes": 583062,
+      "sha256": "f8f7b005e760877cd54890eea5fbc643955cb94a43cf667c91774c1666ce7364",
+      "beforeSha256": "f14e338ddd017df60aba7e2cdb16695e07b5a891a7d079a647fa9abcff3506e8"
+    },
+    {
+      "destination": "assets/source/inkstorm/vehicle-progress-20260908-blockrunner-round34.json",
+      "candidate": "assets/source/inkstorm/blockrunner-round34/documentation-reconciliation-attempt1/files/assets/source/inkstorm/vehicle-progress-20260908-blockrunner-round34.json",
+      "bytes": 18152,
+      "sha256": "e544d0b0d37ce7fbd5f5a0e643a046287bdebe01583a89fc89d3266e574c9666",
+      "beforeSha256": null
+    }
+  ],
+  "excludedOperations": [
+    "No browser or Blender",
+    "No source/public/dist/test/harness mutation",
+    "No build/test rerun",
+    "No commit/push/deployment"
+  ]
+}

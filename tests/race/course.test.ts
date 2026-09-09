@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+import { PerspectiveCamera, Vector3 } from 'three';
 import {
   PODRACE_CONTROL_POINTS,
   createPodraceCourse,
@@ -14,6 +15,24 @@ const terrain: HeightSampler = {
 };
 
 describe('procedural closed podrace course', () => {
+  it('labels left and right turns as they project into the actual chase-camera view', () => {
+    const course = createPodraceCourse({ heightAt: () => 0 });
+    const seen = new Set<string>();
+    for (let i = 0; i < 160; i++) {
+      const origin = course.sampleAtProgress(i / 160);
+      const preview = course.getCornerPreview(origin.progress, 25, 210);
+      if (preview.direction === 'straight' || Math.abs(preview.signedAngle) > 1.4) continue;
+      const ahead = course.sampleAtDistance(origin.distance + preview.distance);
+      const camera = new PerspectiveCamera(90, 1, .1, 1000);
+      camera.position.set(origin.x, 3, origin.z);
+      camera.lookAt(origin.x + origin.tangentX * 100, 3, origin.z + origin.tangentZ * 100);
+      camera.updateMatrixWorld();
+      const screen = new Vector3(origin.x + ahead.tangentX * 100, 3, origin.z + ahead.tangentZ * 100).project(camera);
+      expect(preview.direction).toBe(screen.x > 0 ? 'right' : 'left');
+      seen.add(preview.direction);
+    }
+    expect([...seen].sort()).toEqual(['left', 'right']);
+  });
   it('is closed, arc-length sampled and carries every authored set-piece tag', () => {
     const course = createPodraceCourse(terrain);
     const start = course.sampleAtProgress(0);

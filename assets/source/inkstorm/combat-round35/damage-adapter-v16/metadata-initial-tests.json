@@ -1,0 +1,18 @@
+{
+  "command": [
+    "npx",
+    "vitest",
+    "run",
+    "tests/render/importedVehicleDamage.test.ts",
+    "tests/render/importedVehiclePresentation.test.ts",
+    "tests/render/racerPresentation.test.ts",
+    "tests/render/aiAppearanceRoster.test.ts",
+    "tests/render/polwoAppearance.test.ts",
+    "tests/render/blockrunnerAppearance.test.ts",
+    "tests/vehicles/exhaustAperture.test.ts",
+    "tests/settings/vehicleAppearance.test.ts",
+    "--reporter=verbose"
+  ],
+  "exitCode": 1,
+  "elapsedSeconds": 1.801039218902588
+}

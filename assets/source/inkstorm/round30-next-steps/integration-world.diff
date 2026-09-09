@@ -1,0 +1,27 @@
+--- a/src/render/inkstorm/InkstormWorld.ts
++++ b/src/render/inkstorm/InkstormWorld.ts
+@@ -8,6 +8,7 @@
+ import { createInkstormShadows } from './InkstormShadows';
+ import { createInkstormFoundations } from './InkstormFoundations';
+ import { createInkstormBridge } from './InkstormBridge';
++import { createInkstormFoundry, replacesInkstormFoundryGantry } from './InkstormFoundry';
+ import { createInkstormVista, type VistaLandform } from './InkstormVista';
+ import { groundInkstormButtress } from './InkstormRockGrounding';
+ import { InkstormTerrainShadow } from './InkstormTerrainShadow';
+@@ -114,6 +115,8 @@
+     this.roads.push(createInkstormFoundations(getInkstormLayout(course), this.heightAt, this.pitAnchorHeight));
+     const vistas=createInkstormVista(course, this.heightAt);
+     this.roads.push(...vistas);
++    const foundry = createInkstormFoundry(course, this.heightAt);
++    if (foundry) this.roads.push(foundry);
+     this.add(...this.roads);if(!this.loaded)return;
+     // Build once when this course revision is ready; asynchronous asset loading
+     // may call setCourse again for the same initial course.
+@@ -148,6 +151,7 @@
+       }
+     }
+     for(const p of placements){
++      if(replacesInkstormFoundryGantry(course,p))continue;
+       const batch=this.batches.get(p.family)!;if(batch.count>=512)continue;
+       // District crew stand on the founded service apron; sinking this family
+       // like a rock would bury every person beneath its platform.

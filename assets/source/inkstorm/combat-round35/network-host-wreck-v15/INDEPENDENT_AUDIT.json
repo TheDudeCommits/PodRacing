@@ -1,0 +1,280 @@
+{
+  "auditedAt": "2026-09-08T21:02:16.368647+00:00",
+  "scope": "Independent CPU read-only review of exact V15 evidence; no native execution, source change, browser, build or visual acceptance",
+  "priorFindings": {
+    "cueVisibility": "Closed for exact V15 fixture: computed geometry/opacity/title samples plus actual in-window screenshots. General ancestor-opacity/occlusion regressions are outside current element-only automatic check.",
+    "cameraModeOnly": "Closed for exact V15 fixture: diagnostics expose actual four controller/subject values; all false in all saved samples, with matching source/bundle guards."
+  },
+  "recomputedObservations": [
+    {
+      "phase": "host-wreck",
+      "role": "host",
+      "file": "host-wreck-host-observations.json",
+      "sha256": "88090b81fbf7d6bdcaea7727799ccd6d37ae94ab77e5916d469bb6515b3e7225",
+      "samples": 313,
+      "firstObservedFrame": 985,
+      "roles": [
+        "host"
+      ],
+      "allFourFlagsFalseAllSamples": true,
+      "windowsExactlyMatchReceipt": true,
+      "windows": {
+        "before": {
+          "samples": 30,
+          "wallSeconds": 0.9666000000000003,
+          "frameRatio": 1.0000689702738117,
+          "raceRatio": 1.0000689702738614,
+          "maximumGapMs": 33.400000000001455
+        },
+        "impact": {
+          "samples": 23,
+          "wallSeconds": 0.7332999999999993,
+          "frameRatio": 1.000045456611665,
+          "raceRatio": 1.000045456611715,
+          "maximumGapMs": 33.400000000001455
+        },
+        "after": {
+          "samples": 27,
+          "wallSeconds": 0.8666000000000004,
+          "frameRatio": 1.0000769289945377,
+          "raceRatio": 1.0000769289945874,
+          "maximumGapMs": 33.5
+        }
+      },
+      "visibleCueSamples": 33,
+      "logicalWreckCueSamples": 38,
+      "titles": [
+        "WRECKED"
+      ],
+      "minimumVisibleOpacity": 0.93128,
+      "visibleSpanMs": 1066.7000000000007,
+      "cueBoxes": [
+        "{\"height\": 64.984375, \"width\": 280, \"x\": 500, \"y\": 667.015625}"
+      ],
+      "matteSamples": 0,
+      "localWreckPhases": {
+        "running": 244,
+        "wrecked": 65,
+        "recovering": 4
+      },
+      "finalLocalPhase": "recovering",
+      "finalFrame": 1257,
+      "stepDeltas": {
+        "12": 1,
+        "3": 7,
+        "5": 6,
+        "4": 298
+      }
+    },
+    {
+      "phase": "host-wreck",
+      "role": "guest",
+      "file": "host-wreck-guest-observations.json",
+      "sha256": "ba46326173b0b7131282032acfec945e755c647475d1ac2c08270f7ae1996fcb",
+      "samples": 313,
+      "firstObservedFrame": 990,
+      "roles": [
+        "guest"
+      ],
+      "allFourFlagsFalseAllSamples": true,
+      "windowsExactlyMatchReceipt": true,
+      "windows": {
+        "before": {
+          "samples": 30,
+          "wallSeconds": 0.9665,
+          "frameRatio": 0.982928091050181,
+          "raceRatio": 0.9829280910502299,
+          "maximumGapMs": 33.400000000001455
+        },
+        "impact": {
+          "samples": 23,
+          "wallSeconds": 0.7333000000000011,
+          "frameRatio": 1.0909586799399957,
+          "raceRatio": 1.09095867994005,
+          "maximumGapMs": 33.399999999999636
+        },
+        "after": {
+          "samples": 28,
+          "wallSeconds": 0.9,
+          "frameRatio": 1.0,
+          "raceRatio": 1.0000000000000497,
+          "maximumGapMs": 33.399999999999636
+        }
+      },
+      "visibleCueSamples": 0,
+      "logicalWreckCueSamples": 0,
+      "titles": [],
+      "minimumVisibleOpacity": null,
+      "visibleSpanMs": 0,
+      "cueBoxes": [],
+      "matteSamples": 0,
+      "localWreckPhases": {
+        "running": 313
+      },
+      "finalLocalPhase": "running",
+      "finalFrame": 1254,
+      "stepDeltas": {
+        "0": 176,
+        "6": 64,
+        "18": 1,
+        "12": 71
+      }
+    },
+    {
+      "phase": "guest-wreck",
+      "role": "host",
+      "file": "guest-wreck-host-observations.json",
+      "sha256": "1281e69ff44180c1284172512cfcb74e81a8e419fdbc8a155c15e0bfe4db47e8",
+      "samples": 531,
+      "firstObservedFrame": 1857,
+      "roles": [
+        "host"
+      ],
+      "allFourFlagsFalseAllSamples": true,
+      "windowsExactlyMatchReceipt": true,
+      "windows": {
+        "before": {
+          "samples": 30,
+          "wallSeconds": 0.9665,
+          "frameRatio": 1.0001724435247457,
+          "raceRatio": 1.0001724435246888,
+          "maximumGapMs": 33.400000000001455
+        },
+        "impact": {
+          "samples": 23,
+          "wallSeconds": 0.7332999999999993,
+          "frameRatio": 1.000045456611665,
+          "raceRatio": 1.0000454566116084,
+          "maximumGapMs": 33.400000000001455
+        },
+        "after": {
+          "samples": 27,
+          "wallSeconds": 0.8665999999999986,
+          "frameRatio": 1.0000769289945397,
+          "raceRatio": 1.0000769289944829,
+          "maximumGapMs": 33.400000000001455
+        }
+      },
+      "visibleCueSamples": 0,
+      "logicalWreckCueSamples": 0,
+      "titles": [],
+      "minimumVisibleOpacity": null,
+      "visibleSpanMs": 0,
+      "cueBoxes": [],
+      "matteSamples": 0,
+      "localWreckPhases": {
+        "running": 420,
+        "wrecked": 65,
+        "recovering": 46
+      },
+      "finalLocalPhase": "running",
+      "finalFrame": 2129,
+      "stepDeltas": {
+        "12": 1,
+        "3": 7,
+        "5": 6,
+        "4": 516
+      }
+    },
+    {
+      "phase": "guest-wreck",
+      "role": "guest",
+      "file": "guest-wreck-guest-observations.json",
+      "sha256": "a9d7eb89ff5919374701bab51d71ac127cf79a1015ab41a756ed7bca1ddf194a",
+      "samples": 531,
+      "firstObservedFrame": 1854,
+      "roles": [
+        "guest"
+      ],
+      "allFourFlagsFalseAllSamples": true,
+      "windowsExactlyMatchReceipt": true,
+      "windows": {
+        "before": {
+          "samples": 30,
+          "wallSeconds": 0.9667000000000008,
+          "frameRatio": 0.9310023792283018,
+          "raceRatio": 0.9310023792282488,
+          "maximumGapMs": 33.400000000001455
+        },
+        "impact": {
+          "samples": 23,
+          "wallSeconds": 0.7332999999999993,
+          "frameRatio": 0.9545888449474985,
+          "raceRatio": 0.9545888449474442,
+          "maximumGapMs": 33.400000000001455
+        },
+        "after": {
+          "samples": 28,
+          "wallSeconds": 0.8999000000000015,
+          "frameRatio": 1.0001111234581603,
+          "raceRatio": 1.0001111234581035,
+          "maximumGapMs": 33.400000000001455
+        }
+      },
+      "visibleCueSamples": 34,
+      "logicalWreckCueSamples": 38,
+      "titles": [
+        "WRECKED"
+      ],
+      "minimumVisibleOpacity": 0.83832,
+      "visibleSpanMs": 1100.0,
+      "cueBoxes": [
+        "{\"height\": 64.984375, \"width\": 280, \"x\": 500, \"y\": 667.015625}"
+      ],
+      "matteSamples": 0,
+      "localWreckPhases": {
+        "running": 462,
+        "wrecked": 66,
+        "recovering": 3
+      },
+      "finalLocalPhase": "recovering",
+      "finalFrame": 2118,
+      "stepDeltas": {
+        "0": 297,
+        "6": 114,
+        "18": 1,
+        "12": 118
+      }
+    }
+  ],
+  "recoveryEvidence": {
+    "nativeAssertionsPresent": true,
+    "recordedResult": {
+      "phase": "running",
+      "travelledMetres": 17.905661161479014,
+      "replicaErrorMetres": 1.437367118347426,
+      "combatCamera": {
+        "cut": false,
+        "recoveryArmed": false,
+        "wreckChase": false,
+        "wreckRecovery": false
+      }
+    },
+    "finalStepGap": 5,
+    "independentlyRecomputedDriveDistances": false,
+    "reason": "The phase observation files are serialized before the final recovery drive; raw beforeDrive and final snapshots/positions are not retained. Native receipt and final screenshot are preserved."
+  },
+  "cleanup": {
+    "browserClosed": true,
+    "serverExited": true,
+    "errors": []
+  },
+  "hashes": {
+    "output/playwright/round35-network-combat-v15/receipt.json": "00dcfa4103a16998d07b4be0ed45d64bdf682d512e1fb514699be635eea1ee56",
+    "output/playwright/round35-network-combat-v15/guest-wreck-guest-observations.json": "a9d7eb89ff5919374701bab51d71ac127cf79a1015ab41a756ed7bca1ddf194a",
+    "output/playwright/round35-network-combat-v15/guest-wreck-host-observations.json": "1281e69ff44180c1284172512cfcb74e81a8e419fdbc8a155c15e0bfe4db47e8",
+    "output/playwright/round35-network-combat-v15/host-wreck-guest-observations.json": "ba46326173b0b7131282032acfec945e755c647475d1ac2c08270f7ae1996fcb",
+    "output/playwright/round35-network-combat-v15/host-wreck-host-observations.json": "88090b81fbf7d6bdcaea7727799ccd6d37ae94ab77e5916d469bb6515b3e7225",
+    "output/playwright/round35-network-combat-v15/guest-wreck-guest-cue.png": "b14ec0ce49a91f80b59389dc98dc0c9bbfd7f4828be1aeb4ea269fbf0c41758f",
+    "output/playwright/round35-network-combat-v15/guest-wreck-host-cue.png": "1e6548e1c252dc4355f5a05be3717a77dd3bcb07b8d31e4b7598313e2fd38174",
+    "output/playwright/round35-network-combat-v15/host-wreck-guest-cue.png": "ca07ed005b2ca216034f71edf265d449d59d4994becd1fc8e672e6d050027b22",
+    "output/playwright/round35-network-combat-v15/host-wreck-host-cue.png": "a55f55720b6d4a0be590fc52b66f1dcea767c0169ed93c66a9f26d67d07239b4",
+    "output/playwright/round35-network-combat-v15/guest-driving-again.png": "38831174ee6adef2f7676ce415486ea391a4a0ae4a7324cdce33d34e7d4cb5eb",
+    "dist/assets/index-U_bStFYH.js": "fb724c688802d97917a2632826be07f8d7567b6b3d70cf7ebd3810ca534bbf2d",
+    "scripts/inkstorm-network-combat.mjs": "d0f3fcfed39108d1ad8595391fe2004504d1dedc9a9646719985074361e010e2",
+    "src/render/app/GameApp.ts": "b9c76deaad76d55cbafbf1317d8862dbc5c396fc138523f9921dc75701cffbe4",
+    "src/camera/CinematicCamera.ts": "f160d558384d86ed2d16b118e5f8d2b1788d257b1e228a90f3d94d3568d75040",
+    "src/render/combat/CombatPresentationController.ts": "97d26a20c911047eed03364fe74612c20b7982cab757b4ee35dbd241b27c8369",
+    "src/ui/RaceHud.ts": "4db5833818a02710a685c94b716ee11d0a942c6afa56b76a465e1c0612d20468"
+  }
+}

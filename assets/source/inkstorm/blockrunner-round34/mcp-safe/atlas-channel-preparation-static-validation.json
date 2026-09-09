@@ -1,0 +1,17 @@
+{
+  "preparedOnly": true,
+  "blenderExecuted": false,
+  "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/mcp-safe/10-bake-atlas-channel-v1.py",
+  "bytes": 14469,
+  "sha256External": "b2fa182123295b6cc26f32f3e7f6eb0e58917f67985880d639885640213246cf",
+  "astParsePass": true,
+  "mcpPolicyStaticPass": true,
+  "violations": [],
+  "materialSlotsNeverCleared": true,
+  "actualStateBodyPilotNamesRequired": true,
+  "status": "Ready for root review only. Bake execution paused pending accepted paint parity and custom-normal trial.",
+  "unverified": [
+    "Blender bake operator and emitted image behavior require root execution.",
+    "Image pixels and atlas visual appearance are not established by this static preparation."
+  ]
+}

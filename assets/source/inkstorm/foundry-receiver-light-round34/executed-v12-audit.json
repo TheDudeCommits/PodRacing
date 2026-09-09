@@ -1,0 +1,1326 @@
+{
+  "auditAtUtc": "2026-09-08T16:51:08.920340+00:00",
+  "author": "/root/next_fleet_sources33/soft_ramp_tests34",
+  "method": "Independent file/hash/raw-event/receipt and decoded-pixel audit. No images were visually viewed by this auditor; no browser, build, runtime or tests were run; only these private audit artifacts were written.",
+  "critic": {
+    "attachmentCount": 10,
+    "allOriginalAndAttachmentHashesMatch": true,
+    "images": [
+      {
+        "image": 1,
+        "original": "/Users/amir/Projects/PodRacing/output/gauntlet/round34-foundry-finish-v12/captures/06-foundry.png",
+        "attachment": "/var/folders/8_/sqnvwbyn5qv5slnnkk73035c0000gn/T/podracing-foundry-blind-zigxr75z/frame-01.png",
+        "sha256": "22c1cf3efc04e905ac056bc353a8ee1a6d43baafc5683aec3847ca5c07675298",
+        "scene": "06-foundry",
+        "privateVersion": "v12",
+        "actualOriginalSha256": "22c1cf3efc04e905ac056bc353a8ee1a6d43baafc5683aec3847ca5c07675298",
+        "actualAttachmentSha256": "22c1cf3efc04e905ac056bc353a8ee1a6d43baafc5683aec3847ca5c07675298",
+        "originalMatchesInventory": true,
+        "attachmentMatchesInventory": true,
+        "filesIdentical": true
+      },
+      {
+        "image": 2,
+        "original": "/Users/amir/Projects/PodRacing/output/gauntlet/round34-pilot-separation-v10/captures/06-foundry.png",
+        "attachment": "/var/folders/8_/sqnvwbyn5qv5slnnkk73035c0000gn/T/podracing-foundry-blind-zigxr75z/frame-02.png",
+        "sha256": "c840b80a8161a5dad2c3abf59055bd6f2a0c3838ad628e587e46e90a3d6b3a40",
+        "scene": "06-foundry",
+        "privateVersion": "v10",
+        "actualOriginalSha256": "c840b80a8161a5dad2c3abf59055bd6f2a0c3838ad628e587e46e90a3d6b3a40",
+        "actualAttachmentSha256": "c840b80a8161a5dad2c3abf59055bd6f2a0c3838ad628e587e46e90a3d6b3a40",
+        "originalMatchesInventory": true,
+        "attachmentMatchesInventory": true,
+        "filesIdentical": true
+      },
+      {
+        "image": 3,
+        "original": "/Users/amir/Projects/PodRacing/output/gauntlet/round34-pilot-separation-v10/captures/foundry-near-span.png",
+        "attachment": "/var/folders/8_/sqnvwbyn5qv5slnnkk73035c0000gn/T/podracing-foundry-blind-zigxr75z/frame-03.png",
+        "sha256": "8b037a5c883d550263528e472e13cacd5c94339b50cdd570a8498dcfbe112f3d",
+        "scene": "foundry-near-span",
+        "privateVersion": "v10",
+        "actualOriginalSha256": "8b037a5c883d550263528e472e13cacd5c94339b50cdd570a8498dcfbe112f3d",
+        "actualAttachmentSha256": "8b037a5c883d550263528e472e13cacd5c94339b50cdd570a8498dcfbe112f3d",
+        "originalMatchesInventory": true,
+        "attachmentMatchesInventory": true,
+        "filesIdentical": true
+      },
+      {
+        "image": 4,
+        "original": "/Users/amir/Projects/PodRacing/output/gauntlet/round34-foundry-finish-v12/captures/foundry-near-span.png",
+        "attachment": "/var/folders/8_/sqnvwbyn5qv5slnnkk73035c0000gn/T/podracing-foundry-blind-zigxr75z/frame-04.png",
+        "sha256": "3399af20abdb00a3f5bb60b1f1c268143a4506b7fba8ed0a2f8e34aa8ca0ea28",
+        "scene": "foundry-near-span",
+        "privateVersion": "v12",
+        "actualOriginalSha256": "3399af20abdb00a3f5bb60b1f1c268143a4506b7fba8ed0a2f8e34aa8ca0ea28",
+        "actualAttachmentSha256": "3399af20abdb00a3f5bb60b1f1c268143a4506b7fba8ed0a2f8e34aa8ca0ea28",
+        "originalMatchesInventory": true,
+        "attachmentMatchesInventory": true,
+        "filesIdentical": true
+      },
+      {
+        "image": 5,
+        "original": "/Users/amir/Projects/PodRacing/output/gauntlet/round34-foundry-finish-v12/captures/foundry-middle.png",
+        "attachment": "/var/folders/8_/sqnvwbyn5qv5slnnkk73035c0000gn/T/podracing-foundry-blind-zigxr75z/frame-05.png",
+        "sha256": "c420081a2cdd44d7c791c9d55c5a293afe91de5236a7ac84fbf1483df623321e",
+        "scene": "foundry-middle",
+        "privateVersion": "v12",
+        "actualOriginalSha256": "c420081a2cdd44d7c791c9d55c5a293afe91de5236a7ac84fbf1483df623321e",
+        "actualAttachmentSha256": "c420081a2cdd44d7c791c9d55c5a293afe91de5236a7ac84fbf1483df623321e",
+        "originalMatchesInventory": true,
+        "attachmentMatchesInventory": true,
+        "filesIdentical": true
+      },
+      {
+        "image": 6,
+        "original": "/Users/amir/Projects/PodRacing/output/gauntlet/round34-pilot-separation-v10/captures/foundry-middle.png",
+        "attachment": "/var/folders/8_/sqnvwbyn5qv5slnnkk73035c0000gn/T/podracing-foundry-blind-zigxr75z/frame-06.png",
+        "sha256": "4c416940b9d3453f5ccf6e0300cd360976c1cf09c770bd6ba18af2bbb5616853",
+        "scene": "foundry-middle",
+        "privateVersion": "v10",
+        "actualOriginalSha256": "4c416940b9d3453f5ccf6e0300cd360976c1cf09c770bd6ba18af2bbb5616853",
+        "actualAttachmentSha256": "4c416940b9d3453f5ccf6e0300cd360976c1cf09c770bd6ba18af2bbb5616853",
+        "originalMatchesInventory": true,
+        "attachmentMatchesInventory": true,
+        "filesIdentical": true
+      },
+      {
+        "image": 7,
+        "original": "/Users/amir/Projects/PodRacing/output/gauntlet/round34-pilot-separation-v10/captures/foundry-exit.png",
+        "attachment": "/var/folders/8_/sqnvwbyn5qv5slnnkk73035c0000gn/T/podracing-foundry-blind-zigxr75z/frame-07.png",
+        "sha256": "ee6179ab3bef71f80521dcda13ed042cb4427371761cb3cb89903073295cd996",
+        "scene": "foundry-exit",
+        "privateVersion": "v10",
+        "actualOriginalSha256": "ee6179ab3bef71f80521dcda13ed042cb4427371761cb3cb89903073295cd996",
+        "actualAttachmentSha256": "ee6179ab3bef71f80521dcda13ed042cb4427371761cb3cb89903073295cd996",
+        "originalMatchesInventory": true,
+        "attachmentMatchesInventory": true,
+        "filesIdentical": true
+      },
+      {
+        "image": 8,
+        "original": "/Users/amir/Projects/PodRacing/output/gauntlet/round34-foundry-finish-v12/captures/foundry-exit.png",
+        "attachment": "/var/folders/8_/sqnvwbyn5qv5slnnkk73035c0000gn/T/podracing-foundry-blind-zigxr75z/frame-08.png",
+        "sha256": "dc594314a834b8b85a4e56b47f828e91b66e1ccd09fcfc9d84bc13be1668bab0",
+        "scene": "foundry-exit",
+        "privateVersion": "v12",
+        "actualOriginalSha256": "dc594314a834b8b85a4e56b47f828e91b66e1ccd09fcfc9d84bc13be1668bab0",
+        "actualAttachmentSha256": "dc594314a834b8b85a4e56b47f828e91b66e1ccd09fcfc9d84bc13be1668bab0",
+        "originalMatchesInventory": true,
+        "attachmentMatchesInventory": true,
+        "filesIdentical": true
+      },
+      {
+        "image": 9,
+        "original": "/Users/amir/Projects/PodRacing/docs/inkstorm-overhaul/concepts/06-foundry.png",
+        "attachment": "/var/folders/8_/sqnvwbyn5qv5slnnkk73035c0000gn/T/podracing-foundry-blind-zigxr75z/frame-09.png",
+        "sha256": "e56c72e8a4c96be345a5cfa088186ad65763fbc94c5f8b85233bb9a04b1aeb50",
+        "kind": "generatedconcept",
+        "actualOriginalSha256": "e56c72e8a4c96be345a5cfa088186ad65763fbc94c5f8b85233bb9a04b1aeb50",
+        "actualAttachmentSha256": "e56c72e8a4c96be345a5cfa088186ad65763fbc94c5f8b85233bb9a04b1aeb50",
+        "originalMatchesInventory": true,
+        "attachmentMatchesInventory": true,
+        "filesIdentical": true
+      },
+      {
+        "image": 10,
+        "original": "/Users/amir/Projects/PodRacing/docs/inkstorm-overhaul/concepts/11-foundry-construction-round33.png",
+        "attachment": "/var/folders/8_/sqnvwbyn5qv5slnnkk73035c0000gn/T/podracing-foundry-blind-zigxr75z/frame-10.png",
+        "sha256": "ef201350569c53d6a36a9e1c0f1db7c6c8d444c58a1dd39db5b3ab22e2c6a2d8",
+        "kind": "generatedconcept",
+        "actualOriginalSha256": "ef201350569c53d6a36a9e1c0f1db7c6c8d444c58a1dd39db5b3ab22e2c6a2d8",
+        "actualAttachmentSha256": "ef201350569c53d6a36a9e1c0f1db7c6c8d444c58a1dd39db5b3ab22e2c6a2d8",
+        "originalMatchesInventory": true,
+        "attachmentMatchesInventory": true,
+        "filesIdentical": true
+      }
+    ],
+    "promptSha256": "699e651f68c441255c7919ab4bbd0bda06be72780dc8aad2d50ab04631243b26",
+    "promptMatchesInvocation": true,
+    "invocationAttachmentCountMatches": true,
+    "cliAttachmentOrderMatchesInventory": true,
+    "returnCode": 0,
+    "started": "2026-09-08T16:44:27.708216+00:00",
+    "completed": "2026-09-08T16:46:16.014633+00:00",
+    "rawEventLineCount": 9,
+    "parsedEventCount": 9,
+    "eventTypes": {
+      "thread.started": 1,
+      "turn.started": 1,
+      "error": 4,
+      "item.completed": 2,
+      "turn.completed": 1
+    },
+    "itemTypes": {
+      "error": 1,
+      "agent_message": 1
+    },
+    "toolOrRetrievalItems": [],
+    "toolOrRetrievalItemCount": 0,
+    "finalAgentMessageCount": 1,
+    "finalEqualsReviewExactly": true,
+    "finalEqualsReviewIgnoringTrailingWhitespace": true,
+    "turnCompletedCount": 1,
+    "completionUsage": [
+      {
+        "input_tokens": 51607,
+        "cached_input_tokens": 7424,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1340,
+        "reasoning_output_tokens": 516
+      }
+    ],
+    "transportMessages": [
+      "Reconnecting... 2/5 (stream disconnected before completion: websocket closed by server before response.completed)",
+      "Reconnecting... 3/5 (stream disconnected before completion: websocket closed by server before response.completed)",
+      "Reconnecting... 4/5 (stream disconnected before completion: websocket closed by server before response.completed)",
+      "Reconnecting... 5/5 (stream disconnected before completion: websocket closed by server before response.completed)",
+      "Falling back from WebSockets to HTTPS transport. stream disconnected before completion: websocket closed by server before response.completed"
+    ],
+    "independenceLimit": "A separate ephemeral CLI process was given anonymous attachments and an instruction to use only them. Full raw events contain no tool/retrieval items. Generic user configuration may have loaded; the trace cannot prove an empty system/configuration context. Cache usage is not evidence of repository retrieval.",
+    "criticDeclaredImagesExamined": 10,
+    "pairFindings": [
+      {
+        "pair": [
+          1,
+          2
+        ],
+        "preferredImage": 2,
+        "preferredVersion": "v10",
+        "confidence": "Medium"
+      },
+      {
+        "pair": [
+          3,
+          4
+        ],
+        "preferredImage": 3,
+        "preferredVersion": "v10",
+        "confidence": "Medium"
+      },
+      {
+        "pair": [
+          5,
+          6
+        ],
+        "preferredImage": 6,
+        "preferredVersion": "v10",
+        "confidence": "Low"
+      },
+      {
+        "pair": [
+          7,
+          8
+        ],
+        "preferredImage": 7,
+        "preferredVersion": "v10",
+        "confidence": "Medium"
+      }
+    ],
+    "scoresInImageOrder": [
+      6,
+      6,
+      6,
+      6,
+      6.5,
+      6.5,
+      6,
+      6
+    ],
+    "criticReachedEight": false
+  },
+  "matchedReport": {
+    "path": "/Users/amir/Projects/PodRacing/output/gauntlet/round34-foundry-finish-v12/matched-v10-v12.json",
+    "sha256": "311b83cd27933bc40730ea79c84817c0e4d9755ae1a03cf7fe1356b42edf14a5",
+    "rowCount": 11,
+    "expectedElevenRowsPresent": true,
+    "allRowChecksPass": true,
+    "rows": [
+      {
+        "id": "01-grid",
+        "checks": {
+          "samePoseClaimsMatch": true,
+          "allPoseFieldsEqual": true,
+          "renderValuesMatchReceipts": true,
+          "allRenderFieldsEqual": true,
+          "resourceBeforeMatchesReceipt": true,
+          "resourceAfterMatchesReceipt": true,
+          "beforeHashMatches": true,
+          "afterHashMatches": true,
+          "sameImageShape": true,
+          "pixelCountMatches": true,
+          "changedPixelsMatches": true,
+          "meanAbsoluteRgbDeltaMatches": true
+        },
+        "samePose": {
+          "position": true,
+          "cameraPosition": true,
+          "cameraFocusPosition": true,
+          "yaw": true,
+          "speed": true,
+          "renderedRacerPositions": true
+        },
+        "render": {
+          "calls": {
+            "before": 72,
+            "after": 72
+          },
+          "triangles": {
+            "before": 2101495,
+            "after": 2101495
+          },
+          "width": {
+            "before": 2880,
+            "after": 2880
+          },
+          "height": {
+            "before": 1800,
+            "after": 1800
+          },
+          "pixelRatio": {
+            "before": 2,
+            "after": 2
+          }
+        },
+        "cameraBefore": "chase",
+        "cameraAfter": "chase",
+        "cameraFocusOffsetBefore": {
+          "forward": 0,
+          "right": 0,
+          "height": 0
+        },
+        "cameraFocusOffsetAfter": {
+          "forward": 0,
+          "right": 0,
+          "height": 0
+        },
+        "speedBefore": 113.75999999999998,
+        "speedAfter": 113.75999999999998,
+        "imageBefore": {
+          "path": "/Users/amir/Projects/PodRacing/output/gauntlet/round34-pilot-separation-v10/captures/01-grid.png",
+          "bytes": 3229718,
+          "sha256": "a3e67bc0e44e80cb301e589a538a739ee9569bdc2a881914dd270d1760599f0f"
+        },
+        "imageAfter": {
+          "path": "/Users/amir/Projects/PodRacing/output/gauntlet/round34-foundry-finish-v12/captures/01-grid.png",
+          "bytes": 3229718,
+          "sha256": "a3e67bc0e44e80cb301e589a538a739ee9569bdc2a881914dd270d1760599f0f"
+        },
+        "imageBytesIdentical": true,
+        "pixels": 2916000,
+        "changedPixels": 0,
+        "meanAbsoluteRgbDelta": 0.0,
+        "resourceBefore": {
+          "geometries": 186,
+          "textures": 92,
+          "programs": 48
+        },
+        "resourceAfter": {
+          "geometries": 175,
+          "textures": 85,
+          "programs": 47
+        }
+      },
+      {
+        "id": "02-salt-run",
+        "checks": {
+          "samePoseClaimsMatch": true,
+          "allPoseFieldsEqual": true,
+          "renderValuesMatchReceipts": true,
+          "allRenderFieldsEqual": true,
+          "resourceBeforeMatchesReceipt": true,
+          "resourceAfterMatchesReceipt": true,
+          "beforeHashMatches": true,
+          "afterHashMatches": true,
+          "sameImageShape": true,
+          "pixelCountMatches": true,
+          "changedPixelsMatches": true,
+          "meanAbsoluteRgbDeltaMatches": true
+        },
+        "samePose": {
+          "position": true,
+          "cameraPosition": true,
+          "cameraFocusPosition": true,
+          "yaw": true,
+          "speed": true,
+          "renderedRacerPositions": true
+        },
+        "render": {
+          "calls": {
+            "before": 63,
+            "after": 63
+          },
+          "triangles": {
+            "before": 1675303,
+            "after": 1675303
+          },
+          "width": {
+            "before": 2880,
+            "after": 2880
+          },
+          "height": {
+            "before": 1800,
+            "after": 1800
+          },
+          "pixelRatio": {
+            "before": 2,
+            "after": 2
+          }
+        },
+        "cameraBefore": "chase",
+        "cameraAfter": "chase",
+        "cameraFocusOffsetBefore": {
+          "forward": 0,
+          "right": 0,
+          "height": 0
+        },
+        "cameraFocusOffsetAfter": {
+          "forward": 0,
+          "right": 0,
+          "height": 0
+        },
+        "speedBefore": 113.76,
+        "speedAfter": 113.76,
+        "imageBefore": {
+          "path": "/Users/amir/Projects/PodRacing/output/gauntlet/round34-pilot-separation-v10/captures/02-salt-run.png",
+          "bytes": 2895968,
+          "sha256": "a0c23344a9a956379294d6cd755fcd024eb738248aa0d07debb153d164175488"
+        },
+        "imageAfter": {
+          "path": "/Users/amir/Projects/PodRacing/output/gauntlet/round34-foundry-finish-v12/captures/02-salt-run.png",
+          "bytes": 2895968,
+          "sha256": "a0c23344a9a956379294d6cd755fcd024eb738248aa0d07debb153d164175488"
+        },
+        "imageBytesIdentical": true,
+        "pixels": 2916000,
+        "changedPixels": 0,
+        "meanAbsoluteRgbDelta": 0.0,
+        "resourceBefore": {
+          "geometries": 186,
+          "textures": 92,
+          "programs": 48
+        },
+        "resourceAfter": {
+          "geometries": 175,
+          "textures": 85,
+          "programs": 47
+        }
+      },
+      {
+        "id": "03-canyon",
+        "checks": {
+          "samePoseClaimsMatch": true,
+          "allPoseFieldsEqual": true,
+          "renderValuesMatchReceipts": true,
+          "allRenderFieldsEqual": true,
+          "resourceBeforeMatchesReceipt": true,
+          "resourceAfterMatchesReceipt": true,
+          "beforeHashMatches": true,
+          "afterHashMatches": true,
+          "sameImageShape": true,
+          "pixelCountMatches": true,
+          "changedPixelsMatches": true,
+          "meanAbsoluteRgbDeltaMatches": true
+        },
+        "samePose": {
+          "position": true,
+          "cameraPosition": true,
+          "cameraFocusPosition": true,
+          "yaw": true,
+          "speed": true,
+          "renderedRacerPositions": true
+        },
+        "render": {
+          "calls": {
+            "before": 99,
+            "after": 99
+          },
+          "triangles": {
+            "before": 4851085,
+            "after": 4851085
+          },
+          "width": {
+            "before": 2880,
+            "after": 2880
+          },
+          "height": {
+            "before": 1800,
+            "after": 1800
+          },
+          "pixelRatio": {
+            "before": 2,
+            "after": 2
+          }
+        },
+        "cameraBefore": "chase",
+        "cameraAfter": "chase",
+        "cameraFocusOffsetBefore": {
+          "forward": 0,
+          "right": 0,
+          "height": 0
+        },
+        "cameraFocusOffsetAfter": {
+          "forward": 0,
+          "right": 0,
+          "height": 0
+        },
+        "speedBefore": 113.75999999999999,
+        "speedAfter": 113.75999999999999,
+        "imageBefore": {
+          "path": "/Users/amir/Projects/PodRacing/output/gauntlet/round34-pilot-separation-v10/captures/03-canyon.png",
+          "bytes": 3134025,
+          "sha256": "872668bc92f5ad3cd23d397eac975edbcc2959a8727f93cde9c8efad55d50e61"
+        },
+        "imageAfter": {
+          "path": "/Users/amir/Projects/PodRacing/output/gauntlet/round34-foundry-finish-v12/captures/03-canyon.png",
+          "bytes": 3134025,
+          "sha256": "872668bc92f5ad3cd23d397eac975edbcc2959a8727f93cde9c8efad55d50e61"
+        },
+        "imageBytesIdentical": true,
+        "pixels": 2916000,
+        "changedPixels": 0,
+        "meanAbsoluteRgbDelta": 0.0,
+        "resourceBefore": {
+          "geometries": 190,
+          "textures": 92,
+          "programs": 50
+        },
+        "resourceAfter": {
+          "geometries": 179,
+          "textures": 85,
+          "programs": 50
+        }
+      },
+      {
+        "id": "04-fork",
+        "checks": {
+          "samePoseClaimsMatch": true,
+          "allPoseFieldsEqual": true,
+          "renderValuesMatchReceipts": true,
+          "allRenderFieldsEqual": true,
+          "resourceBeforeMatchesReceipt": true,
+          "resourceAfterMatchesReceipt": true,
+          "beforeHashMatches": true,
+          "afterHashMatches": true,
+          "sameImageShape": true,
+          "pixelCountMatches": true,
+          "changedPixelsMatches": true,
+          "meanAbsoluteRgbDeltaMatches": true
+        },
+        "samePose": {
+          "position": true,
+          "cameraPosition": true,
+          "cameraFocusPosition": true,
+          "yaw": true,
+          "speed": true,
+          "renderedRacerPositions": true
+        },
+        "render": {
+          "calls": {
+            "before": 76,
+            "after": 76
+          },
+          "triangles": {
+            "before": 2043749,
+            "after": 2043749
+          },
+          "width": {
+            "before": 2880,
+            "after": 2880
+          },
+          "height": {
+            "before": 1800,
+            "after": 1800
+          },
+          "pixelRatio": {
+            "before": 2,
+            "after": 2
+          }
+        },
+        "cameraBefore": "chase",
+        "cameraAfter": "chase",
+        "cameraFocusOffsetBefore": {
+          "forward": 0,
+          "right": 0,
+          "height": 0
+        },
+        "cameraFocusOffsetAfter": {
+          "forward": 0,
+          "right": 0,
+          "height": 0
+        },
+        "speedBefore": 113.76,
+        "speedAfter": 113.76,
+        "imageBefore": {
+          "path": "/Users/amir/Projects/PodRacing/output/gauntlet/round34-pilot-separation-v10/captures/04-fork.png",
+          "bytes": 3048348,
+          "sha256": "68476869cdb0b23f58d3ac5572e5fff526e122ff2603306eea134bcc12d4387d"
+        },
+        "imageAfter": {
+          "path": "/Users/amir/Projects/PodRacing/output/gauntlet/round34-foundry-finish-v12/captures/04-fork.png",
+          "bytes": 3048348,
+          "sha256": "68476869cdb0b23f58d3ac5572e5fff526e122ff2603306eea134bcc12d4387d"
+        },
+        "imageBytesIdentical": true,
+        "pixels": 2916000,
+        "changedPixels": 0,
+        "meanAbsoluteRgbDelta": 0.0,
+        "resourceBefore": {
+          "geometries": 190,
+          "textures": 92,
+          "programs": 50
+        },
+        "resourceAfter": {
+          "geometries": 179,
+          "textures": 85,
+          "programs": 50
+        }
+      },
+      {
+        "id": "05-launch",
+        "checks": {
+          "samePoseClaimsMatch": true,
+          "allPoseFieldsEqual": true,
+          "renderValuesMatchReceipts": true,
+          "allRenderFieldsEqual": true,
+          "resourceBeforeMatchesReceipt": true,
+          "resourceAfterMatchesReceipt": true,
+          "beforeHashMatches": true,
+          "afterHashMatches": true,
+          "sameImageShape": true,
+          "pixelCountMatches": true,
+          "changedPixelsMatches": true,
+          "meanAbsoluteRgbDeltaMatches": true
+        },
+        "samePose": {
+          "position": true,
+          "cameraPosition": true,
+          "cameraFocusPosition": true,
+          "yaw": true,
+          "speed": true,
+          "renderedRacerPositions": true
+        },
+        "render": {
+          "calls": {
+            "before": 59,
+            "after": 59
+          },
+          "triangles": {
+            "before": 1418177,
+            "after": 1418177
+          },
+          "width": {
+            "before": 2880,
+            "after": 2880
+          },
+          "height": {
+            "before": 1800,
+            "after": 1800
+          },
+          "pixelRatio": {
+            "before": 2,
+            "after": 2
+          }
+        },
+        "cameraBefore": "chase",
+        "cameraAfter": "chase",
+        "cameraFocusOffsetBefore": {
+          "forward": 0,
+          "right": 0,
+          "height": 0
+        },
+        "cameraFocusOffsetAfter": {
+          "forward": 0,
+          "right": 0,
+          "height": 0
+        },
+        "speedBefore": 113.75999999999999,
+        "speedAfter": 113.75999999999999,
+        "imageBefore": {
+          "path": "/Users/amir/Projects/PodRacing/output/gauntlet/round34-pilot-separation-v10/captures/05-launch.png",
+          "bytes": 3222146,
+          "sha256": "2a4d03ab60157fc887cbf90f6a8bd278d0715c9531b01b9f72f0b8f91ff179dd"
+        },
+        "imageAfter": {
+          "path": "/Users/amir/Projects/PodRacing/output/gauntlet/round34-foundry-finish-v12/captures/05-launch.png",
+          "bytes": 3222146,
+          "sha256": "2a4d03ab60157fc887cbf90f6a8bd278d0715c9531b01b9f72f0b8f91ff179dd"
+        },
+        "imageBytesIdentical": true,
+        "pixels": 2916000,
+        "changedPixels": 0,
+        "meanAbsoluteRgbDelta": 0.0,
+        "resourceBefore": {
+          "geometries": 190,
+          "textures": 92,
+          "programs": 50
+        },
+        "resourceAfter": {
+          "geometries": 179,
+          "textures": 85,
+          "programs": 50
+        }
+      },
+      {
+        "id": "06-foundry",
+        "checks": {
+          "samePoseClaimsMatch": true,
+          "allPoseFieldsEqual": true,
+          "renderValuesMatchReceipts": true,
+          "allRenderFieldsEqual": true,
+          "resourceBeforeMatchesReceipt": true,
+          "resourceAfterMatchesReceipt": true,
+          "beforeHashMatches": true,
+          "afterHashMatches": true,
+          "sameImageShape": true,
+          "pixelCountMatches": true,
+          "changedPixelsMatches": true,
+          "meanAbsoluteRgbDeltaMatches": true
+        },
+        "samePose": {
+          "position": true,
+          "cameraPosition": true,
+          "cameraFocusPosition": true,
+          "yaw": true,
+          "speed": true,
+          "renderedRacerPositions": true
+        },
+        "render": {
+          "calls": {
+            "before": 102,
+            "after": 102
+          },
+          "triangles": {
+            "before": 4109327,
+            "after": 4109327
+          },
+          "width": {
+            "before": 2880,
+            "after": 2880
+          },
+          "height": {
+            "before": 1800,
+            "after": 1800
+          },
+          "pixelRatio": {
+            "before": 2,
+            "after": 2
+          }
+        },
+        "cameraBefore": "chase",
+        "cameraAfter": "chase",
+        "cameraFocusOffsetBefore": {
+          "forward": 0,
+          "right": 0,
+          "height": 0
+        },
+        "cameraFocusOffsetAfter": {
+          "forward": 0,
+          "right": 0,
+          "height": 0
+        },
+        "speedBefore": 113.75999999999999,
+        "speedAfter": 113.75999999999999,
+        "imageBefore": {
+          "path": "/Users/amir/Projects/PodRacing/output/gauntlet/round34-pilot-separation-v10/captures/06-foundry.png",
+          "bytes": 3058497,
+          "sha256": "c840b80a8161a5dad2c3abf59055bd6f2a0c3838ad628e587e46e90a3d6b3a40"
+        },
+        "imageAfter": {
+          "path": "/Users/amir/Projects/PodRacing/output/gauntlet/round34-foundry-finish-v12/captures/06-foundry.png",
+          "bytes": 3064583,
+          "sha256": "22c1cf3efc04e905ac056bc353a8ee1a6d43baafc5683aec3847ca5c07675298"
+        },
+        "imageBytesIdentical": false,
+        "pixels": 2916000,
+        "changedPixels": 36788,
+        "meanAbsoluteRgbDelta": 0.10471993598536808,
+        "resourceBefore": {
+          "geometries": 190,
+          "textures": 92,
+          "programs": 50
+        },
+        "resourceAfter": {
+          "geometries": 179,
+          "textures": 85,
+          "programs": 50
+        }
+      },
+      {
+        "id": "07-finish",
+        "checks": {
+          "samePoseClaimsMatch": true,
+          "allPoseFieldsEqual": true,
+          "renderValuesMatchReceipts": true,
+          "allRenderFieldsEqual": true,
+          "resourceBeforeMatchesReceipt": true,
+          "resourceAfterMatchesReceipt": true,
+          "beforeHashMatches": true,
+          "afterHashMatches": true,
+          "sameImageShape": true,
+          "pixelCountMatches": true,
+          "changedPixelsMatches": true,
+          "meanAbsoluteRgbDeltaMatches": true
+        },
+        "samePose": {
+          "position": true,
+          "cameraPosition": true,
+          "cameraFocusPosition": true,
+          "yaw": true,
+          "speed": true,
+          "renderedRacerPositions": true
+        },
+        "render": {
+          "calls": {
+            "before": 79,
+            "after": 79
+          },
+          "triangles": {
+            "before": 2168507,
+            "after": 2168507
+          },
+          "width": {
+            "before": 2880,
+            "after": 2880
+          },
+          "height": {
+            "before": 1800,
+            "after": 1800
+          },
+          "pixelRatio": {
+            "before": 2,
+            "after": 2
+          }
+        },
+        "cameraBefore": "chase",
+        "cameraAfter": "chase",
+        "cameraFocusOffsetBefore": {
+          "forward": 0,
+          "right": 0,
+          "height": 0
+        },
+        "cameraFocusOffsetAfter": {
+          "forward": 0,
+          "right": 0,
+          "height": 0
+        },
+        "speedBefore": 113.75999999999999,
+        "speedAfter": 113.75999999999999,
+        "imageBefore": {
+          "path": "/Users/amir/Projects/PodRacing/output/gauntlet/round34-pilot-separation-v10/captures/07-finish.png",
+          "bytes": 3133099,
+          "sha256": "4193ddaec54065aa09fc8bf07d9556b562e7a52adb1fec3d05d21f773e81fa81"
+        },
+        "imageAfter": {
+          "path": "/Users/amir/Projects/PodRacing/output/gauntlet/round34-foundry-finish-v12/captures/07-finish.png",
+          "bytes": 3133099,
+          "sha256": "4193ddaec54065aa09fc8bf07d9556b562e7a52adb1fec3d05d21f773e81fa81"
+        },
+        "imageBytesIdentical": true,
+        "pixels": 2916000,
+        "changedPixels": 0,
+        "meanAbsoluteRgbDelta": 0.0,
+        "resourceBefore": {
+          "geometries": 190,
+          "textures": 92,
+          "programs": 50
+        },
+        "resourceAfter": {
+          "geometries": 179,
+          "textures": 85,
+          "programs": 50
+        }
+      },
+      {
+        "id": "foundry-approach",
+        "checks": {
+          "samePoseClaimsMatch": true,
+          "allPoseFieldsEqual": true,
+          "renderValuesMatchReceipts": true,
+          "allRenderFieldsEqual": true,
+          "resourceBeforeMatchesReceipt": true,
+          "resourceAfterMatchesReceipt": true,
+          "beforeHashMatches": true,
+          "afterHashMatches": true,
+          "sameImageShape": true,
+          "pixelCountMatches": true,
+          "changedPixelsMatches": true,
+          "meanAbsoluteRgbDeltaMatches": true
+        },
+        "samePose": {
+          "position": true,
+          "cameraPosition": true,
+          "cameraFocusPosition": true,
+          "yaw": true,
+          "speed": true,
+          "renderedRacerPositions": true
+        },
+        "render": {
+          "calls": {
+            "before": 67,
+            "after": 67
+          },
+          "triangles": {
+            "before": 2683081,
+            "after": 2683081
+          },
+          "width": {
+            "before": 2880,
+            "after": 2880
+          },
+          "height": {
+            "before": 1800,
+            "after": 1800
+          },
+          "pixelRatio": {
+            "before": 2,
+            "after": 2
+          }
+        },
+        "cameraBefore": "chase",
+        "cameraAfter": "chase",
+        "cameraFocusOffsetBefore": {
+          "forward": 0,
+          "right": 0,
+          "height": 0
+        },
+        "cameraFocusOffsetAfter": {
+          "forward": 0,
+          "right": 0,
+          "height": 0
+        },
+        "speedBefore": 113.75999999999999,
+        "speedAfter": 113.75999999999999,
+        "imageBefore": {
+          "path": "/Users/amir/Projects/PodRacing/output/gauntlet/round34-pilot-separation-v10/captures/foundry-approach.png",
+          "bytes": 3216483,
+          "sha256": "2693d024f989c394250bc6b6ad02766d084d5a23e57b881427f9c56110a82370"
+        },
+        "imageAfter": {
+          "path": "/Users/amir/Projects/PodRacing/output/gauntlet/round34-foundry-finish-v12/captures/foundry-approach.png",
+          "bytes": 3221841,
+          "sha256": "c4c76c5c097f09d8047044edf2ffca12c055e89635ce10e45922fb51465636f0"
+        },
+        "imageBytesIdentical": false,
+        "pixels": 2916000,
+        "changedPixels": 39390,
+        "meanAbsoluteRgbDelta": 0.10232155921353452,
+        "resourceBefore": {
+          "geometries": 190,
+          "textures": 92,
+          "programs": 50
+        },
+        "resourceAfter": {
+          "geometries": 179,
+          "textures": 85,
+          "programs": 50
+        }
+      },
+      {
+        "id": "foundry-near-span",
+        "checks": {
+          "samePoseClaimsMatch": true,
+          "allPoseFieldsEqual": true,
+          "renderValuesMatchReceipts": true,
+          "allRenderFieldsEqual": true,
+          "resourceBeforeMatchesReceipt": true,
+          "resourceAfterMatchesReceipt": true,
+          "beforeHashMatches": true,
+          "afterHashMatches": true,
+          "sameImageShape": true,
+          "pixelCountMatches": true,
+          "changedPixelsMatches": true,
+          "meanAbsoluteRgbDeltaMatches": true
+        },
+        "samePose": {
+          "position": true,
+          "cameraPosition": true,
+          "cameraFocusPosition": true,
+          "yaw": true,
+          "speed": true,
+          "renderedRacerPositions": true
+        },
+        "render": {
+          "calls": {
+            "before": 93,
+            "after": 93
+          },
+          "triangles": {
+            "before": 4147959,
+            "after": 4147959
+          },
+          "width": {
+            "before": 2880,
+            "after": 2880
+          },
+          "height": {
+            "before": 1800,
+            "after": 1800
+          },
+          "pixelRatio": {
+            "before": 2,
+            "after": 2
+          }
+        },
+        "cameraBefore": "chase",
+        "cameraAfter": "chase",
+        "cameraFocusOffsetBefore": {
+          "forward": 0,
+          "right": 0,
+          "height": 0
+        },
+        "cameraFocusOffsetAfter": {
+          "forward": 0,
+          "right": 0,
+          "height": 0
+        },
+        "speedBefore": 113.76,
+        "speedAfter": 113.76,
+        "imageBefore": {
+          "path": "/Users/amir/Projects/PodRacing/output/gauntlet/round34-pilot-separation-v10/captures/foundry-near-span.png",
+          "bytes": 2986436,
+          "sha256": "8b037a5c883d550263528e472e13cacd5c94339b50cdd570a8498dcfbe112f3d"
+        },
+        "imageAfter": {
+          "path": "/Users/amir/Projects/PodRacing/output/gauntlet/round34-foundry-finish-v12/captures/foundry-near-span.png",
+          "bytes": 2994710,
+          "sha256": "3399af20abdb00a3f5bb60b1f1c268143a4506b7fba8ed0a2f8e34aa8ca0ea28"
+        },
+        "imageBytesIdentical": false,
+        "pixels": 2916000,
+        "changedPixels": 43922,
+        "meanAbsoluteRgbDelta": 0.12209144947416552,
+        "resourceBefore": {
+          "geometries": 190,
+          "textures": 92,
+          "programs": 50
+        },
+        "resourceAfter": {
+          "geometries": 179,
+          "textures": 85,
+          "programs": 50
+        }
+      },
+      {
+        "id": "foundry-middle",
+        "checks": {
+          "samePoseClaimsMatch": true,
+          "allPoseFieldsEqual": true,
+          "renderValuesMatchReceipts": true,
+          "allRenderFieldsEqual": true,
+          "resourceBeforeMatchesReceipt": true,
+          "resourceAfterMatchesReceipt": true,
+          "beforeHashMatches": true,
+          "afterHashMatches": true,
+          "sameImageShape": true,
+          "pixelCountMatches": true,
+          "changedPixelsMatches": true,
+          "meanAbsoluteRgbDeltaMatches": true
+        },
+        "samePose": {
+          "position": true,
+          "cameraPosition": true,
+          "cameraFocusPosition": true,
+          "yaw": true,
+          "speed": true,
+          "renderedRacerPositions": true
+        },
+        "render": {
+          "calls": {
+            "before": 71,
+            "after": 71
+          },
+          "triangles": {
+            "before": 2725569,
+            "after": 2725569
+          },
+          "width": {
+            "before": 2880,
+            "after": 2880
+          },
+          "height": {
+            "before": 1800,
+            "after": 1800
+          },
+          "pixelRatio": {
+            "before": 2,
+            "after": 2
+          }
+        },
+        "cameraBefore": "chase",
+        "cameraAfter": "chase",
+        "cameraFocusOffsetBefore": {
+          "forward": 0,
+          "right": 0,
+          "height": 0
+        },
+        "cameraFocusOffsetAfter": {
+          "forward": 0,
+          "right": 0,
+          "height": 0
+        },
+        "speedBefore": 113.76,
+        "speedAfter": 113.76,
+        "imageBefore": {
+          "path": "/Users/amir/Projects/PodRacing/output/gauntlet/round34-pilot-separation-v10/captures/foundry-middle.png",
+          "bytes": 3057719,
+          "sha256": "4c416940b9d3453f5ccf6e0300cd360976c1cf09c770bd6ba18af2bbb5616853"
+        },
+        "imageAfter": {
+          "path": "/Users/amir/Projects/PodRacing/output/gauntlet/round34-foundry-finish-v12/captures/foundry-middle.png",
+          "bytes": 3065200,
+          "sha256": "c420081a2cdd44d7c791c9d55c5a293afe91de5236a7ac84fbf1483df623321e"
+        },
+        "imageBytesIdentical": false,
+        "pixels": 2916000,
+        "changedPixels": 57913,
+        "meanAbsoluteRgbDelta": 0.15982190214906264,
+        "resourceBefore": {
+          "geometries": 190,
+          "textures": 92,
+          "programs": 50
+        },
+        "resourceAfter": {
+          "geometries": 179,
+          "textures": 85,
+          "programs": 50
+        }
+      },
+      {
+        "id": "foundry-exit",
+        "checks": {
+          "samePoseClaimsMatch": true,
+          "allPoseFieldsEqual": true,
+          "renderValuesMatchReceipts": true,
+          "allRenderFieldsEqual": true,
+          "resourceBeforeMatchesReceipt": true,
+          "resourceAfterMatchesReceipt": true,
+          "beforeHashMatches": true,
+          "afterHashMatches": true,
+          "sameImageShape": true,
+          "pixelCountMatches": true,
+          "changedPixelsMatches": true,
+          "meanAbsoluteRgbDeltaMatches": true
+        },
+        "samePose": {
+          "position": true,
+          "cameraPosition": true,
+          "cameraFocusPosition": true,
+          "yaw": true,
+          "speed": true,
+          "renderedRacerPositions": true
+        },
+        "render": {
+          "calls": {
+            "before": 65,
+            "after": 65
+          },
+          "triangles": {
+            "before": 2121465,
+            "after": 2121465
+          },
+          "width": {
+            "before": 2880,
+            "after": 2880
+          },
+          "height": {
+            "before": 1800,
+            "after": 1800
+          },
+          "pixelRatio": {
+            "before": 2,
+            "after": 2
+          }
+        },
+        "cameraBefore": "chase",
+        "cameraAfter": "chase",
+        "cameraFocusOffsetBefore": {
+          "forward": 0,
+          "right": 0,
+          "height": 0
+        },
+        "cameraFocusOffsetAfter": {
+          "forward": 0,
+          "right": 0,
+          "height": 0
+        },
+        "speedBefore": 113.75999999999999,
+        "speedAfter": 113.75999999999999,
+        "imageBefore": {
+          "path": "/Users/amir/Projects/PodRacing/output/gauntlet/round34-pilot-separation-v10/captures/foundry-exit.png",
+          "bytes": 2907808,
+          "sha256": "ee6179ab3bef71f80521dcda13ed042cb4427371761cb3cb89903073295cd996"
+        },
+        "imageAfter": {
+          "path": "/Users/amir/Projects/PodRacing/output/gauntlet/round34-foundry-finish-v12/captures/foundry-exit.png",
+          "bytes": 2914258,
+          "sha256": "dc594314a834b8b85a4e56b47f828e91b66e1ccd09fcfc9d84bc13be1668bab0"
+        },
+        "imageBytesIdentical": false,
+        "pixels": 2916000,
+        "changedPixels": 40905,
+        "meanAbsoluteRgbDelta": 0.11779458161865569,
+        "resourceBefore": {
+          "geometries": 190,
+          "textures": 92,
+          "programs": 50
+        },
+        "resourceAfter": {
+          "geometries": 179,
+          "textures": 85,
+          "programs": 50
+        }
+      }
+    ],
+    "sixNonFoundryByteIdentitiesVerified": true,
+    "nonFoundryIds": [
+      "01-grid",
+      "02-salt-run",
+      "03-canyon",
+      "04-fork",
+      "05-launch",
+      "07-finish"
+    ],
+    "environmentMatchesCandidateReceipt": true,
+    "shortLivePerformanceMatchesCandidateReceipt": true,
+    "errorsMatchCandidateReceipt": true,
+    "errors": [],
+    "resourceInterpretation": "Startup resource baselines differ. Matching per-pose calls/triangles/resolution do not establish +1 compiled program, net-zero resources, a resource regression, or its absence.",
+    "performance": {
+      "device": "Chrome headless; renderer from snapshot; local workstation",
+      "viewport": {
+        "width": 1440,
+        "height": 900,
+        "dpr": 1.5
+      },
+      "samples": 481,
+      "p50Ms": 16.69999999999891,
+      "p95Ms": 16.799999999999272,
+      "p99Ms": 16.80000000000109,
+      "averageFps": 60.00274440826815
+    },
+    "performanceLimit": "481 short live samples are not a full-race or mixed-combat benchmark.",
+    "browserClosure": "The matched report records owned gauntlet browser closure and no listener on port 5186. This auditor did not independently query a browser or port."
+  },
+  "rollback": {
+    "exists": true,
+    "receipt": {
+      "decision": "REJECT V12; whole three-file candidate reverted. Four fresh pairs prefer V10. Cyan wash flattens panel detail. V12 runtime evidence retained; no art acceptance.",
+      "restored": [
+        {
+          "path": "src/render/inkstorm/InkstormSurfaceMaterial.ts",
+          "sha256": "b8bfbc87654537f6825e4a91ce858d7558ab89137c483e117a0e93f2bd6f82cb",
+          "equalsBefore": true
+        },
+        {
+          "path": "src/render/inkstorm/InkstormWorld.ts",
+          "sha256": "c402c85ecbd13e6d4f4fb63a702cc7d1a447a4e509d6459e4265642fe10d15a5",
+          "equalsBefore": true
+        }
+      ],
+      "newHelperRemoved": true,
+      "historicalBuildNeedsRebuild": true,
+      "receiptRetry": "First receipt writer used a wrong before-file relative path and stopped before writing. This corrected writer verifies the actual preserved paths."
+    },
+    "checks": [
+      {
+        "path": "src/render/inkstorm/InkstormSurfaceMaterial.ts",
+        "sha256": "b8bfbc87654537f6825e4a91ce858d7558ab89137c483e117a0e93f2bd6f82cb",
+        "equalsBefore": true,
+        "beforeReceiptSha256": "b8bfbc87654537f6825e4a91ce858d7558ab89137c483e117a0e93f2bd6f82cb",
+        "preservedBeforeSha256": "b8bfbc87654537f6825e4a91ce858d7558ab89137c483e117a0e93f2bd6f82cb",
+        "receiptMatchesBeforeReceipt": true,
+        "receiptMatchesPreservedBefore": true,
+        "currentObservedSha256": "b8bfbc87654537f6825e4a91ce858d7558ab89137c483e117a0e93f2bd6f82cb",
+        "currentMatchesRollbackCheckpoint": true
+      },
+      {
+        "path": "src/render/inkstorm/InkstormWorld.ts",
+        "sha256": "c402c85ecbd13e6d4f4fb63a702cc7d1a447a4e509d6459e4265642fe10d15a5",
+        "equalsBefore": true,
+        "beforeReceiptSha256": "c402c85ecbd13e6d4f4fb63a702cc7d1a447a4e509d6459e4265642fe10d15a5",
+        "preservedBeforeSha256": "c402c85ecbd13e6d4f4fb63a702cc7d1a447a4e509d6459e4265642fe10d15a5",
+        "receiptMatchesBeforeReceipt": true,
+        "receiptMatchesPreservedBefore": true,
+        "currentObservedSha256": "c402c85ecbd13e6d4f4fb63a702cc7d1a447a4e509d6459e4265642fe10d15a5",
+        "currentMatchesRollbackCheckpoint": true
+      }
+    ],
+    "newHelperPath": "src/render/inkstorm/InkstormFoundryFinish.ts",
+    "newHelperCurrentlyAbsent": true,
+    "scope": "This verifies the preserved rollback checkpoint and separately records current observed hashes. Other agents may change live materials for V13; no restoration or current-build acceptance is asserted."
+  },
+  "evidenceFiles": [
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/foundry-receiver-light-round34/blind-runtime-v12/inventory.json",
+      "bytes": 4038,
+      "sha256": "7a0015e147c9946b8da3bb8ea2021b6906084213eb1f7e069d947e91e2e8e388"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/foundry-receiver-light-round34/blind-runtime-v12/prompt.txt",
+      "bytes": 1252,
+      "sha256": "699e651f68c441255c7919ab4bbd0bda06be72780dc8aad2d50ab04631243b26"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/foundry-receiver-light-round34/blind-runtime-v12/cli-critic-attempt1/invocation.json",
+      "bytes": 2083,
+      "sha256": "29e9554d30af34501e783415f9d32f92896d581ef1e5dc0f61b2c3e27cbd4e9a"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/foundry-receiver-light-round34/blind-runtime-v12/cli-critic-attempt1/events.jsonl",
+      "bytes": 5230,
+      "sha256": "a353dc38b458b5f877fd81b6698fc8fb8c30c82c727e07ea50e97c75468691c3"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/foundry-receiver-light-round34/blind-runtime-v12/cli-critic-attempt1/review.md",
+      "bytes": 4064,
+      "sha256": "8335f49c9108c24e78d8e6997d335d0d0ee592d45d03e5381756737bd4a93a70"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/output/gauntlet/round34-foundry-finish-v12/matched-v10-v12.json",
+      "bytes": 41358,
+      "sha256": "311b83cd27933bc40730ea79c84817c0e4d9755ae1a03cf7fe1356b42edf14a5"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/output/gauntlet/round34-pilot-separation-v10/captures/receipts.json",
+      "bytes": 518004,
+      "sha256": "82bd01818fd3464d6554a35516ee7d4b486e357ffb06c300242a217a79fbadd8"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/output/gauntlet/round34-foundry-finish-v12/captures/receipts.json",
+      "bytes": 518097,
+      "sha256": "374252d003c5422102ae5ead9a60574ffd88f53126df89080a4928e78162670c"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/output/gauntlet/round34-foundry-finish-v12/before-receipt.json",
+      "bytes": 425,
+      "sha256": "af4003e4f851b20bfb6d45e7701e384c8aa898f717f8e52ffeb460656e039f77"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/output/gauntlet/round34-foundry-finish-v12/verify.log",
+      "bytes": 1387,
+      "sha256": "8b9cf6ab6b03f13b63b76c8a3a600156b1ad47fd31962c5d87c0329c09c2ba59"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/output/gauntlet/round34-foundry-finish-v12/capture.log",
+      "bytes": 437,
+      "sha256": "9d13161d02eff3c3139a26b9f9f318b8c564f23f69a66fb3247f02c4f6b31c21"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/output/gauntlet/round34-foundry-finish-v12/rejection-and-rollback.json",
+      "bytes": 802,
+      "sha256": "7a2cae2423f213af82079454b7de6c0c8726532955adfa3cdbc82c66ad0d0215"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/foundry-receiver-light-round34/before/src/render/inkstorm/InkstormSurfaceMaterial.ts",
+      "bytes": 16923,
+      "sha256": "b8bfbc87654537f6825e4a91ce858d7558ab89137c483e117a0e93f2bd6f82cb"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/foundry-receiver-light-round34/before/src/render/inkstorm/InkstormWorld.ts",
+      "bytes": 16050,
+      "sha256": "c402c85ecbd13e6d4f4fb63a702cc7d1a447a4e509d6459e4265642fe10d15a5"
+    }
+  ],
+  "decision": "Reject V12. Fresh critic prefers V10 in all four pairs, scores remain 6 or 6.5 below 8. Preserve experiment and evidence; no art acceptance."
+}

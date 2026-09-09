@@ -1,0 +1,11 @@
+--- before/scripts/inkstorm-race-evidence.py
++++ after/scripts/inkstorm-race-evidence.py
+@@ -36,7 +36,7 @@
+     assert len(builds) == 1, f'Unexpected build candidates: {builds}'
+     build = stamp(builds[0])
+     assert build['sha256'] == EXPECTED, build
+-    harnesses = ['scripts/competitive-flow.ts', 'scripts/lib/race-cadence.ts', 'scripts/vehicle-appearance-acceptance.mjs', 'scripts/lib/frozen-build-receipt.mjs', 'scripts/inkstorm-race-evidence.py']
++    harnesses = ['scripts/competitive-flow.ts', 'scripts/lib/race-cadence.ts', 'scripts/vehicle-appearance-acceptance.mjs', 'scripts/lib/frozen-build-receipt.mjs', 'scripts/inkstorm-race-evidence.py', 'scripts/lib/result-clock.ts']
+     configuration = ['package.json', 'package-lock.json', 'vite.config.ts', 'index.html']
+     result = {'recordedAt': now(), 'expectedBuildSha256': EXPECTED, 'build': build, 'source': tree('src'), 'publicArt': tree('public/assets/inkstorm'), 'dist': tree('dist'), 'harness': [stamp(ROOT / p) for p in harnesses], 'configuration': [stamp(ROOT / p) for p in configuration if (ROOT / p).exists()]}
+     output.mkdir(parents=True, exist_ok=True)

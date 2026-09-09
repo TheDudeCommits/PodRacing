@@ -1,0 +1,819 @@
+--- a/src/render/combat/TeemtoWreckBreakup.ts
++++ b/src/render/combat/TeemtoWreckBreakup.ts
+@@ -42,6 +42,8 @@
+   private readonly point = new Vector3();
+   private readonly translation = new Vector3();
+   private readonly groundOffset = new Vector3();
++  private readonly contact = { position: new Vector3(), direction: new Vector3() };
++  private contactPose: WreckVisualPose | null = null;
+   private readonly cameraBounds = Array.from({ length: 24 }, () => new Vector3());
+   private activeValue = false;
+ 
+@@ -82,11 +84,14 @@
+   /** Pure event-age pose, including calls made by FX before the next render.
+    * Two <=74-point support sets bound terrain work; no vertex read/traversal,
+    * geometry upload, material allocation, timer or accumulated integration.
+-   * The positive world-Y correction settles the lowest sampled engine surface
+-   * above terrain. It is a visual support approximation, not collision truth.
++   * The right engine rolls and settles down to the sampled sand; either engine
++   * can lift out of terrain. This is visual support, not collision truth.
+    */
+   update(pose: WreckVisualPose, remaining: number, terrain: { heightAt(x: number, z: number): number }, extrapolation = 0): void {
+     const age = Math.max(0, Math.min(WRECK_PRESENTATION_DURATION, WRECK_PRESENTATION_DURATION - remaining + extrapolation));
++    if (this.contactPose?.groundContact === this.contact) this.contactPose.groundContact = undefined;
++    this.contactPose = null;
++    pose.groundContact = undefined;
+     // V13 reached full opening at the 820ms cut exit under solo slow motion.
+     // Reach the same envelope during the held impact, with exact intact birth.
+     const spread = smooth(age / .12) * smooth((remaining - extrapolation) / .35);
+@@ -97,15 +102,18 @@
+     this.bodyMatrix.compose(pose.position, this.bodyRotation, UNIT);
+     this.assemblyBounds.copy(this.stationary.localBounds);
+     writeWreckBounds(this.stationary.localBounds, this.bodyMatrix, this.cameraBounds);
++    const release = smooth((remaining - extrapolation) / .35);
++    const settle = smooth(age / .16) * release;
++    const roll = smooth(age / .20) * release;
+     for (let index = 0; index < this.parts.length; index++) {
+       const part = this.parts[index]!;
+       // Asymmetric opening breaks the orderly parallel silhouette while the
+       // long engines remain recognisable. Original cockpit tethers stay with it.
+       const side = index === 0 ? -1 : 1;
+       this.rotation.setFromAxisAngle(Y, side * (index === 0 ? .26 : .38) * spread);
+-      this.axisRotation.setFromAxisAngle(X, (index === 0 ? .13 : -.20) * spread);
++      this.axisRotation.setFromAxisAngle(X, (index === 0 ? .13 : -.20) * spread - (index === 1 ? .18 * roll : 0));
+       this.rotation.multiply(this.axisRotation);
+-      this.axisRotation.setFromAxisAngle(Z, side * .22 * spread);
++      this.axisRotation.setFromAxisAngle(Z, side * .22 * spread + (index === 1 ? .88 * roll : 0));
+       this.rotation.multiply(this.axisRotation);
+       this.translation.copy(part.samples.localCenter).applyQuaternion(this.rotation).negate().add(part.samples.localCenter);
+       this.translation.x += side * (index === 0 ? 3.2 : 4.2) * spread;
+@@ -115,13 +123,33 @@
+       let gap = Infinity;
+       for (const support of part.samples.supportPoints) {
+         this.point.copy(support).applyMatrix4(this.worldMatrix);
+-        gap = Math.min(gap, this.point.y - terrain.heightAt(this.point.x, this.point.z));
++        const ground = terrain.heightAt(this.point.x, this.point.z);
++        const candidate = this.point.y - ground;
++        if (candidate < gap) {
++          gap = candidate;
++          if (index === 1) this.contact.position.set(this.point.x, ground, this.point.z);
++        }
+       }
+-      if (Number.isFinite(gap) && gap < .55) {
+-        this.groundOffset.set(0, .55 - gap, 0).applyQuaternion(this.inverseBodyRotation);
++      if (Number.isFinite(gap)) {
++        // V14 only lifted parts, leaving the long engine hanging above its
++        // shadow. Ease the right engine down too. Positive correction remains
++        // immediate to protect the sampled surface throughout its roll.
++        // The stationary/airborne support keeps its conservative margin; the
++        // engine intentionally settling onto sand closes that gap to ten cm.
++        const margin = index === 1 ? .55 - .45 * settle : .55;
++        const correction = gap < margin ? margin - gap : index === 1 ? Math.max(-8, margin - gap) * settle : 0;
++        this.groundOffset.set(0, correction, 0).applyQuaternion(this.inverseBodyRotation);
+         this.translation.add(this.groundOffset);
+         part.matrix.compose(this.translation, this.rotation, UNIT);
+         this.worldMatrix.multiplyMatrices(this.bodyMatrix, part.matrix);
++        if (index === 1 && settle === 1 && gap + correction <= .100001) {
++          this.contact.direction.set(0, 0, 1).transformDirection(this.worldMatrix);
++          this.contact.direction.y = 0;
++          if (this.contact.direction.lengthSq() < .0001) this.contact.direction.copy(pose.forward);
++          this.contact.direction.normalize();
++          pose.groundContact = this.contact;
++          this.contactPose = pose;
++        }
+       }
+       writeWreckBounds(part.samples.localBounds, this.worldMatrix, this.cameraBounds, 8 + index * 8);
+       part.node.matrixAutoUpdate = false;
+@@ -148,6 +176,8 @@
+   }
+ 
+   reset(): void {
++    if (this.contactPose?.groundContact === this.contact) this.contactPose.groundContact = undefined;
++    this.contactPose = null;
+     if (!this.activeValue) return;
+     for (const part of this.parts) {
+       part.node.position.copy(part.restPosition); part.node.quaternion.copy(part.restQuaternion); part.node.scale.copy(part.restScale);
+--- a/src/render/combat/WreckVisualPose.ts
++++ b/src/render/combat/WreckVisualPose.ts
+@@ -1,5 +1,6 @@
+ import { Box3, Euler, Matrix4, Quaternion, Vector3, type BufferGeometry, type Mesh, type Object3D } from 'three';
+ import type { PodracerState } from '../../game/simulation';
++import type { WreckGroundContact } from './WreckGroundContact';
+ 
+ // The presentation follows the existing recovery-start duration. It never
+ // advances the timer or feeds a transformed pose back to the race simulation.
+@@ -26,6 +27,7 @@
+   bounds: readonly Vector3[];
+   radius: number;
+   groundCorrection: number;
++  groundContact?: WreckGroundContact;
+ }
+ 
+ /** Per-racer, renderer-owned rigid pose. All update storage is reused. */
+@@ -131,6 +133,7 @@
+    */
+   update(state: PodracerState, remaining: number, terrain: { heightAt(x: number, z: number): number }, extrapolation = 0): WreckVisualPose {
+     const pose = this.pose;
++    pose.groundContact = undefined;
+     // A bounded articulated presentation may widen the camera envelope after
+     // this rigid solve. Start each snapshot from the measured intact radius.
+     pose.radius = this.rigidRadius;
+--- /dev/null
++++ b/src/render/combat/WreckGroundContact.ts
+@@ -0,0 +1,40 @@
++import type { Vector3 } from 'three';
++
++/** Sampled contact of the displayed engine, never a simulation collision. */
++export interface WreckGroundContact {
++  readonly position: Vector3;
++  readonly direction: Vector3;
++}
++
++/** One bounded renderer cue per received authoritative wreck identity.
++ * Fixed ticks may run ahead of rendering: eligibility uses the current wreck
++ * count plus its recorded birth frame, not a cached previous render pose.
++ */
++export class WreckGroundContactGate {
++  private readonly entries = new Map<string, { frame: number; crashCount: number; emitted: boolean }>();
++
++  begin(racerId: string, frame: number, crashCount: number): void {
++    if (!Number.isSafeInteger(frame) || frame < 0 || !Number.isSafeInteger(crashCount) || crashCount < 1) return;
++    const previous = this.entries.get(racerId);
++    if (previous && previous.crashCount >= crashCount) return;
++    // At most eight racer identities are needed by this presentation. A stale
++    // entry can only lose a cosmetic cue; it cannot allocate an unbounded log.
++    if (!this.entries.has(racerId) && this.entries.size >= 8) {
++      const oldest = this.entries.keys().next().value;
++      if (oldest !== undefined) this.entries.delete(oldest);
++    }
++    this.entries.set(racerId, { frame, crashCount, emitted: false });
++  }
++
++  take(racerId: string, currentFrame: number, crashCount: number, contact: WreckGroundContact | undefined): boolean {
++    const entry = this.entries.get(racerId);
++    if (!contact || !entry || entry.emitted || entry.crashCount !== crashCount
++      || currentFrame <= entry.frame || !Number.isSafeInteger(currentFrame)) return false;
++    if (!Number.isFinite(contact.position.x + contact.position.y + contact.position.z
++      + contact.direction.x + contact.direction.y + contact.direction.z)) return false;
++    entry.emitted = true;
++    return true;
++  }
++
++  clear(): void { this.entries.clear(); }
++}
+--- a/src/render/app/GameApp.ts
++++ b/src/render/app/GameApp.ts
+@@ -1,5 +1,6 @@
+ import { CombatPresentationController, type CombatPresentationContext } from '../combat/CombatPresentationController';
+ import { WreckVisualPoseCache, type WreckVisualPose } from '../combat/WreckVisualPose';
++import { WreckGroundContactGate } from '../combat/WreckGroundContact';
+ import {
+   Color,
+   Euler,
+@@ -476,6 +477,9 @@
+   private readonly routeCameraPreview = new Vector3();
+   private readonly junctionCameraPreview = new Vector3();
+   private readonly wreckVisualPoses = new Map<RacerPresentation, WreckVisualPoseCache>();
++  private readonly wreckGroundContacts = new WreckGroundContactGate();
++  private readonly wreckRuptureDirection = new Vector3();
++  private readonly wreckRuptureOrigin = new Vector3();
+   private captureMode = false;
+   private preset: CapturePreset = 'desert';
+   private reviewScenario: ReviewCapturePreset = 'desert';
+@@ -1074,6 +1078,12 @@
+         entry.id, appearanceLocalRacerId, this.vehicleAppearance, appearanceHumanMembers,
+       ));
+       const wreckPose = wrecked && !replayFrame ? this.resolveWreckVisualPose(entry, renderExtrapolation) : null;
++      if (!this.paused && wreckPose?.groundContact && this.wreckGroundContacts.take(
++        entry.id, this.simulationFrame, galacticState!.wreck.crashCount, wreckPose.groundContact,
++      )) {
++        this.galacticEffects.emitWreckGroundContact(presentationTime,
++          wreckPose.groundContact.position, wreckPose.groundContact.direction);
++      }
+       this.contactShadows.update(
+         racerIndex,
+         wreckPose?.position.x ?? displayX,
+@@ -1317,6 +1327,7 @@
+     this.resultsPresentation = null;
+     this.dust.clear();
+     this.galacticEffects.clearEffects();
++    this.wreckGroundContacts.clear();
+     this.cameraDirector.reset();
+     this.paused = false;
+     this.hud.setPaused(false);
+@@ -1442,6 +1453,7 @@
+     this.recentGalacticEvents.length = 0;
+     this.dust.clear();
+     this.galacticEffects.clearEffects();
++    this.wreckGroundContacts.clear();
+     this.cameraDirector.reset();
+     this.syncRacerVehicleViews();
+     this.syncCameraSubject();
+@@ -2486,7 +2498,7 @@
+     this.combatPresentation.consume(authoritativeEvents.map((envelope) => ({
+       id: `room:${envelope.sequence}`, event: envelope.event as GalacticEvent,
+     })), performance.now(), this.combatContext());
+-    this.consumeGalacticEffects(galacticEvents, time);
++    this.consumeGalacticEffects(galacticEvents, time, authoritativeEvents.map(envelope => envelope.step));
+     this.audio.handleEvents(authoritativeEvents.map((envelope) => envelope.event), { playerId: localRacerId });
+     this.cameraDirector.consumeEvents(authoritativeEvents.map((envelope) => envelope.event), { playerId: localRacerId });
+     for (let index = 0; index < this.race.state.entries.length; index += 1) {
+@@ -2757,6 +2769,7 @@
+     this.reviewInput = normalizePlayerInput();
+     this.setReviewCameraFocus();
+     this.galacticEffects.clearEffects();
++    this.wreckGroundContacts.clear();
+     const player = this.race.state.entries.find((entry) => entry.isPlayer);
+     const galactic = player?.galactic;
+     if (!player || !galactic) return;
+@@ -3025,6 +3038,7 @@
+     this.race.reset();
+     this.dust.clear();
+     this.galacticEffects.clearEffects();
++    this.wreckGroundContacts.clear();
+     const progressByPreset: Record<CapturePreset, number> = {
+       // The wide review camera doubles as proof of the authored canyon set
+       // piece, while still showing the infinite terrain rings around it.
+@@ -3517,8 +3531,16 @@
+     });
+   }
+ 
+-  private consumeGalacticEffects(events: readonly GalacticEvent[], time: number): void {
+-    for (const event of events) {
++  private consumeGalacticEffects(events: readonly GalacticEvent[], time: number, authoritativeFrames?: readonly number[]): void {
++    for (let eventIndex = 0; eventIndex < events.length; eventIndex++) {
++      const event = events[eventIndex]!;
++      if (event.type === 'wreck') {
++        const entry = this.race.state.entries.find(candidate => candidate.id === event.racerId);
++        if (entry?.galactic?.wreck.phase === 'wrecked') {
++          this.wreckGroundContacts.begin(event.racerId,
++            authoritativeFrames?.[eventIndex] ?? this.simulationFrame, entry.galactic.wreck.crashCount);
++        }
++      }
+       let racerId: string | null = null;
+       let style: 'crash' | 'mine' | 'sand' | 'rock' | 'redline' | 'reward' | 'energy' = 'crash';
+       let severity = 1;
+@@ -3599,6 +3621,7 @@
+       const entry = this.race.state.entries[racerIndex];
+       if (!entry) continue;
+       let position = entry.vehicle.position;
++      let direction: Vector3 | undefined;
+       if (style === 'redline' || style === 'crash') {
+         const view = this.racerViews[racerIndex];
+         // Events identify the racer, not a collision world point. Emit this
+@@ -3613,6 +3636,14 @@
+           // renderer pose owns pivot/terrain clearance for body, camera and FX.
+           const wreckPose = entry.galactic?.wreck.phase === 'wrecked'
+             ? this.resolveWreckVisualPose(entry) : null;
++          this.wreckRuptureDirection.set(0, 0, 1);
++          if (wreckPose && view.importedActive) {
++            this.wreckRuptureOrigin.set(0, 0, 0);
++            view.imported.transformWreckAttachment('exhaustRight', this.wreckRuptureDirection);
++            view.imported.transformWreckAttachment('exhaustRight', this.wreckRuptureOrigin);
++            this.wreckRuptureDirection.sub(this.wreckRuptureOrigin).applyEuler(wreckPose.rotation).normalize();
++          } else this.wreckRuptureDirection.set(Math.sin(vehicle.orientation.yaw), 0, Math.cos(vehicle.orientation.yaw));
++          direction = this.wreckRuptureDirection;
+           if (wreckPose) view.imported.transformWreckAttachment('exhaustRight', local);
+           local.applyEuler(wreckPose?.rotation ?? new Euler(vehicle.orientation.pitch,
+             vehicle.orientation.yaw, vehicle.orientation.roll + vehicle.orientation.bank, 'YXZ'));
+@@ -3625,6 +3656,7 @@
+         time,
+         position,
+         velocity: entry.vehicle.velocity,
++        direction,
+         groundY: this.race.terrain.heightAt(position.x, position.z),
+         severity,
+         color,
+@@ -3792,6 +3824,12 @@
+         ],
+         cameraFocusPosition: this.subject.position.toArray(),
+         cameraPosition: this.cameraRig.camera.position.toArray(),
++        combatCamera: {
++          cut: this.combatCameraCut,
++          recoveryArmed: this.combatChaseRecovery,
++          wreckChase: !!this.subject.wreckChase,
++          wreckRecovery: !!this.subject.wreckRecovery,
++        },
+         renderedRacerPositions: this.racerViews.map((view, index) => ({
+           id: this.race.state.entries[index]?.id ?? `racer-${index}`,
+           position: view.position.toArray(),
+--- a/src/render/galactic/GalacticEffectsView.ts
++++ b/src/render/galactic/GalacticEffectsView.ts
+@@ -99,6 +99,8 @@
+   readonly time: number;
+   readonly position: GalacticPoint;
+   readonly velocity?: GalacticPoint;
++  /** Optional authored engine-facing direction for a rupture cone. */
++  readonly direction?: GalacticPoint;
+   readonly groundY?: number;
+   readonly severity?: number;
+   readonly color?: GalacticEffectColor;
+@@ -217,6 +219,8 @@
+   style: GalacticBurstStyle;
+   billboard: boolean;
+   contactLayer: number;
++  vx: number;
++  vz: number;
+ }
+ 
+ const EMPTY_STATES: readonly never[] = [];
+@@ -618,6 +622,8 @@
+       style: 'crash',
+       billboard: false,
+       contactLayer: -1,
++      vx: 0,
++      vz: 0,
+       r: 1,
+       g: 0.3,
+       b: 0.1,
+@@ -806,10 +812,14 @@
+       if (!slot) break;
+       this.debrisCursor = (this.debrisCursor + 1) % this.debrisSlots.length;
+       const seed = this.eventSequence * 31 + fragment * 7;
+-      const angle = hash01(seed) * Math.PI * 2;
++      const directed = contactBurst && event.direction && Number.isFinite(event.direction.x + event.direction.z)
++        && Math.hypot(event.direction.x, event.direction.z) > .001;
++      const angle = directed
++        ? Math.atan2(-event.direction!.z, -event.direction!.x) + (hash01(seed) - .5) * 2.4
++        : hash01(seed) * Math.PI * 2;
+       const spark = contactBurst ? fragment % 6 === 0 : fragment % 4 === 0;
+       const radial = contactBurst
+-        ? ((spark ? 20 : 10) + hash01(seed + 1) * (spark ? 16 : 10)) * Math.sqrt(severity)
++        ? ((spark ? 24 : 18) + hash01(seed + 1) * (spark ? 16 : 12)) * Math.sqrt(severity)
+         : (5.5 + hash01(seed + 1) * 11) * severity * radialScale;
+       slot.active = true;
+       slot.startTime = finite(event.time, 0);
+@@ -819,6 +829,13 @@
+       slot.x = finite(event.position.x, 0);
+       slot.y = burstY;
+       slot.z = finite(event.position.z, 0);
++      if (contactBurst) {
++        // Open casing fragments already occupy a short rupture cone at birth,
++        // so the slow-motion impact reads before the flare has disappeared.
++        const opening = (.8 + hash01(seed + 14) * .7) * Math.sqrt(severity);
++        slot.x += Math.cos(angle) * opening;
++        slot.z += Math.sin(angle) * opening;
++      }
+       slot.vx = finite(event.velocity?.x, 0) * inheritedVelocity + Math.cos(angle) * radial;
+       slot.vy = finite(event.velocity?.y, 0) * 0.12
+         + (contactBurst ? (4 + hash01(seed + 3) * 8) * Math.sqrt(severity)
+@@ -860,6 +877,7 @@
+       this.explosionCursor = (this.explosionCursor + 1) % this.explosionSlots.length;
+       slot.active = true;
+       slot.contactLayer = contactBurst ? plate : -1;
++      slot.vx = 0; slot.vz = 0;
+       if (contactBurst) {
+         // A hot core, amber pressure flare and two smoke lobes read against
+         // the full-size engines. Their four slots and lifetimes stay bounded.
+@@ -900,6 +918,44 @@
+       slot.r = style === 'rock' ? this.color.r : plate === 0 ? 1 : this.color.r;
+       slot.g = style === 'rock' ? this.color.g : plate === 0 ? (style === 'reward' ? 0.86 : 1) : this.color.g;
+       slot.b = style === 'rock' ? this.color.b : plate === 0 ? (style === 'reward' ? 0.24 : style === 'energy' ? 1 : 0.46) : this.color.b;
++    }
++  }
++
++  /** One sampled engine/sand presentation contact. Reuses ten debris slots and
++   * two dust plates; no new mesh, material, timer or per-frame event allocation.
++   * The caller deduplicates the actual wreck identity before calling this.
++   */
++  emitWreckGroundContact(time: number, position: GalacticPoint, direction: GalacticPoint): void {
++    if (!Number.isFinite(time + position.x + position.y + position.z + direction.x + direction.z)) return;
++    const length = Math.hypot(direction.x, direction.z);
++    if (length < .001) return;
++    const dx = -direction.x / length, dz = -direction.z / length;
++    const heading = Math.atan2(dz, dx);
++    this.eventSequence++;
++    for (let index = 0; index < 10; index++) {
++      const slot = this.debrisSlots[this.debrisCursor]!;
++      this.debrisCursor = (this.debrisCursor + 1) % this.debrisSlots.length;
++      const seed = this.eventSequence * 31 + index * 7;
++      const angle = heading + (hash01(seed) - .5) * 1.8;
++      const speed = 12 + hash01(seed + 1) * 14;
++      slot.active = true; slot.startTime = time; slot.duration = .28 + hash01(seed + 2) * .20;
++      slot.x = position.x; slot.y = position.y + .18; slot.z = position.z;
++      slot.vx = Math.cos(angle) * speed; slot.vz = Math.sin(angle) * speed;
++      slot.vy = 2 + hash01(seed + 3) * 4;
++      slot.rx = 0; slot.ry = 0; slot.rz = 0; slot.ax = 0; slot.ay = 0; slot.az = 0;
++      slot.scale = .34 + hash01(seed + 4) * .20;
++      slot.groundY = position.y; slot.metal = false; slot.spark = true;
++      slot.r = 1; slot.g = index % 3 === 0 ? .87 : .48; slot.b = index % 3 === 0 ? .5 : .09;
++    }
++    for (let index = 0; index < 2; index++) {
++      const slot = this.explosionSlots[this.explosionCursor]!;
++      this.explosionCursor = (this.explosionCursor + 1) % this.explosionSlots.length;
++      slot.active = true; slot.startTime = time + index * .04; slot.duration = index === 0 ? .85 : 1.15;
++      slot.x = position.x + dx * index * .7; slot.z = position.z + dz * index * .7;
++      slot.y = position.y + .08; slot.vx = dx * (index === 0 ? 3.2 : 4.8); slot.vz = dz * (index === 0 ? 3.2 : 4.8);
++      slot.scale = index === 0 ? 3.8 : 4.6;
++      slot.style = 'sand'; slot.billboard = true; slot.contactLayer = 4 + index;
++      slot.r = .43; slot.g = .27; slot.b = .13;
+     }
+   }
+ 
+@@ -1350,6 +1406,18 @@
+           continue;
+         }
+         const progress = MathUtils.clamp(age / slot.duration, 0, 1);
++        if (slot.contactLayer >= 4) {
++          const width = slot.scale * (.45 + progress * .70);
++          const height = width * .48;
++          const x = slot.x + slot.vx * age, z = slot.z + slot.vz * age;
++          const y = slot.y + height * .78;
++          if (!this.isVisible(x, y, z, width * 1.5, EFFECT_VISIBILITY_DISTANCE.crashes)) continue;
++          this.writeInstance(this.explosionPlates, plateCount, x, y, z,
++            this.billboardQuaternion, width, height, width, slot.r, slot.g, slot.b);
++          this.writeEffectSurface(plateCount, 1, .67 * (1 - MathUtils.smoothstep(progress, .25, 1)), slot.startTime * 1.37);
++          plateCount++;
++          continue;
++        }
+         if (slot.contactLayer >= 0) {
+           const smoke = slot.contactLayer > 1;
+           const flash = slot.contactLayer === 0;
+--- a/tests/combat/TeemtoWreckBreakup.test.ts
++++ b/tests/combat/TeemtoWreckBreakup.test.ts
+@@ -1,4 +1,4 @@
+-import { BufferGeometry, Float32BufferAttribute, Group, Mesh, Object3D, PropertyBinding, Vector3 } from 'three';
++import { BufferGeometry, Float32BufferAttribute, Group, Matrix4, Mesh, Object3D, PropertyBinding, Quaternion, Vector3 } from 'three';
+ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+ import { afterEach, describe, expect, it, vi } from 'vitest';
+ import { RaceSimulation } from '../../src/game/race/RaceSimulation';
+@@ -205,7 +205,7 @@
+     expect(transforms(first.root)).toEqual(firstRest);
+   });
+ 
+-  it('opens its authored engine rotation envelope by .12 simulation seconds without an age-zero jump', () => {
++  it('opens the left engine by .12 seconds while only the right continues its ground roll to .20 seconds', () => {
+     const art = instance(admittedArt('teemto-hero-open-v2'));
+     const race = nativeRace(); advance(race, 1, 910);
+     const state = race.state.entries[0]!.vehicle;
+@@ -218,10 +218,16 @@
+     const before = JSON.stringify(race.state), birth = sample(0);
+     expect(art.breakup.active).toBe(false);
+     for (const rotation of birth) expect(rotation.toArray()).toEqual([0, 0, 0, 1]);
+-    const half = sample(.06), open = sample(.12), held = sample(.4);
++    const half = sample(.06), open = sample(.12), rolled = sample(.20), held = sample(.4);
+     expect(art.breakup.active).toBe(true);
++    // V15 deliberately adds a later right-only roll/pitch. Retain the exact
++    // earlier left envelope while checking that the right has a distinct,
++    // bounded second movement instead of incorrectly requiring both to stop.
++    expect(open[0]!.angleTo(held[0]!)).toBeLessThan(1e-7);
++    expect(open[1]!.angleTo(rolled[1]!)).toBeGreaterThan(.25);
++    expect(open[1]!.angleTo(rolled[1]!)).toBeLessThan(.4);
++    expect(rolled[1]!.angleTo(held[1]!)).toBeLessThan(1e-7);
+     for (let index = 0; index < open.length; index++) {
+-      expect(open[index]!.angleTo(held[index]!)).toBeLessThan(1e-7);
+       expect(half[index]!.angleTo(birth[index]!)).toBeGreaterThan(.1);
+       expect(half[index]!.angleTo(open[index]!)).toBeGreaterThan(.1);
+     }
+@@ -238,12 +244,17 @@
+     const update = (remaining: number, extrapolation = 0) => {
+       const pose = art.cache.update(state, remaining, race.terrain, extrapolation);
+       art.breakup.update(pose, remaining, race.terrain, extrapolation);
+-      return { pose: poseValues(pose), transforms: transforms(art.root) };
++      return { pose: poseValues(pose), transforms: transforms(art.root),
++        contact: pose.groundContact ? { position: pose.groundContact.position.toArray(), direction: pose.groundContact.direction.toArray() } : null };
+     };
+     const birth = update(WRECK_PRESENTATION_DURATION);
+     expect(birth.transforms).toEqual(rest);
++    expect(birth.contact).toBeNull();
+     const middle = update(1.4);
++    const contact = art.cache.pose.groundContact;
++    expect(contact).toBeDefined();
+     expect(update(1.4)).toEqual(middle);
++    expect(art.cache.pose.groundContact).toBe(contact);
+     update(.2); update(1.9);
+     expect(update(1.4)).toEqual(middle);
+     for (const [attachment, group, point] of [
+@@ -273,6 +284,7 @@
+     update(.7);
+     const recovered = update(0);
+     expect(recovered.transforms).toEqual(rest);
++    expect(recovered.contact).toBeNull();
+     expect(art.breakup.active).toBe(false);
+     expect(art.cache.pose.radius).toBeCloseTo(intactRadius, 12);
+     expect(update(WRECK_PRESENTATION_DURATION)).toEqual(birth);
+@@ -330,6 +342,118 @@
+     console.info('Admitted Teemto breakup geometric measurements:', JSON.stringify(measurements));
+   }, 30_000);
+ 
++  it.each(admittedNames)('%s keeps every right-engine POSITION above terrain on every native wreck tick and reaches the settled margin', name => {
++    const art = instance(admittedArt(name)), race = nativeRace();
++    const engine = art.meshes.find(mesh => mesh.name === 'teemto-engine-right-body')!;
++    const positions = engine.geometry.getAttribute('position');
++    const matrix = new Matrix4(), rotation = new Quaternion(), unit = new Vector3(1, 1, 1), point = new Vector3();
++    const measurement = { name, nativeFrames: 0, sourcePositionsPerFrame: positions.count, fullPositionProjections: 0,
++      contactFrames: 0, minimumFullVertexGap: Infinity, minimumSettledFullVertexGap: Infinity,
++      maximumSettledFullVertexGap: -Infinity, maximumContactDistanceToSource: 0,
++      firstContactFrame: null as number | null, lastContactFrame: null as number | null };
++    let stableContact: WreckVisualPose['groundContact'];
++    let stablePosition: Vector3 | undefined, stableDirection: Vector3 | undefined;
++    for (let frame = 1; frame <= 1168; frame++) {
++      advance(race, frame, frame);
++      if (frame < 910) continue;
++      const entry = race.state.entries[0]!, before = JSON.stringify(race.state), remaining = entry.galactic!.wreck.timer;
++      const pose = art.cache.update(entry.vehicle, remaining, race.terrain);
++      art.breakup.update(pose, remaining, race.terrain); art.root.updateMatrixWorld(true);
++      matrix.compose(pose.position, rotation.setFromEuler(pose.rotation), unit).multiply(engine.matrixWorld);
++      let minimum = Infinity, nearestContactSquared = Infinity;
++      for (let vertex = 0; vertex < positions.count; vertex++) {
++        point.fromBufferAttribute(positions, vertex).applyMatrix4(matrix);
++        minimum = Math.min(minimum, point.y - race.terrain.heightAt(point.x, point.z));
++        if (pose.groundContact) nearestContactSquared = Math.min(nearestContactSquared, point.distanceToSquared(pose.groundContact.position));
++      }
++      expect(minimum, `${name}/frame${frame}: every actual right-engine vertex above terrain`).toBeGreaterThanOrEqual(0);
++      measurement.nativeFrames++; measurement.fullPositionProjections += positions.count;
++      measurement.minimumFullVertexGap = Math.min(measurement.minimumFullVertexGap, minimum);
++      const age = WRECK_PRESENTATION_DURATION - remaining;
++      if (age >= .16 && remaining >= .35) {
++        expect(pose.groundContact, `${name}/frame${frame}: native right engine must actually reach sand`).toBeDefined();
++        expect(minimum, `${name}/frame${frame}: settled source is close to terrain`).toBeLessThanOrEqual(.10 + 1e-6);
++      } else expect(pose.groundContact, `${name}/frame${frame}: no early or reassembly contact`).toBeUndefined();
++      if (pose.groundContact) {
++        const contact = pose.groundContact;
++        if (!stableContact) { stableContact = contact; stablePosition = contact.position; stableDirection = contact.direction; }
++        expect(contact).toBe(stableContact); expect(contact.position).toBe(stablePosition); expect(contact.direction).toBe(stableDirection);
++        expect(contact.position.y).toBeCloseTo(race.terrain.heightAt(contact.position.x, contact.position.z), 10);
++        expect(contact.direction.y).toBe(0);
++        expect(contact.direction.length()).toBeCloseTo(1, 12);
++        const expected = new Vector3(0, 0, 1).transformDirection(engine.matrixWorld).applyEuler(pose.rotation).setY(0).normalize();
++        expect(contact.direction.distanceTo(expected)).toBeLessThan(1e-10);
++        expect(Math.sqrt(nearestContactSquared), `${name}/frame${frame}: terrain witness belongs to the source engine`).toBeLessThanOrEqual(.10 + 1e-6);
++        measurement.contactFrames++;
++        measurement.firstContactFrame ??= frame; measurement.lastContactFrame = frame;
++        measurement.minimumSettledFullVertexGap = Math.min(measurement.minimumSettledFullVertexGap, minimum);
++        measurement.maximumSettledFullVertexGap = Math.max(measurement.maximumSettledFullVertexGap, minimum);
++        measurement.maximumContactDistanceToSource = Math.max(measurement.maximumContactDistanceToSource, Math.sqrt(nearestContactSquared));
++      }
++      expect(JSON.stringify(race.state)).toBe(before);
++    }
++    expect(measurement.contactFrames).toBeGreaterThan(190);
++    console.info('Admitted V15 right-engine ground measurements:', JSON.stringify(measurement));
++  }, 30_000);
++
++  it('settles the right engine downward and clears contact at exact birth, reassembly and reset', () => {
++    const measurements: { name: string; inputLiftMetres: number; rightEngineWorldShiftMetres: number;
++      airborneInputLiftMetres: number; cappedDescentMetres: number; airborneContact: boolean }[] = [];
++    for (const name of admittedNames) {
++      const art = instance(admittedArt(name)), race = nativeRace(); advance(race, 1, 970);
++      const state = race.state.entries[0]!.vehicle, before = JSON.stringify(race.state);
++      const engine = art.nodes.get(engineNames[1])!, sample = new Vector3(0, 0, 0);
++      const update = (remaining: number, lift = 0) => {
++        const pose = art.cache.update(state, remaining, race.terrain);
++        expect(pose.groundContact, 'Rigid cache clears the reused contact before a new solve').toBeUndefined();
++        pose.position.y += lift; pose.center.y += lift;
++        art.breakup.update(pose, remaining, race.terrain);
++        return pose;
++      };
++      const base = update(1.4);
++      expect(base.groundContact).toBeDefined();
++      const baseWorld = sample.clone().applyMatrix4(engine.matrix).applyEuler(base.rotation).add(base.position);
++      const baseContact = base.groundContact!.position.clone();
++      const raised = update(1.4, 2);
++      expect(raised.groundContact).toBeDefined();
++      const raisedWorld = sample.clone().applyMatrix4(engine.matrix).applyEuler(raised.rotation).add(raised.position);
++      // Adding two metres to the renderer-owned root is absorbed by an equal
++      // downward right-engine correction. A lift-only solver fails this check.
++      expect(raisedWorld.distanceTo(baseWorld), `${name}: real downward correction`).toBeLessThan(1e-8);
++      expect(raised.groundContact!.position.distanceTo(baseContact)).toBeLessThan(1e-8);
++      const airborne = update(1.4, 20);
++      expect(airborne.groundContact, `${name}: airborne capped descent must not advertise ground contact`).toBeUndefined();
++      const airborneWorld = sample.clone().applyMatrix4(engine.matrix).applyEuler(airborne.rotation).add(airborne.position);
++      // The same elevated pose with unavailable terrain supplies the unchanged
++      // authored transform as a comparison, not a fabricated native event.
++      // The finite native terrain must lower it by exactly the eight-metre cap.
++      art.breakup.update(airborne, 1.4, { heightAt: () => Number.NaN });
++      const uncorrectedWorld = sample.clone().applyMatrix4(engine.matrix).applyEuler(airborne.rotation).add(airborne.position);
++      expect(uncorrectedWorld.y - airborneWorld.y).toBeCloseTo(8, 10);
++      expect(uncorrectedWorld.x).toBeCloseTo(airborneWorld.x, 10);
++      expect(uncorrectedWorld.z).toBeCloseTo(airborneWorld.z, 10);
++      measurements.push({ name, inputLiftMetres: 2, rightEngineWorldShiftMetres: raisedWorld.distanceTo(baseWorld),
++        airborneInputLiftMetres: 20, cappedDescentMetres: uncorrectedWorld.y - airborneWorld.y, airborneContact: false });
++      const retained = update(1.4);
++      expect(retained.groundContact).toBeDefined();
++      const alternate: WreckVisualPose = { ...retained, position: retained.position.clone(), rotation: retained.rotation.clone(),
++        center: retained.center.clone(), forward: retained.forward.clone(), bounds: retained.bounds.map(point => point.clone()), groundContact: undefined };
++      art.breakup.update(alternate, 1.4, race.terrain);
++      expect(retained.groundContact, 'A new pose invalidates the preceding contact association').toBeUndefined();
++      expect(alternate.groundContact).toBeDefined();
++      art.breakup.reset();
++      expect(alternate.groundContact, 'Direct presentation reset invalidates the last emitted contact').toBeUndefined();
++      expect(art.breakup.active).toBe(false);
++      for (const remaining of [WRECK_PRESENTATION_DURATION, WRECK_PRESENTATION_DURATION - .15, .34, .01, 0]) {
++        expect(update(remaining).groundContact, `${name}: contact lifetime at remaining${remaining}`).toBeUndefined();
++      }
++      expect(art.breakup.active).toBe(false);
++      expect(engine.matrix.elements).toEqual(new Matrix4().elements);
++      expect(JSON.stringify(race.state)).toBe(before);
++    }
++    console.info('Admitted V15 downward-settle measurements:', JSON.stringify(measurements));
++  });
++
+   it('refuses incomplete or transformed source contracts before touching instance transforms', () => {
+     const art = instance(admittedArt('teemto-hero-open-v2'));
+     const before = transforms(art.root);
+--- /dev/null
++++ b/tests/combat/WreckGroundContact.test.ts
+@@ -0,0 +1,46 @@
++import { describe, expect, it } from 'vitest';
++import { Vector3 } from 'three';
++import { WreckGroundContactGate } from '../../src/render/combat/WreckGroundContact';
++
++describe('rendered engine contact identity gate', () => {
++  const contact = { position: new Vector3(1, 2, 3), direction: new Vector3(0, 0, 1) };
++
++  it('waits for measured contact after the authoritative birth and emits once despite repeat renders/packets', () => {
++    const gate = new WreckGroundContactGate();
++    expect(gate.take('player', 923, 1, contact)).toBe(false);
++    gate.begin('player', 912, 1);
++    expect(gate.take('player', 912, 1, contact)).toBe(false);
++    expect(gate.take('player', 913, 1, undefined)).toBe(false);
++    expect(gate.take('player', 933, 2, contact)).toBe(false);
++    expect(gate.take('player', 933, 1, contact)).toBe(true);
++    for (const frame of [933, 934, 970, 1000]) expect(gate.take('player', frame, 1, contact)).toBe(false);
++    gate.begin('player', 912, 1);
++    gate.begin('player', 990, 1); // delayed duplicate uses a later receiving snapshot
++    expect(gate.take('player', 1000, 1, contact)).toBe(false);
++    gate.begin('player', 1200, 2);
++    expect(gate.take('player', 1220, 2, contact)).toBe(true);
++  });
++
++  it('keeps racers independent, clears rematches, and rejects malformed input without consuming a valid cue', () => {
++    const gate = new WreckGroundContactGate();
++    for (const id of ['player', 'ai']) gate.begin(id, 912, 1);
++    const bad = { position: new Vector3(NaN, 0, 0), direction: new Vector3(0, 0, 1) };
++    expect(gate.take('player', 940, 1, bad)).toBe(false);
++    expect(gate.take('player', Infinity, 1, contact)).toBe(false);
++    expect(gate.take('player', 940, 1, contact)).toBe(true);
++    expect(gate.take('ai', 940, 1, contact)).toBe(true);
++    gate.clear();
++    expect(gate.take('player', 940, 1, contact)).toBe(false);
++    for (const frame of [-1, .5, Infinity, NaN]) gate.begin('player', frame, 1);
++    expect(gate.take('player', 940, 1, contact)).toBe(false);
++    gate.begin('player', 40, 1);
++    expect(gate.take('player', 60, 1, contact)).toBe(true);
++  });
++
++  it('retains only the bounded eight racer identities', () => {
++    const gate = new WreckGroundContactGate();
++    for (let i = 0; i < 20; i++) gate.begin(`racer${i}`, 912, 1);
++    for (let i = 0; i < 12; i++) expect(gate.take(`racer${i}`, 940, 1, contact)).toBe(false);
++    for (let i = 12; i < 20; i++) expect(gate.take(`racer${i}`, 940, 1, contact)).toBe(true);
++  });
++});
+--- a/tests/render/GalacticEffectsView.test.ts
++++ b/tests/render/GalacticEffectsView.test.ts
+@@ -279,6 +279,88 @@
+ });
+ 
+ describe('localized wreck rupture', () => {
++  it('exposes initial casing in the authored rear cone before the flash disappears', () => {
++    const view = new GalacticEffectsView(), matrix = new Matrix4(), point = new Vector3();
++    view.emitCrash({ type: 'crash', time: 1, position: { x: 0, y: 8, z: 0 },
++      direction: { x: 0, y: 0, z: 1 }, severity: 2, style: 'redline' });
++    view.update(1);
++    expect(view.crashDebris.count).toBe(18);
++    for (let i = 0; i < 18; i++) {
++      view.crashDebris.getMatrixAt(i, matrix); point.setFromMatrixPosition(matrix);
++      expect(Math.hypot(point.x, point.z)).toBeGreaterThan(1);
++      expect(Math.hypot(point.x, point.z)).toBeLessThan(2.2);
++      expect(point.z).toBeLessThan(0);
++    }
++    view.update(1.05);
++    let maximumTravel = 0;
++    for (let i = 0; i < 18; i++) {
++      view.crashDebris.getMatrixAt(i, matrix); point.setFromMatrixPosition(matrix);
++      expect(point.z).toBeLessThan(0);
++      maximumTravel = Math.max(maximumTravel, Math.hypot(point.x, point.z));
++    }
++    expect(maximumTravel).toBeGreaterThan(3);
++    const surfaces = view.explosionPlates.geometry.getAttribute('aEffectSurface');
++    expect(Array.from({ length: view.explosionPlates.count }, (_, i) => surfaces.getX(i))).toContain(2);
++    view.dispose();
++  });
++
++  it('uses the sampled engine groundpoint for a directional spark fan and two low dust lobes', () => {
++    const view = new GalacticEffectsView(), matrix = new Matrix4(), point = new Vector3(), size = new Vector3();
++    const position = Object.freeze({ x: 20, y: -12, z: 3 });
++    const direction = Object.freeze({ x: 0, y: 0, z: 1 });
++    view.emitWreckGroundContact(1, position, direction);
++    view.update(1.08);
++    expect(view.crashDebris.count).toBe(10);
++    expect(view.explosionPlates.count).toBe(2);
++    for (let i = 0; i < 10; i++) {
++      view.crashDebris.getMatrixAt(i, matrix); matrix.decompose(point, new Quaternion(), size);
++      expect(point.z).toBeLessThan(position.z);
++      expect(point.y).toBeGreaterThan(position.y);
++      expect(size.z / size.x).toBeGreaterThan(20);
++      expect(view.crashDebris.geometry.getAttribute('aFragmentMetal').getX(i)).toBe(0);
++    }
++    const surface = view.explosionPlates.geometry.getAttribute('aEffectSurface');
++    for (let i = 0; i < 2; i++) {
++      view.explosionPlates.getMatrixAt(i, matrix); matrix.decompose(point, new Quaternion(), size);
++      expect(point.z).toBeLessThan(position.z);
++      expect(point.y - position.y).toBeLessThan(3);
++      expect(size.y / size.x).toBeCloseTo(.48, 5);
++      expect(surface.getX(i)).toBe(1);
++      expect(surface.getY(i)).toBeLessThanOrEqual(Math.fround(.67));
++    }
++    view.update(2.21);
++    expect(view.crashDebris.count).toBe(0); expect(view.explosionPlates.count).toBe(0);
++    view.dispose();
++  });
++
++  it('keeps repeated ground contacts within unchanged pools and resets dust drift before unrelated effects', () => {
++    const view = new GalacticEffectsView(), mirror = new GalacticEffectsView();
++    const geometry = view.children.map(child => (child as InstancedMesh).geometry);
++    const material = view.children.map(child => (child as InstancedMesh).material);
++    for (const candidate of [view, mirror]) {
++      for (let i = 0; i < 20; i++) candidate.emitWreckGroundContact(1, { x: i, y: 0, z: 0 }, { x: 1, y: 0, z: 0 });
++      candidate.update(1.1);
++    }
++    expect(view.children).toHaveLength(8);
++    expect(view.children.map(child => (child as InstancedMesh).geometry)).toEqual(geometry);
++    expect(view.children.map(child => (child as InstancedMesh).material)).toEqual(material);
++    expect(view.crashDebris.count).toBe(64); expect(view.explosionPlates.count).toBe(16);
++    expect(view.crashDebris.instanceMatrix.array).toEqual(mirror.crashDebris.instanceMatrix.array);
++    expect(view.explosionPlates.instanceMatrix.array).toEqual(mirror.explosionPlates.instanceMatrix.array);
++    view.clearEffects();
++    view.emitWreckGroundContact(NaN, { x: 0, y: 0, z: 0 }, { x: 1, y: 0, z: 0 });
++    view.emitWreckGroundContact(2, { x: 0, y: 0, z: 0 }, { x: 0, y: 0, z: 0 });
++    view.update(2); expect(view.crashDebris.count).toBe(0); expect(view.explosionPlates.count).toBe(0);
++    view.emitCrash({ type: 'crash', time: 2, position: { x: 20, y: 8, z: 3 }, severity: 2, style: 'redline' });
++    view.update(2.5);
++    const matrix = new Matrix4(), point = new Vector3();
++    for (let i = 0; i < view.explosionPlates.count; i++) {
++      view.explosionPlates.getMatrixAt(i, matrix); point.setFromMatrixPosition(matrix);
++      expect(point.x).toBe(20); expect(point.z).toBe(3);
++    }
++    view.dispose(); mirror.dispose();
++  });
++
+   it('leaves airborne rupture anchors and unrelated energy effects at their authored heights', () => {
+     const view = new GalacticEffectsView(), matrix = new Matrix4();
+     for (const style of ['crash', 'redline'] as const) {
+--- a/tests/render/GalacticEffectsContact.test.ts
++++ b/tests/render/GalacticEffectsContact.test.ts
+@@ -6,11 +6,12 @@
+ import { GalacticEffectsView, type CrashEffectEvent } from '../../src/render/galactic/GalacticEffectsView';
+ import { RaceSimulation } from '../../src/game/race/RaceSimulation';
+ import { sampleTerrainHeight } from '../../src/render/terrain/terrainMath';
++import { WreckGroundContactGate } from '../../src/render/combat/WreckGroundContact';
+ 
+ // Exercise the actual event adapter without constructing a renderer, DOM, or
+ // running simulation. The group is intentionally at a stale pre-wreck pose.
+ const consume = (GameApp.prototype as unknown as {
+-  consumeGalacticEffects(events: readonly GalacticEvent[], time: number): void;
++  consumeGalacticEffects(events: readonly GalacticEvent[], time: number, authoritativeFrames?: readonly number[]): void;
+ }).consumeGalacticEffects;
+ 
+ function fixture() {
+@@ -28,12 +29,14 @@
+     velocity: Object.freeze({ x: 12, y: 8.5, z: 3 }),
+     orientation: Object.freeze({ yaw: 0.4, pitch: 0.1, roll: 0.02, bank: -0.03 }),
+   };
+-  const entry = { id: 'player', vehicle, galactic: { wreck: { phase: 'wrecked' } } };
++  const entry = { id: 'player', vehicle, galactic: { wreck: { phase: 'wrecked', crashCount: 1 } } };
+   const emitCrash = vi.fn<(event: CrashEffectEvent) => void>();
+   const heightAt = vi.fn(() => 2);
+   const wreckPose = { position: new Vector3(100, 12, -25), rotation: new Euler(0.12, 0.55, -0.3, 'YXZ') };
+   const resolveWreckVisualPose = vi.fn(() => wreckPose);
+   const app = { race: { state: { entries: [entry] }, terrain: { heightAt } },
++    simulationFrame: 912, wreckGroundContacts: new WreckGroundContactGate(),
++    wreckRuptureDirection: new Vector3(), wreckRuptureOrigin: new Vector3(),
+     racerViews: [view], galacticEffects: { emitCrash }, localRacerId: () => 'player', resolveWreckVisualPose };
+   return { app, vehicle, view, anchor, emitCrash, heightAt, wreckPose, resolveWreckVisualPose, engineMatrix, transformWreckAttachment };
+ }
+@@ -54,7 +57,12 @@
+       .applyEuler(f.wreckPose.rotation).add(f.wreckPose.position);
+     expect(f.resolveWreckVisualPose).toHaveBeenCalledOnce();
+     expect(f.resolveWreckVisualPose).toHaveBeenCalledWith(f.app.race.state.entries[0]);
+-    expect(f.transformWreckAttachment).toHaveBeenCalledExactlyOnceWith('exhaustRight', expect.any(Vector3));
++    // Two points resolve the engine direction without retaining translation;
++    // the third transforms the original nozzle position as before.
++    expect(f.transformWreckAttachment).toHaveBeenCalledTimes(3);
++    for (const call of f.transformWreckAttachment.mock.calls) expect(call[0]).toBe('exhaustRight');
++    const expectedDirection = new Vector3(0, 0, 1).transformDirection(f.engineMatrix).applyEuler(f.wreckPose.rotation);
++    expect(new Vector3().copy(emitted.direction!).distanceTo(expectedDirection)).toBeLessThan(1e-10);
+     expect(f.resolveWreckVisualPose.mock.invocationCallOrder[0]).toBeLessThan(f.transformWreckAttachment.mock.invocationCallOrder[0]!);
+     expect(f.anchor.position.toArray()).toEqual(TEEMTO_ART_DEFINITIONS.hero.attachments!.exhaustRight!.position);
+     expect(emitted.position.x).toBeCloseTo(expected.x, 8);
+@@ -67,6 +75,19 @@
+     // Updating derived matrixWorld caches is allowed; the presented TRS is intact.
+     expect(f.view.position.toArray()).toEqual([-400, -30, 900]);
+     expect(f.view.rotation.toArray()).toEqual(rotationBefore);
++  });
++
++  it('keys a received wreck contact to its authoritative frame, not the later guest snapshot or duplicate packet', () => {
++    const f = fixture(); f.app.simulationFrame = 950;
++    const wreck: GalacticEvent = { type: 'wreck', racerId: 'player', cause: 'redline-explosion',
++      sourceId: null, takedownBy: null, runTokens: 2 };
++    const contact = { position: new Vector3(1, 0, 2), direction: new Vector3(0, 0, 1) };
++    consume.call(f.app, [wreck], 950 / 120, [912]);
++    expect(f.app.wreckGroundContacts.take('player', 912, 1, contact)).toBe(false);
++    expect(f.app.wreckGroundContacts.take('player', 933, 1, contact)).toBe(true);
++    consume.call(f.app, [wreck], 980 / 120, [912]);
++    expect(f.app.wreckGroundContacts.take('player', 980, 1, contact)).toBe(false);
++    expect(f.emitCrash).not.toHaveBeenCalled(); // the paired redline event owns the initial rupture
+   });
+ 
+   it('retains root origin for energy cues and safely falls back when no source is loaded', () => {

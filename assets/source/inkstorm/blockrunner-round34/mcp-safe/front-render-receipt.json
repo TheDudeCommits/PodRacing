@@ -1,0 +1,522 @@
+{
+  "camera": {
+    "aspect": 1.3333333333333333,
+    "fitHeight": 6.586737632751465,
+    "fitWidth": 5.868854999542236,
+    "location": [
+      0.024481534957885742,
+      -50.990604400634766,
+      11.7598295211792
+    ],
+    "orthoScale": 10.71442699432373,
+    "orthoScaleMeaning": "horizontal span; vertical span = orthoScale / aspect",
+    "resolution": [
+      1280,
+      960
+    ],
+    "rotationEuler": [
+      1.2252408266067505,
+      0,
+      0
+    ],
+    "sensorFit": "HORIZONTAL",
+    "target": [
+      0.024481534957885742,
+      -22.76399040222168,
+      1.5982481241226196
+    ]
+  },
+  "cameraBasis": "Source Blender coordinates; front/rear follow the actual front engine group at negative Y. No gameplay normalization.",
+  "focusObjects": [
+    "pasted__L1x1Stud4_Black_Jets_0",
+    "pasted__L1x1Stud5_Black_Jets_0",
+    "pasted__L1x20_Black_Jets_0",
+    "pasted__L1x2_pasted__Lego_White23_0",
+    "pasted__L1x4F_phongE2_0",
+    "pasted__L2x2Circle_phongE1_0",
+    "pasted__L2x2_pasted__Lego_White16_0",
+    "pasted__L2x3slope1_pasted__Lego_White24_0",
+    "pasted__L2x6_phongE2_0",
+    "pasted__L4x3Slope_pasted__Lego_White15_0",
+    "pasted__L4x3Slope_pasted__Lego_White22_0",
+    "pasted__L4x8F_pasted__Lego_White8_0",
+    "pasted__LegoTri19_pasted__Lego_White18_0",
+    "pasted__LegoTri36_lambert1_0",
+    "pasted__LegoTri39_pasted__Lego_White20_0",
+    "pasted__LegoTri8_lambert1_0",
+    "pasted__LegoTri9_lambert1_0",
+    "pasted__brick230_phongE2_0",
+    "pasted__brick231_pasted__LegoWhite1_0",
+    "pasted__brick240_pasted__LegoWhite3_0",
+    "pasted__pCylinder4_Black_Jets_0",
+    "pasted__pasted__L1x1Stud4_Black_Jets_0",
+    "pasted__pasted__L1x1Stud5_Black_Jets_0",
+    "pasted__pasted__L1x20_Black_Jets_0",
+    "pasted__pasted__L1x4F_phongE2_0",
+    "pasted__pasted__L1x4F_phongE2_0.001",
+    "pasted__pasted__L2F_phongE2_0",
+    "pasted__pasted__L2x2Circle_phongE1_0",
+    "pasted__pasted__L2x2Circle_phongE1_0.001",
+    "pasted__pasted__L2x2_pasted__pasted__Lego_White19_0",
+    "pasted__pasted__L2x6_phongE2_0",
+    "pasted__pasted__L4x8F_pasted__pasted__Lego_White8_0",
+    "pasted__pasted__LegoTri19_pasted__pasted__Lego_White18_0",
+    "pasted__pasted__LegoTri8_lambert1_0",
+    "pasted__pasted__LegoTri9_lambert1_0",
+    "pasted__pasted__brick230_phongE2_0",
+    "pasted__pasted__brick231_pasted__pasted__LegoWhite1_0",
+    "pasted__pasted__brick240_pasted__pasted__LegoWhite3_0",
+    "pasted__pasted__pCylinder4_Black_Jets_0",
+    "pasted__pasted__pasted__L1x4F_phongE2_0",
+    "pasted__pasted__pasted__L1x4F_phongE2_0.001",
+    "pasted__pasted__pasted__L2F_phongE2_0",
+    "pasted__pasted__pasted__L2F_phongE2_0.001",
+    "pasted__pasted__pasted__L2x2Circle_phongE1_0",
+    "pasted__pasted__pasted__L2x2_pasted__pasted__pasted__Lego_White19_0",
+    "pasted__pasted__pasted__pasted__L1x4F_phongE2_0",
+    "pasted__pasted__pasted__pasted__L2F_phongE2_0",
+    "pasted__pasted__pasted__pasted__L2F_phongE2_0.001",
+    "pasted__pasted__pasted__pasted__L2x2Circle_phongE1_0",
+    "pasted__pasted__pasted__pasted__pasted__L2F_phongE2_0",
+    "pasted__pasted__pasted__pasted__pasted__L2x2Circle_phongE1_0",
+    "pasted__pasted__pasted__pasted__pasted__pasted__L2x2Circle_phongE1_0",
+    "pasted__pasted__pasted__pasted__pasted__pasted__pasted__L2x2Circle_phongE1_0",
+    "pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__L2x2Circle_phongE1_0",
+    "pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__L2x2Circle_phongE1_0.001",
+    "pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__L2x2Circle_phongE1_0",
+    "pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__L2x2Circle_phongE1_0",
+    "pasted__pasted__pasted__pasted__pasted__polySurface97_phongE2_0",
+    "pasted__pasted__pasted__pasted__polySurface97_phongE2_0"
+  ],
+  "focusRoleAcceptance": "full craft geometry",
+  "globalPreservation": {
+    "changedCollections": [],
+    "changedScenes": [],
+    "contextRestored": true,
+    "preexistingMaterialsRetained": true,
+    "preexistingMeshesRetained": true,
+    "preexistingObjectsRetained": true,
+    "preexistingScenes": 140
+  },
+  "lighting": {
+    "device": "CPU",
+    "engine": "CYCLES",
+    "exposure": 0,
+    "gamma": 1,
+    "lightColors": [
+      [
+        1,
+        1,
+        1
+      ],
+      [
+        1,
+        1,
+        1
+      ]
+    ],
+    "look": "None",
+    "repainted": false,
+    "samples": 16,
+    "sourceMaterialInputsUnchanged": true,
+    "viewTransform": "Standard",
+    "worldColor": [
+      0.16,
+      0.16,
+      0.16
+    ],
+    "worldStrength": 0.55
+  },
+  "objectCopies": [
+    {
+      "sourceMesh": "pasted__L1x1Stud4_Black_Jets_0",
+      "sourceObject": "pasted__L1x1Stud4_Black_Jets_0",
+      "temporaryMesh": "pasted__L1x1Stud4_Black_Jets_0.001",
+      "temporaryObject": "Blockrunner neutral copy pasted__L1x1Stud4_Black_Jets_0"
+    },
+    {
+      "sourceMesh": "pasted__L1x1Stud5_Black_Jets_0",
+      "sourceObject": "pasted__L1x1Stud5_Black_Jets_0",
+      "temporaryMesh": "pasted__L1x1Stud5_Black_Jets_0.001",
+      "temporaryObject": "Blockrunner neutral copy pasted__L1x1Stud5_Black_Jets_0"
+    },
+    {
+      "sourceMesh": "pasted__L1x20_Black_Jets_0",
+      "sourceObject": "pasted__L1x20_Black_Jets_0",
+      "temporaryMesh": "pasted__L1x20_Black_Jets_0.001",
+      "temporaryObject": "Blockrunner neutral copy pasted__L1x20_Black_Jets_0"
+    },
+    {
+      "sourceMesh": "pasted__L1x2_pasted__Lego_White23_0",
+      "sourceObject": "pasted__L1x2_pasted__Lego_White23_0",
+      "temporaryMesh": "pasted__L1x2_pasted__Lego_White23_0.001",
+      "temporaryObject": "Blockrunner neutral copy pasted__L1x2_pasted__Lego_White23_0"
+    },
+    {
+      "sourceMesh": "pasted__L1x4F_phongE2_0",
+      "sourceObject": "pasted__L1x4F_phongE2_0",
+      "temporaryMesh": "pasted__L1x4F_phongE2_0.001",
+      "temporaryObject": "Blockrunner neutral copy pasted__L1x4F_phongE2_0"
+    },
+    {
+      "sourceMesh": "pasted__L2x2Circle_phongE1_0",
+      "sourceObject": "pasted__L2x2Circle_phongE1_0",
+      "temporaryMesh": "pasted__L2x2Circle_phongE1_0.001",
+      "temporaryObject": "Blockrunner neutral copy pasted__L2x2Circle_phongE1_0"
+    },
+    {
+      "sourceMesh": "pasted__L2x2_pasted__Lego_White16_0",
+      "sourceObject": "pasted__L2x2_pasted__Lego_White16_0",
+      "temporaryMesh": "pasted__L2x2_pasted__Lego_White16_0.001",
+      "temporaryObject": "Blockrunner neutral copy pasted__L2x2_pasted__Lego_White16_0"
+    },
+    {
+      "sourceMesh": "pasted__L2x3slope1_pasted__Lego_White24_0",
+      "sourceObject": "pasted__L2x3slope1_pasted__Lego_White24_0",
+      "temporaryMesh": "pasted__L2x3slope1_pasted__Lego_White24_0.001",
+      "temporaryObject": "Blockrunner neutral copy pasted__L2x3slope1_pasted__Lego_White24_0"
+    },
+    {
+      "sourceMesh": "pasted__L2x6_phongE2_0",
+      "sourceObject": "pasted__L2x6_phongE2_0",
+      "temporaryMesh": "pasted__L2x6_phongE2_0.001",
+      "temporaryObject": "Blockrunner neutral copy pasted__L2x6_phongE2_0"
+    },
+    {
+      "sourceMesh": "pasted__L4x3Slope_pasted__Lego_White15_0",
+      "sourceObject": "pasted__L4x3Slope_pasted__Lego_White15_0",
+      "temporaryMesh": "pasted__L4x3Slope_pasted__Lego_White15_0.001",
+      "temporaryObject": "Blockrunner neutral copy pasted__L4x3Slope_pasted__Lego_White15_0"
+    },
+    {
+      "sourceMesh": "pasted__L4x3Slope_pasted__Lego_White22_0",
+      "sourceObject": "pasted__L4x3Slope_pasted__Lego_White22_0",
+      "temporaryMesh": "pasted__L4x3Slope_pasted__Lego_White22_0.001",
+      "temporaryObject": "Blockrunner neutral copy pasted__L4x3Slope_pasted__Lego_White22_0"
+    },
+    {
+      "sourceMesh": "pasted__L4x8F_pasted__Lego_White8_0",
+      "sourceObject": "pasted__L4x8F_pasted__Lego_White8_0",
+      "temporaryMesh": "pasted__L4x8F_pasted__Lego_White8_0.001",
+      "temporaryObject": "Blockrunner neutral copy pasted__L4x8F_pasted__Lego_White8_0"
+    },
+    {
+      "sourceMesh": "pasted__LegoTri19_pasted__Lego_White18_0",
+      "sourceObject": "pasted__LegoTri19_pasted__Lego_White18_0",
+      "temporaryMesh": "pasted__LegoTri19_pasted__Lego_White18_0.001",
+      "temporaryObject": "Blockrunner neutral copy pasted__LegoTri19_pasted__Lego_White18_0"
+    },
+    {
+      "sourceMesh": "pasted__LegoTri36_lambert1_0",
+      "sourceObject": "pasted__LegoTri36_lambert1_0",
+      "temporaryMesh": "pasted__LegoTri36_lambert1_0.001",
+      "temporaryObject": "Blockrunner neutral copy pasted__LegoTri36_lambert1_0"
+    },
+    {
+      "sourceMesh": "pasted__LegoTri39_pasted__Lego_White20_0",
+      "sourceObject": "pasted__LegoTri39_pasted__Lego_White20_0",
+      "temporaryMesh": "pasted__LegoTri39_pasted__Lego_White20_0.001",
+      "temporaryObject": "Blockrunner neutral copy pasted__LegoTri39_pasted__Lego_White20_0"
+    },
+    {
+      "sourceMesh": "pasted__LegoTri8_lambert1_0",
+      "sourceObject": "pasted__LegoTri8_lambert1_0",
+      "temporaryMesh": "pasted__LegoTri8_lambert1_0.001",
+      "temporaryObject": "Blockrunner neutral copy pasted__LegoTri8_lambert1_0"
+    },
+    {
+      "sourceMesh": "pasted__LegoTri9_lambert1_0",
+      "sourceObject": "pasted__LegoTri9_lambert1_0",
+      "temporaryMesh": "pasted__LegoTri9_lambert1_0.001",
+      "temporaryObject": "Blockrunner neutral copy pasted__LegoTri9_lambert1_0"
+    },
+    {
+      "sourceMesh": "pasted__brick230_phongE2_0",
+      "sourceObject": "pasted__brick230_phongE2_0",
+      "temporaryMesh": "pasted__brick230_phongE2_0.001",
+      "temporaryObject": "Blockrunner neutral copy pasted__brick230_phongE2_0"
+    },
+    {
+      "sourceMesh": "pasted__brick231_pasted__LegoWhite1_0",
+      "sourceObject": "pasted__brick231_pasted__LegoWhite1_0",
+      "temporaryMesh": "pasted__brick231_pasted__LegoWhite1_0.001",
+      "temporaryObject": "Blockrunner neutral copy pasted__brick231_pasted__LegoWhite1_0"
+    },
+    {
+      "sourceMesh": "pasted__brick240_pasted__LegoWhite3_0",
+      "sourceObject": "pasted__brick240_pasted__LegoWhite3_0",
+      "temporaryMesh": "pasted__brick240_pasted__LegoWhite3_0.001",
+      "temporaryObject": "Blockrunner neutral copy pasted__brick240_pasted__LegoWhite3_0"
+    },
+    {
+      "sourceMesh": "pasted__pCylinder4_Black_Jets_0",
+      "sourceObject": "pasted__pCylinder4_Black_Jets_0",
+      "temporaryMesh": "pasted__pCylinder4_Black_Jets_0.001",
+      "temporaryObject": "Blockrunner neutral copy pasted__pCylinder4_Black_Jets_0"
+    },
+    {
+      "sourceMesh": "pasted__pasted__L1x1Stud4_Black_Jets_0",
+      "sourceObject": "pasted__pasted__L1x1Stud4_Black_Jets_0",
+      "temporaryMesh": "pasted__pasted__L1x1Stud4_Black_Jets_0.001",
+      "temporaryObject": "Blockrunner neutral copy pasted__pasted__L1x1Stud4_Black_Jets_0"
+    },
+    {
+      "sourceMesh": "pasted__pasted__L1x1Stud5_Black_Jets_0",
+      "sourceObject": "pasted__pasted__L1x1Stud5_Black_Jets_0",
+      "temporaryMesh": "pasted__pasted__L1x1Stud5_Black_Jets_0.001",
+      "temporaryObject": "Blockrunner neutral copy pasted__pasted__L1x1Stud5_Black_Jets_0"
+    },
+    {
+      "sourceMesh": "pasted__pasted__L1x20_Black_Jets_0",
+      "sourceObject": "pasted__pasted__L1x20_Black_Jets_0",
+      "temporaryMesh": "pasted__pasted__L1x20_Black_Jets_0.001",
+      "temporaryObject": "Blockrunner neutral copy pasted__pasted__L1x20_Black_Jets_0"
+    },
+    {
+      "sourceMesh": "pasted__pasted__L1x4F_phongE2_0",
+      "sourceObject": "pasted__pasted__L1x4F_phongE2_0",
+      "temporaryMesh": "pasted__pasted__L1x4F_phongE2_0.002",
+      "temporaryObject": "Blockrunner neutral copy pasted__pasted__L1x4F_phongE2_0"
+    },
+    {
+      "sourceMesh": "pasted__pasted__L1x4F_phongE2_0.001",
+      "sourceObject": "pasted__pasted__L1x4F_phongE2_0.001",
+      "temporaryMesh": "pasted__pasted__L1x4F_phongE2_0.003",
+      "temporaryObject": "Blockrunner neutral copy pasted__pasted__L1x4F_phongE2_0.001"
+    },
+    {
+      "sourceMesh": "pasted__pasted__L2F_phongE2_0",
+      "sourceObject": "pasted__pasted__L2F_phongE2_0",
+      "temporaryMesh": "pasted__pasted__L2F_phongE2_0.001",
+      "temporaryObject": "Blockrunner neutral copy pasted__pasted__L2F_phongE2_0"
+    },
+    {
+      "sourceMesh": "pasted__pasted__L2x2Circle_phongE1_0",
+      "sourceObject": "pasted__pasted__L2x2Circle_phongE1_0",
+      "temporaryMesh": "pasted__pasted__L2x2Circle_phongE1_0.002",
+      "temporaryObject": "Blockrunner neutral copy pasted__pasted__L2x2Circle_phongE1_0"
+    },
+    {
+      "sourceMesh": "pasted__pasted__L2x2Circle_phongE1_0.001",
+      "sourceObject": "pasted__pasted__L2x2Circle_phongE1_0.001",
+      "temporaryMesh": "pasted__pasted__L2x2Circle_phongE1_0.003",
+      "temporaryObject": "Blockrunner neutral copy pasted__pasted__L2x2Circle_phongE1_0.001"
+    },
+    {
+      "sourceMesh": "pasted__pasted__L2x2_pasted__pasted__Lego_White19_0",
+      "sourceObject": "pasted__pasted__L2x2_pasted__pasted__Lego_White19_0",
+      "temporaryMesh": "pasted__pasted__L2x2_pasted__pasted__Lego_White19_0.001",
+      "temporaryObject": "Blockrunner neutral copy pasted__pasted__L2x2_pasted__pasted__Lego_White19_0"
+    },
+    {
+      "sourceMesh": "pasted__pasted__L2x6_phongE2_0",
+      "sourceObject": "pasted__pasted__L2x6_phongE2_0",
+      "temporaryMesh": "pasted__pasted__L2x6_phongE2_0.001",
+      "temporaryObject": "Blockrunner neutral copy pasted__pasted__L2x6_phongE2_0"
+    },
+    {
+      "sourceMesh": "pasted__pasted__L4x8F_pasted__pasted__Lego_White8_0",
+      "sourceObject": "pasted__pasted__L4x8F_pasted__pasted__Lego_White8_0",
+      "temporaryMesh": "pasted__pasted__L4x8F_pasted__pasted__Lego_White8_0.001",
+      "temporaryObject": "Blockrunner neutral copy pasted__pasted__L4x8F_pasted__pasted__Lego_White8_0"
+    },
+    {
+      "sourceMesh": "pasted__pasted__LegoTri19_pasted__pasted__Lego_White18_0",
+      "sourceObject": "pasted__pasted__LegoTri19_pasted__pasted__Lego_White18_0",
+      "temporaryMesh": "pasted__pasted__LegoTri19_pasted__pasted__Lego_White18_0.001",
+      "temporaryObject": "Blockrunner neutral copy pasted__pasted__LegoTri19_pasted__pasted__Lego_White18_0"
+    },
+    {
+      "sourceMesh": "pasted__pasted__LegoTri8_lambert1_0",
+      "sourceObject": "pasted__pasted__LegoTri8_lambert1_0",
+      "temporaryMesh": "pasted__pasted__LegoTri8_lambert1_0.001",
+      "temporaryObject": "Blockrunner neutral copy pasted__pasted__LegoTri8_lambert1_0"
+    },
+    {
+      "sourceMesh": "pasted__pasted__LegoTri9_lambert1_0",
+      "sourceObject": "pasted__pasted__LegoTri9_lambert1_0",
+      "temporaryMesh": "pasted__pasted__LegoTri9_lambert1_0.001",
+      "temporaryObject": "Blockrunner neutral copy pasted__pasted__LegoTri9_lambert1_0"
+    },
+    {
+      "sourceMesh": "pasted__pasted__brick230_phongE2_0",
+      "sourceObject": "pasted__pasted__brick230_phongE2_0",
+      "temporaryMesh": "pasted__pasted__brick230_phongE2_0.001",
+      "temporaryObject": "Blockrunner neutral copy pasted__pasted__brick230_phongE2_0"
+    },
+    {
+      "sourceMesh": "pasted__pasted__brick231_pasted__pasted__LegoWhite1_0",
+      "sourceObject": "pasted__pasted__brick231_pasted__pasted__LegoWhite1_0",
+      "temporaryMesh": "pasted__pasted__brick231_pasted__pasted__LegoWhite1_0.001",
+      "temporaryObject": "Blockrunner neutral copy pasted__pasted__brick231_pasted__pasted__LegoWhite1_0"
+    },
+    {
+      "sourceMesh": "pasted__pasted__brick240_pasted__pasted__LegoWhite3_0",
+      "sourceObject": "pasted__pasted__brick240_pasted__pasted__LegoWhite3_0",
+      "temporaryMesh": "pasted__pasted__brick240_pasted__pasted__LegoWhite3_0.001",
+      "temporaryObject": "Blockrunner neutral copy pasted__pasted__brick240_pasted__pasted__LegoWhite3_0"
+    },
+    {
+      "sourceMesh": "pasted__pasted__pCylinder4_Black_Jets_0",
+      "sourceObject": "pasted__pasted__pCylinder4_Black_Jets_0",
+      "temporaryMesh": "pasted__pasted__pCylinder4_Black_Jets_0.001",
+      "temporaryObject": "Blockrunner neutral copy pasted__pasted__pCylinder4_Black_Jets_0"
+    },
+    {
+      "sourceMesh": "pasted__pasted__pasted__L1x4F_phongE2_0",
+      "sourceObject": "pasted__pasted__pasted__L1x4F_phongE2_0",
+      "temporaryMesh": "pasted__pasted__pasted__L1x4F_phongE2_0.002",
+      "temporaryObject": "Blockrunner neutral copy pasted__pasted__pasted__L1x4F_phongE2_0"
+    },
+    {
+      "sourceMesh": "pasted__pasted__pasted__L1x4F_phongE2_0.001",
+      "sourceObject": "pasted__pasted__pasted__L1x4F_phongE2_0.001",
+      "temporaryMesh": "pasted__pasted__pasted__L1x4F_phongE2_0.003",
+      "temporaryObject": "Blockrunner neutral copy pasted__pasted__pasted__L1x4F_phongE2_0.001"
+    },
+    {
+      "sourceMesh": "pasted__pasted__pasted__L2F_phongE2_0",
+      "sourceObject": "pasted__pasted__pasted__L2F_phongE2_0",
+      "temporaryMesh": "pasted__pasted__pasted__L2F_phongE2_0.002",
+      "temporaryObject": "Blockrunner neutral copy pasted__pasted__pasted__L2F_phongE2_0"
+    },
+    {
+      "sourceMesh": "pasted__pasted__pasted__L2F_phongE2_0.001",
+      "sourceObject": "pasted__pasted__pasted__L2F_phongE2_0.001",
+      "temporaryMesh": "pasted__pasted__pasted__L2F_phongE2_0.003",
+      "temporaryObject": "Blockrunner neutral copy pasted__pasted__pasted__L2F_phongE2_0.001"
+    },
+    {
+      "sourceMesh": "pasted__pasted__pasted__L2x2Circle_phongE1_0",
+      "sourceObject": "pasted__pasted__pasted__L2x2Circle_phongE1_0",
+      "temporaryMesh": "pasted__pasted__pasted__L2x2Circle_phongE1_0.001",
+      "temporaryObject": "Blockrunner neutral copy pasted__pasted__pasted__L2x2Circle_phongE1_0"
+    },
+    {
+      "sourceMesh": "pasted__pasted__pasted__L2x2_pasted__pasted__pasted__Lego_White19_0",
+      "sourceObject": "pasted__pasted__pasted__L2x2_pasted__pasted__pasted__Lego_White19_0",
+      "temporaryMesh": "pasted__pasted__pasted__L2x2_pasted__pasted__pasted__Lego_White19_0.001",
+      "temporaryObject": "Blockrunner neutral copy pasted__pasted__pasted__L2x2_pasted__pasted__pasted__Lego_White19_0"
+    },
+    {
+      "sourceMesh": "pasted__pasted__pasted__pasted__L1x4F_phongE2_0",
+      "sourceObject": "pasted__pasted__pasted__pasted__L1x4F_phongE2_0",
+      "temporaryMesh": "pasted__pasted__pasted__pasted__L1x4F_phongE2_0.001",
+      "temporaryObject": "Blockrunner neutral copy pasted__pasted__pasted__pasted__L1x4F_phongE2_0"
+    },
+    {
+      "sourceMesh": "pasted__pasted__pasted__pasted__L2F_phongE2_0",
+      "sourceObject": "pasted__pasted__pasted__pasted__L2F_phongE2_0",
+      "temporaryMesh": "pasted__pasted__pasted__pasted__L2F_phongE2_0.002",
+      "temporaryObject": "Blockrunner neutral copy pasted__pasted__pasted__pasted__L2F_phongE2_0"
+    },
+    {
+      "sourceMesh": "pasted__pasted__pasted__pasted__L2F_phongE2_0.001",
+      "sourceObject": "pasted__pasted__pasted__pasted__L2F_phongE2_0.001",
+      "temporaryMesh": "pasted__pasted__pasted__pasted__L2F_phongE2_0.003",
+      "temporaryObject": "Blockrunner neutral copy pasted__pasted__pasted__pasted__L2F_phongE2_0.001"
+    },
+    {
+      "sourceMesh": "pasted__pasted__pasted__pasted__L2x2Circle_phongE1_0",
+      "sourceObject": "pasted__pasted__pasted__pasted__L2x2Circle_phongE1_0",
+      "temporaryMesh": "pasted__pasted__pasted__pasted__L2x2Circle_phongE1_0.001",
+      "temporaryObject": "Blockrunner neutral copy pasted__pasted__pasted__pasted__L2x2Circle_phongE1_0"
+    },
+    {
+      "sourceMesh": "pasted__pasted__pasted__pasted__pasted__L2F_phongE2_0",
+      "sourceObject": "pasted__pasted__pasted__pasted__pasted__L2F_phongE2_0",
+      "temporaryMesh": "pasted__pasted__pasted__pasted__pasted__L2F_phongE2_0.001",
+      "temporaryObject": "Blockrunner neutral copy pasted__pasted__pasted__pasted__pasted__L2F_phongE2_0"
+    },
+    {
+      "sourceMesh": "pasted__pasted__pasted__pasted__pasted__L2x2Circle_phongE1_0",
+      "sourceObject": "pasted__pasted__pasted__pasted__pasted__L2x2Circle_phongE1_0",
+      "temporaryMesh": "pasted__pasted__pasted__pasted__pasted__L2x2Circle_phongE1_0.001",
+      "temporaryObject": "Blockrunner neutral copy pasted__pasted__pasted__pasted__pasted__L2x2Circle_phongE1_0"
+    },
+    {
+      "sourceMesh": "pasted__pasted__pasted__pasted__pasted__pasted__L2x2Circle_phongE1_0",
+      "sourceObject": "pasted__pasted__pasted__pasted__pasted__pasted__L2x2Circle_phongE1_0",
+      "temporaryMesh": "pasted__pasted__pasted__pasted__pasted__pasted__L2x2Circle_phongE1_0.001",
+      "temporaryObject": "Blockrunner neutral copy pasted__pasted__pasted__pasted__pasted__pasted__L2x2Circle_phongE1_0"
+    },
+    {
+      "sourceMesh": "pasted__pasted__pasted__pasted__pasted__pasted__pasted__L2x2Circle_phongE1_0",
+      "sourceObject": "pasted__pasted__pasted__pasted__pasted__pasted__pasted__L2x2Circle_phongE1_0",
+      "temporaryMesh": "pasted__pasted__pasted__pasted__pasted__pasted__pasted__L2x2Circle_phongE1_0.001",
+      "temporaryObject": "Blockrunner neutral copy pasted__pasted__pasted__pasted__pasted__pasted__pasted__L2x2Circle_phongE1_0"
+    },
+    {
+      "sourceMesh": "pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__L2x2Circle_phongE1_0",
+      "sourceObject": "pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__L2x2Circle_phongE1_0",
+      "temporaryMesh": "pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__L2x2Circle_phongE1_0.002",
+      "temporaryObject": "Blockrunner neutral copy pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__L2x2Circle_phongE1_0"
+    },
+    {
+      "sourceMesh": "pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__L2x2Circle_phongE1_0.001",
+      "sourceObject": "pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__L2x2Circle_phongE1_0.001",
+      "temporaryMesh": "pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__L2x2Circle_phongE1_0.003",
+      "temporaryObject": "Blockrunner neutral copy pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__L2x2Circle_phongE1_0.001"
+    },
+    {
+      "sourceMesh": "pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__L2x2Circle_phongE1_0",
+      "sourceObject": "pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__L2x2Circle_phongE1_0",
+      "temporaryMesh": "pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__L2x2Circle_phongE1_0.001",
+      "temporaryObject": "Blockrunner neutral copy pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__L2x2Circle_phongE1_0"
+    },
+    {
+      "sourceMesh": "pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__L2x2Circle_phongE1_0",
+      "sourceObject": "pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__L2x2Circle_phongE1_0",
+      "temporaryMesh": "pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__L2x2Circle_phongE1_0.001",
+      "temporaryObject": "Blockrunner neutral copy pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__L2x2Circle_phongE1_0"
+    },
+    {
+      "sourceMesh": "pasted__pasted__pasted__pasted__pasted__polySurface97_phongE2_0",
+      "sourceObject": "pasted__pasted__pasted__pasted__pasted__polySurface97_phongE2_0",
+      "temporaryMesh": "pasted__pasted__pasted__pasted__pasted__polySurface97_phongE2_0.001",
+      "temporaryObject": "Blockrunner neutral copy pasted__pasted__pasted__pasted__pasted__polySurface97_phongE2_0"
+    },
+    {
+      "sourceMesh": "pasted__pasted__pasted__pasted__polySurface97_phongE2_0",
+      "sourceObject": "pasted__pasted__pasted__pasted__polySurface97_phongE2_0",
+      "temporaryMesh": "pasted__pasted__pasted__pasted__polySurface97_phongE2_0.001",
+      "temporaryObject": "Blockrunner neutral copy pasted__pasted__pasted__pasted__polySurface97_phongE2_0"
+    }
+  ],
+  "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/source-front-20260908-round34-source-v1.png",
+  "runtimeReady": false,
+  "scope": "Original source surfaces and geometry under neutral inspection lighting; no anchor, fit, style or gameplay acceptance.",
+  "sharedBlendSaved": false,
+  "signatureAlgorithm": "FNV-1a-64 over canonical ASCII JSON; non-cryptographic",
+  "sourceBounds": [
+    [
+      -2.9099459648132324,
+      -28.763988494873047,
+      0.021512573584914207
+    ],
+    [
+      2.958909034729004,
+      -16.763992309570312,
+      3.1749837398529053
+    ]
+  ],
+  "sourcePreservation": true,
+  "sourcePreservationScope": "Matching FNV-1a-64 structural signatures; not byte equality or a cryptographic proof.",
+  "sourceUid": "a6f14ae799ab40d7ac425f043f824ff8",
+  "stage": "neutral-render",
+  "status": "rendered; human inspection pending",
+  "targetBounds": [
+    [
+      -2.9099459648132324,
+      -28.763988494873047,
+      0.021512573584914207
+    ],
+    [
+      2.958909034729004,
+      -16.763992309570312,
+      3.1749837398529053
+    ]
+  ],
+  "temporarySceneRemoved": true,
+  "view": "front"
+}

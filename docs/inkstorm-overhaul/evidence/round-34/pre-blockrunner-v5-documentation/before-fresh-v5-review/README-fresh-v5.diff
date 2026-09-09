@@ -1,0 +1,11 @@
+--- before/README.md
++++ after/README.md
+@@ -1,6 +1,8 @@
+ # Now This Is PodRacing — local Inkstorm overhaul
+ 
+ Current local evidence is the **8 September 2026 V5 partial checkpoint**: Blockrunner races/Continue, staged cadence and context recovery pass, while the exact resource plateau fails (+1 geometry/+2 textures at matching stages). **671 tests / 120 executed files**, typecheck/build pass for `index-CFofn-oM.js`, SHA256 `2d8ff97639d335f22e1c683562c418d3f55572251f1b55dc71268bda015d264b`. Final art remains unaccepted; there is no overhaul deployment.
++
++**Actual fresh V5 still-image verdict: craft 5/10, world/route 6.5/10, materials 4.5/10, overall 5.5/10 — FAIL against 8/10.** The separate ephemeral read-only CLI review used a fresh temporary directory and 21 hash-verified attachments (13 actual V5 images + eight concepts). No prior task history or verdict was supplied or retrieved; recorded tool/file retrieval calls are zero. Generic user configuration may load. Transport retries preceded an exit-0 final review with all 21 images declared viewed and 13 individual observations. This is still-image criticism, not motion, physics or performance evidence; it does not replace or average the earlier prior-context reviews. [Actual fresh report](assets/source/inkstorm/blockrunner-round34/fresh-v5-review-preparation/cli-critic-attempt1/review.md).
+ 
+ Start with [HANDOVER](HANDOVER.md), [STATUS](docs/inkstorm-overhaul/STATUS.md), [ROUND34](docs/inkstorm-overhaul/ROUND34.md), [current images and review scope](docs/inkstorm-overhaul/CURRENT_VISUALS.md), [V5 technical evidence](docs/inkstorm-overhaul/FULL_RACE_PERFORMANCE_BLOCKRUNNER_V5_ROUND34.md), and the [catalogue/licences](docs/inkstorm-overhaul/VEHICLE_CATALOG.md). Four registered art families use imported, source-preserved hero/rival assets; this is separate from four driving classes. Later candidates cannot inherit frozen technical results.
+ 

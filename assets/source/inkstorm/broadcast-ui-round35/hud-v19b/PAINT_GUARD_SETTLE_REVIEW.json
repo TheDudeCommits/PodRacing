@@ -1,0 +1,14 @@
+{
+  "reviewedAt": "2026-09-09T04:04:57.926215+00:00",
+  "outcome": "NO_GATE_WEAKENING",
+  "sourceSha256": "2fb2a0144f1bce91857818fd798bc509f53ce5f95af22aa576692036a1afd25c",
+  "sourceBytes": 45835,
+  "baselineSha256": "2b65778119f29ae94f20ee600d6518537c5e51571e1c1b93ec1719586a438eda",
+  "onlyDelta": "Pre-evaluation waitForFunction with2s timeout for actual redline visibility/display and computed opacity>=.999. All prior evaluation and assertions byte-identical.",
+  "checks": {
+    "exactRemainderUnchanged": true,
+    "runtimeWritesAdded": false
+  },
+  "interpretation": "Allows existing80ms opacity transition to settle before inspecting a visible native instrument. The subsequent ancestor visibility, overflow, viewport, same-parent positioned numeric z-index and instrument/progress gates remain mandatory. This does not turn a hidden ancestor or wrong paint order into a pass.",
+  "nativeStatus": "First V19b FAIL timing receipt preserved; same-build retry pending."
+}

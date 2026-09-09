@@ -1,0 +1,303 @@
+{
+  "status": "PREPARATION ONLY, no geometry generated or executed",
+  "scope": "One bounded pipe-bank foundation construction profile; generated once per course, no shader tint change. Existing vessel/flange/manway/source GLB unchanged.",
+  "sourcePins": [
+    {
+      "path": "public/assets/inkstorm/pipe-bank-detail-v1.glb",
+      "bytes": 1329140,
+      "sha256": "7a28b2e2f3ce25b173ed21033cbe0d28e7341197407b5e86d2400848dba8d946"
+    },
+    {
+      "path": "assets/source/inkstorm/foundry-pipe-detail-round33/v1/pipe-bank-detail-v1-exact-retained.glb",
+      "bytes": 1329140,
+      "sha256": "7a28b2e2f3ce25b173ed21033cbe0d28e7341197407b5e86d2400848dba8d946"
+    },
+    {
+      "path": "assets/source/inkstorm/foundry-pipe-detail-round33/geometry-fragment.py",
+      "bytes": 12108,
+      "sha256": "942bd57c59102c3e140127bc5e26438245f276e84d67073edfd3431c63b51ed6"
+    },
+    {
+      "path": "assets/source/inkstorm/foundry-pipe-detail-round33/preparation-receipt.json",
+      "bytes": 7930,
+      "sha256": "b8ae2a5ea5a1005dc144088f9f943d8b20df38814c1417732183faa3035a98f9"
+    },
+    {
+      "path": "src/render/inkstorm/InkstormFoundations.ts",
+      "bytes": 2630,
+      "sha256": "2cd39d1d43e1573689a26a4bc2e7ff44d622930c39265db8a9d53bbfcfef1b7e"
+    },
+    {
+      "path": "src/render/inkstorm/InkstormFoundry.ts",
+      "bytes": 13556,
+      "sha256": "a97c0c6e99b43453da4fd3d50570aefd01c6889d82b2411b42bf286318570d47"
+    },
+    {
+      "path": "src/game/race/inkstormLayout.ts",
+      "bytes": 22325,
+      "sha256": "a8a116265b0664d8d213f954a0898f7cc79315feca3f5e7e7e5bf33fc647f32d"
+    },
+    {
+      "path": "output/gauntlet/foundry-corridor-round34-map-input.json",
+      "bytes": 433445,
+      "sha256": "278f87a02ed95c1a422e7c78e393d83ffe72800bd13b83a28fbf164615e49caf"
+    }
+  ],
+  "viewedImages": [
+    {
+      "path": "output/gauntlet/round34-pilot-separation-v10/captures/foundry-middle.png",
+      "bytes": 3057719,
+      "sha256": "4c416940b9d3453f5ccf6e0300cd360976c1cf09c770bd6ba18af2bbb5616853"
+    },
+    {
+      "path": "output/gauntlet/round34-pilot-separation-v10/captures/foundry-near-span.png",
+      "bytes": 2986436,
+      "sha256": "8b037a5c883d550263528e472e13cacd5c94339b50cdd570a8498dcfbe112f3d"
+    },
+    {
+      "path": "output/gauntlet/round34-foundry-finish-v12/captures/foundry-middle.png",
+      "bytes": 3065200,
+      "sha256": "c420081a2cdd44d7c791c9d55c5a293afe91de5236a7ac84fbf1483df623321e"
+    },
+    {
+      "path": "docs/inkstorm-overhaul/concepts/06-foundry.png",
+      "bytes": 2549771,
+      "sha256": "e56c72e8a4c96be345a5cfa088186ad65763fbc94c5f8b85233bb9a04b1aeb50"
+    },
+    {
+      "path": "docs/inkstorm-overhaul/concepts/11-foundry-construction-round33.png",
+      "bytes": 2546861,
+      "sha256": "ef201350569c53d6a36a9e1c0f1db7c6c8d444c58a1dd39db5b3ab22e2c6a2d8"
+    }
+  ],
+  "viewContext": "Implementation-aware, prior source and critic context; not fresh blind. Images individually viewed, concepts authority is art direction only.",
+  "referencePlacements": [
+    {
+      "id": "inkstorm-pipe-bank-227",
+      "family": "pipe-bank",
+      "progress": 0.529296875,
+      "x": 19869.522431313962,
+      "z": -120.86949109021353,
+      "yaw": -1.0544136647264142,
+      "sx": 1,
+      "sy": 1.7235182111016911,
+      "sz": 1
+    },
+    {
+      "id": "inkstorm-pipe-bank-228",
+      "family": "pipe-bank",
+      "progress": 0.5410156249999999,
+      "x": 19769.148157726515,
+      "z": -203.2275936662384,
+      "yaw": -0.4920314328126665,
+      "sx": 1,
+      "sy": 1.8373625555630495,
+      "sz": 1
+    },
+    {
+      "id": "inkstorm-pipe-bank-229",
+      "family": "pipe-bank",
+      "progress": 0.5410156249999999,
+      "x": 19699.18894343337,
+      "z": -72.70675963889104,
+      "yaw": -3.6336240864024596,
+      "sx": 1,
+      "sy": 1.8373625555630495,
+      "sz": 1
+    },
+    {
+      "id": "inkstorm-pipe-bank-230",
+      "family": "pipe-bank",
+      "progress": 0.5527343750000001,
+      "x": 19689.084788083048,
+      "z": -243.02358127517135,
+      "yaw": -0.4951498964918999,
+      "sx": 1,
+      "sy": 1.2939985772747604,
+      "sz": 1
+    },
+    {
+      "id": "inkstorm-pipe-bank-231",
+      "family": "pipe-bank",
+      "progress": 0.5527343750000001,
+      "x": 19619.78396428928,
+      "z": -114.6938278796889,
+      "yaw": -3.636742550081693,
+      "sx": 1,
+      "sy": 1.2939985772747604,
+      "sz": 1
+    },
+    {
+      "id": "inkstorm-pipe-bank-232",
+      "family": "pipe-bank",
+      "progress": 0.564453125,
+      "x": 19519.754669289512,
+      "z": -206.64749708335813,
+      "yaw": -4.313328751321773,
+      "sx": 1,
+      "sy": 1.811652820713061,
+      "sz": 1
+    },
+    {
+      "id": "inkstorm-pipe-bank-233",
+      "family": "pipe-bank",
+      "progress": 0.576171875,
+      "x": 19672.415264447158,
+      "z": -255.97982185396458,
+      "yaw": 3.877118259596047,
+      "sx": 1,
+      "sy": 1.3093819968184106,
+      "sz": 1
+    },
+    {
+      "id": "inkstorm-pipe-bank-234",
+      "family": "pipe-bank",
+      "progress": 0.576171875,
+      "x": 19575.01116022679,
+      "z": -363.61841657265774,
+      "yaw": 0.735525606006254,
+      "sx": 1,
+      "sy": 1.3093819968184106,
+      "sz": 1
+    },
+    {
+      "id": "inkstorm-pipe-bank-235",
+      "family": "pipe-bank",
+      "progress": 0.5878906250000001,
+      "x": 19741.43340526509,
+      "z": -313.75481903666014,
+      "yaw": 3.8822830385767153,
+      "sx": 1,
+      "sy": 1.3536002643131724,
+      "sz": 1
+    },
+    {
+      "id": "inkstorm-pipe-bank-236",
+      "family": "pipe-bank",
+      "progress": 0.5878906250000001,
+      "x": 19642.33370791332,
+      "z": -422.136744001285,
+      "yaw": 0.7406903849869222,
+      "sx": 1,
+      "sy": 1.3536002643131724,
+      "sz": 1
+    },
+    {
+      "id": "inkstorm-pipe-bank-237",
+      "family": "pipe-bank",
+      "progress": 0.5996093749999999,
+      "x": 19815.05891971942,
+      "z": -424.49076560903944,
+      "yaw": 4.500264729175021,
+      "sx": 1,
+      "sy": 1.8418811574956635,
+      "sz": 1
+    },
+    {
+      "id": "inkstorm-pipe-bank-238",
+      "family": "pipe-bank",
+      "progress": 0.5996093749999999,
+      "x": 19670.386272405274,
+      "z": -455.64807585844136,
+      "yaw": 1.3586720755852282,
+      "sx": 1,
+      "sy": 1.8418811574956635,
+      "sz": 1
+    },
+    {
+      "id": "inkstorm-pipe-bank-239",
+      "family": "pipe-bank",
+      "progress": 0.611328125,
+      "x": 19808.83050834794,
+      "z": -547.8990211222114,
+      "yaw": -1.3153275697075983,
+      "sx": 1,
+      "sy": 1.3537923115000012,
+      "sz": 1
+    },
+    {
+      "id": "inkstorm-pipe-bank-240",
+      "family": "pipe-bank",
+      "progress": 0.611328125,
+      "x": 19661.845950323524,
+      "z": -509.5102641219235,
+      "yaw": -4.4569202232973915,
+      "sx": 1,
+      "sy": 1.3537923115000012,
+      "sz": 1
+    },
+    {
+      "id": "inkstorm-pipe-bank-241",
+      "family": "pipe-bank",
+      "progress": 0.6230468750000001,
+      "x": 19776.037739696232,
+      "z": -646.6263950975739,
+      "yaw": -1.1284414114481356,
+      "sx": 1,
+      "sy": 1.3040137131760274,
+      "sz": 1
+    },
+    {
+      "id": "inkstorm-pipe-bank-242",
+      "family": "pipe-bank",
+      "progress": 0.6230468750000001,
+      "x": 19632.151336256644,
+      "z": -578.4730790953682,
+      "yaw": -4.270034065037929,
+      "sx": 1,
+      "sy": 1.3040137131760274,
+      "sz": 1
+    },
+    {
+      "id": "inkstorm-pipe-bank-243",
+      "family": "pipe-bank",
+      "progress": 0.6347656249999999,
+      "x": 19728.95013836268,
+      "z": -735.9873257428048,
+      "yaw": -0.9872143393067496,
+      "sx": 1,
+      "sy": 1.823814530056552,
+      "sz": 1
+    },
+    {
+      "id": "inkstorm-pipe-bank-244",
+      "family": "pipe-bank",
+      "progress": 0.6347656249999999,
+      "x": 19591.27537787866,
+      "z": -645.080673990019,
+      "yaw": -4.128806992896543,
+      "sx": 1,
+      "sy": 1.823814530056552,
+      "sz": 1
+    }
+  ],
+  "placementAuthority": "Pinned previous actual map-input record, not newly reconstructed or projected. At implementation require regenerated actual getInkstormLayout exact tuple equality before using these IDs; no claim these IDs alone identify a pixel.",
+  "foundationContract": {
+    "family": "pipe-bank",
+    "sourceLocalXZ": {
+      "min": [
+        -47,
+        -22
+      ],
+      "max": [
+        47,
+        22
+      ]
+    },
+    "topWorld": "heightAt(p.x,p.z)+1.5",
+    "bottomWorld": "min(top-5, nine existing 3x3 footprint samples minus4)",
+    "transform": "same p.x/p.z,p.yaw,p.sx/p.sz; do not change p.sy/machinery origin",
+    "originalMachineryRootY": "heightAt(p.x,p.z)-1.5"
+  },
+  "candidateBudget": {
+    "pipeBankCountInReference": 18,
+    "maximumTrianglesPerFoundation": 256,
+    "oldBoxTrianglesEach": 12,
+    "maximumAllInstancesAddedTriangles": 4392,
+    "addedBeautyDrawCallsTarget": 0,
+    "addedShaderProgramsTarget": 0,
+    "addedTextures": 0,
+    "runtimeFrameWork": 0
+  },
+  "nextOperation": "Private CPU constructor prototype only after coordination: exact original foundation contract, per-bank closed stepped fascia within old footprint, shallow recessed face joints, terrain-seated lower edge; append static world geometry into existing Foundry merged mesh and omit only corresponding old visual box instances. No live install in this task."
+}

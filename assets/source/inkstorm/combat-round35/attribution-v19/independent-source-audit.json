@@ -1,0 +1,104 @@
+{
+  "scope": "Independent static closure review of V19 physical collision attribution, optional high-speed/roster harness and completed recovery camera; no runtime edits, tests, build or browser run by reviewer.",
+  "outcome": "PASS",
+  "checks": {
+    "visibilityRoutesThroughFullCancellation": true,
+    "fullCancellationClearsRecovery": true,
+    "recoveryComputedBeforeArmClear": true,
+    "recoveryUsesExistingSnap": true,
+    "physicalAggressionRequiresDistinctRoster": true,
+    "physicalCollisionCreditRequiresDistinctRoster": true,
+    "priorPacingCameraHighSpeedAndRecoveryAnalysisUnchanged": true,
+    "readOnlyRosterCapturePresent": true,
+    "rosterAndSelfCreditRejected": true,
+    "victimTitleMatchesCredit": true
+  },
+  "sources": [
+    {
+      "path": "/Users/amir/Projects/PodRacing/src/render/app/GameApp.ts",
+      "bytes": 175057,
+      "sha256": "309616afb85807c0e27b3bedfc4724af531dca8a20abff40ae72fc28077543a4"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/src/game/race/RaceSimulation.ts",
+      "bytes": 93265,
+      "sha256": "8c9fbbc85cc32b856194397092d8386f82d7017d30224a040958886b5514f5fa"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/tests/race/takedownAttribution.test.ts",
+      "bytes": 3717,
+      "sha256": "b1e91a0b18cfaa12088b9bd12944b59862ba1d92ab2973deda24586178561a12"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/scripts/inkstorm-combat.mjs",
+      "bytes": 26368,
+      "sha256": "23e6ce0377112f6ac378bdda886c9dc2cfed35e8e8d1b24cc22e4325e2fddc5c"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/combat-round35/attribution-v19/executed-combat-harness-v18b.mjs",
+      "bytes": 25625,
+      "sha256": "48c9a6fcd68eb4f60227275f2b6769e3ebde7af56f4bff020b70a63f8fe4c77f"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/combat-round35/attribution-v19/RaceSimulation.before.ts",
+      "bytes": 92821,
+      "sha256": "bb65528c57623190accdbc2b85e03583889c1b7f5409b4a09ef800e33f98b2de"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/combat-round35/v19-recovery-camera/GameApp-recovery-chase.patch",
+      "bytes": 1680,
+      "sha256": "9ef359b22d62166ed8ac7fafdaeff4932ce45093045b848b1607627cf108a345"
+    }
+  ],
+  "preservedExecutedHarness": {
+    "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/combat-round35/attribution-v19/executed-combat-harness-v19.mjs",
+    "bytes": 26368,
+    "sha256": "23e6ce0377112f6ac378bdda886c9dc2cfed35e8e8d1b24cc22e4325e2fddc5c"
+  },
+  "frozenInventory": {
+    "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/combat-round35/v19-frozen-bundle/inventory.json",
+    "bytes": 957,
+    "sha256": "7e43b684aa9026170fdcb76cf858a1f08caa2e3d968ba1b8011d4a6c87a24a1a"
+  },
+  "frozen": [
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/combat-round35/v19-frozen-bundle/index.html",
+      "bytes": 748,
+      "sha256": "10c78d0a767c4974c641df8375ca675355136e41d433e0bb1ff82cd480b314bf",
+      "expectedSha256": "10c78d0a767c4974c641df8375ca675355136e41d433e0bb1ff82cd480b314bf",
+      "expectedBytes": 748
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/combat-round35/v19-frozen-bundle/index-Cg4Fkxxw.js",
+      "bytes": 1807438,
+      "sha256": "16258031c521c16b2b9e638933f275cfd952698656d592ddbb781e7244459a02",
+      "expectedSha256": "16258031c521c16b2b9e638933f275cfd952698656d592ddbb781e7244459a02",
+      "expectedBytes": 1807438
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/combat-round35/v19-frozen-bundle/index-Cg4Fkxxw.js.map",
+      "bytes": 6114739,
+      "sha256": "ad1261efdeb731ec0553ef01305ab8e70a03a03ddd341ef62bd4a0315ed072fe",
+      "expectedSha256": "ad1261efdeb731ec0553ef01305ab8e70a03a03ddd341ef62bd4a0315ed072fe",
+      "expectedBytes": 6114739
+    }
+  ],
+  "findings": [],
+  "closedFinding": {
+    "prior": "handleVisibilityChange canceled controller only, leaving completed victim recovery return armed.",
+    "resolution": "Final handler calls cancelCombatCut(), which cancels controller, clears recovery arm and wreckChase, and restores any active manual cut. Verified in current source."
+  },
+  "reasoning": {
+    "camera": "Victim-only solo camera cut arms recovery. The new running/chase branch is evaluated before clearing the arm, then performs exactly one existing cameraRig.snap on already-cleared ordinary subject fields. It adds no pose solve. Pause, reduced motion, zero motion, capture, replay and non-racing conditions block it; explicit manual changes clear arm. Restart/rebuild are non-racing and clear the arm at next render.",
+    "attribution": "Only a distinct existing roster racer can refresh physical recent aggression or be chosen as physical collisionSource. Original vehicle collision events retain scenery identity. Thus a real rival assist survives later scenery without a scenery collision refreshing an expired assist. Existing world hazards supply null source; player/rival weapon owner attribution is unchanged.",
+    "harness": "Adds one read-only starting roster observation, rejects unknown/self credit, and checks WRECKED versus TAKEN DOWN title against authoritative credit. Existing opt-in high-speed, authored damage, scheduling, camera and recovery gates remain unchanged."
+  },
+  "verificationProvenance": {
+    "reviewer": "Static source/patch reads and hash checks only; no retest claimed.",
+    "rootReported": "Final full verify842 tests/136 files, typecheck and build PASS. Earlier4 attribution regressions failed on old source and26 focused tests passed fix."
+  },
+  "limits": [
+    "Static source review is not native/perceptual acceptance; native V19 audits are separate.",
+    "Frozen final V19 bundle is index-Cg4Fkxxw.js SHA16258031c521c16b2b9e638933f275cfd952698656d592ddbb781e7244459a02; intermediate pre-visibility bundle is not treated as final."
+  ]
+}

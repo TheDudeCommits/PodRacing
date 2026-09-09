@@ -1,0 +1,954 @@
+{
+  "scope": "Implementation-aware QA, author of rejected rig; not fresh blind. Twelve V11 driving images and seven V10 comparisons individually viewed before fresh critic read.",
+  "auditUtc": "2026-09-08T16:34:54.387610+00:00",
+  "viewedImages": [
+    {
+      "path": "/Users/amir/Projects/PodRacing/output/gauntlet/round34-chase-rig-v11/captures/01-grid.png",
+      "bytes": 3040014,
+      "sha256": "71936ea95edcee6f6e5f544b1e3870693b1419c0e6bfff5aa181b3dd0999c6ac",
+      "version": "v11"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/output/gauntlet/round34-chase-rig-v11/captures/02-salt-run.png",
+      "bytes": 2772718,
+      "sha256": "7c815804597c0887a9b755830482b59e1c68ca554074d3863092b25338126218",
+      "version": "v11"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/output/gauntlet/round34-chase-rig-v11/captures/03-canyon.png",
+      "bytes": 2982730,
+      "sha256": "e2fadd155f47e5bf1d056da8da0dfcd2353857fef2aaa6559ee8805652365120",
+      "version": "v11"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/output/gauntlet/round34-chase-rig-v11/captures/04-fork.png",
+      "bytes": 2931373,
+      "sha256": "18b7c1af7152da412a121627bc658b2b2c1d8459e34e1532cd7007c039649973",
+      "version": "v11"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/output/gauntlet/round34-chase-rig-v11/captures/05-launch.png",
+      "bytes": 3232244,
+      "sha256": "d0fadba6fa6c6a3041f8cb463f9d3cc7d46c0bbe55fb7244733df73eebf494ec",
+      "version": "v11"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/output/gauntlet/round34-chase-rig-v11/captures/06-foundry.png",
+      "bytes": 2980818,
+      "sha256": "4be8d6dc491c4238031b9aea5f69819ed875616eb7655957ddaca0f40ed3ab13",
+      "version": "v11"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/output/gauntlet/round34-chase-rig-v11/captures/07-finish.png",
+      "bytes": 3001034,
+      "sha256": "27d9c46f7fdc48caa3c558b5db0c5eca26c0d0058ba1b0b1c7802f2e7cfb7f81",
+      "version": "v11"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/output/gauntlet/round34-chase-rig-v11/captures/foundry-approach.png",
+      "bytes": 3048319,
+      "sha256": "7cd67f883050e453a548108efe3c68a83741bc160a52b6db2057e20426dea906",
+      "version": "v11"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/output/gauntlet/round34-chase-rig-v11/captures/foundry-near-span.png",
+      "bytes": 2928296,
+      "sha256": "d17819febb71a994e8fe8a127254a816c325d435ae205b3ce64172c551126f13",
+      "version": "v11"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/output/gauntlet/round34-chase-rig-v11/captures/foundry-middle.png",
+      "bytes": 3024889,
+      "sha256": "8ea21c6c2745c9591417118061ce2c2b67b39f4b0fc59efed9deb8ab4fc050d7",
+      "version": "v11"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/output/gauntlet/round34-chase-rig-v11/captures/foundry-exit.png",
+      "bytes": 2809960,
+      "sha256": "5496d580e480fb1cdf6ca30d4ff529e12f1160c05fcc3837e856ae80fe98b28a",
+      "version": "v11"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/output/gauntlet/round34-chase-rig-v11/captures/live-drive.png",
+      "bytes": 2373584,
+      "sha256": "ef33a092c6204ca27675f159ff329492a54f6e27436e66ee7d3ff4395f94bd26",
+      "version": "v11"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/output/gauntlet/round34-pilot-separation-v10/captures/01-grid.png",
+      "bytes": 3229718,
+      "sha256": "a3e67bc0e44e80cb301e589a538a739ee9569bdc2a881914dd270d1760599f0f",
+      "version": "v10"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/output/gauntlet/round34-pilot-separation-v10/captures/04-fork.png",
+      "bytes": 3048348,
+      "sha256": "68476869cdb0b23f58d3ac5572e5fff526e122ff2603306eea134bcc12d4387d",
+      "version": "v10"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/output/gauntlet/round34-pilot-separation-v10/captures/05-launch.png",
+      "bytes": 3222146,
+      "sha256": "2a4d03ab60157fc887cbf90f6a8bd278d0715c9531b01b9f72f0b8f91ff179dd",
+      "version": "v10"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/output/gauntlet/round34-pilot-separation-v10/captures/foundry-near-span.png",
+      "bytes": 2986436,
+      "sha256": "8b037a5c883d550263528e472e13cacd5c94339b50cdd570a8498dcfbe112f3d",
+      "version": "v10"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/output/gauntlet/round34-pilot-separation-v10/captures/foundry-middle.png",
+      "bytes": 3057719,
+      "sha256": "4c416940b9d3453f5ccf6e0300cd360976c1cf09c770bd6ba18af2bbb5616853",
+      "version": "v10"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/output/gauntlet/round34-pilot-separation-v10/captures/foundry-exit.png",
+      "bytes": 2907808,
+      "sha256": "ee6179ab3bef71f80521dcda13ed042cb4427371761cb3cb89903073295cd996",
+      "version": "v10"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/output/gauntlet/round34-pilot-separation-v10/captures/live-drive.png",
+      "bytes": 2420597,
+      "sha256": "f75d72cfb681bf580d912adab38a8a9a15f543b4dcb9372a2c8aa79a96af282c",
+      "version": "v10"
+    }
+  ],
+  "critic": {
+    "invocation": {
+      "started": "2026-09-08T16:22:25.931776+00:00",
+      "completed": "2026-09-08T16:24:02.692376+00:00",
+      "returncode": 0,
+      "argv": [
+        "/Users/amir/.local/bin/codex",
+        "exec",
+        "--sandbox",
+        "read-only",
+        "--cd",
+        "/var/folders/8_/sqnvwbyn5qv5slnnkk73035c0000gn/T/podracing-camera-blind-9dh5m9jz",
+        "--skip-git-repo-check",
+        "--ephemeral",
+        "--json",
+        "--color",
+        "never",
+        "--output-last-message",
+        "/Users/amir/Projects/PodRacing/assets/source/inkstorm/round34-blockrunner-chase-rig/blind-runtime-v11/cli-critic-attempt1/review.md",
+        "--image",
+        "/var/folders/8_/sqnvwbyn5qv5slnnkk73035c0000gn/T/podracing-camera-blind-9dh5m9jz/frame-01.png",
+        "--image",
+        "/var/folders/8_/sqnvwbyn5qv5slnnkk73035c0000gn/T/podracing-camera-blind-9dh5m9jz/frame-02.png",
+        "--image",
+        "/var/folders/8_/sqnvwbyn5qv5slnnkk73035c0000gn/T/podracing-camera-blind-9dh5m9jz/frame-03.png",
+        "--image",
+        "/var/folders/8_/sqnvwbyn5qv5slnnkk73035c0000gn/T/podracing-camera-blind-9dh5m9jz/frame-04.png",
+        "--image",
+        "/var/folders/8_/sqnvwbyn5qv5slnnkk73035c0000gn/T/podracing-camera-blind-9dh5m9jz/frame-05.png",
+        "--image",
+        "/var/folders/8_/sqnvwbyn5qv5slnnkk73035c0000gn/T/podracing-camera-blind-9dh5m9jz/frame-06.png",
+        "--image",
+        "/var/folders/8_/sqnvwbyn5qv5slnnkk73035c0000gn/T/podracing-camera-blind-9dh5m9jz/frame-07.png",
+        "--image",
+        "/var/folders/8_/sqnvwbyn5qv5slnnkk73035c0000gn/T/podracing-camera-blind-9dh5m9jz/frame-08.png",
+        "--image",
+        "/var/folders/8_/sqnvwbyn5qv5slnnkk73035c0000gn/T/podracing-camera-blind-9dh5m9jz/frame-09.png",
+        "--image",
+        "/var/folders/8_/sqnvwbyn5qv5slnnkk73035c0000gn/T/podracing-camera-blind-9dh5m9jz/frame-10.png",
+        "-"
+      ],
+      "promptSha256": "4ca89696bfb820767f58ff1a0273a4ffa591db358c8c323adef08b6341038c33",
+      "attachmentCount": 10,
+      "notes": "Separate ephemeral CLI process because collaboration spawn returned agent thread limit reached. Generic user configuration may load; inspect events for extra retrieval before asserting blind review."
+    },
+    "imagePins": [
+      {
+        "original": "/Users/amir/Projects/PodRacing/output/gauntlet/round34-chase-rig-v11/captures/01-grid.png",
+        "attachment": "/var/folders/8_/sqnvwbyn5qv5slnnkk73035c0000gn/T/podracing-camera-blind-9dh5m9jz/frame-01.png",
+        "sha256": "71936ea95edcee6f6e5f544b1e3870693b1419c0e6bfff5aa181b3dd0999c6ac",
+        "scene": "01-grid",
+        "privateVersion": "v11",
+        "originalActualSha256": "71936ea95edcee6f6e5f544b1e3870693b1419c0e6bfff5aa181b3dd0999c6ac",
+        "attachmentActualSha256": "71936ea95edcee6f6e5f544b1e3870693b1419c0e6bfff5aa181b3dd0999c6ac",
+        "bothMatchPinned": true
+      },
+      {
+        "original": "/Users/amir/Projects/PodRacing/output/gauntlet/round34-pilot-separation-v10/captures/01-grid.png",
+        "attachment": "/var/folders/8_/sqnvwbyn5qv5slnnkk73035c0000gn/T/podracing-camera-blind-9dh5m9jz/frame-02.png",
+        "sha256": "a3e67bc0e44e80cb301e589a538a739ee9569bdc2a881914dd270d1760599f0f",
+        "scene": "01-grid",
+        "privateVersion": "v10",
+        "originalActualSha256": "a3e67bc0e44e80cb301e589a538a739ee9569bdc2a881914dd270d1760599f0f",
+        "attachmentActualSha256": "a3e67bc0e44e80cb301e589a538a739ee9569bdc2a881914dd270d1760599f0f",
+        "bothMatchPinned": true
+      },
+      {
+        "original": "/Users/amir/Projects/PodRacing/output/gauntlet/round34-pilot-separation-v10/captures/05-launch.png",
+        "attachment": "/var/folders/8_/sqnvwbyn5qv5slnnkk73035c0000gn/T/podracing-camera-blind-9dh5m9jz/frame-03.png",
+        "sha256": "2a4d03ab60157fc887cbf90f6a8bd278d0715c9531b01b9f72f0b8f91ff179dd",
+        "scene": "05-launch",
+        "privateVersion": "v10",
+        "originalActualSha256": "2a4d03ab60157fc887cbf90f6a8bd278d0715c9531b01b9f72f0b8f91ff179dd",
+        "attachmentActualSha256": "2a4d03ab60157fc887cbf90f6a8bd278d0715c9531b01b9f72f0b8f91ff179dd",
+        "bothMatchPinned": true
+      },
+      {
+        "original": "/Users/amir/Projects/PodRacing/output/gauntlet/round34-chase-rig-v11/captures/05-launch.png",
+        "attachment": "/var/folders/8_/sqnvwbyn5qv5slnnkk73035c0000gn/T/podracing-camera-blind-9dh5m9jz/frame-04.png",
+        "sha256": "d0fadba6fa6c6a3041f8cb463f9d3cc7d46c0bbe55fb7244733df73eebf494ec",
+        "scene": "05-launch",
+        "privateVersion": "v11",
+        "originalActualSha256": "d0fadba6fa6c6a3041f8cb463f9d3cc7d46c0bbe55fb7244733df73eebf494ec",
+        "attachmentActualSha256": "d0fadba6fa6c6a3041f8cb463f9d3cc7d46c0bbe55fb7244733df73eebf494ec",
+        "bothMatchPinned": true
+      },
+      {
+        "original": "/Users/amir/Projects/PodRacing/output/gauntlet/round34-chase-rig-v11/captures/04-fork.png",
+        "attachment": "/var/folders/8_/sqnvwbyn5qv5slnnkk73035c0000gn/T/podracing-camera-blind-9dh5m9jz/frame-05.png",
+        "sha256": "18b7c1af7152da412a121627bc658b2b2c1d8459e34e1532cd7007c039649973",
+        "scene": "04-fork",
+        "privateVersion": "v11",
+        "originalActualSha256": "18b7c1af7152da412a121627bc658b2b2c1d8459e34e1532cd7007c039649973",
+        "attachmentActualSha256": "18b7c1af7152da412a121627bc658b2b2c1d8459e34e1532cd7007c039649973",
+        "bothMatchPinned": true
+      },
+      {
+        "original": "/Users/amir/Projects/PodRacing/output/gauntlet/round34-pilot-separation-v10/captures/04-fork.png",
+        "attachment": "/var/folders/8_/sqnvwbyn5qv5slnnkk73035c0000gn/T/podracing-camera-blind-9dh5m9jz/frame-06.png",
+        "sha256": "68476869cdb0b23f58d3ac5572e5fff526e122ff2603306eea134bcc12d4387d",
+        "scene": "04-fork",
+        "privateVersion": "v10",
+        "originalActualSha256": "68476869cdb0b23f58d3ac5572e5fff526e122ff2603306eea134bcc12d4387d",
+        "attachmentActualSha256": "68476869cdb0b23f58d3ac5572e5fff526e122ff2603306eea134bcc12d4387d",
+        "bothMatchPinned": true
+      },
+      {
+        "original": "/Users/amir/Projects/PodRacing/output/gauntlet/round34-pilot-separation-v10/captures/foundry-middle.png",
+        "attachment": "/var/folders/8_/sqnvwbyn5qv5slnnkk73035c0000gn/T/podracing-camera-blind-9dh5m9jz/frame-07.png",
+        "sha256": "4c416940b9d3453f5ccf6e0300cd360976c1cf09c770bd6ba18af2bbb5616853",
+        "scene": "foundry-middle",
+        "privateVersion": "v10",
+        "originalActualSha256": "4c416940b9d3453f5ccf6e0300cd360976c1cf09c770bd6ba18af2bbb5616853",
+        "attachmentActualSha256": "4c416940b9d3453f5ccf6e0300cd360976c1cf09c770bd6ba18af2bbb5616853",
+        "bothMatchPinned": true
+      },
+      {
+        "original": "/Users/amir/Projects/PodRacing/output/gauntlet/round34-chase-rig-v11/captures/foundry-middle.png",
+        "attachment": "/var/folders/8_/sqnvwbyn5qv5slnnkk73035c0000gn/T/podracing-camera-blind-9dh5m9jz/frame-08.png",
+        "sha256": "8ea21c6c2745c9591417118061ce2c2b67b39f4b0fc59efed9deb8ab4fc050d7",
+        "scene": "foundry-middle",
+        "privateVersion": "v11",
+        "originalActualSha256": "8ea21c6c2745c9591417118061ce2c2b67b39f4b0fc59efed9deb8ab4fc050d7",
+        "attachmentActualSha256": "8ea21c6c2745c9591417118061ce2c2b67b39f4b0fc59efed9deb8ab4fc050d7",
+        "bothMatchPinned": true
+      },
+      {
+        "original": "/Users/amir/Projects/PodRacing/docs/inkstorm-overhaul/concepts/12-blockrunner-round34.png",
+        "attachment": "/var/folders/8_/sqnvwbyn5qv5slnnkk73035c0000gn/T/podracing-camera-blind-9dh5m9jz/frame-09.png",
+        "sha256": "6e96d24510b73847f02f483ac5ffa73c30262a9968b03bfd9c401c5ce8d776d8",
+        "kind": "generatedconcept",
+        "originalActualSha256": "6e96d24510b73847f02f483ac5ffa73c30262a9968b03bfd9c401c5ce8d776d8",
+        "attachmentActualSha256": "6e96d24510b73847f02f483ac5ffa73c30262a9968b03bfd9c401c5ce8d776d8",
+        "bothMatchPinned": true
+      },
+      {
+        "original": "/Users/amir/Projects/PodRacing/docs/inkstorm-overhaul/concepts/06-foundry.png",
+        "attachment": "/var/folders/8_/sqnvwbyn5qv5slnnkk73035c0000gn/T/podracing-camera-blind-9dh5m9jz/frame-10.png",
+        "sha256": "e56c72e8a4c96be345a5cfa088186ad65763fbc94c5f8b85233bb9a04b1aeb50",
+        "kind": "generatedconcept",
+        "originalActualSha256": "e56c72e8a4c96be345a5cfa088186ad65763fbc94c5f8b85233bb9a04b1aeb50",
+        "attachmentActualSha256": "e56c72e8a4c96be345a5cfa088186ad65763fbc94c5f8b85233bb9a04b1aeb50",
+        "bothMatchPinned": true
+      }
+    ],
+    "promptHashVerified": true,
+    "eventTypeCounts": {
+      "thread.started": 1,
+      "turn.started": 1,
+      "error": 4,
+      "item.completed": 2,
+      "turn.completed": 1
+    },
+    "itemTypeCounts": {
+      "error": 1,
+      "agent_message": 1
+    },
+    "unexpectedOrRetrievalItems": [],
+    "finalMatchesReview": true,
+    "transportErrorItems": [
+      {
+        "id": "item_0",
+        "type": "error",
+        "message": "Falling back from WebSockets to HTTPS transport. stream disconnected before completion: websocket closed by server before response.completed"
+      }
+    ],
+    "limit": "Ephemeral isolated CLI; ten anonymous attachments; no tool/retrieval events. Generic user configuration may load."
+  },
+  "cameraReceiptPairs": [
+    {
+      "id": "01-grid",
+      "sameInputs": true,
+      "v11": {
+        "speed": 113.75999999999998,
+        "focus": [
+          18609.05558186844,
+          -13.009118983180446,
+          5.734164162134178
+        ],
+        "eye": [
+          18609.4422506051,
+          -4.863162304736788,
+          -5.958211438275272
+        ],
+        "yaw": -0.0031359662662562293,
+        "reviewOffset": {
+          "forward": 0,
+          "right": 0,
+          "height": 0
+        },
+        "localEyeRightUpForward": [
+          0.35000000000065484,
+          8.145956678443659,
+          -11.693530685509858
+        ]
+      },
+      "v10": {
+        "speed": 113.75999999999998,
+        "focus": [
+          18609.05558186844,
+          -13.009118983180446,
+          5.734164162134178
+        ],
+        "eye": [
+          18609.46533127899,
+          -0.8631623047367878,
+          -13.318175248138253
+        ],
+        "yaw": -0.0031359662662562293,
+        "reviewOffset": {
+          "forward": 0,
+          "right": 0,
+          "height": 0
+        },
+        "localEyeRightUpForward": [
+          0.3499999999986781,
+          12.145956678443659,
+          -19.053530685509852
+        ]
+      }
+    },
+    {
+      "id": "02-salt-run",
+      "sameInputs": true,
+      "v11": {
+        "speed": 113.76,
+        "focus": [
+          18652.096667738828,
+          -18.812851726204435,
+          637.8662612746334
+        ],
+        "eye": [
+          18651.94553988904,
+          -10.666895047760777,
+          626.1684700187603
+        ],
+        "yaw": 0.04284077693671362,
+        "reviewOffset": {
+          "forward": 0,
+          "right": 0,
+          "height": 0
+        },
+        "localEyeRightUpForward": [
+          0.3500000000001473,
+          8.145956678443659,
+          -11.693530685509941
+        ]
+      },
+      "v10": {
+        "speed": 113.76,
+        "focus": [
+          18652.096667738828,
+          -18.812851726204435,
+          637.8662612746334
+        ],
+        "eye": [
+          18651.630328211122,
+          -6.666895047760777,
+          618.8152230082143
+        ],
+        "yaw": 0.04284077693671362,
+        "reviewOffset": {
+          "forward": 0,
+          "right": 0,
+          "height": 0
+        },
+        "localEyeRightUpForward": [
+          0.34999999999952397,
+          12.145956678443659,
+          -19.053530685509905
+        ]
+      }
+    },
+    {
+      "id": "03-canyon",
+      "sameInputs": true,
+      "v11": {
+        "speed": 113.75999999999999,
+        "focus": [
+          19858.440330763202,
+          -7.562520412294028,
+          476.31531469009434
+        ],
+        "eye": [
+          19862.288402871684,
+          0.5834362661496302,
+          487.3630973156212
+        ],
+        "yaw": -2.7765005192262864,
+        "reviewOffset": {
+          "forward": 0,
+          "right": 0,
+          "height": 0
+        },
+        "localEyeRightUpForward": [
+          0.34999999999926956,
+          8.145956678443659,
+          -11.693530685510142
+        ]
+      },
+      "v10": {
+        "speed": 113.75999999999999,
+        "focus": [
+          19858.440330763202,
+          -7.562520412294028,
+          476.31531469009434
+        ],
+        "eye": [
+          19864.91618310553,
+          4.58343626614963,
+          494.2380061181139
+        ],
+        "yaw": -2.7765005192262864,
+        "reviewOffset": {
+          "forward": 0,
+          "right": 0,
+          "height": 0
+        },
+        "localEyeRightUpForward": [
+          0.35000000000016485,
+          12.145956678443659,
+          -19.0535306855098
+        ]
+      }
+    },
+    {
+      "id": "04-fork",
+      "sameInputs": true,
+      "v11": {
+        "speed": 113.76,
+        "focus": [
+          18514.097164047835,
+          -1.7472396358369187,
+          -921.3084578276428
+        ],
+        "eye": [
+          18523.78147959223,
+          6.39871704260674,
+          -927.7334786593185
+        ],
+        "yaw": -1.1766391771672866,
+        "reviewOffset": {
+          "forward": 0,
+          "right": 0,
+          "height": 0
+        },
+        "localEyeRightUpForward": [
+          -2.213285202914029,
+          8.145956678443659,
+          -11.40912918944614
+        ]
+      },
+      "v10": {
+        "speed": 113.76,
+        "focus": [
+          18514.097164047835,
+          -1.7472396358369187,
+          -921.3084578276428
+        ],
+        "eye": [
+          18529.792264764703,
+          10.39871704260674,
+          -931.980838028433
+        ],
+        "yaw": -1.1766391771672866,
+        "reviewOffset": {
+          "forward": 0,
+          "right": 0,
+          "height": 0
+        },
+        "localEyeRightUpForward": [
+          -3.8266370297339707,
+          12.14595667844366,
+          -18.590124655459544
+        ]
+      }
+    },
+    {
+      "id": "05-launch",
+      "sameInputs": true,
+      "v11": {
+        "speed": 113.75999999999999,
+        "focus": [
+          18816.001770122417,
+          -39.096069015752995,
+          1316.1544078828813
+        ],
+        "eye": [
+          18808.72048009675,
+          -29.769520280779773,
+          1306.997772285946
+        ],
+        "yaw": 0.7017249428076444,
+        "reviewOffset": {
+          "forward": 0,
+          "right": 0,
+          "height": 0
+        },
+        "localEyeRightUpForward": [
+          0.34999999999982645,
+          9.326548734973223,
+          -11.693530685509977
+        ]
+      },
+      "v10": {
+        "speed": 113.75999999999999,
+        "focus": [
+          18816.001770122417,
+          -39.096069015752995,
+          1316.1544078828813
+        ],
+        "eye": [
+          18803.969334862944,
+          -25.769520280779773,
+          1301.3767208747531
+        ],
+        "yaw": 0.7017249428076444,
+        "reviewOffset": {
+          "forward": 0,
+          "right": 0,
+          "height": 0
+        },
+        "localEyeRightUpForward": [
+          0.35000000000220943,
+          13.326548734973223,
+          -19.053530685508047
+        ]
+      }
+    },
+    {
+      "id": "06-foundry",
+      "sameInputs": true,
+      "v11": {
+        "speed": 113.75999999999999,
+        "focus": [
+          19769.17432335791,
+          -13.340753397390998,
+          -110.05747372481574
+        ],
+        "eye": [
+          19778.57066298732,
+          -5.194796718947339,
+          -103.08825845609574
+        ],
+        "yaw": -2.1790386705921114,
+        "reviewOffset": {
+          "forward": 0,
+          "right": 0,
+          "height": 0
+        },
+        "localEyeRightUpForward": [
+          0.3499999999997643,
+          8.145956678443659,
+          -11.693530685510193
+        ]
+      },
+      "v10": {
+        "speed": 113.75999999999999,
+        "focus": [
+          19769.17432335791,
+          -13.340753397390998,
+          -110.05747372481574
+        ],
+        "eye": [
+          19784.61067389018,
+          -1.1947967189473392,
+          -98.88256371047721
+        ],
+        "yaw": -2.1790386705921114,
+        "reviewOffset": {
+          "forward": 0,
+          "right": 0,
+          "height": 0
+        },
+        "localEyeRightUpForward": [
+          0.3500000000003869,
+          12.145956678443659,
+          -19.053530685509294
+        ]
+      }
+    },
+    {
+      "id": "07-finish",
+      "sameInputs": true,
+      "v11": {
+        "speed": 113.75999999999999,
+        "focus": [
+          18317.93739875778,
+          -4.172685553576772,
+          -773.0224478544508
+        ],
+        "eye": [
+          18324.215921912142,
+          3.973271124866886,
+          -782.8936841951063
+        ],
+        "yaw": -0.5365782705481075,
+        "reviewOffset": {
+          "forward": 0,
+          "right": 0,
+          "height": 0
+        },
+        "localEyeRightUpForward": [
+          0.3500000000000112,
+          8.145956678443659,
+          -11.693530685509923
+        ]
+      },
+      "v10": {
+        "speed": 113.75999999999999,
+        "focus": [
+          18317.93739875778,
+          -4.172685553576772,
+          -773.0224478544508
+        ],
+        "eye": [
+          18327.97834022633,
+          7.973271124866886,
+          -789.219331073414
+        ],
+        "yaw": -0.5365782705481075,
+        "reviewOffset": {
+          "forward": 0,
+          "right": 0,
+          "height": 0
+        },
+        "localEyeRightUpForward": [
+          0.3499999999986194,
+          12.145956678443659,
+          -19.053530685509056
+        ]
+      }
+    },
+    {
+      "id": "foundry-approach",
+      "sameInputs": true,
+      "v11": {
+        "speed": 113.75999999999999,
+        "focus": [
+          19774.675592686457,
+          -8.330561972549315,
+          -11.520783324973273
+        ],
+        "eye": [
+          19766.55546674191,
+          -0.08808118445604951,
+          -3.0991021069729277
+        ],
+        "yaw": 2.4043445045208305,
+        "reviewOffset": {
+          "forward": 0,
+          "right": 0,
+          "height": 0
+        },
+        "localEyeRightUpForward": [
+          0.34999999999905373,
+          8.242480788093266,
+          -11.693530685508996
+        ]
+      },
+      "v10": {
+        "speed": 113.75999999999999,
+        "focus": [
+          19774.675592686457,
+          -8.330561972549315,
+          -11.520783324973273
+        ],
+        "eye": [
+          19761.607683147817,
+          3.9119188155439506,
+          2.349662661855068
+        ],
+        "yaw": 2.4043445045208305,
+        "reviewOffset": {
+          "forward": 0,
+          "right": 0,
+          "height": 0
+        },
+        "localEyeRightUpForward": [
+          0.3499999999984418,
+          12.242480788093266,
+          -19.05353068550844
+        ]
+      }
+    },
+    {
+      "id": "foundry-near-span",
+      "sameInputs": true,
+      "v11": {
+        "speed": 113.76,
+        "focus": [
+          19796.54638182762,
+          -15.140504116230563,
+          -84.92279228338468
+        ],
+        "eye": [
+          19802.997757122557,
+          -6.714190045524697,
+          -75.16364699822853
+        ],
+        "yaw": -2.5275598696833543,
+        "reviewOffset": {
+          "forward": 0,
+          "right": 0,
+          "height": 0
+        },
+        "localEyeRightUpForward": [
+          0.3500000000018275,
+          8.426314070705866,
+          -11.693530685508572
+        ]
+      },
+      "v10": {
+        "speed": 113.76,
+        "focus": [
+          19796.54638182762,
+          -15.140504116230563,
+          -84.92279228338468
+        ],
+        "eye": [
+          19807.238355487538,
+          -2.7141900455246972,
+          -69.14809004089553
+        ],
+        "yaw": -2.5275598696833543,
+        "reviewOffset": {
+          "forward": 0,
+          "right": 0,
+          "height": 0
+        },
+        "localEyeRightUpForward": [
+          0.3500000000024883,
+          12.426314070705866,
+          -19.053530685508107
+        ]
+      }
+    },
+    {
+      "id": "foundry-middle",
+      "sameInputs": true,
+      "v11": {
+        "speed": 113.76,
+        "focus": [
+          19583.088316873407,
+          2.7342559043344794,
+          -270.83669672469046
+        ],
+        "eye": [
+          19577.59984290242,
+          10.888288549187227,
+          -260.5052973343503
+        ],
+        "yaw": 2.6831870356355143,
+        "reviewOffset": {
+          "forward": 0,
+          "right": 0,
+          "height": 0
+        },
+        "localEyeRightUpForward": [
+          0.34999999999848086,
+          8.154032644852748,
+          -11.693530685509081
+        ]
+      },
+      "v10": {
+        "speed": 113.76,
+        "focus": [
+          19583.088316873407,
+          2.7342559043344794,
+          -270.83669672469046
+        ],
+        "eye": [
+          19574.342903847828,
+          14.888288549187227,
+          -253.9051497606455
+        ],
+        "yaw": 2.6831870356355143,
+        "reviewOffset": {
+          "forward": 0,
+          "right": 0,
+          "height": 0
+        },
+        "localEyeRightUpForward": [
+          0.3499999999981993,
+          12.154032644852748,
+          -19.053530685508964
+        ]
+      }
+    },
+    {
+      "id": "foundry-exit",
+      "sameInputs": true,
+      "v11": {
+        "speed": 113.75999999999999,
+        "focus": [
+          19735.821293397705,
+          -2.196123803740959,
+          -437.19614671408385
+        ],
+        "eye": [
+          19732.27788152116,
+          5.949832874702699,
+          -426.046913907916
+        ],
+        "yaw": 2.8637936468330807,
+        "reviewOffset": {
+          "forward": 0,
+          "right": 0,
+          "height": 0
+        },
+        "localEyeRightUpForward": [
+          0.3500000000004113,
+          8.145956678443659,
+          -11.693530685510002
+        ]
+      },
+      "v10": {
+        "speed": 113.75999999999999,
+        "focus": [
+          19735.821293397705,
+          -2.196123803740959,
+          -437.19614671408385
+        ],
+        "eye": [
+          19730.259477297062,
+          9.9498328747027,
+          -418.9690862476706
+        ],
+        "yaw": 2.8637936468330807,
+        "reviewOffset": {
+          "forward": 0,
+          "right": 0,
+          "height": 0
+        },
+        "localEyeRightUpForward": [
+          0.3499999999984791,
+          12.14595667844366,
+          -19.053530685509457
+        ]
+      }
+    }
+  ],
+  "technical": {
+    "environment": {
+      "scripts": [
+        {
+          "url": "http://127.0.0.1:5186/assets/index-CJI8RfD-.js",
+          "sha256": "55aba7b1542fae090e2b3018145d6b20bad34ab2f0a50210536f50d037ad29a5"
+        }
+      ],
+      "browser": "152.0.7977.77",
+      "node": "v24.19.0",
+      "os": {
+        "platform": "darwin",
+        "release": "25.6.0",
+        "architecture": "arm64"
+      },
+      "page": {
+        "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/152.0.0.0 Safari/537.36",
+        "width": 1440,
+        "height": 900,
+        "devicePixelRatio": 1.5,
+        "hardwareConcurrency": 10
+      }
+    },
+    "errors": [],
+    "shortPerformance": {
+      "device": "Chrome headless; renderer from snapshot; local workstation",
+      "viewport": {
+        "width": 1440,
+        "height": 900,
+        "dpr": 1.5
+      },
+      "samples": 481,
+      "p50Ms": 16.69999999999891,
+      "p95Ms": 16.799999999999272,
+      "p99Ms": 16.80000000000109,
+      "averageFps": 60.00274440826815
+    },
+    "testSummary": "678 tests / 120 files PASS; build PASS",
+    "limit": "No full race, motion/landing/comfort or resource/performance acceptance established."
+  },
+  "rollback": {
+    "receipt": {
+      "path": "/Users/amir/Projects/PodRacing/output/gauntlet/round34-chase-rig-v11/rejection-and-rollback.json",
+      "bytes": 708,
+      "sha256": "fab5621093a19d6d88993716850bd5690938cf50319ca55418e0b07309312d04"
+    },
+    "reported": {
+      "decision": "Rejected close rig; fresh critic preferred original widerV10 camera in all4pairs. Preserve V11 experiment/evidence.",
+      "restoration": [
+        {
+          "path": "src/camera/CinematicCamera.ts",
+          "sha256": "55812dd845f2040beab6848aaa0623bbc186aa1283e24b4cb03401440aca37c0",
+          "exactV10Restored": true
+        },
+        {
+          "path": "src/render/app/GameApp.ts",
+          "sha256": "0d87e236bdf0f27a73aa2a4fd24c63dc5c8a5be7c7c6bd255f8612ce46730fd9",
+          "exactV10Restored": true
+        },
+        {
+          "path": "src/game/vehicleAppearance.ts",
+          "sha256": "d60711be193329f77b2f1d1eba01e798db69793e5273d1ba199141c5422f59b2",
+          "exactV10Restored": true
+        }
+      ],
+      "distNeedsRebuild": true
+    },
+    "currentFiles": [
+      {
+        "path": "src/camera/CinematicCamera.ts",
+        "sha256": "55812dd845f2040beab6848aaa0623bbc186aa1283e24b4cb03401440aca37c0",
+        "exactV10Restored": true,
+        "currentSha256": "55812dd845f2040beab6848aaa0623bbc186aa1283e24b4cb03401440aca37c0",
+        "currentMatchesRollback": true
+      },
+      {
+        "path": "src/render/app/GameApp.ts",
+        "sha256": "0d87e236bdf0f27a73aa2a4fd24c63dc5c8a5be7c7c6bd255f8612ce46730fd9",
+        "exactV10Restored": true,
+        "currentSha256": "0d87e236bdf0f27a73aa2a4fd24c63dc5c8a5be7c7c6bd255f8612ce46730fd9",
+        "currentMatchesRollback": true
+      },
+      {
+        "path": "src/game/vehicleAppearance.ts",
+        "sha256": "d60711be193329f77b2f1d1eba01e798db69793e5273d1ba199141c5422f59b2",
+        "exactV10Restored": true,
+        "currentSha256": "d60711be193329f77b2f1d1eba01e798db69793e5273d1ba199141c5422f59b2",
+        "currentMatchesRollback": true
+      }
+    ],
+    "note": "Exact V10 source restoration verified at audit; receipt marks V11 dist stale until rebuilt."
+  }
+}

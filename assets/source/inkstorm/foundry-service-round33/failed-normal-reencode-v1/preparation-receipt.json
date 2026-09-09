@@ -1,0 +1,86 @@
+{
+  "status": "Preparation arithmetic and preserved-input checks PASS; Blender authoring/export/render NOT RUN",
+  "authoringScriptSha256": "8ae49a85e052ec86bcb76aca5e57c3f88515bbf6fdc7d8100537b70366b11da0",
+  "exportRenderScriptSha256": "351078936549dd4ea1f598effd5978d7939f9716cb21ca0b2d703f0e1486af1e",
+  "bothMcpPayloadsAstCheckedNotExecuted": true,
+  "sourceGlbSha256": "3d0cd999daf52b82ac0232c7316a5e4072c80bd83982f83cbaf4a1dcde11e862",
+  "sourcePublicAndPreservedCopyByteExact": true,
+  "sourceTriangles": 6300,
+  "signalTrianglesScheduledForRemoval": 2360,
+  "retainedTriangles": 3940,
+  "addedGeometry": {
+    "vertices": 2424,
+    "triangles": 2560,
+    "trianglesByGroup": {
+      "blind_service_caps": 328,
+      "drum_cable_layers": 128,
+      "edge_wear": 8,
+      "hoist_drum": 68,
+      "hoist_motor": 20,
+      "hoist_track": 72,
+      "hoist_trolley": 116,
+      "lower_pulley": 32,
+      "maintenance_rail": 144,
+      "maintenance_walk": 24,
+      "pipe_saddles": 312,
+      "pressure_joint": 376,
+      "pressure_main": 508,
+      "saddle_anchor_bolts": 120,
+      "service_cable": 24,
+      "service_hook": 80,
+      "trolley_axles": 80,
+      "walk_brackets": 32,
+      "weld_sleeves": 88
+    },
+    "boundsBlender": [
+      [
+        -46.91,
+        46.91
+      ],
+      [
+        -3.7860650000000002,
+        3.7
+      ],
+      [
+        39.88758798064189,
+        61.45
+      ]
+    ],
+    "retainedTriangles": 3940,
+    "candidateTriangles": 6500
+  },
+  "candidateTriangleCap": 6500,
+  "minimumAddedTriangleArea": 0.005454621710072766,
+  "addedClippedCorridorMinimumZ": 39.88758798064189,
+  "knownRetainedClippedCorridorMinimumZ": 39.66999816894531,
+  "expectedFinalClippedCorridorMinimumZ": 39.66999816894531,
+  "closedNewConstructionGroups": true,
+  "paintFlakes": {
+    "triangles": 8,
+    "intentionalOpenEdges": 24,
+    "support": "ray projected to actual pipe facets with 0.003 surface offset"
+  },
+  "newGeometryHorizontalEnvelopeInsideOriginal": true,
+  "prospectiveFinalBoundsBlender": [
+    [
+      -52,
+      52
+    ],
+    [
+      -7,
+      7
+    ],
+    [
+      -25,
+      61.45
+    ]
+  ],
+  "expectedMeshes": 1,
+  "expectedMaterialSlots": 1,
+  "expectedImages": 0,
+  "BlenderImportedGeometryChecksPending": true,
+  "KhronosExportValidationPending": true,
+  "actualSourceViewReviewPending": true,
+  "actualWorldReviewPending": true,
+  "runtimeUnchanged": true
+}

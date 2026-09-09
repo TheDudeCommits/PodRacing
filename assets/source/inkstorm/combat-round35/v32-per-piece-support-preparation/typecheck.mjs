@@ -1,0 +1,13 @@
+import { cpSync } from 'node:fs';
+import { spawnSync } from 'node:child_process';
+import { resolve } from 'node:path';
+const root = '/Users/amir/Projects/PodRacing';
+const preparation = resolve(root, 'assets/source/inkstorm/combat-round35/v32-per-piece-support-preparation');
+const check = resolve(preparation, 'typecheck-copy');
+cpSync(resolve(root, 'src'), resolve(check, 'src'), { recursive: true });
+cpSync(resolve(preparation, 'candidate/src'), resolve(check, 'src'), { recursive: true });
+cpSync(resolve(root, 'tests/fixtures'), resolve(check, 'tests/fixtures'), { recursive: true });
+cpSync(resolve(preparation, 'candidate/tests'), resolve(check, 'tests'), { recursive: true });
+const result = spawnSync(process.execPath, [resolve(root, 'node_modules/typescript/bin/tsc'), '--noEmit', '-p', resolve(preparation, 'tsconfig.candidate.json')], { cwd: root, stdio: 'inherit' });
+if (result.status === 0) console.log('Private candidate source and contact consequence tests: TypeScript PASS.');
+process.exitCode = result.status ?? 1;

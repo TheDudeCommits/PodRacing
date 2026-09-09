@@ -1,0 +1,504 @@
+--- a/src/render/materials/celRamp.ts
++++ b/src/render/materials/celRamp.ts
+@@ -13,6 +13,8 @@
+ export interface CelRampConfig {
+   readonly bands: CelDiffuseBands;
+   readonly thresholds: readonly number[];
++  /** CPU-authored transition width; omitted/zero preserves exact hard-band bytes. */
++  readonly paintedShadingSoftness?: number;
+   readonly resolution?: number;
+ }
+ 
+@@ -26,6 +28,10 @@
+ const scratchColor = new Color();
+ 
+ export function validateCelRampConfig(config: CelRampConfig): void {
++  const softness = config.paintedShadingSoftness ?? 0;
++  if (!Number.isFinite(softness) || softness < 0 || softness > 1) {
++    throw new RangeError('Cel paintedShadingSoftness must be finite and between 0 and 1.');
++  }
+   const resolution = config.resolution ?? DEFAULT_RAMP_RESOLUTION;
+   if (!Number.isInteger(resolution) || resolution < 8 || resolution > 4096) {
+     throw new RangeError('Cel ramp resolution must be an integer between 8 and 4096.');
+@@ -71,11 +77,30 @@
+     throw new RangeError(`Cel ramp data must contain ${resolution * 4} bytes.`);
+   }
+ 
++  const softness = config.paintedShadingSoftness ?? 0;
++  // Only opted ramps allocate interpolation colors. Work in linear RGB so
++  // authored pigment multiplication and the existing transfer stay unchanged.
++  const colors = softness > 0 ? config.bands.map(color => new Color(color)) : [];
+   for (let x = 0; x < resolution; x += 1) {
+     const sample = (x + 0.5) / resolution;
+     const color = config.bands[bandIndexAt(sample, config.thresholds)];
+     if (color === undefined) throw new Error('Cel ramp band lookup failed.');
+     scratchColor.set(color);
++    if (softness > 0) {
++      for (let boundary = 0; boundary < config.thresholds.length; boundary += 1) {
++        const threshold = config.thresholds[boundary]!;
++        const previous = config.thresholds[boundary - 1] ?? 0;
++        const next = config.thresholds[boundary + 1] ?? 1;
++        // Leave a plateau between adjacent transitions, including closely
++        // spaced custom thresholds. Maximum full transition width is .2.
++        const halfWidth = softness * Math.min(.10, (threshold - previous) * .45, (next - threshold) * .45);
++        if (halfWidth > 0 && sample > threshold - halfWidth && sample < threshold + halfWidth) {
++          const t = (sample - (threshold - halfWidth)) / (halfWidth * 2);
++          scratchColor.copy(colors[boundary]!).lerp(colors[boundary + 1]!, t * t * (3 - 2 * t));
++          break;
++        }
++      }
++    }
+ 
+     const offset = x * 4;
+     target[offset] = toByte(scratchColor.r);
+--- a/src/render/materials/celShaders.ts
++++ b/src/render/materials/celShaders.ts
+@@ -294,3 +294,22 @@
+   #include <colorspace_fragment>
+ }
+ `;
++
++/** Separate opt-in program keeps the exported legacy shader byte-identical.
++ * Soft diffuse transitions are already in the same ramp texture: one fetch.
++ * Procedural pigment wear remains controlled only by uWear.
++ */
++function paintedFragmentSource(): string {
++  const wearRamp = "  if (uWear > 0.0) {\n    vec3 paintedRamp = (texture2D(uRamp, vec2(clamp(diffuseTerm-.07,0.,1.),.5)).rgb\n      + texture2D(uRamp, vec2(clamp(diffuseTerm+.07,0.,1.),.5)).rgb) * .5;\n    color = mix(color, paintedRamp*uTint, uWear*.8);\n  }\n";
++  const hardSpecular = "  float specularBand = mix(step(uSpecularCutoff, specularLobe),smoothstep(uSpecularCutoff*.5,uSpecularCutoff*1.6,specularLobe),uWear);";
++  if (!CEL_FRAGMENT_SHADER.includes(wearRamp) || !CEL_FRAGMENT_SHADER.includes(hardSpecular)) {
++    throw new Error('Cel painted-shading shader anchors changed; review the opt-in variant.');
++  }
++  return CEL_FRAGMENT_SHADER
++    .replace('uniform float uWear;', 'uniform float uWear;\nuniform float uPaintedShadingSoftness;')
++    .replace(wearRamp, '')
++    .replace(hardSpecular, `  float specularWidth = max(.0001, uPaintedShadingSoftness * max(.015, uSpecularCutoff * .65));
++  float specularBand = smoothstep(max(0., uSpecularCutoff - specularWidth), uSpecularCutoff + specularWidth, specularLobe);`);
++}
++
++export const CEL_PAINTED_FRAGMENT_SHADER = paintedFragmentSource();
+--- a/src/render/materials/CelMaterial.ts
++++ b/src/render/materials/CelMaterial.ts
+@@ -19,7 +19,7 @@
+   type CelPalette,
+ } from './celPalette';
+ import { createCelRampTexture, createGraphicMatcapTexture, writeCelRampData } from './celRamp';
+-import { CEL_FRAGMENT_SHADER, CEL_VERTEX_SHADER } from './celShaders';
++import { CEL_FRAGMENT_SHADER, CEL_PAINTED_FRAGMENT_SHADER, CEL_VERTEX_SHADER } from './celShaders';
+ import { createInkstormShadowUniforms } from '../inkstorm/InkstormSunShadow';
+ 
+ interface ValueUniform<T> {
+@@ -84,6 +84,8 @@
+   readonly opacity?: number;
+   readonly vertexColors?: boolean;
+   readonly wear?: number;
++  /** Opt-in [0,1] diffuse/specular softness independent of procedural pigment wear. */
++  readonly paintedShadingSoftness?: number;
+   readonly side?: Side;
+   readonly blending?: Blending;
+   /** Borrowed, loader-configured color texture. Disposing this material never disposes it. */
+@@ -138,8 +140,13 @@
+   private readonly celUniforms: CelUniforms;
+   private thresholds: readonly number[];
+   private paletteValue: CelPalette;
++  private readonly paintedShadingSoftness: number;
+ 
+   constructor(options: CelMaterialOptions = {}) {
++    const paintedShadingSoftness = options.paintedShadingSoftness ?? 0;
++    if (!Number.isFinite(paintedShadingSoftness) || paintedShadingSoftness < 0 || paintedShadingSoftness > 1) {
++      throw new RangeError('Cel paintedShadingSoftness must be finite and between 0 and 1.');
++    }
+     const baseColorMap = options.baseColorMap ?? null;
+     const normalMap = options.normalMap ?? null;
+     const roughnessMap = options.roughnessMap ?? null;
+@@ -169,7 +176,7 @@
+     if (normalMap && options.normalMapTangents) defines.USE_TANGENT = '';
+     const palette = options.palette ?? DEFAULT_CEL_PALETTE;
+     const thresholds = thresholdsFor(palette, options.thresholds);
+-    const ramp = createCelRampTexture({ bands: palette.diffuseBands, thresholds });
++    const ramp = createCelRampTexture({ bands: palette.diffuseBands, thresholds, paintedShadingSoftness });
+     const matcap = createGraphicMatcapTexture();
+     const opacity = clamp01(options.opacity ?? 1);
+     const lightDirection = (options.lightDirection ?? new Vector3(-0.42, 0.76, -0.5)).clone().normalize();
+@@ -197,6 +204,7 @@
+       uHazeBands: { value: Math.max(1, Math.floor(options.hazeBands ?? 5)) },
+       uOpacity: { value: opacity },
+       uWear: { value: options.wear ?? 0 },
++      ...(paintedShadingSoftness > 0 ? { uPaintedShadingSoftness: { value: paintedShadingSoftness } } : {}),
+       uBaseColorMap: { value: baseColorMap },
+       uBaseColorUvTransform: { value: baseColorBinding.transform },
+       uBaseColorStrength: { value: clamp01(options.baseColorStrength ?? 1) },
+@@ -213,7 +221,7 @@
+     super({
+       name: options.name ?? 'CelMaterial',
+       vertexShader: CEL_VERTEX_SHADER,
+-      fragmentShader: CEL_FRAGMENT_SHADER,
++      fragmentShader: paintedShadingSoftness > 0 ? CEL_PAINTED_FRAGMENT_SHADER : CEL_FRAGMENT_SHADER,
+       uniforms,
+       defines,
+       vertexColors: options.vertexColors ?? false,
+@@ -229,6 +237,7 @@
+     this.celUniforms = uniforms;
+     this.thresholds = thresholds;
+     this.paletteValue = palette;
++    this.paintedShadingSoftness = paintedShadingSoftness;
+   }
+ 
+   get palette(): CelPalette {
+@@ -248,6 +257,7 @@
+       bands: palette.diffuseBands,
+       thresholds,
+       resolution: image.width,
++      paintedShadingSoftness: this.paintedShadingSoftness,
+     });
+     this.celUniforms.uRamp.value.needsUpdate = true;
+     this.celUniforms.uSpecularColor.value.set(palette.specular);
+--- a/src/render/vehicles/ImportedVehiclePresentation.ts
++++ b/src/render/vehicles/ImportedVehiclePresentation.ts
+@@ -29,6 +29,8 @@
+   readonly palette?: CelPalette;
+   /** Linear-space atlas modulation, in [0, 1]; 1 keeps its full color/contact contrast. */
+   readonly baseColorStrength?: number;
++  /** Independent diffuse/specular transition softness, finite in [0,1]. */
++  readonly paintedShadingSoftness?: number;
+   readonly specularStrength?: number;
+   readonly rimStrength?: number;
+   readonly reflectionStrength?: number;
+@@ -145,7 +147,7 @@
+ function prepareSurfaceStyles(styles: VehicleArtDefinition['surfaceStyles']) {
+   const prepared = new Map<string, { materialOptions: CelMaterialOptions; normalStrength: number }>();
+   const scalars = ['specularStrength', 'rimStrength', 'reflectionStrength', 'wear', 'normalStrength'] as const;
+-  const allowed = new Set<string>(['palette', 'baseColorStrength', ...scalars]);
++  const allowed = new Set<string>(['palette', 'baseColorStrength', 'paintedShadingSoftness', ...scalars]);
+   for (const [name, style] of Object.entries(styles ?? {})) {
+     if (!name || !style || typeof style !== 'object') throw new Error('Imported vehicle surface styles require an exact material name and style object.');
+     for (const key of Object.keys(style)) {
+@@ -160,12 +162,17 @@
+     if (style.baseColorStrength !== undefined && (!Number.isFinite(style.baseColorStrength)
+       || style.baseColorStrength < 0 || style.baseColorStrength > 1)) {
+       throw new Error(`Imported vehicle surface style "${name}" baseColorStrength must be finite and between 0 and 1.`);
++    }
++    if (style.paintedShadingSoftness !== undefined && (!Number.isFinite(style.paintedShadingSoftness)
++      || style.paintedShadingSoftness < 0 || style.paintedShadingSoftness > 1)) {
++      throw new Error(`Imported vehicle surface style "${name}" paintedShadingSoftness must be finite and between 0 and 1.`);
+     }
+     // Pick only supported values: never spread a style object into a material
+     // where an untyped field could change texture bindings or source ownership.
+     prepared.set(name, { normalStrength: style.normalStrength ?? 1, materialOptions: {
+       ...(style.palette === undefined ? {} : { palette: style.palette }),
+       ...(style.baseColorStrength === undefined ? {} : { baseColorStrength: style.baseColorStrength }),
++      ...(style.paintedShadingSoftness === undefined ? {} : { paintedShadingSoftness: style.paintedShadingSoftness }),
+       ...(style.specularStrength === undefined ? {} : { specularStrength: style.specularStrength }),
+       ...(style.rimStrength === undefined ? {} : { rimStrength: style.rimStrength }),
+       ...(style.reflectionStrength === undefined ? {} : { reflectionStrength: style.reflectionStrength }),
+--- a/src/game/vehicleAppearance.ts
++++ b/src/game/vehicleAppearance.ts
+@@ -214,15 +214,15 @@
+ });
+ const BLOCKRUNNER_SURFACE_STYLES = Object.freeze({
+   'Blockrunner Inkstorm body atlas v1': Object.freeze({
+-    palette: BLOCKRUNNER_PALETTE,
++    palette: BLOCKRUNNER_PALETTE, paintedShadingSoftness: .85,
+     specularStrength: .24, rimStrength: .025, reflectionStrength: .045, wear: 0,
+   }),
+   'Blockrunner Inkstorm pilot suit atlas v1': Object.freeze({
+-    palette: BLOCKRUNNER_SUIT_PALETTE, baseColorStrength: .86,
++    palette: BLOCKRUNNER_SUIT_PALETTE, baseColorStrength: .86, paintedShadingSoftness: .45,
+     normalStrength: .25, specularStrength: .035, rimStrength: .025, reflectionStrength: 0, wear: 0,
+   }),
+   'Blockrunner Inkstorm pilot helmet atlas v1': Object.freeze({
+-    palette: BLOCKRUNNER_HELMET_PALETTE, baseColorStrength: .94,
++    palette: BLOCKRUNNER_HELMET_PALETTE, baseColorStrength: .94, paintedShadingSoftness: .75,
+     specularStrength: .32, rimStrength: .035, reflectionStrength: .1, wear: 0,
+   }),
+   'Blockrunner Inkstorm pilot visor atlas v1': Object.freeze({
+--- a/tests/render/importedVehiclePresentation.test.ts
++++ b/tests/render/importedVehiclePresentation.test.ts
+@@ -453,3 +453,106 @@
+     presentation.dispose(); library.dispose();
+   });
+ });
++
++// Prepared insertion for tests/render/importedVehiclePresentation.test.ts.
++// Uses that file's existing imports and artFixture/source helpers. Not a standalone test module.
++describe('exact authored material painted shading', () => {
++  it('applies softness only to the exact material name and preserves fallback values for case and suffix mismatches', async () => {
++    const f = artFixture(); f.material.name = 'Authored Cloth';
++    const trim = f.material.clone(); trim.name = 'Authored Cloth trim';
++    f.meshes[1]!.material = trim;
++    const library = new VehicleArtLibrary({ load: async () => f.root });
++    const presentation = new ImportedVehiclePresentation(library, { materialOptions: {
++      paintedShadingSoftness: .2, wear: .4, specularStrength: .32,
++    } });
++    expect(await presentation.setSource({ ...source('painted-name-match'), surfaceStyles: {
++      'Authored Cloth': { paintedShadingSoftness: .8 },
++      'authored cloth trim': { paintedShadingSoftness: 1 },
++    } })).toBe('ready');
++    const cloth = presentation.geometryMeshes[0]!.material as CelMaterial;
++    const untouched = presentation.geometryMeshes[1]!.material as CelMaterial;
++    expect(cloth.uniforms.uPaintedShadingSoftness?.value).toBe(.8);
++    expect(untouched.uniforms.uPaintedShadingSoftness?.value).toBe(.2);
++    for (const material of [cloth, untouched]) {
++      expect(material.uniforms.uBaseColorMap?.value).toBe(f.map);
++      expect(material.uniforms.uWear?.value).toBe(.4);
++      expect(material.uniforms.uSpecularStrength?.value).toBe(.32);
++    }
++    expect(presentation.statistics.opaqueDraws).toBe(2);
++    expect(presentation.statistics.triangles).toBe(24);
++    presentation.dispose(); library.dispose();
++  });
++
++  it.each([0, 1])('accepts painted softness boundary %s without changing another lease or its borrowed maps', async (paintedShadingSoftness) => {
++    const f = artFixture(); f.material.name = 'Authored Cloth';
++    const roughness = new Texture(); f.material.roughnessMap = roughness; f.material.roughness = .7;
++    f.map.offset.set(.2, .3); f.map.repeat.set(2, -1);
++    roughness.matrixAutoUpdate = false; roughness.matrix.set(2, 0, .1, 0, 3, .2, 0, 0, 1);
++    const originalMapMatrix = f.map.matrix.clone(), originalRoughnessMatrix = roughness.matrix.clone();
++    const roughnessDisposed = vi.spyOn(roughness, 'dispose');
++    const load = vi.fn().mockResolvedValue(f.root);
++    const library = new VehicleArtLibrary({ load });
++    const styled = new ImportedVehiclePresentation(library);
++    const unstyled = new ImportedVehiclePresentation(library);
++    expect(await styled.setSource({ ...source('shared-paint'), surfaceStyles: {
++      'Authored Cloth': { paintedShadingSoftness },
++    } })).toBe('ready');
++    expect(await unstyled.setSource(source('shared-paint'))).toBe('ready');
++    expect(load).toHaveBeenCalledTimes(1);
++    const painted = styled.materials[0]!, legacy = unstyled.materials[0]!;
++    expect(painted.uniforms.uPaintedShadingSoftness?.value).toBe(paintedShadingSoftness === 0 ? undefined : paintedShadingSoftness);
++    expect(legacy.uniforms.uPaintedShadingSoftness).toBeUndefined();
++    expect(painted).not.toBe(legacy);
++    expect(painted.uniforms.uRamp?.value).not.toBe(legacy.uniforms.uRamp?.value);
++    const legacyBytes = (legacy.uniforms.uRamp?.value.image.data as Uint8Array).slice();
++    for (const presentation of [styled, unstyled]) {
++      const material = presentation.materials[0]!;
++      expect(presentation.geometryMeshes[0]!.geometry).toBe(f.geometry);
++      expect(material.uniforms.uBaseColorMap?.value).toBe(f.map);
++      expect(material.uniforms.uRoughnessMap?.value).toBe(roughness);
++      expect(material.uniforms.uRoughness?.value).toBe(.7);
++      expect(material.uniforms.uBaseColorStrength?.value).toBe(1);
++      expect(material.uniforms.uBaseColorUvTransform?.value).toEqual(new Matrix3().setUvTransform(.2, .3, 2, -1, 0, 0, 0));
++      expect(material.uniforms.uRoughnessUvTransform?.value).toEqual(originalRoughnessMatrix);
++    }
++    if (paintedShadingSoftness === 0) {
++      expect(painted.fragmentShader).toBe(legacy.fragmentShader);
++      expect(painted.uniforms.uRamp?.value.image.data).toEqual(legacyBytes);
++    } else {
++      expect(painted.fragmentShader).not.toBe(legacy.fragmentShader);
++      expect(painted.uniforms.uRamp?.value.image.data).not.toEqual(legacyBytes);
++    }
++    painted.setPalette(CEL_PALETTES.rivalTeal);
++    expect(legacy.uniforms.uRamp?.value.image.data).toEqual(legacyBytes);
++    expect(f.material.map).toBe(f.map); expect(f.material.roughnessMap).toBe(roughness);
++    expect(f.map.matrix).toEqual(originalMapMatrix); expect(roughness.matrix).toEqual(originalRoughnessMatrix);
++    styled.dispose();
++    expect(f.disposed.map).not.toHaveBeenCalled(); expect(roughnessDisposed).not.toHaveBeenCalled();
++    expect(unstyled.status).toBe('ready');
++    unstyled.dispose(); library.dispose();
++    expect(f.disposed.map).toHaveBeenCalledTimes(1); expect(roughnessDisposed).toHaveBeenCalledTimes(1);
++  });
++
++  it.each([-.01, 1.01, Number.NaN, Number.POSITIVE_INFINITY, Number.NEGATIVE_INFINITY])(
++    'rejects painted softness %s before replacing prior ready art and releases the failed lease', async (paintedShadingSoftness) => {
++      const prior = artFixture(), candidate = artFixture(); candidate.material.name = 'Authored Cloth';
++      const library = new VehicleArtLibrary({
++        load: vi.fn().mockResolvedValueOnce(prior.root).mockResolvedValueOnce(candidate.root), maxIdleEntries: 0,
++      });
++      const changed = vi.fn();
++      const presentation = new ImportedVehiclePresentation(library, { onGeometryChanged: changed });
++      await presentation.setSource(source('prior'));
++      const liveMeshes = presentation.geometryMeshes;
++      expect(await presentation.setSource({ ...source('bad-paint-softness'), surfaceStyles: {
++        'Authored Cloth': { paintedShadingSoftness },
++      } })).toBe('error');
++      expect(presentation.error?.message).toContain('paintedShadingSoftness must be finite and between 0 and 1');
++      expect(presentation.activeSource?.id).toBe('prior');
++      expect(presentation.geometryMeshes).toBe(liveMeshes);
++      expect(presentation.geometryRevision).toBe(1); expect(changed).toHaveBeenCalledTimes(1);
++      expect(prior.disposed.map).not.toHaveBeenCalled();
++      for (const disposed of Object.values(candidate.disposed)) expect(disposed).toHaveBeenCalledTimes(1);
++      presentation.dispose(); library.dispose();
++    },
++  );
++});
+--- /dev/null
++++ b/tests/materials/celPaintedShading.test.ts
+@@ -0,0 +1,179 @@
++// Prepared only. Intended destination: tests/materials/celPaintedShading.test.ts.
++// These CPU contracts do not establish rendered highlight quality or GPU parity.
++import { Color, DataTexture, NearestFilter, NoColorSpace, Texture } from 'three';
++import { describe, expect, it, vi } from 'vitest';
++import { CelMaterial } from '../../src/render/materials/CelMaterial';
++import { CEL_PALETTES, type CelPalette } from '../../src/render/materials/celPalette';
++import * as celRamp from '../../src/render/materials/celRamp';
++import { CEL_FRAGMENT_SHADER } from '../../src/render/materials/celShaders';
++
++function bytes(texture: DataTexture): Uint8Array {
++  const data = texture.image.data;
++  if (!(data instanceof Uint8Array)) throw new Error('Expected byte-backed ramp.');
++  return data;
++}
++
++function materialRamp(material: CelMaterial): DataTexture {
++  const ramp: unknown = material.uniforms.uRamp?.value;
++  if (!(ramp instanceof DataTexture)) throw new Error('Expected material ramp.');
++  return ramp;
++}
++
++function rgbaRuns(runs: readonly (readonly [number, number, number, number])[]): Uint8Array {
++  return Uint8Array.from(runs.flatMap(([count, r, g, b]) =>
++    Array.from({ length: count }, () => [r, g, b, 255]).flat()));
++}
++
++const fourBands = ['#000000', '#ff0000', '#00ff00', '#ffffff'] as const;
++const threeBands = ['#000000', '#ff0000', '#ffffff'] as const;
++const invalidSoftness = [-.01, 1.01, Number.NaN, Number.POSITIVE_INFINITY, Number.NEGATIVE_INFINITY];
++
++describe('optional painted ramp transitions', () => {
++  it.each([
++    { bands: fourBands, thresholds: [.2, .5, .8], expected: rgbaRuns([[51, 0, 0, 0], [77, 255, 0, 0], [77, 0, 255, 0], [51, 255, 255, 255]]) },
++    { bands: threeBands, thresholds: [.25, .75], expected: rgbaRuns([[64, 0, 0, 0], [128, 255, 0, 0], [64, 255, 255, 255]]) },
++  ])('retains every legacy center-sampled byte for $bands.length bands when omitted or zero', ({ bands, thresholds, expected }) => {
++    const omitted = celRamp.createCelRampTexture({ bands, thresholds });
++    const zero = celRamp.createCelRampTexture({ bands, thresholds, paintedShadingSoftness: 0 });
++    expect(bytes(omitted)).toEqual(expected);
++    expect(bytes(zero)).toEqual(expected);
++    omitted.dispose(); zero.dispose();
++  });
++
++  it('writes centered smoothstep transitions in the existing 256 by 1 nearest-filtered texture', () => {
++    const texture = celRamp.createCelRampTexture({ bands: fourBands, thresholds: [.2, .5, .8], paintedShadingSoftness: 1 });
++    const data = bytes(texture);
++    const rgba = (x: number) => Array.from(data.slice(x * 4, x * 4 + 4));
++    expect(texture.image.width).toBe(256); expect(texture.image.height).toBe(1);
++    expect(texture.minFilter).toBe(NearestFilter); expect(texture.magFilter).toBe(NearestFilter);
++    expect(texture.colorSpace).toBe(NoColorSpace); expect(texture.generateMipmaps).toBe(false);
++    // The middle threshold has half-width .10; these are fixed smoothstep samples.
++    expect(rgba(115)).toEqual([213, 42, 0, 255]);
++    expect(rgba(127)).toEqual([131, 124, 0, 255]);
++    expect(rgba(128)).toEqual([124, 131, 0, 255]);
++    expect(rgba(140)).toEqual([42, 213, 0, 255]);
++    expect(rgba(0)).toEqual([0, 0, 0, 255]);
++    expect(rgba(90)).toEqual([255, 0, 0, 255]);
++    expect(rgba(165)).toEqual([0, 255, 0, 255]);
++    expect(rgba(255)).toEqual([255, 255, 255, 255]);
++    for (let offset = 3; offset < data.length; offset += 4) expect(data[offset]).toBe(255);
++    texture.dispose();
++  });
++
++  it.each([
++    { thresholds: [.02, .05], plateau: 7 },
++    { thresholds: [.95, .98], plateau: 247 },
++  ])('limits transition width by neighboring intervals near $thresholds', ({ thresholds, plateau }) => {
++    const texture = celRamp.createCelRampTexture({ bands: threeBands, thresholds, paintedShadingSoftness: 1 });
++    const data = bytes(texture);
++    expect(Array.from(data.slice(plateau * 4, plateau * 4 + 4))).toEqual([255, 0, 0, 255]);
++    expect(Array.from(data.slice(0, 4))).toEqual([0, 0, 0, 255]);
++    expect(Array.from(data.slice(-4))).toEqual([255, 255, 255, 255]);
++    texture.dispose();
++  });
++
++  it('keeps plateaus in linear color space and interpolates without channel overshoot', () => {
++    const texture = celRamp.createCelRampTexture({ bands: ['#000000', '#808080', '#ffffff'], thresholds: [.25, .75], paintedShadingSoftness: .5 });
++    const data = bytes(texture);
++    expect(Array.from(data.slice(128 * 4, 128 * 4 + 4))).toEqual([55, 55, 55, 255]);
++    for (let x = 1; x < 256; x += 1) {
++      expect(data[x * 4]).toBeGreaterThanOrEqual(data[(x - 1) * 4]!);
++      expect(data[x * 4 + 1]).toBe(data[x * 4]);
++      expect(data[x * 4 + 2]).toBe(data[x * 4]);
++    }
++    expect(data[64 * 4]).toBeGreaterThan(0);
++    expect(data[64 * 4]).toBeLessThan(55);
++    texture.dispose();
++  });
++
++  it.each(invalidSoftness)('rejects invalid ramp softness %s before writing caller data', (paintedShadingSoftness) => {
++    const config = { bands: fourBands, thresholds: [.2, .5, .8], paintedShadingSoftness };
++    const target = new Uint8Array(256 * 4).fill(173);
++    expect(() => celRamp.createCelRampTexture(config)).toThrow(/finite.*between 0 and 1/i);
++    expect(() => celRamp.writeCelRampData(target, config)).toThrow(/finite.*between 0 and 1/i);
++    expect(target.every((value) => value === 173)).toBe(true);
++  });
++});
++
++describe('optional painted material contracts', () => {
++  it.each([0, .4, 1, 1.5])('preserves the exact legacy shader, uniform keys and ramp with wear %s when omitted or zero', (wear) => {
++    const omitted = new CelMaterial({ wear });
++    const zero = new CelMaterial({ wear, paintedShadingSoftness: 0 });
++    expect(omitted.fragmentShader).toBe(CEL_FRAGMENT_SHADER);
++    expect(zero.fragmentShader).toBe(CEL_FRAGMENT_SHADER);
++    expect(Object.keys(zero.uniforms).sort()).toEqual(Object.keys(omitted.uniforms).sort());
++    expect(zero.uniforms.uPaintedShadingSoftness).toBeUndefined();
++    expect(zero.defines).toEqual(omitted.defines);
++    expect(bytes(materialRamp(zero))).toEqual(bytes(materialRamp(omitted)));
++    for (const key of ['uWear', 'uSpecularPower', 'uSpecularCutoff', 'uSpecularStrength', 'uRimStrength', 'uReflectionStrength', 'uRoughness']) {
++      expect(zero.uniforms[key]?.value).toBe(omitted.uniforms[key]?.value);
++    }
++    omitted.dispose(); zero.dispose();
++  });
++
++  it.each([.35, 1])('adds only the softness uniform and separate fragment path at %s, with wear still zero', (paintedShadingSoftness) => {
++    const legacy = new CelMaterial({ wear: 0, specularStrength: .32, roughness: .7 });
++    const painted = new CelMaterial({ wear: 0, specularStrength: .32, roughness: .7, paintedShadingSoftness });
++    expect(painted.uniforms.uPaintedShadingSoftness?.value).toBe(paintedShadingSoftness);
++    expect(Object.keys(painted.uniforms).filter((key) => !(key in legacy.uniforms))).toEqual(['uPaintedShadingSoftness']);
++    expect(painted.defines).toEqual(legacy.defines);
++    expect(painted.uniforms.uWear?.value).toBe(0);
++    expect(painted.uniforms.uSpecularStrength?.value).toBe(.32);
++    expect(painted.uniforms.uRoughness?.value).toBe(.7);
++    expect(painted.fragmentShader).not.toBe(CEL_FRAGMENT_SHADER);
++    expect(painted.fragmentShader).toContain('uPaintedShadingSoftness');
++    expect(painted.fragmentShader).not.toContain('paintedRamp');
++    expect(painted.fragmentShader.match(/texture2D\(uRamp\b/g)).toHaveLength(1);
++    expect(bytes(materialRamp(painted))).not.toEqual(bytes(materialRamp(legacy)));
++    legacy.dispose(); painted.dispose();
++  });
++
++  it('retains softness and owned ramp identity when setPalette changes band count and thresholds', () => {
++    const material = new CelMaterial({ paintedShadingSoftness: .6 });
++    const ramp = materialRamp(material), data = bytes(ramp), prior = data.slice();
++    const version = ramp.version;
++    const palette: CelPalette = { ...CEL_PALETTES.rivalTeal, diffuseBands: ['#000000', '#808080', '#ffffff'] };
++    material.setPalette(palette, [.25, .75]);
++    const expected = celRamp.createCelRampTexture({ bands: palette.diffuseBands, thresholds: [.25, .75], paintedShadingSoftness: .6 });
++    const hard = celRamp.createCelRampTexture({ bands: palette.diffuseBands, thresholds: [.25, .75] });
++    expect(materialRamp(material)).toBe(ramp); expect(bytes(ramp)).toBe(data);
++    expect(ramp.version).toBeGreaterThan(version);
++    expect(data).not.toEqual(prior); expect(data).toEqual(bytes(expected)); expect(data).not.toEqual(bytes(hard));
++    expect(material.uniforms.uPaintedShadingSoftness?.value).toBe(.6);
++    expect(material.uniforms.uSpecularColor?.value).toEqual(new Color(palette.specular));
++    expect(material.palette).toBe(palette); expect(material.diffuseThresholds).toEqual([.25, .75]);
++    material.dispose(); expected.dispose(); hard.dispose();
++  });
++
++  it('preserves borrowed color/roughness maps, transforms and disposal ownership with positive softness', () => {
++    const color = new Texture(), roughness = new Texture();
++    color.offset.set(.2, .3); color.repeat.set(2, -1); color.channel = 1;
++    roughness.matrixAutoUpdate = false; roughness.matrix.set(2, 0, .1, 0, 3, .2, 0, 0, 1);
++    const colorMatrix = color.matrix.clone(), roughnessMatrix = roughness.matrix.clone();
++    const colorDispose = vi.spyOn(color, 'dispose'), roughnessDispose = vi.spyOn(roughness, 'dispose');
++    const options = { baseColorMap: color, baseColorStrength: .86, roughnessMap: roughness, roughness: .7, wear: 0 };
++    const legacy = new CelMaterial(options), painted = new CelMaterial({ ...options, paintedShadingSoftness: .8 });
++    expect(painted.uniforms.uBaseColorMap?.value).toBe(color); expect(painted.uniforms.uRoughnessMap?.value).toBe(roughness);
++    expect(painted.uniforms.uBaseColorUvTransform?.value).toEqual(legacy.uniforms.uBaseColorUvTransform?.value);
++    expect(painted.uniforms.uRoughnessUvTransform?.value).toEqual(roughnessMatrix);
++    expect(painted.uniforms.uBaseColorStrength?.value).toBe(.86); expect(painted.uniforms.uRoughness?.value).toBe(.7);
++    expect(color.matrix).toEqual(colorMatrix); expect(roughness.matrix).toEqual(roughnessMatrix);
++    expect(painted.defines).toEqual(legacy.defines);
++    legacy.dispose(); painted.dispose();
++    expect(colorDispose).not.toHaveBeenCalled(); expect(roughnessDispose).not.toHaveBeenCalled();
++    color.dispose(); roughness.dispose();
++  });
++
++  it('rejects invalid material softness before allocating owned lookup textures', () => {
++    const ramp = vi.spyOn(celRamp, 'createCelRampTexture');
++    const matcap = vi.spyOn(celRamp, 'createGraphicMatcapTexture');
++    try {
++      for (const paintedShadingSoftness of invalidSoftness) {
++        expect(() => new CelMaterial({ paintedShadingSoftness })).toThrow(/finite.*between 0 and 1/i);
++      }
++      expect(ramp).not.toHaveBeenCalled(); expect(matcap).not.toHaveBeenCalled();
++    } finally {
++      ramp.mockRestore(); matcap.mockRestore();
++    }
++  });
++});

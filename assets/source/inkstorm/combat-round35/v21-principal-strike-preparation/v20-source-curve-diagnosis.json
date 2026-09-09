@@ -1,0 +1,21 @@
+{
+  "scope": "Analytic local-center offset derivative at the V20 rear contact age. Excludes parent-body motion, pivot orientation and terrain witness motion; not native measured velocity.",
+  "source": {
+    "path": "/Users/amir/Projects/PodRacing/src/render/combat/TeemtoAuthoredDamage.ts",
+    "bytes": 14232,
+    "sha256": "a6d5aab8c29469c17e2927cc45a5c192c952030d3b074aa47f158a0065d1d85b"
+  },
+  "age": 0.075,
+  "openingDerivative": 11.250000000000002,
+  "followThroughDerivative": 0.41146132982658,
+  "centerOffsetVelocityXZ": [
+    16.052077340346845,
+    -37.6187535957919
+  ],
+  "currentContactDirectionXZ": [
+    -2,
+    -1.2
+  ],
+  "angleDegrees": 82.14438597786751,
+  "finding": "At first rear contact the opening still moves+X; the fixed contact direction describes later negative-X follow-through. The main local center subsequently reversesX after opening completes."
+}

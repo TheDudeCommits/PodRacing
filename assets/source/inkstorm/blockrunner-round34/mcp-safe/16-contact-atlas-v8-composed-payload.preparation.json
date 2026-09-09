@@ -1,0 +1,101 @@
+{
+  "status": "prepared only; no Blender execution",
+  "payload": {
+    "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/mcp-safe/16-contact-atlas-v8-composed-payload.py",
+    "bytes": 174294,
+    "sha256": "a103706edac1a24f09bfe5e4a9fa5c0d1ef583cf6a62ac747f7cbbacc7612f42"
+  },
+  "actualLatestState": {
+    "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/mcp-safe/bake-v7-pilot-color-receipt.json",
+    "bytes": 10308,
+    "sha256": "ab4affd3d05d58678cb6df0b482cf6d2f0c71b93aeeddb28f6c248bba0d37e15"
+  },
+  "actualAuthor": {
+    "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/mcp-safe/contact-author-v7-receipt.json",
+    "bytes": 68012,
+    "sha256": "640ccbd730e00a5ec21d70b2b49f15f4c95a18058409145d88e0d98fcd68e691"
+  },
+  "actualBakeReceipts": [
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/mcp-safe/bake-v7-body-color-receipt.json",
+      "bytes": 9334,
+      "sha256": "5faa8508cc844857111efba66ab28d9f18d6177b964a7377d519081298242f9a"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/mcp-safe/bake-v4b-body-roughness-receipt.json",
+      "bytes": 4797,
+      "sha256": "7a8ff057914b25703fef17bb18c7be251e573d0261cf9cda6525d59ae84d644e"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/mcp-safe/bake-v7-pilot-color-receipt.json",
+      "bytes": 10308,
+      "sha256": "ab4affd3d05d58678cb6df0b482cf6d2f0c71b93aeeddb28f6c248bba0d37e15"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/mcp-safe/bake-v4b-pilot-roughness-receipt.json",
+      "bytes": 5606,
+      "sha256": "568129f1f868890694383d555bcabe68d7e8c0a69f0177426f107ca492c1a1bc"
+    }
+  ],
+  "imageInputs": [
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/blockrunner-body-color-v1-20260908-contact-v7.png",
+      "bytes": 1463920,
+      "sha256": "07243038165c77f64ecc3856a20a6e4d4e3baed3742dac394dc10fe3a5be7b72"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/blockrunner-body-roughness-v1-20260908-paint-v4b.png",
+      "bytes": 725949,
+      "sha256": "c93768657a8a47eba2def2187be05f6dd786909a93149eb949cf72d9e6c07b18"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/blockrunner-pilot-color-v1-20260908-contact-v7.png",
+      "bytes": 586530,
+      "sha256": "27d3ed1a8582ba6140b138ab0754d65faff586d04895ae166d768148548a1822"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/blockrunner-pilot-roughness-v1-20260908-paint-v4b.png",
+      "bytes": 210771,
+      "sha256": "556cac9d55ab318bfc56166c2153b8df85c03da658a04209b5a9a1a5d8c7963e"
+    }
+  ],
+  "sourceFragments": [
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/mcp-safe/00-source-reference.py",
+      "bytes": 20886,
+      "sha256": "1e102e361460a5540776f5d45289f4b458ddb10f3355d6421e3c096a762d87b8"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/mcp-safe/01-source-guard.py",
+      "bytes": 10293,
+      "sha256": "2a16250b35ebc55240477f5aebc16b81d83dc475d14f290c803c86abf6fd2e89"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/mcp-safe/pilot-paint-reference-v1.py",
+      "bytes": 27434,
+      "sha256": "251ebd053862e659ce4c79875dbe0c99a5304f258e6156db0fd28cdd57ee6af5"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/mcp-safe/13-v4-attribute-signatures.py",
+      "bytes": 945,
+      "sha256": "edf0140332615bf6d14beebbb891f2a409bd6458edf23b17b1b92bcb84f75dca"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/mcp-safe/14-atlas-wrap-guards.py",
+      "bytes": 4267,
+      "sha256": "31fd32887302053ea98f888900514edef3c02588b0912b777b59a6736bff8ca2"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/mcp-safe/15d-ao-contact-guards.py",
+      "bytes": 5356,
+      "sha256": "f2a5925bbbe6f0e32265d21650d09e5b1a9c9a59c7938e4057acdfd2a78ab9a1"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/mcp-safe/11b-copy-finalize-atlas-v3-socket-iteration.py",
+      "bytes": 18567,
+      "sha256": "e0d7fcbbab4c316e45da51e19ca40c88d7578a8a178ceebedd7663cfe1873169"
+    }
+  ],
+  "changes": "Two unchanged geometry owners, 1 body + 4 pilot simple atlas materials, exact V6 non-color response, ten EXTEND image nodes; V7 color masters plus explicit original V4B roughness reuse; no bake/export/LOD/normalization",
+  "staticChecks": "AST/allowed imports/literal attribute names/payload size pass"
+}

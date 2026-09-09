@@ -1,0 +1,46 @@
+{
+  "status": "PREPARED NOT EXECUTED",
+  "mcpExecuted": false,
+  "liveBlenderStateVerified": false,
+  "payload": "ivory-read-only-audit-prepared-v2.py",
+  "payloadBytes": 69509,
+  "payloadSha256": "2d6b5a60876f7608c91f6c9fceaa977288fab63a18853f491795b46b7ab5a6e9",
+  "v1Sha256": "3a76dfd26d3a1fe531ca8c9c2d90db8b2dacb3409ab748fed9fcf5ffd2d62cde",
+  "astParsed": true,
+  "computedAttributeAccessRemoved": true,
+  "allRemainingGetattrHasattrUseLiteralNames": true,
+  "attributeChecks": [
+    {
+      "function": "hasattr",
+      "attribute": "cycles",
+      "line": 134
+    },
+    {
+      "function": "hasattr",
+      "attribute": "default_value",
+      "line": 62
+    },
+    {
+      "function": "hasattr",
+      "attribute": "image",
+      "line": 83
+    }
+  ],
+  "moduleNamespacesNeverPassedOrAssignedAsValues": true,
+  "datablockIdSetGuardsPreserved": [
+    "scenes",
+    "collections",
+    "objects",
+    "meshes",
+    "materials",
+    "images",
+    "worlds",
+    "cameras",
+    "lights",
+    "curves",
+    "actions",
+    "node_groups"
+  ],
+  "contextSnapshot": "Fresh at execution; scene/layer/active/complete selection and all-scene/all-collection membership/settings snapshot remain unchanged. No hard-coded scene count.",
+  "diff": "v1-to-v2.diff"
+}

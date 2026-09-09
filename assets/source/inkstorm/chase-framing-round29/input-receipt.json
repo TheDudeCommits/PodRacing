@@ -1,0 +1,40 @@
+{
+  "scope": "read-only source and image inputs for CPU study; no frozen path modified by study",
+  "inputs": [
+    {
+      "path": "src/camera/CinematicCamera.ts",
+      "bytes": 19700,
+      "sha256": "6029048bd3c2bd846c9ad5703594851ccca872635f08d72d3ba2f61712e45eba"
+    },
+    {
+      "path": "src/render/vehicles/RacerPresentation.ts",
+      "bytes": 11467,
+      "sha256": "a9a76aa8a91b48a1a01a5775fe034aff435551367ae8636f3b6a3c09da015abb"
+    },
+    {
+      "path": "src/game/vehicleAppearance.ts",
+      "bytes": 7447,
+      "sha256": "74737c27054321e5a7aa4a4f5c4dfb8c36a5bfdafab44eab09ed4ca992b5f1d0"
+    },
+    {
+      "path": "public/assets/inkstorm/vehicles/teemto-hero-v4c.glb",
+      "bytes": 6774412,
+      "sha256": "f3eb56a54b7dbb8f4a26263fb26f1f88b188db6bcc409910a3561ae939f1eef1"
+    },
+    {
+      "path": "output/gauntlet/round-28/receipts.json",
+      "bytes": 695304,
+      "sha256": "315ae9c8a65ddb8747f763df371625b127328fee11c323058fe63fd59779bfc1"
+    },
+    {
+      "path": "docs/inkstorm-overhaul/concepts/01-grid.png",
+      "bytes": 2680049,
+      "sha256": "9b0cb5d949dbd077abc593b39d9f23805fcf9c7d45e7c1737987d671c2d11445"
+    },
+    {
+      "path": "docs/inkstorm-overhaul/concepts/05-launch.png",
+      "bytes": 2540528,
+      "sha256": "a791c4726db5997b8395d0d50e8ee3b858db80e0ecb01eb817ad30e7b2dc212a"
+    }
+  ]
+}

@@ -1,0 +1,1759 @@
+{
+  "status": "PASS",
+  "scope": "Exact frozen pit geometry CPU visibility quadrature versus actual128sample Cycles direct-white EXR at floor receivers. No game A/B or exhaustive transport proof.",
+  "sourceSha256": "ea94400e38bf6cf5998f84cbd2cffd342054760e17c43c0f4b75ac636212d1dc",
+  "uvSourceSha256": "ea94400e38bf6cf5998f84cbd2cffd342054760e17c43c0f4b75ac636212d1dc",
+  "exrSha256": "198eeff11f35639121545f6921b4fe101d182ec59aad7572ca143c499b9b452b",
+  "checks": [
+    {
+      "name": "Baked floor contains physically blocked dark receivers under equipment",
+      "pass": true,
+      "samples": 38,
+      "maxBakedRed": 0.0002002713025295289
+    },
+    {
+      "name": "Clear task work planes receive a meaningful warm response",
+      "pass": true,
+      "samples": 12,
+      "medianBakedRed": 0.5435537299871246
+    },
+    {
+      "name": "Sampled source rays and baked response broadly agree",
+      "pass": true,
+      "within012": 75,
+      "total": 75
+    }
+  ],
+  "results": [
+    {
+      "bay": 1,
+      "point": [
+        -56,
+        1,
+        -9
+      ],
+      "sourceTriangle": 11,
+      "areaRays": 45,
+      "visibleAreaRays": 15,
+      "unoccludedRed": 0.21245559299346203,
+      "predictedRed": 0.2116518468074206,
+      "uvBlender": [
+        0.13211393605317334,
+        0.9437225431203842
+      ],
+      "linearRGB": [
+        0.2087574979515745,
+        0.14612196675303343,
+        0.07934554109777936
+      ],
+      "absoluteRedError": 0.0028943488558461072
+    },
+    {
+      "bay": 1,
+      "point": [
+        -56,
+        1,
+        -6
+      ],
+      "sourceTriangle": 759,
+      "areaRays": 45,
+      "visibleAreaRays": 0,
+      "unoccludedRed": 0.32304542320662855,
+      "predictedRed": 0,
+      "uvBlender": [
+        0.5601736094270433,
+        0.26564602083405686
+      ],
+      "linearRGB": [
+        0,
+        0,
+        0
+      ],
+      "absoluteRedError": 0
+    },
+    {
+      "bay": 1,
+      "point": [
+        -56,
+        1,
+        -3
+      ],
+      "sourceTriangle": 11,
+      "areaRays": 45,
+      "visibleAreaRays": 0,
+      "unoccludedRed": 0.3799071537228824,
+      "predictedRed": 0,
+      "uvBlender": [
+        0.11142265348318071,
+        0.9437225431203843
+      ],
+      "linearRGB": [
+        0,
+        0,
+        0
+      ],
+      "absoluteRedError": 0
+    },
+    {
+      "bay": 1,
+      "point": [
+        -56,
+        1,
+        0
+      ],
+      "sourceTriangle": 11,
+      "areaRays": 45,
+      "visibleAreaRays": 15,
+      "unoccludedRed": 0.32304492542972413,
+      "predictedRed": 0.3222245682916083,
+      "uvBlender": [
+        0.1010770121981844,
+        0.9437225431203844
+      ],
+      "linearRGB": [
+        0.32307863957088495,
+        0.22617673833500673,
+        0.1227650103847553
+      ],
+      "absoluteRedError": 0.0008540712792766691
+    },
+    {
+      "bay": 1,
+      "point": [
+        -56,
+        1,
+        3
+      ],
+      "sourceTriangle": 11,
+      "areaRays": 45,
+      "visibleAreaRays": 15,
+      "unoccludedRed": 0.21245460678784436,
+      "predictedRed": 0.2116518468074206,
+      "uvBlender": [
+        0.09073137091318806,
+        0.9437225431203842
+      ],
+      "linearRGB": [
+        0.20981937502378598,
+        0.14690151977739913,
+        0.07972767208184484
+      ],
+      "absoluteRedError": 0.0018324717836346316
+    },
+    {
+      "bay": 1,
+      "point": [
+        -53,
+        1,
+        -9
+      ],
+      "sourceTriangle": 11,
+      "areaRays": 45,
+      "visibleAreaRays": 15,
+      "unoccludedRed": 0.3208087334225389,
+      "predictedRed": 0.3197889156724636,
+      "uvBlender": [
+        0.13211393605317334,
+        0.9333706641197205
+      ],
+      "linearRGB": [
+        0.32038422737418043,
+        0.22429077358656468,
+        0.12175676894234176
+      ],
+      "absoluteRedError": 0.0005953117017168386
+    },
+    {
+      "bay": 1,
+      "point": [
+        -53,
+        1,
+        -6
+      ],
+      "sourceTriangle": 11,
+      "areaRays": 45,
+      "visibleAreaRays": 15,
+      "unoccludedRed": 0.5436333434848383,
+      "predictedRed": 0.5425887484523371,
+      "uvBlender": [
+        0.12176829476817702,
+        0.9333706641197204
+      ],
+      "linearRGB": [
+        0.5312428484117064,
+        0.371926495210794,
+        0.2019201001584614
+      ],
+      "absoluteRedError": 0.01134590004063063
+    },
+    {
+      "bay": 1,
+      "point": [
+        -53,
+        1,
+        -3
+      ],
+      "sourceTriangle": 11,
+      "areaRays": 45,
+      "visibleAreaRays": 15,
+      "unoccludedRed": 0.6722082771817557,
+      "predictedRed": 0.671155413404462,
+      "uvBlender": [
+        0.1114226534831807,
+        0.9333706641197205
+      ],
+      "linearRGB": [
+        0.6713000705994593,
+        0.46981157795376705,
+        0.25507843850606937
+      ],
+      "absoluteRedError": 0.00014465719499723306
+    },
+    {
+      "bay": 1,
+      "point": [
+        -53,
+        1,
+        0
+      ],
+      "sourceTriangle": 11,
+      "areaRays": 45,
+      "visibleAreaRays": 15,
+      "unoccludedRed": 0.5436327374243726,
+      "predictedRed": 0.5425887484523371,
+      "uvBlender": [
+        0.10107701219818438,
+        0.9333706641197206
+      ],
+      "linearRGB": [
+        0.5435537299871246,
+        0.38046454105592303,
+        0.20645849144219341
+      ],
+      "absoluteRedError": 0.0009649815347875235
+    },
+    {
+      "bay": 1,
+      "point": [
+        -53,
+        1,
+        3
+      ],
+      "sourceTriangle": 11,
+      "areaRays": 45,
+      "visibleAreaRays": 15,
+      "unoccludedRed": 0.32080753344792273,
+      "predictedRed": 0.3197889156724636,
+      "uvBlender": [
+        0.09073137091318807,
+        0.9333706641197204
+      ],
+      "linearRGB": [
+        0.3184136332074081,
+        0.22286436214835648,
+        0.12097114774312867
+      ],
+      "absoluteRedError": 0.0013752824650554718
+    },
+    {
+      "bay": 1,
+      "point": [
+        -50,
+        1,
+        -9
+      ],
+      "sourceTriangle": 11,
+      "areaRays": 45,
+      "visibleAreaRays": 0,
+      "unoccludedRed": 0.3759225011115708,
+      "predictedRed": 0,
+      "uvBlender": [
+        0.13211393605317334,
+        0.9230187851190567
+      ],
+      "linearRGB": [
+        0,
+        0,
+        0
+      ],
+      "absoluteRedError": 0
+    },
+    {
+      "bay": 1,
+      "point": [
+        -50,
+        1,
+        -6
+      ],
+      "sourceTriangle": 982,
+      "areaRays": 45,
+      "visibleAreaRays": 0,
+      "unoccludedRed": 0.6689887262660632,
+      "predictedRed": 0,
+      "uvBlender": [
+        0.26543721556663513,
+        0.35579843322436017
+      ],
+      "linearRGB": [
+        0,
+        0,
+        0
+      ],
+      "absoluteRedError": 0
+    },
+    {
+      "bay": 1,
+      "point": [
+        -50,
+        1,
+        -3
+      ],
+      "sourceTriangle": 982,
+      "areaRays": 45,
+      "visibleAreaRays": 0,
+      "unoccludedRed": 0.8472202283035601,
+      "predictedRed": 0,
+      "uvBlender": [
+        0.2625736892223358,
+        0.3557984332243601
+      ],
+      "linearRGB": [
+        0,
+        0,
+        0
+      ],
+      "absoluteRedError": 0
+    },
+    {
+      "bay": 1,
+      "point": [
+        -50,
+        1,
+        0
+      ],
+      "sourceTriangle": 983,
+      "areaRays": 45,
+      "visibleAreaRays": 0,
+      "unoccludedRed": 0.6689879834797798,
+      "predictedRed": 0,
+      "uvBlender": [
+        0.2597101628780365,
+        0.35579843322436017
+      ],
+      "linearRGB": [
+        0,
+        0,
+        0
+      ],
+      "absoluteRedError": 0
+    },
+    {
+      "bay": 1,
+      "point": [
+        -50,
+        1,
+        3
+      ],
+      "sourceTriangle": 11,
+      "areaRays": 45,
+      "visibleAreaRays": 15,
+      "unoccludedRed": 0.3759210314595112,
+      "predictedRed": 0.37460842289575375,
+      "uvBlender": [
+        0.09073137091318807,
+        0.9230187851190566
+      ],
+      "linearRGB": [
+        0.37588738124582055,
+        0.26316334693736476,
+        0.14285227634290154
+      ],
+      "absoluteRedError": 0.0012789583500668056
+    },
+    {
+      "bay": 1,
+      "point": [
+        -47,
+        1,
+        -9
+      ],
+      "sourceTriangle": 11,
+      "areaRays": 45,
+      "visibleAreaRays": 6,
+      "unoccludedRed": 0.32151176587060953,
+      "predictedRed": 0.13608443358459804,
+      "uvBlender": [
+        0.13211393605317334,
+        0.9126669061183929
+      ],
+      "linearRGB": [
+        0.1219996679236156,
+        0.0854262541411871,
+        0.04636256391506982
+      ],
+      "absoluteRedError": 0.014084765660982435
+    },
+    {
+      "bay": 1,
+      "point": [
+        -47,
+        1,
+        -6
+      ],
+      "sourceTriangle": 982,
+      "areaRays": 45,
+      "visibleAreaRays": 0,
+      "unoccludedRed": 0.5443675162469649,
+      "predictedRed": 0,
+      "uvBlender": [
+        0.26543721556663513,
+        0.3586808145046234
+      ],
+      "linearRGB": [
+        0,
+        0,
+        0
+      ],
+      "absoluteRedError": 0
+    },
+    {
+      "bay": 1,
+      "point": [
+        -47,
+        1,
+        -3
+      ],
+      "sourceTriangle": 983,
+      "areaRays": 45,
+      "visibleAreaRays": 0,
+      "unoccludedRed": 0.6729531474023106,
+      "predictedRed": 0,
+      "uvBlender": [
+        0.2625736892223358,
+        0.3586808145046234
+      ],
+      "linearRGB": [
+        0,
+        0,
+        0
+      ],
+      "absoluteRedError": 0
+    },
+    {
+      "bay": 1,
+      "point": [
+        -47,
+        1,
+        0
+      ],
+      "sourceTriangle": 983,
+      "areaRays": 45,
+      "visibleAreaRays": 0,
+      "unoccludedRed": 0.5443665994461906,
+      "predictedRed": 0,
+      "uvBlender": [
+        0.2597101628780365,
+        0.3586808145046234
+      ],
+      "linearRGB": [
+        0,
+        0,
+        0
+      ],
+      "absoluteRedError": 0
+    },
+    {
+      "bay": 1,
+      "point": [
+        -47,
+        1,
+        3
+      ],
+      "sourceTriangle": 11,
+      "areaRays": 45,
+      "visibleAreaRays": 15,
+      "unoccludedRed": 0.3215099533321831,
+      "predictedRed": 0.31978891567246354,
+      "uvBlender": [
+        0.09073137091318806,
+        0.9126669061183929
+      ],
+      "linearRGB": [
+        0.31694444866261384,
+        0.22190200790978407,
+        0.12044516727915569
+      ],
+      "absoluteRedError": 0.002844467009849694
+    },
+    {
+      "bay": 1,
+      "point": [
+        -44,
+        1,
+        -9
+      ],
+      "sourceTriangle": 11,
+      "areaRays": 45,
+      "visibleAreaRays": 0,
+      "unoccludedRed": 0.2139552773114877,
+      "predictedRed": 0,
+      "uvBlender": [
+        0.13211393605317334,
+        0.9023150271177292
+      ],
+      "linearRGB": [
+        0,
+        0,
+        0
+      ],
+      "absoluteRedError": 0
+    },
+    {
+      "bay": 1,
+      "point": [
+        -44,
+        1,
+        -6
+      ],
+      "sourceTriangle": 983,
+      "areaRays": 45,
+      "visibleAreaRays": 0,
+      "unoccludedRed": 0.3246156964639681,
+      "predictedRed": 0,
+      "uvBlender": [
+        0.26543721556663513,
+        0.36156319578488666
+      ],
+      "linearRGB": [
+        0,
+        0,
+        0
+      ],
+      "absoluteRedError": 0
+    },
+    {
+      "bay": 1,
+      "point": [
+        -44,
+        1,
+        -3
+      ],
+      "sourceTriangle": 983,
+      "areaRays": 45,
+      "visibleAreaRays": 0,
+      "unoccludedRed": 0.3815017725986539,
+      "predictedRed": 0,
+      "uvBlender": [
+        0.2625736892223358,
+        0.3615631957848867
+      ],
+      "linearRGB": [
+        0,
+        0,
+        0
+      ],
+      "absoluteRedError": 0
+    },
+    {
+      "bay": 1,
+      "point": [
+        -44,
+        1,
+        0
+      ],
+      "sourceTriangle": 983,
+      "areaRays": 45,
+      "visibleAreaRays": 0,
+      "unoccludedRed": 0.3246145563025815,
+      "predictedRed": 0,
+      "uvBlender": [
+        0.2597101628780365,
+        0.36156319578488666
+      ],
+      "linearRGB": [
+        0,
+        0,
+        0
+      ],
+      "absoluteRedError": 0
+    },
+    {
+      "bay": 1,
+      "point": [
+        -44,
+        1,
+        3
+      ],
+      "sourceTriangle": 11,
+      "areaRays": 45,
+      "visibleAreaRays": 15,
+      "unoccludedRed": 0.2139530251353794,
+      "predictedRed": 0.2116518468074206,
+      "uvBlender": [
+        0.09073137091318806,
+        0.9023150271177292
+      ],
+      "linearRGB": [
+        0.2115947390788791,
+        0.14808545296587536,
+        0.08041377661505884
+      ],
+      "absoluteRedError": 0.00005710772854150559
+    },
+    {
+      "bay": 2,
+      "point": [
+        -14,
+        1,
+        -9
+      ],
+      "sourceTriangle": 11,
+      "areaRays": 45,
+      "visibleAreaRays": 11,
+      "unoccludedRed": 0.21450242192915725,
+      "predictedRed": 0.15049974913598152,
+      "uvBlender": [
+        0.13211393605317334,
+        0.7987962371110916
+      ],
+      "linearRGB": [
+        0.15452092089452704,
+        0.10816768288612083,
+        0.05872179331698493
+      ],
+      "absoluteRedError": 0.004021171758545522
+    },
+    {
+      "bay": 2,
+      "point": [
+        -14,
+        1,
+        -6
+      ],
+      "sourceTriangle": 2844,
+      "areaRays": 45,
+      "visibleAreaRays": 0,
+      "unoccludedRed": 0.32516711997221914,
+      "predictedRed": 0,
+      "uvBlender": [
+        0.7318548250680481,
+        0.40159889629908974
+      ],
+      "linearRGB": [
+        0,
+        0,
+        0
+      ],
+      "absoluteRedError": 0
+    },
+    {
+      "bay": 2,
+      "point": [
+        -14,
+        1,
+        -3
+      ],
+      "sourceTriangle": 11,
+      "areaRays": 45,
+      "visibleAreaRays": 0,
+      "unoccludedRed": 0.3820489172163234,
+      "predictedRed": 0,
+      "uvBlender": [
+        0.11142265348318071,
+        0.7987962371110917
+      ],
+      "linearRGB": [
+        0,
+        0,
+        0
+      ],
+      "absoluteRedError": 0
+    },
+    {
+      "bay": 2,
+      "point": [
+        -14,
+        1,
+        0
+      ],
+      "sourceTriangle": 11,
+      "areaRays": 45,
+      "visibleAreaRays": 15,
+      "unoccludedRed": 0.32514914018622876,
+      "predictedRed": 0.3222245682916082,
+      "uvBlender": [
+        0.10107701219818438,
+        0.7987962371110917
+      ],
+      "linearRGB": [
+        0.3212139673765648,
+        0.22487032231816192,
+        0.12206742983697756
+      ],
+      "absoluteRedError": 0.0010106009150434025
+    },
+    {
+      "bay": 2,
+      "point": [
+        -14,
+        1,
+        3
+      ],
+      "sourceTriangle": 11,
+      "areaRays": 45,
+      "visibleAreaRays": 15,
+      "unoccludedRed": 0.21446755637618356,
+      "predictedRed": 0.21165184680742058,
+      "uvBlender": [
+        0.09073137091318807,
+        0.7987962371110917
+      ],
+      "linearRGB": [
+        0.21302240622535612,
+        0.1491401587491391,
+        0.08094174221788455
+      ],
+      "absoluteRedError": 0.0013705594179355407
+    },
+    {
+      "bay": 2,
+      "point": [
+        -11,
+        1,
+        -9
+      ],
+      "sourceTriangle": 11,
+      "areaRays": 45,
+      "visibleAreaRays": 15,
+      "unoccludedRed": 0.3222487898825125,
+      "predictedRed": 0.31978891567246365,
+      "uvBlender": [
+        0.13211393605317334,
+        0.7884443581104279
+      ],
+      "linearRGB": [
+        0.3217078841737111,
+        0.2252077125562864,
+        0.12223272373577018
+      ],
+      "absoluteRedError": 0.0019189685012474533
+    },
+    {
+      "bay": 2,
+      "point": [
+        -11,
+        1,
+        -6
+      ],
+      "sourceTriangle": 11,
+      "areaRays": 45,
+      "visibleAreaRays": 15,
+      "unoccludedRed": 0.5451108539086149,
+      "predictedRed": 0.542588748452337,
+      "uvBlender": [
+        0.12176829476817702,
+        0.7884443581104278
+      ],
+      "linearRGB": [
+        0.5452358929441153,
+        0.3816018279952843,
+        0.20712767137103916
+      ],
+      "absoluteRedError": 0.002647144491778386
+    },
+    {
+      "bay": 2,
+      "point": [
+        -11,
+        1,
+        -3
+      ],
+      "sourceTriangle": 11,
+      "areaRays": 45,
+      "visibleAreaRays": 15,
+      "unoccludedRed": 0.6736901714142132,
+      "predictedRed": 0.671155413404462,
+      "uvBlender": [
+        0.11142265348318071,
+        0.7884443581104279
+      ],
+      "linearRGB": [
+        0.6651121988057155,
+        0.4655526302603454,
+        0.2526948718582525
+      ],
+      "absoluteRedError": 0.006043214598746571
+    },
+    {
+      "bay": 2,
+      "point": [
+        -11,
+        1,
+        0
+      ],
+      "sourceTriangle": 11,
+      "areaRays": 45,
+      "visibleAreaRays": 15,
+      "unoccludedRed": 0.5450851337552631,
+      "predictedRed": 0.542588748452337,
+      "uvBlender": [
+        0.10107701219818438,
+        0.7884443581104279
+      ],
+      "linearRGB": [
+        0.5405740991547928,
+        0.378322835086962,
+        0.2054323991792415
+      ],
+      "absoluteRedError": 0.0020146492975441355
+    },
+    {
+      "bay": 2,
+      "point": [
+        -11,
+        1,
+        3
+      ],
+      "sourceTriangle": 11,
+      "areaRays": 45,
+      "visibleAreaRays": 15,
+      "unoccludedRed": 0.32219910659772155,
+      "predictedRed": 0.3197889156724636,
+      "uvBlender": [
+        0.09073137091318806,
+        0.7884443581104279
+      ],
+      "linearRGB": [
+        0.3225000165669931,
+        0.22574864761861282,
+        0.12253559171720332
+      ],
+      "absoluteRedError": 0.002711100894529528
+    },
+    {
+      "bay": 2,
+      "point": [
+        -8,
+        1,
+        -9
+      ],
+      "sourceTriangle": 11,
+      "areaRays": 45,
+      "visibleAreaRays": 0,
+      "unoccludedRed": 0.37691025333170813,
+      "predictedRed": 0,
+      "uvBlender": [
+        0.13211393605317334,
+        0.7780924791097641
+      ],
+      "linearRGB": [
+        0.000013233432266494279,
+        0.000009266936213319425,
+        0.000005026584085203768
+      ],
+      "absoluteRedError": 0.000013233432266494279
+    },
+    {
+      "bay": 2,
+      "point": [
+        -8,
+        1,
+        -6
+      ],
+      "sourceTriangle": 3068,
+      "areaRays": 45,
+      "visibleAreaRays": 0,
+      "unoccludedRed": 0.6699858820331455,
+      "predictedRed": 0,
+      "uvBlender": [
+        0.6457626819610597,
+        0.4961293488740921
+      ],
+      "linearRGB": [
+        0,
+        0,
+        0
+      ],
+      "absoluteRedError": 0
+    },
+    {
+      "bay": 2,
+      "point": [
+        -8,
+        1,
+        -3
+      ],
+      "sourceTriangle": 3068,
+      "areaRays": 45,
+      "visibleAreaRays": 0,
+      "unoccludedRed": 0.8482079805236974,
+      "predictedRed": 0,
+      "uvBlender": [
+        0.6428991556167603,
+        0.49612934887409205
+      ],
+      "linearRGB": [
+        0,
+        0,
+        0
+      ],
+      "absoluteRedError": 0
+    },
+    {
+      "bay": 2,
+      "point": [
+        -8,
+        1,
+        0
+      ],
+      "sourceTriangle": 3069,
+      "areaRays": 45,
+      "visibleAreaRays": 0,
+      "unoccludedRed": 0.6699482792687371,
+      "predictedRed": 0,
+      "uvBlender": [
+        0.640035629272461,
+        0.4961293488740921
+      ],
+      "linearRGB": [
+        0,
+        0,
+        0
+      ],
+      "absoluteRedError": 0
+    },
+    {
+      "bay": 2,
+      "point": [
+        -8,
+        1,
+        3
+      ],
+      "sourceTriangle": 10,
+      "areaRays": 45,
+      "visibleAreaRays": 15,
+      "unoccludedRed": 0.3768379507043569,
+      "predictedRed": 0.37460842289575375,
+      "uvBlender": [
+        0.09073137091318807,
+        0.7780924791097643
+      ],
+      "linearRGB": [
+        0.3654362035644565,
+        0.2557502336242888,
+        0.13889873084383145
+      ],
+      "absoluteRedError": 0.009172219331297249
+    },
+    {
+      "bay": 2,
+      "point": [
+        -5,
+        1,
+        -9
+      ],
+      "sourceTriangle": 11,
+      "areaRays": 45,
+      "visibleAreaRays": 6,
+      "unoccludedRed": 0.322137400230223,
+      "predictedRed": 0.13608443358459804,
+      "uvBlender": [
+        0.13211393605317337,
+        0.7677406001091004
+      ],
+      "linearRGB": [
+        0.12872627430188835,
+        0.09014397015761505,
+        0.04891792479018812
+      ],
+      "absoluteRedError": 0.007358159282709692
+    },
+    {
+      "bay": 2,
+      "point": [
+        -5,
+        1,
+        -6
+      ],
+      "sourceTriangle": 3068,
+      "areaRays": 45,
+      "visibleAreaRays": 0,
+      "unoccludedRed": 0.5449762671761591,
+      "predictedRed": 0,
+      "uvBlender": [
+        0.6457626819610596,
+        0.49901174008846283
+      ],
+      "linearRGB": [
+        0,
+        0,
+        0
+      ],
+      "absoluteRedError": 0
+    },
+    {
+      "bay": 2,
+      "point": [
+        -5,
+        1,
+        -3
+      ],
+      "sourceTriangle": 3069,
+      "areaRays": 45,
+      "visibleAreaRays": 0,
+      "unoccludedRed": 0.6735369439894398,
+      "predictedRed": 0,
+      "uvBlender": [
+        0.6428991556167603,
+        0.49901174008846283
+      ],
+      "linearRGB": [
+        0,
+        0,
+        0
+      ],
+      "absoluteRedError": 0
+    },
+    {
+      "bay": 2,
+      "point": [
+        -5,
+        1,
+        0
+      ],
+      "sourceTriangle": 3069,
+      "areaRays": 45,
+      "visibleAreaRays": 0,
+      "unoccludedRed": 0.5449199316489314,
+      "predictedRed": 0,
+      "uvBlender": [
+        0.6400356292724609,
+        0.49901174008846283
+      ],
+      "linearRGB": [
+        0,
+        0,
+        0
+      ],
+      "absoluteRedError": 0
+    },
+    {
+      "bay": 2,
+      "point": [
+        -5,
+        1,
+        3
+      ],
+      "sourceTriangle": 10,
+      "areaRays": 45,
+      "visibleAreaRays": 15,
+      "unoccludedRed": 0.322029679713054,
+      "predictedRed": 0.3197889156724636,
+      "uvBlender": [
+        0.09073137091318807,
+        0.7677406001091005
+      ],
+      "linearRGB": [
+        0.32047903089568286,
+        0.22433273104515067,
+        0.12177462826384917
+      ],
+      "absoluteRedError": 0.0006901152232192675
+    },
+    {
+      "bay": 2,
+      "point": [
+        -2,
+        1,
+        -9
+      ],
+      "sourceTriangle": 11,
+      "areaRays": 45,
+      "visibleAreaRays": 0,
+      "unoccludedRed": 0.2142610645979408,
+      "predictedRed": 0,
+      "uvBlender": [
+        0.13211393605317334,
+        0.7573887211084366
+      ],
+      "linearRGB": [
+        0,
+        0,
+        0
+      ],
+      "absoluteRedError": 0
+    },
+    {
+      "bay": 2,
+      "point": [
+        -2,
+        1,
+        -6
+      ],
+      "sourceTriangle": 3069,
+      "areaRays": 45,
+      "visibleAreaRays": 0,
+      "unoccludedRed": 0.3248730395222358,
+      "predictedRed": 0,
+      "uvBlender": [
+        0.6457626819610595,
+        0.5018941313028336
+      ],
+      "linearRGB": [
+        0,
+        0,
+        0
+      ],
+      "absoluteRedError": 0
+    },
+    {
+      "bay": 2,
+      "point": [
+        -2,
+        1,
+        -3
+      ],
+      "sourceTriangle": 3069,
+      "areaRays": 45,
+      "visibleAreaRays": 0,
+      "unoccludedRed": 0.38171262532736117,
+      "predictedRed": 0,
+      "uvBlender": [
+        0.6428991556167603,
+        0.5018941313028336
+      ],
+      "linearRGB": [
+        0,
+        0,
+        0
+      ],
+      "absoluteRedError": 0
+    },
+    {
+      "bay": 2,
+      "point": [
+        -2,
+        1,
+        0
+      ],
+      "sourceTriangle": 3069,
+      "areaRays": 45,
+      "visibleAreaRays": 0,
+      "unoccludedRed": 0.3247862774939464,
+      "predictedRed": 0,
+      "uvBlender": [
+        0.6400356292724609,
+        0.5018941313028336
+      ],
+      "linearRGB": [
+        0,
+        0,
+        0
+      ],
+      "absoluteRedError": 0
+    },
+    {
+      "bay": 2,
+      "point": [
+        -2,
+        1,
+        3
+      ],
+      "sourceTriangle": 10,
+      "areaRays": 45,
+      "visibleAreaRays": 15,
+      "unoccludedRed": 0.21409628934941335,
+      "predictedRed": 0.21165184680742055,
+      "uvBlender": [
+        0.09073137091318807,
+        0.7573887211084367
+      ],
+      "linearRGB": [
+        0.2125761636231876,
+        0.14880870970676605,
+        0.08079081086293005
+      ],
+      "absoluteRedError": 0.0009243168157670456
+    },
+    {
+      "bay": 3,
+      "point": [
+        30,
+        1,
+        -12
+      ],
+      "sourceTriangle": 10,
+      "areaRays": 45,
+      "visibleAreaRays": 15,
+      "unoccludedRed": 0.21345250858967454,
+      "predictedRed": 0.2116518468074206,
+      "uvBlender": [
+        0.1424595773381697,
+        0.6469686784346897
+      ],
+      "linearRGB": [
+        0.2107790777562575,
+        0.14752893770947648,
+        0.08009703700241595
+      ],
+      "absoluteRedError": 0.000872769051163097
+    },
+    {
+      "bay": 3,
+      "point": [
+        30,
+        1,
+        -9
+      ],
+      "sourceTriangle": 10,
+      "areaRays": 45,
+      "visibleAreaRays": 15,
+      "unoccludedRed": 0.3241269118785728,
+      "predictedRed": 0.3222245682916083,
+      "uvBlender": [
+        0.13211393605317334,
+        0.6469686784346899
+      ],
+      "linearRGB": [
+        0.3255007245890027,
+        0.22782716548991805,
+        0.12366426768852744
+      ],
+      "absoluteRedError": 0.003276156297394417
+    },
+    {
+      "bay": 3,
+      "point": [
+        30,
+        1,
+        -6
+      ],
+      "sourceTriangle": 10,
+      "areaRays": 45,
+      "visibleAreaRays": 0,
+      "unoccludedRed": 0.38104832244257814,
+      "predictedRed": 0,
+      "uvBlender": [
+        0.12176829476817705,
+        0.6469686784346897
+      ],
+      "linearRGB": [
+        0,
+        0,
+        0
+      ],
+      "absoluteRedError": 0
+    },
+    {
+      "bay": 3,
+      "point": [
+        30,
+        1,
+        -3
+      ],
+      "sourceTriangle": 10,
+      "areaRays": 45,
+      "visibleAreaRays": 15,
+      "unoccludedRed": 0.3242148140682487,
+      "predictedRed": 0.3222245682916083,
+      "uvBlender": [
+        0.11142265348318071,
+        0.6469686784346899
+      ],
+      "linearRGB": [
+        0.3208630408055315,
+        0.22461105737293122,
+        0.1219320660576055
+      ],
+      "absoluteRedError": 0.0013615274860767634
+    },
+    {
+      "bay": 3,
+      "point": [
+        30,
+        1,
+        0
+      ],
+      "sourceTriangle": 10,
+      "areaRays": 45,
+      "visibleAreaRays": 15,
+      "unoccludedRed": 0.21361953601431044,
+      "predictedRed": 0.2116518468074206,
+      "uvBlender": [
+        0.1010770121981844,
+        0.6469686784346897
+      ],
+      "linearRGB": [
+        0.2112408901581802,
+        0.14785911162489868,
+        0.08026456936476888
+      ],
+      "absoluteRedError": 0.00041095664924040154
+    },
+    {
+      "bay": 3,
+      "point": [
+        33,
+        1,
+        -12
+      ],
+      "sourceTriangle": 10,
+      "areaRays": 45,
+      "visibleAreaRays": 15,
+      "unoccludedRed": 0.3211646326387913,
+      "predictedRed": 0.3197889156724636,
+      "uvBlender": [
+        0.1424595773381697,
+        0.6366167994340262
+      ],
+      "linearRGB": [
+        0.3201567390806135,
+        0.22409449953886496,
+        0.12167325349620556
+      ],
+      "absoluteRedError": 0.0003678234081498921
+    },
+    {
+      "bay": 3,
+      "point": [
+        33,
+        1,
+        -9
+      ],
+      "sourceTriangle": 10,
+      "areaRays": 45,
+      "visibleAreaRays": 15,
+      "unoccludedRed": 0.5440313858463615,
+      "predictedRed": 0.5425887484523371,
+      "uvBlender": [
+        0.13211393605317334,
+        0.6366167994340262
+      ],
+      "linearRGB": [
+        0.5447951407601982,
+        0.3812405240901699,
+        0.20699726617643088
+      ],
+      "absoluteRedError": 0.002206392307861127
+    },
+    {
+      "bay": 3,
+      "point": [
+        33,
+        1,
+        -6
+      ],
+      "sourceTriangle": 10,
+      "areaRays": 45,
+      "visibleAreaRays": 15,
+      "unoccludedRed": 0.6726406634263853,
+      "predictedRed": 0.671155413404462,
+      "uvBlender": [
+        0.12176829476817705,
+        0.6366167994340262
+      ],
+      "linearRGB": [
+        0.6683836808815071,
+        0.46783167622924504,
+        0.25400081392431517
+      ],
+      "absoluteRedError": 0.0027717325229549283
+    },
+    {
+      "bay": 3,
+      "point": [
+        33,
+        1,
+        -3
+      ],
+      "sourceTriangle": 10,
+      "areaRays": 45,
+      "visibleAreaRays": 15,
+      "unoccludedRed": 0.5440886381743635,
+      "predictedRed": 0.5425887484523371,
+      "uvBlender": [
+        0.11142265348318071,
+        0.6366167994340262
+      ],
+      "linearRGB": [
+        0.5430906828865736,
+        0.3801567415339233,
+        0.2063371557831293
+      ],
+      "absoluteRedError": 0.0005019344342365173
+    },
+    {
+      "bay": 3,
+      "point": [
+        33,
+        1,
+        0
+      ],
+      "sourceTriangle": 10,
+      "areaRays": 45,
+      "visibleAreaRays": 15,
+      "unoccludedRed": 0.3212741656943868,
+      "predictedRed": 0.3197889156724636,
+      "uvBlender": [
+        0.1010770121981844,
+        0.636616799434026
+      ],
+      "linearRGB": [
+        0.31982261699493736,
+        0.22391211531965363,
+        0.121539973915169
+      ],
+      "absoluteRedError": 0.000033701322473767004
+    },
+    {
+      "bay": 3,
+      "point": [
+        36,
+        1,
+        -12
+      ],
+      "sourceTriangle": 10,
+      "areaRays": 45,
+      "visibleAreaRays": 0,
+      "unoccludedRed": 0.37567713871274444,
+      "predictedRed": 0,
+      "uvBlender": [
+        0.1424595773381697,
+        0.6262649204333623
+      ],
+      "linearRGB": [
+        0.0002002713025295289,
+        0.00014022840081023388,
+        0.00007614414993675554
+      ],
+      "absoluteRedError": 0.0002002713025295289
+    },
+    {
+      "bay": 3,
+      "point": [
+        36,
+        1,
+        -9
+      ],
+      "sourceTriangle": 10,
+      "areaRays": 45,
+      "visibleAreaRays": 0,
+      "unoccludedRed": 0.6687518332150189,
+      "predictedRed": 0,
+      "uvBlender": [
+        0.13211393605317334,
+        0.6262649204333623
+      ],
+      "linearRGB": [
+        0,
+        0,
+        0
+      ],
+      "absoluteRedError": 0
+    },
+    {
+      "bay": 3,
+      "point": [
+        36,
+        1,
+        -6
+      ],
+      "sourceTriangle": 10,
+      "areaRays": 45,
+      "visibleAreaRays": 0,
+      "unoccludedRed": 0.8469995471469486,
+      "predictedRed": 0,
+      "uvBlender": [
+        0.12176829476817705,
+        0.6262649204333623
+      ],
+      "linearRGB": [
+        0,
+        0,
+        0
+      ],
+      "absoluteRedError": 0
+    },
+    {
+      "bay": 3,
+      "point": [
+        36,
+        1,
+        -3
+      ],
+      "sourceTriangle": 10,
+      "areaRays": 45,
+      "visibleAreaRays": 0,
+      "unoccludedRed": 0.6687901787657106,
+      "predictedRed": 0,
+      "uvBlender": [
+        0.11142265348318071,
+        0.6262649204333623
+      ],
+      "linearRGB": [
+        0,
+        0,
+        0
+      ],
+      "absoluteRedError": 0
+    },
+    {
+      "bay": 3,
+      "point": [
+        36,
+        1,
+        0
+      ],
+      "sourceTriangle": 10,
+      "areaRays": 45,
+      "visibleAreaRays": 15,
+      "unoccludedRed": 0.3757509109921551,
+      "predictedRed": 0.37460842289575375,
+      "uvBlender": [
+        0.1010770121981844,
+        0.6262649204333623
+      ],
+      "linearRGB": [
+        0.3724547300346838,
+        0.2607973432091096,
+        0.14157566420638337
+      ],
+      "absoluteRedError": 0.0021536928610699224
+    },
+    {
+      "bay": 3,
+      "point": [
+        39,
+        1,
+        -12
+      ],
+      "sourceTriangle": 10,
+      "areaRays": 45,
+      "visibleAreaRays": 6,
+      "unoccludedRed": 0.32063163963919855,
+      "predictedRed": 0.13608443358459804,
+      "uvBlender": [
+        0.1424595773381697,
+        0.6159130414326985
+      ],
+      "linearRGB": [
+        0.12394994972585946,
+        0.08678822390947362,
+        0.04710886806711864
+      ],
+      "absoluteRedError": 0.012134483858738582
+    },
+    {
+      "bay": 3,
+      "point": [
+        39,
+        1,
+        -9
+      ],
+      "sourceTriangle": 10,
+      "areaRays": 45,
+      "visibleAreaRays": 0,
+      "unoccludedRed": 0.543462725930875,
+      "predictedRed": 0,
+      "uvBlender": [
+        0.13211393605317334,
+        0.6159130414326985
+      ],
+      "linearRGB": [
+        0,
+        0,
+        0
+      ],
+      "absoluteRedError": 0
+    },
+    {
+      "bay": 3,
+      "point": [
+        39,
+        1,
+        -6
+      ],
+      "sourceTriangle": 10,
+      "areaRays": 45,
+      "visibleAreaRays": 0,
+      "unoccludedRed": 0.672049020630604,
+      "predictedRed": 0,
+      "uvBlender": [
+        0.12176829476817705,
+        0.6159130414326985
+      ],
+      "linearRGB": [
+        0,
+        0,
+        0
+      ],
+      "absoluteRedError": 0
+    },
+    {
+      "bay": 3,
+      "point": [
+        39,
+        1,
+        -3
+      ],
+      "sourceTriangle": 10,
+      "areaRays": 45,
+      "visibleAreaRays": 0,
+      "unoccludedRed": 0.5434890521446925,
+      "predictedRed": 0,
+      "uvBlender": [
+        0.11142265348318071,
+        0.6159130414326986
+      ],
+      "linearRGB": [
+        0,
+        0,
+        0
+      ],
+      "absoluteRedError": 0
+    },
+    {
+      "bay": 3,
+      "point": [
+        39,
+        1,
+        0
+      ],
+      "sourceTriangle": 10,
+      "areaRays": 45,
+      "visibleAreaRays": 15,
+      "unoccludedRed": 0.3206825228986055,
+      "predictedRed": 0.31978891567246354,
+      "uvBlender": [
+        0.1010770121981844,
+        0.6159130414326985
+      ],
+      "linearRGB": [
+        0.3215769491456111,
+        0.2251043308313912,
+        0.12223459553579198
+      ],
+      "absoluteRedError": 0.0017880334731475434
+    },
+    {
+      "bay": 3,
+      "point": [
+        42,
+        1,
+        -12
+      ],
+      "sourceTriangle": 10,
+      "areaRays": 45,
+      "visibleAreaRays": 0,
+      "unoccludedRed": 0.2123253572689098,
+      "predictedRed": 0,
+      "uvBlender": [
+        0.1424595773381697,
+        0.6055611624320347
+      ],
+      "linearRGB": [
+        0,
+        0,
+        0
+      ],
+      "absoluteRedError": 0
+    },
+    {
+      "bay": 3,
+      "point": [
+        42,
+        1,
+        -9
+      ],
+      "sourceTriangle": 10,
+      "areaRays": 45,
+      "visibleAreaRays": 0,
+      "unoccludedRed": 0.32292014369799754,
+      "predictedRed": 0,
+      "uvBlender": [
+        0.13211393605317334,
+        0.6055611624320348
+      ],
+      "linearRGB": [
+        0,
+        0,
+        0
+      ],
+      "absoluteRedError": 0
+    },
+    {
+      "bay": 3,
+      "point": [
+        42,
+        1,
+        -6
+      ],
+      "sourceTriangle": 10,
+      "areaRays": 45,
+      "visibleAreaRays": 0,
+      "unoccludedRed": 0.379789995455769,
+      "predictedRed": 0,
+      "uvBlender": [
+        0.12176829476817705,
+        0.6055611624320347
+      ],
+      "linearRGB": [
+        0,
+        0,
+        0
+      ],
+      "absoluteRedError": 0
+    },
+    {
+      "bay": 3,
+      "point": [
+        42,
+        1,
+        -3
+      ],
+      "sourceTriangle": 10,
+      "areaRays": 45,
+      "visibleAreaRays": 0,
+      "unoccludedRed": 0.3229386212608922,
+      "predictedRed": 0,
+      "uvBlender": [
+        0.11142265348318071,
+        0.6055611624320348
+      ],
+      "linearRGB": [
+        0,
+        0,
+        0
+      ],
+      "absoluteRedError": 0
+    },
+    {
+      "bay": 3,
+      "point": [
+        42,
+        1,
+        0
+      ],
+      "sourceTriangle": 10,
+      "areaRays": 45,
+      "visibleAreaRays": 15,
+      "unoccludedRed": 0.21236120902750127,
+      "predictedRed": 0.2116518468074206,
+      "uvBlender": [
+        0.1010770121981844,
+        0.6055611624320348
+      ],
+      "linearRGB": [
+        0.2116290867814034,
+        0.14812759560129796,
+        0.08042405314772248
+      ],
+      "absoluteRedError": 0.000022760026017198953
+    }
+  ],
+  "limitations": [
+    "Finite5x3 area-light quadrature and sparsefloorgrid are not exhaustive visibility validation",
+    "Bilinear UV lookup may cross penumbra transitions; thresholds tolerate the measured ~7.2texels/m density",
+    "UV tiny-island and distant mip appearance still need actualgame views"
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "bodyMeshName": "blockrunner-body-paint-v4b",
+  "fitCornerNormalsPreserved": true,
+  "fitPreservation": true,
+  "globalPreservation": {
+    "changedCollections": [],
+    "changedScenes": [],
+    "contextRestored": true,
+    "preexistingMaterialsRetained": true,
+    "preexistingMeshesRetained": true,
+    "preexistingObjectsRetained": true,
+    "preexistingScenes": 147
+  },
+  "materialChanges": [
+    {
+      "material": "Blockrunner V4B procedural oxblood",
+      "newBreakup": "clamp((noise - .47) * 7)",
+      "oldBreakup": ".55 + .45 * clamp((noise - .35) * 3.3)",
+      "removedFloorNodes": [
+        "Math.025",
+        "Math.026"
+      ],
+      "retained": "Same continuous world-space noise, selected edges, widths, contact strengths, pigment/roughness branches and final wear multiplier.",
+      "scaleNode": "Math.022",
+      "thresholdNode": "Math.021"
+    },
+    {
+      "material": "Blockrunner V4B procedural ivory",
+      "newBreakup": "clamp((noise - .47) * 7)",
+      "oldBreakup": ".55 + .45 * clamp((noise - .35) * 3.3)",
+      "removedFloorNodes": [
+        "Math.025",
+        "Math.026"
+      ],
+      "retained": "Same continuous world-space noise, selected edges, widths, contact strengths, pigment/roughness branches and final wear multiplier.",
+      "scaleNode": "Math.022",
+      "thresholdNode": "Math.021"
+    },
+    {
+      "material": "Blockrunner V4B procedural graphite",
+      "newBreakup": "clamp((noise - .47) * 7)",
+      "oldBreakup": ".55 + .45 * clamp((noise - .35) * 3.3)",
+      "removedFloorNodes": [
+        "Math.025",
+        "Math.026"
+      ],
+      "retained": "Same continuous world-space noise, selected edges, widths, contact strengths, pigment/roughness branches and final wear multiplier.",
+      "scaleNode": "Math.022",
+      "thresholdNode": "Math.021"
+    }
+  ],
+  "newSceneRetained": false,
+  "normalized": false,
+  "ownerCopies": [],
+  "parentPaintAttributesPreserved": true,
+  "parentPaintCornerNormalsPreserved": true,
+  "parentPaintPreserved": true,
+  "parentPaintScene": "PodRacing — Blockrunner geometry-aware Inkstorm paint round34 V4",
+  "parentPaintSignature": {
+    "algorithm": "FNV-1a-64 over canonical ASCII JSON; non-cryptographic",
+    "materialsFnv1a64": {
+      "Blockrunner V4 pilot gloves": "12ce528dc497461e",
+      "Blockrunner V4 pilot helmet": "847d3c81ac8a353d",
+      "Blockrunner V4 pilot suit": "ed01dd1da35550e2",
+      "Blockrunner V4 pilot visor": "6671bdeffca984be",
+      "Blockrunner V4 procedural graphite": "835237c774a3e89f",
+      "Blockrunner V4 procedural ivory": "4dfd230f7a600000",
+      "Blockrunner V4 procedural oxblood": "2f8a6388add08086"
+    },
+    "meshesFnv1a64": {
+      "blockrunner-body-paint-v4 geometry": "822eb3fafe54d29b",
+      "blockrunner-pilot-paint-v4 geometry": "99ccdd2fa02a3f5e"
+    },
+    "objectsFnv1a64": "e36b876a6695edd8"
+  },
+  "pilotMeshName": "blockrunner-pilot-paint-v4b",
+  "runtimeReady": false,
+  "scope": "New V4B copy changes only the three body breakup branches. Original V4 remains intact. No mask, geometry, UV, normal, palette, bake, normalization or export change.",
+  "sharedBlendSaved": false,
+  "sourceCornerNormalsPreserved": true,
+  "sourcePreservation": true,
+  "sourceUid": "a6f14ae799ab40d7ac425f043f824ff8",
+  "stage": "copy-zero-gap-breakup-v4b",
+  "status": "executing",
+  "targetScene": "PodRacing — Blockrunner localized broken paint round34 V4B"
+}

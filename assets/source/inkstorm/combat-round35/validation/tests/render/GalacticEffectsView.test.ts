@@ -1,0 +1,1 @@
+/Users/amir/Projects/PodRacing/tests/render/GalacticEffectsView.test.ts

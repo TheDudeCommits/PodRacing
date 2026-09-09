@@ -1,0 +1,14 @@
+{
+  "status": "failed; new copy removed by author cleanup",
+  "attempt": "paint-author-v2-executed-payload.py",
+  "reportedError": "Retained world corner normals changed.",
+  "followupReadOnlyObservation": {
+    "preexistingScenes": 143,
+    "targetV2Exists": false,
+    "activeScene": "Cruise — Going Merry source 4b2cb678",
+    "negativeDeterminantSourceMeshes": 9,
+    "negativeDeterminantSourceTriangles": 7172,
+    "sourceNormalRelation": "All measured mirrored-source corners oppose raw world triangle winding, as expected before negative-determinant parity correction."
+  },
+  "nextStep": "Measure the failed encoding difference on an isolated disposable copy; do not relax the normal guard or alter original source geometry."
+}

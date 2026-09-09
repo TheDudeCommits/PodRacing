@@ -1,0 +1,23 @@
+{
+  "recordedAt": "2026-09-08T22:31:36.817886+00:00",
+  "source": "scripts/inkstorm-broadcast-ui.mjs",
+  "sha256": "f9cc90b939fd2cb5f004a2cda2cc1593e4a635ef88afc92dcf639e89d8578688",
+  "bytes": 37303,
+  "status": "STATIC_FINDINGS_CLOSED_NATIVE_RETRY_PENDING",
+  "originalFindingsPreserved": "INDEPENDENT_REVIEW_INITIAL.json",
+  "followupPreserved": "INDEPENDENT_REVIEW_FOLLOWUP.json",
+  "closure": [
+    "Immutable original five-slot snapshot taken before all equips; persisted/initial/per-slot/final comparisons retained.",
+    "One full glyph checker now runs both before and after Enter/340ms and saves both glyphEvidence and installedGlyphEvidence per item.",
+    "Desktop alternative comparison disclosure checked; hidden equipped comparison excluded.",
+    "Input modes distinguish desktop Enter from narrow tap then Enter idempotence; these are desktop Chromium emulated-touch contexts.",
+    "Saved-calendar reader waits for actual atlas animations to stop and viewport opacity to equal1 before unchanged readability and overlap assertions."
+  ],
+  "limitations": [
+    "Static closure is not native runtime PASS. Original V17 attempt remains FAIL for a saved-calendar label read during opacity0 entry.",
+    "No physical-device or 60FPS evidence.",
+    "No visual contrast or overlay-occlusion pass is inferred from DOM geometry."
+  ],
+  "sourceEdits": false,
+  "browserBuildGPU": false
+}

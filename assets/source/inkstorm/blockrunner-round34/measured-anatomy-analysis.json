@@ -1,0 +1,4751 @@
+{
+  "source": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/vehicles/a6f14ae799ab40d7ac425f043f824ff8/source-imported.glb",
+  "sourceSha256": "1ecf135bc63df02102f168b79ea869d98aba6d07bdc94b2e0c6f10478a13f96e",
+  "audit": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/mcp-safe/audit-receipt.json",
+  "auditObjectFnv1a64": "d85efeecc74d9485",
+  "scope": "External analysis arrays only; coordinate weld is not saved into source or any derivative.",
+  "coordinateBasis": "Original source Blender meters, before gameplay normalization.",
+  "referenceComparison": [
+    {
+      "name": "pasted__L1x1Stud4_Black_Jets_0",
+      "triangles": 1552,
+      "bounds": [
+        [
+          -2.909943636882076,
+          -28.763978663289446,
+          0.0215125683875388
+        ],
+        [
+          -1.4999023561009022,
+          -28.012964033148823,
+          1.6561793458861134
+        ]
+      ],
+      "maxAuditBoundError": 9.831583600572458e-06,
+      "materials": [
+        "Black_Jets"
+      ]
+    },
+    {
+      "name": "pasted__L1x1Stud5_Black_Jets_0",
+      "triangles": 1152,
+      "bounds": [
+        [
+          -2.9099407931582153,
+          -26.617237430037438,
+          0.0215125683875388
+        ],
+        [
+          -1.4999044888937956,
+          -25.205004432759353,
+          1.6561793458861134
+        ]
+      ],
+      "maxAuditBoundError": 9.197770179270037e-06,
+      "materials": [
+        "Black_Jets"
+      ]
+    },
+    {
+      "name": "pasted__L1x20_Black_Jets_0",
+      "triangles": 1064,
+      "bounds": [
+        [
+          -2.909943636882076,
+          -28.032241636052785,
+          0.0215125683875388
+        ],
+        [
+          -1.4999023561009022,
+          -26.617243117484822,
+          1.6561793458861134
+        ]
+      ],
+      "maxAuditBoundError": 9.721979441934536e-06,
+      "materials": [
+        "Black_Jets"
+      ]
+    },
+    {
+      "name": "pasted__pasted__L1x1Stud4_Black_Jets_0",
+      "triangles": 1552,
+      "bounds": [
+        [
+          1.5488681124265717,
+          -28.763980766084114,
+          0.0215125683875388
+        ],
+        [
+          2.9589093932077457,
+          -28.01296613594349,
+          1.6561793458861134
+        ]
+      ],
+      "maxAuditBoundError": 7.728788933292208e-06,
+      "materials": [
+        "Black_Jets"
+      ]
+    },
+    {
+      "name": "pasted__pasted__L1x1Stud5_Black_Jets_0",
+      "triangles": 1152,
+      "bounds": [
+        [
+          1.5488709561504326,
+          -26.617239532832105,
+          0.0215125683875388
+        ],
+        [
+          2.9589072604148505,
+          -25.20500653555402,
+          1.6561793458861134
+        ]
+      ],
+      "maxAuditBoundError": 7.094975511989787e-06,
+      "materials": [
+        "Black_Jets"
+      ]
+    },
+    {
+      "name": "pasted__pasted__L1x20_Black_Jets_0",
+      "triangles": 1064,
+      "bounds": [
+        [
+          1.5488681124265717,
+          -28.032243738847452,
+          0.0215125683875388
+        ],
+        [
+          2.9589093932077457,
+          -26.61724522027949,
+          1.6561793458861134
+        ]
+      ],
+      "maxAuditBoundError": 7.619184774654286e-06,
+      "materials": [
+        "Black_Jets"
+      ]
+    },
+    {
+      "name": "pasted__L4x8F_pasted__Lego_White8_0",
+      "triangles": 2028,
+      "bounds": [
+        [
+          -1.3304104961804137,
+          -22.411578659208722,
+          1.5914583274627478
+        ],
+        [
+          0.080315055654542,
+          -19.590513758187463,
+          1.792654266887124
+        ]
+      ],
+      "maxAuditBoundError": 5.193228552968776e-06,
+      "materials": [
+        "pasted__Lego_White8"
+      ]
+    },
+    {
+      "name": "pasted__L2x6_phongE2_0",
+      "triangles": 828,
+      "bounds": [
+        [
+          -1.564797134849453,
+          -27.454555574305424,
+          0.5935532580219792
+        ],
+        [
+          0.551340780337787,
+          -26.74833954533718,
+          1.0772020003296887
+        ]
+      ],
+      "maxAuditBoundError": 4.876049537472227e-06,
+      "materials": [
+        "phongE2"
+      ]
+    },
+    {
+      "name": "pasted__pasted__L2x6_phongE2_0",
+      "triangles": 828,
+      "bounds": [
+        [
+          -0.519617584657762,
+          -27.45455406769731,
+          0.5935533032274384
+        ],
+        [
+          1.5965199750639956,
+          -26.748338038729067,
+          1.0772020455351479
+        ]
+      ],
+      "maxAuditBoundError": 6.382657652181933e-06,
+      "materials": [
+        "phongE2"
+      ]
+    },
+    {
+      "name": "pasted__L1x4F_phongE2_0",
+      "triangles": 348,
+      "bounds": [
+        [
+          -1.490186911771854,
+          -23.871556846075105,
+          1.5885285150691717
+        ],
+        [
+          -0.7923567553196816,
+          -22.421661346035005,
+          1.793378517245737
+        ]
+      ],
+      "maxAuditBoundError": 6.111688566790008e-06,
+      "materials": [
+        "phongE2"
+      ]
+    },
+    {
+      "name": "pasted__pasted__L1x4F_phongE2_0",
+      "triangles": 348,
+      "bounds": [
+        [
+          -1.844022497355718,
+          -25.24652336640645,
+          1.5885285033716192
+        ],
+        [
+          -1.146192405894038,
+          -23.796628136430417,
+          1.7933785055481846
+        ]
+      ],
+      "maxAuditBoundError": 7.166430464167206e-06,
+      "materials": [
+        "phongE2"
+      ]
+    },
+    {
+      "name": "pasted__pasted__pasted__L1x4F_phongE2_0",
+      "triangles": 348,
+      "bounds": [
+        [
+          -2.189903218673879,
+          -26.63504504817537,
+          1.5885285033716192
+        ],
+        [
+          -1.492073482677861,
+          -25.18515124006123,
+          1.7933785055481846
+        ]
+      ],
+      "maxAuditBoundError": 8.58646818358011e-06,
+      "materials": [
+        "phongE2"
+      ]
+    },
+    {
+      "name": "pasted__pasted__L2F_phongE2_0",
+      "triangles": 228,
+      "bounds": [
+        [
+          -1.1883022952540234,
+          -22.8179843825518,
+          1.7045385348911606
+        ],
+        [
+          -0.6493968110842722,
+          -22.044926670302644,
+          1.90692377149456
+        ]
+      ],
+      "maxAuditBoundError": 8.781510700828221e-06,
+      "materials": [
+        "phongE2"
+      ]
+    },
+    {
+      "name": "pasted__brick231_pasted__LegoWhite1_0",
+      "triangles": 1612,
+      "bounds": [
+        [
+          -1.337802308302468,
+          -19.603520407613473,
+          1.6070096226934194
+        ],
+        [
+          0.07292288806700498,
+          -16.763988364940296,
+          1.8082070061962325
+        ]
+      ],
+      "maxAuditBoundError": 3.944630016405881e-06,
+      "materials": [
+        "pasted__LegoWhite1"
+      ]
+    },
+    {
+      "name": "pasted__LegoTri36_lambert1_0",
+      "triangles": 8256,
+      "bounds": [
+        [
+          -0.44040674232746735,
+          -20.714109009759248,
+          1.7359768654265084
+        ],
+        [
+          0.5763041618446305,
+          -19.866473179756124,
+          3.1749830880355385
+        ]
+      ],
+      "maxAuditBoundError": 1.4963315138061262e-06,
+      "materials": [
+        "lambert1.001"
+      ]
+    },
+    {
+      "name": "pasted__pasted__L4x8F_pasted__pasted__Lego_White8_0",
+      "triangles": 2028,
+      "bounds": [
+        [
+          0.060595232143744404,
+          -22.41157836322757,
+          1.5914583274627478
+        ],
+        [
+          1.4713207839787001,
+          -19.59051346220631,
+          1.792654266887124
+        ]
+      ],
+      "maxAuditBoundError": 5.489209705444864e-06,
+      "materials": [
+        "pasted__pasted__Lego_White8"
+      ]
+    },
+    {
+      "name": "pasted__pasted__brick231_pasted__pasted__LegoWhite1_0",
+      "triangles": 1612,
+      "bounds": [
+        [
+          0.06429347860897039,
+          -19.603522076232593,
+          1.6070096525843731
+        ],
+        [
+          1.4750186749784433,
+          -16.763990033559416,
+          1.8082070360871862
+        ]
+      ],
+      "maxAuditBoundError": 2.2760108961961123e-06,
+      "materials": [
+        "pasted__pasted__LegoWhite1"
+      ]
+    },
+    {
+      "name": "pasted__pasted__pasted__pasted__polySurface97_phongE2_0",
+      "triangles": 3800,
+      "bounds": [
+        [
+          1.445461422358644,
+          -22.41131658432867,
+          0.8324782495297928
+        ],
+        [
+          1.6466583707290106,
+          -17.46843006461732,
+          2.955483632060654
+        ]
+      ],
+      "maxAuditBoundError": 7.130206899574887e-06,
+      "materials": [
+        "phongE2"
+      ]
+    },
+    {
+      "name": "pasted__pasted__pasted__pasted__pasted__polySurface97_phongE2_0",
+      "triangles": 3800,
+      "bounds": [
+        [
+          -1.484920259104552,
+          -22.40035901047324,
+          0.8287209796025352
+        ],
+        [
+          -1.2837239140081276,
+          -17.457472490762076,
+          2.9517261844006666
+        ]
+      ],
+      "maxAuditBoundError": 6.818994531698763e-06,
+      "materials": [
+        "phongE2"
+      ]
+    },
+    {
+      "name": "pasted__pasted__pasted__L2F_phongE2_0",
+      "triangles": 228,
+      "bounds": [
+        [
+          -1.5741242860399,
+          -24.22377308375317,
+          1.7045385348911606
+        ],
+        [
+          -1.0554291491836705,
+          -23.45535206651621,
+          1.90692377149456
+        ]
+      ],
+      "maxAuditBoundError": 6.594591557274043e-06,
+      "materials": [
+        "phongE2"
+      ]
+    },
+    {
+      "name": "pasted__pasted__pasted__pasted__L2F_phongE2_0",
+      "triangles": 228,
+      "bounds": [
+        [
+          -1.9434044047738683,
+          -25.578239446835468,
+          1.7045385348911606
+        ],
+        [
+          -1.4247092679176396,
+          -24.809818429598458,
+          1.90692377149456
+        ]
+      ],
+      "maxAuditBoundError": 3.808779766245607e-06,
+      "materials": [
+        "phongE2"
+      ]
+    },
+    {
+      "name": "pasted__pasted__L1x4F_phongE2_0.001",
+      "triangles": 348,
+      "bounds": [
+        [
+          0.8970582854692895,
+          -23.871557443196856,
+          1.5885285033716163
+        ],
+        [
+          1.5948880214654977,
+          -22.421662213220774,
+          1.793378505548182
+        ]
+      ],
+      "maxAuditBoundError": 3.6072181828217253e-06,
+      "materials": [
+        "phongE2"
+      ]
+    },
+    {
+      "name": "pasted__pasted__pasted__L1x4F_phongE2_0.001",
+      "triangles": 348,
+      "bounds": [
+        [
+          1.2508932589545227,
+          -25.246527933145547,
+          1.588528503371616
+        ],
+        [
+          1.9487215730888494,
+          -23.796632703169468,
+          1.7933785055481817
+        ]
+      ],
+      "maxAuditBoundError": 4.5070399998792254e-06,
+      "materials": [
+        "phongE2"
+      ]
+    },
+    {
+      "name": "pasted__pasted__pasted__pasted__L1x4F_phongE2_0",
+      "triangles": 348,
+      "bounds": [
+        [
+          1.596773624807594,
+          -26.635048054060928,
+          1.588528503371616
+        ],
+        [
+          2.294603360803613,
+          -25.18515424594664,
+          1.7933785055481817
+        ]
+      ],
+      "maxAuditBoundError": 7.487931259930747e-06,
+      "materials": [
+        "phongE2"
+      ]
+    },
+    {
+      "name": "pasted__pasted__pasted__L2F_phongE2_0.001",
+      "triangles": 228,
+      "bounds": [
+        [
+          0.7540992509256351,
+          -22.817988783038835,
+          1.704538534891158
+        ],
+        [
+          1.2930047350953864,
+          -22.044931070789584,
+          1.9069237714945573
+        ]
+      ],
+      "maxAuditBoundError": 6.288372297547085e-06,
+      "materials": [
+        "phongE2"
+      ]
+    },
+    {
+      "name": "pasted__pasted__pasted__pasted__L2F_phongE2_0.001",
+      "triangles": 228,
+      "bounds": [
+        [
+          1.1601279584860182,
+          -24.22377748463865,
+          1.704538534891158
+        ],
+        [
+          1.6788230953422478,
+          -23.45535646740164,
+          1.9069237714945573
+        ]
+      ],
+      "maxAuditBoundError": 5.024889380589315e-06,
+      "materials": [
+        "phongE2"
+      ]
+    },
+    {
+      "name": "pasted__pasted__pasted__pasted__pasted__L2F_phongE2_0",
+      "triangles": 228,
+      "bounds": [
+        [
+          1.5294079125947193,
+          -25.578242416381656,
+          1.7045385348911577
+        ],
+        [
+          2.048103049450947,
+          -24.80982139914455,
+          1.906923771494557
+        ]
+      ],
+      "maxAuditBoundError": 5.310671882252649e-06,
+      "materials": [
+        "phongE2"
+      ]
+    },
+    {
+      "name": "pasted__L4x3Slope_pasted__Lego_White15_0",
+      "triangles": 380,
+      "bounds": [
+        [
+          -0.6263027062498949,
+          -22.43443776575923,
+          1.7257727081477203
+        ],
+        [
+          0.7845330398846309,
+          -21.381078432749568,
+          2.207296678570626
+        ]
+      ],
+      "maxAuditBoundError": 2.1946918380422176e-06,
+      "materials": [
+        "pasted__Lego_White15"
+      ]
+    },
+    {
+      "name": "pasted__LegoTri8_lambert1_0",
+      "triangles": 548,
+      "bounds": [
+        [
+          -0.9990714828944272,
+          -18.90140323283618,
+          1.752923137268841
+        ],
+        [
+          -0.29081361835486197,
+          -16.769501971667715,
+          2.2478178375772178
+        ]
+      ],
+      "maxAuditBoundError": 6.681027926447314e-07,
+      "materials": [
+        "lambert1.001"
+      ]
+    },
+    {
+      "name": "pasted__pasted__LegoTri8_lambert1_0",
+      "triangles": 548,
+      "bounds": [
+        [
+          0.41879456783382646,
+          -18.90140385310366,
+          1.7529232257659912
+        ],
+        [
+          1.1270524323733953,
+          -16.769502591935193,
+          2.247817926074368
+        ]
+      ],
+      "maxAuditBoundError": 5.439268528917296e-07,
+      "materials": [
+        "lambert1.001"
+      ]
+    },
+    {
+      "name": "pasted__L2x2_pasted__Lego_White16_0",
+      "triangles": 348,
+      "bounds": [
+        [
+          -0.28837353376797825,
+          -18.903383121399646,
+          1.767192208498242
+        ],
+        [
+          0.4166513722083982,
+          -18.197167092431407,
+          2.250841364069264
+        ]
+      ],
+      "maxAuditBoundError": 6.495603130929339e-07,
+      "materials": [
+        "pasted__Lego_White16"
+      ]
+    },
+    {
+      "name": "pasted__LegoTri9_lambert1_0",
+      "triangles": 152,
+      "bounds": [
+        [
+          -1.348449939907601,
+          -19.602368456529764,
+          1.7445763555537508
+        ],
+        [
+          -0.996101889705062,
+          -18.18225692276467,
+          2.16804529233856
+        ]
+      ],
+      "maxAuditBoundError": 8.519419161245878e-07,
+      "materials": [
+        "lambert1.001"
+      ]
+    },
+    {
+      "name": "pasted__pasted__LegoTri9_lambert1_0",
+      "triangles": 152,
+      "bounds": [
+        [
+          1.133542655115713,
+          -19.60236752441389,
+          1.7445763191003743
+        ],
+        [
+          1.4858907053182522,
+          -18.182255990648795,
+          2.168045255885183
+        ]
+      ],
+      "maxAuditBoundError": 2.224178115461939e-06,
+      "materials": [
+        "lambert1.001"
+      ]
+    },
+    {
+      "name": "pasted__LegoTri19_pasted__Lego_White18_0",
+      "triangles": 936,
+      "bounds": [
+        [
+          -1.4810970968940196,
+          -21.356238604098856,
+          1.1639064255216542
+        ],
+        [
+          -0.9728623897466387,
+          -20.648198218734986,
+          1.9533367412765898
+        ]
+      ],
+      "maxAuditBoundError": 8.492080443289751e-06,
+      "materials": [
+        "pasted__Lego_White18"
+      ]
+    },
+    {
+      "name": "pasted__pasted__LegoTri19_pasted__pasted__Lego_White18_0",
+      "triangles": 936,
+      "bounds": [
+        [
+          1.1126732627030285,
+          -21.356230727021195,
+          1.1646238672022302
+        ],
+        [
+          1.6209079225173664,
+          -20.648190473540115,
+          1.9540540940908004
+        ]
+      ],
+      "maxAuditBoundError": 6.700532150460958e-06,
+      "materials": [
+        "pasted__pasted__Lego_White18"
+      ]
+    },
+    {
+      "name": "pasted__pasted__L2x2_pasted__pasted__Lego_White19_0",
+      "triangles": 348,
+      "bounds": [
+        [
+          -1.328811215089094,
+          -22.08405425403443,
+          1.7143640209716264
+        ],
+        [
+          -0.6237863091127176,
+          -21.377838225066192,
+          2.198013171509202
+        ]
+      ],
+      "maxAuditBoundError": 8.322259514415009e-06,
+      "materials": [
+        "pasted__pasted__Lego_White19"
+      ]
+    },
+    {
+      "name": "pasted__pasted__pasted__L2x2_pasted__pasted__pasted__Lego_White19_0",
+      "triangles": 348,
+      "bounds": [
+        [
+          0.7907368455233041,
+          -22.084053908933075,
+          1.7143640209716264
+        ],
+        [
+          1.4957617514996806,
+          -21.377837879964837,
+          2.198013171509202
+        ]
+      ],
+      "maxAuditBoundError": 8.66736086990727e-06,
+      "materials": [
+        "pasted__pasted__pasted__Lego_White19"
+      ]
+    },
+    {
+      "name": "pasted__pCylinder4_Black_Jets_0",
+      "triangles": 708,
+      "bounds": [
+        [
+          2.250209005812884,
+          -28.393505235900065,
+          1.600432237015278
+        ],
+        [
+          2.8895599775198004,
+          -27.687235023443225,
+          1.8152959122977832
+        ]
+      ],
+      "maxAuditBoundError": 5.582581380281226e-06,
+      "materials": [
+        "Black_Jets"
+      ]
+    },
+    {
+      "name": "pasted__pasted__pCylinder4_Black_Jets_0",
+      "triangles": 708,
+      "bounds": [
+        [
+          -2.822972974068354,
+          -28.39349786235952,
+          1.6004323196354966
+        ],
+        [
+          -2.1836224173711027,
+          -27.687227781455842,
+          1.8152959949180019
+        ]
+      ],
+      "maxAuditBoundError": 7.234076026207958e-06,
+      "materials": [
+        "Black_Jets"
+      ]
+    },
+    {
+      "name": "pasted__brick240_pasted__LegoWhite3_0",
+      "triangles": 240,
+      "bounds": [
+        [
+          -0.6218094416832529,
+          -21.36592320986805,
+          1.7296061672535543
+        ],
+        [
+          0.08321546429312399,
+          -20.659579213333693,
+          1.9323338517843902
+        ]
+      ],
+      "maxAuditBoundError": 5.4400342932581225e-06,
+      "materials": [
+        "pasted__LegoWhite3"
+      ]
+    },
+    {
+      "name": "pasted__pasted__brick240_pasted__pasted__LegoWhite3_0",
+      "triangles": 240,
+      "bounds": [
+        [
+          0.07596776854783194,
+          -21.365922677697895,
+          1.7296064243906826
+        ],
+        [
+          0.7809926745242088,
+          -20.659578681163538,
+          1.9323341089215185
+        ]
+      ],
+      "maxAuditBoundError": 5.972204448312368e-06,
+      "materials": [
+        "pasted__pasted__LegoWhite3"
+      ]
+    },
+    {
+      "name": "pasted__brick230_phongE2_0",
+      "triangles": 236,
+      "bounds": [
+        [
+          -0.3388433459846507,
+          -21.082850616241323,
+          1.7679590595600154
+        ],
+        [
+          -0.20875399882549162,
+          -20.952758788531114,
+          2.90651435487063
+        ]
+      ],
+      "maxAuditBoundError": 4.608368051606249e-06,
+      "materials": [
+        "phongE2"
+      ]
+    },
+    {
+      "name": "pasted__pasted__brick230_phongE2_0",
+      "triangles": 236,
+      "bounds": [
+        [
+          0.3542845083441679,
+          -21.082847046561746,
+          1.7679588815860463
+        ],
+        [
+          0.484373855503327,
+          -20.952755218851536,
+          2.9065141768966605
+        ]
+      ],
+      "maxAuditBoundError": 4.363350363689733e-06,
+      "materials": [
+        "phongE2"
+      ]
+    },
+    {
+      "name": "pasted__LegoTri39_pasted__Lego_White20_0",
+      "triangles": 348,
+      "bounds": [
+        [
+          -0.9980321273100934,
+          -19.255266009093972,
+          1.757352788939598
+        ],
+        [
+          0.4154621451679299,
+          -18.898973024075488,
+          2.252479670678448
+        ]
+      ],
+      "maxAuditBoundError": 4.255587597867816e-06,
+      "materials": [
+        "pasted__Lego_White20"
+      ]
+    },
+    {
+      "name": "pasted__L4x3Slope_pasted__Lego_White22_0",
+      "triangles": 380,
+      "bounds": [
+        [
+          -0.9893780741021274,
+          -19.248213669954982,
+          2.1817630216002044
+        ],
+        [
+          0.42145767203239837,
+          -18.19485433694532,
+          2.66328699202311
+        ]
+      ],
+      "maxAuditBoundError": 8.556239272650146e-07,
+      "materials": [
+        "pasted__Lego_White22"
+      ]
+    },
+    {
+      "name": "pasted__L1x2_pasted__Lego_White23_0",
+      "triangles": 228,
+      "bounds": [
+        [
+          0.4062885153075451,
+          -19.248152543803812,
+          1.7729794313300205
+        ],
+        [
+          1.111313421283922,
+          -18.895820865887444,
+          2.2566287596003263
+        ]
+      ],
+      "maxAuditBoundError": 1.6591369700336145e-06,
+      "materials": [
+        "pasted__Lego_White23"
+      ]
+    },
+    {
+      "name": "pasted__L2x3slope1_pasted__Lego_White24_0",
+      "triangles": 260,
+      "bounds": [
+        [
+          0.40658212979607683,
+          -19.24717998112364,
+          2.1853554463265272
+        ],
+        [
+          1.1135338364202578,
+          -18.193822069975823,
+          2.6668794466029775
+        ]
+      ],
+      "maxAuditBoundError": 2.864945695790766e-06,
+      "materials": [
+        "pasted__Lego_White24"
+      ]
+    },
+    {
+      "name": "pasted__L2x2Circle_phongE1_0",
+      "triangles": 360,
+      "bounds": [
+        [
+          1.5936809783592447,
+          -22.401553635579333,
+          0.865566008447873
+        ],
+        [
+          1.7207805953126132,
+          -21.700076672142803,
+          1.5670441602980243
+        ]
+      ],
+      "maxAuditBoundError": 8.101481213884654e-06,
+      "materials": [
+        "phongE1"
+      ]
+    },
+    {
+      "name": "pasted__pasted__L2x2Circle_phongE1_0",
+      "triangles": 360,
+      "bounds": [
+        [
+          1.598420693291031,
+          -20.314554775775985,
+          1.5533500039742645
+        ],
+        [
+          1.7255202984073252,
+          -19.61307781233945,
+          2.2548280251639374
+        ]
+      ],
+      "maxAuditBoundError": 1.381574343817249e-06,
+      "materials": [
+        "phongE1"
+      ]
+    },
+    {
+      "name": "pasted__pasted__pasted__L2x2Circle_phongE1_0",
+      "triangles": 360,
+      "bounds": [
+        [
+          1.596220478423572,
+          -18.188647897042244,
+          1.207390830554423
+        ],
+        [
+          1.7233200835398663,
+          -17.487170933605714,
+          1.908868851744096
+        ]
+      ],
+      "maxAuditBoundError": 6.048880607067986e-06,
+      "materials": [
+        "phongE1"
+      ]
+    },
+    {
+      "name": "pasted__pasted__pasted__pasted__L2x2Circle_phongE1_0",
+      "triangles": 360,
+      "bounds": [
+        [
+          1.5931017159699414,
+          -19.583265138197135,
+          0.8665759122305078
+        ],
+        [
+          1.7202013210862366,
+          -18.881788174760604,
+          1.5680539334201808
+        ]
+      ],
+      "maxAuditBoundError": 3.981065560765273e-06,
+      "materials": [
+        "phongE1"
+      ]
+    },
+    {
+      "name": "pasted__pasted__pasted__pasted__pasted__L2x2Circle_phongE1_0",
+      "triangles": 360,
+      "bounds": [
+        [
+          1.5878326420489457,
+          -21.737732139984956,
+          2.223836653192261
+        ],
+        [
+          1.7149322471652408,
+          -21.036255176548426,
+          2.925314674381934
+        ]
+      ],
+      "maxAuditBoundError": 9.330351957714811e-06,
+      "materials": [
+        "phongE1"
+      ]
+    },
+    {
+      "name": "pasted__pasted__L2x2Circle_phongE1_0.001",
+      "triangles": 360,
+      "bounds": [
+        [
+          1.5896152007330622,
+          -21.34070836804466,
+          1.1873356793764518
+        ],
+        [
+          1.716714805849261,
+          -20.63923140460813,
+          1.888813700566125
+        ]
+      ],
+      "maxAuditBoundError": 1.3447906255237285e-06,
+      "materials": [
+        "phongE1"
+      ]
+    },
+    {
+      "name": "pasted__pasted__pasted__pasted__pasted__pasted__L2x2Circle_phongE1_0",
+      "triangles": 360,
+      "bounds": [
+        [
+          -1.5511636472926826,
+          -21.737738494083754,
+          2.223839428704843
+        ],
+        [
+          -1.4240640421763866,
+          -21.03626153064722,
+          2.925317449894516
+        ]
+      ],
+      "maxAuditBoundError": 6.790950425994424e-06,
+      "materials": [
+        "phongE1"
+      ]
+    },
+    {
+      "name": "pasted__pasted__pasted__pasted__pasted__pasted__pasted__L2x2Circle_phongE1_0",
+      "triangles": 360,
+      "bounds": [
+        [
+          -1.5511617531850528,
+          -22.396525785017996,
+          0.8469042371149331
+        ],
+        [
+          -1.4240621480687568,
+          -21.695048821581462,
+          1.5483822583046063
+        ]
+      ],
+      "maxAuditBoundError": 2.45900055872994e-06,
+      "materials": [
+        "phongE1"
+      ]
+    },
+    {
+      "name": "pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__L2x2Circle_phongE1_0",
+      "triangles": 360,
+      "bounds": [
+        [
+          -1.5511616627610627,
+          -18.173306337800955,
+          1.183405236415328
+        ],
+        [
+          -1.4240620576447667,
+          -17.47182937436442,
+          1.8848832576050012
+        ]
+      ],
+      "maxAuditBoundError": 6.635716960801119e-06,
+      "materials": [
+        "phongE1"
+      ]
+    },
+    {
+      "name": "pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__L2x2Circle_phongE1_0",
+      "triangles": 360,
+      "bounds": [
+        [
+          -1.5511617526174002,
+          -19.55624728463202,
+          0.8490169151316638
+        ],
+        [
+          -1.4240621475011042,
+          -18.854770321195485,
+          1.550494936321337
+        ]
+      ],
+      "maxAuditBoundError": 2.33389825510244e-06,
+      "materials": [
+        "phongE1"
+      ]
+    },
+    {
+      "name": "pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__L2x2Circle_phongE1_0.001",
+      "triangles": 360,
+      "bounds": [
+        [
+          -1.5511616537571096,
+          -21.341842248038088,
+          1.2169131684008951
+        ],
+        [
+          -1.4240620486408135,
+          -20.640365284601554,
+          1.9183911895905683
+        ]
+      ],
+      "maxAuditBoundError": 1.3754769529583655e-05,
+      "materials": [
+        "phongE1"
+      ]
+    },
+    {
+      "name": "pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__pasted__L2x2Circle_phongE1_0",
+      "triangles": 360,
+      "bounds": [
+        [
+          -1.5511629867391366,
+          -20.292924404573217,
+          1.5476679210925706
+        ],
+        [
+          -1.4240633816228405,
+          -19.591447441136683,
+          2.2491459422822437
+        ]
+      ],
+      "maxAuditBoundError": 3.425633753550983e-06,
+      "materials": [
+        "phongE1"
+      ]
+    }
+  ],
+  "pilotCandidateObject": "pasted__LegoTri36_lambert1_0",
+  "pilotWeldToleranceStudies": [
+    {
+      "epsilonSourceMeters": 1e-06,
+      "originalVertices": 21094,
+      "weldedAnalysisVertices": 2817,
+      "componentCount": 41,
+      "components": [
+        {
+          "firstRepresentativeVertex": 606,
+          "triangles": 1224,
+          "vertices": 343,
+          "bounds": [
+            [
+              -0.15235386673468998,
+              -20.328225657869964,
+              2.6774397701409067
+            ],
+            [
+              0.3067653504415464,
+              -19.866473179756124,
+              3.1749830880355385
+            ]
+          ],
+          "centerOfBounds": [
+            0.07720574185342821,
+            -20.097349418813046,
+            2.9262114290882226
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 856,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 187,
+          "triangles": 892,
+          "vertices": 321,
+          "bounds": [
+            [
+              0.20347134681750756,
+              -20.4569055767674,
+              2.3212891046065427
+            ],
+            [
+              0.572407549225642,
+              -19.986593490342464,
+              2.6073426920789604
+            ]
+          ],
+          "centerOfBounds": [
+            0.38793944802157476,
+            -20.221749533554934,
+            2.4643158983427513
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 547,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 1325,
+          "triangles": 892,
+          "vertices": 320,
+          "bounds": [
+            [
+              -0.40551425056684476,
+              -20.461432784884103,
+              2.3236943172180875
+            ],
+            [
+              -0.06095373815456373,
+              -19.988622487196274,
+              2.6244661742866913
+            ]
+          ],
+          "centerOfBounds": [
+            -0.23323399436070424,
+            -20.22502763604019,
+            2.4740802457523894
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 549,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 428,
+          "triangles": 748,
+          "vertices": 188,
+          "bounds": [
+            [
+              -0.26802660032074854,
+              -20.607904461056748,
+              1.7381944367076039
+            ],
+            [
+              0.0487343785683958,
+              -19.953016222856327,
+              2.090587887856192
+            ]
+          ],
+          "centerOfBounds": [
+            -0.10964611087617637,
+            -20.280460341956537,
+            1.9143911622818979
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 554,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 447,
+          "triangles": 748,
+          "vertices": 188,
+          "bounds": [
+            [
+              0.10567781606942539,
+              -20.60791299222782,
+              1.7381923261314265
+            ],
+            [
+              0.42243879495856973,
+              -19.953027597751092,
+              2.0905857994966057
+            ]
+          ],
+          "centerOfBounds": [
+            0.26405830551399756,
+            -20.280470294989456,
+            1.914389062814016
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 554,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 1404,
+          "triangles": 520,
+          "vertices": 218,
+          "bounds": [
+            [
+              -0.2591300102251406,
+              -20.28286968685407,
+              2.1076195711085095
+            ],
+            [
+              0.41353722834620754,
+              -19.923977538381656,
+              2.678527938784692
+            ]
+          ],
+          "centerOfBounds": [
+            0.07720360906053347,
+            -20.103423612617863,
+            2.3930737549466006
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 270,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 360,
+          "triangles": 400,
+          "vertices": 148,
+          "bounds": [
+            [
+              -0.22353796239499069,
+              -20.444927812579248,
+              2.770111570994256
+            ],
+            [
+              0.3779501570328119,
+              -20.013928784325994,
+              3.0689049961709376
+            ]
+          ],
+          "centerOfBounds": [
+            0.0772060973189106,
+            -20.22942829845262,
+            2.919508283582597
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 238,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 2298,
+          "triangles": 236,
+          "vertices": 86,
+          "bounds": [
+            [
+              -0.3593300422896393,
+              -20.498861876110233,
+              2.349247485110764
+            ],
+            [
+              -0.25477626899567785,
+              -20.186572671492385,
+              2.4511447699508233
+            ]
+          ],
+          "centerOfBounds": [
+            -0.30705315564265856,
+            -20.34271727380131,
+            2.4001961275307937
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 135,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 390,
+          "triangles": 156,
+          "vertices": 62,
+          "bounds": [
+            [
+              -0.20593886635721148,
+              -20.21243207288008,
+              2.106100045127286
+            ],
+            [
+              0.0064197675335098126,
+              -19.998783111945627,
+              2.303061679975176
+            ]
+          ],
+          "centerOfBounds": [
+            -0.09975954941185083,
+            -20.105607592412852,
+            2.2045808625512313
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 88,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 741,
+          "triangles": 156,
+          "vertices": 66,
+          "bounds": [
+            [
+              0.1479917161733466,
+              -20.21243207288008,
+              2.106100045127286
+            ],
+            [
+              0.3603503500640679,
+              -19.998783111945627,
+              2.303061679975176
+            ]
+          ],
+          "centerOfBounds": [
+            0.25417103311870726,
+            -20.105607592412852,
+            2.2045808625512313
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 86,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 74,
+          "triangles": 140,
+          "vertices": 60,
+          "bounds": [
+            [
+              0.4146832490617358,
+              -20.494582071954685,
+              2.34172805760616
+            ],
+            [
+              0.5200773427562888,
+              -20.41235580141802,
+              2.438284829353781
+            ]
+          ],
+          "centerOfBounds": [
+            0.4673802959090123,
+            -20.453468936686352,
+            2.3900064434799706
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 72,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 1152,
+          "triangles": 128,
+          "vertices": 34,
+          "bounds": [
+            [
+              -0.09834373039511757,
+              -20.16203986720673,
+              1.8420786735023635
+            ],
+            [
+              0.25275592503293876,
+              -20.056342923183138,
+              1.9481769602484917
+            ]
+          ],
+          "centerOfBounds": [
+            0.0772060973189106,
+            -20.109191395194934,
+            1.8951278168754278
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 96,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 1300,
+          "triangles": 128,
+          "vertices": 41,
+          "bounds": [
+            [
+              -0.18815563919950584,
+              -20.110931043163145,
+              2.9603337584262723
+            ],
+            [
+              -0.17046483306724536,
+              -20.05802072016106,
+              3.013062260844836
+            ]
+          ],
+          "centerOfBounds": [
+            -0.1793102361333756,
+            -20.0844758816621,
+            2.986698009635554
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 88,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 2000,
+          "triangles": 128,
+          "vertices": 41,
+          "bounds": [
+            [
+              0.3248763167741018,
+              -20.110931043163145,
+              2.9603337584262723
+            ],
+            [
+              0.34256783383732703,
+              -20.05802072016106,
+              3.013062260844836
+            ]
+          ],
+          "centerOfBounds": [
+            0.3337220753057144,
+            -20.0844758816621,
+            2.986698009635554
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 88,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 0,
+          "triangles": 110,
+          "vertices": 37,
+          "bounds": [
+            [
+              0.5026438936333477,
+              -20.709411178221067,
+              2.318123062608002
+            ],
+            [
+              0.5742481494939442,
+              -20.567270493230414,
+              2.526319760995581
+            ]
+          ],
+          "centerOfBounds": [
+            0.538446021563646,
+            -20.638340835725742,
+            2.4222214118017913
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 71,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 37,
+          "triangles": 110,
+          "vertices": 37,
+          "bounds": [
+            [
+              0.3623146523202738,
+              -20.709748159478497,
+              2.319616150845532
+            ],
+            [
+              0.43455448046355194,
+              -20.568113657304913,
+              2.527802229702451
+            ]
+          ],
+          "centerOfBounds": [
+            0.3984345663919129,
+            -20.638930908391707,
+            2.423709190273992
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 71,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 2223,
+          "triangles": 110,
+          "vertices": 38,
+          "bounds": [
+            [
+              -0.3011702019075493,
+              -20.71303266034206,
+              2.3456970072156933
+            ],
+            [
+              -0.1843450492272778,
+              -20.569653533683802,
+              2.557662128259379
+            ]
+          ],
+          "centerOfBounds": [
+            -0.24275762556741354,
+            -20.64134309701293,
+            2.4516795677375365
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 71,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 2226,
+          "triangles": 110,
+          "vertices": 37,
+          "bounds": [
+            [
+              -0.4404017658107122,
+              -20.714109009759248,
+              2.3027248320172937
+            ],
+            [
+              -0.3197930385348817,
+              -20.572345118157706,
+              2.5114900974104213
+            ]
+          ],
+          "centerOfBounds": [
+            -0.38009740217279697,
+            -20.643227063958477,
+            2.4071074647138575
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 71,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 134,
+          "triangles": 96,
+          "vertices": 47,
+          "bounds": [
+            [
+              0.364370664670961,
+              -20.6133231765507,
+              2.320463758238298
+            ],
+            [
+              0.5763041618446305,
+              -20.464138587976464,
+              2.5491844547371407
+            ]
+          ],
+          "centerOfBounds": [
+            0.47033741325779577,
+            -20.538730882263582,
+            2.4348241064877194
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 48,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 170,
+          "triangles": 96,
+          "vertices": 33,
+          "bounds": [
+            [
+              0.42430641060354013,
+              -20.41594458071656,
+              2.341433199005909
+            ],
+            [
+              0.51297798614012,
+              -20.18287440883173,
+              2.4380543988684127
+            ]
+          ],
+          "centerOfBounds": [
+            0.4686421983718301,
+            -20.299409494774146,
+            2.389743798937161
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 64,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 817,
+          "triangles": 96,
+          "vertices": 33,
+          "bounds": [
+            [
+              0.1480293955144898,
+              -20.537087209969954,
+              1.7402871618536695
+            ],
+            [
+              0.3605067548763605,
+              -20.32460133202528,
+              1.8103013053801473
+            ]
+          ],
+          "centerOfBounds": [
+            0.25426807519542516,
+            -20.430844270997618,
+            1.7752942336169084
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 64,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 849,
+          "triangles": 96,
+          "vertices": 33,
+          "bounds": [
+            [
+              0.1480293955144898,
+              -20.18295687681878,
+              1.7402561141672732
+            ],
+            [
+              0.3605067548763605,
+              -19.970473842597798,
+              1.810270268802047
+            ]
+          ],
+          "centerOfBounds": [
+            0.25426807519542516,
+            -20.076715359708288,
+            1.77526319148466
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 64,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 866,
+          "triangles": 96,
+          "vertices": 33,
+          "bounds": [
+            [
+              -0.20610024768625923,
+              -20.537087209969954,
+              1.7402871618536695
+            ],
+            [
+              0.006377111675611502,
+              -20.32460133202528,
+              1.8103013053801473
+            ]
+          ],
+          "centerOfBounds": [
+            -0.09986156800532386,
+            -20.430844270997618,
+            1.7752942336169084
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 64,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 1387,
+          "triangles": 96,
+          "vertices": 33,
+          "bounds": [
+            [
+              -0.3617791994639532,
+              -20.459287195358943,
+              2.367494327042961
+            ],
+            [
+              -0.2721819918109851,
+              -20.190687539673835,
+              2.4687617270853766
+            ]
+          ],
+          "centerOfBounds": [
+            -0.31698059563746916,
+            -20.32498736751639,
+            2.418128027064169
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 64,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 1917,
+          "triangles": 96,
+          "vertices": 45,
+          "bounds": [
+            [
+              -0.4404017658107122,
+              -20.6184944880835,
+              2.3039114645938934
+            ],
+            [
+              -0.1843450492272778,
+              -20.46770461748547,
+              2.5646380490734657
+            ]
+          ],
+          "centerOfBounds": [
+            -0.312373407518995,
+            -20.543099552784483,
+            2.4342747568336796
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 50,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 2193,
+          "triangles": 96,
+          "vertices": 33,
+          "bounds": [
+            [
+              0.43025405905646164,
+              -20.454141477339366,
+              2.365300749680512
+            ],
+            [
+              0.5284677500048396,
+              -20.18453229974381,
+              2.4676714256488226
+            ]
+          ],
+          "centerOfBounds": [
+            0.4793609045306506,
+            -20.31933688854159,
+            2.4164860876646674
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 64,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 2427,
+          "triangles": 96,
+          "vertices": 33,
+          "bounds": [
+            [
+              -0.20610024768625923,
+              -20.18295687681878,
+              1.7402561141672732
+            ],
+            [
+              0.006377111675611502,
+              -19.970473842597798,
+              1.810270268802047
+            ]
+          ],
+          "centerOfBounds": [
+            -0.09986156800532386,
+            -20.076715359708288,
+            1.77526319148466
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 64,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 768,
+          "triangles": 80,
+          "vertices": 26,
+          "bounds": [
+            [
+              -0.24133185351717046,
+              -20.284125190863822,
+              1.9991855430319538
+            ],
+            [
+              0.3957433372240269,
+              -19.930570711760154,
+              2.1093645066254587
+            ]
+          ],
+          "centerOfBounds": [
+            0.07720574185342821,
+            -20.107347951311986,
+            2.0542750248287063
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 52,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 1035,
+          "triangles": 64,
+          "vertices": 32,
+          "bounds": [
+            [
+              -0.029015875484347475,
+              -20.20502701638769,
+              2.746116408219002
+            ],
+            [
+              0.18342309360541442,
+              -19.99197523742843,
+              2.890271960311372
+            ]
+          ],
+          "centerOfBounds": [
+            0.07720360906053347,
+            -20.09850112690806,
+            2.818194184265187
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 32,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 2088,
+          "triangles": 64,
+          "vertices": 32,
+          "bounds": [
+            [
+              -0.029005922450838106,
+              -20.20584032136343,
+              2.6752630773878754
+            ],
+            [
+              0.18341740615769453,
+              -19.993623175307594,
+              2.748565032050023
+            ]
+          ],
+          "centerOfBounds": [
+            0.07720574185342821,
+            -20.09973174833551,
+            2.711914054718949
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 32,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 152,
+          "triangles": 32,
+          "vertices": 18,
+          "bounds": [
+            [
+              0.3663299904104118,
+              -20.61331322351778,
+              2.526031567372731
+            ],
+            [
+              0.5763041618446305,
+              -20.509167530767847,
+              2.5491888980554087
+            ]
+          ],
+          "centerOfBounds": [
+            0.47131707612752116,
+            -20.561240377142813,
+            2.53761023271407
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 15,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 1018,
+          "triangles": 32,
+          "vertices": 17,
+          "bounds": [
+            [
+              -0.029005922450838106,
+              -20.203376234784834,
+              2.8878236919458122
+            ],
+            [
+              0.18341740615769453,
+              -19.991982346737657,
+              2.890271960311372
+            ]
+          ],
+          "centerOfBounds": [
+            0.07720574185342821,
+            -20.097679290761246,
+            2.889047826128592
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 16,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 1185,
+          "triangles": 32,
+          "vertices": 17,
+          "bounds": [
+            [
+              0.04181275469346879,
+              -20.267738233092164,
+              1.7359803867562356
+            ],
+            [
+              0.04181275469346879,
+              -19.950644557297704,
+              2.0542748693125668
+            ]
+          ],
+          "centerOfBounds": [
+            0.04181275469346879,
+            -20.109191395194934,
+            1.8951276280344012
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 16,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 1219,
+          "triangles": 32,
+          "vertices": 17,
+          "bounds": [
+            [
+              0.11259872901338763,
+              -20.267738233092164,
+              1.7359803867562356
+            ],
+            [
+              0.11259872901338763,
+              -19.950644557297704,
+              2.0542748693125668
+            ]
+          ],
+          "centerOfBounds": [
+            0.11259872901338763,
+            -20.109191395194934,
+            1.8951276280344012
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 16,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 1980,
+          "triangles": 32,
+          "vertices": 18,
+          "bounds": [
+            [
+              -0.44040674232746735,
+              -20.618483113188734,
+              2.5022639024927886
+            ],
+            [
+              -0.23788739299190098,
+              -20.513302305015134,
+              2.564642225792637
+            ]
+          ],
+          "centerOfBounds": [
+            -0.33914706765968416,
+            -20.565892709101934,
+            2.533453064142713
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 15,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 1203,
+          "triangles": 28,
+          "vertices": 16,
+          "bounds": [
+            [
+              0.04181275469346879,
+              -20.1715663415729,
+              1.7359768654265084
+            ],
+            [
+              0.11259872901338763,
+              -19.95064029171217,
+              2.0063656343204457
+            ]
+          ],
+          "centerOfBounds": [
+            0.07720574185342821,
+            -20.061103316642534,
+            1.871171249873477
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 13,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 1240,
+          "triangles": 20,
+          "vertices": 12,
+          "bounds": [
+            [
+              0.04181275469346879,
+              -20.267736811230318,
+              1.7487924172740554
+            ],
+            [
+              0.11259872901338763,
+              -20.17156918529659,
+              2.0089609765206697
+            ]
+          ],
+          "centerOfBounds": [
+            0.07720574185342821,
+            -20.219652998263456,
+            1.8788766968973625
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 9,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 1412,
+          "triangles": 10,
+          "vertices": 6,
+          "bounds": [
+            [
+              -0.038494007109298956,
+              -20.212405057505013,
+              2.1103666081943966
+            ],
+            [
+              0.006398439604560657,
+              -20.161779666488965,
+              2.624571214330542
+            ]
+          ],
+          "centerOfBounds": [
+            -0.01604778375236915,
+            -20.18709236199699,
+            2.3674689112624696
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 5,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 1415,
+          "triangles": 10,
+          "vertices": 6,
+          "bounds": [
+            [
+              0.14801375503326053,
+              -20.212405057505013,
+              2.1103666081943966
+            ],
+            [
+              0.19290620174712014,
+              -20.161779666488965,
+              2.624571214330542
+            ]
+          ],
+          "centerOfBounds": [
+            0.17045997839019034,
+            -20.18709236199699,
+            2.3674689112624696
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 5,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 1418,
+          "triangles": 10,
+          "vertices": 6,
+          "bounds": [
+            [
+              -0.038494007109298956,
+              -20.045684646787794,
+              2.108435408775661
+            ],
+            [
+              0.006398439604560657,
+              -19.995059255771746,
+              2.6226404148104505
+            ]
+          ],
+          "centerOfBounds": [
+            -0.01604778375236915,
+            -20.02037195127977,
+            2.365537911793056
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 5,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 1421,
+          "triangles": 10,
+          "vertices": 6,
+          "bounds": [
+            [
+              0.14801375503326053,
+              -20.045684646787794,
+              2.108435408775661
+            ],
+            [
+              0.19290620174712014,
+              -19.995059255771746,
+              2.6226404148104505
+            ]
+          ],
+          "centerOfBounds": [
+            0.17045997839019034,
+            -20.02037195127977,
+            2.365537911793056
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 5,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        }
+      ]
+    },
+    {
+      "epsilonSourceMeters": 1e-05,
+      "originalVertices": 21094,
+      "weldedAnalysisVertices": 2582,
+      "componentCount": 32,
+      "components": [
+        {
+          "firstRepresentativeVertex": 594,
+          "triangles": 1224,
+          "vertices": 308,
+          "bounds": [
+            [
+              -0.15235386673468998,
+              -20.328225657869964,
+              2.6774397701409067
+            ],
+            [
+              0.3067653504415464,
+              -19.866473179756124,
+              3.1749830880355385
+            ]
+          ],
+          "centerOfBounds": [
+            0.07720574185342821,
+            -20.097349418813046,
+            2.9262114290882226
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 900,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 176,
+          "triangles": 892,
+          "vertices": 287,
+          "bounds": [
+            [
+              0.20347134681750756,
+              -20.4569055767674,
+              2.3212972358789727
+            ],
+            [
+              0.572407549225642,
+              -19.986597755928003,
+              2.6073426920789604
+            ]
+          ],
+          "centerOfBounds": [
+            0.38793944802157476,
+            -20.2217516663477,
+            2.4643199639789666
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 584,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 1261,
+          "triangles": 892,
+          "vertices": 288,
+          "bounds": [
+            [
+              -0.40551425056684476,
+              -20.461432784884103,
+              2.3236943172180875
+            ],
+            [
+              -0.06095373815456373,
+              -19.988622487196274,
+              2.6244661742866913
+            ]
+          ],
+          "centerOfBounds": [
+            -0.23323399436070424,
+            -20.22502763604019,
+            2.4740802457523894
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 581,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 416,
+          "triangles": 748,
+          "vertices": 188,
+          "bounds": [
+            [
+              -0.26802660032074854,
+              -20.607904461056748,
+              1.7381944367076039
+            ],
+            [
+              0.0487343785683958,
+              -19.953016222856327,
+              2.090587887856192
+            ]
+          ],
+          "centerOfBounds": [
+            -0.10964611087617637,
+            -20.280460341956537,
+            1.9143911622818979
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 554,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 435,
+          "triangles": 748,
+          "vertices": 188,
+          "bounds": [
+            [
+              0.10567781606942539,
+              -20.60791299222782,
+              1.7381923261314265
+            ],
+            [
+              0.42243879495856973,
+              -19.953027597751092,
+              2.0905857994966057
+            ]
+          ],
+          "centerOfBounds": [
+            0.26405830551399756,
+            -20.280470294989456,
+            1.914389062814016
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 554,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 1814,
+          "triangles": 552,
+          "vertices": 167,
+          "bounds": [
+            [
+              -0.4404017658107122,
+              -20.714109009759248,
+              2.3027248320172937
+            ],
+            [
+              -0.1843450492272778,
+              -20.186572671492385,
+              2.5646380490734657
+            ]
+          ],
+          "centerOfBounds": [
+            -0.312373407518995,
+            -20.450340840625817,
+            2.4336814405453797
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 374,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 1330,
+          "triangles": 520,
+          "vertices": 216,
+          "bounds": [
+            [
+              -0.2591300102251406,
+              -20.28286968685407,
+              2.1076195711085095
+            ],
+            [
+              0.41353722834620754,
+              -19.923977538381656,
+              2.678527938784692
+            ]
+          ],
+          "centerOfBounds": [
+            0.07720360906053347,
+            -20.103423612617863,
+            2.3930737549466006
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 270,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 348,
+          "triangles": 400,
+          "vertices": 136,
+          "bounds": [
+            [
+              -0.22353796239499069,
+              -20.444927812579248,
+              2.770111570994256
+            ],
+            [
+              0.3779501570328119,
+              -20.013928784325994,
+              3.0689049961709376
+            ]
+          ],
+          "centerOfBounds": [
+            0.0772060973189106,
+            -20.22942829845262,
+            2.919508283582597
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 254,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 1001,
+          "triangles": 160,
+          "vertices": 59,
+          "bounds": [
+            [
+              -0.029015875484347475,
+              -20.20584032136343,
+              2.6752630773878754
+            ],
+            [
+              0.18342309360541442,
+              -19.991982346737657,
+              2.890271960311372
+            ]
+          ],
+          "centerOfBounds": [
+            0.07720360906053347,
+            -20.09891133405054,
+            2.7827675188496235
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 93,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 378,
+          "triangles": 156,
+          "vertices": 62,
+          "bounds": [
+            [
+              -0.20593886635721148,
+              -20.21243207288008,
+              2.106100045127286
+            ],
+            [
+              0.0064197675335098126,
+              -19.998783111945627,
+              2.303061679975176
+            ]
+          ],
+          "centerOfBounds": [
+            -0.09975954941185083,
+            -20.105607592412852,
+            2.2045808625512313
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 88,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 729,
+          "triangles": 156,
+          "vertices": 62,
+          "bounds": [
+            [
+              0.1479917161733466,
+              -20.21243207288008,
+              2.106100045127286
+            ],
+            [
+              0.3603503500640679,
+              -19.998783111945627,
+              2.303061679975176
+            ]
+          ],
+          "centerOfBounds": [
+            0.25417103311870726,
+            -20.105607592412852,
+            2.2045808625512313
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 88,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 69,
+          "triangles": 140,
+          "vertices": 54,
+          "bounds": [
+            [
+              0.4146832490617358,
+              -20.494582071954685,
+              2.34172805760616
+            ],
+            [
+              0.5200773427562888,
+              -20.41235580141802,
+              2.438284829353781
+            ]
+          ],
+          "centerOfBounds": [
+            0.4673802959090123,
+            -20.453468936686352,
+            2.3900064434799706
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 82,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 123,
+          "triangles": 128,
+          "vertices": 53,
+          "bounds": [
+            [
+              0.364370664670961,
+              -20.6133231765507,
+              2.320463758238298
+            ],
+            [
+              0.5763041618446305,
+              -20.46414000983831,
+              2.5491888980554087
+            ]
+          ],
+          "centerOfBounds": [
+            0.47033741325779577,
+            -20.538731593194505,
+            2.4348263281468534
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 76,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 1126,
+          "triangles": 128,
+          "vertices": 34,
+          "bounds": [
+            [
+              -0.09834373039511757,
+              -20.16203986720673,
+              1.8420786735023635
+            ],
+            [
+              0.25275592503293876,
+              -20.056342923183138,
+              1.9481769602484917
+            ]
+          ],
+          "centerOfBounds": [
+            0.0772060973189106,
+            -20.109191395194934,
+            1.8951278168754278
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 96,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 1236,
+          "triangles": 128,
+          "vertices": 41,
+          "bounds": [
+            [
+              -0.18815563919950584,
+              -20.110931043163145,
+              2.9603337584262723
+            ],
+            [
+              -0.17046483306724536,
+              -20.05802072016106,
+              3.013062260844836
+            ]
+          ],
+          "centerOfBounds": [
+            -0.1793102361333756,
+            -20.0844758816621,
+            2.986698009635554
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 88,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 1893,
+          "triangles": 128,
+          "vertices": 41,
+          "bounds": [
+            [
+              0.3248763167741018,
+              -20.110931043163145,
+              2.9603337584262723
+            ],
+            [
+              0.34256783383732703,
+              -20.05802072016106,
+              3.013062260844836
+            ]
+          ],
+          "centerOfBounds": [
+            0.3337220753057144,
+            -20.0844758816621,
+            2.986698009635554
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 88,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 1159,
+          "triangles": 112,
+          "vertices": 34,
+          "bounds": [
+            [
+              0.04181275469346879,
+              -20.267738233092164,
+              1.7359768654265084
+            ],
+            [
+              0.11259872901338763,
+              -19.95064029171217,
+              2.0542748693125668
+            ]
+          ],
+          "centerOfBounds": [
+            0.07720574185342821,
+            -20.109189262402168,
+            1.8951258673695377
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 79,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 0,
+          "triangles": 110,
+          "vertices": 33,
+          "bounds": [
+            [
+              0.5026438936333477,
+              -20.709411178221067,
+              2.318123062608002
+            ],
+            [
+              0.5742481494939442,
+              -20.567270493230414,
+              2.526319760995581
+            ]
+          ],
+          "centerOfBounds": [
+            0.538446021563646,
+            -20.638340835725742,
+            2.4222214118017913
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 76,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 33,
+          "triangles": 110,
+          "vertices": 36,
+          "bounds": [
+            [
+              0.3623146523202738,
+              -20.709748159478497,
+              2.319616150845532
+            ],
+            [
+              0.43455448046355194,
+              -20.568113657304913,
+              2.527802229702451
+            ]
+          ],
+          "centerOfBounds": [
+            0.3984345663919129,
+            -20.638930908391707,
+            2.423709190273992
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 72,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 159,
+          "triangles": 96,
+          "vertices": 33,
+          "bounds": [
+            [
+              0.42430641060354013,
+              -20.41594458071656,
+              2.341433199005909
+            ],
+            [
+              0.51297798614012,
+              -20.18287440883173,
+              2.4380543988684127
+            ]
+          ],
+          "centerOfBounds": [
+            0.4686421983718301,
+            -20.299409494774146,
+            2.389743798937161
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 64,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 802,
+          "triangles": 96,
+          "vertices": 33,
+          "bounds": [
+            [
+              0.1480293955144898,
+              -20.537087209969954,
+              1.7402871618536695
+            ],
+            [
+              0.3605067548763605,
+              -20.32460133202528,
+              1.8103013053801473
+            ]
+          ],
+          "centerOfBounds": [
+            0.25426807519542516,
+            -20.430844270997618,
+            1.7752942336169084
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 64,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 834,
+          "triangles": 96,
+          "vertices": 33,
+          "bounds": [
+            [
+              0.1480293955144898,
+              -20.18295687681878,
+              1.7402561141672732
+            ],
+            [
+              0.3605067548763605,
+              -19.970473842597798,
+              1.810270268802047
+            ]
+          ],
+          "centerOfBounds": [
+            0.25426807519542516,
+            -20.076715359708288,
+            1.77526319148466
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 64,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 851,
+          "triangles": 96,
+          "vertices": 33,
+          "bounds": [
+            [
+              -0.20610024768625923,
+              -20.537087209969954,
+              1.7402871618536695
+            ],
+            [
+              0.006377111675611502,
+              -20.32460133202528,
+              1.8103013053801473
+            ]
+          ],
+          "centerOfBounds": [
+            -0.09986156800532386,
+            -20.430844270997618,
+            1.7752942336169084
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 64,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 1313,
+          "triangles": 96,
+          "vertices": 33,
+          "bounds": [
+            [
+              -0.3617791994639532,
+              -20.459287195358943,
+              2.367494327042961
+            ],
+            [
+              -0.2721819918109851,
+              -20.190687539673835,
+              2.4687617270853766
+            ]
+          ],
+          "centerOfBounds": [
+            -0.31698059563746916,
+            -20.32498736751639,
+            2.418128027064169
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 64,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 2045,
+          "triangles": 96,
+          "vertices": 33,
+          "bounds": [
+            [
+              0.43025405905646164,
+              -20.454141477339366,
+              2.365300749680512
+            ],
+            [
+              0.5284677500048396,
+              -20.18453229974381,
+              2.4676714256488226
+            ]
+          ],
+          "centerOfBounds": [
+            0.4793609045306506,
+            -20.31933688854159,
+            2.4164860876646674
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 64,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 2245,
+          "triangles": 96,
+          "vertices": 33,
+          "bounds": [
+            [
+              -0.20610024768625923,
+              -20.18295687681878,
+              1.7402561141672732
+            ],
+            [
+              0.006377111675611502,
+              -19.970473842597798,
+              1.810270268802047
+            ]
+          ],
+          "centerOfBounds": [
+            -0.09986156800532386,
+            -20.076715359708288,
+            1.77526319148466
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 64,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 756,
+          "triangles": 80,
+          "vertices": 22,
+          "bounds": [
+            [
+              -0.24133185351717046,
+              -20.284125190863822,
+              1.9991855430319538
+            ],
+            [
+              0.3957433372240269,
+              -19.930570711760154,
+              2.1093645066254587
+            ]
+          ],
+          "centerOfBounds": [
+            0.07720574185342821,
+            -20.107347951311986,
+            2.0542750248287063
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 60,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 1873,
+          "triangles": 32,
+          "vertices": 18,
+          "bounds": [
+            [
+              -0.44040674232746735,
+              -20.618483113188734,
+              2.5022639024927886
+            ],
+            [
+              -0.23788739299190098,
+              -20.513302305015134,
+              2.564642225792637
+            ]
+          ],
+          "centerOfBounds": [
+            -0.33914706765968416,
+            -20.565892709101934,
+            2.533453064142713
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 15,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 1338,
+          "triangles": 10,
+          "vertices": 6,
+          "bounds": [
+            [
+              -0.038494007109298956,
+              -20.212405057505013,
+              2.1103666081943966
+            ],
+            [
+              0.006398439604560657,
+              -20.161779666488965,
+              2.624571214330542
+            ]
+          ],
+          "centerOfBounds": [
+            -0.01604778375236915,
+            -20.18709236199699,
+            2.3674689112624696
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 5,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 1341,
+          "triangles": 10,
+          "vertices": 6,
+          "bounds": [
+            [
+              0.14801375503326053,
+              -20.212405057505013,
+              2.1103666081943966
+            ],
+            [
+              0.19290620174712014,
+              -20.161779666488965,
+              2.624571214330542
+            ]
+          ],
+          "centerOfBounds": [
+            0.17045997839019034,
+            -20.18709236199699,
+            2.3674689112624696
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 5,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 1344,
+          "triangles": 10,
+          "vertices": 6,
+          "bounds": [
+            [
+              -0.038494007109298956,
+              -20.045684646787794,
+              2.108435408775661
+            ],
+            [
+              0.006398439604560657,
+              -19.995059255771746,
+              2.6226404148104505
+            ]
+          ],
+          "centerOfBounds": [
+            -0.01604778375236915,
+            -20.02037195127977,
+            2.365537911793056
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 5,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 1347,
+          "triangles": 10,
+          "vertices": 6,
+          "bounds": [
+            [
+              0.14801375503326053,
+              -20.045684646787794,
+              2.108435408775661
+            ],
+            [
+              0.19290620174712014,
+              -19.995059255771746,
+              2.6226404148104505
+            ]
+          ],
+          "centerOfBounds": [
+            0.17045997839019034,
+            -20.02037195127977,
+            2.365537911793056
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 5,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        }
+      ]
+    },
+    {
+      "epsilonSourceMeters": 0.0001,
+      "originalVertices": 21094,
+      "weldedAnalysisVertices": 2396,
+      "componentCount": 29,
+      "components": [
+        {
+          "firstRepresentativeVertex": 570,
+          "triangles": 1224,
+          "vertices": 308,
+          "bounds": [
+            [
+              -0.15235386673468998,
+              -20.328225657869964,
+              2.6774397701409067
+            ],
+            [
+              0.3067653504415464,
+              -19.866473179756124,
+              3.1749830880355385
+            ]
+          ],
+          "centerOfBounds": [
+            0.07720574185342821,
+            -20.097349418813046,
+            2.9262114290882226
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 900,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 164,
+          "triangles": 988,
+          "vertices": 261,
+          "bounds": [
+            [
+              0.20347134681750756,
+              -20.4569055767674,
+              2.3212972358789727
+            ],
+            [
+              0.572407549225642,
+              -19.986597755928003,
+              2.6073426920789604
+            ]
+          ],
+          "centerOfBounds": [
+            0.38793944802157476,
+            -20.2217516663477,
+            2.4643199639789666
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 725,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 1225,
+          "triangles": 988,
+          "vertices": 261,
+          "bounds": [
+            [
+              -0.40551425056684476,
+              -20.461432784884103,
+              2.3237028039559786
+            ],
+            [
+              -0.06095373815456373,
+              -19.988622487196274,
+              2.6244661742866913
+            ]
+          ],
+          "centerOfBounds": [
+            -0.23323399436070424,
+            -20.22502763604019,
+            2.474084489121335
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 725,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 392,
+          "triangles": 748,
+          "vertices": 188,
+          "bounds": [
+            [
+              -0.26802660032074854,
+              -20.607904461056748,
+              1.7381944367076039
+            ],
+            [
+              0.0487343785683958,
+              -19.953016222856327,
+              2.090587887856192
+            ]
+          ],
+          "centerOfBounds": [
+            -0.10964611087617637,
+            -20.280460341956537,
+            1.9143911622818979
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 554,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 411,
+          "triangles": 748,
+          "vertices": 188,
+          "bounds": [
+            [
+              0.10567781606942539,
+              -20.60791299222782,
+              1.7381923261314265
+            ],
+            [
+              0.42243879495856973,
+              -19.953027597751092,
+              2.0905857994966057
+            ]
+          ],
+          "centerOfBounds": [
+            0.26405830551399756,
+            -20.280470294989456,
+            1.914389062814016
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 554,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 1748,
+          "triangles": 584,
+          "vertices": 164,
+          "bounds": [
+            [
+              -0.44040674232746735,
+              -20.714109009759248,
+              2.3027248320172937
+            ],
+            [
+              -0.1843450492272778,
+              -20.186572671492385,
+              2.564642225792637
+            ]
+          ],
+          "centerOfBounds": [
+            -0.31237589577737257,
+            -20.450340840625817,
+            2.4336835289049654
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 412,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 1290,
+          "triangles": 520,
+          "vertices": 216,
+          "bounds": [
+            [
+              -0.2591300102251406,
+              -20.28286968685407,
+              2.1076195711085095
+            ],
+            [
+              0.41353722834620754,
+              -19.923977538381656,
+              2.678527938784692
+            ]
+          ],
+          "centerOfBounds": [
+            0.07720360906053347,
+            -20.103423612617863,
+            2.3930737549466006
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 270,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 324,
+          "triangles": 400,
+          "vertices": 120,
+          "bounds": [
+            [
+              -0.22353796239499069,
+              -20.444927812579248,
+              2.770111570994256
+            ],
+            [
+              0.3779501570328119,
+              -20.013928784325994,
+              3.0689049961709376
+            ]
+          ],
+          "centerOfBounds": [
+            0.0772060973189106,
+            -20.22942829845262,
+            2.919508283582597
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 268,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 977,
+          "triangles": 160,
+          "vertices": 49,
+          "bounds": [
+            [
+              -0.029015875484347475,
+              -20.20584032136343,
+              2.6752630773878754
+            ],
+            [
+              0.18342309360541442,
+              -19.991982346737657,
+              2.890271960311372
+            ]
+          ],
+          "centerOfBounds": [
+            0.07720360906053347,
+            -20.09891133405054,
+            2.7827675188496235
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 112,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 354,
+          "triangles": 156,
+          "vertices": 62,
+          "bounds": [
+            [
+              -0.20593886635721148,
+              -20.21243207288008,
+              2.106100045127286
+            ],
+            [
+              0.0064197675335098126,
+              -19.998783111945627,
+              2.303061679975176
+            ]
+          ],
+          "centerOfBounds": [
+            -0.09975954941185083,
+            -20.105607592412852,
+            2.2045808625512313
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 88,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 705,
+          "triangles": 156,
+          "vertices": 62,
+          "bounds": [
+            [
+              0.1479917161733466,
+              -20.21243207288008,
+              2.106100045127286
+            ],
+            [
+              0.3603503500640679,
+              -19.998783111945627,
+              2.303061679975176
+            ]
+          ],
+          "centerOfBounds": [
+            0.25417103311870726,
+            -20.105607592412852,
+            2.2045808625512313
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 88,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 66,
+          "triangles": 140,
+          "vertices": 54,
+          "bounds": [
+            [
+              0.4146832490617358,
+              -20.494582071954685,
+              2.34172805760616
+            ],
+            [
+              0.5200773427562888,
+              -20.41235580141802,
+              2.438284829353781
+            ]
+          ],
+          "centerOfBounds": [
+            0.4673802959090123,
+            -20.453468936686352,
+            2.3900064434799706
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 82,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 120,
+          "triangles": 128,
+          "vertices": 36,
+          "bounds": [
+            [
+              0.364370664670961,
+              -20.6133231765507,
+              2.320463758238298
+            ],
+            [
+              0.5763041618446305,
+              -20.46414000983831,
+              2.5491844547371407
+            ]
+          ],
+          "centerOfBounds": [
+            0.47033741325779577,
+            -20.538731593194505,
+            2.4348241064877194
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 92,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 1096,
+          "triangles": 128,
+          "vertices": 34,
+          "bounds": [
+            [
+              -0.09834373039511757,
+              -20.16203986720673,
+              1.8420786735023635
+            ],
+            [
+              0.25275592503293876,
+              -20.056342923183138,
+              1.9481769602484917
+            ]
+          ],
+          "centerOfBounds": [
+            0.0772060973189106,
+            -20.109191395194934,
+            1.8951278168754278
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 96,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 1200,
+          "triangles": 128,
+          "vertices": 41,
+          "bounds": [
+            [
+              -0.18815563919950584,
+              -20.110931043163145,
+              2.9603337584262723
+            ],
+            [
+              -0.17046483306724536,
+              -20.05802072016106,
+              3.013062260844836
+            ]
+          ],
+          "centerOfBounds": [
+            -0.1793102361333756,
+            -20.0844758816621,
+            2.986698009635554
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 88,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 1816,
+          "triangles": 128,
+          "vertices": 41,
+          "bounds": [
+            [
+              0.3248763167741018,
+              -20.110931043163145,
+              2.9603337584262723
+            ],
+            [
+              0.34256783383732703,
+              -20.05802072016106,
+              3.013062260844836
+            ]
+          ],
+          "centerOfBounds": [
+            0.3337220753057144,
+            -20.0844758816621,
+            2.986698009635554
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 88,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 1129,
+          "triangles": 112,
+          "vertices": 34,
+          "bounds": [
+            [
+              0.04181275469346879,
+              -20.267738233092164,
+              1.7359768654265084
+            ],
+            [
+              0.11259872901338763,
+              -19.95064029171217,
+              2.0542748693125668
+            ]
+          ],
+          "centerOfBounds": [
+            0.07720574185342821,
+            -20.109189262402168,
+            1.8951258673695377
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 79,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 0,
+          "triangles": 110,
+          "vertices": 33,
+          "bounds": [
+            [
+              0.5026438936333477,
+              -20.709411178221067,
+              2.318123062608002
+            ],
+            [
+              0.5742481494939442,
+              -20.567270493230414,
+              2.526319760995581
+            ]
+          ],
+          "centerOfBounds": [
+            0.538446021563646,
+            -20.638340835725742,
+            2.4222214118017913
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 76,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 33,
+          "triangles": 110,
+          "vertices": 33,
+          "bounds": [
+            [
+              0.3623146523202738,
+              -20.709748159478497,
+              2.319616150845532
+            ],
+            [
+              0.43455448046355194,
+              -20.568113657304913,
+              2.527802229702451
+            ]
+          ],
+          "centerOfBounds": [
+            0.3984345663919129,
+            -20.638930908391707,
+            2.423709190273992
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 76,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 147,
+          "triangles": 96,
+          "vertices": 33,
+          "bounds": [
+            [
+              0.42430641060354013,
+              -20.41594458071656,
+              2.341433199005909
+            ],
+            [
+              0.51297798614012,
+              -20.18287440883173,
+              2.4380543988684127
+            ]
+          ],
+          "centerOfBounds": [
+            0.4686421983718301,
+            -20.299409494774146,
+            2.389743798937161
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 64,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 778,
+          "triangles": 96,
+          "vertices": 33,
+          "bounds": [
+            [
+              0.1480293955144898,
+              -20.537087209969954,
+              1.7402871618536695
+            ],
+            [
+              0.3605067548763605,
+              -20.32460133202528,
+              1.8103013053801473
+            ]
+          ],
+          "centerOfBounds": [
+            0.25426807519542516,
+            -20.430844270997618,
+            1.7752942336169084
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 64,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 810,
+          "triangles": 96,
+          "vertices": 33,
+          "bounds": [
+            [
+              0.1480293955144898,
+              -20.18295687681878,
+              1.7402561141672732
+            ],
+            [
+              0.3605067548763605,
+              -19.970473842597798,
+              1.810270268802047
+            ]
+          ],
+          "centerOfBounds": [
+            0.25426807519542516,
+            -20.076715359708288,
+            1.77526319148466
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 64,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 827,
+          "triangles": 96,
+          "vertices": 33,
+          "bounds": [
+            [
+              -0.20610024768625923,
+              -20.537087209969954,
+              1.7402871618536695
+            ],
+            [
+              0.006377111675611502,
+              -20.32460133202528,
+              1.8103013053801473
+            ]
+          ],
+          "centerOfBounds": [
+            -0.09986156800532386,
+            -20.430844270997618,
+            1.7752942336169084
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 64,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 2111,
+          "triangles": 96,
+          "vertices": 33,
+          "bounds": [
+            [
+              -0.20610024768625923,
+              -20.18295687681878,
+              1.7402561141672732
+            ],
+            [
+              0.006377111675611502,
+              -19.970473842597798,
+              1.810270268802047
+            ]
+          ],
+          "centerOfBounds": [
+            -0.09986156800532386,
+            -20.076715359708288,
+            1.77526319148466
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 64,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 732,
+          "triangles": 80,
+          "vertices": 22,
+          "bounds": [
+            [
+              -0.24133185351717046,
+              -20.284125190863822,
+              1.9991855430319538
+            ],
+            [
+              0.3957433372240269,
+              -19.930570711760154,
+              2.1093645066254587
+            ]
+          ],
+          "centerOfBounds": [
+            0.07720574185342821,
+            -20.107347951311986,
+            2.0542750248287063
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 60,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 1298,
+          "triangles": 10,
+          "vertices": 6,
+          "bounds": [
+            [
+              -0.038494007109298956,
+              -20.212405057505013,
+              2.1103666081943966
+            ],
+            [
+              0.006398439604560657,
+              -20.161779666488965,
+              2.624571214330542
+            ]
+          ],
+          "centerOfBounds": [
+            -0.01604778375236915,
+            -20.18709236199699,
+            2.3674689112624696
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 5,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 1301,
+          "triangles": 10,
+          "vertices": 6,
+          "bounds": [
+            [
+              0.14801375503326053,
+              -20.212405057505013,
+              2.1103666081943966
+            ],
+            [
+              0.19290620174712014,
+              -20.161779666488965,
+              2.624571214330542
+            ]
+          ],
+          "centerOfBounds": [
+            0.17045997839019034,
+            -20.18709236199699,
+            2.3674689112624696
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 5,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 1304,
+          "triangles": 10,
+          "vertices": 6,
+          "bounds": [
+            [
+              -0.038494007109298956,
+              -20.045684646787794,
+              2.108435408775661
+            ],
+            [
+              0.006398439604560657,
+              -19.995059255771746,
+              2.6226404148104505
+            ]
+          ],
+          "centerOfBounds": [
+            -0.01604778375236915,
+            -20.02037195127977,
+            2.365537911793056
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 5,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        },
+        {
+          "firstRepresentativeVertex": 1307,
+          "triangles": 10,
+          "vertices": 6,
+          "bounds": [
+            [
+              0.14801375503326053,
+              -20.045684646787794,
+              2.108435408775661
+            ],
+            [
+              0.19290620174712014,
+              -19.995059255771746,
+              2.6226404148104505
+            ]
+          ],
+          "centerOfBounds": [
+            0.17045997839019034,
+            -20.02037195127977,
+            2.365537911793056
+          ],
+          "boundaryEdges": 0,
+          "nonManifoldEdgesOverTwoFaces": 5,
+          "degenerateTrianglesAfterAnalysisWeld": 0
+        }
+      ]
+    }
+  ],
+  "rearEngineCandidateStudies": {
+    "pasted__L1x1Stud5_Black_Jets_0": {
+      "weldedTopology": {
+        "epsilonSourceMeters": 1e-05,
+        "originalVertices": 1581,
+        "weldedAnalysisVertices": 594,
+        "componentCount": 5,
+        "components": [
+          {
+            "firstRepresentativeVertex": 314,
+            "triangles": 560,
+            "vertices": 280,
+            "bounds": [
+              [
+                -2.9099407931582153,
+                -26.617237430037438,
+                0.14207914503264313
+              ],
+              [
+                -1.4999044888937956,
+                -25.205004432759353,
+                1.5521200312433063
+              ]
+            ],
+            "centerOfBounds": [
+              -2.2049226410260054,
+              -25.911120931398393,
+              0.8470995881379747
+            ],
+            "boundaryEdges": 0,
+            "nonManifoldEdgesOverTwoFaces": 0,
+            "degenerateTrianglesAfterAnalysisWeld": 0
+          },
+          {
+            "firstRepresentativeVertex": 0,
+            "triangles": 268,
+            "vertices": 136,
+            "bounds": [
+              [
+                -2.5591752752836943,
+                -26.615539726993674,
+                0.0215125683875388
+              ],
+              [
+                -1.8534447703245878,
+                -26.266057460216082,
+                0.33205817187245373
+              ]
+            ],
+            "centerOfBounds": [
+              -2.206310022804141,
+              -26.440798593604878,
+              0.17678537012999626
+            ],
+            "boundaryEdges": 0,
+            "nonManifoldEdgesOverTwoFaces": 0,
+            "degenerateTrianglesAfterAnalysisWeld": 0
+          },
+          {
+            "firstRepresentativeVertex": 50,
+            "triangles": 204,
+            "vertices": 104,
+            "bounds": [
+              [
+                -2.5591752752836943,
+                -26.616930307878768,
+                1.3653809610014216
+              ],
+              [
+                -1.8534447703245878,
+                -26.266105803518837,
+                1.591959533763356
+              ]
+            ],
+            "centerOfBounds": [
+              -2.206310022804141,
+              -26.4415180556988,
+              1.478670247382389
+            ],
+            "boundaryEdges": 0,
+            "nonManifoldEdgesOverTwoFaces": 0,
+            "degenerateTrianglesAfterAnalysisWeld": 0
+          },
+          {
+            "firstRepresentativeVertex": 24,
+            "triangles": 60,
+            "vertices": 37,
+            "bounds": [
+              [
+                -2.4881895293626197,
+                -26.553290615389056,
+                1.56415786909444
+              ],
+              [
+                -2.2676423926173985,
+                -26.332737093331897,
+                1.6561793458861134
+              ]
+            ],
+            "centerOfBounds": [
+              -2.377915960990009,
+              -26.443013854360476,
+              1.6101686074902766
+            ],
+            "boundaryEdges": 12,
+            "nonManifoldEdgesOverTwoFaces": 0,
+            "degenerateTrianglesAfterAnalysisWeld": 0
+          },
+          {
+            "firstRepresentativeVertex": 37,
+            "triangles": 60,
+            "vertices": 37,
+            "bounds": [
+              [
+                -2.14038361709526,
+                -26.553290615389056,
+                1.56415786909444
+              ],
+              [
+                -1.9198386131429341,
+                -26.332737093331897,
+                1.6561793458861134
+              ]
+            ],
+            "centerOfBounds": [
+              -2.030111115119097,
+              -26.443013854360476,
+              1.6101686074902766
+            ],
+            "boundaryEdges": 12,
+            "nonManifoldEdgesOverTwoFaces": 0,
+            "degenerateTrianglesAfterAnalysisWeld": 0
+          }
+        ]
+      },
+      "rearAxisSamples": [
+        {
+          "sourceY": -25.205004432759353,
+          "tolerance": 0.001,
+          "vertices": 40,
+          "bounds": [
+            [
+              -2.439704748482777,
+              -25.205004432759353,
+              0.6123204049643904
+            ],
+            [
+              -1.9701462210169538,
+              -25.205004432759353,
+              1.0818787713115592
+            ]
+          ],
+          "xzBoundsCenter": [
+            -2.2049254847498654,
+            0.8470995881379748
+          ],
+          "radialRangeAroundBoundsCenter": [
+            0.21627474913303346,
+            0.2347835694851827
+          ],
+          "points": [
+            [
+              -2.439704748482777,
+              -25.205004432759353,
+              0.8470996103545662
+            ],
+            [
+              -2.428213971296003,
+              -25.205004432759353,
+              0.7745488430787733
+            ],
+            [
+              -2.428213971296003,
+              -25.205004432759353,
+              0.9196504664967243
+            ],
+            [
+              -2.4212091684981747,
+              -25.205004432759353,
+              0.8470996103545662
+            ],
+            [
+              -2.4106141643272583,
+              -25.205004432759353,
+              0.7802644610993796
+            ],
+            [
+              -2.4106141643272583,
+              -25.205004432759353,
+              0.9139349373424833
+            ],
+            [
+              -2.3948663325222554,
+              -25.205004432759353,
+              0.7090999202567762
+            ],
+            [
+              -2.3948663325222554,
+              -25.205004432759353,
+              0.9850993004523562
+            ],
+            [
+              -2.3798983919858223,
+              -25.205004432759353,
+              0.7199715203621592
+            ],
+            [
+              -2.3798983919858223,
+              -25.205004432759353,
+              0.9742276559137903
+            ],
+            [
+              -2.3429250052907395,
+              -25.205004432759353,
+              0.6571591293007287
+            ],
+            [
+              -2.3429250052907395,
+              -25.205004432759353,
+              1.0370401802747689
+            ],
+            [
+              -2.3320534489744507,
+              -25.205004432759353,
+              0.6721228477980281
+            ],
+            [
+              -2.3320534489744507,
+              -25.205004432759353,
+              1.022076417344287
+            ],
+            [
+              -2.277475278793869,
+              -25.205004432759353,
+              0.6238114480694881
+            ],
+            [
+              -2.277475278793869,
+              -25.205004432759353,
+              1.0703877282064616
+            ],
+            [
+              -2.271751573594914,
+              -25.205004432759353,
+              0.6414021007598956
+            ],
+            [
+              -2.271751573594914,
+              -25.205004432759353,
+              1.0527971643824192
+            ],
+            [
+              -2.2049219300950416,
+              -25.205004432759353,
+              0.6123204049643904
+            ],
+            [
+              -2.2049219300950416,
+              -25.205004432759353,
+              0.6308164726182284
+            ],
+            [
+              -2.2049219300950416,
+              -25.205004432759353,
+              1.063382836957269
+            ],
+            [
+              -2.2049219300950416,
+              -25.205004432759353,
+              1.0818787713115592
+            ],
+            [
+              -2.1380858882164837,
+              -25.205004432759353,
+              0.6414021007598956
+            ],
+            [
+              -2.1380858882164837,
+              -25.205004432759353,
+              1.0527971643824192
+            ],
+            [
+              -2.132370003258142,
+              -25.205004432759353,
+              0.6238114036363054
+            ],
+            [
+              -2.132370003258142,
+              -25.205004432759353,
+              1.0703877282064616
+            ],
+            [
+              -2.07779183307756,
+              -25.205004432759353,
+              0.6721228033648454
+            ],
+            [
+              -2.07779183307756,
+              -25.205004432759353,
+              1.022076417344287
+            ],
+            [
+              -2.0669252532780273,
+              -25.205004432759353,
+              0.657159084867546
+            ],
+            [
+              -2.0669252532780273,
+              -25.205004432759353,
+              1.0370401802747689
+            ],
+            [
+              -2.029945468204259,
+              -25.205004432759353,
+              0.9742276559137903
+            ],
+            [
+              -2.0299390698255753,
+              -25.205004432759353,
+              0.7199715203621592
+            ],
+            [
+              -2.0149846369774753,
+              -25.205004432759353,
+              0.9850993004523562
+            ],
+            [
+              -2.014979660460721,
+              -25.205004432759353,
+              0.7090999202567762
+            ],
+            [
+              -1.9992232974841393,
+              -25.205004432759353,
+              0.7802644610993796
+            ],
+            [
+              -1.9992232974841393,
+              -25.205004432759353,
+              0.9139349373424833
+            ],
+            [
+              -1.9886425119325217,
+              -25.205004432759353,
+              0.8470996103545662
+            ],
+            [
+              -1.981637709134695,
+              -25.205004432759353,
+              0.7745487542124079
+            ],
+            [
+              -1.981637709134695,
+              -25.205004432759353,
+              0.9196504664967243
+            ],
+            [
+              -1.9701462210169538,
+              -25.205004432759353,
+              0.8470996103545662
+            ]
+          ]
+        },
+        {
+          "sourceY": -25.21000443275935,
+          "tolerance": 0.001,
+          "vertices": 20,
+          "bounds": [
+            [
+              -2.4438949755902986,
+              -25.20995535570607,
+              0.6081266234505067
+            ],
+            [
+              -1.9659488845997846,
+              -25.20995535570607,
+              1.086072641691808
+            ]
+          ],
+          "xzBoundsCenter": [
+            -2.2049219300950416,
+            0.8470996325711574
+          ],
+          "radialRangeAroundBoundsCenter": [
+            0.2389702367056286,
+            0.23897570256102263
+          ],
+          "points": [
+            [
+              -2.4438949755902986,
+              -25.20995535570607,
+              0.8470996103545662
+            ],
+            [
+              -2.4322015830785073,
+              -25.20995535570607,
+              0.773252993739151
+            ],
+            [
+              -2.4322015830785073,
+              -25.20995535570607,
+              0.9209464047027119
+            ],
+            [
+              -2.3982539185703278,
+              -25.20995535570607,
+              0.7066349005813467
+            ],
+            [
+              -2.3982539185703278,
+              -25.20995535570607,
+              0.9875644534273336
+            ],
+            [
+              -2.3453898029462827,
+              -25.20995535570607,
+              0.6537663003377993
+            ],
+            [
+              -2.3453898029462827,
+              -25.20995535570607,
+              1.0404330092376983
+            ],
+            [
+              -2.278767751288182,
+              -25.20995535570607,
+              0.6198228589932114
+            ],
+            [
+              -2.278767751288182,
+              -25.20995535570607,
+              1.0743764061491035
+            ],
+            [
+              -2.2049219300950416,
+              -25.20995535570607,
+              0.6081266234505067
+            ],
+            [
+              -2.2049219300950416,
+              -25.20995535570607,
+              1.086072641691808
+            ],
+            [
+              -2.1310775307638306,
+              -25.20995535570607,
+              0.6198228589932114
+            ],
+            [
+              -2.1310775307638306,
+              -25.20995535570607,
+              1.0743764061491035
+            ],
+            [
+              -2.064460455622484,
+              -25.20995535570607,
+              0.6537662114714339
+            ],
+            [
+              -2.064460455622484,
+              -25.20995535570607,
+              1.0404330092376983
+            ],
+            [
+              -2.0115920744126488,
+              -25.20995535570607,
+              0.7066349005813467
+            ],
+            [
+              -2.0115920744126488,
+              -25.20995535570607,
+              0.9875644534273336
+            ],
+            [
+              -1.9776436989735053,
+              -25.20995535570607,
+              0.7732529048727856
+            ],
+            [
+              -1.9776436989735053,
+              -25.20995535570607,
+              0.9209464047027119
+            ],
+            [
+              -1.9659488845997846,
+              -25.20995535570607,
+              0.8470996103545662
+            ]
+          ]
+        }
+      ]
+    },
+    "pasted__pasted__L1x1Stud5_Black_Jets_0": {
+      "weldedTopology": {
+        "epsilonSourceMeters": 1e-05,
+        "originalVertices": 1580,
+        "weldedAnalysisVertices": 594,
+        "componentCount": 5,
+        "components": [
+          {
+            "firstRepresentativeVertex": 314,
+            "triangles": 560,
+            "vertices": 280,
+            "bounds": [
+              [
+                1.5488709561504326,
+                -26.617239532832105,
+                0.14207914503264313
+              ],
+              [
+                2.9589072604148505,
+                -25.20500653555402,
+                1.5521200312433063
+              ]
+            ],
+            "centerOfBounds": [
+              2.2538891082826416,
+              -25.91112303419306,
+              0.8470995881379747
+            ],
+            "boundaryEdges": 0,
+            "nonManifoldEdgesOverTwoFaces": 0,
+            "degenerateTrianglesAfterAnalysisWeld": 0
+          },
+          {
+            "firstRepresentativeVertex": 0,
+            "triangles": 268,
+            "vertices": 136,
+            "bounds": [
+              [
+                1.8996364740249536,
+                -26.61554182978834,
+                0.0215125683875388
+              ],
+              [
+                2.60536697898406,
+                -26.26605956301075,
+                0.33205817187245373
+              ]
+            ],
+            "centerOfBounds": [
+              2.252501726504507,
+              -26.440800696399545,
+              0.17678537012999626
+            ],
+            "boundaryEdges": 0,
+            "nonManifoldEdgesOverTwoFaces": 0,
+            "degenerateTrianglesAfterAnalysisWeld": 0
+          },
+          {
+            "firstRepresentativeVertex": 50,
+            "triangles": 204,
+            "vertices": 104,
+            "bounds": [
+              [
+                1.8996364740249536,
+                -26.616932410673435,
+                1.3653809610014216
+              ],
+              [
+                2.60536697898406,
+                -26.266107906313504,
+                1.591959533763356
+              ]
+            ],
+            "centerOfBounds": [
+              2.252501726504507,
+              -26.441520158493468,
+              1.478670247382389
+            ],
+            "boundaryEdges": 0,
+            "nonManifoldEdgesOverTwoFaces": 0,
+            "degenerateTrianglesAfterAnalysisWeld": 0
+          },
+          {
+            "firstRepresentativeVertex": 24,
+            "triangles": 60,
+            "vertices": 37,
+            "bounds": [
+              [
+                1.9706222199460282,
+                -26.553292718183723,
+                1.56415786909444
+              ],
+              [
+                2.1911693566912476,
+                -26.332739196126564,
+                1.6561793458861134
+              ]
+            ],
+            "centerOfBounds": [
+              2.080895788318638,
+              -26.443015957155144,
+              1.6101686074902766
+            ],
+            "boundaryEdges": 12,
+            "nonManifoldEdgesOverTwoFaces": 0,
+            "degenerateTrianglesAfterAnalysisWeld": 0
+          },
+          {
+            "firstRepresentativeVertex": 37,
+            "triangles": 60,
+            "vertices": 37,
+            "bounds": [
+              [
+                2.3184281322133877,
+                -26.553292718183723,
+                1.56415786909444
+              ],
+              [
+                2.5389731361657137,
+                -26.332739196126564,
+                1.6561793458861134
+              ]
+            ],
+            "centerOfBounds": [
+              2.4287006341895507,
+              -26.443015957155144,
+              1.6101686074902766
+            ],
+            "boundaryEdges": 12,
+            "nonManifoldEdgesOverTwoFaces": 0,
+            "degenerateTrianglesAfterAnalysisWeld": 0
+          }
+        ]
+      },
+      "rearAxisSamples": [
+        {
+          "sourceY": -25.20500653555402,
+          "tolerance": 0.001,
+          "vertices": 40,
+          "bounds": [
+            [
+              2.019107000825869,
+              -25.20500653555402,
+              0.6123204049643904
+            ],
+            [
+              2.488665528291694,
+              -25.20500653555402,
+              1.0818787713115592
+            ]
+          ],
+          "xzBoundsCenter": [
+            2.2538862645587816,
+            0.8470995881379748
+          ],
+          "radialRangeAroundBoundsCenter": [
+            0.21627474913303263,
+            0.23478356948518342
+          ],
+          "points": [
+            [
+              2.019107000825869,
+              -25.20500653555402,
+              0.8470996103545662
+            ],
+            [
+              2.0305977780126447,
+              -25.20500653555402,
+              0.7745488430787733
+            ],
+            [
+              2.0305977780126447,
+              -25.20500653555402,
+              0.9196504664967243
+            ],
+            [
+              2.037602580810473,
+              -25.20500653555402,
+              0.8470996103545662
+            ],
+            [
+              2.0481975849813896,
+              -25.20500653555402,
+              0.7802644610993796
+            ],
+            [
+              2.0481975849813896,
+              -25.20500653555402,
+              0.9139349373424833
+            ],
+            [
+              2.0639454167863924,
+              -25.20500653555402,
+              0.7090999202567762
+            ],
+            [
+              2.0639454167863924,
+              -25.20500653555402,
+              0.9850993004523562
+            ],
+            [
+              2.0789133573228256,
+              -25.20500653555402,
+              0.7199715203621592
+            ],
+            [
+              2.0789133573228256,
+              -25.20500653555402,
+              0.9742276559137903
+            ],
+            [
+              2.1158867440179083,
+              -25.20500653555402,
+              0.6571591293007287
+            ],
+            [
+              2.1158867440179083,
+              -25.20500653555402,
+              1.0370401802747689
+            ],
+            [
+              2.1267583003341954,
+              -25.20500653555402,
+              0.6721228477980281
+            ],
+            [
+              2.1267583003341954,
+              -25.20500653555402,
+              1.022076417344287
+            ],
+            [
+              2.1813364705147773,
+              -25.20500653555402,
+              0.6238114480694881
+            ],
+            [
+              2.1813364705147773,
+              -25.20500653555402,
+              1.0703877282064616
+            ],
+            [
+              2.187060175713734,
+              -25.20500653555402,
+              0.6414021007598956
+            ],
+            [
+              2.187060175713734,
+              -25.20500653555402,
+              1.0527971643824192
+            ],
+            [
+              2.253890530144572,
+              -25.20500653555402,
+              0.6123204049643904
+            ],
+            [
+              2.253890530144572,
+              -25.20500653555402,
+              0.6308164726182284
+            ],
+            [
+              2.253890530144572,
+              -25.20500653555402,
+              1.063382836957269
+            ],
+            [
+              2.253890530144572,
+              -25.20500653555402,
+              1.0818787713115592
+            ],
+            [
+              2.320725861092164,
+              -25.20500653555402,
+              0.6414021007598956
+            ],
+            [
+              2.320725861092164,
+              -25.20500653555402,
+              1.0527971643824192
+            ],
+            [
+              2.326441746050506,
+              -25.20500653555402,
+              0.6238114036363054
+            ],
+            [
+              2.326441746050506,
+              -25.20500653555402,
+              1.0703877282064616
+            ],
+            [
+              2.3810199162310877,
+              -25.20500653555402,
+              0.6721228033648454
+            ],
+            [
+              2.3810199162310877,
+              -25.20500653555402,
+              1.022076417344287
+            ],
+            [
+              2.3918864960306205,
+              -25.20500653555402,
+              0.657159084867546
+            ],
+            [
+              2.3918864960306205,
+              -25.20500653555402,
+              1.0370401802747689
+            ],
+            [
+              2.428866281104387,
+              -25.20500653555402,
+              0.9742276559137903
+            ],
+            [
+              2.4288726794830726,
+              -25.20500653555402,
+              0.7199715203621592
+            ],
+            [
+              2.443827112331171,
+              -25.20500653555402,
+              0.9850993004523562
+            ],
+            [
+              2.443832088847927,
+              -25.20500653555402,
+              0.7090999202567762
+            ],
+            [
+              2.4595884518245086,
+              -25.20500653555402,
+              0.7802644610993796
+            ],
+            [
+              2.4595884518245086,
+              -25.20500653555402,
+              0.9139349373424833
+            ],
+            [
+              2.4701692373761244,
+              -25.20500653555402,
+              0.8470996103545662
+            ],
+            [
+              2.477174040173953,
+              -25.20500653555402,
+              0.7745487542124079
+            ],
+            [
+              2.477174040173953,
+              -25.20500653555402,
+              0.9196504664967243
+            ],
+            [
+              2.488665528291694,
+              -25.20500653555402,
+              0.8470996103545662
+            ]
+          ]
+        },
+        {
+          "sourceY": -25.21000653555402,
+          "tolerance": 0.001,
+          "vertices": 20,
+          "bounds": [
+            [
+              2.0149167737183493,
+              -25.20995745850074,
+              0.6081266234505067
+            ],
+            [
+              2.4928628647088633,
+              -25.20995745850074,
+              1.086072641691808
+            ]
+          ],
+          "xzBoundsCenter": [
+            2.2538898192136063,
+            0.8470996325711574
+          ],
+          "radialRangeAroundBoundsCenter": [
+            0.2389702367056272,
+            0.23897570256102263
+          ],
+          "points": [
+            [
+              2.0149167737183493,
+              -25.20995745850074,
+              0.8470996103545662
+            ],
+            [
+              2.0266101662301406,
+              -25.20995745850074,
+              0.773252993739151
+            ],
+            [
+              2.0266101662301406,
+              -25.20995745850074,
+              0.9209464047027119
+            ],
+            [
+              2.06055783073832,
+              -25.20995745850074,
+              0.7066349005813467
+            ],
+            [
+              2.06055783073832,
+              -25.20995745850074,
+              0.9875644534273336
+            ],
+            [
+              2.113421946362365,
+              -25.20995745850074,
+              0.6537663003377993
+            ],
+            [
+              2.113421946362365,
+              -25.20995745850074,
+              1.0404330092376983
+            ],
+            [
+              2.180043998020466,
+              -25.20995745850074,
+              0.6198228589932114
+            ],
+            [
+              2.180043998020466,
+              -25.20995745850074,
+              1.0743764061491035
+            ],
+            [
+              2.253890530144572,
+              -25.20995745850074,
+              0.6081266234505067
+            ],
+            [
+              2.253890530144572,
+              -25.20995745850074,
+              1.086072641691808
+            ],
+            [
+              2.3277342185448173,
+              -25.20995745850074,
+              0.6198228589932114
+            ],
+            [
+              2.3277342185448173,
+              -25.20995745850074,
+              1.0743764061491035
+            ],
+            [
+              2.3943512936861637,
+              -25.20995745850074,
+              0.6537662114714339
+            ],
+            [
+              2.3943512936861637,
+              -25.20995745850074,
+              1.0404330092376983
+            ],
+            [
+              2.4472196748959973,
+              -25.20995745850074,
+              0.7066349005813467
+            ],
+            [
+              2.4472196748959973,
+              -25.20995745850074,
+              0.9875644534273336
+            ],
+            [
+              2.4811680503351425,
+              -25.20995745850074,
+              0.7732529048727856
+            ],
+            [
+              2.4811680503351425,
+              -25.20995745850074,
+              0.9209464047027119
+            ],
+            [
+              2.4928628647088633,
+              -25.20995745850074,
+              0.8470996103545662
+            ]
+          ]
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,32 @@
+--- a/assets/source/inkstorm/grid-construction-round29/build_grid_detail.py
++++ b/assets/source/inkstorm/grid-construction-round29/build_grid_detail.py
+@@ -228,12 +228,21 @@
+     pipe(m,front,.095,'steel',4)
+ 
+ 
++
++def task_fixture(m, x, y, emitter_z):
++    # Original downward task strip seated under an existing supported crossbeam.
++    # The lower warm face is exactly emitter_z; shader source matches this face.
++    box(m, (x, y, emitter_z + .20), (2.6, .95, .32), 'ink')
++    box(m, (x, y, emitter_z + .035), (2.1, .68, .07), 'warm')
++
++
+ def pit_detail():
+     m=new_mesh()
+     for i,(x,w,h,d) in enumerate([(-47,40,17,32),(-5,34,14,30),(39,46,20,38)]):
+         y=4 if i<2 else 7
+         cloth_shell(m,x-1,y-d*.5-.1,w*.84,10 if i<2 else 12,h*.85+2.2,
+                     'coral' if i==1 else 'cobalt','pit')
++    for x, y in [(-47,4),(-5,4),(39,7)]: task_fixture(m,x-3,y-1,9.44)
+     engine(m,-47,-10,1,1.05,'coral')
+     hoist(m,-47,-8.5,1,11,9.2)
+     trolley(m,-59,-14,1)
+@@ -254,6 +263,7 @@
+         cloth_shell(m,x-.4,back-10,w*.93,11 if i!=1 else 14,h-1,
+                     'coral' if i==1 else 'cobalt','district',i*11)
+     cloth_shell(m,-17,9,44,14,26,'coral','district',39)
++    for x, back, h in [(-39,13,12),(-2,17,17),(38,10,13.8)]: task_fixture(m,x+3,back-11,h-.62)
+     engine(m,-37,-5,.4,.72)
+     trolley(m,7,-5,.4)
+     cargo(m,29,-7,.4,3.5,2.4,2.2)

@@ -1,0 +1,27 @@
+# Round 31 — verified technical checkpoint, art acceptance open
+
+The retained build passes **600 tests / 108 files**, TypeScript/build/diff checks, all four full Time Attack/Canyon Cup cadence gates and both Continue flows. Its measured scope is **59.699–59.736 Hz mean racing cadence, 16.8 ms p95, adaptive DPR 1–2 for Time Attack and 1.75–2 for Cup**, including one preserved 66.6 ms hitch. [Exact performance and artifact report](FULL_RACE_PERFORMANCE_ROUND31.md). Build `dist/assets/index-DGjkpNeh.js`, SHA256 `913a7744af6b9237800e54f7dd0898ec0ca3355c2f9638f93545cbcc747a24cb`. Local and uncommitted; no push or deployment.
+
+**Fresh world criticism remains strict FAIL: 0/7 sections, mean 4.79/10.** This is a new critic's judgment of final images, not a controlled numerical comparison to earlier rounds. The open cockpit is preferred to V1, but finished cockpit acceptance also fails at 6/10. Technical verification is separate from those art verdicts.
+
+## Retained changes
+
+- **Physical launch:** rim 20 m earlier; concave 138 m descent over 600 m; floor 44 m lower; central basin throat opened. A 48 m shoulder blend and localized leading-lip correction reduce exposed trenches. The salt continuation guard initially regressed to 0.312574 m; the correction restores 1.039226 m against its unchanged 0.9 m threshold. Crest rays into the basin retain positive margins. Course 9 intentionally archives incompatible course-8 ghosts while retaining record metadata; drive 4/rules 2 remain unchanged.
+- **Fork guidance:** one advance topology diagram plus cream lower-route and cyan upper-route confirmation markers. 780 triangles, two draws, no new texture or per-frame callback; sampled solid-box clearance is at least 4.1868 m. The blind guidance gate passes 7/10; the geological fork composition still fails its original target.
+- **Teemto open cockpit V2:** visible seated driver, tapered painted cowls, shaped rim, liner, panel seams and fasteners. 57,618 triangles, four body/six pilot draws, 7,698,824 bytes. Original source, V4C and V1 are preserved; engines, pilot and original texture payload remain exact. Asset SHA256 `af5d69514a51f7e9c089a1710e1587f46e053412b488268dc433f029576c0a7e`. A prior V2 UV draft is preserved as rejected. The latest critic still finds a long plain rear wedge, inconsistent material detail and abrupt chassis joins.
+
+## Evidence
+
+All eight input-only class laps (normal and launch boost) finish with zero resets/collisions; the ordinary bridge-route lap also finishes at 63.77 s with zero resets/collisions. The eight-racer CPU observation has all racers finish but includes three AI recoveries, one AI wreck and racer contacts; it is not a clean-grid acceptance. [Detailed measurements and preserved failures](ROUND31_PROGRESS.md).
+
+The course-edition browser migration passes on the joined-field intermediate build, preserving old PB metadata and new course-9 favorites through Save/reload. Highest/lowest terrain coverage passes on that same intermediate build. A separate final-field GPU sampler evaluates **1,050 points in four binding phases**, maximum CPU/GPU offset error **0.0001101 m**, below the unchanged 1 cm tolerance. The original finish field is unchanged; independent tests compare 211,626 legal/branch samples outside the edited launch to course 8 with no change. These focused checks have their own explicit source/build identities.
+
+Final-build capture produces **28 PNGs**: seven main sections, twelve world sequence views, seven early fork views, garage and live-input frame. All capture errors are empty. Final vehicle lifecycle passes 14 stages with only two deliberate HTTP503 errors. Context loss, incomplete-framebuffer fallback and recovery pass. Three restart cycles plateau at 212 geometries / 112 textures / 49 programs, with no browser errors. Counters are not a GPU memory-byte or leak-freedom proof. Every owned diagnostic and race browser/port is closed.
+
+Vitest now includes the previously excluded `.mjs` asset-header tests. A missed V4C count fixture caused a preserved initial lifecycle failure; the corrected test independently pins V2's served SHA and exact geometry, registration and shadow counts. No runtime budget was relaxed. [Source and harness review](ROUND31_INTEGRATION_REVIEW.md).
+
+## Acquisition and next work
+
+The official search refresh still contains 29 results. **All 26 vehicle candidates now have official MCP imports and preserved source GLBs**, totalling 748,730,812 bytes. This continuation acquired the remaining 24 with no new 429s; all eight historical 429s remain in provenance. The two scenery entries and gondola cabin retain their explicit exclusions. Current runtime roster remains two families/four logical variants/eight preserved GLB files. New sources still need occupancy checks, drivers, stylization, anchors, LODs and actual runtime acceptance. [Current catalogue](VEHICLE_CATALOG.md).
+
+Next art targets are continuous layered geology, a rock-centered fork/inhabited landmarks, and stronger foreground vehicle construction. The seven original concepts remain the acceptance baseline; supplementary cockpit concept 09 is a construction guide. Additional blind workers hit the account usage limit after the final round31 reviews, so new round32 source studies must not be labelled blind-accepted. Human/controller/audio, full championship balance, other devices and strict world parity remain open.

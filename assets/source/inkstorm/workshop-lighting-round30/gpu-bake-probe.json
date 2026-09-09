@@ -1,0 +1,224 @@
+{
+  "status": "PASS",
+  "scope": "Actual GPU source shader and numerical UV/encoding probe; not source bay art, game A/B, texture seams, occlusion or performance acceptance.",
+  "gpu": "ANGLE (Apple, ANGLE Metal Renderer: Apple M4, Unspecified Version)",
+  "checks": [
+    {
+      "name": "Blender UV -> EXR -> sRGB PNG -> glTF-style UV1 orientation and linear decode",
+      "pass": true,
+      "evidence": [
+        {
+          "pixel": [
+            8,
+            8
+          ],
+          "actual": [
+            33,
+            34,
+            0
+          ],
+          "expected": [
+            33.8671875,
+            33.8671875,
+            0
+          ]
+        },
+        {
+          "pixel": [
+            55,
+            8
+          ],
+          "actual": [
+            220,
+            34,
+            0
+          ],
+          "expected": [
+            221.1328125,
+            33.8671875,
+            0
+          ]
+        },
+        {
+          "pixel": [
+            8,
+            55
+          ],
+          "actual": [
+            34,
+            220,
+            0
+          ],
+          "expected": [
+            33.8671875,
+            221.1328125,
+            0
+          ]
+        },
+        {
+          "pixel": [
+            55,
+            55
+          ],
+          "actual": [
+            220,
+            222,
+            0
+          ],
+          "expected": [
+            221.1328125,
+            221.1328125,
+            0
+          ]
+        },
+        {
+          "pixel": [
+            32,
+            32
+          ],
+          "actual": [
+            130,
+            130,
+            0
+          ],
+          "expected": [
+            129.4921875,
+            129.4921875,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Both actual staged family shader variants compile and reflective colors receive the bake",
+      "pass": true,
+      "evidence": [
+        {
+          "family": "pit-complex",
+          "color": "cobalt",
+          "lit": [
+            12,
+            23,
+            19
+          ],
+          "base": [
+            4,
+            6,
+            19
+          ],
+          "delta": [
+            8,
+            17,
+            0
+          ]
+        },
+        {
+          "family": "pit-complex",
+          "color": "cream",
+          "lit": [
+            80,
+            66,
+            20
+          ],
+          "base": [
+            18,
+            14,
+            20
+          ],
+          "delta": [
+            62,
+            52,
+            0
+          ]
+        },
+        {
+          "family": "pit-district",
+          "color": "cobalt",
+          "lit": [
+            8,
+            23,
+            19
+          ],
+          "base": [
+            4,
+            6,
+            19
+          ],
+          "delta": [
+            4,
+            17,
+            0
+          ]
+        },
+        {
+          "family": "pit-district",
+          "color": "cream",
+          "lit": [
+            50,
+            66,
+            20
+          ],
+          "base": [
+            18,
+            14,
+            20
+          ],
+          "delta": [
+            32,
+            52,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "name": "True authored cyan remains excluded from baked diffuse",
+      "pass": true,
+      "evidence": [
+        {
+          "family": "pit-complex",
+          "color": "cyan",
+          "lit": [
+            18,
+            153,
+            146
+          ],
+          "base": [
+            18,
+            153,
+            146
+          ],
+          "delta": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "family": "pit-district",
+          "color": "cyan",
+          "lit": [
+            18,
+            153,
+            146
+          ],
+          "base": [
+            18,
+            153,
+            146
+          ],
+          "delta": [
+            0,
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "name": "No shader or WebGL errors",
+      "pass": true,
+      "evidence": []
+    }
+  ]
+}

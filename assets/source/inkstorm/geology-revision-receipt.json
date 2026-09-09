@@ -1,0 +1,192 @@
+{
+  "status": "Historical round-14 replacement receipt. Superseded for current publication by mixed-geology-receipt.json; exact original retained in geology-revision/history-round14/.",
+  "currentSculptureFamily": "fractured-spire; historical canyon-buttress filenames below describe round 14 only.",
+  "source": "Original Blender geometry authored through Blender MCP; not a downloaded model",
+  "sourceScript": "build_geology_revision.py",
+  "sourceSha256": "a972e4b3ee035ca61cb91ef079f2c43aaf53b2fc58c42f7b660bcafa8fe3a8f4",
+  "postprocessScript": "build_geology_revision.mjs",
+  "rawBlenderExportSha256": "fc23acc1b35e1325aa01cc2040a4f8ef7d94f565bf10c25859d759b6ec9ba41e",
+  "styleIntent": "Broad irregular vertical fracture planes, unequal split crown, two local undercuts, clustered talus and deliberate vertex-painted faces; no continuous shelf rings",
+  "preserved": {
+    "archived": [
+      {
+        "asset": "canyon-buttress.glb",
+        "bytes": 716600,
+        "sha256": "a65200e93cf582925bd4ee496e9a91569152156e59c56a23a157bd8a66b708e2",
+        "path": "assets/source/inkstorm/geology-revision/history-round13/canyon-buttress.glb"
+      },
+      {
+        "asset": "canyon-buttress-lod.glb",
+        "bytes": 126372,
+        "sha256": "a358427e62edcfaf1a1e3308b3662ecd9715078c6066717099f9902a3c671e7c",
+        "path": "assets/source/inkstorm/geology-revision/history-round13/canyon-buttress-lod.glb"
+      }
+    ],
+    "priorSourceScriptsUnchanged": [
+      "build_fractured_rocks.py",
+      "build_rock_lods.mjs"
+    ],
+    "unrelatedPublicAssets": "Only canyon-buttress.glb and canyon-buttress-lod.glb are published by this script",
+    "originalActiveBlenderScene": "Korostyshiv Fractured Quarry Revision",
+    "originalSceneRestored": true,
+    "priorBlenderObjectsPreserved": true,
+    "noPurges": true
+  },
+  "method": {
+    "optimization": "glTF Transform 4.5.0 dedup + prune",
+    "lod": "meshoptimizer 1.2.0 simplifyWithAttributes + compactPrimitive",
+    "normalWeights": [
+      0.1,
+      0.1,
+      0.1
+    ],
+    "colorWeights": [
+      0.6,
+      0.6,
+      0.6
+    ],
+    "targetTriangles": 1798,
+    "errorLimit": 0.025,
+    "relativeAttributeAwareError": 0.01032058522105217,
+    "bounds": "All six bounding extrema locked; discarded extremal talus incident source triangles retained",
+    "boundTrianglesRetained": 6,
+    "positionsNormalsColors": "Selected original vertex values, no attribute interpolation"
+  },
+  "regeneration": [
+    "Send the literal build_geology_revision.py source through Blender MCP in its safe mode; stage directory must exist.",
+    "node assets/source/inkstorm/build_geology_revision.mjs /tmp/inkstorm-rock-lod-tools"
+  ],
+  "visualEvidence": [
+    "geology-revision/previous-asset-preview.png",
+    "geology-revision/revision-asset-preview.png",
+    "geology-revision/lod-asset-preview.png"
+  ],
+  "visualScope": "Neutral Blender sculpture comparison, not in-world screenshot or concept-parity acceptance",
+  "assets": [
+    {
+      "asset": "canyon-buttress.glb",
+      "bytes": 373568,
+      "sha256": "e82a86b1e0667dace700cfe5b24d6af8e2dc0ae1b4f6da6160ade168a4df79d7",
+      "meshCount": 1,
+      "primitiveCount": 1,
+      "materialCount": 1,
+      "vertices": 9778,
+      "triangles": 3416,
+      "attributes": [
+        "POSITION",
+        "NORMAL",
+        "COLOR_0"
+      ],
+      "bounds": {
+        "min": [
+          -40,
+          0,
+          -50
+        ],
+        "max": [
+          40,
+          120,
+          50
+        ]
+      },
+      "normals": {
+        "minimumLength": 0.9999999240994548,
+        "maximumLength": 1.0000001213497745,
+        "finite": true
+      },
+      "colors": {
+        "min": [
+          0.5396172404289246,
+          0.16492988169193268,
+          0.0645289197564125
+        ],
+        "max": [
+          0.7665740847587585,
+          0.3372485041618347,
+          0.13708804547786713
+        ],
+        "finite": true,
+        "withinUnitRange": true
+      },
+      "validation": {
+        "library": "Khronos glTF Validator 2.0.0-dev.3.10",
+        "errors": 0,
+        "warnings": 0,
+        "infos": 0,
+        "hints": 0,
+        "messages": []
+      }
+    },
+    {
+      "asset": "canyon-buttress-lod.glb",
+      "bytes": 176148,
+      "sha256": "b0203d116d7b3bbf9858a06d0366a90ce08c8aa6b4a2b43ae2167a01df92dccc",
+      "meshCount": 1,
+      "primitiveCount": 1,
+      "materialCount": 1,
+      "vertices": 4563,
+      "triangles": 1803,
+      "attributes": [
+        "POSITION",
+        "NORMAL",
+        "COLOR_0"
+      ],
+      "bounds": {
+        "min": [
+          -40,
+          0,
+          -50
+        ],
+        "max": [
+          40,
+          120,
+          50
+        ]
+      },
+      "normals": {
+        "minimumLength": 0.9999999240994548,
+        "maximumLength": 1.0000001213497745,
+        "finite": true
+      },
+      "colors": {
+        "min": [
+          0.5396172404289246,
+          0.16492988169193268,
+          0.0645289197564125
+        ],
+        "max": [
+          0.7665740847587585,
+          0.3372485041618347,
+          0.13708804547786713
+        ],
+        "finite": true,
+        "withinUnitRange": true
+      },
+      "validation": {
+        "library": "Khronos glTF Validator 2.0.0-dev.3.10",
+        "errors": 0,
+        "warnings": 0,
+        "infos": 0,
+        "hints": 0,
+        "messages": []
+      }
+    }
+  ],
+  "postprocessScriptSha256": "80561432d980e3bcaf45345176648a6e7232809e2f726415e4f320d4ec9dfdf7",
+  "reproduction": {
+    "checkedAt": "2026-09-07T11:05:14.176Z",
+    "fullBlenderSourceExecutedAgain": true,
+    "secondHighAndLodByteIdenticalToPublished": true,
+    "command": "node assets/source/inkstorm/build_geology_revision.mjs --check",
+    "note": "Blender datablock suffixes can differ between additive authoring passes; output names are normalized before serialization."
+  },
+  "blenderMcp": {
+    "userPrompt": "Use Blender MCP and Codex imagegen skill to generate concept images of the target art style for each section. Keep Iterateing until in-world screenshots look as close as possible to those, at 40-60fps.",
+    "mode": "Safe mode, literal Python source, no eval/exec/open inside Blender",
+    "originalActiveScene": "Korostyshiv Fractured Quarry Revision",
+    "finalActiveScene": "Korostyshiv Fractured Quarry Revision",
+    "originalSceneObjectCount": 7,
+    "finalSceneObjectCount": 7,
+    "allUnrelatedSceneObjectInventoriesUnchanged": true
+  }
+}

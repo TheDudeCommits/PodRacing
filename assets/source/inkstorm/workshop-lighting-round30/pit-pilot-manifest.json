@@ -1,0 +1,175 @@
+{
+  "status": "PIT_SOURCE_PILOT_READY_FOR_ROOT_GAME_AB_NOT_ART_ACCEPTANCE",
+  "family": "pit-complex",
+  "sourceGeometrySha256": "ea94400e38bf6cf5998f84cbd2cffd342054760e17c43c0f4b75ac636212d1dc",
+  "fixtureAnchorContractSha256": "2fafc4be49abd590acd62ff3a8c9e4672d6b27d6d929d334d5e5232584f8d8b1",
+  "geometry": "candidates/pit-complex-workshop-lightmap.glb",
+  "texture": "candidates/pit-complex-workshop-light.png",
+  "bake": {
+    "engine": "Blender5.2.0 LTS Cycles",
+    "samples": 128,
+    "device": "CPU",
+    "direct": true,
+    "indirect": false,
+    "colorPass": true,
+    "receiver": "unit white diffuse roughness0; exact authored normal attribute",
+    "lampWattsEach": 600,
+    "lampLinearRGB": [
+      1,
+      0.7,
+      0.38
+    ],
+    "lampSizeMeters": [
+      2.1,
+      0.68
+    ],
+    "lampCentersGLB": [
+      [
+        -50,
+        9.437,
+        -3
+      ],
+      [
+        -8,
+        9.437,
+        -3
+      ],
+      [
+        36,
+        9.437,
+        -6
+      ]
+    ],
+    "fixturePlaneOffsetMeters": 0.003,
+    "worldStrength": 0,
+    "maxBounces": 0,
+    "denoise": false,
+    "bakeDilationPixels": 8
+  },
+  "runtime": {
+    "decodeRange": 4,
+    "encoding": "sRGB8(linear white diffuse response/4), PNG RGB, no tone-map baked",
+    "textureColorSpace": "SRGBColorSpace",
+    "flipY": false,
+    "width": 2048,
+    "height": 2048,
+    "gpuRGBA8WithFullMipsMiB": 21.333333333333332,
+    "glslTextureLookupsAdded": 1,
+    "drawsAdded": 0,
+    "passesAdded": 0,
+    "analyticDiffuseReplaced": true,
+    "uvAttribute": "uv1/TEXCOORD_1; TEXCOORD_0 aliases sameaccessor",
+    "triangles": 12012,
+    "vertices": 23202,
+    "sourceVertices": 22906,
+    "vertexGrowth": 296
+  },
+  "checks": {
+    "uv": "PASS",
+    "exactSourceCornerAttributes": "PASS",
+    "gltfErrors": 0,
+    "gltfWarnings": 0,
+    "encodingNoClipping": "PASS",
+    "sparseSourceOcclusionVsBake": "PASS",
+    "gpuOrientationLinearDecodeAndShader": "PASS",
+    "inWorldGameAB": "NOT_RUN_BY_THIS_AGENT",
+    "inWorldMipBleed": "UNTESTED",
+    "frameTime": "UNMEASURED"
+  },
+  "district": {
+    "status": "UNBAKED_UV_FAIL_REPAIR_PENDING",
+    "paddingPixels": 7.8994,
+    "requiredPaddingPixels": 8,
+    "note": "CPU trial only; no districttransfer or bake. Defer untilpitgamegrade."
+  },
+  "files": {
+    "candidates/pit-complex-workshop-lightmap.glb": {
+      "sha256": "e0a5a2260058876c14ede8f9f65c1268fa8dd4192e1b2c5a6e5b661da27a98e4",
+      "bytes": 1094204
+    },
+    "candidates/pit-complex-workshop-light.png": {
+      "sha256": "146e7d4382cd8991290951d2fd3f8dfa7bc0ab284d628f877d92107601ce629a",
+      "bytes": 608704
+    },
+    "pit-complex-direct-600w-128s.exr": {
+      "sha256": "198eeff11f35639121545f6921b4fe101d182ec59aad7572ca143c499b9b452b",
+      "bytes": 3473962
+    },
+    "pit-complex.uv-corners.json": {
+      "sha256": "5d37c4721d6b3c270ef621bfe1dca5d98252aefb4e79b9ec84bbe73ad8c51448",
+      "bytes": 2981501
+    },
+    "pit-complex-uv-audit.json": {
+      "sha256": "163557f8713c097967e01e59a208cfa6da39bcc99be05a9b6e66ae557530ee4a",
+      "bytes": 2868637
+    },
+    "pit-complex-uv-transfer.json": {
+      "sha256": "35c5104a9ad8f1e56197e0c3f8f567753562dca3124d2f9860bec3ed8799b8a2",
+      "bytes": 1023
+    },
+    "pit-bake-occlusion.json": {
+      "sha256": "a8d38661d1bd09267e7e5945ca9ad5094221a588205e4f97cc67059221c5a9e3",
+      "bytes": 35694
+    },
+    "gpu-bake-probe.json": {
+      "sha256": "f30e10e5fbde2ba296a0bc7c01b488c9ca49f5694b10ab96b6b8ea25a9787879",
+      "bytes": 4089
+    },
+    "runtime-material.patch": {
+      "sha256": "63a7437bfc7fc717876486e9b202abfb382393cc68f8c44c517b8be994ae3d02",
+      "bytes": 5495
+    },
+    "InkstormSurfaceMaterial.candidate.ts": {
+      "sha256": "e4dfb230c4f03c1d5d0270625465dba95effe05ddaa4b8053f151bf301d872f9",
+      "bytes": 15062
+    },
+    "uv-xatlas.mjs": {
+      "sha256": "08225bdfd867c8a3f72f91fc44d9be4e1e9e205a759700a6c87b3ade09628885",
+      "bytes": 10016
+    },
+    "validate-uv.mjs": {
+      "sha256": "98fc7beb9d3fab56c5e95ff7efe853711fb6bca4089906b5c8674ecf0fa5d613",
+      "bytes": 34483
+    },
+    "encode-bake.mjs": {
+      "sha256": "2f28cbf99aef57e10b430e26594dde0961a74c388dc649c9d2364442f7e78d97",
+      "bytes": 4354
+    },
+    "audit-pit-bake.mjs": {
+      "sha256": "e369507df9475b947b34d14c6fa8e51f45f91ae4d0e8cdc8d774d1825f1eabd5",
+      "bytes": 5313
+    },
+    "blender-init.py": {
+      "sha256": "085c87940ff9f1bc9c3d53e196018489d5dbfa05e5f59002960000e4349e0951",
+      "bytes": 4675
+    },
+    "blender-light-setup.py": {
+      "sha256": "e5bd02c24a96b9ece9b753a3ff23f830b55df83fc1d6d34f735c12aba858da84",
+      "bytes": 2700
+    },
+    "blender-import-xatlas-pit.py": {
+      "sha256": "d4234778a3e9bb270017b0c50d42b37601fa43677e92dabccb89ad47246dc115",
+      "bytes": 2098
+    },
+    "blender-bake-pit.py": {
+      "sha256": "e981638859676ed51a026d9bc91ff2d7d5dac8f52181b4a4c03f06c2ff1b9780",
+      "bytes": 1860
+    },
+    "blender-calibration.py": {
+      "sha256": "46a85823cf38e06eb47b75d95b67ea4fd0714f54e7655229f8d3a1584ed9a294",
+      "bytes": 2833
+    },
+    "prepare-id-input.mjs": {
+      "sha256": "42b288685d75b79046bc97c75d522710789448d9ffd4b4b37a9ba48a8b4a3abc",
+      "bytes": 1640
+    },
+    "transfer-uv1.mjs": {
+      "sha256": "2c9bf748988f34fa8503e94d67a1c01a6368ffc6c3925518dc3a4bcea71b3c01",
+      "bytes": 5520
+    },
+    "PIT-PILOT-HANDOFF.md": {
+      "sha256": "4ac6b21daab74a7de0ce913463df27f8e24bfe3a33729ff04ed466e7723a8309",
+      "bytes": 6164
+    }
+  }
+}

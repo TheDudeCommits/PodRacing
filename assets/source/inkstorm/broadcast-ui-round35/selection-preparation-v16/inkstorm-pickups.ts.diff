@@ -1,0 +1,46 @@
+diff --git a/assets/source/inkstorm/broadcast-ui-round35/selection-preparation-v16/harness-before/inkstorm-pickups.ts b/scripts/inkstorm-pickups.ts
+index 20164fd..84d4453 100644
+--- a/assets/source/inkstorm/broadcast-ui-round35/selection-preparation-v16/harness-before/inkstorm-pickups.ts
++++ b/scripts/inkstorm-pickups.ts
+@@ -39,11 +39,14 @@ const cleanup=()=>closing??=(async()=>{
+ for(const [signal,code]of [['SIGINT',130],['SIGTERM',143]]as const)process.once(signal,()=>{receipt.error=signal;void cleanup().finally(()=>process.exit(code));});
+ async function startDriver(speedScale = 1) {
+  const state = await snapshot();
++ assert(!state.game.awaitingStart && state.game.pendingCourse===null && state.raceTime===0, 'Driver setup requires the actual released countdown course');
+  const course = createProceduralPodraceCourse({ heightAt: sampleTerrainHeight }, Number((state.game.course as any).seed));
+  assert(course.signature === (state.game.course as any).signature, 'Offline driver course does not match browser course');
+  const samples = Array.from({ length: 4096 }, (_, i) => course.sampleAtDistance(course.totalLength * i / 4096));
+  const tune = deriveGalacticVehicleConfig('podracer', DEFAULT_PODRACER_CONFIG, { afterburner: 0, cornering: 0, resilience: 0 });
+- await page!.evaluate(({ samples, totalLength, tune, speedScale, performanceMode, waitPickups }) => {
++ receipt.driverCourse=await page!.evaluate(({ samples, totalLength, tune, speedScale, performanceMode, waitPickups, courseSeed, courseSignature }) => {
++  const initial=window.__PODRACING__!.snapshot(),game=initial.game as any;
++  if(game.awaitingStart||game.pendingCourse!==null||initial.raceTime!==0||game.course.seed!==courseSeed||game.course.signature!==courseSignature)throw Error('Actual countdown course changed or started racing before driver installation');
+   const win = window as any;
+   win.__flowDriver?.stop();
+   const pad = win.__flowPad;
+@@ -155,7 +158,8 @@ async function startDriver(speedScale = 1) {
+    if(performanceMode)perf.controllerOverheadMs.push(performance.now()-controllerStart);
+    control.raf=requestAnimationFrame(frame);
+   }; control.raf=requestAnimationFrame(frame);
+- }, { samples, totalLength: course.totalLength, tune, speedScale, performanceMode, waitPickups });
++  return{seed:courseSeed,signature:courseSignature,raceTime:initial.raceTime,simulationFrame:initial.simulationFrame,phase:document.querySelector<HTMLElement>('.pod-hud')?.dataset.phase,installedDuringCountdown:true};
++ }, { samples, totalLength: course.totalLength, tune, speedScale, performanceMode, waitPickups, courseSeed:Number((state.game.course as any).seed), courseSignature:course.signature });
+ }
+ 
+ try{
+@@ -177,9 +181,14 @@ try{
+  assert(receipt.renderer&&!/swiftshader|llvmpipe|software rasterizer/i.test(receipt.renderer),'Native GPU unavailable');
+  await page.locator('[data-action="select-event"][data-event-id="open-expedition"]:visible').click();
+  await page.waitForFunction(()=>window.__PODRACING__!.snapshot().game.mastery?.eventId==='open-expedition');
++ receipt.selection=await snapshot();const pending=receipt.selection.game.pendingCourse;
++ assert(receipt.selection.game.awaitingStart&&pending?.eventId==='open-expedition'&&Number.isInteger(pending.seed),'Open Expedition must reserve a pending route before Start');
++ await page.locator('[data-action="start-race"]:visible').click();
++ await page.waitForFunction(()=>!window.__PODRACING__!.snapshot().game.awaitingStart&&document.querySelector<HTMLElement>('.pod-hud')?.dataset.phase==='countdown');
+  receipt.before=await snapshot();assert(receipt.before.game.competitionProfile==='chaos','Open Expedition must use chaos rules');
++ assert(receipt.before.game.pendingCourse===null&&receipt.before.game.course.seed===pending.seed&&receipt.before.raceTime===0,'Native Start did not promote the prepared route into countdown');
+  await startDriver();
+- await page.locator('[data-action="start-race"]:visible').click();receipt.commands.push('Click actual Open Expedition then Start; automated gamepad follows course and authored pickup lanes.');
++ receipt.commands.push('Click actual Open Expedition then Start; install the offline driver from the newly built countdown course. Automated gamepad follows course and authored pickup lanes.');
+  if(waitPickups)receipt.commands.push('INKSTORM_WAIT_PICKUPS=1: observe real pickup recharge; brake upstream, hold with zero throttle/full brake if needed, then approach the authored lane when available. Repair uses at most 0.6s of ordinary boost below 0.18 core heat on the final approach, without braking.');
+  const captured=new Set<string>();const started=Date.now();let complete=false;
+  while(Date.now()-started<210000){

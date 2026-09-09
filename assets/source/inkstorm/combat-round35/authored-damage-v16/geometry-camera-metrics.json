@@ -1,0 +1,138 @@
+{
+  "scope": "CPU actual loaded geometry and cached bounds on the recorded ordinary-input terrain trajectory; not GPU cadence or visual acceptance",
+  "variants": [
+    {
+      "name": "hero",
+      "positionsTested": 4330355,
+      "cameraPositions": 18708648,
+      "contactSamples": 33,
+      "maxQueries": 210,
+      "minimumGapByMesh": {
+        "teemto-cockpit-body": {
+          "gap": 3.195075102030648,
+          "frame": 910,
+          "vertex": 19527
+        },
+        "teemto-cockpit-graphite-v2": {
+          "gap": 1.5596010969259755,
+          "frame": 1098,
+          "vertex": 151
+        },
+        "teemto-engine-left-body": {
+          "gap": 2.9771597064841355,
+          "frame": 910,
+          "vertex": 13560
+        },
+        "teemto-engine-right-body": {
+          "gap": 2.4169158898666545,
+          "frame": 910,
+          "vertex": 3018
+        },
+        "teemto-pilot-accent003": {
+          "gap": 1.7972785187110834,
+          "frame": 1098,
+          "vertex": 158
+        },
+        "teemto-pilot-hardware003": {
+          "gap": 2.1029927107058093,
+          "frame": 1098,
+          "vertex": 1499
+        },
+        "teemto-pilot-rubber002": {
+          "gap": 1.9473764900615667,
+          "frame": 1098,
+          "vertex": 1216
+        },
+        "teemto-pilot-shell003": {
+          "gap": 1.835757778974635,
+          "frame": 1098,
+          "vertex": 827
+        },
+        "teemto-pilot-suit005": {
+          "gap": 1.732095482369873,
+          "frame": 1098,
+          "vertex": 890
+        },
+        "teemto-pilot-webbing002": {
+          "gap": 1.8281470881170137,
+          "frame": 1098,
+          "vertex": 391
+        },
+        "teemto-damage-cockpit-stubs-v16": {
+          "gap": 0.5500000245671561,
+          "frame": 1098,
+          "vertex": 31843
+        },
+        "teemto-damage-right-front-v16": {
+          "gap": 0.1582537063081748,
+          "frame": 1122,
+          "vertex": 3833
+        },
+        "teemto-damage-right-rear-v16": {
+          "gap": 0.09999999999891251,
+          "frame": 1110,
+          "vertex": 879
+        },
+        "teemto-damage-severed-tethers-v16": {
+          "gap": 0.17999999999917193,
+          "frame": 978,
+          "vertex": 331
+        }
+      }
+    },
+    {
+      "name": "rival",
+      "positionsTested": 2185713,
+      "cameraPositions": 9465688,
+      "contactSamples": 33,
+      "maxQueries": 169,
+      "minimumGapByMesh": {
+        "teemto-cockpit-body": {
+          "gap": 0.5340889324970366,
+          "frame": 1122,
+          "vertex": 15660
+        },
+        "teemto-engine-left-body": {
+          "gap": 2.9771597064841355,
+          "frame": 910,
+          "vertex": 9506
+        },
+        "teemto-engine-right-body": {
+          "gap": 2.4169158898666545,
+          "frame": 910,
+          "vertex": 2306
+        },
+        "teemto-pilot-helmet001": {
+          "gap": 1.9067164006121118,
+          "frame": 1110,
+          "vertex": 256
+        },
+        "teemto-pilot-orange001": {
+          "gap": 1.617584139638243,
+          "frame": 1110,
+          "vertex": 467
+        },
+        "teemto-pilot-suit001": {
+          "gap": 1.59887700473951,
+          "frame": 1110,
+          "vertex": 182
+        },
+        "teemto-pilot-visor001": {
+          "gap": 2.4736859809485523,
+          "frame": 1110,
+          "vertex": 107
+        },
+        "teemto-damage-right-front-v16": {
+          "gap": 0.17999999999862837,
+          "frame": 1044,
+          "vertex": 2149
+        },
+        "teemto-damage-right-rear-v16": {
+          "gap": 0.099999999998591,
+          "frame": 1092,
+          "vertex": 541
+        }
+      }
+    }
+  ]
+}

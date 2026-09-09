@@ -1,0 +1,43 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="icon" href="data:,"/><title>V31 component depth validation</title><style>body{margin:0;background:#201c20;color:#eee;font:16px system-ui}header{padding:16px}b{color:#ffd293}canvas{display:block}button{margin:0 8px 8px 0;padding:8px}#status{white-space:pre-wrap;font:13px monospace}</style></head><body><header><b>V31 COMPONENT ONLY — porous rear-contact cloud cards</b><div>Reconstructed rear footprint + terrain sampler; no vehicle/casing occlusion, native camera orientation, gameplay or FPS claim.</div><button id="peak">Impulse .4083 s</button><button id="aftermath">Aftermath 1.2083 s</button><button id="context">Lose and restore owned WebGL context</button><div id="status">Loading</div></header><script type="module">
+import * as THREE from 'three';
+import {GalacticEffectsView} from './candidate/src/render/galactic/GalacticEffectsView.ts';
+import {RaceSimulation} from '/src/game/race/RaceSimulation.ts';
+import {sampleTerrainHeight} from '/src/render/terrain/terrainMath.ts';
+const evidence=await (await fetch('./diagnosis.json')).json(),f=evidence.birth.footprint;
+const sim=new RaceSimulation({terrain:{heightAt:sampleTerrainHeight},seed:1229867859,totalLaps:1,countdownSeconds:3,competitionProfile:'time-trial'});
+const fx=new GalacticEffectsView(),v=a=>new THREE.Vector3(...a),footprint={center:v(f.center),axis:v(f.axis),halfLength:f.halfLength,halfWidth:f.halfWidth,edges:f.edges.map(v)};
+fx.emitWreckGroundContact(0,v(evidence.birth.witness),v(evidence.birth.direction),footprint,{terrain:sim.terrain,owner:0,sequence:1});
+const scene=new THREE.Scene();scene.background=new THREE.Color('#b38253');scene.add(fx);
+const ground=new THREE.PlaneGeometry(24,18,24,18);ground.rotateX(-Math.PI/2);
+const attr=ground.getAttribute('position');for(let i=0;i<attr.count;i++){const x=attr.getX(i)+f.center[0],z=attr.getZ(i)+f.center[2];attr.setXYZ(i,x,sim.terrain.heightAt(x,z),z);}ground.computeVertexNormals();
+const floor=new THREE.Mesh(ground,new THREE.MeshBasicMaterial({color:'#b57b43',side:THREE.DoubleSide}));scene.add(floor);
+const renderer=new THREE.WebGLRenderer({antialias:true,preserveDrawingBuffer:true});renderer.setSize(1120,630);document.body.append(renderer.domElement);
+const camera=new THREE.PerspectiveCamera(45,1120/630,.1,120);camera.position.fromArray(evidence.rows.find(r=>r.phase==='debris-return').native.cameraPosition);camera.lookAt(f.center[0],f.center[1]+.8,f.center[2]);
+let age=0;
+function render(){fx.update(age,camera);renderer.render(scene,camera);const gl=renderer.getContext();window.previewState={age,dustInstances:fx.contactDust.count,drawCalls:renderer.info.render.calls,triangles:renderer.info.render.triangles,programErrors:renderer.info.programs.filter(p=>p.diagnostics?.runnable===false).length,glError:gl.getError(),contextLost:gl.isContextLost()};document.querySelector('#status').textContent=JSON.stringify(window.previewState);return window.previewState;}
+window.setPreviewAge=a=>{age=a;return render();};
+document.querySelector('#peak').onclick=()=>window.setPreviewAge(.408333333333);document.querySelector('#aftermath').onclick=()=>window.setPreviewAge(1.208333333333);
+window.cyclePreviewContext=async()=>{const gl=renderer.getContext(),extension=gl.getExtension('WEBGL_lose_context');if(!extension)throw Error('Context-loss extension unavailable');const restored=new Promise(resolve=>renderer.domElement.addEventListener('webglcontextrestored',()=>setTimeout(resolve,50),{once:true}));renderer.domElement.addEventListener('webglcontextlost',()=>setTimeout(()=>extension.restoreContext(),100),{once:true});extension.loseContext();await restored;return render();};document.querySelector('#context').onclick=window.cyclePreviewContext;
+window.addEventListener('pagehide',()=>{fx.dispose();ground.dispose();floor.material.dispose();renderer.dispose();});
+
+window.checkDepth=()=>{
+ age=.408333333333;fx.update(age,camera); for(const child of fx.children)child.visible=child===fx.contactDust;
+ const gl=renderer.getContext(),w=1120,h=630;
+ const pixels=()=>{renderer.render(scene,camera);const a=new Uint8Array(w*h*4);gl.readPixels(0,0,w,h,gl.RGBA,gl.UNSIGNED_BYTE,a);return a;};
+ const difference=(a,b,i)=>Math.abs(a[i]-b[i])+Math.abs(a[i+1]-b[i+1])+Math.abs(a[i+2]-b[i+2]);
+ fx.contactDust.visible=false;const floorOnly=pixels();fx.contactDust.visible=true;const cloudy=pixels();
+ let best=0,bestI=0,visiblePixels=0;for(let y=40;y<h-40;y++)for(let x=40;x<w-40;x++){const i=(y*w+x)*4,d=difference(cloudy,floorOnly,i);if(d>3)visiblePixels++;if(d>best){best=d;bestI=i;}}
+ const px=(bestI/4)%w,py=Math.floor(bestI/4/w),ray=new THREE.Vector3((px+.5)/w*2-1,(py+.5)/h*2-1,.5).unproject(camera).sub(camera.position).normalize();
+ const box=new THREE.Mesh(new THREE.BoxGeometry(.8,.8,.8),new THREE.MeshBasicMaterial({color:'#354957'}));box.position.copy(camera.position).addScaledVector(ray,5);scene.add(box);
+ const withBox=pixels();fx.contactDust.visible=false;const boxOnly=pixels();fx.contactDust.visible=true;
+ let foregroundDifferences=0;for(let y=py-3;y<=py+3;y++)for(let x=px-3;x<=px+3;x++)if(difference(withBox,boxOnly,(y*w+x)*4)>0)foregroundDifferences++;
+ scene.remove(box);box.geometry.dispose();box.material.dispose();
+ const saved=fx.contactDust.instanceMatrix.array.slice();for(let i=0;i<fx.contactDust.count;i++)fx.contactDust.instanceMatrix.array[i*16+13]-=3;fx.contactDust.instanceMatrix.needsUpdate=true;
+ const buriedWithFloor=pixels();floor.visible=false;const buriedNoFloor=pixels();fx.contactDust.visible=false;const background=pixels();fx.contactDust.visible=true;floor.visible=true;
+ let terrainCoveredPixels=0,terrainLeaks=0;for(let i=0;i<background.length;i+=4)if(difference(buriedNoFloor,background,i)>3&&difference(floorOnly,background,i)>3){terrainCoveredPixels++;if(difference(buriedWithFloor,floorOnly,i)>1)terrainLeaks++;}
+ fx.contactDust.instanceMatrix.array.set(saved);fx.contactDust.instanceMatrix.needsUpdate=true;renderer.render(scene,camera);
+ const result={scope:'Isolated component test: neutral foreground box and three-metre test-only downward carrier translation. No game source changes or actual casing claim.',visiblePixels,maximumCloudDifference:best,foregroundSample:[px,py],foregroundDifferences,terrainCoveredPixels,terrainLeaks,programErrors:renderer.info.programs.filter(p=>p.diagnostics?.runnable===false).length,glError:gl.getError()};window.depthResult=result;return result;
+};
+
+render();window.previewReady=true;
+</script></body></html>

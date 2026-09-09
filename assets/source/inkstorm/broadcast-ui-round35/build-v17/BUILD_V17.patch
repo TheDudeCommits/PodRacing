@@ -1,0 +1,131 @@
+--- a/src/ui/workshopGraphicStyles.ts
++++ b/src/ui/workshopGraphicStyles.ts
+@@ -35,7 +35,10 @@
+  background:#bcd0b2; mask-image:var(--equipment-family-stamp); mask-repeat:no-repeat; mask-position:center; mask-size:contain;
+  opacity:.08; pointer-events:none;
+ }
+-.pod-hud__workshop-parts { padding:15px; gap:12px; }
++.pod-hud__workshop-parts {
++ padding:15px; gap:8px; grid-template-columns:minmax(0,1fr);
++ grid-template-rows:max-content max-content; grid-auto-rows:max-content; align-content:start;
++}
+ .pod-hud__workshop-parts::before,.pod-hud__workshop-slots::before,.pod-hud__workshop-summary strong {
+  color:#d1d8be; font:400 21px/1.12 var(--ui-heading); letter-spacing:0;
+  border-bottom:2px solid #bed0b788; padding-bottom:11px; margin-bottom:4px;
+@@ -61,47 +64,49 @@
+ .pod-hud__workshop-slot>strong { color:inherit; font:400 16px/1.2 var(--ui-heading); white-space:normal; overflow:visible; overflow-wrap:anywhere; }
+ .pod-hud__workshop .pod-hud__workshop-slot>small { display:none; color:inherit; font:400 12px/1.35 Inkstorm UI,sans-serif; white-space:normal; margin-top:5px; }
+ .pod-hud__workshop .pod-hud__workshop-slot:hover>small,.pod-hud__workshop .pod-hud__workshop-slot:focus-visible>small { display:block; }
+-/* All alternatives in a row stretch together; expanded descriptions stay in normal flow. */
++/* Open comparison rows keep each real component readable without repeated card housings. */
+ .pod-hud__workshop .pod-hud__workshop-part {
+- display:flex; flex-direction:column; align-items:flex-start; align-self:stretch;
+- min-height:340px; gap:8px; padding:16px!important;
+- border:0!important; border-radius:9px; background:#2b4a50!important;
++ display:grid; grid-template-columns:80px minmax(0,1fr); grid-auto-rows:max-content;
++ align-items:start; align-self:stretch; align-content:center;
++ min-height:0; gap:7px 14px; padding:12px!important;
++ border:0!important; border-top:1px solid #bed0b754!important; border-radius:0; background:transparent!important;
+  color:var(--equipment-paper); box-shadow:none;
+ }
+-.pod-hud__workshop-part>.pod-hud__component-symbol { width:76px; height:76px; align-self:flex-start; margin-bottom:0; }
+-.pod-hud__workshop-part>strong { color:inherit; font:400 clamp(19px,1.55vw,22px)/1.16 var(--ui-heading); letter-spacing:0; overflow-wrap:anywhere; min-height:2.12em; align-self:stretch; }
+-.pod-hud__workshop-part>p { order:4; color:#e2e6d6; font:400 15px/1.4 Inkstorm UI,sans-serif; }
++.pod-hud__workshop-part>.pod-hud__component-symbol { width:80px; height:80px; grid-column:1; grid-row:1/4; align-self:center; margin:0; }
++.pod-hud__workshop-part>strong { grid-column:2; grid-row:1; color:inherit; font:400 22px/1.16 var(--ui-heading); letter-spacing:0; overflow-wrap:anywhere; min-height:0; align-self:start; }
++.pod-hud__workshop-part>p { grid-column:1/-1; grid-row:4; color:#e2e6d6; font:400 15px/1.4 Inkstorm UI,sans-serif; }
+ .pod-hud__workshop-part>.is-benefit,.pod-hud__workshop-part>.is-tradeoff {
+- align-self:stretch; display:flex; align-items:center; padding:7px 9px; border-radius:5px;
+- font:700 15px/1.35 Inkstorm UI,sans-serif; min-height:3.15em;
+-}
+-.pod-hud__workshop-part>.is-benefit { color:#d2e3b9; background:#bfd5b00d; }
+-.pod-hud__workshop-part>.is-tradeoff { color:#ffc1a0; background:#ffc1a00a; }
++ grid-column:2; align-self:start; display:block; padding:0; border-radius:0;
++ font:700 15px/1.35 Inkstorm UI,sans-serif; min-height:0; background:none;
++}
++.pod-hud__workshop-part>.is-benefit { grid-row:2; color:#d2e3b9; }
++.pod-hud__workshop-part>.is-tradeoff { grid-row:3; color:#ffc1a0; }
+ .pod-hud__workshop-part>.pod-hud__equip-action {
+- order:6; align-self:stretch; display:flex; align-items:center; justify-content:space-between;
+- min-height:42px; margin-top:auto; padding:11px 12px; border:0; border-radius:5px;
++ grid-column:1/-1; grid-row:6; align-self:stretch; display:flex; align-items:center; justify-content:space-between;
++ min-height:44px; margin-top:5px; padding:11px 12px; border:0; border-radius:3px;
+  background:var(--equipment-paper); color:var(--equipment-ink);
+  font:400 13px/1.2 var(--ui-heading); letter-spacing:.015em;
+ }
+-.pod-hud__workshop-part .pod-hud__part-comparison { order:5; font-size:14px; line-height:1.4; white-space:normal; }
++.pod-hud__workshop-part .pod-hud__part-comparison { grid-column:1/-1; grid-row:5; font-size:14px; line-height:1.4; white-space:normal; }
+ /* The installed component is a single large silhouette and its actual performance trade. */
+ .pod-hud__workshop .pod-hud__workshop-part.is-equipped {
+- display:grid; grid-column:1/-1; grid-template-columns:100px minmax(0,1fr);
+- min-height:164px; gap:8px 18px; align-content:center;
++ display:grid; grid-column:1/-1; grid-template-columns:156px minmax(0,1fr); order:-1;
++ min-height:236px; gap:8px 22px; align-content:center; border-radius:9px;
+  color:var(--equipment-ink); background:var(--equipment-paper)!important;
+- border-left:6px solid var(--equipment-rust)!important; padding:15px!important; box-shadow:none;
+-}
++ border-top:0!important; border-left:6px solid var(--equipment-rust)!important; padding:18px!important; box-shadow:none;
++}
++.pod-hud__workshop-parts::before { order:-2; }
+ .pod-hud__workshop-part.is-equipped::after { content:none; }
+-.pod-hud__workshop-part.is-equipped>.pod-hud__component-symbol { width:96px; height:96px; grid-column:1; grid-row:1/5; align-self:center; margin:0; }
++.pod-hud__workshop-part.is-equipped>.pod-hud__component-symbol { width:156px; height:156px; grid-column:1; grid-row:1/5; align-self:center; margin:0; }
+ .pod-hud__workshop-part.is-equipped>strong { grid-column:2; grid-row:1; min-height:0; font:400 26px/1.15 var(--ui-heading); letter-spacing:0; align-self:start; }
+ .pod-hud__workshop-part.is-equipped>p,.pod-hud__workshop-part.is-equipped>span { grid-column:2; color:var(--equipment-ink); }
+-.pod-hud__workshop-part.is-equipped>.is-benefit { grid-row:2; min-height:0; padding:0; background:none; font-size:17px; }
+-.pod-hud__workshop-part.is-equipped>.is-tradeoff { grid-row:3; min-height:0; padding:0; background:none; color:#803221; font-size:17px; }
++.pod-hud__workshop-part.is-equipped>.is-benefit { grid-row:2; min-height:0; padding:0; background:none; font-size:19px; }
++.pod-hud__workshop-part.is-equipped>.is-tradeoff { grid-row:3; min-height:0; padding:0; background:none; color:#803221; font-size:18px; }
+ .pod-hud__workshop-part.is-equipped>.pod-hud__equip-action { display:block; grid-column:2; grid-row:4; min-height:0; align-self:start; margin:0; padding:5px 0 0; color:var(--equipment-rust); background:none; border:0; font-size:13px; }
+ .pod-hud__workshop .pod-hud__workshop-part.is-equipped>p { display:block; grid-column:1/-1; grid-row:5; font-size:15px; text-transform:none; }
+ .pod-hud__workshop .pod-hud__workshop-part.is-equipped:hover>p,.pod-hud__workshop .pod-hud__workshop-part.is-equipped:focus-visible>p { display:block; }
+ .pod-hud__workshop-part.is-equipped .pod-hud__part-comparison { color:var(--equipment-ink); }
+-.pod-hud__workshop .pod-hud__workshop-part:hover:not(.is-equipped) { background:#37575b!important; box-shadow:inset 0 0 0 2px #bed0b7; }
++.pod-hud__workshop .pod-hud__workshop-part:hover:not(.is-equipped),.pod-hud__workshop .pod-hud__workshop-part:focus-visible:not(.is-equipped) { background:#37575b!important; box-shadow:inset 3px 0 #bed0b7; }
+ .pod-hud__workshop button:focus-visible,.pod-hud__workshop summary:focus-visible { outline:3px solid #eeab69; outline-offset:-3px; }
+ /* Signed readings and thick center-zero bars retain the measured build deltas. */
+ .pod-hud__workshop-summary { display:flex; flex-direction:column; gap:20px; padding:18px 15px; }
+@@ -132,19 +137,12 @@
+ .pod-hud__workshop-summary .pod-hud__workshop-effective li:nth-child(n+7)>b { font-size:24px; }
+ /* Wide equipment drawers align identity, benefit, cost, and one equip action. */
+ @media (min-width:1280px) {
+- .pod-hud__workshop-parts {
+-  grid-template-columns:minmax(0,1fr);
+-  grid-template-rows:max-content max-content; grid-auto-rows:minmax(max-content,1fr);
+-  align-content:stretch; gap:10px;
++ .pod-hud__workshop .pod-hud__workshop-part:not(.is-equipped) {
++  grid-template-columns:80px minmax(0,1fr) minmax(0,1fr) 124px;
++  grid-template-rows:max-content max-content; align-content:center;
++  min-height:96px; gap:7px 12px; padding:8px!important;
+  }
+- .pod-hud__workshop-parts::before { order:-2; }
+- .pod-hud__workshop .pod-hud__workshop-part:not(.is-equipped) {
+-  display:grid; grid-template-columns:58px minmax(0,1fr) minmax(0,1fr) 124px;
+-  grid-template-rows:max-content max-content; align-content:center;
+-  min-height:110px; gap:7px 12px; padding:12px!important;
+-  border-radius:5px; border-left:3px solid #b7c9b254!important;
+- }
+- .pod-hud__workshop-part:not(.is-equipped)>.pod-hud__component-symbol { grid-column:1; grid-row:1/3; width:58px; height:58px; align-self:center; margin:0; }
++ .pod-hud__workshop-part:not(.is-equipped)>.pod-hud__component-symbol { grid-column:1; grid-row:1/3; width:80px; height:80px; align-self:center; margin:0; }
+  .pod-hud__workshop-part:not(.is-equipped)>strong { grid-column:2/4; grid-row:1; min-height:0; font-size:21px; }
+  .pod-hud__workshop-part:not(.is-equipped)>.is-benefit { grid-column:2; grid-row:2; }
+  .pod-hud__workshop-part:not(.is-equipped)>.is-tradeoff { grid-column:3; grid-row:2; }
+@@ -152,7 +150,6 @@
+  .pod-hud__workshop-part:not(.is-equipped)>.pod-hud__equip-action { grid-column:4; grid-row:1/3; min-height:44px; margin:0; padding:10px; align-self:center; border-radius:3px; }
+  .pod-hud__workshop-part:not(.is-equipped)>p { grid-column:2/-1; grid-row:3; }
+  .pod-hud__workshop-part:not(.is-equipped)>.pod-hud__part-comparison { grid-column:2/-1; grid-row:4; }
+- .pod-hud__workshop .pod-hud__workshop-part.is-equipped { order:-1; padding:15px!important; }
+ }
+ @media (max-width:1100px) {
+  .pod-hud__workshop { grid-template-rows:auto auto auto auto; }
+@@ -176,8 +173,8 @@
+  .pod-hud__workshop .pod-hud__workshop-part { min-height:0; gap:12px; }
+  .pod-hud__workshop-part>strong { min-height:0; }
+  .pod-hud__workshop-part>.is-benefit,.pod-hud__workshop-part>.is-tradeoff { min-height:0; }
+- .pod-hud__workshop .pod-hud__workshop-part.is-equipped { grid-template-columns:76px minmax(0,1fr); gap:10px 14px; padding:14px!important; }
+- .pod-hud__workshop-part.is-equipped>.pod-hud__component-symbol { width:76px; height:76px; grid-row:1; }
++ .pod-hud__workshop .pod-hud__workshop-part.is-equipped { grid-template-columns:112px minmax(0,1fr); gap:10px 14px; padding:14px!important; }
++ .pod-hud__workshop-part.is-equipped>.pod-hud__component-symbol { width:112px; height:112px; grid-row:1; }
+  .pod-hud__workshop-part.is-equipped>strong { font-size:23px; align-self:center; }
+  .pod-hud__workshop-part.is-equipped>span,.pod-hud__workshop-part.is-equipped>.pod-hud__equip-action { grid-column:1/-1; }
+  .pod-hud__workshop-summary { display:flex; flex-direction:column; gap:20px; }

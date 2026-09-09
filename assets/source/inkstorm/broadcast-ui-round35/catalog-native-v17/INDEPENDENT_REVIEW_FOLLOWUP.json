@@ -1,0 +1,13 @@
+{
+  "recordedAt": "2026-09-08T22:27:11.397307+00:00",
+  "source": "scripts/inkstorm-broadcast-ui.mjs",
+  "sha256": "a4107f13daa2133ae460ef162643d863b28b79d96a2170d93d8be4e0328c05e2",
+  "bytes": 36674,
+  "status": "INITIAL_P2_BASELINE_CLOSED_GLYPH_GUARD_IMPLEMENTED_INSTALLED_DESKTOP_COVERAGE_PENDING",
+  "baselineFinding": "CLOSED: every initial UI slot is collected before any equip; existing persisted storage cross-check; later per-slot state matches immutable baseline; final persisted loadout equals original five IDs. Null fresh storage handled without invented values.",
+  "glyphFinding": "Full size, viewport, visibility, ancestor-opacity and overflow guard now validates the pre-Enter glyph. Desktop pre-Enter usually represents an alternative; narrow pre-Enter is already installed after tap. To cover every desktop installed 156px glyph, apply the same full guard after Enter/340ms as well. Post-Enter currently checks width only.",
+  "comparisonCoverage": "Desktop non-equipped comparison disclosure now receives readableText; deliberately hidden equipped comparison is excluded.",
+  "inputScope": "Items distinguish desktop Enter from narrow tap followed by Enter focus/idempotence. Chromium uses emulated touch contexts; no physical-device evidence. No FPS claim added.",
+  "sourceEdits": false,
+  "browserBuildGPU": false
+}

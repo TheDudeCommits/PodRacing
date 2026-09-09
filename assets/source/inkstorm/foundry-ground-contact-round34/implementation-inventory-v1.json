@@ -1,0 +1,95 @@
+{
+  "status": "PREPARED AND HELD; private CPU verification only",
+  "files": [
+    {
+      "path": "foundation-contact-v1.patch",
+      "bytes": 27726,
+      "sha256": "09630da8ee9419c3143b74a99d39d2b4be9994658a9f74aa7c17707401710ecb"
+    },
+    {
+      "path": "candidate-inputs.json",
+      "bytes": 1653,
+      "sha256": "4ae6e77ed582b395b636e1a9379c83fdbcd110bfd20f86078418158549036a78"
+    },
+    {
+      "path": "prepare-patch.py",
+      "bytes": 5424,
+      "sha256": "82602c689ebbf8ff1c39e80ab4166ce07889bc8f335dd8b8a11b89c071fc1a8e"
+    },
+    {
+      "path": "prepare-isolated-check.py",
+      "bytes": 1076,
+      "sha256": "ba606784467076a7cccd2745c767854295e5b3c67b6a3f649da0fdf02ee3c98b"
+    },
+    {
+      "path": "check-geometry.mjs",
+      "bytes": 10448,
+      "sha256": "30e31655a39153a65b8373ff146605e22f50357f5a65fcdf888f80eba5433b72"
+    },
+    {
+      "path": "geometry-check-v1.json",
+      "bytes": 12357,
+      "sha256": "5b7e21676c5f83fbab82c920d771f47dfbeaf93615445cd20092316dddd95f98"
+    },
+    {
+      "path": "geometry-cpu-copy-v1.json",
+      "bytes": 1919248,
+      "sha256": "e64990e1fa0e340f8259b3d0e8558a1801b1c9802f9649bfb6e2f5f079d5c24a"
+    },
+    {
+      "path": "projection-check-v1.json",
+      "bytes": 23716,
+      "sha256": "79111603c4774dadbe6cb0d610032f66fcccf8b588cd0eba6a8bb31f1b002f4f"
+    },
+    {
+      "path": "validation-v1.json",
+      "bytes": 829,
+      "sha256": "64d1f2a695a93e7f4dfb23922ba15f7a30c42d00e91e3b7441c9f207ba171a40"
+    },
+    {
+      "path": "isolated-typecheck-v1.log",
+      "bytes": 976,
+      "sha256": "d798ed73346342785940c190c79dd586f7215989b9174323defab9d1de79d735"
+    },
+    {
+      "path": "isolated-typecheck-v2.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "isolated-tests-v1.log",
+      "bytes": 286,
+      "sha256": "226015d1da32e15b9aa7d4875b89b83398d974abda48b29be96b93cb2e3d4775"
+    },
+    {
+      "path": "IMPLEMENTATION_READY_V1.md",
+      "bytes": 5195,
+      "sha256": "0932c9a62e14d83295168c3093ef169143ae2223ca9a21cf26e90d2bae9ef046"
+    },
+    {
+      "path": "candidate/src/render/inkstorm/InkstormFoundationContact.ts",
+      "bytes": 11875,
+      "sha256": "5f198e270b985f3bda26ebeaddaba0d81f92a659d7451bbb71b76eb04c0215cc"
+    },
+    {
+      "path": "candidate/src/render/inkstorm/InkstormFoundations.ts",
+      "bytes": 2826,
+      "sha256": "01c8748a5f11f17269983cf456b3e4b7706a79c7be19a441685be338f2ef386f"
+    },
+    {
+      "path": "candidate/src/render/inkstorm/InkstormFoundry.ts",
+      "bytes": 14785,
+      "sha256": "e8416328e7969ea5b7a24108a8b48c5f65b5607eb10f1ea399d5f09d82a54ccd"
+    },
+    {
+      "path": "candidate/src/render/inkstorm/InkstormWorld.ts",
+      "bytes": 16382,
+      "sha256": "15967e66df145ef54c4bef5fad35ac107695641ccf5e444ad26f746be969e52f"
+    },
+    {
+      "path": "candidate/tests/render/inkstormFoundationContact.test.ts",
+      "bytes": 9304,
+      "sha256": "8f4052c9a224aea6871f90f2aa4ef52c1fa8e324e64ffbf6e65bdc80c053ed0a"
+    }
+  ]
+}

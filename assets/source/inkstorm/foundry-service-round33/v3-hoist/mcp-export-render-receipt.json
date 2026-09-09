@@ -1,0 +1,114 @@
+{
+  "addedConstructionTriangles": 1548,
+  "boundsBlender": [
+    [
+      -52,
+      -7,
+      -25
+    ],
+    [
+      52,
+      7,
+      61.400001525878906
+    ]
+  ],
+  "foundationView": "The original buried foundation volume is fully exposed for technical footprint review.",
+  "images": [
+    {
+      "eyeBlender": [
+        136.67611694335938,
+        208.26837158203125,
+        122.33418273925781
+      ],
+      "orthographicScale": 170.3334197998047,
+      "orthographicScaleAxis": "horizontal",
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/foundry-service-round33/v3-hoist/foundry-service-gantry-v3-approach-three-quarter.png",
+      "resolution": [
+        1400,
+        1000
+      ],
+      "sensorFit": "HORIZONTAL",
+      "targetBlender": [
+        0,
+        0,
+        18.200000762939453
+      ],
+      "view": "approach-three-quarter"
+    },
+    {
+      "eyeBlender": [
+        -141.42855834960938,
+        -205.7142791748047,
+        121.05714416503906
+      ],
+      "orthographicScale": 170.3334197998047,
+      "orthographicScaleAxis": "horizontal",
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/foundry-service-round33/v3-hoist/foundry-service-gantry-v3-rear-three-quarter.png",
+      "resolution": [
+        1400,
+        1000
+      ],
+      "sensorFit": "HORIZONTAL",
+      "targetBlender": [
+        0,
+        0,
+        18.200000762939453
+      ],
+      "view": "rear-three-quarter"
+    },
+    {
+      "eyeBlender": [
+        268.0767517089844,
+        0,
+        50.36920928955078
+      ],
+      "orthographicScale": 170.3334197998047,
+      "orthographicScaleAxis": "horizontal",
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/foundry-service-round33/v3-hoist/foundry-service-gantry-v3-side-depth.png",
+      "resolution": [
+        1400,
+        1000
+      ],
+      "sensorFit": "HORIZONTAL",
+      "targetBlender": [
+        0,
+        0,
+        18.200000762939453
+      ],
+      "view": "side-depth"
+    }
+  ],
+  "neutralLighting": "All lights white; no palette replacement, compositor, tint, bloom or fog.",
+  "preservation": {
+    "active": "Sketchfab_model.001",
+    "allExistingCollectionMembershipsExact": true,
+    "allExistingSceneMembershipsExact": true,
+    "authoredSourceEvidenceExact": true,
+    "authoredStageSelectionRestored": true,
+    "existingScenes": 140,
+    "scene": "Cruise — Going Merry source 4b2cb678",
+    "selectedCount": 15,
+    "sharedContextRestored": true,
+    "temporaryReviewSceneRemoved": true,
+    "viewLayer": "ViewLayer"
+  },
+  "renderer": "CPU Cycles16samples / Standard color management",
+  "retainedSourceTriangles": 18324,
+  "runtimeInstalled": false,
+  "scope": "Neutral source construction inspection; not gameplay, art acceptance or FPS evidence.",
+  "sourceExport": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/foundry-service-round33/v3-hoist/foundry-service-gantry-v3-native.glb",
+  "sourceGeometryDraws": 1,
+  "sourceImages": 0,
+  "sourceMaterialSlots": 1,
+  "sourceScene": "PodRacing — Foundry service gantry round33 hoist V3",
+  "sourceTriangleCap": 20000,
+  "sourceTriangles": 19872,
+  "status": "Source GLB and three neutral technical views written; actual-world/critic acceptance pending",
+  "targetReferences": [
+    "docs/inkstorm-overhaul/concepts/11-foundry-construction-round33.png",
+    "docs/inkstorm-overhaul/concepts/06-foundry.png"
+  ],
+  "executedVia": "Blender MCP",
+  "scriptSha256": "8891cca12a84107b26e62c508f421ad95eafc891f16b447fc35a4b92b9efd096",
+  "recordedAt": "2026-09-08 10:44:42 UTC"
+}

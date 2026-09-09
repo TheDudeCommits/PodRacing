@@ -1,0 +1,125 @@
+{
+  "scope": "Private camera preparation, static numerical checks; no rendered candidate or final acceptance.",
+  "records": [
+    {
+      "path": "assets/source/inkstorm/round34-blockrunner-chase-rig/CAMERA_CANDIDATE.md",
+      "bytes": 3709,
+      "sha256": "72feb9a499315177077baffea4e35801ae97a6a88b1ecf160760bf5845e0b01b",
+      "kind": "private preparation/evidence"
+    },
+    {
+      "path": "assets/source/inkstorm/round34-blockrunner-chase-rig/baseline/src/camera/CinematicCamera.ts",
+      "bytes": 20156,
+      "sha256": "55812dd845f2040beab6848aaa0623bbc186aa1283e24b4cb03401440aca37c0",
+      "kind": "private preparation/evidence"
+    },
+    {
+      "path": "assets/source/inkstorm/round34-blockrunner-chase-rig/baseline/src/game/vehicleAppearance.ts",
+      "bytes": 14646,
+      "sha256": "d60711be193329f77b2f1d1eba01e798db69793e5273d1ba199141c5422f59b2",
+      "kind": "private preparation/evidence"
+    },
+    {
+      "path": "assets/source/inkstorm/round34-blockrunner-chase-rig/baseline/src/render/app/GameApp.ts",
+      "bytes": 159109,
+      "sha256": "0d87e236bdf0f27a73aa2a4fd24c63dc5c8a5be7c7c6bd255f8612ce46730fd9",
+      "kind": "private preparation/evidence"
+    },
+    {
+      "path": "assets/source/inkstorm/round34-blockrunner-chase-rig/blockrunner-chase-rig-v1.patch",
+      "bytes": 5187,
+      "sha256": "2c31d7ce9d0ba9cd6886d26602f3ddc173d1e31b44e565738a9f8b2e9a5dab1a",
+      "kind": "private preparation/evidence"
+    },
+    {
+      "path": "assets/source/inkstorm/round34-blockrunner-chase-rig/camera-behavior-comparison-v1.json",
+      "bytes": 2074,
+      "sha256": "598117af1eec8135aa57523640ebb71e0d55ab1a19bef05ffe77af30cbbc86e8",
+      "kind": "private preparation/evidence"
+    },
+    {
+      "path": "assets/source/inkstorm/round34-blockrunner-chase-rig/camera-measurements-v1.json",
+      "bytes": 17984,
+      "sha256": "f399025d138effc149ebc267f4dcc8472a2f72088c8b6a8ab823e3c87146a5f4",
+      "kind": "private preparation/evidence"
+    },
+    {
+      "path": "assets/source/inkstorm/round34-blockrunner-chase-rig/candidate/src/camera/CinematicCamera.ts",
+      "bytes": 20955,
+      "sha256": "01cbfd84f1fac6929241d7c9856702f986d57906c9505039af85266db27632c1",
+      "kind": "private preparation/evidence"
+    },
+    {
+      "path": "assets/source/inkstorm/round34-blockrunner-chase-rig/candidate/src/game/vehicleAppearance.ts",
+      "bytes": 15140,
+      "sha256": "ac81918ebe048eda599967f54c1eb8a3fa74379fd0325cef68926ba78be6a75d",
+      "kind": "private preparation/evidence"
+    },
+    {
+      "path": "assets/source/inkstorm/round34-blockrunner-chase-rig/candidate/src/render/app/GameApp.ts",
+      "bytes": 159207,
+      "sha256": "961a66e7d75504ff942e62b667451467da9cb7dd181dec625bb0dfd50bd5dee1",
+      "kind": "private preparation/evidence"
+    },
+    {
+      "path": "assets/source/inkstorm/round34-blockrunner-chase-rig/candidate-inputs.json",
+      "bytes": 898,
+      "sha256": "d9cc5af330e4e46f636fed3f91a0e62264bdd8700bb35d229a71fa3351e5ccea",
+      "kind": "private preparation/evidence"
+    },
+    {
+      "path": "assets/source/inkstorm/round34-blockrunner-chase-rig/compare-camera-behavior.mjs",
+      "bytes": 3297,
+      "sha256": "6a6d1d411b53180dc44d6983c5260a94e25006d48c72ebc77a6b60d310633353",
+      "kind": "private preparation/evidence"
+    },
+    {
+      "path": "assets/source/inkstorm/round34-blockrunner-chase-rig/measure-camera.py",
+      "bytes": 6722,
+      "sha256": "3a1d016c15fe21a4982e8af884587fb6f0e6863359a71a42120161e4a90b793f",
+      "kind": "private preparation/evidence"
+    },
+    {
+      "path": "assets/source/inkstorm/round34-blockrunner-chase-rig/prepare-candidate.py",
+      "bytes": 4182,
+      "sha256": "7195ea068bce9f4a499c10baeeed7dffe335cc35157a4d3f96a5cabb671308cb",
+      "kind": "private preparation/evidence"
+    },
+    {
+      "path": "output/gauntlet/round34-sobel-stencil-v9/captures/01-grid.png",
+      "bytes": 3230005,
+      "sha256": "be2f19202e2605fbaf3005a9a25ab2714b910938a2c3abc0713b585bc07dd111",
+      "kind": "individually viewed image"
+    },
+    {
+      "path": "output/gauntlet/round34-sobel-stencil-v9/captures/live-drive.png",
+      "bytes": 2424885,
+      "sha256": "c78f1f46d1bc57de8754b27cd29fc0bc06422cb155a629d8e6338a3e9428f5b3",
+      "kind": "individually viewed image"
+    },
+    {
+      "path": "docs/inkstorm-overhaul/concepts/12-blockrunner-round34.png",
+      "bytes": 2255407,
+      "sha256": "6e96d24510b73847f02f483ac5ffa73c30262a9968b03bfd9c401c5ce8d776d8",
+      "kind": "individually viewed image"
+    },
+    {
+      "path": "output/gauntlet/round34-sobel-stencil-v9/captures/receipts.json",
+      "bytes": 518062,
+      "sha256": "53a9ec01a11936fc1538130f574abba24874d35319ca9bee24f64a2c2a8c585c",
+      "kind": "read-only input"
+    },
+    {
+      "path": "public/assets/inkstorm/vehicles/blockrunner-hero-v1.glb",
+      "bytes": 4198472,
+      "sha256": "ee744b122b3e2a009ef7a8f3a8c5c5848fe1503b13e4334e0fe8276ce5c44d8d",
+      "kind": "read-only input"
+    },
+    {
+      "path": "assets/source/inkstorm/round34-blockrunner-chase-rig/geometry-check-stdout.json",
+      "bytes": 9534,
+      "sha256": "8a3bf394ed335fdf58e03e8399924589716c3ce9225e99367b54c1452c87dc93",
+      "kind": "private preparation/evidence"
+    }
+  ]
+}

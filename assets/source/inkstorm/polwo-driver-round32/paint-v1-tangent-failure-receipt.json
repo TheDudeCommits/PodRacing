@@ -1,0 +1,253 @@
+{
+  "input": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/polwo-driver-round32/polwo-inkstorm-paint-v1-native.glb",
+  "inputSha256": "469bc1243e29d8ddd1f2829dc345227712e6a6d2049c9604f56057e98681e759",
+  "sourcePreflightPass": false,
+  "packageWritten": false,
+  "failure": "zero-length tangent XYZ vectors rejected by current runtime contract",
+  "invalidTangents": 25,
+  "detail": [
+    {
+      "node": "polwo-body-0 fit-v3 paint-v1",
+      "accessor": 3,
+      "invalid": [
+        {
+          "vertex": 25996,
+          "value": [
+            0.0,
+            0.0,
+            0.0,
+            -1.0
+          ]
+        },
+        {
+          "vertex": 26003,
+          "value": [
+            0.0,
+            0.0,
+            0.0,
+            -1.0
+          ]
+        },
+        {
+          "vertex": 26008,
+          "value": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        {
+          "vertex": 26017,
+          "value": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        }
+      ]
+    },
+    {
+      "node": "polwo-pilot-rubber.011 fit-v3 paint-v1",
+      "accessor": 23,
+      "invalid": [
+        {
+          "vertex": 1334,
+          "value": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        {
+          "vertex": 1335,
+          "value": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        {
+          "vertex": 1336,
+          "value": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        {
+          "vertex": 1338,
+          "value": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        {
+          "vertex": 1385,
+          "value": [
+            0.0,
+            0.0,
+            0.0,
+            -1.0
+          ]
+        },
+        {
+          "vertex": 1386,
+          "value": [
+            0.0,
+            0.0,
+            0.0,
+            -1.0
+          ]
+        },
+        {
+          "vertex": 1387,
+          "value": [
+            0.0,
+            0.0,
+            0.0,
+            -1.0
+          ]
+        },
+        {
+          "vertex": 1440,
+          "value": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        {
+          "vertex": 1443,
+          "value": [
+            0.0,
+            0.0,
+            0.0,
+            -1.0
+          ]
+        },
+        {
+          "vertex": 1444,
+          "value": [
+            0.0,
+            0.0,
+            0.0,
+            -1.0
+          ]
+        },
+        {
+          "vertex": 2524,
+          "value": [
+            0.0,
+            0.0,
+            0.0,
+            -1.0
+          ]
+        },
+        {
+          "vertex": 2525,
+          "value": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        {
+          "vertex": 2526,
+          "value": [
+            0.0,
+            0.0,
+            0.0,
+            -1.0
+          ]
+        },
+        {
+          "vertex": 2578,
+          "value": [
+            0.0,
+            0.0,
+            0.0,
+            -1.0
+          ]
+        },
+        {
+          "vertex": 2579,
+          "value": [
+            0.0,
+            0.0,
+            0.0,
+            -1.0
+          ]
+        },
+        {
+          "vertex": 2582,
+          "value": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        {
+          "vertex": 2633,
+          "value": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        {
+          "vertex": 2634,
+          "value": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        {
+          "vertex": 2637,
+          "value": [
+            0.0,
+            0.0,
+            0.0,
+            -1.0
+          ]
+        },
+        {
+          "vertex": 2638,
+          "value": [
+            0.0,
+            0.0,
+            0.0,
+            -1.0
+          ]
+        }
+      ]
+    },
+    {
+      "node": "polwo-pilot-suit.014 fit-v3 paint-v1",
+      "accessor": 33,
+      "invalid": [
+        {
+          "vertex": 10286,
+          "value": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        }
+      ]
+    }
+  ]
+}

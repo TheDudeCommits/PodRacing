@@ -1,0 +1,14 @@
+{
+  "command": [
+    "npx",
+    "vitest",
+    "run",
+    "tests/render/importedVehicleDamage.test.ts",
+    "tests/render/importedVehiclePresentation.test.ts",
+    "tests/render/racerPresentation.test.ts",
+    "--silent=false",
+    "--reporter=verbose"
+  ],
+  "exitCode": 0,
+  "elapsedSeconds": 1.1771819591522217
+}

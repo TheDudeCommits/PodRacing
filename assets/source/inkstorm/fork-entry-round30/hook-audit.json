@@ -1,0 +1,41 @@
+{
+  "status": "PASS",
+  "attributes": [
+    {
+      "name": "position",
+      "originalComponents": 12420,
+      "candidateComponents": 36072,
+      "byteExactPrefix": true
+    },
+    {
+      "name": "color",
+      "originalComponents": 12420,
+      "candidateComponents": 36072,
+      "byteExactPrefix": true
+    },
+    {
+      "name": "normal",
+      "originalComponents": 12420,
+      "candidateComponents": 36072,
+      "byteExactPrefix": true
+    }
+  ],
+  "fallbackExact": true,
+  "materialCount": 2,
+  "groups": [
+    {
+      "start": 0,
+      "count": 4140,
+      "materialIndex": 0
+    },
+    {
+      "start": 4140,
+      "count": 7884,
+      "materialIndex": 1
+    }
+  ],
+  "originalTriangles": 1380,
+  "candidateTriangles": 4008,
+  "constructionMilliseconds": 29.278958999999986,
+  "limits": "CPU source candidate instantiation and buffer preservation; no GPU compile or actual racing-view acceptance."
+}

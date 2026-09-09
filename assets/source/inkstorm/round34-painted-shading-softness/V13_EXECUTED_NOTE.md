@@ -1,0 +1,13 @@
+# V13 executed evidence note
+
+V13 is retained by the runtime owner for a modest garage improvement. The fresh critic preferred V13 in the garage with Moderate confidence; the grid, launch and Foundry gameplay pairs were all TIE with Moderate confidence. Garage materials/overall vehicle scored 5.5/6.2 for V13 versus 5.4/6.1 for V10. Gameplay scores were identical within each pair, and neither treatment reached 8/10. The critic attributed the garage preference to smoother highlights describing rounded engine shells; material separation and cockpit depth remain weak. These are attributed critic observations. This auditor did not visually view the images.
+
+All nine original PNGs and all nine anonymous attachments match their inventory hashes and one another. Prompt SHA-256 and CLI image order match the invocation. The complete raw trace contains no tool/retrieval items, one final message exactly equal to `review.md`, one completed turn, and return code 0. Four reconnect events precede an explicit HTTPS fallback. Generic user configuration may still have loaded; the trace does not prove an empty system/configuration context.
+
+All eleven V10/V13 staged views have identical saved position, camera position, camera focus, yaw, speed and rendered-racer positions. Calls, triangles, renderer dimensions and pixel ratio also match at every pose. The thirteen V13 PNGs are inventoried in the audit. Saved geometry and texture counters equal V10; the reported program count is one higher at each pose. This describes observed receipt states and does not establish isolated allocation causality, memory cost, or absence of resource regressions.
+
+The capture receipt and current frozen bundle `index-BCoTvrBa.js` both verify as SHA-256 `6e5ba6161d517551a6af0b8cb5a5d12e6c737a01cec717348602682239acf798`. The saved verification log records 706 tests in 121 files passing plus typecheck/build. Root reports only two stale test comments were cleaned afterward, before the benchmark freeze; this auditor did not rerun verification or reconstruct that edit history. The capture has no recorded errors and 481 short live samples averaging 60.00199591 FPS. This is separate from the ongoing full-race benchmark; no benchmark result or acceptance is inferred.
+
+The V12 rollback receipt matches its preserved before copies and both currently observed Foundry source hashes; its new helper is absent. The V13 audit made no changes to live source, tests, runtime files or the benchmark and used no browser. No overview documents were updated.
+
+Machine-readable evidence: `executed-v13-audit.json`, SHA-256 `2381cfaf1b53806dec2a40cd2ac8dd1485ee4656f807abb3dd2e59efe64a18c7`.

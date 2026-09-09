@@ -1,0 +1,40 @@
+{
+  "version": 1,
+  "recordedAt": "2026-09-07T15:07:34.515459+00:00",
+  "scope": "Prepared normalized hero/rival exports and executed original static driver; no game integration claimed.",
+  "previousProgressReceipt": {
+    "path": "assets/source/inkstorm/vehicle-progress-2026-09-07-teemto-study-v1.json",
+    "bytes": 2561,
+    "sha256": "0b7318a8925ea699d77fb44c11197182ba42101cab4ef629070a14bc6a7889a1"
+  },
+  "counts": {
+    "publicResults": 29,
+    "vehicleCandidates": 26,
+    "excludedNonVehicles": 3,
+    "downloaded": 2,
+    "blockedOrPending": 24,
+    "downloadStatuses": {
+      "downloaded": 2,
+      "pending_download": 23,
+      "rate_limited": 1
+    },
+    "mcpImportedSourceGlbs": 2,
+    "rawArchivesPreserved": 0,
+    "stylizationNeedsPermission": 0,
+    "publicAdaptationRestricted": 1,
+    "stylizedExports": 1,
+    "runtimeIntegrations": 0,
+    "driverInspections": 1,
+    "stylizedSourceStudies": 1,
+    "driversAdded": 1,
+    "stylizedExportVariants": 2
+  },
+  "exportReceipt": {
+    "path": "assets/source/inkstorm/vehicles/4eff45899ada40bb920c5c744663db90/processed/teemto-normalized-export-v1-receipt.json",
+    "bytes": 14164,
+    "sha256": "e59db2c37bc7877024eb451f7f503105a3c68c4920d3fa43dfe288916fdd9266"
+  },
+  "manifestSha256": "61241837ab72be737e90ee991fb35a216bb95ab470f59fdb0549c1ed92b5f071",
+  "runtimeIntegration": false,
+  "sourcePreserved": true
+}

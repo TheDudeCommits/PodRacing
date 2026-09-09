@@ -1,0 +1,1 @@
+node node_modules/typescript/bin/tsc --ignoreConfig --noEmit --target ES2023 --module ESNext --moduleResolution Bundler --strict --noUncheckedIndexedAccess --noUnusedLocals --noUnusedParameters --allowImportingTsExtensions --skipLibCheck assets/source/inkstorm/round30-next-steps/typecheck/InkstormFoundry.ts assets/source/inkstorm/round30-next-steps/typecheck/InkstormWorld.ts

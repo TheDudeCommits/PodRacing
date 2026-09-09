@@ -1,0 +1,120 @@
+{
+  "version": 2,
+  "coordinateConvention": "Blender X frontage/Y depth/Z up; GLB X frontage/Y up/Z=-BlenderY",
+  "geometry": {
+    "bodyCenterOffsetBlender": [
+      0,
+      0,
+      0.2
+    ],
+    "bodySizeBlender": [
+      2.6,
+      0.95,
+      0.32
+    ],
+    "lensCenterOffsetBlender": [
+      0,
+      0,
+      0.035
+    ],
+    "lensSizeBlender": [
+      2.1,
+      0.68,
+      0.07
+    ],
+    "trianglesPerFixture": 24,
+    "emittingFace": "lens bottom at exact emitter, normal GLB -Y"
+  },
+  "fixtures": [
+    {
+      "id": "pit-task-1",
+      "family": "pit-complex",
+      "emitterBlender": [
+        -50,
+        3,
+        9.44
+      ],
+      "emitterGLB": [
+        -50,
+        9.44,
+        -3
+      ],
+      "support": "Existing hoist crossbar at Blender Z=10, Y=y-1"
+    },
+    {
+      "id": "pit-task-2",
+      "family": "pit-complex",
+      "emitterBlender": [
+        -8,
+        3,
+        9.44
+      ],
+      "emitterGLB": [
+        -8,
+        9.44,
+        -3
+      ],
+      "support": "Existing hoist crossbar at Blender Z=10, Y=y-1"
+    },
+    {
+      "id": "pit-task-3",
+      "family": "pit-complex",
+      "emitterBlender": [
+        36,
+        6,
+        9.44
+      ],
+      "emitterGLB": [
+        36,
+        9.44,
+        -6
+      ],
+      "support": "Existing hoist crossbar at Blender Z=10, Y=y-1"
+    },
+    {
+      "id": "district-task-1",
+      "family": "pit-district",
+      "emitterBlender": [
+        -36,
+        2,
+        11.38
+      ],
+      "emitterGLB": [
+        -36,
+        11.38,
+        -2
+      ],
+      "support": "Existing front crossbar at Blender Z=h, Y=back-11"
+    },
+    {
+      "id": "district-task-2",
+      "family": "pit-district",
+      "emitterBlender": [
+        1,
+        6,
+        16.38
+      ],
+      "emitterGLB": [
+        1,
+        16.38,
+        -6
+      ],
+      "support": "Existing front crossbar at Blender Z=h, Y=back-11"
+    },
+    {
+      "id": "district-task-3",
+      "family": "pit-district",
+      "emitterBlender": [
+        41,
+        -1,
+        13.18
+      ],
+      "emitterGLB": [
+        41,
+        13.18,
+        1
+      ],
+      "support": "Existing front crossbar at Blender Z=h, Y=back-11"
+    }
+  ]
+}

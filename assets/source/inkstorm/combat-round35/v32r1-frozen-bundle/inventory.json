@@ -1,0 +1,540 @@
+{
+  "stage": "V32r1 adds authoritative per-render wreck HUD state to V32 abilities, warning reservation and per-piece support cues; full verification PASS, native pending",
+  "at": "2026-09-09T13:11:57.427958+00:00",
+  "bundle": "index-FTaKHRwm.js",
+  "bytes": 1864215,
+  "sha256": "5b97c68cb6f232ac48260142f377f7b5eea8dbbf859e3dda3770ba9d36284ee8",
+  "verificationSummary": [
+    "Test Files  158 passed (158)",
+    "Tests  938 passed (938)"
+  ],
+  "sourceFiles": [
+    {
+      "path": "src/ui/RaceHud.ts",
+      "bytes": 125036,
+      "sha256": "291ac0f03b50b6035942d569fe841577700852bada476e1bf12dfc1dab8cb5d9"
+    },
+    {
+      "path": "src/ui/broadcastStyles.ts",
+      "bytes": 91805,
+      "sha256": "d0b614a67f39ea73845e82206af30062e52c95f114c5f16a11fabb81b90e4d3a"
+    },
+    {
+      "path": "src/camera/CinematicCamera.ts",
+      "bytes": 37510,
+      "sha256": "68427aec3f812e6dd2d10c8a387f83003a366d8bd4a5756117cff4b128c3dbd2"
+    },
+    {
+      "path": "src/render/app/GameApp.ts",
+      "bytes": 175857,
+      "sha256": "1ac81046f9ae1ad8496b59d7385ec00620559c348560e42f1a9e40edad1a187e"
+    },
+    {
+      "path": "src/render/combat/WreckVisualPose.ts",
+      "bytes": 11884,
+      "sha256": "969aec25ab34e210e6446ce1cafad45060e96849fcd1a2eb2739acc9e0f0cf9a"
+    },
+    {
+      "path": "src/render/combat/TeemtoAuthoredDamage.ts",
+      "bytes": 30088,
+      "sha256": "008d11c218b4673f1984adf80ae0bf860b795cdf7a6409157605903997950cad"
+    },
+    {
+      "path": "src/render/galactic/GalacticEffectsView.ts",
+      "bytes": 99576,
+      "sha256": "a6d2868bf2ba903818bfe18b6f3ef20d5854c9eee9e07e0410c2c6ab8db3b5ca"
+    },
+    {
+      "path": "scripts/inkstorm-hud-feedback-fixtures.mjs",
+      "bytes": 18103,
+      "sha256": "b2054233c43bcce2cf57e660ea2cbd2e7106ac8df68b3404e3becc0689e24920"
+    },
+    {
+      "path": "scripts/inkstorm-combat.mjs",
+      "bytes": 29532,
+      "sha256": "1d78c1a7df6c2d52c6e03cd45ad146caced48bb4ce6c2d6bfb6205c273d623d7"
+    },
+    {
+      "path": "scripts/inkstorm-broadcast-ui.mjs",
+      "bytes": 57271,
+      "sha256": "6e7abeb0a3492205d4059c98822b98227ee2b8aad45293514f58d0bfff74765b"
+    },
+    {
+      "path": "src/ui/RaceEventAtlas.ts",
+      "bytes": 16046,
+      "sha256": "3f75c9629d40c2183203538c6d0033e8cd7c8ec7fd941ca95212f8906062fe0f"
+    },
+    {
+      "path": "src/ui/raceEventAtlasStyles.ts",
+      "bytes": 15322,
+      "sha256": "1876448332a92a4789fa0a07543910db4fdb011bfc6c2ab231c3c59875f0aa59"
+    },
+    {
+      "path": "src/ui/workshopGraphicStyles.ts",
+      "bytes": 16244,
+      "sha256": "215189e5b369ae7febc289c2a99222b4759269a168e6ad67eedacfdb82ddedbc"
+    },
+    {
+      "path": "src/render/combat/TeemtoStrikeMotion.ts",
+      "bytes": 3231,
+      "sha256": "efa2c8e2c52e6b46c348b54458ef2a7a0c1cf984e67a909d1ce7c634608a82bd"
+    },
+    {
+      "path": "src/render/galactic/RuptureFlameAtlas.ts",
+      "bytes": 6294,
+      "sha256": "20054a311c2be87bc547031417874c6b21be7584a9ad0da9514c2fb32ff0f6a1"
+    },
+    {
+      "path": "public/assets/fx/inkstorm/rupture-flame-v1.png",
+      "bytes": 578105,
+      "sha256": "f14657a3388bf9618d0206806c7b9c54856bd7f54c98596ea1790d85c97dd4c5"
+    },
+    {
+      "path": "src/ui/threatLayout.ts",
+      "bytes": 7643,
+      "sha256": "facece02d5084d914511f8d4b4bab545bf6b042283686be8a12d0844ad02617a"
+    },
+    {
+      "path": "output/playwright/round35-on-course-hud-preview.ts",
+      "bytes": 15221,
+      "sha256": "5b7fb7f036fc495262635c46ff97d3431d3e34247020c683fa56f0fbb61aae24"
+    },
+    {
+      "path": "tests/camera/TeemtoImpactFraming.test.ts",
+      "bytes": 18093,
+      "sha256": "7eb5d1e43cfd3515d6b0820238835413796586ed2d04dbf430623be42dd2e061"
+    },
+    {
+      "path": "tests/camera/TeemtoTwoBeatCamera.test.ts",
+      "bytes": 7885,
+      "sha256": "90f25e89dfda836d8b1f29d2db549d56e54f073a89cb0cf68b682a954173bf82"
+    },
+    {
+      "path": "tests/ui/threatLayout.test.ts",
+      "bytes": 11053,
+      "sha256": "6b737567a12dc524da0ed9819bb2404917eeab04397c0b6d29df849c73f6587c"
+    },
+    {
+      "path": "tests/render/WreckFootprintEffects.test.ts",
+      "bytes": 7234,
+      "sha256": "739b834d455df940fe705caab6291367728b107e9f0a137b08f2a77c6ad2c25b"
+    },
+    {
+      "path": "tests/render/WreckContactConsequence.test.ts",
+      "bytes": 8535,
+      "sha256": "f58d11e04168a07c6aa116f755c8fe25ab9b5acd06aa494c52057a0dc1f7aa7b"
+    },
+    {
+      "path": "tests/combat/TeemtoSupportSettle.test.ts",
+      "bytes": 13413,
+      "sha256": "f3cef5133c7c283300727a073dad15d7027ff078c98fa4e836a690203260a632"
+    },
+    {
+      "path": "tests/camera/AuthoredWreckLens.test.ts",
+      "bytes": 9843,
+      "sha256": "f189a2d49f2c1a6bf0397649880546db014d9892f1ea892bfaed627ffe4d5f26"
+    },
+    {
+      "path": "src/render/galactic/SolidEffectGeometry.ts",
+      "bytes": 4980,
+      "sha256": "948dd0f1289238c84dc26dbcd65e26dcb4430f57e3c300028a8e581f162bc28b"
+    },
+    {
+      "path": "src/render/galactic/SolidEffectMaterial.ts",
+      "bytes": 8082,
+      "sha256": "d8c5c3eb47e5e8f16ccc83b517c73e50ff66571a2cfba6c2f8ff6695117b9421"
+    },
+    {
+      "path": "tests/combat/AuthoredAftermath.test.ts",
+      "bytes": 4706,
+      "sha256": "f7f709c58b63c45e71be3af3d79762bc87134bbf2e5b3466cb8acec27e863d8e"
+    },
+    {
+      "path": "tests/combat/WreckContactBeat.test.ts",
+      "bytes": 5334,
+      "sha256": "2dd6aa6fe76e3fa690e476db0944bd363b94296088d3f8c88e0c1c85d97216fc"
+    },
+    {
+      "path": "tests/render/AuthoredRuptureBeat.test.ts",
+      "bytes": 5307,
+      "sha256": "f685deba6e60b7fbeb85692ee6b03048883aa997fa37e869b0ff7683b55f5938"
+    },
+    {
+      "path": "tests/render/GalacticEffectsContact.test.ts",
+      "bytes": 9723,
+      "sha256": "bfc81d65db8fbe11e1d3ca69fc9b62c71bbebc76f2b5de17bc98895722fdb4de"
+    },
+    {
+      "path": "tests/render/GalacticEffectsView.test.ts",
+      "bytes": 30675,
+      "sha256": "573c272eb7f8e6069b2eacea2800df90d3315a8a63af2bae5064a224cf01eb6a"
+    },
+    {
+      "path": "tests/render/RuptureAtlasIntegration.test.ts",
+      "bytes": 5258,
+      "sha256": "ca17b4bd219237931640a4cefd98e53125eaa6647eb7b4b0458b9a931b87ff2a"
+    },
+    {
+      "path": "tests/render/RupturePressureScale.test.ts",
+      "bytes": 4769,
+      "sha256": "eeecddd1c312f576e14bd2221088ef8b236a902a4b93d8b66654269b268a143c"
+    },
+    {
+      "path": "tests/render/WreckContactVolume.test.ts",
+      "bytes": 12798,
+      "sha256": "6bba09ed95fe9ce53fc1d30bb5ce64fbd0d1ee1c2f76c58efd01522c6284ee22"
+    },
+    {
+      "path": "src/render/combat/WreckGroundContact.ts",
+      "bytes": 5651,
+      "sha256": "7ab2320d7b62d770c6fd76fd3a9efdfe5c09538c49bed03a24c430078b6aa656"
+    },
+    {
+      "path": "tests/combat/TeemtoAuthoredDamage.test.ts",
+      "bytes": 18452,
+      "sha256": "c9fad23f58411660634835d4b796c477b4f7f777c540e15c99f8e744c37d1817"
+    },
+    {
+      "path": "tests/combat/TeemtoGroundEdges.test.ts",
+      "bytes": 7848,
+      "sha256": "c9656e88ab7f9b8c0c8e5956fe686fa36f53c64532d2091fe124350ae8b35602"
+    },
+    {
+      "path": "tests/combat/TeemtoPresentationSupports.test.ts",
+      "bytes": 10715,
+      "sha256": "f33821aae5bdc76519cc2bf51de4e4103aa0d0dc70e1fc1f0915e0acae7d97d5"
+    },
+    {
+      "path": "tests/combat/WreckGroundContact.test.ts",
+      "bytes": 6072,
+      "sha256": "170737b27a2bce8e9453fd392c848388bdcafe1bd722e309a38f4f39fea27924"
+    },
+    {
+      "path": "tests/render/PerPieceContactEffects.test.ts",
+      "bytes": 4439,
+      "sha256": "7b9af3109db108fae2933e2cb2408b4cecada5f9894eaacb84acbbf4f600fbad"
+    },
+    {
+      "path": "tests/ui/wreckPresentationState.test.ts",
+      "bytes": 6091,
+      "sha256": "5ec6676c858b22048137a927e456040f2194ba8d89ebd4d3a04f91c25dbefde9"
+    }
+  ],
+  "distFiles": [
+    {
+      "path": "dist/assets/bundler-C30YlaIR.js",
+      "bytes": 87464,
+      "sha256": "3b9f59942a228402856ec9907d5d92d85852751e6551549454b66951e4dff7b1"
+    },
+    {
+      "path": "dist/assets/bundler-C30YlaIR.js.map",
+      "bytes": 311383,
+      "sha256": "cd65c2cbac02f5d8290fb410fad86da5b1b5fe2203fe7d782e53cf493166e094"
+    },
+    {
+      "path": "dist/assets/fx/inkstorm/rupture-flame-v1.png",
+      "bytes": 578105,
+      "sha256": "f14657a3388bf9618d0206806c7b9c54856bd7f54c98596ea1790d85c97dd4c5"
+    },
+    {
+      "path": "dist/assets/index-DCGNDBpv.css",
+      "bytes": 346,
+      "sha256": "cd1dec34949f10aa5da912d2d52293d9b59951b8aaca83ee0307bac6e2ea1475"
+    },
+    {
+      "path": "dist/assets/index-FTaKHRwm.js",
+      "bytes": 1864215,
+      "sha256": "5b97c68cb6f232ac48260142f377f7b5eea8dbbf859e3dda3770ba9d36284ee8"
+    },
+    {
+      "path": "dist/assets/index-FTaKHRwm.js.map",
+      "bytes": 6249174,
+      "sha256": "5e7a9e91ef6e542ed3ab8f96b6face6f00e92d5c85a3ddbee47270f0b1521578"
+    },
+    {
+      "path": "dist/assets/inkstorm/canyon-arch-v3.glb",
+      "bytes": 1260384,
+      "sha256": "1b950e08b0004fec5590b1167a7c1f7311c0389a2d48b2e43c387c1ef82d9b01"
+    },
+    {
+      "path": "dist/assets/inkstorm/canyon-arch.glb",
+      "bytes": 63568,
+      "sha256": "36876e340a578993c9c3d01084029d1ca0b757ef140ae482bbd1e0e1ff6b0453"
+    },
+    {
+      "path": "dist/assets/inkstorm/canyon-buttress-lod.glb",
+      "bytes": 247284,
+      "sha256": "9262af74e76f008803f96c21a17bfbe62eca2098648f58640a716d20de75f21a"
+    },
+    {
+      "path": "dist/assets/inkstorm/canyon-buttress.glb",
+      "bytes": 1291464,
+      "sha256": "ad9f484c3cd751e9042ecc332e9517c7c21d34919758dfdaa89bde77f153a5e6"
+    },
+    {
+      "path": "dist/assets/inkstorm/cliff-strata.glb",
+      "bytes": 52460,
+      "sha256": "eed02024c8ee24adceb1ba9e15a9343c5ef4cf652e85b30cabd4453eabc5af2f"
+    },
+    {
+      "path": "dist/assets/inkstorm/finish-tower.glb",
+      "bytes": 68484,
+      "sha256": "b2100d2c3415ac0cdb8f0fd573ac292583cf7858812b5452f05363698b8885e8"
+    },
+    {
+      "path": "dist/assets/inkstorm/foundry-gantry.glb",
+      "bytes": 438724,
+      "sha256": "3d0cd999daf52b82ac0232c7316a5e4072c80bd83982f83cbaf4a1dcde11e862"
+    },
+    {
+      "path": "dist/assets/inkstorm/foundry-service-gantry-v1.glb",
+      "bytes": 438108,
+      "sha256": "2acef39a4d9d81950b3421aac20dd1cb02f9c7a89ca951eed387417039eb65d7"
+    },
+    {
+      "path": "dist/assets/inkstorm/foundry-service-gantry-v2.glb",
+      "bytes": 1331516,
+      "sha256": "58fc12d837039eb73111886b1b91c294516c51fc47a4a0d00200717161fd39ba"
+    },
+    {
+      "path": "dist/assets/inkstorm/foundry-service-gantry-v3.glb",
+      "bytes": 1327988,
+      "sha256": "55d694f8406d9a2ff819ba7d262d86e30f0bc8bafd543699a8ceff83da2380b4"
+    },
+    {
+      "path": "dist/assets/inkstorm/fractured-spire-lod.glb",
+      "bytes": 176148,
+      "sha256": "b0203d116d7b3bbf9858a06d0366a90ce08c8aa6b4a2b43ae2167a01df92dccc"
+    },
+    {
+      "path": "dist/assets/inkstorm/fractured-spire.glb",
+      "bytes": 373568,
+      "sha256": "e82a86b1e0667dace700cfe5b24d6af8e2dc0ae1b4f6da6160ade168a4df79d7"
+    },
+    {
+      "path": "dist/assets/inkstorm/ground-paint.png",
+      "bytes": 2823641,
+      "sha256": "2f5139cd7693f01693d3ea7ca5cee65332eab1cabc6125fe3a24b54d97139766"
+    },
+    {
+      "path": "dist/assets/inkstorm/machinery-paint.png",
+      "bytes": 2615566,
+      "sha256": "63e7a4c2925352e1d38c0842b6b87a9bde1441a8097a075f85909d313698a894"
+    },
+    {
+      "path": "dist/assets/inkstorm/mesa-crown.glb",
+      "bytes": 52452,
+      "sha256": "613434716aa55d31f8d3d78f3a35b076db49466e6393a2f601bada5dda2b3d97"
+    },
+    {
+      "path": "dist/assets/inkstorm/pipe-bank-detail-v1.glb",
+      "bytes": 1329140,
+      "sha256": "7a28b2e2f3ce25b173ed21033cbe0d28e7341197407b5e86d2400848dba8d946"
+    },
+    {
+      "path": "dist/assets/inkstorm/pipe-bank.glb",
+      "bytes": 504460,
+      "sha256": "4b3510d0f8b10e1a44158edb0b0bbdc25bac33019176368638937ab1834a3b81"
+    },
+    {
+      "path": "dist/assets/inkstorm/pit-complex-light-v1.glb",
+      "bytes": 1094204,
+      "sha256": "e0a5a2260058876c14ede8f9f65c1268fa8dd4192e1b2c5a6e5b661da27a98e4"
+    },
+    {
+      "path": "dist/assets/inkstorm/pit-complex-light-v1.png",
+      "bytes": 608704,
+      "sha256": "146e7d4382cd8991290951d2fd3f8dfa7bc0ab284d628f877d92107601ce629a"
+    },
+    {
+      "path": "dist/assets/inkstorm/pit-complex.glb",
+      "bytes": 897776,
+      "sha256": "ea94400e38bf6cf5998f84cbd2cffd342054760e17c43c0f4b75ac636212d1dc"
+    },
+    {
+      "path": "dist/assets/inkstorm/pit-district.glb",
+      "bytes": 1324124,
+      "sha256": "607ea30cc7563a0c07da20a21b25135055a7736adcc34527c057fa6216fba091"
+    },
+    {
+      "path": "dist/assets/inkstorm/refinery-stack.glb",
+      "bytes": 57844,
+      "sha256": "0f52f2e0cc195a5fe36853f543cfad8e4c9a2391d5083b016f71ffe4f1f7f781"
+    },
+    {
+      "path": "dist/assets/inkstorm/roadside-shard.glb",
+      "bytes": 52464,
+      "sha256": "fd3c839b37007dc5beb53f750362eea44cf966dc4b7b4cf501d9251d4b5d4f6d"
+    },
+    {
+      "path": "dist/assets/inkstorm/rock-mass-v2.png",
+      "bytes": 1565057,
+      "sha256": "63259db61df87a62d0770ec4399866dc2fb1e90b0f24d9d9c176da31c377a7d8"
+    },
+    {
+      "path": "dist/assets/inkstorm/rock-paint.png",
+      "bytes": 2473837,
+      "sha256": "2b6f04f766d891e19f4eb91c595064e808061fe74ffb89dd9d011b54bee6dbb4"
+    },
+    {
+      "path": "dist/assets/inkstorm/sandstone-scree-lod.glb",
+      "bytes": 94152,
+      "sha256": "1cd793662a4707a87fda35a84dda546b5fb9c047c64d99816e2a0f19a88915b7"
+    },
+    {
+      "path": "dist/assets/inkstorm/sandstone-scree.glb",
+      "bytes": 599300,
+      "sha256": "b6a3688af319752f7a4d02d95d1600225310b22e573adecc5274a04fbdf5af7c"
+    },
+    {
+      "path": "dist/assets/inkstorm/sky-paint.png",
+      "bytes": 1603381,
+      "sha256": "8e8924557cfb166b8f5ad9c092e63b1c23a385b853932122ac092f04e66e345c"
+    },
+    {
+      "path": "dist/assets/inkstorm/vehicles/ATTRIBUTION.md",
+      "bytes": 5947,
+      "sha256": "d9714c54a805553c9cc736e2665e5a5d0f802ccbefa256d1d915601b51c20262"
+    },
+    {
+      "path": "dist/assets/inkstorm/vehicles/blockrunner-hero-v1.glb",
+      "bytes": 4198472,
+      "sha256": "ee744b122b3e2a009ef7a8f3a8c5c5848fe1503b13e4334e0fe8276ce5c44d8d"
+    },
+    {
+      "path": "dist/assets/inkstorm/vehicles/blockrunner-rival-v1.glb",
+      "bytes": 3341896,
+      "sha256": "b680cea9dd832ca6c5af382fed5eeea57e4baf6b7d119f0f8bace3dfa6037cb9"
+    },
+    {
+      "path": "dist/assets/inkstorm/vehicles/polwo-hero-v1.glb",
+      "bytes": 10189760,
+      "sha256": "17e117cd9cbf86a2cf096ca6cdc0e46413b391395577b5f0774203ce7987f39f"
+    },
+    {
+      "path": "dist/assets/inkstorm/vehicles/polwo-rival-v1.glb",
+      "bytes": 4188076,
+      "sha256": "b9a2f310ffd43477091575a52f1cb6804ec9fafca6fcf31093072b7f43e6d502"
+    },
+    {
+      "path": "dist/assets/inkstorm/vehicles/sebulba-hero.glb",
+      "bytes": 2672804,
+      "sha256": "f4b31d9260e3272ec394161dea236c874d551b469f18a1d794ec85c05b625b7e"
+    },
+    {
+      "path": "dist/assets/inkstorm/vehicles/sebulba-rival.glb",
+      "bytes": 1819016,
+      "sha256": "22e1adf8e3dd6562ce143132fb4e82cdb56e62696d9894804ca07b4a3552d951"
+    },
+    {
+      "path": "dist/assets/inkstorm/vehicles/teemto-damage-hero-v16.glb",
+      "bytes": 1997952,
+      "sha256": "31cf1c7bfb3ea539d19598b466abd9eaec1b8e5f0c4ece58e9014c686c3c13d8"
+    },
+    {
+      "path": "dist/assets/inkstorm/vehicles/teemto-damage-rival-v16.glb",
+      "bytes": 451628,
+      "sha256": "631e8a0e7a2809e0e9e077cebf9306c5b0ad8167980b3394f1cd276f16671e20"
+    },
+    {
+      "path": "dist/assets/inkstorm/vehicles/teemto-hero-open-v1.glb",
+      "bytes": 7707484,
+      "sha256": "e7fe0097061d6af30a73538e10608ed8956c6565c3c9fd1fe745d8bf521c03b0"
+    },
+    {
+      "path": "dist/assets/inkstorm/vehicles/teemto-hero-open-v2.glb",
+      "bytes": 7698824,
+      "sha256": "af5d69514a51f7e9c089a1710e1587f46e053412b488268dc433f029576c0a7e"
+    },
+    {
+      "path": "dist/assets/inkstorm/vehicles/teemto-hero-v4b.glb",
+      "bytes": 5518932,
+      "sha256": "838d71f3ac2e79dda66ada37ac367fe66f0d9885b166b7fe12829416befcfa6c"
+    },
+    {
+      "path": "dist/assets/inkstorm/vehicles/teemto-hero-v4c.glb",
+      "bytes": 6774412,
+      "sha256": "f3eb56a54b7dbb8f4a26263fb26f1f88b188db6bcc409910a3561ae939f1eef1"
+    },
+    {
+      "path": "dist/assets/inkstorm/vehicles/teemto-hero.glb",
+      "bytes": 2639312,
+      "sha256": "a7787f380a71ac31c8dbbaf228cb949e97c119d763a54384e66c05f884cba491"
+    },
+    {
+      "path": "dist/assets/inkstorm/vehicles/teemto-rival.glb",
+      "bytes": 1931540,
+      "sha256": "3d9d8d8d924258b84553de7f31f44dc4f69f069511cb6358ab2c174768e3385f"
+    },
+    {
+      "path": "dist/assets/inkstorm/wind-blade.glb",
+      "bytes": 52456,
+      "sha256": "ba6164eb49629f3283c66e160ede136488f69bbfbf8fc8d340e72bc3a0002153"
+    },
+    {
+      "path": "dist/audio/podracing-selection-intro.webm",
+      "bytes": 98581,
+      "sha256": "39c4d411570a2591be5cbf7fc27d86a63c36d3befa5de8d57c0d2018e1c89260"
+    },
+    {
+      "path": "dist/fonts/inkstorm/BlackOpsOne-OFL.txt",
+      "bytes": 4411,
+      "sha256": "f67ca4a200424868ee8fcd5464d7b35ac1cbf7723f6bfdbd19a8524689fab9a8"
+    },
+    {
+      "path": "dist/fonts/inkstorm/BlackOpsOne-Regular.ttf",
+      "bytes": 166532,
+      "sha256": "282a825b5f294377387e3969f765408157dbea8da0f5d0aae68c6bc704b145b3"
+    },
+    {
+      "path": "dist/fonts/inkstorm/ChakraPetch-Bold.ttf",
+      "bytes": 78384,
+      "sha256": "65fbf76d95651697275e19db4d717c0e95a789ddd3476478b05292104db278a0"
+    },
+    {
+      "path": "dist/fonts/inkstorm/ChakraPetch-OFL.txt",
+      "bytes": 4396,
+      "sha256": "13831d02389d917d22fcfa6c79f98f8acbf61d230add0e73a4d4dc5f3bfb9e56"
+    },
+    {
+      "path": "dist/fonts/inkstorm/ChakraPetch-Regular.ttf",
+      "bytes": 78488,
+      "sha256": "98fcd638baa5c81ff0316b7538ce330ee3b23b1302726de3526d5933a8ecf986"
+    },
+    {
+      "path": "dist/fonts/inkstorm/PROVENANCE.md",
+      "bytes": 4286,
+      "sha256": "6171939d6b9f178d1a0afd951ac2a6febca1747ffbda5e9cf5bec7a70618a6bb"
+    },
+    {
+      "path": "dist/fonts/inkstorm/RussoOne-OFL.txt",
+      "bytes": 4390,
+      "sha256": "3ac1301549523d9861fedca12871f24e575fbd26d520632fc00ba849b471d275"
+    },
+    {
+      "path": "dist/fonts/inkstorm/RussoOne-Regular.ttf",
+      "bytes": 39124,
+      "sha256": "bc0abcc660bd8b7ad3000ecb2898a27c58a29a50f7ec81652fa12e75148d09df"
+    },
+    {
+      "path": "dist/fonts/inkstorm/RussoOne-provenance.json",
+      "bytes": 2082,
+      "sha256": "e81940b5ec5e90dc1acb84192c3c1e5bbe5770f4bd6870b426b8728d6e154ed0"
+    },
+    {
+      "path": "dist/fonts/inkstorm/SairaStencilOne-OFL.txt",
+      "bytes": 4405,
+      "sha256": "fc7c16a0d286a351a7de245a0bd661275e9d393de8955c7fa37ef3c8b85b7e3e"
+    },
+    {
+      "path": "dist/fonts/inkstorm/SairaStencilOne-Regular.ttf",
+      "bytes": 109944,
+      "sha256": "781496fdaf8e04cf6741b31025f6b4ba84f66021b097a8e0d85cbea2180cf223"
+    },
+    {
+      "path": "dist/index.html",
+      "bytes": 748,
+      "sha256": "796a213c0a9ac52fe05f05c0d0957492d5c075e8b12ec8ea426b6a3cb53eb428"
+    }
+  ]
+}

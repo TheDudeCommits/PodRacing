@@ -1,0 +1,8 @@
+{
+  "finding": "Harness chose the old aria-selected Cup button before the next HUD frame; actual Open button retained native focus until harness moved it. Enter correctly selected the focused Cup, did not launch or invent seed.",
+  "nativeDiagnostic": "output/playwright/round35-map-enter-diagnostic-v16b.json",
+  "beforeHarness": "assets/source/inkstorm/broadcast-ui-round35/selection-preparation-v16/inkstorm-broadcast-ui.executed-v16b.mjs",
+  "beforeSha256": "cde570161c3a3bf4fc5e339466c181b0e83a415e3cfe524dbdbcf303d20dbf61",
+  "fix": "Wait for authoritative and rendered selected id before focusing the actual selected event. No input/model gate removed, no runtime change.",
+  "browserClosed": true
+}

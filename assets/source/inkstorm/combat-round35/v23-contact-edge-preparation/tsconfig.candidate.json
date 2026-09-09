@@ -1,0 +1,9 @@
+{
+  "extends": "/Users/amir/Projects/PodRacing/tsconfig.json",
+  "include": [
+    "test-runtime/*.ts",
+    "TeemtoGroundEdges.test.ts",
+    "WreckFootprintEffects.test.ts",
+    "legacy-emitter-parity.test.ts"
+  ]
+}

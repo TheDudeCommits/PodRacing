@@ -1,0 +1,23 @@
+{
+  "scope": "Harness display oracle only. Native cadence and input controller are unchanged. Original runtime/src/public/dist are frozen. Nanosecond normalization precedes truncation to displayed milliseconds; no millisecond-wide acceptance tolerance.",
+  "observed": {
+    "seconds": 63.32499999999705,
+    "actualDisplay": "1:03.325",
+    "originalExpected": "1:03.324"
+  },
+  "validation": "8 tests across 2 files PASS; 4 new clock oracle regressions and 4 existing cadence tests",
+  "changes": [
+    {
+      "path": "scripts/competitive-flow.ts",
+      "before": "07ccba4b9f8ca567099f6d0e9b85ade62cadbda0d8e1123ab62bddc3490966f5",
+      "after": "667941482387f3634aeb0abbb2d7db0d355eb07ce267332d9d96ad842145ac37",
+      "diff": "--- before/scripts/competitive-flow.ts\n+++ after/scripts/competitive-flow.ts\n@@ -11,6 +11,7 @@\n import { DEFAULT_PODRACER_CONFIG } from '../src/game/simulation/config';\n import { deriveGalacticVehicleConfig } from '../src/game/galactic/catalog';\n import { judgeRaceCadence } from './lib/race-cadence';\n+import { expectedResultClock } from './lib/result-clock';\n \n const soloOnly=process.argv.includes('--solo-only');\n const performanceMode=process.argv.includes('--performance');\n@@ -221,7 +222,7 @@\n  receipts.resultsActionsBounds=resultActions;\n  assert(resultActions && resultActions.y>=0 && resultActions.y+resultActions.height<=900,'Primary results actions are outside the initial viewport');\n  receipts.highlightText=await page.locator('[data-hud=\"results\"] [data-action=\"view-highlight\"]').allTextContents();\n- const milliseconds=Math.floor(soloRecord.time*1000),raceClock=`${Math.floor(milliseconds/60000)}:${String(Math.floor(milliseconds/1000)%60).padStart(2,'0')}.${String(milliseconds%1000).padStart(3,'0')}`;\n+ const raceClock=expectedResultClock(soloRecord.time);\n  assert((receipts.highlightText as string[]).some(text=>text.includes(`${raceClock} // You`)),'Finish highlight clock differs from actual solo finish');\n  if(!performanceMode){\n  await page.locator('[data-hud=\"results\"] [data-action=\"retry-race\"]').click();\n"
+    },
+    {
+      "path": "scripts/inkstorm-race-evidence.py",
+      "before": "ba89e714dfdd8365d81cb7be4705309789250f681aab7771f9c421765c7cbafc",
+      "after": "208965b3e27d99bb9feb10cbd82774d32135521fa662d9c6bf13308c5e51afa0",
+      "diff": "--- before/scripts/inkstorm-race-evidence.py\n+++ after/scripts/inkstorm-race-evidence.py\n@@ -36,7 +36,7 @@\n     assert len(builds) == 1, f'Unexpected build candidates: {builds}'\n     build = stamp(builds[0])\n     assert build['sha256'] == EXPECTED, build\n-    harnesses = ['scripts/competitive-flow.ts', 'scripts/lib/race-cadence.ts', 'scripts/vehicle-appearance-acceptance.mjs', 'scripts/lib/frozen-build-receipt.mjs', 'scripts/inkstorm-race-evidence.py']\n+    harnesses = ['scripts/competitive-flow.ts', 'scripts/lib/race-cadence.ts', 'scripts/vehicle-appearance-acceptance.mjs', 'scripts/lib/frozen-build-receipt.mjs', 'scripts/inkstorm-race-evidence.py', 'scripts/lib/result-clock.ts']\n     configuration = ['package.json', 'package-lock.json', 'vite.config.ts', 'index.html']\n     result = {'recordedAt': now(), 'expectedBuildSha256': EXPECTED, 'build': build, 'source': tree('src'), 'publicArt': tree('public/assets/inkstorm'), 'dist': tree('dist'), 'harness': [stamp(ROOT / p) for p in harnesses], 'configuration': [stamp(ROOT / p) for p in configuration if (ROOT / p).exists()]}\n     output.mkdir(parents=True, exist_ok=True)\n"
+    }
+  ]
+}

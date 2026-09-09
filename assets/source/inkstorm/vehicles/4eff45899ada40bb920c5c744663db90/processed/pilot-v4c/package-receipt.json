@@ -1,0 +1,33 @@
+{
+  "source": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/vehicles/4eff45899ada40bb920c5c744663db90/processed/pilot-v4b/teemto-pilot-v4b-runtime.glb",
+  "sourceSha256": "838d71f3ac2e79dda66ada37ac367fe66f0d9885b166b7fe12829416befcfa6c",
+  "runtime": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/vehicles/4eff45899ada40bb920c5c744663db90/processed/pilot-v4c/teemto-pilot-v4c-runtime.glb",
+  "sha256": "f3eb56a54b7dbb8f4a26263fb26f1f88b188db6bcc409910a3561ae939f1eef1",
+  "bytes": 6774412,
+  "materialNames": [
+    "Pilot atlas v4c runtime accent",
+    "Pilot atlas v4c runtime hardware",
+    "Pilot atlas v4c runtime rubber",
+    "Pilot atlas v4c runtime shell",
+    "Pilot atlas v4c runtime suit",
+    "Pilot atlas v4c runtime webbing"
+  ],
+  "colorConversion": "lossless WebP encoding only; no raster edits",
+  "geometryRegenerated": false,
+  "normalOrRoughnessRebaked": false,
+  "command": [
+    "node",
+    "/Users/amir/.npm/_npx/6e1a7b84fabb98f4/node_modules/@gltf-transform/cli/bin/cli.js",
+    "webp",
+    "/Users/amir/Projects/PodRacing/assets/source/inkstorm/vehicles/4eff45899ada40bb920c5c744663db90/processed/pilot-v4c/teemto-pilot-v4c-color-png.glb",
+    "/Users/amir/Projects/PodRacing/assets/source/inkstorm/vehicles/4eff45899ada40bb920c5c744663db90/processed/pilot-v4c/teemto-pilot-v4c-runtime.glb",
+    "--slots",
+    "baseColorTexture",
+    "--formats",
+    "png",
+    "--lossless",
+    "true",
+    "--effort",
+    "20"
+  ]
+}

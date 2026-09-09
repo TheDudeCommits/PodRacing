@@ -1,0 +1,118 @@
+{
+  "status": "Preparation only; no Blender, export, bake, browser or runtime installation has run",
+  "source": "public/assets/inkstorm/foundry-gantry.glb",
+  "preservedCopy": "assets/source/inkstorm/foundry-service-round33/predecessors/foundry-gantry-round32.glb",
+  "sourceBytes": 438724,
+  "sourceSha256": "3d0cd999daf52b82ac0232c7316a5e4072c80bd83982f83cbaf4a1dcde11e862",
+  "generator": "glTF-Transform v4.5.0",
+  "material": [
+    {
+      "name": "Inkstorm_Industrial_Revision_Paint",
+      "doubleSided": true,
+      "pbrMetallicRoughness": {
+        "roughnessFactor": 0.8399999737739563,
+        "metallicFactor": 0
+      }
+    }
+  ],
+  "meshCount": 1,
+  "primitiveCount": 1,
+  "triangles": 6300,
+  "currentTriangleCap": 6500,
+  "vertices": 11106,
+  "images": 0,
+  "sourceBoundsBlender": [
+    [
+      -52,
+      52
+    ],
+    [
+      -7,
+      7
+    ],
+    [
+      -25,
+      54.30417251586914
+    ]
+  ],
+  "supportFeetBlender": [
+    {
+      "center": [
+        -46,
+        0,
+        -11.5
+      ],
+      "size": [
+        12,
+        14,
+        27
+      ]
+    },
+    {
+      "center": [
+        46,
+        0,
+        -11.5
+      ],
+      "size": [
+        12,
+        14,
+        27
+      ]
+    }
+  ],
+  "signalRemoval": {
+    "components": 65,
+    "triangles": 2360,
+    "perCenterComponents": 13,
+    "perCenterTriangles": 472,
+    "centers": [
+      -11,
+      -5.5,
+      0,
+      5.5,
+      11
+    ],
+    "componentTriangleCounts": [
+      12,
+      12,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      44,
+      52,
+      60,
+      60,
+      112
+    ],
+    "selector": "Whole positional components within [center-1.401,-2.451,39.599] .. [center+1.401,1.678,44.501], after rounding positions to five decimals for classification only; no physical weld"
+  },
+  "retainedTriangles": 3940,
+  "retainedClearanceMinimumBlenderZ": 39.66999816894531,
+  "originalPracticalClearanceBlenderZ": 39.6,
+  "references": [
+    {
+      "path": "assets/source/inkstorm/build_industrial_revision.py",
+      "bytes": 17941,
+      "sha256": "5ec83beee61185cf42d486c8c44e923f95ef9dfbbe95f5f2de995e9c68471a42"
+    },
+    {
+      "path": "assets/source/inkstorm/grid-construction-round29/build_grid_detail.py",
+      "bytes": 18417,
+      "sha256": "9bdbfaf962cc13099e79350decbf95f5c006b71cc57bec61fccae252ff83a04c"
+    },
+    {
+      "path": "docs/inkstorm-overhaul/concepts/06-foundry.png",
+      "bytes": 2549771,
+      "sha256": "e56c72e8a4c96be345a5cfa088186ad65763fbc94c5f8b85233bb9a04b1aeb50"
+    },
+    {
+      "path": "docs/inkstorm-overhaul/concepts/11-foundry-construction-round33.png",
+      "bytes": 2546861,
+      "sha256": "ef201350569c53d6a36a9e1c0f1db7c6c8d444c58a1dd39db5b3ab22e2c6a2d8"
+    }
+  ]
+}

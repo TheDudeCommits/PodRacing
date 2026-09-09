@@ -1,0 +1,24 @@
+{
+  "kind": "Supplemental concept art; not implemented game evidence",
+  "tool": "Codex built-in imagegen",
+  "generatedAtDate": "2026-09-08",
+  "originalOutput": "/Users/amir/.codex/generated_images/01a076a6-10a1-7b50-b775-dd7d40542e2a/exec-2cc04069-96ab-4455-a88b-5e86cd8cba75.png",
+  "references": [
+    "docs/inkstorm-overhaul/concepts/06-foundry.png",
+    "output/gauntlet/round34-solid-effects-v2-detail/hazard-chase-030.png"
+  ],
+  "prompt": "Create a polished three-panel art-direction sheet for the approved INKSTORM style of a high-speed desert podracing videogame. This is SUPPLEMENTAL CONCEPT ART, not a screenshot or a claim of an implemented game. Use the supplied original Foundry concept as the palette/material/quality target, and the supplied current in-game effects view only as the object and setting starting point. Landscape composition, three equally sized side-by-side panels, clean small labels PICKUP / SCRAP MINE / ROCKFALL along the bottom. All three show believable three-dimensional objects in the same sunlit industrial desert world, copper orange sand and weathered copper industrial pipes, deep desaturated violet shadows, painted material texture, selective fine ink at silhouette/contact seams, cinematic but highly readable gameplay-scale design. Avoid thick black triangulation, regular icosahedron shapes, flat square particles, generic white glow clouds, screen-filling explosions, excessive bloom, photographic lens effects, or busy noise. LEFT: preserve the existing thick dark graphite octagonal mechanical pickup ring, deep inset receiver face with three small cyan signal bars and machined rim/tabs. Make its casing wear and bevel hierarchy richer. Show it fully visible, hovering just above sand, with a subtle grounded shadow, enough context to read its scale near a racing line. CENTER: a small squat matching scrap mine physically planted on sand, instantly recognizable with restrained red/amber status inserts. Depict the first instant of activation with a compact hot amber core, a short asymmetric crescent of low gritty dust, several tiny jagged metal fragments, and clear visible source; debris remains small and the route remains readable. RIGHT: an actual rockfall across only the edge of the racing lane. Diverse irregular fractured sandstone chunks in three size classes: a few medium layered angular slabs, several small chips, gritty dusty contact at the ground. Painted warm lit faces and cool violet broken planes, rough bevels and strata, asymmetry, physically clear falling versus grounded pieces. Leave the center of the lane and a distant racer silhouette unobstructed. Match the original concept's authored material quality at an achievable browser-game asset scale. No new vehicles or characters invented in the foreground. No technical UI or HUD. This sheet guides later geometry/material work and must not replace the original seven world concept targets.",
+  "limits": "Original seven world targets remain unchanged. Generated surface detail, scale and visibility are an art goal, not production geometry or measured effects behavior. Open ring geometry and casing details depart from current meshes; do not infer source fit/physics from this sheet.",
+  "bytes": 2584264,
+  "sha256": "3f2223264e2c7ee7f39f4144668305392ec6f9474253ef493e463959f0ef13d6",
+  "referenceHashes": [
+    {
+      "path": "docs/inkstorm-overhaul/concepts/06-foundry.png",
+      "sha256": "e56c72e8a4c96be345a5cfa088186ad65763fbc94c5f8b85233bb9a04b1aeb50"
+    },
+    {
+      "path": "output/gauntlet/round34-solid-effects-v2-detail/hazard-chase-030.png",
+      "sha256": "881c60a9ba4aa6920d7767c9dbaf0390df4475baeb1a88ee3ec2b8b68d3a442a"
+    }
+  ]
+}

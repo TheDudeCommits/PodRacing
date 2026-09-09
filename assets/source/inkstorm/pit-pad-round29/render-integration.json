@@ -1,0 +1,48 @@
+{
+  "scope": "Local source integration and actual diagnostic close-camera captures; no frozen bundle timing or art acceptance",
+  "hashes": {
+    "src/game/race/PitPadField.ts": "3e5905c04a070ef30a2e0a781510d81f7345b4b37903f0515f671029217e72e5",
+    "src/game/race/RaceSimulation.ts": "36de9c291f3c631fe519b88c32c344d5e3f523835ba6139c55d9066fed5ed35e",
+    "src/render/terrain/CourseGulfTextures.ts": "9e6548b4d0125f224b9adbc2f07a3c55d159c572564d267ecc3833286e54ff26",
+    "src/render/terrain/TerrainSystem.ts": "13c6b41e9e3a82a019fed0ae19a2bcb3135eba16cd4684a7fbb08d06f6881d7e",
+    "src/render/inkstorm/InkstormWorld.ts": "bb569c87cca754eb8259d39834b66391cc3ede82aa62c03d716b9ec012859164",
+    "src/render/inkstorm/InkstormFoundations.ts": "1049590f52366c98ddeba8c88d3fe9daf5c0284099d2dbc2c48e3d9a6666b293",
+    "src/render/app/GameApp.ts": "ca897dc5d67042db7d3fa9c9b394f2ac43862c5004708df752276a4f918311ee",
+    "tests/terrain/pitPadRendering.test.ts": "93fbea566ff4e478b4726212e1c76ea8ffb410d1f4e9feddb84de3d934c3dfdc",
+    "tests/render/pitGrounding.test.ts": "ec54b2589d61329b6974a4df3597faba24e1d2b818d4877c530f27e6b7a3b919",
+    "scripts/inkstorm-grid-detail.mjs": "81e85be04d16d04f83801b71f96f18ea5a967a92add0d92c366587f0f39d8d33"
+  },
+  "camerasExact": [
+    true,
+    true,
+    true
+  ],
+  "rigidPitMatricesExact": [
+    true,
+    true,
+    true
+  ],
+  "errors": [],
+  "focusedTests": {
+    "files": 5,
+    "tests": 24,
+    "log": "output/gauntlet/round29-pit-focused-tests.log"
+  },
+  "capture": "output/gauntlet/grid-grounding-round29-graded",
+  "texture": {
+    "format": "R32F",
+    "filter": "nearest with explicit four-texel bilinear",
+    "width": 330,
+    "height": 537,
+    "bytes": 708840,
+    "newPasses": 0,
+    "newDraws": 0
+  },
+  "unchanged": "Original gulf composition and arrays; route guards; pit XZ/rotation/scale and saved rigid Y anchors",
+  "limits": [
+    "Steep frontage banks remain a visual risk",
+    "No dedicated pit bank caster in static sun atlas; shared terrain depth/MRT heights follow grading",
+    "No source29 FPS claim",
+    "Only three flagship close cameras captured; other seed visual acceptance remains open"
+  ]
+}

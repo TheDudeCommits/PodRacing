@@ -1,0 +1,152 @@
+[
+  {
+    "name": "hero",
+    "birthFootprint": {
+      "center": {
+        "x": 18604.714036776008,
+        "y": -13.548739667934417,
+        "z": 23.25438091654792
+      },
+      "axis": {
+        "x": -0.6118269354135042,
+        "y": 0,
+        "z": 0.7909916567843936
+      },
+      "halfLength": 1.5275428902131598,
+      "halfWidth": 0.5113702284435114,
+      "edges": [
+        {
+          "x": 18600.67805432477,
+          "y": -13.529446741523468,
+          "z": 24.51522082570685
+        },
+        {
+          "x": 18604.596682738316,
+          "y": -14.029343631093912,
+          "z": 27.40514843682308
+        }
+      ]
+    },
+    "minimumGeometryGap": 0.04003916216129255,
+    "metrics": [
+      {
+        "age": 0,
+        "minimumGap": 0.04003916216129255,
+        "maximumBaseGap": 0.04150909603927033,
+        "maximumVerticalRise": 0.029999999329447746,
+        "queries": 45
+      },
+      {
+        "age": 0.058333333333,
+        "minimumGap": 0.04100209238664121,
+        "maximumBaseGap": 0.04919281100919548,
+        "maximumVerticalRise": 0.5424613356590271,
+        "queries": 45
+      },
+      {
+        "age": 0.16,
+        "minimumGap": 0.05642602652865136,
+        "maximumBaseGap": 0.1161869161990765,
+        "maximumVerticalRise": 2.263463020324707,
+        "queries": 45
+      },
+      {
+        "age": 0.408333333333,
+        "minimumGap": 0.06271474588950277,
+        "maximumBaseGap": 0.13496989604795928,
+        "maximumVerticalRise": 2.5227041244506836,
+        "queries": 45
+      },
+      {
+        "age": 1.208333333333,
+        "minimumGap": 0.06989667016527257,
+        "maximumBaseGap": 0.16565099637002234,
+        "maximumVerticalRise": 1.2971956729888916,
+        "queries": 45
+      },
+      {
+        "age": 1.64,
+        "minimumGap": 0.06987597604959461,
+        "maximumBaseGap": 0.16564427301412366,
+        "maximumVerticalRise": 1.1352168321609497,
+        "queries": 45
+      }
+    ],
+    "scope": "Actual V30-input source fixture, all card corners versus physical terrain. Nine probes per parent cover every yaw; no continuous-terrain/pixel/FPS claim."
+  },
+  {
+    "name": "rival",
+    "birthFootprint": {
+      "center": {
+        "x": 18604.700854435618,
+        "y": -13.546963576062922,
+        "z": 23.257287316513185
+      },
+      "axis": {
+        "x": -0.611826935413504,
+        "y": 0,
+        "z": 0.7909916567843938
+      },
+      "halfLength": 1.5350676376370895,
+      "halfWidth": 0.5118893389469898,
+      "edges": [
+        {
+          "x": 18600.792823944477,
+          "y": -13.520453410450447,
+          "z": 24.482371553325553
+        },
+        {
+          "x": 18604.460917664906,
+          "y": -14.027471586452172,
+          "z": 27.442505272885715
+        }
+      ]
+    },
+    "minimumGeometryGap": 0.040067718338455904,
+    "metrics": [
+      {
+        "age": 0,
+        "minimumGap": 0.040067718338455904,
+        "maximumBaseGap": 0.041511820627809115,
+        "maximumVerticalRise": 0.029999999329447746,
+        "queries": 45
+      },
+      {
+        "age": 0.058333333333,
+        "minimumGap": 0.040992741317326775,
+        "maximumBaseGap": 0.04929403144280897,
+        "maximumVerticalRise": 0.5424613356590271,
+        "queries": 45
+      },
+      {
+        "age": 0.16,
+        "minimumGap": 0.05551041189427508,
+        "maximumBaseGap": 0.11837902249454757,
+        "maximumVerticalRise": 2.263463020324707,
+        "queries": 45
+      },
+      {
+        "age": 0.408333333333,
+        "minimumGap": 0.06171916898242813,
+        "maximumBaseGap": 0.13780177675437777,
+        "maximumVerticalRise": 2.5227041244506836,
+        "queries": 45
+      },
+      {
+        "age": 1.208333333333,
+        "minimumGap": 0.07004802818510747,
+        "maximumBaseGap": 0.16912328881803163,
+        "maximumVerticalRise": 1.2971956729888916,
+        "queries": 45
+      },
+      {
+        "age": 1.64,
+        "minimumGap": 0.07002507616208042,
+        "maximumBaseGap": 0.1691281955971995,
+        "maximumVerticalRise": 1.1352168321609497,
+        "queries": 45
+      }
+    ],
+    "scope": "Actual V30-input source fixture, all card corners versus physical terrain. Nine probes per parent cover every yaw; no continuous-terrain/pixel/FPS claim."
+  }
+]

@@ -1,0 +1,17 @@
+import {readFile,writeFile} from 'node:fs/promises';
+import {createHash} from 'node:crypto';
+import {createRequire} from 'node:module';
+import {fileURLToPath,pathToFileURL} from 'node:url';
+import path from 'node:path';
+import assert from 'node:assert/strict';
+const here=path.dirname(fileURLToPath(import.meta.url)),root=path.resolve(here,'../../../..');
+const require=createRequire('/tmp/inkstorm-rock-lod-tools/package.json');
+const {NodeIO}=await import(pathToFileURL(require.resolve('@gltf-transform/core')).href),io=new NodeIO();
+const family=process.argv[2];assert(['pit-complex','pit-district'].includes(family));
+const metrics=JSON.parse(await readFile(path.join(here,'source-metrics.json'))),m=metrics.assets.find(a=>a.family===family);
+const bytes=await readFile(path.join(root,m.path));assert.equal(createHash('sha256').update(bytes).digest('hex'),m.sha256);
+const doc=await io.readBinary(bytes),p=doc.getRoot().listMeshes()[0].listPrimitives()[0],position=p.getAttribute('POSITION');
+p.setAttribute('_SOURCE_ID',doc.createAccessor('authoritative-original-vertex-id').setType('SCALAR').setArray(Float32Array.from({length:position.getCount()},(_,i)=>i)).setBuffer(position.getBuffer()));
+p.setAttribute('_SOURCE_NORMAL',doc.createAccessor('authoritative-original-normal').setType('VEC3').setArray(p.getAttribute('NORMAL').getArray().slice()).setBuffer(position.getBuffer()));
+const out=await io.writeBinary(doc);await writeFile(path.join(here,'inputs',`${family}-id.glb`),out);
+console.log(JSON.stringify({family,sourceSha256:m.sha256,idInputSha256:createHash('sha256').update(out).digest('hex'),vertices:position.getCount()}));

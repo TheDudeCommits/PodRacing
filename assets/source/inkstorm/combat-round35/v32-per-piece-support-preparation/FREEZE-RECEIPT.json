@@ -1,0 +1,43 @@
+{
+  "createdAt": "2026-09-09T12:52:11.739362+00:00",
+  "manifest": {
+    "path": "assets/source/inkstorm/combat-round35/v32-per-piece-support-preparation/FROZEN-MANIFEST.json",
+    "sha256": "bfa778a53ef8cbc11f7f98a8ba6ff14042657413ca46070e1b8c26d9c45887b8",
+    "bytes": 8850
+  },
+  "patch": {
+    "path": "assets/source/inkstorm/combat-round35/v32-per-piece-support-preparation/v32-per-piece-support.patch",
+    "sha256": "754d1d9c9419bb6c011b219d13e08409e32731b24de6876a541c74f0110f0b1a",
+    "bytes": 54924
+  },
+  "baseHashesMatch": true,
+  "gitApplyCheck": {
+    "exitCode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  "whitespaceCheck": {
+    "exitCode": 1,
+    "stdout": "",
+    "stderr": ""
+  },
+  "validation": {
+    "focused": {
+      "passed": 19,
+      "files": 4
+    },
+    "distinctCompatibilityAfterExplicitQueryUpdate": {
+      "passed": 104,
+      "files": 20
+    },
+    "privateIdentity": {
+      "passed": 2,
+      "actualVariants": 2,
+      "agesPerVariant": 15
+    },
+    "strictTypeScript": "PASS"
+  },
+  "nativeAcceptance": "pending root integration and native visual/performance tests",
+  "allOwnedProcessesClosed": true,
+  "liveWrites": false
+}

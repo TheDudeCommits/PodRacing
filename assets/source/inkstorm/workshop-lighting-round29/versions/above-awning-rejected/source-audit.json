@@ -1,0 +1,218 @@
+{
+  "status": "SOURCE_MATH_CHECKS_PASS_NOT_RENDER_ACCEPTANCE",
+  "maximumTransformError": 1.887379141862766e-15,
+  "syntax": [
+    {
+      "file": "InkstormSurfaceMaterial.ts.candidate",
+      "typescriptSyntaxErrors": 0,
+      "scope": "Node syntax transform; not TypeScript semantic checking"
+    },
+    {
+      "file": "InkstormWorld.ts.candidate",
+      "typescriptSyntaxErrors": 0,
+      "scope": "Node syntax transform; not TypeScript semantic checking"
+    }
+  ],
+  "samples": [
+    {
+      "label": "pit first bay floor",
+      "family": "pit-complex",
+      "point": [
+        -47,
+        1,
+        -3
+      ],
+      "normal": [
+        0,
+        1,
+        0
+      ],
+      "diffuseStrength": 0.3522342849086857
+    },
+    {
+      "label": "pit first engine top",
+      "family": "pit-complex",
+      "point": [
+        -49.1,
+        4.6,
+        -4
+      ],
+      "normal": [
+        0,
+        1,
+        0
+      ],
+      "diffuseStrength": 0.66
+    },
+    {
+      "label": "pit first engine aperture",
+      "family": "pit-complex",
+      "point": [
+        -49.1,
+        3.3,
+        -0.15
+      ],
+      "normal": [
+        0,
+        0,
+        1
+      ],
+      "diffuseStrength": 0
+    },
+    {
+      "label": "pit first rear cabinet face",
+      "family": "pit-complex",
+      "point": [
+        -47,
+        4,
+        -16.19
+      ],
+      "normal": [
+        0,
+        0,
+        1
+      ],
+      "diffuseStrength": 0.019146782987087003
+    },
+    {
+      "label": "pit original rear exterior",
+      "family": "pit-complex",
+      "point": [
+        -47,
+        4,
+        -20.5
+      ],
+      "normal": [
+        0,
+        0,
+        -1
+      ],
+      "diffuseStrength": 0
+    },
+    {
+      "label": "pit roof exterior",
+      "family": "pit-complex",
+      "point": [
+        -47,
+        19.2,
+        -3
+      ],
+      "normal": [
+        0,
+        1,
+        0
+      ],
+      "diffuseStrength": 0
+    },
+    {
+      "label": "pit apron mouth engine top",
+      "family": "pit-complex",
+      "point": [
+        -47,
+        5,
+        10
+      ],
+      "normal": [
+        0,
+        1,
+        0
+      ],
+      "diffuseStrength": 0.03185267374703886
+    },
+    {
+      "label": "pit road beyond apron",
+      "family": "pit-complex",
+      "point": [
+        -47,
+        1,
+        35
+      ],
+      "normal": [
+        0,
+        1,
+        0
+      ],
+      "diffuseStrength": 0
+    },
+    {
+      "label": "district first floor",
+      "family": "pit-district",
+      "point": [
+        -39,
+        0.4,
+        -6
+      ],
+      "normal": [
+        0,
+        1,
+        0
+      ],
+      "diffuseStrength": 0.14837295431298875
+    },
+    {
+      "label": "district first engine top",
+      "family": "pit-district",
+      "point": [
+        -40,
+        4.1,
+        -6
+      ],
+      "normal": [
+        0,
+        1,
+        0
+      ],
+      "diffuseStrength": 0.2784645212699957
+    },
+    {
+      "label": "district second bench top",
+      "family": "pit-district",
+      "point": [
+        0,
+        2.425,
+        -14
+      ],
+      "normal": [
+        0,
+        1,
+        0
+      ],
+      "diffuseStrength": 0.0649871720940492
+    },
+    {
+      "label": "district roof exterior",
+      "family": "pit-district",
+      "point": [
+        -39,
+        14,
+        -6
+      ],
+      "normal": [
+        0,
+        1,
+        0
+      ],
+      "diffuseStrength": 0
+    }
+  ],
+  "sharedAnchors": {
+    "file": "assets/source/inkstorm/grid-construction-round29/task-light-anchors.json",
+    "sha256": "ffbd4ce8cd410cb72f4a8602cbca9cf577617519a55d924378f16021e4f60cea",
+    "matchingEmitterCount": 6
+  },
+  "checks": [
+    "Finite bounded intensity",
+    "Roof/backface/road rejection at stated samples",
+    "World-space comparison for 12 orthogonal transforms",
+    "TypeScript candidate syntax",
+    "No new texture reads or light loops",
+    "All six shader anchors equal shared visible fixture anchors"
+  ],
+  "unavailableEvidence": [
+    "GPU shader compilation",
+    "Actual visual A/B",
+    "Local occluder shadows",
+    "Runtime frame cost"
+  ],
+  "shaderSha256": "06e864be18632aa7cbfdc84483a0e1a91bc98a086c69b1cdaab580fc6bf90fe8"
+}

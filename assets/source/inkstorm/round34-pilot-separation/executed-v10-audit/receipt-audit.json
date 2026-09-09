@@ -1,0 +1,104 @@
+{
+  "scope": "Executed V10 receipt and raw critic audit; no additional visual review or runtime execution by this auditor.",
+  "critic": {
+    "exitCode": 0,
+    "attachmentCount": 7,
+    "allOriginalAndAttachmentHashesMatch": true,
+    "promptHashMatches": true,
+    "eventTypes": {
+      "thread.started": 1,
+      "turn.started": 1,
+      "error": 4,
+      "item.completed": 2,
+      "turn.completed": 1
+    },
+    "itemTypes": {
+      "error": 1,
+      "agent_message": 1
+    },
+    "recordedToolOrRetrievalItems": 0,
+    "reviewMatchesRawFinal": true,
+    "transport": "WebSocket retry errors followed by recorded HTTPS fallback and turn.completed",
+    "contextLimit": "Ephemeral external working directory, anonymous image order, no code/change description. Generic user configuration may load; raw log establishes no recorded retrieval, not absence of all host defaults.",
+    "attachments": [
+      {
+        "source": "/Users/amir/Projects/PodRacing/output/gauntlet/round34-pilot-separation-v10/captures/garage.png",
+        "attachment": "/var/folders/8_/sqnvwbyn5qv5slnnkk73035c0000gn/T/podracing-pilot-blind-qjnvheu9/frame-01.png",
+        "expectedSha256": "5ac91bf71e94f78d2f137e68b2bbb95399395613f65f020f1e3d755e3df5ee58",
+        "originalSha256": "5ac91bf71e94f78d2f137e68b2bbb95399395613f65f020f1e3d755e3df5ee58",
+        "attachmentSha256": "5ac91bf71e94f78d2f137e68b2bbb95399395613f65f020f1e3d755e3df5ee58"
+      },
+      {
+        "source": "/Users/amir/Projects/PodRacing/output/gauntlet/round34-sobel-stencil-v9/captures/garage.png",
+        "attachment": "/var/folders/8_/sqnvwbyn5qv5slnnkk73035c0000gn/T/podracing-pilot-blind-qjnvheu9/frame-02.png",
+        "expectedSha256": "3514f01bc3e975320b31938f05e1525bf4ab9caef6cae820e9e7ad09686bbe0b",
+        "originalSha256": "3514f01bc3e975320b31938f05e1525bf4ab9caef6cae820e9e7ad09686bbe0b",
+        "attachmentSha256": "3514f01bc3e975320b31938f05e1525bf4ab9caef6cae820e9e7ad09686bbe0b"
+      },
+      {
+        "source": "/Users/amir/Projects/PodRacing/output/gauntlet/round34-sobel-stencil-v9/captures/01-grid.png",
+        "attachment": "/var/folders/8_/sqnvwbyn5qv5slnnkk73035c0000gn/T/podracing-pilot-blind-qjnvheu9/frame-03.png",
+        "expectedSha256": "be2f19202e2605fbaf3005a9a25ab2714b910938a2c3abc0713b585bc07dd111",
+        "originalSha256": "be2f19202e2605fbaf3005a9a25ab2714b910938a2c3abc0713b585bc07dd111",
+        "attachmentSha256": "be2f19202e2605fbaf3005a9a25ab2714b910938a2c3abc0713b585bc07dd111"
+      },
+      {
+        "source": "/Users/amir/Projects/PodRacing/output/gauntlet/round34-pilot-separation-v10/captures/01-grid.png",
+        "attachment": "/var/folders/8_/sqnvwbyn5qv5slnnkk73035c0000gn/T/podracing-pilot-blind-qjnvheu9/frame-04.png",
+        "expectedSha256": "a3e67bc0e44e80cb301e589a538a739ee9569bdc2a881914dd270d1760599f0f",
+        "originalSha256": "a3e67bc0e44e80cb301e589a538a739ee9569bdc2a881914dd270d1760599f0f",
+        "attachmentSha256": "a3e67bc0e44e80cb301e589a538a739ee9569bdc2a881914dd270d1760599f0f"
+      },
+      {
+        "source": "/Users/amir/Projects/PodRacing/output/gauntlet/round34-pilot-separation-v10/captures/foundry-middle.png",
+        "attachment": "/var/folders/8_/sqnvwbyn5qv5slnnkk73035c0000gn/T/podracing-pilot-blind-qjnvheu9/frame-05.png",
+        "expectedSha256": "4c416940b9d3453f5ccf6e0300cd360976c1cf09c770bd6ba18af2bbb5616853",
+        "originalSha256": "4c416940b9d3453f5ccf6e0300cd360976c1cf09c770bd6ba18af2bbb5616853",
+        "attachmentSha256": "4c416940b9d3453f5ccf6e0300cd360976c1cf09c770bd6ba18af2bbb5616853"
+      },
+      {
+        "source": "/Users/amir/Projects/PodRacing/output/gauntlet/round34-sobel-stencil-v9/captures/foundry-middle.png",
+        "attachment": "/var/folders/8_/sqnvwbyn5qv5slnnkk73035c0000gn/T/podracing-pilot-blind-qjnvheu9/frame-06.png",
+        "expectedSha256": "ef48838f76a0cb7effe8a1c2ae92a1d3f5085686209bf90a4c24474b06ecf777",
+        "originalSha256": "ef48838f76a0cb7effe8a1c2ae92a1d3f5085686209bf90a4c24474b06ecf777",
+        "attachmentSha256": "ef48838f76a0cb7effe8a1c2ae92a1d3f5085686209bf90a4c24474b06ecf777"
+      },
+      {
+        "source": "/Users/amir/Projects/PodRacing/docs/inkstorm-overhaul/concepts/12-blockrunner-round34.png",
+        "attachment": "/var/folders/8_/sqnvwbyn5qv5slnnkk73035c0000gn/T/podracing-pilot-blind-qjnvheu9/frame-07.png",
+        "expectedSha256": "6e96d24510b73847f02f483ac5ffa73c30262a9968b03bfd9c401c5ce8d776d8",
+        "originalSha256": "6e96d24510b73847f02f483ac5ffa73c30262a9968b03bfd9c401c5ce8d776d8",
+        "attachmentSha256": "6e96d24510b73847f02f483ac5ffa73c30262a9968b03bfd9c401c5ce8d776d8"
+      }
+    ]
+  },
+  "capture": {
+    "bundle": [
+      {
+        "url": "http://127.0.0.1:5186/assets/index-6bWMfXUn.js",
+        "sha256": "b9db09165d27b41b2a11929615d94cd2f35beeb0bfd819ee643f3b13450098ec"
+      }
+    ],
+    "pngCount": 13,
+    "errors": [],
+    "performance": {
+      "device": "Chrome headless; renderer from snapshot; local workstation",
+      "viewport": {
+        "width": 1440,
+        "height": 900,
+        "dpr": 1.5
+      },
+      "samples": 481,
+      "p50Ms": 16.699999999999818,
+      "p95Ms": 16.700000000000728,
+      "p99Ms": 16.800000000000182,
+      "averageFps": 60.0019959083878
+    },
+    "browserClosure": "Reported by executing parent; the capture receipt itself does not include a browserClosed field."
+  },
+  "verification": {
+    "initial": "120 files: 1 failed,119 passed;678 tests:2 failed,676 passed. Both hero/rival fail at suit specular .025 expectation versus actual .035. Old rim expectation was also updated to .025 in follow-up.",
+    "subsequent": "120 files/678 tests passed; typecheck and Vite build passed. Original logs and original test baseline remain preserved."
+  },
+  "interpretation": "All three image pairs TIE at high confidence. Pilot4/10 garage,5/10 game;vehicle5/10,FAIL8. No reliable paired gain/regression. Retained only as local experiment pending closer-camera evaluation; no standalone quality or full-race performance pass."
+}

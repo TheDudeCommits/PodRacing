@@ -1,0 +1,11 @@
+--- a/src/ui/broadcastStyles.ts
++++ b/src/ui/broadcastStyles.ts
+@@ -232,7 +232,7 @@
+ .pod-hud__results .pod-hud__start-button { background:#dbe1d0; color:#193840; }
+ .pod-hud__vehicle-select.is-visible .pod-hud__vehicle-select-head { animation:instrument-enter .32s ease-out both; }
+ .pod-hud__vehicle-select.is-visible .pod-hud__garage-hero { animation:instrument-enter .42s .04s ease-out both; }
+-.pod-hud__workshop.is-visible { animation:instrument-enter .28s ease-out both; }
++.pod-hud__workshop.is-visible { animation:none; }
+ .pod-hud__cinematic-matte { position:absolute; inset:0; z-index:12; pointer-events:none; }
+ .pod-hud__cinematic-matte::before,.pod-hud__cinematic-matte::after { content:''; position:absolute; left:0; right:0; height:7%; background:#081013; transform:scaleY(0); transition:transform .14s ease-out; }
+ .pod-hud__cinematic-matte::before { top:0; transform-origin:top; }

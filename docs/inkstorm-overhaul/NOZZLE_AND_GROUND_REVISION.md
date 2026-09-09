@@ -1,0 +1,13 @@
+# Exhaust and ground material revision
+
+7 September 2026. Local development; no deployment.
+
+The procedural engines now have eight closed, bent heat-shield petals around a recessed pressure liner. Painted panels, exposed metal panels, gaps and actuator mounts replace the single large grey exhaust sleeve. They share the original material batches and stay inside all four pre-existing solid vehicle envelopes. Slightly reduced coolant-tube longitudinal tessellation pays for part of the added geometry.
+
+The existing four hero geometry checks and nine player-shadow checks pass. Beauty submissions remain at most 22 for the pod and 27 for other classes; total geometry remains below 15,000/11,000 triangles respectively. The updated actual player-shadow workload is 19 draws/13,204 triangles for the pod and 22 draws/9,880–9,904 triangles for the other classes. These counts describe this source, not the earlier round-17 performance build.
+
+Round 18a (`index-DC5VY9fH.js`, SHA `ab646e7b4cb4350be066c72a86d668e1aace193d557c0eefcb38ea1d94c77395`) rendered all seven sections plus a short live drive without browser errors. Its source map confirms the new rock-grounding helper and no new junction-camera helper. The fresh bounded critic scored vehicle finish 6.5/10 and rock/structure grounding 5.5/10: both remain below the 8/10 target. See `gauntlet-grounding-18a.md`. The 481-interval short drive is not full-race performance evidence.
+
+Round 18 publishes the existing imagegen ground paint to already-created terrain through shared asynchronous texture uniforms. World-space crust detail and broader rotated patches replace much of the repeated fine sand striping. The road uses the same world-space paint scale, fewer broken longitudinal grooves and broader worn patches. It changes shading only, with no displacement or collision change and no new downloaded/generated texture. All seven round-18 views render without browser errors, but the fresh critic still scored visual finish 4.6/10. This material work is not present in round-18a images.
+
+The world LOD selector now considers projected screen size as well as distance. A large distant cliff keeps its high mesh until its approximate projected diameter drops below 15% of screen height; small scree retains its existing short cutoff. Diagnostic snapshots report actual high/low instances and instanced triangles. The increased workload was measured in full round-18 races: Time Attack 60.0023 Hz at adaptive DPR 1–2 and Cup 59.9577 Hz at DPR 2. Cup retains six slow intervals, maximum 33.4 ms. See FULL_RACE_PERFORMANCE_ROUND18.md for exact coverage, source hashes and limits.

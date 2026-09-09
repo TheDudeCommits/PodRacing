@@ -1,0 +1,78 @@
+--- a/src/render/galactic/GalacticEffectsView.ts
++++ b/src/render/galactic/GalacticEffectsView.ts
+@@ -213,6 +213,7 @@
+   metal: boolean;
+   spark: boolean;
+   ember: boolean;
++  contactSpark: boolean;
+   emberPhase: number;
+   wreckOwner: number;
+   wreckSequence: number;
+@@ -623,7 +624,7 @@
+   );
+   private readonly debrisSlots = Array.from(
+     { length: GALACTIC_EFFECT_CAPACITY.crashDebris },
+-    (): DebrisSlot => ({ active: false, startTime: 0, duration: 0, x: 0, y: 0, z: 0, vx: 0, vy: 0, vz: 0, rx: 0, ry: 0, rz: 0, ax: 0, ay: 0, az: 0, scale: 1, groundY: 0, metal: false, spark: false, ember: false, emberPhase: 0, wreckOwner: -1, wreckSequence: -1, r: 1, g: 0.3, b: 0.1 }),
++    (): DebrisSlot => ({ active: false, startTime: 0, duration: 0, x: 0, y: 0, z: 0, vx: 0, vy: 0, vz: 0, rx: 0, ry: 0, rz: 0, ax: 0, ay: 0, az: 0, scale: 1, groundY: 0, metal: false, spark: false, ember: false, contactSpark: false, emberPhase: 0, wreckOwner: -1, wreckSequence: -1, r: 1, g: 0.3, b: 0.1 }),
+   );
+   private readonly explosionSlots = Array.from(
+     { length: GALACTIC_EFFECT_CAPACITY.explosionPlates },
+@@ -863,6 +864,7 @@
+         ? ((spark ? 24 : 18) + hash01(seed + 1) * (spark ? 16 : 12)) * Math.sqrt(severity)
+         : (5.5 + hash01(seed + 1) * 11) * severity * radialScale;
+       slot.active = true;
++      slot.contactSpark = false;
+       slot.ember = ember; slot.emberPhase = ember && fragment === fragmentCount - 1 ? .21 : 0; slot.wreckOwner = ember ? event.wreckOwner! : -1;
+       slot.wreckSequence = ember ? event.wreckSequence! : -1;
+       slot.startTime = finite(event.time, 0);
+@@ -1016,20 +1018,20 @@
+       slot.vy = 2 + hash01(seed + 3) * 4;
+       slot.rx = 0; slot.ry = 0; slot.rz = 0; slot.ax = 0; slot.ay = 0; slot.az = 0;
+       slot.scale = .34 + hash01(seed + 4) * .20;
+-      slot.groundY = position.y; slot.metal = false; slot.spark = true;
++      slot.groundY = position.y; slot.metal = false; slot.spark = true; slot.contactSpark = true;
+       slot.ember = false; slot.emberPhase = 0; slot.wreckOwner = -1; slot.wreckSequence = -1;
+       slot.r = 1; slot.g = index % 3 === 0 ? .87 : .48; slot.b = index % 3 === 0 ? .5 : .09;
+     }
+     for (let index = 0; index < 2; index++) {
+       const slot = this.explosionSlots[this.explosionCursor]!;
+       this.explosionCursor = (this.explosionCursor + 1) % this.explosionSlots.length;
+-      slot.active = true; slot.startTime = time + index * .04; slot.duration = index === 0 ? .85 : 1.15;
++      slot.active = true; slot.startTime = time + index * .04; slot.duration = index === 0 ? .52 : 1.15;
+       slot.x = position.x + dx * index * .7; slot.z = position.z + dz * index * .7;
+       slot.y = position.y + .08; slot.vx = dx * (index === 0 ? 3.2 : 4.8); slot.vz = dz * (index === 0 ? 3.2 : 4.8);
+       slot.scale = index === 0 ? 3.8 : 4.6;
+       slot.style = 'sand'; slot.billboard = true; slot.contactLayer = 4 + index;
+       slot.authoredSurface = false; slot.wreckOwner = -1; slot.wreckSequence = -1;
+-      slot.r = .43; slot.g = .27; slot.b = .13;
++      slot.r = index === 0 ? .20 : .43; slot.g = index === 0 ? .115 : .27; slot.b = index === 0 ? .055 : .13;
+     }
+   }
+ 
+@@ -1494,7 +1496,7 @@
+       // quarter of its life instead of becoming black floating rectangles.
+       const size = slot.scale * (slot.metal ? 1 - MathUtils.smoothstep(progress, 0.75, 1) : 1);
+       this.writeInstance(this.crashDebris, debrisCount, x, y, z, this.tempQuaternion,
+-        size * (slot.spark ? 0.09 : 1), size * (slot.spark ? 0.12 : slot.metal ? 0.65 : 1),
++        size * (slot.spark ? slot.contactSpark ? .26 : .09 : 1), size * (slot.spark ? slot.contactSpark ? .32 : .12 : slot.metal ? .65 : 1),
+         size * (slot.spark ? 2.8 : 1), slot.r * fade, slot.g * fade, slot.b * fade);
+       this.crashDebris.geometry.getAttribute('aFragmentMetal').setX(debrisCount, slot.metal ? 1 : 0);
+       debrisCount += 1;
+@@ -1515,10 +1517,14 @@
+         }
+         const progress = MathUtils.clamp(age / slot.duration, 0, 1);
+         if (slot.contactLayer >= 4) {
+-          const width = slot.scale * (.45 + progress * .70);
+-          const height = width * .48;
++          // One low, dark scrape tongue and one raised sand fan make the
++          // actual support witness readable. Both keep their existing slots,
++          // world departure direction and feathered dust shader.
++          const scrape = slot.contactLayer === 4;
++          const width = slot.scale * (scrape ? .50 + progress * .70 : .30 + progress * .65);
++          const height = width * (scrape ? .18 : .54);
+           const x = slot.x + slot.vx * age, z = slot.z + slot.vz * age;
+-          const y = slot.y + height * .78;
++          const y = slot.y + height * 1.05;
+           if (!this.isVisible(x, y, z, width * 1.5, EFFECT_VISIBILITY_DISTANCE.crashes)) continue;
+           this.writeInstance(this.explosionPlates, plateCount, x, y, z,
+             this.billboardQuaternion, width, height, width, slot.r, slot.g, slot.b);

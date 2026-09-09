@@ -1,0 +1,23 @@
+{
+  "status": "private rival candidate; actual final appearance comparison pending",
+  "input": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/runtime-admission-preparation/packaged-atlas-v3-reuse-pipeline-check/blockrunner-hero-v1.glb",
+  "inputSha256": "6451e78bc4933fd294bc0c080dbedcf679b2d558b118b62cca8ce4812f942b02",
+  "output": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/runtime-admission-preparation/packaged-atlas-v3-reuse-pipeline-check/blockrunner-rival-calibrated-lod.glb",
+  "outputSha256": "40971a9ad3dd3d220e87eb33df3522eb2ca9d0ba4d454d8e76e9cba3fe2a7135",
+  "bytes": 3814744,
+  "bodyTriangles": 25554,
+  "pilotTriangles": 4128,
+  "totalTriangles": 29682,
+  "pilotAccessorBytesExact": true,
+  "bodyPositionNormalUvAccessorBytesExact": true,
+  "protectedSurfaceTrianglesExact": true,
+  "protectedSourceTriangles": 8952,
+  "calibratedHeroGeometryAndAttributeArraysExact": true,
+  "referenceHeroSha256": "6451e78bc4933fd294bc0c080dbedcf679b2d558b118b62cca8ce4812f942b02",
+  "referenceLodSha256": "307a1f8eae8fc403bebaace1a93b08041636f357def07c1f39eeab6275f1b1fe",
+  "referenceSurfaceSampleReceiptSha256": "d2f65dce87ff0f305bf80017492e566db2c2979580e99ef4820856aca930ac01",
+  "sampledMaximumHeroToRivalMeters": 0.024842487951903837,
+  "sampledMaximumRivalToHeroMeters": 0.021002364359816023,
+  "twoCentimeterTrialCriterion": "FAIL; 35 measured samples exceed2cm. No continuous Hausdorff bound claimed.",
+  "runtimeReady": false
+}

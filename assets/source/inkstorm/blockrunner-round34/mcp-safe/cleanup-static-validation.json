@@ -1,0 +1,42 @@
+{
+  "scope": "Static Python AST policy/parse validation only; no Blender execution. SHA256 computed externally, never inside MCP. Forbidden tokens inside ordinary strings are not accesses.",
+  "fragments": [
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/mcp-safe/00-source-reference.py",
+      "bytes": 20886,
+      "externalSha256": "1e102e361460a5540776f5d45289f4b458ddb10f3355d6421e3c096a762d87b8",
+      "astPolicyIssues": []
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/mcp-safe/01-source-guard.py",
+      "bytes": 10293,
+      "externalSha256": "2a16250b35ebc55240477f5aebc16b81d83dc475d14f290c803c86abf6fd2e89",
+      "astPolicyIssues": []
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/mcp-safe/02-audit-existing-source.py",
+      "bytes": 7590,
+      "externalSha256": "e092d70b4ed82e3ca3e5eb8088e5323857a9b2dd1a838a7e289b2aa1079e222e",
+      "astPolicyIssues": []
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/mcp-safe/03-render-neutral-view.py",
+      "bytes": 11406,
+      "externalSha256": "10df1004ba0ae1babc0204cc1764b94ff653e262d78906ca245641d1c0578f56",
+      "astPolicyIssues": []
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/mcp-safe/04-copy-exact-opposed-cleanup.py",
+      "bytes": 10892,
+      "externalSha256": "ab8d15e0b0469e9e7a13a3a14e43a114d74e0b056e41798fb8f5de6b21fa6c82",
+      "astPolicyIssues": []
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/mcp-safe/05-render-cleanup-comparison.py",
+      "bytes": 13756,
+      "externalSha256": "1f474ba0ae292b7f7d58f573f87b0efec76df2469fc406aa5ccb95d2eab55697",
+      "astPolicyIssues": []
+    }
+  ],
+  "concatenatedPrefixesAndStagesParse": true
+}

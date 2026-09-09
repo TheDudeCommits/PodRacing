@@ -1,0 +1,557 @@
+--- a/src/render/galactic/GalacticEffectsView.ts
++++ b/src/render/galactic/GalacticEffectsView.ts
+@@ -140,6 +140,7 @@
+   hazardBodies: 48,
+   crashDebris: 64,
+   contactDust: 40,
++  contactDustCards: 80,
+   explosionPlates: 16,
+   hazardPlumes: 72,
+ });
+@@ -157,6 +158,7 @@
+   x: number; z: number; axisX: number; axisZ: number; sign: number;
+   along: number; drift: number; width: number; peak: number;
+   lastAge: number; matrix: Matrix4; cx: number; cy: number; cz: number; radius: number;
++  cardWidth: number; cardHeight: number; groundY: number; gx: number; gz: number; opacity: number;
+ }
+ const CONTACT_DUST_GROUND_PROBES = [[0, 0], [-1, 0], [1, 0], [0, -1], [0, 1],
+   [-1, -1], [1, -1], [-1, 1], [1, 1]] as const;
+@@ -738,16 +740,21 @@
+   ), 'galactic-crash-debris', 30);
+ 
+   readonly contactDust = prepare(new InstancedMesh(
+-    createContactDustGeometry(), createContactDustMaterial(), GALACTIC_EFFECT_CAPACITY.contactDust,
+-  ), 'galactic-ground-contact-volume', 24);
++    createContactDustGeometry(), createContactDustMaterial(), GALACTIC_EFFECT_CAPACITY.contactDustCards,
++  ), 'galactic-ground-contact-billows', 24);
+   private readonly contactDustSlots = Array.from({ length: GALACTIC_EFFECT_CAPACITY.contactDust },
+     (): ContactDustSlot => ({ active: false, startTime: 0, owner: -1, sequence: -1, terrain: null,
+       x: 0, z: 0, axisX: 1, axisZ: 0, sign: 1, along: 0, drift: 1, width: 1, peak: 1.5,
+-      lastAge: NaN, matrix: new Matrix4(), cx: 0, cy: 0, cz: 0, radius: 0 }));
++      lastAge: NaN, matrix: new Matrix4(), cx: 0, cy: 0, cz: 0, radius: 0,
++      cardWidth: 0, cardHeight: 0, groundY: 0, gx: 0, gz: 0, opacity: 0 }));
+   private contactDustCursor = 0;
+-  private readonly contactDustAge = new InstancedBufferAttribute(
+-    new Float32Array(GALACTIC_EFFECT_CAPACITY.contactDust), 1).setUsage(DynamicDrawUsage);
++  private readonly contactDustState = new InstancedBufferAttribute(
++    new Float32Array(GALACTIC_EFFECT_CAPACITY.contactDustCards * 4), 4).setUsage(DynamicDrawUsage);
+   private readonly contactGroundHeights = new Float64Array(9);
++  private readonly contactCardMatrices = new Float64Array(GALACTIC_EFFECT_CAPACITY.contactDustCards * 16);
++  private readonly contactCardStates = new Float64Array(GALACTIC_EFFECT_CAPACITY.contactDustCards * 4);
++  private readonly contactCardDepth = new Float64Array(GALACTIC_EFFECT_CAPACITY.contactDustCards);
++  private readonly contactCardOrder = new Uint8Array(GALACTIC_EFFECT_CAPACITY.contactDustCards);
+ 
+   private readonly ruptureFlameAtlas = new RuptureFlameAtlas();
+ 
+@@ -844,8 +851,9 @@
+     // The existing flag reduces all Sobel ink; it does not alter world masks.
+     this.hazardBodies.userData[CEL_TERRAIN_EDGE_SUPPRESS_USER_DATA_KEY] = true;
+     this.scrapMines.userData[CEL_TERRAIN_EDGE_SUPPRESS_USER_DATA_KEY] = true;
+-    this.contactDust.geometry.setAttribute('aContactAge', this.contactDustAge);
+-    this.contactDust.userData[CEL_POST_EXCLUDE_USER_DATA_KEY] = false;
++    this.contactDust.geometry.setAttribute('aContactState', this.contactDustState);
++    // A porous cloud cannot contribute the solid quad to opaque masks/ink.
++    this.contactDust.userData[CEL_POST_EXCLUDE_USER_DATA_KEY] = true;
+     this.contactDust.userData[CEL_TERRAIN_EDGE_SUPPRESS_USER_DATA_KEY] = true;
+     this.add(
+       this.shieldShells,
+@@ -1251,8 +1259,8 @@
+         slot.axisZ = span.axis.z * inverseAxis; slot.sign = edgeIndex ? 1 : -1;
+         slot.along = span.halfLength * (index < 3 ? (index - 1) * .68 : (index - 3.5) * .8);
+         slot.drift = .8 + hash01(index * 7 + this.eventSequence) * .4;
+-        slot.width = .82 + hash01(index * 11 + this.eventSequence) * .26;
+-        slot.peak = 1.3 + hash01(index * 13 + this.eventSequence) * .5;
++        slot.width = 2.8 + hash01(index * 11 + this.eventSequence) * .6;
++        slot.peak = 2. + hash01(index * 13 + this.eventSequence) * .6;
+         slot.lastAge = NaN;
+       }
+       return;
+@@ -1361,56 +1369,98 @@
+       if (age < 0) continue;
+       if (age >= 1.65) { slot.active = false; slot.terrain = null; continue; }
+       if (age !== slot.lastAge) {
+-        const swell = MathUtils.smoothstep(age, 0, .14);
+-        const decay = 1 - MathUtils.smoothstep(age, 1.2, 1.65);
+-        const width = slot.width * (.12 + .88 * swell) * Math.sqrt(decay);
+-        const depth = width * (.72 + .12 * Math.sin(age * 5 + slot.peak));
+-        const height = (.02 + (slot.peak - .02) * swell)
+-          * (1 - .72 * MathUtils.smoothstep(age, .45, 1.25)) * decay;
+-        // Smoothstep can round to one immediately before the nominal end.
+-        // Retire invisible dimensions before terrain gradients divide by them.
+-        if (!Number.isFinite(width + depth + height) || Math.min(width, depth, height) <= 1e-6) {
++        const swell = MathUtils.smoothstep(age, 0, .20);
++        const opacity = 1 - MathUtils.smoothstep(age, .85, 1.65);
++        const width = slot.width * (.12 + .88 * swell)
++          * (1 + .20 * MathUtils.smoothstep(age, .20, 1.2));
++        const height = (.03 + (slot.peak - .03) * swell)
++          * (1 - .55 * MathUtils.smoothstep(age, .5, 1.4));
++        // The rounded-zero expiry neighbour is invisible and must not query
++        // terrain or leave retained callbacks/invalid instance dimensions.
++        if (!Number.isFinite(width + height + opacity) || Math.min(width, height, opacity) <= 1e-6) {
+           slot.active = false; slot.terrain = null; continue;
+         }
+         const travel = slot.drift * (1 - Math.exp(-age * 4));
+         const ax = slot.axisX, az = slot.axisZ, bx = -az, bz = ax;
+         const x = slot.x + ax * slot.along - bx * slot.sign * travel;
+         const z = slot.z + az * slot.along - bz * slot.sign * travel;
+-        // Nine fixed samples cover the current lobe, not the old birth plane.
+-        // Terrain can still occlude between probes; no continuous-surface claim.
+-        const rx = width * 1.06, rz = depth * 1.06;
++        // This square covers both yaw-facing carriers for every camera
++        // azimuth, including their bounded .24m source-outward separation.
++        const radius = width * .5 + .24;
+         let finiteGround = true;
+         for (let i = 0; i < CONTACT_DUST_GROUND_PROBES.length; i++) {
+           const [u, v] = CONTACT_DUST_GROUND_PROBES[i]!;
+-          const h = slot.terrain.heightAt(x + ax * u * rx + bx * v * rz,
+-            z + az * u * rx + bz * v * rz);
++          const h = slot.terrain.heightAt(x + ax * u * radius + bx * v * radius,
++            z + az * u * radius + bz * v * radius);
+           this.contactGroundHeights[i] = h; finiteGround &&= Number.isFinite(h);
+         }
+         if (!finiteGround) { slot.active = false; slot.terrain = null; continue; }
+         const h = this.contactGroundHeights;
+-        const gx = (h[2]! - h[1]!) / (2 * rx), gz = (h[4]! - h[3]!) / (2 * rz);
++        const ga = (h[2]! - h[1]!) / (2 * radius), gb = (h[4]! - h[3]!) / (2 * radius);
+         let residual = 0;
+         for (let i = 0; i < CONTACT_DUST_GROUND_PROBES.length; i++) {
+           const [u, v] = CONTACT_DUST_GROUND_PROBES[i]!;
+-          residual = Math.max(residual, h[i]! - h[0]! - gx * u * rx - gz * v * rz);
++          residual = Math.max(residual, h[i]! - h[0]! - ga * u * radius - gb * v * radius);
+         }
+-        const y = h[0]! + residual + .04;
+-        // Positive determinant; a vertical shear follows the actual terrain
+-        // grade while keeping the cap's height and grounded base explicit.
+-        slot.matrix.set(ax * width, 0, bx * depth, x,
+-          gx * width, height, gz * depth, y,
+-          az * width, 0, bz * depth, z, 0, 0, 0, 1);
+-        slot.cx = x; slot.cy = y + height * .5; slot.cz = z;
+-        slot.radius = Math.hypot(rx, rz, height + Math.abs(gx * rx) + Math.abs(gz * rz));
++        slot.groundY = h[0]! + residual + .04;
++        slot.gx = ga * ax + gb * bx; slot.gz = ga * az + gb * bz;
++        slot.cardWidth = width; slot.cardHeight = height; slot.opacity = opacity;
++        slot.cx = x; slot.cy = slot.groundY + height * .5; slot.cz = z;
++        slot.radius = Math.hypot(radius * Math.SQRT2,
++          height + radius * (Math.abs(ga) + Math.abs(gb)));
+         slot.lastAge = age;
+       }
+       if (!this.isVisible(slot.cx, slot.cy, slot.cz, slot.radius, EFFECT_VISIBILITY_DISTANCE.crashes)) continue;
+-      this.contactDust.setMatrixAt(count, slot.matrix);
+-      this.contactDustAge.setX(count, age);
+-      this.color.setRGB(.68, .40, .19); this.contactDust.setColorAt(count, this.color);
+-      count++;
+-    }
+-    if (count > 0) this.contactDustAge.needsUpdate = true;
++      // Orientation depends on the current view, independently of game-clock
++      // support caching. Pitch never points a card's lower edge into terrain.
++      const camera = this.visibilityCamera;
++      const dx = camera ? camera.matrixWorld.elements[12]! - slot.cx : slot.axisZ;
++      const dz = camera ? camera.matrixWorld.elements[14]! - slot.cz : -slot.axisX;
++      const length = Math.hypot(dx, dz);
++      const nx = Number.isFinite(length) && length > .001 ? dx / length : slot.axisZ;
++      const nz = Number.isFinite(length) && length > .001 ? dz / length : -slot.axisX;
++      const rx = nz, rz = -nx;
++      const separation = .24 * MathUtils.smoothstep(age, 0, .2);
++      for (let layer = 0; layer < 2; layer++) {
++        const offset = (layer ? 1 : -1) * separation;
++        const x = slot.cx + slot.axisZ * slot.sign * offset;
++        const z = slot.cz - slot.axisX * slot.sign * offset;
++        const width = slot.cardWidth * (layer ? .88 : 1);
++        const height = slot.cardHeight * (layer ? .84 : 1);
++        const y = slot.groundY + slot.gx * (x - slot.cx) + slot.gz * (z - slot.cz);
++        slot.matrix.set(rx * width, 0, nx, x,
++          (slot.gx * rx + slot.gz * rz) * width, height, 0, y,
++          rz * width, 0, nz, z, 0, 0, 0, 1);
++        slot.matrix.toArray(this.contactCardMatrices, count * 16);
++        const state = count * 4;
++        this.contactCardStates[state] = age; this.contactCardStates[state + 1] = slot.peak * 7 + slot.along;
++        this.contactCardStates[state + 2] = slot.opacity; this.contactCardStates[state + 3] = layer;
++        const view = camera?.matrixWorldInverse.elements;
++        this.contactCardDepth[count] = view ? -(view[2]! * x + view[6]! * (y + height * .5)
++          + view[10]! * z + view[14]!) : 0;
++        this.contactCardOrder[count] = count;
++        count++;
++      }
++    }
++    // Stable bounded insertion sort: at most80 cards, normally10. Three.js
++    // sorts whole transparent meshes, not the instances within one mesh.
++    for (let i = 1; i < count; i++) {
++      const current = this.contactCardOrder[i]!; let j = i;
++      while (j > 0 && this.contactCardDepth[this.contactCardOrder[j - 1]!]! < this.contactCardDepth[current]!) {
++        this.contactCardOrder[j] = this.contactCardOrder[j - 1]!; j--;
++      }
++      this.contactCardOrder[j] = current;
++    }
++    this.color.setRGB(.80, .56, .29);
++    for (let i = 0; i < count; i++) {
++      const source = this.contactCardOrder[i]!, state = source * 4;
++      this.tempMatrix.fromArray(this.contactCardMatrices, source * 16);
++      this.contactDust.setMatrixAt(i, this.tempMatrix);
++      this.contactDustState.setXYZW(i, this.contactCardStates[state]!, this.contactCardStates[state + 1]!,
++        this.contactCardStates[state + 2]!, this.contactCardStates[state + 3]!);
++      this.contactDust.setColorAt(i, this.color);
++    }
++    if (count > 0) this.contactDustState.needsUpdate = true;
+     this.dirty(this.contactDust, count);
+   }
+ 
+--- a/src/render/galactic/SolidEffectGeometry.ts
++++ b/src/render/galactic/SolidEffectGeometry.ts
+@@ -1,6 +1,6 @@
+ import {
+   BoxGeometry, BufferGeometry, CylinderGeometry, Float32BufferAttribute,
+-  IcosahedronGeometry, LatheGeometry, Vector2,
++  IcosahedronGeometry, LatheGeometry, PlaneGeometry, Vector2,
+ } from 'three';
+ import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
+ 
+@@ -88,42 +88,8 @@
+   return geometry;
+ }
+ 
+-/** Four overlapping closed rounded subcaps form one rolling dust lobe.
+- * 256 triangles per lobe; built once inside +/-1.06 XZ and [0,1] Y.
+- * Active dust never rescans or rewrites its source geometry. */
++/** Bottom-anchored cloud card. Porous silhouettes belong to the material;
++ * this two-triangle carrier never enters opaque depth/ink prepasses. */
+ export function createContactDustGeometry(): BufferGeometry {
+-  const sides = 8, bands = 4, positions: number[] = [], indices: number[] = [];
+-  const billows = [
+-    [-.17, -.13, .68, 1., .64],
+-    [-.42, .26, .55, .62, .55],
+-    [.41, .20, .58, .77, .58],
+-    [.25, -.43, .48, .67, .54],
+-  ] as const;
+-  for (const [cx, cz, rx, height, rz] of billows) {
+-    const start = positions.length / 3;
+-    for (let band = 0; band < bands; band++) {
+-      const phi = band / bands * Math.PI * .5;
+-      for (let side = 0; side < sides; side++) {
+-        const theta = side / sides * Math.PI * 2;
+-        positions.push(cx + Math.cos(theta) * Math.cos(phi) * rx,
+-          Math.sin(phi) * height, cz + Math.sin(theta) * Math.cos(phi) * rz);
+-      }
+-    }
+-    const top = positions.length / 3; positions.push(cx, height, cz);
+-    const base = positions.length / 3; positions.push(cx, 0, cz);
+-    for (let side = 0; side < sides; side++) {
+-      const next = (side + 1) % sides;
+-      for (let band = 0; band < bands - 1; band++) {
+-        const a = start + band * sides + side, b = start + band * sides + next;
+-        indices.push(a, a + sides, b, b, a + sides, b + sides);
+-      }
+-      indices.push(start + (bands - 1) * sides + side, top, start + (bands - 1) * sides + next);
+-      indices.push(base, start + side, start + next);
+-    }
+-  }
+-  const geometry = new BufferGeometry();
+-  geometry.setAttribute('position', new Float32BufferAttribute(positions, 3));
+-  geometry.setIndex(indices); geometry.computeVertexNormals();
+-  geometry.computeBoundingBox(); geometry.computeBoundingSphere();
+-  return geometry;
++  return new PlaneGeometry(1, 1).translate(0, .5, 0);
+ }
+--- a/src/render/galactic/SolidEffectMaterial.ts
++++ b/src/render/galactic/SolidEffectMaterial.ts
+@@ -63,75 +63,90 @@
+   return result;
+ }
+ 
+-/** Dense rolling dust cores share actual depth and sun-facing volume shade.
+- * Their lifetime contracts the geometry; no alpha curtain or opacity wash. */
++/** Porous contact cloud cards keep terrain/casing depth tests, but never
++ * write a solid surface into beauty depth or opaque ink prepasses. */
+ export function createContactDustMaterial(): MeshBasicMaterial {
+-  const result = new MeshBasicMaterial({ color: '#ffffff', transparent: false,
+-    depthTest: true, depthWrite: true, side: FrontSide, toneMapped: false });
+-  result.name = 'Inkstorm rolling ochre contact volume';
++  const result = new MeshBasicMaterial({ color: '#ffffff', transparent: true,
++    depthTest: true, depthWrite: false, side: FrontSide, toneMapped: false });
++  result.name = 'Inkstorm porous ochre contact billows';
+   result.onBeforeCompile = shader => {
+     shader.vertexShader = shader.vertexShader.replace('#include <common>', `
+       #include <common>
+-      attribute float aContactAge;
+-      varying float vContactAge;
+-      varying vec3 vContactNormal;
+-      varying vec3 vContactLocal;
+-      varying vec3 vContactWorld;
++      attribute vec4 aContactState;
++      varying vec4 vContactState;
++      varying vec2 vContactUv;
++      varying vec3 vContactRight;
++      varying vec3 vContactFacing;
+     `).replace('#include <begin_vertex>', `
+       #include <begin_vertex>
+-      vContactLocal = position;
+-      vContactAge = aContactAge;
+-      vec3 contactNormal = normal;
+-      vec4 contactWorld = vec4(position, 1.);
++      vContactUv = vec2(position.x + .5, position.y);
++      vContactState = aContactState;
++      vContactRight = vec3(1., 0., 0.);
++      vContactFacing = vec3(0., 0., 1.);
+       #ifdef USE_INSTANCING
+-        mat3 m = mat3(instanceMatrix);
+-        // Adjugate-transpose handles the fitted terrain shear as well as
+-        // nonuniform scale; positive determinant needs no sign correction.
+-        mat3 cofactors = mat3(cross(m[1], m[2]), cross(m[2], m[0]), cross(m[0], m[1]));
+-        contactNormal = cofactors * contactNormal;
+-        contactWorld = instanceMatrix * contactWorld;
++        vContactRight = normalize(vec3(instanceMatrix[0].x, 0., instanceMatrix[0].z));
++        vContactFacing = normalize(vec3(instanceMatrix[2].x, 0., instanceMatrix[2].z));
+       #endif
+-      vContactNormal = normalize(mat3(modelMatrix) * contactNormal);
+-      vContactWorld = (modelMatrix * contactWorld).xyz;
++      vContactRight = normalize(mat3(modelMatrix) * vContactRight);
++      vContactFacing = normalize(mat3(modelMatrix) * vContactFacing);
+     `);
+     shader.fragmentShader = shader.fragmentShader.replace('#include <common>', `
+       #include <common>
+-      varying float vContactAge;
+-      varying vec3 vContactNormal;
+-      varying vec3 vContactLocal;
+-      varying vec3 vContactWorld;
+-      float contactHash(vec3 p) {
+-        p = fract(p * .3183099 + vec3(.11, .37, .71));
+-        p *= 17.; return fract(p.x * p.y * p.z * (p.x + p.y + p.z));
++      varying vec4 vContactState;
++      varying vec2 vContactUv;
++      varying vec3 vContactRight;
++      varying vec3 vContactFacing;
++      float contactHash(vec2 p) {
++        vec3 p3 = fract(vec3(p.xyx) * .1031);
++        p3 += dot(p3, p3.yzx + 33.33);
++        return fract((p3.x + p3.y) * p3.z);
+       }
+-      float contactNoise(vec3 p) {
+-        vec3 i = floor(p), f = fract(p); f = f * f * (3. - 2. * f);
+-        return mix(mix(mix(contactHash(i), contactHash(i + vec3(1,0,0)), f.x),
+-          mix(contactHash(i + vec3(0,1,0)), contactHash(i + vec3(1,1,0)), f.x), f.y),
+-          mix(mix(contactHash(i + vec3(0,0,1)), contactHash(i + vec3(1,0,1)), f.x),
+-          mix(contactHash(i + vec3(0,1,1)), contactHash(i + vec3(1,1,1)), f.x), f.y), f.z);
++      float contactNoise(vec2 p) {
++        vec2 i = floor(p), f = fract(p); f = f * f * (3. - 2. * f);
++        return mix(mix(contactHash(i), contactHash(i + vec2(1,0)), f.x),
++          mix(contactHash(i + vec2(0,1)), contactHash(i + vec2(1,1)), f.x), f.y);
++      }
++      float contactUnion(float a, float b) {
++        float h = clamp(.5 + .5 * (b - a) / .22, 0., 1.);
++        return mix(b, a, h) - .22 * h * (1. - h);
+       }
+     `).replace('#include <color_fragment>', `
+       #include <color_fragment>
+-      // Game-clock age rolls small billows up the closed core. No vertex
+-      // displacement changes the grounded shell or its shared depth passes.
+-      vec3 p = vContactLocal * vec3(3.2, 4., 3.2) - vec3(0., vContactAge * 1.3, 0.);
+-      float billow = contactNoise(p) * .88 + contactNoise(p * 2.3 + 9.) * .12;
+-      vec3 n = normalize(vContactNormal);
+-      vec3 dx = dFdx(vContactWorld), dy = dFdy(vContactWorld);
+-      vec3 r1 = cross(dy, n), r2 = cross(n, dx);
+-      float det = dot(dx, r1);
+-      vec3 gradient = sign(det) * (dFdx(billow) * r1 + dFdy(billow) * r2);
+-      n = normalize(n - .035 * (1. - smoothstep(.8, 1.5, vContactAge))
+-        * gradient / max(abs(det), .000001));
+-      float direct = dot(n, normalize(vec3(-.42, .76, -.5)));
+-      float crown = smoothstep(.05, .8, vContactLocal.y);
+-      float light = smoothstep(-.24, .92, direct) * (.65 + .35 * crown);
+-      vec3 trough = diffuseColor.rgb * vec3(.30, .23, .18);
+-      vec3 lit = diffuseColor.rgb * vec3(1.38, 1.19, .94);
+-      diffuseColor.rgb = mix(trough, lit, light) * (.88 + .24 * billow);
++      float age = vContactState.x, seed = vContactState.y, layer = vContactState.w;
++      vec2 q = vContactUv * 2. - 1.;
++      q.x += sin(age * 3. + seed) * .10 * vContactUv.y;
++      // Unequal overlapping rounded lobes have porous feathered boundaries;
++      // the quad edge is never the visible silhouette, including its base.
++      float a = length((q - vec2(-.28, -.28)) / vec2(.62, .66)) - 1.;
++      float b = length((q - vec2(.32, -.20)) / vec2(.55, .73)) - 1.;
++      float c = length((q - vec2(-.04, .31)) / vec2(.55, .58)) - 1.;
++      float envelope = contactUnion(contactUnion(a, b), c);
++      vec2 flow = vec2(seed + layer * 4.1, -age * .9);
++      float coarse = contactNoise(q * 3.2 + flow);
++      float fine = contactNoise(q * 8.5 + flow * 1.6);
++      float turbulence = coarse * .74 + fine * .26;
++      float brokenEdge = envelope + (turbulence - .5) * .30;
++      float silhouette = 1. - smoothstep(-.10, .22, brokenEdge);
++      float border = smoothstep(0., .12, vContactUv.x) * smoothstep(0., .12, 1. - vContactUv.x)
++        * smoothstep(0., .10, vContactUv.y) * smoothstep(0., .10, 1. - vContactUv.y);
++      float pores = smoothstep(.12, .62, turbulence);
++      float density = silhouette * border * (.22 + .78 * pores);
++      float birth = smoothstep(0., .05, age);
++      float extinction = (1. - exp(-density * 1.5)) * birth * vContactState.z * (layer < .5 ? .72 : .53);
++      diffuseColor.a *= extinction;
++      if (diffuseColor.a < .004) discard;
++      // An analytic rounded volume normal gives sunlit crowns, with broad
++      // low-contrast turbulence inside. No rock normal-map microcontrast.
++      vec3 localNormal = normalize(vec3(q.x * .55, (q.y + .45) * .80,
++        sqrt(max(.12, 1. - dot(q * .65, q * .65)))));
++      vec3 worldNormal = normalize(vContactRight * localNormal.x + vec3(0., localNormal.y, 0.)
++        + vContactFacing * localNormal.z);
++      float light = smoothstep(-.25, .9, dot(worldNormal, normalize(vec3(-.42, .76, -.5))));
++      vec3 trough = diffuseColor.rgb * vec3(.48, .40, .32);
++      vec3 crown = diffuseColor.rgb * vec3(1.25, 1.17, 1.05);
++      diffuseColor.rgb = mix(trough, crown, light) * (.84 + .28 * coarse);
+     `);
+   };
+-  result.customProgramCacheKey = () => 'inkstorm-closed-contact-volume-v2';
++  result.customProgramCacheKey = () => 'inkstorm-porous-contact-billows-v1';
+   return result;
+ }
+--- a/tests/render/WreckContactVolume.test.ts
++++ b/tests/render/WreckContactVolume.test.ts
+@@ -1,46 +1,46 @@
+-import { Matrix4, MeshBasicMaterial, Vector3 } from 'three';
++import { Matrix4, MeshBasicMaterial, PerspectiveCamera, Vector3 } from 'three';
+ import { afterAll, describe, expect, it, vi } from 'vitest';
+ import { GalacticEffectsView, GALACTIC_EFFECT_CAPACITY, GALACTIC_EFFECT_DRAW_CALL_BUDGET } from '../../src/render/galactic/GalacticEffectsView';
+ import { CEL_POST_EXCLUDE_USER_DATA_KEY } from '../../src/render/materials/InvertedHullOutline';
+ import { fixture, race, variants } from '../fixtures/teemtoActualCamera';
+ const rows: unknown[] = [];
+ afterAll(async () => {
+-  const path = (globalThis as unknown as { process?: { env: Record<string, string | undefined> } }).process?.env.V30_CONTACT_METRICS_PATH;
++  const path = (globalThis as unknown as { process?: { env: Record<string, string | undefined> } }).process?.env.V31_CONTACT_METRICS_PATH;
+   if (path) { const module: string = 'node:fs'; const { writeFileSync } = await import(/* @vite-ignore */ module); writeFileSync(path, JSON.stringify(rows, null, 2) + '\n'); }
+ });
+ const footprint = () => ({ center: new Vector3(0, 0, 0), axis: new Vector3(0, 0, 1), halfLength: 1.5, halfWidth: .5,
+   edges: [new Vector3(-2, 0, 0), new Vector3(2, 0, 0)] as const });
+ const rupture = { position: new Vector3(), direction: new Vector3(1, 0, 0) };
+-describe('Owned rolling rear-contact volume', () => {
+-  it.each(variants)('%s uses real current terrain under its complete closed dust geometry with fixed query cost', name => {
++describe('Owned porous rear-contact cloud cards', () => {
++  it.each(variants)('%s keeps complete card carriers above actual terrain with fixed query cost', name => {
+     const art = fixture(name), sim = race(), fx = new GalacticEffectsView();
+-    // Native V29 heat onset560 / wreck912: exact hero body position at922.
+-    for (let frame = 1; frame <= 922; frame++) sim.step({ brake: 1, boost: frame >= 560 && frame <= 912 });
++    // Native V30 wreck910; first fixed-tick rear contact920.
++    for (let frame = 1; frame <= 920; frame++) sim.step({ brake: 1, boost: frame >= 558 && frame <= 910 });
+     const entry = sim.state.entries[0]!, remaining = entry.galactic!.wreck.timer;
+     const pose = art.cache.update(entry.vehicle, remaining, sim.terrain); art.breakup.update(pose, remaining, sim.terrain);
+     const c = pose.groundContact!, f = c.footprint!, before = JSON.stringify(f);
+     const terrain = { heightAt: vi.fn((x: number, z: number) => sim.terrain.heightAt(x, z)) };
+     const geometry = fx.contactDust.geometry, positions = geometry.getAttribute('position');
+     const source = Array.from({ length: positions.count }, (_, i) => new Vector3().fromBufferAttribute(positions, i));
+-    const matrix = new Matrix4(), metrics: unknown[] = []; let minimum = Infinity;
++    const matrix = new Matrix4(), metrics: unknown[] = [], yawMetrics: unknown[] = []; let minimum = Infinity;
+     try {
+-      expect(geometry.index!.count / 3).toBe(256);
+-      // Fixed nine-probe/cull envelope must cover every closed subcap.
++      expect(geometry.index!.count / 3).toBe(2);
++      // The bottom-anchored card has no opaque shell or downward-facing base.
+       for (const local of source) {
+-        expect(Math.abs(local.x)).toBeLessThanOrEqual(1.06);
+-        expect(Math.abs(local.z)).toBeLessThanOrEqual(1.06);
++        expect(Math.abs(local.x)).toBeLessThanOrEqual(.5);
++        expect(Math.abs(local.z)).toBeLessThanOrEqual(.5);
+         expect(local.y).toBeGreaterThanOrEqual(0); expect(local.y).toBeLessThanOrEqual(1);
+       }
+       fx.emitWreckGroundContact(4, c.position, c.direction, f, { terrain, owner: 0, sequence: 1 });
+       for (const age of [0, .058333333333, .16, .408333333333, 1.208333333333, 1.64]) {
+         terrain.heightAt.mockClear(); fx.update(4 + age);
+         expect(terrain.heightAt).toHaveBeenCalledTimes(45);
+-        expect(fx.contactDust.count).toBe(5); expect(fx.explosionPlates.count).toBe(0);
++        expect(fx.contactDust.count).toBe(10); expect(fx.explosionPlates.count).toBe(0);
+         let ageMin = Infinity, ageMaxRise = 0, maxBaseGap = 0;
+-        for (let i = 0; i < 5; i++) {
++        for (let i = 0; i < 10; i++) {
+           fx.contactDust.getMatrixAt(i, matrix); expect(matrix.elements.every(Number.isFinite)).toBe(true);
+           expect(matrix.determinant()).toBeGreaterThan(0);
+-          expect(geometry.getAttribute('aContactAge').getX(i)).toBeCloseTo(age, 5);
++          expect(geometry.getAttribute('aContactState').getX(i)).toBeCloseTo(age, 5);
+           for (const local of source) {
+             const world = local.clone().applyMatrix4(matrix), gap = world.y - sim.terrain.heightAt(world.x, world.z);
+             minimum = Math.min(minimum, gap); ageMin = Math.min(ageMin, gap);
+@@ -49,36 +49,83 @@
+           }
+           const bottom = new Vector3().applyMatrix4(matrix), top = new Vector3(0, 1, 0).applyMatrix4(matrix);
+           ageMaxRise = Math.max(ageMaxRise, top.y - bottom.y);
+-          expect(top.y - bottom.y).toBeLessThanOrEqual(1.801);
++          expect(top.y - bottom.y).toBeLessThanOrEqual(2.601);
+         }
+-        if (age > 1.2 && age < 1.3) { expect(ageMaxRise).toBeGreaterThan(.3); expect(ageMaxRise).toBeLessThan(.6); }
+-        if (age > 1.6) expect(ageMaxRise).toBeLessThan(.01);
++        if (age > 1.2 && age < 1.3) { expect(ageMaxRise).toBeGreaterThan(.9); expect(ageMaxRise).toBeLessThan(1.8); }
++        if (age > 1.6) {
++          expect(ageMaxRise).toBeGreaterThan(.8); // Erode/fade; do not flatten into hard lumps.
++          expect(geometry.getAttribute('aContactState').getZ(0)).toBeLessThan(.002);
++        }
+         const unchanged = [...fx.contactDust.instanceMatrix.array]; terrain.heightAt.mockClear(); fx.update(4 + age);
+         expect(terrain.heightAt).not.toHaveBeenCalled(); expect([...fx.contactDust.instanceMatrix.array]).toEqual(unchanged);
+         metrics.push({ age, minimumGap: ageMin, maximumBaseGap: maxBaseGap, maximumVerticalRise: ageMaxRise, queries: 45 });
+       }
++      // Reborn same actual footprint: every camera azimuth must stay inside
++      // the already sampled support envelope, without a new terrain query.
++      fx.clearEffects(); fx.emitWreckGroundContact(4, c.position, c.direction, f, { terrain, owner: 0, sequence: 2 });
++      const camera = new PerspectiveCamera(70, 1.6, .1, 120), target = f.center.clone().add(new Vector3(0, 1, 0));
++      let previousMatrices: number[] | undefined;
++      for (const yaw of [0, Math.PI / 2, Math.PI, Math.PI * 1.5, -1]) {
++        camera.position.set(target.x + Math.sin(yaw) * 25, target.y + 7, target.z + Math.cos(yaw) * 25);
++        if (yaw === -1) camera.position.set(18627.292385532623, -9.25189197067709, 27.651508510057557);
++        camera.lookAt(target); camera.updateMatrixWorld(true);
++        terrain.heightAt.mockClear(); fx.update(4.4, camera);
++        expect(terrain.heightAt).toHaveBeenCalledTimes(previousMatrices ? 0 : 45);
++        expect(fx.contactDust.count).toBe(10);
++        let lastDepth = Infinity, totalArea = 0, baseMinimum = Infinity, minRight = Infinity, maxRight = -Infinity, peak = 0;
++        const right = new Vector3().setFromMatrixColumn(camera.matrixWorld, 0);
++        for (let i = 0; i < 10; i++) {
++          fx.contactDust.getMatrixAt(i, matrix); expect(matrix.elements.every(Number.isFinite)).toBe(true);
++          const center = new Vector3(0, .5, 0).applyMatrix4(matrix), eye = camera.position.clone().sub(center); eye.y = 0;
++          const normal = new Vector3(matrix.elements[8], 0, matrix.elements[10]).normalize();
++          expect(normal.dot(eye.normalize())).toBeGreaterThan(.999);
++          const depth = -center.clone().applyMatrix4(camera.matrixWorldInverse).z;
++          expect(depth).toBeLessThanOrEqual(lastDepth + .004); lastDepth = depth;
++          totalArea += Math.hypot(matrix.elements[0]!, matrix.elements[2]!) * matrix.elements[5]!;
++          peak = Math.max(peak, matrix.elements[5]!);
++          for (const local of source) { const world = local.clone().applyMatrix4(matrix), x = world.dot(right); minRight = Math.min(minRight, x); maxRight = Math.max(maxRight, x); }
++          for (let j = 0; j <= 8; j++) {
++            const bottom = new Vector3(j / 8 - .5, 0, 0).applyMatrix4(matrix);
++            const gap = bottom.y - sim.terrain.heightAt(bottom.x, bottom.z); baseMinimum = Math.min(baseMinimum, gap);
++            expect(gap).toBeGreaterThan(.0199);
++          }
++        }
++        yawMetrics.push({ yaw: yaw === -1 ? "observed V30 eye; chosen target" : yaw, sumCarrierArea: totalArea, cameraRightCarrierSpan: maxRight - minRight, maximumHeight: peak, minimumBaseGap: baseMinimum, queries: previousMatrices ? 0 : 45 });
++        expect(totalArea).toBeLessThan(90); // Sum of local carrier rectangles, not screen coverage.
++        if (previousMatrices) expect([...fx.contactDust.instanceMatrix.array]).not.toEqual(previousMatrices);
++        previousMatrices = [...fx.contactDust.instanceMatrix.array];
++      }
+       expect(JSON.stringify(f)).toBe(before); expect(fx.children).toHaveLength(9);
+       fx.update(5.65); expect(fx.contactDust.count).toBe(0);
+-      rows.push({ name, birthFootprint: JSON.parse(before), minimumGeometryGap: minimum, metrics,
+-        scope: 'Actual native-input source fixture, complete dust vertices versus physical terrain; no native pixels/casing occlusion/FPS claim. Nine terrain probes per active lobe, zero on repeated same clock.' });
++      rows.push({ name, birthFootprint: JSON.parse(before), minimumGeometryGap: minimum, metrics, yawMetrics,
++        scope: 'Actual V30-input source fixture, all card corners versus physical terrain. Nine probes per parent cover every yaw; no continuous-terrain/pixel/FPS claim.' });
+     } finally { fx.dispose(); art.breakup.reset(); }
+   });
+   it('keeps bounded resources, exact owner/sequence replacement and recovery/reset/disposal clearing', () => {
+     const fx = new GalacticEffectsView(), f = footprint(), terrain = { heightAt: vi.fn(() => 0) };
+     let disposed = false;
+     try {
+-      expect(GALACTIC_EFFECT_DRAW_CALL_BUDGET).toBe(9); expect(GALACTIC_EFFECT_CAPACITY.contactDust).toBe(40);
++      expect(GALACTIC_EFFECT_DRAW_CALL_BUDGET).toBe(9); expect(GALACTIC_EFFECT_CAPACITY.contactDust).toBe(40); expect(GALACTIC_EFFECT_CAPACITY.contactDustCards).toBe(80);
+       for (let owner = 0; owner < 8; owner++) fx.emitWreckGroundContact(1, new Vector3(), new Vector3(1, 0, 0), f, { terrain, owner, sequence: 1 });
+-      terrain.heightAt.mockClear(); fx.update(1.2); expect(fx.contactDust.count).toBe(40); expect(terrain.heightAt).toHaveBeenCalledTimes(360);
++      const camera = new PerspectiveCamera(70, 1.6, .1, 120); camera.position.set(20, 8, 25); camera.lookAt(0, 1, 0); camera.updateMatrixWorld(true);
++      terrain.heightAt.mockClear(); fx.update(1.2, camera); expect(fx.contactDust.count).toBe(80); expect(terrain.heightAt).toHaveBeenCalledTimes(360);
++      const matrix = new Matrix4(); let lastDepth = Infinity;
++      for (let i = 0; i < 80; i++) { fx.contactDust.getMatrixAt(i, matrix); const depth = -new Vector3(0, .5, 0).applyMatrix4(matrix).applyMatrix4(camera.matrixWorldInverse).z; expect(depth).toBeLessThanOrEqual(lastDepth + .00001); lastDepth = depth; }
++      // Horizontal eye exactly over one parent: the finite source-axis fallback
++      // must still produce valid cards without requerying held-clock terrain.
++      const parent = (fx as unknown as { contactDustSlots: { cx: number; cz: number }[] }).contactDustSlots[0]!;
++      camera.position.set(parent.cx, 5, parent.cz); camera.lookAt(parent.cx, 0, parent.cz); camera.updateMatrixWorld(true);
++      terrain.heightAt.mockClear(); fx.update(1.2, camera); expect(terrain.heightAt).not.toHaveBeenCalled();
++      for (let i = 0; i < fx.contactDust.count; i++) { fx.contactDust.getMatrixAt(i, matrix); expect(matrix.elements.every(Number.isFinite)).toBe(true); expect(matrix.determinant()).toBeGreaterThan(0); }
+       fx.emitWreckGroundContact(1.2, new Vector3(), new Vector3(1, 0, 0), f, { terrain, owner: 0, sequence: 2 });
+-      fx.syncWreckRupture(0, 2, rupture); fx.update(1.3); expect(fx.contactDust.count).toBe(40);
+-      fx.syncWreckRupture(0, 2); fx.update(1.3); expect(fx.contactDust.count).toBe(35);
++      fx.syncWreckRupture(0, 2, rupture); fx.update(1.3); expect(fx.contactDust.count).toBe(80);
++      fx.syncWreckRupture(0, 2); fx.update(1.3); expect(fx.contactDust.count).toBe(70);
+       const slots = (fx as unknown as { contactDustSlots: { active: boolean; terrain: unknown; owner: number }[] }).contactDustSlots;
+       expect(slots.filter(s => s.owner === 0).every(s => !s.active && !s.terrain)).toBe(true);
+       fx.clearEffects(); expect(fx.contactDust.count).toBe(0); expect(slots.every(s => !s.active && !s.terrain)).toBe(true);
+       const material = fx.contactDust.material as MeshBasicMaterial;
+-      expect(material.transparent).toBe(false); expect(material.depthTest).toBe(true); expect(material.depthWrite).toBe(true);
+-      expect(fx.contactDust.userData[CEL_POST_EXCLUDE_USER_DATA_KEY]).toBe(false);
++      expect(material.transparent).toBe(true); expect(material.depthTest).toBe(true); expect(material.depthWrite).toBe(false);
++      expect(fx.contactDust.userData[CEL_POST_EXCLUDE_USER_DATA_KEY]).toBe(true);
+       const disposeGeometry = vi.spyOn(fx.contactDust.geometry, 'dispose'), disposeMaterial = vi.spyOn(material, 'dispose');
+       fx.dispose(); disposed = true; expect(disposeGeometry).toHaveBeenCalledTimes(1); expect(disposeMaterial).toHaveBeenCalledTimes(1);
+     } finally { if (!disposed) fx.dispose(); }

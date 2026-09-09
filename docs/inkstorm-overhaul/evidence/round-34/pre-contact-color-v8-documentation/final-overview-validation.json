@@ -1,0 +1,62 @@
+{
+  "scope": "Compact final V8 experiment/V9 retained candidate overview reconciliation. No runtime, source binary, public, tests, native harness or build mutation; no duplicate runtime/image archive.",
+  "checks": {
+    "HANDOVER.md archived body exact": true,
+    "README.md archived body exact": true,
+    "fullPriorRound34V5DocumentPreservedVerbatimInline": true,
+    "all29CatalogueRowsAndFollowingSourceLicenceHistoryExact": true,
+    "docs/inkstorm-overhaul/ASSET_ACQUISITION_LIMITS.md archived body exact": true,
+    "V3PerformanceReportExact": true,
+    "V5PerformanceReportExact": true,
+    "sevenImmediatePreV8CopiesExact": true
+  },
+  "localLinksChecked": 193,
+  "missingLinks": [],
+  "files": [
+    {
+      "path": "HANDOVER.md",
+      "bytes": 16530,
+      "sha256": "b3bb876b63954c82a097aea18aabff50b1d5d09a26540e20aabf57ed5b94e5f8"
+    },
+    {
+      "path": "README.md",
+      "bytes": 11002,
+      "sha256": "d479dcf54174b2b57d5f831321f3d426a752f6aa2a47e56abf7e93bc4ecd91a1"
+    },
+    {
+      "path": "docs/inkstorm-overhaul/STATUS.md",
+      "bytes": 7872,
+      "sha256": "59290a21a947c0ef5ea8293a8cbb5674e9eaef207036cdd2cc448187d19419c3"
+    },
+    {
+      "path": "docs/inkstorm-overhaul/ROUND34.md",
+      "bytes": 21040,
+      "sha256": "5a418b60cf59a5eecd5129ce5a6b56a36a777f3a688a68f8136a98971417e10f"
+    },
+    {
+      "path": "docs/inkstorm-overhaul/CURRENT_VISUALS.md",
+      "bytes": 6999,
+      "sha256": "679d2dd39402017d1d646d1129c8296105f3a5d7ea0e7f14db93d8f83e4492c7"
+    },
+    {
+      "path": "docs/inkstorm-overhaul/VEHICLE_CATALOG.md",
+      "bytes": 18460,
+      "sha256": "347cd9709fc7de43f6d22b2d42a7c17d3522d0b919b8763fac8702639f5fda86"
+    },
+    {
+      "path": "docs/inkstorm-overhaul/ASSET_ACQUISITION_LIMITS.md",
+      "bytes": 11240,
+      "sha256": "b3669efc1a6dfe556154ddade78bac8ab80d6b19796ce1ff401c17ae36041081"
+    }
+  ],
+  "pairedV8ReviewAudit": {
+    "path": "assets/source/inkstorm/blockrunner-round34/contact-color-v1-blind-review/audited-review-v1.json",
+    "sha256": "0d31a7d9cb5ac224dd30d7bc8ce328d7526756d1629f1b8231dece8cfab3a7e0"
+  },
+  "rootV9ReviewAudit": {
+    "path": "assets/source/inkstorm/round34-distant-edge-diagnosis/blind-runtime-v9/cli-critic-attempt1/audited-review-receipt.json",
+    "sha256": "1278cad301a7884147fe2a961312b7b31ef31cdb6ee0ab8da471adfc3102464e"
+  },
+  "gitDiffCheckPassed": true,
+  "finalGalleryScope": "13 actual V9 PNG links; V8 original captures/inventory and initial V8 edit diffs retained, no copied image archive."
+}

@@ -1,0 +1,22 @@
+{
+  "source": "src/ui/broadcastStyles.ts",
+  "sha256": "df97870e5a3ab6a75a0af143b53aa69414378b88cedf93d3ddda1dffa01d6499",
+  "bytes": 68256,
+  "beforeSha256": "0bbd39f4c17ea6458db6a12fff0f462e789b719d6413b1d171d8e948f40dd7bf",
+  "cssParse": {
+    "passed": true,
+    "rules": 703
+  },
+  "whitespaceCheck": true,
+  "nativeValidation": "Pending parent capture; no browser/build run.",
+  "typecheck": "Integrated check pending the concurrent damaged-Teemto source completion.",
+  "preservedGeometry": "Unchanged HUD anchors/container sizes/font sizes/speed SVG paths/boost and heat/damage values; unchanged course progress rail.",
+  "changes": [
+    "Removed large opaque lower-right housing; background, border and shadow now transparent/none.",
+    "Retained oval and charge geometry, thinner amber track, local transparent oval fill (34% opacity), dark outline shadow and speed text shadow.",
+    "Local dark backing only around small meter headings/redline instruction preserves sky contrast.",
+    "Removed full-width top fill and linking decorative rail; lap/time/position use independent local contrast plates at existing anchors.",
+    "High-contrast setting retains opaque local timing plates and existing opaque speed oval."
+  ],
+  "criticInputUnchanged": "V16a diagnostic seven frozen images remain the independent critic inputs; these source changes were not shown to that critic."
+}

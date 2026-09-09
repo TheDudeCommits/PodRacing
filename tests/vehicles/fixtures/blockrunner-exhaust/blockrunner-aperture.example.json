@@ -1,0 +1,23 @@
+{
+  "status": "EXAMPLE ONLY; deliberately absent from vehicle catalogue",
+  "hasAuthoredExhaustHardware": true,
+  "exhaustApertureRadius": 0.34,
+  "attachments": {
+    "exhaustLeft": {
+      "position": [
+        -3.651407175599785,
+        1.4209392232848972,
+        2.96253509241496
+      ]
+    },
+    "exhaustRight": {
+      "position": [
+        3.482691623294051,
+        1.4209392232848972,
+        2.9625384568864277
+      ]
+    }
+  },
+  "sourceSha256": "1ecf135bc63df02102f168b79ea869d98aba6d07bdc94b2e0c6f10478a13f96e",
+  "clearRadiusBasis": "Conservative common circular radius within both measured 20-sided inner polygons. The .3460396m vertex radius is not edge clearance."
+}

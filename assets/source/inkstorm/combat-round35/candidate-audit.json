@@ -1,0 +1,102 @@
+{
+  "createdAt": "2026-09-08T17:39:42.118055+00:00",
+  "scope": "Private candidate only; no live integration, browser, GPU, build, or performance run by this agent.",
+  "files": [
+    {
+      "path": "src/camera/RaceCameraDirector.ts",
+      "baselineSha256": "12d491237ea1e76523291f5c4846e84e30edd52a11a894922e30807764ab4713",
+      "candidateSha256": "83a63ec43d55bbfd11e0cb73cbe9c004d9539355fbf7792c1fa8ca01d2e05329",
+      "candidateBytes": 7430,
+      "liveStillMatchesBaseline": true
+    },
+    {
+      "path": "src/game/galactic/combatPickups.ts",
+      "baselineSha256": null,
+      "candidateSha256": "8c9548d52eccf4208bf1e86b9987549c67ed11b7b6b474740065350d01d6f316",
+      "candidateBytes": 4567,
+      "liveStillMatchesBaseline": true
+    },
+    {
+      "path": "src/game/galactic/system.ts",
+      "baselineSha256": "815bb09fa2608575f4afd73a85867dbb065816171bf9f847bc1e9b212cdb6033",
+      "candidateSha256": "35cfe93d3d451ca2182b47c821edbab5d29b90f05e275679f90dce85af0ad889",
+      "candidateBytes": 27854,
+      "liveStillMatchesBaseline": true
+    },
+    {
+      "path": "src/game/galactic/types.ts",
+      "baselineSha256": "31df788a1e19fc48bde420b7b8300cdaa9ded7cd306f2b77abb24d4ab7c13359",
+      "candidateSha256": "b7bdf1a09cab5dd7ffb0088a1412d6d34d1d07eaee97e1979586fed3ca5c8663",
+      "candidateBytes": 11319,
+      "liveStillMatchesBaseline": true
+    },
+    {
+      "path": "src/game/race/RaceSimulation.ts",
+      "baselineSha256": "36de9c291f3c631fe519b88c32c344d5e3f523835ba6139c55d9066fed5ed35e",
+      "candidateSha256": "bb65528c57623190accdbc2b85e03583889c1b7f5409b4a09ef800e33f98b2de",
+      "candidateBytes": 92821,
+      "liveStillMatchesBaseline": true
+    },
+    {
+      "path": "src/render/app/GameApp.ts",
+      "baselineSha256": "0d87e236bdf0f27a73aa2a4fd24c63dc5c8a5be7c7c6bd255f8612ce46730fd9",
+      "candidateSha256": "47ced7463b27c9e64f758979804c6641ca163b7922f158034d4e5e535441c3bf",
+      "candidateBytes": 163802,
+      "liveStillMatchesBaseline": true
+    },
+    {
+      "path": "src/render/combat/CombatPresentationController.ts",
+      "baselineSha256": null,
+      "candidateSha256": "97d26a20c911047eed03364fe74612c20b7982cab757b4ee35dbd241b27c8369",
+      "candidateBytes": 9563,
+      "liveStillMatchesBaseline": true
+    },
+    {
+      "path": "src/render/galactic/GalacticEffectsView.ts",
+      "baselineSha256": "f7ce9e3f3fbc5cab72b8dbd7aa60b1edb67af78ccbfa2b31d0f2f3b1ae182ed7",
+      "candidateSha256": "250df1187130aa79282013e6b921356e72a2f3d4be03996d0ad16ff3350e56c4",
+      "candidateBytes": 48720,
+      "liveStillMatchesBaseline": true
+    },
+    {
+      "path": "tests/combat/CombatPresentationController.test.ts",
+      "baselineSha256": null,
+      "candidateSha256": "b2d81fce6ee0fcff853b7290332b4a19490baa705b3f68175740afddd536278d",
+      "candidateBytes": 8534,
+      "liveStillMatchesBaseline": true
+    },
+    {
+      "path": "tests/galactic/combatPickups.test.ts",
+      "baselineSha256": null,
+      "candidateSha256": "8f05f5b742179423f024c22afb29498388857c7b09c1b93be218eec35e47fb8e",
+      "candidateBytes": 10155,
+      "liveStillMatchesBaseline": true
+    }
+  ],
+  "patchSha256": "1b79e8180d9c9961b9b06808f000ff289c59e749cef72d00e2f815c5d20fcaae",
+  "validation": {
+    "success": true,
+    "totalTests": 31,
+    "passedTests": 31,
+    "failedTests": 0,
+    "newControllerTests": 14,
+    "newPickupTests": 7,
+    "existingGalacticTests": 10,
+    "vitestReportSha256": "567de0e444ac3a3ba93e7d8de75f48e66126159b2fa0b56ab433ee12a616c881",
+    "targetedTypecheckExitCode": 0,
+    "typecheckIncludes": [
+      "new modules and tests",
+      "private GameApp import graph",
+      "private GalacticEffectsView",
+      "current live RaceHud via read-only validation overlay"
+    ]
+  },
+  "networkEventParser": {
+    "path": "src/network/RoomSession.ts",
+    "protocolVersion": 1,
+    "eventTypeWhitelist": false,
+    "checks": "finite JSON, bounded nodes/bytes, type string length, monotonically increasing sequence and step",
+    "sha256": "21c8ba561d4119fef6cde20056beab77c5c2f845fab2b6ab86944112bb1ed3d6"
+  },
+  "gitApplyCheckExitCode": 0
+}

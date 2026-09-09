@@ -3,9 +3,10 @@ import { fileURLToPath } from 'node:url';
 import { spawn } from 'node:child_process';
 import { createServer } from 'node:net';
 import { chromium } from '@playwright/test';
+import { frozenBuildReceipt } from './lib/frozen-build-receipt.mjs';
 
 const projectRoot = fileURLToPath(new URL('../', import.meta.url));
-const outputDir = fileURLToPath(new URL('../output/playwright/', import.meta.url));
+const outputDir = process.env.INKSTORM_OUTPUT ?? fileURLToPath(new URL('../output/playwright/', import.meta.url));
 const port = await new Promise((resolve, reject) => {
   const probe = createServer();
   probe.once('error', reject);
@@ -44,8 +45,14 @@ async function waitForSelector(page) {
   await page.waitForFunction(() => window.__PODRACING__?.ready === true);
   await page.waitForFunction(() => {
     const selector = document.querySelector('[data-hud="vehicle-selection"]');
+    const previews = [...document.querySelectorAll('[data-vehicle-preview][data-preview-ready="true"]')];
     return selector?.classList.contains('is-visible')
-      && document.querySelectorAll('[data-vehicle-preview][data-preview-ready="true"]').length === 4;
+      && document.querySelectorAll('.pod-hud__vehicle-card').length === 4
+      && previews.length === 5
+      && previews.every((preview) => {
+        const image = preview.querySelector('img[data-vehicle-preview-image]');
+        return image instanceof HTMLImageElement && image.complete && image.naturalWidth > 0;
+      });
   }, undefined, { timeout: 30_000 });
 }
 
@@ -83,6 +90,7 @@ let guestContext;
 let host;
 let guest;
 const browserErrors = [];
+let environments = [];
 
 try {
   await waitForServer(baseUrl);
@@ -108,6 +116,8 @@ try {
     guest.goto(baseUrl, { waitUntil: 'networkidle' }),
   ]);
   await Promise.all([waitForSelector(host), waitForSelector(guest)]);
+  environments = await Promise.all([frozenBuildReceipt(host, browser), frozenBuildReceipt(guest, browser)]);
+  console.log('Multiplayer: both browser clients loaded the local build; creating a live room.');
   await host.screenshot({ path: `${outputDir}/multiplayer-selector-initial.png`, animations: 'disabled' });
 
   await host.locator('[data-action="create-room"]').click();
@@ -153,7 +163,7 @@ try {
 
   const hostPrompt = (await host.locator('[data-hud="start-prompt"]').innerText()).toUpperCase();
   const guestPrompt = (await guest.locator('[data-hud="start-prompt"]').innerText()).toUpperCase();
-  if (!hostPrompt.includes('SPACE') || !hostPrompt.includes('START')) {
+  if (!hostPrompt.includes('SPACE') || !hostPrompt.includes('LAUNCH')) {
     throw new Error(`Host start prompt is not actionable: ${hostPrompt}`);
   }
   if (!guestPrompt.includes('WAITING FOR HOST') || guestPrompt.includes('SPACE')) {
@@ -242,6 +252,7 @@ try {
   if (browserErrors.length > 0) throw new Error(`Browser errors:\n${browserErrors.join('\n')}`);
 
   const receipt = {
+    outcome: 'PASS', environments,
     capturedAt: new Date().toISOString(),
     roomCodeLength: code.length,
     hostRole: hostFinal.game.onlineRoom.role,
@@ -259,6 +270,17 @@ try {
   };
   await writeFile(`${outputDir}/multiplayer-receipt.json`, `${JSON.stringify(receipt, null, 2)}\n`);
   console.log(JSON.stringify(receipt, null, 2));
+} catch (error) {
+  await Promise.all([
+    host?.screenshot({ path: `${outputDir}/multiplayer-failure-host.png` }).catch(() => undefined),
+    guest?.screenshot({ path: `${outputDir}/multiplayer-failure-guest.png` }).catch(() => undefined),
+  ]);
+  await writeFile(`${outputDir}/multiplayer-failure.json`, `${JSON.stringify({
+    capturedAt: new Date().toISOString(), error: String(error), browserErrors, environments,
+    host: host ? await gameSnapshot(host).catch(() => null) : null,
+    guest: guest ? await gameSnapshot(guest).catch(() => null) : null,
+  }, null, 2)}\n`);
+  throw error;
 } finally {
   if (host) await host.close().catch(() => undefined);
   if (guest) await guest.close().catch(() => undefined);

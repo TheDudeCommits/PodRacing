@@ -1,0 +1,57 @@
+{
+  "status": "OFFLINE PREPARATION ONLY; NO CLEANUP OR MASKS EXECUTED",
+  "counts": {
+    "sourceObjects": 55,
+    "sourceMeshObjects": 51,
+    "sourceMaterials": 51,
+    "sourceTriangles": 48384,
+    "meshesWithExactOpposedCandidates": 1,
+    "exactOpposedPairs": 4828,
+    "proposedRetainedTriangles": 43556,
+    "ambiguousGroupsNotRemoved": 0,
+    "sameWindingPairsNotRemoved": 0,
+    "uvDifferentOpposedPairsNotRemoved": 0,
+    "degeneratePolygonsNotRemoved": 0
+  },
+  "pilot": {
+    "source": 8256,
+    "bodyRemainderSource": 1400,
+    "proposedRetained": 4128,
+    "bodyRemainderProposedRetained": 700,
+    "roles": {
+      "helmet": {
+        "source": 1480,
+        "proposedRetained": 740
+      },
+      "visor": {
+        "source": 400,
+        "proposedRetained": 200
+      },
+      "gloves": {
+        "source": 1360,
+        "proposedRetained": 680
+      },
+      "suit": {
+        "source": 5016,
+        "proposedRetained": 2508
+      }
+    }
+  },
+  "changedMeshCandidates": [
+    {
+      "name": "pasted__L2x3slope2_lambert1_0",
+      "before": 9656,
+      "remove": 4828,
+      "after": 4828,
+      "pairsFnv1a64": "d1f9b1421c8d3801"
+    }
+  ],
+  "operationInputs": {
+    "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-ivory-round34/cleanup-preparation-v1/operation-inputs.json",
+    "bytes": 768630,
+    "sha256": "8a0dc7a4f7bec7d8b48603d3ce508c9091e84fa4ecb4c7b79e3f8ea69883f25c"
+  },
+  "noMcpExecuted": true,
+  "noMasksApplied": true,
+  "noRuntimeOrPublicChanges": true
+}

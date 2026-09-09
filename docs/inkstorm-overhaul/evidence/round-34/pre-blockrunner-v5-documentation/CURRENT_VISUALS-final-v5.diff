@@ -1,0 +1,89 @@
+--- before/docs/inkstorm-overhaul/CURRENT_VISUALS.md
++++ after/docs/inkstorm-overhaul/CURRENT_VISUALS.md
+@@ -1,64 +1,68 @@
+-# Inkstorm runtime images — tested Blockrunner V3, 8 September 2026
++# Inkstorm runtime images — Blockrunner V5, 8 September 2026
+ 
+-These **13 unedited actual game PNGs** come from `index-Cnysa7ZZ.js`, SHA256 `10ef7eb7189f407f530f73e802cdbc59acc1ebd47f5cfb2a26e3341e3b9bb04e`, at1440×900 CSS/DPR1.5. [Actual capture receipt](../../output/gauntlet/round34-blockrunner-admission-v1/captures-framing-v3/receipts.json) records zero errors. The chase framing is4.8; V3 garage uses the shallower front view `(-1.8,.45,.65)`. These images document the tested V3 attempt1 and supersede the historical foundation gallery for this checkpoint. Later working-tree revisions do not inherit their visual or technical evidence.
++These **13 unedited actual game PNGs** belong to `index-CFofn-oM.js`, SHA256 `2d8ff97639d335f22e1c683562c418d3f55572251f1b55dc71268bda015d264b`. [Capture receipt](../../output/gauntlet/round34-blockrunner-admission-v1/captures-material-framing-v5/receipts.json) records zero errors. Page viewport is 1440×900 CSS at DPR 1.5; staged main-renderer snapshots separately record DPR 2 with adaptive rendering disabled for capture. This is distinct from the adaptive performance runs. V5 uses a larger broadside garage portrait and separate narrow layout; chase clearance remains 4.8 m and public V6 assets are unchanged.
+ 
+-**V3 visual admission remains 6/10 for Blockrunner, world parity and overall: FAIL against the 8/10 gate.** The independent reviewer had prior narrow code and V1-image context; this is **not fresh blind**. Chase identity improved, while flat material response, garage pilot occlusion and world/route depth remain open. [Actual V3 review](BLOCKRUNNER_INGAME_FRAMING_V3_REVIEW_ROUND34.md).
++**Actual fresh V5 still-image verdict: craft 5/10, world/route 6.5/10, materials 4.5/10, overall 5.5/10 — FAIL against 8/10.** The separate ephemeral read-only CLI review used a fresh temporary directory and 21 hash-verified attachments (13 actual V5 images + eight concepts). No prior task history or verdict was supplied or retrieved; recorded tool/file retrieval calls are zero. Generic user configuration may load. Transport retries preceded an exit-0 final review with all 21 images declared viewed and 13 individual observations. This is still-image criticism, not motion, physics or performance evidence; it does not replace or average the earlier prior-context reviews. [Actual fresh report](../../assets/source/inkstorm/blockrunner-round34/fresh-v5-review-preparation/cli-critic-attempt1/review.md).
+ 
+-The separate [actual performance attempt1](FULL_RACE_PERFORMANCE_BLOCKRUNNER_ROUND34.md) passes two races/Continue, seven staged checks and context recovery but fails the exact resource plateau gate. These screenshots are not its timing evidence.
++The independent **V4 full-image review is 6/10 craft, 5/10 material parity, 6/10 world parity and 6/10 overall: FAIL against 8/10**. The reviewer disclosed prior source/documentation/V3 context; it is not fresh blind. The separate V5 review opened only the default and narrow garage PNGs, with prior context and the intended change disclosed. It finds improved default pilot inspection and resolved descriptor/model overlap, but unfinished materials. It gives no V5 race/world score or overall art PASS. [V4 full-image review](../../output/gauntlet/round34-blockrunner-admission-v1/captures-material-framing-v4/INDEPENDENT_MATERIAL_WORLD_V4_REVIEW.md) · [V5 garage addendum](../../output/gauntlet/round34-blockrunner-admission-v1/garage-inspection-v5/INDEPENDENT_GARAGE_V5_ADDENDUM.md). The numeric V4 scores are not V5 race/world scores. Those prior-context reports supply no fresh V5 verdict; the separate fresh review above does. Original targets remain unaccepted.
+ 
+-Section stills showing410KPH/zero clock are staged, not live-race or FPS evidence. The short ordinary Start/W image is also not a complete-race result. [Current implementation and technical scope](ROUND34.md) · [Acceptance](STATUS.md).
++The [V5 technical attempt](FULL_RACE_PERFORMANCE_BLOCKRUNNER_V5_ROUND34.md) passes races/Continue, staged cadence and context recovery, but fails resource plateau (+1 geometry/+2 textures at matching stages). Its frozen files and raw intervals own those results; these images are not timing evidence. Staged 410 KPH/zero-clock stills and one short ordinary Start/W frame are not full races, motion or FPS evidence.
++
++The garage reviewer viewed the earlier V5 default/narrow PNGs only. The [later readiness probe](../../output/gauntlet/round34-blockrunner-admission-v1/garage-inspection-v5-readiness/receipt.json) separately proves a 6 px descriptor/model gap and Start reachable after ordinary scroll on a 390×844 viewport, correcting the prior uncertainty without claiming a new critic inspection. It closed browser/server with no errors. The taller-page tradeoff remains visible.
++
++[Round scope](ROUND34.md) · [Acceptance](STATUS.md) · [Byte-preserved V3 gallery document](evidence/round-34/pre-blockrunner-v5-documentation/CURRENT_VISUALS.md). V7 contact-colour work is prepared only in its current receipt; no V7 image, export or acceptance is represented here.
+ 
+ ## Garage
+ 
+-![Garage — actual V3 runtime](../../output/gauntlet/round34-blockrunner-admission-v1/captures-framing-v3/garage.png)
++![Garage — actual V5 runtime](../../output/gauntlet/round34-blockrunner-admission-v1/captures-material-framing-v5/garage.png)
+ 
+ ## Grid
+ 
+-![Grid — actual V3 runtime](../../output/gauntlet/round34-blockrunner-admission-v1/captures-framing-v3/01-grid.png)
++![Grid — actual V5 runtime](../../output/gauntlet/round34-blockrunner-admission-v1/captures-material-framing-v5/01-grid.png)
+ 
+ ## Salt run
+ 
+-![Salt run — actual V3 runtime](../../output/gauntlet/round34-blockrunner-admission-v1/captures-framing-v3/02-salt-run.png)
++![Salt run — actual V5 runtime](../../output/gauntlet/round34-blockrunner-admission-v1/captures-material-framing-v5/02-salt-run.png)
+ 
+ ## Canyon
+ 
+-![Canyon — actual V3 runtime](../../output/gauntlet/round34-blockrunner-admission-v1/captures-framing-v3/03-canyon.png)
++![Canyon — actual V5 runtime](../../output/gauntlet/round34-blockrunner-admission-v1/captures-material-framing-v5/03-canyon.png)
+ 
+ ## Fork
+ 
+-![Fork — actual V3 runtime](../../output/gauntlet/round34-blockrunner-admission-v1/captures-framing-v3/04-fork.png)
++![Fork — actual V5 runtime](../../output/gauntlet/round34-blockrunner-admission-v1/captures-material-framing-v5/04-fork.png)
+ 
+ ## Launch
+ 
+-![Launch — actual V3 runtime](../../output/gauntlet/round34-blockrunner-admission-v1/captures-framing-v3/05-launch.png)
++![Launch — actual V5 runtime](../../output/gauntlet/round34-blockrunner-admission-v1/captures-material-framing-v5/05-launch.png)
+ 
+ ## Foundry
+ 
+-![Foundry — actual V3 runtime](../../output/gauntlet/round34-blockrunner-admission-v1/captures-framing-v3/06-foundry.png)
++![Foundry — actual V5 runtime](../../output/gauntlet/round34-blockrunner-admission-v1/captures-material-framing-v5/06-foundry.png)
+ 
+ ## Foundry approach
+ 
+-![Foundry approach — actual V3 runtime](../../output/gauntlet/round34-blockrunner-admission-v1/captures-framing-v3/foundry-approach.png)
++![Foundry approach — actual V5 runtime](../../output/gauntlet/round34-blockrunner-admission-v1/captures-material-framing-v5/foundry-approach.png)
+ 
+ ## Foundry near span
+ 
+-![Foundry near span — actual V3 runtime](../../output/gauntlet/round34-blockrunner-admission-v1/captures-framing-v3/foundry-near-span.png)
++![Foundry near span — actual V5 runtime](../../output/gauntlet/round34-blockrunner-admission-v1/captures-material-framing-v5/foundry-near-span.png)
+ 
+ ## Foundry middle
+ 
+-![Foundry middle — actual V3 runtime](../../output/gauntlet/round34-blockrunner-admission-v1/captures-framing-v3/foundry-middle.png)
++![Foundry middle — actual V5 runtime](../../output/gauntlet/round34-blockrunner-admission-v1/captures-material-framing-v5/foundry-middle.png)
+ 
+ ## Foundry exit
+ 
+-![Foundry exit — actual V3 runtime](../../output/gauntlet/round34-blockrunner-admission-v1/captures-framing-v3/foundry-exit.png)
++![Foundry exit — actual V5 runtime](../../output/gauntlet/round34-blockrunner-admission-v1/captures-material-framing-v5/foundry-exit.png)
+ 
+ ## Finish
+ 
+-![Finish — actual V3 runtime](../../output/gauntlet/round34-blockrunner-admission-v1/captures-framing-v3/07-finish.png)
++![Finish — actual V5 runtime](../../output/gauntlet/round34-blockrunner-admission-v1/captures-material-framing-v5/07-finish.png)
+ 
+ ## Short ordinary Start/W capture
+ 
+-![Short ordinary Start/W capture — actual V3 runtime](../../output/gauntlet/round34-blockrunner-admission-v1/captures-framing-v3/live-drive.png)
++![Short ordinary Start/W capture — actual V5 runtime](../../output/gauntlet/round34-blockrunner-admission-v1/captures-material-framing-v5/live-drive.png)
+ 
+ ## Separate source and target references
+ 

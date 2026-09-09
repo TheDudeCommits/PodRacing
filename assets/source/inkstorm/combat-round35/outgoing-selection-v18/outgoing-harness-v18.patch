@@ -1,0 +1,280 @@
+--- a/scripts/inkstorm-outgoing-takedown.ts
++++ b/scripts/inkstorm-outgoing-takedown.ts
+@@ -19,7 +19,7 @@
+ assert(Number.isInteger(port)&&port>=1024&&port<=65535&&port!==5211,'Dedicated valid owned port required; never5211.');
+ assert(/^[a-f0-9]{64}$/.test(process.env.INKSTORM_EXPECTED_BUILD??''),'An exact INKSTORM_EXPECTED_BUILD SHA is required.');
+ const delay=(ms:number)=>new Promise(resolve=>setTimeout(resolve,ms));
+-const receipt:any={outcome:'FAIL',errors:[],captures:[],commands:[],port,maxRaceWallSeconds:180,
++const receipt:any={outcome:'FAIL',errors:[],captures:[],commands:[],outgoingCandidates:[],port,maxRaceWallSeconds:180,
+  scope:'One actual Open Expedition race with ordinary automated virtual standard-gamepad steering/throttle/brake, Heat Lance, mines and shield. No game-state, position, health, cooldown, event, camera or simulation-step writes. Recorded native visual/input evidence; not physical-controller, performance, same-seed or guaranteed-kill coverage.',
+  harnessSha256:createHash('sha256').update(await readFile(new URL(import.meta.url))).digest('hex')};
+ // Refuse to overwrite any earlier attempt, including failed evidence.
+@@ -49,6 +49,7 @@
+   const win=window as any,pad=win.__outgoingPad;
+   const observation={samples:[]as any[],events:[]as any[],inputs:[]as any[],truncated:false,stopped:false};
+   let raf=0,lastSample=-Infinity,lastControl=-Infinity,previous:null|{x:number;z:number;time:number}=null,shieldUntil=-Infinity,nextShieldAt=0;
++  let previousPolicyContext:any=null;
+   const seen=new Set<string>();
+   win.__outgoingQA={observation,stop(){observation.stopped=true;cancelAnimationFrame(raf);pad.axes[0]=0;pad.buttons.forEach((b:any)=>{b.value=0;b.pressed=false;});}};
+   const clamp=(x:number,a:number,b:number)=>Math.max(a,Math.min(b,x));
+@@ -63,12 +64,19 @@
+    if(observation.stopped)return;
+    const state=window.__PODRACING__!.snapshot(),game=state.game as any,player=state.galactic!.racers.find(r=>r.id==='player')!,root=document.querySelector<HTMLElement>('.pod-hud');
+    const phase=root?.dataset.phase==='countdown'&&state.raceTime>0?'racing':root?.dataset.phase;
+-   for(const event of state.galactic?.recentEvents??[]){const key=JSON.stringify(event);if(!seen.has(key)){seen.add(key);append(observation.events,{...event,observedWallMs:wallMs},12000);}}
++   const policyContext={wallMs,frame:state.simulationFrame,phase,paused:root?.classList.contains('is-paused'),
++    role:game.onlineRoom.role,competitionProfile:game.competitionProfile,playerWreck:player.galactic.wreck.phase,
++    camera:state.camera,matte:root?.classList.contains('has-cinematic-matte'),combatPresentation:game.combatPresentation??null};
++   for(const event of state.galactic?.recentEvents??[]){const key=JSON.stringify(event);if(!seen.has(key)){
++    seen.add(key);const outgoing=event.type==='wreck'&&event.racerId!=='player'&&event.takedownBy==='player';
++    append(observation.events,{...event,observedWallMs:wallMs,...(outgoing?{eligibilityContext:{before:previousPolicyContext,observed:policyContext}}:{})},12000);
++   }}
+    if(wallMs-lastSample>=25){
+     lastSample=wallMs;const cue=root?.querySelector<HTMLElement>('[data-hud="combat-feedback"]'),box=cue?.getBoundingClientRect(),style=cue?getComputedStyle(cue):null;
+     const visible=!!cue&&!cue.hidden&&root!.classList.contains('has-combat-feedback')&&!!box&&box.width>0&&box.height>0&&style?.visibility!=='hidden'&&Number(style?.opacity)>0;
+     append(observation.samples,{wallMs,frame:state.simulationFrame,raceTime:state.raceTime,phase,paused:root?.classList.contains('is-paused'),
+      camera:state.camera,matte:root?.classList.contains('has-cinematic-matte'),playerWreck:player.galactic.wreck.phase,playerTakedowns:player.galactic.takedowns,
++     role:policyContext.role,competitionProfile:policyContext.competitionProfile,combatPresentation:policyContext.combatPresentation,
+      wrecks:state.galactic!.racers.filter(r=>r.galactic.wreck.phase==='wrecked').map(r=>({id:r.id,...r.galactic.wreck})),
+      cueKind:visible?cue!.dataset.kind:null,cueAge:visible?Number(cue!.style.getPropertyValue('--cue-age')):null,
+      cueTitle:visible?cue!.querySelector('[data-hud="combat-feedback-title"]')?.textContent:null,cueDetail:visible?cue!.querySelector('[data-hud="combat-feedback-detail"]')?.textContent:null},9000);
+@@ -93,7 +101,7 @@
+      actualFire:game.inputFire,actualMine:game.inputMine,actualShield:game.inputShield,weaponCooldown:game.weaponCooldown,mineCharges:game.mineCharges,shieldCooldown:game.shieldCooldown},9000);
+     previous={x,z,time:state.raceTime};lastControl=state.raceTime;
+    }
+-   raf=requestAnimationFrame(frame);
++   previousPolicyContext=policyContext;raf=requestAnimationFrame(frame);
+   };raf=requestAnimationFrame(frame);
+   return{seed:courseSeed,signature:courseSignature,raceTime:initial.raceTime,simulationFrame:initial.simulationFrame,phase:document.querySelector<HTMLElement>('.pod-hud')?.dataset.phase,installedDuringCountdown:true};
+  },{samples,totalLength:course.totalLength,tune,courseSeed:Number((state.game.course as any).seed),courseSignature:course.signature});
+@@ -105,12 +113,51 @@
+  return{samples:window.length,wallSeconds,simulationSeconds:(last.frame-first.frame)/120,raceSeconds:last.raceTime-first.raceTime,ratio:(last.frame-first.frame)/120/wallSeconds,
+   maximumSampleGapMs:Math.max(...window.slice(1).map((s,i)=>s.wallMs-window[i].wallMs))};
+ }
+-function analyze(observation:any){
++function outgoingCandidate(wreck:any,samples:any[]){
++ const before=wreck.eligibilityContext?.before,observed=wreck.eligibilityContext?.observed;
++ const policyReasons:string[]=[],scenarioReasons:string[]=[];
++ if(!before||!observed||!Number.isFinite(wreck.observedWallMs)||before.frame>=wreck.frame)policyReasons.push('missing-pre-event-context');
++ if(before&&observed){
++  if(before.role!=='solo'||observed.role!=='solo')policyReasons.push('not-solo');
++  if(before.competitionProfile!=='chaos'||observed.competitionProfile!=='chaos')policyReasons.push('not-chaos');
++  if(before.phase!=='racing'||observed.phase!=='racing')policyReasons.push('not-racing');
++  if(before.paused||observed.paused)policyReasons.push('paused');
++  // Running is this harness's driving scenario, not a runtime ban on cues or
++  // cinematics during recovery. Preserve both exclusions independently.
++  if(before.playerWreck!=='running'||observed.playerWreck!=='running')scenarioReasons.push('player-not-running');
++ }
++ const diagnostic=before?.combatPresentation,deadline=diagnostic?.cooldownUntilWallMs;
++ if(!diagnostic||(deadline!==null&&!Number.isFinite(deadline)))policyReasons.push('missing-controller-cooldown');
++ else if(deadline!==null&&wreck.observedWallMs<deadline)policyReasons.push('cinematic-cooldown');
++ const prior=samples.filter(s=>s.wallMs<wreck.observedWallMs&&s.wallMs>=wreck.observedWallMs-1100);
++ return {racerId:wreck.racerId,frame:wreck.frame,observedWallMs:wreck.observedWallMs,
++  eligible:policyReasons.length===0&&scenarioReasons.length===0,policyReasons,scenarioReasons,
++  beforeContext:before??null,observedContext:observed??null,cooldownUntilWallMs:deadline??null,
++  cooldownBoundaryStraddled:typeof deadline==='number'&&before?.wallMs<deadline&&wreck.observedWallMs>=deadline,
++  lastPreEventSample:prior.at(-1)??null};
++}
++
++function retainOutgoingCandidates(ledger:any[],events:any[],samples:any[]){
++ for(const event of events){
++  if(event.type!=='wreck'||event.racerId==='player'||event.takedownBy!=='player')continue;
++  if(!ledger.some(candidate=>candidate.racerId===event.racerId&&candidate.frame===event.frame))ledger.push(outgoingCandidate(event,samples));
++ }
++ // Selection does not inspect clock pace, cue success, or camera quality.
++ // The first eligible candidate is irrevocable even when its later gates fail.
++ return ledger.find(candidate=>candidate.eligible)??null;
++}
++
++function analyze(observation:any,selected:{racerId:string;frame:number}|null){
+  const{events,samples,inputs}=observation,issues:string[]=[],require=(condition:unknown,message:string)=>{if(!condition)issues.push(message);};
+- const wreck=events.find((e:any)=>e.type==='wreck'&&e.racerId!=='player'&&e.takedownBy==='player');
++ const wreck=selected?events.find((e:any)=>e.type==='wreck'&&e.racerId===selected.racerId&&e.frame===selected.frame&&e.racerId!=='player'&&e.takedownBy==='player'):undefined;
++ require(selected,'No eligible running outgoing candidate was selected within the bounded race.');
+  const takedown=events.find((e:any)=>e.type==='takedown'&&e.attackerId==='player'&&e.victimId===wreck?.racerId&&e.frame===wreck?.frame);
+  const actualVictim=samples.find((s:any)=>s.frame>=wreck?.frame&&s.wrecks.some((v:any)=>v.id===wreck?.racerId&&v.takedownBy==='player'));
+- const cue=samples.find((s:any)=>s.frame>=wreck?.frame&&s.wallMs<wreck.observedWallMs+1400&&s.cueKind==='takedown'&&s.cueTitle==='TAKEDOWN'&&Number.isFinite(s.cueAge));
++ const cue=samples.find((s:any)=>s.frame>=wreck?.frame&&s.wallMs<wreck.observedWallMs+1400&&s.cueKind==='takedown'&&s.cueTitle==='TAKEDOWN'&&Number.isFinite(s.cueAge)
++  // A later kill's cue must never satisfy this selected event. RAF timestamps
++  // and the HUD's performance.now() age can differ within one display frame.
++  &&(!wreck.eligibilityContext||(s.wallMs-s.cueAge*1250>=wreck.eligibilityContext.before.wallMs
++    &&s.wallMs-s.cueAge*1250<=wreck.observedWallMs+25)));
+  require(wreck&&takedown&&actualVictim,'No matching player-attributed authoritative enemy wreck, takedown event and live victim state.');
+  require(cue,'Actual outgoing wreck lacked an observed visible TAKEDOWN cue.');
+  require(events.some((e:any)=>e.type==='heat-lance-fired'&&e.racerId==='player'),'No actual player Heat Lance shot.');
+@@ -132,7 +179,7 @@
+  require(cameraBaseline&&typeof cameraBaseline.camera==='string'&&cameraBaseline.samples>=4&&cameraBaseline.spanMs>=150&&cameraBaseline.ageAtCueMs<120&&cameraBaseline.maximumSampleGapMs<120,'No stable immediately pre-event racing camera baseline.');
+  const active=start===null?[]:samples.filter((s:any)=>s.wallMs>=start&&s.wallMs<start+810);
+  require(active.length>=10&&cameraBaseline&&active.every((s:any)=>s.camera===cameraBaseline.camera&&!s.matte&&!s.paused&&s.playerWreck!=='wrecked'),'Attacking driver did not retain the pre-event racing camera without victim framing.');
+- return{outcome:issues.length?'FAIL':'PASS',issues,wreck,takedown,actualVictim,cue,estimatedCueStartMs:start,before,slow,after,cameraBaseline,
++ return{outcome:issues.length?'FAIL':'PASS',issues,selected,wreck,takedown,actualVictim,cue,estimatedCueStartMs:start,before,slow,after,cameraBaseline,
+   inputDecisions:inputs.length,fireDecisions:inputs.filter((s:any)=>s.fire).length,mineDecisions:inputs.filter((s:any)=>s.mine).length,shieldDecisions:inputs.filter((s:any)=>s.shield).length,
+   actualPlayerMineDeployments:events.filter((e:any)=>e.type==='scrap-mine-deployed'&&e.racerId==='player'),
+   actualPlayerWeaponHits:events.filter((e:any)=>e.type==='weapon-hit'&&e.attackerId==='player')};
+@@ -154,19 +201,24 @@
+  await page.locator('[data-action="start-race"]:visible').click();
+  await page.waitForFunction(()=>!window.__PODRACING__!.snapshot().game.awaitingStart&&document.querySelector<HTMLElement>('.pod-hud')?.dataset.phase==='countdown');
+  receipt.before=await snapshot();assert(receipt.before.game.competitionProfile==='chaos'&&receipt.before.game.onlineRoom.role==='solo','Ordinary solo Open Expedition chaos profile required.');
++ assert(receipt.before.game.combatPresentation&&('cooldownUntilWallMs'in receipt.before.game.combatPresentation),'Frozen bundle lacks the read-only controller cooldown diagnostic.');
+  assert(receipt.before.game.pendingCourse===null&&receipt.before.game.course.seed===pending.seed&&receipt.before.raceTime===0,'Native Start did not promote the prepared route into countdown.');
+  await installDriver();receipt.commands.push('Select actual Open Expedition and Start once; install the offline driver from the newly built countdown course. Course-following virtual pad holds Heat Lance(button5/E), deploys mines(button3/F) for rivals within45m behind, and pulses shield(button2/Q) for120ms on normal cooldown. No boost, pickup waits or review API actions.');
+  const started=Date.now();let foundAt:number|null=null;
+  while(Date.now()-started<180000){
+-  await delay(60);const status=await page.evaluate(()=>{const qa=(window as any).__outgoingQA;return{wreck:qa.observation.events.find((e:any)=>e.type==='wreck'&&e.racerId!=='player'&&e.takedownBy==='player'),phase:document.querySelector<HTMLElement>('.pod-hud')?.dataset.phase};});
+-  if(status.wreck&&foundAt===null){foundAt=Date.now();receipt.firstOutgoingWreck=status.wreck;receipt.captures.push({path:`${output}/outgoing-takedown.png`,snapshot:await snapshot()});await page.screenshot({path:`${output}/outgoing-takedown.png`});console.log('OUTGOING_WRECK',JSON.stringify(status.wreck));}
++  await delay(60);const status=await page.evaluate(()=>{const qa=(window as any).__outgoingQA;return{wrecks:qa.observation.events.filter((e:any)=>e.type==='wreck'&&e.racerId!=='player'&&e.takedownBy==='player'),samples:qa.observation.samples.slice(-80),phase:document.querySelector<HTMLElement>('.pod-hud')?.dataset.phase};});
++  receipt.firstOutgoingWreck??=status.wrecks[0];
++  const selected=retainOutgoingCandidates(receipt.outgoingCandidates,status.wrecks,status.samples);
++  if(selected&&foundAt===null){foundAt=Date.now();receipt.selectedOutgoingWreck={racerId:selected.racerId,frame:selected.frame};receipt.captures.push({path:`${output}/outgoing-takedown.png`,snapshot:await snapshot()});await page.screenshot({path:`${output}/outgoing-takedown.png`});console.log('ELIGIBLE_OUTGOING_WRECK',JSON.stringify(selected));}
+   if(foundAt!==null&&Date.now()-foundAt>=2200)break;
+   if(status.phase==='finished'){receipt.stopReason='Race finished';break;}
+  }
+- receipt.stopReason??=foundAt===null?'180-second limit without a player-attributed enemy wreck':'First player-attributed enemy wreck plus return observation';
+- await page.evaluate(()=>(window as any).__outgoingQA.stop());receipt.after=await snapshot();receipt.observation=await page.evaluate(()=>(window as any).__outgoingQA.observation);receipt.analysis=analyze(receipt.observation);
++ receipt.stopReason??=foundAt===null?'180-second limit without an eligible running outgoing wreck':'First eligible running outgoing wreck plus return observation';
++ await page.evaluate(()=>(window as any).__outgoingQA.stop());receipt.after=await snapshot();receipt.observation=await page.evaluate(()=>(window as any).__outgoingQA.observation);
++ retainOutgoingCandidates(receipt.outgoingCandidates,receipt.observation.events,receipt.observation.samples);
++ receipt.analysis=analyze(receipt.observation,receipt.selectedOutgoingWreck??null);
+  if(!receipt.captures.length)await page.screenshot({path:`${output}/no-takedown.png`});else await page.screenshot({path:`${output}/after-takedown.png`});
+  assert(receipt.analysis.outcome==='PASS',receipt.analysis.issues.join(' '));assert(receipt.errors.length===0,'Browser console/page errors.');receipt.outcome='PASS';
+-}catch(error){receipt.error=String(error);if(page){try{await page.evaluate(()=>(window as any).__outgoingQA?.stop());receipt.failure=await snapshot();receipt.observation=await page.evaluate(()=>(window as any).__outgoingQA?.observation??null);await page.screenshot({path:`${output}/failure.png`});}catch{}}}
++}catch(error){receipt.error=String(error);if(page){try{await page.evaluate(()=>(window as any).__outgoingQA?.stop());receipt.failure=await snapshot();receipt.observation=await page.evaluate(()=>(window as any).__outgoingQA?.observation??null);if(receipt.observation)retainOutgoingCandidates(receipt.outgoingCandidates,receipt.observation.events,receipt.observation.samples);await page.screenshot({path:`${output}/failure.png`});}catch{}}}
+ finally{await closeOwned();}
+ console.log(JSON.stringify({outcome:receipt.outcome,error:receipt.error,analysis:receipt.analysis,cleanup:receipt.cleanup}));if(receipt.outcome!=='PASS')process.exitCode=1;
+--- a/scripts/inkstorm-outgoing-takedown.test.mjs
++++ b/scripts/inkstorm-outgoing-takedown.test.mjs
+@@ -9,10 +9,19 @@
+ const start=source.indexOf('function pace('),end=source.indexOf('\ntry{',start);
+ assert(start>=0&&end>start,'Read the actual analyzer without executing browser setup.');
+ const code=stripTypeScriptTypes(source.slice(start,end));
+-function analyze(observation,garageCamera='hero'){
++function functions(garageCamera='hero'){
+  const context=vm.createContext({receipt:{before:{camera:garageCamera}}});
+  vm.runInContext(code,context);
+- return context.analyze(observation);
++ return context;
++}
++function analyze(observation,garageCamera='hero',selected={racerId:'ai-test',frame:1180}){
++ return functions(garageCamera).analyze(observation,selected);
++}
++function kill(racerId,frame,wallMs,{playerWreck='running',deadline=null,role='solo',profile='chaos'}={}){
++ const context={wallMs:wallMs-16,frame:frame-2,phase:'racing',paused:false,role,competitionProfile:profile,
++  playerWreck,camera:'chase',matte:false,combatPresentation:{cooldownUntilWallMs:deadline,cinematic:null}};
++ return{type:'wreck',racerId,takedownBy:'player',frame,observedWallMs:wallMs,
++  eligibilityContext:{before:context,observed:{...context,wallMs,frame}}};
+ }
+ function fixture(){
+  const events=[
+@@ -48,3 +57,112 @@
+ test('a generic hit cue cannot prove TAKEDOWN rendering',()=>expectFailure(o=>{for(const s of o.samples)s.cueKind='hit';},'visible TAKEDOWN cue'));
+ test('an unpaced clock cannot prove the outgoing slowdown',()=>expectFailure(o=>{for(const s of o.samples)s.frame=1000+Math.round(s.wallMs*.12);},'bounded slow scheduling'));
+ test('truncated observations remain failure',()=>expectFailure(o=>{o.truncated=true;},'observer was truncated'));
++
++test('retains every kill and selects the first running candidate outside actual controller cooldown',()=>{
++ const api=functions(),ledger=[];
++ const recovering=kill('ai-recovery',1360,3000,{playerWreck:'recovering',deadline:6000});
++ const cooling=kill('ai-cooldown',1600,5000,{deadline:6000});
++ assert.equal(api.retainOutgoingCandidates(ledger,[recovering,cooling],[]),null);
++ assert.deepEqual(Array.from(ledger[0].policyReasons),['cinematic-cooldown']);
++ assert.deepEqual(Array.from(ledger[0].scenarioReasons),['player-not-running']);
++ assert.deepEqual(Array.from(ledger[1].scenarioReasons),[]);
++ const first=kill('ai-eligible',1760,6100,{deadline:6000}),later=kill('ai-later',1880,7100,{deadline:6000});
++ const selected=api.retainOutgoingCandidates(ledger,[recovering,cooling,first,later],[]);
++ assert.equal(selected.racerId,'ai-eligible');assert.equal(ledger.length,4);
++ assert.equal(api.retainOutgoingCandidates(ledger,[later,first],[]),selected);
++ // A denied kill must not extend6000ms to11000ms; use the actual raw deadline.
++ assert.equal(selected.cooldownUntilWallMs,6000);assert.equal(selected.eligible,true);
++});
++
++test('recovery is a scenario exclusion even when runtime cooldown is already clear',()=>{
++ const candidate=functions().outgoingCandidate(kill('ai-test',1180,7000,{playerWreck:'recovering',deadline:6000}),[]);
++ assert.equal(candidate.eligible,false);assert.deepEqual(Array.from(candidate.policyReasons),[]);
++ assert.deepEqual(Array.from(candidate.scenarioReasons),['player-not-running']);
++});
++
++test('reads PRE-event cooldown rather than rejecting an accepted target whose post-event deadline advanced',()=>{
++ const event=kill('ai-test',1180,7000,{deadline:6000});
++ event.eligibilityContext.observed.combatPresentation={cooldownUntilWallMs:13000,
++  cinematic:{startedAtWallMs:7000,focusRacerId:'ai-test',victim:false}};
++ const candidate=functions().outgoingCandidate(event,[]);
++ assert.equal(candidate.eligible,true);assert.equal(candidate.cooldownUntilWallMs,6000);
++});
++
++test('uses the controller deadline boundary and records a straddled observation interval',()=>{
++ const api=functions();
++ assert.equal(api.outgoingCandidate(kill('ai-test',1180,5999,{deadline:6000}),[]).eligible,false);
++ const boundary=api.outgoingCandidate(kill('ai-test',1180,6000,{deadline:6000}),[]);
++ assert.equal(boundary.eligible,true);assert.equal(boundary.cooldownBoundaryStraddled,true);
++});
++
++test('missing diagnostics and a nonpreceding snapshot cannot certify eligibility',()=>{
++ const api=functions(),missing=kill('ai-test',1180,7000),late=kill('ai-test',1180,7000);
++ delete missing.eligibilityContext.before.combatPresentation;
++ late.eligibilityContext.before.frame=1180;
++ assert(api.outgoingCandidate(missing,[]).policyReasons.includes('missing-controller-cooldown'));
++ assert(api.outgoingCandidate(late,[]).policyReasons.includes('missing-pre-event-context'));
++ assert.equal(api.outgoingCandidate(missing,[]).eligible,false);
++ assert.equal(api.outgoingCandidate(late,[]).eligible,false);
++});
++
++test('role, profile, racing and pause gates use raw pre-event and observed state',()=>{
++ for(const mutate of [
++  e=>{e.eligibilityContext.before.role='guest';},
++  e=>{e.eligibilityContext.observed.competitionProfile='time-trial';},
++  e=>{e.eligibilityContext.before.phase='finished';},
++  e=>{e.eligibilityContext.observed.paused=true;},
++ ]){const event=kill('ai-test',1180,7000);mutate(event);assert.equal(functions().outgoingCandidate(event,[]).eligible,false);}
++});
++
++test('analyzer binds the selected later event instead of the earlier excluded recovery kill',()=>{
++ const observation=fixture();
++ for(const sample of observation.samples){sample.wallMs+=8000;sample.frame+=960;sample.raceTime+=8;}
++ for(const event of observation.events){if(Number.isFinite(event.frame))event.frame+=960;if(Number.isFinite(event.observedWallMs))event.observedWallMs+=8000;}
++ Object.assign(observation.events[0],kill('ai-test',2140,9500,{deadline:6000}));
++ observation.events.unshift(kill('ai-recovery',1360,3000,{playerWreck:'recovering',deadline:6000}),
++  {type:'takedown',attackerId:'player',victimId:'ai-recovery',frame:1360});
++ const api=functions(),ledger=[],selected=api.retainOutgoingCandidates(ledger,observation.events,observation.samples);
++ assert.equal(selected.racerId,'ai-test');assert.equal(selected.frame,2140);
++ const result=api.analyze(observation,selected);
++ assert.equal(result.outcome,'PASS',JSON.stringify(result.issues));assert.equal(result.wreck.frame,2140);assert.equal(result.takedown.frame,2140);
++});
++
++test('first eligible candidate stays selected when its slowdown fails, even with a later kill',()=>{
++ const observation=fixture(),first=kill('ai-test',1180,1500),later=kill('ai-later',2200,9000);
++ Object.assign(observation.events[0],first);observation.events.push(later);
++ for(const sample of observation.samples)sample.frame=1000+Math.round(sample.wallMs*.12);
++ const api=functions(),ledger=[],selected=api.retainOutgoingCandidates(ledger,observation.events,observation.samples);
++ assert.equal(selected.racerId,'ai-test');assert.equal(ledger.length,2);
++ const result=api.analyze(observation,selected);
++ assert.equal(result.outcome,'FAIL');assert(result.issues.some(issue=>issue.includes('bounded slow scheduling')));
++ assert.equal(api.retainOutgoingCandidates(ledger,[later],[]),selected);
++});
++
++test('a broken pre-event camera baseline fails quality rather than excluding an eligible running kill',()=>{
++ const observation=fixture();Object.assign(observation.events[0],kill('ai-test',1180,1500));
++ for(const sample of observation.samples)if(sample.wallMs<1500)sample.camera=sample.wallMs%80?'cockpit':'chase';
++ const api=functions(),selected=api.retainOutgoingCandidates([],observation.events,observation.samples);
++ assert.equal(selected.eligible,true);const result=api.analyze(observation,selected);
++ assert.equal(result.outcome,'FAIL');assert(result.issues.some(issue=>issue.includes('No stable immediately pre-event')));
++});
++
++test('a later kill cue cannot substitute for the selected eligible event',()=>{
++ const observation=fixture();Object.assign(observation.events[0],kill('ai-test',1180,1500));
++ observation.events.push(kill('ai-later',1190,1900));
++ for(const sample of observation.samples){sample.cueKind=sample.wallMs>=1900&&sample.wallMs<3150?'takedown':null;sample.cueAge=(sample.wallMs-1900)/1250;}
++ const result=analyze(observation);
++ assert.equal(result.outcome,'FAIL');assert.equal(result.cue,undefined);
++ assert(result.issues.some(issue=>issue.includes('visible TAKEDOWN cue')));
++});
++
++test('no selected candidate remains uncovered even if an ineligible kill has a matching cue',()=>{
++ const result=analyze(fixture(),'hero',null);
++ assert.equal(result.outcome,'FAIL');assert(result.issues.some(issue=>issue.includes('No eligible running outgoing candidate')));
++});
++
++test('the preserved native V17 recovery kill still fails the unchanged clock and camera quality gates',()=>{
++ const receipt=JSON.parse(readFileSync(new URL('../assets/source/inkstorm/combat-round35/outgoing-selection-v18/before/output/playwright/round35-outgoing-takedown-v17/receipt.json',import.meta.url),'utf8'));
++ const result=analyze(receipt.observation,'hero',{racerId:'ai-kodo',frame:1713});
++ assert.equal(result.outcome,'FAIL');assert.deepEqual(Array.from(result.issues),receipt.analysis.issues);
++ assert.equal(result.actualVictim.playerWreck,'recovering');assert.equal(result.wreck.cause,'heat-lance');
++});

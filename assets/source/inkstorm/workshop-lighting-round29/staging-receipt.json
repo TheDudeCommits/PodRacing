@@ -1,0 +1,72 @@
+{
+  "status": "SOURCE_ONLY_CANDIDATE_NOT_VISUALLY_ACCEPTED",
+  "dependency": "Use construction v3 corrected below-awning district fixtures before any shader integration.",
+  "sourceSnapshots": {
+    "src/render/inkstorm/InkstormSurfaceMaterial.ts": "264c1c9d4d0e2247fc87cd97e51aebf4caba09e668a4463b0e36f9ee16078c0e",
+    "src/render/inkstorm/InkstormWorld.ts": "bb569c87cca754eb8259d39834b66391cc3ede82aa62c03d716b9ec012859164",
+    "assets/source/inkstorm/grid-construction-round29/build_grid_detail.py": "1f0901df9207660275516fd491b7f199fce0f362924a5845103fba39d99b93c2",
+    "assets/source/inkstorm/build_industrial_revision.py": "5ec83beee61185cf42d486c8c44e923f95ef9dfbbe95f5f2de995e9c68471a42",
+    "assets/source/inkstorm/build_pit_district.py": "8e14c56d9f88da0e7fa08e639ff08ab09bdb0add115abad09ba56572ffdec74e",
+    "public/assets/inkstorm/pit-complex.glb": "5cebe6dce3a0a27a7d887f4f9a6fbfde6e29512cd47a039b79c4dbadbfe39acd",
+    "public/assets/inkstorm/pit-district.glb": "947b7b7043775f0f4cdb007e30c055f6cfe485bddc6dcf6632f131a88833d2a0",
+    "assets/source/inkstorm/grid-construction-round29/task-light-anchors.json": "2fafc4be49abd590acd62ff3a8c9e4672d6b27d6d929d334d5e5232584f8d8b1"
+  },
+  "emitterCoordinatesGLB": {
+    "pit-complex": [
+      [
+        -50,
+        9.44,
+        -3
+      ],
+      [
+        -8,
+        9.44,
+        -3
+      ],
+      [
+        36,
+        9.44,
+        -6
+      ]
+    ],
+    "pit-district": [
+      [
+        -36,
+        8.08,
+        -4
+      ],
+      [
+        1,
+        13.08,
+        -8
+      ],
+      [
+        41,
+        9.88,
+        -1
+      ]
+    ]
+  },
+  "runtimeChangesStagedOnly": [
+    "src/render/inkstorm/InkstormSurfaceMaterial.ts",
+    "src/render/inkstorm/InkstormWorld.ts"
+  ],
+  "additionalTrianglesPerFamily": {
+    "pit-complex": 72,
+    "pit-district": 72
+  },
+  "additionalRuntimeDraws": 0,
+  "additionalRuntimeTextures": 0,
+  "additionalRenderPasses": 0,
+  "additionalMaterials": 0,
+  "additionalFamilyShaderVariants": 2,
+  "extraPerFrameCpuAllocations": 0,
+  "browserOrBlenderUsed": false,
+  "fixtureRevision": 3,
+  "validatedDistrictCandidateSha256": "c5aa216edc139efe484981b390946f3a7464587ab508fe5ffec2d8c999240447",
+  "occlusionAudit": "occlusion-audit.json",
+  "clothPathCheck": {
+    "testedRays": 162,
+    "clothBlockedRays": 0
+  }
+}

@@ -1,0 +1,112 @@
+{
+  "candidate": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/teemto-open-cockpit-round31/v2/teemto-open-cockpit-round31-v2-candidate.glb",
+  "sha256": "af5d69514a51f7e9c089a1710e1587f46e053412b488268dc433f029576c0a7e",
+  "bytes": 7698824,
+  "triangles": 57618,
+  "allMeshDefinitionTriangles": 57618,
+  "opaqueDraws": 10,
+  "bodyDraws": 4,
+  "pilotDraws": 6,
+  "limitsUnchanged": {
+    "triangles": 60000,
+    "bodyDraws": 6,
+    "pilotDraws": 6,
+    "totalDraws": 12
+  },
+  "budgetPassed": true,
+  "allMeshesReferenced": true,
+  "allMaterialsOpaque": true,
+  "originalEngineAndPilotGeometryUVNormalsTangentsTexturesExact": true,
+  "allOriginalNodeNamesAndTransformsPreserved": true,
+  "existingHierarchyEdgesPreserved": true,
+  "originalV4CBinPrefixByteExact": true,
+  "meshes": [
+    {
+      "node": "teemto-cockpit-body",
+      "category": "body",
+      "triangles": 17923,
+      "opaqueDraws": 1
+    },
+    {
+      "node": "teemto-engine-left-body",
+      "category": "body",
+      "triangles": 11790,
+      "opaqueDraws": 1
+    },
+    {
+      "node": "teemto-engine-right-body",
+      "category": "body",
+      "triangles": 11790,
+      "opaqueDraws": 1
+    },
+    {
+      "node": "teemto-pilot-accent.003",
+      "category": "pilot",
+      "triangles": 188,
+      "opaqueDraws": 1
+    },
+    {
+      "node": "teemto-pilot-hardware.003",
+      "category": "pilot",
+      "triangles": 1552,
+      "opaqueDraws": 1
+    },
+    {
+      "node": "teemto-pilot-rubber.002",
+      "category": "pilot",
+      "triangles": 2228,
+      "opaqueDraws": 1
+    },
+    {
+      "node": "teemto-pilot-shell.003",
+      "category": "pilot",
+      "triangles": 1444,
+      "opaqueDraws": 1
+    },
+    {
+      "node": "teemto-pilot-suit.005",
+      "category": "pilot",
+      "triangles": 9359,
+      "opaqueDraws": 1
+    },
+    {
+      "node": "teemto-pilot-webbing.002",
+      "category": "pilot",
+      "triangles": 1008,
+      "opaqueDraws": 1
+    },
+    {
+      "node": "teemto-cockpit-graphite-v2",
+      "category": "body",
+      "triangles": 336,
+      "opaqueDraws": 1
+    }
+  ],
+  "inspectionImages": [
+    {
+      "path": "teemto-open-cockpit-round31-v2-beauty.png",
+      "bytes": 986101,
+      "sha256": "32e252aedd3c362b262d7d39b923d5e6fce31934164d6b3b31eb8392e830a948"
+    },
+    {
+      "path": "teemto-open-cockpit-round31-v2-chase-eye-cockpit-inspection.png",
+      "bytes": 1123028,
+      "sha256": "473f90be6fdcb64d1a481a84d818eeeaed3e4a48b147df1b0c9818d6e4669fe6"
+    },
+    {
+      "path": "teemto-open-cockpit-round31-v2-front-quarter.png",
+      "bytes": 1130888,
+      "sha256": "2fa891c30a2292b99397405aef3cd4843761d8acf664f2bface97e478be5f930"
+    },
+    {
+      "path": "teemto-open-cockpit-round31-v2-side.png",
+      "bytes": 1116918,
+      "sha256": "9826f7c4ff54ae8e7f4bfbc4ec49b8992cc5c66a66f357d9f31bea2cb70310ee"
+    }
+  ],
+  "pending": [
+    "actual runtime loader admission",
+    "in-world race screenshots and independent visual critic",
+    "runtime frame-time verification"
+  ]
+}

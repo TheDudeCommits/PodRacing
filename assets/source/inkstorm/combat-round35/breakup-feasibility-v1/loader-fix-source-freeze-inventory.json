@@ -1,0 +1,73 @@
+{
+  "scope": "V13 loader-name correction and read-only native activation gate. Root owns combined build/capture. Whole GameApp/harness hashes include prior parent code; no exclusive authorship claim. V12 original evidence retained.",
+  "createdUtc": "2026-09-08T20:03:21.694923+00:00",
+  "files": [
+    {
+      "path": "src/render/combat/TeemtoWreckBreakup.ts",
+      "bytes": 8397,
+      "sha256": "865f19fa9463ab044f7c0d6d072efe5e23bd8af317a937e98c2623c264481a55"
+    },
+    {
+      "path": "src/render/vehicles/ImportedVehiclePresentation.ts",
+      "bytes": 25587,
+      "sha256": "6df9e536797e2ddea6a68d3beb12b8aa6dd4a3f40b4ccbf03bd26eb3e4230576"
+    },
+    {
+      "path": "src/render/vehicles/RacerPresentation.ts",
+      "bytes": 12374,
+      "sha256": "0a21c3256cd3a9dcabf3ff0575266bec0660c792ab4e08b17028b07eb4843d71"
+    },
+    {
+      "path": "src/render/app/GameApp.ts",
+      "bytes": 168944,
+      "sha256": "905ba50af47e6de33ea05dd72d34ecb10f26540ba63c45158e60b65dd22aa2ed"
+    },
+    {
+      "path": "scripts/inkstorm-combat.mjs",
+      "bytes": 22163,
+      "sha256": "d7cfa2aab8c88b46b725c60e6e4d144a0d07e0ac39c7d6354d86e14fbf60d6cb"
+    },
+    {
+      "path": "tests/combat/TeemtoWreckBreakup.test.ts",
+      "bytes": 19079,
+      "sha256": "f31521900c264b89df230e332220111fecc9c31dab7e1643996abcd93f96d120"
+    },
+    {
+      "path": "tests/render/RacerPresentation.test.ts",
+      "bytes": 24818,
+      "sha256": "a9a5e029ad1ce0e08841dec76fcb8a8f5a963a60a3809f4e9c2819de41a5f180"
+    }
+  ],
+  "evidence": [
+    {
+      "path": "assets/source/inkstorm/combat-round35/breakup-feasibility-v1/loader-fix-tests-final.log",
+      "bytes": 4923,
+      "sha256": "5dad9761c38be87542d5b02a35db02d740eefffe5be209a56c6912bf71cbe734"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/breakup-feasibility-v1/loader-fix-typecheck-final.log",
+      "bytes": 57,
+      "sha256": "fa95b29726a1ab8891b320173cad4ef80c08c37ec637f2c438a5294fb97ce445"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/breakup-feasibility-v1/native-breakup-gate-check.json",
+      "bytes": 625,
+      "sha256": "f410d0245014dc214b983f9beabc161716dfcf2532a6a9356dbda441bf387721"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/breakup-feasibility-v1/LOADER_FIX_V13_PREPARATION.md",
+      "bytes": 2868,
+      "sha256": "47ee2107314d36b96f338d57d42823a710d595c35a09556e0f74681b6925a477"
+    }
+  ],
+  "validation": {
+    "targetedTests": 22,
+    "targetedFiles": 2,
+    "typecheck": true,
+    "harnessSyntax": true,
+    "diffCheck": true,
+    "nativeGateCpuControls": true,
+    "browserRun": false,
+    "buildRun": false
+  }
+}

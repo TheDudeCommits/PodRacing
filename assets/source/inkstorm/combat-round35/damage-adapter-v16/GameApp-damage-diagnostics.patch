@@ -1,0 +1,13 @@
+--- a/src/render/app/GameApp.ts
++++ b/src/render/app/GameApp.ts
+@@ -3824,7 +3824,10 @@
+             visiblePrepasses: view.prepassMeshes.reduce((count, mesh) => count + Number(mesh.visible), 0),
+             embeddedPilot: view.importedActive && view.imported.hasEmbeddedPilot,
+             breakupAvailable: view.breakupAvailable, breakupActive: view.breakupActive,
++            damageVariantAvailable: view.damageVariantAvailable, damageVariantActive: view.damageVariantActive,
++            damageVariantError: view.imported.damageVariantError?.message ?? null,
+             statistics: view.imported.statistics,
++            residentStatistics: view.imported.residentStatistics,
+           })),
+         },
+         inkstorm: { loaded: this.inkstormWorld.loaded, error: this.inkstormWorld.error, detail: { ...this.inkstormWorld.detailReceipt } },

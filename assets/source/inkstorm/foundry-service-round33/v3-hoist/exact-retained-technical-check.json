@@ -1,0 +1,157 @@
+{
+  "status": "PASS source technical handoff only",
+  "artifact": "assets/source/inkstorm/foundry-service-round33/v3-hoist/foundry-service-gantry-v3.glb",
+  "bytes": 1327988,
+  "sha256": "55d694f8406d9a2ff819ba7d262d86e30f0bc8bafd543699a8ceff83da2380b4",
+  "nodeNames": [
+    "foundry-service-gantry-v3"
+  ],
+  "triangles": 19872,
+  "vertices": 33518,
+  "meshes": 1,
+  "referencedPrimitives": 1,
+  "materials": [
+    {
+      "name": "Inkstorm_Industrial_Revision_Paint",
+      "doubleSided": true,
+      "pbrMetallicRoughness": {
+        "roughnessFactor": 0.8399999737739563,
+        "metallicFactor": 0
+      }
+    }
+  ],
+  "images": 0,
+  "animations": 0,
+  "normals": {
+    "finiteNonzero": true,
+    "allUnitWithin1e4": true,
+    "maximumLengthError": 1.3115896790871773e-07
+  },
+  "geometry": {
+    "boundsGltf": [
+      [
+        -52.0,
+        52.0
+      ],
+      [
+        -25.0,
+        61.400001525878906
+      ],
+      [
+        -7.0,
+        7.0
+      ]
+    ],
+    "clippedOpenCorridorMinimumY": 39.66999816894531
+  },
+  "retainedV2OrientedCheck": {
+    "matchedRetainedTriangles": 18324,
+    "absentV2HoistTriangles": 1632,
+    "nativeAdditionTriangles": 1548,
+    "positionMatchingTolerance": 2e-05,
+    "maximumMatchedPositionDelta": 0.0,
+    "nativeRetainedAttributes": {
+      "POSITION": {
+        "exact": true,
+        "differentCorners": 0,
+        "maximumComponentDelta": 0.0
+      },
+      "NORMAL": {
+        "exact": true,
+        "differentCorners": 0,
+        "maximumComponentDelta": 0.0
+      },
+      "COLOR_0": {
+        "exact": true,
+        "differentCorners": 0,
+        "maximumComponentDelta": 0.0
+      }
+    },
+    "nativeRetainedAttributesExact": true,
+    "boundsGltf": [
+      [
+        -52.0,
+        52.0
+      ],
+      [
+        -25.0,
+        61.400001525878906
+      ],
+      [
+        -7.0,
+        7.0
+      ]
+    ],
+    "clippedOpenCorridorMinimumY": 39.66999816894531,
+    "addedBoundsGltf": [
+      [
+        -32.5,
+        2.5
+      ],
+      [
+        39.74372863769531,
+        48.900001525878906
+      ],
+      [
+        -6.989999771118164,
+        -4.199999809265137
+      ]
+    ],
+    "newHoistStaysAboveOriginalClearance": true,
+    "sourceSha256": "58fc12d837039eb73111886b1b91c294516c51fc47a4a0d00200717161fd39ba",
+    "nativeSha256": "55d694f8406d9a2ff819ba7d262d86e30f0bc8bafd543699a8ceff83da2380b4",
+    "nativeFormats": {
+      "POSITION": {
+        "type": "VEC3",
+        "componentType": 5126,
+        "normalized": null
+      },
+      "NORMAL": {
+        "type": "VEC3",
+        "componentType": 5126,
+        "normalized": null
+      },
+      "COLOR_0": {
+        "type": "VEC3",
+        "componentType": 5126,
+        "normalized": null
+      }
+    },
+    "scope": "Source-only exact retained attribute check/repair; no Blender, runtime install, render or art acceptance.",
+    "status": "native-retained-exact"
+  },
+  "nativeAdditionBytesAndWindingPreserved": true,
+  "retainedV2RecordCount": 31264,
+  "newHoistRecordCount": 2254,
+  "warmGlass": {
+    "triangles": 168,
+    "vertices": 192,
+    "linearRgb": [
+      1.0,
+      0.550000011920929,
+      0.0949999988079071
+    ],
+    "V2BytesExact": true
+  },
+  "sourceV2Sha256": "58fc12d837039eb73111886b1b91c294516c51fc47a4a0d00200717161fd39ba",
+  "nativeV3Sha256": "1153129cb3575b65f373a84219afeddbf9c74862adfd5a86f98bfe9e724208b5",
+  "mcpPreservation": {
+    "active": "Sketchfab_model.001",
+    "allExistingCollectionMembershipsExact": true,
+    "allExistingSceneMembershipsExact": true,
+    "authoredSourceEvidenceExact": true,
+    "authoredStageSelectionRestored": true,
+    "existingScenes": 140,
+    "scene": "Cruise \u2014 Going Merry source 4b2cb678",
+    "selectedCount": 15,
+    "sharedContextRestored": true,
+    "temporaryReviewSceneRemoved": true,
+    "viewLayer": "ViewLayer"
+  },
+  "nativeRenderHashes": {
+    "foundry-service-gantry-v3-side-depth.png": "1169c0dc0b7771762ebeb80637f2bfa80eab13db6daaa40cf2cb5b11c7d9a8d4",
+    "foundry-service-gantry-v3-rear-three-quarter.png": "43a5950faf2a61a161651e6bf5a0d4629120f6e25b035e38dd1621e332d292f7",
+    "foundry-service-gantry-v3-approach-three-quarter.png": "217d433da0bb0a1e754086f841576837bb294b5983554cda44621b3cf1414a61"
+  },
+  "scope": "No Blender call, public copy, gameplay capture, performance or visual acceptance by packaging task."
+}

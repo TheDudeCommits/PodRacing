@@ -1,0 +1,106 @@
+--- a/src/game/race/CourseGulfField.ts
++++ b/src/game/race/CourseGulfField.ts
+@@ -90,7 +90,12 @@
+       * smoother((distance - profile.startDistance) / (profile.crestDistance - profile.startDistance));
+   }
+   if (distance < profile.floorDistance) {
+-    const descent = smoothstep((distance - profile.crestDistance) / (profile.floorDistance - profile.crestDistance));
++    // Round the first 30m into an early, concave descent. The former
++    // zero-grade 600m smoothstep hid the bowl behind its convex shoulder.
++    const span = profile.floorDistance - profile.crestDistance;
++    const u = distance - profile.crestDistance, round = Math.min(30, span * .2);
++    const descent = u < round ? u * u / (round * span)
++      : (round + 2 * (u - round) - (u - round) ** 2 / (span - round)) / span;
+     return Math.min(0, profile.crestHeight + (profile.floorHeight - profile.crestHeight) * descent - baseHeight);
+   }
+   if (distance < profile.basinEndDistance) return Math.min(0, profile.floorHeight - baseHeight);
+@@ -297,6 +302,36 @@
+   }
+ }
+ 
++/**
++ * One physical reveal: a narrow racing escarpment over an open bowl throat.
++ * Removes the old 440m-wide sand shoulder outside every legal lane/branch and
++ * its normal footprint. The earlier concave road profile is a separate part of
++ * this same course-edition candidate; no visual mesh overrides physical height.
++ */
++export function bakeLaunchRevealThroat(grid: CourseGulfGrid, course: PodraceCourse, profile: LaunchElevationProfile): void {
++  const anchor = getLaunchBasinAnchor(course);
++  if (!anchor) return;
++  const points = Array.from({length:2048}, (_, i) => course.samplePlanAtProgress(i / 2048));
++  const protection = makeProtection(points, course.branches, 0, Math.SQRT2 * COURSE_GULF_CELL_SIZE + 1.5);
++  for (let row = 1; row < grid.size - 1; row++) for (let column = 1; column < grid.size - 1; column++) {
++    const x = grid.minX + column * grid.cellSize, z = grid.minZ + row * grid.cellSize;
++    const dx = x - anchor.x, dz = z - anchor.z;
++    const forward = dx * anchor.tangentX + dz * anchor.tangentZ;
++    const right = -dx * anchor.rightX - dz * anchor.rightZ;
++    if (forward <= -100 || forward >= 1380 || Math.abs(right) >= 250) continue;
++    const clearance = clearanceAt(protection.get(`${Math.floor(x / BUCKET_SIZE)}:${Math.floor(z / BUCKET_SIZE)}`), x, z);
++    if (clearance <= 0) continue;
++    const across = 1 - smoother((Math.abs(right) - 140) / 110);
++    const exit = 1 - smoother((forward - 1160) / 220);
++    const blend = smoother(clearance / 12) * across * exit;
++    const target = profile.crestHeight + (profile.floorHeight - 48 - profile.crestHeight)
++      * smoother((forward + 100) / 420);
++    const index = row * grid.size + column, existing = grid.values[index]!;
++    const cut = Math.min(0, target - course.heightAt(x, z) - existing) * blend;
++    grid.values[index] = Math.max(-COURSE_GULF_MAX_DEPTH, existing + cut);
++  }
++}
++
+ export const SALT_RUN_PROFILE = Object.freeze({
+   startDistance: 570, entryEndDistance: 650, floorDistance: 780,
+   riseDistance: 900, riseEndDistance: 1100, exitStartDistance: 1210, endDistance: 1260,
+@@ -408,24 +443,28 @@
+   const launchSide = -Math.sign((centroidX - launch.x) * launch.rightX + (centroidZ - launch.z) * launch.rightZ) || 1;
+   const finishSide = -Math.sign(finish.curvature) || 1;
+   const protection = makeProtection(points, course.branches);
+-  const crestDistance = launch.distance - 90;
+-  const crest = course.sampleAtDistance(crestDistance);
++  const crestDistance = launch.distance - 110;
+   const profile: LaunchElevationProfile = {
+-    startDistance: crestDistance - 270,
++    startDistance: launch.distance - 360,
+     crestDistance,
+     floorDistance: crestDistance + 600,
+-    basinEndDistance: crestDistance + 850,
+-    endDistance: crestDistance + 1550,
+-    crestHeight: crest.y - 12,
+-    floorHeight: crest.y - 106,
+-    endHeight: course.sampleAtDistance(crestDistance + 1550).y,
++    basinEndDistance: launch.distance + 760,
++    endDistance: launch.distance + 1460,
++    // Deepen the physical bowl by 44m with a concave, 138m escarpment.
++    // Horizontal route/checkpoints and the original return endpoint stay fixed.
++    crestHeight: course.sampleAtDistance(launch.distance - 90).y - 12,
++    floorHeight: course.sampleAtDistance(launch.distance - 90).y - 150,
++    endHeight: course.sampleAtDistance(launch.distance + 1460).y,
+     fullWidth: 220,
+     fadeWidth: 420,
+   };
+-  const routeCenter = course.samplePlanAtProgress((crestDistance + 600) / course.totalLength);
++  // Preserve the original grid origin: moving its texels would resample every
++  // unrelated ridge and protected normal in the launch field.
++  const routeCenter = course.samplePlanAtProgress((launch.distance + 510) / course.totalLength);
+   const launchGrid = bakeGrid('launch', launch, launchSide, points, protection, COURSE_GULF_MAX_DEPTH, routeCenter);
+   bakeLaunchProfile(launchGrid, course, points, profile);
+   extendLaunchBasin(launchGrid, course, profile);
++  bakeLaunchRevealThroat(launchGrid, course, profile);
+   bakeSaltRunProfile(launchGrid, course);
+   const finishGrid = bakeGrid('finish', finish, finishSide, points, protection, 150);
+   // The explicit opt-out supports independent before/after regression receipts;
+--- a/src/game/mastery/events.ts
++++ b/src/game/mastery/events.ts
+@@ -1,8 +1,9 @@
+ import type { MasteryEvent } from './types';
+ 
+-// Physical fork crest/divergence and authored launch ridge placements alter
+-// racing/recovery paths. Earlier editions remain archived, never comparable ghosts.
+-export const MASTERY_GENERATOR_VERSION = 'inkstorm-course-8';
++// Round31 launch escarpment: 138m concave descent and excavated bowl throat
++// change physical racing/recovery paths. Course8 records/favorites use the
++// existing archive migration; their ghosts cannot be course9 comparison targets.
++export const MASTERY_GENERATOR_VERSION = 'inkstorm-course-9';
+ export const MASTERY_PHYSICS_VERSION = 'inkstorm-drive-4';
+ export const MASTERY_RULES_VERSION = 'inkstorm-rules-2';
+ export const INKSTORM_HERO_SEED = 0x494e4b53;

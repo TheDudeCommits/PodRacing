@@ -1,0 +1,54 @@
+{
+  "scope": "DCC-derived source-study anchors in normalized glTF coordinates (+Y up, +Z forward); runtime effects placement not yet visually accepted.",
+  "sourceUid": "5a3422df6f894b48b846d590cdc2bf4c",
+  "normalization": {
+    "scale": 2.5,
+    "translationBlender": [
+      0,
+      -11.9,
+      1.6775319933891297
+    ]
+  },
+  "attachments": {
+    "pilot": {
+      "position": [
+        0,
+        4.2725324630737305,
+        -5.199999809265137
+      ]
+    },
+    "exhaustLeft": {
+      "position": [
+        -3.929196834564209,
+        1.6775317192077637,
+        5.835364818572998
+      ]
+    },
+    "exhaustRight": {
+      "position": [
+        3.929197072982788,
+        1.677531659603119,
+        5.835364818572998
+      ]
+    },
+    "couplingLeft": {
+      "position": [
+        -3.0361387729644775,
+        1.6775315403938293,
+        14.65654182434082
+      ]
+    },
+    "couplingRight": {
+      "position": [
+        3.0361380577087402,
+        1.6775315403938293,
+        14.65653944015503
+      ]
+    }
+  },
+  "basis": {
+    "pilot": "V3 pelvis target, not full seat-contact acceptance.",
+    "exhaust": "Original reacteur_low left/right engine bounding center X/Z and rear maximum Blender Y; inspect actual nozzle opening before runtime release.",
+    "coupling": "Original connecteur_elec_low inner X face and box center Y/Z."
+  }
+}

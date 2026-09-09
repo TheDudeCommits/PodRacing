@@ -1,0 +1,28 @@
+{
+  "patchCheck": {
+    "exitCode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  "liveWhitespace": {
+    "exitCode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  "status": "PREPARED ONLY; CPU and isolated tests executed, not applied or rendered",
+  "isolatedTypecheck": {
+    "exitCode": 0,
+    "log": "isolated-typecheck-v2.log"
+  },
+  "isolatedTests": {
+    "exitCode": 0,
+    "files": 4,
+    "tests": 26,
+    "log": "isolated-tests-v1.log"
+  },
+  "preservedFailedSetup": "isolated-typecheck-v1.log: missing read-only fixture symlinks in first isolated harness; corrected in prepare-isolated-check.py, no source type failures",
+  "baselineHashesMatch": true,
+  "sourceGeometryHashesMatch": true,
+  "noLivePatchApplied": true,
+  "decision": "HOLD pending parent UI/combat priority; parent owns any later application/capture."
+}

@@ -1,0 +1,49 @@
+{
+  "status": "RELEASED_DIAGNOSTIC_DESKTOP_STILLS_NATIVE_RECEIPT_REMAINS_FAIL",
+  "captureReceipt": "/Users/amir/Projects/PodRacing/output/gauntlet/round35-broadcast-native-v16a-diagnostic/receipt.json",
+  "promptSha256": "379fe9118dc4303f1021fe2dbba6b094f5a9d1670d75042618b66acc78b1046e",
+  "images": [
+    {
+      "image": 1,
+      "role": "candidate HUD",
+      "original": "/Users/amir/Projects/PodRacing/output/gauntlet/round35-broadcast-native-v16a-diagnostic/06-desktop-live-race.png",
+      "expectedReferenceSha256": null
+    },
+    {
+      "image": 2,
+      "role": "reference HUD",
+      "original": "/Users/amir/Projects/PodRacing/output/reference-ui-round35/UI-hud-full.png",
+      "expectedReferenceSha256": "d35ba42eaf89d6e2c695ec2f4f877fd79358baaa1f56f5ba245aafcb41668770"
+    },
+    {
+      "image": 3,
+      "role": "candidate Build",
+      "original": "/Users/amir/Projects/PodRacing/output/gauntlet/round35-broadcast-native-v16a-diagnostic/03-desktop-build.png",
+      "expectedReferenceSha256": null
+    },
+    {
+      "image": 4,
+      "role": "reference Build",
+      "original": "/Users/amir/Projects/PodRacing/output/reference-ui-round35/UI-build-full.png",
+      "expectedReferenceSha256": "650455603dfd2592ac09672617adb0d03045da7d41730a85c6fb0513e1ba0da4"
+    },
+    {
+      "image": 5,
+      "role": "candidate map",
+      "original": "/Users/amir/Projects/PodRacing/output/gauntlet/round35-broadcast-native-v16a-diagnostic/02-desktop-map.png",
+      "expectedReferenceSha256": null
+    },
+    {
+      "image": 6,
+      "role": "reference map",
+      "original": "/Users/amir/Projects/PodRacing/output/reference-ui-round35/UI2-map-full.png",
+      "expectedReferenceSha256": "dce0c433baef209fcad3cc137f820496f794c74bcb7c99455e687953620187ef"
+    },
+    {
+      "image": 7,
+      "role": "candidate garage",
+      "original": "/Users/amir/Projects/PodRacing/output/gauntlet/round35-broadcast-native-v16a-diagnostic/01-desktop-garage.png",
+      "expectedReferenceSha256": null
+    }
+  ]
+}

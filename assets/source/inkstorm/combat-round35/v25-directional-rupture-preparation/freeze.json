@@ -1,0 +1,61 @@
+{
+  "status": "PRIVATE FROZEN; NOT NATIVE/VISUAL ACCEPTED",
+  "patchSha256": "04dd73428ddd613a64f0510bcd67431fa862c32f4a5f55a2a8cb02e8210a8ed8",
+  "focusedTests": 56,
+  "testFiles": 8,
+  "privateTsc": "PASS",
+  "gitApplyCheck": "PASS",
+  "noLiveEdits": true,
+  "files": [
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/combat-round35/v25-directional-rupture-preparation/baseline.json",
+      "bytes": 456,
+      "sha256": "886a0eec92cc49d4fc2baf05f204e54c8e7066f96e50618fa337db404fdb28eb"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/combat-round35/v25-directional-rupture-preparation/v25-directional-rupture.patch",
+      "bytes": 26718,
+      "sha256": "04dd73428ddd613a64f0510bcd67431fa862c32f4a5f55a2a8cb02e8210a8ed8"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/combat-round35/v25-directional-rupture-preparation/HANDOFF.md",
+      "bytes": 4909,
+      "sha256": "197aa984be76dab2652a257f10e5a1eee83e40799cd64a1955af792459478747"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/combat-round35/v25-directional-rupture-preparation/focused-final-literal.log",
+      "bytes": 217,
+      "sha256": "a61bae0db953387e3c895cfbb2cc2c0a203fc6590afbf2d51d3eb3bc2fc41d34"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/combat-round35/v25-directional-rupture-preparation/typecheck-final-literal.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/combat-round35/v25-directional-rupture-preparation/legacy-parity.test.ts",
+      "bytes": 1401,
+      "sha256": "c3aaad65c8b4a17be8877d8833da307ae71f2d778fdbf1fc53da5eb57b0104c4"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/combat-round35/v25-directional-rupture-preparation/candidate/src/render/galactic/GalacticEffectsView.ts",
+      "bytes": 78242,
+      "sha256": "9e6bcf9bb7462d973e4e8acbbd6d36f8f41aace66aef188a624c60b61dee46d9"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/combat-round35/v25-directional-rupture-preparation/candidate/tests/combat/AuthoredAftermath.test.ts",
+      "bytes": 4706,
+      "sha256": "fee964f7ab0a3bdcdcf01c5357b17ffd927849ecd7b52c9f825374b9a5a11cb9"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/combat-round35/v25-directional-rupture-preparation/candidate/tests/render/AuthoredRuptureBeat.test.ts",
+      "bytes": 5305,
+      "sha256": "1a6b8f9f33b935dcecf0c578e6537d062e199e5b2e710df2c0605ad5d937b3a7"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/combat-round35/v25-directional-rupture-preparation/candidate/tests/render/DirectionalRuptureLifecycle.test.ts",
+      "bytes": 7491,
+      "sha256": "69b91cbdfda5d15dd000af9b6194d73d44c8ff2a58966111b3374c8399db5988"
+    }
+  ]
+}

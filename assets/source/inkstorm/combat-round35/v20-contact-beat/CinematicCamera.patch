@@ -1,0 +1,87 @@
+--- a/src/camera/CinematicCamera.ts
++++ b/src/camera/CinematicCamera.ts
+@@ -156,6 +156,8 @@
+   private captureMode = false;
+   private highlightFraming = false;
+   private combatFraming = false;
++  private readonly authoredCombatBack = new Vector3();
++  private hasAuthoredCombatBack = false;
+   private readonly desiredPosition = new Vector3();
+   private readonly desiredLookAt = new Vector3();
+   private readonly travelDirection = new Vector3();
+@@ -181,6 +183,7 @@
+ 
+   setMode(mode: CaptureCamera): void {
+     this.mode = mode;
++    if (mode !== 'side' && mode !== 'chase') this.hasAuthoredCombatBack = false;
+     // The physical, fully animated pilot remains in frame in cockpit mode.
+     // Drawing a second camera-attached pair of sleeves and gloves over it made
+     // one hand read as a ghost head and doubled the upper-body silhouette.
+@@ -190,6 +193,7 @@
+ 
+   setCaptureMode(enabled: boolean): void {
+     this.captureMode = enabled;
++    if (enabled) this.hasAuthoredCombatBack = false;
+   }
+ 
+   /**
+@@ -199,10 +203,12 @@
+    */
+   setHighlightFraming(enabled: boolean): void {
+     this.highlightFraming = enabled;
++    if (enabled) this.hasAuthoredCombatBack = false;
+   }
+ 
+   /** Live wrecks need space for the full vehicle and its separating engines. */
+   setCombatFraming(enabled: boolean): void {
++    if (enabled && !this.combatFraming) this.hasAuthoredCombatBack = false;
+     this.combatFraming = enabled;
+   }
+ 
+@@ -244,6 +250,7 @@
+   }
+ 
+   snap(subject: CameraSubject): void {
++    if (!this.combatFraming && !subject.wreckChase) this.hasAuthoredCombatBack = false;
+     this.lastSubjectPosition.copy(subject.position);
+     this.hasSubjectPosition = true;
+     const desired = this.getDesired(subject, 0);
+@@ -264,6 +271,7 @@
+   }
+ 
+   update(dt: number, time: number, subject: CameraSubject): void {
++    if (!this.combatFraming && !subject.wreckChase) this.hasAuthoredCombatBack = false;
+     dt = MathUtils.clamp(Number.isFinite(dt) ? dt : 0, 0, 0.05);
+     this.orbitTime += dt;
+     if (this.hasSubjectPosition) {
+@@ -538,10 +546,17 @@
+     // Source corners determine distance; a long hull does not require a tall eye.
+     let side = .86, fore = -.5;
+     const impact = subject.combatImpactPosition;
+-    if (impact && subject.combatFocus && Number.isFinite(impact.x + impact.y + impact.z)) {
++    const authored = !!impact && !!subject.combatFocus && Number.isFinite(impact.x + impact.y + impact.z);
++    if (authored && this.hasAuthoredCombatBack) {
++      // The controller's victim-cut rising edge owns this shot. Crossing the
++      // moving assembly centroid must not reverse its chosen tear-side azimuth.
++      this.boundsBack.copy(this.authoredCombatBack);
++      return;
++    }
++    if (authored) {
+       // Expose the actual torn section instead of placing an intact engine in
+       // front of it. Unauthored families keep their existing shot direction.
+-      this.boundsOffset.copy(impact).sub(subject.combatFocus);
++      this.boundsOffset.copy(impact!).sub(subject.combatFocus!);
+       if (this.boundsOffset.dot(right) < 0) side = -.86;
+       // The authored cut lies ahead of the cockpit. A forward quarter also
+       // reveals its open face, rather than looking down the intact nozzle.
+@@ -549,6 +564,10 @@
+     }
+     this.boundsBack.copy(right).multiplyScalar(side).addScaledVector(forward, fore)
+       .addScaledVector(UP, .20).normalize();
++    if (authored) {
++      this.authoredCombatBack.copy(this.boundsBack);
++      this.hasAuthoredCombatBack = true;
++    }
+   }
+ 
+   private fitCombatBounds(subject: CameraSubject, direction: Vector3, minimumDistance = 0): void {

@@ -1,0 +1,35 @@
+{
+  "at": "2026-09-09T11:21:10.093865+00:00",
+  "tool": "native imagegen",
+  "source": {
+    "path": "/Users/amir/.codex/generated_images/01a076a6-10a1-7b50-b775-dd7d40542e2a/exec-6405179b-bb50-4a7b-b41b-e82eb7078963.png",
+    "bytes": 1932023,
+    "sha256": "ac7a3a2f3bfd3aa30806597ecc320c56ab09b8ade8c8f1bb259f8393f19650a3"
+  },
+  "copy": {
+    "path": "/Users/amir/Projects/PodRacing/docs/inkstorm-overhaul/concepts/20-clean-driving-instruments-v31-target.png",
+    "bytes": 1932023,
+    "sha256": "ac7a3a2f3bfd3aa30806597ecc320c56ab09b8ade8c8f1bb259f8393f19650a3"
+  },
+  "inputs": [
+    {
+      "path": "/Users/amir/Projects/PodRacing/output/gauntlet/round35-broadcast-native-v30/06-desktop-live-race.png",
+      "bytes": 1481381,
+      "sha256": "6a76d20ff7a70fb1db81e0a868eb44a74a9abbfd31ff4d93ba591611726b837e"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/output/reference-ui-round35/UI-hud-full.png",
+      "bytes": 1122356,
+      "sha256": "d35ba42eaf89d6e2c695ec2f4f877fd79358baaa1f56f5ba245aafcb41668770"
+    }
+  ],
+  "nativeScreenshot": false,
+  "runtimeAdmission": false,
+  "promptSummary": "Edit actual V30 HUD using user reference: open outlined speed silhouette, separated course ruler, compact airborne/over-rev ribbon and three aligned resource rows; preserve actual values/world/equipment.",
+  "limitations": [
+    "Generated target only; reconstructed world and text are not exact pixels or geometry.",
+    "Original warning/controller state remains code authority; not a license to drop alerts, names or values.",
+    "Original blind UI reference and protocol unchanged.",
+    "Generated image omits racer name and slightly changes sizing; not every design choice is an implementation requirement."
+  ]
+}

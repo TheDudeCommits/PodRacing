@@ -1,0 +1,72 @@
+{
+  "at": "2026-09-08T11:09:29.021385+00:00",
+  "audit": {
+    "path": "assets/source/inkstorm/blockrunner-round34/mcp-safe/audit-receipt.json",
+    "sha256": "c76e04780c5e3c58887b112a450bddfbafb1b959529c7666f6773991611ce227",
+    "metrics": {
+      "actualSceneOccurrenceTriangles": 48384,
+      "bounds": [
+        [
+          -2.9099459648132324,
+          -28.763988494873047,
+          0.021512573584914207
+        ],
+        [
+          2.958909034729004,
+          -16.763992309570312,
+          3.1749837398529053
+        ]
+      ],
+      "evaluatedMeshOccurrences": 59,
+      "meshObjects": 59,
+      "sceneObjects": 268,
+      "uniqueMeshDatablocks": 59,
+      "uniqueMeshTriangles": 48384
+    }
+  },
+  "images": [
+    {
+      "view": "driver",
+      "path": "assets/source/inkstorm/blockrunner-round34/source-driver-20260908-round34-source-v1.png",
+      "sha256": "3d111f3d42cc6879d0b329beb6508a5629d36f23259f0709cfc6c7d6f65a6899",
+      "bytes": 1109761,
+      "receipt": "assets/source/inkstorm/blockrunner-round34/mcp-safe/driver-render-receipt.json",
+      "individuallyViewedBy": "root",
+      "sourceScenesPreserved": 140
+    },
+    {
+      "view": "rear",
+      "path": "assets/source/inkstorm/blockrunner-round34/source-rear-20260908-round34-source-v1.png",
+      "sha256": "b1d1ae2cade94f1731e1c4626759dca3404281837841b688fa71046f156f0ece",
+      "bytes": 1030159,
+      "receipt": "assets/source/inkstorm/blockrunner-round34/mcp-safe/rear-render-receipt.json",
+      "individuallyViewedBy": "root",
+      "sourceScenesPreserved": 140
+    },
+    {
+      "view": "front",
+      "path": "assets/source/inkstorm/blockrunner-round34/source-front-20260908-round34-source-v1.png",
+      "sha256": "0c366340994dd4967f603be82f474ed39fb0053cc79e90823797abae3e97260c",
+      "bytes": 989209,
+      "receipt": "assets/source/inkstorm/blockrunner-round34/mcp-safe/front-render-receipt.json",
+      "individuallyViewedBy": "root",
+      "sourceScenesPreserved": 140
+    },
+    {
+      "view": "fullcraft",
+      "path": "assets/source/inkstorm/blockrunner-round34/source-fullcraft-20260908-round34-source-v1.png",
+      "sha256": "92d1ba78486877f96602da3c66606340f1fb0793b5cbb0296a80cca1c62f41d5",
+      "bytes": 1016009,
+      "receipt": "assets/source/inkstorm/blockrunner-round34/mcp-safe/fullcraft-render-receipt.json",
+      "individuallyViewedBy": "root",
+      "sourceScenesPreserved": 140
+    }
+  ],
+  "observations": [
+    "Driver candidate is an original seated minifigure with head, torso, arms and hands; no duplicate pilot should be added.",
+    "Neutral driver image shows hands separate from the two tall control bars; source leg/seat and side-panel surfaces contain triangular/striped artifacts requiring copy-only topology investigation.",
+    "Front turbine spokes and rear tapered outlet mouths are visually distinct. Generated concept inset does not establish outlet anchors.",
+    "Shared source and all140preexistingscene memberships/context restored after audit and each render. No .blend saved.",
+    "This is original source inspection; no Blockrunner runtime registration, normalization, optimized derivative or art acceptance yet."
+  ]
+}

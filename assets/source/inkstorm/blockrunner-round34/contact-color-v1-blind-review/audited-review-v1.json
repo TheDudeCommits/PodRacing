@@ -1,0 +1,211 @@
+{
+  "scope": "Audit of actual nine-image paired CLI review; no new critic invocation, image edit or independent visual verdict.",
+  "outcome": "REVIEW_PROVENANCE_AUDIT_PASS",
+  "completed": "2026-09-08T15:47:15.642407+00:00",
+  "criticThreadId": "01a081b2-8bf7-7e42-8a9e-34d8e5b0680e",
+  "exitCode": 0,
+  "imagesAvailable": 9,
+  "imagesDeclaredExaminedByCritic": 9,
+  "individualActualImageObservations": 8,
+  "actualImagePairs": 4,
+  "pairPreferences": [
+    "tie",
+    "tie",
+    "tie",
+    "tie"
+  ],
+  "unblinding": {
+    "A": "V8 contact-color runtime",
+    "B": "V5 material/framing runtime with V6 GLBs",
+    "target": "Supplementary generated concept12; not runtime geometry authority"
+  },
+  "scores": {
+    "A": {
+      "materials": 5,
+      "pilotReadability": 6,
+      "overallVehicle": 5.5,
+      "gate": 8,
+      "verdict": "FAIL"
+    },
+    "B": {
+      "materials": 5,
+      "pilotReadability": 6,
+      "overallVehicle": 5.5,
+      "gate": 8,
+      "verdict": "FAIL"
+    }
+  },
+  "qualityImprovementDemonstrated": false,
+  "freshnessScope": "Fresh ephemeral read-only process and temporary directory; prompt/attachments contain no prior task history, verdict, chronology or implementation description. Recorded model tool/file retrieval events are zero. Generic user configuration may load; stderr includes CLI state-database/skill warnings, so absolute configuration isolation is not claimed.",
+  "eventCounts": {
+    "thread.started": 1,
+    "turn.started": 1,
+    "error": 4,
+    "item.completed": 2,
+    "turn.completed": 1
+  },
+  "itemCounts": {
+    "error": 1,
+    "agent_message": 1
+  },
+  "modelToolOrFileRetrievalEvents": 0,
+  "transportReconnectErrors": 4,
+  "httpsFallbackRecorded": true,
+  "finalReportMatchesRawAgentMessage": true,
+  "images": [
+    {
+      "index": 1,
+      "original": "/Users/amir/Projects/PodRacing/output/gauntlet/round34-blockrunner-contact-color-v1/captures/garage.png",
+      "attachment": "/var/folders/8_/sqnvwbyn5qv5slnnkk73035c0000gn/T/podracing-contact-blind-0y30uayn/image-01.png",
+      "version": "A",
+      "scene": "garage.png",
+      "bytes": 1055712,
+      "sha256": "3514f01bc3e975320b31938f05e1525bf4ab9caef6cae820e9e7ad09686bbe0b",
+      "originalExists": true,
+      "attachmentExists": true,
+      "bytesEqual": true,
+      "sha256Verified": true
+    },
+    {
+      "index": 2,
+      "original": "/Users/amir/Projects/PodRacing/output/gauntlet/round34-blockrunner-admission-v1/captures-material-framing-v5/garage.png",
+      "attachment": "/var/folders/8_/sqnvwbyn5qv5slnnkk73035c0000gn/T/podracing-contact-blind-0y30uayn/image-02.png",
+      "version": "B",
+      "scene": "garage.png",
+      "bytes": 1050225,
+      "sha256": "ca019927e9fb51f80ecd828f75476a7e0fa5dcda6091fa27b44ba19f74326f7e",
+      "originalExists": true,
+      "attachmentExists": true,
+      "bytesEqual": true,
+      "sha256Verified": true
+    },
+    {
+      "index": 3,
+      "original": "/Users/amir/Projects/PodRacing/output/gauntlet/round34-blockrunner-contact-color-v1/captures/01-grid.png",
+      "attachment": "/var/folders/8_/sqnvwbyn5qv5slnnkk73035c0000gn/T/podracing-contact-blind-0y30uayn/image-03.png",
+      "version": "A",
+      "scene": "01-grid.png",
+      "bytes": 3242840,
+      "sha256": "0d924732033c8a275af4b33145c7e6ecce7c84a04d89a751b3169254572f6bee",
+      "originalExists": true,
+      "attachmentExists": true,
+      "bytesEqual": true,
+      "sha256Verified": true
+    },
+    {
+      "index": 4,
+      "original": "/Users/amir/Projects/PodRacing/output/gauntlet/round34-blockrunner-admission-v1/captures-material-framing-v5/01-grid.png",
+      "attachment": "/var/folders/8_/sqnvwbyn5qv5slnnkk73035c0000gn/T/podracing-contact-blind-0y30uayn/image-04.png",
+      "version": "B",
+      "scene": "01-grid.png",
+      "bytes": 3231130,
+      "sha256": "1a87a5d65e136f90c49a6f2c37b8e536661701d797f29df33f2ae150606e7f49",
+      "originalExists": true,
+      "attachmentExists": true,
+      "bytesEqual": true,
+      "sha256Verified": true
+    },
+    {
+      "index": 5,
+      "original": "/Users/amir/Projects/PodRacing/output/gauntlet/round34-blockrunner-contact-color-v1/captures/foundry-middle.png",
+      "attachment": "/var/folders/8_/sqnvwbyn5qv5slnnkk73035c0000gn/T/podracing-contact-blind-0y30uayn/image-05.png",
+      "version": "A",
+      "scene": "foundry-middle.png",
+      "bytes": 3067891,
+      "sha256": "9e7eb2a3017e9b32c097fa9e05499f3a81f7ab851c607449068193f4cb823dbe",
+      "originalExists": true,
+      "attachmentExists": true,
+      "bytesEqual": true,
+      "sha256Verified": true
+    },
+    {
+      "index": 6,
+      "original": "/Users/amir/Projects/PodRacing/output/gauntlet/round34-blockrunner-admission-v1/captures-material-framing-v5/foundry-middle.png",
+      "attachment": "/var/folders/8_/sqnvwbyn5qv5slnnkk73035c0000gn/T/podracing-contact-blind-0y30uayn/image-06.png",
+      "version": "B",
+      "scene": "foundry-middle.png",
+      "bytes": 3060967,
+      "sha256": "dd43d739abaffd13323ae836d5e90fc0d0d44f0b473365fa6eac9ef2f263b602",
+      "originalExists": true,
+      "attachmentExists": true,
+      "bytesEqual": true,
+      "sha256Verified": true
+    },
+    {
+      "index": 7,
+      "original": "/Users/amir/Projects/PodRacing/output/gauntlet/round34-blockrunner-contact-color-v1/captures/foundry-exit.png",
+      "attachment": "/var/folders/8_/sqnvwbyn5qv5slnnkk73035c0000gn/T/podracing-contact-blind-0y30uayn/image-07.png",
+      "version": "A",
+      "scene": "foundry-exit.png",
+      "bytes": 2922018,
+      "sha256": "7bb27980b2fc7ce3961c99dbfdcbba8e3a834285d6fd1f376c433f96f2769fb1",
+      "originalExists": true,
+      "attachmentExists": true,
+      "bytesEqual": true,
+      "sha256Verified": true
+    },
+    {
+      "index": 8,
+      "original": "/Users/amir/Projects/PodRacing/output/gauntlet/round34-blockrunner-admission-v1/captures-material-framing-v5/foundry-exit.png",
+      "attachment": "/var/folders/8_/sqnvwbyn5qv5slnnkk73035c0000gn/T/podracing-contact-blind-0y30uayn/image-08.png",
+      "version": "B",
+      "scene": "foundry-exit.png",
+      "bytes": 2914359,
+      "sha256": "17c19ede4cf005afa67758746187b0b7184023fe0389d1e5338eec093e34a731",
+      "originalExists": true,
+      "attachmentExists": true,
+      "bytesEqual": true,
+      "sha256Verified": true
+    },
+    {
+      "index": 9,
+      "original": "/Users/amir/Projects/PodRacing/docs/inkstorm-overhaul/concepts/12-blockrunner-round34.png",
+      "attachment": "/var/folders/8_/sqnvwbyn5qv5slnnkk73035c0000gn/T/podracing-contact-blind-0y30uayn/image-09.png",
+      "version": "target",
+      "scene": "vehicleconcept",
+      "bytes": 2255407,
+      "sha256": "6e96d24510b73847f02f483ac5ffa73c30262a9968b03bfd9c401c5ce8d776d8",
+      "originalExists": true,
+      "attachmentExists": true,
+      "bytesEqual": true,
+      "sha256Verified": true
+    }
+  ],
+  "records": [
+    {
+      "path": "assets/source/inkstorm/blockrunner-round34/contact-color-v1-blind-review/inventory.json",
+      "bytes": 4329,
+      "sha256": "fa84801f4b49fc638b3387481c35792b4d5a76ac67c8954d6d66447ac0c562ed"
+    },
+    {
+      "path": "assets/source/inkstorm/blockrunner-round34/contact-color-v1-blind-review/prompt.txt",
+      "bytes": 1520,
+      "sha256": "1237337377a933a82d790f895135d40eb76dab0466a80ef2805628873a3430c2"
+    },
+    {
+      "path": "assets/source/inkstorm/blockrunner-round34/contact-color-v1-blind-review/run-image-critic.py",
+      "bytes": 1743,
+      "sha256": "6aa732bdc4a24c78a88fdc0dc0613b399dd83dd752a8c09d594e47879cbc28da"
+    },
+    {
+      "path": "assets/source/inkstorm/blockrunner-round34/contact-color-v1-blind-review/cli-critic-attempt1/invocation.json",
+      "bytes": 1966,
+      "sha256": "21c794a50d6311cb7c1d85396b1246046a2e6264e009323e0c79c704a8f617ff"
+    },
+    {
+      "path": "assets/source/inkstorm/blockrunner-round34/contact-color-v1-blind-review/cli-critic-attempt1/events.jsonl",
+      "bytes": 4521,
+      "sha256": "01b26d0e03323b91fb812048d4db1ce19b0e67e922b8101ee176846fa6bd8bc2"
+    },
+    {
+      "path": "assets/source/inkstorm/blockrunner-round34/contact-color-v1-blind-review/cli-critic-attempt1/stderr.log",
+      "bytes": 4766,
+      "sha256": "10ace4aa1dff35ca886c7c8b060d8db9acc109928dd2f59f3d2e60a867b05523"
+    },
+    {
+      "path": "assets/source/inkstorm/blockrunner-round34/contact-color-v1-blind-review/cli-critic-attempt1/review.md",
+      "bytes": 3346,
+      "sha256": "0f9ba137959631415b30a3c589f391e346e2fd814831e1859ad86297096fec53"
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "extends": "../../../../tsconfig.json",
+  "include": [
+    "InkstormBridge.candidate.ts",
+    "InkstormForkFoundation.ts",
+    "ForkIslandContacts.ts"
+  ],
+  "exclude": []
+}

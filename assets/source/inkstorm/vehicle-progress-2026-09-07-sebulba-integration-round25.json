@@ -1,0 +1,53 @@
+{
+  "recordedAt": "2026-09-07T16:42:04.571290+00:00",
+  "scope": "Both existing licensed vehicle families functionally integrated; no new source downloads, public exports or source inspection counted. Pilot detail candidate remains isolated and visually rejected. Full-race timing still in progress.",
+  "beforeManifestSha256": "a24d86590c13be0f1a1db69a03f5f37a62d77fb51fcfacf8a01f3ecd6cdafa9d",
+  "afterManifestSha256": "f0149d61993a2346fd964559ba6a3b4e29bd7de6338743f8c17ade0e3de26862",
+  "beforeCounts": {
+    "publicResults": 29,
+    "vehicleCandidates": 26,
+    "excludedNonVehicles": 3,
+    "downloaded": 2,
+    "blockedOrPending": 24,
+    "downloadStatuses": {
+      "downloaded": 2,
+      "pending_download": 23,
+      "rate_limited": 1
+    },
+    "mcpImportedSourceGlbs": 2,
+    "rawArchivesPreserved": 0,
+    "stylizationNeedsPermission": 0,
+    "publicAdaptationRestricted": 1,
+    "stylizedExports": 2,
+    "stylizedSourceStudies": 2,
+    "stylizedExportVariants": 4,
+    "driversAdded": 2,
+    "runtimeIntegrations": 1,
+    "driverInspections": 2
+  },
+  "afterCounts": {
+    "publicResults": 29,
+    "vehicleCandidates": 26,
+    "excludedNonVehicles": 3,
+    "downloaded": 2,
+    "blockedOrPending": 24,
+    "downloadStatuses": {
+      "downloaded": 2,
+      "pending_download": 23,
+      "rate_limited": 1
+    },
+    "mcpImportedSourceGlbs": 2,
+    "rawArchivesPreserved": 0,
+    "stylizationNeedsPermission": 0,
+    "publicAdaptationRestricted": 1,
+    "stylizedExports": 2,
+    "stylizedSourceStudies": 2,
+    "stylizedExportVariants": 4,
+    "driversAdded": 2,
+    "runtimeIntegrations": 2,
+    "driverInspections": 2
+  },
+  "functionalReceipt": "output/playwright/vehicle-appearance-round25/receipt.json",
+  "functionalReceiptSha256": "31e9f91eb38a0a12a0fc5cdbe1eace56c50d5477108a03fc36dac60253742ea5",
+  "bundleSha256": "14c129a2de533fa5c3e4adbdacd1eb1e6cda21112df3fa7317b2e613ae1ac4b5"
+}

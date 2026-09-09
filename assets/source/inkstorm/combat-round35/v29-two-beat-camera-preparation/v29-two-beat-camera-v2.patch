@@ -1,0 +1,440 @@
+diff --git a/src/camera/CinematicCamera.ts b/src/camera/CinematicCamera.ts
+--- a/src/camera/CinematicCamera.ts
++++ b/src/camera/CinematicCamera.ts
+@@ -114,7 +114,11 @@
+   /** Authored moving failure point; a victim shot views its side of the craft. */
+   combatImpactPosition?: Vector3;
+   /** Optional active authored-engine cluster; full combatBounds still protect the lens. */
+-  combatImpactFraming?: { readonly center: Vector3; readonly bounds: readonly Vector3[] };
++  combatImpactFraming?: { readonly center: Vector3; readonly bounds: readonly Vector3[];
++    /** Optional authored wreck age. Omission preserves the locked legacy shot. */
++    readonly ageSeconds?: number;
++    /** Optional authored composition limit in NDC; legacy providers retain .74. */
++    readonly horizontalHalfSpan?: number };
+   /** Current displayed assembly radius, resolved from cached source bounds. */
+   combatRadius?: number;
+   /** Existing per-part source-box corners, already transformed into world space. */
+@@ -161,6 +165,7 @@
+   private readonly authoredCombatBack = new Vector3();
+   private hasAuthoredCombatBack = false;
+   private hasImpactCombatBack = false;
++  private impactArcSign = 0;
+   private readonly impactAzimuthCandidate = new Vector3();
+   private readonly desiredPosition = new Vector3();
+   private readonly desiredLookAt = new Vector3();
+@@ -213,7 +218,7 @@
+   /** Live victim wreck framing; optional authored impact clusters retain full lens safety. */
+   setCombatFraming(enabled: boolean): void {
+     if (enabled && !this.combatFraming) {
+-      this.hasAuthoredCombatBack = false; this.hasImpactCombatBack = false;
++      this.hasAuthoredCombatBack = false; this.hasImpactCombatBack = false; this.impactArcSign = 0;
+     }
+     this.combatFraming = enabled;
+   }
+@@ -575,6 +580,7 @@
+       // The controller's victim-cut rising edge owns this shot. Crossing the
+       // moving assembly centroid must not reverse its chosen tear-side azimuth.
+       this.boundsBack.copy(this.authoredCombatBack);
++      this.applyAuthoredImpactArc(subject, impactFrame);
+       return;
+     }
+     if (authored) {
+@@ -588,10 +594,11 @@
+     }
+     this.boundsBack.copy(right).multiplyScalar(side).addScaledVector(forward, fore)
+       .addScaledVector(UP, .20).normalize();
++    this.impactArcSign = 0;
+     if (authored && impactFrame) {
+       // Existing racer shadows cast toward (+.42, +.50) in world XZ. Select
+-      // one modest 20-degree offset away from that direction, on the same
+-      // tear side. Lock it for this identity: no orbit as the pieces settle.
++      // one modest 20-degree initial offset away from that direction, on the
++      // same tear side. An age-bearing authored frame may add a bounded arc.
+       const x = this.boundsBack.x, z = this.boundsBack.z;
+       let best = x * .42 + z * .50;
+       for (let sign = -1; sign <= 1; sign += 2) {
+@@ -604,17 +611,48 @@
+         }
+       }
+       this.hasImpactCombatBack = true;
++      if (Number.isFinite(impactFrame.ageSeconds) && !this.comfort.reducedMotion) {
++        // Pick one direction for this victim identity. Both endpoints remain
++        // on the exposed tear side; no angle accumulates from prior frames.
++        const arc = Math.PI * 14 / 180, c = Math.cos(arc), sn = Math.sin(arc);
++        const baseX = this.boundsBack.x, baseZ = this.boundsBack.z;
++        let bestArc = Infinity;
++        for (let sign = -1; sign <= 1; sign += 2) {
++          this.impactAzimuthCandidate.set(baseX * c + baseZ * sn * sign, this.boundsBack.y,
++            baseZ * c - baseX * sn * sign);
++          const score = this.impactAzimuthCandidate.x * .42 + this.impactAzimuthCandidate.z * .50;
++          if (score < bestArc && this.impactAzimuthCandidate.dot(right) * Math.sign(side) > .35) {
++            bestArc = score; this.impactArcSign = sign;
++          }
++        }
++      }
+     }
+     if (authored) {
+       this.authoredCombatBack.copy(this.boundsBack);
+       this.hasAuthoredCombatBack = true;
+-    }
++      this.applyAuthoredImpactArc(subject, impactFrame);
++    }
++  }
++
++  private applyAuthoredImpactArc(subject: CameraSubject, frame: CameraSubject['combatImpactFraming']): void {
++    if (!this.impactArcSign || this.comfort.reducedMotion) return;
++    // Protected intact recovery retains the terminal angle, rather than
++    // rotating back through the craft when the authored metadata disappears.
++    const progress = subject.wreckRecovery ? 1
++      : Number.isFinite(frame?.ageSeconds) ? MathUtils.smoothstep(frame!.ageSeconds!, .015, .50) : 0;
++    const angle = this.impactArcSign * Math.PI * 14 / 180 * progress;
++    const c = Math.cos(angle), sn = Math.sin(angle), x = this.boundsBack.x, z = this.boundsBack.z;
++    this.boundsBack.set(x * c + z * sn, this.boundsBack.y, z * c - x * sn);
+   }
+ 
+   private fitCombatBounds(subject: CameraSubject, direction: Vector3, minimumDistance = 0): void {
+     const impactFrame = this.impactFrame(subject);
+     const focus = impactFrame?.center ?? subject.combatFocus!;
+     const points = impactFrame?.bounds ?? subject.combatBounds!;
++    // Explicit phase composition: early authored close-up may occupy more
++    // screen width; all source near-plane and terrain checks below stay full.
++    const impactHorizontal = impactFrame && Number.isFinite(impactFrame.horizontalHalfSpan)
++      ? MathUtils.clamp(impactFrame.horizontalHalfSpan!, .74, .90) : .74;
+     this.boundsBack.copy(direction);
+     if (this.boundsBack.lengthSq() < .001) this.boundsBack.set(0, .2, -1);
+     this.boundsBack.normalize();
+@@ -635,9 +673,10 @@
+         if (impactFrame) {
+           // Solve the aim translation as well as distance. A world-AABB center
+           // leaves empty screen space above/beside a long banked casing. These
+-          // interval endpoints retain x=+/-.74 and y=[-.58,.70] exactly.
+-          leftAim = Math.max(leftAim, x + .74 * horizontal * z);
+-          rightAim = Math.min(rightAim, x - .74 * horizontal * z);
++          // interval endpoints retain the validated horizontal limit and
++          // y=[-.58,.70] exactly.
++          leftAim = Math.max(leftAim, x + impactHorizontal * horizontal * z);
++          rightAim = Math.min(rightAim, x - impactHorizontal * horizontal * z);
+           upperAim = Math.max(upperAim, y + .70 * tangent * z);
+           lowerAim = Math.min(lowerAim, y - .58 * tangent * z);
+           distance = Math.max(distance, z + this.camera.near + .5);
+@@ -649,7 +688,7 @@
+         }
+       }
+       if (impactFrame) {
+-        distance = Math.max(distance, (leftAim - rightAim) / (1.48 * horizontal),
++        distance = Math.max(distance, (leftAim - rightAim) / (2 * impactHorizontal * horizontal),
+           (upperAim - lowerAim) / (1.28 * tangent));
+         // The reframing permits rods offscreen, never through the lens. Every
+         // original full-assembly box must remain beyond the near-plane guard.
+diff --git a/src/render/combat/TeemtoAuthoredDamage.ts b/src/render/combat/TeemtoAuthoredDamage.ts
+--- a/src/render/combat/TeemtoAuthoredDamage.ts
++++ b/src/render/combat/TeemtoAuthoredDamage.ts
+@@ -29,7 +29,7 @@
+   private readonly bounds: Vector3[];
+   private readonly assembly = new Box3();
+   private readonly impactBox = new Box3();
+-  private readonly impactFraming: { center: Vector3; bounds: Vector3[] };
++  private readonly impactFraming: { center: Vector3; bounds: Vector3[]; ageSeconds: number; horizontalHalfSpan: number };
+   private impactPose: WreckVisualPose | null = null;
+   private readonly partBox = new Box3();
+   private readonly body = new Matrix4();
+@@ -108,11 +108,13 @@
+     if (stubs) stationary.push(stubs);
+     this.stationary.refresh(root, stationary, 0);
+     this.bounds = Array.from({ length: (this.parts.length + 1) * 8 }, () => new Vector3());
+-    // First three moving source boxes are the actual engines. Two reused
+-    // witness slots include the fracture and real contact without the pilot or
+-    // long severed rods expanding the screen-fit rectangle. Full bounds stay intact.
+-    this.impactFraming = { center: new Vector3(), bounds: [
+-      ...this.bounds.slice(8, 32), new Vector3(), new Vector3(),
++    // First beat: the two torn right-engine boxes and two actual witnesses.
++    // Eight preallocated points reveal the left engine during the later beat;
++    // their initial collapsed positions cannot enlarge the early fit. The full
++    // stationary/engine/tether bounds remain unchanged for lens safety.
++    this.impactFraming = { center: new Vector3(), ageSeconds: 0, horizontalHalfSpan: .88, bounds: [
++      ...this.bounds.slice(16, 32), new Vector3(), new Vector3(),
++      ...Array.from({ length: 8 }, () => new Vector3()),
+     ] };
+     this.originalVisibility = hidden.map(mesh => mesh.visible);
+     // Exact outer rear cut-loop centroid from the hero/rival Blender receipts,
+@@ -195,10 +197,21 @@
+     this.assembly.getCenter(pose.center).applyMatrix4(this.body); this.assembly.getSize(this.point);
+     pose.radius = this.point.length() * .5; pose.bounds = this.bounds;
+     this.writeRupture(pose);
+-    this.impactFraming.bounds[24]!.copy(this.rupture.position);
+-    this.impactFraming.bounds[25]!.copy(this.contactPose === pose ? this.contact.position : this.rupture.position);
++    this.impactFraming.ageSeconds = age;
++    this.impactFraming.bounds[16]!.copy(this.rupture.position);
++    this.impactFraming.bounds[17]!.copy(this.contactPose === pose ? this.contact.position : this.rupture.position);
+     this.impactBox.makeEmpty();
+-    for (const bound of this.impactFraming.bounds) this.impactBox.expandByPoint(bound);
++    for (let index = 0; index < 18; index++) this.impactBox.expandByPoint(this.impactFraming.bounds[index]!);
++    this.impactBox.getCenter(this.impactFraming.center);
++    // Keep the torn pair dominant through its catch, then reveal settled context
++    // without switching arrays or creating a discontinuous aim rectangle.
++    const contextBlend = smooth((age - .13) / .52);
++    this.impactFraming.horizontalHalfSpan = .88 - .14 * contextBlend;
++    for (let index = 0; index < 8; index++) {
++      const bound = this.impactFraming.bounds[18 + index]!;
++      bound.copy(this.impactFraming.center).lerp(this.bounds[8 + index]!, contextBlend);
++      this.impactBox.expandByPoint(bound);
++    }
+     this.impactBox.getCenter(this.impactFraming.center);
+     pose.impactFraming = this.impactFraming; this.impactPose = pose;
+   }
+diff --git a/src/render/combat/WreckVisualPose.ts b/src/render/combat/WreckVisualPose.ts
+--- a/src/render/combat/WreckVisualPose.ts
++++ b/src/render/combat/WreckVisualPose.ts
+@@ -26,7 +26,11 @@
+   /** Cached source-box corners in world space; no sphere inflation for camera fitting. */
+   bounds: readonly Vector3[];
+   /** Optional authored impact composition; full bounds remain the safety envelope. */
+-  impactFraming?: { readonly center: Vector3; readonly bounds: readonly Vector3[] };
++  impactFraming?: { readonly center: Vector3; readonly bounds: readonly Vector3[];
++    /** Authoritative wreck timer expressed as presentation age; never advances simulation. */
++    readonly ageSeconds?: number;
++    /** Optional authored composition limit in NDC; legacy providers retain .74. */
++    readonly horizontalHalfSpan?: number };
+   radius: number;
+   groundCorrection: number;
+   /** Simulation base frame before renderer-only tumble. Reused, read-only data
+diff --git a/tests/camera/TeemtoImpactFraming.test.ts b/tests/camera/TeemtoImpactFraming.test.ts
+--- a/tests/camera/TeemtoImpactFraming.test.ts
++++ b/tests/camera/TeemtoImpactFraming.test.ts
+@@ -1,4 +1,4 @@
+-import { Box3, Matrix4, Quaternion, Vector3 } from 'three';
++import { Box3, MathUtils, Matrix4, Quaternion, Vector3 } from 'three';
+ import { afterAll, describe, expect, it } from 'vitest';
+ import { CinematicCamera, type CameraSubject } from '../../src/camera/CinematicCamera';
+ import { WRECK_PRESENTATION_DURATION, type WreckVisualPose } from '../../src/render/combat/WreckVisualPose';
+@@ -41,17 +41,18 @@
+   const right = new Vector3(1, 0, 0).applyQuaternion(rig.camera.quaternion);
+   const up = new Vector3(0, 1, 0).applyQuaternion(rig.camera.quaternion);
+   const tangent = Math.tan(Math.PI / 6), horizontal = tangent * rig.camera.aspect, offset = new Vector3();
++  const margin = pose.impactFraming!.horizontalHalfSpan ?? .74;
+   let horizontalMax = -Infinity, horizontalMin = Infinity, verticalMax = -Infinity, verticalMin = Infinity, fullNearDistance = 2;
+   for (const p of pose.impactFraming!.bounds) {
+     offset.copy(p).sub(focus);
+     const x = offset.dot(right), y = offset.dot(up), z = offset.dot(back);
+-    horizontalMax = Math.max(horizontalMax, x + .74 * horizontal * z);
+-    horizontalMin = Math.min(horizontalMin, x - .74 * horizontal * z);
++    horizontalMax = Math.max(horizontalMax, x + margin * horizontal * z);
++    horizontalMin = Math.min(horizontalMin, x - margin * horizontal * z);
+     verticalMax = Math.max(verticalMax, y + .70 * tangent * z);
+     verticalMin = Math.min(verticalMin, y - .58 * tangent * z);
+   }
+   for (const p of pose.bounds) fullNearDistance = Math.max(fullNearDistance, offset.copy(p).sub(focus).dot(back) + rig.camera.near + .5);
+-  const horizontalDistance = Math.max(2, (horizontalMax - horizontalMin) / (1.48 * horizontal));
++  const horizontalDistance = Math.max(2, (horizontalMax - horizontalMin) / (2 * margin * horizontal));
+   const verticalDistance = Math.max(2, (verticalMax - verticalMin) / (1.28 * tangent));
+   const fittedDistance = Math.max(horizontalDistance, verticalDistance, fullNearDistance);
+   const actualAxialDistance = rig.camera.position.clone().sub(focus).dot(back);
+@@ -115,11 +116,12 @@
+ function assertActualCluster(art: ReturnType<typeof fixture>, pose: WreckVisualPose): void {
+   const cluster = pose.impactFraming!;
+   expect(cluster).toBeDefined();
++  expect(Number.isFinite(cluster.ageSeconds)).toBe(true);
+   expect(cluster.center.toArray().every(Number.isFinite)).toBe(true);
+   expect(pose.bounds, 'full stationary, engine and optional tether safety bounds retained').toHaveLength(art.damage.some(mesh => mesh.name === 'teemto-damage-severed-tethers-v16') ? 40 : 32);
+   art.root.updateMatrixWorld(true);
+   const body = bodyMatrix(pose), model = new Matrix4(), corner = new Vector3();
+-  const expected: Vector3[] = [];
++  const left: Vector3[] = [], torn: Vector3[] = [];
+   for (const name of engineNames) {
+     const mesh = art.all.find(mesh => mesh.name === name)!;
+     expect(mesh?.visible, name).toBe(true);
+@@ -128,17 +130,20 @@
+     model.copy(body).multiply(mesh.matrixWorld);
+     for (let i = 0; i < 8; i++) {
+       corner.set(i & 1 ? local.max.x : local.min.x, i & 2 ? local.max.y : local.min.y, i & 4 ? local.max.z : local.min.z).applyMatrix4(model);
+-      expect(Math.min(...cluster.bounds.map(point => point.distanceTo(corner))), `${name}: independently transformed source box corner`).toBeLessThan(1e-7);
++      // V29 changes only composition: every complete source corner remains
++      // mandatory for lens safety even while the left engine is offscreen.
+       expect(Math.min(...pose.bounds.map(point => point.distanceTo(corner))), `${name}: full safety corner retained`).toBeLessThan(1e-7);
+-      expected.push(corner.clone());
++      (name === engineNames[0] ? left : torn).push(corner.clone());
+     }
+   }
+-  for (const witness of [pose.rupture?.position, pose.groundContact?.position]) if (witness) {
+-    expect(Math.min(...cluster.bounds.map(point => point.distanceTo(witness))), 'authored witness retained').toBeLessThan(1e-7);
+-    expected.push(witness);
+-  }
+-  expect(cluster.bounds.length).toBeGreaterThanOrEqual(expected.length);
+-  expect(cluster.bounds.length).toBeLessThanOrEqual(32);
++  const witnesses = [pose.rupture!.position, pose.groundContact?.position ?? pose.rupture!.position];
++  const early = [...torn, ...witnesses], earlyCenter = new Box3().setFromPoints(early).getCenter(new Vector3());
++  const blend = MathUtils.smoothstep(cluster.ageSeconds!, .13, .65);
++  expect(cluster.horizontalHalfSpan).toBeCloseTo(.88 - .14 * blend, 12);
++  const expected = [...early, ...left.map(point => earlyCenter.clone().lerp(point, blend))];
++  expect(cluster.bounds, '18 actual tear/contact points plus 8 preallocated context points').toHaveLength(26);
++  expected.forEach((point, index) => expect(cluster.bounds[index]!.distanceTo(point), `source-derived composition ${index}`).toBeLessThan(1e-7));
++  expect(cluster.center.distanceTo(new Box3().setFromPoints(expected).getCenter(new Vector3()))).toBeLessThan(1e-7);
+ }
+ 
+ function cameraState(rig: CinematicCamera) {
+@@ -157,7 +162,7 @@
+       for (let frame = 1; frame <= 1067; frame++) {
+         step(sim, frame); if (frame < 910) continue;
+         const entry = sim.state.entries[0]!, before = checkpoints.has(frame) ? JSON.stringify(sim.state) : null;
+-        const pose = art.cache.update(entry.vehicle, entry.galactic!.wreck.timer, sim.terrain);
++        const pose: WreckVisualPose = art.cache.update(entry.vehicle, entry.galactic!.wreck.timer, sim.terrain);
+         art.breakup.update(pose, entry.galactic!.wreck.timer, sim.terrain);
+         const subject = subjectFor(sim, pose), cluster = pose.impactFraming!;
+         if (frame === 910) { expect(cluster).toBeUndefined(); }
+@@ -173,7 +178,7 @@
+           rig.setMode(subject.wreckChase ? 'chase' : 'side'); rig.setCombatFraming(!subject.wreckChase);
+           if (frame === 910) rig.snap(subject); else rig.update(1 / 120, frame / 120, subject);
+           const label = `${name}/${frame}/${aspects[index]}`;
+-          safeCluster(rig, cluster?.bounds ?? pose.bounds, label, cluster ? .74 : .78);
++          safeCluster(rig, cluster?.bounds ?? pose.bounds, label, cluster ? cluster.horizontalHalfSpan! : .78);
+           expect(rig.camera.position.y - sim.terrain.heightAt(rig.camera.position.x, rig.camera.position.z), `${label}: eye above terrain`).toBeGreaterThanOrEqual(1.2 - epsilon);
+           if (checkpoints.has(frame)) {
+             const measuredBaseline = index === 0 && (frame === 932 || frame === 1067) ? baseline : undefined;
+@@ -187,7 +192,7 @@
+             try { for (const mode of ['side', 'chase'] as const) {
+               endpoint.setMode(mode); endpoint.setCombatFraming(mode === 'side');
+               endpoint.snap({ ...subject, wreckChase: mode === 'chase' });
+-              safeCluster(endpoint, cluster.bounds, `${label}/${mode}`);
++              safeCluster(endpoint, cluster.bounds, `${label}/${mode}`, cluster.horizontalHalfSpan!);
+               sourceSafety(endpoint, art, pose, `${label}/${mode}`);
+             } } finally { endpoint.dispose(); }
+           }
+@@ -210,7 +215,7 @@
+     try {
+       for (let frame = 1; frame <= 932; frame++) step(sim, frame);
+       const entry = sim.state.entries[0]!, before = JSON.stringify(sim.state);
+-      const pose = art.cache.update(entry.vehicle, entry.galactic!.wreck.timer, sim.terrain);
++      const pose: WreckVisualPose = art.cache.update(entry.vehicle, entry.galactic!.wreck.timer, sim.terrain);
+       art.breakup.update(pose, entry.galactic!.wreck.timer, sim.terrain);
+       const stale = { center: pose.impactFraming!.center.clone(), bounds: pose.impactFraming!.bounds.map(point => point.clone()) };
+       const subject = subjectFor(sim, pose);
+diff --git a/tests/camera/TeemtoTwoBeatCamera.test.ts b/tests/camera/TeemtoTwoBeatCamera.test.ts
+new file mode 100644
+--- /dev/null
++++ b/tests/camera/TeemtoTwoBeatCamera.test.ts
+@@ -0,0 +1,125 @@
++import { Box3, Vector3 } from 'three';
++import { describe, expect, it } from 'vitest';
++import { CinematicCamera, type CameraSubject } from '../../src/camera/CinematicCamera';
++import { WRECK_PRESENTATION_DURATION, type WreckVisualPose } from '../../src/render/combat/WreckVisualPose';
++import { fixture, matrices, race, step, variants } from '../fixtures/teemtoActualCamera';
++
++function heading(rig: CinematicCamera) {
++  const back = new Vector3(0, 0, 1).applyQuaternion(rig.camera.quaternion);
++  return Math.atan2(back.x, back.z);
++}
++function angleDelta(a: number, b: number) { return Math.atan2(Math.sin(a - b), Math.cos(a - b)); }
++function framingSubject(): CameraSubject {
++  const full = [], impact = [];
++  for (const x of [-8, 8]) for (const y of [0, 5]) for (const z of [-10, 18]) full.push(new Vector3(x, y, z));
++  for (const x of [0, 8]) for (const y of [0, 5]) for (const z of [2, 18]) impact.push(new Vector3(x, y, z));
++  return { position: new Vector3(), forward: new Vector3(0, 0, 1), velocity: new Vector3(), speed: 0,
++    combatFocus: new Vector3(0, 2.5, 4), combatForward: new Vector3(0, 0, 1), combatBounds: full,
++    combatImpactPosition: new Vector3(4, 2, 7), combatTerrain: { heightAt: () => -100 },
++    combatImpactFraming: { center: new Box3().setFromPoints(impact).getCenter(new Vector3()), bounds: impact, ageSeconds: 0 } };
++}
++function shot(reducedMotion = false) {
++  const rig = new CinematicCamera(); rig.setMode('side'); rig.setCombatFraming(true);
++  rig.setComfortSettings({ reducedMotion }); return rig;
++}
++function state(rig: CinematicCamera) { return [...rig.camera.position.toArray(), ...rig.camera.quaternion.toArray(), rig.camera.fov]; }
++
++describe('event-relative two-beat authored camera', () => {
++  it('arcs once by 14 degrees, independently of frame history, and keeps the terminal direction through intact recovery', () => {
++    const subject = framingSubject(), rig = shot(), direct = shot();
++    const ages = [0, .015, .06, .15, .3, .5, .8, 1.3];
++    const headings: number[] = [];
++    try {
++      for (const age of ages) {
++        subject.combatImpactFraming = { ...subject.combatImpactFraming!, ageSeconds: age };
++        rig.snap(subject); headings.push(heading(rig));
++        // A fresh shot entered at the same event age gets the same bounded azimuth.
++        direct.setCombatFraming(false); direct.setCombatFraming(true); direct.snap(subject);
++        expect(state(direct)).toEqual(state(rig));
++      }
++      const total = angleDelta(headings.at(-1)!, headings[0]!);
++      expect(Math.abs(total) * 180 / Math.PI).toBeCloseTo(14, 8);
++      for (let i = 1; i < headings.length; i++) expect(angleDelta(headings[i]!, headings[i - 1]!) * Math.sign(total)).toBeGreaterThanOrEqual(-1e-12);
++      expect(headings[0]).toBe(headings[1]);
++      // A backwards snapshot seek is evaluated from age, not accumulated camera time.
++      subject.combatImpactFraming = { ...subject.combatImpactFraming!, ageSeconds: .15 };
++      rig.snap(subject); expect(heading(rig)).toBeCloseTo(headings[3]!, 10);
++      const terminal = headings.at(-1)!;
++      rig.setMode('chase'); rig.setCombatFraming(false);
++      rig.snap({ ...subject, wreckChase: true, wreckRecovery: true, combatImpactFraming: undefined });
++      expect(angleDelta(heading(rig), terminal)).toBeCloseTo(0, 10);
++      // Final recovery does not leave an orbit in ordinary or manual/replay cameras.
++      const ordinary = new CinematicCamera();
++      try { for (const mode of ['chase', 'cockpit', 'hero', 'side'] as const) {
++        rig.setMode(mode); ordinary.setMode(mode); rig.snap(subject); ordinary.snap(subject);
++        expect(state(rig)).toEqual(state(ordinary));
++      } } finally { ordinary.dispose(); }
++    } finally { rig.dispose(); direct.dispose(); }
++  });
++
++  it('does not orbit for reduced motion, absent or non-finite age, or inactive/manual framing', () => {
++    for (const reduced of [false, true]) {
++      const subject = framingSubject(), a = shot(reduced), b = shot(reduced);
++      try {
++        const base = { center: subject.combatImpactFraming!.center, bounds: subject.combatImpactFraming!.bounds };
++        for (const age of reduced ? [0, .3, 1.3] : [undefined, NaN, Infinity]) {
++          a.snap({ ...subject, combatImpactFraming: { ...base, ageSeconds: age } });
++          b.snap({ ...subject, combatImpactFraming: base });
++          expect(state(a)).toEqual(state(b));
++        }
++        for (const mode of ['cockpit', 'hero'] as const) {
++          a.setMode(mode); b.setMode(mode);
++          a.snap({ ...subject, combatImpactFraming: { ...base, ageSeconds: 1.3 } });
++          b.snap({ ...subject, combatImpactFraming: undefined }); expect(state(a)).toEqual(state(b));
++        }
++      } finally { a.dispose(); b.dispose(); }
++    }
++  });
++
++  it('bounds explicit horizontal composition margins and restores the legacy limit for absent or invalid input', () => {
++    const subject = framingSubject(), a = shot(), b = shot();
++    try {
++      const frame = subject.combatImpactFraming!;
++      for (const [input, expected] of [[undefined, .74], [NaN, .74], [Infinity, .74], [-2, .74], [.88, .88], [4, .90]] as const) {
++        a.snap({ ...subject, combatImpactFraming: { ...frame, horizontalHalfSpan: input } });
++        b.snap({ ...subject, combatImpactFraming: { ...frame, horizontalHalfSpan: expected } });
++        expect(state(a)).toEqual(state(b));
++        // A wide composition never grants permission for full source bounds
++        // to cross the lens, even when some source parts leave the picture.
++        a.camera.updateMatrixWorld(true);
++        for (const point of subject.combatBounds!) expect(point.clone().applyMatrix4(a.camera.matrixWorldInverse).z).toBeLessThan(-a.camera.near - .49);
++      }
++    } finally { a.dispose(); b.dispose(); }
++  });
++
++  it.each(variants)('%s reuses its composition storage, admits the intact engine only during the second beat, and resets exactly', variant => {
++    const art = fixture(variant), sim = race(), rest = matrices(art);
++    for (let frame = 1; frame <= 910; frame++) step(sim, frame);
++    const entry = sim.state.entries[0]!, before = JSON.stringify(sim.state);
++    const at = (age: number, extrapolation = 0): WreckVisualPose => {
++      const remaining = WRECK_PRESENTATION_DURATION - age;
++      const pose = art.cache.update(entry.vehicle, remaining, sim.terrain, extrapolation);
++      art.breakup.update(pose, remaining, sim.terrain, extrapolation); return pose;
++    };
++    try {
++      expect(at(0).impactFraming).toBeUndefined();
++      const first = at(.1).impactFraming!, bounds = first.bounds, refs = [...bounds], center = first.center;
++      const allBounds = at(.1).bounds;
++      for (const age of [.09, .13, .3, .65, 1.3, .1]) {
++        const pose = at(age), frame = pose.impactFraming!;
++        expect(frame.bounds).toBe(bounds); expect(frame.center).toBe(center);
++        expect(frame.bounds.every((point, i) => point === refs[i])).toBe(true);
++        expect(pose.bounds).toBe(allBounds); expect(frame.ageSeconds).toBeCloseTo(age, 12);
++        const earlyBox = new Box3().setFromPoints(frame.bounds.slice(0, 18));
++        const earlyCenter = earlyBox.getCenter(new Vector3());
++        if (age <= .13) for (let i = 18; i < 26; i++) expect(frame.bounds[i]!.distanceTo(earlyCenter)).toBeLessThan(1e-10);
++        if (age >= .65) for (let i = 0; i < 8; i++) expect(frame.bounds[18 + i]!.distanceTo(pose.bounds[8 + i]!)).toBeLessThan(1e-10);
++        // Every omitted/composition-only corner still protects the physical lens.
++        expect(pose.bounds).toHaveLength(variant === 'hero' ? 40 : 32);
++      }
++      expect(at(.4, .007).impactFraming!.ageSeconds).toBeCloseTo(.407, 12);
++      expect(at(0).impactFraming).toBeUndefined(); expect(art.breakup.damageVariantActive).toBe(false);
++      expect(matrices(art)).toEqual(rest); expect(JSON.stringify(sim.state)).toBe(before);
++    } finally { art.breakup.reset(); }
++  });
++});

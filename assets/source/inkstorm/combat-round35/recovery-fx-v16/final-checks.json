@@ -1,0 +1,27 @@
+[
+  {
+    "check": "typecheck",
+    "command": [
+      "npm",
+      "run",
+      "typecheck"
+    ],
+    "exitCode": 0,
+    "elapsedSeconds": 0.517338752746582
+  },
+  {
+    "check": "diff-check",
+    "command": [
+      "git",
+      "diff",
+      "--check",
+      "--",
+      "src/render/galactic/GalacticEffectsView.ts",
+      "tests/render/GalacticEffectsView.test.ts",
+      "tests/render/GalacticEffectsContact.test.ts",
+      "src/render/app/GameApp.ts"
+    ],
+    "exitCode": 0,
+    "elapsedSeconds": 0.022597074508666992
+  }
+]

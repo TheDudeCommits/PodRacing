@@ -1,0 +1,81 @@
+{
+  "scope": "Expected CSS presentation from actual native UI actions; no motion/performance claim before capture",
+  "mapEntry": {
+    "selectors": [
+      ".race-event-atlas__header",
+      ".race-event-atlas__viewport",
+      ".race-event-atlas__footer"
+    ],
+    "properties": [
+      "opacity 0 to 1",
+      "transform translateY(12px) to translateY(0)"
+    ],
+    "durationMs": [
+      280,
+      340,
+      320
+    ],
+    "delayMs": [
+      0,
+      40,
+      80
+    ],
+    "settledByMs": 400
+  },
+  "mapSelection": {
+    "buttonProperties": [
+      "left",
+      "top"
+    ],
+    "buttonDurationMs": 420,
+    "discProperties": [
+      "transform",
+      "box-shadow"
+    ],
+    "discDurationMs": 380,
+    "labelMarkerProperties": [
+      "transform",
+      "opacity"
+    ],
+    "settledByMs": 420
+  },
+  "buildEntry": {
+    "selectors": [
+      ".pod-hud__workshop-slots",
+      ".pod-hud__workshop-parts",
+      ".pod-hud__workshop-summary"
+    ],
+    "properties": [
+      "opacity 0 to 1",
+      "transform translateY(10px) to translateY(0)"
+    ],
+    "durationMs": [
+      280,
+      320,
+      320
+    ],
+    "delayMs": [
+      0,
+      40,
+      80
+    ],
+    "settledByMs": 400
+  },
+  "equip": {
+    "selector": ".pod-hud__workshop-part.is-equipped",
+    "trigger": "Actual equip replaces part buttons; newly installed element plays equipment-seated",
+    "properties": [
+      "opacity .45 to 1",
+      "transform translateX(-10px) to translateX(0)"
+    ],
+    "durationMs": 320,
+    "slotColorTransitionMs": 220
+  },
+  "reducedMotion": {
+    "triggers": [
+      ".pod-hud.is-reduced-motion",
+      "prefers-reduced-motion: reduce"
+    ],
+    "expected": "animation:none and transition:none; fully visible settled controls without entry movement"
+  }
+}

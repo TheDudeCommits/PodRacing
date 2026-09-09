@@ -1,0 +1,9 @@
+# Engine core shading — round27
+
+A bounded shader change replaces the almost uniform pale cyan nozzle cap with a small hot centre, dark radial channels, an annular plasma band and a dimmer rim. The closed cap remains opaque to prevent terrain showing through the engine mouth. The outer segmented exhaust geometry/animation, attachment anchors, vehicle meshes, material count and draw calls are unchanged. This is procedural shading, not new mechanical geometry or physically simulated combustion.
+
+The previous complete `PodracerView.ts` source is preserved in `assets/source/inkstorm/exhaust-core-round27/PodracerView.round26.ts`. The revised source is `src/render/objects/PodracerView.ts`. The first candidate compiled and all seven sections plus garage/live rendered without browser errors. Root viewed launch and canyon at full frame: the core remains bright and the internal radial value structure is readable in sun and shade. The fresh image-only review in `BLIND_EXHAUST_ROUND27.md` retains this improvement at6/10 versus4/10, but rejects it against the strict8 target: it still reads as a luminous disk. Real dark metal lip/throat geometry is the next candidate; no art pass is claimed.
+
+Actual unchanged-terrain A/B: `output/gauntlet/round-26/` versus `output/gauntlet/round27-exhaust-v1/`. The newer capture bundle is `index-CXX3faQL.js`, SHA256 `5fb99c06d1c6dfabe9f4076a7d5ba92700360528c64f1b3ccba5edb1d2bdea5c`. These9images predate the next terrain implementation and retain all frozen26 world geometry.
+
+Typecheck/build pass. The capture contains481 short ordinary live intervals at about60Hz; this does not establish a new full-race performance result. Both appearances remain covered by the separate frozen26 full-race report only. The browser closed in `finally`, process exit0, port5186 independently confirmed closed.

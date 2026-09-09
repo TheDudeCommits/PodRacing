@@ -1,0 +1,1422 @@
+{
+  "scope": "CPU reconstruction of actual fixed racing cameras; gantry self-occlusion only. Excludes other runtime scenery/terrain and screen-space shading. Triangle-centroid visibility is diagnostic, not art acceptance.",
+  "captureSha256": "ef8368a45917df3ecf15a75ef5d65225caba77aa47e630dc762b3b6b91be0b52",
+  "sourceSha256": "58fc12d837039eb73111886b1b91c294516c51fc47a4a0d00200717161fd39ba",
+  "results": [
+    {
+      "view": "06-foundry",
+      "cameraError": 0,
+      "cameraPosition": [
+        19784.75839154813,
+        -0.7947967189473388,
+        -98.77970704550285
+      ],
+      "cameraInSourceGltf": [
+        15.771887129472816,
+        21.74210934961555,
+        -87.5728490121437
+      ],
+      "gantry": {
+        "id": "inkstorm-foundry-gantry-226",
+        "family": "foundry-gantry",
+        "progress": 0.5442499999999999,
+        "x": 19712.22288960099,
+        "z": -149.36573096430502,
+        "yaw": -2.0402081408495887,
+        "sx": 0.78,
+        "sy": 1.05,
+        "sz": 1
+      },
+      "models": [
+        {
+          "name": "V2 actual final GLB",
+          "groups": {
+            "hoist_track": {
+              "triangles": 36,
+              "screenBounds": [
+                [
+                  1053.715617407542,
+                  1397.3012475308337
+                ],
+                [
+                  238.17087357708567,
+                  273.5072115646804
+                ]
+              ],
+              "frontFacingSamples": 18,
+              "visibleSamples": 14,
+              "frontFacingProjectedArea": 11788.885388791276,
+              "visibleProjectedArea": 8355.363984327081,
+              "occluders": {
+                "hoist_track": 4
+              },
+              "screenSize": [
+                343.5856301232918,
+                35.33633798759473
+              ],
+              "visibleProjectedAreaFraction": 0.708749276014784
+            },
+            "hoist_mounts": {
+              "triangles": 156,
+              "screenBounds": [
+                [
+                  1057.5789217620552,
+                  1395.184759493196
+                ],
+                [
+                  233.04819743663367,
+                  261.5643217080705
+                ]
+              ],
+              "frontFacingSamples": 78,
+              "visibleSamples": 0,
+              "frontFacingProjectedArea": 1192.886162514348,
+              "visibleProjectedArea": 0,
+              "occluders": {
+                "original_retained": 3,
+                "hoist_track": 25,
+                "original-near-truss": 24,
+                "original-near-conduit": 12,
+                "hoist_cheeks": 14
+              },
+              "screenSize": [
+                337.6058377311408,
+                28.516124271436837
+              ],
+              "visibleProjectedAreaFraction": 0
+            },
+            "hoist_wheels": {
+              "triangles": 176,
+              "screenBounds": [
+                [
+                  1210.8372562041031,
+                  1262.157965913779
+                ],
+                [
+                  244.76045534137435,
+                  264.4054425998201
+                ]
+              ],
+              "frontFacingSamples": 88,
+              "visibleSamples": 0,
+              "frontFacingProjectedArea": 362.95578924358364,
+              "visibleProjectedArea": 0,
+              "occluders": {
+                "hoist_cheeks": 78,
+                "hoist_track": 9,
+                "motor_fins": 1
+              },
+              "screenSize": [
+                51.32070970967584,
+                19.644987258445752
+              ],
+              "visibleProjectedAreaFraction": 0
+            },
+            "hoist_axles": {
+              "triangles": 80,
+              "screenBounds": [
+                [
+                  1210.4346705748721,
+                  1263.0124793065154
+                ],
+                [
+                  245.38289253781224,
+                  263.6568207206932
+                ]
+              ],
+              "frontFacingSamples": 40,
+              "visibleSamples": 0,
+              "frontFacingProjectedArea": 186.1804597763368,
+              "visibleProjectedArea": 0,
+              "occluders": {
+                "hoist_cheeks": 36,
+                "hoist_track": 3,
+                "motor_fins": 1
+              },
+              "screenSize": [
+                52.577808731643245,
+                18.27392818288095
+              ],
+              "visibleProjectedAreaFraction": 0
+            },
+            "hoist_cheeks": {
+              "triangles": 104,
+              "screenBounds": [
+                [
+                  1203.533688470842,
+                  1269.8618649964653
+                ],
+                [
+                  241.21334459574814,
+                  291.49507141024526
+                ]
+              ],
+              "frontFacingSamples": 52,
+              "visibleSamples": 27,
+              "frontFacingProjectedArea": 4307.393966729056,
+              "visibleProjectedArea": 2261.361283437868,
+              "occluders": {
+                "lower_pulley": 1,
+                "hoist_motor": 11,
+                "hoist_track": 1,
+                "hoist_cheeks": 12
+              },
+              "screenSize": [
+                66.32817652562335,
+                50.28172681449712
+              ],
+              "visibleProjectedAreaFraction": 0.5249952293439967
+            },
+            "hoist_cradle": {
+              "triangles": 12,
+              "screenBounds": [
+                [
+                  1203.577623624932,
+                  1269.204692709847
+                ],
+                [
+                  274.6347587064183,
+                  290.40065877173
+                ]
+              ],
+              "frontFacingSamples": 6,
+              "visibleSamples": 4,
+              "frontFacingProjectedArea": 804.0571290459646,
+              "visibleProjectedArea": 622.3541822316445,
+              "occluders": {
+                "hoist_cheeks": 2
+              },
+              "screenSize": [
+                65.62706908491509,
+                15.765900065311655
+              ],
+              "visibleProjectedAreaFraction": 0.774017367360556
+            },
+            "hoist_drum": {
+              "triangles": 180,
+              "screenBounds": [
+                [
+                  1215.6113168363333,
+                  1256.8301762649958
+                ],
+                [
+                  256.1016320622425,
+                  283.1443129301569
+                ]
+              ],
+              "frontFacingSamples": 90,
+              "visibleSamples": 0,
+              "frontFacingProjectedArea": 1169.630649558874,
+              "visibleProjectedArea": 0,
+              "occluders": {
+                "hoist_cheeks": 80,
+                "hoist_cradle": 10
+              },
+              "screenSize": [
+                41.21885942866243,
+                27.042680867914385
+              ],
+              "visibleProjectedAreaFraction": 0
+            },
+            "drum_cable_wrap": {
+              "triangles": 320,
+              "screenBounds": [
+                [
+                  1220.2224527432313,
+                  1252.1162842946817
+                ],
+                [
+                  258.1325003245138,
+                  281.249808175598
+                ]
+              ],
+              "frontFacingSamples": 160,
+              "visibleSamples": 0,
+              "frontFacingProjectedArea": 349.7882462917857,
+              "visibleProjectedArea": 0,
+              "occluders": {
+                "hoist_cheeks": 160
+              },
+              "screenSize": [
+                31.893831551450376,
+                23.117307851084206
+              ],
+              "visibleProjectedAreaFraction": 0
+            },
+            "hoist_motor": {
+              "triangles": 44,
+              "screenBounds": [
+                [
+                  1204.093083393946,
+                  1220.6502516905457
+                ],
+                [
+                  256.55911336263716,
+                  281.1061436062134
+                ]
+              ],
+              "frontFacingSamples": 22,
+              "visibleSamples": 7,
+              "frontFacingProjectedArea": 364.13097486190253,
+              "visibleProjectedArea": 81.48681502559376,
+              "occluders": {
+                "hoist_track": 5,
+                "hoist_cheeks": 6,
+                "hoist_cradle": 1,
+                "motor_fins": 3
+              },
+              "screenSize": [
+                16.557168296599684,
+                24.547030243576216
+              ],
+              "visibleProjectedAreaFraction": 0.22378435412284772
+            },
+            "motor_fins": {
+              "triangles": 288,
+              "screenBounds": [
+                [
+                  1206.155060458285,
+                  1220.2138537178419
+                ],
+                [
+                  255.27439759480987,
+                  282.44731414907653
+                ]
+              ],
+              "frontFacingSamples": 144,
+              "visibleSamples": 13,
+              "frontFacingProjectedArea": 223.88910829462412,
+              "visibleProjectedArea": 26.638158426659064,
+              "occluders": {
+                "hoist_cheeks": 54,
+                "hoist_motor": 34,
+                "hoist_cradle": 23,
+                "motor_fins": 1,
+                "hoist_track": 19
+              },
+              "screenSize": [
+                14.05879325955675,
+                27.172916554266664
+              ],
+              "visibleProjectedAreaFraction": 0.11897925106568787
+            },
+            "service_cable": {
+              "triangles": 40,
+              "screenBounds": [
+                [
+                  1228.815265550008,
+                  1242.0955542088382
+                ],
+                [
+                  280.04712401142507,
+                  291.6576858166205
+                ]
+              ],
+              "frontFacingSamples": 20,
+              "visibleSamples": 0,
+              "frontFacingProjectedArea": 46.32023103343104,
+              "visibleProjectedArea": 0,
+              "occluders": {
+                "lower_pulley": 14,
+                "hoist_cradle": 6
+              },
+              "screenSize": [
+                13.280288658830159,
+                11.61056180519546
+              ],
+              "visibleProjectedAreaFraction": 0
+            },
+            "lower_pulley": {
+              "triangles": 88,
+              "screenBounds": [
+                [
+                  1225.6372037782849,
+                  1245.12224619183
+                ],
+                [
+                  284.2687920783745,
+                  303.98922174452093
+                ]
+              ],
+              "frontFacingSamples": 44,
+              "visibleSamples": 23,
+              "frontFacingProjectedArea": 748.257980888666,
+              "visibleProjectedArea": 147.3961215925066,
+              "occluders": {
+                "service_hook": 3,
+                "lower_pulley": 18
+              },
+              "screenSize": [
+                19.485042413545216,
+                19.720429666146458
+              ],
+              "visibleProjectedAreaFraction": 0.1969856992603702
+            },
+            "service_hook": {
+              "triangles": 108,
+              "screenBounds": [
+                [
+                  1230.8889004535968,
+                  1241.9955688112748
+                ],
+                [
+                  300.4253623595865,
+                  314.4578648718173
+                ]
+              ],
+              "frontFacingSamples": 46,
+              "visibleSamples": 44,
+              "frontFacingProjectedArea": 93.03045726959064,
+              "visibleProjectedArea": 92.65988251836704,
+              "occluders": {
+                "service_hook": 2
+              },
+              "screenSize": [
+                11.106668357678018,
+                14.032502512230849
+              ],
+              "visibleProjectedAreaFraction": 0.996016629799532
+            }
+          }
+        },
+        {
+          "name": "V3 arithmetic proposal, not exported",
+          "groups": {
+            "hoist_track": {
+              "triangles": 36,
+              "screenBounds": [
+                [
+                  1062.2845928122465,
+                  1431.4215037119573
+                ],
+                [
+                  151.54916348387903,
+                  205.9372568592612
+                ]
+              ],
+              "frontFacingSamples": 18,
+              "visibleSamples": 15,
+              "frontFacingProjectedArea": 19091.922114866273,
+              "visibleProjectedArea": 16243.224779406719,
+              "occluders": {
+                "hoist_track": 3
+              },
+              "screenSize": [
+                369.13691089971076,
+                54.38809337538217
+              ],
+              "visibleProjectedAreaFraction": 0.8507904380543558
+            },
+            "hoist_mounts": {
+              "triangles": 180,
+              "screenBounds": [
+                [
+                  1068.5433559109917,
+                  1417.0693331909567
+                ],
+                [
+                  157.4519645909854,
+                  214.03886194515016
+                ]
+              ],
+              "frontFacingSamples": 85,
+              "visibleSamples": 11,
+              "frontFacingProjectedArea": 3477.4918678360477,
+              "visibleProjectedArea": 351.08520734503,
+              "occluders": {
+                "hoist_track": 36,
+                "hoist_mounts": 19,
+                "drum_cable_wrap": 2,
+                "hoist_drum": 12,
+                "hoist_bearings": 1,
+                "hoist_wheels": 4
+              },
+              "screenSize": [
+                348.525977279965,
+                56.58689735416476
+              ],
+              "visibleProjectedAreaFraction": 0.10095931800510613
+            },
+            "hoist_wheels": {
+              "triangles": 112,
+              "screenBounds": [
+                [
+                  1224.2959809024917,
+                  1292.7203219017235
+                ],
+                [
+                  168.44455364358353,
+                  194.75839615908745
+                ]
+              ],
+              "frontFacingSamples": 56,
+              "visibleSamples": 14,
+              "frontFacingProjectedArea": 525.4201739047787,
+              "visibleProjectedArea": 98.12894042678053,
+              "occluders": {
+                "hoist_track": 32,
+                "hoist_drum": 3,
+                "hoist_bearings": 3,
+                "hoist_axles": 4
+              },
+              "screenSize": [
+                68.42434099923184,
+                26.31384251550392
+              ],
+              "visibleProjectedAreaFraction": 0.18676279537862647
+            },
+            "hoist_axles": {
+              "triangles": 80,
+              "screenBounds": [
+                [
+                  1226.1010145568473,
+                  1291.1153355569306
+                ],
+                [
+                  171.7047996221514,
+                  191.5462081452047
+                ]
+              ],
+              "frontFacingSamples": 40,
+              "visibleSamples": 12,
+              "frontFacingProjectedArea": 186.6391577963923,
+              "visibleProjectedArea": 61.070398950087785,
+              "occluders": {
+                "hoist_track": 20,
+                "hoist_wheels": 4,
+                "hoist_bearings": 4
+              },
+              "screenSize": [
+                65.01432100008333,
+                19.841408523053303
+              ],
+              "visibleProjectedAreaFraction": 0.3272110722697885
+            },
+            "hoist_bearings": {
+              "triangles": 96,
+              "screenBounds": [
+                [
+                  1227.5221967030482,
+                  1290.4311912906167
+                ],
+                [
+                  173.64919826114186,
+                  227.59651184216978
+                ]
+              ],
+              "frontFacingSamples": 46,
+              "visibleSamples": 14,
+              "frontFacingProjectedArea": 1044.7486090484747,
+              "visibleProjectedArea": 391.14313169493045,
+              "occluders": {
+                "hoist_drum": 1,
+                "hoist_bearings": 16,
+                "hoist_track": 10,
+                "hoist_wheels": 4,
+                "hoist_motor": 1
+              },
+              "screenSize": [
+                62.908994587568486,
+                53.94731358102791
+              ],
+              "visibleProjectedAreaFraction": 0.3743897128048553
+            },
+            "hoist_drum": {
+              "triangles": 132,
+              "screenBounds": [
+                [
+                  1232.645625310835,
+                  1285.4469683541267
+                ],
+                [
+                  189.89842086494122,
+                  225.2411316903083
+                ]
+              ],
+              "frontFacingSamples": 66,
+              "visibleSamples": 32,
+              "frontFacingProjectedArea": 2077.2673084820517,
+              "visibleProjectedArea": 1368.5038981780945,
+              "occluders": {
+                "hoist_bearings": 20,
+                "motor_fins": 2,
+                "service_cable": 1,
+                "hoist_drum": 10,
+                "hoist_motor": 1
+              },
+              "screenSize": [
+                52.80134304329181,
+                35.34271082536708
+              ],
+              "visibleProjectedAreaFraction": 0.658800094041878
+            },
+            "drum_cable_wrap": {
+              "triangles": 256,
+              "screenBounds": [
+                [
+                  1238.4640728193808,
+                  1279.4994032121338
+                ],
+                [
+                  191.3686586401999,
+                  224.04244609085822
+                ]
+              ],
+              "frontFacingSamples": 128,
+              "visibleSamples": 0,
+              "frontFacingProjectedArea": 499.3339269028792,
+              "visibleProjectedArea": 0,
+              "occluders": {
+                "hoist_drum": 125,
+                "service_cable": 3
+              },
+              "screenSize": [
+                41.03533039275294,
+                32.673787450658324
+              ],
+              "visibleProjectedAreaFraction": 0
+            },
+            "hoist_motor": {
+              "triangles": 44,
+              "screenBounds": [
+                [
+                  1217.1955707884101,
+                  1237.6405036606598
+                ],
+                [
+                  193.0702728279101,
+                  219.45937408632315
+                ]
+              ],
+              "frontFacingSamples": 22,
+              "visibleSamples": 16,
+              "frontFacingProjectedArea": 485.1051364074403,
+              "visibleProjectedArea": 300.9702664576602,
+              "occluders": {
+                "motor_fins": 6
+              },
+              "screenSize": [
+                20.444932872249638,
+                26.389101258413064
+              ],
+              "visibleProjectedAreaFraction": 0.6204227576037764
+            },
+            "motor_fins": {
+              "triangles": 192,
+              "screenBounds": [
+                [
+                  1220.754809684053,
+                  1236.2189369323396
+                ],
+                [
+                  191.88653683774058,
+                  220.7135830454532
+                ]
+              ],
+              "frontFacingSamples": 96,
+              "visibleSamples": 47,
+              "frontFacingProjectedArea": 232.0295954062079,
+              "visibleProjectedArea": 102.24887222338485,
+              "occluders": {
+                "hoist_motor": 35,
+                "motor_fins": 9,
+                "hoist_bearings": 5
+              },
+              "screenSize": [
+                15.464127248286559,
+                28.827046207712613
+              ],
+              "visibleProjectedAreaFraction": 0.4406716826117829
+            },
+            "service_cable": {
+              "triangles": 40,
+              "screenBounds": [
+                [
+                  1250.569023228974,
+                  1268.7851670986956
+                ],
+                [
+                  219.81769744500176,
+                  250.61052147489724
+                ]
+              ],
+              "frontFacingSamples": 20,
+              "visibleSamples": 17,
+              "frontFacingProjectedArea": 128.8060454210623,
+              "visibleProjectedArea": 128.06250194459463,
+              "occluders": {
+                "lower_pulley": 3
+              },
+              "screenSize": [
+                18.21614386972169,
+                30.792824029895485
+              ],
+              "visibleProjectedAreaFraction": 0.99422741786663
+            },
+            "lower_pulley": {
+              "triangles": 256,
+              "screenBounds": [
+                [
+                  1248.3331501833395,
+                  1269.636347504666
+                ],
+                [
+                  245.29675481455726,
+                  274.0982302472444
+                ]
+              ],
+              "frontFacingSamples": 128,
+              "visibleSamples": 65,
+              "frontFacingProjectedArea": 702.0139775682807,
+              "visibleProjectedArea": 394.7545506940842,
+              "occluders": {
+                "service_hook": 3,
+                "lower_pulley": 60
+              },
+              "screenSize": [
+                21.30319732132648,
+                28.801475432687113
+              ],
+              "visibleProjectedAreaFraction": 0.5623172234568347
+            },
+            "service_hook": {
+              "triangles": 124,
+              "screenBounds": [
+                [
+                  1250.3171851476673,
+                  1269.638929161509
+                ],
+                [
+                  268.02334613730375,
+                  295.52509407485167
+                ]
+              ],
+              "frontFacingSamples": 56,
+              "visibleSamples": 52,
+              "frontFacingProjectedArea": 237.46694271147462,
+              "visibleProjectedArea": 223.87166767202595,
+              "occluders": {
+                "lower_pulley": 3,
+                "service_hook": 1
+              },
+              "screenSize": [
+                19.32174401384168,
+                27.50174793754792
+              ],
+              "visibleProjectedAreaFraction": 0.9427487679581276
+            }
+          }
+        }
+      ]
+    },
+    {
+      "view": "foundry-near-span",
+      "cameraError": 0,
+      "cameraPosition": [
+        19807.34206577364,
+        -2.314190045524697,
+        -69.00097044139554
+      ],
+      "cameraInSourceGltf": [
+        36.72280202947513,
+        20.295068086208545,
+        -121.18451203492805
+      ],
+      "gantry": {
+        "id": "inkstorm-foundry-gantry-226",
+        "family": "foundry-gantry",
+        "progress": 0.5442499999999999,
+        "x": 19712.22288960099,
+        "z": -149.36573096430502,
+        "yaw": -2.0402081408495887,
+        "sx": 0.78,
+        "sy": 1.05,
+        "sz": 1
+      },
+      "models": [
+        {
+          "name": "V2 actual final GLB",
+          "groups": {
+            "hoist_track": {
+              "triangles": 36,
+              "screenBounds": [
+                [
+                  792.3382090459452,
+                  1036.0809878175382
+                ],
+                [
+                  275.0127429247341,
+                  311.6449858636479
+                ]
+              ],
+              "frontFacingSamples": 18,
+              "visibleSamples": 12,
+              "frontFacingProjectedArea": 5240.310778629515,
+              "visibleProjectedArea": 3134.386962108285,
+              "occluders": {
+                "hoist_track": 4,
+                "original-near-truss": 1,
+                "original-near-conduit": 1
+              },
+              "screenSize": [
+                243.74277877159307,
+                36.632242938913805
+              ],
+              "visibleProjectedAreaFraction": 0.5981299763538095
+            },
+            "hoist_mounts": {
+              "triangles": 156,
+              "screenBounds": [
+                [
+                  794.8389179371632,
+                  1034.5808332694157
+                ],
+                [
+                  272.13074659987234,
+                  302.8643489868781
+                ]
+              ],
+              "frontFacingSamples": 78,
+              "visibleSamples": 0,
+              "frontFacingProjectedArea": 529.1303994752593,
+              "visibleProjectedArea": 0,
+              "occluders": {
+                "original-near-truss": 6,
+                "hoist_track": 25,
+                "original-near-conduit": 36,
+                "hoist_cheeks": 11
+              },
+              "screenSize": [
+                239.74191533225257,
+                30.73360238700576
+              ],
+              "visibleProjectedAreaFraction": 0
+            },
+            "hoist_wheels": {
+              "triangles": 176,
+              "screenBounds": [
+                [
+                  907.4691122528171,
+                  944.3536329161427
+                ],
+                [
+                  286.4668450769874,
+                  300.4082522382142
+                ]
+              ],
+              "frontFacingSamples": 88,
+              "visibleSamples": 0,
+              "frontFacingProjectedArea": 184.94012725087336,
+              "visibleProjectedArea": 0,
+              "occluders": {
+                "hoist_cheeks": 64,
+                "original-near-conduit": 4,
+                "original-near-truss": 6,
+                "hoist_track": 13,
+                "hoist_motor": 1
+              },
+              "screenSize": [
+                36.88452066332559,
+                13.941407161226778
+              ],
+              "visibleProjectedAreaFraction": 0
+            },
+            "hoist_axles": {
+              "triangles": 80,
+              "screenBounds": [
+                [
+                  906.8465834858052,
+                  945.1993862607873
+                ],
+                [
+                  287.44304363993183,
+                  299.3952637831655
+                ]
+              ],
+              "frontFacingSamples": 40,
+              "visibleSamples": 0,
+              "frontFacingProjectedArea": 97.70159302473294,
+              "visibleProjectedArea": 0,
+              "occluders": {
+                "hoist_cheeks": 31,
+                "original-near-truss": 2,
+                "hoist_track": 7
+              },
+              "screenSize": [
+                38.352802774982024,
+                11.95222014323366
+              ],
+              "visibleProjectedAreaFraction": 0
+            },
+            "hoist_cheeks": {
+              "triangles": 104,
+              "screenBounds": [
+                [
+                  902.065232735297,
+                  950.2200172829843
+                ],
+                [
+                  284.19614369051476,
+                  319.5935471721962
+                ]
+              ],
+              "frontFacingSamples": 52,
+              "visibleSamples": 28,
+              "frontFacingProjectedArea": 2151.9066834677255,
+              "visibleProjectedArea": 1124.1252734815114,
+              "occluders": {
+                "lower_pulley": 1,
+                "hoist_track": 1,
+                "hoist_cheeks": 12,
+                "hoist_motor": 10
+              },
+              "screenSize": [
+                48.15478454768731,
+                35.397403481681465
+              ],
+              "visibleProjectedAreaFraction": 0.5223856973528337
+            },
+            "hoist_cradle": {
+              "triangles": 12,
+              "screenBounds": [
+                [
+                  902.5991519613126,
+                  950.1768198435728
+                ],
+                [
+                  307.9951035425955,
+                  318.8156931330771
+                ]
+              ],
+              "frontFacingSamples": 6,
+              "visibleSamples": 4,
+              "frontFacingProjectedArea": 340.0462070032423,
+              "visibleProjectedArea": 250.4156520000359,
+              "occluders": {
+                "hoist_cheeks": 2
+              },
+              "screenSize": [
+                47.57766788226024,
+                10.820589590481632
+              ],
+              "visibleProjectedAreaFraction": 0.7364165423484587
+            },
+            "hoist_drum": {
+              "triangles": 180,
+              "screenBounds": [
+                [
+                  911.2576523303477,
+                  940.9930346054787
+                ],
+                [
+                  293.9877470479159,
+                  314.37312696306833
+                ]
+              ],
+              "frontFacingSamples": 86,
+              "visibleSamples": 0,
+              "frontFacingProjectedArea": 612.6025615848001,
+              "visibleProjectedArea": 0,
+              "occluders": {
+                "hoist_cheeks": 86
+              },
+              "screenSize": [
+                29.735382275130974,
+                20.38537991515244
+              ],
+              "visibleProjectedAreaFraction": 0
+            },
+            "drum_cable_wrap": {
+              "triangles": 320,
+              "screenBounds": [
+                [
+                  914.5826691034482,
+                  937.6660389015987
+                ],
+                [
+                  295.45179197647013,
+                  312.95157485979024
+                ]
+              ],
+              "frontFacingSamples": 160,
+              "visibleSamples": 0,
+              "frontFacingProjectedArea": 179.23180940526626,
+              "visibleProjectedArea": 0,
+              "occluders": {
+                "hoist_cheeks": 160
+              },
+              "screenSize": [
+                23.083369798150443,
+                17.49978288332011
+              ],
+              "visibleProjectedAreaFraction": 0
+            },
+            "hoist_motor": {
+              "triangles": 44,
+              "screenBounds": [
+                [
+                  903.0886332338597,
+                  915.652153525709
+                ],
+                [
+                  293.69263043900963,
+                  311.7118293565172
+                ]
+              ],
+              "frontFacingSamples": 22,
+              "visibleSamples": 7,
+              "frontFacingProjectedArea": 196.99052427514732,
+              "visibleProjectedArea": 51.76126411590661,
+              "occluders": {
+                "hoist_track": 6,
+                "hoist_cheeks": 5,
+                "hoist_cradle": 1,
+                "motor_fins": 3
+              },
+              "screenSize": [
+                12.563520291849272,
+                18.019198917507595
+              ],
+              "visibleProjectedAreaFraction": 0.2627601723807225
+            },
+            "motor_fins": {
+              "triangles": 288,
+              "screenBounds": [
+                [
+                  904.5091199329564,
+                  915.3910063385515
+                ],
+                [
+                  292.86568084555756,
+                  312.6454812287432
+                ]
+              ],
+              "frontFacingSamples": 144,
+              "visibleSamples": 20,
+              "frontFacingProjectedArea": 122.76839790033081,
+              "visibleProjectedArea": 16.764477945102364,
+              "occluders": {
+                "motor_fins": 10,
+                "hoist_cradle": 19,
+                "hoist_cheeks": 45,
+                "hoist_track": 19,
+                "hoist_motor": 31
+              },
+              "screenSize": [
+                10.881886405595083,
+                19.77980038318566
+              ],
+              "visibleProjectedAreaFraction": 0.13655369159995523
+            },
+            "service_cable": {
+              "triangles": 40,
+              "screenBounds": [
+                [
+                  921.3331595691917,
+                  930.7011418782267
+                ],
+                [
+                  311.39708044459155,
+                  320.00191213283387
+                ]
+              ],
+              "frontFacingSamples": 20,
+              "visibleSamples": 0,
+              "frontFacingProjectedArea": 23.025921297206825,
+              "visibleProjectedArea": 0,
+              "occluders": {
+                "lower_pulley": 14,
+                "hoist_cradle": 6
+              },
+              "screenSize": [
+                9.367982309035028,
+                8.604831688242314
+              ],
+              "visibleProjectedAreaFraction": 0
+            },
+            "lower_pulley": {
+              "triangles": 88,
+              "screenBounds": [
+                [
+                  919.0640441740369,
+                  933.236708894754
+                ],
+                [
+                  314.9264571777296,
+                  328.33603811475314
+                ]
+              ],
+              "frontFacingSamples": 44,
+              "visibleSamples": 22,
+              "frontFacingProjectedArea": 379.81597365107,
+              "visibleProjectedArea": 68.77627443047022,
+              "occluders": {
+                "service_hook": 3,
+                "lower_pulley": 19
+              },
+              "screenSize": [
+                14.17266472071708,
+                13.40958093702352
+              ],
+              "visibleProjectedAreaFraction": 0.18107788824504187
+            },
+            "service_hook": {
+              "triangles": 108,
+              "screenBounds": [
+                [
+                  923.3031089395495,
+                  931.2670624439169
+                ],
+                [
+                  326.24123905664715,
+                  336.23391028539584
+                ]
+              ],
+              "frontFacingSamples": 46,
+              "visibleSamples": 45,
+              "frontFacingProjectedArea": 46.96323305836781,
+              "visibleProjectedArea": 46.830122328319916,
+              "occluders": {
+                "service_hook": 1
+              },
+              "screenSize": [
+                7.963953504367396,
+                9.99267122874869
+              ],
+              "visibleProjectedAreaFraction": 0.9971656395571732
+            }
+          }
+        },
+        {
+          "name": "V3 arithmetic proposal, not exported",
+          "groups": {
+            "hoist_track": {
+              "triangles": 36,
+              "screenBounds": [
+                [
+                  802.394825081841,
+                  1056.84364058873
+                ],
+                [
+                  217.86292269501897,
+                  269.53827957551465
+                ]
+              ],
+              "frontFacingSamples": 18,
+              "visibleSamples": 15,
+              "frontFacingProjectedArea": 8009.021469980022,
+              "visibleProjectedArea": 6962.350074640848,
+              "occluders": {
+                "hoist_track": 3
+              },
+              "screenSize": [
+                254.4488155068891,
+                51.675356880495684
+              ],
+              "visibleProjectedAreaFraction": 0.8693134486825411
+            },
+            "hoist_mounts": {
+              "triangles": 180,
+              "screenBounds": [
+                [
+                  806.8152834449439,
+                  1047.635044128968
+                ],
+                [
+                  220.61134149089827,
+                  274.788941429796
+                ]
+              ],
+              "frontFacingSamples": 87,
+              "visibleSamples": 11,
+              "frontFacingProjectedArea": 1706.3496306340242,
+              "visibleProjectedArea": 154.2527424265226,
+              "occluders": {
+                "hoist_track": 40,
+                "hoist_mounts": 16,
+                "hoist_drum": 11,
+                "hoist_bearings": 3,
+                "hoist_wheels": 2,
+                "hoist_axles": 4
+              },
+              "screenSize": [
+                240.81976068402412,
+                54.17759993889774
+              ],
+              "visibleProjectedAreaFraction": 0.09039925913026821
+            },
+            "hoist_wheels": {
+              "triangles": 112,
+              "screenBounds": [
+                [
+                  918.3251845191653,
+                  965.8234368073247
+                ],
+                [
+                  237.79568780141676,
+                  256.24708436519165
+                ]
+              ],
+              "frontFacingSamples": 56,
+              "visibleSamples": 14,
+              "frontFacingProjectedArea": 248.29019151889784,
+              "visibleProjectedArea": 48.408013805549764,
+              "occluders": {
+                "hoist_track": 34,
+                "hoist_bearings": 4,
+                "hoist_axles": 4
+              },
+              "screenSize": [
+                47.49825228815939,
+                18.451396563774892
+              ],
+              "visibleProjectedAreaFraction": 0.19496546967649883
+            },
+            "hoist_axles": {
+              "triangles": 80,
+              "screenBounds": [
+                [
+                  919.4559377438644,
+                  964.8207012145658
+                ],
+                [
+                  240.29367907287366,
+                  253.79979031725364
+                ]
+              ],
+              "frontFacingSamples": 40,
+              "visibleSamples": 12,
+              "frontFacingProjectedArea": 90.37979610622683,
+              "visibleProjectedArea": 30.09858542348892,
+              "occluders": {
+                "hoist_track": 19,
+                "hoist_wheels": 5,
+                "hoist_bearings": 4
+              },
+              "screenSize": [
+                45.364763470701405,
+                13.50611124437998
+              ],
+              "visibleProjectedAreaFraction": 0.33302338266079845
+            },
+            "hoist_bearings": {
+              "triangles": 96,
+              "screenBounds": [
+                [
+                  920.5161340043051,
+                  964.490286763269
+                ],
+                [
+                  241.5958769503948,
+                  280.8841918019558
+                ]
+              ],
+              "frontFacingSamples": 46,
+              "visibleSamples": 13,
+              "frontFacingProjectedArea": 531.3199498332675,
+              "visibleProjectedArea": 183.30397923248353,
+              "occluders": {
+                "hoist_drum": 2,
+                "hoist_bearings": 14,
+                "hoist_track": 8,
+                "hoist_wheels": 6,
+                "hoist_axles": 2,
+                "hoist_motor": 1
+              },
+              "screenSize": [
+                43.974152758963896,
+                39.28831485156101
+              ],
+              "visibleProjectedAreaFraction": 0.3449973585407546
+            },
+            "hoist_drum": {
+              "triangles": 132,
+              "screenBounds": [
+                [
+                  924.8020350785837,
+                  961.6813319107162
+                ],
+                [
+                  252.23690274239172,
+                  278.5007786480878
+                ]
+              ],
+              "frontFacingSamples": 66,
+              "visibleSamples": 32,
+              "frontFacingProjectedArea": 1025.9549904697278,
+              "visibleProjectedArea": 640.7231760071917,
+              "occluders": {
+                "motor_fins": 3,
+                "hoist_bearings": 17,
+                "hoist_motor": 3,
+                "service_cable": 1,
+                "hoist_drum": 10
+              },
+              "screenSize": [
+                36.87929683213247,
+                26.263875905696096
+              ],
+              "visibleProjectedAreaFraction": 0.6245139230853004
+            },
+            "drum_cable_wrap": {
+              "triangles": 256,
+              "screenBounds": [
+                [
+                  928.8470038007604,
+                  957.6510801751876
+                ],
+                [
+                  253.34758101680515,
+                  277.4478877697961
+                ]
+              ],
+              "frontFacingSamples": 128,
+              "visibleSamples": 0,
+              "frontFacingProjectedArea": 240.17534282225452,
+              "visibleProjectedArea": 0,
+              "occluders": {
+                "hoist_drum": 111,
+                "drum_cable_wrap": 7,
+                "service_cable": 3,
+                "hoist_bearings": 7
+              },
+              "screenSize": [
+                28.804076374427268,
+                24.100306752990974
+              ],
+              "visibleProjectedAreaFraction": 0
+            },
+            "hoist_motor": {
+              "triangles": 44,
+              "screenBounds": [
+                [
+                  914.228387816623,
+                  929.1305350992719
+                ],
+                [
+                  253.6639060746709,
+                  272.5778228107303
+                ]
+              ],
+              "frontFacingSamples": 22,
+              "visibleSamples": 16,
+              "frontFacingProjectedArea": 243.6462226173426,
+              "visibleProjectedArea": 156.5610576462462,
+              "occluders": {
+                "motor_fins": 6
+              },
+              "screenSize": [
+                14.902147282648912,
+                18.913916736059406
+              ],
+              "visibleProjectedAreaFraction": 0.6425753535778489
+            },
+            "motor_fins": {
+              "triangles": 192,
+              "screenBounds": [
+                [
+                  916.6522921133147,
+                  928.1986346456181
+                ],
+                [
+                  253.02751195628534,
+                  273.3843799372838
+                ]
+              ],
+              "frontFacingSamples": 96,
+              "visibleSamples": 46,
+              "frontFacingProjectedArea": 115.86508026566736,
+              "visibleProjectedArea": 51.71518109608674,
+              "occluders": {
+                "motor_fins": 8,
+                "hoist_motor": 36,
+                "hoist_bearings": 6
+              },
+              "screenSize": [
+                11.546342532303356,
+                20.356867980998487
+              ],
+              "visibleProjectedAreaFraction": 0.4463396648714941
+            },
+            "service_cable": {
+              "triangles": 40,
+              "screenBounds": [
+                [
+                  938.4210057612715,
+                  950.8129865363334
+                ],
+                [
+                  273.9264936318244,
+                  295.8119419428017
+                ]
+              ],
+              "frontFacingSamples": 20,
+              "visibleSamples": 17,
+              "frontFacingProjectedArea": 60.52981043185761,
+              "visibleProjectedArea": 60.2651597358835,
+              "occluders": {
+                "lower_pulley": 3
+              },
+              "screenSize": [
+                12.391980775061825,
+                21.885448310977267
+              ],
+              "visibleProjectedAreaFraction": 0.9956277626827851
+            },
+            "lower_pulley": {
+              "triangles": 256,
+              "screenBounds": [
+                [
+                  937.2669170307487,
+                  952.1105898665985
+                ],
+                [
+                  292.1769441347979,
+                  311.5358451394944
+                ]
+              ],
+              "frontFacingSamples": 128,
+              "visibleSamples": 66,
+              "frontFacingProjectedArea": 337.0615053806613,
+              "visibleProjectedArea": 191.82096304943056,
+              "occluders": {
+                "lower_pulley": 60,
+                "service_hook": 2
+              },
+              "screenSize": [
+                14.843672835849816,
+                19.35890100469652
+              ],
+              "visibleProjectedAreaFraction": 0.5690978055556866
+            },
+            "service_hook": {
+              "triangles": 124,
+              "screenBounds": [
+                [
+                  939.3052586700953,
+                  952.6754074206709
+                ],
+                [
+                  307.8575260349817,
+                  326.81968435079864
+                ]
+              ],
+              "frontFacingSamples": 56,
+              "visibleSamples": 54,
+              "frontFacingProjectedArea": 113.05115796894525,
+              "visibleProjectedArea": 106.74202288342971,
+              "occluders": {
+                "lower_pulley": 2
+              },
+              "screenSize": [
+                13.370148750575595,
+                18.962158315816964
+              ],
+              "visibleProjectedAreaFraction": 0.9441922117485197
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

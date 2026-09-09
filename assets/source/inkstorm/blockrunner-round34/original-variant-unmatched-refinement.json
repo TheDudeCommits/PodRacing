@@ -1,0 +1,187 @@
+{
+  "scope": "External refinement of original unmatched geometry. Per-part translation is measured only, never applied to a source. Nearest triangle search does not claim a bijection unless unique counts equal. Additional unmatched-patch vertices/edges are welded at30micrometers in analysis arrays only to compare their boundary.",
+  "rows": [
+    {
+      "colorObject": "pasted__L2x6_phongE2_0",
+      "ivoryObject": "pasted__L2x3slope2_pasted__Lego_White9_0",
+      "unmatchedColorTriangles": 828,
+      "unmatchedIvoryTriangles": 828,
+      "minimumArea": 4.6817815686883905e-05,
+      "maximumArea": 0.7265774561832989,
+      "totalArea": 8.461332328371718,
+      "countAreaBelow1eMinus10": 0,
+      "extraIvoryToColorTranslation": [
+        0.5272856452318966,
+        -1.760064440858855e-06,
+        1.2987580277901145e-07
+      ],
+      "maximumBestTriangleCornerDifference": 3.4254263362110574e-06,
+      "bestMatchUniqueIvoryCount": 828,
+      "bestMatchErrorsQuantiles": [
+        6.641295750164291e-07,
+        2.079439632075383e-06,
+        2.8302083720126215e-06,
+        3.4254263362110574e-06
+      ]
+    },
+    {
+      "colorObject": "pasted__pasted__L2x6_phongE2_0",
+      "ivoryObject": "pasted__L2x3slope2_pasted__pasted__Lego_White9_0",
+      "unmatchedColorTriangles": 828,
+      "unmatchedIvoryTriangles": 828,
+      "minimumArea": 4.681479781997749e-05,
+      "maximumArea": 0.7265773332796348,
+      "totalArea": 8.461331591424623,
+      "countAreaBelow1eMinus10": 0,
+      "extraIvoryToColorTranslation": [
+        -0.5404319989331617,
+        -2.534563261491485e-07,
+        1.7508126193277462e-07
+      ],
+      "maximumBestTriangleCornerDifference": 3.301453716275201e-06,
+      "bestMatchUniqueIvoryCount": 828,
+      "bestMatchErrorsQuantiles": [
+        6.972185012226823e-07,
+        2.1662833855680026e-06,
+        3.1714077765553064e-06,
+        3.301453716275201e-06
+      ]
+    },
+    {
+      "colorObject": "pasted__LegoTri19_pasted__Lego_White18_0",
+      "ivoryObject": "pasted__L2x3slope2_pasted__Lego_White18_0",
+      "unmatchedColorTriangles": 7,
+      "unmatchedIvoryTriangles": 7,
+      "minimumArea": 0.013892557533496316,
+      "maximumArea": 0.1827117806680927,
+      "totalArea": 0.3481627059709478,
+      "countAreaBelow1eMinus10": 0,
+      "extraIvoryToColorTranslation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "maximumBestTriangleCornerDifference": 0.5262876953318569,
+      "bestMatchUniqueIvoryCount": 4,
+      "bestMatchErrorsQuantiles": [
+        0.06611992346824562,
+        0.4878118987124086,
+        0.5250362388765435,
+        0.5262876953318569
+      ],
+      "analysisOnlyWeldTolerance": 3e-05,
+      "sameVertexSetAtTolerance": true,
+      "sameBoundaryEdgesAtTolerance": true,
+      "boundaryEdgeCounts": [
+        9,
+        9
+      ],
+      "jointPlaneMaximumVertexDeviation": 5.691926578652997e-06,
+      "ivoryTotalUnmatchedTriangleArea": 0.3481651062556419,
+      "areaDifference": 2.400284694115129e-06,
+      "interpretation": "Different triangulation; same vertex set and boundary at measured tolerance."
+    },
+    {
+      "colorObject": "pasted__pasted__LegoTri19_pasted__pasted__Lego_White18_0",
+      "ivoryObject": "pasted__L2x3slope2_pasted__pasted__Lego_White18_0",
+      "unmatchedColorTriangles": 8,
+      "unmatchedIvoryTriangles": 8,
+      "minimumArea": 0.013892539466412196,
+      "maximumArea": 0.18271177772994185,
+      "totalArea": 0.3654248723840426,
+      "countAreaBelow1eMinus10": 0,
+      "extraIvoryToColorTranslation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "maximumBestTriangleCornerDifference": 0.5262866090645206,
+      "bestMatchUniqueIvoryCount": 5,
+      "bestMatchErrorsQuantiles": [
+        0.06611216505976378,
+        0.10643705231280545,
+        0.39317023220474867,
+        0.5262866090645206
+      ],
+      "analysisOnlyWeldTolerance": 3e-05,
+      "sameVertexSetAtTolerance": true,
+      "sameBoundaryEdgesAtTolerance": true,
+      "boundaryEdgeCounts": [
+        10,
+        10
+      ],
+      "jointPlaneMaximumVertexDeviation": 6.216786112507741e-06,
+      "ivoryTotalUnmatchedTriangleArea": 0.36542684008535137,
+      "areaDifference": 1.967701308780434e-06,
+      "interpretation": "Different triangulation; same vertex set and boundary at measured tolerance."
+    },
+    {
+      "colorObject": "pasted__pCylinder4_Black_Jets_0",
+      "ivoryObject": "pasted__L2x3slope2_pasted__Lego_White19_0",
+      "unmatchedColorTriangles": 35,
+      "unmatchedIvoryTriangles": 35,
+      "minimumArea": 2.920962700630072e-05,
+      "maximumArea": 0.004513667948101166,
+      "totalArea": 0.025202561151791373,
+      "countAreaBelow1eMinus10": 0,
+      "extraIvoryToColorTranslation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "maximumBestTriangleCornerDifference": 0.0911129163910479,
+      "bestMatchUniqueIvoryCount": 24,
+      "bestMatchErrorsQuantiles": [
+        0.006392313686723206,
+        0.011023148183133559,
+        0.09111284821769775,
+        0.0911129163910479
+      ],
+      "analysisOnlyWeldTolerance": 3e-05,
+      "sameVertexSetAtTolerance": true,
+      "sameBoundaryEdgesAtTolerance": true,
+      "boundaryEdgeCounts": [
+        53,
+        53
+      ],
+      "jointPlaneMaximumVertexDeviation": 0.061354709521486646,
+      "ivoryTotalUnmatchedTriangleArea": 0.025195648189865236,
+      "areaDifference": -6.9129619261372455e-06,
+      "interpretation": "Different triangulation; same vertex set and boundary at measured tolerance."
+    },
+    {
+      "colorObject": "pasted__pasted__pCylinder4_Black_Jets_0",
+      "ivoryObject": "pasted__L2x3slope2_pasted__pasted__Lego_White20_0",
+      "unmatchedColorTriangles": 37,
+      "unmatchedIvoryTriangles": 37,
+      "minimumArea": 2.9849511164931924e-05,
+      "maximumArea": 0.004513649395550442,
+      "totalArea": 0.025880358356012864,
+      "countAreaBelow1eMinus10": 0,
+      "extraIvoryToColorTranslation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "maximumBestTriangleCornerDifference": 0.0911185520505513,
+      "bestMatchUniqueIvoryCount": 27,
+      "bestMatchErrorsQuantiles": [
+        0.00726354449462199,
+        0.017429775826695117,
+        0.09111835934482665,
+        0.0911185520505513
+      ],
+      "analysisOnlyWeldTolerance": 3e-05,
+      "sameVertexSetAtTolerance": true,
+      "sameBoundaryEdgesAtTolerance": true,
+      "boundaryEdgeCounts": [
+        51,
+        51
+      ],
+      "jointPlaneMaximumVertexDeviation": 0.061354573377411695,
+      "ivoryTotalUnmatchedTriangleArea": 0.025867791512863923,
+      "areaDifference": -1.2566843148941603e-05,
+      "interpretation": "Different triangulation; same vertex set and boundary at measured tolerance."
+    }
+  ]
+}

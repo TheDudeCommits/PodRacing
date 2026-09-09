@@ -4,4 +4,9 @@ output/
 .playwright-cli/
 .DS_Store
 *.log
+__pycache__/
 .vercel
+# Local workshop recovery includes an unrelated saved scene. Deliver the
+# isolated exported meshes, source builders and receipts, not this backup.
+assets/source/inkstorm/scanned-geology/*-checkpoint.blend*
+.env*

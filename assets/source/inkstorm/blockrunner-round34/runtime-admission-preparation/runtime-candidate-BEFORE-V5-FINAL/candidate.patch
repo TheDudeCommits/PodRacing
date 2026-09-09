@@ -1,0 +1,436 @@
+--- a/src/game/vehicleAppearance.ts
++++ b/src/game/vehicleAppearance.ts
+@@ -3,7 +3,7 @@
+ import type { GalacticVehicleClass } from './galactic/types';
+ import { resolveBrowserSettingsStorage, type SettingsStorage } from './settings/storage';
+ 
+-export type VehicleAppearanceId = 'teemto' | 'sebulba' | 'polwo' | 'procedural';
++export type VehicleAppearanceId = 'teemto' | 'sebulba' | 'polwo' | 'blockrunner' | 'procedural';
+ export type VehicleArtLod = 'hero' | 'rival';
+ 
+ /** Appearance never changes the physics class, workshop loadout or record identity. */
+@@ -11,6 +11,7 @@
+   teemto: Object.freeze({ id: 'teemto', label: 'Teemto', vehicleClass: 'podracer' } as const),
+   sebulba: Object.freeze({ id: 'sebulba', label: 'Sebulba', vehicleClass: 'podracer' } as const),
+   polwo: Object.freeze({ id: 'polwo', label: 'Polwo', vehicleClass: 'podracer' } as const),
++  blockrunner: Object.freeze({ id: 'blockrunner', label: 'Blockrunner', vehicleClass: 'podracer' } as const),
+   procedural: Object.freeze({ id: 'procedural', label: 'Classic', vehicleClass: 'podracer' } as const),
+ });
+ 
+@@ -23,7 +24,7 @@
+   'ai-vexa': 'polwo',
+   'ai-talik': 'teemto',
+   'ai-kodo': 'sebulba',
+-  'ai-sola': 'polwo',
++  'ai-sola': 'blockrunner',
+   'ai-rax': 'teemto',
+   'ai-miri': 'sebulba',
+   'ai-olan': 'polwo',
+@@ -77,6 +78,9 @@
+   antenna: 'polwo-body-1',
+ });
+ 
++/** Canonical package nodes; the four original pilot roles remain separate draws. */
++export const BLOCKRUNNER_BODY_NODES = Object.freeze({ main: 'blockrunner-body' });
++
+ function rootAttachment(x: number, y: number, z: number): VehicleArtAttachment {
+   return Object.freeze({ position: Object.freeze([x, y, z] as const) });
+ }
+@@ -189,8 +193,51 @@
+   }),
+ });
+ 
++/** Atlas maps already contain the authored wear. Keep distinct source pilot roles. */
++const BLOCKRUNNER_SURFACE_STYLES = Object.freeze({
++  'Blockrunner Inkstorm body atlas v1': Object.freeze({
++    specularStrength: .08, rimStrength: 0, reflectionStrength: 0, wear: 0,
++  }),
++  'Blockrunner Inkstorm pilot suit atlas v1': TEEMTO_CLOTH_STYLE,
++  'Blockrunner Inkstorm pilot helmet atlas v1': Object.freeze({
++    specularStrength: .08, rimStrength: 0, reflectionStrength: 0, wear: 0,
++  }),
++  'Blockrunner Inkstorm pilot visor atlas v1': Object.freeze({
++    specularStrength: .14, rimStrength: 0, reflectionStrength: .015, wear: 0,
++  }),
++  'Blockrunner Inkstorm pilot gloves atlas v1': Object.freeze({
++    specularStrength: .035, rimStrength: 0, reflectionStrength: 0, wear: 0,
++  }),
++} satisfies Readonly<Record<string, VehicleArtSurfaceStyle>>);
++
++/** Exact normalization candidate: package verification must prove these root coordinates.
++ * The rigid source crossbeam needs no duplicate energy coupling. */
++const BLOCKRUNNER_ATTACHMENTS: Readonly<Record<string, VehicleArtAttachment>> = Object.freeze({
++  pilot: rootAttachment(0, 2.8454298774641376, -5.200000000000003),
++  exhaustLeft: rootAttachment(-3.651407175599785, 1.4209392232848972, 2.96253509241496),
++  exhaustRight: rootAttachment(3.482691623294051, 1.4209392232848972, 2.9625384568864277),
++});
++
++/** Requires the separately reviewed exhaust-aperture candidate before application. */
++export const BLOCKRUNNER_ART_DEFINITIONS: Readonly<Record<VehicleArtLod, VehicleArtDefinition>> = Object.freeze({
++  hero: Object.freeze({
++    id: 'blockrunner', revision: 'blockrunner-inkstorm-v1',
++    url: '/assets/inkstorm/vehicles/blockrunner-hero-v1.glb',
++    embeddedPilotNodePrefix: 'blockrunner-pilot-',
++    hasAuthoredExhaustHardware: true, exhaustApertureRadius: .34,
++    attachments: BLOCKRUNNER_ATTACHMENTS, surfaceStyles: BLOCKRUNNER_SURFACE_STYLES,
++  }),
++  rival: Object.freeze({
++    id: 'blockrunner', revision: 'blockrunner-inkstorm-v1',
++    url: '/assets/inkstorm/vehicles/blockrunner-rival-v1.glb',
++    embeddedPilotNodePrefix: 'blockrunner-pilot-',
++    hasAuthoredExhaustHardware: true, exhaustApertureRadius: .34,
++    attachments: BLOCKRUNNER_ATTACHMENTS, surfaceStyles: BLOCKRUNNER_SURFACE_STYLES,
++  }),
++});
++
+ export function isVehicleAppearanceId(value: unknown): value is VehicleAppearanceId {
+-  return value === 'teemto' || value === 'sebulba' || value === 'polwo' || value === 'procedural';
++  return value === 'teemto' || value === 'sebulba' || value === 'polwo' || value === 'blockrunner' || value === 'procedural';
+ }
+ 
+ /** Reads only the appearance key. Defaults are not written over corrupt or future saves. */
+@@ -246,5 +293,6 @@
+   if (lod !== 'hero' && lod !== 'rival') return null;
+   if (id === 'teemto') return TEEMTO_ART_DEFINITIONS[lod];
+   if (id === 'sebulba') return SEBULBA_ART_DEFINITIONS[lod];
+-  return id === 'polwo' ? POLWO_ART_DEFINITIONS[lod] : null;
+-}
++  if (id === 'polwo') return POLWO_ART_DEFINITIONS[lod];
++  return id === 'blockrunner' ? BLOCKRUNNER_ART_DEFINITIONS[lod] : null;
++}
+--- a/public/assets/inkstorm/vehicles/ATTRIBUTION.md
++++ b/public/assets/inkstorm/vehicles/ATTRIBUTION.md
+@@ -36,3 +36,15 @@
+ - Model UID: `5a3422df6f894b48b846d590cdc2bf4c`
+ 
+ Changes by the PodRacing project: normalized scale and orientation; merged rigid body geometry; baked an Inkstorm cobalt/burnt-orange palette and matte material treatment while retaining the source UV detail and original source files; fitted an original static helmeted driver with shoulder construction repairs; corrected invalid tangent vectors; resized and packed texture maps; created a simplified rival with retained shoulder patches. Source metadata, authoring scripts, generated concept target, failed studies, validation reports and exact hashes are preserved under `assets/source/inkstorm/polwo-driver-round32/` and `assets/source/inkstorm/vehicles/5a3422df6f894b48b846d590cdc2bf4c/`. These adaptations do not imply the original creator's endorsement.
++
++
++## Pod Racer Colour — Blockrunner appearance
++
++`blockrunner-hero-v1.glb` and `blockrunner-rival-v1.glb` are adaptations of **Pod Racer Colour** by **20001748**.
++
++- Original model: https://sketchfab.com/3d-models/none-a6f14ae799ab40d7ac425f043f824ff8
++- Creator: https://sketchfab.com/20001748
++- License: **Creative Commons Attribution 4.0 International (CC BY 4.0)** — https://creativecommons.org/licenses/by/4.0/
++- Model UID: `a6f14ae799ab40d7ac425f043f824ff8`
++
++Changes by the PodRacing project: removed exact overlapping opposing faces; shortened two grips and added two side mounts while retaining the original seated minifigure pilot; authored and baked an Inkstorm paint and roughness treatment; consolidated rigid geometry, normalized scale and orientation, and packaged distinct hero/rival derivatives with resized body and pilot atlases. The rival simplifies body geometry while retaining the original pilot and exhaust openings. No new driver was added. Original source, earlier studies, license metadata and exact export receipts are preserved under `assets/source/inkstorm/blockrunner-round34/` and `assets/source/inkstorm/vehicles/a6f14ae799ab40d7ac425f043f824ff8/`. These adaptations do not imply the original creator's endorsement.
+--- a/tests/settings/vehicleAppearance.test.ts
++++ b/tests/settings/vehicleAppearance.test.ts
+@@ -7,6 +7,7 @@
+ import { WORKSHOP_GARAGE_STORAGE_KEY } from '../../src/game/settings/workshopStorage';
+ import {
+   ART_APPEARANCES,
++  BLOCKRUNNER_ART_DEFINITIONS,
+   getVehicleArtDefinition,
+   isVehicleAppearanceId,
+   loadVehicleAppearance,
+@@ -33,7 +34,7 @@
+     expect(storage.writes).toEqual([]);
+   });
+ 
+-  it.each(['teemto', 'sebulba', 'polwo', 'procedural'] as const)('retains an explicit %s selection through reloads', (id) => {
++  it.each(['teemto', 'sebulba', 'polwo', 'blockrunner', 'procedural'] as const)('retains an explicit %s selection through reloads', (id) => {
+     const storage = new MemoryStorage();
+     expect(saveVehicleAppearance(id, storage)).toBe(true);
+     expect(loadVehicleAppearance(storage)).toBe(id);
+@@ -84,7 +85,7 @@
+     }
+   });
+ 
+-  it.each(['teemto', 'sebulba', 'polwo'] as const)('keeps the %s selection across other physics classes and preserves unrelated saves', (appearance) => {
++  it.each(['teemto', 'sebulba', 'polwo', 'blockrunner'] as const)('keeps the %s selection across other physics classes and preserves unrelated saves', (appearance) => {
+     const storage = new MemoryStorage();
+     const keys = [GAME_SETTINGS_STORAGE_KEY, WORKSHOP_GARAGE_STORAGE_KEY, MASTERY_STORAGE_KEY];
+     for (const key of keys) storage.values.set(key, `unchanged:${key}`);
+@@ -102,8 +103,8 @@
+ });
+ 
+ describe('vehicle appearance art contract', () => {
+-  it('offers three imported appearances with separate LOD URLs and an explicit procedural fallback', () => {
+-    expect(Object.keys(ART_APPEARANCES)).toEqual(['teemto', 'sebulba', 'polwo', 'procedural']);
++  it('offers four imported appearances with separate LOD URLs and an explicit procedural fallback', () => {
++    expect(Object.keys(ART_APPEARANCES)).toEqual(['teemto', 'sebulba', 'polwo', 'blockrunner', 'procedural']);
+     expect(Object.values(ART_APPEARANCES).every((art) => art.vehicleClass === 'podracer')).toBe(true);
+     expect(getVehicleArtDefinition('procedural', 'hero')).toBeNull();
+     expect(getVehicleArtDefinition('procedural', 'rival')).toBeNull();
+@@ -111,6 +112,9 @@
+     expect(getVehicleArtDefinition('teemto', 'rival')).toBe(TEEMTO_ART_DEFINITIONS.rival);
+     expect(getVehicleArtDefinition('sebulba')).toBe(SEBULBA_ART_DEFINITIONS.hero);
+     expect(getVehicleArtDefinition('sebulba', 'rival')).toBe(SEBULBA_ART_DEFINITIONS.rival);
++    expect(getVehicleArtDefinition('blockrunner')).toBe(BLOCKRUNNER_ART_DEFINITIONS.hero);
++    expect(getVehicleArtDefinition('blockrunner', 'rival')).toBe(BLOCKRUNNER_ART_DEFINITIONS.rival);
++    expect(BLOCKRUNNER_ART_DEFINITIONS.hero.url).not.toBe(BLOCKRUNNER_ART_DEFINITIONS.rival.url);
+     expect(getVehicleArtDefinition('polwo')).toBe(POLWO_ART_DEFINITIONS.hero);
+     expect(getVehicleArtDefinition('polwo', 'rival')).toBe(POLWO_ART_DEFINITIONS.rival);
+     expect(POLWO_ART_DEFINITIONS.hero.url).not.toBe(POLWO_ART_DEFINITIONS.rival.url);
+@@ -121,7 +125,7 @@
+     expect(POLWO_ART_DEFINITIONS.hero.surfaceStyles?.['Polwo Inkstorm body paint-v1']).toMatchObject({ rimStrength: 0, reflectionStrength: 0, wear: 0 });
+     expect(POLWO_ART_DEFINITIONS.rival.surfaceStyles).toBe(POLWO_ART_DEFINITIONS.hero.surfaceStyles);
+     expect(Object.isFrozen(POLWO_ART_DEFINITIONS.hero.attachments?.pilot?.position)).toBe(true);
+-    // A third registered appearance must not turn an arbitrary ID into an art request.
++    // A fourth registered appearance must not turn an arbitrary ID into an art request.
+     expect(getVehicleArtDefinition('unknown' as never)).toBeNull();
+     expect(SEBULBA_ART_DEFINITIONS.hero.url).not.toBe(SEBULBA_ART_DEFINITIONS.rival.url);
+     expect(Object.isFrozen(SEBULBA_ART_DEFINITIONS.hero.attachments?.pilot?.position)).toBe(true);
+--- /dev/null
++++ b/tests/render/blockrunnerAppearance.test.ts
+@@ -0,0 +1,64 @@
++import { BoxGeometry, Group, InstancedMesh, Mesh, MeshStandardMaterial } from 'three';
++import { afterEach, describe, expect, it, vi } from 'vitest';
++import { BLOCKRUNNER_ART_DEFINITIONS, isVehicleAppearanceId } from '../../src/game/vehicleAppearance';
++import { CelMaterial } from '../../src/render/materials/CelMaterial';
++import { RacerPresentation } from '../../src/render/vehicles/RacerPresentation';
++import { VehicleArtLibrary } from '../../src/render/vehicles/VehicleArtLibrary';
++
++const owned: Array<{ racer: RacerPresentation; library: VehicleArtLibrary }> = [];
++function setup(index = 0) {
++  const root = new Group(), geometry = new BoxGeometry(1, 1, 1);
++  for (const role of ['body', 'suit', 'helmet', 'visor', 'gloves']) {
++    const node = role === 'body' ? 'blockrunner-body' : `blockrunner-pilot-${role}`;
++    const name = role === 'body' ? 'Blockrunner Inkstorm body atlas v1' : `Blockrunner Inkstorm pilot ${role} atlas v1`;
++    const mesh = new Mesh(geometry, new MeshStandardMaterial({ name })); mesh.name = node; root.add(mesh);
++  }
++  const load = vi.fn(async () => root), library = new VehicleArtLibrary({ load, maxIdleEntries: 0 });
++  const racer = new RacerPresentation(library, undefined, index); racer.setVehicleClass('podracer');
++  owned.push({ racer, library });
++  return { racer, load, geometry, disposed: vi.spyOn(geometry, 'dispose') };
++}
++afterEach(() => { for (const { racer, library } of owned.splice(0)) { racer.dispose(); library.dispose(); } });
++
++describe('Blockrunner admission wiring; synthetic geometry does not prove exported art', () => {
++  it.each(['hero', 'rival'] as const)('loads only the explicit %s package with four retained pilot roles', async lod => {
++    const f = setup(lod === 'hero' ? 0 : 1), proxy = f.racer.createCelPrepassProxy();
++    expect(f.load).not.toHaveBeenCalled();
++    await f.racer.setAppearance('blockrunner');
++    expect(f.load).toHaveBeenCalledExactlyOnceWith(BLOCKRUNNER_ART_DEFINITIONS[lod].url);
++    expect(f.racer.activeAppearanceId).toBe('blockrunner');
++    expect(f.racer.vehicleClass).toBe('podracer');
++    expect(f.racer.imported.statistics).toMatchObject({ meshes: 5, opaqueDraws: 5, bodyDraws: 1,
++      pilotDraws: 4, prepassDraws: 5, shadowSourceMeshes: 1 });
++    expect(f.racer.imported.getShadowMeshes().map(mesh => mesh.name)).toEqual(['blockrunner-body']);
++    expect(f.racer.pilotAnchor.visible).toBe(false);
++    const materials = new Map(f.racer.imported.geometryMeshes.map(mesh => [mesh.name, mesh.material as CelMaterial]));
++    for (const material of materials.values()) {
++      expect(material.uniforms.uRimStrength!.value).toBe(0);
++      expect(material.uniforms.uWear!.value).toBe(0);
++    }
++    expect(materials.get('blockrunner-pilot-suit')!.uniforms.uSpecularStrength!.value).toBe(.025);
++    expect(materials.get('blockrunner-pilot-gloves')!.uniforms.uSpecularStrength!.value).toBe(.035);
++    expect(materials.get('blockrunner-pilot-visor')!.uniforms.uSpecularStrength!.value).toBe(.14);
++    f.racer.setLodMode('simplified');
++    expect(f.racer.prepassMeshes.filter(mesh => mesh.visible)).toHaveLength(1);
++    await f.racer.setAppearance('procedural');
++    expect(f.racer.prepassMeshes).toEqual([proxy]); expect(f.disposed).toHaveBeenCalledOnce();
++  });
++
++  it('retains source hardware and uses root exhaust/dust anchors without duplicate coupling', async () => {
++    const { racer } = setup(); await racer.setAppearance('blockrunner');
++    racer.update({ x: 37, y: 8, z: -29, yaw: .4, pitch: .08, roll: -.15,
++      steer: .3, throttle: .9, speed: 180, boost: .8, redline: 1.2, damage: .2 }, 1);
++    const definition = BLOCKRUNNER_ART_DEFINITIONS.hero;
++    expect(racer.getObjectByName('imported-engine-coupling')).toBeUndefined();
++    expect((racer.getObjectByName('imported-engine-nozzle-lips') as InstancedMesh).visible).toBe(false);
++    expect(racer.imported.exhaustRadialScale).toBeCloseTo(.34 / (.82 * 1.42) * (1 - 1e-6), 12);
++    expect(racer.wakeAnchors.map(anchor => anchor.position.toArray())).toEqual([
++      definition.attachments!.exhaustLeft!.position, definition.attachments!.exhaustRight!.position,
++    ]);
++    expect(racer.dustAnchors[1]!.position.toArray()).toEqual(definition.attachments!.pilot!.position);
++    expect(isVehicleAppearanceId('blockrunner')).toBe(true);
++    expect(isVehicleAppearanceId('blockrunner-unregistered')).toBe(false);
++  });
++});
+--- a/tests/render/aiAppearanceRoster.test.ts
++++ b/tests/render/aiAppearanceRoster.test.ts
+@@ -3,7 +3,7 @@
+ import { createRaceSimulation } from '../../src/game/race';
+ import { FLAT_HEIGHT_SAMPLER } from '../../src/game/simulation';
+ import {
+-  POLWO_ART_DEFINITIONS,
++  BLOCKRUNNER_ART_DEFINITIONS,
+   resolveRacerAppearancePreference,
+   type VehicleAppearanceId,
+ } from '../../src/game/vehicleAppearance';
+@@ -15,7 +15,7 @@
+ function rivalFixture() {
+   const root = new Group();
+   const body = new Mesh(new BoxGeometry(2, 1, 4), new MeshStandardMaterial());
+-  body.name = 'polwo-body-0';
++  body.name = 'blockrunner-body';
+   root.add(body);
+   return root;
+ }
+@@ -59,13 +59,13 @@
+       ['ai-sola', 'podracer'], ['ai-rax', 'landspeeder'],
+       ['ai-miri', 'speeder-bike'], ['ai-olan', 'skim-speeder'],
+     ]);
+-    expect(load.mock.calls).toEqual([[POLWO_ART_DEFINITIONS.rival.url]]);
++    expect(load.mock.calls).toEqual([[BLOCKRUNNER_ART_DEFINITIONS.rival.url]]);
+     expect(racers.map(racer => racer.activeAppearanceId)).toEqual([
+       'procedural', 'procedural', 'procedural', 'procedural',
+-      'polwo', 'procedural', 'procedural', 'procedural',
++      'blockrunner', 'procedural', 'procedural', 'procedural',
+     ]);
+     expect(racers[4]!.appearanceStatus).toBe('ready');
+-    expect(racers[4]!.imported.activeSource).toEqual(POLWO_ART_DEFINITIONS.rival);
++    expect(racers[4]!.imported.activeSource).toEqual(BLOCKRUNNER_ART_DEFINITIONS.rival);
+     expect(race.snapshot()).toEqual(before);
+   });
+ 
+@@ -73,9 +73,9 @@
+     const ids = ['ai-vexa', 'ai-talik', 'ai-kodo', 'ai-sola', 'ai-rax', 'ai-miri', 'ai-olan'];
+     const expected = {
+       'ai-vexa': 'polwo', 'ai-talik': 'teemto', 'ai-kodo': 'sebulba',
+-      'ai-sola': 'polwo', 'ai-rax': 'teemto', 'ai-miri': 'sebulba', 'ai-olan': 'polwo',
++      'ai-sola': 'blockrunner', 'ai-rax': 'teemto', 'ai-miri': 'sebulba', 'ai-olan': 'polwo',
+     };
+-    for (const preference of ['teemto', 'sebulba', 'polwo', 'procedural'] as const) {
++    for (const preference of ['teemto', 'sebulba', 'polwo', 'blockrunner', 'procedural'] as const) {
+       for (const order of [ids, [...ids].reverse()]) {
+         expect(Object.fromEntries(order.map(id => [id, resolveRacerAppearancePreference(id, 'player', preference, [])])))
+           .toEqual(expected);
+@@ -88,14 +88,14 @@
+ 
+   it('prioritizes each local human selection while keeping occupied remote AI ids on the unsynchronized fallback', () => {
+     const humanMembers = Object.freeze(['player', 'ai-vexa', 'ai-talik', 'ai-kodo'].map(racerId => Object.freeze({ racerId })));
+-    const preferences: readonly VehicleAppearanceId[] = ['teemto', 'sebulba', 'polwo', 'procedural'];
++    const preferences: readonly VehicleAppearanceId[] = ['teemto', 'sebulba', 'polwo', 'blockrunner', 'procedural'];
+     for (const local of humanMembers) {
+       for (const preference of preferences) {
+         expect(resolveRacerAppearancePreference(local.racerId, local.racerId, preference, humanMembers)).toBe(preference);
+         for (const remote of humanMembers.filter(member => member !== local)) {
+           expect(resolveRacerAppearancePreference(remote.racerId, local.racerId, preference, humanMembers)).toBe('teemto');
+         }
+-        expect(resolveRacerAppearancePreference('ai-sola', local.racerId, preference, humanMembers)).toBe('polwo');
++        expect(resolveRacerAppearancePreference('ai-sola', local.racerId, preference, humanMembers)).toBe('blockrunner');
+       }
+     }
+     // A vacated network slot resumes its stable AI preference, not the local skin.
+--- /dev/null
++++ b/tests/settings/blockrunnerAppearanceAssets.test.mjs
+@@ -0,0 +1,87 @@
++import { readFileSync } from 'node:fs';
++import { createHash } from 'node:crypto';
++import { describe, expect, it } from 'vitest';
++import { BLOCKRUNNER_ART_DEFINITIONS } from '../../src/game/vehicleAppearance';
++
++// Checked-in fixture pins actual final public bytes; ordinary npm verify needs no external environment.
++const receipt = JSON.parse(readFileSync(new URL('../fixtures/blockrunnerPackage.json', import.meta.url), 'utf8'));
++const sha = bytes => createHash('sha256').update(bytes).digest('hex');
++function imageSize(bytes) {
++  if (bytes.subarray(0, 8).equals(Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]))) return [bytes.readUInt32BE(16), bytes.readUInt32BE(20)];
++  if (bytes.toString('ascii', 0, 4) !== 'RIFF' || bytes.toString('ascii', 8, 12) !== 'WEBP') throw new Error('Expected embedded PNG/WebP.');
++  for (let offset = 12; offset + 8 <= bytes.length;) {
++    const type = bytes.toString('ascii', offset, offset + 4), length = bytes.readUInt32LE(offset + 4), start = offset + 8;
++    if (type === 'VP8X') return [1 + bytes.readUIntLE(start + 4, 3), 1 + bytes.readUIntLE(start + 7, 3)];
++    if (type === 'VP8 ') return [bytes.readUInt16LE(start + 6) & 0x3fff, bytes.readUInt16LE(start + 8) & 0x3fff];
++    if (type === 'VP8L') { const value = bytes.readUInt32LE(start + 1); return [(value & 0x3fff) + 1, ((value >>> 14) & 0x3fff) + 1]; }
++    offset = start + length + (length % 2);
++  }
++  throw new Error('Missing WebP dimensions.');
++}
++
++describe('final Blockrunner package bytes and restrictive asset contract', () => {
++  it.each(['hero', 'rival'])('verifies real %s bytes, five submissions and owner-specific atlas sizes', lod => {
++    const packageReceipt = receipt.packages?.[lod];
++    expect(packageReceipt).toBeDefined();
++    expect(packageReceipt.sha256).toMatch(/^[a-f0-9]{64}$/);
++    expect(packageReceipt.publicUrl).toBe(BLOCKRUNNER_ART_DEFINITIONS[lod].url);
++    const bytes = readFileSync(new URL(`../../public${BLOCKRUNNER_ART_DEFINITIONS[lod].url}`, import.meta.url));
++    expect(bytes.length).toBe(packageReceipt.bytes); expect(sha(bytes)).toBe(packageReceipt.sha256);
++    expect(bytes.readUInt32LE(0)).toBe(0x46546c67); expect(bytes.readUInt32LE(4)).toBe(2);
++    expect(bytes.readUInt32LE(8)).toBe(bytes.length); expect(bytes.readUInt32LE(16)).toBe(0x4e4f534a);
++    const length = bytes.readUInt32LE(12), gltf = JSON.parse(bytes.toString('utf8', 20, 20 + length));
++    expect(bytes.readUInt32LE(24 + length)).toBe(0x004e4942);
++    const binary = bytes.subarray(28 + length), meshNodes = gltf.nodes.filter(node => node.mesh !== undefined);
++    const expectedNames = ['blockrunner-body', ...['suit', 'helmet', 'visor', 'gloves'].map(role => `blockrunner-pilot-${role}`)];
++    expect(meshNodes.map(node => node.name).toSorted()).toEqual(expectedNames.toSorted());
++    expect(gltf.meshes).toHaveLength(5); expect(gltf.materials).toHaveLength(5); expect(gltf.images).toHaveLength(4);
++    expect(gltf.skins ?? []).toHaveLength(0); expect(gltf.animations ?? []).toHaveLength(0);
++    for (const node of gltf.nodes) {
++      expect(node.translation ?? [0, 0, 0]).toEqual([0, 0, 0]); expect(node.rotation ?? [0, 0, 0, 1]).toEqual([0, 0, 0, 1]);
++      expect(node.scale ?? [1, 1, 1]).toEqual([1, 1, 1]);
++      if (node.matrix) expect(node.matrix).toEqual([1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]);
++    }
++    const imageIndex = textureIndex => {
++      const texture = gltf.textures[textureIndex]; return texture.extensions?.EXT_texture_webp?.source ?? texture.source;
++    };
++    const sizes = gltf.images.map(image => {
++      expect(image.uri).toBeUndefined(); const view = gltf.bufferViews[image.bufferView];
++      return imageSize(binary.subarray(view.byteOffset ?? 0, (view.byteOffset ?? 0) + view.byteLength));
++    });
++    let bodyTriangles = 0, pilotTriangles = 0;
++    const baseImages = { body: new Set(), pilot: new Set() }, roughImages = { body: new Set(), pilot: new Set() };
++    for (const node of meshNodes) {
++      const primitives = gltf.meshes[node.mesh].primitives; expect(primitives).toHaveLength(1);
++      const primitive = primitives[0], material = gltf.materials[primitive.material], body = node.name === 'blockrunner-body';
++      const role = body ? 'body' : `pilot ${node.name.slice('blockrunner-pilot-'.length)}`;
++      expect(material.name).toBe(`Blockrunner Inkstorm ${role} atlas v1`);
++      expect((primitive.mode ?? 4)).toBe(4); expect(material.alphaMode ?? 'OPAQUE').toBe('OPAQUE');
++      expect(primitive.targets).toBeUndefined(); expect(material.normalTexture).toBeUndefined();
++      expect(Object.keys(primitive.attributes).filter(name => name.startsWith('COLOR_'))).toEqual([]);
++      const positions = gltf.accessors[primitive.attributes.POSITION], normals = gltf.accessors[primitive.attributes.NORMAL];
++      expect(normals.count).toBe(positions.count); expect(normals.type).toBe('VEC3'); expect(normals.componentType).toBe(5126);
++      const triangles = gltf.accessors[primitive.indices].count / 3; expect(Number.isInteger(triangles)).toBe(true);
++      if (body) bodyTriangles += triangles; else pilotTriangles += triangles;
++      const pbr = material.pbrMetallicRoughness;
++      expect(pbr.baseColorFactor ?? [1, 1, 1, 1]).toEqual([1, 1, 1, 1]); expect(pbr.roughnessFactor ?? 1).toBe(1);
++      for (const [kind, binding, expectedSize, owners] of [
++        ['base', pbr.baseColorTexture, lod === 'hero' ? 1024 : 512, baseImages],
++        ['roughness', pbr.metallicRoughnessTexture, lod === 'hero' ? 512 : 256, roughImages],
++      ]) {
++        expect(binding, kind).toBeDefined(); expect(primitive.attributes[`TEXCOORD_${binding.texCoord ?? 0}`]).toBeTypeOf('number');
++        const index = imageIndex(binding.index); expect(sizes[index]).toEqual([expectedSize, expectedSize]); owners[body ? 'body' : 'pilot'].add(index);
++      }
++    }
++    for (const owners of [baseImages, roughImages]) {
++      expect(owners.body.size).toBe(1); expect(owners.pilot.size).toBe(1);
++      expect([...owners.body][0]).not.toBe([...owners.pilot][0]);
++    }
++    expect(new Set([...baseImages.body, ...baseImages.pilot, ...roughImages.body, ...roughImages.pilot]).size).toBe(4);
++    expect(pilotTriangles).toBe(4128); expect(bodyTriangles).toBe(packageReceipt.bodyTriangles);
++    expect(bodyTriangles + pilotTriangles).toBe(packageReceipt.triangles);
++    if (lod === 'hero') expect(bodyTriangles).toBe(39900);
++    else expect(bodyTriangles + pilotTriangles).toBeLessThanOrEqual(30000);
++    expect(BLOCKRUNNER_ART_DEFINITIONS[lod].attachments.couplingLeft).toBeUndefined();
++    expect(BLOCKRUNNER_ART_DEFINITIONS[lod].attachments.couplingRight).toBeUndefined();
++  });
++});
+--- /dev/null
++++ b/tests/fixtures/blockrunnerPackage.json
+@@ -0,0 +1,34 @@
++{
++  "version": 1,
++  "scope": "Private V3 pipeline fixture only. Regenerate with actual final V5+ package receipts before live application.",
++  "sourceReceipts": [
++    {
++      "path": "assets/source/inkstorm/blockrunner-round34/runtime-admission-preparation/packaged-atlas-v3-v1/blockrunner-hero-v1.package-receipt.json",
++      "sha256": "c0e7edb6edd9448f185b857fafa147e0449665fa0b504e91cfbeb3b705a1d9fc"
++    },
++    {
++      "path": "assets/source/inkstorm/blockrunner-round34/runtime-admission-preparation/packaged-atlas-v3-v1/blockrunner-rival-v1.package-receipt.json",
++      "sha256": "9eca8e7487b54c60210ffa33f976ced5ecd09b3ddcf627a38bf295ba73adfaf0"
++    }
++  ],
++  "packages": {
++    "hero": {
++      "publicUrl": "/assets/inkstorm/vehicles/blockrunner-hero-v1.glb",
++      "sha256": "6451e78bc4933fd294bc0c080dbedcf679b2d558b118b62cca8ce4812f942b02",
++      "bytes": 3748076,
++      "triangles": 44028,
++      "bodyTriangles": 39900,
++      "pilotTriangles": 4128,
++      "draws": 5
++    },
++    "rival": {
++      "publicUrl": "/assets/inkstorm/vehicles/blockrunner-rival-v1.glb",
++      "sha256": "d3a1489720f4b46cf2b8f41cb63f1794e587a4b88a9139e20cfafc5da3465d7c",
++      "bytes": 3443832,
++      "triangles": 29682,
++      "bodyTriangles": 25554,
++      "pilotTriangles": 4128,
++      "draws": 5
++    }
++  }
++}

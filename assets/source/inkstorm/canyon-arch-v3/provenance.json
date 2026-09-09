@@ -1,0 +1,27 @@
+{
+  "source": "Poly Haven boulder_01",
+  "author": "Rico Cilliers",
+  "license": "CC0",
+  "licenseVerification": "Official boulder_01 model page explicitly labels the asset CC0; Poly Haven license page permits use, modification and redistribution. Verified 2026-09-07.",
+  "sourceReceipt": "assets/source/inkstorm/scanned-geology/boulder-source-download-receipt.json",
+  "page": "https://polyhaven.com/a/boulder_01",
+  "licenseUrl": "https://polyhaven.com/license",
+  "downloadArchive": {
+    "path": "originals/boulder_01-1k-original-files.zip",
+    "sha256": "23a296a3188ecd14712a4425b07f930b32f1466438a6f3c9a6c72984eee58d6d",
+    "purpose": "Locally packaged unmodified downloaded files; not an official provider ZIP"
+  },
+  "processedSourceInputs": [
+    {
+      "path": "assets/source/inkstorm/scanned-geology/boulder-1-lod.glb",
+      "sha256": "9262af74e76f008803f96c21a17bfbe62eca2098648f58640a716d20de75f21a"
+    },
+    {
+      "path": "assets/source/inkstorm/scanned-geology/boulder-2-lod.glb",
+      "sha256": "17b048cda736dd917e66f37979e7605b94b2bbccbe0cfa2f44170537c4e56f0f"
+    }
+  ],
+  "geometryChanges": "Original nine-component arrangement, rotations and modest nonuniform scales; no remesh, deformation, or Boolean.",
+  "normalHandling": "Imported source normals and smooth-face assignments; coincident seams welded, face orientation recalculated, normals transformed with components. Exact original normal bytes are not claimed after transforms.",
+  "vertexColors": "Original processed scan vertex colors retained; shader luminance normalization may need adaptation."
+}

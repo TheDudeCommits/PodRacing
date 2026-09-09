@@ -1,0 +1,75 @@
+{
+  "recordedAt": "2026-09-07T15:42:18.905432+00:00",
+  "scope": "First Teemto functional integration and second prepared vehicle family; not concept acceptance",
+  "beforeCounts": {
+    "publicResults": 29,
+    "vehicleCandidates": 26,
+    "excludedNonVehicles": 3,
+    "downloaded": 2,
+    "blockedOrPending": 24,
+    "downloadStatuses": {
+      "downloaded": 2,
+      "pending_download": 23,
+      "rate_limited": 1
+    },
+    "mcpImportedSourceGlbs": 2,
+    "rawArchivesPreserved": 0,
+    "stylizationNeedsPermission": 0,
+    "publicAdaptationRestricted": 1,
+    "stylizedExports": 1,
+    "runtimeIntegrations": 0,
+    "driverInspections": 1,
+    "stylizedSourceStudies": 1,
+    "driversAdded": 1,
+    "stylizedExportVariants": 2
+  },
+  "afterCounts": {
+    "publicResults": 29,
+    "vehicleCandidates": 26,
+    "excludedNonVehicles": 3,
+    "downloaded": 2,
+    "blockedOrPending": 24,
+    "downloadStatuses": {
+      "downloaded": 2,
+      "pending_download": 23,
+      "rate_limited": 1
+    },
+    "mcpImportedSourceGlbs": 2,
+    "rawArchivesPreserved": 0,
+    "stylizationNeedsPermission": 0,
+    "publicAdaptationRestricted": 1,
+    "stylizedExports": 2,
+    "stylizedSourceStudies": 2,
+    "stylizedExportVariants": 4,
+    "driversAdded": 2,
+    "runtimeIntegrations": 1,
+    "driverInspections": 2
+  },
+  "evidence": [
+    {
+      "path": "assets/source/inkstorm/vehicles/f97e3891a6a846ed97379e3cfa5931a0/processed/sebulba-export-v1-receipt.json",
+      "bytes": 18075,
+      "sha256": "d9b71923bbb2dae7517df32554ecb6ce91e35c355823a372929d701d24200203"
+    },
+    {
+      "path": "output/playwright/vehicle-appearance-round22-retry/receipt.json",
+      "bytes": 190232,
+      "sha256": "49a7f5b527921519580ead1246a1f9577b1868990fed1313a956339e42729562"
+    },
+    {
+      "path": "docs/inkstorm-overhaul/BLIND_VEHICLE_STUDY_ROUND22.md",
+      "bytes": 8233,
+      "sha256": "766052023516ff4c22bf1d9ca47fccdaf4d98e9707d4a1788c5b312fe95811fe"
+    },
+    {
+      "path": "public/assets/inkstorm/vehicles/ATTRIBUTION.md",
+      "bytes": 2440,
+      "sha256": "e3a7a872c9b9608d08bcd028aa9b06564f4f16e479870ef1321c02f98b985153"
+    }
+  ],
+  "downloadStateUnchanged": true,
+  "newDownloads": 0,
+  "remainingVehicles": 24,
+  "runtimeIntegrations": 1,
+  "fullRequestComplete": false
+}

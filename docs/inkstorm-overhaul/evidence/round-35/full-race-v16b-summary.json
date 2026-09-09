@@ -1,0 +1,111 @@
+{
+  "outcome": "PASS",
+  "build": [
+    {
+      "url": "http://127.0.0.1:58940/assets/index-xJsB25Jw.js",
+      "sha256": "e666f9ed9846228f6d0a8be56b2b1479f0e8522cb81b31d2edc75c6143594023"
+    }
+  ],
+  "races": {
+    "time-attack": {
+      "cadence": {
+        "phase": "racing",
+        "samples": 3796,
+        "durationMs": 63780.7,
+        "averageFps": 59.51643679043974,
+        "p50Ms": 16.69999999999709,
+        "p95Ms": 16.799999999995634,
+        "p99Ms": 16.80000000000291,
+        "maxMs": 33.400000000001455,
+        "over25ms": 31,
+        "over33ms": 12,
+        "over50ms": 0,
+        "firstRaceTime": 0,
+        "lastRaceTime": 63.76666666666369
+      },
+      "acceptance": {
+        "outcome": "PASS",
+        "criteria": {
+          "minimumMeanHz": 40,
+          "maximumP95Ms": 25,
+          "boundaryToleranceSeconds": 0.05
+        },
+        "issues": []
+      },
+      "renderer": {
+        "minDpr": 1,
+        "maxDpr": 2,
+        "maxCalls": 100,
+        "maxTriangles": 4919217
+      },
+      "result": 63.783333333330354
+    },
+    "cup-round-1": {
+      "cadence": {
+        "phase": "racing",
+        "samples": 8141,
+        "durationMs": 137777.8,
+        "averageFps": 59.08789369550102,
+        "p50Ms": 16.699999999982538,
+        "p95Ms": 16.79999999998836,
+        "p99Ms": 33.30000000000291,
+        "maxMs": 33.40000000002328,
+        "over25ms": 126,
+        "over33ms": 51,
+        "over50ms": 0,
+        "firstRaceTime": 0,
+        "lastRaceTime": 137.7666666667057
+      },
+      "acceptance": {
+        "outcome": "PASS",
+        "criteria": {
+          "minimumMeanHz": 40,
+          "maximumP95Ms": 25,
+          "boundaryToleranceSeconds": 0.05
+        },
+        "issues": []
+      },
+      "renderer": {
+        "minDpr": 1.875,
+        "maxDpr": 2,
+        "maxCalls": 254,
+        "maxTriangles": 5025709
+      },
+      "result": 129.75833333337965
+    }
+  },
+  "frozen": {
+    "unchanged": {
+      "build": true,
+      "source": true,
+      "public": true,
+      "dist": true,
+      "harness": true,
+      "configuration": true,
+      "tests": true
+    },
+    "expected": {
+      "path": "dist/assets/index-xJsB25Jw.js",
+      "sha256": "e666f9ed9846228f6d0a8be56b2b1479f0e8522cb81b31d2edc75c6143594023"
+    }
+  },
+  "cleanup": {
+    "recordedAt": "2026-09-08T22:03:59.136485+00:00",
+    "port": 58940,
+    "unrelated5211": "Never signalled or adopted",
+    "ownedProcessGroup": 79764,
+    "actions": [],
+    "remainingOwnedPids": [],
+    "remainingOwnedGroup": false,
+    "ownedPortListening": false,
+    "unrelated5211ListeningReadOnly": false
+  },
+  "continue": {
+    "eventId": "cup-foundry",
+    "pendingCourse": {
+      "eventId": "cup-foundry",
+      "seed": 1179604302
+    }
+  },
+  "assetScope": "Actual completed Cup roster; fetched bytes read after all racing/classification sampling stopped. No prelaunch rival preload or verification wait."
+}

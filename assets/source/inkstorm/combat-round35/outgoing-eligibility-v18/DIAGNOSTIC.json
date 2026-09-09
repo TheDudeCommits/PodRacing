@@ -1,0 +1,15 @@
+{
+  "purpose": "Read-only cinematic cooldown diagnostic for native scenario eligibility; no policy changes.",
+  "fields": "game.combatPresentation.cooldownUntilWallMs; cinematic.startedAtWallMs,focusRacerId,victim. null deadline after reset; expired accepted shot may remain; cancelled shot null with cooldown retained.",
+  "validation": "20 controller and simulation-boundary tests passed, including two new isolated-copy/scheduler and cancellation/shared-cooldown/reset checks. No native evidence yet.",
+  "files": [
+    {
+      "path": "src/render/combat/CombatPresentationController.ts",
+      "sha256": "b67c48278b897136cd9ffc00a2128214d2085bd66d7470cd156539b365f6442d"
+    },
+    {
+      "path": "tests/combat/CombatPresentationController.test.ts",
+      "sha256": "8fc8ea6a69b4c679539f20532d0b31380ef50ab8a05eb293d1be019d16e7ae3c"
+    }
+  ]
+}

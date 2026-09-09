@@ -1,0 +1,5 @@
+# Open HUD instrumentation
+
+The V16a actual live frame and fresh critic showed that the 244 x 264 opaque speed housing had increased occlusion and weakened the reference's light amber instrument character. This bounded correction removes that housing's fill, border and shadow while preserving its anchors, all reading sizes, values and speed geometry. The speed oval keeps a 34% dark fill plus a fine dark line shadow; text contrast is concentrated behind the small meter headings and redline instruction. The independent lap/time/position groups retain their existing anchors and numeric scale with local contrast, while the full-width filled banner and its linking decorative rail disappear. The course-progress rail is unchanged.
+
+Desktop/mobile/short-landscape offsets and dimensions were not changed. Build and Map structure were not changed. PostCSS parsed 703 rules, and before/after whitespace checks passed. Native readability, label fit and rail separation are still pending parent capture; this source review is not visual acceptance. Integrated typecheck also remains pending concurrent damaged-Teemto integration.

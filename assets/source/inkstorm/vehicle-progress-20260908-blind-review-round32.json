@@ -1,0 +1,120 @@
+{
+  "recordedAt": "2026-09-08T09:44:50.412749+00:00",
+  "round": 32,
+  "scope": "Fresh blind visual verdict bookkeeping; frozen technical/full-race PASS unchanged and active33 excluded.",
+  "manifestBeforeSnapshot": "assets/source/inkstorm/vehicle-manifest-before-blind-final-round32.json",
+  "manifestBeforeSha256": "17fbc2814a3776dca681c129d07a4adccf453750f9dbf12fe8c053d0a5fcf4b1",
+  "manifest": "assets/source/inkstorm/vehicle-manifest.json",
+  "manifestSha256": "f14e338ddd017df60aba7e2cdb16695e07b5a891a7d079a647fa9abcff3506e8",
+  "allModelRecordsUnchanged": 29,
+  "countsUnchanged": true,
+  "acquisitionStateUnchanged": true,
+  "allPreviousHistoryPrefixesPreserved": true,
+  "frozenTechnicalFieldsUnchanged": true,
+  "freshReview": {
+    "round": 32,
+    "status": "completed",
+    "outcome": "FAIL",
+    "strictThreshold": 8,
+    "overallScore": 5.8,
+    "scoreMethod": "Holistic judgment, not an arithmetic mean of rows or components.",
+    "approximateComponents": {
+      "vehicle": 6.5,
+      "worldConstruction": 5.5,
+      "gameplayDriverReadability": 4.5
+    },
+    "scoreRows": [
+      {
+        "area": "Garage / Polwo presentation",
+        "construction": 6.5,
+        "styleCoherence": 6.5,
+        "routeReadability": null,
+        "driverReadability": 5.0,
+        "targetParity": 6.0,
+        "overall": 6.1
+      },
+      {
+        "area": "01 — Grid",
+        "construction": 6.0,
+        "styleCoherence": 6.0,
+        "routeReadability": 7.0,
+        "driverReadability": 4.5,
+        "targetParity": 5.0,
+        "overall": 5.8
+      },
+      {
+        "area": "02 — Salt run",
+        "construction": 5.0,
+        "styleCoherence": 6.0,
+        "routeReadability": 7.0,
+        "driverReadability": 4.5,
+        "targetParity": 4.5,
+        "overall": 5.4
+      },
+      {
+        "area": "03 — Canyon",
+        "construction": 6.0,
+        "styleCoherence": 6.0,
+        "routeReadability": 6.5,
+        "driverReadability": 4.5,
+        "targetParity": 5.5,
+        "overall": 5.9
+      },
+      {
+        "area": "04 — Fork",
+        "construction": 5.0,
+        "styleCoherence": 5.5,
+        "routeReadability": 5.5,
+        "driverReadability": 4.5,
+        "targetParity": 4.0,
+        "overall": 4.9
+      },
+      {
+        "area": "05 — Launch",
+        "construction": 6.0,
+        "styleCoherence": 6.0,
+        "routeReadability": 6.5,
+        "driverReadability": 4.5,
+        "targetParity": 5.5,
+        "overall": 5.9
+      },
+      {
+        "area": "06 — Foundry",
+        "construction": 5.0,
+        "styleCoherence": 5.5,
+        "routeReadability": 5.5,
+        "driverReadability": 4.5,
+        "targetParity": 4.5,
+        "overall": 5.0
+      },
+      {
+        "area": "07 — Finish",
+        "construction": 5.0,
+        "styleCoherence": 5.5,
+        "routeReadability": 6.5,
+        "driverReadability": 4.5,
+        "targetParity": 4.5,
+        "overall": 5.2
+      },
+      {
+        "area": "Live-drive still",
+        "construction": 5.5,
+        "styleCoherence": 6.0,
+        "routeReadability": 6.0,
+        "driverReadability": 4.5,
+        "targetParity": 4.5,
+        "overall": 5.3
+      }
+    ],
+    "receipt": "docs/inkstorm-overhaul/BLIND_POLWO_FINAL_ROUND32.md",
+    "receiptSha256": "9b8ea71970a1fa3175ec2ba6c81fac53f849fd9056c55750546a61d6c32bfcd5",
+    "imageHashProof": "docs/inkstorm-overhaul/evidence/round-32/blind-review-inventory.json",
+    "reviewedImages": 17,
+    "allImageHashesMatched": true,
+    "acceptedSections": 0,
+    "reviewedSections": 7,
+    "reviewType": "fresh blind still-image review; no implementation code, prior reviews, prompts or receipts read",
+    "scope": "Frozen round32 nine stills, original seven world targets and supplementary concept10. No original world target or finished driver/world acceptance. Functional/full-race PASS remains separate; no still-image motion/contact/FPS acceptance. Active round33 excluded."
+  },
+  "deployment": "none"
+}

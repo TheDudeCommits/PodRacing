@@ -1,0 +1,47 @@
+diff --git a/assets/source/inkstorm/broadcast-ui-round35/selection-preparation-v16/harness-before/inkstorm-outgoing-takedown.ts b/scripts/inkstorm-outgoing-takedown.ts
+index a820884..a2e16da 100644
+--- a/assets/source/inkstorm/broadcast-ui-round35/selection-preparation-v16/harness-before/inkstorm-outgoing-takedown.ts
++++ b/scripts/inkstorm-outgoing-takedown.ts
+@@ -37,11 +37,15 @@ const closeOwned=()=>closing??=(async()=>{
+ for(const[signal,code]of[['SIGINT',130],['SIGTERM',143]]as const)process.once(signal,()=>{receipt.error=signal;void closeOwned().finally(()=>process.exit(code));});
+ 
+ async function installDriver(){
+- const state=await snapshot(),course=createProceduralPodraceCourse({heightAt:sampleTerrainHeight},Number((state.game.course as any).seed));
++ const state=await snapshot();
++ assert(!state.game.awaitingStart&&state.game.pendingCourse===null&&state.raceTime===0,'Driver setup requires the actual released countdown course.');
++ const course=createProceduralPodraceCourse({heightAt:sampleTerrainHeight},Number((state.game.course as any).seed));
+  assert(course.signature===(state.game.course as any).signature,'Offline course does not match the actual browser course.');
+  const samples=Array.from({length:4096},(_,i)=>course.sampleAtDistance(course.totalLength*i/4096));
+  const tune=deriveGalacticVehicleConfig('podracer',DEFAULT_PODRACER_CONFIG,{afterburner:0,cornering:0,resilience:0,parts:[],collectedPickupIds:[]});
+- await page!.evaluate(({samples,totalLength,tune})=>{
++ receipt.driverCourse=await page!.evaluate(({samples,totalLength,tune,courseSeed,courseSignature})=>{
++  const initial=window.__PODRACING__!.snapshot(),game=initial.game as any;
++  if(game.awaitingStart||game.pendingCourse!==null||initial.raceTime!==0||game.course.seed!==courseSeed||game.course.signature!==courseSignature)throw Error('Actual countdown course changed or started racing before driver installation.');
+   const win=window as any,pad=win.__outgoingPad;
+   const observation={samples:[]as any[],events:[]as any[],inputs:[]as any[],truncated:false,stopped:false};
+   let raf=0,lastSample=-Infinity,lastControl=-Infinity,previous:null|{x:number;z:number;time:number}=null,shieldUntil=-Infinity,nextShieldAt=0;
+@@ -91,7 +95,8 @@ async function installDriver(){
+    }
+    raf=requestAnimationFrame(frame);
+   };raf=requestAnimationFrame(frame);
+- },{samples,totalLength:course.totalLength,tune});
++  return{seed:courseSeed,signature:courseSignature,raceTime:initial.raceTime,simulationFrame:initial.simulationFrame,phase:document.querySelector<HTMLElement>('.pod-hud')?.dataset.phase,installedDuringCountdown:true};
++ },{samples,totalLength:course.totalLength,tune,courseSeed:Number((state.game.course as any).seed),courseSignature:course.signature});
+ }
+ 
+ function pace(samples:any[],start:number,end:number){
+@@ -144,8 +149,13 @@ try{
+  await page.goto(url);await page.waitForFunction(()=>window.__PODRACING__?.ready,undefined,{timeout:45000});receipt.environment=await frozenBuildReceipt(page,browser);
+  receipt.renderer=await page.evaluate(()=>{const gl=document.querySelector<HTMLCanvasElement>('#viewport')?.getContext('webgl2'),ext=gl?.getExtension('WEBGL_debug_renderer_info');return ext?gl!.getParameter(ext.UNMASKED_RENDERER_WEBGL):null;});assert(receipt.renderer&&!/swiftshader|llvmpipe|software rasterizer/i.test(receipt.renderer),'Native GPU unavailable.');
+  await page.locator('[data-action="select-event"][data-event-id="open-expedition"]:visible').click();await page.waitForFunction(()=>window.__PODRACING__!.snapshot().game.mastery?.eventId==='open-expedition');
++ receipt.selection=await snapshot();const pending=receipt.selection.game.pendingCourse;
++ assert(receipt.selection.game.awaitingStart&&pending?.eventId==='open-expedition'&&Number.isInteger(pending.seed),'Open Expedition must reserve a pending route before Start.');
++ await page.locator('[data-action="start-race"]:visible').click();
++ await page.waitForFunction(()=>!window.__PODRACING__!.snapshot().game.awaitingStart&&document.querySelector<HTMLElement>('.pod-hud')?.dataset.phase==='countdown');
+  receipt.before=await snapshot();assert(receipt.before.game.competitionProfile==='chaos'&&receipt.before.game.onlineRoom.role==='solo','Ordinary solo Open Expedition chaos profile required.');
+- await installDriver();await page.locator('[data-action="start-race"]:visible').click();receipt.commands.push('Select actual Open Expedition and Start once. Course-following virtual pad holds Heat Lance(button5/E), deploys mines(button3/F) for rivals within45m behind, and pulses shield(button2/Q) for120ms on normal cooldown. No boost, pickup waits or review API actions.');
++ assert(receipt.before.game.pendingCourse===null&&receipt.before.game.course.seed===pending.seed&&receipt.before.raceTime===0,'Native Start did not promote the prepared route into countdown.');
++ await installDriver();receipt.commands.push('Select actual Open Expedition and Start once; install the offline driver from the newly built countdown course. Course-following virtual pad holds Heat Lance(button5/E), deploys mines(button3/F) for rivals within45m behind, and pulses shield(button2/Q) for120ms on normal cooldown. No boost, pickup waits or review API actions.');
+  const started=Date.now();let foundAt:number|null=null;
+  while(Date.now()-started<180000){
+   await delay(60);const status=await page.evaluate(()=>{const qa=(window as any).__outgoingQA;return{wreck:qa.observation.events.find((e:any)=>e.type==='wreck'&&e.racerId!=='player'&&e.takedownBy==='player'),phase:document.querySelector<HTMLElement>('.pod-hud')?.dataset.phase};});

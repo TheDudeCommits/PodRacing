@@ -1,0 +1,60 @@
+{
+  "status": "PREPARED ONLY; isolated CPU scheduling tests pass, no critical audition",
+  "files": [
+    {
+      "path": "combat-audio-v1.patch",
+      "bytes": 9730,
+      "sha256": "f37fb3a9a159b9b2ccf6bd560d9c2670c846b87a48caf2ea1368d4cb07b08971"
+    },
+    {
+      "path": "inputs-v1.json",
+      "bytes": 1690,
+      "sha256": "072e27a130d9e52bbb7edfbdc4cb41ede5b27ed18d4f52271e1c55ac3a7a66ea"
+    },
+    {
+      "path": "prepare.py",
+      "bytes": 6312,
+      "sha256": "dc216fbd8dd1faa37c5139e4752f62dd612b3d4719360c0695fe06ccc1df4790"
+    },
+    {
+      "path": "typecheck-v1.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "tests-v1.log",
+      "bytes": 275,
+      "sha256": "5327d283a9fd91ebb5ff6728f2533ad7fb9bdb7e6e1d6e80832ec8b6ad63dbf4"
+    },
+    {
+      "path": "READY_V1.md",
+      "bytes": 2994,
+      "sha256": "19db7bd4d42c8e774ab6f2b4a5f71f1cce72badb135e5b2114c12a580533e46c"
+    },
+    {
+      "path": "candidate/src/audio/PodracerAudio.ts",
+      "bytes": 47214,
+      "sha256": "4a6c4e98c14ad9d63590db73ed8e1169eb15081ecc0e0c4bbc590f4e76ff8397"
+    },
+    {
+      "path": "candidate/src/audio/model.ts",
+      "bytes": 16903,
+      "sha256": "98c110a945d62740c5aa7ecfe1901778cb9153432b377104abb8104d418158ed"
+    },
+    {
+      "path": "candidate/src/audio/types.ts",
+      "bytes": 3866,
+      "sha256": "8968da59db5c671f41f2d466153c17fdefa39e94f565b1bd2c9f0ca1c7f54582"
+    },
+    {
+      "path": "candidate/tests/audio/PodracerAudioCallout.test.ts",
+      "bytes": 14117,
+      "sha256": "717fd612d490cd9bc0674a853a2bd91d3a4c3ba1f8aaa432764d12d5f1120415"
+    },
+    {
+      "path": "candidate/tests/audio/combatPickupAudio.test.ts",
+      "bytes": 3108,
+      "sha256": "c85617e09d717684cc10637efe89a7270e49ed5f08d152fa8abe7691ca196ed1"
+    }
+  ]
+}

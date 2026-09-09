@@ -1,0 +1,28 @@
+--- assets/source/inkstorm/combat-round35/recovery-fx-v16/before/GalacticEffectsContact.test.ts
++++ tests/render/GalacticEffectsContact.test.ts
+@@ -99,6 +99,25 @@
+     expect(f.emitCrash.mock.calls[1]![0].position).toBe(f.vehicle.position);
+   });
+ 
++  it('routes the actual recovered event to compact recovery pulses without opaque flying casing', () => {
++    const f = fixture(), time = 12, before = JSON.stringify(f.vehicle);
++    consume.call(f.app, [{ type: 'recovered', racerId: 'player', invulnerable: 1.55 }], time);
++    expect(f.emitCrash).toHaveBeenCalledOnce();
++    const event = f.emitCrash.mock.calls[0]![0];
++    expect(event.style).toBe('recovery');
++    expect(event.severity).toBe(1.4);
++    expect(event.color).toBe('#60ff91');
++    expect(event.position).toBe(f.vehicle.position);
++    const effects = new GalacticEffectsView();
++    effects.emitCrash(event); effects.update(time + .1);
++    expect(effects.crashDebris.count).toBe(0);
++    expect(effects.explosionPlates.count).toBe(2);
++    effects.update(time + .4);
++    expect(effects.crashDebris.count).toBe(0); expect(effects.explosionPlates.count).toBe(0);
++    expect(JSON.stringify(f.vehicle)).toBe(before);
++    effects.dispose();
++  });
++
+   it('surface-projects the reproduced native V9 buried rupture without changing simulation or horizontal placement', () => {
+     const race = new RaceSimulation({ terrain: { heightAt: sampleTerrainHeight }, seed: 1229867859,
+       totalLaps: 1, countdownSeconds: 3, competitionProfile: 'time-trial' });

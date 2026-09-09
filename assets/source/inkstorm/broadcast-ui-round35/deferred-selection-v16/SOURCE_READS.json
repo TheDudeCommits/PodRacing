@@ -1,0 +1,29 @@
+{
+  "note": "Read-only proposal source snapshot; root may subsequently edit runtime.",
+  "files": [
+    {
+      "path": "src/render/app/GameApp.ts",
+      "sha256": "5d6767b70f54687e3a4c803a5d4d718057167ff75154472adedef2751dd0318a"
+    },
+    {
+      "path": "src/game/mastery/RaceMastery.ts",
+      "sha256": "f4889973bac9ff3bcebba5a1b23fafa472264d07eb7afa39986d6e1c3f5bf1ab"
+    },
+    {
+      "path": "src/game/mastery/events.ts",
+      "sha256": "a9dd34b0e6c97eb09f4cae4be6fd96dd42b8c74d0588c22a7a4643c1da12e72d"
+    },
+    {
+      "path": "src/game/race/director.ts",
+      "sha256": "e7bc58168ce419852b8b3cc75e85ba85b3d3ca577d3a95a6d0039e97ca2a1b78"
+    },
+    {
+      "path": "src/game/race/RaceSimulation.ts",
+      "sha256": "bb65528c57623190accdbc2b85e03583889c1b7f5409b4a09ef800e33f98b2de"
+    },
+    {
+      "path": "tests/race/courseSeedLifecycle.test.ts",
+      "sha256": "99ef9b145c8ddab4e3f560839f31bbc43ad5301bd512884ddaa4a9a338bdd7a7"
+    }
+  ]
+}

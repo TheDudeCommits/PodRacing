@@ -1,0 +1,18 @@
+{
+  "revision": 4,
+  "sourceBehaviorChanged": [
+    "cloth_shell"
+  ],
+  "exportOnlyLabelChange": "r29-v3 to r29-v4",
+  "sourceAstComparison": "PASS against preserved revision 3",
+  "publicAssetsUnchanged": true,
+  "files": {
+    "build_grid_detail.py": "9bdbfaf962cc13099e79350decbf95f5c006b71cc57bec61fccae252ff83a04c",
+    "test_frontfaces.mjs": "44ef18e22d1c0e86bb3ac84015a0f6f6033e1a6ad9d04f8a6fd74c251b37350e",
+    "test_cloth_revision4.mjs": "b814c0cf283ef32e7d71682cbfc80a957ccff62f2361cf841290de82ab31a182",
+    "test_task_fixtures.mjs": "70b43d9db1d9d42879cc57bfbebf5f81afb8f3fa3a3fb039df3bc500f8c23316",
+    "test_district_light_paths.mjs": "cc796d655128ca435db83316f92043a6d5be747a8b79ac3f7d62e4e8687438e2",
+    "merge_candidates.mjs": "21b4f12932d2a55abeb7f9f88fabce4b95835b3b2d7fb5d01e66224e58a0a809",
+    "task-light-anchors.json": "2fafc4be49abd590acd62ff3a8c9e4672d6b27d6d929d334d5e5232584f8d8b1"
+  }
+}

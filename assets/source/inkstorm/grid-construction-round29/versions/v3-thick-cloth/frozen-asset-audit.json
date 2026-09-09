@@ -1,0 +1,130 @@
+{
+  "status": "read-only; actual published GLB headers on frozen round28",
+  "assets": [
+    {
+      "family": "pit-complex",
+      "sha256": "5cebe6dce3a0a27a7d887f4f9a6fbfde6e29512cd47a039b79c4dbadbfe39acd",
+      "bytes": 513368,
+      "meshes": 1,
+      "primitives": 1,
+      "materials": 1,
+      "triangles": 7032,
+      "min": [
+        -71,
+        0,
+        -32.5
+      ],
+      "max": [
+        79,
+        47,
+        28
+      ],
+      "nodes": [
+        {
+          "name": "pit-complex",
+          "mesh": 0
+        }
+      ]
+    },
+    {
+      "family": "pit-district",
+      "sha256": "947b7b7043775f0f4cdb007e30c055f6cfe485bddc6dcf6632f131a88833d2a0",
+      "bytes": 990016,
+      "meshes": 1,
+      "primitives": 1,
+      "materials": 1,
+      "triangles": 13254,
+      "min": [
+        -56.81999969482422,
+        0,
+        -18
+      ],
+      "max": [
+        58.25,
+        34.05223083496094,
+        12.535015106201172
+      ],
+      "nodes": [
+        {
+          "name": "pit-district",
+          "mesh": 0
+        }
+      ]
+    },
+    {
+      "family": "pipe-bank",
+      "sha256": "4b3510d0f8b10e1a44158edb0b0bbdc25bac33019176368638937ab1834a3b81",
+      "bytes": 504460,
+      "meshes": 1,
+      "primitives": 1,
+      "materials": 1,
+      "triangles": 7160,
+      "min": [
+        -47,
+        0,
+        -23
+      ],
+      "max": [
+        47,
+        51,
+        20.20081901550293
+      ],
+      "nodes": [
+        {
+          "name": "pipe-bank",
+          "mesh": 0
+        }
+      ]
+    },
+    {
+      "family": "finish-tower",
+      "sha256": "b2100d2c3415ac0cdb8f0fd573ac292583cf7858812b5452f05363698b8885e8",
+      "bytes": 68484,
+      "meshes": 1,
+      "primitives": 1,
+      "materials": 1,
+      "triangles": 868,
+      "min": [
+        -12.5,
+        0,
+        -11.5
+      ],
+      "max": [
+        21,
+        113,
+        11.5
+      ],
+      "nodes": [
+        {
+          "name": "finish-tower",
+          "mesh": 0
+        }
+      ]
+    },
+    {
+      "family": "foundry-gantry",
+      "sha256": "5270c5d9073016f374e4c17a7240160ae68898e802ca219b4393821a56a59bc6",
+      "bytes": 317292,
+      "meshes": 1,
+      "primitives": 1,
+      "materials": 1,
+      "triangles": 4494,
+      "min": [
+        -52,
+        -25,
+        -7
+      ],
+      "max": [
+        52,
+        54.30417251586914,
+        7
+      ],
+      "nodes": [
+        {
+          "name": "foundry-gantry",
+          "mesh": 0
+        }
+      ]
+    }
+  ]
+}

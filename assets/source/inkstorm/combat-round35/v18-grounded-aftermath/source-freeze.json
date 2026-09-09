@@ -1,0 +1,98 @@
+{
+  "stage": "V18 source freeze before root integrated verification and native capture",
+  "timestampUtc": "2026-09-08T23:09:39.823019+00:00",
+  "nativeVisualStatus": "NOT YET CAPTURED OR ACCEPTED",
+  "source": [
+    {
+      "path": "src/render/combat/TeemtoAuthoredDamage.ts",
+      "bytes": 14073,
+      "sha256": "5ac50f2fa27bdfb5a0fbaa19770fb771551483c15257766603778e39cd64d2e3"
+    },
+    {
+      "path": "src/render/combat/WreckVisualPose.ts",
+      "bytes": 10353,
+      "sha256": "bbc539ab304fbd9b95116f09e685b4eb9f3ae2b875d5664072d950ec78b71f2d"
+    },
+    {
+      "path": "src/render/galactic/GalacticEffectsView.ts",
+      "bytes": 69072,
+      "sha256": "c915b8b44d9d6fc59103b8bf524878688a895817acdc30f7bc78bd46c90d9db9"
+    },
+    {
+      "path": "src/camera/CinematicCamera.ts",
+      "bytes": 29212,
+      "sha256": "7eeaa8f9f058eb370e7a9802e2fd869255393a9532b053109d6b541187e0670c"
+    },
+    {
+      "path": "src/render/app/GameApp.ts",
+      "bytes": 174376,
+      "sha256": "094c764f963137da919ab2b1e869bf0b9eaab93b4d14eb6bd5a57d09b1088fcb"
+    },
+    {
+      "path": "tests/combat/TeemtoAuthoredDamage.test.ts",
+      "bytes": 15138,
+      "sha256": "3ec7ade8d52447506dc1580a63285ac2b75d305b8483af83323565c0ac58713b"
+    },
+    {
+      "path": "tests/combat/AuthoredAftermath.test.ts",
+      "bytes": 4699,
+      "sha256": "b1b7509b989fa61f92bee13d6095ccabcce9555c1487d62c43b8fe184c6c9417"
+    },
+    {
+      "path": "tests/combat/AuthoredRupture.test.ts",
+      "bytes": 10323,
+      "sha256": "a6cfecb5e2163aa34d33b7f7dd34b9872f65023ccc9360e8f9c9c8d28209c0e0"
+    },
+    {
+      "path": "tests/camera/WreckBoundsFraming.test.ts",
+      "bytes": 20738,
+      "sha256": "d3a2766d1c10add1b35df699a4ce74242b4e5b774e7e4f1e6e8668b09c802736"
+    }
+  ],
+  "validation": {
+    "focusedCandidateSuite": "64/64 tests in 6 files PASS before two narrowly scoped ember corrections",
+    "finalCorrectedFxContactSuite": "45/45 tests in 4 files PASS after corrections",
+    "typecheck": "PASS",
+    "gitDiffCheck": "PASS",
+    "testsAreNotVisualAcceptance": true
+  },
+  "preservedPriorCopiesVerified": true,
+  "artifacts": [
+    {
+      "path": "assets/source/inkstorm/combat-round35/v18-grounded-aftermath/before-inventory.json",
+      "bytes": 2405,
+      "sha256": "c54df95369b9476d0a61c55ac81adfec0cb4ccc3e6e8f9e7a63f5e54ec516945"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/v18-grounded-aftermath/focused-final.log",
+      "bytes": 2835,
+      "sha256": "7f7d7a7354e0203720e2f8ccbd27fbe72035f84992b93c19d73639d1e779ec4a"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/v18-grounded-aftermath/aftermath-corrections-final.log",
+      "bytes": 217,
+      "sha256": "89e02374b5b8932fb71ee0e01224619e3e383db9c86a523c6a358e145b8c9218"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/v18-grounded-aftermath/typecheck-final-v2.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/v18-grounded-aftermath/actual-geometry-metrics.json",
+      "bytes": 3714,
+      "sha256": "fcc8de93844265979d198bb8a849682a7198faec082602164d674dc648167189"
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/v18-grounded-aftermath/GameApp-following-rupture.expected.patch",
+      "bytes": 2977,
+      "sha256": "a6591cd46fda2f921771a15ed3be1240c8baca4a48cb057fcca64741abf17409"
+    }
+  ],
+  "scopeNotes": [
+    "GameApp is parent-owned; exact scoped patch applied by root alongside its independent UI/cooldown work.",
+    "No public asset/material/texture change, no Blender call, browser or build by this task.",
+    "Recovery camera interpolation is retained for first actual V18 inspection.",
+    "Final FX correction removes a stale birth-height floor for source-local embers and separates their existing two phases."
+  ]
+}

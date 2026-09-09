@@ -1,0 +1,128 @@
+{
+  "status": "PASS",
+  "scope": "CPU ray parity against the actual placed island source, at final Float32 candidate top endpoints",
+  "sourceSha256": "ad9f484c3cd751e9042ecc332e9517c7c21d34919758dfdaa89bde77f153a5e6",
+  "rows": [
+    {
+      "row": 5,
+      "actualTopEndpoint": [
+        18423.5625,
+        -1.7471706867218018,
+        -805.6968383789062
+      ],
+      "sourceCrossingsBeforeEndpoint": 1,
+      "insideActualSource": true,
+      "metresPastLastCrossing": 4.713100895847951
+    },
+    {
+      "row": 5.5,
+      "actualTopEndpoint": [
+        18419.119140625,
+        4.199960231781006,
+        -799.3248291015625
+      ],
+      "sourceCrossingsBeforeEndpoint": 1,
+      "insideActualSource": true,
+      "metresPastLastCrossing": 4.013829613936828
+    },
+    {
+      "row": 6,
+      "actualTopEndpoint": [
+        18416.810546875,
+        11.1845121383667,
+        -795.0756225585938
+      ],
+      "sourceCrossingsBeforeEndpoint": 1,
+      "insideActualSource": true,
+      "metresPastLastCrossing": 2.999351098087338
+    },
+    {
+      "row": 6.5,
+      "actualTopEndpoint": [
+        18412.26171875,
+        12.900839805603027,
+        -790.2093505859375
+      ],
+      "sourceCrossingsBeforeEndpoint": 1,
+      "insideActualSource": true,
+      "metresPastLastCrossing": 2.999736510106864
+    },
+    {
+      "row": 7,
+      "actualTopEndpoint": [
+        18407.94140625,
+        14.617167472839355,
+        -786.171875
+      ],
+      "sourceCrossingsBeforeEndpoint": 1,
+      "insideActualSource": true,
+      "metresPastLastCrossing": 3.0005101594023813
+    },
+    {
+      "row": 7.5,
+      "actualTopEndpoint": [
+        18402.70703125,
+        16.655872344970703,
+        -782.6412963867188
+      ],
+      "sourceCrossingsBeforeEndpoint": 1,
+      "insideActualSource": true,
+      "metresPastLastCrossing": 2.9988585973680983
+    },
+    {
+      "row": 8,
+      "actualTopEndpoint": [
+        18402.353515625,
+        18.694576263427734,
+        -781.3002319335938
+      ],
+      "sourceCrossingsBeforeEndpoint": 1,
+      "insideActualSource": true,
+      "metresPastLastCrossing": 2.9989794422922174
+    },
+    {
+      "row": 8.5,
+      "actualTopEndpoint": [
+        18401.8359375,
+        20.57366180419922,
+        -779.7532348632812
+      ],
+      "sourceCrossingsBeforeEndpoint": 1,
+      "insideActualSource": true,
+      "metresPastLastCrossing": 2.999213513025836
+    },
+    {
+      "row": 9,
+      "actualTopEndpoint": [
+        18401.38671875,
+        22.452747344970703,
+        -778.093505859375
+      ],
+      "sourceCrossingsBeforeEndpoint": 1,
+      "insideActualSource": true,
+      "metresPastLastCrossing": 2.9998766424014747
+    },
+    {
+      "row": 9.5,
+      "actualTopEndpoint": [
+        18399.82421875,
+        11.256702423095703,
+        -776.3927001953125
+      ],
+      "sourceCrossingsBeforeEndpoint": 1,
+      "insideActualSource": true,
+      "metresPastLastCrossing": 1.8972216525624361
+    },
+    {
+      "row": 10,
+      "actualTopEndpoint": [
+        18398.935546875,
+        -1.147468090057373,
+        -774.6448364257812
+      ],
+      "sourceCrossingsBeforeEndpoint": 1,
+      "insideActualSource": true,
+      "metresPastLastCrossing": 4.247073752518858
+    }
+  ]
+}

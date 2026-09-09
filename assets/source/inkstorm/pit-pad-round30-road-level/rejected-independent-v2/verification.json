@@ -1,0 +1,24 @@
+{
+  "scope": "CPU staging only; art candidate declined; no runtime/public/browser/GPU changes",
+  "strictIsolatedTypescript": "passed",
+  "corridorProbes": 641400,
+  "corridorDelta": 0,
+  "flagshipPhysicalProbes": 65534,
+  "flagshipMeshChecks": 35,
+  "gulfBytesUnchanged": true,
+  "pitGlslExactlyUnchanged": true,
+  "rigidChangesOnlyY": true,
+  "artAccepted": false,
+  "gpuSamplerRun": false,
+  "hashes": {
+    "PitPadField.ts": "2b639cd531d49abe4a6a5f6aac3b194679c869878edc023cf76ef40c842d8dec",
+    "round29-reference.ts": "0474e7d46be3c6ddbd81965d9d80463b1fd5029b9afaad08ce86357379a1b5a4",
+    "probe.ts": "f9a81c9afe8313f0a37f7e92db4162657e8fdb73a6dd088662a2477de003cfb3",
+    "receipt.json": "1d2a64e793c8095425646bcc9189feca118b35125187ea3df844554b82b89495",
+    "constraints.ts": "64a2378d665e1d3f84f2fd63dc4a7c16bb1b335280c29f8fa28eb61c3097ed0b",
+    "constraints.json": "a51c4dc95ad24d91ac9e3d89c26c70197a994ef1005f5207cc5be65a5344032d",
+    "README.md": "0bba9a64c084227d101a9d36c46b4324f4d695ad5ecdf26a244ee96d57886abf",
+    "camera-inputs-pits.json": "1ee07865d3f0f4ab1dbc09d6ac9b6fffc2971d654ede817c4ce9315f62c44078",
+    "camera-inputs-districts.json": "d7802d7e8f02642cacf735f2f9029b33250d08d8f2ca5af314d8fa0931ad6922"
+  }
+}

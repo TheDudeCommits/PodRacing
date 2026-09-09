@@ -1,0 +1,209 @@
+{
+  "version": "V30 private closed contact dust trial",
+  "status": "frozen private; root central admission only; visual acceptance pending",
+  "files": [
+    {
+      "path": "src/render/app/GameApp.ts",
+      "before": {
+        "sha256": "43b880c9018fec9f6d83157e5185633dac47b42df536f2556512214b9468f949",
+        "bytes": 175339
+      },
+      "candidate": {
+        "sha256": "d289a9cfb8b683f0ab4309b4b9060fe02cfac4f091273b09b31c103f98a864a8",
+        "bytes": 175443
+      }
+    },
+    {
+      "path": "src/render/galactic/GalacticEffectsView.ts",
+      "before": {
+        "sha256": "a622e49ab442fbc8705a80b377fbf45eec83de24ad85b2dad015668766015a69",
+        "bytes": 88251
+      },
+      "candidate": {
+        "sha256": "c3d67f5247327e10aa4e05acec3f95e9735ae1a946a85769d325ed33dd354aff",
+        "bytes": 95300
+      }
+    },
+    {
+      "path": "src/render/galactic/SolidEffectGeometry.ts",
+      "before": {
+        "sha256": "89257c89d5f86b4df46ce7a22559df777367f54303feb445f4f7bb94c20ead69",
+        "bytes": 4698
+      },
+      "candidate": {
+        "sha256": "95447f705aa91ab46eb849ebecf023da23b2a59f971569fe10e861d727b86175",
+        "bytes": 6510
+      }
+    },
+    {
+      "path": "src/render/galactic/SolidEffectMaterial.ts",
+      "before": {
+        "sha256": "1edd33576ef64bcb5a0479363dc3c83175cbdf394be32e89fe27d23b2b7fd214",
+        "bytes": 3545
+      },
+      "candidate": {
+        "sha256": "26ec19fa19c7531333d11a65af34654c546c2ea371cba9cf9c08d6ae6095d4e6",
+        "bytes": 7190
+      }
+    },
+    {
+      "path": "tests/combat/AuthoredAftermath.test.ts",
+      "before": {
+        "sha256": "fee964f7ab0a3bdcdcf01c5357b17ffd927849ecd7b52c9f825374b9a5a11cb9",
+        "bytes": 4706
+      },
+      "candidate": {
+        "sha256": "f7f709c58b63c45e71be3af3d79762bc87134bbf2e5b3466cb8acec27e863d8e",
+        "bytes": 4706
+      }
+    },
+    {
+      "path": "tests/combat/WreckContactBeat.test.ts",
+      "before": {
+        "sha256": "bf8dbcb740d6146b144461b242e58f804d2dccdf03c825d005a88362108cd2dd",
+        "bytes": 5334
+      },
+      "candidate": {
+        "sha256": "2dd6aa6fe76e3fa690e476db0944bd363b94296088d3f8c88e0c1c85d97216fc",
+        "bytes": 5334
+      }
+    },
+    {
+      "path": "tests/render/AuthoredRuptureBeat.test.ts",
+      "before": {
+        "sha256": "7c4355d763e207e7b2c27147eb85f8ba1d426606910d5910d01cc455756e61d2",
+        "bytes": 5307
+      },
+      "candidate": {
+        "sha256": "f685deba6e60b7fbeb85692ee6b03048883aa997fa37e869b0ff7683b55f5938",
+        "bytes": 5307
+      }
+    },
+    {
+      "path": "tests/render/GalacticEffectsContact.test.ts",
+      "before": {
+        "sha256": "a03252958ae8374e3a6613945228583d0e100136ef8855771ef1115e7b6e5dc4",
+        "bytes": 9723
+      },
+      "candidate": {
+        "sha256": "bfc81d65db8fbe11e1d3ca69fc9b62c71bbebc76f2b5de17bc98895722fdb4de",
+        "bytes": 9723
+      }
+    },
+    {
+      "path": "tests/render/GalacticEffectsView.test.ts",
+      "before": {
+        "sha256": "d435b0dd24ad2be091923ba257211d579181cd8389ec101d0420124b986ef329",
+        "bytes": 30675
+      },
+      "candidate": {
+        "sha256": "573c272eb7f8e6069b2eacea2800df90d3315a8a63af2bae5064a224cf01eb6a",
+        "bytes": 30675
+      }
+    },
+    {
+      "path": "tests/render/RuptureAtlasIntegration.test.ts",
+      "before": {
+        "sha256": "295e76481c9514590170488174ffd93b9ba2ad9edc983901a0ce7bf0de24df26",
+        "bytes": 5258
+      },
+      "candidate": {
+        "sha256": "ca17b4bd219237931640a4cefd98e53125eaa6647eb7b4b0458b9a931b87ff2a",
+        "bytes": 5258
+      }
+    },
+    {
+      "path": "tests/render/RupturePressureScale.test.ts",
+      "before": {
+        "sha256": "af94f77b5c5524e58c0b04ac3c7495dd731604097d024bad6eb0e4e487b551e9",
+        "bytes": 4769
+      },
+      "candidate": {
+        "sha256": "eeecddd1c312f576e14bd2221088ef8b236a902a4b93d8b66654269b268a143c",
+        "bytes": 4769
+      }
+    },
+    {
+      "path": "tests/render/WreckContactConsequence.test.ts",
+      "before": {
+        "sha256": "7b5dcb2c12039f8afa5f1b51dd2818eca4a603dfe367c7e6751870a84c3d2dcf",
+        "bytes": 8535
+      },
+      "candidate": {
+        "sha256": "f58d11e04168a07c6aa116f755c8fe25ab9b5acd06aa494c52057a0dc1f7aa7b",
+        "bytes": 8535
+      }
+    },
+    {
+      "path": "tests/render/WreckContactVolume.test.ts",
+      "before": null,
+      "candidate": {
+        "sha256": "0fec48cfd074e390726a68f5099911e96c474d971b495017be0d28ad52b78e5a",
+        "bytes": 8447
+      }
+    },
+    {
+      "path": "tests/render/WreckFootprintEffects.test.ts",
+      "before": {
+        "sha256": "3103c2b152645609d20dc63f1679cef0ac6c316b1ea7cb1994af197bc3ba05e7",
+        "bytes": 7234
+      },
+      "candidate": {
+        "sha256": "739b834d455df940fe705caab6291367728b107e9f0a137b08f2a77c6ad2c25b",
+        "bytes": 7234
+      }
+    }
+  ],
+  "patch": {
+    "path": "assets/source/inkstorm/combat-round35/v30-contact-volume-preparation/v30-contact-volume.patch",
+    "sha256": "4841cfa1a549437c0795cd06afb83e9e909694c411847862262962a5e00fd426",
+    "bytes": 35363
+  },
+  "contracts": {
+    "contactWitnesses": "Existing rear index2 contact only; copied birth band and source-index edges unchanged; departing cosmetic lobes are not new contacts.",
+    "worldLobesPerContact": 5,
+    "closedSubcapsPerLobe": 4,
+    "trianglesPerLobe": 256,
+    "trianglesPerContact": 1280,
+    "maximumDustSlots": 40,
+    "maximumDustTriangles": 10240,
+    "ownedEffectChildren": 9,
+    "newOwnedMeshes": 1,
+    "newOwnedMaterials": 1,
+    "newInstanceAgeAttributeBytes": 160,
+    "terrainQueriesPerChangingContactFrame": 45,
+    "terrainQueriesAtFull40Slots": 360,
+    "terrainQueriesAtHeldClock": 0,
+    "sourceGeometryScansPerFrame": 0,
+    "expirySecondsAfterBirth": 1.65,
+    "physicalTerrainMinimumVertexGapByVariant": {
+      "hero": 0.039701147701856954,
+      "rival": 0.03952881803987651
+    }
+  },
+  "verification": {
+    "focusedAndCompatibility": {
+      "files": 13,
+      "tests": 72,
+      "result": "PASS",
+      "log": {
+        "sha256": "ef89e00f1f3c7837fbef6a102a3f2a045ef6885cd3de75783a5c7943faa8c081",
+        "bytes": 219
+      }
+    },
+    "strictTypeScript": {
+      "result": "PASS",
+      "log": {
+        "sha256": "5bdf9f01d7e6b259f8d940c3d4611aaea043a476370a35f67e3db81847fd5007",
+        "bytes": 73
+      }
+    },
+    "componentPreviewAudit": {
+      "sha256": "de7d7fe8b774007ad1cf00da913b877145a977cafbfd531f4e4997d45f1fbd11",
+      "bytes": 8695
+    },
+    "noNativeAcceptance": true,
+    "noPerformanceClaim": true
+  },
+  "generatedUTC": "2026-09-09T11:09:53.507247+00:00"
+}

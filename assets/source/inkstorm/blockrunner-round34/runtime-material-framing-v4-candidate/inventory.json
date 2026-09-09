@@ -1,0 +1,21 @@
+{
+  "status": "Prepared only; not applied, rendered or accepted. Live core held for resource-owner diagnostic.",
+  "changes": "Blockrunner palette/response and garage eye only. No shader/GLB/geometry/chase/simulation changes. Large garage inspection renders have a 1440x720 cap, while cards retain720x360 and all explicit caller caps remain final.",
+  "files": [
+    {
+      "path": "src/game/vehicleAppearance.ts",
+      "beforeSha256": "521175235e1af7810cfa1e1867c14875f32448bc1e215bbf9919f06e2a1c68f3",
+      "candidateSha256": "e34fe080ac704fffa0d4ad4008cad2f0d49b154c052fa5eabe633abe45d834de"
+    },
+    {
+      "path": "src/ui/VehicleCardPreview.ts",
+      "beforeSha256": "902ad3c7898bb2bffaa5bcff6ac02186a3f64ddcb1614ac270d472861648e9d9",
+      "candidateSha256": "8d7c0142d6dedc1916b1b780d6f55617540901e86a316d83741239ea640cd632"
+    },
+    {
+      "path": "tests/render/blockrunnerAppearance.test.ts",
+      "beforeSha256": "d9ed53b050443196e0aebf6f21e93c3ab647a60fea3402c6adae3e9e20b4f47d",
+      "candidateSha256": "13a92347b4694403b268b9220fd965cd91a2b1a155f161e2e116f51a9d9698fe"
+    }
+  ]
+}

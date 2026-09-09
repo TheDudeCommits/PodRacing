@@ -1,0 +1,206 @@
+{
+  "runtimePath": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/vehicles/4eff45899ada40bb920c5c744663db90/processed/pilot-v4b/teemto-pilot-v4b-runtime.glb",
+  "sha256": "838d71f3ac2e79dda66ada37ac367fe66f0d9885b166b7fe12829416befcfa6c",
+  "bytes": 5518932,
+  "bodyComparedAgainst": "public/assets/inkstorm/vehicles/teemto-hero.glb",
+  "bodyWorldTriangleComparison": [
+    {
+      "name": "teemto-cockpit-body",
+      "orderedTriangles": 19965,
+      "maxAbsoluteComponentErrors": {
+        "POSITION": 0.0,
+        "NORMAL": 0.0,
+        "TEXCOORD_0": 0.0
+      },
+      "worldTransformsExactlyIdentity": true
+    },
+    {
+      "name": "teemto-engine-left-body",
+      "orderedTriangles": 11790,
+      "maxAbsoluteComponentErrors": {
+        "POSITION": 0.0,
+        "NORMAL": 0.0,
+        "TEXCOORD_0": 0.0
+      },
+      "worldTransformsExactlyIdentity": true
+    },
+    {
+      "name": "teemto-engine-right-body",
+      "orderedTriangles": 11790,
+      "maxAbsoluteComponentErrors": {
+        "POSITION": 0.0,
+        "NORMAL": 0.0,
+        "TEXCOORD_0": 0.0
+      },
+      "worldTransformsExactlyIdentity": true
+    }
+  ],
+  "pilotNativeTriangleComparison": [
+    {
+      "name": "teemto-pilot-accent.003",
+      "orderedTriangles": 188,
+      "maxAbsoluteComponentErrors": {
+        "POSITION": 0.0,
+        "NORMAL": 0.0,
+        "TEXCOORD_0": 0.0
+      },
+      "worldTransformsExactlyIdentity": true
+    },
+    {
+      "name": "teemto-pilot-hardware.003",
+      "orderedTriangles": 1552,
+      "maxAbsoluteComponentErrors": {
+        "POSITION": 0.0,
+        "NORMAL": 0.0,
+        "TEXCOORD_0": 0.0
+      },
+      "worldTransformsExactlyIdentity": true
+    },
+    {
+      "name": "teemto-pilot-rubber.002",
+      "orderedTriangles": 2228,
+      "maxAbsoluteComponentErrors": {
+        "POSITION": 0.0,
+        "NORMAL": 0.0,
+        "TEXCOORD_0": 0.0
+      },
+      "worldTransformsExactlyIdentity": true
+    },
+    {
+      "name": "teemto-pilot-shell.003",
+      "orderedTriangles": 1444,
+      "maxAbsoluteComponentErrors": {
+        "POSITION": 0.0,
+        "NORMAL": 0.0,
+        "TEXCOORD_0": 0.0
+      },
+      "worldTransformsExactlyIdentity": true
+    },
+    {
+      "name": "teemto-pilot-suit.005",
+      "orderedTriangles": 9359,
+      "maxAbsoluteComponentErrors": {
+        "POSITION": 0.0,
+        "NORMAL": 0.0,
+        "TEXCOORD_0": 0.0
+      },
+      "worldTransformsExactlyIdentity": true
+    },
+    {
+      "name": "teemto-pilot-webbing.002",
+      "orderedTriangles": 1008,
+      "maxAbsoluteComponentErrors": {
+        "POSITION": 0.0,
+        "NORMAL": 0.0,
+        "TEXCOORD_0": 0.0
+      },
+      "worldTransformsExactlyIdentity": true
+    }
+  ],
+  "pilotTriangles": 15779,
+  "totalTriangles": 59324,
+  "pilotPrimitives": 6,
+  "totalPrimitives": 9,
+  "pilotMaterials": 6,
+  "totalMaterials": 8,
+  "textures": 5,
+  "maps": {
+    "color": "2048 WebP",
+    "normal": "1024 PNG tangent space",
+    "roughness": "1024 PNG green channel",
+    "texCoord": 0,
+    "textureTransforms": false,
+    "normalScale": 1,
+    "roughnessFactor": 1,
+    "pilotTangents": true
+  },
+  "oldPublicHashesUnchanged": [
+    {
+      "path": "public/assets/inkstorm/vehicles/teemto-rival.glb",
+      "sha256": "3d9d8d8d924258b84553de7f31f44dc4f69f069511cb6358ab2c174768e3385f"
+    },
+    {
+      "path": "public/assets/inkstorm/vehicles/sebulba-rival.glb",
+      "sha256": "22e1adf8e3dd6562ce143132fb4e82cdb56e62696d9894804ca07b4a3552d951"
+    },
+    {
+      "path": "public/assets/inkstorm/vehicles/teemto-hero.glb",
+      "sha256": "a7787f380a71ac31c8dbbaf228cb949e97c119d763a54384e66c05f884cba491"
+    },
+    {
+      "path": "public/assets/inkstorm/vehicles/sebulba-hero.glb",
+      "sha256": "f4b31d9260e3272ec394161dea236c874d551b469f18a1d794ec85c05b625b7e"
+    }
+  ],
+  "preservedV4Artifacts": 20,
+  "nodes": [
+    {
+      "name": "teemto-cockpit-body",
+      "mesh": 0
+    },
+    {
+      "name": "teemto-cockpit.001",
+      "children": [
+        0
+      ]
+    },
+    {
+      "name": "teemto-engine-left-body",
+      "mesh": 1
+    },
+    {
+      "name": "teemto-engine-left.001",
+      "children": [
+        2
+      ]
+    },
+    {
+      "name": "teemto-engine-right-body",
+      "mesh": 2
+    },
+    {
+      "name": "teemto-engine-right.001",
+      "children": [
+        4
+      ]
+    },
+    {
+      "name": "teemto-pilot-accent.003",
+      "mesh": 3
+    },
+    {
+      "name": "teemto-pilot-hardware.003",
+      "mesh": 4
+    },
+    {
+      "name": "teemto-pilot-rubber.002",
+      "mesh": 5
+    },
+    {
+      "name": "teemto-pilot-shell.003",
+      "mesh": 6
+    },
+    {
+      "name": "teemto-pilot-suit.005",
+      "mesh": 7
+    },
+    {
+      "name": "teemto-pilot-webbing.002",
+      "mesh": 8
+    },
+    {
+      "name": "teemto-pilot-construction-v4b.002",
+      "children": [
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ]
+    }
+  ],
+  "extensionsUsed": [
+    "EXT_texture_webp"
+  ]
+}

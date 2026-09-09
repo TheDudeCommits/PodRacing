@@ -1,0 +1,31 @@
+--- a/src/render/inkstorm/InkstormSurfaceMaterial.ts
++++ b/src/render/inkstorm/InkstormSurfaceMaterial.ts
+@@ -74,7 +74,7 @@
+         uniform sampler2D uMachineryPaint;uniform float uMachineryPaintReady;
+         float hash(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}
+         float noise(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);return mix(mix(hash(i),hash(i+vec2(1,0)),f.x),mix(hash(i+vec2(0,1)),hash(i+1.),f.x),f.y);}
+-// Original source-only round 29 candidate. Included only by the two existing
++// Authored workshop lighting. Included only by the two existing
+ // industrial family materials; this is not a scene-wide light list.
+ #ifdef INKSTORM_WORKSHOP_FAMILY
+ varying vec3 vWorkshopScale;
+@@ -167,6 +167,11 @@
+           #if defined(USE_COLOR) || defined(USE_COLOR_ALPHA)
+           base=vColor.rgb;
+           #endif
++          // Classify the untouched authored palette, before procedural wear.
++          // Muted cobalt is reflective paint; only bright, high-chroma cyan is
++          // a service lamp. Both exported cyan palettes keep their dim faces.
++          float service=(1.-uStone)*step(.50,base.g)*step(.45,base.b)
++            *step(base.r*3.,base.g)*step(base.r*3.,base.b);
+           vec3 weights=pow(abs(normalize(vPaintNormal)),vec3(4.));weights/=max(.001,weights.x+weights.y+weights.z);
+           float broad=noise(vLocal.xz*.024+vLocal.y*.011);
+           float brush=noise(vLocal.xy*vec2(.16,.32)+vLocal.z*.07);
+@@ -184,7 +189,6 @@
+             base=inkstormRockAlbedo(vWorld,n,uPaint,uRockBeds,uPaintReady)*mix(.68,1.25,
+               smoothstep(.38,1.45,stonePaintValue));
+           }
+-          float service=(1.-uStone)*step(base.r*1.65,base.g)*step(base.r*1.65,base.b);
+           float machinery=(1.-uStone)*(1.-service)*uMachineryPaintReady;
+           float enamel=1.;
+           if(machinery>.0){

@@ -1,0 +1,28 @@
+{
+  "appliedAtUTC": "2026-09-07T20:32:07.185432+00:00",
+  "scope": "Local runtime public candidate; staged validation retained, visual and performance acceptance pending",
+  "revision": 3,
+  "assets": [
+    {
+      "path": "public/assets/inkstorm/pit-complex.glb",
+      "sha256": "57866979d90b8dd2f1be5204df496307ec89b8c3f847900c5a154566fdd8129a",
+      "bytes": 890432,
+      "triangles": 12012,
+      "preservedPredecessor": "assets/source/inkstorm/grid-construction-round29/predecessors/pit-complex.glb"
+    },
+    {
+      "path": "public/assets/inkstorm/pit-district.glb",
+      "sha256": "c5aa216edc139efe484981b390946f3a7464587ab508fe5ffec2d8c999240447",
+      "bytes": 1337732,
+      "triangles": 17494,
+      "preservedPredecessor": "assets/source/inkstorm/grid-construction-round29/predecessors/pit-district.glb"
+    },
+    {
+      "path": "public/assets/inkstorm/foundry-gantry.glb",
+      "sha256": "3d0cd999daf52b82ac0232c7316a5e4072c80bd83982f83cbaf4a1dcde11e862",
+      "bytes": 438724,
+      "triangles": 6300,
+      "preservedPredecessor": "assets/source/inkstorm/grid-construction-round29/predecessors/foundry-gantry.glb"
+    }
+  ]
+}

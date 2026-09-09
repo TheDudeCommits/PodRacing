@@ -1,0 +1,107 @@
+{
+  "status": "PRIVATE FROZEN; no live source/public changes by this preparation",
+  "patch": {
+    "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/combat-round35/v28-pressure-scale-preparation/v28-pressure-scale.patch",
+    "bytes": 13823,
+    "sha256": "73f6fdb6e0660c6f8ed588cd119dcd25a10d5078336bdcc509972f778ce584fa"
+  },
+  "files": [
+    {
+      "target": "src/render/galactic/GalacticEffectsView.ts",
+      "before": {
+        "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/combat-round35/v28-pressure-scale-preparation/before/src/render/galactic/GalacticEffectsView.ts",
+        "bytes": 83092,
+        "sha256": "aa4d086d6ef893268fc47a410e1cd574a6c883bffd77af4dd843cd6fea13420b"
+      },
+      "candidate": {
+        "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/combat-round35/v28-pressure-scale-preparation/candidate/src/render/galactic/GalacticEffectsView.ts",
+        "bytes": 83704,
+        "sha256": "c52ffbc8fe45adaaafb9512b42b8e3929b5c0e7f356c2bec065fb57a978e087c"
+      }
+    },
+    {
+      "target": "src/render/galactic/RuptureFlameAtlas.ts",
+      "before": {
+        "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/combat-round35/v28-pressure-scale-preparation/before/src/render/galactic/RuptureFlameAtlas.ts",
+        "bytes": 5842,
+        "sha256": "1b31608f0bb490ffbe0810c42412fcac785906f0d9f85bd7881ffe2a0a71375d"
+      },
+      "candidate": {
+        "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/combat-round35/v28-pressure-scale-preparation/candidate/src/render/galactic/RuptureFlameAtlas.ts",
+        "bytes": 6294,
+        "sha256": "20054a311c2be87bc547031417874c6b21be7584a9ad0da9514c2fb32ff0f6a1"
+      }
+    },
+    {
+      "target": "tests/render/RuptureAtlasIntegration.test.ts",
+      "before": {
+        "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/combat-round35/v28-pressure-scale-preparation/before/tests/render/RuptureAtlasIntegration.test.ts",
+        "bytes": 5083,
+        "sha256": "a84d67274761f24de1cecc669410c30ec9ed12134836c4ea39f8855cc1d55954"
+      },
+      "candidate": {
+        "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/combat-round35/v28-pressure-scale-preparation/candidate/tests/render/RuptureAtlasIntegration.test.ts",
+        "bytes": 5258,
+        "sha256": "295e76481c9514590170488174ffd93b9ba2ad9edc983901a0ce7bf0de24df26"
+      }
+    },
+    {
+      "target": "tests/render/RuptureAtlasPixels.test.ts",
+      "before": {
+        "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/combat-round35/v28-pressure-scale-preparation/before/tests/render/RuptureAtlasPixels.test.ts",
+        "bytes": 4615,
+        "sha256": "822f8bb9405f5f893d378f0c9d749a6abede09353c5c54ae118929d13bf05f5d"
+      },
+      "candidate": {
+        "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/combat-round35/v28-pressure-scale-preparation/candidate/tests/render/RuptureAtlasPixels.test.ts",
+        "bytes": 4794,
+        "sha256": "7e0205eacb8d42ee8391f1e96f83bd0495ed18480f5b82628691fc09dccad336"
+      }
+    },
+    {
+      "target": "tests/render/RupturePressureScale.test.ts",
+      "before": null,
+      "candidate": {
+        "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/combat-round35/v28-pressure-scale-preparation/candidate/tests/render/RupturePressureScale.test.ts",
+        "bytes": 4769,
+        "sha256": "af94f77b5c5524e58c0b04ac3c7495dd731604097d024bad6eb0e4e487b551e9"
+      }
+    }
+  ],
+  "rawSource": {
+    "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/combat-round35/v27-flame-atlas-candidate/flame-atlas-raw-v1.png",
+    "bytes": 578105,
+    "sha256": "f14657a3388bf9618d0206806c7b9c54856bd7f54c98596ea1790d85c97dd4c5"
+  },
+  "publicPreserved": {
+    "path": "/Users/amir/Projects/PodRacing/public/assets/fx/inkstorm/rupture-flame-v1.png",
+    "bytes": 578105,
+    "sha256": "f14657a3388bf9618d0206806c7b9c54856bd7f54c98596ea1790d85c97dd4c5"
+  },
+  "validation": {
+    "focused": "56 tests / 11 files PASS",
+    "typecheck": "PASS",
+    "applyCheck": "PASS",
+    "tests": {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/combat-round35/v28-pressure-scale-preparation/focused-v2.log",
+      "bytes": 219,
+      "sha256": "5cf01e4890f7848d6c3afce54e56810fa63138ef289a74d41730a3fd77922d8f"
+    },
+    "tsc": {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/combat-round35/v28-pressure-scale-preparation/typecheck-v2.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "privateComparison": {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/combat-round35/v28-pressure-scale-preparation/checks/GenericBeforeParity.test.ts",
+      "bytes": 4336,
+      "sha256": "c8bc89fb0553097c3e276ed12085bee34d6b8b6cb44fb5081f19c7437529f997"
+    }
+  },
+  "metrics": {
+    "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/combat-round35/v28-pressure-scale-preparation/optical-metrics.json",
+    "bytes": 966,
+    "sha256": "ef1b48a6813e77f13080b1b753a728fc4659b8495fcd7e7b1a23ed2bc8254c5e"
+  },
+  "nativeGate": "PENDING: actual larger root/phase/depth/ground occlusion and casing punctuation at gameplay framing. V27 remains5/10 FAIL8."
+}

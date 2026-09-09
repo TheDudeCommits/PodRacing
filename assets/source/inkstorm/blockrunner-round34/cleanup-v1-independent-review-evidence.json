@@ -1,0 +1,38 @@
+{
+  "review": "All four actual cleanup PNGs inspected individually; original and cleanup driver also directly compared.",
+  "scope": "Neutral source-cleanup appearance only; no runtime or style acceptance.",
+  "views": [
+    {
+      "view": "driver",
+      "file": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/cleanup-v1-driver-20260908-round34-compare-v1.png",
+      "sha256": "82fe63b918af1693874690c8f76ce37490d608c40124d6ada92f37819522c492",
+      "actualReceipt": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/mcp-safe/cleanup-v1-driver-render-receipt.json",
+      "exactCamera": true,
+      "preservedScenes": 141
+    },
+    {
+      "view": "rear",
+      "file": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/cleanup-v1-rear-20260908-round34-compare-v1.png",
+      "sha256": "9fe04a2a09feb73ddcb1e24b84ef1390cfd8f24ec5638cd9b42462e4a269020d",
+      "actualReceipt": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/mcp-safe/cleanup-v1-rear-render-receipt.json",
+      "exactCamera": true,
+      "preservedScenes": 141
+    },
+    {
+      "view": "front",
+      "file": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/cleanup-v1-front-20260908-round34-compare-v1.png",
+      "sha256": "f4b4d0d40cdb931fa69d2c872c3653df99520c639fffbf36d534a7fb65745292",
+      "actualReceipt": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/mcp-safe/cleanup-v1-front-render-receipt.json",
+      "exactCamera": true,
+      "preservedScenes": 141
+    },
+    {
+      "view": "fullcraft",
+      "file": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/cleanup-v1-fullcraft-20260908-round34-compare-v1.png",
+      "sha256": "534050a815f335f0cfafee134d0d8a0ad1b55111ece2dcb6c2f0703c0e05c9f0",
+      "actualReceipt": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/mcp-safe/cleanup-v1-fullcraft-render-receipt.json",
+      "exactCamera": true,
+      "preservedScenes": 141
+    }
+  ]
+}

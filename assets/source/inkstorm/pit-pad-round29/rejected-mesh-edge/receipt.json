@@ -1,0 +1,2659 @@
+{
+  "scope": "Isolated staged CPU field, source-slab and real indexed terrain geometry analysis. No runtime, GPU or FPS acceptance.",
+  "candidateSourceSha256": "9096984367d880451f4e21d009df95f7dc5a531dcb9842c54c454feba7eb29b8",
+  "gulfArraysUnchanged": [
+    {
+      "name": "launch",
+      "sha256": "0cb508909165f1c2fda5fbcd9c01c2a7b9db6915f78b8578b03571a8a96b649b",
+      "expected": "0cb508909165f1c2fda5fbcd9c01c2a7b9db6915f78b8578b03571a8a96b649b"
+    },
+    {
+      "name": "finish",
+      "sha256": "bd9da2b5038d659fc1622390f211ba5e42bacac2a90288b9aaf2656af03abffa",
+      "expected": "bd9da2b5038d659fc1622390f211ba5e42bacac2a90288b9aaf2656af03abffa"
+    }
+  ],
+  "reports": [
+    {
+      "seed": 1229867859,
+      "signature": "2dacfc90",
+      "bakeMs": 241.656583,
+      "grid": {
+        "minX": 18431,
+        "minZ": -246,
+        "columns": 330,
+        "rows": 537,
+        "cellSize": 1,
+        "sha256": "e9da5524200b6caab613ace14a89497838b8f0321a5e35d1117327b775c8f859",
+        "bytes": 708840,
+        "minOffset": -14.175333023071289,
+        "maxOffset": 14.943761825561523,
+        "changedTexels": 68179
+      },
+      "corridorProbeCount": 206600,
+      "maxCorridorDelta": 0,
+      "gpuParityProbes": 2000,
+      "gpuParityMaxError": 2.4638069362481474e-12,
+      "pads": [
+        {
+          "id": "inkstorm-pit-complex-215",
+          "x": 18545.345937479364,
+          "z": -109.94818267215635,
+          "yaw": 1.045349590438558,
+          "anchorHeight": 6.080794485657201,
+          "targetHeight": 7.280794485657201,
+          "centerX": 18545.405860707884,
+          "centerZ": -114.53718138720124,
+          "halfX": 75,
+          "halfZ": 30.25,
+          "minRoadClearance": 24.014317044125008,
+          "accepted": true,
+          "samples": 9362,
+          "minHeight": 7.252501875718627,
+          "maxHeight": 7.392049472402805,
+          "beforeMax": 17.36455096238152,
+          "beforeAboveSlabBottom": 9.833756476724322,
+          "maxAboveSlabBottom": -0.1387450132543957,
+          "maxTargetError": 0.11125498674560408,
+          "aboveSlabBottom": 0,
+          "modifiedSamples": 9362,
+          "savedAnchorDelta": 0,
+          "gradedGroundAtAnchorDelta": 1.2011576627015508,
+          "visualMesh": {
+            "triangles": 6317,
+            "maxLod": 1,
+            "maxHeight": 7.373726125165936,
+            "maxAboveSlabBottom": -0.15706836049126482
+          },
+          "apron": [
+            {
+              "side": -1,
+              "axis": 0,
+              "maxHalfMetreStep": 0.20327761675138234,
+              "maxSlope": 0.4065552335027647,
+              "outsideDelta": 0,
+              "points": [
+                {
+                  "distance": 0,
+                  "height": 7.282989354509694,
+                  "delta": -7.0079273182351125
+                },
+                {
+                  "distance": 4,
+                  "height": 7.30625588812196,
+                  "delta": -7.120098237598704
+                },
+                {
+                  "distance": 8,
+                  "height": 7.599962404117057,
+                  "delta": -6.683771917356993
+                },
+                {
+                  "distance": 12,
+                  "height": 8.443616240964486,
+                  "delta": -5.623886905082296
+                },
+                {
+                  "distance": 16,
+                  "height": 9.88392172002068,
+                  "delta": -4.374688959200057
+                },
+                {
+                  "distance": 20,
+                  "height": 11.45743605303223,
+                  "delta": -2.7662737055779174
+                },
+                {
+                  "distance": 24,
+                  "height": 12.788298603666945,
+                  "delta": -1.3434115764151788
+                },
+                {
+                  "distance": 28,
+                  "height": 13.928701816701349,
+                  "delta": -0.4380969378712085
+                },
+                {
+                  "distance": 32,
+                  "height": 14.121547743955906,
+                  "delta": -0.04006692721417787
+                },
+                {
+                  "distance": 36,
+                  "height": 13.533033064096895,
+                  "delta": 0
+                },
+                {
+                  "distance": 40,
+                  "height": 12.805730113917697,
+                  "delta": 0
+                }
+              ]
+            },
+            {
+              "side": -1,
+              "axis": 1,
+              "maxHalfMetreStep": 0.16957033500859886,
+              "maxSlope": 0.3391406700171977,
+              "outsideDelta": 0,
+              "points": [
+                {
+                  "distance": 0,
+                  "height": 7.274219475100444,
+                  "delta": -5.247201139313408
+                },
+                {
+                  "distance": 4,
+                  "height": 7.288797769336082,
+                  "delta": -5.103701553865314
+                },
+                {
+                  "distance": 8,
+                  "height": 7.461701234545405,
+                  "delta": -4.797055711512748
+                },
+                {
+                  "distance": 12,
+                  "height": 8.043142368842535,
+                  "delta": -4.192361424005679
+                },
+                {
+                  "distance": 16,
+                  "height": 9.054238928371813,
+                  "delta": -3.314552256184716
+                },
+                {
+                  "distance": 20,
+                  "height": 10.254493857626548,
+                  "delta": -2.168116225951342
+                },
+                {
+                  "distance": 24,
+                  "height": 11.486711978279914,
+                  "delta": -1.1308387738625543
+                },
+                {
+                  "distance": 28,
+                  "height": 12.404092098349146,
+                  "delta": -0.3724264579411667
+                },
+                {
+                  "distance": 32,
+                  "height": 12.475321733119348,
+                  "delta": -0.036204357031457475
+                },
+                {
+                  "distance": 36,
+                  "height": 12.0703766001772,
+                  "delta": -1.38882966274327e-7
+                },
+                {
+                  "distance": 40,
+                  "height": 12.26175285454763,
+                  "delta": 0
+                }
+              ]
+            },
+            {
+              "side": 1,
+              "axis": 0,
+              "maxHalfMetreStep": 0.070864655656802,
+              "maxSlope": 0.141729311313604,
+              "outsideDelta": 0,
+              "points": [
+                {
+                  "distance": 0,
+                  "height": 7.280861775460627,
+                  "delta": -1.7842940108292091
+                },
+                {
+                  "distance": 4,
+                  "height": 7.2881615961386705,
+                  "delta": -1.8893059280483027
+                },
+                {
+                  "distance": 8,
+                  "height": 7.342538656295179,
+                  "delta": -1.4038028356208694
+                },
+                {
+                  "distance": 12,
+                  "height": 7.480790146729972,
+                  "delta": -1.0082651414583497
+                },
+                {
+                  "distance": 16,
+                  "height": 7.873085327327161,
+                  "delta": -1.0033790875378368
+                },
+                {
+                  "distance": 20,
+                  "height": 8.396965067249575,
+                  "delta": -0.7425989567782768
+                },
+                {
+                  "distance": 24,
+                  "height": 8.661975573083401,
+                  "delta": -0.3391443591423195
+                },
+                {
+                  "distance": 28,
+                  "height": 8.783388554071426,
+                  "delta": -0.09860779055822938
+                },
+                {
+                  "distance": 32,
+                  "height": 8.814511872265747,
+                  "delta": -0.009029579913665918
+                },
+                {
+                  "distance": 36,
+                  "height": 8.694275846559748,
+                  "delta": 0
+                },
+                {
+                  "distance": 40,
+                  "height": 8.63928118102745,
+                  "delta": 0
+                }
+              ]
+            },
+            {
+              "side": 1,
+              "axis": 1,
+              "maxHalfMetreStep": 1.476431493330928,
+              "maxSlope": 2.952862986661856,
+              "outsideDelta": 0,
+              "points": [
+                {
+                  "distance": 0,
+                  "height": 7.273759559989854,
+                  "delta": 11.449428608187059
+                },
+                {
+                  "distance": 4,
+                  "height": 1.6648296963005365,
+                  "delta": 7.457013995930836
+                },
+                {
+                  "distance": 8,
+                  "height": -6.391499501079835,
+                  "delta": 0.1314003068001885
+                },
+                {
+                  "distance": 12,
+                  "height": -6.7129756209887255,
+                  "delta": 0
+                },
+                {
+                  "distance": 16,
+                  "height": -6.970543664610947,
+                  "delta": 0
+                },
+                {
+                  "distance": 20,
+                  "height": -7.698579692732666,
+                  "delta": 0
+                },
+                {
+                  "distance": 24,
+                  "height": -8.33524796084803,
+                  "delta": 0
+                },
+                {
+                  "distance": 28,
+                  "height": -9.036399808025605,
+                  "delta": 0
+                },
+                {
+                  "distance": 32,
+                  "height": -9.35838533045639,
+                  "delta": 0
+                },
+                {
+                  "distance": 36,
+                  "height": -8.608486252011957,
+                  "delta": 0
+                },
+                {
+                  "distance": 40,
+                  "height": -7.679910229956187,
+                  "delta": 0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "inkstorm-pit-complex-216",
+          "x": 18532.882706593973,
+          "z": 174.87481469284342,
+          "yaw": 1.6810187061831905,
+          "anchorHeight": -13.61382068693882,
+          "targetHeight": -12.41382068693882,
+          "centerX": 18530.206363022957,
+          "centerZ": 171.1465865493563,
+          "halfX": 75,
+          "halfZ": 30.25,
+          "minRoadClearance": 23.510031631135455,
+          "accepted": true,
+          "samples": 9362,
+          "minHeight": -12.443061179469941,
+          "maxHeight": -12.391319979858459,
+          "beforeMax": 0.5916131659139054,
+          "beforeAboveSlabBottom": 12.755433852852725,
+          "maxAboveSlabBottom": -0.22749929291963933,
+          "maxTargetError": 0.029240492531121376,
+          "aboveSlabBottom": 0,
+          "modifiedSamples": 9360,
+          "savedAnchorDelta": 0,
+          "gradedGroundAtAnchorDelta": 1.2044237291301958,
+          "visualMesh": {
+            "triangles": 7463,
+            "maxLod": 1,
+            "maxHeight": -12.039948866778474,
+            "maxAboveSlabBottom": 0.12387182016034548
+          },
+          "apron": [
+            {
+              "side": -1,
+              "axis": 0,
+              "maxHalfMetreStep": 0.2392488092223779,
+              "maxSlope": 0.4784976184447558,
+              "outsideDelta": 0,
+              "points": [
+                {
+                  "distance": 0,
+                  "height": -12.40491383148754,
+                  "delta": -4.260540807159447
+                },
+                {
+                  "distance": 4,
+                  "height": -12.385891164320556,
+                  "delta": -4.412707764136419
+                },
+                {
+                  "distance": 8,
+                  "height": -12.011887048213891,
+                  "delta": -5.232957586446718
+                },
+                {
+                  "distance": 12,
+                  "height": -10.947747614744504,
+                  "delta": -5.1871063306644185
+                },
+                {
+                  "distance": 16,
+                  "height": -9.451810166151114,
+                  "delta": -3.8679833061786777
+                },
+                {
+                  "distance": 20,
+                  "height": -7.656643630094503,
+                  "delta": -2.4691803526016427
+                },
+                {
+                  "distance": 24,
+                  "height": -6.06010767845973,
+                  "delta": -1.206312583169197
+                },
+                {
+                  "distance": 28,
+                  "height": -5.274698561744023,
+                  "delta": -0.3563663977666153
+                },
+                {
+                  "distance": 32,
+                  "height": -4.338224232120403,
+                  "delta": -0.035808434415951926
+                },
+                {
+                  "distance": 36,
+                  "height": -3.4128694846743794,
+                  "delta": 0
+                },
+                {
+                  "distance": 40,
+                  "height": -2.544649966509123,
+                  "delta": 0
+                }
+              ]
+            },
+            {
+              "side": -1,
+              "axis": 1,
+              "maxHalfMetreStep": 0.4735163253117465,
+              "maxSlope": 0.947032650623493,
+              "outsideDelta": 0,
+              "points": [
+                {
+                  "distance": 0,
+                  "height": -12.417695301347617,
+                  "delta": -8.166060510449352
+                },
+                {
+                  "distance": 4,
+                  "height": -12.394618642997614,
+                  "delta": -9.292813867541913
+                },
+                {
+                  "distance": 8,
+                  "height": -12.046413024590668,
+                  "delta": -9.560947572012134
+                },
+                {
+                  "distance": 12,
+                  "height": -10.766712105839513,
+                  "delta": -8.98704431326465
+                },
+                {
+                  "distance": 16,
+                  "height": -8.370432124480637,
+                  "delta": -7.533464621145043
+                },
+                {
+                  "distance": 20,
+                  "height": -4.8707916504706805,
+                  "delta": -5.480424130230434
+                },
+                {
+                  "distance": 24,
+                  "height": -1.5271409953335136,
+                  "delta": -2.9271316898356643
+                },
+                {
+                  "distance": 28,
+                  "height": 0.707225844712465,
+                  "delta": -0.9604738707804895
+                },
+                {
+                  "distance": 32,
+                  "height": 2.6401676430189607,
+                  "delta": -0.10377715679514474
+                },
+                {
+                  "distance": 36,
+                  "height": 3.5522575773713996,
+                  "delta": 0
+                },
+                {
+                  "distance": 40,
+                  "height": 3.724474645690467,
+                  "delta": 0
+                }
+              ]
+            },
+            {
+              "side": 1,
+              "axis": 0,
+              "maxHalfMetreStep": 0.2762211142826372,
+              "maxSlope": 0.5524422285652744,
+              "outsideDelta": 0,
+              "points": [
+                {
+                  "distance": 0,
+                  "height": -12.418778503120372,
+                  "delta": -4.992798699873837
+                },
+                {
+                  "distance": 4,
+                  "height": -12.367721820286418,
+                  "delta": -5.994041252666383
+                },
+                {
+                  "distance": 8,
+                  "height": -11.948372371932917,
+                  "delta": -6.6875966190681435
+                },
+                {
+                  "distance": 12,
+                  "height": -10.687832374423014,
+                  "delta": -6.42416442406777
+                },
+                {
+                  "distance": 16,
+                  "height": -8.701088479441916,
+                  "delta": -5.046466999734937
+                },
+                {
+                  "distance": 20,
+                  "height": -6.506959983987162,
+                  "delta": -3.1990160275088417
+                },
+                {
+                  "distance": 24,
+                  "height": -4.4976556154141525,
+                  "delta": -1.5708203197378472
+                },
+                {
+                  "distance": 28,
+                  "height": -3.181679850511835,
+                  "delta": -0.48279860186378715
+                },
+                {
+                  "distance": 32,
+                  "height": -2.7303272354106705,
+                  "delta": -0.04472463469730771
+                },
+                {
+                  "distance": 36,
+                  "height": -2.694958603817515,
+                  "delta": 0
+                },
+                {
+                  "distance": 40,
+                  "height": -2.7158488632004634,
+                  "delta": 0
+                }
+              ]
+            },
+            {
+              "side": 1,
+              "axis": 1,
+              "maxHalfMetreStep": 1.012757770327056,
+              "maxSlope": 2.025515540654112,
+              "outsideDelta": 0,
+              "points": [
+                {
+                  "distance": 0,
+                  "height": -12.426225017011022,
+                  "delta": 8.487169166478624
+                },
+                {
+                  "distance": 4,
+                  "height": -16.39787759534073,
+                  "delta": 5.130154628813232
+                },
+                {
+                  "distance": 8,
+                  "height": -21.658544084743138,
+                  "delta": 0.05166909281785804
+                },
+                {
+                  "distance": 12,
+                  "height": -21.493650254198048,
+                  "delta": 0
+                },
+                {
+                  "distance": 16,
+                  "height": -20.974124891501457,
+                  "delta": 0
+                },
+                {
+                  "distance": 20,
+                  "height": -20.31774960319442,
+                  "delta": 0
+                },
+                {
+                  "distance": 24,
+                  "height": -19.97184214321281,
+                  "delta": 0
+                },
+                {
+                  "distance": 28,
+                  "height": -19.421215583828154,
+                  "delta": 0
+                },
+                {
+                  "distance": 32,
+                  "height": -18.805537002290365,
+                  "delta": 0
+                },
+                {
+                  "distance": 36,
+                  "height": -18.281176499968428,
+                  "delta": 0
+                },
+                {
+                  "distance": 40,
+                  "height": -18.456864080434947,
+                  "delta": 0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "inkstorm-pit-complex-217",
+          "x": 18685.582355685496,
+          "z": 25.546476285526083,
+          "yaw": -1.5330178148590259,
+          "anchorHeight": -6.816659090645128,
+          "targetHeight": -5.616659090645128,
+          "centerX": 18687.9818283634,
+          "centerZ": 29.458640759059882,
+          "halfX": 75,
+          "halfZ": 30.25,
+          "minRoadClearance": 15.56269574779612,
+          "accepted": true,
+          "samples": 9362,
+          "minHeight": -9.910186816776235,
+          "maxHeight": -5.513087063800256,
+          "beforeMax": -2.3165487350155125,
+          "beforeAboveSlabBottom": 3.0501103556296156,
+          "maxAboveSlabBottom": -0.1464279731551279,
+          "maxTargetError": 4.293527726131107,
+          "aboveSlabBottom": 0,
+          "modifiedSamples": 9362,
+          "savedAnchorDelta": 0,
+          "gradedGroundAtAnchorDelta": 1.2314339437758397,
+          "visualMesh": {
+            "triangles": 7505,
+            "maxLod": 1,
+            "maxHeight": -5.528417411198028,
+            "maxAboveSlabBottom": -0.1617583205528994
+          },
+          "apron": [
+            {
+              "side": -1,
+              "axis": 0,
+              "maxHalfMetreStep": 0.15582479344434397,
+              "maxSlope": 0.31164958688868794,
+              "outsideDelta": 0,
+              "points": [
+                {
+                  "distance": 0,
+                  "height": -5.609170828724408,
+                  "delta": 1.96126711381054
+                },
+                {
+                  "distance": 4,
+                  "height": -5.7478666855428315,
+                  "delta": 1.8604314481255284
+                },
+                {
+                  "distance": 8,
+                  "height": -6.542668062398678,
+                  "delta": 1.71239530796064
+                },
+                {
+                  "distance": 12,
+                  "height": -7.533370083843751,
+                  "delta": 0.8003465448634448
+                },
+                {
+                  "distance": 16,
+                  "height": -8.130305554699099,
+                  "delta": 0.18427255588905772
+                },
+                {
+                  "distance": 20,
+                  "height": -8.901517252188727,
+                  "delta": 0.01148980829335515
+                },
+                {
+                  "distance": 24,
+                  "height": -8.699318939874974,
+                  "delta": 0
+                },
+                {
+                  "distance": 28,
+                  "height": -8.433622726156543,
+                  "delta": 0
+                },
+                {
+                  "distance": 32,
+                  "height": -8.803333808187707,
+                  "delta": 0
+                },
+                {
+                  "distance": 36,
+                  "height": -9.226705459096486,
+                  "delta": 0
+                },
+                {
+                  "distance": 40,
+                  "height": -9.940183637650541,
+                  "delta": 0
+                }
+              ]
+            },
+            {
+              "side": -1,
+              "axis": 1,
+              "maxHalfMetreStep": 0.23186118538494327,
+              "maxSlope": 0.46372237076988654,
+              "outsideDelta": 0,
+              "points": [
+                {
+                  "distance": 0,
+                  "height": -5.6201504014451755,
+                  "delta": 3.9416802987687776
+                },
+                {
+                  "distance": 4,
+                  "height": -5.6283088899582,
+                  "delta": 4.365637983254594
+                },
+                {
+                  "distance": 8,
+                  "height": -5.7937002196677785,
+                  "delta": 4.561981216650116
+                },
+                {
+                  "distance": 12,
+                  "height": -6.384803446124099,
+                  "delta": 4.191301979988594
+                },
+                {
+                  "distance": 16,
+                  "height": -7.608832191882128,
+                  "delta": 3.6861870299655775
+                },
+                {
+                  "distance": 20,
+                  "height": -9.400546382646397,
+                  "delta": 2.750057655643211
+                },
+                {
+                  "distance": 24,
+                  "height": -10.991339898739062,
+                  "delta": 1.443106911815081
+                },
+                {
+                  "distance": 28,
+                  "height": -11.778782648638062,
+                  "delta": 0.45015335393389255
+                },
+                {
+                  "distance": 32,
+                  "height": -12.131875719580579,
+                  "delta": 0.044120261026674844
+                },
+                {
+                  "distance": 36,
+                  "height": -12.211632052366,
+                  "delta": 0
+                },
+                {
+                  "distance": 40,
+                  "height": -11.75769864767061,
+                  "delta": 0
+                }
+              ]
+            },
+            {
+              "side": 1,
+              "axis": 0,
+              "maxHalfMetreStep": 0.11928375568453031,
+              "maxSlope": 0.23856751136906063,
+              "outsideDelta": 0,
+              "points": [
+                {
+                  "distance": 0,
+                  "height": -5.617025461001378,
+                  "delta": 3.5542744370927943
+                },
+                {
+                  "distance": 4,
+                  "height": -5.644963525214148,
+                  "delta": 2.8973886284072816
+                },
+                {
+                  "distance": 8,
+                  "height": -5.802036982985639,
+                  "delta": 2.225108535175097
+                },
+                {
+                  "distance": 12,
+                  "height": -6.0897813641021,
+                  "delta": 1.5244421607913896
+                },
+                {
+                  "distance": 16,
+                  "height": -6.277543438796647,
+                  "delta": 0.8049221013633683
+                },
+                {
+                  "distance": 20,
+                  "height": -6.498020646249004,
+                  "delta": 0.4219711028790336
+                },
+                {
+                  "distance": 24,
+                  "height": -6.993997350592984,
+                  "delta": 0.23752090551459504
+                },
+                {
+                  "distance": 28,
+                  "height": -7.901557997190234,
+                  "delta": 0.10149241453710667
+                },
+                {
+                  "distance": 32,
+                  "height": -8.497330628711358,
+                  "delta": 0.011222515572256076
+                },
+                {
+                  "distance": 36,
+                  "height": -9.005118593204967,
+                  "delta": 0
+                },
+                {
+                  "distance": 40,
+                  "height": -9.628255681053584,
+                  "delta": 0
+                }
+              ]
+            },
+            {
+              "side": 1,
+              "axis": 1,
+              "maxHalfMetreStep": 0.8647691331357095,
+              "maxSlope": 1.729538266271419,
+              "outsideDelta": 0,
+              "points": [
+                {
+                  "distance": 0,
+                  "height": -5.623282704244549,
+                  "delta": 5.907090473413344
+                },
+                {
+                  "distance": 4,
+                  "height": -8.785346355880089,
+                  "delta": 3.9735464729967642
+                },
+                {
+                  "distance": 8,
+                  "height": -14.060541475427975,
+                  "delta": 0.04061368524723392
+                },
+                {
+                  "distance": 12,
+                  "height": -15.851445143911011,
+                  "delta": 0
+                },
+                {
+                  "distance": 16,
+                  "height": -17.19989869664597,
+                  "delta": 0
+                },
+                {
+                  "distance": 20,
+                  "height": -17.637968943726648,
+                  "delta": 0
+                },
+                {
+                  "distance": 24,
+                  "height": -17.35596570489324,
+                  "delta": 0
+                },
+                {
+                  "distance": 28,
+                  "height": -17.224922937171687,
+                  "delta": 0
+                },
+                {
+                  "distance": 32,
+                  "height": -17.419638188102574,
+                  "delta": 0
+                },
+                {
+                  "distance": 36,
+                  "height": -17.164018757253526,
+                  "delta": 0
+                },
+                {
+                  "distance": 40,
+                  "height": -16.897019714852114,
+                  "delta": 0
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "seed": 42,
+      "signature": "ad205743",
+      "bakeMs": 138.52354100000002,
+      "grid": {
+        "minX": -689,
+        "minZ": -630,
+        "columns": 513,
+        "rows": 247,
+        "cellSize": 1,
+        "sha256": "3503c658a490e9cd81b29c14d85b4119631514a63a3f9d0f66b8a8f06829bfd3",
+        "bytes": 506844,
+        "minOffset": -17.21283531188965,
+        "maxOffset": 8.006404876708984,
+        "changedTexels": 47337
+      },
+      "corridorProbeCount": 206600,
+      "maxCorridorDelta": 0,
+      "gpuParityProbes": 2000,
+      "gpuParityMaxError": 3.6193270602780103e-14,
+      "pads": [
+        {
+          "id": "inkstorm-pit-complex-185",
+          "x": -311.2122867828294,
+          "z": -508.0449395757857,
+          "yaw": -0.6752118076628042,
+          "anchorHeight": 19.617650659403814,
+          "targetHeight": 20.817650659403814,
+          "centerX": -306.6835974900514,
+          "centerZ": -507.3009817211475,
+          "halfX": 75,
+          "halfZ": 30.25,
+          "minRoadClearance": 24.008190211655997,
+          "accepted": true,
+          "samples": 9362,
+          "minHeight": 20.79485890386205,
+          "maxHeight": 20.99152652166762,
+          "beforeMax": 38.0439204847694,
+          "beforeAboveSlabBottom": 16.976269825365588,
+          "maxAboveSlabBottom": -0.07612413773619475,
+          "maxTargetError": 0.1738758622638059,
+          "aboveSlabBottom": 0,
+          "modifiedSamples": 9359,
+          "savedAnchorDelta": 0,
+          "gradedGroundAtAnchorDelta": 1.2001386529201106,
+          "visualMesh": null,
+          "apron": [
+            {
+              "side": -1,
+              "axis": 0,
+              "maxHalfMetreStep": 0.1972696219776786,
+              "maxSlope": 0.3945392439553572,
+              "outsideDelta": 0,
+              "points": [
+                {
+                  "distance": 0,
+                  "height": 20.81189531955137,
+                  "delta": -11.871769383628646
+                },
+                {
+                  "distance": 4,
+                  "height": 20.854782582060693,
+                  "delta": -10.94678933323747
+                },
+                {
+                  "distance": 8,
+                  "height": 21.272476334285578,
+                  "delta": -9.658898009127618
+                },
+                {
+                  "distance": 12,
+                  "height": 22.393266879507383,
+                  "delta": -7.638512975714459
+                },
+                {
+                  "distance": 16,
+                  "height": 23.92305971711441,
+                  "delta": -5.258717366847751
+                },
+                {
+                  "distance": 20,
+                  "height": 25.407631318515822,
+                  "delta": -3.059462111550677
+                },
+                {
+                  "distance": 24,
+                  "height": 26.55004861738194,
+                  "delta": -1.407599528775926
+                },
+                {
+                  "distance": 28,
+                  "height": 27.282279474664175,
+                  "delta": -0.4278234020262085
+                },
+                {
+                  "distance": 32,
+                  "height": 27.492790880194896,
+                  "delta": -0.040545871856637335
+                },
+                {
+                  "distance": 36,
+                  "height": 27.485584918294037,
+                  "delta": 0
+                },
+                {
+                  "distance": 40,
+                  "height": 27.376936826268476,
+                  "delta": 0
+                }
+              ]
+            },
+            {
+              "side": -1,
+              "axis": 1,
+              "maxHalfMetreStep": 0.08631523185584555,
+              "maxSlope": 0.1726304637116911,
+              "outsideDelta": 0,
+              "points": [
+                {
+                  "distance": 0,
+                  "height": 20.816072455038864,
+                  "delta": -1.0477139595451992
+                },
+                {
+                  "distance": 4,
+                  "height": 20.817443451167616,
+                  "delta": -1.2527655799051058
+                },
+                {
+                  "distance": 8,
+                  "height": 20.882631843328802,
+                  "delta": -1.6554095851592354
+                },
+                {
+                  "distance": 12,
+                  "height": 21.151096244981865,
+                  "delta": -1.807903802350681
+                },
+                {
+                  "distance": 16,
+                  "height": 21.656882800786622,
+                  "delta": -1.5588396997703
+                },
+                {
+                  "distance": 20,
+                  "height": 22.309165646831474,
+                  "delta": -1.0836587936235476
+                },
+                {
+                  "distance": 24,
+                  "height": 22.79859479348473,
+                  "delta": -0.5327948241367428
+                },
+                {
+                  "distance": 28,
+                  "height": 22.756809549430933,
+                  "delta": -0.14236117159706718
+                },
+                {
+                  "distance": 32,
+                  "height": 22.403651385056826,
+                  "delta": -0.010806307023878466
+                },
+                {
+                  "distance": 36,
+                  "height": 21.937648634782228,
+                  "delta": 0
+                },
+                {
+                  "distance": 40,
+                  "height": 21.421623023781763,
+                  "delta": 0
+                }
+              ]
+            },
+            {
+              "side": 1,
+              "axis": 0,
+              "maxHalfMetreStep": 0.16410068812696466,
+              "maxSlope": 0.3282013762539293,
+              "outsideDelta": 0,
+              "points": [
+                {
+                  "distance": 0,
+                  "height": 20.81808557311366,
+                  "delta": 0.20467580727047383
+                },
+                {
+                  "distance": 4,
+                  "height": 20.818629691338874,
+                  "delta": -0.352155980929996
+                },
+                {
+                  "distance": 8,
+                  "height": 20.842472593242064,
+                  "delta": -0.5730065765105088
+                },
+                {
+                  "distance": 12,
+                  "height": 20.93621401529923,
+                  "delta": -0.5918404913401821
+                },
+                {
+                  "distance": 16,
+                  "height": 21.08480001743477,
+                  "delta": -0.45906609794175385
+                },
+                {
+                  "distance": 20,
+                  "height": 21.157001279983767,
+                  "delta": -0.22938605160645237
+                },
+                {
+                  "distance": 24,
+                  "height": 21.00005587283442,
+                  "delta": -0.04624380353857635
+                },
+                {
+                  "distance": 28,
+                  "height": 20.35855904380852,
+                  "delta": 0.029223847536448362
+                },
+                {
+                  "distance": 32,
+                  "height": 19.262437212050013,
+                  "delta": 0.009144311225587873
+                },
+                {
+                  "distance": 36,
+                  "height": 17.99045811108485,
+                  "delta": 0
+                },
+                {
+                  "distance": 40,
+                  "height": 16.691244299059143,
+                  "delta": 0
+                }
+              ]
+            },
+            {
+              "side": 1,
+              "axis": 1,
+              "maxHalfMetreStep": 0.48548279323938814,
+              "maxSlope": 0.9709655864787763,
+              "outsideDelta": 0,
+              "points": [
+                {
+                  "distance": 0,
+                  "height": 20.811100794397564,
+                  "delta": 4.373468406335181
+                },
+                {
+                  "distance": 4,
+                  "height": 18.863135413180366,
+                  "delta": 2.573818753161469
+                },
+                {
+                  "distance": 8,
+                  "height": 16.262927548669808,
+                  "delta": 0.043576341678219346
+                },
+                {
+                  "distance": 12,
+                  "height": 16.206384463355036,
+                  "delta": 0
+                },
+                {
+                  "distance": 16,
+                  "height": 16.194117368709847,
+                  "delta": 0
+                },
+                {
+                  "distance": 20,
+                  "height": 16.231508321698755,
+                  "delta": 0
+                },
+                {
+                  "distance": 24,
+                  "height": 16.464326644525578,
+                  "delta": 0
+                },
+                {
+                  "distance": 28,
+                  "height": 16.902935022549812,
+                  "delta": 0
+                },
+                {
+                  "distance": 32,
+                  "height": 17.578471923772753,
+                  "delta": 0
+                },
+                {
+                  "distance": 36,
+                  "height": 18.52790693783811,
+                  "delta": 0
+                },
+                {
+                  "distance": 40,
+                  "height": 19.794915276748682,
+                  "delta": 0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "inkstorm-pit-complex-186",
+          "x": -577.1223456924262,
+          "z": -546.9632790621649,
+          "yaw": 0.04323000162945978,
+          "anchorHeight": 16.1215171294834,
+          "targetHeight": 17.3215171294834,
+          "centerX": -573.223319986831,
+          "centerZ": -549.384043104179,
+          "halfX": 75,
+          "halfZ": 30.25,
+          "minRoadClearance": 23.220922859021126,
+          "accepted": true,
+          "samples": 9362,
+          "minHeight": 17.293785350480455,
+          "maxHeight": 17.488763794407625,
+          "beforeMax": 25.459088830843854,
+          "beforeAboveSlabBottom": 7.887571701360453,
+          "maxAboveSlabBottom": -0.08275333507577609,
+          "maxTargetError": 0.16724666492422458,
+          "aboveSlabBottom": 0,
+          "modifiedSamples": 9360,
+          "savedAnchorDelta": 0,
+          "gradedGroundAtAnchorDelta": 1.2000195999394967,
+          "visualMesh": null,
+          "apron": [
+            {
+              "side": -1,
+              "axis": 0,
+              "maxHalfMetreStep": 0.06017418481447834,
+              "maxSlope": 0.12034836962895668,
+              "outsideDelta": 0,
+              "points": [
+                {
+                  "distance": 0,
+                  "height": 17.317543051472416,
+                  "delta": -4.011412666461727
+                },
+                {
+                  "distance": 4,
+                  "height": 17.33925793362652,
+                  "delta": -2.5987599619367496
+                },
+                {
+                  "distance": 8,
+                  "height": 17.447629497124797,
+                  "delta": -1.7191769248007234
+                },
+                {
+                  "distance": 12,
+                  "height": 17.622204251528846,
+                  "delta": -1.0615791741082636
+                },
+                {
+                  "distance": 16,
+                  "height": 17.70748060925122,
+                  "delta": -0.5035451550137112
+                },
+                {
+                  "distance": 20,
+                  "height": 17.747508622035262,
+                  "delta": -0.21978149412117087
+                },
+                {
+                  "distance": 24,
+                  "height": 17.675827849259434,
+                  "delta": -0.0667223588518622
+                },
+                {
+                  "distance": 28,
+                  "height": 17.432229524152106,
+                  "delta": -0.005578679119514589
+                },
+                {
+                  "distance": 32,
+                  "height": 17.01177476357645,
+                  "delta": 0.0012658871943830345
+                },
+                {
+                  "distance": 36,
+                  "height": 16.562948033970393,
+                  "delta": 0
+                },
+                {
+                  "distance": 40,
+                  "height": 16.100540201046257,
+                  "delta": 0
+                }
+              ]
+            },
+            {
+              "side": -1,
+              "axis": 1,
+              "maxHalfMetreStep": 0.11429892609740477,
+              "maxSlope": 0.22859785219480955,
+              "outsideDelta": 0,
+              "points": [
+                {
+                  "distance": 0,
+                  "height": 17.317842089897145,
+                  "delta": 0.21315780683272384
+                },
+                {
+                  "distance": 4,
+                  "height": 17.31749292237054,
+                  "delta": 0.3471615386083242
+                },
+                {
+                  "distance": 8,
+                  "height": 17.30543297032758,
+                  "delta": 0.34407098729231245
+                },
+                {
+                  "distance": 12,
+                  "height": 17.27875902847234,
+                  "delta": 0.21935256770682512
+                },
+                {
+                  "distance": 16,
+                  "height": 17.294221458245023,
+                  "delta": 0.05502176206548244
+                },
+                {
+                  "distance": 20,
+                  "height": 17.09184003372811,
+                  "delta": 0.15938856558627013
+                },
+                {
+                  "distance": 24,
+                  "height": 16.981952935013453,
+                  "delta": 0.09116443416324645
+                },
+                {
+                  "distance": 28,
+                  "height": 17.221290069877533,
+                  "delta": 0.007727146986988129
+                },
+                {
+                  "distance": 32,
+                  "height": 18.05686665870399,
+                  "delta": -0.004763840688019576
+                },
+                {
+                  "distance": 36,
+                  "height": 18.57737024841599,
+                  "delta": 0
+                },
+                {
+                  "distance": 40,
+                  "height": 18.584139669809332,
+                  "delta": 0
+                }
+              ]
+            },
+            {
+              "side": 1,
+              "axis": 0,
+              "maxHalfMetreStep": 0.2804078364606113,
+              "maxSlope": 0.5608156729212226,
+              "outsideDelta": 0,
+              "points": [
+                {
+                  "distance": 0,
+                  "height": 17.32368019723522,
+                  "delta": -7.834456830563619
+                },
+                {
+                  "distance": 4,
+                  "height": 17.379509653463078,
+                  "delta": -7.998309223730342
+                },
+                {
+                  "distance": 8,
+                  "height": 17.839628794103284,
+                  "delta": -7.60882978456546
+                },
+                {
+                  "distance": 12,
+                  "height": 19.06660488575512,
+                  "delta": -6.571972444933289
+                },
+                {
+                  "distance": 16,
+                  "height": 20.95075981613342,
+                  "delta": -4.970800786446949
+                },
+                {
+                  "distance": 20,
+                  "height": 23.161666568842406,
+                  "delta": -3.184102397187977
+                },
+                {
+                  "distance": 24,
+                  "height": 25.284153063027706,
+                  "delta": -1.5911082027814092
+                },
+                {
+                  "distance": 28,
+                  "height": 26.80260650383432,
+                  "delta": -0.5006606651470152
+                },
+                {
+                  "distance": 32,
+                  "height": 27.478470386567242,
+                  "delta": -0.048322245413198045
+                },
+                {
+                  "distance": 36,
+                  "height": 27.706253903866404,
+                  "delta": 0
+                },
+                {
+                  "distance": 40,
+                  "height": 27.815160543642115,
+                  "delta": 0
+                }
+              ]
+            },
+            {
+              "side": 1,
+              "axis": 1,
+              "maxHalfMetreStep": 0.09773927095573853,
+              "maxSlope": 0.19547854191147707,
+              "outsideDelta": 0,
+              "points": [
+                {
+                  "distance": 0,
+                  "height": 17.322122912987915,
+                  "delta": 0.6709172754935729
+                },
+                {
+                  "distance": 4,
+                  "height": 16.981593453820523,
+                  "delta": 0.4355970283210767
+                },
+                {
+                  "distance": 8,
+                  "height": 16.35708449610355,
+                  "delta": 0.006231458389240963
+                },
+                {
+                  "distance": 12,
+                  "height": 16.082106927393603,
+                  "delta": 0
+                },
+                {
+                  "distance": 16,
+                  "height": 15.756678902412915,
+                  "delta": 0
+                },
+                {
+                  "distance": 20,
+                  "height": 15.46225129230131,
+                  "delta": 0
+                },
+                {
+                  "distance": 24,
+                  "height": 15.316062601654828,
+                  "delta": 0
+                },
+                {
+                  "distance": 28,
+                  "height": 15.230986962323733,
+                  "delta": 0
+                },
+                {
+                  "distance": 32,
+                  "height": 15.261867191562573,
+                  "delta": 0
+                },
+                {
+                  "distance": 36,
+                  "height": 15.450759443503522,
+                  "delta": 0
+                },
+                {
+                  "distance": 40,
+                  "height": 15.754510606290971,
+                  "delta": 0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "inkstorm-pit-complex-187",
+          "x": -451.7747875460834,
+          "z": -386.7359780476865,
+          "yaw": -3.187132822893399,
+          "anchorHeight": 21.551072306956684,
+          "targetHeight": 22.751072306956683,
+          "centerX": -455.87307041616856,
+          "centerZ": -384.6704085095769,
+          "halfX": 75,
+          "halfZ": 30.25,
+          "minRoadClearance": 7.664432127670139,
+          "accepted": false,
+          "declineReason": "protected-road-overlap",
+          "samples": 9362,
+          "minHeight": 20.173188023765107,
+          "maxHeight": 33.86919906864025,
+          "beforeMax": 33.86919906864025,
+          "beforeAboveSlabBottom": 10.868126761683566,
+          "maxAboveSlabBottom": 10.868126761683566,
+          "maxTargetError": 11.118126761683566,
+          "aboveSlabBottom": 7517,
+          "modifiedSamples": 0,
+          "savedAnchorDelta": 0,
+          "gradedGroundAtAnchorDelta": 0,
+          "visualMesh": null,
+          "apron": [
+            {
+              "side": -1,
+              "axis": 0,
+              "maxHalfMetreStep": 0.1087976998092941,
+              "maxSlope": 0.2175953996185882,
+              "outsideDelta": 0,
+              "points": [
+                {
+                  "distance": 0,
+                  "height": 28.498744113674228,
+                  "delta": 0
+                },
+                {
+                  "distance": 4,
+                  "height": 29.343172362726413,
+                  "delta": 0
+                },
+                {
+                  "distance": 8,
+                  "height": 29.40036917895781,
+                  "delta": 0
+                },
+                {
+                  "distance": 12,
+                  "height": 29.536189619566237,
+                  "delta": 0
+                },
+                {
+                  "distance": 16,
+                  "height": 29.741551734187148,
+                  "delta": 0
+                },
+                {
+                  "distance": 20,
+                  "height": 29.915385066825927,
+                  "delta": 0
+                },
+                {
+                  "distance": 24,
+                  "height": 30.06569838449176,
+                  "delta": 0
+                },
+                {
+                  "distance": 28,
+                  "height": 30.285381876930977,
+                  "delta": 0
+                },
+                {
+                  "distance": 32,
+                  "height": 30.367588314337034,
+                  "delta": 0
+                },
+                {
+                  "distance": 36,
+                  "height": 30.385541191832765,
+                  "delta": 0
+                },
+                {
+                  "distance": 40,
+                  "height": 30.596249549862975,
+                  "delta": 0
+                }
+              ]
+            },
+            {
+              "side": -1,
+              "axis": 1,
+              "maxHalfMetreStep": 0.09491517915037662,
+              "maxSlope": 0.18983035830075323,
+              "outsideDelta": 0,
+              "points": [
+                {
+                  "distance": 0,
+                  "height": 21.950297321646424,
+                  "delta": 0
+                },
+                {
+                  "distance": 4,
+                  "height": 21.9603679990123,
+                  "delta": 0
+                },
+                {
+                  "distance": 8,
+                  "height": 22.035207010736983,
+                  "delta": 0
+                },
+                {
+                  "distance": 12,
+                  "height": 22.22744537529455,
+                  "delta": 0
+                },
+                {
+                  "distance": 16,
+                  "height": 22.49130229181482,
+                  "delta": 0
+                },
+                {
+                  "distance": 20,
+                  "height": 22.752794913262598,
+                  "delta": 0
+                },
+                {
+                  "distance": 24,
+                  "height": 22.990483632980073,
+                  "delta": 0
+                },
+                {
+                  "distance": 28,
+                  "height": 23.16229958301217,
+                  "delta": 0
+                },
+                {
+                  "distance": 32,
+                  "height": 23.286934262333794,
+                  "delta": 0
+                },
+                {
+                  "distance": 36,
+                  "height": 23.154104910485714,
+                  "delta": 0
+                },
+                {
+                  "distance": 40,
+                  "height": 22.481064374679917,
+                  "delta": 0
+                }
+              ]
+            },
+            {
+              "side": 1,
+              "axis": 0,
+              "maxHalfMetreStep": 0.15806441220164658,
+              "maxSlope": 0.31612882440329315,
+              "outsideDelta": 0,
+              "points": [
+                {
+                  "distance": 0,
+                  "height": 24.28827753221593,
+                  "delta": 0
+                },
+                {
+                  "distance": 4,
+                  "height": 23.921107857849258,
+                  "delta": 0
+                },
+                {
+                  "distance": 8,
+                  "height": 23.43529441136802,
+                  "delta": 0
+                },
+                {
+                  "distance": 12,
+                  "height": 22.927004366461013,
+                  "delta": 0
+                },
+                {
+                  "distance": 16,
+                  "height": 22.518519094151287,
+                  "delta": 0
+                },
+                {
+                  "distance": 20,
+                  "height": 22.060358524964585,
+                  "delta": 0
+                },
+                {
+                  "distance": 24,
+                  "height": 21.521929245830208,
+                  "delta": 0
+                },
+                {
+                  "distance": 28,
+                  "height": 20.756453755655052,
+                  "delta": 0
+                },
+                {
+                  "distance": 32,
+                  "height": 19.622620931397663,
+                  "delta": 0
+                },
+                {
+                  "distance": 36,
+                  "height": 18.543469159014982,
+                  "delta": 0
+                },
+                {
+                  "distance": 40,
+                  "height": 17.861650729068913,
+                  "delta": 0
+                }
+              ]
+            },
+            {
+              "side": 1,
+              "axis": 1,
+              "maxHalfMetreStep": 0.21759945742829245,
+              "maxSlope": 0.4351989148565849,
+              "outsideDelta": 0,
+              "points": [
+                {
+                  "distance": 0,
+                  "height": 28.55060026565267,
+                  "delta": 0
+                },
+                {
+                  "distance": 4,
+                  "height": 29.692113609742925,
+                  "delta": 0
+                },
+                {
+                  "distance": 8,
+                  "height": 30.897614020834688,
+                  "delta": 0
+                },
+                {
+                  "distance": 12,
+                  "height": 31.79253362890492,
+                  "delta": 0
+                },
+                {
+                  "distance": 16,
+                  "height": 32.26560979303029,
+                  "delta": 0
+                },
+                {
+                  "distance": 20,
+                  "height": 32.66802704994515,
+                  "delta": 0
+                },
+                {
+                  "distance": 24,
+                  "height": 33.81168033201043,
+                  "delta": 0
+                },
+                {
+                  "distance": 28,
+                  "height": 35.46724159150368,
+                  "delta": 0
+                },
+                {
+                  "distance": 32,
+                  "height": 36.668534449311736,
+                  "delta": 0
+                },
+                {
+                  "distance": 36,
+                  "height": 37.36965303434604,
+                  "delta": 0
+                },
+                {
+                  "distance": 40,
+                  "height": 35.790737497306495,
+                  "delta": 0
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "seed": 1234,
+      "signature": "89d72497",
+      "bakeMs": 210.45404099999996,
+      "grid": {
+        "minX": 275,
+        "minZ": -684,
+        "columns": 497,
+        "rows": 445,
+        "cellSize": 1,
+        "sha256": "9146b4263b6ac5aefa3cbadfaf50ce889af2f8de40ea872a5a9192ea23b5512f",
+        "bytes": 884660,
+        "minOffset": -14.247040748596191,
+        "maxOffset": 33.923213958740234,
+        "changedTexels": 66450
+      },
+      "corridorProbeCount": 206600,
+      "maxCorridorDelta": 0,
+      "gpuParityProbes": 2000,
+      "gpuParityMaxError": 2.0605739337042905e-13,
+      "pads": [
+        {
+          "id": "inkstorm-pit-complex-251",
+          "x": 407.8447467763047,
+          "z": -362.0914285590497,
+          "yaw": 3.71524225338408,
+          "anchorHeight": 10.997114103091736,
+          "targetHeight": 12.197114103091735,
+          "centerX": 405.7061204115721,
+          "centerZ": -358.0307910140242,
+          "halfX": 75,
+          "halfZ": 30.25,
+          "minRoadClearance": 23.977332772381278,
+          "accepted": true,
+          "samples": 9362,
+          "minHeight": 12.190021741677633,
+          "maxHeight": 12.203775739618907,
+          "beforeMax": 19.9148468730481,
+          "beforeAboveSlabBottom": 7.4677327699563625,
+          "maxAboveSlabBottom": -0.243338363472829,
+          "maxTargetError": 0.0070923614141022995,
+          "aboveSlabBottom": 0,
+          "modifiedSamples": 9359,
+          "savedAnchorDelta": 0,
+          "gradedGroundAtAnchorDelta": 1.1985947680784288,
+          "visualMesh": null,
+          "apron": [
+            {
+              "side": -1,
+              "axis": 0,
+              "maxHalfMetreStep": 0.1956926645605872,
+              "maxSlope": 0.3913853291211744,
+              "outsideDelta": 0,
+              "points": [
+                {
+                  "distance": 0,
+                  "height": 12.198354260866397,
+                  "delta": -3.7775448580126585
+                },
+                {
+                  "distance": 4,
+                  "height": 12.22787223820097,
+                  "delta": -4.216571325786088
+                },
+                {
+                  "distance": 8,
+                  "height": 12.515669462227065,
+                  "delta": -4.468281331462288
+                },
+                {
+                  "distance": 12,
+                  "height": 13.35473723387889,
+                  "delta": -4.221802748647211
+                },
+                {
+                  "distance": 16,
+                  "height": 14.702277925496102,
+                  "delta": -3.3392540114946847
+                },
+                {
+                  "distance": 20,
+                  "height": 16.249742159889443,
+                  "delta": -2.1507347017881187
+                },
+                {
+                  "distance": 24,
+                  "height": 17.640486173898964,
+                  "delta": -1.055985808340198
+                },
+                {
+                  "distance": 28,
+                  "height": 18.68834920251296,
+                  "delta": -0.33017997759613926
+                },
+                {
+                  "distance": 32,
+                  "height": 19.41179569930471,
+                  "delta": -0.03259791270141399
+                },
+                {
+                  "distance": 36,
+                  "height": 19.911435731196057,
+                  "delta": 0
+                },
+                {
+                  "distance": 40,
+                  "height": 20.368293105523378,
+                  "delta": 0
+                }
+              ]
+            },
+            {
+              "side": -1,
+              "axis": 1,
+              "maxHalfMetreStep": 0.17929937527412498,
+              "maxSlope": 0.35859875054824997,
+              "outsideDelta": 0,
+              "points": [
+                {
+                  "distance": 0,
+                  "height": 12.196409047098765,
+                  "delta": -3.0600606110902757
+                },
+                {
+                  "distance": 4,
+                  "height": 12.201417897640074,
+                  "delta": -3.3901168541804236
+                },
+                {
+                  "distance": 8,
+                  "height": 12.33818687629623,
+                  "delta": -3.706035622165889
+                },
+                {
+                  "distance": 12,
+                  "height": 12.900039289929998,
+                  "delta": -3.815990440341397
+                },
+                {
+                  "distance": 16,
+                  "height": 14.006102402039783,
+                  "delta": -3.363656578593304
+                },
+                {
+                  "distance": 20,
+                  "height": 15.413083285259695,
+                  "delta": -2.3412387760177755
+                },
+                {
+                  "distance": 24,
+                  "height": 16.82987635898012,
+                  "delta": -1.2459675254050666
+                },
+                {
+                  "distance": 28,
+                  "height": 18.01197807832184,
+                  "delta": -0.42369689243894854
+                },
+                {
+                  "distance": 32,
+                  "height": 18.754855501048485,
+                  "delta": -0.044984429688251316
+                },
+                {
+                  "distance": 36,
+                  "height": 19.27149332712643,
+                  "delta": 0
+                },
+                {
+                  "distance": 40,
+                  "height": 19.79726220642975,
+                  "delta": 0
+                }
+              ]
+            },
+            {
+              "side": 1,
+              "axis": 0,
+              "maxHalfMetreStep": 0.031131429290146784,
+              "maxSlope": 0.06226285858029357,
+              "outsideDelta": 0,
+              "points": [
+                {
+                  "distance": 0,
+                  "height": 12.19981257632611,
+                  "delta": -0.8886946850417556
+                },
+                {
+                  "distance": 4,
+                  "height": 12.201074784278646,
+                  "delta": -0.5733502837724056
+                },
+                {
+                  "distance": 8,
+                  "height": 12.21358338528203,
+                  "delta": -0.23555766405763887
+                },
+                {
+                  "distance": 12,
+                  "height": 12.173314014954318,
+                  "delta": 0.0791582253710278
+                },
+                {
+                  "distance": 16,
+                  "height": 12.037059306433743,
+                  "delta": 0.21156096272834155
+                },
+                {
+                  "distance": 20,
+                  "height": 11.81453129098119,
+                  "delta": 0.20260489297451217
+                },
+                {
+                  "distance": 24,
+                  "height": 11.578096058126338,
+                  "delta": 0.11986220234157301
+                },
+                {
+                  "distance": 28,
+                  "height": 11.38739949980091,
+                  "delta": 0.041181278852764076
+                },
+                {
+                  "distance": 32,
+                  "height": 11.182161198457667,
+                  "delta": 0.004457365371599871
+                },
+                {
+                  "distance": 36,
+                  "height": 10.993891779700832,
+                  "delta": 0
+                },
+                {
+                  "distance": 40,
+                  "height": 10.85449011432365,
+                  "delta": 0
+                }
+              ]
+            },
+            {
+              "side": 1,
+              "axis": 1,
+              "maxHalfMetreStep": 0.39656375599466465,
+              "maxSlope": 0.7931275119893293,
+              "outsideDelta": 0,
+              "points": [
+                {
+                  "distance": 0,
+                  "height": 12.196078992854712,
+                  "delta": 2.8199347823799057
+                },
+                {
+                  "distance": 4,
+                  "height": 10.738669249951844,
+                  "delta": 1.8686883579772522
+                },
+                {
+                  "distance": 8,
+                  "height": 8.390153941198182,
+                  "delta": 0.017470634234517435
+                },
+                {
+                  "distance": 12,
+                  "height": 7.770099622656392,
+                  "delta": 0
+                },
+                {
+                  "distance": 16,
+                  "height": 6.950012357601846,
+                  "delta": 0
+                },
+                {
+                  "distance": 20,
+                  "height": 6.086590797383465,
+                  "delta": 0
+                },
+                {
+                  "distance": 24,
+                  "height": 5.290576416153151,
+                  "delta": 0
+                },
+                {
+                  "distance": 28,
+                  "height": 4.645153481129775,
+                  "delta": 0
+                },
+                {
+                  "distance": 32,
+                  "height": 4.087220859399153,
+                  "delta": 0
+                },
+                {
+                  "distance": 36,
+                  "height": 3.557255614146161,
+                  "delta": 0
+                },
+                {
+                  "distance": 40,
+                  "height": 3.085899206786145,
+                  "delta": 0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "inkstorm-pit-complex-252",
+          "x": 642.2691711433304,
+          "z": -516.6017737729705,
+          "yaw": 3.725803028792369,
+          "anchorHeight": 19.99570761149628,
+          "targetHeight": 21.195707611496278,
+          "centerX": 640.1735467219639,
+          "centerZ": -512.518777534352,
+          "halfX": 75,
+          "halfZ": 30.25,
+          "minRoadClearance": 14.342912758849383,
+          "accepted": true,
+          "samples": 9362,
+          "minHeight": 15.266366847966363,
+          "maxHeight": 21.408034274776774,
+          "beforeMax": 35.511731912828026,
+          "beforeAboveSlabBottom": 14.066024301331748,
+          "maxAboveSlabBottom": -0.03767333671950435,
+          "maxTargetError": 5.929340763529915,
+          "aboveSlabBottom": 0,
+          "modifiedSamples": 9357,
+          "savedAnchorDelta": 0,
+          "gradedGroundAtAnchorDelta": 1.2028435762643774,
+          "visualMesh": null,
+          "apron": [
+            {
+              "side": -1,
+              "axis": 0,
+              "maxHalfMetreStep": 0.7694375534852398,
+              "maxSlope": 1.5388751069704796,
+              "outsideDelta": 0,
+              "points": [
+                {
+                  "distance": 0,
+                  "height": 21.19338487381632,
+                  "delta": 23.53032115660519
+                },
+                {
+                  "distance": 4,
+                  "height": 20.78789621171351,
+                  "delta": 24.081181998212184
+                },
+                {
+                  "distance": 8,
+                  "height": 18.44240220525369,
+                  "delta": 22.466580880148925
+                },
+                {
+                  "distance": 12,
+                  "height": 13.641295108415871,
+                  "delta": 18.16072887171603
+                },
+                {
+                  "distance": 16,
+                  "height": 7.60394469992894,
+                  "delta": 12.455856827748365
+                },
+                {
+                  "distance": 20,
+                  "height": 1.939471693411794,
+                  "delta": 7.033881959793471
+                },
+                {
+                  "distance": 24,
+                  "height": -2.3067444505525243,
+                  "delta": 3.0529593359725604
+                },
+                {
+                  "distance": 28,
+                  "height": -4.854121654072483,
+                  "delta": 0.8417323635730505
+                },
+                {
+                  "distance": 32,
+                  "height": -5.9119573463391255,
+                  "delta": 0.07336666283306692
+                },
+                {
+                  "distance": 36,
+                  "height": -6.241137642578088,
+                  "delta": 1.4655234726003061e-8
+                },
+                {
+                  "distance": 40,
+                  "height": -6.61587770410798,
+                  "delta": 0
+                }
+              ]
+            },
+            {
+              "side": -1,
+              "axis": 1,
+              "maxHalfMetreStep": 0.6991198456258161,
+              "maxSlope": 1.3982396912516322,
+              "outsideDelta": 0,
+              "points": [
+                {
+                  "distance": 0,
+                  "height": 21.19469458083869,
+                  "delta": 14.84287912030841
+                },
+                {
+                  "distance": 4,
+                  "height": 21.169214225373132,
+                  "delta": 16.029792206335276
+                },
+                {
+                  "distance": 8,
+                  "height": 20.55112389805984,
+                  "delta": 16.58023897909571
+                },
+                {
+                  "distance": 12,
+                  "height": 18.343365910452764,
+                  "delta": 15.564614677646723
+                },
+                {
+                  "distance": 16,
+                  "height": 14.309909872407442,
+                  "delta": 12.830557074062646
+                },
+                {
+                  "distance": 20,
+                  "height": 9.003640525995097,
+                  "delta": 8.875010045852628
+                },
+                {
+                  "distance": 24,
+                  "height": 3.571576345473953,
+                  "delta": 4.737748907448078
+                },
+                {
+                  "distance": 28,
+                  "height": -0.8009114157847905,
+                  "delta": 1.6014839514294776
+                },
+                {
+                  "distance": 32,
+                  "height": -3.3601042135042336,
+                  "delta": 0.17033335586530535
+                },
+                {
+                  "distance": 36,
+                  "height": -4.540368953917587,
+                  "delta": 1.2628452840122785e-9
+                },
+                {
+                  "distance": 40,
+                  "height": -5.633670698847428,
+                  "delta": 0
+                }
+              ]
+            },
+            {
+              "side": 1,
+              "axis": 0,
+              "maxHalfMetreStep": 0.1398947673468811,
+              "maxSlope": 0.2797895346937622,
+              "outsideDelta": 0,
+              "points": [
+                {
+                  "distance": 0,
+                  "height": 21.187696915108383,
+                  "delta": -9.58358497992824
+                },
+                {
+                  "distance": 4,
+                  "height": 21.257442799734264,
+                  "delta": -8.344054052384267
+                },
+                {
+                  "distance": 8,
+                  "height": 21.69755214791009,
+                  "delta": -7.050568802386027
+                },
+                {
+                  "distance": 12,
+                  "height": 22.643428361099218,
+                  "delta": -5.266011932965624
+                },
+                {
+                  "distance": 16,
+                  "height": 23.731026670873778,
+                  "delta": -3.3651836851927426
+                },
+                {
+                  "distance": 20,
+                  "height": 24.522528356498498,
+                  "delta": -1.7547572492317376
+                },
+                {
+                  "distance": 24,
+                  "height": 24.778834875053295,
+                  "delta": -0.6930011466186017
+                },
+                {
+                  "distance": 28,
+                  "height": 24.62788099437761,
+                  "delta": -0.1744322030849291
+                },
+                {
+                  "distance": 32,
+                  "height": 24.60438899169769,
+                  "delta": -0.01494382391797621
+                },
+                {
+                  "distance": 36,
+                  "height": 24.530289876745705,
+                  "delta": 0
+                },
+                {
+                  "distance": 40,
+                  "height": 24.46769241801806,
+                  "delta": 0
+                }
+              ]
+            },
+            {
+              "side": 1,
+              "axis": 1,
+              "maxHalfMetreStep": 0.1427230874141081,
+              "maxSlope": 0.2854461748282162,
+              "outsideDelta": 0,
+              "points": [
+                {
+                  "distance": 0,
+                  "height": 21.19517337795479,
+                  "delta": -2.200938754477545
+                },
+                {
+                  "distance": 4,
+                  "height": 21.854953447233008,
+                  "delta": -0.8534291976465338
+                },
+                {
+                  "distance": 8,
+                  "height": 22.342412374074467,
+                  "delta": -0.008129430135230733
+                },
+                {
+                  "distance": 12,
+                  "height": 21.9463051887761,
+                  "delta": 0
+                },
+                {
+                  "distance": 16,
+                  "height": 21.60187878358225,
+                  "delta": 0
+                },
+                {
+                  "distance": 20,
+                  "height": 21.2778985060041,
+                  "delta": 0
+                },
+                {
+                  "distance": 24,
+                  "height": 20.896301608809615,
+                  "delta": 0
+                },
+                {
+                  "distance": 28,
+                  "height": 20.584569999165765,
+                  "delta": 0
+                },
+                {
+                  "distance": 32,
+                  "height": 20.306928717696024,
+                  "delta": 0
+                },
+                {
+                  "distance": 36,
+                  "height": 20.088496308920618,
+                  "delta": 0
+                },
+                {
+                  "distance": 40,
+                  "height": 19.97557776723975,
+                  "delta": 0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "inkstorm-pit-complex-253",
+          "x": 417.1590591678811,
+          "z": -561.7835313209542,
+          "yaw": 0.5881716736799096,
+          "anchorHeight": 6.279957969661012,
+          "targetHeight": 7.479957969661013,
+          "centerX": 419.23849322263663,
+          "centerZ": -565.8747968967783,
+          "halfX": 75,
+          "halfZ": 30.25,
+          "minRoadClearance": 23.703926964520218,
+          "accepted": true,
+          "samples": 9362,
+          "minHeight": 7.445003730135276,
+          "maxHeight": 7.680650524643955,
+          "beforeMax": 16.515263814023605,
+          "beforeAboveSlabBottom": 8.785305844362593,
+          "maxAboveSlabBottom": -0.049307445017057416,
+          "maxTargetError": 0.20069255498294236,
+          "aboveSlabBottom": 0,
+          "modifiedSamples": 9361,
+          "savedAnchorDelta": 0,
+          "gradedGroundAtAnchorDelta": 1.2028644309830099,
+          "visualMesh": null,
+          "apron": [
+            {
+              "side": -1,
+              "axis": 0,
+              "maxHalfMetreStep": 0.04541592136039174,
+              "maxSlope": 0.09083184272078348,
+              "outsideDelta": 0,
+              "points": [
+                {
+                  "distance": 0,
+                  "height": 7.479961518239847,
+                  "delta": -0.113864410985219
+                },
+                {
+                  "distance": 4,
+                  "height": 7.478121931291539,
+                  "delta": 0.1869623862968722
+                },
+                {
+                  "distance": 8,
+                  "height": 7.4517118506649425,
+                  "delta": 0.38436343299492765
+                },
+                {
+                  "distance": 12,
+                  "height": 7.357618094019262,
+                  "delta": 0.44018691661102965
+                },
+                {
+                  "distance": 16,
+                  "height": 7.223049122366763,
+                  "delta": 0.3285546272437612
+                },
+                {
+                  "distance": 20,
+                  "height": 7.284937644380482,
+                  "delta": 0.10375304654947523
+                },
+                {
+                  "distance": 24,
+                  "height": 7.310827870918873,
+                  "delta": 0.032181772186172734
+                },
+                {
+                  "distance": 28,
+                  "height": 7.170388601129566,
+                  "delta": 0.015172786134992698
+                },
+                {
+                  "distance": 32,
+                  "height": 7.039638104807512,
+                  "delta": 0.0019403682979159606
+                },
+                {
+                  "distance": 36,
+                  "height": 6.7054249364773,
+                  "delta": 0
+                },
+                {
+                  "distance": 40,
+                  "height": 6.478385274514874,
+                  "delta": 0
+                }
+              ]
+            },
+            {
+              "side": -1,
+              "axis": 1,
+              "maxHalfMetreStep": 0.2610076384931972,
+              "maxSlope": 0.5220152769863944,
+              "outsideDelta": 0,
+              "points": [
+                {
+                  "distance": 0,
+                  "height": 7.474197600893726,
+                  "delta": -4.648851760161916
+                },
+                {
+                  "distance": 4,
+                  "height": 7.48503778484908,
+                  "delta": -5.914666791243111
+                },
+                {
+                  "distance": 8,
+                  "height": 7.7604284615651,
+                  "delta": -7.110381107662475
+                },
+                {
+                  "distance": 12,
+                  "height": 8.725657096502161,
+                  "delta": -6.808990977065625
+                },
+                {
+                  "distance": 16,
+                  "height": 10.257779777529302,
+                  "delta": -5.181264639932435
+                },
+                {
+                  "distance": 20,
+                  "height": 11.393836805707338,
+                  "delta": -2.857542589418757
+                },
+                {
+                  "distance": 24,
+                  "height": 12.103455458889277,
+                  "delta": -1.2422720440421682
+                },
+                {
+                  "distance": 28,
+                  "height": 12.136969299237773,
+                  "delta": -0.34056387837901125
+                },
+                {
+                  "distance": 32,
+                  "height": 11.464936519031395,
+                  "delta": -0.02786640389508384
+                },
+                {
+                  "distance": 36,
+                  "height": 10.73022440965076,
+                  "delta": -5.2322847361838586e-9
+                },
+                {
+                  "distance": 40,
+                  "height": 10.196534177549061,
+                  "delta": 0
+                }
+              ]
+            },
+            {
+              "side": 1,
+              "axis": 0,
+              "maxHalfMetreStep": 0.28227567870307446,
+              "maxSlope": 0.5645513574061489,
+              "outsideDelta": 0,
+              "points": [
+                {
+                  "distance": 0,
+                  "height": 7.481813168167789,
+                  "delta": -7.2205887012142265
+                },
+                {
+                  "distance": 4,
+                  "height": 7.539545691090979,
+                  "delta": -7.732111355674213
+                },
+                {
+                  "distance": 8,
+                  "height": 8.029960642571353,
+                  "delta": -7.572287570392027
+                },
+                {
+                  "distance": 12,
+                  "height": 9.350008594095605,
+                  "delta": -6.706171636115698
+                },
+                {
+                  "distance": 16,
+                  "height": 11.369077798124371,
+                  "delta": -5.104505391260725
+                },
+                {
+                  "distance": 20,
+                  "height": 13.606269313825184,
+                  "delta": -3.2022752761365085
+                },
+                {
+                  "distance": 24,
+                  "height": 15.642688512187334,
+                  "delta": -1.5593232506363384
+                },
+                {
+                  "distance": 28,
+                  "height": 17.2032816167234,
+                  "delta": -0.48382761425185106
+                },
+                {
+                  "distance": 32,
+                  "height": 18.237792844939822,
+                  "delta": -0.04745068169429152
+                },
+                {
+                  "distance": 36,
+                  "height": 18.84963675395604,
+                  "delta": 0
+                },
+                {
+                  "distance": 40,
+                  "height": 19.34696916177738,
+                  "delta": 0
+                }
+              ]
+            },
+            {
+              "side": 1,
+              "axis": 1,
+              "maxHalfMetreStep": 0.11116161705485084,
+              "maxSlope": 0.22232323410970167,
+              "outsideDelta": 0,
+              "points": [
+                {
+                  "distance": 0,
+                  "height": 7.478716302024631,
+                  "delta": 1.068594929062049
+                },
+                {
+                  "distance": 4,
+                  "height": 7.105553315315004,
+                  "delta": 0.48107382039070956
+                },
+                {
+                  "distance": 8,
+                  "height": 6.824805235625593,
+                  "delta": 0.0035818639523949323
+                },
+                {
+                  "distance": 12,
+                  "height": 6.985500851835457,
+                  "delta": 0
+                },
+                {
+                  "distance": 16,
+                  "height": 7.279712479531035,
+                  "delta": 0
+                },
+                {
+                  "distance": 20,
+                  "height": 7.8023545615077055,
+                  "delta": 0
+                },
+                {
+                  "distance": 24,
+                  "height": 8.49108532944441,
+                  "delta": 0
+                },
+                {
+                  "distance": 28,
+                  "height": 9.31032334347255,
+                  "delta": 0
+                },
+                {
+                  "distance": 32,
+                  "height": 10.143974765332405,
+                  "delta": 0
+                },
+                {
+                  "distance": 36,
+                  "height": 10.831986197938779,
+                  "delta": 0
+                },
+                {
+                  "distance": 40,
+                  "height": 11.444627094791429,
+                  "delta": 0
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -13,6 +13,19 @@ import {
 } from '../../src/ui';
 
 describe('Galactic Racer HUD model', () => {
+  it('carries actual appearance readiness separately from the four physics cards and event rules', () => {
+    const appearance = { selected: 'teemto', active: 'procedural', status: 'error', error: 'offline' } as const;
+    const selected = createVehicleSelectionViewModel('podracer', true, { appearance, fixedRules: true, selectedLaps: 1 });
+    const classic = createVehicleSelectionViewModel('podracer', true, { fixedRules: true, selectedLaps: 1 });
+    expect(selected.appearance).toBe(appearance);
+    expect(selected.cards).toBe(classic.cards);
+    expect(selected.workshop).toEqual(classic.workshop);
+    expect(selected.selectedVehicleClass).toBe(classic.selectedVehicleClass);
+    expect(selected.fixedRules).toBe(true);
+    expect(selected.selectedLaps).toBe(1);
+    expect(classic).not.toHaveProperty('appearance');
+  });
+
   it('builds four distinct pre-race cards from the canonical vehicle catalog', () => {
     const selection = createVehicleSelectionViewModel('skim-speeder');
 
@@ -28,6 +41,7 @@ describe('Galactic Racer HUD model', () => {
       'active',
       'aiDifficulty',
       'cards',
+      'fixedRules',
       'lobby',
       'raceMode',
       'selectedLaps',
@@ -53,6 +67,14 @@ describe('Galactic Racer HUD model', () => {
     }
   });
 
+  it('carries fixed event rules without changing the selected class or build', () => {
+    const selection = createVehicleSelectionViewModel('podracer', true, { fixedRules: true, selectedLaps: 1 });
+    expect(selection.fixedRules).toBe(true);
+    expect(selection.selectedLaps).toBe(1);
+    expect(selection.workshop?.slots).toHaveLength(5);
+    expect(selection.cards).toBe(HUD_VEHICLE_CARDS);
+  });
+
   it('projects five workshop slots, named tradeoffs, and saved settings without callbacks', () => {
     const workshop = createWorkshopHudViewModel('podracer', undefined, {
       open: true,
@@ -67,6 +89,11 @@ describe('Galactic Racer HUD model', () => {
     expect(workshop.parts.filter((part) => part.equipped)).toHaveLength(5);
     expect(workshop.parts.every((part) => part.benefit.length > 3 && part.tradeoff.length > 3)).toBe(true);
     expect(workshop.summary.synergies.length).toBeGreaterThan(0);
+    expect(workshop.summary.totals).toContainEqual({ label: 'cooling', value: -0.09 });
+    expect(workshop.summary.totals).toContainEqual({ label: 'armour', value: 0 });
+    expect(workshop.summary.totals).toContainEqual({ label: 'boost', value: 0.18 });
+    const candidate = workshop.parts.find((part) => part.id === 'desert-fin-array');
+    expect(candidate?.comparison?.some((change) => change.current !== change.candidate)).toBe(true);
 
     const settings = createSettingsHudViewModel(DEFAULT_GAME_SETTINGS, {
       open: true,

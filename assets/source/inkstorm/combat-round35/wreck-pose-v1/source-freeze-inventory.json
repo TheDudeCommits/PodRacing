@@ -1,0 +1,40 @@
+{
+  "scope": "CPU-validated renderer-only pose candidate before actual combined V10 browser review. Full GameApp hash includes coordinated parent/FX changes; owned diff excludes their frozen changes when unchanged from the before snapshot. No GLB edits.",
+  "files": [
+    {
+      "path": "src/render/combat/WreckVisualPose.ts",
+      "bytes": 7711,
+      "sha256": "0cd9de49bb2f7c1f5814d9a603ccd78378640b90c717ad6a88c639fc2300ab7f"
+    },
+    {
+      "path": "src/render/app/GameApp.ts",
+      "bytes": 168577,
+      "sha256": "254039ba91bc3a8ff2063e2c18b55b155950a243303561f7c393b06f6fdb56b8"
+    },
+    {
+      "path": "src/camera/CinematicCamera.ts",
+      "bytes": 23394,
+      "sha256": "825dae66cd2cff8e398c9db5f7bbaa2b2e1cbad922d2539429742306a70bae94"
+    },
+    {
+      "path": "tests/combat/WreckVisualPose.test.ts",
+      "bytes": 7267,
+      "sha256": "d161bdf663cdc07797ae23cec3eb6728b639f8a5f41555b78e727bb902c81ec0"
+    },
+    {
+      "path": "tests/camera/CinematicCamera.test.ts",
+      "bytes": 15951,
+      "sha256": "4890da0a9d1de4f47eb7bb6434bf8247ae7c342b1f9c0a52ac69f30c4610b5ae"
+    },
+    {
+      "path": "src/render/galactic/GalacticEffectsView.ts",
+      "bytes": 55765,
+      "sha256": "822739696faddff750932d8bfaae85e332af75fa5b6df5eda5e03cbd5c1008b2"
+    },
+    {
+      "path": "tests/render/GalacticEffectsContact.test.ts",
+      "bytes": 6519,
+      "sha256": "536a41d09ea35c0486a818bf75334f4bb1a19ee713c34cae91ea70d81cc3a950"
+    }
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "status": "private-frozen-unapplied",
+  "scope": "renderer presentation only; no native/FPS/visual acceptance claim",
+  "patch": {
+    "path": "v27-support-pivot.patch",
+    "sha256": "fecbb34a78e727e8dd5764c01521df42e134d8343eb9de3aacd82eeb311ce520"
+  },
+  "files": {
+    "src/render/combat/TeemtoAuthoredDamage.ts": {
+      "baseSha256": "8823718236f00cad5dafc109056ca554c67fb09ad30462069bb1180281703841",
+      "candidateSha256": "920a7e2a2689374a947e240265ec66829aeb0a3d8d369c33d7534eb0ba82891b"
+    },
+    "src/render/combat/TeemtoStrikeMotion.ts": {
+      "baseSha256": "b4b365f82a0d620cbc3cac4c8f38769918adf901ba6029b1a4c88c5174df7c26",
+      "candidateSha256": "7073f4700efcc0f876d0e3859167f45898c6313f7585af4d45ad057d9cad241c"
+    },
+    "tests/combat/TeemtoAuthoredDamage.test.ts": {
+      "baseSha256": "ab55810959b434474f4f3f7e69bb3eb928d2a2f8ff06a5ce66b69ddde8a73352",
+      "candidateSha256": "66373c3ae9e505d44d4f447858126325d27ad87798578fb3573062eacce65738"
+    },
+    "tests/combat/TeemtoGroundFootprint.test.ts": {
+      "baseSha256": "af84668c6ad751574d927a1b5929248f4f9d7e8e1671d49d95188fe4f8dfa694",
+      "candidateSha256": "f309592a1850a0276cf57a46d14a3ca9b9da9ade5bb1fe6df2911409a2511386"
+    },
+    "tests/combat/TeemtoStrikeMotion.test.ts": {
+      "baseSha256": "5b63510332317c0c7b5843139ff6713503aa1102457a31ba5ee22d6f2916bca3",
+      "candidateSha256": "85b8965d303d8fece46efa37f981e1b4e9382fc28e5b2c99ee1d512a0992863d"
+    },
+    "tests/combat/TeemtoSupportSettle.test.ts": {
+      "baseSha256": null,
+      "candidateSha256": "adeed98a68da395c4cc1b06f10daef9ced205606596648ad01beb312b15bb4ed"
+    }
+  },
+  "baseFilesStillMatchLive": true,
+  "tests": {
+    "passed": 24,
+    "files": 6,
+    "commands": 4,
+    "legacyFullTrajectoryCasesNotSelected": 2,
+    "typescript": "PASS",
+    "gitApplyCheck": "PASS",
+    "whitespaceCheck": "PASS"
+  },
+  "logs": {
+    "final-focused.log": "7469f74ae61fa239281860401598eb0902768770c9777b40c19bbad24cf6195d",
+    "final-lifecycle-direction.log": "c41f1ec44fddaf2b386b69f9e89707afb3ffd978c8a21ca520e7a1cbf85c964e",
+    "contact-final.log": "b062eac5f756284f11f1c19375bf5e01feab3fa7198d1ede0799f9d19ff57878",
+    "camera-final.log": "bd09b4758f41a36f5f53c5f979b27c56d869421f9de2f71fc937bfece816ab09",
+    "typecheck.log": "8943a88672288ba53fd3bf3f59711ddbde1ba2356deea6e752ab8f1cb168272f",
+    "initial-focused.log": "4958bb0e277a4b846113a79077cc5ae14a44a2f0bcef703d876f0fa62bfe2171",
+    "initial-lifecycle-direction.log": "cf9e0c2e25dee98d26b8e456778e06a750236ec3151035bb78aafcb5664d1a5f",
+    "second-focused.log": "e47c16d1734f1ae4419c0de8c39d5b670bbe0cbdbd6356c7c3eaeb70f0083e38",
+    "contact-compat.log": "698ed8844177ff01c03c45ff26bb9b4fcf149815aa03f4263fff661981cf1f39",
+    "contact-age-diagnostic.log": "efb4c042977d7ee874eea1ebe9af380efcf548b4a00b644feb35d69d29484c2e",
+    "typecheck-initial-failure.log": "6b1b1067d0a3c86e4a4db6a071742055e5ddd177be86c7df9092556ddb1fb5ae"
+  },
+  "evidence": {
+    "HANDOFF.md": "83ac03a7036a5b70a64c6b8f72d312a83f1d8a17bcdcbdba93a9fc648b708514",
+    "metrics.json": "0f8dd3a5aea0b87c6aac52a618a909603fd7c3ff655d5d11f37d1fb1e7b654ba",
+    "metrics-before-decay-fix.json": "8c97357e04a1677b11a29cc492a9abef87d77b19d6a30b11d3a3b71d76081e7f",
+    "contact-band-metrics.json": "24a24d3c27ad97e24cbbb8991feb59967c66f1f9c35574ecd7fbcdc7007e7cac",
+    "base-hashes.json": "004d66d44a61759034a9409755f30b0fcdd2b26ef47f05cfd67d760baccc94cc"
+  },
+  "unchangedDependencies": {
+    "src/render/combat/WreckVisualPose.ts": "2f634e7cbd07d166ecf2beaf16b02031b6e320c3c30aa16b074c7c10d5729e90",
+    "src/render/combat/TeemtoWreckBreakup.ts": "824ce19d7c465cb1ac0da82f050a22998d9afa7048215a8f18f98cfb140adcbf",
+    "tests/fixtures/teemtoActualCamera.ts": "2c67ce683eae39dafec9060ad5848d7e66a14067b29eac1d4d3ac2716d1ac03f",
+    "src/camera/CinematicCamera.ts": "862a5787a34d6d767841b87b738a38d82b5b1bf074b1e54454f2a5f47bd9ecf9"
+  },
+  "independentStaticReview": "Parent /root/next_fleet_sources33 inspected both source diffs; no blocking issue; no test/native claim.",
+  "cpuReleased": true
+}

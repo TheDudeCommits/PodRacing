@@ -1,8 +1,16 @@
+import type { HudMasteryViewModel } from '../game/mastery/types';
+import { CHAMPIONSHIP_EVENT_IDS } from '../game/mastery/events';
 import { MinimapCanvas } from './MinimapCanvas';
+import { RaceEventAtlas } from './RaceEventAtlas';
+import { workshopSymbol } from './workshopSymbols';
 import { VehicleCardPreviewRenderer } from './VehicleCardPreview';
+import { ART_APPEARANCES, isVehicleAppearanceId } from '../game/vehicleAppearance';
+import type { VehicleArtLibrary } from '../render/vehicles';
 import { installPodracingHudStyles } from './hudStyles';
+import { layoutThreatCues, threatBearingLabel } from './threatLayout';
 import {
   cornerGlyph,
+  createSessionHudViewModel,
   formatOrdinal,
   formatRaceTimeHundredths,
   formatRaceTime,
@@ -13,6 +21,7 @@ import {
 } from './model';
 import type {
   HudAiDifficulty,
+  HudGalacticWreckPhase,
   HudLaunchViewModel,
   HudRaceDirectorViewModel,
   HudResultViewModel,
@@ -31,11 +40,18 @@ import type {
 } from './types';
 
 export interface RaceHudOptions {
+  vehicleArtLibrary?: VehicleArtLibrary;
   installStyles?: boolean;
   initiallyMuted?: boolean;
   onMuteChange?: (muted: boolean) => void;
   /** Strongly typed menu actions; the same payload is also dispatched as `pod-hud-action`. */
   onAction?: (action: RaceHudAction) => void;
+}
+
+/** Presentation events arrive per display frame, independent of the simulation HUD cadence. */
+export interface CombatHudFrame {
+  cue: { kind: 'hit' | 'shield-hit' | 'takedown' | 'wreck' | 'emp' | 'repair'; title: string; detail: string; progress: number } | null;
+  cinematic: { active: boolean; progress: number; letterbox: boolean };
 }
 
 function requireElement<T extends Element>(root: ParentNode, selector: string): T {
@@ -71,6 +87,13 @@ export class RaceHud {
   readonly root: HTMLDivElement;
 
   private readonly minimap: MinimapCanvas;
+  private readonly eventAtlas: RaceEventAtlas;
+  private eventAtlasOpen = false;
+  private readonly combatFeedback: HTMLElement;
+  private readonly combatFeedbackTitle: HTMLElement;
+  private readonly combatFeedbackDetail: HTMLElement;
+  private combatFeedbackKey = '';
+  private readonly systemMotionPreference: MediaQueryList | null;
   private readonly lap: HTMLElement;
   private readonly lapTotal: HTMLElement;
   private readonly position: HTMLElement;
@@ -136,6 +159,8 @@ export class RaceHud {
   private readonly settingsCapture: HTMLElement;
   private readonly controls: HTMLElement;
   private readonly threatCues: HTMLElement;
+  private readonly compactThreatObstacles: readonly HTMLElement[];
+  private readonly drivingFeedback: HTMLElement;
   private readonly results: HTMLElement;
   private readonly resultTitle: HTMLElement;
   private readonly resultCallout: HTMLElement;
@@ -180,6 +205,12 @@ export class RaceHud {
   private settingsBindingsKey = '';
   private resultPresentationKey = '';
   private threatStructureKey = '';
+  private garageVehicleKey = '';
+  private vehicleSelectionModel: HudPreRaceViewModel | undefined;
+  private inspectionAngle = 0;
+  private masteryEventsKey = '';
+  private masteryResultKey = '';
+  private cupStandingsKey = '';
 
   constructor(mount: HTMLElement, options: RaceHudOptions = {}) {
     if (options.installStyles !== false) installPodracingHudStyles(mount.ownerDocument);
@@ -188,6 +219,7 @@ export class RaceHud {
     this.muted = options.initiallyMuted ?? false;
     this.createdAt = performance.now();
     this.root = mount.ownerDocument.createElement('div');
+    this.systemMotionPreference = mount.ownerDocument.defaultView?.matchMedia?.('(prefers-reduced-motion: reduce)') ?? null;
     this.root.className = 'pod-hud';
     // Avoid a one-frame flash of every instrument before the first model tick.
     this.root.dataset.phase = 'countdown';
@@ -196,13 +228,40 @@ export class RaceHud {
       <section class="pod-hud__vehicle-select" data-hud="vehicle-selection" aria-label="Select your vehicle" aria-hidden="true">
         <div class="pod-hud__vehicle-select-frame">
           <header class="pod-hud__vehicle-select-head">
-            <h1>NOW THIS IS PODRACING!</h1>
+            <div><span class="pod-hud__eyebrow">INKSTORM / PODRACING LEAGUE</span><h1>HANGAR</h1></div>
+            <nav class="pod-hud__garage-nav" aria-label="Race preparation"><button type="button" data-action="open-event-atlas" aria-expanded="false"><b>◎</b> MAP</button><button type="button" data-action="open-workshop"><b>≡</b> BUILD</button></nav>
+            <div class="pod-hud__garage-edition"><span>CHAPTER 01</span><strong>THE VERMILION RUN</strong><small>Choose your machine. Write your legend.</small></div>
           </header>
-          <div class="pod-hud__vehicle-cards" data-hud="vehicle-cards"></div>
+          <section class="pod-hud__garage-hero" aria-label="Inspect selected vehicle">
+            <span class="pod-hud__garage-bay">01 <i></i> CHOOSE YOUR MACHINE</span>
+            <div class="pod-hud__garage-model" data-hud="garage-model" data-vehicle-preview="hero" data-vehicle-id="podracer" role="img" aria-label="Selected vehicle inspection"></div>
+            <div class="pod-hud__garage-name"><span data-hud="garage-class">01 / TWIN ENGINE</span><h2 data-hud="garage-name">Boonta Podracer</h2><p data-hud="garage-description"></p></div>
+            <div class="pod-hud__garage-inspect"><button type="button" data-action="inspect-vehicle" data-direction="-1" aria-label="Rotate vehicle left">↶</button><span>INSPECT</span><button type="button" data-action="inspect-vehicle" data-direction="1" aria-label="Rotate vehicle right">↷</button></div>
+            <div class="pod-hud__garage-stats" data-hud="garage-stats" aria-label="Selected vehicle ratings"></div>
+          </section>
+          <section class="pod-hud__vehicle-choice" aria-label="Vehicle class and appearance">
+            <div class="pod-hud__vehicle-cards" data-hud="vehicle-cards" role="group" aria-label="Vehicle class and handling"></div>
+            <div class="pod-hud__appearance" data-hud="appearance" hidden>
+              <div role="group" aria-label="Podracer appearance"><span>BODY STYLE</span>${Object.values(ART_APPEARANCES).map(art => `<button type="button" data-action="select-appearance" data-appearance="${art.id}" aria-pressed="false">${art.label}</button>`).join('')}<small>Same handling</small></div>
+              <p data-hud="appearance-status" role="status" aria-live="polite"></p><button type="button" data-action="retry-appearance" hidden>Retry model</button>
+            </div>
+          </section>
+          <aside class="pod-hud__mastery" data-hud="mastery" aria-label="Event and records">
+            <span class="pod-hud__eyebrow">02 / SELECT EVENT</span>
+            <h2 data-hud="event-title">Make the canyon yours.</h2>
+            <p data-hud="event-description">Learn the line. Carry speed through the canyon. Release your drift to launch out of every turn.</p>
+            <div class="pod-hud__cup-context" data-hud="cup-context" hidden><strong></strong><p></p><div data-hud="cup-standings"></div></div>
+            <div class="pod-hud__event-heading"><span data-hud="calendar-title">RACE CALENDAR</span><small>Scroll to browse ↓</small></div>
+            <div class="pod-hud__event-list" data-hud="event-list" role="region" aria-label="Race calendar, scroll to browse events"></div>
+            <div class="pod-hud__personal-record"><span>PERSONAL BEST</span><strong data-hud="personal-best">—:——.——</strong><small data-hud="mastery-objective">A new racing story starts on the grid.</small><small data-hud="archive-notice" hidden></small></div>
+            <div class="pod-hud__mastery-controls" data-hud="mastery-controls" hidden><button type="button" data-action="toggle-ghost" aria-pressed="false">Ghost <b data-hud="ghost-state">OFF</b></button><button type="button" data-action="save-course" aria-pressed="false">☆ Save course</button></div>
+            <div class="pod-hud__garage-rule"><span>THE ART OF SPEED</span><strong>Brake early. Drift clean.<br>Spend your heat wisely.</strong></div>
+          </aside>
           <footer class="pod-hud__vehicle-select-footer">
-            <section class="pod-hud__selector-controls" aria-label="Race controls">
+            <details class="pod-hud__selector-controls" aria-label="Race controls">
+              <summary>FLIGHT MANUAL</summary>
               <div class="pod-hud__selector-section-head">
-                <strong>Race controls</strong>
+                <strong>Flight manual</strong>
                 <small>Click a craft or use ← / → to select</small>
               </div>
               <div class="pod-hud__selector-control-grid">
@@ -217,10 +276,16 @@ export class RaceHud {
                 <span><kbd>R</kbd><em>Recover</em></span>
                 <span><kbd>Esc/P</kbd><em>Pause</em></span>
               </div>
-            </section>
+              <div class="pod-hud__pickup-manual">
+                <strong>OPEN EXPEDITION / TRACK SALVAGE</strong>
+                <p><b>EMP Cell</b> — drive through the violet pickup to disrupt nearby rivals and clear enemy ordnance. A shield blocks the disruption.</p>
+                <p><b>Repair Salvage</b> — the green pickup repairs your hull and vents heat. Both pickups return after five seconds for other racers. Each racer can claim each pickup once per race.</p>
+              </div>
+            </details>
 
             <section class="pod-hud__selector-setup" aria-label="Race setup">
               <div class="pod-hud__selector-section-head"><strong>Race setup</strong></div>
+              <div class="pod-hud__event-launch-summary" data-hud="event-launch-summary"><strong data-hud="event-launch-title"></strong><span data-hud="event-launch-detail"></span><small>Stock parts are fixed. Choose Open Expedition to tune your machine.</small></div>
               <div class="pod-hud__difficulty-selector" role="group" aria-label="AI difficulty">
                 <span>AI</span>
                 <button type="button" data-action="select-ai-difficulty" data-difficulty="easy" aria-pressed="false">Easy</button>
@@ -247,11 +312,13 @@ export class RaceHud {
               </div>
               <div class="pod-hud__selector-launch-row">
                 <button class="pod-hud__workshop-toggle" type="button" data-action="toggle-workshop" aria-expanded="false">Workshop</button>
-                <strong class="pod-hud__start-prompt" data-hud="start-prompt">Press <kbd>Space</kbd> or <kbd>Enter</kbd> to start</strong>
+                <button type="button" class="pod-hud__start-button" data-action="start-race" data-hud="start-button"><span>START RACE</span><b>↗</b></button>
+                <strong class="pod-hud__start-prompt" data-hud="start-prompt">Space / Enter to start</strong>
               </div>
             </section>
 
-            <section class="pod-hud__room" data-hud="room-panel" aria-label="Online room">
+            <details class="pod-hud__room" data-hud="room-panel" aria-label="Online room">
+              <summary>ONLINE / RACE TOGETHER</summary>
               <div class="pod-hud__selector-section-head">
                 <strong>Online room</strong>
                 <span data-hud="room-member-count">1/4</span>
@@ -268,46 +335,45 @@ export class RaceHud {
               </div>
               <div class="pod-hud__room-status" data-hud="room-status" role="status" aria-live="polite">Solo race ready</div>
               <ul class="pod-hud__room-members" data-hud="room-member-list" aria-label="Room members"></ul>
-            </section>
+            </details>
           </footer>
           <section class="pod-hud__workshop" data-hud="workshop" aria-label="Podracer workshop" aria-hidden="true">
             <header class="pod-hud__workshop-head">
-              <div><span>Boonta workshop</span><strong>Build the advantage</strong></div>
+              <div><span>INKSTORM / ENGINEERING</span><strong>BUILD</strong></div>
               <button type="button" data-action="toggle-workshop" aria-label="Close workshop">×</button>
             </header>
             <div class="pod-hud__workshop-slots" data-hud="workshop-slots" role="tablist" aria-label="Loadout slots"></div>
             <div class="pod-hud__workshop-body">
               <div class="pod-hud__workshop-parts" data-hud="workshop-parts" aria-label="Available parts"></div>
               <aside class="pod-hud__workshop-summary" aria-label="Build summary">
-                <div><strong>Bonuses</strong><ul data-hud="workshop-bonuses"></ul></div>
-                <div><strong>Tradeoffs</strong><ul data-hud="workshop-penalties"></ul></div>
-                <div><strong>Synergies</strong><ul data-hud="workshop-synergies"></ul></div>
+                <div class="pod-hud__workshop-effective"><strong>Total build <small>ALL INSTALLED PARTS · VS STOCK</small></strong><ul data-hud="workshop-totals"></ul></div>
+                <details class="pod-hud__workshop-contributors"><summary>Contributing modifiers</summary><strong>Bonuses</strong><ul data-hud="workshop-bonuses"></ul><strong>Tradeoffs</strong><ul data-hud="workshop-penalties"></ul></details>
+                <div><strong>Active synergies</strong><ul data-hud="workshop-synergies"></ul></div>
               </aside>
             </div>
+            <footer class="pod-hud__workshop-footer"><span>✓ Changes apply immediately and save on this device.<small class="pod-hud__workshop-reading-hint"><span>Full notes: focus or hover a part. </span>Scroll for more details ↓</small></span><button type="button" data-action="toggle-workshop">DONE / BACK TO HANGAR →</button></footer>
           </section>
         </div>
       </section>
 
       <section class="pod-hud__race" aria-label="Race status">
-        <div class="pod-hud__race-rail" aria-hidden="true"></div>
+        <button class="pod-hud__detail-toggle" type="button" data-action="toggle-hud-detail" aria-pressed="false">ROUTE +</button>
+        <div class="pod-hud__race-rail" aria-hidden="true"><svg viewBox="0 0 1000 76" preserveAspectRatio="none" focusable="false"><path class="race-glass" d="M0 0H1000V46H920L900 72H760L740 46H604C558 83 442 83 396 46H260L240 72H100L80 46H0Z"/><path class="race-contour" d="M0 46H80L100 72H240L260 46H396C442 83 558 83 604 46H740L760 72H900L920 46H1000" vector-effect="non-scaling-stroke"/></svg></div>
         <div class="pod-hud__race-stat pod-hud__race-stat--lap">
           <div class="pod-hud__race-value"><span data-hud="lap">1</span><small>/ <span data-hud="lap-total">3</span></small></div>
           <div class="pod-hud__label">Lap</div>
         </div>
         <div class="pod-hud__race-time">
+          <span class="pod-hud__record-target" data-hud="record-target"></span>
           <span class="pod-hud__clock" data-hud="clock">0:00.00</span>
           <span class="pod-hud__label">Time</span>
           <span class="pod-hud__split" data-hud="split">—</span>
         </div>
         <div class="pod-hud__race-stat pod-hud__race-stat--position">
           <div class="pod-hud__race-value"><span data-hud="position">1</span><small>/ <span data-hud="racer-count">4</span></small></div>
-          <div class="pod-hud__label">Pos</div>
+          <div class="pod-hud__label">Position</div>
         </div>
-        <div class="pod-hud__redline-heat" data-hud="redline-instrument" aria-label="Redline heat" aria-hidden="true">
-          <span>[Shift] Redline</span>
-          <i class="pod-hud__redline-track" aria-hidden="true"><i data-hud="redline-fill"></i></i>
-          <strong class="pod-hud__sr-only"><span data-hud="redline-value">0</span>%</strong>
-        </div>
+
       </section>
 
       <aside class="pod-hud__mode-status" data-hud="race-mode-status" aria-label="Race objective" aria-hidden="true">
@@ -334,7 +400,7 @@ export class RaceHud {
         <section class="pod-hud__corner" data-hud="course-corner" aria-label="Upcoming corner">
           <span class="pod-hud__corner-arrow" data-hud="corner-arrow">↑</span>
           <div class="pod-hud__corner-distance" data-hud="corner-distance">0 M</div>
-          <div class="pod-hud__corner-tag pod-hud__sr-only" data-hud="corner-tag">Straight</div>
+          <div class="pod-hud__corner-tag" data-hud="corner-tag">Straight</div>
         </section>
       </section>
 
@@ -371,21 +437,19 @@ export class RaceHud {
         </div>
       </section>
 
-      <aside class="pod-hud__flight" data-hud="flight" aria-live="polite" aria-hidden="true">
-        <span class="pod-hud__flight-state">Airborne</span>
-        <strong data-hud="flight-clearance">00.0 M Clear</strong>
-        <small data-hud="flight-motion">Apex // Set</small>
-      </aside>
 
+
+      <section class="pod-hud__driving-instruments" aria-label="Driving instruments">
+        <div class="pod-hud__redline-heat" data-hud="redline-instrument" aria-label="Redline heat" aria-hidden="true">
+          <span>SHIFT / REDLINE</span>
+          <i class="pod-hud__redline-track" aria-hidden="true"><i data-hud="redline-fill"></i></i>
+          <strong class="pod-hud__sr-only"><span data-hud="redline-value">0</span>%</strong>
+        </div>
       <section class="pod-hud__speed" aria-label="Speed">
-        <div class="pod-hud__speed-ring" data-hud="speed-ring"></div>
+        <div class="pod-hud__speed-ring" data-hud="speed-ring"><svg class="pod-hud__speed-dial" viewBox="0 0 185 210" aria-hidden="true"><path class="dial-glass" d="M38 2H115C150 2 178 30 178 65V182C178 196 176 202 162 202H18C8 202 2 196 2 186V119C2 109 8 101 18 97C8 89 2 82 2 75V64C2 45 18 30 38 30Z"/><path class="dial-outline" d="M38 30H115C136 30 151 45 151 66C151 87 136 103 115 103H38C18 103 2 89 2 67C2 46 18 30 38 30Z"/><path class="dial-track" pathLength="100" d="M38 2H115C150 2 178 30 178 65C178 82 172 97 161 109"/><path class="dial-charge" pathLength="100" d="M38 2H115C150 2 178 30 178 65C178 82 172 97 161 109"/><path class="dial-heat-edge" d="M178 65C178 82 172 97 161 109"/><circle class="dial-key-socket" cx="36" cy="12" r="10"/></svg></div>
         <div class="pod-hud__speed-readout">
           <span class="pod-hud__speed-number" data-hud="speed">000</span>
           <span class="pod-hud__speed-unit">KPH</span>
-        </div>
-        <div class="pod-hud__meter pod-hud__meter--drift">
-          <div class="pod-hud__meter-head"><span class="pod-hud__label">Drift</span><span class="pod-hud__meter-value pod-hud__sr-only" data-hud="drift-value">0</span></div>
-          <div class="pod-hud__meter-track"><span class="pod-hud__meter-fill" data-hud="drift-fill"></span></div>
         </div>
         <div class="pod-hud__meter pod-hud__meter--boost">
           <div class="pod-hud__meter-head"><span class="pod-hud__label">Boost</span><span class="pod-hud__meter-value pod-hud__sr-only" data-hud="boost-value">100</span></div>
@@ -404,6 +468,8 @@ export class RaceHud {
         </div>
       </section>
 
+      </section>
+
       <div class="pod-hud__galactic-alert" data-hud="galactic-alert" role="status" aria-live="polite" aria-hidden="true">
         <strong data-hud="galactic-alert-label"></strong>
         <span data-hud="galactic-alert-detail"></span>
@@ -415,6 +481,18 @@ export class RaceHud {
       </div>
       <div class="pod-hud__wrong-way" data-hud="wrong-way" role="alert" aria-hidden="true">Wrong way</div>
       <div class="pod-hud__countdown" data-hud="countdown" aria-live="assertive" aria-hidden="true"></div>
+      <div class="pod-hud__cinematic-matte" aria-hidden="true"></div>
+      <section class="pod-hud__combat-feedback" data-hud="combat-feedback" role="status" aria-live="polite" aria-atomic="true" hidden><i aria-hidden="true">✦</i><strong data-hud="combat-feedback-title"></strong><span data-hud="combat-feedback-detail"></span></section>
+      <section class="pod-hud__driving-feedback" aria-label="Driving feedback">
+      <aside class="pod-hud__flight" data-hud="flight" aria-live="polite" aria-hidden="true">
+        <span class="pod-hud__flight-state">Airborne</span>
+        <strong data-hud="flight-clearance">00.0 M Clear</strong>
+        <small data-hud="flight-motion">Apex // Set</small>
+      </aside>
+        <div class="pod-hud__meter pod-hud__meter--drift">
+          <div class="pod-hud__meter-head"><span class="pod-hud__label">Drift</span><span class="pod-hud__meter-value" data-hud="drift-value">0</span></div>
+          <div class="pod-hud__meter-track"><span class="pod-hud__meter-fill" data-hud="drift-fill"></span></div>
+        </div>
       <div class="pod-hud__launch" data-hud="launch" role="status" aria-live="off" aria-atomic="true" aria-hidden="true">
         <header><span>Perfect launch</span><strong data-hud="launch-label">Match the sweet spot</strong></header>
         <div class="pod-hud__launch-track" aria-hidden="true">
@@ -426,16 +504,21 @@ export class RaceHud {
           <i aria-hidden="true"><i data-hud="launch-heat"></i></i>
         </footer>
       </div>
+      </section>
       <div class="pod-hud__threat-cues" data-hud="threat-cues" aria-label="Directional threats" aria-hidden="true"></div>
+      <aside class="pod-hud__tutorial" data-hud="tutorial" aria-live="polite" aria-hidden="true"><span data-hud="tutorial-step"></span><strong data-hud="tutorial-title"></strong><p data-hud="tutorial-instruction"></p><i aria-hidden="true"><i data-hud="tutorial-progress"></i></i></aside>
       <aside class="pod-hud__pause" data-hud="pause" role="dialog" aria-label="Race paused" aria-hidden="true">
         <div class="pod-hud__pause-home">
-          <span>Engines holding</span>
+          <span data-hud="paused-event">Engines holding</span>
           <strong>Paused</strong>
           <small>Press P or Escape to rejoin the circuit</small>
           <div class="pod-hud__pause-actions">
             <button type="button" data-action="resume-race">Resume</button>
             <button type="button" data-action="toggle-settings" aria-expanded="false">Settings</button>
+            <button type="button" data-action="retry-race" data-solo-pause hidden disabled>Retry event</button>
+            <button type="button" data-action="return-to-garage" data-solo-pause hidden disabled>Back to Hangar</button>
           </div>
+          <p data-hud="pause-navigation-hint"></p>
         </div>
         <section class="pod-hud__settings" data-hud="settings" aria-label="Game settings" aria-hidden="true">
           <header>
@@ -496,13 +579,19 @@ export class RaceHud {
       <section class="pod-hud__results" data-hud="results" role="dialog" aria-label="Race results" aria-hidden="true">
         <h1 class="pod-hud__results-title" data-hud="result-title">Race complete</h1>
         <div class="pod-hud__results-callout" data-hud="result-callout">Pod one // Circuit conquered</div>
+        <div class="pod-hud__results-actions"><button type="button" class="pod-hud__start-button" data-action="retry-race">RACE AGAIN <b>↗</b></button><button type="button" data-action="return-to-garage">BACK TO HANGAR</button></div>
+        <div class="pod-hud__mastery-result" data-hud="mastery-result" hidden></div>
         <div class="pod-hud__result-highlight" data-hud="result-highlight" aria-hidden="true"></div>
         <div class="pod-hud__results-list" data-hud="result-list"></div>
         <div class="pod-hud__result-moments" data-hud="result-moments" aria-label="Race highlights"></div>
-        <div class="pod-hud__results-footer">Press R to challenge the circuit again</div>
+        <div class="pod-hud__results-footer">R to retry · Select a highlight to relive the race</div>
       </section>
     `;
     mount.append(this.root);
+    this.eventAtlas = new RaceEventAtlas(requireElement(this.root, '[data-hud="vehicle-selection"]'));
+    this.combatFeedback = requireElement(this.root, '[data-hud="combat-feedback"]');
+    this.combatFeedbackTitle = requireElement(this.root, '[data-hud="combat-feedback-title"]');
+    this.combatFeedbackDetail = requireElement(this.root, '[data-hud="combat-feedback-detail"]');
 
     this.lap = requireElement(this.root, '[data-hud="lap"]');
     this.lapTotal = requireElement(this.root, '[data-hud="lap-total"]');
@@ -569,6 +658,16 @@ export class RaceHud {
     this.settingsCapture = requireElement(this.root, '[data-hud="settings-capture"]');
     this.controls = requireElement(this.root, '[data-hud="controls"]');
     this.threatCues = requireElement(this.root, '[data-hud="threat-cues"]');
+    this.drivingFeedback = requireElement(this.root, '.pod-hud__driving-feedback');
+    // Bounded visual children only: the galactic/threat containers span the viewport.
+    this.compactThreatObstacles = [...this.root.querySelectorAll<HTMLElement>([
+      '.pod-hud__race', '.pod-hud__split', '.pod-hud__corner', '.pod-hud__course-progress',
+      '.pod-hud__driving-instruments', '.pod-hud__systems-cluster', '.pod-hud__context-action',
+      '.pod-hud__upgrades', '.pod-hud__mode-status', '.pod-hud__director-event',
+      '.pod-hud__galactic-alert', '.pod-hud__wrong-way', '.pod-hud__combat-feedback',
+      '.pod-hud__driving-feedback', '.pod-hud__launch', '.pod-hud__controls',
+      '.pod-hud__tutorial', '.pod-hud__asset-status', '.pod-hud__map', '.pod-hud__countdown',
+    ].join(','))];
     this.results = requireElement(this.root, '[data-hud="results"]');
     this.resultTitle = requireElement(this.root, '[data-hud="result-title"]');
     this.resultCallout = requireElement(this.root, '[data-hud="result-callout"]');
@@ -597,21 +696,45 @@ export class RaceHud {
     this.joinRoomButton = requireElement(this.root, '[data-action="join-room"]');
     this.copyRoomButton = requireElement(this.root, '[data-action="copy-room"]');
     this.leaveRoomButton = requireElement(this.root, '[data-action="leave-room"]');
-    this.vehiclePreviews = new VehicleCardPreviewRenderer({ root: this.root });
+    this.vehiclePreviews = new VehicleCardPreviewRenderer({
+      root: this.root, limits: { maxWidth: 1200, maxHeight: 600 }, library: options.vehicleArtLibrary,
+      onAppearanceStatusChange: () => this.updateAppearanceStatus(),
+    });
     this.courseMarkers = requireElement(this.root, '[data-hud="course-progress-markers"]');
     this.courseCorner = requireElement(this.root, '[data-hud="course-corner"]');
     this.minimap = new MinimapCanvas(requireElement<HTMLCanvasElement>(this.root, '[data-hud="minimap"]'));
     this.root.addEventListener('click', this.handleActionClick);
     this.root.addEventListener('change', this.handleControlChange);
     this.root.addEventListener('input', this.handleControlInput);
+    this.root.addEventListener('keydown', this.handleInterfaceKey);
   }
 
   update(model: RaceHudViewModel): void {
     this.root.dataset.phase = model.phase;
+    this.root.classList.toggle('has-context-danger', model.wrongWay || model.galactic?.wreckPhase != null);
+    this.root.classList.toggle('has-wreck-state', model.galactic?.wreckPhase != null);
+    this.root.classList.toggle('has-ordinary-circuit', model.raceModeStatus?.mode === 'circuit' && model.raceTime > 7);
+    this.root.dataset.notice = model.wrongWay ? 'wrong-way'
+      : model.galactic?.wreckPhase != null ? 'galactic'
+      : model.directorEvent ? 'director'
+      : model.galactic?.statusLabel || (model.galactic?.redlineHeat ?? 0) >= 0.9 ? 'galactic'
+      : 'none';
     this.updateVehicleSelection(model.preRace);
     const selectorActive = model.preRace?.active === true;
+    this.root.classList.toggle('has-launch-cue', Boolean(model.launch) && !selectorActive);
     this.updateSettings(model.settings);
-    this.updateThreatCues(model.threats, model.phase, selectorActive);
+    const session = createSessionHudViewModel(model);
+    this.pause.dataset.session = session.solo ? 'solo' : 'online';
+    write(requireElement(this.pause, '[data-hud="paused-event"]'), session.eventTitle);
+    write(requireElement(this.pause, '[data-hud="pause-navigation-hint"]'), session.pauseHint);
+    for (const button of this.pause.querySelectorAll<HTMLButtonElement>('[data-solo-pause]')) {
+      button.hidden = !session.canRestart;
+      button.disabled = !session.canRestart;
+    }
+    const automaticControls = performance.now() - this.createdAt < 7_500
+      && model.phase !== 'finished'
+      && !selectorActive;
+    const controlsVisible = model.controlsVisible ?? automaticControls;
     this.updatePerfectLaunch(model.launch, selectorActive);
     this.updateRaceModeStatus(model.raceModeStatus, model.phase, selectorActive);
     this.updateDirectorEvent(model.directorEvent, model.phase, model.wrongWay, selectorActive);
@@ -622,12 +745,15 @@ export class RaceHud {
     write(this.clock, formatRaceTimeHundredths(model.raceTime));
     write(this.speed, formatSpeed(model.speedMps));
     this.speedRing.style.setProperty('--pod-speed-angle', `${Math.round(Math.min(1, Math.max(0, model.normalizedSpeed)) * 268)}deg`);
+    this.speedRing.style.setProperty('--pod-speed-ratio', String(Math.min(1, Math.max(0, model.normalizedSpeed))));
+    write(requireElement(this.root, '[data-hud="record-target"]'), model.mastery?.bestTime != null ? `PERSONAL BEST  ${formatRaceTimeHundredths(model.mastery.bestTime)}` : '');
 
     const delta = formatSplitDelta(model.splitDelta);
     const splitText = model.splitDelta === null && model.lastSplit !== null
       ? `SPLIT ${formatRaceTime(model.lastSplit)}`
       : delta;
     write(this.split, splitText);
+    this.split.hidden = splitText === '—' || splitText === '';
     this.split.classList.toggle('is-slow', model.splitDelta !== null && model.splitDelta > 0);
 
     write(this.cornerArrow, cornerGlyph(model.corner.direction, model.corner.severity));
@@ -651,10 +777,11 @@ export class RaceHud {
         ? '↑ Climb // Landing Armed'
         : '◇ Apex // Landing Set');
     this.flight.dataset.motion = motion;
-    setVisible(this.flight, airborne);
+    setVisible(this.flight, airborne && model.galactic?.wreckPhase == null);
 
     this.updateMeter(this.boostFill, this.boostValue, model.boost);
     this.updateMeter(this.driftFill, this.driftValue, model.driftCharge);
+    this.root.classList.toggle('has-drift-charge', model.driftCharge > 0.01);
     this.updateMeter(this.heatFill, this.heatValue, model.heat);
     this.updateMeter(this.damageFill, this.damageValue, model.damage);
     this.speedRing.closest('.pod-hud__speed')?.classList.toggle('is-boosting', model.boostActive);
@@ -664,10 +791,7 @@ export class RaceHud {
 
     setVisible(this.wrongWay, model.wrongWay);
     this.updateCountdown(model.countdownCue);
-    const automaticControls = performance.now() - this.createdAt < 7_500
-      && model.phase !== 'finished'
-      && model.preRace?.active !== true;
-    setVisible(this.controls, model.controlsVisible ?? automaticControls);
+    setVisible(this.controls, controlsVisible);
     this.updateResults(
       model.results,
       model.phase === 'finished',
@@ -676,12 +800,55 @@ export class RaceHud {
     );
     this.updateCourseProgress(model.racers);
     this.minimap.update(model.course, model.racers, model.raceTime, model.courseBranches);
+    this.updateMastery(model.mastery, model.phase, selectorActive, session.tutorialVisible);
+    this.updateThreatCues(model.threats, model.phase, selectorActive, model.airborne === true, controlsVisible, session.tutorialVisible);
+    this.eventAtlas.update(model.mastery, model.preRace?.lobby.canStart === true);
+    if (!selectorActive || !model.mastery) this.setEventAtlasVisible(false);
   }
 
   setMuted(muted: boolean): void {
     if (this.muted === muted) return;
     this.muted = muted;
     this.onMuteChange?.(muted);
+  }
+
+  updateCombat(frame: CombatHudFrame, localWreckPhase?: HudGalacticWreckPhase | 'running'): void {
+    // Authoritative presentation state is refreshed per render, independently
+    // of cancellable cues and the four-simulation-frame telemetry cadence.
+    if (localWreckPhase !== undefined) {
+      this.root.classList.toggle('has-wreck-state', localWreckPhase !== 'running');
+    }
+    const available = !this.root.classList.contains('has-vehicle-selection') && !this.root.classList.contains('is-paused') && this.root.dataset.phase === 'racing';
+    const cue = available ? frame.cue : null;
+    const reduced = this.root.classList.contains('is-reduced-motion') || this.systemMotionPreference?.matches;
+    const key = cue ? `${cue.kind}:${cue.title}:${cue.detail}` : '';
+    if (key !== this.combatFeedbackKey) {
+      this.combatFeedbackKey = key;
+      this.combatFeedback.hidden = !cue;
+      this.combatFeedback.dataset.kind = cue?.kind ?? '';
+      write(this.combatFeedbackTitle, cue?.title ?? '');
+      write(this.combatFeedbackDetail, cue?.detail ?? '');
+    }
+    this.root.classList.toggle('has-combat-feedback', Boolean(cue));
+    this.root.classList.toggle('has-takedown-cue', cue?.kind === 'takedown' || cue?.kind === 'wreck');
+    // Combat events render every frame; the full telemetry model updates less often.
+    // Suppress driving instructions on the wreck's first frame too, including reduced motion.
+    this.root.classList.toggle('has-wreck-cue', cue?.kind === 'wreck');
+    this.root.classList.toggle('has-cinematic-matte', available && frame.cinematic.active && frame.cinematic.letterbox && !reduced);
+    this.combatFeedback.style.setProperty('--cue-age', String(Math.min(1, Math.max(0, cue?.progress ?? 0))));
+  }
+
+  setAssetStatus(message: string | null): void {
+    this.root.classList.toggle('has-asset-status', Boolean(message));
+    let status = this.root.querySelector<HTMLElement>('[data-hud="asset-status"]');
+    if (!status && message) {
+      status = this.root.ownerDocument.createElement('div');
+      status.dataset.hud = 'asset-status';
+      status.className = 'pod-hud__asset-status';
+      status.setAttribute('role', 'status');
+      this.root.append(status);
+    }
+    if (status) { status.hidden = !message; status.textContent = message ?? ''; }
   }
 
   isMuted(): boolean {
@@ -694,6 +861,8 @@ export class RaceHud {
   }
 
   dispose(): void {
+    this.eventAtlas.dispose();
+    this.root.removeEventListener('keydown', this.handleInterfaceKey);
     this.roomCodeInput.removeEventListener('input', this.handleRoomCodeInput);
     this.roomCodeInput.removeEventListener('paste', this.handleRoomCodePaste);
     this.root.removeEventListener('click', this.handleActionClick);
@@ -723,10 +892,33 @@ export class RaceHud {
   };
 
   private emitAction(action: RaceHudAction): void {
+    if (action.type === 'start-race' || action.type === 'retry-race' || action.type === 'resume-race') {
+      const focused = this.root.ownerDocument.activeElement;
+      if (focused instanceof HTMLElement && this.root.contains(focused)) focused.blur();
+    }
     this.onAction?.(action);
     this.root.dispatchEvent(new CustomEvent<RaceHudAction>('pod-hud-action', {
       detail: action,
     }));
+  }
+
+  private readonly handleInterfaceKey = (event: KeyboardEvent): void => {
+    // Native button/summary activation must not also trigger garage launch or steering.
+    if (!(event.target instanceof Element) || !event.target.closest('button,summary')) return;
+    const activatesControl = event.code === 'Space' || event.code === 'Enter' || event.code === 'NumpadEnter';
+    const workshopNavigation = this.root.classList.contains('has-workshop') && /^(Arrow|Digit|Key[ADV])/.test(event.code);
+    if (activatesControl || workshopNavigation) event.stopPropagation();
+  };
+
+  private setEventAtlasVisible(visible: boolean): void {
+    if (this.eventAtlasOpen === visible) return;
+    this.eventAtlasOpen = visible;
+    const frame = requireElement<HTMLElement>(this.vehicleSelection, '.pod-hud__vehicle-select-frame');
+    frame.inert = visible;
+    if (visible) this.vehicleSelection.scrollTop = 0;
+    this.eventAtlas.setVisible(visible);
+    this.root.classList.toggle('has-event-atlas', visible);
+    requireElement(this.root, '[data-action="open-event-atlas"]').setAttribute('aria-expanded', String(visible));
   }
 
   private readonly handleActionClick = (event: MouseEvent): void => {
@@ -734,12 +926,43 @@ export class RaceHud {
     const trigger = event.target.closest<HTMLElement>('[data-action]');
     const action = trigger?.dataset.action;
     if (!trigger || !action) return;
+    if (trigger instanceof HTMLButtonElement && trigger.disabled) return;
 
-    if (action === 'select-ai-difficulty') {
+    if (action === 'open-event-atlas') {
+      if (this.vehicleSelectionModel?.active) this.setEventAtlasVisible(true);
+    } else if (action === 'close-event-atlas') {
+      this.setEventAtlasVisible(false);
+    } else if (action === 'launch-atlas-event') {
+      this.setEventAtlasVisible(false);
+      this.emitAction({ type: 'start-race' });
+    } else if (action === 'select-appearance') {
+      if (isVehicleAppearanceId(trigger.dataset.appearance)) this.emitAction({ type: 'select-appearance', appearance: trigger.dataset.appearance });
+    } else if (action === 'retry-appearance') {
+      void this.vehiclePreviews.retryAppearance();
+      this.emitAction({ type: 'retry-appearance' });
+    } else if (action === 'start-race' || action === 'retry-race' || action === 'return-to-garage') {
+      this.setEventAtlasVisible(false);
+      if (!(trigger instanceof HTMLButtonElement) || !trigger.disabled) this.emitAction({ type: action });
+    } else if (action === 'select-event' || action === 'select-atlas-event') {
+      if (trigger.dataset.eventId) this.emitAction({ type: 'select-event', eventId: trigger.dataset.eventId });
+    } else if (action === 'toggle-ghost' || action === 'save-course' || action === 'next-event' || action === 'restart-championship') {
+      this.emitAction({ type: action });
+    } else if (action === 'inspect-vehicle') {
+      this.inspectionAngle = (this.inspectionAngle + (Number(trigger.dataset.direction) < 0 ? -30 : 30) + 360) % 360;
+      requireElement<HTMLElement>(this.root, '[data-hud="garage-model"]').dataset.previewAngle = String(this.inspectionAngle);
+      void this.vehiclePreviews.refresh();
+    } else if (action === 'toggle-hud-detail') {
+      const open = this.root.classList.toggle('has-hud-detail');
+      trigger.setAttribute('aria-pressed', String(open));
+      trigger.textContent = open ? 'ROUTE −' : 'ROUTE +';
+    } else if (action === 'select-ai-difficulty') {
       const difficulty = trigger.dataset.difficulty as HudAiDifficulty | undefined;
       if (difficulty && HUD_AI_DIFFICULTIES.includes(difficulty)) {
         this.emitAction({ type: 'select-ai-difficulty', difficulty });
       }
+    } else if (action === 'open-workshop') {
+      this.setEventAtlasVisible(false);
+      this.emitAction({ type: 'toggle-workshop', open: true });
     } else if (action === 'toggle-workshop') {
       this.emitAction({ type: 'toggle-workshop', open: !this.workshopPanel.classList.contains('is-visible') });
     } else if (action === 'select-workshop-slot') {
@@ -816,6 +1039,7 @@ export class RaceHud {
   }
 
   private updateVehicleSelection(selection: HudPreRaceViewModel | undefined): void {
+    this.vehicleSelectionModel = selection;
     const visible = selection?.active === true;
     this.root.classList.toggle('has-vehicle-selection', visible);
     setVisible(this.vehicleSelection, visible);
@@ -824,6 +1048,39 @@ export class RaceHud {
       this.root.classList.remove('has-workshop');
       this.vehiclePreviews.hide();
       return;
+    }
+
+    const selectedCard = selection.cards.find((card) => card.id === selection.selectedVehicleClass);
+    const appearance = selection.appearance?.selected ?? 'procedural';
+    this.vehiclePreviews.setAppearance(appearance);
+    const appearanceControls = requireElement<HTMLElement>(this.root, '[data-hud="appearance"]');
+    appearanceControls.hidden = selection.selectedVehicleClass !== 'podracer';
+    for (const button of appearanceControls.querySelectorAll<HTMLButtonElement>('[data-appearance]')) {
+      button.setAttribute('aria-pressed', String(button.dataset.appearance === appearance));
+    }
+    this.updateAppearanceStatus();
+    const selectedLabel = ART_APPEARANCES[appearance].label;
+    const hero = requireElement<HTMLElement>(this.root, '[data-hud="garage-model"]');
+    const vehicleKey = `${selection.selectedVehicleClass}:${appearance}`;
+    const heroChanged = this.garageVehicleKey !== vehicleKey;
+    if (heroChanged && selectedCard) {
+      this.garageVehicleKey = vehicleKey;
+      hero.dataset.vehicleId = selection.selectedVehicleClass;
+      const garageName = selection.selectedVehicleClass === 'podracer' && appearance !== 'procedural' ? selectedLabel : selectedCard.name;
+      hero.setAttribute('aria-label', `Inspect ${garageName}`);
+      write(requireElement(this.root, '[data-hud="garage-name"]'), garageName);
+      write(requireElement(this.root, '[data-hud="garage-description"]'), selectedCard.description);
+      write(requireElement(this.root, '[data-hud="garage-class"]'), `${String(selection.cards.indexOf(selectedCard) + 1).padStart(2, '0')} / ${['TWIN ENGINE', 'HEAVY REPULSOR', 'AGILITY FRAME', 'SKIM RUNNER'][selection.cards.indexOf(selectedCard)] ?? 'RACE MACHINE'}`);
+      const stats = requireElement(this.root, '[data-hud="garage-stats"]');
+      stats.replaceChildren(...selectedCard.stats.map((stat) => {
+        const row = this.root.ownerDocument.createElement('div');
+        row.innerHTML = '<span></span><i></i><b></b>';
+        write(requireElement(row, 'span'), stat.label);
+        write(requireElement(row, 'b'), String(stat.value));
+        requireElement<HTMLElement>(row, 'i').style.setProperty('--rating', `${stat.value * 20}%`);
+        row.setAttribute('aria-label', `${stat.label}: ${stat.value} of 5`);
+        return row;
+      }));
     }
 
     const key = selection.cards.map((card) => [
@@ -847,13 +1104,15 @@ export class RaceHud {
     }
     for (const button of this.vehicleSelection.querySelectorAll<HTMLButtonElement>('[data-action="select-laps"][data-laps]')) {
       const selected = Number(button.dataset.laps) === selection.selectedLaps;
-      const locked = selection.lobby.role === 'guest' || selection.lobby.status === 'connecting';
+      const locked = selection.fixedRules === true || selection.lobby.role === 'guest' || selection.lobby.status === 'connecting';
       button.classList.toggle('is-selected', selected);
       button.disabled = locked;
       button.setAttribute('aria-pressed', String(selected));
       button.setAttribute('aria-disabled', String(locked));
     }
-    const setupLocked = selection.lobby.role === 'guest' || selection.lobby.status === 'connecting';
+    this.root.classList.toggle('has-fixed-event', selection.fixedRules === true);
+    write(requireElement(this.root, '[data-hud="event-launch-title"]'), `${selection.selectedLaps} LAP${selection.selectedLaps === 1 ? '' : 'S'} · STOCK MACHINERY`);
+    const setupLocked = selection.fixedRules === true || selection.lobby.role === 'guest' || selection.lobby.status === 'connecting';
     for (const button of this.vehicleSelection.querySelectorAll<HTMLButtonElement>('[data-action="select-ai-difficulty"]')) {
       const selected = button.dataset.difficulty === selection.aiDifficulty;
       button.classList.toggle('is-selected', selected);
@@ -864,7 +1123,14 @@ export class RaceHud {
     if (this.raceModeSelect.value !== selection.raceMode) this.raceModeSelect.value = selection.raceMode;
     this.raceModeSelect.disabled = setupLocked;
     this.raceModeSelect.setAttribute('aria-disabled', String(setupLocked));
-    this.workshopToggle.disabled = selection.workshop === undefined;
+    this.workshopToggle.disabled = selection.fixedRules === true || selection.workshop === undefined;
+    this.workshopToggle.title = selection.fixedRules ? 'Stock workshop parts are fixed for this event' : 'Tune the five parts in your build';
+    const buildButton = requireElement<HTMLButtonElement>(this.root, '[data-action="open-workshop"]');
+    buildButton.disabled = this.workshopToggle.disabled;
+    buildButton.title = this.workshopToggle.title;
+    buildButton.setAttribute('aria-expanded', String(selection.workshop?.open === true));
+    const setupHeading = this.vehicleSelection.querySelector('.pod-hud__selector-setup .pod-hud__selector-section-head strong');
+    if (setupHeading) write(setupHeading, selection.fixedRules ? 'Event rules · fixed' : 'Race setup');
     this.workshopToggle.setAttribute('aria-expanded', String(selection.workshop?.open === true));
     this.updateWorkshop(selection.workshop);
     this.updateLobby(selection.lobby);
@@ -876,11 +1142,27 @@ export class RaceHud {
       void this.vehiclePreviews.show().catch(() => {
         this.root.dataset.vehiclePreviewState = 'unavailable';
       });
-    } else if (cardsChanged) {
+    } else if (cardsChanged || heroChanged) {
       void this.vehiclePreviews.refresh().catch(() => {
         this.root.dataset.vehiclePreviewState = 'unavailable';
       });
     }
+  }
+
+  /** Preview completion must also update a garage whose simulation is paused. */
+  private updateAppearanceStatus(): void {
+    const selection = this.vehicleSelectionModel;
+    if (!selection?.active) return;
+    const appearance = selection.appearance?.selected ?? 'procedural';
+    const loading = appearance !== 'procedural' && (selection.appearance?.status === 'loading' || this.vehiclePreviews.appearanceStatus === 'loading');
+    const failed = appearance !== 'procedural' && (selection.appearance?.status === 'error' || this.vehiclePreviews.appearanceStatus === 'error');
+    const activeAppearance = selection.appearance?.active ?? 'procedural';
+    const selectedLabel = ART_APPEARANCES[appearance].label, activeLabel = ART_APPEARANCES[activeAppearance].label;
+    write(requireElement(this.root, '[data-hud="appearance-status"]'), failed
+      ? activeAppearance === appearance ? `Preview unavailable. ${activeLabel} remains ready to race.` : `${selectedLabel} unavailable. ${activeLabel} remains ready to race.`
+      : loading ? activeAppearance === appearance ? `Preparing ${selectedLabel} preview… Your race craft is ready.` : `Loading ${selectedLabel}… ${activeLabel} is ready to race.`
+        : appearance !== 'procedural' ? `${selectedLabel} · seated pilot · twin engines` : 'Classic · original racing frame');
+    requireElement<HTMLButtonElement>(this.root, '[data-action="retry-appearance"]').hidden = !failed;
   }
 
   private updateWorkshop(workshop: HudWorkshopViewModel | undefined): void {
@@ -894,6 +1176,11 @@ export class RaceHud {
     if (key === this.workshopKey) return;
     this.workshopKey = key;
     this.workshopPanel.dataset.activeSlot = workshop.activeSlot;
+    const active = this.root.ownerDocument.activeElement as HTMLElement | null;
+    const focusedControl = open && active && this.workshopPanel.contains(active)
+      && (active.dataset.action === 'select-workshop-slot' || active.dataset.action === 'equip-workshop-part')
+      ? { action: active.dataset.action, slot: active.dataset.slot, partId: active.dataset.partId }
+      : null;
 
     this.workshopSlots.replaceChildren(...workshop.slots.map((slot) => {
       const button = this.root.ownerDocument.createElement('button');
@@ -904,7 +1191,8 @@ export class RaceHud {
       button.dataset.slot = slot.slot;
       button.setAttribute('role', 'tab');
       button.setAttribute('aria-selected', String(slot.slot === workshop.activeSlot));
-      button.innerHTML = '<span></span><strong></strong><small></small>';
+      button.setAttribute('aria-label', `${slot.label}: ${slot.equippedPartName}. ${slot.effect}`);
+      button.innerHTML = workshopSymbol(slot.slot) + '<span></span><strong></strong><small></small>';
       write(requireElement(button, 'span'), slot.label);
       write(requireElement(button, 'strong'), slot.equippedPartName);
       write(requireElement(button, 'small'), slot.effect);
@@ -921,26 +1209,252 @@ export class RaceHud {
       button.dataset.slot = part.slot;
       button.dataset.partId = part.id;
       button.setAttribute('aria-pressed', String(part.equipped));
-      button.innerHTML = '<strong></strong><p></p><span class="is-benefit"></span><span class="is-tradeoff"></span>';
+      button.innerHTML = workshopSymbol(part.slot, part.id) + '<strong></strong><p></p><span class="is-benefit"></span><span class="is-tradeoff"></span><small class="pod-hud__part-comparison"></small><b class="pod-hud__equip-action"></b>';
       write(requireElement(button, 'strong'), part.name);
-      write(requireElement(button, 'p'), part.description);
-      write(requireElement(button, '.is-benefit'), `+ ${part.benefit}`);
-      write(requireElement(button, '.is-tradeoff'), `− ${part.tradeoff}`);
+      const description = requireElement<HTMLElement>(button, 'p');
+      description.id = `workshop-description-${part.id}`;
+      button.setAttribute('aria-describedby', description.id);
+      write(description, part.description);
+      write(requireElement(button, '.is-benefit'), part.benefit);
+      write(requireElement(button, '.is-tradeoff'), part.tradeoff);
+      const signedPercent = (value: number) => `${value > 0 ? '+' : ''}${Math.round(value * 100)}%`;
+      write(requireElement(button, '.pod-hud__part-comparison'), part.comparison?.length
+        ? part.comparison.map((delta) => `${delta.label}: ${signedPercent(delta.current)} → ${signedPercent(delta.candidate)}`).join(' · ')
+        : 'Current configuration');
+      write(requireElement(button, '.pod-hud__equip-action'), part.equipped ? '✓ EQUIPPED' : 'EQUIP PART ↗');
       return button;
     }));
 
+    const totalRoot = requireElement<HTMLElement>(this.root, '[data-hud="workshop-totals"]');
+    // Group display readings without changing the real totals or their signed meter bindings.
+    const totals = workshop.summary.totals ?? [];
+    const totalGroups = [
+      { label: 'Drive', labels: ['top speed', 'acceleration', 'boost', 'cooling'] },
+      { label: 'Chassis', labels: ['handling', 'drift', 'armour', 'shield'] },
+      { label: 'Combat', labels: ['weapon power', 'mine capacity'] },
+    ];
+    const knownLabels = new Set(totalGroups.flatMap(group => group.labels));
+    const groupedTotals = totalGroups.map(group => ({
+      label: group.label,
+      totals: group.labels.flatMap(label => totals.filter(total => total.label === label)),
+    }));
+    groupedTotals.push({ label: 'Other', totals: totals.filter(total => !knownLabels.has(total.label)) });
+    totalRoot.replaceChildren(...groupedTotals.flatMap(group => group.totals.map((total, index) => {
+      const row = this.root.ownerDocument.createElement('li');
+      row.dataset.totalGroup = group.label;
+      row.innerHTML = '<span class="pod-hud__total-label"></span><b></b><i class="pod-hud__build-meter" aria-hidden="true"><i></i></i>';
+      if (index === 0) {
+        const heading = this.root.ownerDocument.createElement('span');
+        heading.className = 'pod-hud__total-group';
+        heading.textContent = group.label;
+        row.prepend(heading);
+      }
+      write(requireElement(row, '.pod-hud__total-label'), total.label);
+      write(requireElement(row, 'b'), `${total.value > 0 ? '+' : ''}${Math.round(total.value * 100)}%`);
+      row.classList.toggle('is-negative', total.value < 0);
+      row.style.setProperty('--build-delta', `${Math.min(0.5, Math.abs(total.value)) * 100}%`);
+      return row;
+    })));
     this.replaceSummaryList(this.workshopBonuses, workshop.summary.bonuses, 'Balanced output');
     this.replaceSummaryList(this.workshopPenalties, workshop.summary.penalties, 'No major penalty');
     this.replaceSummaryList(this.workshopSynergies, workshop.summary.synergies, 'No active synergy');
+    // Rebuilding comparison cards must not drop keyboard focus onto the page
+    // when a racer equips a part or switches systems.
+    if (focusedControl) {
+      const replacement = [...this.workshopPanel.querySelectorAll<HTMLButtonElement>('button[data-action]')]
+        .find(button => button.dataset.action === focusedControl.action
+          && button.dataset.slot === focusedControl.slot && button.dataset.partId === focusedControl.partId);
+      replacement?.focus({ preventScroll: true });
+    }
   }
 
   private replaceSummaryList(root: HTMLElement, values: readonly string[], emptyLabel: string): void {
     const items = values.length > 0 ? values : [emptyLabel];
-    root.replaceChildren(...items.slice(0, 4).map((value) => {
+    root.replaceChildren(...items.map((value) => {
       const item = this.root.ownerDocument.createElement('li');
       item.textContent = value;
       return item;
     }));
+  }
+
+  private updateMastery(mastery: HudMasteryViewModel | undefined, phase: RaceHudViewModel['phase'], preRace: boolean, tutorialVisible: boolean): void {
+    this.root.classList.toggle('has-mastery', Boolean(mastery));
+    requireElement<HTMLElement>(this.root, '[data-hud="mastery"]').hidden = !mastery;
+    const controls = requireElement<HTMLElement>(this.root, '[data-hud="mastery-controls"]');
+    controls.hidden = !mastery;
+    const tutorial = requireElement<HTMLElement>(this.root, '[data-hud="tutorial"]');
+    setVisible(tutorial, tutorialVisible);
+    const cup = requireElement<HTMLElement>(this.root, '[data-hud="cup-context"]');
+    const cupComplete = mastery?.championshipRound === CHAMPIONSHIP_EVENT_IDS.length;
+    cup.hidden = !mastery?.championshipContext && !cupComplete;
+    if (!mastery) {
+      write(requireElement(this.root, '[data-hud="event-launch-detail"]'), 'Shared room rules. Race settings and builds are locked when the host launches.');
+      requireElement<HTMLElement>(this.root, '[data-hud="mastery-result"]').hidden = true;
+      this.results.querySelector('[data-action="next-event"]')?.remove();
+      this.results.querySelector('[data-action="restart-championship"]')?.remove();
+      this.masteryResultKey = '';
+      return;
+    }
+    const cupContext: HudMasteryViewModel['championshipContext'] = mastery.championshipContext ?? (cupComplete ? {
+      title: 'Inkstorm Cup complete',
+      detail: 'Your final standings are saved. Race another cup to start three new rounds; your personal records stay.',
+    } : undefined);
+    let cupReplay = cup.querySelector<HTMLButtonElement>('[data-action="restart-championship"]');
+    if (!cupReplay) {
+      cupReplay = this.createCupReplayButton();
+      cupReplay.className = 'pod-hud__cup-replay';
+      cup.append(cupReplay);
+    }
+    cupReplay.hidden = !cupComplete || !preRace;
+    if (cupContext) {
+      write(requireElement(cup, 'strong'), cupContext.title);
+      write(requireElement(cup, 'p'), cupContext.detail);
+      const startButton = requireElement<HTMLButtonElement>(this.root, '[data-hud="start-button"]');
+      if (preRace && !startButton.disabled && cupContext.actionLabel) write(requireElement(startButton, 'span'), cupContext.actionLabel);
+      const standingsKey = JSON.stringify(mastery.championship);
+      if (standingsKey !== this.cupStandingsKey) {
+        this.cupStandingsKey = standingsKey;
+        const leaders = mastery.championship.filter((racer, index) => index < 3 || racer.isPlayer);
+        requireElement(cup, '[data-hud="cup-standings"]').replaceChildren(...leaders.map((racer) => {
+          const row = this.root.ownerDocument.createElement('span');
+          row.classList.toggle('is-player', racer.isPlayer);
+          row.textContent = `${racer.name} · ${racer.points} PTS`;
+          return row;
+        }));
+      }
+    }
+    write(requireElement(this.root, '[data-hud="event-title"]'), mastery.eventTitle);
+    write(requireElement(this.root, '[data-hud="event-description"]'), mastery.eventSubtitle);
+    write(requireElement(this.root, '[data-hud="event-launch-detail"]'), mastery.eventSubtitle);
+    write(requireElement(this.root, '[data-hud="personal-best"]'), mastery.bestTime === null ? '—:——.——' : formatRaceTimeHundredths(mastery.bestTime));
+    write(requireElement(this.root, '[data-hud="mastery-objective"]'), mastery.storageWarning
+      ?? (mastery.retryTarget ? `Next pursuit: ${mastery.retryTarget.label} · S${mastery.retryTarget.sectorIndex}. Last ${mastery.retryTarget.currentTime.toFixed(2)}s / PB ${mastery.retryTarget.targetTime.toFixed(2)}s. Recover ${mastery.retryTarget.loss.toFixed(2)}s.`
+      : mastery.bestTime === null ? 'Complete a clean run to set your first record.' : `${mastery.medal === 'none' ? 'Record saved' : mastery.medal + ' medal'} · Improve the line. Chase your ghost.`));
+    const archiveNotice = requireElement<HTMLElement>(this.root, '[data-hud="archive-notice"]');
+    archiveNotice.hidden = !mastery.archiveNotice;
+    write(archiveNotice, mastery.archiveNotice ?? '');
+    const eventsKey = mastery.events.map((event) => `${event.id}:${event.title}:${event.subtitle}`).join('|');
+    if (eventsKey !== this.masteryEventsKey) {
+      this.masteryEventsKey = eventsKey;
+      write(requireElement(this.root, '[data-hud="calendar-title"]'), `RACE CALENDAR · ${mastery.events.length} EVENTS`);
+      requireElement(this.root, '[data-hud="event-list"]').replaceChildren(...mastery.events.map((event) => {
+        const button = this.root.ownerDocument.createElement('button');
+        button.type = 'button';
+        button.dataset.action = 'select-event';
+        button.dataset.eventId = event.id;
+        button.innerHTML = '<strong></strong><small></small>';
+        write(requireElement(button, 'strong'), event.title);
+        write(requireElement(button, 'small'), event.subtitle);
+        return button;
+      }));
+    }
+    let newlySelectedEvent: HTMLButtonElement | null = null;
+    for (const event of this.root.querySelectorAll<HTMLButtonElement>('[data-hud="event-list"] [data-action="select-event"]')) {
+      const selected = event.dataset.eventId === mastery.eventId;
+      if (selected && !event.classList.contains('is-selected')) newlySelectedEvent = event;
+      event.classList.toggle('is-selected', selected);
+      event.setAttribute('aria-pressed', String(selected));
+      event.disabled = this.roomPanel.dataset.role === 'guest';
+    }
+    // Selecting a Cup can insert standings and expand the selected description.
+    // Reveal the entire entry after that layout change, only on selection.
+    newlySelectedEvent?.scrollIntoView?.({ block: 'nearest', inline: 'nearest' });
+    const ghost = requireElement<HTMLButtonElement>(controls, '[data-action="toggle-ghost"]');
+    ghost.disabled = !mastery.ghostAvailable;
+    ghost.setAttribute('aria-pressed', String(mastery.ghostEnabled));
+    ghost.title = mastery.ghostAvailable ? 'Race the saved pose of your personal best' : 'Complete a clean event to record a ghost';
+    write(requireElement(this.root, '[data-hud="ghost-state"]'), mastery.ghostAvailable ? mastery.ghostEnabled ? 'ON' : 'OFF' : 'NO RUN');
+    const saveCourse = requireElement<HTMLButtonElement>(controls, '[data-action="save-course"]');
+    saveCourse.setAttribute('aria-pressed', String(mastery.courseSaved));
+    write(saveCourse, mastery.courseSaved ? '★ Course saved' : '☆ Save course');
+    if (mastery.latestSector && phase === 'racing') {
+      const sector = mastery.latestSector;
+      const pace = sector.paceDelta ?? null;
+      write(this.split, pace === null ? `S${sector.index} ${formatRaceTimeHundredths(sector.time)}` : `PB TOTAL ${formatSplitDelta(pace)}`);
+      this.split.title = `${sector.label ?? `Sector ${sector.index}`} · cumulative pace at the last timing gate`;
+      this.split.classList.toggle('is-slow', (pace ?? 0) > 0);
+    }
+    if (mastery.tutorial) {
+      write(requireElement(tutorial, '[data-hud="tutorial-step"]'), `FLIGHT SCHOOL · ${mastery.tutorial.step} / ${mastery.tutorial.total}`);
+      write(requireElement(tutorial, '[data-hud="tutorial-title"]'), mastery.tutorial.title);
+      write(requireElement(tutorial, '[data-hud="tutorial-instruction"]'), mastery.tutorial.instruction);
+      requireElement<HTMLElement>(tutorial, '[data-hud="tutorial-progress"]').style.width = `${Math.min(1, Math.max(0, mastery.tutorial.progress)) * 100}%`;
+    }
+    const resultRoot = requireElement<HTMLElement>(this.root, '[data-hud="mastery-result"]');
+    resultRoot.hidden = !mastery.result;
+    const key = JSON.stringify([mastery.result, mastery.championship, mastery.championshipRound]);
+    if (mastery.result) write(this.resultCallout, `${mastery.result.eventTitle} · Event result`);
+    if (key === this.masteryResultKey) return;
+    this.masteryResultKey = key;
+    const result = mastery.result;
+    resultRoot.replaceChildren();
+    // Rebuild progression actions only when the run result changes.
+    this.results.querySelector('[data-action="next-event"]')?.remove();
+    this.results.querySelector('[data-action="restart-championship"]')?.remove();
+    if (!result) return;
+    const head = this.root.ownerDocument.createElement('header');
+    head.innerHTML = '<strong></strong><span></span>';
+    write(requireElement(head, 'strong'), result.invalidReason ? 'Practice run' : result.personalBest ? 'NEW PERSONAL BEST' : result.medal === 'none' ? 'A line worth learning.' : `${result.medal} medal`);
+    const bestTotal = result.bestTime === null ? 'PB —' : `PB ${formatRaceTimeHundredths(result.bestTime)}`;
+    const totalGap = result.bestTime !== null && !result.invalidReason
+      ? ` · GAP ${formatSplitDelta(result.time - result.bestTime)}s` : '';
+    write(requireElement(head, 'span'), `TOTAL ${formatRaceTimeHundredths(result.time)} · ${bestTotal}${totalGap}`);
+    write(this.resultCallout, `${result.eventTitle} · Event result`);
+    const objective = this.root.ownerDocument.createElement('p');
+    objective.textContent = result.invalidReason ?? result.nextObjective;
+    const sectors = this.root.ownerDocument.createElement('div');
+    sectors.className = 'pod-hud__sector-results';
+    for (const sector of result.sectors) {
+      const cell = this.root.ownerDocument.createElement('span');
+      cell.textContent = `S${sector.index} ${formatRaceTimeHundredths(sector.time)}`;
+      if (sector.label) {
+        const label = this.root.ownerDocument.createElement('small');
+        label.textContent = `${sector.lap && sector.lap > 1 ? `L${sector.lap} · ` : ''}${sector.label}`;
+        cell.prepend(label);
+      }
+      const delta = this.root.ownerDocument.createElement('b');
+      delta.textContent = sector.delta === null ? '—' : formatSplitDelta(sector.delta);
+      delta.classList.toggle('is-slow', (sector.delta ?? 0) > 0);
+      cell.append(delta); sectors.append(cell);
+    }
+    resultRoot.append(head, objective, sectors);
+    if (result.retryTarget) {
+      const pursuit = this.root.ownerDocument.createElement('p');
+      pursuit.className = 'pod-hud__retry-pursuit'; pursuit.dataset.hud = 'retry-pursuit';
+      pursuit.textContent = `NEXT PURSUIT · ${result.retryTarget.label} · S${result.retryTarget.sectorIndex}: ${result.retryTarget.currentTime.toFixed(2)}s → ${result.retryTarget.targetTime.toFixed(2)}s PB (+${result.retryTarget.loss.toFixed(2)}s). Race again to recover this section.`;
+      resultRoot.append(pursuit);
+    }
+    if (mastery.championship.length > 0) {
+      const board = this.root.ownerDocument.createElement('div');
+      board.className = 'pod-hud__championship';
+      for (const racer of mastery.championship.slice(0, 4)) {
+        const row = this.root.ownerDocument.createElement('span');
+        row.classList.toggle('is-player', racer.isPlayer);
+        row.textContent = `${racer.name} · ${racer.points} PTS`;
+        board.append(row);
+      }
+      resultRoot.append(board);
+    }
+    if (result.nextEventId) {
+      const next = this.root.ownerDocument.createElement('button');
+      next.type = 'button'; next.dataset.action = 'next-event'; next.textContent = 'NEXT EVENT →';
+      const destination = mastery.events.find((event) => event.id === result.nextEventId)?.title ?? 'Next event';
+      next.title = `Continue to ${destination}`;
+      next.setAttribute('aria-label', `Next event: ${destination}`);
+      const nextDetail = this.root.ownerDocument.createElement('small'); nextDetail.textContent = destination; next.append(nextDetail);
+      requireElement(this.results, '.pod-hud__results-actions').append(next);
+    } else if (cupComplete) {
+      requireElement(this.results, '.pod-hud__results-actions').append(this.createCupReplayButton());
+    }
+  }
+
+  private createCupReplayButton(): HTMLButtonElement {
+    const button = this.root.ownerDocument.createElement('button');
+    button.type = 'button';
+    button.dataset.action = 'restart-championship';
+    button.textContent = 'Race another cup';
+    button.title = 'Start a new three-round Inkstorm Cup. Personal records and saved courses stay.';
+    return button;
   }
 
   private updateSettings(settings: HudSettingsViewModel | undefined): void {
@@ -1035,47 +1549,112 @@ export class RaceHud {
     threats: RaceHudViewModel['threats'],
     phase: RaceHudViewModel['phase'],
     preRace: boolean,
+    airborne: boolean,
+    controlsVisible: boolean,
+    tutorialVisible: boolean,
   ): void {
-    const visibleThreats = phase === 'racing'
-      && !preRace
-      && this.root.dataset.threatCues !== 'disabled'
-      ? [...(threats ?? [])]
-        .sort((left, right) => right.urgency - left.urgency)
-        .slice(0, 3)
+    const viewport = this.root.ownerDocument.defaultView;
+    const canShowThreats = phase === 'racing' && !preRace
+      && this.root.dataset.threatCues !== 'disabled' && Boolean(threats?.length);
+    const reservedRects: { left: number; top: number; right: number; bottom: number }[] = [];
+    const compact = viewport && viewport.innerWidth >= 651 && viewport.innerWidth <= 760 && viewport.innerHeight <= 540;
+    const occupiedRects: typeof reservedRects | undefined = canShowThreats && compact ? [] : undefined;
+    let compactHeaderBottom: number | undefined;
+    if (occupiedRects && viewport) {
+      const origin = this.threatCues.getBoundingClientRect();
+      const assetStatus = this.root.querySelector<HTMLElement>('[data-hud="asset-status"]');
+      const obstacles = assetStatus ? [...this.compactThreatObstacles, assetStatus] : this.compactThreatObstacles;
+      for (const element of obstacles) {
+        const style = viewport.getComputedStyle(element);
+        // Reserve the first fade frame, but not hidden ancestors or CSS priority suppression.
+        if (style.visibility !== 'visible' || style.display === 'none') continue;
+        let hidden = false;
+        for (let parent = element.parentElement; parent && parent !== this.root; parent = parent.parentElement) {
+          const parentStyle = viewport.getComputedStyle(parent);
+          if (parentStyle.display === 'none' || parentStyle.visibility !== 'visible') { hidden = true; break; }
+        }
+        if (hidden) continue;
+        const box = element.getBoundingClientRect();
+        if (element.classList.contains('pod-hud__race')) compactHeaderBottom = box.bottom - origin.top;
+        if (box.width > 0 && box.height > 0) occupiedRects.push({
+          left: box.left - origin.left, right: box.right - origin.left,
+          top: box.top - origin.top, bottom: box.bottom - origin.top,
+        });
+      }
+    }
+    if (canShowThreats && !occupiedRects && viewport) {
+      // Flight, drift and launch-result rows change the occupied lane height.
+      // Legacy viewport estimates do not describe that live stack at 844px.
+      const style = viewport.getComputedStyle(this.drivingFeedback);
+      if (style.visibility === 'visible' && style.display !== 'none') {
+        const feedback = this.drivingFeedback.getBoundingClientRect();
+        if (feedback.width > 0 && feedback.height > 0) {
+          const origin = this.threatCues.getBoundingClientRect();
+          reservedRects.push({ left: feedback.left - origin.left, right: feedback.right - origin.left,
+            top: feedback.top - origin.top, bottom: feedback.bottom - origin.top });
+        }
+      }
+    }
+    if (canShowThreats && !occupiedRects && this.root.dataset.notice === 'director'
+      && this.directorEvent.classList.contains('is-visible') && viewport) {
+      const style = viewport.getComputedStyle(this.directorEvent);
+      // Reserve from the first fade frame, but respect CSS priority suppression.
+      if (style.visibility === 'visible' && style.display !== 'none') {
+        const notice = this.directorEvent.getBoundingClientRect();
+        const origin = this.threatCues.getBoundingClientRect();
+        if (notice.width > 0 && notice.height > 0) reservedRects.push({
+          left: notice.left - origin.left, right: notice.right - origin.left,
+          top: notice.top - origin.top, bottom: notice.bottom - origin.top,
+        });
+      }
+    }
+    const visibleThreats = canShowThreats
+      ? layoutThreatCues(threats ?? [], viewport?.innerWidth ?? 1280, viewport?.innerHeight ?? 720, airborne, {
+        detailVisible: this.root.classList.contains('has-hud-detail'),
+        assetStatusVisible: this.root.classList.contains('has-asset-status'),
+        controlsVisible,
+        tutorialVisible,
+        reservedRects,
+        occupiedRects,
+        compactHeaderBottom,
+      })
       : [];
-    const key = visibleThreats.map((threat) => `${threat.id}:${threat.kind}:${threat.label}`).join('|');
+    const key = visibleThreats.map(({ threat, count, directionOnly }) => `${threat.id}:${threat.kind}:${threat.label}:${count}:${directionOnly ?? false}`).join('|');
     if (key !== this.threatStructureKey) {
       this.threatStructureKey = key;
-      this.threatCues.replaceChildren(...visibleThreats.map((threat) => {
+      let impactCaptionUsed = false;
+      this.threatCues.replaceChildren(...visibleThreats.map(({ threat, count, directionOnly: compactDirectionOnly }, index) => {
+        const isImpactVector = threat.kind === 'impact' && threat.label === 'IMPACT VECTOR';
+        const directionOnly = compactDirectionOnly || (isImpactVector && impactCaptionUsed);
+        if (isImpactVector) impactCaptionUsed = true;
         const cue = this.root.ownerDocument.createElement('i');
         cue.className = 'pod-hud__threat-cue';
         cue.dataset.threatId = threat.id;
         cue.dataset.kind = threat.kind;
-        cue.innerHTML = '<b aria-hidden="true">▲</b><span></span>';
-        write(requireElement(cue, 'span'), threat.label);
+        cue.setAttribute('role', 'img');
+        cue.classList.toggle('is-primary', index === 0);
+        cue.classList.toggle('is-direction-only', directionOnly);
+        cue.innerHTML = '<b aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M5 14 12 5 19 14M7 20 12 13 17 20"/></svg></b><span></span><em aria-hidden="true"></em>';
+        cue.dataset.threatCount = String(count);
+        cue.classList.toggle('has-group', count > 1);
+        write(requireElement(cue, 'span'), isImpactVector ? 'IMPACT' : threat.label);
+        write(requireElement(cue, 'em'), count > 1 ? `+${count - 1}` : '');
+        cue.title = `${threat.label}${count > 1 ? `, ${count - 1} additional threats nearby` : ''}`;
         return cue;
       }));
     }
-    const byId = new Map(visibleThreats.map((threat) => [threat.id, threat]));
+    const byId = new Map(visibleThreats.map((layout) => [layout.threat.id, layout]));
     for (const cue of this.threatCues.querySelectorAll<HTMLElement>('[data-threat-id]')) {
-      const threat = byId.get(cue.dataset.threatId ?? '');
-      if (!threat) continue;
-      const threatIndex = visibleThreats.findIndex((candidate) => candidate.id === threat.id);
-      const bearing = ((Number.isFinite(threat.bearingDegrees) ? threat.bearingDegrees : 0) + 540) % 360 - 180;
-      const radians = bearing * Math.PI / 180;
-      const urgency = Math.min(1, Math.max(0, Number.isFinite(threat.urgency) ? threat.urgency : 0));
-      // Keep the forward warning arc below the timer/director stack and the
-      // rear arc above the combat/speed instruments. Similar bearings fan out
-      // slightly instead of becoming one unreadable pile of labels.
-      const fan = (threatIndex - (visibleThreats.length - 1) * 0.5) * 4.5;
-      const lateralFan = Math.abs(Math.sin(radians)) < 0.42 ? fan : 0;
-      const verticalFan = Math.abs(Math.sin(radians)) >= 0.42 ? fan * 0.45 : 0;
-      cue.style.left = `${50 + Math.sin(radians) * 43 + lateralFan}%`;
-      cue.style.top = `${50 - Math.cos(radians) * 24 + verticalFan}%`;
+      const layout = byId.get(cue.dataset.threatId ?? '');
+      if (!layout) continue;
+      const { threat, bearing, urgency, count } = layout;
+      cue.style.width = layout.directionOnly ? `${layout.footprintWidth}px` : '';
+      cue.style.left = `${layout.x.toFixed(1)}px`;
+      cue.style.top = `${layout.y.toFixed(1)}px`;
       cue.style.setProperty('--pod-threat-bearing', `${bearing}deg`);
       cue.style.setProperty('--pod-threat-urgency', urgency.toFixed(3));
       cue.classList.toggle('is-critical', urgency >= 0.72);
-      cue.setAttribute('aria-label', `${threat.label}, ${Math.round(urgency * 100)} percent threat`);
+      cue.setAttribute('aria-label', `${threat.label}, ${threatBearingLabel(bearing)}, bearing ${Math.round(bearing)} degrees, ${Math.round(urgency * 100)} percent threat${count > 1 ? `, ${count - 1} additional threats nearby` : ''}`);
     }
     setVisible(this.threatCues, visibleThreats.length > 0);
   }
@@ -1170,18 +1749,15 @@ export class RaceHud {
     write(this.roomMemberCount, `${lobby.members.length}/${Math.max(1, lobby.capacity)}`);
     write(this.roomStatus, lobby.statusText);
 
+    const startButton = requireElement<HTMLButtonElement>(this.root, '[data-hud="start-button"]');
+    startButton.disabled = !lobby.canStart;
+    write(requireElement(startButton, 'span'), lobby.canStart ? 'START RACE' : 'WAITING FOR HOST');
     const promptKey = `${lobby.role}:${lobby.canStart}`;
     if (promptKey !== this.startPromptKey) {
       this.startPromptKey = promptKey;
       this.startPrompt.replaceChildren();
       if (lobby.canStart) {
-        this.startPrompt.append('Press ');
-        const space = this.root.ownerDocument.createElement('kbd');
-        space.textContent = 'Space';
-        this.startPrompt.append(space, ' or ');
-        const enter = this.root.ownerDocument.createElement('kbd');
-        enter.textContent = 'Enter';
-        this.startPrompt.append(enter, ' to start');
+        this.startPrompt.textContent = 'Space / Enter to launch';
         this.startPrompt.dataset.mode = 'ready';
       } else {
         this.startPrompt.textContent = 'Waiting for host to start the race…';
@@ -1294,7 +1870,7 @@ export class RaceHud {
 
   private updateGalactic(model: RaceHudViewModel): void {
     const galactic = model.galactic;
-    setVisible(this.galactic, Boolean(galactic) && model.phase !== 'finished');
+    setVisible(this.galactic, Boolean(galactic) && model.combatEnabled !== false && model.phase !== 'finished');
     if (!galactic) {
       setVisible(this.redlineInstrument, false);
       setVisible(this.galacticAlert, false);
@@ -1352,6 +1928,7 @@ export class RaceHud {
     const redlineVisible = model.phase !== 'finished'
       && model.preRace?.active !== true;
     this.redlineInstrument.classList.toggle('is-active', galactic.redlineActive);
+    this.redlineInstrument.classList.toggle('has-core-heat', galactic.redlineHeat > 0.01);
     this.redlineInstrument.classList.toggle('is-hot', galactic.redlineHeat >= 0.7);
     this.redlineInstrument.classList.toggle('is-critical', galactic.redlineHeat >= 0.9);
     this.redlineInstrument.setAttribute(
@@ -1482,7 +2059,7 @@ export class RaceHud {
       button.dataset.action = 'view-highlight';
       button.dataset.highlightId = highlight.id;
       button.innerHTML = '<span></span><strong></strong><small></small>';
-      write(requireElement(button, 'span'), highlight.kind.replace('-', ' '));
+      write(requireElement(button, 'span'), `▶ REPLAY · ${highlight.kind.replace('-', ' ')}`);
       write(requireElement(button, 'strong'), highlight.title);
       write(
         requireElement(button, 'small'),
@@ -1506,7 +2083,7 @@ export class RaceHud {
     time.textContent = result.finishTime === null ? 'DNF' : formatRaceTime(result.finishTime);
     const lap = this.root.ownerDocument.createElement('span');
     lap.className = 'pod-hud__result-lap';
-    lap.textContent = result.bestLap === null ? 'BEST —' : `BEST ${formatRaceTime(result.bestLap)}`;
+    lap.textContent = result.bestLap === null ? 'BEST LAP (RUN) —' : `BEST LAP (RUN) ${formatRaceTime(result.bestLap)}`;
     row.append(placement, name, time, lap);
     return row;
   }

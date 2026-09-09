@@ -1,0 +1,688 @@
+{
+  "scope": "Static CPU geometry/projection check only. No render, scene changes, browser or shader execution. Identity normalized V8 hero vertices actually read. Projection uses level rigid pose, no route/junction/landing/shake; independent conservative sphere bound covers any rigid orientation at bounded desired camera pose, not spring transients or external scenery.",
+  "asset": {
+    "path": "public/assets/inkstorm/vehicles/blockrunner-hero-v1.glb",
+    "sha256": "ee744b122b3e2a009ef7a8f3a8c5c5848fe1503b13e4334e0fe8276ce5c44d8d",
+    "bytes": 4198472
+  },
+  "actualBounds": [
+    [
+      -4.779439926147461,
+      0.10000000149011612,
+      -10.543083190917969
+    ],
+    [
+      4.6107282638549805,
+      5.145554065704346,
+      8.656911849975586
+    ]
+  ],
+  "materials": [
+    {
+      "name": "Blockrunner Inkstorm body atlas v1",
+      "triangles": 39900,
+      "usedPositionBounds": [
+        [
+          -4.779439926147461,
+          0.10000000149011612,
+          -10.543083190917969
+        ],
+        [
+          4.6107282638549805,
+          4.794350624084473,
+          8.656911849975586
+        ]
+      ]
+    },
+    {
+      "name": "Blockrunner Inkstorm pilot suit atlas v1",
+      "triangles": 2508,
+      "usedPositionBounds": [
+        [
+          -0.7723499536514282,
+          2.8431434631347656,
+          -5.487110614776611
+        ],
+        [
+          0.792324423789978,
+          4.690016269683838,
+          -4.392811298370361
+        ]
+      ]
+    },
+    {
+      "name": "Blockrunner Inkstorm pilot helmet atlas v1",
+      "triangles": 740,
+      "usedPositionBounds": [
+        [
+          -0.4245762228965759,
+          4.349484443664551,
+          -5.57911491394043
+        ],
+        [
+          0.42458152770996094,
+          5.145554065704346,
+          -4.840311527252197
+        ]
+      ]
+    },
+    {
+      "name": "Blockrunner Inkstorm pilot visor atlas v1",
+      "triangles": 200,
+      "usedPositionBounds": [
+        [
+          -0.4811878502368927,
+          4.4977593421936035,
+          -5.343186378479004
+        ],
+        [
+          0.4811931550502777,
+          4.975829124450684,
+          -4.653589725494385
+        ]
+      ]
+    },
+    {
+      "name": "Blockrunner Inkstorm pilot gloves atlas v1",
+      "triangles": 680,
+      "usedPositionBounds": [
+        [
+          -0.8281780481338501,
+          3.7499403953552246,
+          -5.072874069213867
+        ],
+        [
+          0.7985591888427734,
+          4.169008255004883,
+          -4.222898483276367
+        ]
+      ]
+    }
+  ],
+  "targets": {
+    "helmetCenter": [
+      2.652406692504883e-06,
+      4.747519254684448,
+      -5.2097132205963135
+    ],
+    "helmetTop": [
+      2.652406692504883e-06,
+      5.1155540657043455,
+      -5.2097132205963135
+    ],
+    "upperSuitCenter": [
+      0.009987235069274902,
+      4.5400162696838375,
+      -4.939960956573486
+    ]
+  },
+  "rows": [
+    {
+      "rig": "current",
+      "speedMetresPerSecond": 0,
+      "speedT": 0,
+      "fov": 62,
+      "eyeRelativeToSubject": [
+        0.35,
+        11.9,
+        -18.66
+      ],
+      "aimRelativeToSubject": [
+        0.0,
+        5.8,
+        34.0
+      ],
+      "cameraAboveStaticHighestVertex": 6.754445934295655,
+      "pilotHelmetProjection": {
+        "ndcMin": [
+          -0.012058072569395032,
+          -0.710052469660302
+        ],
+        "ndcMax": [
+          0.05052153259011621,
+          -0.5983665091389532
+        ],
+        "visibleVertexFraction": 1.0,
+        "heightFraction": 0.05584298026067441,
+        "nearestCameraDepth": 13.799964299567986
+      },
+      "pilotSuitProjection": {
+        "ndcMin": [
+          -0.03754799368822362,
+          -0.8749371885678738
+        ],
+        "ndcMax": [
+          0.074200254663509,
+          -0.6483553355107862
+        ],
+        "visibleVertexFraction": 1.0,
+        "heightFraction": 0.11329092652854383,
+        "nearestCameraDepth": 13.954526421520113
+      },
+      "bodyProjection": {
+        "ndcMin": [
+          -0.23727019822318543,
+          -1.5070902881378718
+        ],
+        "ndcMax": [
+          0.2923257911400385,
+          -0.352652197393684
+        ],
+        "visibleVertexFraction": 0.8559492175966933,
+        "heightFraction": 0.5772190453720939,
+        "nearestCameraDepth": 9.088811267812556
+      },
+      "bodyOcclusionProbes": {
+        "helmetCenter": {
+          "bodyTriangleHits": 0,
+          "nearestDistance": null
+        },
+        "helmetTop": {
+          "bodyTriangleHits": 0,
+          "nearestDistance": null
+        },
+        "upperSuitCenter": {
+          "bodyTriangleHits": 0,
+          "nearestDistance": null
+        }
+      }
+    },
+    {
+      "rig": "candidate",
+      "speedMetresPerSecond": 0,
+      "speedT": 0,
+      "fov": 62,
+      "eyeRelativeToSubject": [
+        0.35,
+        7.9,
+        -11.3
+      ],
+      "aimRelativeToSubject": [
+        0.0,
+        1.4,
+        34.0
+      ],
+      "cameraAboveStaticHighestVertex": 2.7544459342956547,
+      "pilotHelmetProjection": {
+        "ndcMin": [
+          -0.01969288736474894,
+          -0.7063570709259805
+        ],
+        "ndcMax": [
+          0.11820289586640925,
+          -0.4644492829676253
+        ],
+        "visibleVertexFraction": 1.0,
+        "heightFraction": 0.12095389397917763,
+        "nearestCameraDepth": 6.089609859908307
+      },
+      "pilotSuitProjection": {
+        "ndcMin": [
+          -0.0733746076180447,
+          -1.0584457275076278
+        ],
+        "ndcMax": [
+          0.16540505954023038,
+          -0.5721895524463325
+        ],
+        "visibleVertexFraction": 0.9053813257305773,
+        "heightFraction": 0.24312808753064763,
+        "nearestCameraDepth": 6.258823095708188
+      },
+      "bodyProjection": {
+        "ndcMin": [
+          -0.9607236188659007,
+          -5.707539856802214
+        ],
+        "ndcMax": [
+          1.4598506800228122,
+          -0.1817246449791725
+        ],
+        "visibleVertexFraction": 0.7279007971656333,
+        "heightFraction": 2.7629076059115207,
+        "nearestCameraDepth": 1.446094276636973
+      },
+      "bodyOcclusionProbes": {
+        "helmetCenter": {
+          "bodyTriangleHits": 0,
+          "nearestDistance": null
+        },
+        "helmetTop": {
+          "bodyTriangleHits": 0,
+          "nearestDistance": null
+        },
+        "upperSuitCenter": {
+          "bodyTriangleHits": 0,
+          "nearestDistance": null
+        }
+      }
+    },
+    {
+      "rig": "current",
+      "speedMetresPerSecond": 113.8888888889,
+      "speedT": 0.49275384867415467,
+      "fov": 63.24039993903423,
+      "eyeRelativeToSubject": [
+        0.35,
+        12.146376924337078,
+        -19.054203078939324
+      ],
+      "aimRelativeToSubject": [
+        0.0,
+        5.8,
+        42.86956927613478
+      ],
+      "cameraAboveStaticHighestVertex": 7.000822858632732,
+      "pilotHelmetProjection": {
+        "ndcMin": [
+          -0.010708951939595604,
+          -0.7207404827217879
+        ],
+        "ndcMax": [
+          0.04891274029014349,
+          -0.6136729905922373
+        ],
+        "visibleVertexFraction": 1.0,
+        "heightFraction": 0.05353374606477529,
+        "nearestCameraDepth": 14.144060428245
+      },
+      "pilotSuitProjection": {
+        "ndcMin": [
+          -0.035055325648442284,
+          -0.878994670795775
+        ],
+        "ndcMax": [
+          0.07156371608232599,
+          -0.66153560670612
+        ],
+        "visibleVertexFraction": 1.0,
+        "heightFraction": 0.10872953204482749,
+        "nearestCameraDepth": 14.291632285291715
+      },
+      "bodyProjection": {
+        "ndcMin": [
+          -0.2241014480361218,
+          -1.478475193176183
+        ],
+        "ndcMax": [
+          0.2777561364019258,
+          -0.3731513048087161
+        ],
+        "visibleVertexFraction": 0.8574402125775022,
+        "heightFraction": 0.5526619441837335,
+        "nearestCameraDepth": 9.402120945329584
+      },
+      "bodyOcclusionProbes": {
+        "helmetCenter": {
+          "bodyTriangleHits": 0,
+          "nearestDistance": null
+        },
+        "helmetTop": {
+          "bodyTriangleHits": 0,
+          "nearestDistance": null
+        },
+        "upperSuitCenter": {
+          "bodyTriangleHits": 0,
+          "nearestDistance": null
+        }
+      }
+    },
+    {
+      "rig": "candidate",
+      "speedMetresPerSecond": 113.8888888889,
+      "speedT": 0.49275384867415467,
+      "fov": 63.24039993903423,
+      "eyeRelativeToSubject": [
+        0.35,
+        8.146376924337078,
+        -11.694203078939324
+      ],
+      "aimRelativeToSubject": [
+        0.0,
+        1.4,
+        42.86956927613478
+      ],
+      "cameraAboveStaticHighestVertex": 3.0008228586327323,
+      "pilotHelmetProjection": {
+        "ndcMin": [
+          -0.017340003588276465,
+          -0.7289060725352919
+        ],
+        "ndcMax": [
+          0.10975051958715196,
+          -0.5038500796431609
+        ],
+        "visibleVertexFraction": 1.0,
+        "heightFraction": 0.11252799644606554,
+        "nearestCameraDepth": 6.467708547138511
+      },
+      "pilotSuitProjection": {
+        "ndcMin": [
+          -0.06713653310743711,
+          -1.0582769856164607
+        ],
+        "ndcMax": [
+          0.15404851551508011,
+          -0.6038069028289718
+        ],
+        "visibleVertexFraction": 0.9000356379187455,
+        "heightFraction": 0.22723504139374445,
+        "nearestCameraDepth": 6.626610100182794
+      },
+      "bodyProjection": {
+        "ndcMin": [
+          -0.7851023807431348,
+          -4.774412659322568
+        ],
+        "ndcMax": [
+          1.1656923710449867,
+          -0.2209944733581196
+        ],
+        "visibleVertexFraction": 0.7248302332447594,
+        "heightFraction": 2.276709092982224,
+        "nearestCameraDepth": 1.7762209577294303
+      },
+      "bodyOcclusionProbes": {
+        "helmetCenter": {
+          "bodyTriangleHits": 0,
+          "nearestDistance": null
+        },
+        "helmetTop": {
+          "bodyTriangleHits": 0,
+          "nearestDistance": null
+        },
+        "upperSuitCenter": {
+          "bodyTriangleHits": 0,
+          "nearestDistance": null
+        }
+      }
+    },
+    {
+      "rig": "current",
+      "speedMetresPerSecond": 135.2777777778,
+      "speedT": 0.6308757867901298,
+      "fov": 64.41993408017201,
+      "eyeRelativeToSubject": [
+        0.35,
+        12.215437893395066,
+        -19.164700629432105
+      ],
+      "aimRelativeToSubject": [
+        0.0,
+        5.8,
+        45.355764162222336
+      ],
+      "cameraAboveStaticHighestVertex": 7.06988382769072,
+      "pilotHelmetProjection": {
+        "ndcMin": [
+          -0.010221973260825173,
+          -0.7107603204386252
+        ],
+        "ndcMax": [
+          0.04765178159879123,
+          -0.6066768258880463
+        ],
+        "visibleVertexFraction": 1.0,
+        "heightFraction": 0.052041747275289485,
+        "nearestCameraDepth": 14.243120009194907
+      },
+      "pilotSuitProjection": {
+        "ndcMin": [
+          -0.033869637041301984,
+          -0.8646380027204396
+        ],
+        "ndcMax": [
+          0.06966065037893432,
+          -0.6531911038538586
+        ],
+        "visibleVertexFraction": 1.0,
+        "heightFraction": 0.10572344943329048,
+        "nearestCameraDepth": 14.389086198015033
+      },
+      "bodyProjection": {
+        "ndcMin": [
+          -0.21699695302081645,
+          -1.4454946167050517
+        ],
+        "ndcMax": [
+          0.26931788160149794,
+          -0.3715014258219107
+        ],
+        "visibleVertexFraction": 0.870549158547387,
+        "heightFraction": 0.5369965954415705,
+        "nearestCameraDepth": 9.494241769714074
+      },
+      "bodyOcclusionProbes": {
+        "helmetCenter": {
+          "bodyTriangleHits": 0,
+          "nearestDistance": null
+        },
+        "helmetTop": {
+          "bodyTriangleHits": 0,
+          "nearestDistance": null
+        },
+        "upperSuitCenter": {
+          "bodyTriangleHits": 0,
+          "nearestDistance": null
+        }
+      }
+    },
+    {
+      "rig": "candidate",
+      "speedMetresPerSecond": 135.2777777778,
+      "speedT": 0.6308757867901298,
+      "fov": 64.41993408017201,
+      "eyeRelativeToSubject": [
+        0.35,
+        8.215437893395066,
+        -11.804700629432105
+      ],
+      "aimRelativeToSubject": [
+        0.0,
+        1.4,
+        45.355764162222336
+      ],
+      "cameraAboveStaticHighestVertex": 3.0698838276907203,
+      "pilotHelmetProjection": {
+        "ndcMin": [
+          -0.016510931894397632,
+          -0.7211494647553448
+        ],
+        "ndcMax": [
+          0.10577119562626527,
+          -0.5041197876288437
+        ],
+        "visibleVertexFraction": 1.0,
+        "heightFraction": 0.10851483856325056,
+        "nearestCameraDepth": 6.57477327720142
+      },
+      "pilotSuitProjection": {
+        "ndcMin": [
+          -0.06449564162145474,
+          -1.0391168095804895
+        ],
+        "ndcMax": [
+          0.14857543584870161,
+          -0.6004503103551396
+        ],
+        "visibleVertexFraction": 0.9285459729151817,
+        "heightFraction": 0.21933324961267492,
+        "nearestCameraDepth": 6.731368674519577
+      },
+      "bodyProjection": {
+        "ndcMin": [
+          -0.7433712238843598,
+          -4.485615808947597
+        ],
+        "ndcMax": [
+          1.0815355883119426,
+          -0.22608423505342018
+        ],
+        "visibleVertexFraction": 0.7340566873339238,
+        "heightFraction": 2.1297657869470883,
+        "nearestCameraDepth": 1.872839467582026
+      },
+      "bodyOcclusionProbes": {
+        "helmetCenter": {
+          "bodyTriangleHits": 0,
+          "nearestDistance": null
+        },
+        "helmetTop": {
+          "bodyTriangleHits": 0,
+          "nearestDistance": null
+        },
+        "upperSuitCenter": {
+          "bodyTriangleHits": 0,
+          "nearestDistance": null
+        }
+      }
+    },
+    {
+      "rig": "current",
+      "speedMetresPerSecond": 230,
+      "speedT": 1,
+      "fov": 68,
+      "eyeRelativeToSubject": [
+        0.35,
+        12.4,
+        -19.46
+      ],
+      "aimRelativeToSubject": [
+        0.0,
+        5.8,
+        52.0
+      ],
+      "cameraAboveStaticHighestVertex": 7.254445934295655,
+      "pilotHelmetProjection": {
+        "ndcMin": [
+          -0.00900668523954504,
+          -0.6778411343767035
+        ],
+        "ndcMax": [
+          0.044066803281985964,
+          -0.5820491210228113
+        ],
+        "visibleVertexFraction": 1.0,
+        "heightFraction": 0.0478960066769461,
+        "nearestCameraDepth": 14.512137639809291
+      },
+      "pilotSuitProjection": {
+        "ndcMin": [
+          -0.030727373542722803,
+          -0.819519984661039
+        ],
+        "ndcMax": [
+          0.06429945333921105,
+          -0.62482520366351
+        ],
+        "visibleVertexFraction": 1.0,
+        "heightFraction": 0.09734739049876451,
+        "nearestCameraDepth": 14.654376584149757
+      },
+      "bodyProjection": {
+        "ndcMin": [
+          -0.19769712692796676,
+          -1.3505276379281508
+        ],
+        "ndcMax": [
+          0.24613969566358757,
+          -0.36227865213587834
+        ],
+        "visibleVertexFraction": 0.9028196043696487,
+        "heightFraction": 0.49412449289613625,
+        "nearestCameraDepth": 9.747342605697275
+      },
+      "bodyOcclusionProbes": {
+        "helmetCenter": {
+          "bodyTriangleHits": 0,
+          "nearestDistance": null
+        },
+        "helmetTop": {
+          "bodyTriangleHits": 0,
+          "nearestDistance": null
+        },
+        "upperSuitCenter": {
+          "bodyTriangleHits": 0,
+          "nearestDistance": null
+        }
+      }
+    },
+    {
+      "rig": "candidate",
+      "speedMetresPerSecond": 230,
+      "speedT": 1,
+      "fov": 68,
+      "eyeRelativeToSubject": [
+        0.35,
+        8.4,
+        -12.100000000000001
+      ],
+      "aimRelativeToSubject": [
+        0.0,
+        1.4,
+        52.0
+      ],
+      "cameraAboveStaticHighestVertex": 3.2544459342956547,
+      "pilotHelmetProjection": {
+        "ndcMin": [
+          -0.014450567368014193,
+          -0.6924369583902374
+        ],
+        "ndcMax": [
+          0.09518523202349276,
+          -0.49680079625408646
+        ],
+        "visibleVertexFraction": 1.0,
+        "heightFraction": 0.09781808106807549,
+        "nearestCameraDepth": 6.862669093891249
+      },
+      "pilotSuitProjection": {
+        "ndcMin": [
+          -0.05762542420858378,
+          -0.9796922277675616
+        ],
+        "ndcMax": [
+          0.13395259931279746,
+          -0.583506801992396
+        ],
+        "visibleVertexFraction": 1.0,
+        "heightFraction": 0.1980927128875828,
+        "nearestCameraDepth": 7.013998466148729
+      },
+      "bodyProjection": {
+        "ndcMin": [
+          -0.6396315643129767,
+          -3.800492543295551
+        ],
+        "ndcMax": [
+          0.8869385261904973,
+          -0.2336787372568254
+        ],
+        "visibleVertexFraction": 0.755565397106584,
+        "heightFraction": 1.7834069030193629,
+        "nearestCameraDepth": 2.137264887679178
+      },
+      "bodyOcclusionProbes": {
+        "helmetCenter": {
+          "bodyTriangleHits": 0,
+          "nearestDistance": null
+        },
+        "helmetTop": {
+          "bodyTriangleHits": 0,
+          "nearestDistance": null
+        },
+        "upperSuitCenter": {
+          "bodyTriangleHits": 0,
+          "nearestDistance": null
+        }
+      }
+    }
+  ],
+  "conservativeRigidClearance": {
+    "sourceOriginRadius": 11.083155133672879,
+    "desiredEyeMinimumRadiusAfterSideLandingAndShake": 12.701234533257649,
+    "maximumNearPlaneCornerRadiusAt68DegreesAspect1_6": 0.5664881415401952,
+    "residualToSourceBoundingSphere": 1.0515912580445743,
+    "assumptions": "Source and camera subject origins coincide; full rigid rotation; no unbounded replay positional offset; current junction boom rotation is planar. Descent only raises eye. This does not bound spring lag/overshoot or occlusion by other objects."
+  }
+}

@@ -1,0 +1,44 @@
+--- assets/source/inkstorm/blockrunner-ivory-round34/audit-preparation-v1/ivory-read-only-audit-prepared-v1.py
++++ assets/source/inkstorm/blockrunner-ivory-round34/audit-preparation-v2/ivory-read-only-audit-prepared-v2.py
+@@ -155,13 +155,28 @@
+             'hideRender': collection.hide_render, 'hideViewport': collection.hide_viewport}
+ 
+ 
++def datablock_sets():
++    return {
++        'scenes': set(bpy.data.scenes),
++        'collections': set(bpy.data.collections),
++        'objects': set(bpy.data.objects),
++        'meshes': set(bpy.data.meshes),
++        'materials': set(bpy.data.materials),
++        'images': set(bpy.data.images),
++        'worlds': set(bpy.data.worlds),
++        'cameras': set(bpy.data.cameras),
++        'lights': set(bpy.data.lights),
++        'curves': set(bpy.data.curves),
++        'actions': set(bpy.data.actions),
++        'node_groups': set(bpy.data.node_groups),
++    }
++
++
+ def fresh_snapshot():
+     window = bpy.context.window
+     assert window is not None, 'Existing interactive Blender window required.'
+     layer = window.view_layer
+-    sets = {}
+-    for name in ('scenes', 'collections', 'objects', 'meshes', 'materials', 'images', 'worlds', 'cameras', 'lights', 'curves', 'actions', 'node_groups'):
+-        sets[name] = set(getattr(bpy.data, name))
++    sets = datablock_sets()
+     return {'window': window, 'scene': window.scene, 'layer': layer, 'active': layer.objects.active,
+             'selected': set(ob for ob in layer.objects if ob.select_get(view_layer=layer)),
+             'context': context_record(window), 'sets': sets,
+@@ -191,7 +206,8 @@
+     restore_original_context(snapshot)
+     changed_scenes = [scene.name for scene, previous in snapshot['scenes'].items() if scene_record(scene) != previous]
+     changed_collections = [collection.name for collection, previous in snapshot['collections'].items() if collection_record(collection) != previous]
+-    changed_ids = [name for name, previous in snapshot['sets'].items() if set(getattr(bpy.data, name)) != previous]
++    current_sets = datablock_sets()
++    changed_ids = [name for name, previous in snapshot['sets'].items() if current_sets[name] != previous]
+     result = {'contextRestored': context_record(snapshot['window']) == snapshot['context'],
+               'changedScenes': changed_scenes, 'changedCollections': changed_collections,
+               'changedDatablockSets': changed_ids,

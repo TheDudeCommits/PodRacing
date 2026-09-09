@@ -1,0 +1,1034 @@
+{
+  "uid": "41071debeaf1499a9a1586b78ea18a09",
+  "sourcePins": [
+    {
+      "path": "docs/inkstorm-overhaul/NEXT_FLEET_AFTER_ROUND33.md",
+      "bytes": 15881,
+      "sha256": "afedd26436baf5dce44ead476a3a5bd72dcd145577af49069a28303ce4097902"
+    },
+    {
+      "path": "assets/source/inkstorm/vehicles/41071debeaf1499a9a1586b78ea18a09/source-imported.glb",
+      "bytes": 1558424,
+      "sha256": "a4ea3127cbce56a577c7bd363490b4a1f0463f5da9e6394c6e4e0c59b9fac63f"
+    },
+    {
+      "path": "assets/source/inkstorm/vehicles/41071debeaf1499a9a1586b78ea18a09/official-metadata-20260908.json",
+      "bytes": 6532,
+      "sha256": "390245bb27b8fa2c2e496f689b87e4195e32b081893a88a48267c06cd1b2301f"
+    },
+    {
+      "path": "assets/source/inkstorm/vehicles/41071debeaf1499a9a1586b78ea18a09/mcp-download-20260908.json",
+      "bytes": 13255,
+      "sha256": "5781ef4639eedc636d8fbb28088bbcb2edc5e5af6574ae54da9f097ee9efd4e2"
+    },
+    {
+      "path": "assets/source/inkstorm/catalogue-inspection-round32/41071debeaf1499a9a1586b78ea18a09-receipt.json",
+      "bytes": 1341,
+      "sha256": "68b78f56162aa49a44d1459bceabb9ab5d91d8395c4e84592c4883a51355a4ce"
+    },
+    {
+      "path": "assets/source/inkstorm/catalogue-inspection-round32/41071debeaf1499a9a1586b78ea18a09-quarter-a.png",
+      "bytes": 944694,
+      "sha256": "a59d47229cd95bde6426c845bbc5d54ed68af264d0dbf444f188bd37684605c9"
+    },
+    {
+      "path": "assets/source/inkstorm/catalogue-inspection-round32/41071debeaf1499a9a1586b78ea18a09-quarter-b.png",
+      "bytes": 944777,
+      "sha256": "92bc1e251e70c875dbdcabc13bd645cc1d40cd6056f1736567c847b6a299d3fe"
+    }
+  ],
+  "sourceShaMatchesRecorded": true,
+  "method": "CPU decoding of original GLB POSITION/index accessors and full node transforms. Source Blender coordinates reconstructed as [gltfWorld.x,-gltfWorld.z,gltfWorld.y]. Both existing quarter PNGs individually viewed. No Blender/browser/download/runtime actions; originals unchanged.",
+  "license": {
+    "reported": "CC BY 4.0",
+    "author": "Mad Agus / Agus555",
+    "title": "Star Wars - Ark Bumpy Rooses Pod Racer",
+    "viewerUrl": "https://sketchfab.com/3d-models/star-wars-ark-bumpy-rooses-pod-racer-41071debeaf1499a9a1586b78ea18a09",
+    "metadataRetrievedAt": "2026-09-08T07:17:17.010214+00:00",
+    "scope": "Saved metadata only. Author explicitly describes reuse of N64 game textures and use of an original game model as reference; the uploader license is not evidence of rights to third-party source textures. Preserve originals; prepare independently authored replacement surface assets before public admission.",
+    "descriptionEvidence": "Saved official-metadata-20260908.json response.description explicitly says the author reused the same N64 game textures and used the original game model as reference."
+  },
+  "counts": {
+    "nodes": 363,
+    "meshes": 180,
+    "materials": 33,
+    "images": 26,
+    "textures": 32,
+    "animations": 0,
+    "skins": 0
+  },
+  "instanceExpandedTriangles": 31984,
+  "meshUseMultiplicity": {
+    "1": 180
+  },
+  "wholeSource": {
+    "meshNodes": 180,
+    "triangles": 31984,
+    "boundsBlender": [
+      [
+        -9.319726156318263,
+        -3.1896481784726,
+        0.335090698493556
+      ],
+      [
+        2.680274393601204,
+        2.4328976943708995,
+        1.7949534755741448
+      ]
+    ],
+    "dimensionsBlender": [
+      12.000000549919466,
+      5.622545872843499,
+      1.4598627770805888
+    ],
+    "materialIndices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32
+    ]
+  },
+  "assemblies": {
+    "detailed": {
+      "meshNodes": 87,
+      "triangles": 31118,
+      "boundsBlender": [
+        [
+          -2.680274393601204,
+          -3.1871511139385538,
+          0.3386094820219505
+        ],
+        [
+          2.680274393601204,
+          2.4328976943708995,
+          1.7082468878854837
+        ]
+      ],
+      "dimensionsBlender": [
+        5.360548787202408,
+        5.620048808309454,
+        1.3696374058635332
+      ],
+      "materialIndices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        24,
+        25,
+        30
+      ]
+    },
+    "displaced-low-detail": {
+      "meshNodes": 93,
+      "triangles": 866,
+      "boundsBlender": [
+        [
+          -9.319726156318263,
+          -3.1896481784726,
+          0.335090698493556
+        ],
+        [
+          -3.6804498840488966,
+          2.431898435204537,
+          1.7949534755741448
+        ]
+      ],
+      "dimensionsBlender": [
+        5.639276272269366,
+        5.621546613677137,
+        1.4598627770805888
+      ],
+      "materialIndices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        19,
+        20,
+        21,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32
+      ]
+    }
+  },
+  "recommendedDetailedAssembly": {
+    "rule": "Select complete mesh-node world bounds with min Blender X > -3; all omitted low-detail nodes have max Blender X < -3. Validate visually in isolated derivative scene before export.",
+    "summary": {
+      "meshNodes": 87,
+      "triangles": 31118,
+      "boundsBlender": [
+        [
+          -2.680274393601204,
+          -3.1871511139385538,
+          0.3386094820219505
+        ],
+        [
+          2.680274393601204,
+          2.4328976943708995,
+          1.7082468878854837
+        ]
+      ],
+      "dimensionsBlender": [
+        5.360548787202408,
+        5.620048808309454,
+        1.3696374058635332
+      ],
+      "materialIndices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        24,
+        25,
+        30
+      ]
+    },
+    "excludingNamedLegacyEffects": {
+      "meshNodes": 75,
+      "triangles": 30518,
+      "boundsBlender": [
+        [
+          -2.680274393601204,
+          -3.1871511139385538,
+          0.3386094820219505
+        ],
+        [
+          2.680274393601204,
+          2.4328976943708995,
+          1.7082468878854837
+        ]
+      ],
+      "dimensionsBlender": [
+        5.360548787202408,
+        5.620048808309454,
+        1.3696374058635332
+      ],
+      "materialIndices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        22,
+        30
+      ]
+    },
+    "effectNodesToOmit": [
+      {
+        "node": 146,
+        "name": "Energy_binder_1.001_170",
+        "triangles": 2
+      },
+      {
+        "node": 150,
+        "name": "Energy_binder_2.001_171",
+        "triangles": 2
+      },
+      {
+        "node": 154,
+        "name": "Energy_binder_3.001_172",
+        "triangles": 2
+      },
+      {
+        "node": 156,
+        "name": "Energy_binder_3.002_173",
+        "triangles": 2
+      },
+      {
+        "node": 234,
+        "name": "L_engine_flame_1.002_169",
+        "triangles": 4
+      },
+      {
+        "node": 236,
+        "name": "L_engine_flame_1.003_175",
+        "triangles": 4
+      },
+      {
+        "node": 238,
+        "name": "L_engine_flame_1.004_177",
+        "triangles": 4
+      },
+      {
+        "node": 240,
+        "name": "L_engine_flame_1.005_179",
+        "triangles": 4
+      },
+      {
+        "node": 244,
+        "name": "L_engine_flame_2.001_168",
+        "triangles": 144
+      },
+      {
+        "node": 246,
+        "name": "L_engine_flame_2.002_174",
+        "triangles": 144
+      },
+      {
+        "node": 248,
+        "name": "L_engine_flame_2.003_176",
+        "triangles": 144
+      },
+      {
+        "node": 250,
+        "name": "L_engine_flame_2.004_178",
+        "triangles": 144
+      }
+    ]
+  },
+  "imagesTotalBytes": 26122,
+  "pngReview": {
+    "quarter-a": "Own view: juxtaposed craft variants; orange cluster engines with central circular intakes, cyan shell on one detailed cluster, black flat silhouette surfaces elsewhere. A small rear pod contains a rounded dark form, but no clear head-neck-torso-arms separation at this scale.",
+    "quarter-b": "Own view: rear nozzle directions and two separated cockpit pods confirmed. The dark rounded cockpit form remains ambiguous; two full-body seated-driver profiles cannot be established.",
+    "occupancy": "unverified; do not classify the sphere or textured shell as an accepted pilot or insert a duplicate until isolated cockpit inspection."
+  },
+  "unitsAndOrientation": {
+    "importerTargetMetres": 12,
+    "importerScaleAlreadyApplied": 6.431112,
+    "sourceGlbRootScale": [
+      6.431111812591553,
+      6.431112766265869,
+      6.431112766265869
+    ],
+    "up": "Blender +Z / source glTF world +Y",
+    "forwardInference": "Blender -Y / source glTF world +Z. Rear cockpit is at Blender Y~1.8; engine intake faces are around Y~-3.19, and named flame geometry extends rearward toward increasing Y. Confirm central opening axes in serial Blender inspection."
+  },
+  "rearOpeningCandidateMeasurements": [
+    {
+      "node": 0,
+      "semanticName": "Cilindro.001_141",
+      "maxYPlane": -1.082042687591275,
+      "planeUniqueVertices": 1,
+      "ringBoundsCenterBlender": [
+        1.6383515,
+        -1.0820427,
+        0.7058629
+      ],
+      "ringRadiiRounded": [
+        0.0
+      ],
+      "trianglesEntirelyOnRearPlane": 0,
+      "interpretation": "REJECT as opening anchor: only one vertex occupies the maximum-Y plane. This is a bbox extreme of nonplanar geometry, not a rear aperture center.",
+      "validAnnularRimCandidate": false
+    },
+    {
+      "node": 46,
+      "semanticName": "Cilindro.046_113",
+      "maxYPlane": -1.082042687591275,
+      "planeUniqueVertices": 1,
+      "ringBoundsCenterBlender": [
+        -1.6383515,
+        -1.0820427,
+        0.7058629
+      ],
+      "ringRadiiRounded": [
+        0.0
+      ],
+      "trianglesEntirelyOnRearPlane": 0,
+      "interpretation": "REJECT as opening anchor: only one vertex occupies the maximum-Y plane. This is a bbox extreme of nonplanar geometry, not a rear aperture center.",
+      "validAnnularRimCandidate": false
+    },
+    {
+      "node": 44,
+      "semanticName": "Cilindro.045_112",
+      "maxYPlane": -1.2889808071321038,
+      "planeUniqueVertices": 64,
+      "ringBoundsCenterBlender": [
+        -0.9122275,
+        -1.2889808,
+        1.0952198
+      ],
+      "ringRadiiRounded": [
+        0.073099,
+        0.086674
+      ],
+      "trianglesEntirelyOnRearPlane": 64,
+      "interpretation": "Rear-plane annulus candidate with 32 inner and 32 outer rim vertices and 64 annular triangles. This identifies a real rim, but does not prove the downstream throat is clear or that this is the final selected effect opening.",
+      "validAnnularRimCandidate": true,
+      "innerCircumradiusApprox": 0.073099,
+      "innerInscribedRadiusApprox": 0.07274700833501092
+    },
+    {
+      "node": 68,
+      "semanticName": "Cilindro.057_127",
+      "maxYPlane": -1.2889808071321038,
+      "planeUniqueVertices": 64,
+      "ringBoundsCenterBlender": [
+        -2.3644755,
+        -1.2889808,
+        1.0952198
+      ],
+      "ringRadiiRounded": [
+        0.073099,
+        0.086674
+      ],
+      "trianglesEntirelyOnRearPlane": 64,
+      "interpretation": "Rear-plane annulus candidate with 32 inner and 32 outer rim vertices and 64 annular triangles. This identifies a real rim, but does not prove the downstream throat is clear or that this is the final selected effect opening.",
+      "validAnnularRimCandidate": true,
+      "innerCircumradiusApprox": 0.073099,
+      "innerInscribedRadiusApprox": 0.07274700833501092
+    },
+    {
+      "node": 86,
+      "semanticName": "Cilindro.066_150",
+      "maxYPlane": -1.2889808071321038,
+      "planeUniqueVertices": 64,
+      "ringBoundsCenterBlender": [
+        0.9122275,
+        -1.2889808,
+        1.0952198
+      ],
+      "ringRadiiRounded": [
+        0.073099,
+        0.086674
+      ],
+      "trianglesEntirelyOnRearPlane": 64,
+      "interpretation": "Rear-plane annulus candidate with 32 inner and 32 outer rim vertices and 64 annular triangles. This identifies a real rim, but does not prove the downstream throat is clear or that this is the final selected effect opening.",
+      "validAnnularRimCandidate": true,
+      "innerCircumradiusApprox": 0.073099,
+      "innerInscribedRadiusApprox": 0.07274700833501092
+    },
+    {
+      "node": 100,
+      "semanticName": "Cilindro.073_157",
+      "maxYPlane": -1.2889808071321038,
+      "planeUniqueVertices": 64,
+      "ringBoundsCenterBlender": [
+        2.3644755,
+        -1.2889808,
+        1.0952198
+      ],
+      "ringRadiiRounded": [
+        0.073099,
+        0.086674
+      ],
+      "trianglesEntirelyOnRearPlane": 64,
+      "interpretation": "Rear-plane annulus candidate with 32 inner and 32 outer rim vertices and 64 annular triangles. This identifies a real rim, but does not prove the downstream throat is clear or that this is the final selected effect opening.",
+      "validAnnularRimCandidate": true,
+      "innerCircumradiusApprox": 0.073099,
+      "innerInscribedRadiusApprox": 0.07274700833501092
+    }
+  ],
+  "normalizationProposal": {
+    "status": "Measurement-based planning candidate only, not accepted driver fit or final root transform",
+    "selectedAssemblyOnly": true,
+    "targetWidthMetres": 10.5,
+    "uniformScale": 1.958754675466688,
+    "sourceBlenderGroundDatum": 0.3386094820219505,
+    "sourceSeatLongitudinalDatum": 1.8048000000000002,
+    "pilotLongitudinalTarget": -5.2,
+    "formula": "runtime [X,Y,Z] = [s*sourceBlenderX, 0.1+s*(sourceBlenderZ-groundDatum), -5.2-s*(sourceBlenderY-seatLongitudinalDatum)]",
+    "sourceSeatDatumScope": "Longitudinal center of the unresolved Esfera_94 rounded cockpit object; not proven pelvis or seat-floor height",
+    "normalizedDimensions": [
+      10.5,
+      2.6827836724292613,
+      11.008296879627132
+    ],
+    "roundedCockpitObjectCenter": [
+      0.0,
+      1.6534697601578017,
+      -5.2
+    ],
+    "exhaustDirectionSourceBlender": [
+      0,
+      1,
+      0
+    ],
+    "exhaustDirectionRuntime": [
+      0,
+      0,
+      -1
+    ],
+    "rejectedCentralBboxExtremes": [
+      0,
+      46
+    ],
+    "supportedTwoExhaustCandidate": [
+      {
+        "attachment": "exhaustLeft",
+        "sourceSemanticName": "Cilindro.045_112",
+        "sourceMeshNode": 44,
+        "sourceBlender": [
+          -0.9122275,
+          -1.2889808,
+          1.0952198
+        ],
+        "normalized": [
+          -1.7868298807142882,
+          1.582013997845842,
+          0.8599576068690711
+        ],
+        "normalizedInscribedRadiusApprox": 0.14249354270241676
+      },
+      {
+        "attachment": "exhaustRight",
+        "sourceSemanticName": "Cilindro.066_150",
+        "sourceMeshNode": 86,
+        "sourceBlender": [
+          0.9122275,
+          -1.2889808,
+          1.0952198
+        ],
+        "normalized": [
+          1.7868298807142882,
+          1.582013997845842,
+          0.8599576068690711
+        ],
+        "normalizedInscribedRadiusApprox": 0.14249354270241676
+      }
+    ],
+    "twoExhaustScope": "Uses actual symmetric inner small nozzles to fit the current two-root-anchor contract. Outer small nozzles remain physical geometry without additional runtime plumes. Prefer this explicit limitation over inventing a central origin; owner must visually choose the intended visible exhausts.",
+    "couplingCandidates": [
+      {
+        "attachment": "couplingLeft",
+        "sourceBlender": [
+          -0.6482,
+          -1.7673,
+          1.08355
+        ],
+        "normalized": [
+          -1.2696647806375072,
+          1.5591557225340809,
+          1.7968675762345567
+        ]
+      },
+      {
+        "attachment": "couplingRight",
+        "sourceBlender": [
+          0.6482,
+          -1.7673,
+          1.08355
+        ],
+        "normalized": [
+          1.2696647806375072,
+          1.5591557225340809,
+          1.7968675762345567
+        ]
+      }
+    ],
+    "couplingScope": "Endpoints of the detailed source energy-binder span inferred from its own recorded mesh bounds; verify receiving hardware in Blender after removing the legacy FX cards."
+  },
+  "runtimePreparationConstraints": {
+    "bodyDrawsMax": 6,
+    "pilotDrawsMax": 6,
+    "totalDrawsMax": 12,
+    "heroTrianglesMax": 60000,
+    "rivalTrianglesMax": 30000,
+    "suggestedRivalBodyTarget": 25000,
+    "suggestedAddedPilotBudget": 4000,
+    "rigidOpaqueOnly": true,
+    "authoredExhaustHardware": "Expected for the measured rims, but set only after serial cavity inspection. Never add a duplicate source lip.",
+    "exhaustApertureRadius": "Use normalized inscribed hole radius after final scaling and throat validation; generic .54 radial scale would be unsuitable for these small openings.",
+    "sourceTextures": "No original texture or palette-sampled color baking into a public package. Author new pigment, hardware, recess and pilot surfaces independently; retain original images privately with provenance."
+  },
+  "cockpitInspectionTargets": [
+    {
+      "node": 16,
+      "parentName": "Cilindro.009_101",
+      "triangles": 448
+    },
+    {
+      "node": 18,
+      "parentName": "Cilindro.010_102",
+      "triangles": 818
+    },
+    {
+      "node": 20,
+      "parentName": "Cilindro.011_103",
+      "triangles": 64
+    },
+    {
+      "node": 22,
+      "parentName": "Cilindro.012_139",
+      "triangles": 64
+    },
+    {
+      "node": 78,
+      "parentName": "Cilindro.062_136",
+      "triangles": 828
+    },
+    {
+      "node": 80,
+      "parentName": "Cilindro.063_140",
+      "triangles": 252
+    },
+    {
+      "node": 82,
+      "parentName": "Cilindro.064_137",
+      "triangles": 252
+    },
+    {
+      "node": 122,
+      "parentName": "Cubo.001_96",
+      "triangles": 6
+    },
+    {
+      "node": 124,
+      "parentName": "Cubo.002_97",
+      "triangles": 14
+    },
+    {
+      "node": 126,
+      "parentName": "Cubo.003_98",
+      "triangles": 7
+    },
+    {
+      "node": 128,
+      "parentName": "Cubo.004_99",
+      "triangles": 12
+    },
+    {
+      "node": 130,
+      "parentName": "Cubo.005_100",
+      "triangles": 8
+    },
+    {
+      "node": 132,
+      "parentName": "Cubo.012_115",
+      "triangles": 7
+    },
+    {
+      "node": 134,
+      "parentName": "Cubo.013_131",
+      "triangles": 6
+    },
+    {
+      "node": 136,
+      "parentName": "Cubo.014_132",
+      "triangles": 6
+    },
+    {
+      "node": 138,
+      "parentName": "Cubo.015_135",
+      "triangles": 4
+    },
+    {
+      "node": 140,
+      "parentName": "Cubo_95",
+      "triangles": 6
+    },
+    {
+      "node": 160,
+      "parentName": "Esfera_94",
+      "triangles": 960
+    },
+    {
+      "node": 272,
+      "parentName": "Pod_9.001_138",
+      "triangles": 10624
+    }
+  ],
+  "cockpitInspectionTriangles": 14386,
+  "materialTable": {
+    "columns": [
+      "index",
+      "name",
+      "baseColorTextureIndex",
+      "metallicFactor",
+      "roughnessFactor",
+      "alphaMode"
+    ],
+    "rows": [
+      [
+        0,
+        "71784DD_c_png",
+        0,
+        0,
+        0.5,
+        "OPAQUE"
+      ],
+      [
+        1,
+        "CBC7793_c_png",
+        1,
+        0,
+        0.5,
+        "OPAQUE"
+      ],
+      [
+        2,
+        "412136A_c_png",
+        2,
+        0,
+        0.5,
+        "OPAQUE"
+      ],
+      [
+        3,
+        "B7D3974_c_png",
+        3,
+        0,
+        0.5,
+        "OPAQUE"
+      ],
+      [
+        4,
+        "4F01A9D_c_png",
+        4,
+        0,
+        0.5,
+        "OPAQUE"
+      ],
+      [
+        5,
+        "24A4401_c_png",
+        5,
+        0,
+        0.5,
+        "OPAQUE"
+      ],
+      [
+        6,
+        "9DCC386_c_png",
+        6,
+        0,
+        0.5,
+        "OPAQUE"
+      ],
+      [
+        7,
+        "5E56ABD_c_png",
+        7,
+        0,
+        0.5,
+        "OPAQUE"
+      ],
+      [
+        8,
+        "EF49499_c_png",
+        8,
+        0,
+        0.5,
+        "OPAQUE"
+      ],
+      [
+        9,
+        "71AC460_c_png",
+        9,
+        0,
+        0.5,
+        "OPAQUE"
+      ],
+      [
+        10,
+        "1B9CC61_c_png",
+        10,
+        0,
+        0.5,
+        "OPAQUE"
+      ],
+      [
+        11,
+        "4F01A9D_c_png.001",
+        11,
+        0,
+        0.5,
+        "OPAQUE"
+      ],
+      [
+        12,
+        "9DDFEC2_c_png",
+        12,
+        0,
+        0.5,
+        "OPAQUE"
+      ],
+      [
+        13,
+        "B52CAD4_c_png",
+        13,
+        0,
+        0.5,
+        "OPAQUE"
+      ],
+      [
+        14,
+        "0BC8966_c_png",
+        14,
+        0,
+        0.5,
+        "OPAQUE"
+      ],
+      [
+        15,
+        "9C1ED03_c_png",
+        15,
+        0,
+        0.5,
+        "OPAQUE"
+      ],
+      [
+        16,
+        "6AFB76_c_png",
+        16,
+        0,
+        0.5,
+        "OPAQUE"
+      ],
+      [
+        17,
+        "D9F012C_c_png",
+        17,
+        0,
+        0.5,
+        "OPAQUE"
+      ],
+      [
+        18,
+        "material_32.001",
+        18,
+        0,
+        0.5,
+        "OPAQUE"
+      ],
+      [
+        19,
+        "1130998_c_png",
+        19,
+        1,
+        0.5,
+        "OPAQUE"
+      ],
+      [
+        20,
+        "177F2E9_c_png",
+        20,
+        1,
+        0.5,
+        "OPAQUE"
+      ],
+      [
+        21,
+        "050A43D_c_png",
+        21,
+        1,
+        0.5,
+        "BLEND"
+      ],
+      [
+        22,
+        "material.002",
+        22,
+        0,
+        0.5,
+        "OPAQUE"
+      ],
+      [
+        23,
+        "material_0",
+        null,
+        0,
+        0.6000000238418579,
+        "OPAQUE"
+      ],
+      [
+        24,
+        "9811D32_c_png",
+        23,
+        1,
+        0.5,
+        "OPAQUE"
+      ],
+      [
+        25,
+        "DEF53C_c_png",
+        24,
+        1,
+        0.5,
+        "BLEND"
+      ],
+      [
+        26,
+        "3231A78_c_png",
+        25,
+        0,
+        0.5,
+        "OPAQUE"
+      ],
+      [
+        27,
+        "CAAA9CC_c_png",
+        26,
+        0,
+        0.5,
+        "OPAQUE"
+      ],
+      [
+        28,
+        "CAAA9CC_c_png_001",
+        27,
+        0,
+        0.5,
+        "OPAQUE"
+      ],
+      [
+        29,
+        "CAAA9CC_c_png_002",
+        28,
+        0,
+        0.5,
+        "OPAQUE"
+      ],
+      [
+        30,
+        "8EC9C3F_c_png",
+        29,
+        0,
+        0.5,
+        "OPAQUE"
+      ],
+      [
+        31,
+        "9DCC386_c_png_001",
+        30,
+        0,
+        0.5,
+        "OPAQUE"
+      ],
+      [
+        32,
+        "6AFB76_c_png_001",
+        31,
+        0,
+        0.5,
+        "OPAQUE"
+      ]
+    ],
+    "allDoubleSided": true,
+    "normalMaps": 0,
+    "roughnessMaps": 0,
+    "blendAlphaFactors": {
+      "21": 0.19352440536022186,
+      "25": 0.32152479887008667
+    }
+  },
+  "imageDecodeSummary": {
+    "count": 26,
+    "dimensionsHistogram": {
+      "64x64": 6,
+      "32x64": 2,
+      "16x64": 3,
+      "16x16": 2,
+      "64x32": 4,
+      "32x32": 5,
+      "16x128": 2,
+      "64x16": 2
+    },
+    "embeddedTotalBytes": 26122,
+    "allDecodedAlphaOpaque": true,
+    "imagesContainingOpaqueBlackPixels": [
+      6,
+      10,
+      18,
+      19,
+      20,
+      21,
+      22,
+      24
+    ],
+    "perImagePins": "The enclosing source GLB pin preserves all embedded image bytes; no duplicate extracted images or redundant per-image hash inventory was written."
+  }
+}

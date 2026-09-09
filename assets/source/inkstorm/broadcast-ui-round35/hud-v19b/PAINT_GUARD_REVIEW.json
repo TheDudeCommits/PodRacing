@@ -1,0 +1,19 @@
+{
+  "reviewedAt": "2026-09-08T23:44:29.600294+00:00",
+  "outcome": "NO_ACTIONABLE_FINDING_IN_BOUNDED_STATIC_REVIEW",
+  "sourceSha256": "2b65778119f29ae94f20ee600d6518537c5e51571e1c1b93ec1719586a438eda",
+  "sourceBytes": 45237,
+  "baselineSha256": "2474aa9b66cadf588f4c53086754c710cfe7ba6586452be5da9c7609b3ae1460",
+  "scope": "Only instrumentProgressSeparation gains actual caption geometry/visibility and positioned sibling paint-order assertions. Existing separation gate remains intact. No source mutation by reviewer.",
+  "checks": {
+    "syntax": "PASS",
+    "actualExtractedGuardCpuCases": 11,
+    "cpuOutcome": "PASS"
+  },
+  "whyValid": "Redline and speed are actual positioned sibling contexts with explicit integer z-index. Their relative paint order is governed by those z-indices. Requiring redline greater than speed on bounding overlap rejects V19 equal2/equal2 and accepts corrected2/1. DOM ancestry and positions are checked; nonnumeric auto is rejected. Caption text range/visibility/overflow and viewport gates remain required even without overlap.",
+  "limits": [
+    "The overlap is deliberately conservative for the whole speed-ring bounds rather than the exact SVG fill silhouette.",
+    "The guard covers this sibling-context occlusion, not arbitrary unrelated overlays or rendered contrast.",
+    "CPU cases validate the actual assertions, not native DOM layout or painting. Next native gate and frame are still required."
+  ]
+}

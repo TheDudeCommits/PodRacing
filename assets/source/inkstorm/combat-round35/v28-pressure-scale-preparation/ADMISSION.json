@@ -1,0 +1,28 @@
+{
+  "status": "CENTRALLY_APPLIED",
+  "at": "2026-09-09T09:14:55.966730+00:00",
+  "patchSha256": "73f6fdb6e0660c6f8ed588cd119dcd25a10d5078336bdcc509972f778ce584fa",
+  "files": [
+    {
+      "target": "src/render/galactic/GalacticEffectsView.ts",
+      "sha256": "c52ffbc8fe45adaaafb9512b42b8e3929b5c0e7f356c2bec065fb57a978e087c"
+    },
+    {
+      "target": "src/render/galactic/RuptureFlameAtlas.ts",
+      "sha256": "20054a311c2be87bc547031417874c6b21be7584a9ad0da9514c2fb32ff0f6a1"
+    },
+    {
+      "target": "tests/render/RuptureAtlasIntegration.test.ts",
+      "sha256": "295e76481c9514590170488174ffd93b9ba2ad9edc983901a0ce7bf0de24df26"
+    },
+    {
+      "target": "tests/render/RuptureAtlasPixels.test.ts",
+      "sha256": "7e0205eacb8d42ee8391f1e96f83bd0495ed18480f5b82628691fc09dccad336"
+    },
+    {
+      "target": "tests/render/RupturePressureScale.test.ts",
+      "sha256": "af94f77b5c5524e58c0b04ac3c7495dd731604097d024bad6eb0e4e487b551e9"
+    }
+  ],
+  "validation": "Privatefocused56/11PASS; combinedverify/nativepending"
+}

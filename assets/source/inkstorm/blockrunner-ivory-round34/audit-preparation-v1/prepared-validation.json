@@ -1,0 +1,32 @@
+{
+  "status": "PREPARED NOT EXECUTED",
+  "mcpExecuted": false,
+  "liveBlenderStateVerified": false,
+  "sourceSha256": "2ed231e15b8bbab3f7b7028b73e8b6f442d532c9bc4d1fc0a2f5c40aeda49576",
+  "sourceBytes": 2868492,
+  "sourceCounts": {
+    "nodes": 55,
+    "meshDefinitions": 51,
+    "meshOccurrences": 51,
+    "materials": 51,
+    "images": 0,
+    "triangles": 48384,
+    "mirroredOccurrences": 0
+  },
+  "payload": "ivory-read-only-audit-prepared-v1.py",
+  "payloadBytes": 69118,
+  "payloadSha256": "3a76dfd26d3a1fe531ca8c9c2d90db8b2dacb3409ab748fed9fcf5ffd2d62cde",
+  "astParsed": true,
+  "restrictedImportsAndBuiltinsChecked": true,
+  "noForbiddenMutationCalls": true,
+  "colourReferenceValuesUsed": false,
+  "sourceReferenceAlgorithm": "FNV-1a-64 over canonical ASCII JSON; non-cryptographic",
+  "bridgeScope": "One linear ordered-corner check per own Ivory mesh at six decimal places; mismatches or excessive map runs leave bridge unresolved. No nearest-neighbour scan or semantic-mask assignment.",
+  "temporaryEvaluation": "Only evaluated_get / to_mesh / calc_loop_triangles on temporary evaluated data / to_mesh_clear; original datablocks untouched. Exact datablock set equality checked at exit.",
+  "files": {
+    "00-ivory-reference.py": "e6463a57054426003f4f0ddff609174367ec861089e82f31ff7f15f934194e44",
+    "ivory-glb-reference.json": "040e2fc38c52e14ceaf32eecdf1c94e6122f4715879d037a578e19b69596251c",
+    "01-read-only-audit-body.py": "182ea587747287de95a2d1abefe4f6413c82a12cffed94dc57b74798c3825935",
+    "prepare-audit.py": "cb24a22d0c9fd1a4d380f08eafc686572e952301144163a57c00344aa8ed2a8b"
+  }
+}

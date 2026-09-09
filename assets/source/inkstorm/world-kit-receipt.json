@@ -1,0 +1,427 @@
+[
+  {
+    "asset": "canyon-arch.glb",
+    "bytes": 63568,
+    "sha256": "36876e340a578993c9c3d01084029d1ca0b757ef140ae482bbd1e0e1ff6b0453",
+    "meshes": [
+      "canyon-arch"
+    ],
+    "nodes": [
+      "canyon-arch"
+    ],
+    "meshCount": 1,
+    "primitiveCount": 1,
+    "materialCount": 1,
+    "vertices": 1600,
+    "triangles": 800,
+    "vertexColorAttribute": "COLOR_0",
+    "meshBoundsGltf": {
+      "min": [
+        -83.76539611816406,
+        0,
+        -16.794767379760742
+      ],
+      "max": [
+        86.93008422851562,
+        99.79183197021484,
+        16.7889404296875
+      ]
+    },
+    "source": "Original Blender geometry built through Blender MCP",
+    "sourceScript": "build_world_kit.py",
+    "refinement": "current Blender export"
+  },
+  {
+    "asset": "canyon-buttress.glb",
+    "bytes": 716600,
+    "sha256": "a65200e93cf582925bd4ee496e9a91569152156e59c56a23a157bd8a66b708e2",
+    "meshes": [
+      "canyon-buttress-mesh"
+    ],
+    "nodes": [
+      "canyon-buttress"
+    ],
+    "meshCount": 1,
+    "primitiveCount": 1,
+    "materialCount": 1,
+    "vertices": 18544,
+    "triangles": 7990,
+    "vertexColorAttribute": "COLOR_0",
+    "meshBoundsGltf": {
+      "min": [
+        -40,
+        0,
+        -50
+      ],
+      "max": [
+        40,
+        120,
+        50
+      ]
+    },
+    "source": "Original Blender geometry built through Blender MCP",
+    "sourceScript": "build_fractured_rocks.py",
+    "refinement": "glTF Transform 4.5.0 dedup + prune; mixed smooth walls and hard fracture planes",
+    "validation": "Khronos glTF validator: zero errors, warnings, infos or hints"
+  },
+  {
+    "asset": "cliff-strata.glb",
+    "bytes": 52460,
+    "sha256": "eed02024c8ee24adceb1ba9e15a9343c5ef4cf652e85b30cabd4453eabc5af2f",
+    "meshes": [
+      "cliff-strata"
+    ],
+    "nodes": [
+      "cliff-strata"
+    ],
+    "meshCount": 1,
+    "primitiveCount": 1,
+    "materialCount": 1,
+    "vertices": 1314,
+    "triangles": 664,
+    "vertexColorAttribute": "COLOR_0",
+    "meshBoundsGltf": {
+      "min": [
+        -36.51308059692383,
+        -2,
+        -28.8538875579834
+      ],
+      "max": [
+        37.07428741455078,
+        111.13047790527344,
+        23.516141891479492
+      ]
+    },
+    "source": "Original Blender geometry built through Blender MCP",
+    "sourceScript": "build_world_kit.py",
+    "refinement": "current Blender export"
+  },
+  {
+    "asset": "finish-tower.glb",
+    "bytes": 68484,
+    "sha256": "b2100d2c3415ac0cdb8f0fd573ac292583cf7858812b5452f05363698b8885e8",
+    "meshes": [
+      "finish-tower-mesh"
+    ],
+    "nodes": [
+      "finish-tower"
+    ],
+    "meshCount": 1,
+    "primitiveCount": 1,
+    "materialCount": 1,
+    "vertices": 1728,
+    "triangles": 868,
+    "vertexColorAttribute": "COLOR_0",
+    "meshBoundsGltf": {
+      "min": [
+        -12.5,
+        0,
+        -11.5
+      ],
+      "max": [
+        21,
+        113,
+        11.5
+      ]
+    },
+    "source": "Original Blender geometry built through Blender MCP",
+    "sourceScript": "build_landmarks.py",
+    "refinement": "glTF Transform 4.5.0 dedup + prune"
+  },
+  {
+    "asset": "foundry-gantry.glb",
+    "bytes": 317292,
+    "sha256": "5270c5d9073016f374e4c17a7240160ae68898e802ca219b4393821a56a59bc6",
+    "meshes": [
+      "foundry-gantry-industrial-revision"
+    ],
+    "nodes": [
+      "foundry-gantry"
+    ],
+    "meshCount": 1,
+    "primitiveCount": 1,
+    "materialCount": 1,
+    "vertices": 8034,
+    "triangles": 4494,
+    "vertexColorAttribute": "COLOR_0",
+    "normalAttribute": "NORMAL",
+    "maxNormalLengthError": 9.999998984433489e-8,
+    "meshBoundsGltf": {
+      "min": [
+        -52,
+        -25,
+        -7
+      ],
+      "max": [
+        52,
+        54.30417251586914,
+        7
+      ]
+    },
+    "source": "Original Blender geometry authored through Blender MCP",
+    "sourceScript": "build_industrial_revision.py",
+    "refinement": "glTF Transform 4.5.0 dedup + prune; exact prior bounds retained",
+    "validation": "Khronos glTF validator: zero errors and warnings",
+    "validatorIssues": {
+      "numErrors": 0,
+      "numWarnings": 0,
+      "numInfos": 0,
+      "numHints": 0,
+      "messages": [],
+      "truncated": false
+    },
+    "previousSha256": "9a18cad26ea9144ebcd07611adcfa868e08012f9850065e9197f24e2c75922b3",
+    "unoptimizedBytes": 317348
+  },
+  {
+    "asset": "mesa-crown.glb",
+    "bytes": 52452,
+    "sha256": "613434716aa55d31f8d3d78f3a35b076db49466e6393a2f601bada5dda2b3d97",
+    "meshes": [
+      "mesa-crown"
+    ],
+    "nodes": [
+      "mesa-crown"
+    ],
+    "meshCount": 1,
+    "primitiveCount": 1,
+    "materialCount": 1,
+    "vertices": 1314,
+    "triangles": 664,
+    "vertexColorAttribute": "COLOR_0",
+    "meshBoundsGltf": {
+      "min": [
+        -71.69628143310547,
+        -2,
+        -60.30181121826172
+      ],
+      "max": [
+        71.615478515625,
+        77.82073211669922,
+        47.50540542602539
+      ]
+    },
+    "source": "Original Blender geometry built through Blender MCP",
+    "sourceScript": "build_world_kit.py",
+    "refinement": "current Blender export"
+  },
+  {
+    "asset": "pipe-bank.glb",
+    "bytes": 504460,
+    "sha256": "4b3510d0f8b10e1a44158edb0b0bbdc25bac33019176368638937ab1834a3b81",
+    "meshes": [
+      "pipe-bank-industrial-revision"
+    ],
+    "nodes": [
+      "pipe-bank"
+    ],
+    "meshCount": 1,
+    "primitiveCount": 1,
+    "materialCount": 1,
+    "vertices": 12789,
+    "triangles": 7160,
+    "vertexColorAttribute": "COLOR_0",
+    "normalAttribute": "NORMAL",
+    "maxNormalLengthError": 1.1117078946298875e-7,
+    "meshBoundsGltf": {
+      "min": [
+        -47,
+        0,
+        -23
+      ],
+      "max": [
+        47,
+        51,
+        20.20081901550293
+      ]
+    },
+    "source": "Original Blender geometry authored through Blender MCP",
+    "sourceScript": "build_industrial_revision.py",
+    "refinement": "glTF Transform 4.5.0 dedup + prune; exact prior bounds retained",
+    "validation": "Khronos glTF validator: zero errors and warnings",
+    "validatorIssues": {
+      "numErrors": 0,
+      "numWarnings": 0,
+      "numInfos": 0,
+      "numHints": 0,
+      "messages": [],
+      "truncated": false
+    },
+    "previousSha256": "74a61830477b8de8162a775d555aeaeda1599d5e7b2c94ef0ed075aefc68fbea",
+    "unoptimizedBytes": 504520
+  },
+  {
+    "asset": "pit-complex.glb",
+    "bytes": 513368,
+    "sha256": "5cebe6dce3a0a27a7d887f4f9a6fbfde6e29512cd47a039b79c4dbadbfe39acd",
+    "meshes": [
+      "pit-complex-industrial-revision"
+    ],
+    "nodes": [
+      "pit-complex"
+    ],
+    "meshCount": 1,
+    "primitiveCount": 1,
+    "materialCount": 1,
+    "vertices": 13058,
+    "triangles": 7032,
+    "vertexColorAttribute": "COLOR_0",
+    "normalAttribute": "NORMAL",
+    "maxNormalLengthError": 1.1109325281921656e-7,
+    "meshBoundsGltf": {
+      "min": [
+        -71,
+        0,
+        -32.5
+      ],
+      "max": [
+        79,
+        47,
+        28
+      ]
+    },
+    "source": "Original Blender geometry authored through Blender MCP",
+    "sourceScript": "build_industrial_revision.py",
+    "refinement": "glTF Transform 4.5.0 dedup + prune; exact prior bounds retained",
+    "validation": "Khronos glTF validator: zero errors and warnings",
+    "validatorIssues": {
+      "numErrors": 0,
+      "numWarnings": 0,
+      "numInfos": 0,
+      "numHints": 0,
+      "messages": [],
+      "truncated": false
+    },
+    "previousSha256": "1dcec0aab1b9bce2efe9eb52bc4cb52c9969f9923f3d7eab4a786aedb84abaaf",
+    "unoptimizedBytes": 513428
+  },
+  {
+    "asset": "refinery-stack.glb",
+    "bytes": 57844,
+    "sha256": "0f52f2e0cc195a5fe36853f543cfad8e4c9a2391d5083b016f71ffe4f1f7f781",
+    "meshes": [
+      "Cube.031"
+    ],
+    "nodes": [
+      "refinery-stack"
+    ],
+    "meshCount": 1,
+    "primitiveCount": 4,
+    "materialCount": 4,
+    "vertices": 1152,
+    "triangles": 528,
+    "vertexColorAttribute": "COLOR_0",
+    "meshBoundsGltf": {
+      "min": [
+        -11.5,
+        0,
+        -11.5
+      ],
+      "max": [
+        11.5,
+        97.5,
+        11.5
+      ]
+    },
+    "source": "Original Blender geometry built through Blender MCP",
+    "sourceScript": "build_world_kit.py",
+    "refinement": "current Blender export"
+  },
+  {
+    "asset": "roadside-shard.glb",
+    "bytes": 52464,
+    "sha256": "fd3c839b37007dc5beb53f750362eea44cf966dc4b7b4cf501d9251d4b5d4f6d",
+    "meshes": [
+      "roadside-shard"
+    ],
+    "nodes": [
+      "roadside-shard"
+    ],
+    "meshCount": 1,
+    "primitiveCount": 1,
+    "materialCount": 1,
+    "vertices": 1314,
+    "triangles": 664,
+    "vertexColorAttribute": "COLOR_0",
+    "meshBoundsGltf": {
+      "min": [
+        -6.204627990722656,
+        -2,
+        -4.231997489929199
+      ],
+      "max": [
+        6.129746437072754,
+        12.339521408081055,
+        4.429841995239258
+      ]
+    },
+    "source": "Original Blender geometry built through Blender MCP",
+    "sourceScript": "build_world_kit.py",
+    "refinement": "current Blender export"
+  },
+  {
+    "asset": "sandstone-scree.glb",
+    "bytes": 599300,
+    "sha256": "b6a3688af319752f7a4d02d95d1600225310b22e573adecc5274a04fbdf5af7c",
+    "meshes": [
+      "sandstone-scree-mesh"
+    ],
+    "nodes": [
+      "sandstone-scree"
+    ],
+    "meshCount": 1,
+    "primitiveCount": 1,
+    "materialCount": 1,
+    "vertices": 15642,
+    "triangles": 5852,
+    "vertexColorAttribute": "COLOR_0",
+    "meshBoundsGltf": {
+      "min": [
+        -17.5,
+        0,
+        -11
+      ],
+      "max": [
+        17.5,
+        12,
+        11
+      ]
+    },
+    "source": "Original Blender geometry built through Blender MCP",
+    "sourceScript": "build_fractured_rocks.py",
+    "refinement": "glTF Transform 4.5.0 dedup + prune; mixed smooth walls and hard fracture planes",
+    "validation": "Khronos glTF validator: zero errors, warnings, infos or hints"
+  },
+  {
+    "asset": "wind-blade.glb",
+    "bytes": 52456,
+    "sha256": "ba6164eb49629f3283c66e160ede136488f69bbfbf8fc8d340e72bc3a0002153",
+    "meshes": [
+      "wind-blade"
+    ],
+    "nodes": [
+      "wind-blade"
+    ],
+    "meshCount": 1,
+    "primitiveCount": 1,
+    "materialCount": 1,
+    "vertices": 1314,
+    "triangles": 664,
+    "vertexColorAttribute": "COLOR_0",
+    "meshBoundsGltf": {
+      "min": [
+        -19.583036422729492,
+        -2,
+        -8.26010513305664
+      ],
+      "max": [
+        16.98383903503418,
+        152.40176391601562,
+        8.396995544433594
+      ]
+    },
+    "source": "Original Blender geometry built through Blender MCP",
+    "sourceScript": "build_world_kit.py",
+    "refinement": "current Blender export"
+  }
+]

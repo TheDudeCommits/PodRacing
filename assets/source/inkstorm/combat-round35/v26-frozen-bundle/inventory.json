@@ -1,0 +1,77 @@
+{
+  "stage": "V26 combined authored pressure/fire/smoke, Build comparisons, original map drafting and garage hierarchy. Full verify PASS; native pending. UI totals-harness addition may follow and will be recorded separately.",
+  "bundle": "index-BwYDA7ip.js",
+  "bytes": 1836066,
+  "sha256": "700dc1c6404afe7cce90ec5977eeef72e7a98291d173eceac2c33f6f8db11270",
+  "verificationSummary": [
+    "Test Files  145 passed (145)",
+    "Tests  870 passed (870)"
+  ],
+  "sourceFiles": [
+    {
+      "path": "src/ui/RaceHud.ts",
+      "bytes": 120018,
+      "sha256": "01f05d63d5a15809bb8ab7dab6f44e571bc447bac63915a944d38046132d8ea9"
+    },
+    {
+      "path": "src/ui/broadcastStyles.ts",
+      "bytes": 90864,
+      "sha256": "67ae54e547d7a79fa876f210fb65b798c8076d0299f1e675046c2f8371b938e5"
+    },
+    {
+      "path": "src/camera/CinematicCamera.ts",
+      "bytes": 33884,
+      "sha256": "862a5787a34d6d767841b87b738a38d82b5b1bf074b1e54454f2a5f47bd9ecf9"
+    },
+    {
+      "path": "src/render/app/GameApp.ts",
+      "bytes": 175201,
+      "sha256": "6ad516d7a8579583711d18bab55ee82f475f98f85ccb4c3ebcf7929f4ad1f90a"
+    },
+    {
+      "path": "src/render/combat/WreckVisualPose.ts",
+      "bytes": 11510,
+      "sha256": "2f634e7cbd07d166ecf2beaf16b02031b6e320c3c30aa16b074c7c10d5729e90"
+    },
+    {
+      "path": "src/render/combat/TeemtoAuthoredDamage.ts",
+      "bytes": 22967,
+      "sha256": "8823718236f00cad5dafc109056ca554c67fb09ad30462069bb1180281703841"
+    },
+    {
+      "path": "src/render/galactic/GalacticEffectsView.ts",
+      "bytes": 81212,
+      "sha256": "e5f45006f2105c091c0e351305161297a63e8729dc08650759951403fe573ad9"
+    },
+    {
+      "path": "scripts/inkstorm-hud-feedback-fixtures.mjs",
+      "bytes": 18103,
+      "sha256": "b2054233c43bcce2cf57e660ea2cbd2e7106ac8df68b3404e3becc0689e24920"
+    },
+    {
+      "path": "scripts/inkstorm-combat.mjs",
+      "bytes": 27774,
+      "sha256": "fedd0e69e86516f135ba9fed1af17ab1fe38ba72804b415a0173d85c37e824c2"
+    },
+    {
+      "path": "scripts/inkstorm-broadcast-ui.mjs",
+      "bytes": 48954,
+      "sha256": "791899650ef3b8fb603e620903cc449edac4c1d8ab4848eb417f40532487630f"
+    },
+    {
+      "path": "src/ui/RaceEventAtlas.ts",
+      "bytes": 16046,
+      "sha256": "3f75c9629d40c2183203538c6d0033e8cd7c8ec7fd941ca95212f8906062fe0f"
+    },
+    {
+      "path": "src/ui/raceEventAtlasStyles.ts",
+      "bytes": 15322,
+      "sha256": "1876448332a92a4789fa0a07543910db4fdb011bfc6c2ab231c3c59875f0aa59"
+    },
+    {
+      "path": "src/ui/workshopGraphicStyles.ts",
+      "bytes": 14830,
+      "sha256": "e6e1aa4952c85dad17b546ce8a627761e9b4ad87c75f9e6683e36e3c84640518"
+    }
+  ]
+}

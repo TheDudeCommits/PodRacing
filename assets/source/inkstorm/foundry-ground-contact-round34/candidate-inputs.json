@@ -1,0 +1,52 @@
+{
+  "status": "PREPARED, unexecuted",
+  "baseline": [
+    {
+      "path": "src/render/inkstorm/InkstormFoundations.ts",
+      "bytes": 2630,
+      "sha256": "2cd39d1d43e1573689a26a4bc2e7ff44d622930c39265db8a9d53bbfcfef1b7e"
+    },
+    {
+      "path": "src/render/inkstorm/InkstormFoundry.ts",
+      "bytes": 13556,
+      "sha256": "a97c0c6e99b43453da4fd3d50570aefd01c6889d82b2411b42bf286318570d47"
+    },
+    {
+      "path": "src/render/inkstorm/InkstormWorld.ts",
+      "bytes": 16050,
+      "sha256": "c402c85ecbd13e6d4f4fb63a702cc7d1a447a4e509d6459e4265642fe10d15a5"
+    }
+  ],
+  "candidate": [
+    {
+      "path": "src/render/inkstorm/InkstormFoundations.ts",
+      "bytes": 2826,
+      "sha256": "01c8748a5f11f17269983cf456b3e4b7706a79c7be19a441685be338f2ef386f"
+    },
+    {
+      "path": "src/render/inkstorm/InkstormFoundry.ts",
+      "bytes": 14785,
+      "sha256": "e8416328e7969ea5b7a24108a8b48c5f65b5607eb10f1ea399d5f09d82a54ccd"
+    },
+    {
+      "path": "src/render/inkstorm/InkstormWorld.ts",
+      "bytes": 16382,
+      "sha256": "15967e66df145ef54c4bef5fad35ac107695641ccf5e444ad26f746be969e52f"
+    },
+    {
+      "path": "src/render/inkstorm/InkstormFoundationContact.ts",
+      "bytes": 11875,
+      "sha256": "5f198e270b985f3bda26ebeaddaba0d81f92a659d7451bbb71b76eb04c0215cc"
+    },
+    {
+      "path": "tests/render/inkstormFoundationContact.test.ts",
+      "bytes": 9304,
+      "sha256": "8f4052c9a224aea6871f90f2aa4ef52c1fa8e324e64ffbf6e65bdc80c053ed0a"
+    }
+  ],
+  "patch": {
+    "path": "foundation-contact-v1.patch",
+    "bytes": 27726,
+    "sha256": "09630da8ee9419c3143b74a99d39d2b4be9994658a9f74aa7c17707401710ecb"
+  }
+}

@@ -1,0 +1,1871 @@
+{
+  "recordedAt": "2026-09-08T07:59:43.401932+00:00",
+  "scope": "Source evidence inventory. Source GLB headers are read-only; image and receipt hashes recomputed. No new renders, downloads or runtime tests.",
+  "counts": {
+    "newSourceCandidates": 24,
+    "pngs": 48,
+    "renderReceipts": 24,
+    "reviewedQuarterA": 24,
+    "reviewedQuarterB": 1,
+    "reviewedImages": 25,
+    "confirmedNewDriverInspections": 3,
+    "sourceVisualInspectionsIncludingPriorTeemtoSebulba": 26,
+    "driverInspectionsIncludingPriorTeemtoSebulba": 5
+  },
+  "models": [
+    {
+      "ordinal": 3,
+      "uid": "c2ca24c9b3c2416db0abe026d9f4b7ac",
+      "title": "BEN QUADINAROS PODRACER",
+      "source": {
+        "path": "assets/source/inkstorm/vehicles/c2ca24c9b3c2416db0abe026d9f4b7ac/source-imported.glb",
+        "bytes": 100954432,
+        "acquisitionSha256": "00b5b9b5433169c8604c23a9fda128ce8364a6cd7694e7d147edb67a3652afa7",
+        "headerCounts": {
+          "indexedTriangleDefinitions": 182540,
+          "meshDefinitions": 24,
+          "materials": 3,
+          "images": 9,
+          "nodes": 110,
+          "animations": 2,
+          "skins": 1,
+          "unindexedTrianglePrimitivesExcluded": 0,
+          "nonTrianglePrimitivesExcluded": 0,
+          "scope": "Actual GLB JSON/accessor headers only; instances excluded, binary geometry/images not decoded, source SHA copied from acquisition receipt rather than rehashed here."
+        }
+      },
+      "capture": {
+        "sourceScene": "PodRacing — source c2ca24c9b3c2416db0abe026d9f4b7ac retry 20260908",
+        "sourceFrame": 1,
+        "bounds": [
+          [
+            -3.2321112155914307,
+            -5.999987602233887,
+            -2.1464576721191406
+          ],
+          [
+            3.23140549659729,
+            6.00001335144043,
+            2.0262744426727295
+          ]
+        ],
+        "scope": "Original imported source geometry/materials at source frame; isolated inspection lighting. Not a stylized asset, in-game capture, occupancy verdict or FPS evidence."
+      },
+      "cleanup": {
+        "uid": "c2ca24c9b3c2416db0abe026d9f4b7ac",
+        "contextRestored": true,
+        "preexistingSceneMembershipChanges": [],
+        "preexistingCollectionMembershipChanges": [],
+        "temporaryReviewSceneRemoved": true
+      },
+      "receipt": {
+        "path": "assets/source/inkstorm/catalogue-inspection-round32/c2ca24c9b3c2416db0abe026d9f4b7ac-receipt.json",
+        "bytes": 1323,
+        "sha256": "8b8ab19bf3b65dacdb54cfd0a54e1e44ea785698f6ad3e6fb5f2741b753ef52c",
+        "role": "Original source-render receipt; renderer completion is not occupancy acceptance"
+      },
+      "images": [
+        {
+          "path": "assets/source/inkstorm/catalogue-inspection-round32/c2ca24c9b3c2416db0abe026d9f4b7ac-quarter-a.png",
+          "bytes": 1041985,
+          "sha256": "a502ef421662561a720574e41c2080a4b4ebbfb8010a9fab3fb1a01c8786d037",
+          "role": "Original source inspection PNG",
+          "view": "quarter-a",
+          "width": 1200,
+          "height": 800,
+          "reviewedByRoot": true
+        },
+        {
+          "path": "assets/source/inkstorm/catalogue-inspection-round32/c2ca24c9b3c2416db0abe026d9f4b7ac-quarter-b.png",
+          "bytes": 1023424,
+          "sha256": "f5a2e74b82de5e145fd37eda40b53dc6ab2f2f7be1a13a7f32ef117a71dad863",
+          "role": "Original source inspection PNG",
+          "view": "quarter-b",
+          "width": 1200,
+          "height": 800,
+          "reviewedByRoot": false
+        }
+      ]
+    },
+    {
+      "ordinal": 4,
+      "uid": "25d51fbd4efc4c888ca4ff2549b1c6ae",
+      "title": "Podracer",
+      "source": {
+        "path": "assets/source/inkstorm/vehicles/25d51fbd4efc4c888ca4ff2549b1c6ae/source-imported.glb",
+        "bytes": 102188,
+        "acquisitionSha256": "d46584d7ac25ea01855a51a09c7ed43668367bb966bce2fbd821b1fdc730b7bd",
+        "headerCounts": {
+          "indexedTriangleDefinitions": 1192,
+          "meshDefinitions": 29,
+          "materials": 1,
+          "images": 1,
+          "nodes": 61,
+          "animations": 0,
+          "skins": 0,
+          "unindexedTrianglePrimitivesExcluded": 0,
+          "nonTrianglePrimitivesExcluded": 0,
+          "scope": "Actual GLB JSON/accessor headers only; instances excluded, binary geometry/images not decoded, source SHA copied from acquisition receipt rather than rehashed here."
+        }
+      },
+      "capture": {
+        "sourceScene": "PodRacing — source 25d51fbd retry 20260908 0710",
+        "sourceFrame": 1,
+        "bounds": [
+          [
+            -2.065903425216675,
+            -2.903212547302246,
+            -0.20573240518569946
+          ],
+          [
+            9.93409538269043,
+            2.8514397144317627,
+            1.7039871215820312
+          ]
+        ],
+        "scope": "Original imported source geometry/materials at source frame; isolated inspection lighting. Not a stylized asset, in-game capture, occupancy verdict or FPS evidence."
+      },
+      "cleanup": {
+        "uid": "25d51fbd4efc4c888ca4ff2549b1c6ae",
+        "contextRestored": true,
+        "preexistingSceneMembershipChanges": [],
+        "preexistingCollectionMembershipChanges": [],
+        "temporaryReviewSceneRemoved": true
+      },
+      "receipt": {
+        "path": "assets/source/inkstorm/catalogue-inspection-round32/25d51fbd4efc4c888ca4ff2549b1c6ae-receipt.json",
+        "bytes": 1292,
+        "sha256": "457d60ff4aa1ee49b1ad39efd2620cfe7fd94e17592a3a440706c84438429cbc",
+        "role": "Original source-render receipt; renderer completion is not occupancy acceptance"
+      },
+      "images": [
+        {
+          "path": "assets/source/inkstorm/catalogue-inspection-round32/25d51fbd4efc4c888ca4ff2549b1c6ae-quarter-a.png",
+          "bytes": 943419,
+          "sha256": "27f350ed744b3725f81a6fabe8d07c66e7e58558c689c54332781bc7e3542c7b",
+          "role": "Original source inspection PNG",
+          "view": "quarter-a",
+          "width": 1200,
+          "height": 800,
+          "reviewedByRoot": true
+        },
+        {
+          "path": "assets/source/inkstorm/catalogue-inspection-round32/25d51fbd4efc4c888ca4ff2549b1c6ae-quarter-b.png",
+          "bytes": 950805,
+          "sha256": "a7bb82be75acb2c6bac751ee5774ed4cb7250480f3780a08543b415e834747fe",
+          "role": "Original source inspection PNG",
+          "view": "quarter-b",
+          "width": 1200,
+          "height": 800,
+          "reviewedByRoot": false
+        }
+      ]
+    },
+    {
+      "ordinal": 5,
+      "uid": "e377c2e49ad447caa0517b87562b3acc",
+      "title": "Star Wars Galaxies - Anakin's Podracer",
+      "source": {
+        "path": "assets/source/inkstorm/vehicles/e377c2e49ad447caa0517b87562b3acc/source-imported.glb",
+        "bytes": 1565212,
+        "acquisitionSha256": "ad9d4ff0a777d68eb90d25fe478973f0712f1ac04cd5dab5a1fbd643e9f5a122",
+        "headerCounts": {
+          "indexedTriangleDefinitions": 2646,
+          "meshDefinitions": 2,
+          "materials": 2,
+          "images": 6,
+          "nodes": 4,
+          "animations": 0,
+          "skins": 0,
+          "unindexedTrianglePrimitivesExcluded": 0,
+          "nonTrianglePrimitivesExcluded": 0,
+          "scope": "Actual GLB JSON/accessor headers only; instances excluded, binary geometry/images not decoded, source SHA copied from acquisition receipt rather than rehashed here."
+        }
+      },
+      "capture": {
+        "sourceScene": "PodRacing — source e377c2e49ad447caa0517b87562b3acc retry 20260908",
+        "sourceFrame": 1,
+        "bounds": [
+          [
+            -1.8635002374649048,
+            -1.355742335319519,
+            2.1901586055755615
+          ],
+          [
+            1.8635002374649048,
+            10.644256591796875,
+            4.0133056640625
+          ]
+        ],
+        "scope": "Original imported source geometry/materials at source frame; isolated inspection lighting. Not a stylized asset, in-game capture, occupancy verdict or FPS evidence."
+      },
+      "cleanup": {
+        "uid": "e377c2e49ad447caa0517b87562b3acc",
+        "contextRestored": true,
+        "preexistingSceneMembershipChanges": [],
+        "preexistingCollectionMembershipChanges": [],
+        "temporaryReviewSceneRemoved": true
+      },
+      "receipt": {
+        "path": "assets/source/inkstorm/catalogue-inspection-round32/e377c2e49ad447caa0517b87562b3acc-receipt.json",
+        "bytes": 1336,
+        "sha256": "e810e6763c0ccbcd9eaea69584b7b7a686e6d4789ac5521e2256d33885c4b862",
+        "role": "Original source-render receipt; renderer completion is not occupancy acceptance"
+      },
+      "images": [
+        {
+          "path": "assets/source/inkstorm/catalogue-inspection-round32/e377c2e49ad447caa0517b87562b3acc-quarter-a.png",
+          "bytes": 945902,
+          "sha256": "a0bb64d7a9e89f9e9e39c6330eb5824428819134c1e9bdcefb903f6aea10473e",
+          "role": "Original source inspection PNG",
+          "view": "quarter-a",
+          "width": 1200,
+          "height": 800,
+          "reviewedByRoot": true
+        },
+        {
+          "path": "assets/source/inkstorm/catalogue-inspection-round32/e377c2e49ad447caa0517b87562b3acc-quarter-b.png",
+          "bytes": 937192,
+          "sha256": "2fb06d622d6d2cf27c929a56f33b1d84f740649ec35f9a7c1450f2edd82b6c85",
+          "role": "Original source inspection PNG",
+          "view": "quarter-b",
+          "width": 1200,
+          "height": 800,
+          "reviewedByRoot": false
+        }
+      ]
+    },
+    {
+      "ordinal": 6,
+      "uid": "dd948b66950147b78ace05dfcb9ccbbb",
+      "title": "Anakin Podracer",
+      "source": {
+        "path": "assets/source/inkstorm/vehicles/dd948b66950147b78ace05dfcb9ccbbb/source-imported.glb",
+        "bytes": 1142044,
+        "acquisitionSha256": "97ab58243ef91f132d726a685d8400df62aaa1883cb549c7e291f54482e0112f",
+        "headerCounts": {
+          "indexedTriangleDefinitions": 11840,
+          "meshDefinitions": 7,
+          "materials": 7,
+          "images": 7,
+          "nodes": 10,
+          "animations": 0,
+          "skins": 0,
+          "unindexedTrianglePrimitivesExcluded": 0,
+          "nonTrianglePrimitivesExcluded": 0,
+          "scope": "Actual GLB JSON/accessor headers only; instances excluded, binary geometry/images not decoded, source SHA copied from acquisition receipt rather than rehashed here."
+        }
+      },
+      "capture": {
+        "sourceScene": "PodRacing — source dd948b66950147b78ace05dfcb9ccbbb retry 20260908",
+        "sourceFrame": 1,
+        "bounds": [
+          [
+            -2.194446325302124,
+            -10.401631355285645,
+            -1.6530399322509766
+          ],
+          [
+            2.1944453716278076,
+            1.5983688831329346,
+            0.48056894540786743
+          ]
+        ],
+        "scope": "Original imported source geometry/materials at source frame; isolated inspection lighting. Not a stylized asset, in-game capture, occupancy verdict or FPS evidence."
+      },
+      "cleanup": {
+        "uid": "dd948b66950147b78ace05dfcb9ccbbb",
+        "contextRestored": true,
+        "preexistingSceneMembershipChanges": [],
+        "preexistingCollectionMembershipChanges": [],
+        "temporaryReviewSceneRemoved": true
+      },
+      "receipt": {
+        "path": "assets/source/inkstorm/catalogue-inspection-round32/dd948b66950147b78ace05dfcb9ccbbb-receipt.json",
+        "bytes": 1321,
+        "sha256": "17b5e7e93a01bd86017fadf035e0a2054402ba9b524c04e0acf702ad05f463ab",
+        "role": "Original source-render receipt; renderer completion is not occupancy acceptance"
+      },
+      "images": [
+        {
+          "path": "assets/source/inkstorm/catalogue-inspection-round32/dd948b66950147b78ace05dfcb9ccbbb-quarter-a.png",
+          "bytes": 927417,
+          "sha256": "b4920196cc244343d0515c65f1e6d6d8ea05c3e4f160adb73d9b9fb4efdea726",
+          "role": "Original source inspection PNG",
+          "view": "quarter-a",
+          "width": 1200,
+          "height": 800,
+          "reviewedByRoot": true
+        },
+        {
+          "path": "assets/source/inkstorm/catalogue-inspection-round32/dd948b66950147b78ace05dfcb9ccbbb-quarter-b.png",
+          "bytes": 919041,
+          "sha256": "5a97bd27872324a56b01c5ebae615a689980e72f881fb8165f810127339b42e6",
+          "role": "Original source inspection PNG",
+          "view": "quarter-b",
+          "width": 1200,
+          "height": 800,
+          "reviewedByRoot": false
+        }
+      ]
+    },
+    {
+      "ordinal": 7,
+      "uid": "4022e489f3d74eebb0aa3305f38dcc3f",
+      "title": "Ye Old Podracer",
+      "source": {
+        "path": "assets/source/inkstorm/vehicles/4022e489f3d74eebb0aa3305f38dcc3f/source-imported.glb",
+        "bytes": 88738808,
+        "acquisitionSha256": "9d3d34bf20102b41fc18f38fd9c21b0c68f2b64f25c650f3ebcb47b016c81451",
+        "headerCounts": {
+          "indexedTriangleDefinitions": 169600,
+          "meshDefinitions": 110,
+          "materials": 2,
+          "images": 8,
+          "nodes": 226,
+          "animations": 0,
+          "skins": 0,
+          "unindexedTrianglePrimitivesExcluded": 0,
+          "nonTrianglePrimitivesExcluded": 0,
+          "scope": "Actual GLB JSON/accessor headers only; instances excluded, binary geometry/images not decoded, source SHA copied from acquisition receipt rather than rehashed here."
+        }
+      },
+      "capture": {
+        "sourceScene": "PodRacing — source 4022e489f3d74eebb0aa3305f38dcc3f retry 20260908",
+        "sourceFrame": 1,
+        "bounds": [
+          [
+            -4.053230285644531,
+            -9.661033630371094,
+            0.2104184627532959
+          ],
+          [
+            4.053230285644531,
+            2.338965892791748,
+            3.1959893703460693
+          ]
+        ],
+        "scope": "Original imported source geometry/materials at source frame; isolated inspection lighting. Not a stylized asset, in-game capture, occupancy verdict or FPS evidence."
+      },
+      "cleanup": {
+        "uid": "4022e489f3d74eebb0aa3305f38dcc3f",
+        "contextRestored": true,
+        "preexistingSceneMembershipChanges": [],
+        "preexistingCollectionMembershipChanges": [],
+        "temporaryReviewSceneRemoved": true
+      },
+      "receipt": {
+        "path": "assets/source/inkstorm/catalogue-inspection-round32/4022e489f3d74eebb0aa3305f38dcc3f-receipt.json",
+        "bytes": 1317,
+        "sha256": "5e3a2404b6a8a3e26958d637cfdc5026d0d33a1794d3a2197d7c5d8b1646c871",
+        "role": "Original source-render receipt; renderer completion is not occupancy acceptance"
+      },
+      "images": [
+        {
+          "path": "assets/source/inkstorm/catalogue-inspection-round32/4022e489f3d74eebb0aa3305f38dcc3f-quarter-a.png",
+          "bytes": 956015,
+          "sha256": "de9434ab6a87273d448f1a550ac4afe3da34ac7480a8b7e68ebcdfd728d7a9f2",
+          "role": "Original source inspection PNG",
+          "view": "quarter-a",
+          "width": 1200,
+          "height": 800,
+          "reviewedByRoot": true
+        },
+        {
+          "path": "assets/source/inkstorm/catalogue-inspection-round32/4022e489f3d74eebb0aa3305f38dcc3f-quarter-b.png",
+          "bytes": 955573,
+          "sha256": "31e482910b9ccc4dcd86a9c0278b3dae7d5154abc6b4942513a26319e1f3fb1d",
+          "role": "Original source inspection PNG",
+          "view": "quarter-b",
+          "width": 1200,
+          "height": 800,
+          "reviewedByRoot": false
+        }
+      ]
+    },
+    {
+      "ordinal": 8,
+      "uid": "fee6dfa2369149aa84e7f99d9bb35cb0",
+      "title": "Old Worn Out Spaceship",
+      "source": {
+        "path": "assets/source/inkstorm/vehicles/fee6dfa2369149aa84e7f99d9bb35cb0/source-imported.glb",
+        "bytes": 168332124,
+        "acquisitionSha256": "092e859b6844e596c2375448f9064971352e06cd9f0667e3968e4c75fd4013ab",
+        "headerCounts": {
+          "indexedTriangleDefinitions": 246505,
+          "meshDefinitions": 5,
+          "materials": 3,
+          "images": 12,
+          "nodes": 11,
+          "animations": 0,
+          "skins": 0,
+          "unindexedTrianglePrimitivesExcluded": 0,
+          "nonTrianglePrimitivesExcluded": 0,
+          "scope": "Actual GLB JSON/accessor headers only; instances excluded, binary geometry/images not decoded, source SHA copied from acquisition receipt rather than rehashed here."
+        }
+      },
+      "capture": {
+        "sourceScene": "PodRacing — source fee6dfa2369149aa84e7f99d9bb35cb0 retry 20260908",
+        "sourceFrame": 1,
+        "bounds": [
+          [
+            -4.767410755157471,
+            -5.999999523162842,
+            -2.187812089920044
+          ],
+          [
+            4.767410755157471,
+            5.999999523162842,
+            2.187814235687256
+          ]
+        ],
+        "scope": "Original imported source geometry/materials at source frame; isolated inspection lighting. Not a stylized asset, in-game capture, occupancy verdict or FPS evidence."
+      },
+      "cleanup": {
+        "uid": "fee6dfa2369149aa84e7f99d9bb35cb0",
+        "contextRestored": true,
+        "preexistingSceneMembershipChanges": [],
+        "preexistingCollectionMembershipChanges": [],
+        "temporaryReviewSceneRemoved": true
+      },
+      "receipt": {
+        "path": "assets/source/inkstorm/catalogue-inspection-round32/fee6dfa2369149aa84e7f99d9bb35cb0-receipt.json",
+        "bytes": 1321,
+        "sha256": "24ec1755cc73a27559e8d20771bdcb1e3acde4ee0e8b83bee37322a290620540",
+        "role": "Original source-render receipt; renderer completion is not occupancy acceptance"
+      },
+      "images": [
+        {
+          "path": "assets/source/inkstorm/catalogue-inspection-round32/fee6dfa2369149aa84e7f99d9bb35cb0-quarter-a.png",
+          "bytes": 1143289,
+          "sha256": "8f7b40861728f823d22904f005f1d5b7eadd1a92cd8498ecdce5a055e15f666c",
+          "role": "Original source inspection PNG",
+          "view": "quarter-a",
+          "width": 1200,
+          "height": 800,
+          "reviewedByRoot": true
+        },
+        {
+          "path": "assets/source/inkstorm/catalogue-inspection-round32/fee6dfa2369149aa84e7f99d9bb35cb0-quarter-b.png",
+          "bytes": 1130798,
+          "sha256": "dfccb4a367d3f2c8a62cc08c49c52e07d1ec307372cc4ebb792b6767579ec335",
+          "role": "Original source inspection PNG",
+          "view": "quarter-b",
+          "width": 1200,
+          "height": 800,
+          "reviewedByRoot": false
+        }
+      ]
+    },
+    {
+      "ordinal": 9,
+      "uid": "7766ca8e7bd047f5ad4bdb86d11ec6d4",
+      "title": "Star Wars Galaxies - XJ-6 Airspeeder",
+      "source": {
+        "path": "assets/source/inkstorm/vehicles/7766ca8e7bd047f5ad4bdb86d11ec6d4/source-imported.glb",
+        "bytes": 1050620,
+        "acquisitionSha256": "69302f8a9b56e793fc31a2e3c47a141233598924a96373d2415e68aee6b70791",
+        "headerCounts": {
+          "indexedTriangleDefinitions": 2767,
+          "meshDefinitions": 2,
+          "materials": 2,
+          "images": 8,
+          "nodes": 4,
+          "animations": 0,
+          "skins": 0,
+          "unindexedTrianglePrimitivesExcluded": 0,
+          "nonTrianglePrimitivesExcluded": 0,
+          "scope": "Actual GLB JSON/accessor headers only; instances excluded, binary geometry/images not decoded, source SHA copied from acquisition receipt rather than rehashed here."
+        }
+      },
+      "capture": {
+        "sourceScene": "PodRacing — source 7766ca8e7bd047f5ad4bdb86d11ec6d4 retry 20260908",
+        "sourceFrame": 1,
+        "bounds": [
+          [
+            -2.6976194381713867,
+            -5.802428722381592,
+            0.033689144998788834
+          ],
+          [
+            2.6976194381713867,
+            6.197571754455566,
+            3.6356818675994873
+          ]
+        ],
+        "scope": "Original imported source geometry/materials at source frame; isolated inspection lighting. Not a stylized asset, in-game capture, occupancy verdict or FPS evidence."
+      },
+      "cleanup": {
+        "uid": "7766ca8e7bd047f5ad4bdb86d11ec6d4",
+        "contextRestored": true,
+        "preexistingSceneMembershipChanges": [],
+        "preexistingCollectionMembershipChanges": [],
+        "temporaryReviewSceneRemoved": true
+      },
+      "receipt": {
+        "path": "assets/source/inkstorm/catalogue-inspection-round32/7766ca8e7bd047f5ad4bdb86d11ec6d4-receipt.json",
+        "bytes": 1340,
+        "sha256": "f6729125eb6a271ff0c4d17427ebec670ec87528ed269897bb01fe364cfeff83",
+        "role": "Original source-render receipt; renderer completion is not occupancy acceptance"
+      },
+      "images": [
+        {
+          "path": "assets/source/inkstorm/catalogue-inspection-round32/7766ca8e7bd047f5ad4bdb86d11ec6d4-quarter-a.png",
+          "bytes": 1007063,
+          "sha256": "fec7778b88eafce568bd46504ff8a2acb444f32ede7546e8f2099ff642f037bb",
+          "role": "Original source inspection PNG",
+          "view": "quarter-a",
+          "width": 1200,
+          "height": 800,
+          "reviewedByRoot": true
+        },
+        {
+          "path": "assets/source/inkstorm/catalogue-inspection-round32/7766ca8e7bd047f5ad4bdb86d11ec6d4-quarter-b.png",
+          "bytes": 1007675,
+          "sha256": "ac049fff878a52d4bdb6510420c6d02ebc943e0c7e06b9ebbbe9bbf9745ad429",
+          "role": "Original source inspection PNG",
+          "view": "quarter-b",
+          "width": 1200,
+          "height": 800,
+          "reviewedByRoot": false
+        }
+      ]
+    },
+    {
+      "ordinal": 10,
+      "uid": "dac6d14dcf914e88af8625b59f4020bc",
+      "title": "Anakins Pod Racer",
+      "source": {
+        "path": "assets/source/inkstorm/vehicles/dac6d14dcf914e88af8625b59f4020bc/source-imported.glb",
+        "bytes": 26795216,
+        "acquisitionSha256": "d101d06650c0df3707e09dc52e6e73d84265c6527170d5142495fa32a0a66eec",
+        "headerCounts": {
+          "indexedTriangleDefinitions": 54036,
+          "meshDefinitions": 18,
+          "materials": 10,
+          "images": 27,
+          "nodes": 39,
+          "animations": 0,
+          "skins": 0,
+          "unindexedTrianglePrimitivesExcluded": 0,
+          "nonTrianglePrimitivesExcluded": 0,
+          "scope": "Actual GLB JSON/accessor headers only; instances excluded, binary geometry/images not decoded, source SHA copied from acquisition receipt rather than rehashed here."
+        }
+      },
+      "capture": {
+        "sourceScene": "PodRacing — source dac6d14dcf914e88af8625b59f4020bc retry 20260908",
+        "sourceFrame": 1,
+        "bounds": [
+          [
+            -2.307648181915283,
+            -10.750855445861816,
+            -1.380083680152893
+          ],
+          [
+            2.3540456295013428,
+            1.2491449117660522,
+            0.5589039325714111
+          ]
+        ],
+        "scope": "Original imported source geometry/materials at source frame; isolated inspection lighting. Not a stylized asset, in-game capture, occupancy verdict or FPS evidence."
+      },
+      "cleanup": {
+        "uid": "dac6d14dcf914e88af8625b59f4020bc",
+        "contextRestored": true,
+        "preexistingSceneMembershipChanges": [],
+        "preexistingCollectionMembershipChanges": [],
+        "temporaryReviewSceneRemoved": true
+      },
+      "receipt": {
+        "path": "assets/source/inkstorm/catalogue-inspection-round32/dac6d14dcf914e88af8625b59f4020bc-receipt.json",
+        "bytes": 1320,
+        "sha256": "14a21a44c7c7dd76bcb1498adf646088ce7b907dabfd16a6a613ee398cd3c747",
+        "role": "Original source-render receipt; renderer completion is not occupancy acceptance"
+      },
+      "images": [
+        {
+          "path": "assets/source/inkstorm/catalogue-inspection-round32/dac6d14dcf914e88af8625b59f4020bc-quarter-a.png",
+          "bytes": 982715,
+          "sha256": "c9b710db01003f028b3a4d23231088ba2d547d0220fdae0b63321587395045d0",
+          "role": "Original source inspection PNG",
+          "view": "quarter-a",
+          "width": 1200,
+          "height": 800,
+          "reviewedByRoot": true
+        },
+        {
+          "path": "assets/source/inkstorm/catalogue-inspection-round32/dac6d14dcf914e88af8625b59f4020bc-quarter-b.png",
+          "bytes": 976237,
+          "sha256": "39bf58f78526ef018f8c8c518f6de0be3c06637a37c233131a48d6110a958019",
+          "role": "Original source inspection PNG",
+          "view": "quarter-b",
+          "width": 1200,
+          "height": 800,
+          "reviewedByRoot": false
+        }
+      ]
+    },
+    {
+      "ordinal": 11,
+      "uid": "39f96d4fcf00432dba3beb2e42163aa6",
+      "title": "World Skills Pod Transporter",
+      "source": {
+        "path": "assets/source/inkstorm/vehicles/39f96d4fcf00432dba3beb2e42163aa6/source-imported.glb",
+        "bytes": 25913648,
+        "acquisitionSha256": "946db4b4800c23999e751708793a132880f692d4c594cfd077a5fee2c97fa5db",
+        "headerCounts": {
+          "indexedTriangleDefinitions": 19922,
+          "meshDefinitions": 1,
+          "materials": 1,
+          "images": 4,
+          "nodes": 5,
+          "animations": 0,
+          "skins": 0,
+          "unindexedTrianglePrimitivesExcluded": 0,
+          "nonTrianglePrimitivesExcluded": 0,
+          "scope": "Actual GLB JSON/accessor headers only; instances excluded, binary geometry/images not decoded, source SHA copied from acquisition receipt rather than rehashed here."
+        }
+      },
+      "capture": {
+        "sourceScene": "PodRacing — source 39f96d4fcf00432dba3beb2e42163aa6 retry 20260908",
+        "sourceFrame": 1,
+        "bounds": [
+          [
+            -9.795774459838867,
+            -2.8726367950439453,
+            2.9284451007843018
+          ],
+          [
+            0.758116602897644,
+            9.127363204956055,
+            4.984041690826416
+          ]
+        ],
+        "scope": "Original imported source geometry/materials at source frame; isolated inspection lighting. Not a stylized asset, in-game capture, occupancy verdict or FPS evidence."
+      },
+      "cleanup": {
+        "uid": "39f96d4fcf00432dba3beb2e42163aa6",
+        "contextRestored": true,
+        "preexistingSceneMembershipChanges": [],
+        "preexistingCollectionMembershipChanges": [],
+        "temporaryReviewSceneRemoved": true
+      },
+      "receipt": {
+        "path": "assets/source/inkstorm/catalogue-inspection-round32/39f96d4fcf00432dba3beb2e42163aa6-receipt.json",
+        "bytes": 1329,
+        "sha256": "ad6f7302beaf798fe79e1e1ecc1b1f4d589f412eb736f2f5671ec80b24761efb",
+        "role": "Original source-render receipt; renderer completion is not occupancy acceptance"
+      },
+      "images": [
+        {
+          "path": "assets/source/inkstorm/catalogue-inspection-round32/39f96d4fcf00432dba3beb2e42163aa6-quarter-a.png",
+          "bytes": 1142337,
+          "sha256": "55cdfbbd97f9fa09c70623bd925eb46a42be27ec92dd4860f1b48109070fab5f",
+          "role": "Original source inspection PNG",
+          "view": "quarter-a",
+          "width": 1200,
+          "height": 800,
+          "reviewedByRoot": true
+        },
+        {
+          "path": "assets/source/inkstorm/catalogue-inspection-round32/39f96d4fcf00432dba3beb2e42163aa6-quarter-b.png",
+          "bytes": 1124060,
+          "sha256": "8581cefe74b6c9263d1559b2b6a33cc85e343b90bae9ca85396e6b724eaceef5",
+          "role": "Original source inspection PNG",
+          "view": "quarter-b",
+          "width": 1200,
+          "height": 800,
+          "reviewedByRoot": false
+        }
+      ]
+    },
+    {
+      "ordinal": 12,
+      "uid": "5a3422df6f894b48b846d590cdc2bf4c",
+      "title": "Anakin's pod Star Wars",
+      "source": {
+        "path": "assets/source/inkstorm/vehicles/5a3422df6f894b48b846d590cdc2bf4c/source-imported.glb",
+        "bytes": 51376460,
+        "acquisitionSha256": "b0cc30db26ddb532629439378407e5ec86ce603c27038f0539ace5c99484b03c",
+        "headerCounts": {
+          "indexedTriangleDefinitions": 33064,
+          "meshDefinitions": 30,
+          "materials": 2,
+          "images": 3,
+          "nodes": 82,
+          "animations": 0,
+          "skins": 0,
+          "unindexedTrianglePrimitivesExcluded": 0,
+          "nonTrianglePrimitivesExcluded": 0,
+          "scope": "Actual GLB JSON/accessor headers only; instances excluded, binary geometry/images not decoded, source SHA copied from acquisition receipt rather than rehashed here."
+        }
+      },
+      "capture": {
+        "sourceScene": "PodRacing — source 5a3422df6f894b48b846d590cdc2bf4c retry 20260908",
+        "sourceFrame": 1,
+        "bounds": [
+          [
+            -2.261401653289795,
+            -4.186105251312256,
+            -2.186220169067383
+          ],
+          [
+            2.223116636276245,
+            7.8138957023620605,
+            2.1862199306488037
+          ]
+        ],
+        "scope": "Original imported source geometry/materials at source frame; isolated inspection lighting. Not a stylized asset, in-game capture, occupancy verdict or FPS evidence."
+      },
+      "cleanup": {
+        "uid": "5a3422df6f894b48b846d590cdc2bf4c",
+        "contextRestored": true,
+        "preexistingSceneMembershipChanges": [],
+        "preexistingCollectionMembershipChanges": [],
+        "temporaryReviewSceneRemoved": true
+      },
+      "receipt": {
+        "path": "assets/source/inkstorm/catalogue-inspection-round32/5a3422df6f894b48b846d590cdc2bf4c-receipt.json",
+        "bytes": 1285,
+        "sha256": "b77f334681071b47f0c1c55782ec8a2a2bf65b2f53759df6cb3a4c3d8f81bb31",
+        "role": "Original source-render receipt; renderer completion is not occupancy acceptance"
+      },
+      "images": [
+        {
+          "path": "assets/source/inkstorm/catalogue-inspection-round32/5a3422df6f894b48b846d590cdc2bf4c-quarter-a.png",
+          "bytes": 934397,
+          "sha256": "36d5324c25093730f1264f3ff8cadc01dcbee803fbd103803e262c0d17db3732",
+          "role": "Original source inspection PNG",
+          "view": "quarter-a",
+          "width": 1200,
+          "height": 800,
+          "reviewedByRoot": true
+        },
+        {
+          "path": "assets/source/inkstorm/catalogue-inspection-round32/5a3422df6f894b48b846d590cdc2bf4c-quarter-b.png",
+          "bytes": 926911,
+          "sha256": "6f5a5c468507e5ab62b45538759a93c4ac4d56f22bdc242a545ebac014aa934e",
+          "role": "Original source inspection PNG",
+          "view": "quarter-b",
+          "width": 1200,
+          "height": 800,
+          "reviewedByRoot": true
+        }
+      ]
+    },
+    {
+      "ordinal": 13,
+      "uid": "ce9c2d4e92a44dffbd78e6b29d6c0182",
+      "title": "podracer",
+      "source": {
+        "path": "assets/source/inkstorm/vehicles/ce9c2d4e92a44dffbd78e6b29d6c0182/source-imported.glb",
+        "bytes": 37264,
+        "acquisitionSha256": "0941d8e10ff377b5a2c1a7a7686b5236881264bdd192411cd7ed53855b163d15",
+        "headerCounts": {
+          "indexedTriangleDefinitions": 620,
+          "meshDefinitions": 1,
+          "materials": 1,
+          "images": 0,
+          "nodes": 3,
+          "animations": 0,
+          "skins": 0,
+          "unindexedTrianglePrimitivesExcluded": 0,
+          "nonTrianglePrimitivesExcluded": 0,
+          "scope": "Actual GLB JSON/accessor headers only; instances excluded, binary geometry/images not decoded, source SHA copied from acquisition receipt rather than rehashed here."
+        }
+      },
+      "capture": {
+        "sourceScene": "PodRacing — source ce9c2d4e92a44dffbd78e6b29d6c0182 retry 20260908",
+        "sourceFrame": 1,
+        "bounds": [
+          [
+            -4.643624782562256,
+            -7.876436710357666,
+            0.20680546760559082
+          ],
+          [
+            4.710747241973877,
+            4.123563289642334,
+            2.5048668384552
+          ]
+        ],
+        "scope": "Original imported source geometry/materials at source frame; isolated inspection lighting. Not a stylized asset, in-game capture, occupancy verdict or FPS evidence."
+      },
+      "cleanup": {
+        "uid": "ce9c2d4e92a44dffbd78e6b29d6c0182",
+        "contextRestored": true,
+        "preexistingSceneMembershipChanges": [],
+        "preexistingCollectionMembershipChanges": [],
+        "temporaryReviewSceneRemoved": true
+      },
+      "receipt": {
+        "path": "assets/source/inkstorm/catalogue-inspection-round32/ce9c2d4e92a44dffbd78e6b29d6c0182-receipt.json",
+        "bytes": 1307,
+        "sha256": "0e7ab0fe336026dd0e91e71a5321046ae192c5b971e9c7098a63d9b7d87c898d",
+        "role": "Original source-render receipt; renderer completion is not occupancy acceptance"
+      },
+      "images": [
+        {
+          "path": "assets/source/inkstorm/catalogue-inspection-round32/ce9c2d4e92a44dffbd78e6b29d6c0182-quarter-a.png",
+          "bytes": 935070,
+          "sha256": "2ad5ff75eab0fb236043ebf08b3dadb92dd1147d8db3e8b443569da9066010b7",
+          "role": "Original source inspection PNG",
+          "view": "quarter-a",
+          "width": 1200,
+          "height": 800,
+          "reviewedByRoot": true
+        },
+        {
+          "path": "assets/source/inkstorm/catalogue-inspection-round32/ce9c2d4e92a44dffbd78e6b29d6c0182-quarter-b.png",
+          "bytes": 919582,
+          "sha256": "2790ad43c1291224634972310c67e4a1e0d99b1a1251025173a411fb601bddc4",
+          "role": "Original source inspection PNG",
+          "view": "quarter-b",
+          "width": 1200,
+          "height": 800,
+          "reviewedByRoot": false
+        }
+      ]
+    },
+    {
+      "ordinal": 14,
+      "uid": "309c3c42bac24b5c801fcc09f875e6a7",
+      "title": "Pod Racer - Star Wars Inspired Build",
+      "source": {
+        "path": "assets/source/inkstorm/vehicles/309c3c42bac24b5c801fcc09f875e6a7/source-imported.glb",
+        "bytes": 33950444,
+        "acquisitionSha256": "7099b3d33ebae5e32e2e9133931f5d69cb11150232321625b40bc2138da1a9e3",
+        "headerCounts": {
+          "indexedTriangleDefinitions": 647721,
+          "meshDefinitions": 179,
+          "materials": 3,
+          "images": 0,
+          "nodes": 379,
+          "animations": 0,
+          "skins": 0,
+          "unindexedTrianglePrimitivesExcluded": 0,
+          "nonTrianglePrimitivesExcluded": 0,
+          "scope": "Actual GLB JSON/accessor headers only; instances excluded, binary geometry/images not decoded, source SHA copied from acquisition receipt rather than rehashed here."
+        }
+      },
+      "capture": {
+        "sourceScene": "PodRacing — source 309c3c42bac24b5c801fcc09f875e6a7 retry 20260908",
+        "sourceFrame": 1,
+        "bounds": [
+          [
+            -3.9184701442718506,
+            -5.3335490226745605,
+            -0.8075610995292664
+          ],
+          [
+            4.639135837554932,
+            6.666450023651123,
+            2.4440553188323975
+          ]
+        ],
+        "scope": "Original imported source geometry/materials at source frame; isolated inspection lighting. Not a stylized asset, in-game capture, occupancy verdict or FPS evidence."
+      },
+      "cleanup": {
+        "uid": "309c3c42bac24b5c801fcc09f875e6a7",
+        "contextRestored": true,
+        "preexistingSceneMembershipChanges": [],
+        "preexistingCollectionMembershipChanges": [],
+        "temporaryReviewSceneRemoved": true
+      },
+      "receipt": {
+        "path": "assets/source/inkstorm/catalogue-inspection-round32/309c3c42bac24b5c801fcc09f875e6a7-receipt.json",
+        "bytes": 1341,
+        "sha256": "8fd27c92f524c89ae2f946731beb9c3829177c82daa65ec82e59c10800ce9185",
+        "role": "Original source-render receipt; renderer completion is not occupancy acceptance"
+      },
+      "images": [
+        {
+          "path": "assets/source/inkstorm/catalogue-inspection-round32/309c3c42bac24b5c801fcc09f875e6a7-quarter-a.png",
+          "bytes": 1001591,
+          "sha256": "22c86a304ddcffda48fdc15ac085ebef6f23713b03481391c9d888ee90064fec",
+          "role": "Original source inspection PNG",
+          "view": "quarter-a",
+          "width": 1200,
+          "height": 800,
+          "reviewedByRoot": true
+        },
+        {
+          "path": "assets/source/inkstorm/catalogue-inspection-round32/309c3c42bac24b5c801fcc09f875e6a7-quarter-b.png",
+          "bytes": 991969,
+          "sha256": "a098562e45298013cce9b8dbe02584d87a3ebe45e2cea1f74205a4933674b6a6",
+          "role": "Original source inspection PNG",
+          "view": "quarter-b",
+          "width": 1200,
+          "height": 800,
+          "reviewedByRoot": false
+        }
+      ]
+    },
+    {
+      "ordinal": 15,
+      "uid": "6ea36ebb4e504fb8976d2b527b5e40dc",
+      "title": "Star Wars Pod Racer",
+      "source": {
+        "path": "assets/source/inkstorm/vehicles/6ea36ebb4e504fb8976d2b527b5e40dc/source-imported.glb",
+        "bytes": 19424512,
+        "acquisitionSha256": "fbbd0e3c37ae1fad5e18d63e2a45c9f641a0868026aa5994093f267caf0dba5c",
+        "headerCounts": {
+          "indexedTriangleDefinitions": 624442,
+          "meshDefinitions": 8,
+          "materials": 1,
+          "images": 0,
+          "nodes": 10,
+          "animations": 0,
+          "skins": 0,
+          "unindexedTrianglePrimitivesExcluded": 0,
+          "nonTrianglePrimitivesExcluded": 0,
+          "scope": "Actual GLB JSON/accessor headers only; instances excluded, binary geometry/images not decoded, source SHA copied from acquisition receipt rather than rehashed here."
+        }
+      },
+      "capture": {
+        "sourceScene": "PodRacing — source 6ea36ebb4e504fb8976d2b527b5e40dc retry 20260908",
+        "sourceFrame": 1,
+        "bounds": [
+          [
+            -1.0137953758239746,
+            -1.73763906955719,
+            -1.095788598060608
+          ],
+          [
+            10.986204147338867,
+            3.643948554992676,
+            2.636669158935547
+          ]
+        ],
+        "scope": "Original imported source geometry/materials at source frame; isolated inspection lighting. Not a stylized asset, in-game capture, occupancy verdict or FPS evidence."
+      },
+      "cleanup": {
+        "uid": "6ea36ebb4e504fb8976d2b527b5e40dc",
+        "contextRestored": true,
+        "preexistingSceneMembershipChanges": [],
+        "preexistingCollectionMembershipChanges": [],
+        "temporaryReviewSceneRemoved": true
+      },
+      "receipt": {
+        "path": "assets/source/inkstorm/catalogue-inspection-round32/6ea36ebb4e504fb8976d2b527b5e40dc-receipt.json",
+        "bytes": 1320,
+        "sha256": "ca52254cf278701c48c68e78644007e12ec02122762cf2ad1200605bc796a1ff",
+        "role": "Original source-render receipt; renderer completion is not occupancy acceptance"
+      },
+      "images": [
+        {
+          "path": "assets/source/inkstorm/catalogue-inspection-round32/6ea36ebb4e504fb8976d2b527b5e40dc-quarter-a.png",
+          "bytes": 912158,
+          "sha256": "24e7a246f3edcd967b313cb4f4f38a75769daedc273fa30e2a133454f3bac598",
+          "role": "Original source inspection PNG",
+          "view": "quarter-a",
+          "width": 1200,
+          "height": 800,
+          "reviewedByRoot": true
+        },
+        {
+          "path": "assets/source/inkstorm/catalogue-inspection-round32/6ea36ebb4e504fb8976d2b527b5e40dc-quarter-b.png",
+          "bytes": 912359,
+          "sha256": "2c87afc750e135f5f4ac859cae0c8d76a111769ac745db730798ce4a5c290511",
+          "role": "Original source inspection PNG",
+          "view": "quarter-b",
+          "width": 1200,
+          "height": 800,
+          "reviewedByRoot": false
+        }
+      ]
+    },
+    {
+      "ordinal": 17,
+      "uid": "19a50e866e5d44cb8e4840b616cc8132",
+      "title": "Podracer stl file",
+      "source": {
+        "path": "assets/source/inkstorm/vehicles/19a50e866e5d44cb8e4840b616cc8132/source-imported.glb",
+        "bytes": 15756,
+        "acquisitionSha256": "34c023984adbd8ac679a126517df5abf788980168f146b9c4e5d0232e1215eb4",
+        "headerCounts": {
+          "indexedTriangleDefinitions": 620,
+          "meshDefinitions": 1,
+          "materials": 1,
+          "images": 0,
+          "nodes": 3,
+          "animations": 0,
+          "skins": 0,
+          "unindexedTrianglePrimitivesExcluded": 0,
+          "nonTrianglePrimitivesExcluded": 0,
+          "scope": "Actual GLB JSON/accessor headers only; instances excluded, binary geometry/images not decoded, source SHA copied from acquisition receipt rather than rehashed here."
+        }
+      },
+      "capture": {
+        "sourceScene": "PodRacing — source 19a50e866e5d44cb8e4840b616cc8132 retry 20260908",
+        "sourceFrame": 1,
+        "bounds": [
+          [
+            -4.643624782562256,
+            0.20680534839630127,
+            -4.123563766479492
+          ],
+          [
+            4.710747241973877,
+            2.5048670768737793,
+            7.876436710357666
+          ]
+        ],
+        "scope": "Original imported source geometry/materials at source frame; isolated inspection lighting. Not a stylized asset, in-game capture, occupancy verdict or FPS evidence."
+      },
+      "cleanup": {
+        "uid": "19a50e866e5d44cb8e4840b616cc8132",
+        "contextRestored": true,
+        "preexistingSceneMembershipChanges": [],
+        "preexistingCollectionMembershipChanges": [],
+        "temporaryReviewSceneRemoved": true
+      },
+      "receipt": {
+        "path": "assets/source/inkstorm/catalogue-inspection-round32/19a50e866e5d44cb8e4840b616cc8132-receipt.json",
+        "bytes": 1319,
+        "sha256": "dd4e87144a370623666072d9a8b62c79e514de880046aaf555141b0c5747d3c0",
+        "role": "Original source-render receipt; renderer completion is not occupancy acceptance"
+      },
+      "images": [
+        {
+          "path": "assets/source/inkstorm/catalogue-inspection-round32/19a50e866e5d44cb8e4840b616cc8132-quarter-a.png",
+          "bytes": 898952,
+          "sha256": "a58eb7db1d1ba68f691e53e6f95b85b84bf09ab7aa06c256ae6c4daf5ea00805",
+          "role": "Original source inspection PNG",
+          "view": "quarter-a",
+          "width": 1200,
+          "height": 800,
+          "reviewedByRoot": true
+        },
+        {
+          "path": "assets/source/inkstorm/catalogue-inspection-round32/19a50e866e5d44cb8e4840b616cc8132-quarter-b.png",
+          "bytes": 900976,
+          "sha256": "294d31bac10cf5ca42d6a6c70b6b310241712a56d180e6dcb91bfc4bacf2a3a6",
+          "role": "Original source inspection PNG",
+          "view": "quarter-b",
+          "width": 1200,
+          "height": 800,
+          "reviewedByRoot": false
+        }
+      ]
+    },
+    {
+      "ordinal": 18,
+      "uid": "ff12ef200c994c8b9c6b61ea45702454",
+      "title": "Podracer obj file",
+      "source": {
+        "path": "assets/source/inkstorm/vehicles/ff12ef200c994c8b9c6b61ea45702454/source-imported.glb",
+        "bytes": 37164,
+        "acquisitionSha256": "c4ddf45428901b60436248edd0eec5c3175a7b6611132bd19be2c876953d705f",
+        "headerCounts": {
+          "indexedTriangleDefinitions": 620,
+          "meshDefinitions": 1,
+          "materials": 1,
+          "images": 0,
+          "nodes": 3,
+          "animations": 0,
+          "skins": 0,
+          "unindexedTrianglePrimitivesExcluded": 0,
+          "nonTrianglePrimitivesExcluded": 0,
+          "scope": "Actual GLB JSON/accessor headers only; instances excluded, binary geometry/images not decoded, source SHA copied from acquisition receipt rather than rehashed here."
+        }
+      },
+      "capture": {
+        "sourceScene": "PodRacing — source ff12ef200c994c8b9c6b61ea45702454 retry 20260908",
+        "sourceFrame": 1,
+        "bounds": [
+          [
+            -4.643624782562256,
+            -7.876436710357666,
+            0.20680546760559082
+          ],
+          [
+            4.710747241973877,
+            4.123563289642334,
+            2.5048668384552
+          ]
+        ],
+        "scope": "Original imported source geometry/materials at source frame; isolated inspection lighting. Not a stylized asset, in-game capture, occupancy verdict or FPS evidence."
+      },
+      "cleanup": {
+        "uid": "ff12ef200c994c8b9c6b61ea45702454",
+        "contextRestored": true,
+        "preexistingSceneMembershipChanges": [],
+        "preexistingCollectionMembershipChanges": [],
+        "temporaryReviewSceneRemoved": true
+      },
+      "receipt": {
+        "path": "assets/source/inkstorm/catalogue-inspection-round32/ff12ef200c994c8b9c6b61ea45702454-receipt.json",
+        "bytes": 1316,
+        "sha256": "1fa145045c38b05a7ae3648f879888ddbaba27c7b5a17c230a8b40dbbd600ea6",
+        "role": "Original source-render receipt; renderer completion is not occupancy acceptance"
+      },
+      "images": [
+        {
+          "path": "assets/source/inkstorm/catalogue-inspection-round32/ff12ef200c994c8b9c6b61ea45702454-quarter-a.png",
+          "bytes": 935414,
+          "sha256": "94915ed87a1676075d035d21410b549a3ae8b69c716fa573d3d579603509cb09",
+          "role": "Original source inspection PNG",
+          "view": "quarter-a",
+          "width": 1200,
+          "height": 800,
+          "reviewedByRoot": true
+        },
+        {
+          "path": "assets/source/inkstorm/catalogue-inspection-round32/ff12ef200c994c8b9c6b61ea45702454-quarter-b.png",
+          "bytes": 919632,
+          "sha256": "a16f0b8900842d20d4a3f4bb2c86555bdcc0c66958d87392a1467599920e8563",
+          "role": "Original source inspection PNG",
+          "view": "quarter-b",
+          "width": 1200,
+          "height": 800,
+          "reviewedByRoot": false
+        }
+      ]
+    },
+    {
+      "ordinal": 19,
+      "uid": "e10eb39da3cf48018ba79c341a867d45",
+      "title": "Yet Another Pod Racer",
+      "source": {
+        "path": "assets/source/inkstorm/vehicles/e10eb39da3cf48018ba79c341a867d45/source-imported.glb",
+        "bytes": 2387096,
+        "acquisitionSha256": "487d91f4fcc23cccc276e37b66cbf4b560614c13639f42d24b66c59df5edf8bd",
+        "headerCounts": {
+          "indexedTriangleDefinitions": 57290,
+          "meshDefinitions": 13,
+          "materials": 1,
+          "images": 0,
+          "nodes": 15,
+          "animations": 0,
+          "skins": 0,
+          "unindexedTrianglePrimitivesExcluded": 0,
+          "nonTrianglePrimitivesExcluded": 0,
+          "scope": "Actual GLB JSON/accessor headers only; instances excluded, binary geometry/images not decoded, source SHA copied from acquisition receipt rather than rehashed here."
+        }
+      },
+      "capture": {
+        "sourceScene": "PodRacing — source e10eb39da3cf48018ba79c341a867d45 retry 20260908",
+        "sourceFrame": 1,
+        "bounds": [
+          [
+            -4.2631516456604,
+            -6.720512866973877,
+            -0.06407394260168076
+          ],
+          [
+            4.51912784576416,
+            5.279486656188965,
+            4.928383827209473
+          ]
+        ],
+        "scope": "Original imported source geometry/materials at source frame; isolated inspection lighting. Not a stylized asset, in-game capture, occupancy verdict or FPS evidence."
+      },
+      "cleanup": {
+        "uid": "e10eb39da3cf48018ba79c341a867d45",
+        "contextRestored": true,
+        "preexistingSceneMembershipChanges": [],
+        "preexistingCollectionMembershipChanges": [],
+        "temporaryReviewSceneRemoved": true
+      },
+      "receipt": {
+        "path": "assets/source/inkstorm/catalogue-inspection-round32/e10eb39da3cf48018ba79c341a867d45-receipt.json",
+        "bytes": 1317,
+        "sha256": "ce0b815dd5d998f6a2f10b546c4aaade005757e7446bf8d17b935b9a99b5dbfe",
+        "role": "Original source-render receipt; renderer completion is not occupancy acceptance"
+      },
+      "images": [
+        {
+          "path": "assets/source/inkstorm/catalogue-inspection-round32/e10eb39da3cf48018ba79c341a867d45-quarter-a.png",
+          "bytes": 1017632,
+          "sha256": "3763b7b3e0b8c5bd736cdb8e5a3e05936a77e46abc8b379c248c362b5f319999",
+          "role": "Original source inspection PNG",
+          "view": "quarter-a",
+          "width": 1200,
+          "height": 800,
+          "reviewedByRoot": true
+        },
+        {
+          "path": "assets/source/inkstorm/catalogue-inspection-round32/e10eb39da3cf48018ba79c341a867d45-quarter-b.png",
+          "bytes": 962321,
+          "sha256": "fd912b2c83f682c7972e74d8241b0c7853b435b001d8807627eb33e8c1a98aaa",
+          "role": "Original source inspection PNG",
+          "view": "quarter-b",
+          "width": 1200,
+          "height": 800,
+          "reviewedByRoot": false
+        }
+      ]
+    },
+    {
+      "ordinal": 21,
+      "uid": "41071debeaf1499a9a1586b78ea18a09",
+      "title": "Star Wars - Ark Bumpy Rooses Pod Racer",
+      "source": {
+        "path": "assets/source/inkstorm/vehicles/41071debeaf1499a9a1586b78ea18a09/source-imported.glb",
+        "bytes": 1558424,
+        "acquisitionSha256": "a4ea3127cbce56a577c7bd363490b4a1f0463f5da9e6394c6e4e0c59b9fac63f",
+        "headerCounts": {
+          "indexedTriangleDefinitions": 31984,
+          "meshDefinitions": 180,
+          "materials": 33,
+          "images": 26,
+          "nodes": 363,
+          "animations": 0,
+          "skins": 0,
+          "unindexedTrianglePrimitivesExcluded": 0,
+          "nonTrianglePrimitivesExcluded": 0,
+          "scope": "Actual GLB JSON/accessor headers only; instances excluded, binary geometry/images not decoded, source SHA copied from acquisition receipt rather than rehashed here."
+        }
+      },
+      "capture": {
+        "sourceScene": "PodRacing — source 41071debeaf1499a9a1586b78ea18a09 retry 20260908",
+        "sourceFrame": 1,
+        "bounds": [
+          [
+            -9.319726943969727,
+            -3.1896486282348633,
+            0.3350903391838074
+          ],
+          [
+            2.680274486541748,
+            2.4328978061676025,
+            1.7949533462524414
+          ]
+        ],
+        "scope": "Original imported source geometry/materials at source frame; isolated inspection lighting. Not a stylized asset, in-game capture, occupancy verdict or FPS evidence."
+      },
+      "cleanup": {
+        "uid": "41071debeaf1499a9a1586b78ea18a09",
+        "contextRestored": true,
+        "preexistingSceneMembershipChanges": [],
+        "preexistingCollectionMembershipChanges": [],
+        "temporaryReviewSceneRemoved": true
+      },
+      "receipt": {
+        "path": "assets/source/inkstorm/catalogue-inspection-round32/41071debeaf1499a9a1586b78ea18a09-receipt.json",
+        "bytes": 1341,
+        "sha256": "68b78f56162aa49a44d1459bceabb9ab5d91d8395c4e84592c4883a51355a4ce",
+        "role": "Original source-render receipt; renderer completion is not occupancy acceptance"
+      },
+      "images": [
+        {
+          "path": "assets/source/inkstorm/catalogue-inspection-round32/41071debeaf1499a9a1586b78ea18a09-quarter-a.png",
+          "bytes": 944694,
+          "sha256": "a59d47229cd95bde6426c845bbc5d54ed68af264d0dbf444f188bd37684605c9",
+          "role": "Original source inspection PNG",
+          "view": "quarter-a",
+          "width": 1200,
+          "height": 800,
+          "reviewedByRoot": true
+        },
+        {
+          "path": "assets/source/inkstorm/catalogue-inspection-round32/41071debeaf1499a9a1586b78ea18a09-quarter-b.png",
+          "bytes": 944777,
+          "sha256": "92bc1e251e70c875dbdcabc13bd645cc1d40cd6056f1736567c847b6a299d3fe",
+          "role": "Original source inspection PNG",
+          "view": "quarter-b",
+          "width": 1200,
+          "height": 800,
+          "reviewedByRoot": false
+        }
+      ]
+    },
+    {
+      "ordinal": 22,
+      "uid": "a6f14ae799ab40d7ac425f043f824ff8",
+      "title": "Pod Racer Colour",
+      "source": {
+        "path": "assets/source/inkstorm/vehicles/a6f14ae799ab40d7ac425f043f824ff8/source-imported.glb",
+        "bytes": 2667212,
+        "acquisitionSha256": "1ecf135bc63df02102f168b79ea869d98aba6d07bdc94b2e0c6f10478a13f96e",
+        "headerCounts": {
+          "indexedTriangleDefinitions": 48384,
+          "meshDefinitions": 59,
+          "materials": 20,
+          "images": 0,
+          "nodes": 268,
+          "animations": 0,
+          "skins": 0,
+          "unindexedTrianglePrimitivesExcluded": 0,
+          "nonTrianglePrimitivesExcluded": 0,
+          "scope": "Actual GLB JSON/accessor headers only; instances excluded, binary geometry/images not decoded, source SHA copied from acquisition receipt rather than rehashed here."
+        }
+      },
+      "capture": {
+        "sourceScene": "PodRacing — source a6f14ae799ab40d7ac425f043f824ff8 retry 20260908",
+        "sourceFrame": 1,
+        "bounds": [
+          [
+            -2.9099459648132324,
+            -28.763988494873047,
+            0.021512573584914207
+          ],
+          [
+            2.958909034729004,
+            -16.763992309570312,
+            3.1749837398529053
+          ]
+        ],
+        "scope": "Original imported source geometry/materials at source frame; isolated inspection lighting. Not a stylized asset, in-game capture, occupancy verdict or FPS evidence."
+      },
+      "cleanup": {
+        "uid": "a6f14ae799ab40d7ac425f043f824ff8",
+        "contextRestored": true,
+        "preexistingSceneMembershipChanges": [],
+        "preexistingCollectionMembershipChanges": [],
+        "temporaryReviewSceneRemoved": true
+      },
+      "receipt": {
+        "path": "assets/source/inkstorm/catalogue-inspection-round32/a6f14ae799ab40d7ac425f043f824ff8-receipt.json",
+        "bytes": 1323,
+        "sha256": "aff9f2c49b38e56e16cc8ff0f91dc9f49b61fa91e15ca94dc2dd595654d1c5ec",
+        "role": "Original source-render receipt; renderer completion is not occupancy acceptance"
+      },
+      "images": [
+        {
+          "path": "assets/source/inkstorm/catalogue-inspection-round32/a6f14ae799ab40d7ac425f043f824ff8-quarter-a.png",
+          "bytes": 976193,
+          "sha256": "1f28ac061416f547661bc71ec66b095bcf1ad049385cc9c3ed96ea3334e88770",
+          "role": "Original source inspection PNG",
+          "view": "quarter-a",
+          "width": 1200,
+          "height": 800,
+          "reviewedByRoot": true
+        },
+        {
+          "path": "assets/source/inkstorm/catalogue-inspection-round32/a6f14ae799ab40d7ac425f043f824ff8-quarter-b.png",
+          "bytes": 961999,
+          "sha256": "3ff9108f6d1408d269f4fe9d66b4a57e9d72d8ba0dc6123bc0d064ccd3917518",
+          "role": "Original source inspection PNG",
+          "view": "quarter-b",
+          "width": 1200,
+          "height": 800,
+          "reviewedByRoot": false
+        }
+      ]
+    },
+    {
+      "ordinal": 23,
+      "uid": "e42fb924b344481ea013c58cb0f52ad7",
+      "title": "Pod Racer",
+      "source": {
+        "path": "assets/source/inkstorm/vehicles/e42fb924b344481ea013c58cb0f52ad7/source-imported.glb",
+        "bytes": 2868492,
+        "acquisitionSha256": "2ed231e15b8bbab3f7b7028b73e8b6f442d532c9bc4d1fc0a2f5c40aeda49576",
+        "headerCounts": {
+          "indexedTriangleDefinitions": 48384,
+          "meshDefinitions": 51,
+          "materials": 51,
+          "images": 0,
+          "nodes": 55,
+          "animations": 0,
+          "skins": 0,
+          "unindexedTrianglePrimitivesExcluded": 0,
+          "nonTrianglePrimitivesExcluded": 0,
+          "scope": "Actual GLB JSON/accessor headers only; instances excluded, binary geometry/images not decoded, source SHA copied from acquisition receipt rather than rehashed here."
+        }
+      },
+      "capture": {
+        "sourceScene": "PodRacing — source e42fb924b344481ea013c58cb0f52ad7 retry 20260908",
+        "sourceFrame": 1,
+        "bounds": [
+          [
+            -2.9344284534454346,
+            -6.2063446044921875,
+            0.021512577310204506
+          ],
+          [
+            2.934427261352539,
+            5.793654918670654,
+            3.1749844551086426
+          ]
+        ],
+        "scope": "Original imported source geometry/materials at source frame; isolated inspection lighting. Not a stylized asset, in-game capture, occupancy verdict or FPS evidence."
+      },
+      "cleanup": {
+        "uid": "e42fb924b344481ea013c58cb0f52ad7",
+        "contextRestored": true,
+        "preexistingSceneMembershipChanges": [],
+        "preexistingCollectionMembershipChanges": [],
+        "temporaryReviewSceneRemoved": true
+      },
+      "receipt": {
+        "path": "assets/source/inkstorm/catalogue-inspection-round32/e42fb924b344481ea013c58cb0f52ad7-receipt.json",
+        "bytes": 1314,
+        "sha256": "449a479f4776e9035e9336d8ceec4828dfd8c19c79d7857aea7fc6e01e74a5b8",
+        "role": "Original source-render receipt; renderer completion is not occupancy acceptance"
+      },
+      "images": [
+        {
+          "path": "assets/source/inkstorm/catalogue-inspection-round32/e42fb924b344481ea013c58cb0f52ad7-quarter-a.png",
+          "bytes": 958108,
+          "sha256": "6407b463c5d26eb74747656360dbe7b2e7fa7e2677f36cbaf6932bbc33ad3f89",
+          "role": "Original source inspection PNG",
+          "view": "quarter-a",
+          "width": 1200,
+          "height": 800,
+          "reviewedByRoot": true
+        },
+        {
+          "path": "assets/source/inkstorm/catalogue-inspection-round32/e42fb924b344481ea013c58cb0f52ad7-quarter-b.png",
+          "bytes": 938097,
+          "sha256": "646f0442eeb9802030beb28a6718b5a662f89b61df4bf91ca18e0cec685f08dd",
+          "role": "Original source inspection PNG",
+          "view": "quarter-b",
+          "width": 1200,
+          "height": 800,
+          "reviewedByRoot": false
+        }
+      ]
+    },
+    {
+      "ordinal": 25,
+      "uid": "5a927a9fa0984371bd970b31f5f06086",
+      "title": "Spaceship(pod)",
+      "source": {
+        "path": "assets/source/inkstorm/vehicles/5a927a9fa0984371bd970b31f5f06086/source-imported.glb",
+        "bytes": 17719864,
+        "acquisitionSha256": "36c1b68e1856da7edb18b8f4d7670e78f85b463fff6169dad8752efef4ebe085",
+        "headerCounts": {
+          "indexedTriangleDefinitions": 113320,
+          "meshDefinitions": 5,
+          "materials": 3,
+          "images": 10,
+          "nodes": 14,
+          "animations": 0,
+          "skins": 0,
+          "unindexedTrianglePrimitivesExcluded": 0,
+          "nonTrianglePrimitivesExcluded": 0,
+          "scope": "Actual GLB JSON/accessor headers only; instances excluded, binary geometry/images not decoded, source SHA copied from acquisition receipt rather than rehashed here."
+        }
+      },
+      "capture": {
+        "sourceScene": "PodRacing — source 5a927a9fa0984371bd970b31f5f06086 retry 20260908",
+        "sourceFrame": 1,
+        "bounds": [
+          [
+            -5.028570175170898,
+            -4.844873428344727,
+            0.20078641176223755
+          ],
+          [
+            4.000875473022461,
+            7.155126094818115,
+            3.786298990249634
+          ]
+        ],
+        "scope": "Original imported source geometry/materials at source frame; isolated inspection lighting. Not a stylized asset, in-game capture, occupancy verdict or FPS evidence."
+      },
+      "cleanup": {
+        "uid": "5a927a9fa0984371bd970b31f5f06086",
+        "contextRestored": true,
+        "preexistingSceneMembershipChanges": [],
+        "preexistingCollectionMembershipChanges": [],
+        "temporaryReviewSceneRemoved": true
+      },
+      "receipt": {
+        "path": "assets/source/inkstorm/catalogue-inspection-round32/5a927a9fa0984371bd970b31f5f06086-receipt.json",
+        "bytes": 1314,
+        "sha256": "ea2b7537995b32eb28426991b935b57ccac2226efd609ee981dc85c682bc5b38",
+        "role": "Original source-render receipt; renderer completion is not occupancy acceptance"
+      },
+      "images": [
+        {
+          "path": "assets/source/inkstorm/catalogue-inspection-round32/5a927a9fa0984371bd970b31f5f06086-quarter-a.png",
+          "bytes": 969285,
+          "sha256": "bebd63c9af7c1e5d16e228020e8fbf51a2a7b8f3e05611bf6e9138166b126148",
+          "role": "Original source inspection PNG",
+          "view": "quarter-a",
+          "width": 1200,
+          "height": 800,
+          "reviewedByRoot": true
+        },
+        {
+          "path": "assets/source/inkstorm/catalogue-inspection-round32/5a927a9fa0984371bd970b31f5f06086-quarter-b.png",
+          "bytes": 993934,
+          "sha256": "eb68c5d6ba2b5d13d3650f4363acb0f687e1228ce27877f06413700070b36a0e",
+          "role": "Original source inspection PNG",
+          "view": "quarter-b",
+          "width": 1200,
+          "height": 800,
+          "reviewedByRoot": false
+        }
+      ]
+    },
+    {
+      "ordinal": 26,
+      "uid": "c0d192c145a44459a454627708e46cf5",
+      "title": "Pog Racer",
+      "source": {
+        "path": "assets/source/inkstorm/vehicles/c0d192c145a44459a454627708e46cf5/source-imported.glb",
+        "bytes": 43852688,
+        "acquisitionSha256": "1f042fefe261f1cba6733cddbfe8f1e1bd865254ced400f2c3179ead305751e3",
+        "headerCounts": {
+          "indexedTriangleDefinitions": 35192,
+          "meshDefinitions": 8,
+          "materials": 1,
+          "images": 3,
+          "nodes": 19,
+          "animations": 0,
+          "skins": 0,
+          "unindexedTrianglePrimitivesExcluded": 0,
+          "nonTrianglePrimitivesExcluded": 0,
+          "scope": "Actual GLB JSON/accessor headers only; instances excluded, binary geometry/images not decoded, source SHA copied from acquisition receipt rather than rehashed here."
+        }
+      },
+      "capture": {
+        "sourceScene": "PodRacing — source c0d192c145a44459a454627708e46cf5 retry 20260908",
+        "sourceFrame": 1,
+        "bounds": [
+          [
+            -2.2644383907318115,
+            -4.244444847106934,
+            0.0002071227936539799
+          ],
+          [
+            2.2644383907318115,
+            4.370975971221924,
+            12.000207901000977
+          ]
+        ],
+        "scope": "Original imported source geometry/materials at source frame; isolated inspection lighting. Not a stylized asset, in-game capture, occupancy verdict or FPS evidence."
+      },
+      "cleanup": {
+        "uid": "c0d192c145a44459a454627708e46cf5",
+        "contextRestored": true,
+        "preexistingSceneMembershipChanges": [],
+        "preexistingCollectionMembershipChanges": [],
+        "temporaryReviewSceneRemoved": true
+      },
+      "receipt": {
+        "path": "assets/source/inkstorm/catalogue-inspection-round32/c0d192c145a44459a454627708e46cf5-receipt.json",
+        "bytes": 1315,
+        "sha256": "a625c5cabb20ff59f62186b4e62b236e95f292920948332ab2af235df7fe2d77",
+        "role": "Original source-render receipt; renderer completion is not occupancy acceptance"
+      },
+      "images": [
+        {
+          "path": "assets/source/inkstorm/catalogue-inspection-round32/c0d192c145a44459a454627708e46cf5-quarter-a.png",
+          "bytes": 1020113,
+          "sha256": "d946aaeb72e048c8d6be28db8b3736d9c06ee9c98c08134b03a9846df2f17e31",
+          "role": "Original source inspection PNG",
+          "view": "quarter-a",
+          "width": 1200,
+          "height": 800,
+          "reviewedByRoot": true
+        },
+        {
+          "path": "assets/source/inkstorm/catalogue-inspection-round32/c0d192c145a44459a454627708e46cf5-quarter-b.png",
+          "bytes": 1019046,
+          "sha256": "e3592767850813a57cb55079757a81dea0f8a98adde2ef70517892ee24ceddd6",
+          "role": "Original source inspection PNG",
+          "view": "quarter-b",
+          "width": 1200,
+          "height": 800,
+          "reviewedByRoot": false
+        }
+      ]
+    },
+    {
+      "ordinal": 27,
+      "uid": "9ecf7f66246d4f30b990cc605359e3b6",
+      "title": "Advanced X1",
+      "source": {
+        "path": "assets/source/inkstorm/vehicles/9ecf7f66246d4f30b990cc605359e3b6/source-imported.glb",
+        "bytes": 11535964,
+        "acquisitionSha256": "3dc958df48197673ab0bcba786f8f365a167a35c5dbad5860fdf7288e3d2ae9f",
+        "headerCounts": {
+          "indexedTriangleDefinitions": 26834,
+          "meshDefinitions": 94,
+          "materials": 3,
+          "images": 9,
+          "nodes": 193,
+          "animations": 0,
+          "skins": 0,
+          "unindexedTrianglePrimitivesExcluded": 0,
+          "nonTrianglePrimitivesExcluded": 0,
+          "scope": "Actual GLB JSON/accessor headers only; instances excluded, binary geometry/images not decoded, source SHA copied from acquisition receipt rather than rehashed here."
+        }
+      },
+      "capture": {
+        "sourceScene": "PodRacing — source 9ecf7f66246d4f30b990cc605359e3b6 retry 20260908",
+        "sourceFrame": 1,
+        "bounds": [
+          [
+            -5.946270942687988,
+            -4.341666221618652,
+            -3.7852118015289307
+          ],
+          [
+            6.053728103637695,
+            6.207613945007324,
+            3.808361768722534
+          ]
+        ],
+        "scope": "Original imported source geometry/materials at source frame; isolated inspection lighting. Not a stylized asset, in-game capture, occupancy verdict or FPS evidence."
+      },
+      "cleanup": {
+        "uid": "9ecf7f66246d4f30b990cc605359e3b6",
+        "contextRestored": true,
+        "preexistingSceneMembershipChanges": [],
+        "preexistingCollectionMembershipChanges": [],
+        "temporaryReviewSceneRemoved": true
+      },
+      "receipt": {
+        "path": "assets/source/inkstorm/catalogue-inspection-round32/9ecf7f66246d4f30b990cc605359e3b6-receipt.json",
+        "bytes": 1312,
+        "sha256": "1b478e29936bd22107c6d900a50649fd3382af0e879e51ce13954a0f17945e37",
+        "role": "Original source-render receipt; renderer completion is not occupancy acceptance"
+      },
+      "images": [
+        {
+          "path": "assets/source/inkstorm/catalogue-inspection-round32/9ecf7f66246d4f30b990cc605359e3b6-quarter-a.png",
+          "bytes": 1076930,
+          "sha256": "f347ffd473c6ff0abf9bee2afdd648fce886c71eafe0ac51a8093a254563d636",
+          "role": "Original source inspection PNG",
+          "view": "quarter-a",
+          "width": 1200,
+          "height": 800,
+          "reviewedByRoot": true
+        },
+        {
+          "path": "assets/source/inkstorm/catalogue-inspection-round32/9ecf7f66246d4f30b990cc605359e3b6-quarter-b.png",
+          "bytes": 1084167,
+          "sha256": "299f9b763e55421ef0e2cbca76a62507ae31abc4da99cf6a9e65c3eb1573959e",
+          "role": "Original source inspection PNG",
+          "view": "quarter-b",
+          "width": 1200,
+          "height": 800,
+          "reviewedByRoot": false
+        }
+      ]
+    },
+    {
+      "ordinal": 28,
+      "uid": "eb1a1861d3f140fa958ca7eb70a9f380",
+      "title": "Now This Is Podracing MWRB",
+      "source": {
+        "path": "assets/source/inkstorm/vehicles/eb1a1861d3f140fa958ca7eb70a9f380/source-imported.glb",
+        "bytes": 7568868,
+        "acquisitionSha256": "cd2514a9214990e6e099b1cc8510b63a2cb291b19f493c8f95dae0acce51de3b",
+        "headerCounts": {
+          "indexedTriangleDefinitions": 19398,
+          "meshDefinitions": 38,
+          "materials": 5,
+          "images": 4,
+          "nodes": 80,
+          "animations": 0,
+          "skins": 0,
+          "unindexedTrianglePrimitivesExcluded": 0,
+          "nonTrianglePrimitivesExcluded": 0,
+          "scope": "Actual GLB JSON/accessor headers only; instances excluded, binary geometry/images not decoded, source SHA copied from acquisition receipt rather than rehashed here."
+        }
+      },
+      "capture": {
+        "sourceScene": "PodRacing — source eb1a1861d3f140fa958ca7eb70a9f380 retry 20260908",
+        "sourceFrame": 1,
+        "bounds": [
+          [
+            -13.24163818359375,
+            -11.887795448303223,
+            0.08423027396202087
+          ],
+          [
+            -5.520576477050781,
+            0.11220502853393555,
+            3.299957513809204
+          ]
+        ],
+        "scope": "Original imported source geometry/materials at source frame; isolated inspection lighting. Not a stylized asset, in-game capture, occupancy verdict or FPS evidence."
+      },
+      "cleanup": {
+        "uid": "eb1a1861d3f140fa958ca7eb70a9f380",
+        "contextRestored": true,
+        "preexistingSceneMembershipChanges": [],
+        "preexistingCollectionMembershipChanges": [],
+        "temporaryReviewSceneRemoved": true
+      },
+      "receipt": {
+        "path": "assets/source/inkstorm/catalogue-inspection-round32/eb1a1861d3f140fa958ca7eb70a9f380-receipt.json",
+        "bytes": 1330,
+        "sha256": "3352e5186e4b34742ae37455808d7c0a28aff1f26ebf35af532e48711ec24af3",
+        "role": "Original source-render receipt; renderer completion is not occupancy acceptance"
+      },
+      "images": [
+        {
+          "path": "assets/source/inkstorm/catalogue-inspection-round32/eb1a1861d3f140fa958ca7eb70a9f380-quarter-a.png",
+          "bytes": 937299,
+          "sha256": "c8865010f9f3f41456e8ea059c61ef6740d62db74d31b8e73772ab8906ac3d70",
+          "role": "Original source inspection PNG",
+          "view": "quarter-a",
+          "width": 1200,
+          "height": 800,
+          "reviewedByRoot": true
+        },
+        {
+          "path": "assets/source/inkstorm/catalogue-inspection-round32/eb1a1861d3f140fa958ca7eb70a9f380-quarter-b.png",
+          "bytes": 928038,
+          "sha256": "8315802016ca385eefc9f7984165b970657c50de27a4b89fa6b0864b5ee7c4b6",
+          "role": "Original source inspection PNG",
+          "view": "quarter-b",
+          "width": 1200,
+          "height": 800,
+          "reviewedByRoot": false
+        }
+      ]
+    },
+    {
+      "ordinal": 29,
+      "uid": "0baa936f45434c7eb8d58c31890402a2",
+      "title": "Now This Is Podracing MWRB",
+      "source": {
+        "path": "assets/source/inkstorm/vehicles/0baa936f45434c7eb8d58c31890402a2/source-imported.glb",
+        "bytes": 896756,
+        "acquisitionSha256": "21699f614c4ca68aca79a9f9e514d433db35f9ada2ca95e66061f5418f974d24",
+        "headerCounts": {
+          "indexedTriangleDefinitions": 19182,
+          "meshDefinitions": 36,
+          "materials": 5,
+          "images": 0,
+          "nodes": 76,
+          "animations": 0,
+          "skins": 0,
+          "unindexedTrianglePrimitivesExcluded": 0,
+          "nonTrianglePrimitivesExcluded": 0,
+          "scope": "Actual GLB JSON/accessor headers only; instances excluded, binary geometry/images not decoded, source SHA copied from acquisition receipt rather than rehashed here."
+        }
+      },
+      "capture": {
+        "sourceScene": "PodRacing — source 0baa936f45434c7eb8d58c31890402a2 retry 20260908",
+        "sourceFrame": 1,
+        "bounds": [
+          [
+            -13.24163818359375,
+            -9.200035095214844,
+            0.08423027396202087
+          ],
+          [
+            -5.520576477050781,
+            2.7999653816223145,
+            3.299957513809204
+          ]
+        ],
+        "scope": "Original imported source geometry/materials at source frame; isolated inspection lighting. Not a stylized asset, in-game capture, occupancy verdict or FPS evidence."
+      },
+      "cleanup": {
+        "uid": "0baa936f45434c7eb8d58c31890402a2",
+        "contextRestored": true,
+        "preexistingSceneMembershipChanges": [],
+        "preexistingCollectionMembershipChanges": [],
+        "temporaryReviewSceneRemoved": true
+      },
+      "receipt": {
+        "path": "assets/source/inkstorm/catalogue-inspection-round32/0baa936f45434c7eb8d58c31890402a2-receipt.json",
+        "bytes": 1328,
+        "sha256": "e928266896c87e7f8beaf8e5db047032a9c29b72e192b4a636868f38da7ece18",
+        "role": "Original source-render receipt; renderer completion is not occupancy acceptance"
+      },
+      "images": [
+        {
+          "path": "assets/source/inkstorm/catalogue-inspection-round32/0baa936f45434c7eb8d58c31890402a2-quarter-a.png",
+          "bytes": 937157,
+          "sha256": "6273a1f4bd47ab497fea60002bd396bd94e47be9deb2ffccf5473098604da9ff",
+          "role": "Original source inspection PNG",
+          "view": "quarter-a",
+          "width": 1200,
+          "height": 800,
+          "reviewedByRoot": true
+        },
+        {
+          "path": "assets/source/inkstorm/catalogue-inspection-round32/0baa936f45434c7eb8d58c31890402a2-quarter-b.png",
+          "bytes": 912429,
+          "sha256": "ec8144d432ea3b7f03db0158b2289584f34c512fdea112b73f33bd83aaa06b77",
+          "role": "Original source inspection PNG",
+          "view": "quarter-b",
+          "width": 1200,
+          "height": 800,
+          "reviewedByRoot": false
+        }
+      ]
+    }
+  ],
+  "auxiliaryEvidence": [
+    {
+      "path": "assets/source/inkstorm/catalogue-inspection-round32/initial-safe-mode-rejection.json",
+      "bytes": 585,
+      "sha256": "12a4a9560ec0099f7021a9446fe73c664fcfccd746395d7d04174aeab8cccd3a",
+      "role": "Preserved initial safe-mode rejection, before successful source renders"
+    },
+    {
+      "path": "assets/source/inkstorm/catalogue-inspection-round32/render-template.py",
+      "bytes": 4196,
+      "sha256": "059a814305332fe3db908478933d405dc384aeded05467170fa42c3ed3a1699a",
+      "role": "Preserved source rendering template, not executed by inventory task"
+    }
+  ],
+  "manifestUpdate": {
+    "before": {
+      "path": "assets/source/inkstorm/vehicle-manifest-before-catalogue-inspection-round32.json",
+      "bytes": 309757,
+      "sha256": "729ae54f6175956899f9639763ee83278363f2ce021fdfdca2319dbcb19cf9a0"
+    },
+    "after": {
+      "path": "assets/source/inkstorm/vehicle-manifest.json",
+      "bytes": 429279,
+      "sha256": "b83bf550b0c00d26650d706ecb62a816af90f8ba75383a24ae34275c913f062a"
+    },
+    "changedModelVisualInspections": 24,
+    "changedDriverRecords": [
+      "5a3422df6f894b48b846d590cdc2bf4c",
+      "a6f14ae799ab40d7ac425f043f824ff8",
+      "e42fb924b344481ea013c58cb0f52ad7"
+    ],
+    "countsBefore": {
+      "publicResults": 29,
+      "vehicleCandidates": 26,
+      "excludedNonVehicles": 3,
+      "downloaded": 26,
+      "blockedOrPending": 0,
+      "downloadStatuses": {
+        "downloaded": 26
+      },
+      "mcpImportedSourceGlbs": 26,
+      "rawArchivesPreserved": 0,
+      "stylizationNeedsPermission": 0,
+      "publicAdaptationRestricted": 1,
+      "stylizedExports": 2,
+      "stylizedSourceStudies": 2,
+      "stylizedExportVariants": 4,
+      "driversAdded": 2,
+      "runtimeIntegrations": 2,
+      "driverInspections": 2,
+      "stylizedExportFiles": 8
+    },
+    "countsAfter": {
+      "publicResults": 29,
+      "vehicleCandidates": 26,
+      "excludedNonVehicles": 3,
+      "downloaded": 26,
+      "blockedOrPending": 0,
+      "downloadStatuses": {
+        "downloaded": 26
+      },
+      "mcpImportedSourceGlbs": 26,
+      "rawArchivesPreserved": 0,
+      "stylizationNeedsPermission": 0,
+      "publicAdaptationRestricted": 1,
+      "stylizedExports": 2,
+      "stylizedSourceStudies": 2,
+      "stylizedExportVariants": 4,
+      "driversAdded": 2,
+      "runtimeIntegrations": 2,
+      "driverInspections": 5,
+      "stylizedExportFiles": 8,
+      "sourceVisualInspections": 26
+    },
+    "latestPerformanceReceiptBefore": "../../output/gauntlet/round31-freeze/race-evidence-inventory.json",
+    "latestPerformanceReceiptAfter": "output/gauntlet/round31-freeze/race-evidence-inventory.json",
+    "preserved": "All acquisition/download metadata, licenses, authors, model classification, runtime/stylized records, existing histories, acceptance checkpoints and all other counters remain exact. updatedAt remains unchanged under this bounded field-only authorization."
+  }
+}

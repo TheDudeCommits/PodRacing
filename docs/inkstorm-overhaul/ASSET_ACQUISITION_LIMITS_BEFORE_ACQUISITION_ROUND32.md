@@ -1,0 +1,7 @@
+# Official acquisition access — current boundary
+
+Rechecked7September2026UTC. Sketchfab's official [Data API documentation](https://docs.sketchfab.com/data-api/v3/index.html) identifies HTTP429 as throttling and instructs clients to wait. The inspected documentation does not specify a guaranteed reset interval. A65-minute pause therefore cannot be presented as a promise that downloading will work.
+
+The official [download procedure](https://sketchfab.com/developers/download-api/downloading-models) requires authenticated access to the model download endpoint; its returned archive links are temporary. Current local acquisition uses that official Blender connector path. The saved search metadata and public model viewer are not substitutes for a completed authenticated download.
+
+Local evidence remains2 acquired/integrated vehicles and24 pending. The seventh HTTP429 at 20:52:51 UTC followed 91m46s backoff (5,506 seconds) and imported no objects. That is Ben4 + Podracer3, separate from the two successful imports. Its immutable receipt records all 93 prior scene memberships unchanged, exact context restoration, cleared temporary configuration and one new empty intake (94 total scenes); see the [catalog](VEHICLE_CATALOG.md). A fresh CUA state check still reported the Mac locked. No browser was created by that failed access check. The previously asked Mac-unlock question remains pending; other game work continues. No credential extraction, proxy rotation, alternate-account rotation or archive-link guessing was used.

@@ -1,0 +1,160 @@
+{
+  "date": "2026-09-08",
+  "revision": 4,
+  "status": "CANDIDATES VALIDATED; NOT PUBLISHED; NO VISUAL OR PERFORMANCE ACCEPTANCE",
+  "previousRevisions": [
+    "versions/v1/",
+    "versions/v2-blocked-fixtures/",
+    "versions/v3-thick-cloth/"
+  ],
+  "correction": "Cloth only: 3 cm perimeter shell enclosing original fold envelope, restored pit cream end panels and district repairs, colored 68 percent undersides, 8 mm stitched seams, 10 mm pit textile hem, duplicate district fascia removed. Equipment, fixtures and gantry unchanged.",
+  "frontFaceValidation": "test_frontfaces.mjs / frontface-audit.json: actual exported normals, signed volumes, closed directed edges, FrontSide ray hits and open bore",
+  "clothRevisionValidation": "test_cloth_revision4.mjs / cloth-revision4-audit.json: all seven shells signed volumes, closed directed edges, 6336 actual predecessor-to-FrontSide separation samples, original repairs and colored undersides, exact non-cloth triangle attributes",
+  "fixtureValidation": "test_task_fixtures.mjs / task-fixture-audit.json: exact emitter planes, normals, face areas and contact with predecessor crossbeams",
+  "sharedTaskLightAnchors": "task-light-anchors.json",
+  "sharedTaskLightAnchorSha256": "2fafc4be49abd590acd62ff3a8c9e4672d6b27d6d929d334d5e5232584f8d8b1",
+  "userPrompt": "Use Blender MCP and Codex imagegen skill to generate concept images of the target art style for each section. Keep Iterateing until in-world screenshots look as close as possible to those, at 40-60fps.",
+  "source": "Original Blender MCP authored additive construction in an isolated scene; no downloads",
+  "sourceScript": "build_grid_detail.py",
+  "sourceScriptSha256": "9bdbfaf962cc13099e79350decbf95f5c006b71cc57bec61fccae252ff83a04c",
+  "mergeScriptSha256": "21b4f12932d2a55abeb7f9f88fabce4b95835b3b2d7fb5d01e66224e58a0a809",
+  "blenderReceipt": "blender-export-receipt.txt",
+  "preservedPredecessors": "predecessors/",
+  "optimization": "glTF Transform 4.5.0 exact-prefix concatenation plus dedup/prune; no remesh, simplify or quantization",
+  "deliveryIncrease": 839948,
+  "maximumAllPlacementExtraTriangles": 33976,
+  "extraDrawCalls": 0,
+  "extraMaterials": 0,
+  "extraTextures": 0,
+  "assets": [
+    {
+      "family": "pit-complex",
+      "candidatePath": "assets/source/inkstorm/grid-construction-round29/candidates/pit-complex.glb",
+      "predecessorSha256": "5cebe6dce3a0a27a7d887f4f9a6fbfde6e29512cd47a039b79c4dbadbfe39acd",
+      "overlaySha256": "041b623978b5f9082925ce015a7d0edd6241d65c4a26561bf1bb2441ca534f14",
+      "candidateSha256": "ea94400e38bf6cf5998f84cbd2cffd342054760e17c43c0f4b75ac636212d1dc",
+      "predecessorBytes": 513368,
+      "overlayBytes": 385696,
+      "candidateBytes": 897776,
+      "originalTriangles": 7032,
+      "addedTriangles": 4980,
+      "triangles": 12012,
+      "vertices": 22906,
+      "meshes": 1,
+      "primitives": 1,
+      "materials": 1,
+      "textures": 0,
+      "uvStatus": "No TEXCOORD attributes in either predecessor or overlay; original vertex-color/local-position shader contract preserved",
+      "bounds": {
+        "min": [
+          -71,
+          0,
+          -32.5
+        ],
+        "max": [
+          79,
+          47,
+          28
+        ]
+      },
+      "maxNormalLengthError": 1.207730937480278e-7,
+      "preservation": "Every predecessor POSITION/NORMAL/COLOR_0 byte and every original index retained as exact prefixes after final GLB roundtrip; hierarchy and original material retained",
+      "runtimeBeforeSha256": "57866979d90b8dd2f1be5204df496307ec89b8c3f847900c5a154566fdd8129a",
+      "runtimeAssetUnchanged": true,
+      "validation": {
+        "numErrors": 0,
+        "numWarnings": 0,
+        "numInfos": 0,
+        "numHints": 0,
+        "messages": [],
+        "truncated": false
+      }
+    },
+    {
+      "family": "pit-district",
+      "candidatePath": "assets/source/inkstorm/grid-construction-round29/candidates/pit-district.glb",
+      "predecessorSha256": "947b7b7043775f0f4cdb007e30c055f6cfe485bddc6dcf6632f131a88833d2a0",
+      "overlaySha256": "76420c2aeb852ed21fe4acd418e7e234d715f1b860418dc626f541cf3ce8d5d2",
+      "candidateSha256": "607ea30cc7563a0c07da20a21b25135055a7736adcc34527c057fa6216fba091",
+      "predecessorBytes": 990016,
+      "overlayBytes": 335412,
+      "candidateBytes": 1324124,
+      "originalTriangles": 13254,
+      "addedTriangles": 3856,
+      "triangles": 17110,
+      "vertices": 33898,
+      "meshes": 1,
+      "primitives": 1,
+      "materials": 1,
+      "textures": 0,
+      "uvStatus": "No TEXCOORD attributes in either predecessor or overlay; original vertex-color/local-position shader contract preserved",
+      "bounds": {
+        "min": [
+          -56.81999969482422,
+          0,
+          -18
+        ],
+        "max": [
+          58.25,
+          34.05223083496094,
+          12.535015106201172
+        ]
+      },
+      "maxNormalLengthError": 1.182496955909329e-7,
+      "preservation": "Every predecessor POSITION/NORMAL/COLOR_0 byte and every original index retained as exact prefixes after final GLB roundtrip; hierarchy and original material retained",
+      "runtimeBeforeSha256": "c5aa216edc139efe484981b390946f3a7464587ab508fe5ffec2d8c999240447",
+      "runtimeAssetUnchanged": true,
+      "validation": {
+        "numErrors": 0,
+        "numWarnings": 0,
+        "numInfos": 0,
+        "numHints": 0,
+        "messages": [],
+        "truncated": false
+      }
+    },
+    {
+      "family": "foundry-gantry",
+      "candidatePath": "assets/source/inkstorm/grid-construction-round29/candidates/foundry-gantry.glb",
+      "predecessorSha256": "5270c5d9073016f374e4c17a7240160ae68898e802ca219b4393821a56a59bc6",
+      "overlaySha256": "703999115d9ffd54fcce9c1b57de456e27b29fa577b376c34f549ccd24e33a5f",
+      "candidateSha256": "3d0cd999daf52b82ac0232c7316a5e4072c80bd83982f83cbaf4a1dcde11e862",
+      "predecessorBytes": 317292,
+      "overlayBytes": 122720,
+      "candidateBytes": 438724,
+      "originalTriangles": 4494,
+      "addedTriangles": 1806,
+      "triangles": 6300,
+      "vertices": 11106,
+      "meshes": 1,
+      "primitives": 1,
+      "materials": 1,
+      "textures": 0,
+      "uvStatus": "No TEXCOORD attributes in either predecessor or overlay; original vertex-color/local-position shader contract preserved",
+      "bounds": {
+        "min": [
+          -52,
+          -25,
+          -7
+        ],
+        "max": [
+          52,
+          54.30417251586914,
+          7
+        ]
+      },
+      "maxNormalLengthError": 9.999998984433489e-8,
+      "preservation": "Every predecessor POSITION/NORMAL/COLOR_0 byte and every original index retained as exact prefixes after final GLB roundtrip; hierarchy and original material retained",
+      "runtimeBeforeSha256": "3d0cd999daf52b82ac0232c7316a5e4072c80bd83982f83cbaf4a1dcde11e862",
+      "runtimeAssetUnchanged": true,
+      "validation": {
+        "numErrors": 0,
+        "numWarnings": 0,
+        "numInfos": 0,
+        "numHints": 0,
+        "messages": [],
+        "truncated": false
+      }
+    }
+  ]
+}

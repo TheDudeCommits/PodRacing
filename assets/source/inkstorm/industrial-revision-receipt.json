@@ -1,0 +1,145 @@
+{
+  "date": "2026-09-06",
+  "generator": "build_industrial_revision.py via Blender MCP",
+  "coordinateConvention": "Blender X width, Y depth, Z up; fronts -Y; GLB Y up; identity scene origin",
+  "boundsPolicy": "Exact previous exported POSITION min/max preserved; gantry supports clear central X [-40,40] below suspended lights at Z 39.6",
+  "proof": "output/gauntlet/industrial-revision/*.png are Blender Workbench asset renders, not in-game evidence",
+  "optimization": "glTF Transform 4.5.0 dedup + prune using /tmp/inkstorm-rock-lod-tools",
+  "assets": [
+    {
+      "asset": "foundry-gantry.glb",
+      "bytes": 317292,
+      "sha256": "5270c5d9073016f374e4c17a7240160ae68898e802ca219b4393821a56a59bc6",
+      "meshes": [
+        "foundry-gantry-industrial-revision"
+      ],
+      "nodes": [
+        "foundry-gantry"
+      ],
+      "meshCount": 1,
+      "primitiveCount": 1,
+      "materialCount": 1,
+      "vertices": 8034,
+      "triangles": 4494,
+      "vertexColorAttribute": "COLOR_0",
+      "normalAttribute": "NORMAL",
+      "maxNormalLengthError": 9.999998984433489e-8,
+      "meshBoundsGltf": {
+        "min": [
+          -52,
+          -25,
+          -7
+        ],
+        "max": [
+          52,
+          54.30417251586914,
+          7
+        ]
+      },
+      "source": "Original Blender geometry authored through Blender MCP",
+      "sourceScript": "build_industrial_revision.py",
+      "refinement": "glTF Transform 4.5.0 dedup + prune; exact prior bounds retained",
+      "validation": "Khronos glTF validator: zero errors and warnings",
+      "validatorIssues": {
+        "numErrors": 0,
+        "numWarnings": 0,
+        "numInfos": 0,
+        "numHints": 0,
+        "messages": [],
+        "truncated": false
+      },
+      "previousSha256": "9a18cad26ea9144ebcd07611adcfa868e08012f9850065e9197f24e2c75922b3",
+      "unoptimizedBytes": 317348
+    },
+    {
+      "asset": "pit-complex.glb",
+      "bytes": 513368,
+      "sha256": "5cebe6dce3a0a27a7d887f4f9a6fbfde6e29512cd47a039b79c4dbadbfe39acd",
+      "meshes": [
+        "pit-complex-industrial-revision"
+      ],
+      "nodes": [
+        "pit-complex"
+      ],
+      "meshCount": 1,
+      "primitiveCount": 1,
+      "materialCount": 1,
+      "vertices": 13058,
+      "triangles": 7032,
+      "vertexColorAttribute": "COLOR_0",
+      "normalAttribute": "NORMAL",
+      "maxNormalLengthError": 1.1109325281921656e-7,
+      "meshBoundsGltf": {
+        "min": [
+          -71,
+          0,
+          -32.5
+        ],
+        "max": [
+          79,
+          47,
+          28
+        ]
+      },
+      "source": "Original Blender geometry authored through Blender MCP",
+      "sourceScript": "build_industrial_revision.py",
+      "refinement": "glTF Transform 4.5.0 dedup + prune; exact prior bounds retained",
+      "validation": "Khronos glTF validator: zero errors and warnings",
+      "validatorIssues": {
+        "numErrors": 0,
+        "numWarnings": 0,
+        "numInfos": 0,
+        "numHints": 0,
+        "messages": [],
+        "truncated": false
+      },
+      "previousSha256": "1dcec0aab1b9bce2efe9eb52bc4cb52c9969f9923f3d7eab4a786aedb84abaaf",
+      "unoptimizedBytes": 513428
+    },
+    {
+      "asset": "pipe-bank.glb",
+      "bytes": 504460,
+      "sha256": "4b3510d0f8b10e1a44158edb0b0bbdc25bac33019176368638937ab1834a3b81",
+      "meshes": [
+        "pipe-bank-industrial-revision"
+      ],
+      "nodes": [
+        "pipe-bank"
+      ],
+      "meshCount": 1,
+      "primitiveCount": 1,
+      "materialCount": 1,
+      "vertices": 12789,
+      "triangles": 7160,
+      "vertexColorAttribute": "COLOR_0",
+      "normalAttribute": "NORMAL",
+      "maxNormalLengthError": 1.1117078946298875e-7,
+      "meshBoundsGltf": {
+        "min": [
+          -47,
+          0,
+          -23
+        ],
+        "max": [
+          47,
+          51,
+          20.20081901550293
+        ]
+      },
+      "source": "Original Blender geometry authored through Blender MCP",
+      "sourceScript": "build_industrial_revision.py",
+      "refinement": "glTF Transform 4.5.0 dedup + prune; exact prior bounds retained",
+      "validation": "Khronos glTF validator: zero errors and warnings",
+      "validatorIssues": {
+        "numErrors": 0,
+        "numWarnings": 0,
+        "numInfos": 0,
+        "numHints": 0,
+        "messages": [],
+        "truncated": false
+      },
+      "previousSha256": "74a61830477b8de8162a775d555aeaeda1599d5e7b2c94ef0ed075aefc68fbea",
+      "unoptimizedBytes": 504520
+    }
+  ]
+}

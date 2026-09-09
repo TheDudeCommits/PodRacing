@@ -1,0 +1,66 @@
+{
+  "outcome": "PASS",
+  "scope": "CPU structural and color-master lineage comparison; no art or runtime acceptance.",
+  "colorMasters": {
+    "body": {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/blockrunner-body-color-v1-20260908-contact-v7.png",
+      "sha256": "07243038165c77f64ecc3856a20a6e4d4e3baed3742dac394dc10fe3a5be7b72",
+      "bakeReceiptSha256": "5faa8508cc844857111efba66ab28d9f18d6177b964a7377d519081298242f9a"
+    },
+    "pilot": {
+      "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/blockrunner-round34/blockrunner-pilot-color-v1-20260908-contact-v7.png",
+      "sha256": "27d3ed1a8582ba6140b138ab0754d65faff586d04895ae166d768148548a1822",
+      "bakeReceiptSha256": "ab4affd3d05d58678cb6df0b482cf6d2f0c71b93aeeddb28f6c248bba0d37e15"
+    }
+  },
+  "packages": {
+    "hero": {
+      "referenceSha256": "7eeca075e2a8ea9b1b11e381ff447d6ec7bb83d8f73f6ddb41f843b4cbadfeb4",
+      "candidateSha256": "ee744b122b3e2a009ef7a8f3a8c5c5848fe1503b13e4334e0fe8276ce5c44d8d",
+      "candidateBytes": 4198472,
+      "outcome": "PASS",
+      "changedColorImages": [
+        {
+          "owner": "body",
+          "image": 0,
+          "newSha256": "c8577847852566ca5d095b9694aac33ac296a608f551442cf411b6869af55998"
+        },
+        {
+          "owner": "pilot",
+          "image": 2,
+          "newSha256": "127760e1433c22ce7bb0a9514f0ec75fbd34fd56accf066b5d565f1c3b6d7bd1"
+        }
+      ],
+      "geometryNormalUvIndexArraysExact": true,
+      "rootTransformsExact": true,
+      "roughnessPayloadsExact": true,
+      "nonColorMaterialSemanticsExact": true,
+      "samplersExact": true,
+      "everySamplerClampsBothAxes": true
+    },
+    "rival": {
+      "referenceSha256": "ae90b8f56c2ebca7e128aeee14c6a6e5c59d473a6a0898f8fc64dfbfc283342a",
+      "candidateSha256": "b680cea9dd832ca6c5af382fed5eeea57e4baf6b7d119f0f8bace3dfa6037cb9",
+      "candidateBytes": 3341896,
+      "outcome": "PASS",
+      "changedColorImages": [
+        {
+          "owner": "body",
+          "image": 0,
+          "newSha256": "8a0c022acfc275bb49eae7879100d20a8a6cccaeb4f19c2dfce21ffcb9a1f44e"
+        },
+        {
+          "owner": "pilot",
+          "image": 2,
+          "newSha256": "cc8ac3f4635655effde45498fd89dd413c407519691b39f3ee269215fceba981"
+        }
+      ],
+      "geometryNormalUvIndexArraysExact": true,
+      "rootTransformsExact": true,
+      "roughnessPayloadsExact": true,
+      "nonColorMaterialSemanticsExact": true,
+      "samplersExact": true,
+      "everySamplerClampsBothAxes": true
+    }
+  }
+}

@@ -1,0 +1,130 @@
+{
+  "status": "PASS source technical handoff only",
+  "artifact": "assets/source/inkstorm/foundry-service-round33/v1/foundry-service-gantry-v1.glb",
+  "bytes": 438108,
+  "sha256": "2acef39a4d9d81950b3421aac20dd1cb02f9c7a89ca951eed387417039eb65d7",
+  "nodeNames": [
+    "foundry-service-gantry-v1"
+  ],
+  "meshes": 1,
+  "referencedPrimitives": 1,
+  "triangles": 6500,
+  "vertices": 11034,
+  "materials": [
+    {
+      "name": "Inkstorm_Industrial_Revision_Paint",
+      "doubleSided": true,
+      "pbrMetallicRoughness": {
+        "roughnessFactor": 0.8399999737739563,
+        "metallicFactor": 0
+      }
+    }
+  ],
+  "images": 0,
+  "animations": 0,
+  "attributes": {
+    "POSITION": {
+      "type": "VEC3",
+      "componentType": 5126,
+      "normalized": null
+    },
+    "NORMAL": {
+      "type": "VEC3",
+      "componentType": 5126,
+      "normalized": null
+    },
+    "COLOR_0": {
+      "type": "VEC3",
+      "componentType": 5126,
+      "normalized": null
+    }
+  },
+  "normals": {
+    "finite": true,
+    "zeroVectors": 0,
+    "nonUnitBeyond1e4": 0,
+    "minLength": 0.9999999526054757,
+    "maxLength": 1.0000001109759231,
+    "maxLengthError": 1.1097592311770654e-07
+  },
+  "geometry": {
+    "boundsGltf": [
+      [
+        -52.0,
+        52.0
+      ],
+      [
+        -25.0,
+        61.45000076293945
+      ],
+      [
+        -7.0,
+        7.0
+      ]
+    ],
+    "clippedOpenCorridorMinimumY": 39.66999816894531
+  },
+  "retainedOrientedCheck": {
+    "matchedRetainedTriangles": 3940,
+    "absentSignalTriangles": 2360,
+    "nativeAdditionTriangles": 2560,
+    "positionMatchingTolerance": 2e-05,
+    "maximumMatchedPositionDelta": 0.0,
+    "nativeRetainedAttributes": {
+      "POSITION": {
+        "exact": true,
+        "differentCorners": 0,
+        "maximumComponentDelta": 0.0
+      },
+      "NORMAL": {
+        "exact": true,
+        "differentCorners": 0,
+        "maximumComponentDelta": 0.0
+      },
+      "COLOR_0": {
+        "exact": true,
+        "differentCorners": 0,
+        "maximumComponentDelta": 0.0
+      }
+    },
+    "nativeRetainedAttributesExact": true,
+    "boundsGltf": [
+      [
+        -52.0,
+        52.0
+      ],
+      [
+        -25.0,
+        61.45000076293945
+      ],
+      [
+        -7.0,
+        7.0
+      ]
+    ],
+    "clippedOpenCorridorMinimumY": 39.66999816894531,
+    "sourceSha256": "3d0cd999daf52b82ac0232c7316a5e4072c80bd83982f83cbaf4a1dcde11e862",
+    "nativeSha256": "2acef39a4d9d81950b3421aac20dd1cb02f9c7a89ca951eed387417039eb65d7",
+    "nativeFormats": {
+      "POSITION": {
+        "type": "VEC3",
+        "componentType": 5126,
+        "normalized": null
+      },
+      "NORMAL": {
+        "type": "VEC3",
+        "componentType": 5126,
+        "normalized": null
+      },
+      "COLOR_0": {
+        "type": "VEC3",
+        "componentType": 5126,
+        "normalized": null
+      }
+    },
+    "scope": "Source-only exact retained attribute check/repair; no Blender, runtime install, render or art acceptance.",
+    "status": "native-retained-exact"
+  },
+  "sourceMaterialExact": true,
+  "scope": "No Blender call, public copy, gameplay capture, performance or visual acceptance."
+}

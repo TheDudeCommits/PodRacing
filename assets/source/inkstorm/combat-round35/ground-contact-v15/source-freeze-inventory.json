@@ -1,0 +1,82 @@
+{
+  "status": "SOURCE_FROZEN; native V15 capture and visual acceptance pending",
+  "scope": "Renderer-only right-engine grounding/roll and fixed-pool contact effect; no source art, simulation, terrain, physics, network authority, normal driving, replay or camera behavior edits. Read-only combatCamera diagnostic added.",
+  "changedFiles": [
+    {
+      "path": "/Users/amir/Projects/PodRacing/src/render/combat/TeemtoWreckBreakup.ts",
+      "bytes": 10705,
+      "sha256": "7f68df7807c6df380a09bdbf1797d1d566d70fff849aa8c5fb35b8c86679a61a"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/src/render/combat/WreckVisualPose.ts",
+      "bytes": 9731,
+      "sha256": "bbe0f733ce523f2a79af9f46eda5f321cee9531ee90f02277d988b2996c42337"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/src/render/combat/WreckGroundContact.ts",
+      "bytes": 1904,
+      "sha256": "777f958986beb50bc31d2cfd8bc18fca2eb8031849fb0e155c4640e794112a61"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/src/render/app/GameApp.ts",
+      "bytes": 171882,
+      "sha256": "b9c76deaad76d55cbafbf1317d8862dbc5c396fc138523f9921dc75701cffbe4"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/src/render/galactic/GalacticEffectsView.ts",
+      "bytes": 61435,
+      "sha256": "b96fc8291ed59934116d8a15e06126bdb02b4be6490ced2d7371e286be7dfc47"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/tests/combat/TeemtoWreckBreakup.test.ts",
+      "bytes": 29934,
+      "sha256": "f821e8f8e6cdd3e100b09d947faf7e5e2447936c69041378cd99d6bfaa4d38d9"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/tests/combat/WreckGroundContact.test.ts",
+      "bytes": 2474,
+      "sha256": "74f979b9561163189ccfbf8d1cd9bd030afc3702f50f2f5e7fda606604d86d6d"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/tests/render/GalacticEffectsView.test.ts",
+      "bytes": 25276,
+      "sha256": "dae5997e32702c37d3e3c75481e9186196a664f1ddc9dd372b09b1cfa9926d11"
+    },
+    {
+      "path": "/Users/amir/Projects/PodRacing/tests/render/GalacticEffectsContact.test.ts",
+      "bytes": 8770,
+      "sha256": "4ac65411c644916c687d353cc4854d1890d1eb40fe0eb2d0503f3c34aa7549e4"
+    }
+  ],
+  "unchangedCamera": {
+    "path": "/Users/amir/Projects/PodRacing/src/camera/CinematicCamera.ts",
+    "bytes": 28427,
+    "sha256": "f160d558384d86ed2d16b118e5f8d2b1788d257b1e228a90f3d94d3568d75040"
+  },
+  "unchangedProjectionTest": {
+    "path": "/Users/amir/Projects/PodRacing/tests/camera/WreckBoundsFraming.test.ts",
+    "bytes": 20738,
+    "sha256": "d3a2766d1c10add1b35df699a4ce74242b4e5b774e7e4f1e6e8668b09c802736"
+  },
+  "tests": {
+    "targetedUniqueTests": 63,
+    "files": 8,
+    "breakupAndCamera": 16,
+    "fxGateControllerSimulationBoundary": 40,
+    "adapterAndRigidPose": 7,
+    "typecheck": "PASS",
+    "diffCheck": "PASS",
+    "parentFullBuild": "PENDING",
+    "nativeV15": "PENDING"
+  },
+  "artifact": {
+    "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/combat-round35/ground-contact-v15/v15-ground-contact.patch",
+    "bytes": 47246,
+    "sha256": "4bfa59a2cc4bea56744f1d91c9a5e58ce959c34925e410d15b02a9a1a4b5a149"
+  },
+  "cpuAudit": {
+    "path": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/combat-round35/ground-contact-v15/close-contact-cpu-audit.json",
+    "bytes": 10123,
+    "sha256": "59578629fa468d32e8b0d2e049ae30852917d5c43c2c3a8d5742ee5f5b149b49"
+  }
+}

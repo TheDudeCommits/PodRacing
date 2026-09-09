@@ -1,0 +1,154 @@
+{
+  "version": "V31 private porous rear-contact billows",
+  "status": "frozen for central native trial; no native or performance acceptance",
+  "createdAt": "2026-09-09T11:52:25.341495+00:00",
+  "files": [
+    {
+      "path": "src/render/galactic/GalacticEffectsView.ts",
+      "before": {
+        "sha256": "c3d67f5247327e10aa4e05acec3f95e9735ae1a946a85769d325ed33dd354aff",
+        "bytes": 95300
+      },
+      "candidate": {
+        "sha256": "892d90922e94b0b517fc3e14cd8f94ec57624f8717992566a2b11c6a0b8635dc",
+        "bytes": 98484
+      }
+    },
+    {
+      "path": "src/render/galactic/SolidEffectGeometry.ts",
+      "before": {
+        "sha256": "95447f705aa91ab46eb849ebecf023da23b2a59f971569fe10e861d727b86175",
+        "bytes": 6510
+      },
+      "candidate": {
+        "sha256": "948dd0f1289238c84dc26dbcd65e26dcb4430f57e3c300028a8e581f162bc28b",
+        "bytes": 4980
+      }
+    },
+    {
+      "path": "src/render/galactic/SolidEffectMaterial.ts",
+      "before": {
+        "sha256": "26ec19fa19c7531333d11a65af34654c546c2ea371cba9cf9c08d6ae6095d4e6",
+        "bytes": 7190
+      },
+      "candidate": {
+        "sha256": "d8c5c3eb47e5e8f16ccc83b517c73e50ff66571a2cfba6c2f8ff6695117b9421",
+        "bytes": 8082
+      }
+    },
+    {
+      "path": "tests/render/WreckContactVolume.test.ts",
+      "before": {
+        "sha256": "0fec48cfd074e390726a68f5099911e96c474d971b495017be0d28ad52b78e5a",
+        "bytes": 8447
+      },
+      "candidate": {
+        "sha256": "40a9a700f8106b093a830a94b5116aeef6e86f76989e9cf118e981f5a9d180c7",
+        "bytes": 12798
+      }
+    }
+  ],
+  "patch": {
+    "path": "assets/source/inkstorm/combat-round35/v31-contact-billow-preparation/v31-porous-contact-billows.patch",
+    "sha256": "abcd2b01ce18346a54d29456cad3ee60f86a70c7d91f144e15237ad0d0dd96b5",
+    "bytes": 35757
+  },
+  "checks": {
+    "compatibility": {
+      "tests": 72,
+      "files": 13,
+      "pass": true
+    },
+    "strictTypeScript": true,
+    "applyCheck": true,
+    "componentDepth": {
+      "scope": "Isolated component test: neutral foreground box and three-metre test-only downward carrier translation. No game source changes or actual casing claim.",
+      "visiblePixels": 17737,
+      "maximumCloudDifference": 112,
+      "foregroundSample": [
+        434,
+        332
+      ],
+      "foregroundDifferences": 0,
+      "terrainCoveredPixels": 17467,
+      "terrainLeaks": 0,
+      "programErrors": 0,
+      "glError": 0,
+      "browserClosed": true,
+      "ownedServerClosed": true
+    },
+    "browserAndOwnedServerClosed": true
+  },
+  "evidence": [
+    {
+      "path": "assets/source/inkstorm/combat-round35/v31-contact-billow-preparation/HANDOFF.md",
+      "sha256": "734dcdacfe607d04be79b7d703f1eca545c10171b073c6760bb3697140ae3671",
+      "bytes": 6864
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/v31-contact-billow-preparation/base-hashes.json",
+      "sha256": "6a88e372d0e4e1eb3be40f1a49ecb455b5c976765a0fb0abc7b83d4829e686de",
+      "bytes": 464
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/v31-contact-billow-preparation/final-compatibility.log",
+      "sha256": "bb9e699f483c3a7f7eafcd7cc3acd26d4020948c954c44b777655b3a86ced1c2",
+      "bytes": 219
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/v31-contact-billow-preparation/final-typecheck.log",
+      "sha256": "5bdf9f01d7e6b259f8d940c3d4611aaea043a476370a35f67e3db81847fd5007",
+      "bytes": 73
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/v31-contact-billow-preparation/final-apply-check.log",
+      "sha256": "bd9e1b520f35689dc851b95faaca929dc9ce8a397ac44400789dfbb106c2151f",
+      "bytes": 277
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/v31-contact-billow-preparation/final-metrics.json",
+      "sha256": "d47f1ccbea42e6ebbd1998feeff2632e8bd2d174de555f9095d65b0670532ab2",
+      "bytes": 6906
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/v31-contact-billow-preparation/initial-focused.log",
+      "sha256": "0fcf048b6efadb377b7a7af53b43efade9207b66688d574cc9268a5ad19a1dcc",
+      "bytes": 215
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/v31-contact-billow-preparation/initial-typecheck.log",
+      "sha256": "5bdf9f01d7e6b259f8d940c3d4611aaea043a476370a35f67e3db81847fd5007",
+      "bytes": 73
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/v31-contact-billow-preparation/initial-metrics.json",
+      "sha256": "9bd586fa4cf351b2a3046f04477c1f58fd0a1c66bd127858c63552acd99cd57b",
+      "bytes": 4243
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/v31-contact-billow-preparation/vitest.compat.config.ts",
+      "sha256": "139e17a9538a252566b1d87e5427b40307cc1b7475e420a7d1a8a2a322aad7f7",
+      "bytes": 2544
+    },
+    {
+      "path": "assets/source/inkstorm/combat-round35/v31-contact-billow-preparation/typecheck.mjs",
+      "sha256": "8f10f3a529da0f1a55fac7e5b36a61d5d18850ee7e5f17f06465d97697dbfa78",
+      "bytes": 1032
+    },
+    {
+      "path": "output/playwright/round35-combat-v31-component/commands.json",
+      "sha256": "ad51243d50cdc1db826c803d17d0f39d5bf3452da62841f4c9237e180f5465a0",
+      "bytes": 9677
+    },
+    {
+      "path": "output/playwright/round35-combat-v31-depth-check/commands.json",
+      "sha256": "2f502df03d75c7d12d417cbbd4c8f55a02daf67533ff06f6330267c144a1985a",
+      "bytes": 6312
+    },
+    {
+      "path": "output/playwright/round35-combat-v31-depth-check/RESULT.json",
+      "sha256": "f8c061fbd9904350bfc922617e7f4aa1c5fbbc40961327b9cb95e4f4967deb70",
+      "bytes": 449
+    }
+  ]
+}

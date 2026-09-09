@@ -1,0 +1,281 @@
+{
+  "createdAt": "2026-09-08T18:16:34.117462+00:00",
+  "outcome": "PASS",
+  "scope": "One native four-case V7 run; CPU-only compilation of existing executed evidence after browser/server cleanup. No source or build edits by this audit.",
+  "build": {
+    "path": "dist/assets/index-CJMFrYLw.js",
+    "sha256": "716f16947fa6d9dbb49a3172b626b877efae0bd10e5b3aae05df3ca7923a4ed0"
+  },
+  "receipt": {
+    "path": "output/playwright/round35-combat-v7/receipt.json",
+    "sha256": "bb1a7619aba5f087eeab5b33f72ad172cbd41f8bb9a934f95895341ac9745c72"
+  },
+  "sourcePins": {
+    "path": "output/playwright/round35-combat-v7/source-pins-end.json",
+    "sha256": "26c89363294549fd42a9eb6edf689608041aa9fbe97fefd3bfed598c8c9cb3a9",
+    "allSevenMatched": true,
+    "boundary": "Pins read during run and after browser cleanup, before root resumed edits; not a claim that later V8 UI files remain identical."
+  },
+  "cases": [
+    {
+      "id": "solo-chase",
+      "outcome": "PASS",
+      "analysis": {
+        "outcome": "PASS",
+        "issues": [],
+        "explosion": {
+          "observedWallMs": 10592.9,
+          "type": "redline-explosion",
+          "racerId": "player",
+          "heat": 1,
+          "frame": 912
+        },
+        "wreck": {
+          "observedWallMs": 10592.9,
+          "type": "wreck",
+          "racerId": "player",
+          "cause": "redline-explosion",
+          "sourceId": null,
+          "takedownBy": null,
+          "runTokens": 2,
+          "frame": 912
+        },
+        "estimatedStartMs": 10592.299999976158,
+        "before": {
+          "samples": 30,
+          "wallSeconds": 0.9666000000000003,
+          "simulationSeconds": 0.9666666666666667,
+          "raceSeconds": 0.9666666666666881,
+          "ratio": 1.0000689702738117,
+          "maximumSampleGapMs": 33.399999999999636
+        },
+        "slow": {
+          "samples": 14,
+          "wallSeconds": 0.4332999999999993,
+          "simulationSeconds": 0.08333333333333333,
+          "raceSeconds": 0.08333333333333748,
+          "ratio": 0.19232248634510377,
+          "maximumSampleGapMs": 33.400000000001455
+        },
+        "after": {
+          "samples": 20,
+          "wallSeconds": 0.6334000000000014,
+          "simulationSeconds": 0.6333333333333333,
+          "raceSeconds": 0.6333333333333648,
+          "ratio": 0.9998947479212692,
+          "maximumSampleGapMs": 33.5
+        },
+        "restoredCamera": "chase",
+        "samples": 223
+      },
+      "nativeRenderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M4, Unspecified Version)",
+      "observationSha256": "14621cbb1d012462bedfa12c04f59aa773ed81d12f8957bdba3a7627dd7c22fa",
+      "matteSampleCount": 25,
+      "matteObservedSpanMs": 799.9,
+      "pausedSampleCount": 0,
+      "pausedUniqueFrames": [],
+      "firstMatteToFirstOffMs": 833.3
+    },
+    {
+      "id": "solo-manual-camera",
+      "outcome": "PASS",
+      "analysis": {
+        "outcome": "PASS",
+        "issues": [],
+        "explosion": {
+          "observedWallMs": 10389.7,
+          "type": "redline-explosion",
+          "racerId": "player",
+          "heat": 1,
+          "frame": 914
+        },
+        "wreck": {
+          "observedWallMs": 10389.7,
+          "type": "wreck",
+          "racerId": "player",
+          "cause": "redline-explosion",
+          "sourceId": null,
+          "takedownBy": null,
+          "runTokens": 2,
+          "frame": 914
+        },
+        "estimatedStartMs": 10388.89999998808,
+        "before": {
+          "samples": 30,
+          "wallSeconds": 0.9666000000000003,
+          "simulationSeconds": 0.9666666666666667,
+          "raceSeconds": 0.966666666666689,
+          "ratio": 1.0000689702738117,
+          "maximumSampleGapMs": 33.400000000001455
+        },
+        "slow": {
+          "samples": 14,
+          "wallSeconds": 0.4333999999999996,
+          "simulationSeconds": 0.08333333333333333,
+          "raceSeconds": 0.08333333333333748,
+          "ratio": 0.1922781110598371,
+          "maximumSampleGapMs": 33.400000000001455
+        },
+        "after": {
+          "samples": 20,
+          "wallSeconds": 0.6331999999999989,
+          "simulationSeconds": 0.6333333333333333,
+          "raceSeconds": 0.6333333333333648,
+          "ratio": 1.0002105706464537,
+          "maximumSampleGapMs": 33.399999999999636
+        },
+        "restoredCamera": "cockpit",
+        "samples": 223
+      },
+      "nativeRenderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M4, Unspecified Version)",
+      "observationSha256": "a0db5b1e27c4679e3cce09745d7741e7e8b0c4b65a62314f42f169b995d58bf2",
+      "matteSampleCount": 25,
+      "matteObservedSpanMs": 799.9,
+      "pausedSampleCount": 0,
+      "pausedUniqueFrames": [],
+      "firstMatteToFirstOffMs": 833.2
+    },
+    {
+      "id": "solo-reduced-motion",
+      "outcome": "PASS",
+      "analysis": {
+        "outcome": "PASS",
+        "issues": [],
+        "explosion": {
+          "observedWallMs": 10653.8,
+          "type": "redline-explosion",
+          "racerId": "player",
+          "heat": 1,
+          "frame": 914
+        },
+        "wreck": {
+          "observedWallMs": 10653.8,
+          "type": "wreck",
+          "racerId": "player",
+          "cause": "redline-explosion",
+          "sourceId": null,
+          "takedownBy": null,
+          "runTokens": 2,
+          "frame": 914
+        },
+        "estimatedStartMs": 10635.70000000596,
+        "before": {
+          "samples": 29,
+          "wallSeconds": 0.9333000000000011,
+          "simulationSeconds": 0.9333333333333333,
+          "raceSeconds": 0.9333333333333549,
+          "ratio": 1.000035715561269,
+          "maximumSampleGapMs": 33.399999999999636
+        },
+        "slow": {
+          "samples": 14,
+          "wallSeconds": 0.4332999999999993,
+          "simulationSeconds": 0.075,
+          "raceSeconds": 0.07500000000000373,
+          "ratio": 0.1730902377105934,
+          "maximumSampleGapMs": 33.399999999999636
+        },
+        "after": {
+          "samples": 20,
+          "wallSeconds": 0.6334000000000014,
+          "simulationSeconds": 0.6333333333333333,
+          "raceSeconds": 0.6333333333333648,
+          "ratio": 0.9998947479212692,
+          "maximumSampleGapMs": 33.400000000001455
+        },
+        "restoredCamera": "chase",
+        "samples": 223
+      },
+      "nativeRenderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M4, Unspecified Version)",
+      "observationSha256": "8a0c272e8fde3d6a54aa623df7013d2ae67439d848078e818feeb8f20e729832",
+      "matteSampleCount": 0,
+      "matteObservedSpanMs": 0,
+      "pausedSampleCount": 0,
+      "pausedUniqueFrames": []
+    },
+    {
+      "id": "solo-pause-cancel",
+      "outcome": "PASS",
+      "analysis": {
+        "outcome": "PASS",
+        "issues": [],
+        "explosion": {
+          "observedWallMs": 10435.6,
+          "type": "redline-explosion",
+          "racerId": "player",
+          "heat": 1,
+          "frame": 914
+        },
+        "wreck": {
+          "observedWallMs": 10435.6,
+          "type": "wreck",
+          "racerId": "player",
+          "cause": "redline-explosion",
+          "sourceId": null,
+          "takedownBy": null,
+          "runTokens": 2,
+          "frame": 914
+        },
+        "estimatedStartMs": 10419.00000000596,
+        "before": {
+          "samples": 29,
+          "wallSeconds": 0.9332999999999992,
+          "simulationSeconds": 0.9333333333333333,
+          "raceSeconds": 0.9333333333333549,
+          "ratio": 1.000035715561271,
+          "maximumSampleGapMs": 33.400000000001455
+        },
+        "resumePace": {
+          "samples": 39,
+          "wallSeconds": 1.2666000000000004,
+          "simulationSeconds": 1.2583333333333333,
+          "raceSeconds": 1.258333333333396,
+          "ratio": 0.9934733407021419,
+          "maximumSampleGapMs": 33.399999999999636
+        },
+        "pausedSamples": 22
+      },
+      "nativeRenderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M4, Unspecified Version)",
+      "observationSha256": "ca2641a810eebed6b67d16574c0faa8d08f61d53d231643d338799906ea3a890",
+      "matteSampleCount": 1,
+      "matteObservedSpanMs": 0.0,
+      "pausedSampleCount": 22,
+      "pausedUniqueFrames": [
+        917
+      ],
+      "firstMatteToFirstOffMs": 33.4
+    }
+  ],
+  "cleanup": {
+    "browserClosed": true,
+    "serverExited": true,
+    "errors": []
+  },
+  "clipEvidence": {
+    "path": "output/playwright/round35-combat-v7/clip-evidence.json",
+    "sha256": "68bbd343b3e1648ee97b6c7832580b31b645a5a2e4106ccb29348e60185aeb48",
+    "clip": "output/playwright/round35-combat-v7/solo-chase-wreck-clip.mp4",
+    "clipSha256": "d53921c68751b444d4807d5bd23fb0deea37cb078186751d6f8bc18ece355b76"
+  },
+  "visualInspection": {
+    "viewed": [
+      "solo-chase-wreck.png",
+      "contact-02-wreck-entry.png",
+      "contact-03-wreck-hold.png",
+      "contact-04-camera-return.png"
+    ],
+    "findings": [
+      "Near engine fits inside dedicated V7 wreck framing in inspected entry and hold, improving the V2 cropped engine.",
+      "Wider view includes start-gate crossbar across upper-middle foreground, near or over cockpit top in hold.",
+      "Inspected return frame restores chase and removes matte. Ordinary chase cropping after return is distinct from the dedicated wreck shot."
+    ],
+    "fullContinuousVideoReviewed": false
+  },
+  "limits": [
+    "Ratios measure simulation progress per wall time, not performance FPS.",
+    "Clean outgoing policy is CPU unit evidence; host/guest real-time boundary is CPU integration evidence, not a live two-client browser session.",
+    "Native WebM recording and 5.48-second MP4 clip are 25 fps and silent; clip has no speed change, interpolation, or compositing.",
+    "745 tests / 126 files PASS was reported by root before this run; not rerun by this audit.",
+    "Root plans a subsequent V8 UI-only build; this receipt is explicitly V7 evidence."
+  ]
+}

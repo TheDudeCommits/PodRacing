@@ -1,0 +1,19 @@
+--- before/scripts/competitive-flow.ts
++++ after/scripts/competitive-flow.ts
+@@ -11,6 +11,7 @@
+ import { DEFAULT_PODRACER_CONFIG } from '../src/game/simulation/config';
+ import { deriveGalacticVehicleConfig } from '../src/game/galactic/catalog';
+ import { judgeRaceCadence } from './lib/race-cadence';
++import { expectedResultClock } from './lib/result-clock';
+ 
+ const soloOnly=process.argv.includes('--solo-only');
+ const performanceMode=process.argv.includes('--performance');
+@@ -221,7 +222,7 @@
+  receipts.resultsActionsBounds=resultActions;
+  assert(resultActions && resultActions.y>=0 && resultActions.y+resultActions.height<=900,'Primary results actions are outside the initial viewport');
+  receipts.highlightText=await page.locator('[data-hud="results"] [data-action="view-highlight"]').allTextContents();
+- const milliseconds=Math.floor(soloRecord.time*1000),raceClock=`${Math.floor(milliseconds/60000)}:${String(Math.floor(milliseconds/1000)%60).padStart(2,'0')}.${String(milliseconds%1000).padStart(3,'0')}`;
++ const raceClock=expectedResultClock(soloRecord.time);
+  assert((receipts.highlightText as string[]).some(text=>text.includes(`${raceClock} // You`)),'Finish highlight clock differs from actual solo finish');
+  if(!performanceMode){
+  await page.locator('[data-hud="results"] [data-action="retry-race"]').click();

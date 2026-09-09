@@ -1,0 +1,45 @@
+{
+  "integratedAt": "2026-09-07T21:04:25.275148+00:00",
+  "scope": "District shared CPU/GPU grading installed; visual comparison and full combined build/performance pending",
+  "predecessors": "runtime-before/",
+  "candidateSourceSha256": "dda4d4438e96733e726d55ae71226596d53362ddbadad86609d56c51434565fd",
+  "currentFiles": {
+    "src/game/race/PitPadField.ts": "0474e7d46be3c6ddbd81965d9d80463b1fd5029b9afaad08ce86357379a1b5a4",
+    "src/render/inkstorm/InkstormWorld.ts": "6e35b27793e1fd5fd0bdc5b60df5f86a4152cca6c5e4833532af17affe0a36bf",
+    "src/render/inkstorm/InkstormFoundations.ts": "efbb053056217b8dde5f0da5c5f302e66874d0f8ec4a33727706359780d2f369",
+    "src/render/terrain/CourseGulfTextures.ts": "9e6548b4d0125f224b9adbc2f07a3c55d159c572564d267ecc3833286e54ff26",
+    "src/render/terrain/TerrainSystem.ts": "13c6b41e9e3a82a019fed0ae19a2bcb3135eba16cd4684a7fbb08d06f6881d7e",
+    "src/game/race/RaceSimulation.ts": "36de9c291f3c631fe519b88c32c344d5e3f523835ba6139c55d9066fed5ed35e",
+    "src/render/app/GameApp.ts": "ca897dc5d67042db7d3fa9c9b394f2ac43862c5004708df752276a4f918311ee",
+    "tests/terrain/pitPadField.test.ts": "190c911f9b8c265342dfce1f31f8ddb8b305ad44c1152841b0621a632e411642",
+    "tests/terrain/pitDistrictMeshClearance.test.ts": "0e03b06fd351c6210d02d49db1ae16083a49d155a9a79906306a14b1d9cca0ae",
+    "tests/render/pitGrounding.test.ts": "353ce9cec046d05f989fd81e663932e36ccdb30107a867d7d20607374281ba13",
+    "assets/source/inkstorm/pit-pad-round29/gpu-sampler-diagnostic.ts": "a427f6a40eae4d298396c6d5ca4f11b2a295ac8e7f6f90fbfc8c8288bfb64b3a",
+    "assets/source/inkstorm/pit-pad-round29/run-gpu-sampler.mjs": "917ea61a62acd1b4017fb3d2335a8953ba2bd531a44cfe116535d4440ac770a6"
+  },
+  "focusedTests": {
+    "files": 6,
+    "tests": 26,
+    "status": "PASS",
+    "log": "output/gauntlet/round29-district-focused-tests.log"
+  },
+  "typecheck": "PASS",
+  "diffCheck": "PASS",
+  "gpu": {
+    "receipt": "output/gauntlet/pit-district-sampler-round29-gpu/receipt.json",
+    "sha256": "8deb90aa88835a67f2a1b2e4e700355b664ac3fc9b7b184e8a95bb73f8b91d19",
+    "status": "passed",
+    "pointCount": 275,
+    "phaseCount": 4,
+    "errors": [],
+    "maxErrorMetres": 6.9621832494703995e-06,
+    "maximumCoordinateQuantizationMetres": 0.0005608480148122652,
+    "samplerSourceSha256": "f9d24566e0c09c138b29d1667a47b3230466d8d1de31237fe8baf9a9c52c7e53",
+    "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M4, Unspecified Version)"
+  },
+  "limits": [
+    "source and public active round29; dist remains frozen round28",
+    "No walkable/racer access or uniform fill assertion",
+    "No frame-rate or visual-parity acceptance from sampler/clearance tests"
+  ]
+}

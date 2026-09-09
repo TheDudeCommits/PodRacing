@@ -1,0 +1,11 @@
+--- a/src/ui/RaceHud.ts
++++ b/src/ui/RaceHud.ts
+@@ -445,7 +445,7 @@
+           <strong class="pod-hud__sr-only"><span data-hud="redline-value">0</span>%</strong>
+         </div>
+       <section class="pod-hud__speed" aria-label="Speed">
+-        <div class="pod-hud__speed-ring" data-hud="speed-ring"><svg class="pod-hud__speed-dial" viewBox="0 0 185 210" aria-hidden="true"><path class="dial-resource-glass" d="M0 110H171V184a14 14 0 0 1-14 14H0Z"/><path class="dial-fill" d="M39 31H113a31 31 0 0 1 0 62H39a31 31 0 0 1 0-62Z"/><path d="M39 31H113a31 31 0 0 1 0 62H39a31 31 0 0 1 0-62Z"/><path d="M38 9H116a52 52 0 0 1 0 104H40v-7h76a45 45 0 0 0 0-90H38"/><path class="dial-track" pathLength="100" d="M10 198H115a58 58 0 0 0 58-58V60a58 58 0 0 0-58-58H38"/><path class="dial-charge" pathLength="100" d="M10 198H115a58 58 0 0 0 58-58V60a58 58 0 0 0-58-58H38"/><circle class="dial-fill" cx="36" cy="12" r="10"/><circle cx="36" cy="12" r="10"/></svg></div>
++        <div class="pod-hud__speed-ring" data-hud="speed-ring"><svg class="pod-hud__speed-dial" viewBox="0 0 185 210" aria-hidden="true"><path class="dial-resource-glass" d="M38 2H115a58 58 0 0 1 58 58v80a58 58 0 0 1-58 58H22a20 20 0 0 1-20-20v-58a20 20 0 0 1 20-20H114a38 38 0 0 0 0-76H38Z"/><path class="dial-fill" d="M39 31H113a31 31 0 0 1 0 62H39a31 31 0 0 1 0-62Z"/><path d="M39 31H113a31 31 0 0 1 0 62H39a31 31 0 0 1 0-62Z"/><path d="M38 9H116a52 52 0 0 1 0 104H40v-7h76a45 45 0 0 0 0-90H38"/><path class="dial-track" pathLength="100" d="M10 198H115a58 58 0 0 0 58-58V60a58 58 0 0 0-58-58H38"/><path class="dial-charge" pathLength="100" d="M10 198H115a58 58 0 0 0 58-58V60a58 58 0 0 0-58-58H38"/><circle class="dial-fill" cx="36" cy="12" r="10"/><circle cx="36" cy="12" r="10"/></svg></div>
+         <div class="pod-hud__speed-readout">
+           <span class="pod-hud__speed-number" data-hud="speed">000</span>
+           <span class="pod-hud__speed-unit">KPH</span>

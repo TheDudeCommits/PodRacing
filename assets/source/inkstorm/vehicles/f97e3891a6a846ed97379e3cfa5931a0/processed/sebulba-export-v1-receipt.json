@@ -1,0 +1,614 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-09-07T15:38:22.783854+00:00",
+  "uid": "f97e3891a6a846ed97379e3cfa5931a0",
+  "sourceModelUrl": "https://sketchfab.com/3d-models/sebulba-podracer-star-wars-f97e3891a6a846ed97379e3cfa5931a0",
+  "author": {
+    "displayName": "Vlad",
+    "username": "vladvhm",
+    "profileUrl": "https://sketchfab.com/vladvhm"
+  },
+  "license": "CC-BY-4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+  "licenseEvidence": {
+    "path": "assets/source/inkstorm/vehicles/f97e3891a6a846ed97379e3cfa5931a0/license-receipt.json",
+    "bytes": 1406,
+    "sha256": "5ee891d32cf59faeeec7a5f72d210f9bb04d2cfecf4c80430d096eb641723072"
+  },
+  "source": {
+    "path": "assets/source/inkstorm/vehicles/f97e3891a6a846ed97379e3cfa5931a0/imported-source.glb",
+    "bytes": 68689196,
+    "sha256": "4bc2a4caf9370e8eb3adbb112749790123a7b113ca005a07611bfefafa70aaae"
+  },
+  "scope": "Prepared browser-targeted rigid asset exports, not runtime integration or visual acceptance.",
+  "sourceStudy": "PodRacing \u2014 Sebulba Inkstorm study v1",
+  "exportScene": "PodRacing \u2014 Sebulba runtime export v2",
+  "changes": [
+    "Inkstorm orange and blue-gray painted shell using generated UV repaint",
+    "Opaque graphic adaptation of source Material_765 hardware/glazing; source alpha 139..255 retained in preserved source",
+    "Original static fitted pilot added to visually inspected empty source cockpit",
+    "Source +X-forward to runtime +Z-forward, Y-up; uniform scale 2.2",
+    "Body-only weld at 0.0000022 game units and collapse decimation ratio .115",
+    "Three invalid post-decimation shell triangles removed by Blender mesh validation",
+    "WebP texture packaging with no Draco or Meshopt geometry decoder dependency",
+    "Rival simplified at .45 target ratio and .01 error bound including pilot"
+  ],
+  "normalized": {
+    "path": "assets/source/inkstorm/vehicles/f97e3891a6a846ed97379e3cfa5931a0/processed/sebulba-normalized-v2.glb",
+    "bytes": 7335312,
+    "sha256": "5f7528f1de4d668f1ca8cd3ab19923bbc1baaaf8240a7ba981348e5f8edcb075",
+    "triangles": 54522,
+    "meshes": [
+      {
+        "node": "sebulba-body-hardware.002",
+        "triangles": 14267,
+        "vertices": 14412,
+        "draws": 1,
+        "role": "body"
+      },
+      {
+        "node": "sebulba-body-shell.002",
+        "triangles": 33095,
+        "vertices": 41446,
+        "draws": 1,
+        "role": "body"
+      },
+      {
+        "node": "sebulba-pilot-helmet.002",
+        "triangles": 1144,
+        "vertices": 755,
+        "draws": 1,
+        "role": "pilot"
+      },
+      {
+        "node": "sebulba-pilot-orange.002",
+        "triangles": 2592,
+        "vertices": 1665,
+        "draws": 1,
+        "role": "pilot"
+      },
+      {
+        "node": "sebulba-pilot-suit.002",
+        "triangles": 3136,
+        "vertices": 2095,
+        "draws": 1,
+        "role": "pilot"
+      },
+      {
+        "node": "sebulba-pilot-visor.002",
+        "triangles": 288,
+        "vertices": 185,
+        "draws": 1,
+        "role": "pilot"
+      }
+    ],
+    "draws": 6,
+    "bounds": [
+      [
+        -9.582127571105957,
+        0.5256763100624084,
+        -7.276037693023682
+      ],
+      [
+        9.58211898803711,
+        8.310291290283203,
+        19.124982833862305
+      ]
+    ],
+    "materialCount": 6,
+    "allMaterialsOpaque": true,
+    "allMaterialsDoubleSided": true,
+    "images": 2,
+    "animations": 0,
+    "skins": 0,
+    "extensionsRequired": [],
+    "extrasMemberPresent": false,
+    "anchorNodesRetained": true
+  },
+  "hero": {
+    "path": "assets/source/inkstorm/vehicles/f97e3891a6a846ed97379e3cfa5931a0/processed/sebulba-hero-v1.glb",
+    "bytes": 2672804,
+    "sha256": "f4b31d9260e3272ec394161dea236c874d551b469f18a1d794ec85c05b625b7e",
+    "triangles": 54522,
+    "meshes": [
+      {
+        "node": "sebulba-body-hardware.002",
+        "triangles": 14267,
+        "vertices": 14412,
+        "draws": 1,
+        "role": "body"
+      },
+      {
+        "node": "sebulba-body-shell.002",
+        "triangles": 33095,
+        "vertices": 41446,
+        "draws": 1,
+        "role": "body"
+      },
+      {
+        "node": "sebulba-pilot-helmet.002",
+        "triangles": 1144,
+        "vertices": 755,
+        "draws": 1,
+        "role": "pilot"
+      },
+      {
+        "node": "sebulba-pilot-orange.002",
+        "triangles": 2592,
+        "vertices": 1665,
+        "draws": 1,
+        "role": "pilot"
+      },
+      {
+        "node": "sebulba-pilot-suit.002",
+        "triangles": 3136,
+        "vertices": 2095,
+        "draws": 1,
+        "role": "pilot"
+      },
+      {
+        "node": "sebulba-pilot-visor.002",
+        "triangles": 288,
+        "vertices": 185,
+        "draws": 1,
+        "role": "pilot"
+      }
+    ],
+    "draws": 6,
+    "bounds": [
+      [
+        -9.582127571105957,
+        0.5256763100624084,
+        -7.276037693023682
+      ],
+      [
+        9.58211898803711,
+        8.310291290283203,
+        19.124982833862305
+      ]
+    ],
+    "materialCount": 6,
+    "allMaterialsOpaque": true,
+    "allMaterialsDoubleSided": true,
+    "images": 2,
+    "animations": 0,
+    "skins": 0,
+    "extensionsRequired": [
+      "EXT_texture_webp"
+    ],
+    "extrasMemberPresent": false,
+    "anchorNodesRetained": false
+  },
+  "rival": {
+    "path": "assets/source/inkstorm/vehicles/f97e3891a6a846ed97379e3cfa5931a0/processed/sebulba-rival-v1.glb",
+    "bytes": 1819016,
+    "sha256": "22e1adf8e3dd6562ce143132fb4e82cdb56e62696d9894804ca07b4a3552d951",
+    "triangles": 24559,
+    "meshes": [
+      {
+        "node": "sebulba-body-hardware.002",
+        "triangles": 6406,
+        "vertices": 9494,
+        "draws": 1,
+        "role": "body"
+      },
+      {
+        "node": "sebulba-body-shell.002",
+        "triangles": 14803,
+        "vertices": 26920,
+        "draws": 1,
+        "role": "body"
+      },
+      {
+        "node": "sebulba-pilot-helmet.002",
+        "triangles": 514,
+        "vertices": 391,
+        "draws": 1,
+        "role": "pilot"
+      },
+      {
+        "node": "sebulba-pilot-orange.002",
+        "triangles": 1166,
+        "vertices": 849,
+        "draws": 1,
+        "role": "pilot"
+      },
+      {
+        "node": "sebulba-pilot-suit.002",
+        "triangles": 1410,
+        "vertices": 1131,
+        "draws": 1,
+        "role": "pilot"
+      },
+      {
+        "node": "sebulba-pilot-visor.002",
+        "triangles": 260,
+        "vertices": 171,
+        "draws": 1,
+        "role": "pilot"
+      }
+    ],
+    "draws": 6,
+    "bounds": [
+      [
+        -9.582127571105957,
+        0.5256763100624084,
+        -7.276037693023682
+      ],
+      [
+        9.58211898803711,
+        8.310291290283203,
+        19.124982833862305
+      ]
+    ],
+    "materialCount": 6,
+    "allMaterialsOpaque": true,
+    "allMaterialsDoubleSided": true,
+    "images": 2,
+    "animations": 0,
+    "skins": 0,
+    "extensionsRequired": [
+      "EXT_texture_webp"
+    ],
+    "extrasMemberPresent": false,
+    "anchorNodesRetained": false
+  },
+  "normalization": {
+    "export": "/Users/amir/Projects/PodRacing/assets/source/inkstorm/vehicles/f97e3891a6a846ed97379e3cfa5931a0/processed/sebulba-normalized-v2.glb",
+    "scene": "PodRacing \u2014 Sebulba runtime export v2",
+    "triangles": 54522,
+    "bodyMeshes": 2,
+    "pilotMeshes": 4,
+    "meshes": [
+      {
+        "name": "sebulba-body-shell.002",
+        "sourceVertices": 323418,
+        "vertices": 19344,
+        "triangles": 33095,
+        "materials": [
+          "Inkstorm Sebulba Material_805"
+        ],
+        "pilotSimplified": false,
+        "meshValidationRepaired": true
+      },
+      {
+        "name": "sebulba-body-hardware.002",
+        "sourceVertices": 150776,
+        "vertices": 7813,
+        "triangles": 14267,
+        "materials": [
+          "Inkstorm Sebulba Material_765"
+        ],
+        "pilotSimplified": false,
+        "meshValidationRepaired": false
+      },
+      {
+        "name": "sebulba-pilot-orange.002",
+        "sourceVertices": 1314,
+        "vertices": 1314,
+        "triangles": 2592,
+        "materials": [
+          "Sebulba original pilot orange.003"
+        ],
+        "pilotSimplified": false,
+        "meshValidationRepaired": false
+      },
+      {
+        "name": "sebulba-pilot-visor.002",
+        "sourceVertices": 146,
+        "vertices": 146,
+        "triangles": 288,
+        "materials": [
+          "Sebulba original pilot visor.003"
+        ],
+        "pilotSimplified": false,
+        "meshValidationRepaired": false
+      },
+      {
+        "name": "sebulba-pilot-helmet.002",
+        "sourceVertices": 582,
+        "vertices": 582,
+        "triangles": 1144,
+        "materials": [
+          "Sebulba original pilot helmet.003"
+        ],
+        "pilotSimplified": false,
+        "meshValidationRepaired": false
+      },
+      {
+        "name": "sebulba-pilot-suit.002",
+        "sourceVertices": 1598,
+        "vertices": 1598,
+        "triangles": 3136,
+        "materials": [
+          "Sebulba original pilot suit.003"
+        ],
+        "pilotSimplified": false,
+        "meshValidationRepaired": false
+      }
+    ],
+    "sourceStudyMeshes": [
+      {
+        "name": "sebulba-body-shell",
+        "vertices": 323418,
+        "triangles": 287823
+      },
+      {
+        "name": "sebulba-body-hardware",
+        "vertices": 150776,
+        "triangles": 124076
+      },
+      {
+        "name": "sebulba-pilot-orange",
+        "vertices": 1314,
+        "triangles": 2592
+      },
+      {
+        "name": "sebulba-pilot-visor",
+        "vertices": 146,
+        "triangles": 288
+      },
+      {
+        "name": "sebulba-pilot-helmet",
+        "vertices": 582,
+        "triangles": 1144
+      },
+      {
+        "name": "sebulba-pilot-suit",
+        "vertices": 1598,
+        "triangles": 3136
+      }
+    ],
+    "unitScale": 2.2,
+    "bodyDecimationRatio": 0.115,
+    "bodyWeldDistance": 2.2e-06,
+    "basis": "+Z forward, +Y up; x=2.2*sourceY, y=2.2*sourceZ+.2, z=2.2*sourceX-.712",
+    "anchors": {
+      "sebulba-seat": [
+        1.9617669977378682e-07,
+        1.3660000562667847,
+        -5.199999809265137
+      ],
+      "sebulba-exhaust-left": [
+        -4.42603063583374,
+        3.8541088104248047,
+        3.6695706844329834
+      ],
+      "sebulba-coupling-left": [
+        -2.7677810192108154,
+        3.899996042251587,
+        10.019994735717773
+      ],
+      "sebulba-exhaust-right": [
+        4.426030158996582,
+        3.8541078567504883,
+        3.6695728302001953
+      ],
+      "sebulba-coupling-right": [
+        2.7677767276763916,
+        3.8999955654144287,
+        10.01999568939209
+      ]
+    },
+    "anchorSourceEvidence": {
+      "left": {
+        "rimVertexCount": 1084,
+        "rimSourceXBin": [
+          1.985,
+          1.995
+        ],
+        "rimCenter": [
+          1.9916232107310277,
+          -2.0118319988250732,
+          1.6609585881233215
+        ],
+        "innerShellVertex": [
+          4.87817907333374,
+          -1.2580820322036743,
+          1.6818163394927979
+        ],
+        "innerShellTargetDistance": 0.12402262594138658
+      },
+      "right": {
+        "rimVertexCount": 1084,
+        "rimSourceXBin": [
+          1.985,
+          1.995
+        ],
+        "rimCenter": [
+          1.99162385582484,
+          2.011831820011139,
+          1.6609580516815186
+        ],
+        "innerShellVertex": [
+          4.878179550170898,
+          1.2580804824829102,
+          1.6818161010742188
+        ],
+        "innerShellTargetDistance": 0.12402201372694176
+      }
+    },
+    "bounds": [
+      [
+        -9.582127571105957,
+        0.5256763100624084,
+        -7.276037693023682
+      ],
+      [
+        9.58211898803711,
+        8.310291290283203,
+        19.124982833862305
+      ]
+    ],
+    "exportExtras": false,
+    "animations": false,
+    "sourceModified": false,
+    "materialAdaptation": "Material_765 original alpha 139..255 intentionally converted to opaque graphic hardware/glazing",
+    "visualAcceptance": "Pending: normalized and simplified export not rendered in this CPU-only pass"
+  },
+  "validation": {
+    "hero": {
+      "errors": 0,
+      "warnings": 0,
+      "info": [
+        {
+          "code": "IMAGE_NPOT_DIMENSIONS",
+          "dimensions": [
+            1254,
+            1254
+          ]
+        }
+      ]
+    },
+    "rival": {
+      "errors": 0,
+      "warnings": 0,
+      "info": [
+        {
+          "code": "IMAGE_NPOT_DIMENSIONS",
+          "dimensions": [
+            1254,
+            1254
+          ]
+        }
+      ]
+    },
+    "tool": "@gltf-transform/cli@4.5.0 validate"
+  },
+  "tools": {
+    "normalization": "Blender MCP; Khronos glTF Blender I/O v5.2.39",
+    "optimization": "@gltf-transform/cli@4.5.0"
+  },
+  "preservation": {
+    "sourceGlbUnchanged": true,
+    "sourceStudyMeshDataCopied": true,
+    "sourceSceneAndStudyPreserved": true,
+    "fullBlendSaved": false,
+    "exportExtras": false,
+    "sharedContextRestored": {
+      "scene": "Cruise \u2014 Going Merry source 4b2cb678",
+      "viewLayer": "ViewLayer",
+      "activeObject": "Sketchfab_model.001",
+      "selectedObjects": 15
+    }
+  },
+  "failedIterations": [
+    {
+      "path": {
+        "path": "assets/source/inkstorm/vehicles/f97e3891a6a846ed97379e3cfa5931a0/processed/sebulba-normalized-v1.glb",
+        "bytes": 7335308,
+        "sha256": "db03ae6e3f5275d2b0fb8af2e0a15235b02fe073c068cf5d1557097bcfda42b8"
+      },
+      "accepted": false,
+      "reason": "Inactive study parent matrix_world was stale, placing pilot near origin; body also contained three invalid triangles. Preserved as failed evidence. v2 evaluates source matrices and validates copied mesh before export."
+    }
+  ],
+  "renderEvidence": [
+    {
+      "artifact": {
+        "path": "output/vehicles/sebulba-review/source-full.png",
+        "bytes": 1614637,
+        "sha256": "c2493bcc69e0c5bff94aa39f5434609b1adc49964e08fb28fab7d1a41dce5764"
+      },
+      "kind": "actual source Blender render"
+    },
+    {
+      "artifact": {
+        "path": "output/vehicles/sebulba-review/driver-material-v5.png",
+        "bytes": 1757903,
+        "sha256": "e59132d8fb590980117dedf6db2d9760e13941189bc4d0ebfcfab4b4a9d56ec2"
+      },
+      "kind": "actual unsimplified Blender study render, not normalized export"
+    }
+  ],
+  "acceptance": {
+    "normalizedExportRendered": false,
+    "heroRendered": false,
+    "rivalRendered": false,
+    "runtimeIntegrated": false,
+    "inWorldFPSMeasured": false,
+    "conceptParity": "rejected by vehicle-study critic; simple toy-like pilot still needs refinement",
+    "missing": [
+      "Render simplified hero and rival from front, side and chase cameras",
+      "Inspect driver placement after normalized export and verify hands/controls in runtime",
+      "Verify exhaust rim-center anchors and authored inner-shell coupling anchors visually with effects enabled",
+      "Integrate imported appearance and verify MRT outline, shadow, load/fallback behavior",
+      "Measure full-race performance after final combined bundle"
+    ]
+  },
+  "evidence": [
+    {
+      "path": "assets/source/inkstorm/vehicles/f97e3891a6a846ed97379e3cfa5931a0/processed/blender-normalization-v1-mcp.json",
+      "bytes": 9061,
+      "sha256": "0a1529e28e539f8f0a3abd092f5dfc31dc5bddd5afe38a1a37986cd28b86ba74"
+    },
+    {
+      "path": "assets/source/inkstorm/vehicles/f97e3891a6a846ed97379e3cfa5931a0/processed/blender-normalization-v2-mcp.json",
+      "bytes": 9291,
+      "sha256": "461a83a169d46a14804fafc2774fc93743fcc15a353415dd58ef07979e4997f0"
+    },
+    {
+      "path": "assets/source/inkstorm/vehicles/f97e3891a6a846ed97379e3cfa5931a0/processed/sebulba-paint-inkstorm-v1.png",
+      "bytes": 2638886,
+      "sha256": "c5f58eedf7f966c8c25cf25a664af4d4121495b01e8babf6940562358e30eb69"
+    },
+    {
+      "path": "assets/source/inkstorm/vehicles/f97e3891a6a846ed97379e3cfa5931a0/processed/paint-prompt.txt",
+      "bytes": 1141,
+      "sha256": "d2e1e8efdd3a6824fbe562eeadbb43795c27bd0add08c5a9b6dd409d4eb85a9e"
+    },
+    {
+      "path": "assets/source/inkstorm/vehicles/f97e3891a6a846ed97379e3cfa5931a0/processed/export-sebulba-v1-source.py",
+      "bytes": 7311,
+      "sha256": "7dbe850ee66bf719c266dc2fe35ce05f6fe0990706b2be7e3e894c9021a21ec4"
+    },
+    {
+      "path": "assets/source/inkstorm/vehicles/f97e3891a6a846ed97379e3cfa5931a0/processed/prepare-sebulba-v1-source.py",
+      "bytes": 4437,
+      "sha256": "07f9240601336fa88e38ae1f9e15a558c49b322cb247276b9e7ee95bc3899b28"
+    },
+    {
+      "path": "assets/source/inkstorm/vehicles/f97e3891a6a846ed97379e3cfa5931a0/processed/sebulba-driver-fit-v1-source.py",
+      "bytes": 5881,
+      "sha256": "7d919ee4c190dc2b83fe6794daba922a51e44ce0c182ad363b173780813f4dd3"
+    },
+    {
+      "path": "output/vehicles/sebulba-review/hero-optimize-v1.log",
+      "bytes": 328,
+      "sha256": "40f3194a593d69bae2deb0731751980177097ec0ffa7463bd52a876d10826d5a"
+    },
+    {
+      "path": "output/vehicles/sebulba-review/rival-simplify-v1.log",
+      "bytes": 71,
+      "sha256": "6b61c4473a61eeb66335168c0cdb83898861865eb1c9d995ed51f1ad6531fcfe"
+    },
+    {
+      "path": "output/vehicles/sebulba-review/hero-validation-v1.log",
+      "bytes": 2031,
+      "sha256": "4c4299ff3acc5818c6dd3a60edb012c1b14162fdf2cdceb5c61d02b166f36c40"
+    },
+    {
+      "path": "output/vehicles/sebulba-review/rival-validation-v1.log",
+      "bytes": 2031,
+      "sha256": "4c4299ff3acc5818c6dd3a60edb012c1b14162fdf2cdceb5c61d02b166f36c40"
+    }
+  ],
+  "publicPublication": {
+    "status": "published_after_round22_capture_freeze_released",
+    "publishedAt": "2026-09-07T15:40:10.199548+00:00",
+    "files": [
+      {
+        "path": "public/assets/inkstorm/vehicles/sebulba-hero.glb",
+        "bytes": 2672804,
+        "sha256": "f4b31d9260e3272ec394161dea236c874d551b469f18a1d794ec85c05b625b7e"
+      },
+      {
+        "path": "public/assets/inkstorm/vehicles/sebulba-rival.glb",
+        "bytes": 1819016,
+        "sha256": "22e1adf8e3dd6562ce143132fb4e82cdb56e62696d9894804ca07b4a3552d951"
+      }
+    ],
+    "runtimeIntegrated": false,
+    "distModified": false
+  }
+}

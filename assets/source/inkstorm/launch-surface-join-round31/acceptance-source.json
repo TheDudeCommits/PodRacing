@@ -1,0 +1,181 @@
+{
+  "status": "PASS: bounded source geometry and sightline audit; actual pixels/driving/performance remain untested",
+  "basis": "round31 current field with30m lip/12m throat shoulder",
+  "candidate": "local leading-radius correction rejoining within30m;48m throat shoulder",
+  "corridor": {
+    "mainProbes": 184320,
+    "branchProbes": 21465,
+    "total": 205785,
+    "maxLegalMainChange": 1.1325334257058923,
+    "observedMainChangeDistance": [
+      1288.023406530734,
+      1330.957520081758
+    ],
+    "allowedMainDistance": [
+      1278.7588430595824,
+      1338.7588430595824
+    ],
+    "maxOtherMainChange": 0,
+    "maxBranchChange": 0
+  },
+  "grade": {
+    "original": {
+      "maxGrade": 0.48875435839387027,
+      "at": 1357.7588430595824,
+      "window": 8,
+      "spacing": 2
+    },
+    "candidate": {
+      "maxGrade": 0.48875435839387027,
+      "at": 1357.7588430595824,
+      "window": 8,
+      "spacing": 2
+    }
+  },
+  "salt": [
+    {
+      "ahead": 150,
+      "minimum": 2.0389074615497016,
+      "threshold": 1.4
+    },
+    {
+      "ahead": 250,
+      "minimum": 2.386212193608138,
+      "threshold": 1.4
+    },
+    {
+      "ahead": 350,
+      "minimum": 1.8834438685113994,
+      "threshold": 1.4
+    },
+    {
+      "ahead": 500,
+      "minimum": 1.5870987492069162,
+      "threshold": 1.4
+    },
+    {
+      "ahead": 650,
+      "minimum": 1.0392255194648872,
+      "threshold": 0.9
+    }
+  ],
+  "keyRays": [
+    {
+      "id": "05-launch",
+      "candidateCameraMove": 0,
+      "targets": [
+        {
+          "forward": 450,
+          "margin": 3.1486388753874337
+        },
+        {
+          "forward": 600,
+          "margin": 3.6947280201988235
+        },
+        {
+          "forward": 800,
+          "margin": 3.7932843390071866
+        }
+      ]
+    },
+    {
+      "id": "launch-crest",
+      "candidateCameraMove": 0.005922337490225971,
+      "targets": [
+        {
+          "forward": 450,
+          "margin": 1.110632849883272
+        },
+        {
+          "forward": 600,
+          "margin": 3.652895218294745
+        },
+        {
+          "forward": 800,
+          "margin": 3.844238144375595
+        }
+      ]
+    }
+  ],
+  "lateral": [
+    {
+      "distance": 1500,
+      "originalMaxLateralGrade": 4.668081268959455,
+      "candidateMaxLateralGrade": 3.105991670504693
+    },
+    {
+      "distance": 1550,
+      "originalMaxLateralGrade": 7.5246383317917065,
+      "candidateMaxLateralGrade": 2.663943028644539
+    },
+    {
+      "distance": 1600,
+      "originalMaxLateralGrade": 8.12342432867537,
+      "candidateMaxLateralGrade": 2.9824962760426104
+    },
+    {
+      "distance": 1650,
+      "originalMaxLateralGrade": 7.473318709160154,
+      "candidateMaxLateralGrade": 2.776875436413448
+    },
+    {
+      "distance": 1700,
+      "originalMaxLateralGrade": 5.194777705823228,
+      "candidateMaxLateralGrade": 2.31886195998905
+    },
+    {
+      "distance": 1750,
+      "originalMaxLateralGrade": 3.3772412635389912,
+      "candidateMaxLateralGrade": 2.034064338426404
+    },
+    {
+      "distance": 1800,
+      "originalMaxLateralGrade": 5.023409101990509,
+      "candidateMaxLateralGrade": 1.7585978189534757
+    },
+    {
+      "distance": 1850,
+      "originalMaxLateralGrade": 3.5672363370202618,
+      "candidateMaxLateralGrade": 1.8027123480130172
+    },
+    {
+      "distance": 1900,
+      "originalMaxLateralGrade": 3.8612404417289667,
+      "candidateMaxLateralGrade": 1.8246551207584787
+    }
+  ],
+  "grids": [
+    {
+      "name": "launch",
+      "changed": 1307,
+      "minDelta": 0.0000019073486328125,
+      "maxDelta": 64.75685119628906,
+      "maxAbsoluteDelta": 64.75685119628906,
+      "bytes": 695556,
+      "sha256": "e707c9c9a1774cb6ccd38fcfb32321ac841ae6a189eb15d7ed9c4426c4120f7d"
+    },
+    {
+      "name": "finish",
+      "changed": 0,
+      "minDelta": 0,
+      "maxDelta": 0,
+      "maxAbsoluteDelta": 0,
+      "bytes": 264196,
+      "sha256": "bd9da2b5038d659fc1622390f211ba5e42bacac2a90288b9aaf2656af03abffa"
+    }
+  ],
+  "budget": {
+    "addedTextures": 0,
+    "addedMeshes": 0,
+    "addedDrawCalls": 0,
+    "addedShaderFetches": 0,
+    "addedPerFrameWork": 0
+  },
+  "limits": [
+    "Terrain sightlines use3m steps to points3m above floor; exclude mesh occlusion and clipmap tessellation.",
+    "Main/branch normal invariants are dense discrete probes, not a continuous swept-volume proof.",
+    "The30m localized leading-radius correction changes legal lane heights; it requires repeat driving/landing checks within the unaccepted course9.",
+    "Cross-section grade maxima include other existing landform slopes.",
+    "Existing blunt scanned-rock terminations remain outside this one field-only correction."
+  ]
+}

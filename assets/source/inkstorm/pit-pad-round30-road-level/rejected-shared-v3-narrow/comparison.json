@@ -1,0 +1,605 @@
+{
+  "scope": "Old29 versus independent V2 versus shared-court V3, same X/Z/yaw/scales and native-road contacts",
+  "pairFloor": -15.9098131740998,
+  "pairEndpointGradeBound": 0.5637286335726515,
+  "pair": {
+    "old29": {
+      "floorDifference": -8.957849737102311,
+      "worstStraightBayEndpointGrade": 0.9951857149104308,
+      "worstFloorToCoreGroundSpan": 10.518501558942607
+    },
+    "v2": {
+      "floorDifference": -13.690199594404982,
+      "worstStraightBayEndpointGrade": 0.6208983753671823,
+      "worstFloorToCoreGroundSpan": 15.258000030424304
+    },
+    "v3": {
+      "floorDifference": 0,
+      "worstStraightBayEndpointGrade": 0.5432412081289927,
+      "worstFloorToCoreGroundSpan": 1.5792404997808696
+    }
+  },
+  "plots": [
+    {
+      "id": "inkstorm-pit-complex-215",
+      "old29": {
+        "floor": 8.5307944856572,
+        "anchor": 6.080794485657201,
+        "maximumCoreTargetDeficit": 0.02812219252003345,
+        "walkingFloorToLowestCoreGround": 1.5781221925200324,
+        "contactFloorDifferences": [
+          20.41127807302778,
+          15.77225697337922,
+          16.477151738742812
+        ],
+        "largestAbsoluteBayContactDifference": 20.41127807302778,
+        "worstStraightBayEndpointGrade": 1.4338415430344744,
+        "physicalCoreClear": true,
+        "minimumIndexedMeshClearance": 0.43441436583408044,
+        "maxFrontPhysicalSlope": 2.8888511913357586,
+        "note": "Endpoint grade compares identical native-ground contacts across versions; wall span is floor-to-ground potential exposure, not an actual rendered wall measurement."
+      },
+      "v2": {
+        "floor": -6.9530458261622945,
+        "anchor": -9.403045826162295,
+        "maximumCoreTargetDeficit": 0.022954549638244615,
+        "walkingFloorToLowestCoreGround": 1.5729545496382444,
+        "contactFloorDifferences": [
+          4.927437761208284,
+          0.288416661559725,
+          0.9933114269233192
+        ],
+        "largestAbsoluteBayContactDifference": 4.927437761208284,
+        "worstStraightBayEndpointGrade": 0.2403628176199163,
+        "physicalCoreClear": true,
+        "minimumIndexedMeshClearance": 0.4344145969013773,
+        "maxFrontPhysicalSlope": 1.338586246214114,
+        "note": "Endpoint grade compares identical native-ground contacts across versions; wall span is floor-to-ground potential exposure, not an actual rendered wall measurement."
+      },
+      "v3": {
+        "floor": -6.9530458261622945,
+        "anchor": -9.403045826162295,
+        "maximumCoreTargetDeficit": 0.022954549638244615,
+        "walkingFloorToLowestCoreGround": 1.5729545496382444,
+        "contactFloorDifferences": [
+          4.927437761208284,
+          0.288416661559725,
+          0.9933114269233192
+        ],
+        "largestAbsoluteBayContactDifference": 4.927437761208284,
+        "worstStraightBayEndpointGrade": 0.2403628176199163,
+        "physicalCoreClear": true,
+        "minimumIndexedMeshClearance": 0.4344145969013773,
+        "maxFrontPhysicalSlope": 1.338586246214114,
+        "note": "Endpoint grade compares identical native-ground contacts across versions; wall span is floor-to-ground potential exposure, not an actual rendered wall measurement."
+      },
+      "rigidDeltaFromOld29": -15.483840311819495,
+      "rigidDeltaFromV2": 0,
+      "sharedCourt": null
+    },
+    {
+      "id": "inkstorm-pit-complex-216",
+      "old29": {
+        "floor": -11.16382068693882,
+        "anchor": -13.61382068693882,
+        "maximumCoreTargetDeficit": 0.029240564837966332,
+        "walkingFloorToLowestCoreGround": 1.5792405648379653,
+        "contactFloorDifferences": [
+          7.376440323731053,
+          10.449450006559523,
+          3.4683720654576806
+        ],
+        "largestAbsoluteBayContactDifference": 10.449450006559523,
+        "worstStraightBayEndpointGrade": 0.9951857149104308,
+        "physicalCoreClear": true,
+        "minimumIndexedMeshClearance": 0.13339985783084418,
+        "maxFrontPhysicalSlope": 1.9605063783024832,
+        "note": "Endpoint grade compares identical native-ground contacts across versions; wall span is floor-to-ground potential exposure, not an actual rendered wall measurement."
+      },
+      "v2": {
+        "floor": -21.462074881435505,
+        "anchor": -23.912074881435505,
+        "maximumCoreTargetDeficit": 0.029240501830823717,
+        "walkingFloorToLowestCoreGround": 1.5792405018308244,
+        "contactFloorDifferences": [
+          -2.9218138707656323,
+          0.15119581206283783,
+          -6.829882129039005
+        ],
+        "largestAbsoluteBayContactDifference": 6.829882129039005,
+        "worstStraightBayEndpointGrade": 0.6208983753671823,
+        "physicalCoreClear": true,
+        "minimumIndexedMeshClearance": 0.526574317072847,
+        "maxFrontPhysicalSlope": 1.3237866268586969,
+        "note": "Endpoint grade compares identical native-ground contacts across versions; wall span is floor-to-ground potential exposure, not an actual rendered wall measurement."
+      },
+      "v3": {
+        "floor": -15.9098131740998,
+        "anchor": -18.3598131740998,
+        "maximumCoreTargetDeficit": 0.029240499780868845,
+        "walkingFloorToLowestCoreGround": 1.5792404997808696,
+        "contactFloorDifferences": [
+          2.630447836570074,
+          5.703457519398544,
+          -1.2776204217032987
+        ],
+        "largestAbsoluteBayContactDifference": 5.703457519398544,
+        "worstStraightBayEndpointGrade": 0.5431864304189089,
+        "physicalCoreClear": true,
+        "minimumIndexedMeshClearance": 0.5265741518979048,
+        "maxFrontPhysicalSlope": 3.104241291682109,
+        "note": "Endpoint grade compares identical native-ground contacts across versions; wall span is floor-to-ground potential exposure, not an actual rendered wall measurement."
+      },
+      "rigidDeltaFromOld29": -4.745992487160979,
+      "rigidDeltaFromV2": 5.552261707335706,
+      "sharedCourt": {
+        "id": "flagship-pit216-district218",
+        "floorHeight": -15.9098131740998,
+        "priorFloorHeight": -21.462074881435505,
+        "endpointGradeBound": 0.5637286335726515,
+        "contacts": [
+          {
+            "padId": "inkstorm-pit-complex-216",
+            "localX": -13,
+            "out": 10.425945281982422,
+            "height": -20.90349703156439
+          },
+          {
+            "padId": "inkstorm-pit-complex-216",
+            "localX": -11,
+            "out": 10.424755096435547,
+            "height": -21.281650713775758
+          },
+          {
+            "padId": "inkstorm-pit-complex-216",
+            "localX": -9,
+            "out": 10.450870513916016,
+            "height": -21.612074881435504
+          },
+          {
+            "padId": "inkstorm-pit-complex-216",
+            "localX": -7,
+            "out": 10.450489044189453,
+            "height": -21.779912181030824
+          },
+          {
+            "padId": "inkstorm-pit-complex-216",
+            "localX": -5,
+            "out": 10.477069854736328,
+            "height": -21.81603744715525
+          },
+          {
+            "padId": "inkstorm-pit-district-218",
+            "localX": -5.4399999999999995,
+            "out": 16.456188201904297,
+            "height": -8.441357135969344
+          },
+          {
+            "padId": "inkstorm-pit-district-218",
+            "localX": -3.44,
+            "out": 16.468120574951172,
+            "height": -8.202716243273539
+          },
+          {
+            "padId": "inkstorm-pit-district-218",
+            "localX": -1.44,
+            "out": 16.47066879272461,
+            "height": -7.921875287030524
+          },
+          {
+            "padId": "inkstorm-pit-district-218",
+            "localX": 0.56,
+            "out": 16.487178802490234,
+            "height": -7.577644804493147
+          },
+          {
+            "padId": "inkstorm-pit-district-218",
+            "localX": 2.56,
+            "out": 16.49917984008789,
+            "height": -7.213813697518505
+          },
+          {
+            "padId": "inkstorm-pit-complex-216",
+            "localX": -51,
+            "out": 10.18496322631836,
+            "height": -18.57577529666452
+          },
+          {
+            "padId": "inkstorm-pit-complex-216",
+            "localX": 35,
+            "out": 10.866207122802734,
+            "height": -14.625287641331079
+          },
+          {
+            "padId": "inkstorm-pit-district-218",
+            "localX": -28.079999999999995,
+            "out": 16.620037078857422,
+            "height": -9.690095450631658
+          },
+          {
+            "padId": "inkstorm-pit-district-218",
+            "localX": 27.36,
+            "out": 17.055240631103516,
+            "height": -6.295285677875324
+          }
+        ]
+      }
+    },
+    {
+      "id": "inkstorm-pit-complex-217",
+      "old29": {
+        "floor": -4.366659090645128,
+        "anchor": -6.816659090645128,
+        "maximumCoreTargetDeficit": 4.0014462905606365,
+        "walkingFloorToLowestCoreGround": 5.551446290560636,
+        "contactFloorDifferences": [
+          11.692542745950295,
+          11.04819720309051,
+          6.668704420466276
+        ],
+        "largestAbsoluteBayContactDifference": 11.692542745950295,
+        "worstStraightBayEndpointGrade": 1.3755932642294464,
+        "physicalCoreClear": true,
+        "minimumIndexedMeshClearance": 0.4487821321147869,
+        "maxFrontPhysicalSlope": 1.6640887162194957,
+        "note": "Endpoint grade compares identical native-ground contacts across versions; wall span is floor-to-ground potential exposure, not an actual rendered wall measurement."
+      },
+      "v2": {
+        "floor": -8.728579746126783,
+        "anchor": -11.178579746126783,
+        "maximumCoreTargetDeficit": 7.1203534385198335,
+        "walkingFloorToLowestCoreGround": 8.670353438519832,
+        "contactFloorDifferences": [
+          7.3306220904686406,
+          6.6862765476088555,
+          2.306783764984621
+        ],
+        "largestAbsoluteBayContactDifference": 7.3306220904686406,
+        "worstStraightBayEndpointGrade": 0.8624261282904283,
+        "physicalCoreClear": true,
+        "minimumIndexedMeshClearance": 0.2626479374186921,
+        "maxFrontPhysicalSlope": 3.418113158950069,
+        "note": "Endpoint grade compares identical native-ground contacts across versions; wall span is floor-to-ground potential exposure, not an actual rendered wall measurement."
+      },
+      "v3": {
+        "floor": -8.728579746126783,
+        "anchor": -11.178579746126783,
+        "maximumCoreTargetDeficit": 7.1203534385198335,
+        "walkingFloorToLowestCoreGround": 8.670353438519832,
+        "contactFloorDifferences": [
+          7.3306220904686406,
+          6.6862765476088555,
+          2.306783764984621
+        ],
+        "largestAbsoluteBayContactDifference": 7.3306220904686406,
+        "worstStraightBayEndpointGrade": 0.8624261282904283,
+        "physicalCoreClear": true,
+        "minimumIndexedMeshClearance": 0.2626479374186921,
+        "maxFrontPhysicalSlope": 3.418113158950069,
+        "note": "Endpoint grade compares identical native-ground contacts across versions; wall span is floor-to-ground potential exposure, not an actual rendered wall measurement."
+      },
+      "rigidDeltaFromOld29": -4.361920655481654,
+      "rigidDeltaFromV2": 0,
+      "sharedCourt": null
+    },
+    {
+      "id": "inkstorm-pit-district-218",
+      "old29": {
+        "floor": -2.2059709498365088,
+        "anchor": -3.7059709498365088,
+        "maximumCoreTargetDeficit": 9.918501558942607,
+        "walkingFloorToLowestCoreGround": 10.518501558942607,
+        "contactFloorDifferences": [
+          7.497810156303505,
+          5.720240752399329,
+          4.197121082005918
+        ],
+        "largestAbsoluteBayContactDifference": 7.497810156303505,
+        "worstStraightBayEndpointGrade": 0.44104765625314735,
+        "physicalCoreClear": true,
+        "minimumIndexedMeshClearance": 0.6350799352073062,
+        "maxFrontPhysicalSlope": 0.5475497981772186,
+        "note": "Endpoint grade compares identical native-ground contacts across versions; wall span is floor-to-ground potential exposure, not an actual rendered wall measurement."
+      },
+      "v2": {
+        "floor": -7.771875287030523,
+        "anchor": -9.271875287030523,
+        "maximumCoreTargetDeficit": 14.658000030424304,
+        "walkingFloorToLowestCoreGround": 15.258000030424304,
+        "contactFloorDifferences": [
+          1.93190581910949,
+          0.15433641520531438,
+          -1.368783255188097
+        ],
+        "largestAbsoluteBayContactDifference": 1.93190581910949,
+        "worstStraightBayEndpointGrade": 0.11364151877114648,
+        "physicalCoreClear": true,
+        "minimumIndexedMeshClearance": 0.635080016093647,
+        "maxFrontPhysicalSlope": 1.0717708975013207,
+        "note": "Endpoint grade compares identical native-ground contacts across versions; wall span is floor-to-ground potential exposure, not an actual rendered wall measurement."
+      },
+      "v3": {
+        "floor": -15.9098131740998,
+        "anchor": -17.4098131740998,
+        "maximumCoreTargetDeficit": 0.9678006768615859,
+        "walkingFloorToLowestCoreGround": 1.5678006768615873,
+        "contactFloorDifferences": [
+          -6.206032067959786,
+          -7.983601471863961,
+          -9.506721142257373
+        ],
+        "largestAbsoluteBayContactDifference": 9.506721142257373,
+        "worstStraightBayEndpointGrade": 0.5432412081289927,
+        "physicalCoreClear": true,
+        "minimumIndexedMeshClearance": 0.6350797550688612,
+        "maxFrontPhysicalSlope": 6.551162763268723,
+        "note": "Endpoint grade compares identical native-ground contacts across versions; wall span is floor-to-ground potential exposure, not an actual rendered wall measurement."
+      },
+      "rigidDeltaFromOld29": -13.70384222426329,
+      "rigidDeltaFromV2": -8.137937887069276,
+      "sharedCourt": {
+        "id": "flagship-pit216-district218",
+        "floorHeight": -15.9098131740998,
+        "priorFloorHeight": -7.771875287030523,
+        "endpointGradeBound": 0.5637286335726515,
+        "contacts": [
+          {
+            "padId": "inkstorm-pit-complex-216",
+            "localX": -13,
+            "out": 10.425945281982422,
+            "height": -20.90349703156439
+          },
+          {
+            "padId": "inkstorm-pit-complex-216",
+            "localX": -11,
+            "out": 10.424755096435547,
+            "height": -21.281650713775758
+          },
+          {
+            "padId": "inkstorm-pit-complex-216",
+            "localX": -9,
+            "out": 10.450870513916016,
+            "height": -21.612074881435504
+          },
+          {
+            "padId": "inkstorm-pit-complex-216",
+            "localX": -7,
+            "out": 10.450489044189453,
+            "height": -21.779912181030824
+          },
+          {
+            "padId": "inkstorm-pit-complex-216",
+            "localX": -5,
+            "out": 10.477069854736328,
+            "height": -21.81603744715525
+          },
+          {
+            "padId": "inkstorm-pit-district-218",
+            "localX": -5.4399999999999995,
+            "out": 16.456188201904297,
+            "height": -8.441357135969344
+          },
+          {
+            "padId": "inkstorm-pit-district-218",
+            "localX": -3.44,
+            "out": 16.468120574951172,
+            "height": -8.202716243273539
+          },
+          {
+            "padId": "inkstorm-pit-district-218",
+            "localX": -1.44,
+            "out": 16.47066879272461,
+            "height": -7.921875287030524
+          },
+          {
+            "padId": "inkstorm-pit-district-218",
+            "localX": 0.56,
+            "out": 16.487178802490234,
+            "height": -7.577644804493147
+          },
+          {
+            "padId": "inkstorm-pit-district-218",
+            "localX": 2.56,
+            "out": 16.49917984008789,
+            "height": -7.213813697518505
+          },
+          {
+            "padId": "inkstorm-pit-complex-216",
+            "localX": -51,
+            "out": 10.18496322631836,
+            "height": -18.57577529666452
+          },
+          {
+            "padId": "inkstorm-pit-complex-216",
+            "localX": 35,
+            "out": 10.866207122802734,
+            "height": -14.625287641331079
+          },
+          {
+            "padId": "inkstorm-pit-district-218",
+            "localX": -28.079999999999995,
+            "out": 16.620037078857422,
+            "height": -9.690095450631658
+          },
+          {
+            "padId": "inkstorm-pit-district-218",
+            "localX": 27.36,
+            "out": 17.055240631103516,
+            "height": -6.295285677875324
+          }
+        ]
+      }
+    },
+    {
+      "id": "inkstorm-pit-district-219",
+      "old29": {
+        "floor": -8.747998266798845,
+        "anchor": -10.247998266798845,
+        "maximumCoreTargetDeficit": 0.01958102463979472,
+        "walkingFloorToLowestCoreGround": 0.6195810246397944,
+        "contactFloorDifferences": [
+          3.0939129414555886,
+          8.223860692989028,
+          5.674050044909073
+        ],
+        "largestAbsoluteBayContactDifference": 8.223860692989028,
+        "worstStraightBayEndpointGrade": 0.48375651135229575,
+        "physicalCoreClear": true,
+        "minimumIndexedMeshClearance": 0.6314484342174531,
+        "maxFrontPhysicalSlope": 1.0284691274996902,
+        "note": "Endpoint grade compares identical native-ground contacts across versions; wall span is floor-to-ground potential exposure, not an actual rendered wall measurement."
+      },
+      "v2": {
+        "floor": -16.795577691526095,
+        "anchor": -18.295577691526095,
+        "maximumCoreTargetDeficit": 0.01958097659072422,
+        "walkingFloorToLowestCoreGround": 0.6195809765907256,
+        "contactFloorDifferences": [
+          -4.953666483271661,
+          0.17628126826177848,
+          -2.3735293798181765
+        ],
+        "largestAbsoluteBayContactDifference": 4.953666483271661,
+        "worstStraightBayEndpointGrade": 0.29139214607480357,
+        "physicalCoreClear": true,
+        "minimumIndexedMeshClearance": 0.6314484353547443,
+        "maxFrontPhysicalSlope": 0.5190738627388153,
+        "note": "Endpoint grade compares identical native-ground contacts across versions; wall span is floor-to-ground potential exposure, not an actual rendered wall measurement."
+      },
+      "v3": {
+        "floor": -16.795577691526095,
+        "anchor": -18.295577691526095,
+        "maximumCoreTargetDeficit": 0.01958097659072422,
+        "walkingFloorToLowestCoreGround": 0.6195809765907256,
+        "contactFloorDifferences": [
+          -4.953666483271661,
+          0.17628126826177848,
+          -2.3735293798181765
+        ],
+        "largestAbsoluteBayContactDifference": 4.953666483271661,
+        "worstStraightBayEndpointGrade": 0.29139214607480357,
+        "physicalCoreClear": true,
+        "minimumIndexedMeshClearance": 0.6314484353547443,
+        "maxFrontPhysicalSlope": 0.5190738627388153,
+        "note": "Endpoint grade compares identical native-ground contacts across versions; wall span is floor-to-ground potential exposure, not an actual rendered wall measurement."
+      },
+      "rigidDeltaFromOld29": -8.04757942472725,
+      "rigidDeltaFromV2": 0,
+      "sharedCourt": null
+    },
+    {
+      "id": "inkstorm-pit-district-220",
+      "old29": {
+        "floor": -9.44111934026937,
+        "anchor": -10.94111934026937,
+        "maximumCoreTargetDeficit": 0.02369003173336104,
+        "walkingFloorToLowestCoreGround": 0.6236900317333607,
+        "contactFloorDifferences": [
+          5.303286546414228,
+          7.572982058775285,
+          -5.915878053674394
+        ],
+        "largestAbsoluteBayContactDifference": 7.572982058775285,
+        "worstStraightBayEndpointGrade": 0.4454695328691344,
+        "physicalCoreClear": true,
+        "minimumIndexedMeshClearance": 0.6231752257194831,
+        "maxFrontPhysicalSlope": 0.7195055540779549,
+        "note": "Endpoint grade compares identical native-ground contacts across versions; wall span is floor-to-ground potential exposure, not an actual rendered wall measurement."
+      },
+      "v2": {
+        "floor": -16.79819863835275,
+        "anchor": -18.29819863835275,
+        "maximumCoreTargetDeficit": 0.02369007770279552,
+        "walkingFloorToLowestCoreGround": 0.6236900777027969,
+        "contactFloorDifferences": [
+          -2.053792751669153,
+          0.21590276069190395,
+          -13.272957351757775
+        ],
+        "largestAbsoluteBayContactDifference": 13.272957351757775,
+        "worstStraightBayEndpointGrade": 0.7807621971622221,
+        "physicalCoreClear": true,
+        "minimumIndexedMeshClearance": 0.6251889973299563,
+        "maxFrontPhysicalSlope": 1.0058364537536009,
+        "note": "Endpoint grade compares identical native-ground contacts across versions; wall span is floor-to-ground potential exposure, not an actual rendered wall measurement."
+      },
+      "v3": {
+        "floor": -16.79819863835275,
+        "anchor": -18.29819863835275,
+        "maximumCoreTargetDeficit": 0.02369007770279552,
+        "walkingFloorToLowestCoreGround": 0.6236900777027969,
+        "contactFloorDifferences": [
+          -2.053792751669153,
+          0.21590276069190395,
+          -13.272957351757775
+        ],
+        "largestAbsoluteBayContactDifference": 13.272957351757775,
+        "worstStraightBayEndpointGrade": 0.7807621971622221,
+        "physicalCoreClear": true,
+        "minimumIndexedMeshClearance": 0.6251889973299563,
+        "maxFrontPhysicalSlope": 1.0058364537536009,
+        "note": "Endpoint grade compares identical native-ground contacts across versions; wall span is floor-to-ground potential exposure, not an actual rendered wall measurement."
+      },
+      "rigidDeltaFromOld29": -7.357079298083381,
+      "rigidDeltaFromV2": 0,
+      "sharedCourt": null
+    },
+    {
+      "id": "inkstorm-pit-district-221",
+      "old29": {
+        "floor": -5.277693518542678,
+        "anchor": -6.777693518542678,
+        "maximumCoreTargetDeficit": 0.03091522493241783,
+        "walkingFloorToLowestCoreGround": 0.6309152249324175,
+        "contactFloorDifferences": [
+          1.1854718546074938,
+          1.8872310340925118,
+          2.4935350301556074
+        ],
+        "largestAbsoluteBayContactDifference": 2.4935350301556074,
+        "worstStraightBayEndpointGrade": 0.1511233351609459,
+        "physicalCoreClear": true,
+        "minimumIndexedMeshClearance": 0.5238227559068005,
+        "maxFrontPhysicalSlope": 0.2752222607722423,
+        "note": "Endpoint grade compares identical native-ground contacts across versions; wall span is floor-to-ground potential exposure, not an actual rendered wall measurement."
+      },
+      "v2": {
+        "floor": -7.01467597098995,
+        "anchor": -8.51467597098995,
+        "maximumCoreTargetDeficit": 0.030915238844897885,
+        "walkingFloorToLowestCoreGround": 0.6309152388448975,
+        "contactFloorDifferences": [
+          -0.5515105978397781,
+          0.1502485816452399,
+          0.7565525777083355
+        ],
+        "largestAbsoluteBayContactDifference": 0.7565525777083355,
+        "worstStraightBayEndpointGrade": 0.04585167137626276,
+        "physicalCoreClear": true,
+        "minimumIndexedMeshClearance": 0.5238227573873389,
+        "maxFrontPhysicalSlope": 0.6544081118601134,
+        "note": "Endpoint grade compares identical native-ground contacts across versions; wall span is floor-to-ground potential exposure, not an actual rendered wall measurement."
+      },
+      "v3": {
+        "floor": -7.01467597098995,
+        "anchor": -8.51467597098995,
+        "maximumCoreTargetDeficit": 0.030915238844897885,
+        "walkingFloorToLowestCoreGround": 0.6309152388448975,
+        "contactFloorDifferences": [
+          -0.5515105978397781,
+          0.1502485816452399,
+          0.7565525777083355
+        ],
+        "largestAbsoluteBayContactDifference": 0.7565525777083355,
+        "worstStraightBayEndpointGrade": 0.04585167137626276,
+        "physicalCoreClear": true,
+        "minimumIndexedMeshClearance": 0.5238227573873389,
+        "maxFrontPhysicalSlope": 0.6544081118601134,
+        "note": "Endpoint grade compares identical native-ground contacts across versions; wall span is floor-to-ground potential exposure, not an actual rendered wall measurement."
+      },
+      "rigidDeltaFromOld29": -1.736982452447272,
+      "rigidDeltaFromV2": 0,
+      "sharedCourt": null
+    }
+  ]
+}

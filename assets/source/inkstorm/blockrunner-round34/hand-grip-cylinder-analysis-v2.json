@@ -1,0 +1,430 @@
+{
+  "sourceSha256": "1ecf135bc63df02102f168b79ea869d98aba6d07bdc94b2e0c6f10478a13f96e",
+  "coordinateBasis": "Original Blender source metres",
+  "scope": "External geometric fit diagnostic; approximate circle fitting to polygonal hand, no collision acceptance or source/pose mutation",
+  "hands": {
+    "negativeX": {
+      "controlObject": "pasted__brick230_phongE2_0",
+      "originalControlBaseCenter": [
+        -0.2738000054006306,
+        -21.017806124248064,
+        1.7679590595600154
+      ],
+      "originalControlLength": 1.1385552953106144,
+      "parallelAxialEdgesUsed": 41,
+      "circleCandidates": [
+        {
+          "projectedInlierPoints": 13,
+          "circleRadius": 0.06990200510388317,
+          "circleFitRms": 7.632352566609493e-05,
+          "axisUnitUp": [
+            -0.2544019568740028,
+            -0.21672265543508448,
+            0.9425024853865605
+          ],
+          "centerAtClawDepthMidpoint": [
+            -0.3124167906196281,
+            -20.593382423193436,
+            2.430910618105245
+          ],
+          "cylinderDepthRange": [
+            -0.09888472712299606,
+            0.11209244298794328
+          ],
+          "depthSpan": 0.21097717011093936,
+          "baseToCenterUnit": [
+            -0.04899867523910327,
+            0.5385274557117538,
+            0.8411820904355002
+          ],
+          "baseToCenterDistance": 0.7881189650649881,
+          "baseToCenterAngleAgainstGripAxisDegrees": 46.48294459514715,
+          "baseDistanceFromGripInfiniteAxis": 0.571519784078537,
+          "barExcessLengthBeyondCenter": 0.35043633024562626
+        },
+        {
+          "projectedInlierPoints": 13,
+          "circleRadius": 0.10478750838576775,
+          "circleFitRms": 9.793163847308805e-05,
+          "axisUnitUp": [
+            -0.2544019568740028,
+            -0.21672265543508448,
+            0.9425024853865605
+          ],
+          "centerAtClawDepthMidpoint": [
+            -0.3124927052333161,
+            -20.592987718344382,
+            2.4310309499081266
+          ],
+          "cylinderDepthRange": [
+            -0.09890318808577224,
+            0.1122052726838493
+          ],
+          "depthSpan": 0.21110846076962153,
+          "baseToCenterUnit": [
+            -0.04907522571873749,
+            0.5388111775437838,
+            0.840995919832276
+          ],
+          "baseToCenterDistance": 0.7884365128434285,
+          "baseToCenterAngleAgainstGripAxisDegrees": 46.5001253354898,
+          "baseDistanceFromGripInfiniteAxis": 0.5719128268032535,
+          "barExcessLengthBeyondCenter": 0.35011878246718586
+        },
+        {
+          "projectedInlierPoints": 10,
+          "circleRadius": 0.10497940531519673,
+          "circleFitRms": 8.991882762688285e-05,
+          "axisUnitUp": [
+            -0.2544019568740028,
+            -0.21672265543508448,
+            0.9425024853865605
+          ],
+          "centerAtClawDepthMidpoint": [
+            -0.31234326729685097,
+            -20.594908566382685,
+            2.430811933542314
+          ],
+          "cylinderDepthRange": [
+            -0.09860151063313274,
+            0.11224729626113342
+          ],
+          "depthSpan": 0.21084880689426616,
+          "baseToCenterUnit": [
+            -0.04896176511817311,
+            0.537209615340942,
+            0.8420264691455668
+          ],
+          "baseToCenterDistance": 0.7872114455676413,
+          "baseToCenterAngleAgainstGripAxisDegrees": 46.398182553590814,
+          "baseDistanceFromGripInfiniteAxis": 0.570059157325377,
+          "barExcessLengthBeyondCenter": 0.35134384974297306
+        }
+      ],
+      "originalControlEndRingRadius": 0.053680620829376025,
+      "originalControlShaftRadius": 0.06558262603576406,
+      "controlProfile": [
+        {
+          "z": 1.767959,
+          "vertices": 40,
+          "radiusRange": [
+            0.05356086859109561,
+            0.053682159855444826
+          ]
+        },
+        {
+          "z": 1.779785,
+          "vertices": 20,
+          "radiusRange": [
+            0.06557738519218828,
+            0.0655820481350508
+          ]
+        },
+        {
+          "z": 2.894676,
+          "vertices": 20,
+          "radiusRange": [
+            0.06557628106825016,
+            0.06558262603576406
+          ]
+        },
+        {
+          "z": 2.906514,
+          "vertices": 40,
+          "radiusRange": [
+            0.05356086859109561,
+            0.053682159855444826
+          ]
+        }
+      ],
+      "selectedInnerCylinderCandidate": {
+        "projectedInlierPoints": 13,
+        "circleRadius": 0.06990200510388317,
+        "circleFitRms": 7.632352566609493e-05,
+        "axisUnitUp": [
+          -0.2544019568740028,
+          -0.21672265543508448,
+          0.9425024853865605
+        ],
+        "centerAtClawDepthMidpoint": [
+          -0.3124167906196281,
+          -20.593382423193436,
+          2.430910618105245
+        ],
+        "cylinderDepthRange": [
+          -0.09888472712299606,
+          0.11209244298794328
+        ],
+        "depthSpan": 0.21097717011093936,
+        "baseToCenterUnit": [
+          -0.04899867523910327,
+          0.5385274557117538,
+          0.8411820904355002
+        ],
+        "baseToCenterDistance": 0.7881189650649881,
+        "baseToCenterAngleAgainstGripAxisDegrees": 46.48294459514715,
+        "baseDistanceFromGripInfiniteAxis": 0.571519784078537,
+        "barExcessLengthBeyondCenter": 0.35043633024562626
+      },
+      "sameBaseZCoaxialRelocationCandidate": {
+        "newBaseCenter": [
+          -0.13347172000010252,
+          -20.440940785722503,
+          1.7679590595600154
+        ],
+        "displacement": [
+          0.14032828540052808,
+          0.5768653385255611,
+          0.0
+        ],
+        "distance": 0.5936881727604671,
+        "grabDistanceAboveNewBase": 0.7033950242299096,
+        "fullCraftCollisionChecked": false
+      },
+      "nominalRadialClearance": 0.004319379068119106,
+      "closedCircularApertureThinPlaneTiltUpperBoundDegrees": 20.24722793223713,
+      "fixedBaseConclusion": "Cannot rigidly align existing straight bar coaxially with this hand while retaining its current base. A base-to-grip-center pivot is roughly 46 degrees off the measured hole axis. The real claw has an open slot; exact global collision or partial edge contact has not been accepted."
+    },
+    "positiveX": {
+      "controlObject": "pasted__pasted__brick230_phongE2_0",
+      "originalControlBaseCenter": [
+        0.41932784892818803,
+        -21.017802554568487,
+        1.7679588815860463
+      ],
+      "originalControlLength": 1.1385552953106142,
+      "parallelAxialEdgesUsed": 41,
+      "circleCandidates": [
+        {
+          "projectedInlierPoints": 13,
+          "circleRadius": 0.10484017002669167,
+          "circleFitRms": 0.0001036197232081874,
+          "axisUnitUp": [
+            0.009309222378589492,
+            -0.21401112674060732,
+            0.976786863143604
+          ],
+          "centerAtClawDepthMidpoint": [
+            0.4682642536963802,
+            -20.59135781317124,
+            2.423958398383571
+          ],
+          "cylinderDepthRange": [
+            -0.09915623283635888,
+            0.11197542518219866
+          ],
+          "depthSpan": 0.21113165801855754,
+          "baseToCenterUnit": [
+            0.06242247604205537,
+            0.5439659243302762,
+            0.8367822343072822
+          ],
+          "baseToCenterDistance": 0.7839548808544963,
+          "baseToCenterAngleAgainstGripAxisDegrees": 45.45057788067242,
+          "baseDistanceFromGripInfiniteAxis": 0.558681992111336,
+          "barExcessLengthBeyondCenter": 0.3546004144561179
+        },
+        {
+          "projectedInlierPoints": 11,
+          "circleRadius": 0.06992393885235051,
+          "circleFitRms": 8.73943998336656e-05,
+          "axisUnitUp": [
+            0.009309222378589492,
+            -0.21401112674060732,
+            0.976786863143604
+          ],
+          "centerAtClawDepthMidpoint": [
+            0.4703415574734416,
+            -20.58961682010186,
+            2.4241374661251185
+          ],
+          "cylinderDepthRange": [
+            -0.09913886477037809,
+            0.11160137154009792
+          ],
+          "depthSpan": 0.210740236310476,
+          "baseToCenterUnit": [
+            0.06497029016328054,
+            0.5453308964470991,
+            0.8356991532700642
+          ],
+          "baseToCenterDistance": 0.7851851733622874,
+          "baseToCenterAngleAgainstGripAxisDegrees": 45.55711647901158,
+          "baseDistanceFromGripInfiniteAxis": 0.5605820205377989,
+          "barExcessLengthBeyondCenter": 0.35337012194832673
+        },
+        {
+          "projectedInlierPoints": 11,
+          "circleRadius": 0.10616998702713805,
+          "circleFitRms": 8.841683711248656e-05,
+          "axisUnitUp": [
+            0.009309222378589492,
+            -0.21401112674060732,
+            0.976786863143604
+          ],
+          "centerAtClawDepthMidpoint": [
+            0.46929910273916436,
+            -20.59032539318107,
+            2.424174829929412
+          ],
+          "cylinderDepthRange": [
+            -0.09915604930585722,
+            0.11197542518219866
+          ],
+          "depthSpan": 0.2111314744880559,
+          "baseToCenterUnit": [
+            0.06367685975194319,
+            0.5447212382501031,
+            0.8361961672546734
+          ],
+          "baseToCenterDistance": 0.7847631620912555,
+          "baseToCenterAngleAgainstGripAxisDegrees": 45.508631439761274,
+          "baseDistanceFromGripInfiniteAxis": 0.5598155345596552,
+          "barExcessLengthBeyondCenter": 0.35379213321935865
+        },
+        {
+          "projectedInlierPoints": 11,
+          "circleRadius": 0.1059940151796178,
+          "circleFitRms": 9.711988936757212e-05,
+          "axisUnitUp": [
+            0.009309222378589492,
+            -0.21401112674060732,
+            0.976786863143604
+          ],
+          "centerAtClawDepthMidpoint": [
+            0.47130976348419806,
+            -20.590227770238045,
+            2.424179684964739
+          ],
+          "cylinderDepthRange": [
+            -0.09915623283635888,
+            0.11198074396609446
+          ],
+          "depthSpan": 0.21113697680245336,
+          "baseToCenterUnit": [
+            0.06622313385885109,
+            0.5447152614372206,
+            0.8360022610611128
+          ],
+          "baseToCenterDistance": 0.784950991096329,
+          "baseToCenterAngleAgainstGripAxisDegrees": 45.52183610184943,
+          "baseDistanceFromGripInfiniteAxis": 0.5600762862090563,
+          "barExcessLengthBeyondCenter": 0.3536043042142851
+        },
+        {
+          "projectedInlierPoints": 10,
+          "circleRadius": 0.09262629479558451,
+          "circleFitRms": 7.175714925336364e-05,
+          "axisUnitUp": [
+            0.009309222378589492,
+            -0.21401112674060732,
+            0.976786863143604
+          ],
+          "centerAtClawDepthMidpoint": [
+            0.46835584194297075,
+            -20.580193693885814,
+            2.4407927993588454
+          ],
+          "cylinderDepthRange": [
+            -0.07027260304342972,
+            0.11120225256837965
+          ],
+          "depthSpan": 0.18147485561180937,
+          "baseToCenterUnit": [
+            0.06097090742669661,
+            0.5442076596066362,
+            0.8367320787880865
+          ],
+          "baseToCenterDistance": 0.8041210978158316,
+          "baseToCenterAngleAgainstGripAxisDegrees": 45.45976176427569,
+          "baseDistanceFromGripInfiniteAxis": 0.5731437711264927,
+          "barExcessLengthBeyondCenter": 0.33443419749478254
+        }
+      ],
+      "originalControlEndRingRadius": 0.053680620829376025,
+      "originalControlShaftRadius": 0.06558262603576406,
+      "controlProfile": [
+        {
+          "z": 1.767959,
+          "vertices": 40,
+          "radiusRange": [
+            0.05356086859109561,
+            0.053682159855444826
+          ]
+        },
+        {
+          "z": 1.779785,
+          "vertices": 20,
+          "radiusRange": [
+            0.06557738519218828,
+            0.0655820481350508
+          ]
+        },
+        {
+          "z": 2.894676,
+          "vertices": 20,
+          "radiusRange": [
+            0.06557628106825016,
+            0.06558262603576406
+          ]
+        },
+        {
+          "z": 2.906514,
+          "vertices": 40,
+          "radiusRange": [
+            0.05356086859109561,
+            0.053682159855444826
+          ]
+        }
+      ],
+      "selectedInnerCylinderCandidate": {
+        "projectedInlierPoints": 11,
+        "circleRadius": 0.06992393885235051,
+        "circleFitRms": 8.73943998336656e-05,
+        "axisUnitUp": [
+          0.009309222378589492,
+          -0.21401112674060732,
+          0.976786863143604
+        ],
+        "centerAtClawDepthMidpoint": [
+          0.4703415574734416,
+          -20.58961682010186,
+          2.4241374661251185
+        ],
+        "cylinderDepthRange": [
+          -0.09913886477037809,
+          0.11160137154009792
+        ],
+        "depthSpan": 0.210740236310476,
+        "baseToCenterUnit": [
+          0.06497029016328054,
+          0.5453308964470991,
+          0.8356991532700642
+        ],
+        "baseToCenterDistance": 0.7851851733622874,
+        "baseToCenterAngleAgainstGripAxisDegrees": 45.55711647901158,
+        "baseDistanceFromGripInfiniteAxis": 0.5605820205377989,
+        "barExcessLengthBeyondCenter": 0.35337012194832673
+      },
+      "sameBaseZCoaxialRelocationCandidate": {
+        "newBaseCenter": [
+          0.46408787758274034,
+          -20.44585002355802,
+          1.7679588815860463
+        ],
+        "displacement": [
+          0.04476002865455231,
+          0.5719525310104672,
+          0.0
+        ],
+        "distance": 0.5737012793208986,
+        "grabDistanceAboveNewBase": 0.6717725322669527,
+        "fullCraftCollisionChecked": false
+      },
+      "nominalRadialClearance": 0.004341312816586451,
+      "closedCircularApertureThinPlaneTiltUpperBoundDegrees": 20.295895879560227,
+      "fixedBaseConclusion": "Cannot rigidly align existing straight bar coaxially with this hand while retaining its current base. A base-to-grip-center pivot is roughly 46 degrees off the measured hole axis. The real claw has an open slot; exact global collision or partial edge contact has not been accepted."
+    }
+  },
+  "sourceUnchanged": true
+}

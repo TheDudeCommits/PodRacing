@@ -1,0 +1,20 @@
+{
+  "method": "Built-in image_gen__imagegen, precise-object-edit",
+  "classification": "Generated concept paintover only; not native render or FPS evidence",
+  "prompt": "Use case: precise-object-edit.\nAsset type: Inkstorm podracing game crash VFX concept paintover, target only.\nInput image: the attached actual game screenshot is the edit target.\nPrimary request: change ONLY the explosion, smoke and small debris at the open rupture between the foreground engine cylinder and its torn conical nose. Replace the weak circular glow with a forceful, directional stylized rupture: a compact jagged ivory-hot pressure core, two asymmetric ochre/orange flame tongues jetting out of the torn face, several readable angular dark casing shards and a few bright thin sparks departing along that same direction. Give the rising smoke two dense charcoal lobes with warm painted edges, rooted visibly at the torn seam. Keep the explosion localized to this foreground engine; it must not hide both principal engine silhouettes or cover the cockpit. Make the cause and ejection direction unmistakable, with dark/light contrast against the sand.\nStyle: match the existing Inkstorm cel-shaded painted 3D world; authored restrained brush texture, hard-edged light shapes and soft smoke fringes, no photographic fire, no comic star icon.\nInvariants: preserve EXACT camera/framing, all large vehicle pieces and their shapes, all terrain, structures, shadows, original palette, and the bottom text WRECKED / RECOVERY INBOUND. No new vehicles, drivers, scenery, HUD or labels. Do not improve or repaint the whole world. No lens flare, giant circular glow, screen shake blur, full-screen flash or added text. Landscape 1440x900 composition.",
+  "source": "output/playwright/round35-combat-v24b/solo-chase-wreck.png",
+  "nativeOutput": "/Users/amir/.codex/generated_images/01a076a6-10a1-7b50-b775-dd7d40542e2a/exec-65f3a757-7c6f-4100-a47a-3541b47fef1c.png",
+  "workspaceOutput": "docs/inkstorm-overhaul/concepts/17-directional-rupture-v25-target.png",
+  "files": [
+    {
+      "path": "output/playwright/round35-combat-v24b/solo-chase-wreck.png",
+      "bytes": 1438933,
+      "sha256": "90327d81c548f41b1dfcccd2fc9e256e3fe0635316a19340c95d30fbc24d0076"
+    },
+    {
+      "path": "docs/inkstorm-overhaul/concepts/17-directional-rupture-v25-target.png",
+      "bytes": 1846498,
+      "sha256": "5baea3187f03058e2b14b438581b6fbe3517d29a072e2fa2090912340dd29e14"
+    }
+  ]
+}
