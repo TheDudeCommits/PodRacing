@@ -6,6 +6,7 @@ import { spawn } from 'node:child_process';
 import { createServer } from 'node:net';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
+import { once } from 'node:events';
 import { createProceduralPodraceCourse } from '../src/game/race/course';
 import { sampleTerrainHeight } from '../src/render/terrain/terrainMath';
 import { DEFAULT_PODRACER_CONFIG } from '../src/game/simulation/config';
@@ -14,10 +15,14 @@ import { judgeRaceCadence } from './lib/race-cadence';
 import { expectedResultClock } from './lib/result-clock';
 
 const soloOnly=process.argv.includes('--solo-only');
+const battleOnly=process.argv.includes('--battle');
 const performanceMode=process.argv.includes('--performance');
+const paceArgument=process.argv.find(arg=>arg.startsWith('--pace='));
+const driverPace=paceArgument===undefined?1:Number(paceArgument.slice(7));
+if(!Number.isFinite(driverPace)||driverPace<.5||driverPace>1)throw new Error('--pace must be between0.5and1; this only adjusts the ordinary gamepad driver.');
 const appearanceArgument=process.argv.find(arg=>arg.startsWith('--appearance'));
-if(appearanceArgument && !['--appearance=sebulba','--appearance=polwo'].includes(appearanceArgument)) {
- throw new Error('The optional appearance selection supports --appearance=sebulba or --appearance=polwo; omit it for the default Teemto flow');
+if(appearanceArgument && !['teemto','sebulba','polwo','blockrunner'].some(id => appearanceArgument === `--appearance=${id}`)) {
+ throw new Error('Choose --appearance=teemto, sebulba, polwo or blockrunner; omit it for the default flow');
 }
 const selectedAppearance=appearanceArgument ? appearanceArgument.slice('--appearance='.length) : null;
 const fixedQualityArgument=process.argv.find(arg=>arg.startsWith('--fixed-quality'));
@@ -35,7 +40,7 @@ const port = await new Promise<number>((resolve, reject) => {
   server.close(() => resolve(address.port)); });
 });
 const url = `http://127.0.0.1:${port}`;
-const server = spawn('npm', ['run', 'preview', '--', '--port', String(port)], { stdio: 'ignore' });
+const server = spawn(process.execPath, ['node_modules/vite/bin/vite.js', 'preview', '--host', '127.0.0.1', '--port', String(port), '--strictPort'], { stdio: 'ignore' });
 let browser: Awaited<ReturnType<typeof chromium.launch>> | undefined;
 let page: Page | undefined;
 const errors: string[] = [], receipts: Record<string, unknown> = {};
@@ -54,13 +59,13 @@ function cadenceSummary(frames: { intervalMs: number | null; phase: string; race
   firstRaceTime:selected[0]?.raceTime??null,lastRaceTime:selected.at(-1)?.raceTime??null};
 }
 
-async function startDriver(speedScale = 1) {
+async function startDriver(speedScale = driverPace) {
  const state = await snapshot();
  const course = createProceduralPodraceCourse({ heightAt: sampleTerrainHeight }, Number((state.game.course as any).seed));
  assert(course.signature === (state.game.course as any).signature, 'Offline driver course does not match browser course');
  const samples = Array.from({ length: 4096 }, (_, i) => course.sampleAtDistance(course.totalLength * i / 4096));
  const tune = deriveGalacticVehicleConfig('podracer', DEFAULT_PODRACER_CONFIG, { afterburner: 0, cornering: 0, resilience: 0 });
- await page!.evaluate(({ samples, totalLength, tune, speedScale, performanceMode }) => {
+ await page!.evaluate(({ samples, totalLength, tune, speedScale, performanceMode, battleOnly }) => {
   const win = window as any;
   win.__flowDriver?.stop();
   const pad = win.__flowPad;
@@ -125,18 +130,24 @@ async function startDriver(speedScale = 1) {
     const yawRate=2*Math.max(20,speed)*Math.sin(error)/Math.max(10,Math.hypot(tx,tz))+error*.38-lateral*.011;
     const steer=clamp(yawRate/Math.max(.1,authority(speed)),-1,1);
     let targetSpeed=tune.maxSpeed*.9*speedScale;
-    for(const ahead of [0,18,38,70,110,170,245,325]){const limit=corner(sample(distance+ahead).curvature);targetSpeed=Math.min(targetSpeed,Math.sqrt(limit*limit+2*tune.brakeAcceleration*.6*ahead));}
+    for(const ahead of [0,18,38,70,110,170,245,325]){const limit=corner(sample(distance+ahead).curvature)*speedScale;targetSpeed=Math.min(targetSpeed,Math.sqrt(limit*limit+2*tune.brakeAcceleration*.6*ahead));}
     if(Math.abs(error)>.8)targetSpeed=Math.min(targetSpeed,30);
     if(Math.sqrt(nearestSq)>current.width*.8)targetSpeed=Math.min(targetSpeed,50);
     button(7,phase==='countdown'?0:speed>targetSpeed+3?0:clamp(.5+(targetSpeed-speed)/15,0,1));
     button(6,clamp((speed-targetSpeed-2)/17,0,1));button(1,0);pad.axes[0]=rawStick(steer);pad.timestamp=performance.now();
+    if (battleOnly) {
+     const racing = phase === 'racing';
+     button(5, racing && state.raceTime % .8 < .12 ? 1 : 0);
+     button(3, racing && state.raceTime > 5 && state.raceTime % 12 < .15 ? 1 : 0);
+     button(2, racing && state.raceTime % 9 > 4 && state.raceTime % 9 < 5.4 ? 1 : 0);
+    }
     control.previous={x,z,time:state.raceTime}; control.lastTime=state.raceTime;control.frames++;
     if(control.frames%30===0)control.trace.push({time:state.raceTime,position:[x,z],progress:player.courseProgress,speed,targetSpeed,steer,phase,sector:game.mastery.latestSector?.index??null,wrongWay:Math.abs(error)>2});
    }
    if(performanceMode)perf.controllerOverheadMs.push(performance.now()-controllerStart);
    control.raf=requestAnimationFrame(frame);
   }; control.raf=requestAnimationFrame(frame);
- }, { samples, totalLength: course.totalLength, tune, speedScale, performanceMode });
+ }, { samples, totalLength: course.totalLength, tune, speedScale, performanceMode, battleOnly });
 }
 
 async function finishRun(label: string, timeout = 220_000) {
@@ -194,6 +205,7 @@ try {
  if(fixedQuality!==null){
   await page.evaluate(()=>{const api=window.__PODRACING__;if(!api?.setPerformanceQuality)throw new Error('Rendering quality override unavailable');api.setPerformanceQuality(0);});
  }
+ receipts.driverPace={scale:driverPace,scope:'Ordinary throttle/brake target speeds only; no simulation, damage or record-rule overrides.'};
  receipts.requestedQualityOverride=fixedQuality===null?null:{level:fixedQuality,meaning:'Highest renderer quality, adaptive governor disabled',calls:1,scope:'Renderer-only diagnostic called once after ready, before first start; no capture mode, simulation or progress writes.'};
  receipts.buildScripts=await page.locator('script[src]').evaluateAll(nodes=>nodes.map(n=>(n as HTMLScriptElement).src));
  if(performanceMode){
@@ -206,9 +218,12 @@ try {
   receipts.performanceMethod='Native requestAnimationFrame intervals across each complete ordinary racing phase, including transient slow frames and post-player classification grace. Countdown reported separately; no warmup removal or interior exclusions. Read-only snapshot/input-controller overhead is included. No GPU timer queries or physical presentation timestamps.';
  }
  assert(await storage()===null,'Test must start with empty competitive storage');
- receipts.appearanceSelection=selectedAppearance===null?{requested:'default',action:'No appearance selection; preserve the ordinary default flow.'}:{requested:selectedAppearance,action:'Click the visible garage appearance button before Start, then wait for its actual race geometry and decoded preview.'};
+ receipts.appearanceSelection=selectedAppearance===null?{requested:'default',action:'No appearance selection; preserve the ordinary default flow.'}:{requested:selectedAppearance,action:'Cycle the visible pod carousel before Race, then wait for actual race geometry and decoded preview.'};
  if(selectedAppearance!==null){
-  await page.locator(`[data-action="select-appearance"][data-appearance="${selectedAppearance}"]`).click();
+  for (let attempt=0;attempt<4;attempt++) {
+   if ((await snapshot()).game.vehiclePresentation?.selected === selectedAppearance) break;
+   await page.locator('[data-action="step-pod"][data-direction="1"]').click();
+  }
   await page.waitForFunction(wanted=>{
    const hero=window.__PODRACING__?.snapshot().game.vehiclePresentation?.racers[0];
    return hero?.requested===wanted && hero.active===wanted && hero.status==='ready';
@@ -216,7 +231,21 @@ try {
   await page.locator(`[data-hud="garage-model"][data-preview-appearance="${selectedAppearance}"]`).waitFor();
   receipts.selectedAppearanceBeforeStart=(await snapshot()).game.vehiclePresentation;
  }
- await page.locator('[data-action="start-race"]').click();
+ if (battleOnly) {
+  const initial = await snapshot();
+  assert((initial.game.mastery as any).eventId === 'inkstorm-battle', 'New-session default is not Battle');
+  assert(initial.galactic?.racers.length === 8, 'Battle did not prepare a full eight-racer grid');
+  assert(initial.galactic?.racers.every(r => r.galactic.vehicleClass === 'podracer'), 'Battle still contains a legacy non-pod class');
+  await page.locator('[data-action="start-race"]:visible').click();
+  await finishRun('battle', 220000);
+  const final = await snapshot();
+  const player = final.galactic?.racers.find(r => r.id === 'player');
+  assert((player?.galactic.weapon.shotsFired ?? 0) > 0, 'Battle weapon input never fired');
+  assert((player?.galactic.mine.deployed ?? 0) > 0, 'Battle mine input never deployed');
+  receipts.battle = { final, scope: 'Default populated Battle through standard virtual gamepad input; no pose, progress or health writes.' };
+ } else {
+ await page.locator('[data-event-id="inkstorm-trial"]:visible').click();
+ await page.locator('[data-action="start-race"]:visible').click();
  const solo=await finishRun('time-attack');
  assert(solo.result.personalBest && solo.result.invalidReason===null,'Solo finish did not produce a valid PB');
  assert(solo.result.sectors.length===10,'Solo result did not preserve10sectors');
@@ -244,20 +273,22 @@ try {
  await page.locator('[data-hud="pause"] [data-action="return-to-garage"]').click();
  await page.reload();await page.waitForFunction(()=>window.__PODRACING__?.ready,{timeout:45000});
  const reloaded=await snapshot();receipts.persistedAfterReload=reloaded;
- // The read-only review snapshot omits the hangar's preview identity. The
- // actual HUD deliberately supplies that identity, so verify visible UI and
- // durable data instead of expecting the inactive race snapshot to do so.
+ // A new session deliberately opens Battle. Select Time Trial and inspect
+ // its optional ghost control; the old permanent PB panel was removed.
+ await page.locator('[data-event-id="inkstorm-trial"]:visible').click();
+ await page.locator('.setup-more>summary').click();
  const afterReload=await storage();
  const persistedSolo=Object.values(afterReload.records).find((r:any)=>r.identity.eventId==='inkstorm-trial') as any;
- receipts.persistedReloadUI={best:await page.locator('[data-hud="personal-best"]').innerText(),ghost:await page.locator('[data-hud="ghost-state"]').innerText()};
  assert(persistedSolo?.time===soloRecord.time && persistedSolo?.ghost?.frames.length===soloRecord.ghost.frames.length,'PB/ghost durable data changed after page reload');
- const expectedTime=`${Math.floor(soloRecord.time/60)}:${String(Math.floor(soloRecord.time%60)).padStart(2,'0')}.${String(Math.floor(soloRecord.time*100)%100).padStart(2,'0')}`;
- assert(await page.locator('[data-action="toggle-ghost"]').isEnabled() && (await page.locator('[data-hud="personal-best"]').innerText())===expectedTime,'PB/ghost did not reappear in actual hangar UI');
+ receipts.persistedReloadUI={ghost:await page.locator('[data-hud="ghost-state"]').innerText()};
+ assert(await page.locator('[data-action="toggle-ghost"]').isEnabled()
+  && (receipts.persistedReloadUI as {ghost:string}).ghost==='ON','Saved trial ghost is unavailable after reload');
+ await page.locator('.setup-more>summary').click();
  }else{
   await page.locator('[data-hud="results"] [data-action="return-to-garage"]').click();
  }
  if(!soloOnly) {
- await page.locator('[data-event-id="cup-canyon"]').click();
+ await page.locator('[data-event-id="cup-canyon"]:visible').click();
  assert((await snapshot()).game.awaitingStart,'Cup selection did not return to grid preparation');
  await page.locator('[data-action="start-race"]').click();
  const cup=await finishRun('cup-round-1',260000);
@@ -267,7 +298,7 @@ try {
  assert((next.game.mastery as any).eventId==='cup-foundry' && (next.game.mastery as any).championshipRound===1,'Continue did not choose next unplayed round');
  await page.screenshot({path:`${output}/cup-continue-foundry.png`});
  if(!performanceMode){
- await page.locator('[data-event-id="cup-canyon"]').click();
+ await page.locator('[data-event-id="cup-canyon"]:visible').click();
  assert((await snapshot()).game.mastery && (await snapshot()).game.awaitingStart,'Practice selection did not show hangar');
  await page.screenshot({path:`${output}/cup-practice-preparation.png`});
  assert((await snapshot()).game.mastery && ((await snapshot()).game.mastery as any).championshipContext.title==='Single-round practice','Replayed Cup round lacks practice context');
@@ -278,6 +309,7 @@ try {
  assert(practice.result.nextEventId==='cup-foundry','Practice did not point to next unplayed round');
  }
  }
+ }
  assert(errors.length===0,`Browser errors: ${errors.join('; ')}`);
  receipts.outcome='PASS';receipts.visibleGhostAcceptance='Requires separate visual verification; ghostAvailable/ghostEnabled alone do not prove visible geometry.';console.log('COMPETITIVE FLOW PASS');
 } catch(error) {
@@ -286,7 +318,13 @@ try {
  console.error(error);
 } finally {
  if(page){try{await page.evaluate(()=>(window as any).__flowDriver?.stop());}catch{}}
- await browser?.close();server.kill('SIGTERM');
+ await browser?.close();
+ if (server.exitCode === null && server.signalCode === null) {
+  const exited = once(server, 'exit');
+  server.kill('SIGTERM');
+  await exited;
+ }
+ receipts.cleanup = { browserClosed: !browser?.isConnected(), serverExited: server.exitCode !== null || server.signalCode !== null, port };
  receipts.errors=errors;receipts.completedAt=new Date().toISOString();
  receipts.limitations='Automated virtual gamepad through shipped live adapter in disposable storage. No capture mode, simulation stepping, pose/progress mutation, or real-user PB changes. Not human gamepad feel or FPS evidence.';
  if(performanceMode)receipts.limitations='Full ordinary-race native RAF cadence with automated gamepad/controller overhead included. No staged starts, review steps, pose/progress mutation, warmup exclusion or frame filtering. Local browser/device only; not GPU execution time, physical display presentation, universal device FPS or human driving feel.';

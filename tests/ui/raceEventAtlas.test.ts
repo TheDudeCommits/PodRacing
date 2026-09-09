@@ -11,9 +11,13 @@ function model(day = '2026-09-09'): HudMasteryViewModel {
 }
 
 describe('race event atlas calendar and selection contract', () => {
-  it('shows exactly the seven actual calendar entries with no invented courses or event labels', () => {
+  it('includes the two quick races alongside the seven existing calendar entries', () => {
     const input = model(), actual = createRaceEventAtlasModel(input);
-    expect(actual.events).toEqual(input.events); expect(actual.events).toHaveLength(7);
+    expect(actual.events).toEqual(input.events);
+    expect(actual.events.map(event => event.id)).toEqual([
+      'inkstorm-battle', 'inkstorm-race', 'inkstorm-trial', 'flight-school',
+      'cup-canyon', 'cup-foundry', 'cup-glass', 'open-expedition', 'daily-2026-09-09',
+    ]);
     expect(actual.selectedId).toBe(input.eventId); expect(actual.canStart).toBe(true);
     expect(actual.title).toBe(input.events[0]!.title); expect(actual.subtitle).toBe(input.events[0]!.subtitle);
   });
@@ -24,7 +28,7 @@ describe('race event atlas calendar and selection contract', () => {
     expect(createRaceEventAtlasModel(switched)).toMatchObject({ selectedId: 'cup-foundry', title: 'Inkstorm Cup • Foundry', canStart: true });
     expect(JSON.stringify(input)).toBe(before);
     const projected = createRaceEventAtlasModel(input); projected.events[0]!.title = 'Changed outside';
-    expect(input.events[0]!.title).toBe('Inkstorm • Time Attack');
+    expect(input.events[0]!.title).toBe('Battle');
   });
   it('replaces the old daily ID and disables launch until the new calendar selection is valid', () => {
     const yesterday = model('2026-09-08'), today = model();
@@ -46,7 +50,7 @@ describe('race event atlas calendar and selection contract', () => {
     const input = model(); input.events[0]!.title = '<img onerror="bad()"> & event';
     input.events.push({ id: input.events[0]!.id, title: 'Duplicate', subtitle: '' }, { id: '', title: 'No identity', subtitle: '' });
     const actual = createRaceEventAtlasModel(input);
-    expect(actual.events).toHaveLength(7); expect(actual.title).toBe('<img onerror="bad()"> & event');
+    expect(actual.events).toHaveLength(9); expect(actual.title).toBe('<img onerror="bad()"> & event');
   });
 });
 

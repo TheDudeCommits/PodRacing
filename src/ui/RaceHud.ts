@@ -4,7 +4,7 @@ import { MinimapCanvas } from './MinimapCanvas';
 import { RaceEventAtlas } from './RaceEventAtlas';
 import { workshopSymbol } from './workshopSymbols';
 import { VehicleCardPreviewRenderer } from './VehicleCardPreview';
-import { ART_APPEARANCES, isVehicleAppearanceId } from '../game/vehicleAppearance';
+import { ART_APPEARANCES, isVehicleAppearanceId, SELECTABLE_POD_APPEARANCES } from '../game/vehicleAppearance';
 import type { VehicleArtLibrary } from '../render/vehicles';
 import { installPodracingHudStyles } from './hudStyles';
 import { layoutThreatCues, threatBearingLabel } from './threatLayout';
@@ -38,6 +38,12 @@ import type {
   RaceHudAction,
   RaceHudViewModel,
 } from './types';
+
+export const SETUP_PODS = SELECTABLE_POD_APPEARANCES;
+export function nextSetupPod(current: string | undefined, direction: number): typeof SETUP_PODS[number] {
+  const index = SETUP_PODS.findIndex(id => id === current);
+  return SETUP_PODS[(Math.max(0, index) + (direction < 0 ? -1 : 1) + SETUP_PODS.length) % SETUP_PODS.length]!;
+}
 
 export interface RaceHudOptions {
   vehicleArtLibrary?: VehicleArtLibrary;
@@ -208,6 +214,8 @@ export class RaceHud {
   private garageVehicleKey = '';
   private vehicleSelectionModel: HudPreRaceViewModel | undefined;
   private inspectionAngle = 0;
+  private inspectionPointer: { id: number; x: number; angle: number } | null = null;
+  private combatBindings = { fire: 'E', shield: 'Q', mine: 'F' };
   private masteryEventsKey = '';
   private masteryResultKey = '';
   private cupStandingsKey = '';
@@ -225,98 +233,37 @@ export class RaceHud {
     this.root.dataset.phase = 'countdown';
     this.root.setAttribute('aria-label', 'Podrace instruments');
     this.root.innerHTML = /* html */ `
-      <section class="pod-hud__vehicle-select" data-hud="vehicle-selection" aria-label="Select your vehicle" aria-hidden="true">
-        <div class="pod-hud__vehicle-select-frame">
-          <header class="pod-hud__vehicle-select-head">
-            <div><span class="pod-hud__eyebrow">INKSTORM / PODRACING LEAGUE</span><h1>HANGAR</h1></div>
-            <nav class="pod-hud__garage-nav" aria-label="Race preparation"><button type="button" data-action="open-event-atlas" aria-expanded="false"><b>◎</b> MAP</button><button type="button" data-action="open-workshop"><b>≡</b> BUILD</button></nav>
-            <div class="pod-hud__garage-edition"><span>CHAPTER 01</span><strong>THE VERMILION RUN</strong><small>Choose your machine. Write your legend.</small></div>
+      <section class="pod-hud__vehicle-select simple-setup" data-hud="vehicle-selection" aria-label="Race setup" aria-hidden="true">
+        <div class="pod-hud__vehicle-select-frame setup-frame">
+          <header class="setup-header">
+            <span class="setup-brand">INKSTORM</span>
+            <nav class="setup-types" aria-label="Race type">
+              <button type="button" data-action="select-event" data-event-id="inkstorm-battle" aria-pressed="false" title="8 racers · weapons enabled">Battle</button>
+              <button type="button" data-action="select-event" data-event-id="inkstorm-race" aria-pressed="false" title="8 racers · clean race">Race</button>
+              <button type="button" data-action="select-event" data-event-id="inkstorm-trial" aria-pressed="false" title="Solo · one timed lap">Time Trial</button>
+              <button type="button" data-action="select-event" data-event-id="cup-canyon" aria-pressed="false" title="8 racers · three-round championship">Cup</button>
+            </nav>
           </header>
-          <section class="pod-hud__garage-hero" aria-label="Inspect selected vehicle">
-            <span class="pod-hud__garage-bay">01 <i></i> CHOOSE YOUR MACHINE</span>
-            <div class="pod-hud__garage-model" data-hud="garage-model" data-vehicle-preview="hero" data-vehicle-id="podracer" role="img" aria-label="Selected vehicle inspection"></div>
-            <div class="pod-hud__garage-name"><span data-hud="garage-class">01 / TWIN ENGINE</span><h2 data-hud="garage-name">Boonta Podracer</h2><p data-hud="garage-description"></p></div>
-            <div class="pod-hud__garage-inspect"><button type="button" data-action="inspect-vehicle" data-direction="-1" aria-label="Rotate vehicle left">↶</button><span>INSPECT</span><button type="button" data-action="inspect-vehicle" data-direction="1" aria-label="Rotate vehicle right">↷</button></div>
-            <div class="pod-hud__garage-stats" data-hud="garage-stats" aria-label="Selected vehicle ratings"></div>
+          <section class="pod-hud__garage-hero" aria-label="Choose your pod">
+            <div class="pod-hud__garage-model" data-hud="garage-model" data-vehicle-preview="hero" data-vehicle-id="podracer" data-pod-inspection role="group" tabindex="0" aria-label="Inspect Teemto" aria-describedby="setup-inspect-hint" aria-description="Use Left and Right arrow keys to inspect. Home resets the view." title="Drag to rotate. When focused, use Left/Right arrows to inspect; Home resets the view."></div>
+            <button class="setup-pod-arrow setup-pod-arrow--previous" type="button" data-action="step-pod" data-direction="-1" aria-label="Previous pod">‹</button>
+            <button class="setup-pod-arrow setup-pod-arrow--next" type="button" data-action="step-pod" data-direction="1" aria-label="Next pod">›</button>
+            <div class="pod-hud__garage-name" aria-live="polite"><span data-hud="setup-pod-index">01 / 04</span><h1 data-hud="garage-name">Teemto</h1></div>
+            <div class="pod-hud__garage-inspect"><button type="button" data-action="inspect-vehicle" data-direction="-1" aria-label="Rotate pod left">↶</button><span id="setup-inspect-hint">Drag to rotate</span><button type="button" data-action="inspect-vehicle" data-direction="1" aria-label="Rotate pod right">↷</button></div>
+            <div class="setup-preview-status"><p data-hud="appearance-status" role="status" aria-live="polite"></p><button type="button" data-action="retry-appearance" hidden>Retry preview</button></div>
           </section>
-          <section class="pod-hud__vehicle-choice" aria-label="Vehicle class and appearance">
-            <div class="pod-hud__vehicle-cards" data-hud="vehicle-cards" role="group" aria-label="Vehicle class and handling"></div>
-            <div class="pod-hud__appearance" data-hud="appearance" hidden>
-              <div role="group" aria-label="Podracer appearance"><span>BODY STYLE</span>${Object.values(ART_APPEARANCES).map(art => `<button type="button" data-action="select-appearance" data-appearance="${art.id}" aria-pressed="false">${art.label}</button>`).join('')}<small>Same handling</small></div>
-              <p data-hud="appearance-status" role="status" aria-live="polite"></p><button type="button" data-action="retry-appearance" hidden>Retry model</button>
+          <footer class="setup-bottom">
+            <div class="setup-options">
+              <div class="pod-hud__difficulty-selector" role="group" aria-label="AI difficulty"><span>AI</span><button type="button" data-action="select-ai-difficulty" data-difficulty="easy" aria-pressed="false">Easy</button><button type="button" data-action="select-ai-difficulty" data-difficulty="medium" aria-pressed="true">Medium</button><button type="button" data-action="select-ai-difficulty" data-difficulty="hard" aria-pressed="false">Hard</button></div>
+              <div class="pod-hud__lap-selector" role="group" aria-label="Number of laps"><span>Laps</span><button type="button" data-action="select-laps" data-laps="1" aria-pressed="false">1</button><button type="button" data-action="select-laps" data-laps="2" aria-pressed="false">2</button><button type="button" data-action="select-laps" data-laps="3" aria-pressed="true">3</button></div>
             </div>
-          </section>
-          <aside class="pod-hud__mastery" data-hud="mastery" aria-label="Event and records">
-            <span class="pod-hud__eyebrow">02 / SELECT EVENT</span>
-            <h2 data-hud="event-title">Make the canyon yours.</h2>
-            <p data-hud="event-description">Learn the line. Carry speed through the canyon. Release your drift to launch out of every turn.</p>
-            <div class="pod-hud__cup-context" data-hud="cup-context" hidden><strong></strong><p></p><div data-hud="cup-standings"></div></div>
-            <div class="pod-hud__event-heading"><span data-hud="calendar-title">RACE CALENDAR</span><small>Scroll to browse ↓</small></div>
-            <div class="pod-hud__event-list" data-hud="event-list" role="region" aria-label="Race calendar, scroll to browse events"></div>
-            <div class="pod-hud__personal-record"><span>PERSONAL BEST</span><strong data-hud="personal-best">—:——.——</strong><small data-hud="mastery-objective">A new racing story starts on the grid.</small><small data-hud="archive-notice" hidden></small></div>
-            <div class="pod-hud__mastery-controls" data-hud="mastery-controls" hidden><button type="button" data-action="toggle-ghost" aria-pressed="false">Ghost <b data-hud="ghost-state">OFF</b></button><button type="button" data-action="save-course" aria-pressed="false">☆ Save course</button></div>
-            <div class="pod-hud__garage-rule"><span>THE ART OF SPEED</span><strong>Brake early. Drift clean.<br>Spend your heat wisely.</strong></div>
-          </aside>
-          <footer class="pod-hud__vehicle-select-footer">
-            <details class="pod-hud__selector-controls" aria-label="Race controls">
-              <summary>FLIGHT MANUAL</summary>
-              <div class="pod-hud__selector-section-head">
-                <strong>Flight manual</strong>
-                <small>Click a craft or use ← / → to select</small>
-              </div>
-              <div class="pod-hud__selector-control-grid">
-                <span><kbd>W</kbd><em>Throttle</em></span>
-                <span><kbd>S</kbd><em>Brake</em></span>
-                <span><kbd>A/D</kbd><em>Steer</em></span>
-                <span><kbd>Space</kbd><em>Drift</em></span>
-                <span><kbd>Shift</kbd><em>Redline</em></span>
-                <span><kbd>E</kbd><em>Heat Lance</em></span>
-                <span><kbd>Q</kbd><em>Shield</em></span>
-                <span><kbd>F</kbd><em>Mine</em></span>
-                <span><kbd>R</kbd><em>Recover</em></span>
-                <span><kbd>Esc/P</kbd><em>Pause</em></span>
-              </div>
-              <div class="pod-hud__pickup-manual">
-                <strong>OPEN EXPEDITION / TRACK SALVAGE</strong>
-                <p><b>EMP Cell</b> — drive through the violet pickup to disrupt nearby rivals and clear enemy ordnance. A shield blocks the disruption.</p>
-                <p><b>Repair Salvage</b> — the green pickup repairs your hull and vents heat. Both pickups return after five seconds for other racers. Each racer can claim each pickup once per race.</p>
-              </div>
-            </details>
-
-            <section class="pod-hud__selector-setup" aria-label="Race setup">
-              <div class="pod-hud__selector-section-head"><strong>Race setup</strong></div>
-              <div class="pod-hud__event-launch-summary" data-hud="event-launch-summary"><strong data-hud="event-launch-title"></strong><span data-hud="event-launch-detail"></span><small>Stock parts are fixed. Choose Open Expedition to tune your machine.</small></div>
-              <div class="pod-hud__difficulty-selector" role="group" aria-label="AI difficulty">
-                <span>AI</span>
-                <button type="button" data-action="select-ai-difficulty" data-difficulty="easy" aria-pressed="false">Easy</button>
-                <button type="button" data-action="select-ai-difficulty" data-difficulty="medium" aria-pressed="true">Medium</button>
-                <button type="button" data-action="select-ai-difficulty" data-difficulty="hard" aria-pressed="false">Hard</button>
-              </div>
-              <label class="pod-hud__mode-selector">
-                <span>Mode</span>
-                <select data-action="select-race-mode" data-hud="race-mode-select" aria-label="Race mode">
-                  <option value="circuit">Circuit</option>
-                  <option value="eliminator">Eliminator</option>
-                  <option value="checkpoint-sprint">Checkpoint Sprint</option>
-                  <option value="combat-race">Combat</option>
-                  <option value="survival-gauntlet">Survival</option>
-                  <option value="drift-trial">Drift Trial</option>
-                  <option value="team-race">Team Race</option>
-                </select>
-              </label>
-              <div class="pod-hud__lap-selector" role="group" aria-label="Number of laps">
-                <span>Laps</span>
-                <button type="button" data-action="select-laps" data-laps="1" aria-pressed="false">1</button>
-                <button type="button" data-action="select-laps" data-laps="2" aria-pressed="false">2</button>
-                <button type="button" data-action="select-laps" data-laps="3" aria-pressed="true">3</button>
-              </div>
-              <div class="pod-hud__selector-launch-row">
-                <button class="pod-hud__workshop-toggle" type="button" data-action="toggle-workshop" aria-expanded="false">Workshop</button>
-                <button type="button" class="pod-hud__start-button" data-action="start-race" data-hud="start-button"><span>START RACE</span><b>↗</b></button>
-                <strong class="pod-hud__start-prompt" data-hud="start-prompt">Space / Enter to start</strong>
-              </div>
-            </section>
-
+            <button type="button" class="pod-hud__start-button" data-action="start-race" data-hud="start-button"><span>Race</span><b aria-hidden="true">↗</b></button>
+            <details class="setup-more" data-hud="setup-more"><summary>More <span aria-hidden="true">+</span></summary><div class="setup-more-body">
+              <nav class="setup-extras" aria-label="Additional options"><button type="button" data-action="toggle-settings" aria-expanded="false">Settings</button><button type="button" data-action="open-workshop">Build</button><button type="button" data-action="open-event-atlas" aria-expanded="false">Courses</button></nav>
+              <section data-hud="mastery" aria-label="Other events">
+                <div class="pod-hud__event-list" data-hud="event-list" role="region" aria-label="Other events"></div>
+                <div class="pod-hud__mastery-controls" data-hud="mastery-controls"><button type="button" data-action="toggle-ghost" aria-pressed="false">Ghost <b data-hud="ghost-state">OFF</b></button><button type="button" data-action="save-course" aria-pressed="false">☆ Save course</button></div>
+              </section>
             <details class="pod-hud__room" data-hud="room-panel" aria-label="Online room">
               <summary>ONLINE / RACE TOGETHER</summary>
               <div class="pod-hud__selector-section-head">
@@ -336,7 +283,18 @@ export class RaceHud {
               <div class="pod-hud__room-status" data-hud="room-status" role="status" aria-live="polite">Solo race ready</div>
               <ul class="pod-hud__room-members" data-hud="room-member-list" aria-label="Room members"></ul>
             </details>
+            </div></details>
           </footer>
+          <div class="setup-legacy" hidden aria-hidden="true">
+            <div data-hud="vehicle-cards"></div><div data-hud="appearance"></div>
+            <span data-hud="garage-class"></span><p data-hud="garage-description"></p><div data-hud="garage-stats"></div>
+            <h2 data-hud="event-title"></h2><p data-hud="event-description"></p>
+            <div data-hud="cup-context" hidden><strong></strong><p></p><div data-hud="cup-standings"></div></div>
+            <span data-hud="calendar-title"></span><strong data-hud="personal-best"></strong><small data-hud="mastery-objective"></small><small data-hud="archive-notice" hidden></small>
+            <div data-hud="event-launch-summary"><strong data-hud="event-launch-title"></strong><span data-hud="event-launch-detail"></span></div>
+            <select data-action="select-race-mode" data-hud="race-mode-select" aria-label="Legacy race mode">${HUD_RACE_MODES.map(mode => `<option value="${mode.id}">${mode.label}</option>`).join('')}</select>
+            <button class="pod-hud__workshop-toggle" type="button" data-action="toggle-workshop" aria-expanded="false">Build</button><strong data-hud="start-prompt"></strong>
+          </div>
           <section class="pod-hud__workshop" data-hud="workshop" aria-label="Podracer workshop" aria-hidden="true">
             <header class="pod-hud__workshop-head">
               <div><span>INKSTORM / ENGINEERING</span><strong>BUILD</strong></div>
@@ -408,7 +366,7 @@ export class RaceHud {
         <div class="pod-hud__systems-cluster">
           <div class="pod-hud__combat-grid">
             <div class="pod-hud__combat-slot pod-hud__combat-slot--weapon" data-hud="system-primary" aria-label="Primary weapon E">
-              <b class="pod-hud__combat-key">E</b>
+              <b class="pod-hud__combat-key" data-key-binding="fire">E</b>
               <i class="pod-hud__system-gauge" aria-hidden="true"><i class="pod-hud__system-icon"></i></i>
               <span class="pod-hud__system-label">Primary</span>
               <span class="pod-hud__sr-only" data-hud="weapon-name">Heat Lance</span>
@@ -416,14 +374,14 @@ export class RaceHud {
               <i class="pod-hud__combat-charge" aria-hidden="true"><i data-hud="weapon-fill"></i></i>
             </div>
             <div class="pod-hud__combat-slot pod-hud__combat-slot--shield" data-hud="system-shield" aria-label="Shield Q">
-              <b class="pod-hud__combat-key">Q</b>
+              <b class="pod-hud__combat-key" data-key-binding="shield">Q</b>
               <i class="pod-hud__system-gauge" aria-hidden="true"><i class="pod-hud__system-icon"></i></i>
               <span class="pod-hud__system-label">Shield</span>
               <strong class="pod-hud__sr-only" data-hud="shield-value">Ready</strong>
               <i class="pod-hud__combat-charge" aria-hidden="true"><i data-hud="shield-fill"></i></i>
             </div>
             <div class="pod-hud__combat-slot pod-hud__combat-slot--mine" data-hud="system-mine" aria-label="Mine F">
-              <b class="pod-hud__combat-key">F</b>
+              <b class="pod-hud__combat-key" data-key-binding="mine">F</b>
               <i class="pod-hud__system-gauge" aria-hidden="true"><i class="pod-hud__system-icon"></i></i>
               <span class="pod-hud__system-label">Mine</span>
               <strong class="pod-hud__system-ammo">×<span data-hud="mine-count">0</span></strong>
@@ -569,9 +527,9 @@ export class RaceHud {
         <span><b class="pod-hud__key">A D</b> Carve</span>
         <span><b class="pod-hud__key">SPACE</b> Drift</span>
         <span><b class="pod-hud__key">SHIFT</b> Redline</span>
-        <span><b class="pod-hud__key">E</b> Heat Lance</span>
-        <span><b class="pod-hud__key">Q</b> Shield</span>
-        <span><b class="pod-hud__key">F</b> Mine</span>
+        <span><b class="pod-hud__key" data-key-binding="fire">E</b> Heat Lance</span>
+        <span><b class="pod-hud__key" data-key-binding="shield">Q</b> Shield</span>
+        <span><b class="pod-hud__key" data-key-binding="mine">F</b> Mine</span>
         <span><b class="pod-hud__key">R</b> Recover</span>
         <span><b class="pod-hud__key">ESC/P</b> Pause</span>
       </aside>
@@ -707,6 +665,12 @@ export class RaceHud {
     this.root.addEventListener('change', this.handleControlChange);
     this.root.addEventListener('input', this.handleControlInput);
     this.root.addEventListener('keydown', this.handleInterfaceKey);
+    const inspection = requireElement<HTMLElement>(this.root, '[data-hud="garage-model"]');
+    inspection.addEventListener('pointerdown', this.handleInspectionStart);
+    inspection.addEventListener('pointermove', this.handleInspectionMove);
+    inspection.addEventListener('pointerup', this.handleInspectionEnd);
+    inspection.addEventListener('pointercancel', this.handleInspectionEnd);
+    inspection.addEventListener('lostpointercapture', this.handleInspectionEnd);
   }
 
   update(model: RaceHudViewModel): void {
@@ -772,10 +736,10 @@ export class RaceHud {
         : 'apex';
     write(this.flightClearance, `${clearance.toFixed(1).padStart(4, '0')} M CLEAR`);
     write(this.flightMotion, motion === 'descending'
-      ? '↓ Landing // Brace'
+      ? '↓ Landing'
       : motion === 'climbing'
-        ? '↑ Climb // Landing Armed'
-        : '◇ Apex // Landing Set');
+        ? '↑ Climb'
+        : '◇ Apex');
     this.flight.dataset.motion = motion;
     setVisible(this.flight, airborne && model.galactic?.wreckPhase == null);
 
@@ -868,6 +832,12 @@ export class RaceHud {
     this.root.removeEventListener('click', this.handleActionClick);
     this.root.removeEventListener('change', this.handleControlChange);
     this.root.removeEventListener('input', this.handleControlInput);
+    const inspection = requireElement<HTMLElement>(this.root, '[data-hud="garage-model"]');
+    inspection.removeEventListener('pointerdown', this.handleInspectionStart);
+    inspection.removeEventListener('pointermove', this.handleInspectionMove);
+    inspection.removeEventListener('pointerup', this.handleInspectionEnd);
+    inspection.removeEventListener('pointercancel', this.handleInspectionEnd);
+    inspection.removeEventListener('lostpointercapture', this.handleInspectionEnd);
     this.vehiclePreviews.dispose();
     this.minimap.dispose();
     this.root.remove();
@@ -903,11 +873,51 @@ export class RaceHud {
   }
 
   private readonly handleInterfaceKey = (event: KeyboardEvent): void => {
+    if (!(event.target instanceof Element)) return;
+    if (event.target.matches('[data-hud="garage-model"]') && /^(ArrowLeft|ArrowRight|Home)$/.test(event.code)) {
+      event.preventDefault(); event.stopPropagation();
+      this.inspectPod(event.code === 'Home' ? 0 : this.inspectionAngle + (event.code === 'ArrowLeft' ? -15 : 15));
+      return;
+    }
+    if (event.code === 'Escape' && event.target.closest('.setup-more')) {
+      const more = requireElement<HTMLDetailsElement>(this.root, '[data-hud="setup-more"]');
+      more.open = false; more.querySelector('summary')?.focus();
+      event.preventDefault(); event.stopPropagation(); return;
+    }
     // Native button/summary activation must not also trigger garage launch or steering.
-    if (!(event.target instanceof Element) || !event.target.closest('button,summary')) return;
+    if (!event.target.closest('button,summary')) return;
+    if (event.target.closest('.simple-setup') && event.code.startsWith('Arrow')) event.stopPropagation();
     const activatesControl = event.code === 'Space' || event.code === 'Enter' || event.code === 'NumpadEnter';
     const workshopNavigation = this.root.classList.contains('has-workshop') && /^(Arrow|Digit|Key[ADV])/.test(event.code);
     if (activatesControl || workshopNavigation) event.stopPropagation();
+  };
+
+  private inspectPod(angle: number): void {
+    if (!this.vehicleSelectionModel?.active) return;
+    this.inspectionAngle = ((angle % 360) + 360) % 360;
+    this.vehiclePreviews.setInspectionAngle(this.inspectionAngle);
+  }
+
+  private readonly handleInspectionStart = (event: PointerEvent): void => {
+    if (event.button !== 0 || !this.vehicleSelectionModel?.active) return;
+    const host = event.currentTarget as HTMLElement;
+    host.focus({ preventScroll: true }); host.setPointerCapture(event.pointerId);
+    this.inspectionPointer = { id: event.pointerId, x: event.clientX, angle: this.inspectionAngle };
+    host.classList.add('is-inspecting'); event.preventDefault(); event.stopPropagation();
+  };
+
+  private readonly handleInspectionMove = (event: PointerEvent): void => {
+    const pointer = this.inspectionPointer;
+    if (!pointer || pointer.id !== event.pointerId) return;
+    this.inspectPod(pointer.angle + (event.clientX - pointer.x) * .45);
+    event.preventDefault(); event.stopPropagation();
+  };
+
+  private readonly handleInspectionEnd = (event: PointerEvent): void => {
+    if (this.inspectionPointer?.id !== event.pointerId) return;
+    this.inspectionPointer = null;
+    (event.currentTarget as HTMLElement).classList.remove('is-inspecting');
+    event.stopPropagation();
   };
 
   private setEventAtlasVisible(visible: boolean): void {
@@ -947,10 +957,11 @@ export class RaceHud {
       if (trigger.dataset.eventId) this.emitAction({ type: 'select-event', eventId: trigger.dataset.eventId });
     } else if (action === 'toggle-ghost' || action === 'save-course' || action === 'next-event' || action === 'restart-championship') {
       this.emitAction({ type: action });
+    } else if (action === 'step-pod') {
+      const current = this.vehicleSelectionModel?.appearance?.selected;
+      this.emitAction({ type: 'select-appearance', appearance: nextSetupPod(current, Number(trigger.dataset.direction)) });
     } else if (action === 'inspect-vehicle') {
-      this.inspectionAngle = (this.inspectionAngle + (Number(trigger.dataset.direction) < 0 ? -30 : 30) + 360) % 360;
-      requireElement<HTMLElement>(this.root, '[data-hud="garage-model"]').dataset.previewAngle = String(this.inspectionAngle);
-      void this.vehiclePreviews.refresh();
+      this.inspectPod(this.inspectionAngle + (Number(trigger.dataset.direction) < 0 ? -30 : 30));
     } else if (action === 'toggle-hud-detail') {
       const open = this.root.classList.toggle('has-hud-detail');
       trigger.setAttribute('aria-pressed', String(open));
@@ -1065,6 +1076,9 @@ export class RaceHud {
     const heroChanged = this.garageVehicleKey !== vehicleKey;
     if (heroChanged && selectedCard) {
       this.garageVehicleKey = vehicleKey;
+      this.inspectionAngle = 0;
+      hero.dataset.previewAngle = '0';
+      write(requireElement(this.root, '[data-hud="setup-pod-index"]'), `${String(Math.max(0, SETUP_PODS.indexOf(appearance as typeof SETUP_PODS[number])) + 1).padStart(2, '0')} / 04`);
       hero.dataset.vehicleId = selection.selectedVehicleClass;
       const garageName = selection.selectedVehicleClass === 'podracer' && appearance !== 'procedural' ? selectedLabel : selectedCard.name;
       hero.setAttribute('aria-label', `Inspect ${garageName}`);
@@ -1111,6 +1125,8 @@ export class RaceHud {
       button.setAttribute('aria-disabled', String(locked));
     }
     this.root.classList.toggle('has-fixed-event', selection.fixedRules === true);
+    requireElement<HTMLElement>(this.root, '.setup-options').hidden = selection.fixedRules === true;
+    for (const button of this.root.querySelectorAll<HTMLButtonElement>('[data-action="step-pod"]')) button.disabled = selection.lobby.status === 'connecting';
     write(requireElement(this.root, '[data-hud="event-launch-title"]'), `${selection.selectedLaps} LAP${selection.selectedLaps === 1 ? '' : 'S'} · STOCK MACHINERY`);
     const setupLocked = selection.fixedRules === true || selection.lobby.role === 'guest' || selection.lobby.status === 'connecting';
     for (const button of this.vehicleSelection.querySelectorAll<HTMLButtonElement>('[data-action="select-ai-difficulty"]')) {
@@ -1123,10 +1139,11 @@ export class RaceHud {
     if (this.raceModeSelect.value !== selection.raceMode) this.raceModeSelect.value = selection.raceMode;
     this.raceModeSelect.disabled = setupLocked;
     this.raceModeSelect.setAttribute('aria-disabled', String(setupLocked));
-    this.workshopToggle.disabled = selection.fixedRules === true || selection.workshop === undefined;
-    this.workshopToggle.title = selection.fixedRules ? 'Stock workshop parts are fixed for this event' : 'Tune the five parts in your build';
+    this.workshopToggle.disabled = selection.stockBuild === true || selection.fixedRules === true || selection.workshop === undefined;
+    this.workshopToggle.title = selection.stockBuild || selection.fixedRules ? 'Stock workshop parts are fixed for this event' : 'Tune the five parts in your build';
     const buildButton = requireElement<HTMLButtonElement>(this.root, '[data-action="open-workshop"]');
     buildButton.disabled = this.workshopToggle.disabled;
+    buildButton.hidden = this.workshopToggle.disabled;
     buildButton.title = this.workshopToggle.title;
     buildButton.setAttribute('aria-expanded', String(selection.workshop?.open === true));
     const setupHeading = this.vehicleSelection.querySelector('.pod-hud__selector-setup .pod-hud__selector-section-head strong');
@@ -1163,6 +1180,8 @@ export class RaceHud {
       : loading ? activeAppearance === appearance ? `Preparing ${selectedLabel} preview… Your race craft is ready.` : `Loading ${selectedLabel}… ${activeLabel} is ready to race.`
         : appearance !== 'procedural' ? `${selectedLabel} · seated pilot · twin engines` : 'Classic · original racing frame');
     requireElement<HTMLButtonElement>(this.root, '[data-action="retry-appearance"]').hidden = !failed;
+    const statusHost = this.root.querySelector<HTMLElement>('.setup-preview-status');
+    if (statusHost) statusHost.hidden = !failed && !loading;
   }
 
   private updateWorkshop(workshop: HudWorkshopViewModel | undefined): void {
@@ -1310,7 +1329,7 @@ export class RaceHud {
       write(requireElement(cup, 'strong'), cupContext.title);
       write(requireElement(cup, 'p'), cupContext.detail);
       const startButton = requireElement<HTMLButtonElement>(this.root, '[data-hud="start-button"]');
-      if (preRace && !startButton.disabled && cupContext.actionLabel) write(requireElement(startButton, 'span'), cupContext.actionLabel);
+      if (preRace && !startButton.disabled && cupContext.actionLabel) startButton.title = cupContext.actionLabel;
       const standingsKey = JSON.stringify(mastery.championship);
       if (standingsKey !== this.cupStandingsKey) {
         this.cupStandingsKey = standingsKey;
@@ -1358,7 +1377,12 @@ export class RaceHud {
     }
     // Selecting a Cup can insert standings and expand the selected description.
     // Reveal the entire entry after that layout change, only on selection.
-    newlySelectedEvent?.scrollIntoView?.({ block: 'nearest', inline: 'nearest' });
+    if (newlySelectedEvent?.offsetHeight) newlySelectedEvent.scrollIntoView?.({ block: 'nearest', inline: 'nearest' });
+    for (const button of this.root.querySelectorAll<HTMLButtonElement>('.setup-types [data-event-id]')) {
+      const selected = button.dataset.eventId === mastery.eventId || button.dataset.eventId === 'cup-canyon' && mastery.eventId.startsWith('cup-');
+      button.setAttribute('aria-pressed', String(selected));
+      button.disabled = this.roomPanel.dataset.role === 'guest';
+    }
     const ghost = requireElement<HTMLButtonElement>(controls, '[data-action="toggle-ghost"]');
     ghost.disabled = !mastery.ghostAvailable;
     ghost.setAttribute('aria-pressed', String(mastery.ghostEnabled));
@@ -1461,6 +1485,7 @@ export class RaceHud {
     const open = settings?.open === true;
     setVisible(this.settingsPanel, open);
     this.pause.classList.toggle('has-settings', open);
+    requireElement<HTMLElement>(this.vehicleSelection, '.pod-hud__vehicle-select-frame').inert = open || this.eventAtlasOpen;
     const settingsToggle = this.pause.querySelector<HTMLButtonElement>('.pod-hud__pause-home [data-action="toggle-settings"]');
     settingsToggle?.setAttribute('aria-expanded', String(open));
     if (!settings) return;
@@ -1513,6 +1538,12 @@ export class RaceHud {
       .join('|');
     if (bindingsKey !== this.settingsBindingsKey) {
       this.settingsBindingsKey = bindingsKey;
+      for (const action of ['fire', 'shield', 'mine'] as const) {
+        const binding = settings.controls.bindings.find(binding => binding.action === action);
+        if (!binding) continue;
+        this.combatBindings[action] = binding.keyboard;
+        for (const caption of this.root.querySelectorAll<HTMLElement>(`[data-key-binding="${action}"]`)) write(caption, binding.keyboard);
+      }
       this.settingsBindings.replaceChildren(...settings.controls.bindings.map((binding) => {
         const row = this.root.ownerDocument.createElement('div');
         row.className = 'pod-hud__binding-row';
@@ -1622,11 +1653,11 @@ export class RaceHud {
     const key = visibleThreats.map(({ threat, count, directionOnly }) => `${threat.id}:${threat.kind}:${threat.label}:${count}:${directionOnly ?? false}`).join('|');
     if (key !== this.threatStructureKey) {
       this.threatStructureKey = key;
-      let impactCaptionUsed = false;
       this.threatCues.replaceChildren(...visibleThreats.map(({ threat, count, directionOnly: compactDirectionOnly }, index) => {
         const isImpactVector = threat.kind === 'impact' && threat.label === 'IMPACT VECTOR';
-        const directionOnly = compactDirectionOnly || (isImpactVector && impactCaptionUsed);
-        if (isImpactVector) impactCaptionUsed = true;
+        // Only the most urgent bearing needs a caption. Secondary bearings and
+        // group counts remain visible; complete labels remain accessible.
+        const directionOnly = compactDirectionOnly || index > 0;
         const cue = this.root.ownerDocument.createElement('i');
         cue.className = 'pod-hud__threat-cue';
         cue.dataset.threatId = threat.id;
@@ -1751,7 +1782,7 @@ export class RaceHud {
 
     const startButton = requireElement<HTMLButtonElement>(this.root, '[data-hud="start-button"]');
     startButton.disabled = !lobby.canStart;
-    write(requireElement(startButton, 'span'), lobby.canStart ? 'START RACE' : 'WAITING FOR HOST');
+    write(requireElement(startButton, 'span'), lobby.canStart ? 'Race' : 'Waiting for host');
     const promptKey = `${lobby.role}:${lobby.canStart}`;
     if (promptKey !== this.startPromptKey) {
       this.startPromptKey = promptKey;
@@ -1888,8 +1919,8 @@ export class RaceHud {
           : 'Ready';
     write(this.shieldValue, shieldState);
     this.setSystemReadiness(this.shieldSlot, shieldFraction);
-    this.shieldSlot.setAttribute('aria-label', `Shield Q, ${shieldState}`);
-    this.shieldSlot.title = `Shield [Q] • ${shieldState}`;
+    this.shieldSlot.setAttribute('aria-label', `Shield ${this.combatBindings.shield}, ${shieldState}`);
+    this.shieldSlot.title = `Shield [${this.combatBindings.shield}] • ${shieldState}`;
     this.galactic.classList.toggle('is-shield-active', galactic.shieldActive);
     this.galactic.classList.toggle('is-shield-recharging', galactic.shieldCooldown > 0);
     this.galactic.classList.toggle('is-shield-ready', !galactic.shieldActive && galactic.shieldCooldown <= 0.001);
@@ -1905,8 +1936,8 @@ export class RaceHud {
         : `${galactic.weaponCooldown.toFixed(1)}S`;
     write(this.weaponValue, weaponState);
     this.setSystemReadiness(this.primarySlot, weaponReadiness);
-    this.primarySlot.setAttribute('aria-label', `Primary E, ${galactic.weaponName}, ${weaponState}`);
-    this.primarySlot.title = `${galactic.weaponName} [E] • ${weaponState}`;
+    this.primarySlot.setAttribute('aria-label', `Primary ${this.combatBindings.fire}, ${galactic.weaponName}, ${weaponState}`);
+    this.primarySlot.title = `${galactic.weaponName} [${this.combatBindings.fire}] • ${weaponState}`;
     write(
       this.weaponTarget,
       galactic.weaponTarget
@@ -1921,8 +1952,8 @@ export class RaceHud {
 
     write(this.mineCount, String(galactic.mineCount));
     this.setSystemReadiness(this.mineSlot, galactic.mineCount > 0 ? 1 : 0);
-    this.mineSlot.setAttribute('aria-label', `Mine F, ${galactic.mineCount} remaining`);
-    this.mineSlot.title = `Mine [F] • ${galactic.mineCount} remaining`;
+    this.mineSlot.setAttribute('aria-label', `Mine ${this.combatBindings.mine}, ${galactic.mineCount} remaining`);
+    this.mineSlot.title = `Mine [${this.combatBindings.mine}] • ${galactic.mineCount} remaining`;
     this.updateMeter(this.redlineFill, this.redlineValue, galactic.redlineHeat);
     const redlinePercent = Math.round(galactic.redlineHeat * 100);
     const redlineVisible = model.phase !== 'finished'

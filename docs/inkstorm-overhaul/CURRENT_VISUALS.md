@@ -1,4 +1,16 @@
-# Actual V32r1 previews
+# Actual Round 36 previews
+
+The current menu uses race type / inspectable pod / essential options / Race. Fresh screenshot-only review: **8.9/10, approved**. These are actual native game/UI captures; the subsequent cached-return correction changes renderer lifecycle, not these styles or models. [Current changes and remaining work](ROUND36_REPORT.md).
+
+![Simple desktop setup](evidence/round36/desktop-default.png)
+
+![Portrait setup](evidence/round36/portrait-default.png)
+
+![Actual eight-pod Battle](evidence/round36/desktop-battle-inputs.png)
+
+## Previous release media (historical)
+
+### V32r1 previews
 
 Current game screenshots and short clips are actual captured gameplay/UI. Generated concepts are separate targets. Visual acceptance remains incomplete: HUD 7/7.5 and crash 5/10. [Full release report](RELEASE_REPORT_2026-09-09.md) · [Download current QA archive](https://github.com/TheDudeCommits/PodRacing/releases/tag/inkstorm-v32r1-20260909).
 

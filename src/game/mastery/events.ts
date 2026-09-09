@@ -4,11 +4,24 @@ import type { MasteryEvent } from './types';
 // change physical racing/recovery paths. Course8 records/favorites use the
 // existing archive migration; their ghosts cannot be course9 comparison targets.
 export const MASTERY_GENERATOR_VERSION = 'inkstorm-course-9';
-export const MASTERY_PHYSICS_VERSION = 'inkstorm-drive-4';
+export const MASTERY_PHYSICS_VERSION = 'inkstorm-drive-5';
 export const MASTERY_RULES_VERSION = 'inkstorm-rules-2';
 export const INKSTORM_HERO_SEED = 0x494e4b53;
+export const DEFAULT_MASTERY_EVENT_ID = 'inkstorm-battle';
 
 export const MASTERY_EVENTS: readonly MasteryEvent[] = Object.freeze([
+  {
+    id: 'inkstorm-battle', title: 'Battle', subtitle: '8 racers · Weapons on',
+    courseId: 'inkstorm-canyon', seed: INKSTORM_HERO_SEED,
+    mode: 'circuit', profile: 'chaos', laps: 1, difficulty: 'medium', stock: true,
+    medalTimes: { gold: 90, silver: 110, bronze: 145 },
+  },
+  {
+    id: 'inkstorm-race', title: 'Race', subtitle: '8 racers · Weapons off',
+    courseId: 'inkstorm-canyon', seed: INKSTORM_HERO_SEED,
+    mode: 'circuit', profile: 'clean-race', laps: 1, difficulty: 'medium', stock: true,
+    medalTimes: { gold: 90, silver: 110, bronze: 145 },
+  },
   {
     id: 'inkstorm-trial', title: 'Inkstorm • Time Attack',
     subtitle: 'One clean lap. Stock machine. Chase your personal best.',

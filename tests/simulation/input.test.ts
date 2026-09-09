@@ -139,6 +139,20 @@ describe('semantic player input', () => {
     keyboard.dispose();
   });
 
+  it('preserves native menu button activation and releases held driving keys on menu focus', () => {
+    installKeyboardDomStubs();
+    class TestButton extends TestElement { override readonly tagName = 'BUTTON'; }
+    const button = new TestButton();
+    const input = new KeyboardInput(button);
+    for (const code of ['Space', 'Enter', 'ArrowLeft', 'KeyW', 'KeyE']) {
+      const event = new TestKeyboardEvent('keydown', { code });
+      button.dispatchEvent(event);
+      expect(event.defaultPrevented).toBe(false);
+      expect(input.snapshot()).toEqual(NEUTRAL_PLAYER_INPUT);
+    }
+    input.dispose();
+  });
+
   it('does not consume modified browser shortcuts such as Cmd/Ctrl+V', () => {
     installKeyboardDomStubs();
     const target = new TestElement();

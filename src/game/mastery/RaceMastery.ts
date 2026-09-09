@@ -1,5 +1,5 @@
 import type { RaceStepResult } from '../race/RaceSimulation';
-import { CHAMPIONSHIP_EVENT_IDS, CHAMPIONSHIP_POINTS, MASTERY_EVENTS, MASTERY_GENERATOR_VERSION, dailyMasteryEvent, getMasteryEvent } from './events';
+import { CHAMPIONSHIP_EVENT_IDS, CHAMPIONSHIP_POINTS, DEFAULT_MASTERY_EVENT_ID, MASTERY_EVENTS, MASTERY_GENERATOR_VERSION, dailyMasteryEvent, getMasteryEvent } from './events';
 import { PersonalBestGhostRecorder, sampleGhost } from './ghost';
 import { browserMasteryStorage, createRecordIdentity, loadMasteryProfile, recordIdentityKey, saveMasteryProfile, type MasteryStorage } from './storage';
 import { DrivingTutorial } from './tutorial';
@@ -37,7 +37,7 @@ export class RaceMastery {
 
   constructor(private readonly storage: MasteryStorage | null = browserMasteryStorage(), private readonly now: () => Date = () => new Date()) {
     this.profile = loadMasteryProfile(storage);
-    this.eventValue = getMasteryEvent('inkstorm-trial', this.now());
+    this.eventValue = getMasteryEvent(DEFAULT_MASTERY_EVENT_ID, this.now());
   }
 
   get selectedEvent(): MasteryEvent { return this.eventValue; }

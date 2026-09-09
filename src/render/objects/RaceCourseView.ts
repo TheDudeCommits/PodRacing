@@ -24,7 +24,7 @@ import { CEL_POST_EXCLUDE_USER_DATA_KEY } from '../materials/InvertedHullOutline
 import { TERRAIN_GLSL } from '../terrain/terrainShaderChunks';
 import { sampleTerrainHeight } from '../terrain/terrainMath';
 import { createCourseGulfUniforms, type CourseGulfUniforms } from '../terrain/CourseGulfTextures';
-import { groundPylonConflictsWithBridge } from '../../game/race/bridgeSurface';
+import { createCourseMarkers, type CourseMarker } from '../../game/race/courseMarkers';
 import { InkstormSurfaceMaterial } from '../inkstorm/InkstormSurfaceMaterial';
 
 export interface CourseRenderPoint {
@@ -798,7 +798,7 @@ export class RaceCourseView extends Group {
     Object.assign(this.branchRibbonMaterial.uniforms, uniforms);
   }
 
-  setCourse(course: CourseRenderData): void {
+  setCourse(course: CourseRenderData, markers?: readonly CourseMarker[]): void {
     this.clearCourse();
     if (course.points.length < 3) return;
     this.ribbon = new Mesh(this.buildRibbon(course.points), this.ribbonMaterial);
@@ -823,7 +823,7 @@ export class RaceCourseView extends Group {
     this.farRibbonVisibilityOverlay.frustumCulled = false;
     this.add(this.farRibbon, this.farRibbonVisibilityOverlay, this.ribbon);
     this.buildBranches(course);
-    this.buildPylons(course.points, course.branches ?? []);
+    this.buildPylons(course.points, course.branches ?? [], markers);
     this.buildGates(course);
     this.buildCanyon(course.points);
     this.setInkstormWorldEnabled(this.authoredWorldEnabled);
@@ -1067,9 +1067,10 @@ export class RaceCourseView extends Group {
     this.add(this.branchFarRibbon, this.branchRibbon, this.branchBeacons);
   }
 
-  private buildPylons(points: readonly CourseRenderPoint[], branches: readonly CourseRenderBranch[]): void {
-    const stride = Math.max(6, Math.floor(points.length / 88));
-    const count = Math.ceil(points.length / stride) * 2;
+  private buildPylons(points: readonly CourseRenderPoint[], branches: readonly CourseRenderBranch[],
+    authoritativeMarkers?: readonly CourseMarker[]): void {
+    const markers = authoritativeMarkers ?? createCourseMarkers(points, branches, (x, z) => this.heightAt(x, z));
+    const count = Math.max(1, markers.length);
     const bodyMaterial = new ShaderMaterial({
       name: 'Distance-normalized pylon ink',
       vertexShader: pylonVertex,
@@ -1144,33 +1145,20 @@ export class RaceCourseView extends Group {
     this.farPylonMarkers.renderOrder = 5;
 
     let instance = 0;
-    for (let index = 0; index < points.length; index += stride) {
-      const point = points[index];
-      const next = points[(index + 1) % points.length];
-      if (!point || !next) continue;
-      forward.set(next.x - point.x, 0, next.z - point.z).normalize();
-      right.set(forward.z, 0, -forward.x);
-      for (const side of [-1, 1]) {
-        const pylonX = point.x + right.x * point.width * side;
-        const pylonZ = point.z + right.z * point.width * side;
-        if(groundPylonConflictsWithBridge(branches,pylonX,pylonZ,this.heightAt(pylonX,pylonZ)))continue;
-        position.set(
-          pylonX,
-          this.heightAt(pylonX, pylonZ) + 2.2,
-          pylonZ,
-        );
-        scale.set(1, 1, 1);
-        rotation.identity();
-        matrix.compose(position, rotation, scale);
-        this.pylonBodies.setMatrixAt(instance, matrix);
-        position.y += 2.0;
-        matrix.compose(position, rotation, scale);
-        this.pylonLights.setMatrixAt(instance, matrix);
-        position.y = this.heightAt(pylonX, pylonZ) + 0.16;
-        matrix.compose(position, rotation, scale);
-        this.farPylonMarkers.setMatrixAt(instance, matrix);
-        instance += 1;
-      }
+    for (const marker of markers) {
+      const ground = marker.minY + .2;
+      position.set(marker.x, ground + 2.2, marker.z);
+      scale.set(1, 1, 1);
+      rotation.identity();
+      matrix.compose(position, rotation, scale);
+      this.pylonBodies.setMatrixAt(instance, matrix);
+      position.y = ground + 4.2;
+      matrix.compose(position, rotation, scale);
+      this.pylonLights.setMatrixAt(instance, matrix);
+      position.y = ground + .16;
+      matrix.compose(position, rotation, scale);
+      this.farPylonMarkers.setMatrixAt(instance, matrix);
+      instance += 1;
     }
     this.pylonBodies.count = instance;
     this.pylonLights.count = instance;

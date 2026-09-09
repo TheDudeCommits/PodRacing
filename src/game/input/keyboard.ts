@@ -130,8 +130,22 @@ export function isEditableKeyboardTarget(target: EventTarget | null): boolean {
 export function shouldIgnoreGameplayKey(event: KeyboardEvent): boolean {
   if (event.metaKey || event.ctrlKey || event.altKey) return true;
   const path = typeof event.composedPath === 'function' ? event.composedPath() : [];
-  if (path.some((target) => isEditableKeyboardTarget(target))) return true;
-  return isEditableKeyboardTarget(event.target);
+  if (path.some((target) => isKeyboardUiTarget(target))) return true;
+  return isKeyboardUiTarget(event.target);
+}
+
+/** Native menu activation/inspection keys never double as driving input. */
+export function isKeyboardUiTarget(target: EventTarget | null): boolean {
+  if (isEditableKeyboardTarget(target)) return true;
+  let node = target as { tagName?: string; parentElement?: EventTarget | null;
+    getAttribute?: (name: string) => string | null } | null;
+  while (node) {
+    const role = node.getAttribute?.('role')?.toLowerCase();
+    if (node.tagName?.toUpperCase() === 'BUTTON' || role === 'button' || role === 'tab'
+      || node.getAttribute?.('data-pod-inspection') != null) return true;
+    node = (node.parentElement ?? null) as typeof node;
+  }
+  return false;
 }
 
 /**
@@ -238,7 +252,7 @@ export class KeyboardInput {
   };
 
   readonly #onFocusIn = (event: Event): void => {
-    if (isEditableKeyboardTarget(event.target)) this.#pressed.clear();
+    if (isKeyboardUiTarget(event.target)) this.#pressed.clear();
   };
 
   readonly #onBlur = (): void => {

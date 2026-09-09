@@ -144,6 +144,7 @@ export interface HudLobbyViewModel {
 export interface HudVehicleSelectionOptions {
   appearance?: HudVehicleAppearanceViewModel;
   fixedRules?: boolean;
+  stockBuild?: boolean;
   selectedLaps?: HudLapCount;
   aiDifficulty?: HudAiDifficulty;
   raceMode?: HudRaceMode;
@@ -158,6 +159,7 @@ export interface HudVehicleSelectionOptions {
 export interface HudPreRaceViewModel {
   appearance?: HudVehicleAppearanceViewModel;
   fixedRules?: boolean;
+  stockBuild?: boolean;
   active: boolean;
   selectedVehicleClass: GalacticVehicleClass;
   selectedLaps: HudLapCount;

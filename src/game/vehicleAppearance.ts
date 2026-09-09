@@ -16,6 +16,14 @@ export const ART_APPEARANCES = Object.freeze({
 });
 
 export const DEFAULT_VEHICLE_APPEARANCE: VehicleAppearanceId = 'teemto';
+/** Player-facing carousel; procedural art remains an internal loading fallback. */
+export const SELECTABLE_POD_APPEARANCES: readonly VehicleAppearanceId[] = Object.freeze([
+  'teemto', 'sebulba', 'polwo', 'blockrunner',
+]);
+
+export function selectablePodAppearance(preference: VehicleAppearanceId): VehicleAppearanceId {
+  return SELECTABLE_POD_APPEARANCES.includes(preference) ? preference : DEFAULT_VEHICLE_APPEARANCE;
+}
 export const VEHICLE_APPEARANCE_STORAGE_KEY = 'now-this-is-podracing.vehicle-appearance';
 export const VEHICLE_APPEARANCE_VERSION = 1 as const;
 

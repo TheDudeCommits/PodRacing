@@ -138,13 +138,15 @@ describe('finite ground pylon height', () => {
     expect(groundPylonConflictsWithBridge(hero.branches, entry.x, entry.z, base.heightAt(entry.x, entry.z))).toBe(true);
     expect(groundPylonConflictsWithBridge(hero.branches, middle.x, middle.z, base.heightAt(middle.x, middle.z))).toBe(false);
     const race = createRaceSimulation({ terrain: base, seed: INKSTORM_BRIDGE_SEED, competitionProfile: 'time-trial' });
-    const markers = (race as unknown as { markerColliders: readonly { id: string }[] }).markerColliders;
-    // This marker belonged inside the former bridge footprint. The authored
-    // divergence now clears it, so it correctly remains on the ground route.
-    expect(markers.some((marker) => marker.id === 'pylon-825-r')).toBe(true);
+    const markers = (race as unknown as { markerColliders: readonly { x: number; z: number }[] }).markerColliders;
+    expect(markers.length).toBeGreaterThan(100);
+    // Placement can change when the shoulder becomes wider. Every actual
+    // emitted post must still clear the low ramp, irrespective of its ID.
+    expect(markers.every(marker => !groundPylonConflictsWithBridge(
+      hero.branches, marker.x, marker.z, base.heightAt(marker.x, marker.z)))).toBe(true);
   });
 
-  it.each([{ clearance: 2.5, hits: 1 }, { clearance: 18, hits: 0 }])('gives $hits impacts at $clearance m ground clearance', ({ clearance, hits }) => {
+  it.each([{ clearance: 2.5, hits: 1 }, { clearance: 8, hits: 0 }, { clearance: 18, hits: 0 }])('gives $hits impacts at $clearance m ground clearance', ({ clearance, hits }) => {
     const race = createRaceSimulation({ terrain: base, seed: INKSTORM_BRIDGE_SEED,
       competitionProfile: 'time-trial', countdownSeconds: 0 });
     race.step();
@@ -153,7 +155,7 @@ describe('finite ground pylon height', () => {
     player.vehicle.position = { x: marker.x, z: marker.z, y: base.heightAt(marker.x, marker.z) + clearance };
     player.vehicle.velocity = { x: 0, y: 0, z: 0 };
     const result = race.step({ throttle: 0, brake: 1 });
-    expect(marker.maxY).toBeCloseTo(base.heightAt(marker.x, marker.z) + 9.9);
+    expect(marker.maxY).toBeCloseTo(base.heightAt(marker.x, marker.z) + 4.9);
     expect((result.vehicleEvents[player.id] ?? []).filter((event) => event.type === 'collision' && event.sourceId === marker.id)).toHaveLength(hits);
   });
 });

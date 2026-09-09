@@ -121,8 +121,8 @@ export function createBridgeHeightSampler(
 }
 
 /** Shared render/collision exclusion for a ground marker occupying a low ramp.
- * The widest stock craft has radius 7.8 m; the pylon adds 1.15 m. A 2.8 m
- * craft vertical half-extent and 9.9 m marker top match RaceSimulation.
+ * The widest stock craft has radius 7.8 m; the pylon adds 0.62 m. A 2.8 m
+ * craft vertical half-extent and 4.9 m marker top match the rendered light.
  * High decks leave the ground marker underneath them intact.
  */
 export function groundPylonConflictsWithBridge(
@@ -131,7 +131,7 @@ export function groundPylonConflictsWithBridge(
   z: number,
   baseGroundHeight: number,
 ): boolean {
-  const footprintMargin = 7.8 + 1.15;
+  const footprintMargin = 7.8 + 0.62;
   for (const branch of branches) {
     if (!branch.elevated) continue;
     for (let index = 0; index < branch.points.length - 1; index += 1) {
@@ -146,7 +146,7 @@ export function groundPylonConflictsWithBridge(
       const width = point.width + (next.width - point.width) * fraction;
       if (offsetX * offsetX + offsetZ * offsetZ > (width + footprintMargin) ** 2) continue;
       const deckHeight = point.y + (next.y - point.y) * fraction;
-      if (deckHeight - 2.8 <= baseGroundHeight + 9.9) return true;
+      if (deckHeight - 2.8 <= baseGroundHeight + 4.9) return true;
     }
   }
   return false;

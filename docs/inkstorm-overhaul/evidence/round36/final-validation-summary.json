@@ -1,0 +1,311 @@
+{
+  "runtime": {
+    "path": "dist/assets/index-DH3wvA-l.js",
+    "bytes": 1882556,
+    "sha256": "e507c666fbe809c2275fa90a1d7434afce9a96be1e9d0a68ab0ee46616639a53"
+  },
+  "validation": {
+    "tests": 961,
+    "testFiles": 164,
+    "typecheck": "PASS",
+    "build": "PASS",
+    "log": "output/release/round36/final-verify.log"
+  },
+  "races": [
+    {
+      "name": "time-attack",
+      "path": "output/gauntlet/round36-competitive-approved",
+      "recordSha256": "ce82ac54388d38f515b1bc10563fee8da71fd15d34cbca482ebfdc4dcccabf6c",
+      "outcome": "PASS",
+      "finishSeconds": 63.74166666666369,
+      "personalBest": true,
+      "invalidReason": null,
+      "sectorCount": 10,
+      "cadence": {
+        "phase": "racing",
+        "samples": 3798,
+        "durationMs": 63730.799999999996,
+        "averageFps": 59.59441902502401,
+        "p50Ms": 16.69999999999709,
+        "p95Ms": 16.799999999999272,
+        "p99Ms": 16.80000000000291,
+        "maxMs": 33.400000000001455,
+        "over25ms": 26,
+        "over33ms": 8,
+        "over50ms": 0,
+        "firstRaceTime": 0.016666666666666666,
+        "lastRaceTime": 63.73333333333036
+      },
+      "rendererExtrema": {
+        "minDpr": 1,
+        "maxDpr": 2,
+        "maxCalls": 116,
+        "maxTriangles": 4961670
+      },
+      "events": {},
+      "cleanup": {
+        "browserClosed": true,
+        "serverExited": true,
+        "port": 49289
+      }
+    },
+    {
+      "name": "cup-round-1",
+      "path": "output/gauntlet/round36-competitive-approved",
+      "recordSha256": "0a295e4b7e3bb579b25b0f3fb8ac3fa92ff304b5d5966767a10b8a9564649bc9",
+      "outcome": "PASS",
+      "finishSeconds": 126.95833333338044,
+      "personalBest": true,
+      "invalidReason": null,
+      "sectorCount": 20,
+      "cadence": {
+        "phase": "racing",
+        "samples": 7983,
+        "durationMs": 134944.59999999998,
+        "averageFps": 59.1576098636033,
+        "p50Ms": 16.699999999982538,
+        "p95Ms": 16.79999999998836,
+        "p99Ms": 33.30000000000291,
+        "maxMs": 33.40000000002328,
+        "over25ms": 114,
+        "over33ms": 49,
+        "over50ms": 0,
+        "firstRaceTime": 0.016666666666666666,
+        "lastRaceTime": 134.9500000000416
+      },
+      "rendererExtrema": {
+        "minDpr": 1.875,
+        "maxDpr": 2,
+        "maxCalls": 166,
+        "maxTriangles": 5241540
+      },
+      "events": {
+        "redline-surge": 350
+      },
+      "cleanup": {
+        "browserClosed": true,
+        "serverExited": true,
+        "port": 49289
+      }
+    },
+    {
+      "name": "battle",
+      "path": "output/gauntlet/round36-battle-approved",
+      "recordSha256": "52e7dc5b913f7bc5252aca0e9184ee699253df797710123689f82447eb258331",
+      "outcome": "PASS",
+      "finishSeconds": 101.18333333335993,
+      "personalBest": false,
+      "invalidReason": "Recovery used \u2014 finish for practice, then retry for a clean record.",
+      "sectorCount": 10,
+      "cadence": {
+        "phase": "racing",
+        "samples": 6392,
+        "durationMs": 107579,
+        "averageFps": 59.416800676712,
+        "p50Ms": 16.69999999999709,
+        "p95Ms": 16.799999999995634,
+        "p99Ms": 16.80000000000291,
+        "maxMs": 33.40000000000873,
+        "over25ms": 63,
+        "over33ms": 22,
+        "over50ms": 0,
+        "firstRaceTime": 0,
+        "lastRaceTime": 104.21666666669567
+      },
+      "rendererExtrema": {
+        "minDpr": 1,
+        "maxDpr": 2,
+        "maxCalls": 164,
+        "maxTriangles": 5200594
+      },
+      "events": {
+        "heat-lance-fired": 317,
+        "weapon-hit": 72,
+        "scrap-mine-deployed": 20,
+        "redline-surge": 187,
+        "pulse-shell": 154,
+        "scrap-mine-triggered": 19,
+        "shield-block": 14,
+        "wreck": 20,
+        "recovery-start": 20,
+        "takedown": 18,
+        "recovered": 20,
+        "hazard-hit": 36,
+        "upgrade-collected": 6,
+        "emp-pulse": 4,
+        "repair-salvage-collected": 4
+      },
+      "cleanup": {
+        "browserClosed": true,
+        "serverExited": true,
+        "port": 49414
+      }
+    }
+  ],
+  "scope": "Native standard virtual gamepad input, ordinary simulation, complete racing RAF samples. No staged pose/progress/health, no simulation stepping, no warmup removal. Mac M4/Chrome153,1440x900 requested DPR2 with adaptive resolution. Not human input, physical display timing or other-device guarantee.",
+  "resources": {
+    "outcome": "PASS",
+    "scope": "Three identical diagnostic cycles: ordinary menu buttons select all four pods, the selected preview is rotated through the actual mesh inspection path, then seven course sections are visited with existing review staging. Staging selects chaos and cancels records; it is not native racing or FPS evidence. Exact cycle 2-to-3 renderer geometry/texture/program plateau is retained. Passive WebGL context observations and library lease counts supplement renderer.info; they do not measure GPU bytes, JS heap or prove all leaks absent.",
+    "environment": {
+      "scripts": [
+        {
+          "url": "http://127.0.0.1:49485/assets/index-DH3wvA-l.js",
+          "sha256": "e507c666fbe809c2275fa90a1d7434afce9a96be1e9d0a68ab0ee46616639a53"
+        }
+      ],
+      "browser": "153.0.8010.36",
+      "node": "v24.19.0",
+      "os": {
+        "platform": "darwin",
+        "release": "25.6.0",
+        "architecture": "arm64"
+      },
+      "page": {
+        "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+        "width": 1440,
+        "height": 900,
+        "devicePixelRatio": 2,
+        "hardwareConcurrency": 10
+      }
+    },
+    "cycles": [
+      {
+        "cycle": 1,
+        "peak": {
+          "geometries": 217,
+          "textures": 152,
+          "programs": 55
+        },
+        "garage": {
+          "geometries": 217,
+          "textures": 152,
+          "programs": 55
+        }
+      },
+      {
+        "cycle": 2,
+        "peak": {
+          "geometries": 218,
+          "textures": 152,
+          "programs": 56
+        },
+        "garage": {
+          "geometries": 217,
+          "textures": 152,
+          "programs": 55
+        }
+      },
+      {
+        "cycle": 3,
+        "peak": {
+          "geometries": 218,
+          "textures": 152,
+          "programs": 56
+        },
+        "garage": {
+          "geometries": 217,
+          "textures": 152,
+          "programs": 55
+        }
+      }
+    ],
+    "finalCycleDelta": [
+      {
+        "stage": "preview-teemto",
+        "geometries": 0,
+        "textures": 0,
+        "programs": 0
+      },
+      {
+        "stage": "preview-sebulba",
+        "geometries": 0,
+        "textures": 0,
+        "programs": 0
+      },
+      {
+        "stage": "preview-polwo",
+        "geometries": 0,
+        "textures": 0,
+        "programs": 0
+      },
+      {
+        "stage": "preview-blockrunner",
+        "geometries": 0,
+        "textures": 0,
+        "programs": 0
+      },
+      {
+        "stage": "preview-restored-teemto",
+        "geometries": 0,
+        "textures": 0,
+        "programs": 0
+      },
+      {
+        "stage": "race-entry",
+        "geometries": 0,
+        "textures": 0,
+        "programs": 0
+      },
+      {
+        "stage": "01-grid",
+        "geometries": 0,
+        "textures": 0,
+        "programs": 0
+      },
+      {
+        "stage": "02-salt-run",
+        "geometries": 0,
+        "textures": 0,
+        "programs": 0
+      },
+      {
+        "stage": "03-canyon",
+        "geometries": 0,
+        "textures": 0,
+        "programs": 0
+      },
+      {
+        "stage": "04-fork",
+        "geometries": 0,
+        "textures": 0,
+        "programs": 0
+      },
+      {
+        "stage": "05-launch",
+        "geometries": 0,
+        "textures": 0,
+        "programs": 0
+      },
+      {
+        "stage": "06-foundry",
+        "geometries": 0,
+        "textures": 0,
+        "programs": 0
+      },
+      {
+        "stage": "07-finish",
+        "geometries": 0,
+        "textures": 0,
+        "programs": 0
+      },
+      {
+        "stage": "garage",
+        "geometries": 0,
+        "textures": 0,
+        "programs": 0
+      }
+    ],
+    "plateau": true,
+    "cleanup": {
+      "browserLaunched": true,
+      "browserClosed": true,
+      "serverExited": true,
+      "errors": [],
+      "exitCode": 143,
+      "signalCode": null
+    },
+    "errors": [],
+    "receiptPath": "output/playwright/round36-resource-release/receipt.json",
+    "receiptSha256": "4e421cb8362099af2cae845b6fa9e7bc066fc36e4d99736749a45696858a16ac"
+  }
+}

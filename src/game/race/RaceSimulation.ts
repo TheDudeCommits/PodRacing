@@ -73,7 +73,8 @@ import {
   workshopWeaponDamageScale,
 } from './workshopRuntime';
 import { createRacerProgressState, racerRaceScore, updateRacerProgress } from './progress';
-import { createBridgeHeightSampler, groundPylonConflictsWithBridge } from './bridgeSurface';
+import { createBridgeHeightSampler } from './bridgeSurface';
+import { createCourseMarkers, COURSE_MARKER_RADIUS, type CourseMarker } from './courseMarkers';
 import type { CompetitionProfile } from '../mastery/types';
 import type {
   AIDifficulty,
@@ -265,7 +266,10 @@ export class RaceSimulation {
   readonly pitPadField: PitPadField | null;
   readonly config: Readonly<PodracerConfig>;
   state: RaceSimulationState<AIControllerState>;
-  private readonly markerColliders: readonly { x: number; z: number; id: string; minY: number; maxY: number }[];
+  private readonly markerColliders: readonly CourseMarker[];
+
+  /** Renderer consumes the same cleared placements as fixed-step contact. */
+  get routeMarkers(): readonly CourseMarker[] { return this.markerColliders; }
   private readonly markerContactSteps = new Map<string, number>();
   private readonly markerImpactStepsByRacer = new Map<string, number>();
   private activeMarkerContacts = new Set<string>();
@@ -1515,31 +1519,10 @@ export class RaceSimulation {
 
   private createMarkerColliders(): readonly { x: number; z: number; id: string; minY: number; maxY: number }[] {
     const renderData = this.course.getRenderData(1024);
-    const stride = Math.max(5, Math.floor(renderData.points.length / 90));
-    const colliders: { x: number; z: number; id: string; minY: number; maxY: number }[] = [];
-    for (let index = 0; index < renderData.points.length; index += stride) {
-      const point = renderData.points[index];
-      const next = renderData.points[(index + 1) % renderData.points.length];
-      if (!point || !next) continue;
-      const length = Math.max(1e-6, Math.hypot(next.x - point.x, next.z - point.z));
-      const rightX = (next.z - point.z) / length;
-      const rightZ = -(next.x - point.x) / length;
-      for (const side of [-1, 1] as const) {
-        const x = point.x + rightX * point.width * side;
-        const z = point.z + rightZ * point.width * side;
-        const ground = this.course.heightAt(x, z);
-        if (groundPylonConflictsWithBridge(this.course.branches, x, z, ground)) continue;
-        colliders.push({
-          x, z,
-          id: `pylon-${index}-${side > 0 ? 'r' : 'l'}`,
-          // Matches the 9.6 m cone and top light. Ground pylons do not gain
-          // bridge height just because a supported deck passes above them.
-          minY: ground - 0.2,
-          maxY: ground + 9.9,
-        });
-      }
-    }
-    return colliders;
+    return createCourseMarkers(renderData.points, this.course.branches,
+      (x, z) => this.course.heightAt(x, z)).filter(marker => !this.course.getObstacleContact(
+        marker.x, marker.z, 7.8 + COURSE_MARKER_RADIUS, undefined, marker.minY + 2.65,
+      ));
   }
 
   /**
@@ -1703,7 +1686,7 @@ export class RaceSimulation {
       const config = configs[entryIndex] ?? this.vehicleConfigFor(entry);
       const markerDistance = GALACTIC_VEHICLES[
         this.galacticFor(entry).vehicleClass
-      ].collisionRadius + 1.15;
+      ].collisionRadius + COURSE_MARKER_RADIUS;
       let closest: { x: number; z: number; id: string } | null = null;
       let closestDistance = markerDistance;
       for (const marker of this.markerColliders) {

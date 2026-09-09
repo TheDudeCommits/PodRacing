@@ -452,6 +452,7 @@ export function createVehicleSelectionViewModel(
     ...(options.appearance ? { appearance: options.appearance } : {}),
     selectedVehicleClass: safeSelectedId,
     fixedRules: options.fixedRules,
+    ...(options.stockBuild === undefined ? {} : { stockBuild: options.stockBuild }),
     selectedLaps: ([1, 2, 3] as const).includes(options.selectedLaps ?? 3)
       ? options.selectedLaps ?? 3
       : 3 as HudLapCount,

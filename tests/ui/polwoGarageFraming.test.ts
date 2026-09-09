@@ -78,8 +78,8 @@ describe('Polwo garage framing', () => {
     expect(afterWidth / beforeWidth).toBeGreaterThan(1.75);
   });
 
-  it('contains every packaged vertex through all twelve inspection angles on wide and square hosts', () => {
-    for (const aspect of [1, 3.5]) {
+  it('contains every packaged vertex through all twelve inspection angles on tall, square and wide hosts', () => {
+    for (const aspect of [.55, 1, 3.5]) {
       for (let angle = 0; angle < 360; angle += 30) {
         const { projected } = frame('polwo', aspect, angle);
         expect(projected.min.x).toBeGreaterThan(-.94);

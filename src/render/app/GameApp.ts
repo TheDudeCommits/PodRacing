@@ -15,7 +15,7 @@ import { updateCourseJunctionFraming } from '../../camera/CourseJunctionFraming'
 import { RaceCameraDirector } from '../../camera/RaceCameraDirector';
 import { PodracerAudio, type RivalAudioTelemetry } from '../../audio';
 import { RaceMastery, masterySectorLabels, INKSTORM_HERO_SEED, type CompetitionProfile, type MasteryStartOptions } from '../../game/mastery';
-import { loadVehicleAppearance, resolveRacerAppearancePreference, saveVehicleAppearance, vehicleChaseClearance, type VehicleAppearanceId } from '../../game/vehicleAppearance';
+import { loadVehicleAppearance, resolveRacerAppearancePreference, saveVehicleAppearance, selectablePodAppearance, SELECTABLE_POD_APPEARANCES, vehicleChaseClearance, type VehicleAppearanceId } from '../../game/vehicleAppearance';
 import { VehicleArtLibrary } from '../vehicles/VehicleArtLibrary';
 import { RacerPresentation } from '../vehicles/RacerPresentation';
 import { DEFAULT_PODRACER_CONFIG } from '../../game/simulation/config';
@@ -164,6 +164,7 @@ const HERO_RIVAL_LOD_DECISION = {
 
 const FIXED_DT = 1 / 120;
 const BASE_RACE_SEED = INKSTORM_HERO_SEED;
+const SIMPLE_POD_ORDER = SELECTABLE_POD_APPEARANCES;
 const RACE_PRESENTATION_CAPACITY = 8;
 
 function mixRaceSeed(seed: number): number {
@@ -283,7 +284,7 @@ export class GameApp {
   private readonly sky = new SkyAtmosphere();
   private readonly landmarks = new DesertLandmarks();
   private readonly vehicleArtLibrary = new VehicleArtLibrary({ maxIdleEntries: 2 });
-  private vehicleAppearance: VehicleAppearanceId = loadVehicleAppearance();
+  private vehicleAppearance: VehicleAppearanceId = selectablePodAppearance(loadVehicleAppearance());
   private readonly playerView = new RacerPresentation(this.vehicleArtLibrary, createRacerCelMaterials(0), 0);
   private readonly rivalViews = Array.from(
     { length: RACE_PRESENTATION_CAPACITY - 1 },
@@ -428,13 +429,11 @@ export class GameApp {
     playerVehicle: this.playerState,
     seed: BASE_RACE_SEED,
     totalLaps: 1,
-    competitionProfile: 'time-trial',
+    competitionProfile: this.mastery.selectedEvent.profile,
     mode: this.selectedRaceMode,
     aiDifficulty: this.selectedAIDifficulty,
     countdownSeconds: 3,
-    workshopLoadouts: {
-      player: this.workshopGarage.loadouts.podracer,
-    },
+    workshopLoadouts: {},
   });
   private readonly audio = new PodracerAudio();
   private readonly cameraDirector = new RaceCameraDirector(this.cameraRig);
@@ -522,6 +521,7 @@ export class GameApp {
   );
 
   constructor(private readonly mount: HTMLElement) {
+    for (const entry of this.race.state.entries) this.race.selectRacerVehicle(entry.id, 'podracer');
     this.renderer = createRenderer();
     this.renderer.domElement.id = 'viewport';
     this.renderer.domElement.setAttribute('aria-label', 'Podracing viewport');
@@ -586,7 +586,7 @@ export class GameApp {
     this.terrain.setPitPadField(this.race.pitPadField);
     this.galacticEffects.setTerrainUniforms(this.terrain.gulfTextures.uniforms);
     this.courseView.setTerrainSampler((x, z) => this.terrain.sampleHeight(x, z), this.terrain.gulfTextures.uniforms);
-    this.courseView.setCourse(this.race.course.getRenderData(1024));
+    this.courseView.setCourse(this.race.course.getRenderData(1024), this.race.routeMarkers);
     this.inkstormWorld.setCourse(this.race.course);
     this.racerShadowBindingRevision = -1;
     void this.inkstormWorld.ready.then(() => {
@@ -779,8 +779,9 @@ export class GameApp {
     // all deterministic race clocks and AI remain untouched at grid state.
     if (this.awaitingRaceStart) {
       this.accumulator = 0;
-      if (input.pause && !this.pauseHeld) this.beginRaceCountdown();
-      this.pauseHeld = input.pause;
+      const gamepadConfirm = this.gamepadInput.snapshot().pause;
+      if (gamepadConfirm && !this.pauseHeld && !this.settingsOpen && !this.workshopOpen) this.beginRaceCountdown();
+      this.pauseHeld = gamepadConfirm;
       this.restartHeld = false;
       return;
     }
@@ -1205,6 +1206,7 @@ export class GameApp {
             },
             selectedLaps: this.selectedLaps,
             fixedRules: this.fixedEventRules(),
+            stockBuild: this.room.lobby.role === 'solo' && this.mastery.selectedEvent.stock,
             aiDifficulty: this.selectedAIDifficulty,
             raceMode: this.selectedRaceMode,
             workshop: createWorkshopHudViewModel(
@@ -1435,7 +1437,8 @@ export class GameApp {
       workshopLoadouts,
     });
     for (const entry of this.race.state.entries) {
-      const vehicleClass = vehicleClasses.get(entry.id);
+      const vehicleClass = !this.captureMode && this.room.lobby.role === 'solo'
+        ? 'podracer' : vehicleClasses.get(entry.id);
       if (vehicleClass) this.race.selectRacerVehicle(entry.id, vehicleClass);
       entry.name = racerNames.get(entry.id) ?? entry.name;
     }
@@ -1448,7 +1451,7 @@ export class GameApp {
     // in place; the fallback world must follow field enable/disable changes.
     this.landmarks.setHeightSampler((x, z) => this.terrain.sampleHeight(x, z));
     this.courseView.setTerrainSampler((x, z) => this.terrain.sampleHeight(x, z), this.terrain.gulfTextures.uniforms);
-    this.courseView.setCourse(this.race.course.getRenderData(1024));
+    this.courseView.setCourse(this.race.course.getRenderData(1024), this.race.routeMarkers);
     this.inkstormWorld.setCourse(this.race.course);
     this.racerShadowBindingRevision = -1;
     this.sky.setRegion(this.race.course.region);
@@ -1547,7 +1550,7 @@ export class GameApp {
   private currentWorkshopLoadouts(): Readonly<Record<string, unknown>> {
     const lobby = this.room.lobby;
     if (lobby.role === 'solo') {
-      if (this.fixedEventRules()) return {};
+      if (this.mastery.selectedEvent.stock) return {};
       return {
         [this.localRacerId()]: this.workshopGarage.loadouts[this.selectedVehicleClass()],
       };
@@ -1571,6 +1574,14 @@ export class GameApp {
       return;
     }
     if (this.captureMode) return;
+    if (this.settingsOpen) {
+      if (event.code === 'Escape') {
+        event.preventDefault();
+        this.settingsOpen = false;
+        this.nextHudFrame = 0;
+      }
+      return;
+    }
     const typingRoomCode = isEditableKeyboardTarget(event.target)
       && event.target instanceof HTMLInputElement
       && event.target.matches('[data-hud="room-code-input"]');
@@ -1586,6 +1597,10 @@ export class GameApp {
     }
     if (shouldIgnoreGameplayKey(event)) return;
     if (this.awaitingRaceStart) {
+      // Native buttons and the inspection canvas own focused menu input.
+      // Enter on a race-type tab must select that tab, never release the grid.
+      if (event.target instanceof Element
+        && event.target.closest('button, [role="button"], [data-pod-inspection]')) return;
       const directIndex = /^Digit[1-4]$/.test(event.code)
         ? Number(event.code.slice(-1)) - 1
         : -1;
@@ -1596,7 +1611,7 @@ export class GameApp {
       }
       if (directIndex >= 0) {
         event.preventDefault();
-        this.selectVehicle(GALACTIC_VEHICLE_ORDER[directIndex] ?? 'podracer');
+        this.selectPodAppearance(SIMPLE_POD_ORDER[directIndex] ?? 'teemto');
         return;
       }
       if (event.code === 'KeyA' || event.code === 'ArrowLeft') {
@@ -1665,7 +1680,8 @@ export class GameApp {
   }
 
   private fixedEventRules(): boolean {
-    return this.room.lobby.role === 'solo' && this.mastery.selectedEvent.profile !== 'chaos';
+    return this.room.lobby.role === 'solo'
+      && !['inkstorm-battle', 'inkstorm-race', 'open-expedition'].includes(this.mastery.selectedEvent.id);
   }
 
   private masteryStartOptions(): MasteryStartOptions {
@@ -1742,10 +1758,19 @@ export class GameApp {
   }
 
   private moveVehicleSelection(direction: -1 | 1): void {
-    const current = GALACTIC_VEHICLE_ORDER.indexOf(this.selectedVehicleClass());
-    const next = (current + direction + GALACTIC_VEHICLE_ORDER.length)
-      % GALACTIC_VEHICLE_ORDER.length;
-    this.selectVehicle(GALACTIC_VEHICLE_ORDER[next] ?? 'podracer');
+    const current = Math.max(0, SIMPLE_POD_ORDER.indexOf(this.vehicleAppearance));
+    const next = (current + direction + SIMPLE_POD_ORDER.length) % SIMPLE_POD_ORDER.length;
+    this.selectPodAppearance(SIMPLE_POD_ORDER[next] ?? 'teemto');
+  }
+
+  private selectPodAppearance(appearance: VehicleAppearanceId): void {
+    if (!this.awaitingRaceStart) return;
+    if (this.selectedVehicleClass() !== 'podracer') this.selectVehicle('podracer');
+    this.vehicleAppearance = appearance;
+    saveVehicleAppearance(appearance);
+    const index = this.race.state.entries.findIndex((entry) => entry.id === this.localRacerId());
+    void this.racerViews[index]?.setAppearance(appearance);
+    this.nextHudFrame = 0;
   }
 
   private selectVehicle(vehicleClass: GalacticVehicleClass): void {
@@ -1798,6 +1823,11 @@ export class GameApp {
   }
 
   private finishStartingGrid(): void {
+    // Release native button focus when the player commits the menu, so driving
+    // keys belong to the game rather than the now-hidden setup controls.
+    if (document.activeElement instanceof HTMLElement && this.hud.root.contains(document.activeElement)) {
+      document.activeElement.blur();
+    }
     this.awaitingRaceStart = false;
     this.lastLocalPlacement = null;
     this.race.lockPlayerVehicleSelection();
@@ -1876,13 +1906,7 @@ export class GameApp {
   private readonly handleHudAction = (action: RaceHudAction): void => {
     switch (action.type) {
       case 'select-appearance':
-        if (this.awaitingRaceStart && this.selectedVehicleClass() === 'podracer') {
-          this.vehicleAppearance = action.appearance;
-          saveVehicleAppearance(action.appearance);
-          const index = this.race.state.entries.findIndex((entry) => entry.id === this.localRacerId());
-          void this.racerViews[index]?.setAppearance(action.appearance);
-          this.nextHudFrame = 0;
-        }
+        this.selectPodAppearance(action.appearance);
         break;
       case 'retry-appearance':
         if (this.awaitingRaceStart) {
@@ -1935,7 +1959,8 @@ export class GameApp {
         this.startHighlightReplay(action.highlightId);
         break;
       case 'toggle-workshop':
-        if (this.awaitingRaceStart && !this.fixedEventRules()) this.workshopOpen = action.open;
+        if (this.awaitingRaceStart && !this.fixedEventRules()
+          && (this.room.lobby.role !== 'solo' || !this.mastery.selectedEvent.stock)) this.workshopOpen = action.open;
         this.nextHudFrame = 0;
         break;
       case 'select-workshop-slot':
@@ -1974,7 +1999,8 @@ export class GameApp {
   };
 
   private equipWorkshopPart(slot: HudWorkshopSlot, partId: string): void {
-    if (!this.awaitingRaceStart || this.fixedEventRules()) return;
+    if (!this.awaitingRaceStart || this.fixedEventRules()
+      || (this.room.lobby.role === 'solo' && this.mastery.selectedEvent.stock)) return;
     const part = WORKSHOP_PARTS[partId as WorkshopPartId];
     if (!part || part.slot !== slot) return;
     const vehicleClass = this.selectedVehicleClass();

@@ -7,10 +7,13 @@ read as graphic anime art before it reads as WebGL. The primary verbs are
 accelerate, carve, drift, release a charged boost, manage heat/damage, and land
 an unstable repulsorlift craft across an endless procedural desert.
 
-The repository has no runtime asset pipeline. All geometry, canvas textures,
-shader noise, particles, UI marks, Web Audio voices, and the continuing score
-are authored in code. One user-supplied six-second selection sting is the only
-decoded media file and is served locally from `public/audio/`.
+The Inkstorm renderer combines authored GLB vehicles and scenery with procedural
+terrain, pooled effects, shader materials and synthesized audio. Runtime models,
+textures and local audio are served from `public/`. Downloaded originals, Blender
+builders, exports and attribution records live under `assets/source/`; large
+source binaries use Git LFS. See `docs/inkstorm-overhaul/VEHICLE_CATALOG.md` for
+provenance and runtime admission, including restricted sources that are not used
+in the game.
 
 ## Ownership boundaries
 
@@ -37,7 +40,7 @@ owns race truth. The 120 Hz simulation rate keeps direct presentation smooth
 while avoiding a second, divergent interpolated gameplay state.
 
 The browser keyboard adapter captures physical gameplay codes only when focus
-is outside editable controls and no browser modifier is active. Editable nodes
+is outside native menu controls and editable fields, and no browser modifier is active. Editable nodes
 are detected through the composed event path, so text inputs and shadow-DOM
 controls retain native typing, selection, and clipboard shortcuts without
 leaking bound letters into the simulation.
@@ -50,8 +53,10 @@ leaking bound letters into the simulation.
 - closed seeded Catmull-Rom course, arc-length progress normalized to `[0, 1)`
 - fixed 120 Hz vehicle/race update, variable-rate presentation
 - gameplay clock advances only in fixed steps and freezes while paused
-- first load keeps the fixed-step accumulator frozen on the vehicle registry;
-  Space/Enter explicitly locks the selected class before countdown stepping begins
+- first load keeps the fixed-step accumulator frozen in race setup; activating
+  Race commits the selected pod and event before countdown stepping begins
+- route markers share one authoritative placement list between simulation and
+  rendering, with runoff beyond all driving lanes and scenery exclusions
 - static-marker contact is separated and latched, so one scrape cannot emit
   120 damage/audio/shake events per second
 - authored canyon walls expose renderer-free analytic collision proxies; full
@@ -130,10 +135,14 @@ host keyboard -----------------> 120 Hz RaceSimulation
 6. Sobel composite using prepass depth/normal, with exterior suppression
 7. DOM HUD update at a throttled 30 Hz
 
-The selection screen creates one temporary WebGL renderer for all four vehicle
-portraits, commits the decoded snapshots atomically, and releases that context
-before racing. This avoids four concurrent animation loops and prevents card
-content from changing between compositor frames. Menu audio attempts immediate
+The setup uses four short race-type tabs, one selected pod preview, optional
+lap/difficulty controls and Race. Battle is the default eight-racer armed event;
+Race is an eight-racer clean event, Time Trial is solo, and Cup is a sequence.
+Advanced settings and legacy course/build tools are disclosed separately.
+One shared preview renderer produces the selected authored model; dragging or
+keyboard inspection renders the actual mesh from the chosen angle. There is no
+continuous idle portrait loop. Native focused buttons/inspection own menu keys,
+and committing the grid releases focus back to driving. Menu audio attempts immediate
 playback, falls back to the first browser-approved gesture when autoplay is
 blocked, crossfades from the supplied sting into the synthesized score, then
 ducks without restarting when the countdown begins.
@@ -193,8 +202,8 @@ render effects + HUD + camera + synthesized audio
   high-density review moments where every pooled effect is deliberately visible
 - instanced rocks/pylons/dust; pooled particles and wake vertices
 - terrain: camera-centred concentric LOD rings with shared analytic height
-- no per-frame geometry/material allocation; no runtime asset requests (room
-  signaling and direct peer packets begin only after an explicit online action)
+- no per-frame geometry/material allocation; models and textures load through
+  the bounded asset library; room signaling starts after an explicit online action
 - Sobel prepass runs at adaptive 0.65–1.0 scale
 
 ## Deterministic review API

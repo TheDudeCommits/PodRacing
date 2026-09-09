@@ -418,7 +418,13 @@ function applyCollision(
 
   const localX = clamp(finite(collision.localPoint.x), -8, 8);
   const localZ = clamp(finite(collision.localPoint.z), -8, 8);
-  const yawKick = (localZ * impulseX - localX * impulseZ) / (config.mass * 34);
+  // The lever arm is craft-local, so the impulse must use that same basis.
+  // Multiplying it by world X/Z made one wall glance turn the opposite way
+  // after rotating the identical track section through 180 degrees.
+  const sinYaw = Math.sin(state.orientation.yaw), cosYaw = Math.cos(state.orientation.yaw);
+  const localImpulseX = impulseX * cosYaw - impulseZ * sinYaw;
+  const localImpulseZ = impulseX * sinYaw + impulseZ * cosYaw;
+  const yawKick = (localZ * localImpulseX - localX * localImpulseZ) / (config.mass * 34);
   const rollKick = localX * impulseY / (config.mass * 24);
   state.angularVelocity.yaw = clamp(state.angularVelocity.yaw + yawKick, -2.5, 2.5);
   state.angularVelocity.roll = clamp(state.angularVelocity.roll + rollKick, -2.5, 2.5);

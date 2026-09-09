@@ -343,6 +343,7 @@ export class VehicleCardPreviewRenderer {
   private resources: PreviewResources | null = null;
   private observer: ResizeObserver | null = null;
   private resizeFrame = 0;
+  private inspectionFrame = 0;
   private refreshInFlight: Promise<void> | null = null;
   private refreshAgain = false;
   private lifecycleVersion = 0;
@@ -444,6 +445,53 @@ export class VehicleCardPreviewRenderer {
     this.applySelectionState();
   }
 
+  /** Inspect the actual loaded mesh without image encoding or a perpetual render loop. */
+  setInspectionAngle(angle: number): void {
+    if (!Number.isFinite(angle) || !this.visibleValue || this.disposed) return;
+    const host = this.root?.querySelector<HTMLElement>('[data-vehicle-preview="hero"]');
+    if (!host) return;
+    host.dataset.previewAngle = String(((angle % 360) + 360) % 360);
+    this.scheduleInspection();
+  }
+
+  private scheduleInspection(): void {
+    if (this.inspectionFrame || !this.visibleValue || this.disposed || typeof window === 'undefined') return;
+    this.inspectionFrame = window.requestAnimationFrame(() => {
+      this.inspectionFrame = 0;
+      if (this.refreshInFlight) {
+        void this.refreshInFlight.then(() => this.scheduleInspection(), () => undefined);
+        return;
+      }
+      const root = this.root, resources = this.resources;
+      if (!root || !resources || !this.visibleValue || this.disposed) return;
+      const host = this.collectHosts(root).find(host => host.element.dataset.vehiclePreview === 'hero');
+      if (!host || host.element.dataset.previewReady !== 'true') return;
+      const vehicle = resources.vehicles.get(host.vehicleClass);
+      if (!vehicle || vehicle.activeAppearanceId !== host.element.dataset.previewAppearance) return;
+      this.renderVehicle(resources, host.vehicleClass, host.size.pixelWidth, host.size.pixelHeight, host.angle, false);
+      let canvas = host.element.querySelector<HTMLCanvasElement>('[data-vehicle-inspection-canvas]');
+      if (!canvas) {
+        canvas = host.element.ownerDocument.createElement('canvas');
+        canvas.dataset.vehicleInspectionCanvas = '';
+        canvas.setAttribute('aria-hidden', 'true');
+        canvas.style.cssText = 'width:100%;height:100%;display:block;pointer-events:none';
+        host.element.append(canvas);
+      }
+      if (canvas.width !== host.size.pixelWidth) canvas.width = host.size.pixelWidth;
+      if (canvas.height !== host.size.pixelHeight) canvas.height = host.size.pixelHeight;
+      const context = canvas.getContext('2d');
+      if (!context) return;
+      context.clearRect(0, 0, canvas.width, canvas.height);
+      context.drawImage(resources.renderer.domElement, 0, 0);
+      const image = host.element.querySelector<HTMLImageElement>(PREVIEW_IMAGE_SELECTOR);
+      if (image) image.style.display = 'none';
+      canvas.hidden = false;
+      canvas.style.display = 'block';
+      host.element.dataset.previewMode = 'interactive';
+      host.element.dataset.renderedAngle = String(host.angle);
+    });
+  }
+
   /**
    * Requeries hosts and refreshes only sizes that are not already cached.
    * Concurrent ResizeObserver notifications are coalesced into one extra pass.
@@ -503,15 +551,20 @@ export class VehicleCardPreviewRenderer {
         || cached.pixelWidth !== host.size.pixelWidth
         || cached.pixelHeight !== host.size.pixelHeight;
     });
-    if (missing.length > 0) {
+    // A cached snapshot survives hide(), but its interactive mesh/context does
+    // not. Prepare the hero even on cache hits before inspection can resume.
+    const prepare = hosts.filter(host => missing.includes(host) || host.element.dataset.vehiclePreview === 'hero');
+    if (prepare.length > 0) {
       const resources = this.ensureResources();
-      for (const host of missing) {
+      for (const host of prepare) {
         const vehicle = resources.vehicles.get(host.vehicleClass);
         if (!vehicle) continue;
-        if (host.appearance !== 'procedural') this.setAppearanceStatus('loading');
+        if (host.appearance !== 'procedural' && vehicle.activeAppearanceId !== host.appearance && vehicle.appearanceStatus !== 'error') this.setAppearanceStatus('loading');
         await vehicle.setAppearance(host.appearance);
         if (version !== this.lifecycleVersion || !this.visibleValue || this.disposed || this.resources !== resources) return;
         const status = vehicle.appearanceStatus === 'error' ? 'error' : 'ready';
+        const cached = this.cache.get(host.key);
+        if (!missing.includes(host) && cached?.appearance === vehicle.activeAppearanceId && cached.status === status) continue;
         const source = this.renderVehicle(
           resources,
           host.vehicleClass,
@@ -550,6 +603,11 @@ export class VehicleCardPreviewRenderer {
         : `${GALACTIC_VEHICLES[host.vehicleClass].label} classic 3D model`;
       if (image.src !== source) image.src = source;
       image.style.opacity = '1';
+      image.style.display = 'block';
+      const inspectionCanvas = host.element.querySelector<HTMLCanvasElement>('[data-vehicle-inspection-canvas]');
+      if (inspectionCanvas) { inspectionCanvas.hidden = true; inspectionCanvas.style.display = 'none'; }
+      host.element.dataset.previewMode = 'snapshot';
+      host.element.dataset.renderedAngle = String(host.angle);
       host.element.dataset.previewReady = 'true';
       host.element.dataset.previewAppearance = appearance;
       host.element.dataset.previewState = status === 'error' ? 'fallback' : 'ready';
@@ -573,10 +631,11 @@ export class VehicleCardPreviewRenderer {
       const vehicleClass = resolveVehiclePreviewClass(element.dataset.vehicleId);
       if (!vehicleClass) continue;
       const rect = element.getBoundingClientRect();
+      if (rect.width <= 0 || rect.height <= 0) continue;
       const limits = element.dataset.vehiclePreview === 'hero' ? this.heroLimits : this.limits;
       const size = calculateVehiclePreviewRenderSize(rect.width, rect.height, pixelRatio, limits);
       const rawAngle = Number(element.dataset.previewAngle ?? 0);
-      const angle = Number.isFinite(rawAngle) ? Math.round(rawAngle / 15) * 15 : 0;
+      const angle = Number.isFinite(rawAngle) ? Math.round(rawAngle) : 0;
       const appearance = resolveVehicleAppearance(vehicleClass, this.appearance);
       hosts.push({ element, vehicleClass, size, angle, appearance,
         key: `${vehicleClass}:${appearance}:${size.pixelWidth}:${size.pixelHeight}:${angle}`,
@@ -669,6 +728,7 @@ export class VehicleCardPreviewRenderer {
     width: number,
     height: number,
     angle = 0,
+    encode = true,
   ): string {
     for (const vehicle of resources.vehicles.values()) vehicle.visible = false;
     const vehicle = resources.vehicles.get(vehicleClass);
@@ -683,6 +743,11 @@ export class VehicleCardPreviewRenderer {
     // Spread Teemto's long silhouette across the wide inspection bay.
     else if (vehicle.activeAppearanceId === 'teemto') cameraDirection.set(1.5, 0.42, -0.45);
     else cameraDirection.set(0.7, 0.38, -1);
+    // On a tall inspection stage, look along the hull from above: the full
+    // long craft occupies real vertical space instead of a tiny broadside strip.
+    if (width / Math.max(1, height) < .85) {
+      cameraDirection.set(vehicle.activeAppearanceId === 'polwo' || vehicle.activeAppearanceId === 'blockrunner' ? -.38 : .38, .9, -1);
+    }
     cameraDirection.normalize().applyAxisAngle(worldUp, angle * Math.PI / 180);
     vehicle.visible = true;
     const parked = vehicle.activeAppearanceId === 'polwo' || vehicle.activeAppearanceId === 'blockrunner';
@@ -747,7 +812,7 @@ export class VehicleCardPreviewRenderer {
 
     resources.renderer.clear(true, true, true);
     resources.renderer.render(resources.scene, resources.camera);
-    return resources.renderer.domElement.toDataURL('image/webp', 0.92);
+    return encode ? resources.renderer.domElement.toDataURL('image/webp', 0.92) : '';
   }
 
   private observeHosts(): void {
@@ -766,8 +831,10 @@ export class VehicleCardPreviewRenderer {
     if (typeof window !== 'undefined') {
       window.removeEventListener('resize', this.scheduleRefresh);
       if (this.resizeFrame !== 0) window.cancelAnimationFrame(this.resizeFrame);
+      if (this.inspectionFrame !== 0) window.cancelAnimationFrame(this.inspectionFrame);
     }
     this.resizeFrame = 0;
+    this.inspectionFrame = 0;
   }
 
   private readonly scheduleRefresh = (): void => {

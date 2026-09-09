@@ -933,7 +933,7 @@ export const BROADCAST_HUD_CSS = /* css */ `
 }
 .pod-hud.is-reduced-motion .pod-hud__driving-feedback * { animation:none!important; transition:none!important; }
 @media (prefers-reduced-motion:reduce) { .pod-hud__driving-feedback * { animation:none!important; transition:none!important; } }
-/* Preserve every bearing; only the first impact needs a repeated text caption. */
+/* Preserve every bearing; only the most urgent cue receives a text caption. */
 .pod-hud__threat-cue,.pod-hud__threat-cue.has-group { display:inline-flex; align-items:center; justify-content:center; width:max-content; max-width:160px; min-width:0; height:32px; min-height:0; padding:0; gap:6px; border:0; border-radius:0; background:none; box-shadow:none; }
 .pod-hud__threat-cue>b { flex:0 0 28px; width:28px; height:28px; display:grid; place-items:center; border:1px solid currentColor; border-radius:50%; background:#112e36e6; }
 .pod-hud__threat-cue>b>svg { width:22px; height:22px; overflow:visible; fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:square; stroke-linejoin:miter; }
@@ -945,6 +945,13 @@ export const BROADCAST_HUD_CSS = /* css */ `
 .pod-hud__threat-cue.is-critical>b { animation:threat-bearing-pulse 800ms ease-in-out infinite; }
 .pod-hud.is-high-contrast .pod-hud__threat-cue { border:0; background:none; box-shadow:none; }
 .pod-hud.is-high-contrast .pod-hud__threat-cue>b,.pod-hud.is-high-contrast .pod-hud__threat-cue>span,.pod-hud.is-high-contrast .pod-hud__threat-cue>em { background:#0b2026; }
+/* The default driving view shows decisions, with extra telemetry behind Route. */
+.pod-hud:not(.has-hud-detail) .pod-hud__corner-tag { display:none; }
+.pod-hud:not(.has-hud-detail) .pod-hud__driving-feedback>.pod-hud__flight>.pod-hud__flight-state,
+.pod-hud:not(.has-hud-detail) .pod-hud__driving-feedback>.pod-hud__flight>strong { display:none; }
+.pod-hud:not(.has-hud-detail) .pod-hud__driving-feedback>.pod-hud__flight.is-visible { grid-template-columns:1fr; grid-template-areas:'motion'; }
+.pod-hud:not(.has-hud-detail) .pod-hud__driving-feedback>.pod-hud__flight:not([data-motion=descending]) { display:none; }
+.pod-hud:not(.has-hud-detail) .pod-hud__combat-feedback[data-kind=hit]>span { display:none; }
 @keyframes threat-bearing-pulse { 0%,100% { opacity:1; } 50% { opacity:.65; } }
 .pod-hud.is-reduced-motion *,.pod-hud.is-reduced-motion *::before,.pod-hud.is-reduced-motion *::after { animation:none!important; transition:none!important; }
 @media (prefers-reduced-motion:reduce) { .pod-hud *,.pod-hud *::before,.pod-hud *::after { animation:none!important; transition:none!important; } }
