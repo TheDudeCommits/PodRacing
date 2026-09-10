@@ -8,16 +8,7 @@ export {
   getAudioEnvelope,
   mapGameEventsToAudioCues,
 } from './model';
-export {
-  MENU_MUSIC_BAR_COUNT,
-  MENU_MUSIC_BEATS_PER_BAR,
-  MENU_MUSIC_BPM,
-  MENU_MUSIC_TONIC_MIDI,
-  createMenuMusicTransitionSchedule,
-  createOriginalMenuScorePlan,
-  renderOriginalMenuScore,
-  renderOriginalMenuScoreAsync,
-} from './menuMusic';
+export { createMenuMusicTransitionSchedule } from './menuMusic';
 export type {
   AudioEnvelopePoint,
   AudioEnvelopeProfile,
@@ -36,11 +27,4 @@ export type {
   RivalAudioTelemetry,
   RivalAudioTarget,
 } from './types';
-export type {
-  AsyncMenuScoreRenderOptions,
-  MenuMusicTransitionSchedule,
-  MenuScoreHit,
-  MenuScoreNote,
-  MenuScorePlan,
-  MenuScoreVoice,
-} from './menuMusic';
+export type { MenuMusicTransitionSchedule } from './menuMusic';

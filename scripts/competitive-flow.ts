@@ -17,6 +17,8 @@ import { expectedResultClock } from './lib/result-clock';
 const soloOnly=process.argv.includes('--solo-only');
 const battleOnly=process.argv.includes('--battle');
 const performanceMode=process.argv.includes('--performance');
+const visualGallery=process.argv.includes('--visual-gallery');
+if(visualGallery&&performanceMode)throw new Error('Capture screenshots separately from cadence measurement');
 const paceArgument=process.argv.find(arg=>arg.startsWith('--pace='));
 const driverPace=paceArgument===undefined?1:Number(paceArgument.slice(7));
 if(!Number.isFinite(driverPace)||driverPace<.5||driverPace>1)throw new Error('--pace must be between0.5and1; this only adjusts the ordinary gamepad driver.');
@@ -154,6 +156,7 @@ async function finishRun(label: string, timeout = 220_000) {
  await startDriver();
  console.log(`DRIVE ${label}`);
  const started = Date.now(); let lastLog = 0, sectorCaptured = false;
+ const galleryShots=new Set<string>();
  while(Date.now()-started<timeout) {
   await new Promise(resolve=>setTimeout(resolve,1000));
   // Read race state and rendered completion in one browser turn. Separate
@@ -161,6 +164,15 @@ async function finishRun(label: string, timeout = 220_000) {
   const observation = await page!.evaluate(() => ({ state: window.__PODRACING__!.snapshot(),
    finished: document.querySelector('.pod-hud')?.getAttribute('data-phase') === 'finished' }));
   const state = observation.state; const model = state.game.mastery as any;
+  if(visualGallery){
+   const time=state.raceTime,sector=model.latestSector?.index??0;
+   const key=time>5&&time<10?'pack':time>12&&time<18?'straight':[1,3,5,7].includes(sector)?`sector-${sector}`:null;
+   if(key&&!galleryShots.has(key)){
+    galleryShots.add(key);
+    await page!.screenshot({path:`${output}/${label}-${key}.png`});
+    await writeFile(`${output}/${label}-${key}.json`,JSON.stringify(state,null,2));
+   }
+  }
   if (!performanceMode && !sectorCaptured && model.latestSector) { await page!.screenshot({path:`${output}/${label}-sector.png`}); sectorCaptured=true; }
   if(Date.now()-lastLog>20000){console.log(label,JSON.stringify({time:state.raceTime,progress:state.galactic?.racers[0]?.courseProgress,sector:model.latestSector?.index,result:!!model.result}));lastLog=Date.now();}
   const finished = observation.finished;
@@ -191,7 +203,7 @@ async function finishRun(label: string, timeout = 220_000) {
 try {
  for(let i=0;i<200;i++){try{if((await fetch(url)).ok)break;}catch{}await new Promise(r=>setTimeout(r,100));}
  browser=await chromium.launch({channel:'chrome',headless:true});
- const context=await browser.newContext({viewport:{width:1440,height:900},deviceScaleFactor:performanceMode?2:1});
+ const context=await browser.newContext({viewport:{width:1440,height:900},deviceScaleFactor:performanceMode||visualGallery?2:1});
  await context.addInitScript(()=>{
   // tsx preserves function names in serialized evaluate callbacks with this
   // harmless helper; provide its runtime in the isolated browser context.

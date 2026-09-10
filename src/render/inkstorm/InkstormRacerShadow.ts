@@ -1,3 +1,4 @@
+import { SALT_DUSK_SUN } from '../saltDusk/SaltDuskLighting';
 import {
   Box3, Color, InstancedMesh, Matrix4, Mesh, MeshDepthMaterial, NearestFilter,
   Object3D, OrthographicCamera, RGBADepthPacking, Scene, ShaderMaterial, SkinnedMesh,
@@ -68,8 +69,8 @@ export interface InkstormRacerShadowOptions {
   maxCasters?: number;
 }
 
-const SUN = new Vector3(-.42, .76, -.5).normalize();
-const MAX_VOLUME_METRES = 96;
+const SUN = SALT_DUSK_SUN.clone();
+const MAX_VOLUME_METRES = 384;
 const PILOT_NAME = /^pilot(?:-|$)/;
 const byLargestMass = (a: Caster, b: Caster): number => b.priority - a.priority;
 
@@ -100,6 +101,7 @@ export class InkstormRacerShadow {
   private readonly bindings: Caster[] = [];
   private readonly candidates: Caster[] = [];
   private readonly bounds = new Box3();
+  private readonly casterBounds = new Box3();
   private readonly lightBounds = new Box3();
   private readonly point = new Vector3();
   private readonly center = new Vector3();
@@ -315,11 +317,14 @@ export class InkstormRacerShadow {
   private fitCamera(groundY: number): boolean {
     if (!Number.isFinite(groundY)) return false;
     // Extend the caster box down its sun rays to the actual receiving floor.
-    // A shallow 96m maximum prevents high jumps/invalid poses smearing the map.
+    // A 384m maximum accommodates the photographed 2.6° sun while still
+    // rejecting high jumps and invalid poses. Texture/draw budgets are unchanged.
+    this.casterBounds.copy(this.bounds);
     const floor = groundY - 3;
     const distance = Math.max(0, this.bounds.max.y - floor) / SUN.y;
-    this.bounds.max.x += -SUN.x * distance;
-    this.bounds.max.z += -SUN.z * distance;
+    const rayX=-SUN.x*distance,rayZ=-SUN.z*distance;
+    this.bounds.min.x+=Math.min(0,rayX);this.bounds.max.x+=Math.max(0,rayX);
+    this.bounds.min.z+=Math.min(0,rayZ);this.bounds.max.z+=Math.max(0,rayZ);
     this.bounds.min.y = Math.min(floor, this.bounds.min.y);
     this.bounds.expandByScalar(1.5);
     this.bounds.getSize(this.size);
@@ -327,16 +332,22 @@ export class InkstormRacerShadow {
     this.uniforms.uRacerShadowBoundsMin.value.copy(this.bounds.min);
     this.uniforms.uRacerShadowBoundsMax.value.copy(this.bounds.max);
     this.bounds.getCenter(this.center);
-    this.camera.position.copy(this.center).addScaledVector(SUN, 128);
+    this.camera.position.copy(this.center).addScaledVector(SUN, Math.max(128,this.size.length()*.5+20));
     this.camera.lookAt(this.center);
     this.camera.updateMatrixWorld(true);
     this.lightBounds.makeEmpty();
+    // Fit actual caster corners and their floor projections in light space.
+    // Fitting the extended world AABB wastes nearly all texels at a grazing sun.
     for (let corner = 0; corner < 8; corner++) {
-      this.point.set(corner & 1 ? this.bounds.max.x : this.bounds.min.x,
-        corner & 2 ? this.bounds.max.y : this.bounds.min.y,
-        corner & 4 ? this.bounds.max.z : this.bounds.min.z);
+      const x=corner&1?this.casterBounds.max.x:this.casterBounds.min.x;
+      const y=corner&2?this.casterBounds.max.y:this.casterBounds.min.y;
+      const z=corner&4?this.casterBounds.max.z:this.casterBounds.min.z;
+      this.point.set(x,y,z);
+      this.lightBounds.expandByPoint(this.point.applyMatrix4(this.camera.matrixWorldInverse));
+      this.point.set(x,y,z).addScaledVector(SUN,-Math.max(0,y-floor)/SUN.y);
       this.lightBounds.expandByPoint(this.point.applyMatrix4(this.camera.matrixWorldInverse));
     }
+    this.lightBounds.expandByScalar(1.5);
     this.camera.left = this.lightBounds.min.x;
     this.camera.right = this.lightBounds.max.x;
     this.camera.bottom = this.lightBounds.min.y;

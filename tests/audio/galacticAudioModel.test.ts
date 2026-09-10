@@ -20,7 +20,7 @@ describe('Galactic Racer procedural audio mapping', () => {
     expect(cues.some((cue) => cue.kind === 'hazard')).toBe(false);
   });
 
-  it('gives every expansion beat a synthesized cue family', () => {
+  it('gives every expansion beat a recorded cue family', () => {
     const events = [
       { type: 'pulse-shell', racerId: 'player', active: true, cooldown: 4 },
       { type: 'scrap-mine-deployed', racerId: 'player', mineId: 'mine-1' },

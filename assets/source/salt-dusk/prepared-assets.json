@@ -1,0 +1,194 @@
+{
+  "assets": [
+    {
+      "path": "public/assets/salt-dusk/rock/albedo.jpg",
+      "url": "/assets/salt-dusk/rock/albedo.jpg",
+      "bytes": 1855891,
+      "sha256": "6a79aff7f08245d6f8ac3d16d034f73f82a850cd0d6ee8ef3ea9d7010b4f5b12",
+      "dimensions": [
+        2048,
+        2048
+      ],
+      "source": "assets/source/salt-dusk/originals/rock_06/rock_06_diff_2k.jpg",
+      "source_sha256": "cd0e306ee8fb9ddc11f8d7c4dc709fa09caf91ebdd7941ab79196654f1789481",
+      "role": "Diffuse",
+      "asset": "rock_06",
+      "operation": "same resolution; JPEG recompression quality88 albedo /92 roughness; no color transform",
+      "encoded_channel_means": [
+        125.75335216522217,
+        97.15269374847412,
+        69.68351531028748
+      ],
+      "source_dimensions": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "path": "public/assets/salt-dusk/rock/normal-gl.png",
+      "url": "/assets/salt-dusk/rock/normal-gl.png",
+      "bytes": 1829944,
+      "sha256": "f30f265db900f9e30d4bf129163bc12c96f8a7c40d9bee2ffcfd356c44dfa13c",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "source": "assets/source/salt-dusk/originals/rock_06/rock_06_nor_gl_1k.png",
+      "source_sha256": "776565ed4a2efca8f9d7d0f25a37dfc81b3e6d3ae74de6ffd675d627cec26d5e",
+      "role": "nor_gl",
+      "asset": "rock_06",
+      "operation": "RGB8 PNG; remove metadata/unused alpha; no spatial resize, green inversion, or color transform",
+      "encoded_channel_means": [
+        136.98616790771484,
+        133.94489288330078,
+        246.04953861236572
+      ],
+      "source_dimensions": [
+        1024,
+        1024
+      ],
+      "decoded_normal_length_min_mean_max": [
+        0.4974521783472324,
+        0.9670242858250225,
+        1.0746171407673828
+      ]
+    },
+    {
+      "path": "public/assets/salt-dusk/rock/roughness.jpg",
+      "url": "/assets/salt-dusk/rock/roughness.jpg",
+      "bytes": 167875,
+      "sha256": "340e3e92dd2dca26e377f76022be1532d32d19e97b40a20e569ee8cb2b3a57ed",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "source": "assets/source/salt-dusk/originals/rock_06/rock_06_rough_1k.jpg",
+      "source_sha256": "7ff234224bb9ad113951279a06890c017215804e49653bd085f8eb511bb7630c",
+      "role": "Rough",
+      "asset": "rock_06",
+      "operation": "same resolution; JPEG recompression quality88 albedo /92 roughness; no color transform",
+      "encoded_channel_means": 131.98814487457275,
+      "source_dimensions": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "path": "public/assets/salt-dusk/ground/albedo.jpg",
+      "url": "/assets/salt-dusk/ground/albedo.jpg",
+      "bytes": 1448320,
+      "sha256": "d3c2587419c2b2aec27290449e8fdd6e9beb02095f3e965ff90c34c91fdc1dc8",
+      "dimensions": [
+        2048,
+        2048
+      ],
+      "source": "assets/source/salt-dusk/originals/dry_ground_01/dry_ground_01_diff_2k.jpg",
+      "source_sha256": "b6b601e75ba68d91ea1b09af87e95f186d15d8210e4f14692f9b20d2e21d437b",
+      "role": "Diffuse",
+      "asset": "dry_ground_01",
+      "operation": "same resolution; JPEG recompression quality88 albedo /92 roughness; no color transform",
+      "encoded_channel_means": [
+        131.89777040481567,
+        121.40258812904358,
+        105.34878444671631
+      ],
+      "source_dimensions": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "path": "public/assets/salt-dusk/ground/normal-gl.png",
+      "url": "/assets/salt-dusk/ground/normal-gl.png",
+      "bytes": 1963905,
+      "sha256": "658b77445b81cfbb87662439b91183b11274acaa59958c3ff10ab262daa0c61e",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "source": "assets/source/salt-dusk/originals/dry_ground_01/dry_ground_01_nor_gl_1k.png",
+      "source_sha256": "cb2cf42376abecdc55f06c6cefd35047f72e0a7b383786c469c6e480ffcd1e65",
+      "role": "nor_gl",
+      "asset": "dry_ground_01",
+      "operation": "RGB8 PNG; remove metadata/unused alpha; no spatial resize, green inversion, or color transform",
+      "original_alpha_minmax": [
+        255,
+        255
+      ],
+      "encoded_channel_means": [
+        127.27666473388672,
+        127.50924587249756,
+        249.62463474273682
+      ],
+      "source_dimensions": [
+        1024,
+        1024
+      ],
+      "decoded_normal_length_min_mean_max": [
+        0.29270247775587604,
+        0.9727578655398099,
+        1.005719896677428
+      ]
+    },
+    {
+      "path": "public/assets/salt-dusk/ground/roughness.jpg",
+      "url": "/assets/salt-dusk/ground/roughness.jpg",
+      "bytes": 264390,
+      "sha256": "957dd570acc1e4fb11c029bf4c1d7012c730cbffd3f36d8866bf5de938ec0836",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "source": "assets/source/salt-dusk/originals/dry_ground_01/dry_ground_01_rough_1k.jpg",
+      "source_sha256": "1e2587819279786a45b3a6b766cd75cd571e7e524b787ebd7e534bc7f9bd143e",
+      "role": "Rough",
+      "asset": "dry_ground_01",
+      "operation": "same resolution; JPEG recompression quality88 albedo /92 roughness; no color transform",
+      "encoded_channel_means": 211.3502712249756,
+      "source_dimensions": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "path": "public/assets/salt-dusk/environment/sunset-quarry-1k.hdr",
+      "url": "/assets/salt-dusk/environment/sunset-quarry-1k.hdr",
+      "bytes": 1580299,
+      "sha256": "84c2d65672c7f49c955c1cf1c9e05253547dd227073f821a47c0546e317be4a0",
+      "dimensions": [
+        1024,
+        512
+      ],
+      "source": "assets/source/salt-dusk/originals/sunset_in_the_chalk_quarry/sunset_in_the_chalk_quarry_1k.hdr",
+      "source_sha256": "84c2d65672c7f49c955c1cf1c9e05253547dd227073f821a47c0546e317be4a0",
+      "role": "hdri",
+      "asset": "sunset_in_the_chalk_quarry",
+      "operation": "byte-identical upstream Radiance HDR"
+    },
+    {
+      "path": "public/assets/salt-dusk/environment/sunset-quarry-2k.jpg",
+      "url": "/assets/salt-dusk/environment/sunset-quarry-2k.jpg",
+      "bytes": 325385,
+      "sha256": "517979260bd25adf55d5c94032001d015eb8fd1906c6b12f3feb3543b745b820",
+      "dimensions": [
+        2048,
+        1024
+      ],
+      "source": "assets/source/salt-dusk/originals/sunset_in_the_chalk_quarry/sunset_in_the_chalk_quarry.jpg",
+      "source_sha256": "e700f597dac52d6d49c3b1bc0d4f78d11e928c9e051df1fff2d5de34482777db",
+      "role": "tonemapped",
+      "asset": "sunset_in_the_chalk_quarry",
+      "operation": "upstream tonemapped panorama resized 8192x4096 to 2048x1024 Lanczos; JPEG quality90 4:4:4, no added tone/color manipulation",
+      "encoded_channel_means": [
+        102.22449684143066,
+        125.88604259490967,
+        142.01128244400024
+      ],
+      "source_dimensions": [
+        8192,
+        4096
+      ]
+    }
+  ],
+  "total_public_bytes": 9436009
+}

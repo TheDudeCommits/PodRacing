@@ -22,7 +22,7 @@ function fixture(reducedMotion = false, role: 'solo' | 'guest' = 'solo') {
   const root = element(); root.dataset.phase = 'racing';
   root.classList.toggle('is-reduced-motion', reducedMotion);
   const hud = Object.create(RaceHud.prototype) as RaceHud;
-  Object.assign(hud, { root, pause: element(), combatFeedback: element(), combatFeedbackTitle: element(),
+  Object.assign(hud, { root, pause: element(), settingsPanel: element(), combatFeedback: element(), combatFeedbackTitle: element(),
     combatFeedbackDetail: element(), combatFeedbackKey: '', systemMotionPreference: null });
   const fullTelemetry = vi.spyOn(hud, 'update');
   const controller = new CombatPresentationController();

@@ -1,0 +1,2135 @@
+{
+  "createdAt": "2026-09-10T07:49:23.787834+00:00",
+  "scope": "Read-only release source, asset and packaging audit; only output receipt/script written; no browser, render, playback or tests. Not a new perceptual/legal acceptance.",
+  "bundle": {
+    "path": "dist/assets/index-CCnFLqZi.js",
+    "bytes": 1871848,
+    "sha256": "2c21ecd68bb500100a23f31b14cc125767cfc3866ea06d6fcd939deda6e950ce",
+    "expectedSha256": "2c21ecd68bb500100a23f31b14cc125767cfc3866ea06d6fcd939deda6e950ce",
+    "pass": true
+  },
+  "sourceMap": {
+    "file": {
+      "path": "dist/assets/index-CCnFLqZi.js.map",
+      "bytes": 6262237,
+      "sha256": "2beba5eccb0c4d21310405e235b61f631f83e9d215344e854b7c180bd889d5cd"
+    },
+    "totalSources": 144,
+    "workingSrcCount": 132,
+    "matchingCount": 132,
+    "mismatches": [],
+    "sources": [
+      {
+        "path": "src/render/saltDusk/SaltDuskLighting.ts",
+        "embeddedSha256": "dcce48d9f2a04dd62767c72021f426c7133aaafe211e421d9baca3dc56456a92",
+        "workingSha256": "dcce48d9f2a04dd62767c72021f426c7133aaafe211e421d9baca3dc56456a92",
+        "pass": true
+      },
+      {
+        "path": "src/render/saltDusk/SaltDuskAssets.ts",
+        "embeddedSha256": "95e2c67da6998cfd09edd6d2417212e07e49c126042f03e464b401b3375dbc00",
+        "workingSha256": "95e2c67da6998cfd09edd6d2417212e07e49c126042f03e464b401b3375dbc00",
+        "pass": true
+      },
+      {
+        "path": "src/render/combat/CombatPresentationController.ts",
+        "embeddedSha256": "b67c48278b897136cd9ffc00a2128214d2085bd66d7470cd156539b365f6442d",
+        "workingSha256": "b67c48278b897136cd9ffc00a2128214d2085bd66d7470cd156539b365f6442d",
+        "pass": true
+      },
+      {
+        "path": "src/render/combat/WreckVisualPose.ts",
+        "embeddedSha256": "969aec25ab34e210e6446ce1cafad45060e96849fcd1a2eb2739acc9e0f0cf9a",
+        "workingSha256": "969aec25ab34e210e6446ce1cafad45060e96849fcd1a2eb2739acc9e0f0cf9a",
+        "pass": true
+      },
+      {
+        "path": "src/render/combat/WreckGroundContact.ts",
+        "embeddedSha256": "7ab2320d7b62d770c6fd76fd3a9efdfe5c09538c49bed03a24c430078b6aa656",
+        "workingSha256": "7ab2320d7b62d770c6fd76fd3a9efdfe5c09538c49bed03a24c430078b6aa656",
+        "pass": true
+      },
+      {
+        "path": "src/camera/CinematicCamera.ts",
+        "embeddedSha256": "68427aec3f812e6dd2d10c8a387f83003a366d8bd4a5756117cff4b128c3dbd2",
+        "workingSha256": "68427aec3f812e6dd2d10c8a387f83003a366d8bd4a5756117cff4b128c3dbd2",
+        "pass": true
+      },
+      {
+        "path": "src/camera/CourseJunctionFraming.ts",
+        "embeddedSha256": "9c2d104c324dfb1bfa1387a3d8fc2edbc9d3f2983062eb5e62585c740acfafdb",
+        "workingSha256": "9c2d104c324dfb1bfa1387a3d8fc2edbc9d3f2983062eb5e62585c740acfafdb",
+        "pass": true
+      },
+      {
+        "path": "src/camera/RaceCameraDirector.ts",
+        "embeddedSha256": "83a63ec43d55bbfd11e0cb73cbe9c004d9539355fbf7792c1fa8ca01d2e05329",
+        "workingSha256": "83a63ec43d55bbfd11e0cb73cbe9c004d9539355fbf7792c1fa8ca01d2e05329",
+        "pass": true
+      },
+      {
+        "path": "src/audio/model.ts",
+        "embeddedSha256": "98c110a945d62740c5aa7ecfe1901778cb9153432b377104abb8104d418158ed",
+        "workingSha256": "98c110a945d62740c5aa7ecfe1901778cb9153432b377104abb8104d418158ed",
+        "pass": true
+      },
+      {
+        "path": "src/audio/menuMusic.ts",
+        "embeddedSha256": "37b03b5effe10c3d0884a5786fe88a111599bba678a4ffaba63e77926782bff0",
+        "workingSha256": "37b03b5effe10c3d0884a5786fe88a111599bba678a4ffaba63e77926782bff0",
+        "pass": true
+      },
+      {
+        "path": "src/audio/catalogue.ts",
+        "embeddedSha256": "75e96e16e65b7fac7219dccf94a1955b582f33ec0f39d277f5625fcc13758eb8",
+        "workingSha256": "75e96e16e65b7fac7219dccf94a1955b582f33ec0f39d277f5625fcc13758eb8",
+        "pass": true
+      },
+      {
+        "path": "src/audio/PodracerAudio.ts",
+        "embeddedSha256": "a47c4dd76af17df579e01ae03a7ea86f073fc7724c2b1dcf1e45c2eff1acfe35",
+        "workingSha256": "a47c4dd76af17df579e01ae03a7ea86f073fc7724c2b1dcf1e45c2eff1acfe35",
+        "pass": true
+      },
+      {
+        "path": "src/game/mastery/events.ts",
+        "embeddedSha256": "f2db1213ecc1bb88442fa292229b9f5af1b214183b62be02353550efd33a42b5",
+        "workingSha256": "f2db1213ecc1bb88442fa292229b9f5af1b214183b62be02353550efd33a42b5",
+        "pass": true
+      },
+      {
+        "path": "src/game/mastery/ghost.ts",
+        "embeddedSha256": "0afbc044ec3356f99f79f69f5d7a8cb717fa8d11a2046d1f2f1e14aabddb2844",
+        "workingSha256": "0afbc044ec3356f99f79f69f5d7a8cb717fa8d11a2046d1f2f1e14aabddb2844",
+        "pass": true
+      },
+      {
+        "path": "src/game/mastery/storage.ts",
+        "embeddedSha256": "f6aa34445b281e20d9d066812d9c605d066f6386dcb5a96c73cae1465341da7c",
+        "workingSha256": "f6aa34445b281e20d9d066812d9c605d066f6386dcb5a96c73cae1465341da7c",
+        "pass": true
+      },
+      {
+        "path": "src/game/mastery/tutorial.ts",
+        "embeddedSha256": "560c03393865acc4355a1c05b702f9645b2ccf2404530f0be4230502b6253ef4",
+        "workingSha256": "560c03393865acc4355a1c05b702f9645b2ccf2404530f0be4230502b6253ef4",
+        "pass": true
+      },
+      {
+        "path": "src/game/mastery/sectors.ts",
+        "embeddedSha256": "db2df866e18a95e78ef390e4db979222fab82b8db8e11dbbdd6da739e6855084",
+        "workingSha256": "db2df866e18a95e78ef390e4db979222fab82b8db8e11dbbdd6da739e6855084",
+        "pass": true
+      },
+      {
+        "path": "src/game/mastery/RaceMastery.ts",
+        "embeddedSha256": "7c27fb56705c1945513d29b94a37bd67bb816183c9309bb6fd54f627dd850ee0",
+        "workingSha256": "7c27fb56705c1945513d29b94a37bd67bb816183c9309bb6fd54f627dd850ee0",
+        "pass": true
+      },
+      {
+        "path": "src/render/materials/celPalette.ts",
+        "embeddedSha256": "a9639fb79369cbe8d9786fd22df1262109d80cb322a81d06f4e5c57f7ac0b458",
+        "workingSha256": "a9639fb79369cbe8d9786fd22df1262109d80cb322a81d06f4e5c57f7ac0b458",
+        "pass": true
+      },
+      {
+        "path": "src/game/input/actions.ts",
+        "embeddedSha256": "623576da833093bd9f9eeb1370764ce24c918c18579d073b6cd05bc811dbdb5c",
+        "workingSha256": "623576da833093bd9f9eeb1370764ce24c918c18579d073b6cd05bc811dbdb5c",
+        "pass": true
+      },
+      {
+        "path": "src/game/input/gamepad.ts",
+        "embeddedSha256": "b510aac4ae37fd305cb987e32a0b83225f92f22f35b7d015ea9ddfc515a98eed",
+        "workingSha256": "b510aac4ae37fd305cb987e32a0b83225f92f22f35b7d015ea9ddfc515a98eed",
+        "pass": true
+      },
+      {
+        "path": "src/game/input/keyboard.ts",
+        "embeddedSha256": "49878f3471e245bee29500e241cfa8f7eefacb1add2afb76e8ec1cc5e26c3113",
+        "workingSha256": "49878f3471e245bee29500e241cfa8f7eefacb1add2afb76e8ec1cc5e26c3113",
+        "pass": true
+      },
+      {
+        "path": "src/game/settings/schema.ts",
+        "embeddedSha256": "f224685d70d5157e5dbda5b4f1039cf497c3bc589554f87f30efd6bf8c002c29",
+        "workingSha256": "f224685d70d5157e5dbda5b4f1039cf497c3bc589554f87f30efd6bf8c002c29",
+        "pass": true
+      },
+      {
+        "path": "src/game/settings/storage.ts",
+        "embeddedSha256": "71d7ba1fb70468dfb86b770fa6cd0ce5e88cc28234bdced7800f66abadf9041f",
+        "workingSha256": "71d7ba1fb70468dfb86b770fa6cd0ce5e88cc28234bdced7800f66abadf9041f",
+        "pass": true
+      },
+      {
+        "path": "src/game/vehicleAppearance.ts",
+        "embeddedSha256": "a7724286d39c8a8b59be4e318a088e12e7655e5897dafe6b00fdffbbd5fd7bb1",
+        "workingSha256": "a7724286d39c8a8b59be4e318a088e12e7655e5897dafe6b00fdffbbd5fd7bb1",
+        "pass": true
+      },
+      {
+        "path": "src/render/vehicles/VehicleArtLibrary.ts",
+        "embeddedSha256": "236780803e6dea100c50f36f5c8ee53609204f9d7b9ad53d51b037d4517b46f5",
+        "workingSha256": "236780803e6dea100c50f36f5c8ee53609204f9d7b9ad53d51b037d4517b46f5",
+        "pass": true
+      },
+      {
+        "path": "src/render/materials/outlineShaders.ts",
+        "embeddedSha256": "040f4b9b16f3d82b4548f6d6e23945925a76a9db999fe2bafb8a41a8e8cb72dd",
+        "workingSha256": "040f4b9b16f3d82b4548f6d6e23945925a76a9db999fe2bafb8a41a8e8cb72dd",
+        "pass": true
+      },
+      {
+        "path": "src/render/materials/InvertedHullOutline.ts",
+        "embeddedSha256": "68e8aac99307174abbd99825b5084fbf2e9538f1d2c3c3971c7cd7e3891f4bd5",
+        "workingSha256": "68e8aac99307174abbd99825b5084fbf2e9538f1d2c3c3971c7cd7e3891f4bd5",
+        "pass": true
+      },
+      {
+        "path": "src/render/objects/PodracerView.ts",
+        "embeddedSha256": "a9bae5477f611698a4a11d446ace0c6ef67accf54bba854a5e6c1ba846d49758",
+        "workingSha256": "a9bae5477f611698a4a11d446ace0c6ef67accf54bba854a5e6c1ba846d49758",
+        "pass": true
+      },
+      {
+        "path": "src/render/materials/celRamp.ts",
+        "embeddedSha256": "776b320d15b4f65a76d1e4e490bb51b94ebe8fce602084115f9f293a314ef723",
+        "workingSha256": "776b320d15b4f65a76d1e4e490bb51b94ebe8fce602084115f9f293a314ef723",
+        "pass": true
+      },
+      {
+        "path": "src/render/inkstorm/InkstormSunShadow.ts",
+        "embeddedSha256": "3dd729cc0862893bf367317292d70454d6475c7b304844ad9b837df8f1a1a690",
+        "workingSha256": "3dd729cc0862893bf367317292d70454d6475c7b304844ad9b837df8f1a1a690",
+        "pass": true
+      },
+      {
+        "path": "src/render/materials/celShaders.ts",
+        "embeddedSha256": "d29a4130ffe3a0ccce00f694a4a1b2653788f859a0831683eb4bb06383bef836",
+        "workingSha256": "d29a4130ffe3a0ccce00f694a4a1b2653788f859a0831683eb4bb06383bef836",
+        "pass": true
+      },
+      {
+        "path": "src/render/materials/CelMaterial.ts",
+        "embeddedSha256": "da3b0e6d914e2ce6f2a31379240e717fd1d071efc4750d820ef5f3336edcf5ea",
+        "workingSha256": "da3b0e6d914e2ce6f2a31379240e717fd1d071efc4750d820ef5f3336edcf5ea",
+        "pass": true
+      },
+      {
+        "path": "src/render/saltDusk/SaltDuskVehicleMaterial.ts",
+        "embeddedSha256": "87a7506351c2354f504eff738bfa1dfff7a1c692f7a6a63326607e2ffe6ab5f0",
+        "workingSha256": "87a7506351c2354f504eff738bfa1dfff7a1c692f7a6a63326607e2ffe6ab5f0",
+        "pass": true
+      },
+      {
+        "path": "src/render/combat/TeemtoStrikeMotion.ts",
+        "embeddedSha256": "efa2c8e2c52e6b46c348b54458ef2a7a0c1cf984e67a909d1ce7c634608a82bd",
+        "workingSha256": "efa2c8e2c52e6b46c348b54458ef2a7a0c1cf984e67a909d1ce7c634608a82bd",
+        "pass": true
+      },
+      {
+        "path": "src/render/combat/TeemtoAuthoredDamage.ts",
+        "embeddedSha256": "008d11c218b4673f1984adf80ae0bf860b795cdf7a6409157605903997950cad",
+        "workingSha256": "008d11c218b4673f1984adf80ae0bf860b795cdf7a6409157605903997950cad",
+        "pass": true
+      },
+      {
+        "path": "src/render/combat/TeemtoWreckBreakup.ts",
+        "embeddedSha256": "824ce19d7c465cb1ac0da82f050a22998d9afa7048215a8f18f98cfb140adcbf",
+        "workingSha256": "824ce19d7c465cb1ac0da82f050a22998d9afa7048215a8f18f98cfb140adcbf",
+        "pass": true
+      },
+      {
+        "path": "src/render/vehicles/ImportedVehiclePresentation.ts",
+        "embeddedSha256": "afd0cacf59f68d88033f5708e8a5cf1041ea59e6cd4905078845df050a4c8ff6",
+        "workingSha256": "afd0cacf59f68d88033f5708e8a5cf1041ea59e6cd4905078845df050a4c8ff6",
+        "pass": true
+      },
+      {
+        "path": "src/render/vehicles/ImportedExhaustNozzles.ts",
+        "embeddedSha256": "63251bfb98a5291743e5109d13dc291c74b9e7d960751fff0692f63a57e65287",
+        "workingSha256": "63251bfb98a5291743e5109d13dc291c74b9e7d960751fff0692f63a57e65287",
+        "pass": true
+      },
+      {
+        "path": "src/render/vehicles/RacerPresentation.ts",
+        "embeddedSha256": "9345e527763d742af0500a00864f838a1397c9031a2a5626d38b3cac9fefb749",
+        "workingSha256": "9345e527763d742af0500a00864f838a1397c9031a2a5626d38b3cac9fefb749",
+        "pass": true
+      },
+      {
+        "path": "src/game/simulation/config.ts",
+        "embeddedSha256": "fbcad7b9781a215dd664b299cd2efb6011ac693e8088e471ded61110ed5125be",
+        "workingSha256": "fbcad7b9781a215dd664b299cd2efb6011ac693e8088e471ded61110ed5125be",
+        "pass": true
+      },
+      {
+        "path": "src/game/race/PitPadField.ts",
+        "embeddedSha256": "0474e7d46be3c6ddbd81965d9d80463b1fd5029b9afaad08ce86357379a1b5a4",
+        "workingSha256": "0474e7d46be3c6ddbd81965d9d80463b1fd5029b9afaad08ce86357379a1b5a4",
+        "pass": true
+      },
+      {
+        "path": "src/render/terrain/CourseGulfTextures.ts",
+        "embeddedSha256": "9e6548b4d0125f224b9adbc2f07a3c55d159c572564d267ecc3833286e54ff26",
+        "workingSha256": "9e6548b4d0125f224b9adbc2f07a3c55d159c572564d267ecc3833286e54ff26",
+        "pass": true
+      },
+      {
+        "path": "src/render/inkstorm/InkstormGeologyShader.ts",
+        "embeddedSha256": "656f3d90c8ae6d1dc544e89879a9b88b300aa7bea26c895d1770b61fa27c4cc7",
+        "workingSha256": "656f3d90c8ae6d1dc544e89879a9b88b300aa7bea26c895d1770b61fa27c4cc7",
+        "pass": true
+      },
+      {
+        "path": "src/render/inkstorm/InkstormRacerShadow.ts",
+        "embeddedSha256": "e558db583b9a8a27ee4b04ef662916542d210308975da1029f44b736994e65c9",
+        "workingSha256": "e558db583b9a8a27ee4b04ef662916542d210308975da1029f44b736994e65c9",
+        "pass": true
+      },
+      {
+        "path": "src/render/inkstorm/InkstormSurfaceMaterial.ts",
+        "embeddedSha256": "c4f0278fe86299d1f9534bf2ebf5b346b9a5609a824b1a04a328a0e27a5eaf24",
+        "workingSha256": "c4f0278fe86299d1f9534bf2ebf5b346b9a5609a824b1a04a328a0e27a5eaf24",
+        "pass": true
+      },
+      {
+        "path": "src/render/terrain/terrainShaderChunks.ts",
+        "embeddedSha256": "15b74f643cde0b76a679665e99fd8ed8e827d846b609c335ee61f39029627ec8",
+        "workingSha256": "15b74f643cde0b76a679665e99fd8ed8e827d846b609c335ee61f39029627ec8",
+        "pass": true
+      },
+      {
+        "path": "src/render/inkstorm/InkstormRoad.ts",
+        "embeddedSha256": "e1ac287688659b824d2d521fc2392ffbfda5cb285210d5da2dc68b612a6f5dc6",
+        "workingSha256": "e1ac287688659b824d2d521fc2392ffbfda5cb285210d5da2dc68b612a6f5dc6",
+        "pass": true
+      },
+      {
+        "path": "src/render/inkstorm/InkstormShadows.ts",
+        "embeddedSha256": "c8ccb37d362f9c9cb6217a73bfae028413bb7d756aa4f5a806d9c30d18f5d15d",
+        "workingSha256": "c8ccb37d362f9c9cb6217a73bfae028413bb7d756aa4f5a806d9c30d18f5d15d",
+        "pass": true
+      },
+      {
+        "path": "src/render/inkstorm/InkstormFoundations.ts",
+        "embeddedSha256": "2cd39d1d43e1573689a26a4bc2e7ff44d622930c39265db8a9d53bbfcfef1b7e",
+        "workingSha256": "2cd39d1d43e1573689a26a4bc2e7ff44d622930c39265db8a9d53bbfcfef1b7e",
+        "pass": true
+      },
+      {
+        "path": "src/game/race/bridgeSurface.ts",
+        "embeddedSha256": "ead93c5cb3bf8b0ad643135e91776e547f81f1e309b66149d732a753b0a6501b",
+        "workingSha256": "ead93c5cb3bf8b0ad643135e91776e547f81f1e309b66149d732a753b0a6501b",
+        "pass": true
+      },
+      {
+        "path": "src/render/inkstorm/ForkIslandContacts.ts",
+        "embeddedSha256": "c5a38db38f9b8d0d82f3b1bace7cb1fa16ec4747649620f1bee498b3d212514a",
+        "workingSha256": "c5a38db38f9b8d0d82f3b1bace7cb1fa16ec4747649620f1bee498b3d212514a",
+        "pass": true
+      },
+      {
+        "path": "src/render/inkstorm/InkstormForkFoundation.ts",
+        "embeddedSha256": "41b00fe8da8c172e01170a34e3424c21ce736bd015622c9b6d549339a76ab838",
+        "workingSha256": "41b00fe8da8c172e01170a34e3424c21ce736bd015622c9b6d549339a76ab838",
+        "pass": true
+      },
+      {
+        "path": "src/render/inkstorm/InkstormBridge.ts",
+        "embeddedSha256": "8d80b6ac2095f954c3a4756ab0d7faa8fd4315e3f56460fa6e9badff8c0763c8",
+        "workingSha256": "8d80b6ac2095f954c3a4756ab0d7faa8fd4315e3f56460fa6e9badff8c0763c8",
+        "pass": true
+      },
+      {
+        "path": "src/game/race/LaunchBasinPlan.ts",
+        "embeddedSha256": "38235aaac16084e1a7c2e4c5e33a4673d0d68285591e65f4a3a2c81066f9765c",
+        "workingSha256": "38235aaac16084e1a7c2e4c5e33a4673d0d68285591e65f4a3a2c81066f9765c",
+        "pass": true
+      },
+      {
+        "path": "src/game/race/CourseGulfField.ts",
+        "embeddedSha256": "8b76e3a68e5e613484bc3d4cf46ab94b7d4781161dee1300cba5190a2c71bc48",
+        "workingSha256": "8b76e3a68e5e613484bc3d4cf46ab94b7d4781161dee1300cba5190a2c71bc48",
+        "pass": true
+      },
+      {
+        "path": "src/game/race/inkstormLayout.ts",
+        "embeddedSha256": "a8a116265b0664d8d213f954a0898f7cc79315feca3f5e7e7e5bf33fc647f32d",
+        "workingSha256": "a8a116265b0664d8d213f954a0898f7cc79315feca3f5e7e7e5bf33fc647f32d",
+        "pass": true
+      },
+      {
+        "path": "src/render/inkstorm/InkstormPipeJoint.ts",
+        "embeddedSha256": "b8f7d6e61476e745c64284d58091201c0292d50ee10ee99854fb326c86cfc67f",
+        "workingSha256": "b8f7d6e61476e745c64284d58091201c0292d50ee10ee99854fb326c86cfc67f",
+        "pass": true
+      },
+      {
+        "path": "src/render/post/CelPrepassMaterial.ts",
+        "embeddedSha256": "e45992947ed671bae9feff07a68504cc55673b7489a199ce6b340e44998ea91c",
+        "workingSha256": "e45992947ed671bae9feff07a68504cc55673b7489a199ce6b340e44998ea91c",
+        "pass": true
+      },
+      {
+        "path": "src/render/inkstorm/InkstormFoundry.ts",
+        "embeddedSha256": "a97c0c6e99b43453da4fd3d50570aefd01c6889d82b2411b42bf286318570d47",
+        "workingSha256": "a97c0c6e99b43453da4fd3d50570aefd01c6889d82b2411b42bf286318570d47",
+        "pass": true
+      },
+      {
+        "path": "src/render/inkstorm/InkstormRockGrounding.ts",
+        "embeddedSha256": "1e8d6c4b6439708ec876e2bacfb9ba605a3ce3c59f0aeb8d4cc3e87f6da84e30",
+        "workingSha256": "1e8d6c4b6439708ec876e2bacfb9ba605a3ce3c59f0aeb8d4cc3e87f6da84e30",
+        "pass": true
+      },
+      {
+        "path": "src/render/inkstorm/InkstormFoundryCorridor.ts",
+        "embeddedSha256": "9849f1adcc43f69c857bc83af5a1701df92ed180ecc9840f683a2b20b38fecff",
+        "workingSha256": "9849f1adcc43f69c857bc83af5a1701df92ed180ecc9840f683a2b20b38fecff",
+        "pass": true
+      },
+      {
+        "path": "src/render/inkstorm/InkstormForkWayfinding.ts",
+        "embeddedSha256": "3ad51b6d470d18dd85f9ab8c778f0c3c6602aeaf9f3fd557bcf7f8e074066353",
+        "workingSha256": "3ad51b6d470d18dd85f9ab8c778f0c3c6602aeaf9f3fd557bcf7f8e074066353",
+        "pass": true
+      },
+      {
+        "path": "src/render/inkstorm/InkstormVista.ts",
+        "embeddedSha256": "cdd3cb7284f5c1f0b871f527abc465adad63030f1b2915fa1b59a2a5d1a5f49e",
+        "workingSha256": "cdd3cb7284f5c1f0b871f527abc465adad63030f1b2915fa1b59a2a5d1a5f49e",
+        "pass": true
+      },
+      {
+        "path": "src/game/race/regions.ts",
+        "embeddedSha256": "21d91e638ddbbebd4afbc8f9c9cac6f9dcc5ec6417c1825dcfe8d934a1f90106",
+        "workingSha256": "21d91e638ddbbebd4afbc8f9c9cac6f9dcc5ec6417c1825dcfe8d934a1f90106",
+        "pass": true
+      },
+      {
+        "path": "src/render/terrain/terrainMath.ts",
+        "embeddedSha256": "a01165a6244b98905dbac5326eccf428ea7e671db47f72fdc36582a3b8c50db5",
+        "workingSha256": "a01165a6244b98905dbac5326eccf428ea7e671db47f72fdc36582a3b8c50db5",
+        "pass": true
+      },
+      {
+        "path": "src/render/inkstorm/InkstormTerrainShadow.ts",
+        "embeddedSha256": "36bb3f24b0104dc450312ea4d94e04c7e96d203fe5bc989719ec1582cd620a3d",
+        "workingSha256": "36bb3f24b0104dc450312ea4d94e04c7e96d203fe5bc989719ec1582cd620a3d",
+        "pass": true
+      },
+      {
+        "path": "src/render/inkstorm/InkstormGantryAppearance.ts",
+        "embeddedSha256": "53c5418e1ddd44b2b77a60b934b78498e6bc3df82a3214352922ce864b47268c",
+        "workingSha256": "53c5418e1ddd44b2b77a60b934b78498e6bc3df82a3214352922ce864b47268c",
+        "pass": true
+      },
+      {
+        "path": "src/render/inkstorm/InkstormWorld.ts",
+        "embeddedSha256": "c402c85ecbd13e6d4f4fb63a702cc7d1a447a4e509d6459e4265642fe10d15a5",
+        "workingSha256": "c402c85ecbd13e6d4f4fb63a702cc7d1a447a4e509d6459e4265642fe10d15a5",
+        "pass": true
+      },
+      {
+        "path": "src/game/galactic/catalog.ts",
+        "embeddedSha256": "ff39bdf955d02b662f7a23817b9073a9d11b406276aa4d2391e25d83eb0b06b6",
+        "workingSha256": "ff39bdf955d02b662f7a23817b9073a9d11b406276aa4d2391e25d83eb0b06b6",
+        "pass": true
+      },
+      {
+        "path": "src/render/inkstorm/InkstormGhostView.ts",
+        "embeddedSha256": "321f02bbb6eb25cf613c5cad0a132e2141bb33d340f0ef5a7b4e2947406ad18f",
+        "workingSha256": "321f02bbb6eb25cf613c5cad0a132e2141bb33d340f0ef5a7b4e2947406ad18f",
+        "pass": true
+      },
+      {
+        "path": "src/diagnostics/performance/RollingFrameProfiler.ts",
+        "embeddedSha256": "b5036664b7f6da6b90b5a8ef2765c87b5eb6927d4537b57361a16e34148d4c47",
+        "workingSha256": "b5036664b7f6da6b90b5a8ef2765c87b5eb6927d4537b57361a16e34148d4c47",
+        "pass": true
+      },
+      {
+        "path": "src/diagnostics/performance/RendererInfoAggregator.ts",
+        "embeddedSha256": "bb8ee21fcbae520f3bd92505522e8fef30f65b68048169c3d278bd0b173b436c",
+        "workingSha256": "bb8ee21fcbae520f3bd92505522e8fef30f65b68048169c3d278bd0b173b436c",
+        "pass": true
+      },
+      {
+        "path": "src/diagnostics/performance/PerformanceGovernor.ts",
+        "embeddedSha256": "75999182b488655ea94d54b73a078710bacacfdb7e9e0defdcd5de9174225395",
+        "workingSha256": "75999182b488655ea94d54b73a078710bacacfdb7e9e0defdcd5de9174225395",
+        "pass": true
+      },
+      {
+        "path": "src/game/galactic/combatPickups.ts",
+        "embeddedSha256": "9a04e738a936e73f8ad353b6f7c271e25229da3edbd10f116410f55c501ea607",
+        "workingSha256": "9a04e738a936e73f8ad353b6f7c271e25229da3edbd10f116410f55c501ea607",
+        "pass": true
+      },
+      {
+        "path": "src/game/galactic/system.ts",
+        "embeddedSha256": "9a4c9ec0f1beecb2221bafd43420cae33f7c1aa9a00ebefaa3778efb3afed77e",
+        "workingSha256": "9a4c9ec0f1beecb2221bafd43420cae33f7c1aa9a00ebefaa3778efb3afed77e",
+        "pass": true
+      },
+      {
+        "path": "src/game/galactic/workshop.ts",
+        "embeddedSha256": "baf2bcf6d0e65bec5dadde9b1497884d1d9770ce0729db6b4b179aadf35aeaed",
+        "workingSha256": "baf2bcf6d0e65bec5dadde9b1497884d1d9770ce0729db6b4b179aadf35aeaed",
+        "pass": true
+      },
+      {
+        "path": "src/game/settings/workshopStorage.ts",
+        "embeddedSha256": "bfd0b110b45e451f3f6b1742c511f42299acfdab0bc0b90cd34d7c09a5cb2ba5",
+        "workingSha256": "bfd0b110b45e451f3f6b1742c511f42299acfdab0bc0b90cd34d7c09a5cb2ba5",
+        "pass": true
+      },
+      {
+        "path": "src/game/simulation/podracer.ts",
+        "embeddedSha256": "36682ebe5a45da3c3c55d874d296f58caee3c2492d72a34068dddbab1fc1dc5b",
+        "workingSha256": "36682ebe5a45da3c3c55d874d296f58caee3c2492d72a34068dddbab1fc1dc5b",
+        "pass": true
+      },
+      {
+        "path": "src/game/simulation/capturePresets.ts",
+        "embeddedSha256": "b26ffa0b5fece6f397eab0c13549a546f644e8017649e4a68cabdf8a3685ea93",
+        "workingSha256": "b26ffa0b5fece6f397eab0c13549a546f644e8017649e4a68cabdf8a3685ea93",
+        "pass": true
+      },
+      {
+        "path": "src/game/race/branches.ts",
+        "embeddedSha256": "f9595ca3b1eafea98f7e87607f246b5c1f405be1e2602456d1b8d939ccae3f52",
+        "workingSha256": "f9595ca3b1eafea98f7e87607f246b5c1f405be1e2602456d1b8d939ccae3f52",
+        "pass": true
+      },
+      {
+        "path": "src/game/race/course.ts",
+        "embeddedSha256": "c1030fcc0ea2ee7d6e0487b6b7332fd29a36947c41bc4847defa9535d6bd12d3",
+        "workingSha256": "c1030fcc0ea2ee7d6e0487b6b7332fd29a36947c41bc4847defa9535d6bd12d3",
+        "pass": true
+      },
+      {
+        "path": "src/game/race/highlights.ts",
+        "embeddedSha256": "67e699d76db3fd311cbe852a8180432a3070492c5708fefcd6fec015f548e15c",
+        "workingSha256": "67e699d76db3fd311cbe852a8180432a3070492c5708fefcd6fec015f548e15c",
+        "pass": true
+      },
+      {
+        "path": "src/game/ai/random.ts",
+        "embeddedSha256": "19fa19a5596031235021512efe0fd0da73cc70d70412b93338456286af71a93d",
+        "workingSha256": "19fa19a5596031235021512efe0fd0da73cc70d70412b93338456286af71a93d",
+        "pass": true
+      },
+      {
+        "path": "src/game/race/director.ts",
+        "embeddedSha256": "e7bc58168ce419852b8b3cc75e85ba85b3d3ca577d3a95a6d0039e97ca2a1b78",
+        "workingSha256": "e7bc58168ce419852b8b3cc75e85ba85b3d3ca577d3a95a6d0039e97ca2a1b78",
+        "pass": true
+      },
+      {
+        "path": "src/game/race/dynamics.ts",
+        "embeddedSha256": "74cb58387b49bb78cab95e981bafa023f0f27c536eba57b39e95d2896b98c9fa",
+        "workingSha256": "74cb58387b49bb78cab95e981bafa023f0f27c536eba57b39e95d2896b98c9fa",
+        "pass": true
+      },
+      {
+        "path": "src/game/race/workshopRuntime.ts",
+        "embeddedSha256": "951d514a2f72aadd5750bd44e05ca4eab01341537cac11f47d91cdc7971b7a73",
+        "workingSha256": "951d514a2f72aadd5750bd44e05ca4eab01341537cac11f47d91cdc7971b7a73",
+        "pass": true
+      },
+      {
+        "path": "src/game/race/progress.ts",
+        "embeddedSha256": "2cdb03c6d14d2a09f2945e1c4f6069cbfa077c7ab795c5baaef00c209b959b85",
+        "workingSha256": "2cdb03c6d14d2a09f2945e1c4f6069cbfa077c7ab795c5baaef00c209b959b85",
+        "pass": true
+      },
+      {
+        "path": "src/game/ai/controller.ts",
+        "embeddedSha256": "a4c33345d6634ca0a8690947cb385ea3f0892ecab79a84fc9e34321dc2a88a7b",
+        "workingSha256": "a4c33345d6634ca0a8690947cb385ea3f0892ecab79a84fc9e34321dc2a88a7b",
+        "pass": true
+      },
+      {
+        "path": "src/game/race/courseMarkers.ts",
+        "embeddedSha256": "374e7a31c327952e396f6be690ea476d176f99c2fa54d3290a79042f8683fe78",
+        "workingSha256": "374e7a31c327952e396f6be690ea476d176f99c2fa54d3290a79042f8683fe78",
+        "pass": true
+      },
+      {
+        "path": "src/game/race/RaceSimulation.ts",
+        "embeddedSha256": "e8fbdd4f49f0ba153ad8f4ab3adc8918388df71a5044f1f1bc9472748dc6f740",
+        "workingSha256": "e8fbdd4f49f0ba153ad8f4ab3adc8918388df71a5044f1f1bc9472748dc6f740",
+        "pass": true
+      },
+      {
+        "path": "src/network/RoomSession.ts",
+        "embeddedSha256": "21c8ba561d4119fef6cde20056beab77c5c2f845fab2b6ab86944112bb1ed3d6",
+        "workingSha256": "21c8ba561d4119fef6cde20056beab77c5c2f845fab2b6ab86944112bb1ed3d6",
+        "pass": true
+      },
+      {
+        "path": "src/ui/MinimapCanvas.ts",
+        "embeddedSha256": "7965c47ed3a6517048c329202657215664c6e3690d6c5e3ca190349130f6abb1",
+        "workingSha256": "7965c47ed3a6517048c329202657215664c6e3690d6c5e3ca190349130f6abb1",
+        "pass": true
+      },
+      {
+        "path": "src/ui/raceEventAtlasStyles.ts",
+        "embeddedSha256": "1876448332a92a4789fa0a07543910db4fdb011bfc6c2ab231c3c59875f0aa59",
+        "workingSha256": "1876448332a92a4789fa0a07543910db4fdb011bfc6c2ab231c3c59875f0aa59",
+        "pass": true
+      },
+      {
+        "path": "src/ui/RaceEventAtlas.ts",
+        "embeddedSha256": "3f75c9629d40c2183203538c6d0033e8cd7c8ec7fd941ca95212f8906062fe0f",
+        "workingSha256": "3f75c9629d40c2183203538c6d0033e8cd7c8ec7fd941ca95212f8906062fe0f",
+        "pass": true
+      },
+      {
+        "path": "src/ui/workshopSymbols.ts",
+        "embeddedSha256": "4b532469a7fd8e3c416f4a6369a46be82a59ee646110d0d923a875af52dd884a",
+        "workingSha256": "4b532469a7fd8e3c416f4a6369a46be82a59ee646110d0d923a875af52dd884a",
+        "pass": true
+      },
+      {
+        "path": "src/render/pilots/PilotVariants.ts",
+        "embeddedSha256": "617c789aeb4226ececc02f49bf8aa6ee7f7def3cadc15d1ecb98d42f30c0854a",
+        "workingSha256": "617c789aeb4226ececc02f49bf8aa6ee7f7def3cadc15d1ecb98d42f30c0854a",
+        "pass": true
+      },
+      {
+        "path": "src/render/pilots/PilotView.ts",
+        "embeddedSha256": "3719089262be351e26f9063e130552a8b826cee5f54f9383bf11a313e98ebea5",
+        "workingSha256": "3719089262be351e26f9063e130552a8b826cee5f54f9383bf11a313e98ebea5",
+        "pass": true
+      },
+      {
+        "path": "src/ui/VehicleCardPreview.ts",
+        "embeddedSha256": "68f3cbed6f60aaae3a22e8ad62a0a122d4c45cc168ab1addb75c761046969e1f",
+        "workingSha256": "68f3cbed6f60aaae3a22e8ad62a0a122d4c45cc168ab1addb75c761046969e1f",
+        "pass": true
+      },
+      {
+        "path": "src/ui/threatLayout.ts",
+        "embeddedSha256": "facece02d5084d914511f8d4b4bab545bf6b042283686be8a12d0844ad02617a",
+        "workingSha256": "facece02d5084d914511f8d4b4bab545bf6b042283686be8a12d0844ad02617a",
+        "pass": true
+      },
+      {
+        "path": "src/ui/inkstormStyles.ts",
+        "embeddedSha256": "32168f5581049c058409200248acc0d0d172048a93e84a3e5c66dd80dbe185d5",
+        "workingSha256": "32168f5581049c058409200248acc0d0d172048a93e84a3e5c66dd80dbe185d5",
+        "pass": true
+      },
+      {
+        "path": "src/ui/broadcastStyles.ts",
+        "embeddedSha256": "1f1f092daa6034c3d1c0f33c95c6f6c84e0618afdeeeae63e78d1ce864f37cc5",
+        "workingSha256": "1f1f092daa6034c3d1c0f33c95c6f6c84e0618afdeeeae63e78d1ce864f37cc5",
+        "pass": true
+      },
+      {
+        "path": "src/ui/workshopGraphicStyles.ts",
+        "embeddedSha256": "215189e5b369ae7febc289c2a99222b4759269a168e6ad67eedacfdb82ddedbc",
+        "workingSha256": "215189e5b369ae7febc289c2a99222b4759269a168e6ad67eedacfdb82ddedbc",
+        "pass": true
+      },
+      {
+        "path": "src/ui/simpleRaceSetupStyles.ts",
+        "embeddedSha256": "c0519221cb9f55a23f37cb7560696dfc8cc6556373eb82e05cb96994c40f13da",
+        "workingSha256": "c0519221cb9f55a23f37cb7560696dfc8cc6556373eb82e05cb96994c40f13da",
+        "pass": true
+      },
+      {
+        "path": "src/ui/duskUiStyles.ts",
+        "embeddedSha256": "5a9c84374dc82c110666cd6568132439e3236b24a77a2ac47ad746c2fe3b9ba2",
+        "workingSha256": "5a9c84374dc82c110666cd6568132439e3236b24a77a2ac47ad746c2fe3b9ba2",
+        "pass": true
+      },
+      {
+        "path": "src/ui/hudStyles.ts",
+        "embeddedSha256": "bd02df7b6337428c35a00b0e4b78d8f43f166bbe91f99cdb0fdf0d57e36af24a",
+        "workingSha256": "bd02df7b6337428c35a00b0e4b78d8f43f166bbe91f99cdb0fdf0d57e36af24a",
+        "pass": true
+      },
+      {
+        "path": "src/ui/model.ts",
+        "embeddedSha256": "e1e7c19cba6edbbb5292404ee7bac2299e8941bde399d160f1ad2bcb0ab5887a",
+        "workingSha256": "e1e7c19cba6edbbb5292404ee7bac2299e8941bde399d160f1ad2bcb0ab5887a",
+        "pass": true
+      },
+      {
+        "path": "src/ui/RaceHud.ts",
+        "embeddedSha256": "d0eee831bf1f25877530a712af886a55e9baa96acc82a810981e8d5e85047257",
+        "workingSha256": "d0eee831bf1f25877530a712af886a55e9baa96acc82a810981e8d5e85047257",
+        "pass": true
+      },
+      {
+        "path": "src/render/post/sobelShader.ts",
+        "embeddedSha256": "d7999ee30930c955dfdff8c83ef8229c53eb74992c91906d1abc7812752794f6",
+        "workingSha256": "d7999ee30930c955dfdff8c83ef8229c53eb74992c91906d1abc7812752794f6",
+        "pass": true
+      },
+      {
+        "path": "src/render/post/SobelEdgePass.ts",
+        "embeddedSha256": "321a28d079297c17b84b022bc5ff3391ff10487ffa4c5ad7312b2910c4592b94",
+        "workingSha256": "321a28d079297c17b84b022bc5ff3391ff10487ffa4c5ad7312b2910c4592b94",
+        "pass": true
+      },
+      {
+        "path": "src/render/post/CelPostPipeline.ts",
+        "embeddedSha256": "d58ad1b4666c8cc42eb0fae253cce98b6d8108776e15bc8200a6f2a4a3683eff",
+        "workingSha256": "d58ad1b4666c8cc42eb0fae253cce98b6d8108776e15bc8200a6f2a4a3683eff",
+        "pass": true
+      },
+      {
+        "path": "src/render/objects/SkyAtmosphere.ts",
+        "embeddedSha256": "75c9eff9e68016fd591f811dd07b65c469ca50b4e2da9510628621d1946259b5",
+        "workingSha256": "75c9eff9e68016fd591f811dd07b65c469ca50b4e2da9510628621d1946259b5",
+        "pass": true
+      },
+      {
+        "path": "src/render/objects/DesertLandmarks.ts",
+        "embeddedSha256": "6c8bd8965970f1d567171f945d501880a8cfe752131807e527a0888154a1d17c",
+        "workingSha256": "6c8bd8965970f1d567171f945d501880a8cfe752131807e527a0888154a1d17c",
+        "pass": true
+      },
+      {
+        "path": "src/render/objects/RaceCourseView.ts",
+        "embeddedSha256": "13a769d54ddaa27aa0af94b581dde3ffa7b4b3b889006572ec742a62985b8b44",
+        "workingSha256": "13a769d54ddaa27aa0af94b581dde3ffa7b4b3b889006572ec742a62985b8b44",
+        "pass": true
+      },
+      {
+        "path": "src/render/objects/SpeedStreaks.ts",
+        "embeddedSha256": "7f3ba321e34e34801a0664e7fa10c9f609276a278ef12902a56a02917173cdb7",
+        "workingSha256": "7f3ba321e34e34801a0664e7fa10c9f609276a278ef12902a56a02917173cdb7",
+        "pass": true
+      },
+      {
+        "path": "src/render/objects/GroundContactShadows.ts",
+        "embeddedSha256": "8b8bf94b814ae3e102c3d2ba5b8bcf3f28d87f4c2a0289e611218ccfe7f99980",
+        "workingSha256": "8b8bf94b814ae3e102c3d2ba5b8bcf3f28d87f4c2a0289e611218ccfe7f99980",
+        "pass": true
+      },
+      {
+        "path": "src/render/galactic/RuptureFlameAtlas.ts",
+        "embeddedSha256": "20054a311c2be87bc547031417874c6b21be7584a9ad0da9514c2fb32ff0f6a1",
+        "workingSha256": "20054a311c2be87bc547031417874c6b21be7584a9ad0da9514c2fb32ff0f6a1",
+        "pass": true
+      },
+      {
+        "path": "src/render/galactic/SolidEffectMaterial.ts",
+        "embeddedSha256": "d8c5c3eb47e5e8f16ccc83b517c73e50ff66571a2cfba6c2f8ff6695117b9421",
+        "workingSha256": "d8c5c3eb47e5e8f16ccc83b517c73e50ff66571a2cfba6c2f8ff6695117b9421",
+        "pass": true
+      },
+      {
+        "path": "src/render/galactic/SolidEffectGeometry.ts",
+        "embeddedSha256": "948dd0f1289238c84dc26dbcd65e26dcb4430f57e3c300028a8e581f162bc28b",
+        "workingSha256": "948dd0f1289238c84dc26dbcd65e26dcb4430f57e3c300028a8e581f162bc28b",
+        "pass": true
+      },
+      {
+        "path": "src/render/galactic/GalacticEffectsView.ts",
+        "embeddedSha256": "a6d2868bf2ba903818bfe18b6f3ef20d5854c9eee9e07e0410c2c6ab8db3b5ca",
+        "workingSha256": "a6d2868bf2ba903818bfe18b6f3ef20d5854c9eee9e07e0410c2c6ab8db3b5ca",
+        "pass": true
+      },
+      {
+        "path": "src/render/terrain/TerrainMaterial.ts",
+        "embeddedSha256": "5fb600c9435b29ac3f77fb954f743ad8a978b53f50d572407558f36243399be5",
+        "workingSha256": "5fb600c9435b29ac3f77fb954f743ad8a978b53f50d572407558f36243399be5",
+        "pass": true
+      },
+      {
+        "path": "src/render/terrain/createTerrainRingGeometry.ts",
+        "embeddedSha256": "daae34d443aaf67dc6e9f873f8852a1207c8684f5bf45fccacb196ceb47bbe7e",
+        "workingSha256": "daae34d443aaf67dc6e9f873f8852a1207c8684f5bf45fccacb196ceb47bbe7e",
+        "pass": true
+      },
+      {
+        "path": "src/render/terrain/TerrainSystem.ts",
+        "embeddedSha256": "13c6b41e9e3a82a019fed0ae19a2bcb3135eba16cd4684a7fbb08d06f6881d7e",
+        "workingSha256": "13c6b41e9e3a82a019fed0ae19a2bcb3135eba16cd4684a7fbb08d06f6881d7e",
+        "pass": true
+      },
+      {
+        "path": "src/render/terrain/CrestDust.ts",
+        "embeddedSha256": "61c28881038ff28cde00904709e9c944cef2d21638d731a0fea57be1a51c3c66",
+        "workingSha256": "61c28881038ff28cde00904709e9c944cef2d21638d731a0fea57be1a51c3c66",
+        "pass": true
+      },
+      {
+        "path": "src/render/terrain/GroundDustRings.ts",
+        "embeddedSha256": "32485882b4bbc2403fce9c4299b2b384d4758c1e525964d04a9338c8ffc53097",
+        "workingSha256": "32485882b4bbc2403fce9c4299b2b384d4758c1e525964d04a9338c8ffc53097",
+        "pass": true
+      },
+      {
+        "path": "src/render/terrain/SandSpray.ts",
+        "embeddedSha256": "925f718f7d14b9d63647d40b4316379f04f5af1dd7a07df713abb55c01533a03",
+        "workingSha256": "925f718f7d14b9d63647d40b4316379f04f5af1dd7a07df713abb55c01533a03",
+        "pass": true
+      },
+      {
+        "path": "src/render/terrain/WakeRibbons.ts",
+        "embeddedSha256": "97163f4abec27a15011af546436403e27081d409ef4abc53938739ac2e80931c",
+        "workingSha256": "97163f4abec27a15011af546436403e27081d409ef4abc53938739ac2e80931c",
+        "pass": true
+      },
+      {
+        "path": "src/render/terrain/DustSystem.ts",
+        "embeddedSha256": "3468d8dad5eba4e47308cb3aa3b860666c4d36f6b46d12c88cd103399ad3cf7b",
+        "workingSha256": "3468d8dad5eba4e47308cb3aa3b860666c4d36f6b46d12c88cd103399ad3cf7b",
+        "pass": true
+      },
+      {
+        "path": "src/render/app/createRenderer.ts",
+        "embeddedSha256": "891dfeb5b4ab52ff234e5aefa6ba777beba1bed4ac16286b5f0859df974814a0",
+        "workingSha256": "891dfeb5b4ab52ff234e5aefa6ba777beba1bed4ac16286b5f0859df974814a0",
+        "pass": true
+      },
+      {
+        "path": "src/render/app/Viewport.ts",
+        "embeddedSha256": "3caabdd2e418fdcd4d17499c42e216410f9e646cafd85dfe70c504abf2cb5aa5",
+        "workingSha256": "3caabdd2e418fdcd4d17499c42e216410f9e646cafd85dfe70c504abf2cb5aa5",
+        "pass": true
+      },
+      {
+        "path": "src/render/app/GameApp.ts",
+        "embeddedSha256": "f5a4132e4ff738d7416911bfddb3f133d7b0d6b9a51e07f46734778bcf6bde5b",
+        "workingSha256": "f5a4132e4ff738d7416911bfddb3f133d7b0d6b9a51e07f46734778bcf6bde5b",
+        "pass": true
+      },
+      {
+        "path": "src/main.ts",
+        "embeddedSha256": "b218c7bdb8eab5b175510d567dd989027f4c37e97344aa11da8c2e1f1105460d",
+        "workingSha256": "b218c7bdb8eab5b175510d567dd989027f4c37e97344aa11da8c2e1f1105460d",
+        "pass": true
+      }
+    ]
+  },
+  "salt": {
+    "prepared": [
+      {
+        "path": "public/assets/salt-dusk/rock/albedo.jpg",
+        "bytes": 1855891,
+        "sha256": "6a79aff7f08245d6f8ac3d16d034f73f82a850cd0d6ee8ef3ea9d7010b4f5b12",
+        "pass": true
+      },
+      {
+        "path": "public/assets/salt-dusk/rock/normal-gl.png",
+        "bytes": 1829944,
+        "sha256": "f30f265db900f9e30d4bf129163bc12c96f8a7c40d9bee2ffcfd356c44dfa13c",
+        "pass": true
+      },
+      {
+        "path": "public/assets/salt-dusk/rock/roughness.jpg",
+        "bytes": 167875,
+        "sha256": "340e3e92dd2dca26e377f76022be1532d32d19e97b40a20e569ee8cb2b3a57ed",
+        "pass": true
+      },
+      {
+        "path": "public/assets/salt-dusk/ground/albedo.jpg",
+        "bytes": 1448320,
+        "sha256": "d3c2587419c2b2aec27290449e8fdd6e9beb02095f3e965ff90c34c91fdc1dc8",
+        "pass": true
+      },
+      {
+        "path": "public/assets/salt-dusk/ground/normal-gl.png",
+        "bytes": 1963905,
+        "sha256": "658b77445b81cfbb87662439b91183b11274acaa59958c3ff10ab262daa0c61e",
+        "pass": true
+      },
+      {
+        "path": "public/assets/salt-dusk/ground/roughness.jpg",
+        "bytes": 264390,
+        "sha256": "957dd570acc1e4fb11c029bf4c1d7012c730cbffd3f36d8866bf5de938ec0836",
+        "pass": true
+      },
+      {
+        "path": "public/assets/salt-dusk/environment/sunset-quarry-1k.hdr",
+        "bytes": 1580299,
+        "sha256": "84c2d65672c7f49c955c1cf1c9e05253547dd227073f821a47c0546e317be4a0",
+        "pass": true
+      },
+      {
+        "path": "public/assets/salt-dusk/environment/sunset-quarry-2k.jpg",
+        "bytes": 325385,
+        "sha256": "517979260bd25adf55d5c94032001d015eb8fd1906c6b12f3feb3543b745b820",
+        "pass": true
+      }
+    ],
+    "originals": [
+      {
+        "path": "assets/source/salt-dusk/originals/rock_06/rock_06_diff_2k.jpg",
+        "bytes": 3266219,
+        "sha256": "cd0e306ee8fb9ddc11f8d7c4dc709fa09caf91ebdd7941ab79196654f1789481",
+        "pass": true
+      },
+      {
+        "path": "assets/source/salt-dusk/originals/rock_06/rock_06_nor_gl_1k.png",
+        "bytes": 1830490,
+        "sha256": "776565ed4a2efca8f9d7d0f25a37dfc81b3e6d3ae74de6ffd675d627cec26d5e",
+        "pass": true
+      },
+      {
+        "path": "assets/source/salt-dusk/originals/rock_06/rock_06_rough_1k.jpg",
+        "bytes": 216165,
+        "sha256": "7ff234224bb9ad113951279a06890c017215804e49653bd085f8eb511bb7630c",
+        "pass": true
+      },
+      {
+        "path": "assets/source/salt-dusk/originals/dry_ground_01/dry_ground_01_diff_2k.jpg",
+        "bytes": 2541635,
+        "sha256": "b6b601e75ba68d91ea1b09af87e95f186d15d8210e4f14692f9b20d2e21d437b",
+        "pass": true
+      },
+      {
+        "path": "assets/source/salt-dusk/originals/dry_ground_01/dry_ground_01_nor_gl_1k.png",
+        "bytes": 6438800,
+        "sha256": "cb2cf42376abecdc55f06c6cefd35047f72e0a7b383786c469c6e480ffcd1e65",
+        "pass": true
+      },
+      {
+        "path": "assets/source/salt-dusk/originals/dry_ground_01/dry_ground_01_rough_1k.jpg",
+        "bytes": 336234,
+        "sha256": "1e2587819279786a45b3a6b766cd75cd571e7e524b787ebd7e534bc7f9bd143e",
+        "pass": true
+      },
+      {
+        "path": "assets/source/salt-dusk/originals/sunset_in_the_chalk_quarry/sunset_in_the_chalk_quarry_1k.hdr",
+        "bytes": 1580299,
+        "sha256": "84c2d65672c7f49c955c1cf1c9e05253547dd227073f821a47c0546e317be4a0",
+        "pass": true
+      },
+      {
+        "path": "assets/source/salt-dusk/originals/sunset_in_the_chalk_quarry/sunset_in_the_chalk_quarry.jpg",
+        "bytes": 3555791,
+        "sha256": "e700f597dac52d6d49c3b1bc0d4f78d11e928c9e051df1fff2d5de34482777db",
+        "pass": true
+      }
+    ],
+    "stageManifest": [
+      {
+        "path": "output/imagegen/photoreal-direction-2026-09-10/03-salt-flats.png",
+        "bytes": 2356716,
+        "sha256": "10c210ada62219f14a15e8ca0bdfec8e871f1aee008d141da3d0318871a2d1bc",
+        "pass": true
+      },
+      {
+        "path": "assets/source/salt-dusk/HANDOFF.md",
+        "bytes": 7259,
+        "sha256": "7b368052d1839e463b8b39e94fa0b48766925931755ec9a4139e47a99524fbd9",
+        "pass": false
+      },
+      {
+        "path": "assets/source/salt-dusk/analyze_environment.py",
+        "bytes": 2108,
+        "sha256": "be66f48f670637a7479a1263b64ecad9427b27837f71d1ecccc26e16f8b938b6",
+        "pass": true
+      },
+      {
+        "path": "assets/source/salt-dusk/environment-analysis.json",
+        "bytes": 1721,
+        "sha256": "e0c9602f0a2d29bd872806c5fbc7c77915fa1350bac9c80d00e45680a695fc83",
+        "pass": true
+      },
+      {
+        "path": "assets/source/salt-dusk/original-downloads.json",
+        "bytes": 3625,
+        "sha256": "659445a2b28bbcf79c59c37eac8936d8e95a6fb2fba0a06873b3c2b36ce6588d",
+        "pass": true
+      },
+      {
+        "path": "assets/source/salt-dusk/originals/dry_ground_01/dry_ground_01_diff_2k.jpg",
+        "bytes": 2541635,
+        "sha256": "b6b601e75ba68d91ea1b09af87e95f186d15d8210e4f14692f9b20d2e21d437b",
+        "pass": true
+      },
+      {
+        "path": "assets/source/salt-dusk/originals/dry_ground_01/dry_ground_01_nor_gl_1k.png",
+        "bytes": 6438800,
+        "sha256": "cb2cf42376abecdc55f06c6cefd35047f72e0a7b383786c469c6e480ffcd1e65",
+        "pass": true
+      },
+      {
+        "path": "assets/source/salt-dusk/originals/dry_ground_01/dry_ground_01_rough_1k.jpg",
+        "bytes": 336234,
+        "sha256": "1e2587819279786a45b3a6b766cd75cd571e7e524b787ebd7e534bc7f9bd143e",
+        "pass": true
+      },
+      {
+        "path": "assets/source/salt-dusk/originals/rock_06/rock_06_diff_2k.jpg",
+        "bytes": 3266219,
+        "sha256": "cd0e306ee8fb9ddc11f8d7c4dc709fa09caf91ebdd7941ab79196654f1789481",
+        "pass": true
+      },
+      {
+        "path": "assets/source/salt-dusk/originals/rock_06/rock_06_nor_gl_1k.png",
+        "bytes": 1830490,
+        "sha256": "776565ed4a2efca8f9d7d0f25a37dfc81b3e6d3ae74de6ffd675d627cec26d5e",
+        "pass": true
+      },
+      {
+        "path": "assets/source/salt-dusk/originals/rock_06/rock_06_rough_1k.jpg",
+        "bytes": 216165,
+        "sha256": "7ff234224bb9ad113951279a06890c017215804e49653bd085f8eb511bb7630c",
+        "pass": true
+      },
+      {
+        "path": "assets/source/salt-dusk/originals/sunset_in_the_chalk_quarry/sunset_in_the_chalk_quarry.jpg",
+        "bytes": 3555791,
+        "sha256": "e700f597dac52d6d49c3b1bc0d4f78d11e928c9e051df1fff2d5de34482777db",
+        "pass": true
+      },
+      {
+        "path": "assets/source/salt-dusk/originals/sunset_in_the_chalk_quarry/sunset_in_the_chalk_quarry_1k.hdr",
+        "bytes": 1580299,
+        "sha256": "84c2d65672c7f49c955c1cf1c9e05253547dd227073f821a47c0546e317be4a0",
+        "pass": true
+      },
+      {
+        "path": "assets/source/salt-dusk/prepare_web_assets.py",
+        "bytes": 2713,
+        "sha256": "d7c09e2db2dc68351603a99fdc19b0c42703543375987435c55b50e893b21cc2",
+        "pass": true
+      },
+      {
+        "path": "assets/source/salt-dusk/prepared-assets.json",
+        "bytes": 6770,
+        "sha256": "eafbbc22692e9120ba9cb923f45dad877239b25200becfb13ba2d8f30415c022",
+        "pass": true
+      },
+      {
+        "path": "assets/source/salt-dusk/research/CC0-1.0.txt",
+        "bytes": 7048,
+        "sha256": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499",
+        "pass": true
+      },
+      {
+        "path": "assets/source/salt-dusk/research/dry_ground_01-files.json",
+        "bytes": 28334,
+        "sha256": "bd703e3b5c8ebb076becb675c9291f841f4123344af78a5067955c30c8f6a6f8",
+        "pass": true
+      },
+      {
+        "path": "assets/source/salt-dusk/research/dry_ground_01-info.json",
+        "bytes": 929,
+        "sha256": "17264813d02e7fd8f5a33c7e0013c0bbe18db9839784b58837b95793f9c7897c",
+        "pass": true
+      },
+      {
+        "path": "assets/source/salt-dusk/research/dry_ground_01-preview.png",
+        "bytes": 977943,
+        "sha256": "a0280f9c2be0ccfffafb5d4d2a7b39b909d57d0c8bf8ffb9a94eec077338ad60",
+        "pass": true
+      },
+      {
+        "path": "assets/source/salt-dusk/research/hdr-decode.json",
+        "bytes": 206,
+        "sha256": "9908b0b11d657dae05f7c141a2d51b1f5165ab2b80122629571968f305cf008e",
+        "pass": true
+      },
+      {
+        "path": "assets/source/salt-dusk/research/hdr-decoded-rgba-f32.bin",
+        "bytes": 8388608,
+        "sha256": "d883be30a037300e7f82e3104a8e99214fb686d97c6dd16852c086430e441f11",
+        "pass": true
+      },
+      {
+        "path": "assets/source/salt-dusk/research/hdri-catalog.json",
+        "bytes": 1060426,
+        "sha256": "123fc3ed6414c0a4cf1bb6677dbab04487f93839bd16e77c5ca12a8b2bd9870c",
+        "pass": true
+      },
+      {
+        "path": "assets/source/salt-dusk/research/polyhaven-api-tos.md",
+        "bytes": 5137,
+        "sha256": "909a50da34e70cfeb2951fe195002dcc0c57cb342a37b13c869eb2d5dd678abd",
+        "pass": true
+      },
+      {
+        "path": "assets/source/salt-dusk/research/polyhaven-license.html",
+        "bytes": 71975,
+        "sha256": "ce2412d4a6a616c8015d5ea18d79660bab749a7cadb34fef11765e331f6deffa",
+        "pass": true
+      },
+      {
+        "path": "assets/source/salt-dusk/research/rock_06-files.json",
+        "bytes": 28004,
+        "sha256": "2844794f38265147c575e9eccd84bc5da61ba67ff34440432a2f37954a1e5266",
+        "pass": true
+      },
+      {
+        "path": "assets/source/salt-dusk/research/rock_06-info.json",
+        "bytes": 946,
+        "sha256": "6e1c81609965af9eba138c2e4a9e15b62344efed982fb0749f70870f5c36e364",
+        "pass": true
+      },
+      {
+        "path": "assets/source/salt-dusk/research/rock_06-preview.png",
+        "bytes": 1120904,
+        "sha256": "f8c04a2be90051d9da76d6b0a69f0ef8a147617fa613a2fde5c930b17690e14a",
+        "pass": true
+      },
+      {
+        "path": "assets/source/salt-dusk/research/sunset_in_the_chalk_quarry-files.json",
+        "bytes": 1833,
+        "sha256": "7eee9b5d5685ab878fb781d44b9fad03a211db84c78d7bb83551517a8a77608c",
+        "pass": true
+      },
+      {
+        "path": "assets/source/salt-dusk/research/sunset_in_the_chalk_quarry-info.json",
+        "bytes": 1100,
+        "sha256": "1f57d2ea49809bdf3450d9b294af2c21c7b25f2285fd34a100b6e53afbfc7c20",
+        "pass": true
+      },
+      {
+        "path": "assets/source/salt-dusk/research/sunset_in_the_chalk_quarry-preview.png",
+        "bytes": 505929,
+        "sha256": "99e7423b32efee0d6822a4d6b7e584d424b9e0cd5d567a2f230fc8ec807e8ace",
+        "pass": true
+      },
+      {
+        "path": "public/assets/salt-dusk/CC0-1.0.txt",
+        "bytes": 7048,
+        "sha256": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499",
+        "pass": true
+      },
+      {
+        "path": "public/assets/salt-dusk/PROVENANCE.md",
+        "bytes": 1935,
+        "sha256": "7e108a011556141b46730c5524aee9337a0e15fdddf35a315dcc12ce52ccd436",
+        "pass": true
+      },
+      {
+        "path": "public/assets/salt-dusk/environment/sunset-quarry-1k.hdr",
+        "bytes": 1580299,
+        "sha256": "84c2d65672c7f49c955c1cf1c9e05253547dd227073f821a47c0546e317be4a0",
+        "pass": true
+      },
+      {
+        "path": "public/assets/salt-dusk/environment/sunset-quarry-2k.jpg",
+        "bytes": 325385,
+        "sha256": "517979260bd25adf55d5c94032001d015eb8fd1906c6b12f3feb3543b745b820",
+        "pass": true
+      },
+      {
+        "path": "public/assets/salt-dusk/ground/albedo.jpg",
+        "bytes": 1448320,
+        "sha256": "d3c2587419c2b2aec27290449e8fdd6e9beb02095f3e965ff90c34c91fdc1dc8",
+        "pass": true
+      },
+      {
+        "path": "public/assets/salt-dusk/ground/normal-gl.png",
+        "bytes": 1963905,
+        "sha256": "658b77445b81cfbb87662439b91183b11274acaa59958c3ff10ab262daa0c61e",
+        "pass": true
+      },
+      {
+        "path": "public/assets/salt-dusk/ground/roughness.jpg",
+        "bytes": 264390,
+        "sha256": "957dd570acc1e4fb11c029bf4c1d7012c730cbffd3f36d8866bf5de938ec0836",
+        "pass": true
+      },
+      {
+        "path": "public/assets/salt-dusk/rock/albedo.jpg",
+        "bytes": 1855891,
+        "sha256": "6a79aff7f08245d6f8ac3d16d034f73f82a850cd0d6ee8ef3ea9d7010b4f5b12",
+        "pass": true
+      },
+      {
+        "path": "public/assets/salt-dusk/rock/normal-gl.png",
+        "bytes": 1829944,
+        "sha256": "f30f265db900f9e30d4bf129163bc12c96f8a7c40d9bee2ffcfd356c44dfa13c",
+        "pass": true
+      },
+      {
+        "path": "public/assets/salt-dusk/rock/roughness.jpg",
+        "bytes": 167875,
+        "sha256": "340e3e92dd2dca26e377f76022be1532d32d19e97b40a20e569ee8cb2b3a57ed",
+        "pass": true
+      }
+    ]
+  },
+  "audio": {
+    "runtime": [
+      {
+        "path": "public/audio/salt-dusk/engine.ogg",
+        "bytes": 59331,
+        "sha256": "01ae6f4b6f3e44c6f1fbf28696730e5ba60fe94492f4cdcd97529ed8e5bb838b",
+        "pass": true
+      },
+      {
+        "path": "public/audio/salt-dusk/turbine.ogg",
+        "bytes": 63163,
+        "sha256": "4fa50bd8239a22aac33b7c829ed2a72cd1d924afc3bdc5319fa68bbe87457560",
+        "pass": true
+      },
+      {
+        "path": "public/audio/salt-dusk/wind.ogg",
+        "bytes": 214052,
+        "sha256": "6cfa1f975483cd3bd5fd5379193749fd641571b22039cd7e92fde0f73c007e97",
+        "pass": true
+      },
+      {
+        "path": "public/audio/salt-dusk/juggernaut.mp3",
+        "bytes": 1051205,
+        "sha256": "0c263f2004386de5b93be61d6cb2fdc55f79c4dd8e626a02d65cc5cef0d1058d",
+        "pass": true
+      },
+      {
+        "path": "public/audio/salt-dusk/laserLarge_000.ogg",
+        "bytes": 25566,
+        "sha256": "a56d95794cd732d6c2d66ce488c14cf557fe526c282897c9a77675c2bd9b77e6",
+        "pass": true
+      },
+      {
+        "path": "public/audio/salt-dusk/laserLarge_001.ogg",
+        "bytes": 26220,
+        "sha256": "e678aca631495b7dfef4ac625f0349875ccac81a60f538d530e072241af3e4bd",
+        "pass": true
+      },
+      {
+        "path": "public/audio/salt-dusk/laserSmall_002.ogg",
+        "bytes": 8973,
+        "sha256": "e70139466c3e801358c9041ee17db7ff82c0e9a9cdf44647ad0ea6b9f8458f63",
+        "pass": true
+      },
+      {
+        "path": "public/audio/salt-dusk/explosionCrunch_000.ogg",
+        "bytes": 28274,
+        "sha256": "4b597d658d0ae101f0a030fbeea5fc3a4292ab85f017470a8254a8e7959cbd69",
+        "pass": true
+      },
+      {
+        "path": "public/audio/salt-dusk/explosionCrunch_002.ogg",
+        "bytes": 47907,
+        "sha256": "be2b8ddc62e4a24c91e2e77793de98549ce216faf2f323a917e7d6f34321ff97",
+        "pass": true
+      },
+      {
+        "path": "public/audio/salt-dusk/lowFrequency_explosion_000.ogg",
+        "bytes": 14317,
+        "sha256": "3cb48d86dab63140cfb9aaeea4d4a6846abaca5831d157d8adbec0490da26343",
+        "pass": true
+      },
+      {
+        "path": "public/audio/salt-dusk/forceField_000.ogg",
+        "bytes": 25672,
+        "sha256": "c2916f2a062c8ddd1aca2826d134fe90847037db31342726ffb0f9097afe339c",
+        "pass": true
+      },
+      {
+        "path": "public/audio/salt-dusk/forceField_002.ogg",
+        "bytes": 27647,
+        "sha256": "051b0eafc479695af4ca3607d41fd4be41bae7c21f4f9508d004722b09f1bd63",
+        "pass": true
+      },
+      {
+        "path": "public/audio/salt-dusk/thrusterFire_000.ogg",
+        "bytes": 201216,
+        "sha256": "0fdc474d93f209debf1fc4ea77765a669dcb7676db31b4d8a0a509685bccf374",
+        "pass": true
+      },
+      {
+        "path": "public/audio/salt-dusk/thrusterFire_002.ogg",
+        "bytes": 205657,
+        "sha256": "5f7731c30196d73777d62eec7cb36a28bf63852e70244057b7625b888e71a3a8",
+        "pass": true
+      },
+      {
+        "path": "public/audio/salt-dusk/computerNoise_000.ogg",
+        "bytes": 119024,
+        "sha256": "1527944e16eb14b48ee03fe3e7ce6aae94262833a4e1f83928d451a7414fe4e1",
+        "pass": true
+      },
+      {
+        "path": "public/audio/salt-dusk/impactMetal_heavy_000.ogg",
+        "bytes": 6110,
+        "sha256": "e07045693e4a2b3d165c424e3dab4c781d9ff8880a386880ac89a51315d7f831",
+        "pass": true
+      },
+      {
+        "path": "public/audio/salt-dusk/impactMetal_heavy_001.ogg",
+        "bytes": 7279,
+        "sha256": "83554049f81f4db9209379e103c30bfa63f65c42189a03f300b045c2c82e23ae",
+        "pass": true
+      },
+      {
+        "path": "public/audio/salt-dusk/impactMetal_light_000.ogg",
+        "bytes": 7651,
+        "sha256": "33b5e6e37c6e9d54e07bf5a89b12c76e879f40c1ea83cdd82714df1d6f9fec6d",
+        "pass": true
+      },
+      {
+        "path": "public/audio/salt-dusk/impactPlate_medium_000.ogg",
+        "bytes": 10921,
+        "sha256": "b670d30452983369771081319c268475edaaafe782bf4e8d70bd7eef09d8823c",
+        "pass": true
+      },
+      {
+        "path": "public/audio/salt-dusk/impactGeneric_light_000.ogg",
+        "bytes": 5827,
+        "sha256": "f0e982611e97512fee5f777986b67e8b435434b601f94992ec044f7e89fb5acb",
+        "pass": true
+      },
+      {
+        "path": "public/audio/salt-dusk/click_001.ogg",
+        "bytes": 4876,
+        "sha256": "ccfb7fa0cccdd9faec0eb16033c732b1e308d139d80f799161495d58f7adcdb9",
+        "pass": true
+      },
+      {
+        "path": "public/audio/salt-dusk/confirmation_001.ogg",
+        "bytes": 8968,
+        "sha256": "063564703b6094d70718a3e787a55cc9141611e4ecd6b6637f8828f79b4a8c3a",
+        "pass": true
+      },
+      {
+        "path": "public/audio/salt-dusk/confirmation_002.ogg",
+        "bytes": 14169,
+        "sha256": "33b17a9a9a2397c62b285c52c33a907fdffb476909c99e42dde603f6a7a8b12c",
+        "pass": true
+      },
+      {
+        "path": "public/audio/salt-dusk/confirmation_004.ogg",
+        "bytes": 12391,
+        "sha256": "568967a3d9f8a8f6af54ea01729c4882284308f2a27d78c07ffd7ee0d6951661",
+        "pass": true
+      },
+      {
+        "path": "public/audio/salt-dusk/select_001.ogg",
+        "bytes": 5468,
+        "sha256": "aec0c31ea934a35936ae0d2ab8fac8123c93aa5647f935853a58dbaf90278b7a",
+        "pass": true
+      },
+      {
+        "path": "public/audio/salt-dusk/error_005.ogg",
+        "bytes": 7266,
+        "sha256": "3f75b11df5b06d68d2c25fbf0e9c9d9e7dd9250562a4007ee34856b8a309a2ae",
+        "pass": true
+      },
+      {
+        "path": "public/audio/salt-dusk/bong_001.ogg",
+        "bytes": 4848,
+        "sha256": "d21d0f0b782445db579d11e2506b24cd1ac9d664ee33aeaf807761aa7b6fd710",
+        "pass": true
+      }
+    ],
+    "sources": [
+      {
+        "path": "assets/source/audio-salt-dusk/engine-loop.7z",
+        "bytes": 2679125,
+        "sha256": "06b14b760fde613b357d043517f604dfde024318e764dff209a179ea39c566d6",
+        "pass": true
+      },
+      {
+        "path": "assets/source/audio-salt-dusk/fan-motor-hq.mp3",
+        "bytes": 220282,
+        "sha256": "a4d8091a9d5067f18cc665549e94ecabf86524a250346774c13fc2458c5622d1",
+        "pass": true
+      },
+      {
+        "path": "assets/source/audio-salt-dusk/wind-hq.mp3",
+        "bytes": 5430048,
+        "sha256": "7332444720d4a72877431fbe63c5c25aefc5c46b7833cb2ddd414ff33add4883",
+        "pass": true
+      },
+      {
+        "path": "assets/source/audio-salt-dusk/Juggernaut.mp3",
+        "bytes": 8885000,
+        "sha256": "50be286d170f5a08791f1540b110fbbb4c0aa26e841084fceff0c908379e76f6",
+        "pass": true
+      },
+      {
+        "path": "assets/source/audio-salt-dusk/kenney-sci-fi.zip",
+        "bytes": 5875104,
+        "sha256": "119340f351a5098ad814f78719438c0da355a9ce8a4c8a3af6a8d48aa3d49e04",
+        "pass": true
+      },
+      {
+        "path": "assets/source/audio-salt-dusk/kenney-impact.zip",
+        "bytes": 800850,
+        "sha256": "029d734af1582474edf3a694d1b0cebc97c1c152f2f39fa34d4c2bafc5de77f8",
+        "pass": true
+      },
+      {
+        "path": "assets/source/audio-salt-dusk/kenney-interface.zip",
+        "bytes": 834536,
+        "sha256": "f2193d072726d6758a5f7871b2dcc54dcce0d5c35c6f0a62f92549b327c81232",
+        "pass": true
+      }
+    ],
+    "sourcePages": [
+      {
+        "path": "assets/source/audio-salt-dusk/qubodup-engine.html",
+        "bytes": 30926,
+        "sha256": "7591037a8f131279797b7f21b92224503830509a2383174708ff9f74c22423c2",
+        "pass": true
+      },
+      {
+        "path": "assets/source/audio-salt-dusk/fan-motor.html",
+        "bytes": 48089,
+        "sha256": "c5fa5c5b4afa8bf2cbf2529d2f6f8335ba98b006d209be94548fd3c4a4542eee",
+        "pass": true
+      },
+      {
+        "path": "assets/source/audio-salt-dusk/wind.html",
+        "bytes": 45312,
+        "sha256": "10ce865f37e2a6e98e970f926cf765a0a669e70141958dbd6b55d32f15d8b035",
+        "pass": true
+      },
+      {
+        "path": "assets/source/audio-salt-dusk/scott-buckley-juggernaut.html",
+        "bytes": 74484,
+        "sha256": "e7cf73d9f4cc19dd951a33e1578a8992ce238b6c07be3b1926752c1f04d80a05",
+        "pass": true
+      },
+      {
+        "path": "assets/source/audio-salt-dusk/kenney-sci-fi.html",
+        "bytes": 16855,
+        "sha256": "2c353acde85365ddd065f6e4886f7d6a3d9617f8fae04dbc892a6e2cfd932dcb",
+        "pass": true
+      },
+      {
+        "path": "assets/source/audio-salt-dusk/kenney-impact.html",
+        "bytes": 16606,
+        "sha256": "2689be9c7d2d48b1d6c7d9836570391fa6947590eaf260291697053d9f86b354",
+        "pass": true
+      },
+      {
+        "path": "assets/source/audio-salt-dusk/kenney-interface.html",
+        "bytes": 17594,
+        "sha256": "1ad267cb25bbe4e65f913a540a73d94507c133837c9d059e017025093ae9bdcb",
+        "pass": true
+      }
+    ],
+    "byteCopies": [
+      {
+        "source": "assets/source/audio-salt-dusk/kenney-sci-fi/Audio/laserLarge_000.ogg",
+        "runtime": "public/audio/salt-dusk/laserLarge_000.ogg",
+        "pass": true
+      },
+      {
+        "source": "assets/source/audio-salt-dusk/kenney-sci-fi/Audio/laserLarge_001.ogg",
+        "runtime": "public/audio/salt-dusk/laserLarge_001.ogg",
+        "pass": true
+      },
+      {
+        "source": "assets/source/audio-salt-dusk/kenney-sci-fi/Audio/laserSmall_002.ogg",
+        "runtime": "public/audio/salt-dusk/laserSmall_002.ogg",
+        "pass": true
+      },
+      {
+        "source": "assets/source/audio-salt-dusk/kenney-sci-fi/Audio/explosionCrunch_000.ogg",
+        "runtime": "public/audio/salt-dusk/explosionCrunch_000.ogg",
+        "pass": true
+      },
+      {
+        "source": "assets/source/audio-salt-dusk/kenney-sci-fi/Audio/explosionCrunch_002.ogg",
+        "runtime": "public/audio/salt-dusk/explosionCrunch_002.ogg",
+        "pass": true
+      },
+      {
+        "source": "assets/source/audio-salt-dusk/kenney-sci-fi/Audio/lowFrequency_explosion_000.ogg",
+        "runtime": "public/audio/salt-dusk/lowFrequency_explosion_000.ogg",
+        "pass": true
+      },
+      {
+        "source": "assets/source/audio-salt-dusk/kenney-sci-fi/Audio/forceField_000.ogg",
+        "runtime": "public/audio/salt-dusk/forceField_000.ogg",
+        "pass": true
+      },
+      {
+        "source": "assets/source/audio-salt-dusk/kenney-sci-fi/Audio/forceField_002.ogg",
+        "runtime": "public/audio/salt-dusk/forceField_002.ogg",
+        "pass": true
+      },
+      {
+        "source": "assets/source/audio-salt-dusk/kenney-sci-fi/Audio/thrusterFire_000.ogg",
+        "runtime": "public/audio/salt-dusk/thrusterFire_000.ogg",
+        "pass": true
+      },
+      {
+        "source": "assets/source/audio-salt-dusk/kenney-sci-fi/Audio/thrusterFire_002.ogg",
+        "runtime": "public/audio/salt-dusk/thrusterFire_002.ogg",
+        "pass": true
+      },
+      {
+        "source": "assets/source/audio-salt-dusk/kenney-sci-fi/Audio/computerNoise_000.ogg",
+        "runtime": "public/audio/salt-dusk/computerNoise_000.ogg",
+        "pass": true
+      },
+      {
+        "source": "assets/source/audio-salt-dusk/kenney-impact/Audio/impactMetal_heavy_000.ogg",
+        "runtime": "public/audio/salt-dusk/impactMetal_heavy_000.ogg",
+        "pass": true
+      },
+      {
+        "source": "assets/source/audio-salt-dusk/kenney-impact/Audio/impactMetal_heavy_001.ogg",
+        "runtime": "public/audio/salt-dusk/impactMetal_heavy_001.ogg",
+        "pass": true
+      },
+      {
+        "source": "assets/source/audio-salt-dusk/kenney-impact/Audio/impactMetal_light_000.ogg",
+        "runtime": "public/audio/salt-dusk/impactMetal_light_000.ogg",
+        "pass": true
+      },
+      {
+        "source": "assets/source/audio-salt-dusk/kenney-impact/Audio/impactPlate_medium_000.ogg",
+        "runtime": "public/audio/salt-dusk/impactPlate_medium_000.ogg",
+        "pass": true
+      },
+      {
+        "source": "assets/source/audio-salt-dusk/kenney-impact/Audio/impactGeneric_light_000.ogg",
+        "runtime": "public/audio/salt-dusk/impactGeneric_light_000.ogg",
+        "pass": true
+      },
+      {
+        "source": "assets/source/audio-salt-dusk/kenney-interface/Audio/click_001.ogg",
+        "runtime": "public/audio/salt-dusk/click_001.ogg",
+        "pass": true
+      },
+      {
+        "source": "assets/source/audio-salt-dusk/kenney-interface/Audio/confirmation_001.ogg",
+        "runtime": "public/audio/salt-dusk/confirmation_001.ogg",
+        "pass": true
+      },
+      {
+        "source": "assets/source/audio-salt-dusk/kenney-interface/Audio/confirmation_002.ogg",
+        "runtime": "public/audio/salt-dusk/confirmation_002.ogg",
+        "pass": true
+      },
+      {
+        "source": "assets/source/audio-salt-dusk/kenney-interface/Audio/confirmation_004.ogg",
+        "runtime": "public/audio/salt-dusk/confirmation_004.ogg",
+        "pass": true
+      },
+      {
+        "source": "assets/source/audio-salt-dusk/kenney-interface/Audio/select_001.ogg",
+        "runtime": "public/audio/salt-dusk/select_001.ogg",
+        "pass": true
+      },
+      {
+        "source": "assets/source/audio-salt-dusk/kenney-interface/Audio/error_005.ogg",
+        "runtime": "public/audio/salt-dusk/error_005.ogg",
+        "pass": true
+      },
+      {
+        "source": "assets/source/audio-salt-dusk/kenney-interface/Audio/bong_001.ogg",
+        "runtime": "public/audio/salt-dusk/bong_001.ogg",
+        "pass": true
+      }
+    ],
+    "preservedUserIntro": {
+      "path": "public/audio/podracing-selection-intro.webm",
+      "bytes": 98581,
+      "sha256": "39c4d411570a2591be5cbf7fc27d86a63c36d3befa5de8d57c0d2018e1c89260",
+      "pass": true
+    },
+    "catalogue": {
+      "declaredCount": 27,
+      "allExist": true,
+      "allInLedger": true,
+      "ledgerOnly": []
+    },
+    "activeAudioModules": [
+      "src/audio/model.ts",
+      "src/audio/menuMusic.ts",
+      "src/audio/catalogue.ts",
+      "src/audio/PodracerAudio.ts"
+    ],
+    "prohibitedGenerationMatches": [],
+    "sourceOnlyRuntimeReferences": [
+      {
+        "pattern": "assets/source/",
+        "matches": 0
+      },
+      {
+        "pattern": "renderOriginalMenuScore",
+        "matches": 0
+      },
+      {
+        "pattern": "createNoiseBuffer",
+        "matches": 0
+      },
+      {
+        "pattern": "/audio/synth",
+        "matches": 0
+      },
+      {
+        "pattern": "/audio/generated",
+        "matches": 0
+      }
+    ],
+    "creditFile": {
+      "path": "public/audio/salt-dusk/CREDITS.html",
+      "bytes": 2793,
+      "sha256": "1b778c2947c9001427118b91f8219e82ab943bd4da73c20390f027d841f283c7"
+    },
+    "sourceLicenses": [
+      {
+        "id": "qubodup-engine",
+        "author": "qubodup",
+        "license": "CC-BY-3.0",
+        "page": "https://opengameart.org/content/car-engine-loop-96khz-4s"
+      },
+      {
+        "id": "fan-motor",
+        "author": "Rvgerxini",
+        "license": "CC0-1.0",
+        "page": "https://freesound.org/people/Rvgerxini/sounds/518037/"
+      },
+      {
+        "id": "wind",
+        "author": "audible-edge",
+        "license": "CC0-1.0",
+        "page": "https://freesound.org/people/audible-edge/sounds/69512/"
+      },
+      {
+        "id": "juggernaut",
+        "author": "Scott Buckley",
+        "license": "CC-BY-4.0",
+        "page": "https://www.scottbuckley.com.au/library/juggernaut/"
+      },
+      {
+        "id": "kenney-sci-fi",
+        "author": "Kenney",
+        "license": "CC0-1.0",
+        "page": "https://kenney.nl/assets/sci-fi-sounds"
+      },
+      {
+        "id": "kenney-impact",
+        "author": "Kenney",
+        "license": "CC0-1.0",
+        "page": "https://kenney.nl/assets/impact-sounds"
+      },
+      {
+        "id": "kenney-interface",
+        "author": "Kenney",
+        "license": "CC0-1.0",
+        "page": "https://kenney.nl/assets/interface-sounds"
+      }
+    ]
+  },
+  "publicDistCopies": [
+    {
+      "path": "public/assets/salt-dusk/CC0-1.0.txt",
+      "distExists": true,
+      "pass": true
+    },
+    {
+      "path": "public/assets/salt-dusk/PROVENANCE.md",
+      "distExists": true,
+      "pass": true
+    },
+    {
+      "path": "public/assets/salt-dusk/ground/albedo.jpg",
+      "distExists": true,
+      "pass": true
+    },
+    {
+      "path": "public/assets/salt-dusk/ground/roughness.jpg",
+      "distExists": true,
+      "pass": true
+    },
+    {
+      "path": "public/assets/salt-dusk/ground/normal-gl.png",
+      "distExists": true,
+      "pass": true
+    },
+    {
+      "path": "public/assets/salt-dusk/rock/albedo.jpg",
+      "distExists": true,
+      "pass": true
+    },
+    {
+      "path": "public/assets/salt-dusk/rock/roughness.jpg",
+      "distExists": true,
+      "pass": true
+    },
+    {
+      "path": "public/assets/salt-dusk/rock/normal-gl.png",
+      "distExists": true,
+      "pass": true
+    },
+    {
+      "path": "public/assets/salt-dusk/environment/sunset-quarry-2k.jpg",
+      "distExists": true,
+      "pass": true
+    },
+    {
+      "path": "public/assets/salt-dusk/environment/sunset-quarry-1k.hdr",
+      "distExists": true,
+      "pass": true
+    },
+    {
+      "path": "public/audio/salt-dusk/wind.ogg",
+      "distExists": true,
+      "pass": true
+    },
+    {
+      "path": "public/audio/salt-dusk/explosionCrunch_002.ogg",
+      "distExists": true,
+      "pass": true
+    },
+    {
+      "path": "public/audio/salt-dusk/select_001.ogg",
+      "distExists": true,
+      "pass": true
+    },
+    {
+      "path": "public/audio/salt-dusk/bong_001.ogg",
+      "distExists": true,
+      "pass": true
+    },
+    {
+      "path": "public/audio/salt-dusk/explosionCrunch_000.ogg",
+      "distExists": true,
+      "pass": true
+    },
+    {
+      "path": "public/audio/salt-dusk/impactMetal_heavy_000.ogg",
+      "distExists": true,
+      "pass": true
+    },
+    {
+      "path": "public/audio/salt-dusk/laserLarge_001.ogg",
+      "distExists": true,
+      "pass": true
+    },
+    {
+      "path": "public/audio/salt-dusk/confirmation_001.ogg",
+      "distExists": true,
+      "pass": true
+    },
+    {
+      "path": "public/audio/salt-dusk/juggernaut.mp3",
+      "distExists": true,
+      "pass": true
+    },
+    {
+      "path": "public/audio/salt-dusk/laserLarge_000.ogg",
+      "distExists": true,
+      "pass": true
+    },
+    {
+      "path": "public/audio/salt-dusk/impactMetal_heavy_001.ogg",
+      "distExists": true,
+      "pass": true
+    },
+    {
+      "path": "public/audio/salt-dusk/confirmation_002.ogg",
+      "distExists": true,
+      "pass": true
+    },
+    {
+      "path": "public/audio/salt-dusk/thrusterFire_002.ogg",
+      "distExists": true,
+      "pass": true
+    },
+    {
+      "path": "public/audio/salt-dusk/thrusterFire_000.ogg",
+      "distExists": true,
+      "pass": true
+    },
+    {
+      "path": "public/audio/salt-dusk/confirmation_004.ogg",
+      "distExists": true,
+      "pass": true
+    },
+    {
+      "path": "public/audio/salt-dusk/engine.ogg",
+      "distExists": true,
+      "pass": true
+    },
+    {
+      "path": "public/audio/salt-dusk/impactGeneric_light_000.ogg",
+      "distExists": true,
+      "pass": true
+    },
+    {
+      "path": "public/audio/salt-dusk/computerNoise_000.ogg",
+      "distExists": true,
+      "pass": true
+    },
+    {
+      "path": "public/audio/salt-dusk/turbine.ogg",
+      "distExists": true,
+      "pass": true
+    },
+    {
+      "path": "public/audio/salt-dusk/impactPlate_medium_000.ogg",
+      "distExists": true,
+      "pass": true
+    },
+    {
+      "path": "public/audio/salt-dusk/impactMetal_light_000.ogg",
+      "distExists": true,
+      "pass": true
+    },
+    {
+      "path": "public/audio/salt-dusk/laserSmall_002.ogg",
+      "distExists": true,
+      "pass": true
+    },
+    {
+      "path": "public/audio/salt-dusk/error_005.ogg",
+      "distExists": true,
+      "pass": true
+    },
+    {
+      "path": "public/audio/salt-dusk/CREDITS.html",
+      "distExists": true,
+      "pass": true
+    },
+    {
+      "path": "public/audio/salt-dusk/lowFrequency_explosion_000.ogg",
+      "distExists": true,
+      "pass": true
+    },
+    {
+      "path": "public/audio/salt-dusk/forceField_000.ogg",
+      "distExists": true,
+      "pass": true
+    },
+    {
+      "path": "public/audio/salt-dusk/forceField_002.ogg",
+      "distExists": true,
+      "pass": true
+    },
+    {
+      "path": "public/audio/salt-dusk/click_001.ogg",
+      "distExists": true,
+      "pass": true
+    }
+  ],
+  "secretScan": {
+    "filesScanned": 35,
+    "categories": [
+      "private_key",
+      "github_pat",
+      "aws_access_key",
+      "openai_key",
+      "slack_token"
+    ],
+    "hits": [],
+    "limit": "High-confidence token patterns in new source-directory text; not a full repository/history credential scan."
+  },
+  "newSourceInventory": [
+    {
+      "path": "assets/source/salt-dusk",
+      "files": 30,
+      "bytes": 31996988
+    },
+    {
+      "path": "assets/source/audio-salt-dusk",
+      "files": 336,
+      "bytes": 36136917
+    }
+  ],
+  "largeFiles": [
+    {
+      "path": "assets/source/audio-salt-dusk/Juggernaut.mp3",
+      "bytes": 8885000
+    },
+    {
+      "path": "assets/source/salt-dusk/research/hdr-decoded-rgba-f32.bin",
+      "bytes": 8388608
+    },
+    {
+      "path": "assets/source/salt-dusk/originals/dry_ground_01/dry_ground_01_nor_gl_1k.png",
+      "bytes": 6438800
+    },
+    {
+      "path": "assets/source/audio-salt-dusk/kenney-sci-fi.zip",
+      "bytes": 5875104
+    },
+    {
+      "path": "assets/source/audio-salt-dusk/wind-hq.mp3",
+      "bytes": 5430048
+    },
+    {
+      "path": "assets/source/salt-dusk/originals/sunset_in_the_chalk_quarry/sunset_in_the_chalk_quarry.jpg",
+      "bytes": 3555791
+    },
+    {
+      "path": "assets/source/salt-dusk/originals/rock_06/rock_06_diff_2k.jpg",
+      "bytes": 3266219
+    },
+    {
+      "path": "assets/source/audio-salt-dusk/engine-loop.7z",
+      "bytes": 2679125
+    },
+    {
+      "path": "assets/source/salt-dusk/originals/dry_ground_01/dry_ground_01_diff_2k.jpg",
+      "bytes": 2541635
+    },
+    {
+      "path": "assets/source/audio-salt-dusk/qubodup-engine/engine-loop/engine-loop-1.wav",
+      "bytes": 2304164
+    },
+    {
+      "path": "assets/source/salt-dusk/originals/rock_06/rock_06_nor_gl_1k.png",
+      "bytes": 1830490
+    },
+    {
+      "path": "assets/source/salt-dusk/originals/sunset_in_the_chalk_quarry/sunset_in_the_chalk_quarry_1k.hdr",
+      "bytes": 1580299
+    },
+    {
+      "path": "assets/source/salt-dusk/research/rock_06-preview.png",
+      "bytes": 1120904
+    },
+    {
+      "path": "assets/source/salt-dusk/research/hdri-catalog.json",
+      "bytes": 1060426
+    },
+    {
+      "path": "assets/source/salt-dusk/research/dry_ground_01-preview.png",
+      "bytes": 977943
+    },
+    {
+      "path": "assets/source/audio-salt-dusk/kenney-interface.zip",
+      "bytes": 834536
+    },
+    {
+      "path": "assets/source/audio-salt-dusk/kenney-impact.zip",
+      "bytes": 800850
+    }
+  ],
+  "publicationFindings": [
+    {
+      "severity": "publication-blocker-if-staged",
+      "scope": "Public Git repository, not current dist runtime",
+      "finding": "Poly Haven website example renders are not covered by its CC0 asset grant; keep downloaded research previews out of public staging. Whole-page research caches likewise are evidence, not licensed runtime assets.",
+      "files": [
+        {
+          "path": "assets/source/salt-dusk/research/rock_06-preview.png",
+          "bytes": 1120904,
+          "sha256": "f8c04a2be90051d9da76d6b0a69f0ef8a147617fa613a2fde5c930b17690e14a"
+        },
+        {
+          "path": "assets/source/salt-dusk/research/dry_ground_01-preview.png",
+          "bytes": 977943,
+          "sha256": "a0280f9c2be0ccfffafb5d4d2a7b39b909d57d0c8bf8ffb9a94eec077338ad60"
+        },
+        {
+          "path": "assets/source/salt-dusk/research/sunset_in_the_chalk_quarry-preview.png",
+          "bytes": 505929,
+          "sha256": "99e7423b32efee0d6822a4d6b7e584d424b9e0cd5d567a2f230fc8ec807e8ace"
+        }
+      ],
+      "licenseSource": "https://polyhaven.com/license",
+      "localTerms": "4. Intellectual Property 4.1. All content on this website, excluding the CC0 assets themselves, is protected by intellectual property laws. You may not reproduce, distribute, or otherwise use this content without prior written permission from the website or intellectual property owner. 4.2. Examples of such content includes but is not limited to: Logos User avatar images Asset example renders User submitted renders Text and copy 5. Public API The use of the public API hosted at api.polyhaven.com is governed by separate API Terms . By using the public API, you agree to abide by the API Terms in addition to these Terms of Service. 6. Privacy Your use of this website is also governed by our Privacy Policy . By using this website, you consent to the collection, use, and disclosure of your information as described in the Privacy Policy. 7. Termination We reserve the right to terminate or suspend your access to the website at our discretion, without notice, for any breach of these ToS or for",
+      "resolution": "RESOLVED: root ignored and kept untracked all preview PNGs and whole-page HTML caches before publication."
+    },
+    {
+      "severity": "packaging",
+      "finding": "Keep reproducible decoded HDR scratch and full unrelated HDR catalogue private; no runtime need. Retain exact original source assets/receipts separately.",
+      "files": [
+        "assets/source/salt-dusk/research/hdr-decoded-rgba-f32.bin",
+        "assets/source/salt-dusk/research/hdri-catalog.json"
+      ],
+      "resolution": "HDR scratch ignored by root. Full HDR catalogue remains a nonblocking ~1 MB research metadata cache."
+    },
+    {
+      "severity": "packaging",
+      "finding": "Audio archive plus hundreds of unselected extracted CC0 sounds are redundant release-repository weight; preserve privately or explicitly select source originals. No runtime licensing violation found in 27 admitted files."
+    },
+    {
+      "severity": "existing-rights-boundary",
+      "finding": "User-provided film quote intro remains byte-identical and is explicitly excluded from CC source licenses; audit does not grant film rights. No new ripped audio admitted."
+    }
+  ],
+  "researchFiles": [
+    {
+      "path": "assets/source/salt-dusk/research/dry_ground_01-info.json",
+      "bytes": 929
+    },
+    {
+      "path": "assets/source/salt-dusk/research/sunset_in_the_chalk_quarry-info.json",
+      "bytes": 1100
+    },
+    {
+      "path": "assets/source/salt-dusk/research/polyhaven-license.html",
+      "bytes": 71975
+    },
+    {
+      "path": "assets/source/salt-dusk/research/rock_06-preview.png",
+      "bytes": 1120904
+    },
+    {
+      "path": "assets/source/salt-dusk/research/rock_06-files.json",
+      "bytes": 28004
+    },
+    {
+      "path": "assets/source/salt-dusk/research/CC0-1.0.txt",
+      "bytes": 7048
+    },
+    {
+      "path": "assets/source/salt-dusk/research/dry_ground_01-preview.png",
+      "bytes": 977943
+    },
+    {
+      "path": "assets/source/salt-dusk/research/polyhaven-api-tos.md",
+      "bytes": 5137
+    },
+    {
+      "path": "assets/source/salt-dusk/research/hdr-decoded-rgba-f32.bin",
+      "bytes": 8388608
+    },
+    {
+      "path": "assets/source/salt-dusk/research/sunset_in_the_chalk_quarry-files.json",
+      "bytes": 1833
+    },
+    {
+      "path": "assets/source/salt-dusk/research/sunset_in_the_chalk_quarry-preview.png",
+      "bytes": 505929
+    },
+    {
+      "path": "assets/source/salt-dusk/research/dry_ground_01-files.json",
+      "bytes": 28334
+    },
+    {
+      "path": "assets/source/salt-dusk/research/hdri-catalog.json",
+      "bytes": 1060426
+    },
+    {
+      "path": "assets/source/salt-dusk/research/rock_06-info.json",
+      "bytes": 946
+    },
+    {
+      "path": "assets/source/salt-dusk/research/hdr-decode.json",
+      "bytes": 206
+    },
+    {
+      "path": "assets/source/audio-salt-dusk/wind.html",
+      "bytes": 45312
+    },
+    {
+      "path": "assets/source/audio-salt-dusk/kenney-interface.html",
+      "bytes": 17594
+    },
+    {
+      "path": "assets/source/audio-salt-dusk/scott-buckley-juggernaut.html",
+      "bytes": 74484
+    },
+    {
+      "path": "assets/source/audio-salt-dusk/fan-motor.html",
+      "bytes": 48089
+    },
+    {
+      "path": "assets/source/audio-salt-dusk/jet-start.html",
+      "bytes": 48590
+    },
+    {
+      "path": "assets/source/audio-salt-dusk/qubodup-engine.html",
+      "bytes": 30926
+    },
+    {
+      "path": "assets/source/audio-salt-dusk/kenney-sci-fi.html",
+      "bytes": 16855
+    },
+    {
+      "path": "assets/source/audio-salt-dusk/kenney-impact.html",
+      "bytes": 16606
+    }
+  ],
+  "publicationResolution": {
+    "observedAt": "2026-09-10T07:50:55.286256+00:00",
+    "rootAddedIgnoreRules": [
+      {
+        "path": "assets/source/salt-dusk/research/rock_06-preview.png",
+        "ignored": true,
+        "tracked": false
+      },
+      {
+        "path": "assets/source/salt-dusk/research/dry_ground_01-preview.png",
+        "ignored": true,
+        "tracked": false
+      },
+      {
+        "path": "assets/source/salt-dusk/research/sunset_in_the_chalk_quarry-preview.png",
+        "ignored": true,
+        "tracked": false
+      },
+      {
+        "path": "assets/source/salt-dusk/research/hdr-decoded-rgba-f32.bin",
+        "ignored": true,
+        "tracked": false
+      },
+      {
+        "path": "assets/source/salt-dusk/research/polyhaven-license.html",
+        "ignored": true,
+        "tracked": false
+      },
+      {
+        "path": "assets/source/audio-salt-dusk/wind.html",
+        "ignored": true,
+        "tracked": false
+      },
+      {
+        "path": "assets/source/audio-salt-dusk/kenney-interface.html",
+        "ignored": true,
+        "tracked": false
+      },
+      {
+        "path": "assets/source/audio-salt-dusk/scott-buckley-juggernaut.html",
+        "ignored": true,
+        "tracked": false
+      },
+      {
+        "path": "assets/source/audio-salt-dusk/fan-motor.html",
+        "ignored": true,
+        "tracked": false
+      },
+      {
+        "path": "assets/source/audio-salt-dusk/jet-start.html",
+        "ignored": true,
+        "tracked": false
+      },
+      {
+        "path": "assets/source/audio-salt-dusk/qubodup-engine.html",
+        "ignored": true,
+        "tracked": false
+      },
+      {
+        "path": "assets/source/audio-salt-dusk/kenney-sci-fi.html",
+        "ignored": true,
+        "tracked": false
+      },
+      {
+        "path": "assets/source/audio-salt-dusk/kenney-impact.html",
+        "ignored": true,
+        "tracked": false
+      }
+    ],
+    "allFlaggedIgnoredAndUntracked": true,
+    "status": "Initial preview/cache publication concern resolved by root ignore rules; no audit source writes."
+  },
+  "metadataFindings": [
+    {
+      "path": "assets/source/salt-dusk/MANIFEST.json",
+      "status": "historical-manifest-stale-document-only",
+      "finding": "39/40 entries match current files. Root appended publication boundary to HANDOFF.md; the 8 original and 8 runtime asset records remain exact. Preserve stage history and add a release inventory or label historical."
+    }
+  ],
+  "sourceOnlyAudio": {
+    "paths": [
+      "assets/source/audio-salt-dusk/withdrawn-synthesis/menuMusic.test.ts",
+      "assets/source/audio-salt-dusk/withdrawn-synthesis/menuMusic.ts",
+      "assets/source/audio-salt-dusk/withdrawn-synthesis/PodracerAudioCallout.test.ts",
+      "assets/source/audio-salt-dusk/withdrawn-synthesis/PodracerAudio.ts"
+    ],
+    "activeMapMatches": [],
+    "note": "Withdrawn synthesis source retained as history outside src/public; none of these paths or synthesis implementation functions are in the active source map. No generated audio added by this audit."
+  },
+  "conclusion": "Runtime bundle/source bindings and new asset licensing/provenance checks pass. Initial public research preview/cache concern resolved by root ignores. One historical documentation hash drift, no asset drift; no high-confidence secret detected in bounded new-directory text scan. No audio audition, gameplay, performance or comprehensive rights/history acceptance claimed."
+}

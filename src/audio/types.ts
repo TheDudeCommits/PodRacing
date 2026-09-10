@@ -124,8 +124,6 @@ export interface PodracerAudioOptions {
   createContext?: () => AudioContext;
   /** Injectable for deterministic tests; defaults to same-origin `fetch`. */
   fetchAudio?: (url: string) => Promise<ArrayBuffer>;
-  /** Injectable to keep lifecycle tests independent of procedural render time. */
-  renderMenuScore?: (context: BaseAudioContext) => Promise<AudioBuffer>;
   /** Clamped to the authored 3–5 second anti-spam range. */
   overtakeCalloutCooldownSeconds?: number;
 }

@@ -1,0 +1,56 @@
+{
+  "source": "sunset_in_the_chalk_quarry_1k.hdr",
+  "source_sha256": "84c2d65672c7f49c955c1cf1c9e05253547dd227073f821a47c0546e317be4a0",
+  "dimensions": [
+    1024,
+    512
+  ],
+  "coordinate_convention": "Image pixels top-left; Three equirectUv atan(z,x)/(2*pi)+0.5, asin(y)/pi+0.5 with image upload flipY=true",
+  "peak_pixel": [
+    614,
+    248
+  ],
+  "peak_image_uv": [
+    0.60009765625,
+    0.4853515625
+  ],
+  "peak_shader_uv": [
+    0.60009765625,
+    0.5146484375
+  ],
+  "sun_toward_source_normalized": [
+    0.8078000517792373,
+    0.04600318213091462,
+    0.5876587305394955
+  ],
+  "incoming_light_ray_normalized": [
+    -0.8078000517792373,
+    -0.04600318213091462,
+    -0.5876587305394955
+  ],
+  "azimuth_degrees_atan_z_x": 36.03515625,
+  "elevation_degrees": 2.63671875,
+  "environment_yaw_radians": 0,
+  "quarter_peak_cluster": {
+    "count": 3,
+    "weighted_image_uv": [
+      0.5998654032400527,
+      0.48493215646297594
+    ]
+  },
+  "linear_luminance": {
+    "max": 3312.2794899688715,
+    "unweighted_mean": 0.40930780499691066,
+    "sky_percentiles_50_95_99": [
+      0.5574157063186168,
+      0.9469748309934126,
+      2.0542815191316617
+    ]
+  },
+  "starting_exposure": {
+    "hdr_with_aces": 1.0,
+    "ldr_background": "Already tonemapped sRGB: sample to linear once and bypass second filmic tonemap or compensate separately. Keep exposure1 for the provider LDR.",
+    "status": "Integration starting values, not rendered acceptance."
+  },
+  "rotation_contract": "If sampling u += yaw/(2*pi), sun world azimuth becomes native azimuth minus yaw. Rotate direct-light direction by the same inverse lookup yaw. For a rotated sphere instead, rotate the sun vector by the sphere world rotation."
+}

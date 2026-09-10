@@ -517,6 +517,7 @@ export class RaceHud {
               <label>Effects <output data-setting-output="audio.effects">100%</output><input type="range" min="0" max="1" step="0.05" data-setting="audio.effects"></label>
               <label>Voice <output data-setting-output="audio.voice">100%</output><input type="range" min="0" max="1" step="0.05" data-setting="audio.voice"></label>
             </div>
+            <a class="pod-hud__audio-credits" href="/audio/salt-dusk/CREDITS.html" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;min-height:44px;padding:0 10px;color:#bad3e3">Audio credits ↗</a>
           </div>
         </section>
       </aside>
@@ -820,7 +821,9 @@ export class RaceHud {
   }
 
   setPaused(paused: boolean): void {
-    setVisible(this.pause, paused);
+    const settingsOpen = this.settingsPanel.classList.contains('is-visible');
+    setVisible(this.pause, paused || settingsOpen);
+    this.pause.setAttribute('aria-label', settingsOpen ? 'Game settings' : 'Race paused');
     this.root.classList.toggle('is-paused', paused);
   }
 
@@ -1485,6 +1488,8 @@ export class RaceHud {
     const open = settings?.open === true;
     setVisible(this.settingsPanel, open);
     this.pause.classList.toggle('has-settings', open);
+    setVisible(this.pause, open || this.root.classList.contains('is-paused'));
+    this.pause.setAttribute('aria-label', open ? 'Game settings' : 'Race paused');
     requireElement<HTMLElement>(this.vehicleSelection, '.pod-hud__vehicle-select-frame').inert = open || this.eventAtlasOpen;
     const settingsToggle = this.pause.querySelector<HTMLButtonElement>('.pod-hud__pause-home [data-action="toggle-settings"]');
     settingsToggle?.setAttribute('aria-expanded', String(open));

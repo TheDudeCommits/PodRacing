@@ -2,13 +2,13 @@
 
 ## Product contract
 
-“Now This Is PodRacing” is a one-to-three-lap, eight-racer arcade game whose frame must
-read as graphic anime art before it reads as WebGL. The primary verbs are
+“Now This Is PodRacing” is a one-to-three-lap, eight-racer arcade game moving toward the approved
+Salt Flats at Dusk photographic art direction. The primary verbs are
 accelerate, carve, drift, release a charged boost, manage heat/damage, and land
 an unstable repulsorlift craft across an endless procedural desert.
 
 The Inkstorm renderer combines authored GLB vehicles and scenery with procedural
-terrain, pooled effects, shader materials and synthesized audio. Runtime models,
+terrain, pooled effects, shader materials and licensed recorded/catalogue audio. Runtime models,
 textures and local audio are served from `public/`. Downloaded originals, Blender
 builders, exports and attribution records live under `assets/source/`; large
 source binaries use Git LFS. See `docs/inkstorm-overhaul/VEHICLE_CATALOG.md` for
@@ -24,13 +24,14 @@ src/
   network/       room-code signaling, peer transport and host snapshots
   render/        Three.js view adapters only
     terrain/     analytic CPU height + matching shader displacement, dust
-    materials/   ramp lighting, outline, sky, post shaders
+    materials/   legacy material ownership and shared shader utilities
+    saltDusk/    shared photographic assets, physical lighting, vehicle shading
     objects/     racer, course, rock and atmosphere views
     pilots/      procedural pilot rigs and animation
-    post/        depth/normal Sobel and graphic color finishing
+    post/        retained legacy graph, disabled in Salt Dusk
   camera/        chase/orbit/result cameras and impulse shake
-  audio/         gameplay synthesis + selection-sting/score lifecycle
-  ui/            race instruments, overlays and procedural card portraits
+  audio/         recorded engine/effect bank, licensed music and original voice
+  ui/            restrained dusk instruments, overlays and real 3D inspection
   diagnostics/   perf governor and deterministic review hooks
 ```
 
@@ -128,12 +129,19 @@ host keyboard -----------------> 120 Hz RaceSimulation
 ## Frame graph
 
 1. update fixed simulation accumulator (bounded to avoid spiral-of-death)
-2. terrain depth/normal prepass for edge and ground-proximity effects
-3. opaque cel scene (3–4 diffuse bands, hard specular, Fresnel rim)
-4. inverted hulls for priority silhouettes
-5. transparent wakes, crest dust, sand spray and graphic flares
-6. Sobel composite using prepass depth/normal, with exterior suppression
-7. DOM HUD update at a throttled 30 Hz
+2. render bounded local vehicle shadows and revision-baked scenery shadows
+3. render physical vehicle, road, terrain and scenery shading under one low sun
+4. render the photographic cloud environment with a masked quarry horizon
+5. composite pooled transparent wakes, dust, spray and existing combat effects
+6. update DOM HUD at a throttled 30 Hz
+
+Salt Dusk disables the cel post graph and inverted-hull outline installation.
+The terrain height/displacement and simulation remain unchanged. Shared texture
+leases own the rock/ground PBR maps and HDR panorama; the last owner disposes them,
+and late completion cannot republish an abandoned upload generation. Inspector
+captures wait for that asset lease before caching. Metallic/roughness glTF maps
+retain their channels, UV sets and transforms. Environment reflections use a cheap
+mip-filtered panorama approximation, not convolved IBL, ray tracing or dynamic GI.
 
 The setup uses four short race-type tabs, one selected pod preview, optional
 lap/difficulty controls and Race. Battle is the default eight-racer armed event;
@@ -144,12 +152,16 @@ keyboard inspection renders the actual mesh from the chosen angle. There is no
 continuous idle portrait loop. Native focused buttons/inspection own menu keys,
 and committing the grid releases focus back to driving. Menu audio attempts immediate
 playback, falls back to the first browser-approved gesture when autoplay is
-blocked, crossfades from the supplied sting into the synthesized score, then
-ducks without restarting when the countdown begins.
+blocked, preserves the supplied sting and plays the licensed Scott Buckley music excerpt.
+Recorded loops and existing catalogue effects respond to telemetry and events.
+The active audio graph creates no oscillators, noise buffers or generated score.
+Garage transitions silence vehicle loops; hidden tabs silence the master graph
+without overwriting the player’s mute/music choices. Credits are accessible in
+audio settings and at `/audio/salt-dusk/CREDITS.html`.
 
-The adaptive performance governor scales DPR, MRT prepass resolution, terrain
-ring count, dust density, and distant-racer detail. The cel post graph remains
-enabled so the visual language does not disappear under load.
+The adaptive performance governor scales DPR, terrain ring count, dust density
+and distant-racer detail. Its retained prepass controls have no active cel graph
+to resize in this direction. FPS acceptance must record actual adaptive resolution.
 
 ## Galactic combat expansion
 
@@ -165,7 +177,7 @@ fixed-step race simulation
   ├─ deterministic traps and terrain hazards
   └─ wreck, recovery and takedown events
         ↓
-render effects + HUD + camera + synthesized audio
+render effects + HUD + camera + recorded audio
 ```
 
 - Vehicle classes are data profiles, not renderer-owned modes. The same class

@@ -1,0 +1,118 @@
+{
+  "build": [
+    {
+      "url": "http://127.0.0.1:64521/assets/index-DHCXwEh-.js",
+      "sha256": "21e5342d01a6da615856cfabccd6c7e23e41aa3f4bbc982d6e5564a001cbfb28"
+    }
+  ],
+  "device": {
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+    "hardwareConcurrency": 10,
+    "requestedDpr": 2,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "canvas": {
+      "width": 2520,
+      "height": 1575
+    },
+    "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M4, Unspecified Version)",
+    "vendor": "Google Inc. (Apple)",
+    "webglVersion": "WebGL 2.0 (OpenGL ES 3.0 Chromium)"
+  },
+  "method": "Native requestAnimationFrame intervals across each complete ordinary racing phase, including transient slow frames and post-player classification grace. Countdown reported separately; no warmup removal or interior exclusions. Read-only snapshot/input-controller overhead is included. No GPU timer queries or physical presentation timestamps.",
+  "summary": {
+    "racing": {
+      "phase": "racing",
+      "samples": 5858,
+      "durationMs": 97779.5,
+      "averageFps": 59.91030839797708,
+      "p50Ms": 16.69999999999709,
+      "p95Ms": 16.799999999995634,
+      "p99Ms": 16.80000000000291,
+      "maxMs": 33.40000000000873,
+      "over25ms": 9,
+      "over33ms": 3,
+      "over50ms": 0,
+      "firstRaceTime": 0.016666666666666666,
+      "lastRaceTime": 94.4416666666879
+    },
+    "countdown": {
+      "phase": "countdown",
+      "samples": 157,
+      "durationMs": 2649.8,
+      "averageFps": 59.249754698467804,
+      "p50Ms": 16.699999999999818,
+      "p95Ms": 16.800000000000182,
+      "p99Ms": 16.800000000000182,
+      "maxMs": 49.90000000000009,
+      "over25ms": 1,
+      "over33ms": 1,
+      "over50ms": 0,
+      "firstRaceTime": 0,
+      "lastRaceTime": 0
+    }
+  },
+  "rendererExtrema": {
+    "minDpr": 1,
+    "maxDpr": 2,
+    "maxCalls": 103,
+    "maxTriangles": 2687311
+  },
+  "resolution": {
+    "pixelRatio": [
+      1,
+      2
+    ],
+    "canvasWidth": [
+      1440,
+      2880
+    ],
+    "canvasHeight": [
+      900,
+      1800
+    ]
+  },
+  "inputCounts": {
+    "boostSamples": 0,
+    "driftSamples": 0,
+    "fireSamples": 1280,
+    "mineSamples": 63,
+    "shieldSamples": 837,
+    "resetSamples": 0
+  },
+  "observedGalacticEvents": {
+    "heat-lance-fired": 285,
+    "weapon-hit": 77,
+    "scrap-mine-deployed": 19,
+    "redline-surge": 205,
+    "pulse-shell": 145,
+    "scrap-mine-triggered": 17,
+    "shield-block": 18,
+    "wreck": 19,
+    "recovery-start": 19,
+    "takedown": 18,
+    "recovered": 19,
+    "hazard-hit": 34,
+    "upgrade-collected": 6,
+    "emp-pulse": 3,
+    "repair-salvage-collected": 5
+  },
+  "vehicleCollisionCount": null,
+  "collisionCountScope": "Base suspension/racer collision events are not exposed by the read-only review API; unavailable, not zero.",
+  "recordings": {
+    "loaded": 27,
+    "pending": 0,
+    "failed": [],
+    "activeEffects": 0
+  },
+  "resultsText": "3RD PLACE\nBATTLE \u00b7 EVENT RESULT\nRACE AGAIN\n\u2197\nBACK TO HANGAR\nPRACTICE RUN\nTOTAL 1:26.45 \u00b7 PB \u2014\n\nRecovery used \u2014 finish for practice, then retry for a clean record.\n\nOPEN STRAIGHT\nS1 0:20.48\u2014\nOPEN STRAIGHT\nS2 0:04.64\u2014\nLAUNCH DESCENT\nS3 0:05.09\u2014\nSWEEPER\nS4 0:07.48\u2014\nCANYON\nS5 0:04.49\u2014\nFOUNDRY TURNS\nS6 0:17.65\u2014\nRECOVERY STRAIGHT\nS7 0:05.59\u2014\nOPEN STRAIGHT\nS8 0:05.35\u2014\nHAIRPIN\nS9 0:07.28\u2014\nRECOVERY STRAIGHT\nS10 0:08.37\u2014\nTAKEDOWN\nTAKEDOWN\nYOU // SOLA DINN\n1ST\nKODO FIZZ\n1:05.283\nBEST LAP (RUN) 1:05.283\n2ND\nRAX KORDO\n1:11.500\nBEST LAP (RUN) 1:11.500\n3RD\nYOU\n1:26.450\nBEST LAP (RUN) 1:26.450\n4TH\nTALIK VENN\n1:29.225\nBEST LAP (RUN) 1:29.225\n5TH\nSOLA DINN\n1:30.325\nBEST LAP (RUN) 1:30.325\n6TH\nVEXA RUUN\n1:33.133\nBEST LAP (RUN) 1:33.133\n7TH\nOLAN TARR\nDNF\nBEST LAP (RUN) \u2014\n8TH\nMIRI VOSS\nDNF\nBEST LAP (RUN) \u2014\n\u25b6 REPLAY \u00b7 TAKEDOWN\nTAKEDOWN\n1:05.725 // You // Sola Dinn\n\u25b6 REPLAY \u00b7 TAKEDOWN\nTAKEDOWN\n1:20.816 // You // Vexa Ruun\n\u25b6 REPLAY \u00b7 TAKEDOWN\nWRECK\n1:05.725 // Sola Dinn // You\n\u25b6 REPLAY \u00b7 TAKEDOWN\nWRECK\n1:20.816 // Vexa Ruun // You\n\u25b6 REPLAY \u00b7 CLEAN RACE\nFINISH\n1:05.283 // Kodo Fizz\nR TO RETRY \u00b7 SELECT A HIGHLIGHT TO RELIVE THE RACE",
+  "outcome": "PASS",
+  "cleanup": {
+    "browserClosed": true,
+    "serverExited": true,
+    "port": 64521
+  },
+  "errors": []
+}

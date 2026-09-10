@@ -1,14 +1,13 @@
 import {
-  createAudioEnvelopeSchedule,
   derivePodracerAudioTargets,
   deriveRivalAudioTargets,
   mapGameEventsToAudioCues,
 } from './model';
 import {
   createMenuMusicTransitionSchedule,
-  renderOriginalMenuScoreAsync,
 } from './menuMusic';
 import type { MenuMusicTransitionSchedule } from './menuMusic';
+import { RECORDED_CUES, RECORDED_EFFECT_URLS, RECORDED_LOOPS, RECORDED_MUSIC_URL } from './catalogue';
 import type {
   AudioEventLike,
   AudioEventMapOptions,
@@ -21,17 +20,11 @@ import type {
   PodracerAudioTelemetry,
 } from './types';
 
-interface EngineVoice {
-  main: OscillatorNode;
-  harmonic: OscillatorNode;
+interface RecordedVoice {
+  source: AudioBufferSourceNode;
   filter: BiquadFilterNode;
   gain: GainNode;
   panner: StereoPannerNode;
-}
-
-interface ToneLayer {
-  oscillator: OscillatorNode;
-  gain: GainNode;
 }
 
 interface ContinuousGraph {
@@ -43,30 +36,15 @@ interface ContinuousGraph {
   calloutBus: GainNode;
   calloutHighpass: BiquadFilterNode;
   calloutPresence: BiquadFilterNode;
-  left: EngineVoice;
-  right: EngineVoice;
-  repulsor: OscillatorNode;
-  repulsorHarmonic: OscillatorNode;
-  repulsorGain: GainNode;
-  wind: AudioBufferSourceNode;
-  windHighpass: BiquadFilterNode;
-  windLowpass: BiquadFilterNode;
-  windGain: GainNode;
-  coupling: AudioBufferSourceNode;
-  couplingFilter: BiquadFilterNode;
-  couplingGain: GainNode;
-  intake: ToneLayer;
-  exhaust: ToneLayer;
-  heatAlarm: ToneLayer;
-  racePulse: ToneLayer;
-  raceKick: ToneLayer;
-  damage: AudioBufferSourceNode;
-  damageGain: GainNode;
-  rivals: EngineVoice[];
+  left: RecordedVoice | null;
+  right: RecordedVoice | null;
+  turbine: RecordedVoice | null;
+  wind: RecordedVoice | null;
+  rivals: RecordedVoice[];
   canyonReturn: GainNode;
   canyonDelay: DelayNode | null;
-  noiseBuffer: AudioBuffer;
-  steadySources: AudioScheduledSourceNode[];
+  steadySources: AudioBufferSourceNode[];
+  nodes: AudioNode[];
 }
 
 interface MenuMusicPlayback {
@@ -102,38 +80,9 @@ function defaultAudioContext(): AudioContext {
   return new AudioContextClass({ latencyHint: 'interactive' });
 }
 
-function createDriveCurve(amount: number): Float32Array<ArrayBuffer> {
-  const samples = 1_024;
-  const curve = new Float32Array(new ArrayBuffer(samples * Float32Array.BYTES_PER_ELEMENT));
-  const drive = Math.max(1, amount);
-  for (let index = 0; index < samples; index += 1) {
-    const x = index * 2 / (samples - 1) - 1;
-    curve[index] = Math.tanh(x * drive) / Math.tanh(drive);
-  }
-  return curve;
-}
-
-function createNoiseBuffer(context: AudioContext): AudioBuffer {
-  const length = Math.floor(context.sampleRate * 2.4);
-  const buffer = context.createBuffer(1, length, context.sampleRate);
-  const channel = buffer.getChannelData(0);
-  let state = 0x504f4452;
-  let previous = 0;
-  for (let index = 0; index < length; index += 1) {
-    state ^= state << 13;
-    state ^= state >>> 17;
-    state ^= state << 5;
-    const white = ((state >>> 0) / 0xffffffff) * 2 - 1;
-    previous = white * 0.72 + previous * 0.28;
-    channel[index] = previous;
-  }
-  return buffer;
-}
-
 export class PodracerAudio {
   private readonly contextFactory: () => AudioContext;
   private readonly fetchAudio: (url: string) => Promise<ArrayBuffer>;
-  private readonly renderMenuScore: (context: BaseAudioContext) => Promise<AudioBuffer>;
   private readonly masterVolume: number;
   private readonly overtakeCalloutCooldownSeconds: number;
   private context: AudioContext | null = null;
@@ -143,8 +92,16 @@ export class PodracerAudio {
   private lastTelemetry: PodracerAudioTelemetry | null = null;
   private muted: boolean;
   private paused = false;
+  private hidden = false;
+  private vehicleLoopsEnabled = true;
   private disposed = false;
   private effectSequence = 0;
+  private readonly recordings = new Map<string, AudioBuffer>();
+  private readonly pendingRecordings = new Map<string, Promise<AudioBuffer | null>>();
+  private readonly failedRecordings = new Set<string>();
+  private readonly effects = new Map<AudioBufferSourceNode, GainNode>();
+  private readonly cueLastPlayed = new Map<string, number>();
+  private nextHeatWarningAt = 0;
   private nextAudioUpdateAt = 0;
   private menuMusicMode: MenuMusicMode = 'off';
   private menuMusicUrl: string | null = null;
@@ -168,10 +125,9 @@ export class PodracerAudio {
     this.contextFactory = options.createContext ?? defaultAudioContext;
     this.fetchAudio = options.fetchAudio ?? (async (url) => {
       const response = await fetch(url);
-      if (!response.ok) throw new Error(`Unable to load menu intro (${response.status}).`);
+      if (!response.ok) throw new Error(`Unable to load recorded audio (${response.status}).`);
       return response.arrayBuffer();
     });
-    this.renderMenuScore = options.renderMenuScore ?? renderOriginalMenuScoreAsync;
     this.masterVolume = Math.min(1, Math.max(0, finite(options.masterVolume ?? 0.72, 0.72)));
     this.overtakeCalloutCooldownSeconds = Math.min(
       5,
@@ -221,7 +177,7 @@ export class PodracerAudio {
   }
 
   /**
-   * Builds the relatively expensive noise buffers and node graph before the
+   * Loads existing catalogue recordings and the node graph before the
    * first control input. The context remains suspended until `unlock()` runs
    * inside a real gesture, satisfying Chrome autoplay policy without a hitch.
    */
@@ -285,12 +241,13 @@ export class PodracerAudio {
 
   /**
    * Loads and schedules the supplied intro once, then crossfades into the
-   * procedural score. Calling this during page setup attempts autoplay when
+   * existing composed music. Calling this during page setup attempts autoplay when
    * policy permits; a suspended context starts on the existing unlock gesture.
    */
   startMenuMusic(url: string): Promise<boolean> {
     const normalizedUrl = url.trim();
     if (this.disposed || normalizedUrl.length === 0) return Promise.resolve(false);
+    this.silenceVehicleAudio();
     this.menuMusicMode = 'selection';
     this.menuMusicUrl = normalizedUrl;
     this.applyMenuMusicMix(0.14);
@@ -331,6 +288,12 @@ export class PodracerAudio {
   /** Keep the score running beneath engines and effects at a restrained mix. */
   transitionMenuMusicToRace(fadeSeconds = 0.9): void {
     if (this.disposed) return;
+    this.vehicleLoopsEnabled = true;
+    this.nextAudioUpdateAt = 0;
+    if (this.context && this.graph && this.context.state !== 'closed') {
+      this.graph.engineBus.gain.cancelScheduledValues(this.context.currentTime);
+      this.graph.engineBus.gain.setValueAtTime(this.engineBusGain(), this.context.currentTime);
+    }
     this.menuMusicMode = this.menuMusicUrl ? 'race' : 'off';
     this.applyMenuMusicMix(fadeSeconds);
   }
@@ -338,6 +301,7 @@ export class PodracerAudio {
   /** Restore the full selection-screen mix without restarting the intro. */
   transitionMenuMusicToSelection(fadeSeconds = 0.65): void {
     if (this.disposed) return;
+    this.silenceVehicleAudio();
     this.menuMusicMode = this.menuMusicUrl ? 'selection' : 'off';
     this.applyMenuMusicMix(fadeSeconds);
   }
@@ -367,6 +331,7 @@ export class PodracerAudio {
     if (
       this.disposed
       || this.paused
+      || this.hidden
       || !context
       || context.state !== 'running'
       || !graph
@@ -409,70 +374,47 @@ export class PodracerAudio {
   }
 
   update(model: PodracerAudioTelemetry): void {
+    if (!this.vehicleLoopsEnabled || this.disposed) return;
     this.lastTelemetry = { ...model };
-    const context = this.context;
-    const graph = this.graph;
+    const context = this.context, graph = this.graph;
     if (!context || !graph || context.state === 'closed') return;
-    // AudioParam interpolation runs on the audio thread. 30 Hz control updates
-    // avoid thousands of redundant automation events at high display refresh.
     if (context.currentTime < this.nextAudioUpdateAt) return;
     this.nextAudioUpdateAt = context.currentTime + 1 / 30;
-    const targets = derivePodracerAudioTargets(model);
-    const now = context.currentTime;
-    const simulationTime = finite(model.simulationTime ?? now, now);
-    const crackle = Math.pow(Math.max(0, Math.sin(simulationTime * 29.7) * 0.72 + Math.sin(simulationTime * 47.1 + 1.7) * 0.45), 9);
-
-    this.target(graph.left.main.frequency, targets.engineLeft.frequency, now, 0.025);
-    this.target(graph.left.harmonic.frequency, targets.engineLeft.frequency * 2.015, now, 0.022);
-    this.target(graph.left.filter.frequency, targets.engineLeft.filterFrequency, now, 0.035);
-    this.target(graph.left.gain.gain, targets.engineLeft.gain, now, 0.03);
-
-    this.target(graph.right.main.frequency, targets.engineRight.frequency, now, 0.025);
-    this.target(graph.right.harmonic.frequency, targets.engineRight.frequency * 1.985, now, 0.022);
-    this.target(graph.right.filter.frequency, targets.engineRight.filterFrequency, now, 0.035);
-    this.target(graph.right.gain.gain, targets.engineRight.gain, now, 0.03);
-
-    this.target(graph.repulsor.frequency, targets.repulsorFrequency, now, 0.06);
-    this.target(graph.repulsorHarmonic.frequency, targets.repulsorFrequency * 1.505, now, 0.055);
-    this.target(graph.repulsorGain.gain, targets.repulsorGain, now, 0.08);
-    this.target(graph.windGain.gain, targets.windGain, now, 0.07);
-    this.target(graph.windLowpass.frequency, targets.windFilterFrequency, now, 0.06);
-    this.target(graph.couplingFilter.frequency, targets.couplingFilterFrequency, now, 0.025);
-    this.target(graph.couplingGain.gain, targets.couplingGain * (0.32 + crackle * 2.4), now, crackle > 0.1 ? 0.004 : 0.025);
-    this.target(graph.intake.oscillator.frequency, targets.intakeFrequency, now, 0.065);
-    this.target(graph.intake.gain.gain, targets.intakeGain, now, 0.055);
-    this.target(graph.exhaust.oscillator.frequency, targets.exhaustFrequency, now, 0.035);
-    this.target(graph.exhaust.gain.gain, targets.exhaustGain, now, 0.045);
-    this.target(graph.damageGain.gain, targets.damageGain, now, 0.016);
-    this.target(graph.heatAlarm.gain.gain, targets.heatWarningGain, now, 0.012);
-    this.target(graph.canyonReturn.gain, targets.environmentClosure * 0.105, now, 0.45);
-
-    const rivals = deriveRivalAudioTargets(model.rivals);
-    for (let index = 0; index < graph.rivals.length; index += 1) {
-      const voice = graph.rivals[index]!;
-      const target = rivals[index];
-      this.target(voice.gain.gain, target?.gain ?? 0, now, 0.07);
-      if (!target) continue;
-      this.target(voice.main.frequency, target.frequency, now, 0.045);
-      this.target(voice.harmonic.frequency, target.frequency * 2.01, now, 0.04);
-      this.target(voice.filter.frequency, target.filterFrequency, now, 0.08);
-      this.target(voice.panner.pan, target.pan, now, 0.06);
+    const targets = derivePodracerAudioTargets(model), now = context.currentTime;
+    const engine = (voice: RecordedVoice | null, frequency: number, gain: number, filter: number): void => {
+      if (!voice) return;
+      // Playback-rate changes retain the recorded combustion/rotor texture.
+      this.target(voice.source.playbackRate, Math.min(2.1, Math.max(0.55, frequency / 180)), now, 0.12);
+      this.target(voice.filter.frequency, Math.max(900, filter * 2), now, 0.08);
+      this.target(voice.gain.gain, gain * 2.2, now, 0.08);
+    };
+    engine(graph.left, targets.engineLeft.frequency, targets.engineLeft.gain, targets.engineLeft.filterFrequency);
+    engine(graph.right, targets.engineRight.frequency, targets.engineRight.gain, targets.engineRight.filterFrequency);
+    if (graph.turbine) {
+      this.target(graph.turbine.source.playbackRate, Math.min(1.9, 0.8 + Math.max(0, finite(model.speedMps, 0)) / 220), now, 0.18);
+      this.target(graph.turbine.gain.gain, targets.repulsorGain + targets.intakeGain * 1.8, now, 0.1);
     }
+    if (graph.wind) {
+      this.target(graph.wind.gain.gain, targets.windGain * 1.5, now, 0.12);
+      this.target(graph.wind.filter.frequency, targets.windFilterFrequency, now, 0.1);
+    }
+    this.target(graph.canyonReturn.gain, targets.environmentClosure * 0.105, now, 0.45);
+    const rivals = deriveRivalAudioTargets(model.rivals);
+    for (let i = 0; i < graph.rivals.length; i += 1) {
+      const voice = graph.rivals[i]!, target = rivals[i];
+      engine(voice, target?.frequency ?? 180, target?.gain ?? 0, target?.filterFrequency ?? 900);
+      if (target) this.target(voice.panner.pan, target.pan, now, 0.08);
+    }
+    if (targets.heatWarningGain > 0 && now >= this.nextHeatWarningAt && !this.paused) {
+      this.nextHeatWarningAt = now + 1.8;
+      this.trigger({ kind: 'warning', intensity: 0.2 });
+    }
+  }
 
-    // Two original rhythmic stems rise with pace, drafting pressure and drift.
-    // Keep the underlying score and supplied voice clip on their existing buses,
-    // so their lifecycle, mix controls and callout duck remain authoritative.
-    const beat = Math.max(0, simulationTime) * 126 / 60;
-    const eighth = beat * 2;
-    const step = Math.floor(eighth);
-    const pulseEnvelope = Math.exp(-(eighth - step) * 9);
-    const beatEnvelope = Math.exp(-(beat - Math.floor(beat)) * 17);
-    const motif = [110, 164.81, 220, 164.81, 130.81, 196, 261.63, 196];
-    const musicActive = this.menuMusicMode === 'race' && !this.paused ? 1 : 0;
-    this.target(graph.racePulse.oscillator.frequency, motif[step % motif.length]!, now, 0.012);
-    this.target(graph.racePulse.gain.gain, pulseEnvelope * targets.raceIntensity * 0.09 * musicActive, now, 0.009);
-    this.target(graph.raceKick.oscillator.frequency, 44 + beatEnvelope * 55, now, 0.012);
-    this.target(graph.raceKick.gain.gain, beatEnvelope * targets.raceIntensity * 0.15 * musicActive, now, 0.008);
+  /** Diagnostic copy; unavailable files remain silent, never synthesized. */
+  get recordingStatus(): { loaded: number; pending: number; failed: readonly string[]; activeEffects: number } {
+    return { loaded: this.recordings.size, pending: this.pendingRecordings.size,
+      failed: [...this.failedRecordings], activeEffects: this.effects.size };
   }
 
   handleEvents<TEvent extends AudioEventLike>(events: readonly TEvent[], options: AudioEventMapOptions = {}): void {
@@ -480,103 +422,74 @@ export class PodracerAudio {
   }
 
   trigger(cue: PodracerAudioCue): void {
-    if (!this.context || !this.graph || this.context.state === 'closed') return;
-    const normalizedCue: PodracerAudioCue = {
-      kind: cue.kind,
-      intensity: Math.min(1, Math.max(0, finite(cue.intensity, 0))),
-      pitch: Math.max(0.25, finite(cue.pitch ?? 1, 1)),
-    };
-    if (normalizedCue.intensity <= 0) return;
+    const context = this.context, graph = this.graph;
+    if (!context || !graph || context.state !== 'running' || this.paused || this.hidden || this.disposed) return;
+    const intensity = Math.min(1, Math.max(0, finite(cue.intensity, 0)));
+    if (intensity <= 0) return;
+    const now = context.currentTime;
+    const repeatGap = cue.kind === 'weapon' ? 0.045 : cue.kind === 'impact' || cue.kind === 'sand' ? 0.09 : 0.04;
+    if (now - (this.cueLastPlayed.get(cue.kind) ?? -Infinity) < repeatGap) return;
+    const choices = RECORDED_CUES[cue.kind];
+    const url = choices[this.effectSequence % choices.length]!;
+    const buffer = this.recordings.get(url);
+    // Do not queue stale gameplay sounds if loading has not completed.
+    if (!buffer) return;
+    this.cueLastPlayed.set(cue.kind, now);
     this.effectSequence += 1;
-    switch (normalizedCue.kind) {
-      case 'impact':
-        this.playTone(normalizedCue, 'triangle', 96, 37);
-        this.playNoise(normalizedCue, 'lowpass', 720);
-        break;
-      case 'sand':
-        this.playNoise(normalizedCue, 'bandpass', 1_650);
-        break;
-      case 'boost':
-        this.playTone(normalizedCue, 'sawtooth', 78, 355);
-        this.playNoise({ ...normalizedCue, intensity: normalizedCue.intensity * 0.56 }, 'highpass', 1_050);
-        break;
-      case 'horn':
-        this.playHorn(normalizedCue);
-        break;
-      case 'countdown':
-        this.playTone(normalizedCue, 'square', 278, 248);
-        this.playTone({ ...normalizedCue, intensity: normalizedCue.intensity * 0.52 }, 'sine', 139, 124);
-        break;
-      case 'checkpoint':
-        this.playTone(normalizedCue, 'triangle', 520, 740);
-        this.playTone({ ...normalizedCue, intensity: normalizedCue.intensity * 0.7 }, 'triangle', 690, 910, 0.065);
-        break;
-      case 'lap':
-        this.playArpeggio(normalizedCue, [330, 440, 554], 0.095);
-        break;
-      case 'finish':
-        this.playArpeggio(normalizedCue, [220, 330, 440, 660], 0.13);
-        break;
-      case 'warning':
-        this.playTone(normalizedCue, 'square', 172, 154);
-        this.playTone({ ...normalizedCue, intensity: normalizedCue.intensity * 0.74 }, 'square', 172, 145, 0.19);
-        break;
-      case 'electric':
-        this.playNoise(normalizedCue, 'bandpass', 3_300);
-        this.playTone({ ...normalizedCue, intensity: normalizedCue.intensity * 0.42 }, 'square', 1_100, 410);
-        break;
-      case 'emp-pulse':
-        this.playTone(normalizedCue, 'triangle', 1_360, 82);
-        this.playNoise({ ...normalizedCue, intensity: normalizedCue.intensity * 0.28 }, 'bandpass', 1_900);
-        break;
-      case 'repair':
-        this.playArpeggio(normalizedCue, [440, 554, 660], 0.065);
-        break;
-      case 'ui':
-        this.playTone(normalizedCue, 'sine', 610, 820);
-        break;
-      case 'weapon':
-        this.playHeatLanceFire(normalizedCue);
-        break;
-      case 'weapon-hit':
-        this.playHeatLanceImpact(normalizedCue);
-        break;
-      case 'shield':
-        this.playTone(normalizedCue, 'sine', 260, 980);
-        this.playTone({ ...normalizedCue, intensity: normalizedCue.intensity * 0.52 }, 'triangle', 520, 1_420, 0.012);
-        this.playNoise({ ...normalizedCue, intensity: normalizedCue.intensity * 0.3 }, 'highpass', 2_800);
-        break;
-      case 'mine':
-        this.playTone(normalizedCue, 'triangle', 145, 46);
-        this.playNoise(normalizedCue, 'lowpass', 980);
-        break;
-      case 'hazard':
-        this.playNoise(normalizedCue, 'bandpass', 1_280);
-        this.playTone({ ...normalizedCue, intensity: normalizedCue.intensity * 0.4 }, 'triangle', 118, 72);
-        break;
-      case 'redline':
-        this.playTone(normalizedCue, 'sawtooth', 118, 470);
-        this.playNoise({ ...normalizedCue, intensity: normalizedCue.intensity * 0.42 }, 'highpass', 1_900);
-        break;
-      case 'wreck':
-        this.playTone(normalizedCue, 'sawtooth', 132, 31);
-        this.playNoise(normalizedCue, 'lowpass', 680);
-        break;
-      case 'takedown':
-        this.playArpeggio(normalizedCue, [246, 370, 493, 740], 0.065);
-        break;
-      case 'recovery':
-        this.playArpeggio(normalizedCue, [165, 247, 330], 0.075);
-        break;
-      case 'upgrade':
-        this.playArpeggio(normalizedCue, [440, 554, 740], 0.055);
-        break;
-      case 'vehicle':
-        this.playTone(normalizedCue, 'triangle', 210, 420);
-        this.playTone({ ...normalizedCue, intensity: normalizedCue.intensity * 0.56 }, 'sine', 105, 210, 0.045);
-        break;
-      default:
-        break;
+    // A strict voice budget bounds eight-racer combat bursts.
+    if (this.effects.size >= 24) {
+      const oldest = this.effects.keys().next().value as AudioBufferSourceNode;
+      this.releaseEffect(oldest, true);
+    }
+    const source = context.createBufferSource(), gain = context.createGain();
+    source.buffer = buffer;
+    source.playbackRate.value = Math.min(1.25, Math.max(0.8, finite(cue.pitch ?? 1, 1)));
+    const start = now + 0.005, duration = buffer.duration / source.playbackRate.value;
+    const level = (cue.kind === 'ui' || cue.kind === 'checkpoint' ? 0.22 : 0.55) * intensity;
+    gain.gain.setValueAtTime(0, start);
+    gain.gain.linearRampToValueAtTime(level, start + Math.min(0.008, duration * 0.1));
+    gain.gain.setValueAtTime(level, start + Math.max(0.01, duration - 0.025));
+    gain.gain.linearRampToValueAtTime(0, start + duration);
+    source.connect(gain).connect(graph.effectsBus);
+    this.effects.set(source, gain);
+    source.addEventListener('ended', () => this.releaseEffect(source, false));
+    source.start(start);
+    source.stop(start + duration + 0.005);
+  }
+
+  private releaseEffect(source: AudioBufferSourceNode, stop: boolean): void {
+    const gain = this.effects.get(source);
+    if (!gain) return;
+    this.effects.delete(source);
+    if (stop) { try { source.stop(); } catch { /* Already ended. */ } }
+    source.disconnect();
+    gain.disconnect();
+  }
+
+  private clearGameplayTransients(): void {
+    for (const source of this.effects.keys()) this.releaseEffect(source, true);
+    const callout = this.overtakeCalloutPlayback;
+    this.overtakeCalloutPlayback = null;
+    if (callout) this.haltOvertakeCallout(callout);
+  }
+
+  private silenceVehicleAudio(): void {
+    this.vehicleLoopsEnabled = false;
+    this.lastTelemetry = null;
+    this.nextAudioUpdateAt = 0;
+    this.nextHeatWarningAt = 0;
+    this.clearGameplayTransients();
+    const context = this.context, graph = this.graph;
+    if (!context || !graph || context.state === 'closed') return;
+    // Menu frames do not supply telemetry. Cancel every lingering gain/duck,
+    // including the canyon return, without stopping the pooled recordings.
+    const gains = [graph.engineBus, graph.canyonReturn,
+      graph.left?.gain, graph.right?.gain, graph.turbine?.gain, graph.wind?.gain,
+      ...graph.rivals.map(voice => voice.gain)];
+    for (const node of gains) {
+      if (!node) continue;
+      node.gain.cancelScheduledValues(context.currentTime);
+      node.gain.setValueAtTime(0, context.currentTime);
     }
   }
 
@@ -625,6 +538,25 @@ export class PodracerAudio {
     );
   }
 
+  /** Visibility is independent of user pause/mute and survives menu transitions. */
+  setHidden(hidden: boolean): void {
+    if (this.disposed || this.hidden === hidden) return;
+    this.hidden = hidden;
+    const context = this.context, graph = this.graph;
+    if (hidden) this.clearGameplayTransients();
+    if (!context || !graph || context.state === 'closed') return;
+    const now = context.currentTime;
+    // Keep music/source clocks running silently. A synchronous hard mute avoids
+    // suspend/resume races and cannot be undone by setPaused(false) in a garage.
+    graph.master.gain.cancelScheduledValues(now);
+    graph.master.gain.setValueAtTime(this.muted ? 0 : this.effectiveMasterGain(), now);
+    if (hidden) {
+      graph.engineBus.gain.cancelScheduledValues(now);
+      graph.engineBus.gain.setValueAtTime(this.engineBusGain(), now);
+      this.applyMenuMusicMix(0.02);
+    }
+  }
+
   dispose(): void {
     if (this.disposed) return;
     this.disposed = true;
@@ -634,6 +566,11 @@ export class PodracerAudio {
     this.menuMusicLoadPromise = null;
     this.menuMusicMode = 'off';
     this.disarm();
+    for (const source of this.effects.keys()) this.releaseEffect(source, true);
+    this.recordings.clear();
+    this.pendingRecordings.clear();
+    this.failedRecordings.clear();
+    this.cueLastPlayed.clear();
     const context = this.context;
     const graph = this.graph;
     const menuPlayback = this.menuMusicPlayback;
@@ -663,6 +600,7 @@ export class PodracerAudio {
       graph.calloutPresence.disconnect();
       graph.canyonReturn.disconnect();
       graph.canyonDelay?.disconnect();
+      for (const node of graph.nodes) node.disconnect();
     }
     if (context && context.state !== 'closed') void context.close();
   }
@@ -692,11 +630,11 @@ export class PodracerAudio {
   }
 
   private effectiveMasterGain(): number {
-    return this.masterVolume * this.mix.master * (this.paused ? 0.08 : 1);
+    return this.hidden ? 0 : this.masterVolume * this.mix.master * (this.paused ? 0.08 : 1);
   }
 
   private engineBusGain(): number {
-    return 0.88 * this.mix.engine;
+    return this.vehicleLoopsEnabled ? 0.88 * this.mix.engine : 0;
   }
 
   private effectsBusGain(): number {
@@ -730,13 +668,13 @@ export class PodracerAudio {
     this.menuIntroBuffer = introBuffer;
     const playback = this.scheduleMenuMusicIntro(url, introBuffer);
     if (!playback) return false;
-    const scoreBuffer = await this.renderMenuScore(context);
+    const scoreBuffer = await this.loadRecording(RECORDED_MUSIC_URL);
     if (
       generation !== this.menuMusicGeneration
       || this.disposed
       || this.menuMusicPlayback !== playback
     ) return false;
-    this.scheduleMenuMusicScore(playback, scoreBuffer);
+    if (scoreBuffer) this.scheduleMenuMusicScore(playback, scoreBuffer);
     return true;
   }
 
@@ -871,7 +809,7 @@ export class PodracerAudio {
     this.scheduleDuck(
       graph.engineBus.gain,
       start,
-      0.4 * this.mix.engine,
+      Math.min(0.4 * this.mix.engine, engineRestore),
       engineRestore,
       attack,
       hold,
@@ -952,329 +890,77 @@ export class PodracerAudio {
     calloutPresence.Q.value = 0.82;
     calloutPresence.gain.value = 3.4;
     calloutBus.connect(calloutHighpass).connect(calloutPresence).connect(master);
-    const left = this.createEngineVoice(context, engineBus, -0.66, 4.2);
-    const right = this.createEngineVoice(context, engineBus, 0.66, 4.55);
-
-    const repulsor = context.createOscillator();
-    repulsor.type = 'sine';
-    repulsor.frequency.value = 43;
-    const repulsorHarmonic = context.createOscillator();
-    repulsorHarmonic.type = 'triangle';
-    repulsorHarmonic.frequency.value = 65;
-    const repulsorHarmonicGain = context.createGain();
-    repulsorHarmonicGain.gain.value = 0.28;
-    const repulsorGain = context.createGain();
-    repulsorGain.gain.value = 0;
-    repulsor.connect(repulsorGain);
-    repulsorHarmonic.connect(repulsorHarmonicGain).connect(repulsorGain);
-    repulsorGain.connect(engineBus);
-
-    const noiseBuffer = createNoiseBuffer(context);
-    const wind = context.createBufferSource();
-    wind.buffer = noiseBuffer;
-    wind.loop = true;
-    const windHighpass = context.createBiquadFilter();
-    windHighpass.type = 'highpass';
-    windHighpass.frequency.value = 150;
-    const windLowpass = context.createBiquadFilter();
-    windLowpass.type = 'lowpass';
-    windLowpass.frequency.value = 900;
-    windLowpass.Q.value = 0.72;
-    const windGain = context.createGain();
-    windGain.gain.value = 0;
-    wind.connect(windHighpass).connect(windLowpass).connect(windGain).connect(engineBus);
-
-    const coupling = context.createBufferSource();
-    coupling.buffer = noiseBuffer;
-    coupling.loop = true;
-    coupling.playbackRate.value = 1.81;
-    const couplingFilter = context.createBiquadFilter();
-    couplingFilter.type = 'bandpass';
-    couplingFilter.frequency.value = 2_100;
-    couplingFilter.Q.value = 9.5;
-    const couplingGain = context.createGain();
-    couplingGain.gain.value = 0;
-    const couplingPanner = context.createStereoPanner();
-    couplingPanner.pan.value = 0;
-    coupling.connect(couplingFilter).connect(couplingGain).connect(couplingPanner).connect(engineBus);
-
-    const intake = this.createToneLayer(context, engineBus, 'sine', 450);
-    const exhaust = this.createToneLayer(context, engineBus, 'triangle', 36);
-    const heatAlarm = this.createToneLayer(context, effectsBus, 'sine', 1_380);
-    const racePulse = this.createToneLayer(context, musicBus, 'triangle', 110);
-    const raceKick = this.createToneLayer(context, musicBus, 'sine', 45);
-    const damage = context.createBufferSource();
-    damage.buffer = noiseBuffer;
-    damage.loop = true;
-    damage.playbackRate.value = 0.62;
-    const damageFilter = context.createBiquadFilter();
-    damageFilter.type = 'bandpass';
-    damageFilter.frequency.value = 710;
-    damageFilter.Q.value = 5;
-    const damageGain = context.createGain();
-    damageGain.gain.value = 0;
-    damage.connect(damageFilter).connect(damageGain).connect(engineBus);
-    const rivals = Array.from({ length: 4 }, () => this.createEngineVoice(context, engineBus, 0, 2.1));
-
-    // A quiet filtered early reflection communicates enclosure without a long
-    // reverb tail blurring warnings. No feedback loop or per-frame allocation.
     const canyonReturn = context.createGain();
     canyonReturn.gain.value = 0;
     const canyonDelay = typeof context.createDelay === 'function' ? context.createDelay(0.5) : null;
+    const nodes: AudioNode[] = [];
     if (canyonDelay) {
       canyonDelay.delayTime.value = 0.115;
-      const canyonFilter = context.createBiquadFilter();
-      canyonFilter.type = 'lowpass';
-      canyonFilter.frequency.value = 1_900;
-      engineBus.connect(canyonDelay).connect(canyonFilter).connect(canyonReturn).connect(master);
+      const filter = context.createBiquadFilter();
+      filter.type = 'lowpass'; filter.frequency.value = 1_900;
+      engineBus.connect(canyonDelay).connect(filter).connect(canyonReturn).connect(master);
+      nodes.push(filter);
     }
-
-    const steadySources: AudioScheduledSourceNode[] = [
-      left.main,
-      left.harmonic,
-      right.main,
-      right.harmonic,
-      repulsor,
-      repulsorHarmonic,
-      wind,
-      coupling,
-      intake.oscillator,
-      exhaust.oscillator,
-      heatAlarm.oscillator,
-      racePulse.oscillator,
-      raceKick.oscillator,
-      damage,
-      ...rivals.flatMap((voice) => [voice.main, voice.harmonic]),
-    ];
-    const start = context.currentTime;
-    for (const source of steadySources) source.start(start);
-
     this.context = context;
-    this.graph = {
-      master,
-      compressor,
-      engineBus,
-      effectsBus,
-      musicBus,
-      calloutBus,
-      calloutHighpass,
-      calloutPresence,
-      left,
-      right,
-      repulsor,
-      repulsorHarmonic,
-      repulsorGain,
-      wind,
-      windHighpass,
-      windLowpass,
-      windGain,
-      coupling,
-      couplingFilter,
-      couplingGain,
-      intake,
-      exhaust,
-      heatAlarm,
-      racePulse,
-      raceKick,
-      damage,
-      damageGain,
-      rivals,
-      canyonReturn,
-      canyonDelay,
-      noiseBuffer,
-      steadySources,
+    const graph: ContinuousGraph = {
+      master, compressor, engineBus, effectsBus, musicBus, calloutBus,
+      calloutHighpass, calloutPresence, left: null, right: null, turbine: null, wind: null,
+      rivals: [], canyonReturn, canyonDelay, steadySources: [], nodes,
     };
+    this.graph = graph;
+    // Resume is called before network awaits, in the original user gesture.
     if (resume && context.state === 'suspended') await context.resume();
     if (context.state === 'running') this.disarm();
+    await Promise.all(RECORDED_EFFECT_URLS.map(url => this.loadRecording(url)));
+    if (this.disposed || this.graph !== graph || context.state === 'closed') return;
+    graph.left = this.createRecordedVoice(RECORDED_LOOPS.engine, -0.66, 0);
+    graph.right = this.createRecordedVoice(RECORDED_LOOPS.engine, 0.66, 0.37);
+    graph.turbine = this.createRecordedVoice(RECORDED_LOOPS.turbine, 0, 0);
+    graph.wind = this.createRecordedVoice(RECORDED_LOOPS.wind, 0, 0);
+    for (let i = 0; i < 4; i += 1) {
+      const voice = this.createRecordedVoice(RECORDED_LOOPS.engine, 0, (i + 1) * 0.57);
+      if (voice) graph.rivals.push(voice);
+    }
     if (this.lastTelemetry) this.update(this.lastTelemetry);
   }
 
-  private createEngineVoice(
-    context: AudioContext,
-    destination: AudioNode,
-    pan: number,
-    drive: number,
-  ): EngineVoice {
-    const main = context.createOscillator();
-    main.type = 'sawtooth';
-    main.frequency.value = 58;
-    const harmonic = context.createOscillator();
-    harmonic.type = 'square';
-    harmonic.frequency.value = 116;
-    const harmonicGain = context.createGain();
-    harmonicGain.gain.value = 0.17;
-    const shaper = context.createWaveShaper();
-    shaper.curve = createDriveCurve(drive);
-    shaper.oversample = '2x';
-    const filter = context.createBiquadFilter();
-    filter.type = 'lowpass';
-    filter.frequency.value = 620;
-    filter.Q.value = 2.8;
-    const gain = context.createGain();
-    gain.gain.value = 0;
-    const panner = context.createStereoPanner();
-    panner.pan.value = pan;
-    main.connect(shaper);
-    harmonic.connect(harmonicGain).connect(shaper);
-    shaper.connect(filter).connect(gain).connect(panner).connect(destination);
-    return { main, harmonic, filter, gain, panner };
+  private loadRecording(url: string): Promise<AudioBuffer | null> {
+    const cached = this.recordings.get(url);
+    if (cached) return Promise.resolve(cached);
+    const pending = this.pendingRecordings.get(url);
+    if (pending) return pending;
+    const context = this.context;
+    if (!context || this.disposed) return Promise.resolve(null);
+    const task = this.fetchAudio(url).then(encoded => context.decodeAudioData(encoded.slice(0)))
+      .then(buffer => {
+        if (this.disposed || this.context !== context || context.state === 'closed') return null;
+        this.recordings.set(url, buffer);
+        this.failedRecordings.delete(url);
+        return buffer;
+      }).catch(() => {
+        if (!this.disposed) this.failedRecordings.add(url);
+        return null;
+      }).finally(() => { this.pendingRecordings.delete(url); });
+    this.pendingRecordings.set(url, task);
+    return task;
   }
 
-  private createToneLayer(context: AudioContext, destination: AudioNode, type: OscillatorType, frequency: number): ToneLayer {
-    const oscillator = context.createOscillator();
-    oscillator.type = type;
-    oscillator.frequency.value = frequency;
-    const gain = context.createGain();
-    gain.gain.value = 0;
-    oscillator.connect(gain).connect(destination);
-    return { oscillator, gain };
+  private createRecordedVoice(url: string, pan: number, offset: number): RecordedVoice | null {
+    const context = this.context, graph = this.graph, buffer = this.recordings.get(url);
+    if (!context || !graph || !buffer) return null;
+    const source = context.createBufferSource(), filter = context.createBiquadFilter();
+    const gain = context.createGain(), panner = context.createStereoPanner();
+    source.buffer = buffer; source.loop = true;
+    filter.type = 'lowpass'; filter.frequency.value = 4_000; filter.Q.value = 0.7;
+    gain.gain.value = 0; panner.pan.value = pan;
+    source.connect(filter).connect(gain).connect(panner).connect(graph.engineBus);
+    graph.steadySources.push(source); graph.nodes.push(source, filter, gain, panner);
+    source.start(context.currentTime, offset % buffer.duration);
+    return { source, filter, gain, panner };
   }
 
   private target(parameter: AudioParam, value: number, now: number, timeConstant: number): void {
     parameter.setTargetAtTime(finite(value, parameter.value), now, Math.max(0.001, timeConstant));
   }
 
-  private applyEnvelope(gain: AudioParam, cue: PodracerAudioCue, start: number): number {
-    const schedule = createAudioEnvelopeSchedule(cue, start);
-    gain.cancelScheduledValues(start);
-    for (let index = 0; index < schedule.length; index += 1) {
-      const point = schedule[index];
-      if (!point) continue;
-      if (index === 0) gain.setValueAtTime(point.value, point.time);
-      else if (point.curve === 'exponential') gain.exponentialRampToValueAtTime(point.value, point.time);
-      else gain.linearRampToValueAtTime(point.value, point.time);
-    }
-    return schedule[schedule.length - 1]?.time ?? start + 0.1;
-  }
-
-  private playTone(
-    cue: PodracerAudioCue,
-    type: OscillatorType,
-    startFrequency: number,
-    endFrequency: number,
-    delay = 0,
-  ): void {
-    const context = this.context;
-    const graph = this.graph;
-    if (!context || !graph) return;
-    const pitch = cue.pitch ?? 1;
-    const start = context.currentTime + delay;
-    const oscillator = context.createOscillator();
-    oscillator.type = type;
-    oscillator.frequency.setValueAtTime(Math.max(24, startFrequency * pitch), start);
-    const gain = context.createGain();
-    const end = this.applyEnvelope(gain.gain, cue, start);
-    oscillator.frequency.exponentialRampToValueAtTime(Math.max(24, endFrequency * pitch), end);
-    oscillator.connect(gain).connect(graph.effectsBus);
-    oscillator.start(start);
-    oscillator.stop(end + 0.03);
-  }
-
-  private playNoise(
-    cue: PodracerAudioCue,
-    filterType: BiquadFilterType,
-    frequency: number,
-    delay = 0,
-  ): void {
-    const context = this.context;
-    const graph = this.graph;
-    if (!context || !graph) return;
-    const start = context.currentTime + delay;
-    const source = context.createBufferSource();
-    source.buffer = graph.noiseBuffer;
-    source.loop = true;
-    source.playbackRate.value = 0.82 + ((this.effectSequence * 37) % 19) / 50;
-    const filter = context.createBiquadFilter();
-    filter.type = filterType;
-    filter.frequency.value = frequency * (cue.pitch ?? 1);
-    filter.Q.value = filterType === 'bandpass' ? 1.35 : 0.75;
-    const gain = context.createGain();
-    const end = this.applyEnvelope(gain.gain, cue, start);
-    source.connect(filter).connect(gain).connect(graph.effectsBus);
-    const maxOffset = Math.max(0, graph.noiseBuffer.duration - 0.25);
-    const offset = maxOffset * ((this.effectSequence * 0.61803398875) % 1);
-    source.start(start, offset);
-    source.stop(end + 0.03);
-  }
-
-  private playHorn(cue: PodracerAudioCue): void {
-    const chord = [92.5, 123.5, 185];
-    for (let index = 0; index < chord.length; index += 1) {
-      const frequency = chord[index];
-      if (frequency === undefined) continue;
-      this.playTone(
-        { ...cue, intensity: cue.intensity * (1 - index * 0.16) },
-        index === 2 ? 'triangle' : 'sawtooth',
-        frequency,
-        frequency * 0.93,
-        index * 0.012,
-      );
-    }
-    this.playNoise({ ...cue, intensity: cue.intensity * 0.16 }, 'lowpass', 520);
-  }
-
-  /**
-   * A fast upward ion sweep, hard electrical snap, and short sub-body make the
-   * Heat Lance recognizable through engine/wind noise without using samples.
-   */
-  private playHeatLanceFire(cue: PodracerAudioCue): void {
-    this.playTone(cue, 'triangle', 430, 3_450);
-    this.playTone(
-      { ...cue, intensity: cue.intensity * 0.58, pitch: (cue.pitch ?? 1) * 1.03 },
-      'square',
-      3_900,
-      720,
-      0.003,
-    );
-    this.playTone(
-      { ...cue, intensity: cue.intensity * 0.32, pitch: (cue.pitch ?? 1) * 0.74 },
-      'sine',
-      210,
-      92,
-      0.012,
-    );
-    this.playNoise(
-      { ...cue, intensity: cue.intensity * 0.24, pitch: (cue.pitch ?? 1) * 1.08 },
-      'highpass',
-      2_450,
-      0.002,
-    );
-  }
-
-  /** A descending electrical rip plus a compact low impact for a clean hit. */
-  private playHeatLanceImpact(cue: PodracerAudioCue): void {
-    this.playTone(cue, 'sawtooth', 2_300, 86);
-    this.playTone(
-      { ...cue, intensity: cue.intensity * 0.56, pitch: (cue.pitch ?? 1) * 1.12 },
-      'triangle',
-      980,
-      155,
-      0.009,
-    );
-    this.playNoise(
-      { ...cue, intensity: cue.intensity * 0.46 },
-      'bandpass',
-      2_650,
-    );
-    this.playNoise(
-      { ...cue, intensity: cue.intensity * 0.25, pitch: (cue.pitch ?? 1) * 0.7 },
-      'lowpass',
-      560,
-      0.012,
-    );
-  }
-
-  private playArpeggio(cue: PodracerAudioCue, notes: readonly number[], spacing: number): void {
-    for (let index = 0; index < notes.length; index += 1) {
-      const note = notes[index];
-      if (note === undefined) continue;
-      this.playTone(
-        { ...cue, intensity: cue.intensity * Math.max(0.55, 1 - index * 0.09) },
-        'triangle',
-        note,
-        note * 1.025,
-        index * spacing,
-      );
-    }
-  }
 }

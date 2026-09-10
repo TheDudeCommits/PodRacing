@@ -1,34 +1,17 @@
+import { loadSaltDuskAssets, saltDuskUniforms } from '../saltDusk/SaltDuskAssets';
+import { SALT_DUSK_SUN } from '../saltDusk/SaltDuskLighting';
 import { INKSTORM_GEOLOGY_GLSL } from './InkstormGeologyShader';
 import { createInkstormRacerShadowUniforms, INKSTORM_RACER_SHADOW_GLSL } from './InkstormRacerShadow';
-import { Color, RepeatWrapping, ShaderMaterial, SRGBColorSpace, TextureLoader, Vector3, type Texture } from 'three';
+import { Color, ShaderMaterial, type Texture } from 'three';
 import { createInkstormShadowUniforms, INKSTORM_SHADOW_GLSL } from './InkstormSunShadow';
-let groundTexture:Texture|null=null;
-let paintLoading:Promise<Texture|null>|null=null;
-const rockPaintUniforms = { uRockPaint: { value: null as Texture | null }, uRockBeds: { value: null as Texture | null }, uRockPaintReady: { value: 0 } };
-const groundPaintUniforms = { uSandPaint: { value: null as Texture | null }, uSandPaintReady: { value: 0 } };
-const machineryPaintUniforms = { uMachineryPaint: { value: null as Texture | null }, uMachineryPaintReady: { value: 0 } };
-/** Shared uniform objects publish the asynchronous paint to already-built terrain. */
-export function inkstormSandPaintUniforms() { return { ...groundPaintUniforms, ...rockPaintUniforms }; }
-export function inkstormGroundPaint():Texture|null { return groundTexture; }
-export function loadInkstormPaint():Promise<Texture|null>{
-  if(!paintLoading)paintLoading=typeof document==='undefined'?Promise.resolve(null):Promise.all([
-    new TextureLoader().loadAsync('/assets/inkstorm/rock-mass-v2.png'),
-    new TextureLoader().loadAsync('/assets/inkstorm/ground-paint.png'),
-    new TextureLoader().loadAsync('/assets/inkstorm/machinery-paint.png'),
-    new TextureLoader().loadAsync('/assets/inkstorm/rock-paint.png'),
-  ]).then(([rock,ground,machinery,beds])=>{
-    for(const texture of [rock,ground,beds]){texture.colorSpace=SRGBColorSpace;texture.wrapS=RepeatWrapping;texture.wrapT=RepeatWrapping;texture.anisotropy=8;}
-    // Grayscale data modulates authored vertex colors; it is not a new albedo palette.
-    machinery.wrapS=RepeatWrapping;machinery.wrapT=RepeatWrapping;machinery.anisotropy=8;
-    machineryPaintUniforms.uMachineryPaint.value=machinery;machineryPaintUniforms.uMachineryPaintReady.value=1;
-    groundTexture=ground;
-    rockPaintUniforms.uRockPaint.value=rock;rockPaintUniforms.uRockPaintReady.value=1;
-    rockPaintUniforms.uRockBeds.value=beds;
-    groundPaintUniforms.uSandPaint.value=ground;groundPaintUniforms.uSandPaintReady.value=1;
-    return rock;
-  });
-  return paintLoading;
-}
+const dusk=saltDuskUniforms();
+const rockPaintUniforms={uRockPaint:dusk.uDuskRock,uRockBeds:dusk.uDuskRock,uRockPaintReady:dusk.uDuskRockReady};
+const groundPaintUniforms={uSandPaint:dusk.uDuskGround,uSandPaintReady:dusk.uDuskGroundReady};
+const machineryPaintUniforms={uMachineryPaint:dusk.uMachineryPaint,uMachineryPaintReady:dusk.uMachineryPaintReady};
+/** Legacy names borrow the shared photographed maps; one owner and one upload. */
+export function inkstormSandPaintUniforms(){return {...groundPaintUniforms,...rockPaintUniforms,...saltDuskUniforms()};}
+export function inkstormGroundPaint():Texture|null{return dusk.uDuskGround.value;}
+export async function loadInkstormPaint():Promise<Texture|null>{await loadSaltDuskAssets();return dusk.uDuskRock.value;}
 
 /** Vertex-painted Blender surfaces with broad violet shade and eroded strata. */
 export class InkstormSurfaceMaterial extends ShaderMaterial {
@@ -37,7 +20,7 @@ export class InkstormSurfaceMaterial extends ShaderMaterial {
       name: stone ? 'Inkstorm painted sandstone' : 'Inkstorm worn machinery',
       vertexColors: true, toneMapped: false,
       defines: { ...(!stone && workshopFamily ? { INKSTORM_WORKSHOP_FAMILY: workshopFamily === 'pit-complex' ? 1 : 2, ...(workshopBake ? { INKSTORM_WORKSHOP_BAKE: 1 } : {}) } : {}), ...(!stone && foundryEmission ? { INKSTORM_FOUNDRY_EMISSION: 1 } : {}), ...(!stone && foundationPaint ? { INKSTORM_FOUNDATION_METERS: 1 } : {}) },
-      uniforms: { uWorkshopBake: { value: workshopBake?.texture ?? null }, uWorkshopDecodeRange: { value: workshopBake?.decodeRange ?? 4 }, uWorkshopIntensity: { value: workshopBake?.intensity ?? 1 }, ...createInkstormShadowUniforms(), ...createInkstormRacerShadowUniforms(), ...machineryPaintUniforms, uPaint: rockPaintUniforms.uRockPaint, uRockBeds: rockPaintUniforms.uRockBeds, uPaintReady: rockPaintUniforms.uRockPaintReady, uStone: { value: stone ? 1 : 0 }, uSun: { value: new Vector3(-.42, .76, -.5).normalize() }, uHaze: { value: new Color('#b79cb8') } },
+      uniforms: { ...saltDuskUniforms(), uWorkshopBake: { value: workshopBake?.texture ?? null }, uWorkshopDecodeRange: { value: workshopBake?.decodeRange ?? 4 }, uWorkshopIntensity: { value: workshopBake?.intensity ?? 1 }, ...createInkstormShadowUniforms(), ...createInkstormRacerShadowUniforms(), ...machineryPaintUniforms, uPaint: rockPaintUniforms.uRockPaint, uRockBeds: rockPaintUniforms.uRockBeds, uPaintReady: rockPaintUniforms.uRockPaintReady, uStone: { value: stone ? 1 : 0 }, uSun: { value: SALT_DUSK_SUN.clone() }, uHaze: { value: new Color('#aaa7ac') } },
       vertexShader: `
         #include <common>
         #include <color_pars_vertex>
@@ -240,7 +223,7 @@ float inkstormWorkshopBakedLens() {
             #if defined(USE_COLOR) || defined(USE_COLOR_ALPHA)
             stonePaintValue=clamp(dot(vColor.rgb,vec3(.2126,.7152,.0722))/.19,.38,1.45);
             #endif
-            base=inkstormRockAlbedo(vWorld,n,uPaint,uRockBeds,uPaintReady)*mix(.68,1.25,
+            base=inkstormRockAlbedo(vWorld,n,uPaint,uRockBeds,uPaintReady)*mix(.82,1.1,
               smoothstep(.38,1.45,stonePaintValue));
           }
           float machinery=(1.-uStone)*(1.-service)*(1.-warmService)*uMachineryPaintReady;
@@ -258,23 +241,13 @@ float inkstormWorkshopBakedLens() {
             base=mix(base,vec3(.055,.039,.051),chips*detail*.72);
           }
           float visibility=min(inkstormSunVisibility(vWorld+n*.45),inkstormRacerSunVisibility(vWorld,n));
-          float lit=smoothstep(-.03,.76,ndl)*mix(.12,1.,visibility);
-          vec3 shade=mix(vec3(.032,.024,.064),base*vec3(.25,.23,.46),.65);
-          #ifdef INKSTORM_WORKSHOP_BAKE
-          // Enclosed workshops receive a restrained cool fill. The authored
-          // lamps establish the warm work planes against these dark cavities.
-          shade=mix(vec3(.010,.009,.016),base*vec3(.18,.17,.24),.75);
-          #endif
-          vec3 color=mix(shade,base,lit);
-          color*=mix(.8,1.,smoothstep(-.1,.55,n.y));
+          float matte=mix(.68,.89,uStone);
+          vec3 color=duskLight(base,n,vWorld,matte,machinery*.25,visibility);
           if(uStone>.5){
-            color=inkstormRockLight(base,inkstormRockNormal(vWorld,n,base),uSun,visibility);
-            // Retain cavity contrast in sky-filled shade as well as sunlight.
-            color*=mix(.72,1.,smoothstep(.38,1.,stonePaintValue));
+            vec3 rockNormal=inkstormRockNormal(vWorld,n,base);
+            color=duskLight(base,rockNormal,vWorld,.88,0.,visibility);
+            color*=mix(.86,1.,smoothstep(.38,1.,stonePaintValue));
           }
-          vec3 halfLight=normalize(uSun+normalize(cameraPosition-vWorld));
-          float sheen=pow(max(0.,dot(n,halfLight)),18.);
-          color+=vec3(.23,.14,.085)*smoothstep(.18,.72,sheen)*machinery*visibility*smoothstep(.45,.72,enamel);
           // Painted service lights are small areas authored into industrial
           // vertex colors; retain their signal even on an occluded underside.
           color=mix(color,base*1.12,service*.72);
@@ -296,7 +269,7 @@ float inkstormWorkshopBakedLens() {
           float haze=1.-exp(-max(0.,distanceToCamera-300.)*.00045);
           color=uStone>.5 ? inkstormRockAtmosphere(color,distanceToCamera)
             : mix(color,uHaze,haze*.85);
-          gl_FragColor=vec4(color,1.);
+          gl_FragColor=vec4(duskTone(color),1.);
           #include <colorspace_fragment>
         }`,
     });

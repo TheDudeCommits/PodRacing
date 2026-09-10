@@ -48,6 +48,7 @@ export interface ReviewSnapshot {
   raceTime: number;
   renderer: {
     racerShadow?: { size:number; casters:number; candidates:number; omitted:number; triangles:number; drawCalls:number; drawnTriangles:number; frames:number; refreshes:number; texelMetres:number; depthMetres:number; cpuMs:number; maxCpuMs:number; failure:string|null; skipped:string|null };
+    saltDuskAssets?: { loaded: string[]; failures: string[] };
     sceneryShadow?: { revision: number; size: number; casters: number; texelMetres: number; bakes: number; failure: string|null;
       terrain?: { vertices: number; triangles: number; sampleMetres: number; physicalMinHeight: number; physicalMaxHeight: number;
         maxMeasuredOvershoot: number; maxDownwardPad: number; interiorProbeMetres: number } };

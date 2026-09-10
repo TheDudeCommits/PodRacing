@@ -89,9 +89,9 @@ const streakFragment = /* glsl */ `
     float pointProfile = pow(max(0.0, 1.0 - abs(vTail * 2.0 - 1.0)), 0.34);
     float halfWidth = mix(0.16, 1.0, pointProfile);
     if (abs(vAcross) > halfWidth) discard;
-    float opacity = floor(vAlpha * 4.0) * 0.25;
+    float opacity = vAlpha * .20 * smoothstep(1.,.3,abs(vAcross));
     if (opacity < 0.03) discard;
-    float hotBand = step(0.48, fract(vSeed * 9.7));
+    float hotBand = smoothstep(0.25,.8,fract(vSeed * 9.7));
     vec3 depthTone = mix(uColor * 0.62, uColor, step(0.58, vTravel));
     gl_FragColor = vec4(mix(depthTone * 0.9, depthTone, hotBand), opacity);
   }

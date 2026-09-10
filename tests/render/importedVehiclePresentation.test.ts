@@ -251,13 +251,14 @@ describe('imported authored surface maps', () => {
     presentation.dispose(); library.dispose();
   });
 
-  it('does not activate roughness damping for legacy map-only materials, even with a standard-material default', async () => {
+  it('preserves the source roughness factor in the physical dusk material even without a texture', async () => {
     const f = artFixture();
     f.material.roughness = 1;
     const library = new VehicleArtLibrary({ load: async () => f.root });
     const presentation = new ImportedVehiclePresentation(library);
     expect(await presentation.setSource(source('legacy'))).toBe('ready');
-    expect(presentation.materials[0]?.defines.USE_CEL_ROUGHNESS).toBeUndefined();
+    expect(presentation.materials[0]?.defines.USE_CEL_ROUGHNESS).toBe('');
+    expect(presentation.materials[0]?.uniforms.uRoughness?.value).toBe(1);
     expect(presentation.materials[0]?.defines.USE_CEL_NORMAL_MAP).toBeUndefined();
     presentation.dispose(); library.dispose();
   });
@@ -517,7 +518,7 @@ describe('exact authored material painted shading', () => {
       expect(painted.fragmentShader).toBe(legacy.fragmentShader);
       expect(painted.uniforms.uRamp?.value.image.data).toEqual(legacyBytes);
     } else {
-      expect(painted.fragmentShader).not.toBe(legacy.fragmentShader);
+      expect(painted.fragmentShader).toBe(legacy.fragmentShader); // Legacy paint metadata cannot restore banded lighting.
       expect(painted.uniforms.uRamp?.value.image.data).not.toEqual(legacyBytes);
     }
     painted.setPalette(CEL_PALETTES.rivalTeal);

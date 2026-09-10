@@ -1,4 +1,20 @@
-# PodRacing — Round 36
+# PodRacing — Salt Flats at Dusk checkpoint 1 (2026-09-10)
+
+The owner approved the Salt Flats at Dusk photographic concept, requested only sourced existing audio (no generated audio), preservation of the original podracing voice, and a more futuristic minimal HUD. This checkpoint implements the material/lighting foundation, recorded audio bank and dusk UI. [Current report and next priorities](docs/inkstorm-overhaul/SALT_DUSK_CHECKPOINT_1.md).
+
+Worktree `/Users/amir/Projects/PodRacing`, branch `codex/now-this-is-podracing`, remote `TheDudeCommits/PodRacing`. Baseline a4bb70d104c997667d4e42d29c02831af2cbd788. The unrelated `/Users/amir/Codex-ThreeJS` is not this game. Publish this checkpoint as **Preview** and obtain the requested owner checkpoint approval before promoting Production. Vercel’s Git production branch is `main`; our working branch is `codex/now-this-is-podracing`.
+
+Frozen runtime: index-DHCXwEh-.js, 1,872,109 bytes, SHA256 21e5342d01a6da615856cfabccd6c7e23e41aa3f4bbc982d6e5564a001cbfb28. The frozen final source passes all 971 tests /166 files, TypeScript and build. Exact final native eight-pod Battle: mean 59.910 FPS, p95 16.8 ms, p99 16.8 ms, maximum race frame 33.4 ms, M4/Chrome153/1440×900/adaptive DPR1–2. Recovery prevents PB as intended. All27 audio files load; no browser errors; owned browser/server closed. Do not transfer this measurement to any changed runtime or other device.
+
+Fresh blind visual critic: overall5.5/10, concept match3.5/10. **Early progress Preview only**. Existing hilly geometry/white banks, repetitive cliffs, sky composition and geometric exhaust remain visibly below the concept. Current diagnostic gallery uses staged scene positions; separate native Battle proves actual populated play. Audio provenance/decoding is verified; perceptual listening acceptance is still the owner’s review.
+
+New ownership: `src/render/saltDusk/` shares photographic assets across world/inspector with generation-safe leases; source glTF metallic/roughness/normal maps remain authoritative. Cel post/outline installation is disabled. Road shading normals changed but physical heights did not. Recorded audio replaces active synthesis; zero vehicle loops in garage and zero master gain when hidden. Do not generate audio or change `public/audio/podracing-selection-intro.webm`. Credits are linked in Audio settings.
+
+No simulation/handling changes or new vehicle families this checkpoint. Preserve the V36 warning against the withdrawn terrain-relative suspension experiment. Close owned browsers after use; never adopt port5211 or save the shared Blender scene.
+
+---
+
+## Prior Production: PodRacing — Round 36
 
 The user resumed development after V32r1 and prioritized a radically simpler setup, visible rivals/weapons, clear runoff and satisfying map/pod physics. Crashes are acceptable for now; do not divert the next round into another crash art loop. The broader eight-item backlog remains authorized and incomplete. [Current report](docs/inkstorm-overhaul/ROUND36_REPORT.md) records accomplishments and all remaining items.
 

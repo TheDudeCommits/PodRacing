@@ -19,12 +19,10 @@ import type { GalacticVehicleClass } from '../game/galactic/types';
 import { ART_APPEARANCES, resolveVehicleAppearance, type VehicleAppearanceId } from '../game/vehicleAppearance';
 import { RacerPresentation } from '../render/vehicles/RacerPresentation';
 import { VehicleArtLibrary } from '../render/vehicles/VehicleArtLibrary';
+import { acquireSaltDuskAssets } from '../render/saltDusk/SaltDuskAssets';
 import {
   createCelMaterial,
   CEL_PALETTES,
-  createInvertedHullOutline,
-  InvertedHullMaterial,
-  type InvertedHullHandle,
 } from '../render/materials';
 import {
   type PodracerMaterials,
@@ -35,13 +33,6 @@ export const VEHICLE_CARD_PREVIEW_SELECTOR =
 
 const PREVIEW_IMAGE_ATTRIBUTE = 'data-vehicle-preview-image';
 const PREVIEW_IMAGE_SELECTOR = `[${PREVIEW_IMAGE_ATTRIBUTE}]`;
-const PREVIEW_SILHOUETTE_PARTS = new Set([
-  'engine-shell',
-  'intake-cowl',
-  'nozzle',
-  'cockpit-shell',
-  'cockpit-nose',
-]);
 
 export interface VehiclePreviewRenderLimits {
   readonly maxPixelRatio: number;
@@ -150,8 +141,6 @@ interface PreviewResources {
   readonly camera: PerspectiveCamera;
   readonly vehicles: ReadonlyMap<GalacticVehicleClass, RacerPresentation>;
   readonly pilots: ReadonlyMap<GalacticVehicleClass, PilotView>;
-  readonly outlines: readonly InvertedHullHandle[];
-  readonly outlineMaterial: InvertedHullMaterial;
 }
 
 const cameraDirection = new Vector3(0.7, 0.38, -1).normalize();
@@ -329,6 +318,7 @@ async function decodeSource(source: string): Promise<void> {
  * animation loop; hide() releases every GPU resource before the race begins.
  */
 export class VehicleCardPreviewRenderer {
+  private readonly environmentAssets = acquireSaltDuskAssets();
   private readonly library: VehicleArtLibrary;
   private readonly ownsLibrary: boolean;
   private appearance: VehicleAppearanceId = 'procedural';
@@ -524,6 +514,7 @@ export class VehicleCardPreviewRenderer {
     this.lifecycleVersion += 1;
     this.stopObserving();
     this.releaseGpuResources();
+    this.environmentAssets.release();
     if (this.ownsLibrary) this.library.dispose();
     this.cache.clear();
     for (const image of this.managedImages) image.remove();
@@ -560,7 +551,9 @@ export class VehicleCardPreviewRenderer {
         const vehicle = resources.vehicles.get(host.vehicleClass);
         if (!vehicle) continue;
         if (host.appearance !== 'procedural' && vehicle.activeAppearanceId !== host.appearance && vehicle.appearanceStatus !== 'error') this.setAppearanceStatus('loading');
-        await vehicle.setAppearance(host.appearance);
+        // Imported physical materials borrow shared environment bindings. Wait
+        // for their settled load before caching a one-shot image or inspection.
+        await Promise.all([this.environmentAssets.ready, vehicle.setAppearance(host.appearance)]);
         if (version !== this.lifecycleVersion || !this.visibleValue || this.disposed || this.resources !== resources) return;
         const status = vehicle.appearanceStatus === 'error' ? 'error' : 'ready';
         const cached = this.cache.get(host.key);
@@ -665,19 +658,13 @@ export class VehicleCardPreviewRenderer {
     const camera = new PerspectiveCamera(30, 2, 0.1, 500);
     const vehicles = new Map<GalacticVehicleClass, RacerPresentation>();
     const pilots = new Map<GalacticVehicleClass, PilotView>();
-    const outlines: InvertedHullHandle[] = [];
-    const outlineMaterial = new InvertedHullMaterial({
-      ink: '#0c0914',
-      widthPx: 1.8,
-      opacity: 0.98,
-    });
 
     GALACTIC_VEHICLE_ORDER.forEach((vehicleClass, index) => {
       // Preview imported art at hero detail independently of a card's physics-class index.
       const view = new RacerPresentation(this.library, createPreviewMaterials(index), vehicleClass === 'podracer' ? 0 : index);
       view.setVehicleClass(vehicleClass);
       view.name = `vehicle-card-${vehicleClass}`;
-      const pilot = attachPilotToAnchor(view.pilotAnchor, { racerIndex: 0, detail: 'hero', outlineWidthPx: 1.1 });
+      const pilot = attachPilotToAnchor(view.pilotAnchor, { racerIndex: 0, detail: 'hero', outlines: false });
       pilot.update({ time: 1.75, deltaTime: 1 / 60, steering: 0.08, throttle: 0, grounded: true, racePhase: 'countdown' });
       pilots.set(vehicleClass, pilot);
       view.update({
@@ -693,18 +680,6 @@ export class VehicleCardPreviewRenderer {
         boost: 0.12,
         damage: 0,
       }, 1.75 + index * 0.31);
-      const silhouetteSources: Mesh[] = [];
-      view.traverse((object) => {
-        if (object instanceof Mesh && PREVIEW_SILHOUETTE_PARTS.has(object.name)) {
-          silhouetteSources.push(object);
-        }
-      });
-      for (const source of silhouetteSources) {
-        outlines.push(createInvertedHullOutline(source, {
-          material: outlineMaterial,
-          generateMissingNormals: true,
-        }));
-      }
       view.visible = false;
       vehicles.set(vehicleClass, view);
       scene.add(view);
@@ -716,8 +691,6 @@ export class VehicleCardPreviewRenderer {
       camera,
       vehicles,
       pilots,
-      outlines,
-      outlineMaterial,
     };
     return this.resources;
   }
@@ -758,7 +731,6 @@ export class VehicleCardPreviewRenderer {
     vehicle.updateMatrixWorld(true);
 
     resources.renderer.setSize(width, height, false);
-    resources.outlineMaterial.setViewport(width, height, 1);
     resources.pilots.get(vehicleClass)?.setViewport(width, height, 1);
     resources.pilots.get(vehicleClass)?.syncOutlines();
     resources.camera.aspect = width / Math.max(1, height);
@@ -862,13 +834,11 @@ export class VehicleCardPreviewRenderer {
   private releaseGpuResources(): void {
     const resources = this.resources;
     if (!resources) return;
-    for (const outline of resources.outlines) outline.dispose();
     for (const pilot of resources.pilots.values()) pilot.dispose();
     for (const vehicle of resources.vehicles.values()) {
       vehicle.removeFromParent();
       vehicle.dispose();
     }
-    resources.outlineMaterial.dispose();
     resources.scene.clear();
     resources.renderer.renderLists.dispose();
     resources.renderer.dispose();

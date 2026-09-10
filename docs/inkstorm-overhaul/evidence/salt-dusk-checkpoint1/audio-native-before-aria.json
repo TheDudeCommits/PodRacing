@@ -1,0 +1,1603 @@
+{
+  "scope": "Final integrated built game, normal UI and real tab visibility; native playback graph evidence, not listening approval or FPS benchmark",
+  "checks": [
+    {
+      "name": "selection vehicle loops silent",
+      "pass": true
+    },
+    {
+      "name": "credits opens creator and license attribution",
+      "pass": true
+    },
+    {
+      "name": "real background tab immediately master-muted",
+      "pass": null,
+      "detail": [],
+      "status": "UNVERIFIED",
+      "reason": "Both actual popup and new-tab bringToFront attempts left document.hidden=false and emitted no visibilitychange in this automated Chrome session. This did not exercise the hidden handler."
+    },
+    {
+      "name": "visibility preserves paused settings and music value",
+      "pass": null,
+      "status": "NOT_EXERCISED",
+      "reason": "Garage settings did not pause the menu, and Chrome did not dispatch visibility changes; the pause-restoration precondition was absent. Focused API tests remain the evidence for hidden-plus-paused behavior."
+    },
+    {
+      "name": "race engines run recorded loops",
+      "pass": true
+    },
+    {
+      "name": "return to garage silences all eight voices and reflections",
+      "pass": true
+    },
+    {
+      "name": "original selection voice uses unchanged rate and finishes once",
+      "pass": true
+    },
+    {
+      "name": "same existing music excerpt survives garage and race",
+      "pass": true
+    },
+    {
+      "name": "no runtime oscillator or sample synthesis",
+      "pass": true
+    },
+    {
+      "name": "UI mute key sets zero and remains muted across actual tab focus return",
+      "pass": true
+    },
+    {
+      "name": "UI unmute key restores configured master",
+      "pass": true
+    },
+    {
+      "name": "catalogue all loaded with no pending, failed or stale effects in garage",
+      "pass": true
+    },
+    {
+      "name": "40 percent music setting applies to selection and race mixes",
+      "pass": true,
+      "detail": "Garage sampled 250ms into its authored 650ms fade: gain0.198037 lies between race0.124 and selection0.312. No claim of final settled garage gain from that early sample."
+    }
+  ],
+  "states": {
+    "initial": {
+      "hidden": false,
+      "master": 0.6119999885559082,
+      "engineBus": 0,
+      "musicBus": 0.31200000643730164,
+      "canyonReturn": 0,
+      "vehicleGains": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "sources": 10,
+      "oscillators": 0,
+      "createdBuffers": 0,
+      "contextState": "running",
+      "game": {
+        "audio": {
+          "recordings": {
+            "loaded": 27,
+            "pending": 0,
+            "failed": [],
+            "activeEffects": 0
+          },
+          "ready": true,
+          "mode": "selection",
+          "requested": true,
+          "loading": false,
+          "introScheduled": true,
+          "scoreScheduled": true,
+          "awaitingGesture": false,
+          "url": "/audio/podracing-selection-intro.webm",
+          "overtakeCallout": {
+            "ready": true,
+            "scheduled": false,
+            "playing": false,
+            "paused": false,
+            "cooldownRemainingSeconds": 0,
+            "playCount": 0
+          }
+        }
+      },
+      "visibility": [],
+      "records": [
+        {
+          "loop": true,
+          "duration": 4,
+          "rate": 1,
+          "starts": [
+            [
+              0,
+              0
+            ]
+          ],
+          "stops": [],
+          "ended": false
+        },
+        {
+          "loop": true,
+          "duration": 4,
+          "rate": 1,
+          "starts": [
+            [
+              0,
+              0.37
+            ]
+          ],
+          "stops": [],
+          "ended": false
+        },
+        {
+          "loop": true,
+          "duration": 7,
+          "rate": 1,
+          "starts": [
+            [
+              0,
+              0
+            ]
+          ],
+          "stops": [],
+          "ended": false
+        },
+        {
+          "loop": true,
+          "duration": 20,
+          "rate": 1,
+          "starts": [
+            [
+              0,
+              0
+            ]
+          ],
+          "stops": [],
+          "ended": false
+        },
+        {
+          "loop": true,
+          "duration": 4,
+          "rate": 1,
+          "starts": [
+            [
+              0,
+              0.57
+            ]
+          ],
+          "stops": [],
+          "ended": false
+        },
+        {
+          "loop": true,
+          "duration": 4,
+          "rate": 1,
+          "starts": [
+            [
+              0,
+              1.14
+            ]
+          ],
+          "stops": [],
+          "ended": false
+        },
+        {
+          "loop": true,
+          "duration": 4,
+          "rate": 1,
+          "starts": [
+            [
+              0,
+              1.71
+            ]
+          ],
+          "stops": [],
+          "ended": false
+        },
+        {
+          "loop": true,
+          "duration": 4,
+          "rate": 1,
+          "starts": [
+            [
+              0,
+              2.28
+            ]
+          ],
+          "stops": [],
+          "ended": false
+        },
+        {
+          "loop": false,
+          "duration": 6.058666666666666,
+          "rate": 1,
+          "starts": [
+            [
+              0.035
+            ]
+          ],
+          "stops": [],
+          "ended": true
+        },
+        {
+          "loop": true,
+          "duration": 75,
+          "rate": 1,
+          "starts": [
+            [
+              4.543666666666667,
+              0
+            ]
+          ],
+          "stops": [],
+          "ended": false
+        }
+      ]
+    },
+    "hidden": {
+      "hidden": false,
+      "master": 0.6119999885559082,
+      "engineBus": 0,
+      "musicBus": 0.31200000643730164,
+      "canyonReturn": 0,
+      "vehicleGains": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "sources": 10,
+      "oscillators": 0,
+      "createdBuffers": 0,
+      "contextState": "running",
+      "game": {
+        "audio": {
+          "recordings": {
+            "loaded": 27,
+            "pending": 0,
+            "failed": [],
+            "activeEffects": 0
+          },
+          "ready": true,
+          "mode": "selection",
+          "requested": true,
+          "loading": false,
+          "introScheduled": true,
+          "scoreScheduled": true,
+          "awaitingGesture": false,
+          "url": "/audio/podracing-selection-intro.webm",
+          "overtakeCallout": {
+            "ready": true,
+            "scheduled": false,
+            "playing": false,
+            "paused": false,
+            "cooldownRemainingSeconds": 0,
+            "playCount": 0
+          }
+        }
+      },
+      "visibility": [],
+      "records": [
+        {
+          "loop": true,
+          "duration": 4,
+          "rate": 1,
+          "starts": [
+            [
+              0,
+              0
+            ]
+          ],
+          "stops": [],
+          "ended": false
+        },
+        {
+          "loop": true,
+          "duration": 4,
+          "rate": 1,
+          "starts": [
+            [
+              0,
+              0.37
+            ]
+          ],
+          "stops": [],
+          "ended": false
+        },
+        {
+          "loop": true,
+          "duration": 7,
+          "rate": 1,
+          "starts": [
+            [
+              0,
+              0
+            ]
+          ],
+          "stops": [],
+          "ended": false
+        },
+        {
+          "loop": true,
+          "duration": 20,
+          "rate": 1,
+          "starts": [
+            [
+              0,
+              0
+            ]
+          ],
+          "stops": [],
+          "ended": false
+        },
+        {
+          "loop": true,
+          "duration": 4,
+          "rate": 1,
+          "starts": [
+            [
+              0,
+              0.57
+            ]
+          ],
+          "stops": [],
+          "ended": false
+        },
+        {
+          "loop": true,
+          "duration": 4,
+          "rate": 1,
+          "starts": [
+            [
+              0,
+              1.14
+            ]
+          ],
+          "stops": [],
+          "ended": false
+        },
+        {
+          "loop": true,
+          "duration": 4,
+          "rate": 1,
+          "starts": [
+            [
+              0,
+              1.71
+            ]
+          ],
+          "stops": [],
+          "ended": false
+        },
+        {
+          "loop": true,
+          "duration": 4,
+          "rate": 1,
+          "starts": [
+            [
+              0,
+              2.28
+            ]
+          ],
+          "stops": [],
+          "ended": false
+        },
+        {
+          "loop": false,
+          "duration": 6.058666666666666,
+          "rate": 1,
+          "starts": [
+            [
+              0.035
+            ]
+          ],
+          "stops": [],
+          "ended": true
+        },
+        {
+          "loop": true,
+          "duration": 75,
+          "rate": 1,
+          "starts": [
+            [
+              4.543666666666667,
+              0
+            ]
+          ],
+          "stops": [],
+          "ended": false
+        }
+      ]
+    },
+    "visiblePaused": {
+      "hidden": false,
+      "master": 0.6119999885559082,
+      "engineBus": 0,
+      "musicBus": 0.31200000643730164,
+      "canyonReturn": 0,
+      "vehicleGains": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "sources": 10,
+      "oscillators": 0,
+      "createdBuffers": 0,
+      "contextState": "running",
+      "game": {
+        "audio": {
+          "recordings": {
+            "loaded": 27,
+            "pending": 0,
+            "failed": [],
+            "activeEffects": 0
+          },
+          "ready": true,
+          "mode": "selection",
+          "requested": true,
+          "loading": false,
+          "introScheduled": true,
+          "scoreScheduled": true,
+          "awaitingGesture": false,
+          "url": "/audio/podracing-selection-intro.webm",
+          "overtakeCallout": {
+            "ready": true,
+            "scheduled": false,
+            "playing": false,
+            "paused": false,
+            "cooldownRemainingSeconds": 0,
+            "playCount": 0
+          }
+        }
+      },
+      "visibility": [],
+      "records": [
+        {
+          "loop": true,
+          "duration": 4,
+          "rate": 1,
+          "starts": [
+            [
+              0,
+              0
+            ]
+          ],
+          "stops": [],
+          "ended": false
+        },
+        {
+          "loop": true,
+          "duration": 4,
+          "rate": 1,
+          "starts": [
+            [
+              0,
+              0.37
+            ]
+          ],
+          "stops": [],
+          "ended": false
+        },
+        {
+          "loop": true,
+          "duration": 7,
+          "rate": 1,
+          "starts": [
+            [
+              0,
+              0
+            ]
+          ],
+          "stops": [],
+          "ended": false
+        },
+        {
+          "loop": true,
+          "duration": 20,
+          "rate": 1,
+          "starts": [
+            [
+              0,
+              0
+            ]
+          ],
+          "stops": [],
+          "ended": false
+        },
+        {
+          "loop": true,
+          "duration": 4,
+          "rate": 1,
+          "starts": [
+            [
+              0,
+              0.57
+            ]
+          ],
+          "stops": [],
+          "ended": false
+        },
+        {
+          "loop": true,
+          "duration": 4,
+          "rate": 1,
+          "starts": [
+            [
+              0,
+              1.14
+            ]
+          ],
+          "stops": [],
+          "ended": false
+        },
+        {
+          "loop": true,
+          "duration": 4,
+          "rate": 1,
+          "starts": [
+            [
+              0,
+              1.71
+            ]
+          ],
+          "stops": [],
+          "ended": false
+        },
+        {
+          "loop": true,
+          "duration": 4,
+          "rate": 1,
+          "starts": [
+            [
+              0,
+              2.28
+            ]
+          ],
+          "stops": [],
+          "ended": false
+        },
+        {
+          "loop": false,
+          "duration": 6.058666666666666,
+          "rate": 1,
+          "starts": [
+            [
+              0.035
+            ]
+          ],
+          "stops": [],
+          "ended": true
+        },
+        {
+          "loop": true,
+          "duration": 75,
+          "rate": 1,
+          "starts": [
+            [
+              4.543666666666667,
+              0
+            ]
+          ],
+          "stops": [],
+          "ended": false
+        }
+      ]
+    },
+    "race": {
+      "hidden": false,
+      "master": 0.6119999885559082,
+      "engineBus": 0.7480000257492065,
+      "musicBus": 0.12399999797344208,
+      "canyonReturn": 0.008389941416680813,
+      "vehicleGains": [
+        0.3428438901901245,
+        0.33485713601112366,
+        0.154414102435112,
+        0.23908402025699615,
+        0.028200214728713036,
+        0.019393207505345345,
+        0.01573249138891697,
+        0.006842759437859058
+      ],
+      "sources": 23,
+      "oscillators": 0,
+      "createdBuffers": 0,
+      "contextState": "running",
+      "game": {
+        "audio": {
+          "recordings": {
+            "loaded": 27,
+            "pending": 0,
+            "failed": [],
+            "activeEffects": 2
+          },
+          "ready": true,
+          "mode": "race",
+          "requested": true,
+          "loading": false,
+          "introScheduled": true,
+          "scoreScheduled": true,
+          "awaitingGesture": false,
+          "url": "/audio/podracing-selection-intro.webm",
+          "overtakeCallout": {
+            "ready": true,
+            "scheduled": false,
+            "playing": false,
+            "paused": false,
+            "cooldownRemainingSeconds": 0,
+            "playCount": 0
+          }
+        }
+      },
+      "visibility": [],
+      "records": [
+        {
+          "loop": true,
+          "duration": 4,
+          "rate": 0.96379554271698,
+          "starts": [
+            [
+              0,
+              0
+            ]
+          ],
+          "stops": [],
+          "ended": false
+        },
+        {
+          "loop": true,
+          "duration": 4,
+          "rate": 0.9728121757507324,
+          "starts": [
+            [
+              0,
+              0.37
+            ]
+          ],
+          "stops": [],
+          "ended": false
+        },
+        {
+          "loop": true,
+          "duration": 7,
+          "rate": 1.265107274055481,
+          "starts": [
+            [
+              0,
+              0
+            ]
+          ],
+          "stops": [],
+          "ended": false
+        },
+        {
+          "loop": true,
+          "duration": 20,
+          "rate": 1,
+          "starts": [
+            [
+              0,
+              0
+            ]
+          ],
+          "stops": [],
+          "ended": false
+        },
+        {
+          "loop": true,
+          "duration": 4,
+          "rate": 0.8839543461799622,
+          "starts": [
+            [
+              0,
+              0.57
+            ]
+          ],
+          "stops": [],
+          "ended": false
+        },
+        {
+          "loop": true,
+          "duration": 4,
+          "rate": 0.8779706358909607,
+          "starts": [
+            [
+              0,
+              1.14
+            ]
+          ],
+          "stops": [],
+          "ended": false
+        },
+        {
+          "loop": true,
+          "duration": 4,
+          "rate": 0.7918916940689087,
+          "starts": [
+            [
+              0,
+              1.71
+            ]
+          ],
+          "stops": [],
+          "ended": false
+        },
+        {
+          "loop": true,
+          "duration": 4,
+          "rate": 0.9451244473457336,
+          "starts": [
+            [
+              0,
+              2.28
+            ]
+          ],
+          "stops": [],
+          "ended": false
+        },
+        {
+          "loop": false,
+          "duration": 6.058666666666666,
+          "rate": 1,
+          "starts": [
+            [
+              0.035
+            ]
+          ],
+          "stops": [],
+          "ended": true
+        },
+        {
+          "loop": true,
+          "duration": 75,
+          "rate": 1,
+          "starts": [
+            [
+              4.543666666666667,
+              0
+            ]
+          ],
+          "stops": [],
+          "ended": false
+        },
+        {
+          "loop": false,
+          "duration": 0.040375,
+          "rate": 1,
+          "starts": [
+            [
+              183.83966666666666
+            ]
+          ],
+          "stops": [
+            [
+              183.88504166666667
+            ]
+          ],
+          "ended": true
+        },
+        {
+          "loop": false,
+          "duration": 0.040375,
+          "rate": 1.090000033378601,
+          "starts": [
+            [
+              184.77833333333334
+            ]
+          ],
+          "stops": [
+            [
+              184.8203746166027
+            ]
+          ],
+          "ended": true
+        },
+        {
+          "loop": false,
+          "duration": 0.040375,
+          "rate": 1.1799999475479126,
+          "starts": [
+            [
+              185.77566666666667
+            ]
+          ],
+          "stops": [
+            [
+              185.8148827698825
+            ]
+          ],
+          "ended": true
+        },
+        {
+          "loop": false,
+          "duration": 0.11991666666666667,
+          "rate": 1,
+          "starts": [
+            [
+              186.77833333333334
+            ]
+          ],
+          "stops": [
+            [
+              186.90324999999999
+            ]
+          ],
+          "ended": true
+        },
+        {
+          "loop": false,
+          "duration": 0.497125,
+          "rate": 0.8199999928474426,
+          "starts": [
+            [
+              186.78366666666668
+            ]
+          ],
+          "stops": [
+            [
+              187.39491667195477
+            ]
+          ],
+          "ended": true
+        },
+        {
+          "loop": false,
+          "duration": 0.34975,
+          "rate": 0.9200000166893005,
+          "starts": [
+            [
+              187.045
+            ]
+          ],
+          "stops": [
+            [
+              187.4301630365819
+            ]
+          ],
+          "ended": true
+        },
+        {
+          "loop": false,
+          "duration": 0.16475,
+          "rate": 1,
+          "starts": [
+            [
+              187.861
+            ]
+          ],
+          "stops": [
+            [
+              188.03074999999998
+            ]
+          ],
+          "ended": true
+        },
+        {
+          "loop": false,
+          "duration": 5,
+          "rate": 1,
+          "starts": [
+            [
+              187.861
+            ]
+          ],
+          "stops": [
+            [
+              192.86599999999999
+            ]
+          ],
+          "ended": false
+        },
+        {
+          "loop": false,
+          "duration": 0.16475,
+          "rate": 1,
+          "starts": [
+            [
+              188.41033333333334
+            ]
+          ],
+          "stops": [
+            [
+              188.58008333333333
+            ]
+          ],
+          "ended": true
+        },
+        {
+          "loop": false,
+          "duration": 0.13785416666666667,
+          "rate": 1,
+          "starts": [
+            [
+              188.41033333333334
+            ]
+          ],
+          "stops": [
+            [
+              188.5531875
+            ]
+          ],
+          "ended": true
+        },
+        {
+          "loop": false,
+          "duration": 0.497125,
+          "rate": 1,
+          "starts": [
+            [
+              188.661
+            ]
+          ],
+          "stops": [
+            [
+              189.163125
+            ]
+          ],
+          "ended": true
+        },
+        {
+          "loop": false,
+          "duration": 0.3563541666666667,
+          "rate": 1,
+          "starts": [
+            [
+              189.61033333333333
+            ]
+          ],
+          "stops": [
+            [
+              189.9716875
+            ]
+          ],
+          "ended": true
+        },
+        {
+          "loop": false,
+          "duration": 5,
+          "rate": 1,
+          "starts": [
+            [
+              189.61033333333333
+            ]
+          ],
+          "stops": [
+            [
+              194.61533333333333
+            ]
+          ],
+          "ended": false
+        }
+      ]
+    },
+    "garage": {
+      "hidden": false,
+      "master": 0.6108314394950867,
+      "engineBus": 0,
+      "musicBus": 0.1980370581150055,
+      "canyonReturn": 0,
+      "vehicleGains": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "sources": 23,
+      "oscillators": 0,
+      "createdBuffers": 0,
+      "contextState": "running",
+      "game": {
+        "audio": {
+          "recordings": {
+            "loaded": 27,
+            "pending": 0,
+            "failed": [],
+            "activeEffects": 0
+          },
+          "ready": true,
+          "mode": "selection",
+          "requested": true,
+          "loading": false,
+          "introScheduled": true,
+          "scoreScheduled": true,
+          "awaitingGesture": false,
+          "url": "/audio/podracing-selection-intro.webm",
+          "overtakeCallout": {
+            "ready": true,
+            "scheduled": false,
+            "playing": false,
+            "paused": false,
+            "cooldownRemainingSeconds": 0,
+            "playCount": 0
+          }
+        }
+      },
+      "visibility": [],
+      "records": [
+        {
+          "loop": true,
+          "duration": 4,
+          "rate": 0.9916401505470276,
+          "starts": [
+            [
+              0,
+              0
+            ]
+          ],
+          "stops": [],
+          "ended": false
+        },
+        {
+          "loop": true,
+          "duration": 4,
+          "rate": 0.9867973923683167,
+          "starts": [
+            [
+              0,
+              0.37
+            ]
+          ],
+          "stops": [],
+          "ended": false
+        },
+        {
+          "loop": true,
+          "duration": 7,
+          "rate": 1.280271053314209,
+          "starts": [
+            [
+              0,
+              0
+            ]
+          ],
+          "stops": [],
+          "ended": false
+        },
+        {
+          "loop": true,
+          "duration": 20,
+          "rate": 1,
+          "starts": [
+            [
+              0,
+              0
+            ]
+          ],
+          "stops": [],
+          "ended": false
+        },
+        {
+          "loop": true,
+          "duration": 4,
+          "rate": 0.8732288479804993,
+          "starts": [
+            [
+              0,
+              0.57
+            ]
+          ],
+          "stops": [],
+          "ended": false
+        },
+        {
+          "loop": true,
+          "duration": 4,
+          "rate": 0.8887696266174316,
+          "starts": [
+            [
+              0,
+              1.14
+            ]
+          ],
+          "stops": [],
+          "ended": false
+        },
+        {
+          "loop": true,
+          "duration": 4,
+          "rate": 0.7852113246917725,
+          "starts": [
+            [
+              0,
+              1.71
+            ]
+          ],
+          "stops": [],
+          "ended": false
+        },
+        {
+          "loop": true,
+          "duration": 4,
+          "rate": 0.9659398198127747,
+          "starts": [
+            [
+              0,
+              2.28
+            ]
+          ],
+          "stops": [],
+          "ended": false
+        },
+        {
+          "loop": false,
+          "duration": 6.058666666666666,
+          "rate": 1,
+          "starts": [
+            [
+              0.035
+            ]
+          ],
+          "stops": [],
+          "ended": true
+        },
+        {
+          "loop": true,
+          "duration": 75,
+          "rate": 1,
+          "starts": [
+            [
+              4.543666666666667,
+              0
+            ]
+          ],
+          "stops": [],
+          "ended": false
+        },
+        {
+          "loop": false,
+          "duration": 0.040375,
+          "rate": 1,
+          "starts": [
+            [
+              183.83966666666666
+            ]
+          ],
+          "stops": [
+            [
+              183.88504166666667
+            ]
+          ],
+          "ended": true
+        },
+        {
+          "loop": false,
+          "duration": 0.040375,
+          "rate": 1.090000033378601,
+          "starts": [
+            [
+              184.77833333333334
+            ]
+          ],
+          "stops": [
+            [
+              184.8203746166027
+            ]
+          ],
+          "ended": true
+        },
+        {
+          "loop": false,
+          "duration": 0.040375,
+          "rate": 1.1799999475479126,
+          "starts": [
+            [
+              185.77566666666667
+            ]
+          ],
+          "stops": [
+            [
+              185.8148827698825
+            ]
+          ],
+          "ended": true
+        },
+        {
+          "loop": false,
+          "duration": 0.11991666666666667,
+          "rate": 1,
+          "starts": [
+            [
+              186.77833333333334
+            ]
+          ],
+          "stops": [
+            [
+              186.90324999999999
+            ]
+          ],
+          "ended": true
+        },
+        {
+          "loop": false,
+          "duration": 0.497125,
+          "rate": 0.8199999928474426,
+          "starts": [
+            [
+              186.78366666666668
+            ]
+          ],
+          "stops": [
+            [
+              187.39491667195477
+            ]
+          ],
+          "ended": true
+        },
+        {
+          "loop": false,
+          "duration": 0.34975,
+          "rate": 0.9200000166893005,
+          "starts": [
+            [
+              187.045
+            ]
+          ],
+          "stops": [
+            [
+              187.4301630365819
+            ]
+          ],
+          "ended": true
+        },
+        {
+          "loop": false,
+          "duration": 0.16475,
+          "rate": 1,
+          "starts": [
+            [
+              187.861
+            ]
+          ],
+          "stops": [
+            [
+              188.03074999999998
+            ]
+          ],
+          "ended": true
+        },
+        {
+          "loop": false,
+          "duration": 5,
+          "rate": 1,
+          "starts": [
+            [
+              187.861
+            ]
+          ],
+          "stops": [
+            [
+              192.86599999999999
+            ],
+            []
+          ],
+          "ended": true
+        },
+        {
+          "loop": false,
+          "duration": 0.16475,
+          "rate": 1,
+          "starts": [
+            [
+              188.41033333333334
+            ]
+          ],
+          "stops": [
+            [
+              188.58008333333333
+            ]
+          ],
+          "ended": true
+        },
+        {
+          "loop": false,
+          "duration": 0.13785416666666667,
+          "rate": 1,
+          "starts": [
+            [
+              188.41033333333334
+            ]
+          ],
+          "stops": [
+            [
+              188.5531875
+            ]
+          ],
+          "ended": true
+        },
+        {
+          "loop": false,
+          "duration": 0.497125,
+          "rate": 1,
+          "starts": [
+            [
+              188.661
+            ]
+          ],
+          "stops": [
+            [
+              189.163125
+            ]
+          ],
+          "ended": true
+        },
+        {
+          "loop": false,
+          "duration": 0.3563541666666667,
+          "rate": 1,
+          "starts": [
+            [
+              189.61033333333333
+            ]
+          ],
+          "stops": [
+            [
+              189.9716875
+            ]
+          ],
+          "ended": true
+        },
+        {
+          "loop": false,
+          "duration": 5,
+          "rate": 1,
+          "starts": [
+            [
+              189.61033333333333
+            ]
+          ],
+          "stops": [
+            [
+              194.61533333333333
+            ],
+            []
+          ],
+          "ended": true
+        }
+      ]
+    }
+  },
+  "musicSetting": "0.4",
+  "credits": {
+    "url": "http://127.0.0.1:49379/audio/salt-dusk/CREDITS.html",
+    "text": "Audio credits\n\nExisting music, field recordings and sound-design catalogue assets. No AI-generated music or sound effects are used by this audio bank.\n\n\u201cJuggernaut\u201d by Scott Buckley \u2014 released under CC BY 4.0. A 75-second excerpt from 1:00\u20132:15 of the existing composition, with short entrance/exit fades; encoded at 24kHz/112kbps for the browser. The excerpt repeats in the game. No new composition or stems were created.\n\u201cCar Engine Loop 96kHz, 4s\u201d by qubodup \u2014 CC BY 3.0, selected from the author's alternative licenses. Recorded and looped by the author. Browser copy encoded to Opus with 3dB headroom; playback speed, filtering and gain respond to the racer.\n\u201cFan motor\u201d by Rvgerxini \u2014 CC0 1.0. A recorded mini-fan motor. The publicly supplied high-quality MP3 preview was excerpted from 0:01\u20130:08, level-adjusted and given short edge fades for turbine playback.\n\u201cWinter wind whistling through window.mp3\u201d by audible-edge \u2014 CC0 1.0. Recorded with a Zoom H2. The public high-quality MP3 preview was excerpted from 0:45\u20131:05, level-adjusted and given short edge fades.\nSci-fi Sounds (2020), Impact Sounds (2019), and Interface Sounds (2020) by Kenney \u2014 CC0 1.0. Selected existing Ogg files are copied unchanged; playback gain and rate vary in the game.\n\nThe supplied \u201cNow this is podracing\u201d selection/overtake clip is preserved separately, unchanged. It is not included in the open audio licenses above.\n\nNo creator endorsement is implied. Return to the game."
+  },
+  "assets": [
+    {
+      "url": "http://127.0.0.1:49379/audio/salt-dusk/engine.ogg",
+      "transferSize": 59631,
+      "decodedBodySize": 59331
+    },
+    {
+      "url": "http://127.0.0.1:49379/audio/salt-dusk/turbine.ogg",
+      "transferSize": 63463,
+      "decodedBodySize": 63163
+    },
+    {
+      "url": "http://127.0.0.1:49379/audio/salt-dusk/wind.ogg",
+      "transferSize": 214352,
+      "decodedBodySize": 214052
+    },
+    {
+      "url": "http://127.0.0.1:49379/audio/salt-dusk/impactMetal_heavy_000.ogg",
+      "transferSize": 6410,
+      "decodedBodySize": 6110
+    },
+    {
+      "url": "http://127.0.0.1:49379/audio/salt-dusk/impactGeneric_light_000.ogg",
+      "transferSize": 6127,
+      "decodedBodySize": 5827
+    },
+    {
+      "url": "http://127.0.0.1:49379/audio/salt-dusk/impactMetal_heavy_001.ogg",
+      "transferSize": 7579,
+      "decodedBodySize": 7279
+    },
+    {
+      "url": "http://127.0.0.1:49379/audio/salt-dusk/thrusterFire_000.ogg",
+      "transferSize": 201516,
+      "decodedBodySize": 201216
+    },
+    {
+      "url": "http://127.0.0.1:49379/audio/salt-dusk/bong_001.ogg",
+      "transferSize": 5148,
+      "decodedBodySize": 4848
+    },
+    {
+      "url": "http://127.0.0.1:49379/audio/salt-dusk/select_001.ogg",
+      "transferSize": 5768,
+      "decodedBodySize": 5468
+    },
+    {
+      "url": "http://127.0.0.1:49379/audio/salt-dusk/confirmation_001.ogg",
+      "transferSize": 9268,
+      "decodedBodySize": 8968
+    },
+    {
+      "url": "http://127.0.0.1:49379/audio/salt-dusk/confirmation_002.ogg",
+      "transferSize": 14469,
+      "decodedBodySize": 14169
+    },
+    {
+      "url": "http://127.0.0.1:49379/audio/salt-dusk/confirmation_004.ogg",
+      "transferSize": 12691,
+      "decodedBodySize": 12391
+    },
+    {
+      "url": "http://127.0.0.1:49379/audio/salt-dusk/error_005.ogg",
+      "transferSize": 7566,
+      "decodedBodySize": 7266
+    },
+    {
+      "url": "http://127.0.0.1:49379/audio/salt-dusk/computerNoise_000.ogg",
+      "transferSize": 119324,
+      "decodedBodySize": 119024
+    },
+    {
+      "url": "http://127.0.0.1:49379/audio/salt-dusk/forceField_002.ogg",
+      "transferSize": 27947,
+      "decodedBodySize": 27647
+    },
+    {
+      "url": "http://127.0.0.1:49379/audio/salt-dusk/click_001.ogg",
+      "transferSize": 5176,
+      "decodedBodySize": 4876
+    },
+    {
+      "url": "http://127.0.0.1:49379/audio/salt-dusk/laserLarge_000.ogg",
+      "transferSize": 25866,
+      "decodedBodySize": 25566
+    },
+    {
+      "url": "http://127.0.0.1:49379/audio/salt-dusk/laserLarge_001.ogg",
+      "transferSize": 26520,
+      "decodedBodySize": 26220
+    },
+    {
+      "url": "http://127.0.0.1:49379/audio/salt-dusk/laserSmall_002.ogg",
+      "transferSize": 9273,
+      "decodedBodySize": 8973
+    },
+    {
+      "url": "http://127.0.0.1:49379/audio/salt-dusk/explosionCrunch_000.ogg",
+      "transferSize": 28574,
+      "decodedBodySize": 28274
+    },
+    {
+      "url": "http://127.0.0.1:49379/audio/salt-dusk/forceField_000.ogg",
+      "transferSize": 25972,
+      "decodedBodySize": 25672
+    },
+    {
+      "url": "http://127.0.0.1:49379/audio/salt-dusk/impactMetal_light_000.ogg",
+      "transferSize": 7951,
+      "decodedBodySize": 7651
+    },
+    {
+      "url": "http://127.0.0.1:49379/audio/salt-dusk/lowFrequency_explosion_000.ogg",
+      "transferSize": 14617,
+      "decodedBodySize": 14317
+    },
+    {
+      "url": "http://127.0.0.1:49379/audio/salt-dusk/explosionCrunch_002.ogg",
+      "transferSize": 48207,
+      "decodedBodySize": 47907
+    },
+    {
+      "url": "http://127.0.0.1:49379/audio/salt-dusk/thrusterFire_002.ogg",
+      "transferSize": 205957,
+      "decodedBodySize": 205657
+    },
+    {
+      "url": "http://127.0.0.1:49379/audio/salt-dusk/impactPlate_medium_000.ogg",
+      "transferSize": 11221,
+      "decodedBodySize": 10921
+    },
+    {
+      "url": "http://127.0.0.1:49379/audio/podracing-selection-intro.webm",
+      "transferSize": 98881,
+      "decodedBodySize": 98581
+    },
+    {
+      "url": "http://127.0.0.1:49379/audio/salt-dusk/juggernaut.mp3",
+      "transferSize": 1051505,
+      "decodedBodySize": 1051205
+    }
+  ],
+  "bundle": [
+    "http://127.0.0.1:49379/assets/index-CCnFLqZi.js"
+  ],
+  "muteFollowup": {
+    "muted": 0,
+    "hidden": {
+      "hidden": false,
+      "master": 0,
+      "events": []
+    },
+    "retained": 0,
+    "unmuted": 0.611964225769043,
+    "snapshot": {
+      "recordings": {
+        "loaded": 27,
+        "pending": 0,
+        "failed": [],
+        "activeEffects": 0
+      },
+      "ready": true,
+      "mode": "selection",
+      "requested": true,
+      "loading": false,
+      "introScheduled": true,
+      "scoreScheduled": true,
+      "awaitingGesture": false,
+      "url": "/audio/podracing-selection-intro.webm",
+      "overtakeCallout": {
+        "ready": true,
+        "scheduled": false,
+        "playing": false,
+        "paused": false,
+        "cooldownRemainingSeconds": 0,
+        "playCount": 0
+      }
+    }
+  },
+  "createdAt": "2026-09-10T07:49:20.040836+00:00",
+  "cleanup": {
+    "browserClosed": true,
+    "browserPid": 43670,
+    "serverStopped": true,
+    "serverPort": 49379
+  },
+  "sourcePins": [
+    {
+      "path": "dist/assets/index-CCnFLqZi.js",
+      "sha256": "2c21ecd68bb500100a23f31b14cc125767cfc3866ea06d6fcd939deda6e950ce"
+    },
+    {
+      "path": "src/audio/PodracerAudio.ts",
+      "sha256": "a47c4dd76af17df579e01ae03a7ea86f073fc7724c2b1dcf1e45c2eff1acfe35"
+    },
+    {
+      "path": "src/render/app/GameApp.ts",
+      "sha256": "f5a4132e4ff738d7416911bfddb3f133d7b0d6b9a51e07f46734778bcf6bde5b"
+    },
+    {
+      "path": "public/audio/podracing-selection-intro.webm",
+      "sha256": "39c4d411570a2591be5cbf7fc27d86a63c36d3befa5de8d57c0d2018e1c89260"
+    },
+    {
+      "path": "dist/audio/podracing-selection-intro.webm",
+      "sha256": "39c4d411570a2591be5cbf7fc27d86a63c36d3befa5de8d57c0d2018e1c89260"
+    }
+  ],
+  "summary": {
+    "pass": 11,
+    "fail": 0,
+    "unverifiedOrNotExercised": 2
+  },
+  "limitations": [
+    "No human listening approval or final mix quality judgment.",
+    "No native hidden-tab handler assertion: actual Chrome tab focus did not dispatch visibilitychange.",
+    "Garage Settings dialog is visually interactive but retains aria-hidden=true; direct visible CSS locators were required.",
+    "No overtake was naturally earned in the short drive; original selection voice playback and byte equality are verified, cached overtake is covered by prior native module and focused API tests.",
+    "This bounded instrumentation run is not an FPS or complete-race acceptance run."
+  ]
+}

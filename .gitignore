@@ -10,3 +10,9 @@ __pycache__/
 # isolated exported meshes, source builders and receipts, not this backup.
 assets/source/inkstorm/scanned-geology/*-checkpoint.blend*
 .env*
+
+# Local source research: website previews/page caches are not licensed runtime assets.
+assets/source/salt-dusk/research/*-preview.png
+assets/source/salt-dusk/research/*.html
+assets/source/salt-dusk/research/hdr-decoded-rgba-f32.bin
+assets/source/audio-salt-dusk/*.html

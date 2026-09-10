@@ -1,0 +1,221 @@
+[
+  {
+    "source": "assets/source/audio-salt-dusk/qubodup-engine/engine-loop/engine-loop-1-normalized.wav",
+    "runtime": "public/audio/salt-dusk/engine.ogg",
+    "operation": [
+      "-af",
+      "volume=-3dB",
+      "-c:a",
+      "libopus",
+      "-b:a",
+      "128k"
+    ],
+    "sha256": "01ae6f4b6f3e44c6f1fbf28696730e5ba60fe94492f4cdcd97529ed8e5bb838b",
+    "bytes": 59331
+  },
+  {
+    "source": "assets/source/audio-salt-dusk/fan-motor-hq.mp3",
+    "runtime": "public/audio/salt-dusk/turbine.ogg",
+    "operation": [
+      "-af",
+      "atrim=start=1:duration=7,asetpts=PTS-STARTPTS,volume=7dB,afade=t=in:d=0.015,afade=t=out:st=6.985:d=0.015",
+      "-c:a",
+      "libopus",
+      "-b:a",
+      "96k"
+    ],
+    "sha256": "4fa50bd8239a22aac33b7c829ed2a72cd1d924afc3bdc5319fa68bbe87457560",
+    "bytes": 63163
+  },
+  {
+    "source": "assets/source/audio-salt-dusk/wind-hq.mp3",
+    "runtime": "public/audio/salt-dusk/wind.ogg",
+    "operation": [
+      "-af",
+      "atrim=start=45:duration=20,asetpts=PTS-STARTPTS,volume=20dB,afade=t=in:d=0.15,afade=t=out:st=19.85:d=0.15",
+      "-c:a",
+      "libopus",
+      "-b:a",
+      "96k"
+    ],
+    "sha256": "6cfa1f975483cd3bd5fd5379193749fd641571b22039cd7e92fde0f73c007e97",
+    "bytes": 214052
+  },
+  {
+    "source": "assets/source/audio-salt-dusk/Juggernaut.mp3",
+    "runtime": "public/audio/salt-dusk/juggernaut.mp3",
+    "operation": [
+      "-af",
+      "atrim=start=60:duration=75,asetpts=PTS-STARTPTS,afade=t=in:d=0.3,afade=t=out:st=74.4:d=0.6",
+      "-ar",
+      "24000",
+      "-c:a",
+      "libmp3lame",
+      "-b:a",
+      "112k"
+    ],
+    "sha256": "0c263f2004386de5b93be61d6cb2fdc55f79c4dd8e626a02d65cc5cef0d1058d",
+    "bytes": 1051205
+  },
+  {
+    "source": "assets/source/audio-salt-dusk/kenney-sci-fi/Audio/laserLarge_000.ogg",
+    "runtime": "public/audio/salt-dusk/laserLarge_000.ogg",
+    "operation": "byte-exact copy",
+    "sha256": "a56d95794cd732d6c2d66ce488c14cf557fe526c282897c9a77675c2bd9b77e6",
+    "bytes": 25566
+  },
+  {
+    "source": "assets/source/audio-salt-dusk/kenney-sci-fi/Audio/laserLarge_001.ogg",
+    "runtime": "public/audio/salt-dusk/laserLarge_001.ogg",
+    "operation": "byte-exact copy",
+    "sha256": "e678aca631495b7dfef4ac625f0349875ccac81a60f538d530e072241af3e4bd",
+    "bytes": 26220
+  },
+  {
+    "source": "assets/source/audio-salt-dusk/kenney-sci-fi/Audio/laserSmall_002.ogg",
+    "runtime": "public/audio/salt-dusk/laserSmall_002.ogg",
+    "operation": "byte-exact copy",
+    "sha256": "e70139466c3e801358c9041ee17db7ff82c0e9a9cdf44647ad0ea6b9f8458f63",
+    "bytes": 8973
+  },
+  {
+    "source": "assets/source/audio-salt-dusk/kenney-sci-fi/Audio/explosionCrunch_000.ogg",
+    "runtime": "public/audio/salt-dusk/explosionCrunch_000.ogg",
+    "operation": "byte-exact copy",
+    "sha256": "4b597d658d0ae101f0a030fbeea5fc3a4292ab85f017470a8254a8e7959cbd69",
+    "bytes": 28274
+  },
+  {
+    "source": "assets/source/audio-salt-dusk/kenney-sci-fi/Audio/explosionCrunch_002.ogg",
+    "runtime": "public/audio/salt-dusk/explosionCrunch_002.ogg",
+    "operation": "byte-exact copy",
+    "sha256": "be2b8ddc62e4a24c91e2e77793de98549ce216faf2f323a917e7d6f34321ff97",
+    "bytes": 47907
+  },
+  {
+    "source": "assets/source/audio-salt-dusk/kenney-sci-fi/Audio/lowFrequency_explosion_000.ogg",
+    "runtime": "public/audio/salt-dusk/lowFrequency_explosion_000.ogg",
+    "operation": "byte-exact copy",
+    "sha256": "3cb48d86dab63140cfb9aaeea4d4a6846abaca5831d157d8adbec0490da26343",
+    "bytes": 14317
+  },
+  {
+    "source": "assets/source/audio-salt-dusk/kenney-sci-fi/Audio/forceField_000.ogg",
+    "runtime": "public/audio/salt-dusk/forceField_000.ogg",
+    "operation": "byte-exact copy",
+    "sha256": "c2916f2a062c8ddd1aca2826d134fe90847037db31342726ffb0f9097afe339c",
+    "bytes": 25672
+  },
+  {
+    "source": "assets/source/audio-salt-dusk/kenney-sci-fi/Audio/forceField_002.ogg",
+    "runtime": "public/audio/salt-dusk/forceField_002.ogg",
+    "operation": "byte-exact copy",
+    "sha256": "051b0eafc479695af4ca3607d41fd4be41bae7c21f4f9508d004722b09f1bd63",
+    "bytes": 27647
+  },
+  {
+    "source": "assets/source/audio-salt-dusk/kenney-sci-fi/Audio/thrusterFire_000.ogg",
+    "runtime": "public/audio/salt-dusk/thrusterFire_000.ogg",
+    "operation": "byte-exact copy",
+    "sha256": "0fdc474d93f209debf1fc4ea77765a669dcb7676db31b4d8a0a509685bccf374",
+    "bytes": 201216
+  },
+  {
+    "source": "assets/source/audio-salt-dusk/kenney-sci-fi/Audio/thrusterFire_002.ogg",
+    "runtime": "public/audio/salt-dusk/thrusterFire_002.ogg",
+    "operation": "byte-exact copy",
+    "sha256": "5f7731c30196d73777d62eec7cb36a28bf63852e70244057b7625b888e71a3a8",
+    "bytes": 205657
+  },
+  {
+    "source": "assets/source/audio-salt-dusk/kenney-sci-fi/Audio/computerNoise_000.ogg",
+    "runtime": "public/audio/salt-dusk/computerNoise_000.ogg",
+    "operation": "byte-exact copy",
+    "sha256": "1527944e16eb14b48ee03fe3e7ce6aae94262833a4e1f83928d451a7414fe4e1",
+    "bytes": 119024
+  },
+  {
+    "source": "assets/source/audio-salt-dusk/kenney-impact/Audio/impactMetal_heavy_000.ogg",
+    "runtime": "public/audio/salt-dusk/impactMetal_heavy_000.ogg",
+    "operation": "byte-exact copy",
+    "sha256": "e07045693e4a2b3d165c424e3dab4c781d9ff8880a386880ac89a51315d7f831",
+    "bytes": 6110
+  },
+  {
+    "source": "assets/source/audio-salt-dusk/kenney-impact/Audio/impactMetal_heavy_001.ogg",
+    "runtime": "public/audio/salt-dusk/impactMetal_heavy_001.ogg",
+    "operation": "byte-exact copy",
+    "sha256": "83554049f81f4db9209379e103c30bfa63f65c42189a03f300b045c2c82e23ae",
+    "bytes": 7279
+  },
+  {
+    "source": "assets/source/audio-salt-dusk/kenney-impact/Audio/impactMetal_light_000.ogg",
+    "runtime": "public/audio/salt-dusk/impactMetal_light_000.ogg",
+    "operation": "byte-exact copy",
+    "sha256": "33b5e6e37c6e9d54e07bf5a89b12c76e879f40c1ea83cdd82714df1d6f9fec6d",
+    "bytes": 7651
+  },
+  {
+    "source": "assets/source/audio-salt-dusk/kenney-impact/Audio/impactPlate_medium_000.ogg",
+    "runtime": "public/audio/salt-dusk/impactPlate_medium_000.ogg",
+    "operation": "byte-exact copy",
+    "sha256": "b670d30452983369771081319c268475edaaafe782bf4e8d70bd7eef09d8823c",
+    "bytes": 10921
+  },
+  {
+    "source": "assets/source/audio-salt-dusk/kenney-impact/Audio/impactGeneric_light_000.ogg",
+    "runtime": "public/audio/salt-dusk/impactGeneric_light_000.ogg",
+    "operation": "byte-exact copy",
+    "sha256": "f0e982611e97512fee5f777986b67e8b435434b601f94992ec044f7e89fb5acb",
+    "bytes": 5827
+  },
+  {
+    "source": "assets/source/audio-salt-dusk/kenney-interface/Audio/click_001.ogg",
+    "runtime": "public/audio/salt-dusk/click_001.ogg",
+    "operation": "byte-exact copy",
+    "sha256": "ccfb7fa0cccdd9faec0eb16033c732b1e308d139d80f799161495d58f7adcdb9",
+    "bytes": 4876
+  },
+  {
+    "source": "assets/source/audio-salt-dusk/kenney-interface/Audio/confirmation_001.ogg",
+    "runtime": "public/audio/salt-dusk/confirmation_001.ogg",
+    "operation": "byte-exact copy",
+    "sha256": "063564703b6094d70718a3e787a55cc9141611e4ecd6b6637f8828f79b4a8c3a",
+    "bytes": 8968
+  },
+  {
+    "source": "assets/source/audio-salt-dusk/kenney-interface/Audio/confirmation_002.ogg",
+    "runtime": "public/audio/salt-dusk/confirmation_002.ogg",
+    "operation": "byte-exact copy",
+    "sha256": "33b17a9a9a2397c62b285c52c33a907fdffb476909c99e42dde603f6a7a8b12c",
+    "bytes": 14169
+  },
+  {
+    "source": "assets/source/audio-salt-dusk/kenney-interface/Audio/confirmation_004.ogg",
+    "runtime": "public/audio/salt-dusk/confirmation_004.ogg",
+    "operation": "byte-exact copy",
+    "sha256": "568967a3d9f8a8f6af54ea01729c4882284308f2a27d78c07ffd7ee0d6951661",
+    "bytes": 12391
+  },
+  {
+    "source": "assets/source/audio-salt-dusk/kenney-interface/Audio/select_001.ogg",
+    "runtime": "public/audio/salt-dusk/select_001.ogg",
+    "operation": "byte-exact copy",
+    "sha256": "aec0c31ea934a35936ae0d2ab8fac8123c93aa5647f935853a58dbaf90278b7a",
+    "bytes": 5468
+  },
+  {
+    "source": "assets/source/audio-salt-dusk/kenney-interface/Audio/error_005.ogg",
+    "runtime": "public/audio/salt-dusk/error_005.ogg",
+    "operation": "byte-exact copy",
+    "sha256": "3f75b11df5b06d68d2c25fbf0e9c9d9e7dd9250562a4007ee34856b8a309a2ae",
+    "bytes": 7266
+  },
+  {
+    "source": "assets/source/audio-salt-dusk/kenney-interface/Audio/bong_001.ogg",
+    "runtime": "public/audio/salt-dusk/bong_001.ogg",
+    "operation": "byte-exact copy",
+    "sha256": "d21d0f0b782445db579d11e2506b24cd1ac9d664ee33aeaf807761aa7b6fd710",
+    "bytes": 4848
+  }
+]

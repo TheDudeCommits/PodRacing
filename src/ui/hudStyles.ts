@@ -2,6 +2,7 @@ import { INKSTORM_HUD_CSS } from './inkstormStyles';
 import { BROADCAST_HUD_CSS } from './broadcastStyles';
 import { WORKSHOP_GRAPHIC_CSS } from './workshopGraphicStyles';
 import { SIMPLE_RACE_SETUP_CSS } from './simpleRaceSetupStyles';
+import { DUSK_UI_CSS } from './duskUiStyles';
 
 export const PODRACING_HUD_STYLE_ID = 'podracing-cel-hud-styles';
 
@@ -1721,7 +1722,7 @@ const BASE_HUD_CSS = /* css */ `
 .pod-hud.is-reduced-motion *::after { animation: none !important; transition-duration: 1ms !important; }
 `;
 
-export const PODRACING_HUD_CSS = BASE_HUD_CSS + INKSTORM_HUD_CSS + BROADCAST_HUD_CSS + WORKSHOP_GRAPHIC_CSS + SIMPLE_RACE_SETUP_CSS;
+export const PODRACING_HUD_CSS = BASE_HUD_CSS + INKSTORM_HUD_CSS + BROADCAST_HUD_CSS + WORKSHOP_GRAPHIC_CSS + SIMPLE_RACE_SETUP_CSS + DUSK_UI_CSS;
 
 export function installPodracingHudStyles(documentRoot: Document = document): HTMLStyleElement {
   const existing = documentRoot.getElementById(PODRACING_HUD_STYLE_ID);
