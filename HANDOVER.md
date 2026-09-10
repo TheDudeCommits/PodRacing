@@ -12,7 +12,7 @@ Only outer basin terrain changes; published main/shoulder/normal field hashes re
 
 Do not generate audio or alter `public/audio/podracing-selection-intro.webm` (SHA25639c4d411570a2591be5cbf7fc27d86a63c36d3befa5de8d57c0d2018e1c89260). V2 uses existing conventional catalogue effects and an unchanged Scott Buckley music excerpt; no listening approval is claimed. [Audio report](docs/inkstorm-overhaul/SALT_DUSK_AUDIO_V2.md). Private creator-page HTML caches are ignored; published sources have a separate inventory. Four of26 vehicle families remain registered; original broader eight-item backlog is not complete.
 
-Preview publication is pending for this frozen source. The publication receipt and hosted verification will be added after deployment. Production is unchanged.
+[Play the READY Preview](https://now-this-is-podracing-hqdpkcr4o-amirs-projects-d9680079.vercel.app). Deployment `dpl_AtuCyBwx4R9DxhbezjhbdkikpiFc`, runtime commit `9f10c38cfd6163b2437e6af83aeb17e817fa678f`. Hosted browser verification loaded the exact tested bundle and passed all seven interaction checks with no errors; browser closed. [Publication / unchanged Production receipt](docs/inkstorm-overhaul/evidence/salt-dusk-checkpoint2/publication.json) · [Hosted checks](docs/inkstorm-overhaul/evidence/salt-dusk-checkpoint2/deployed-receipt.json). The Preview may require the owner’s Vercel sign-in. Production remains V36 until owner checkpoint approval; no promotion was performed. This subsequent documentation commit changes no runtime assets or code.
 
 Close owned browsers and servers immediately after use. Never adopt port5211 or save the shared Blender GUI scene. All current agents are finished; no background job is intended to continue.
 

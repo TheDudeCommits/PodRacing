@@ -1,0 +1,109 @@
+{
+  "url": "https://now-this-is-podracing-hqdpkcr4o-amirs-projects-d9680079.vercel.app",
+  "expectedBundle": "index-DSU6k9pU.js",
+  "expectedSha256": "4e51f10f6b53b5dd13eb77b1240a9165d853f4d1eded5740f53da4dc19da6b2c",
+  "checks": [
+    {
+      "name": "Exact deployed bundle",
+      "pass": true,
+      "detail": [
+        {
+          "path": "/assets/index-DSU6k9pU.js",
+          "bytes": 1878130,
+          "sha256": "4e51f10f6b53b5dd13eb77b1240a9165d853f4d1eded5740f53da4dc19da6b2c"
+        }
+      ]
+    },
+    {
+      "name": "Four accessible race types",
+      "pass": true
+    },
+    {
+      "name": "Four pod selections and actual rotation controls",
+      "pass": true,
+      "detail": [
+        "TEEMTO",
+        "SEBULBA",
+        "POLWO",
+        "BLOCKRUNNER"
+      ]
+    },
+    {
+      "name": "Accessible Settings and original-source credits popup",
+      "pass": true
+    },
+    {
+      "name": "390px responsive menu",
+      "pass": true,
+      "detail": {
+        "scroll": 390,
+        "inner": 390
+      }
+    },
+    {
+      "name": "Eight-pod native race and recorded asset bank",
+      "pass": true,
+      "detail": {
+        "raceTime": 4.700000000000023,
+        "racers": 8,
+        "recordings": {
+          "loaded": 9,
+          "pending": 0,
+          "failed": [],
+          "activeEffects": 0
+        },
+        "saltDuskAssets": {
+          "loaded": [
+            "rock/albedo.jpg",
+            "rock/normal-gl.png",
+            "rock/roughness.jpg",
+            "ground/albedo.jpg",
+            "ground/normal-gl.png",
+            "ground/roughness.jpg",
+            "v2/environment/kloppenheim-dusk-4k.hdr"
+          ],
+          "failures": []
+        }
+      }
+    },
+    {
+      "name": "Pause settings, close and return to garage",
+      "pass": true
+    }
+  ],
+  "errors": [],
+  "build": [
+    {
+      "path": "/assets/index-DSU6k9pU.js",
+      "bytes": 1878130,
+      "sha256": "4e51f10f6b53b5dd13eb77b1240a9165d853f4d1eded5740f53da4dc19da6b2c"
+    }
+  ],
+  "cleanup": {
+    "browserClosed": true
+  },
+  "scope": "Native deployed browser interactions and passive loaded-resource hashing; no staged course state, no FPS claim.",
+  "race": {
+    "raceTime": 4.700000000000023,
+    "racers": 8,
+    "recordings": {
+      "loaded": 9,
+      "pending": 0,
+      "failed": [],
+      "activeEffects": 0
+    },
+    "saltDuskAssets": {
+      "loaded": [
+        "rock/albedo.jpg",
+        "rock/normal-gl.png",
+        "rock/roughness.jpg",
+        "ground/albedo.jpg",
+        "ground/normal-gl.png",
+        "ground/roughness.jpg",
+        "v2/environment/kloppenheim-dusk-4k.hdr"
+      ],
+      "failures": []
+    }
+  },
+  "outcome": "PASS"
+}
