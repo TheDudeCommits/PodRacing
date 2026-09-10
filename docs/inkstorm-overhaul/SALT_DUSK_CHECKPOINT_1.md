@@ -41,4 +41,10 @@ Fresh blind critic: **5.5/10 overall, 3.5/10 reference match**. Suitable to revi
 
 Actual diagnostic images: [menu](evidence/salt-dusk-checkpoint1/00-menu.png), [salt straight](evidence/salt-dusk-checkpoint1/02-salt-run.png), [canyon](evidence/salt-dusk-checkpoint1/03-canyon.png), [launch](evidence/salt-dusk-checkpoint1/05-launch.png). These are game renders, not generated concepts. Raw local evidence: `output/salt-dusk/checkpoint1/`, `output/dusk-ui-2026-09-10/`, and `output/playwright/salt-dusk-audio/`.
 
-Publication receipt will record the source commit, immutable Preview URL and authoritative deployment state after upload. The canonical main game remains the V36 Production baseline until checkpoint approval.
+[Play the READY Preview](https://now-this-is-podracing-dsj7cmxa7-amirs-projects-d9680079.vercel.app) · [Publication receipt](evidence/salt-dusk-checkpoint1/publication.json) · [Deployed browser checks](evidence/salt-dusk-checkpoint1/deployed-receipt.json).
+
+Source commit: `ce60ca14b4b9f748dc0c4dc8b4aeab08bf8a8151`. Deployment: `dpl_AsuF4P6Bz4iRzpp1hpRBFWK4fx5z`, authoritative READY / Preview (Vercel target null). Hosted browser loaded the exact bundle hash and passed seven checks: race types, four pods/rotation, accessible Settings/credits, 390px layout, eight-pod race/asset bank, pause Settings and return to garage. Errors empty; browser closed. Browser QA used temporary protected-deployment access; the ordinary Preview may require the owner’s Vercel sign-in.
+
+Two preceding verification-harness attempts are retained locally: an immediate visibility assertion ran before the Audio tab’s UI update, and a zero-duration synthetic P key tap missed the frame-sampled input. The final run waits for visibility and uses 120ms physical key holds. No source changes were needed for those harness corrections.
+
+The canonical main game was independently resolved to V36 `a4bb70d104c997667d4e42d29c02831af2cbd788` / deployment `dpl_H7CSaEXCT9V4RnBBqvu1TMEnk95f`, READY / Production. It stays there until the owner approves this checkpoint. The documentation commit after publication does not change the tested runtime.

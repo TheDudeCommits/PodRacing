@@ -1,0 +1,109 @@
+{
+  "url": "https://now-this-is-podracing-dsj7cmxa7-amirs-projects-d9680079.vercel.app",
+  "expectedBundle": "index-DHCXwEh-.js",
+  "expectedSha256": "21e5342d01a6da615856cfabccd6c7e23e41aa3f4bbc982d6e5564a001cbfb28",
+  "checks": [
+    {
+      "name": "Exact deployed bundle",
+      "pass": true,
+      "detail": [
+        {
+          "path": "/assets/index-DHCXwEh-.js",
+          "bytes": 1872109,
+          "sha256": "21e5342d01a6da615856cfabccd6c7e23e41aa3f4bbc982d6e5564a001cbfb28"
+        }
+      ]
+    },
+    {
+      "name": "Four accessible race types",
+      "pass": true
+    },
+    {
+      "name": "Four pod selections and actual rotation controls",
+      "pass": true,
+      "detail": [
+        "TEEMTO",
+        "SEBULBA",
+        "POLWO",
+        "BLOCKRUNNER"
+      ]
+    },
+    {
+      "name": "Accessible Settings and original-source credits popup",
+      "pass": true
+    },
+    {
+      "name": "390px responsive menu",
+      "pass": true,
+      "detail": {
+        "scroll": 390,
+        "inner": 390
+      }
+    },
+    {
+      "name": "Eight-pod native race and recorded asset bank",
+      "pass": true,
+      "detail": {
+        "raceTime": 4.700000000000023,
+        "racers": 8,
+        "recordings": {
+          "loaded": 27,
+          "pending": 0,
+          "failed": [],
+          "activeEffects": 6
+        },
+        "saltDuskAssets": {
+          "loaded": [
+            "environment/sunset-quarry-1k.hdr",
+            "ground/albedo.jpg",
+            "ground/normal-gl.png",
+            "ground/roughness.jpg",
+            "rock/albedo.jpg",
+            "rock/normal-gl.png",
+            "rock/roughness.jpg"
+          ],
+          "failures": []
+        }
+      }
+    },
+    {
+      "name": "Pause settings, close and return to garage",
+      "pass": true
+    }
+  ],
+  "errors": [],
+  "build": [
+    {
+      "path": "/assets/index-DHCXwEh-.js",
+      "bytes": 1872109,
+      "sha256": "21e5342d01a6da615856cfabccd6c7e23e41aa3f4bbc982d6e5564a001cbfb28"
+    }
+  ],
+  "cleanup": {
+    "browserClosed": true
+  },
+  "scope": "Native deployed browser interactions and passive loaded-resource hashing; no staged course state, no FPS claim.",
+  "race": {
+    "raceTime": 4.700000000000023,
+    "racers": 8,
+    "recordings": {
+      "loaded": 27,
+      "pending": 0,
+      "failed": [],
+      "activeEffects": 6
+    },
+    "saltDuskAssets": {
+      "loaded": [
+        "environment/sunset-quarry-1k.hdr",
+        "ground/albedo.jpg",
+        "ground/normal-gl.png",
+        "ground/roughness.jpg",
+        "rock/albedo.jpg",
+        "rock/normal-gl.png",
+        "rock/roughness.jpg"
+      ],
+      "failures": []
+    }
+  },
+  "outcome": "PASS"
+}
