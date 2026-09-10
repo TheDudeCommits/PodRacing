@@ -1,4 +1,3 @@
-import { SALT_DUSK_SUN } from '../saltDusk/SaltDuskLighting';
 import {
   Box3, Color, Group, InstancedMesh, Matrix4, Mesh, MeshDepthMaterial, NearestFilter,
   OrthographicCamera, RGBADepthPacking, Scene, ShaderMaterial, Vector2, Vector3,
@@ -35,11 +34,7 @@ float inkstormSunVisibility(vec3 world) {
   vec4 h=uWorldShadowMatrix*vec4(world,1.);vec3 p=h.xyz/h.w;
   if(p.x<.001||p.x>.999||p.y<.001||p.y>.999||p.z<0.||p.z>1.)return 1.;
   float depth=p.z-uWorldShadowBias;
-  vec2 t=uWorldShadowTexel;
-  return .25*(filteredWorldDepth(p.xy+t*vec2(.9,.3),depth)
-    +filteredWorldDepth(p.xy+t*vec2(-.3,.9),depth)
-    +filteredWorldDepth(p.xy+t*vec2(-.9,-.3),depth)
-    +filteredWorldDepth(p.xy+t*vec2(.3,-.9),depth));
+  return filteredWorldDepth(p.xy,depth);
 }`;
 
 /** One atlas bake per scenery revision, with no extra per-frame geometry pass. */
@@ -74,7 +69,7 @@ export class InkstormSunShadow {
     const center = bounds.getCenter(new Vector3());
     const radius = bounds.getSize(new Vector3()).length() * .5 + 40;
     const camera = new OrthographicCamera(-radius, radius, radius, -radius, 1, radius * 4 + 100);
-    camera.position.copy(center).addScaledVector(SALT_DUSK_SUN.clone(), radius * 2);
+    camera.position.copy(center).addScaledVector(new Vector3(-.42, .76, -.5).normalize(), radius * 2);
     camera.lookAt(center); camera.updateMatrixWorld(true);
     // Fit the actual light-space box, rather than wasting atlas area on its sphere.
     const lightBounds = new Box3();

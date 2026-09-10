@@ -1,0 +1,127 @@
+{
+  "baseline": "a4bb70d104c997667d4e42d29c02831af2cbd788",
+  "restoredFiles": [
+    {
+      "path": "src/game/race/CourseGulfField.ts",
+      "exactProductionMatch": true,
+      "sha256": "8b76e3a68e5e613484bc3d4cf46ab94b7d4781161dee1300cba5190a2c71bc48"
+    },
+    {
+      "path": "src/render/galactic/GalacticEffectsView.ts",
+      "exactProductionMatch": true,
+      "sha256": "a6d2868bf2ba903818bfe18b6f3ef20d5854c9eee9e07e0410c2c6ab8db3b5ca"
+    },
+    {
+      "path": "src/render/inkstorm/InkstormGeologyShader.ts",
+      "exactProductionMatch": true,
+      "sha256": "7bd63a6b7011a18854f3db412f7dd4abbabc83f8ef99a6c26393a285a1a3a501"
+    },
+    {
+      "path": "src/render/inkstorm/InkstormRacerShadow.ts",
+      "exactProductionMatch": true,
+      "sha256": "b4845dfec3d75b16cb613b184d69d73688ccff18aaa1d69419e145fc3b421726"
+    },
+    {
+      "path": "src/render/inkstorm/InkstormRoad.ts",
+      "exactProductionMatch": true,
+      "sha256": "ea6cdb44c50b33028fd5070e2f906a834351c93f1a51900cfd25df09aa8f8de8"
+    },
+    {
+      "path": "src/render/inkstorm/InkstormSunShadow.ts",
+      "exactProductionMatch": true,
+      "sha256": "83013663075d699b70c805b989435b1576ce23bdf5db89efe658be4164d5aa0e"
+    },
+    {
+      "path": "src/render/inkstorm/InkstormSurfaceMaterial.ts",
+      "exactProductionMatch": true,
+      "sha256": "b8bfbc87654537f6825e4a91ce858d7558ab89137c483e117a0e93f2bd6f82cb"
+    },
+    {
+      "path": "src/render/inkstorm/InkstormWorld.ts",
+      "exactProductionMatch": true,
+      "sha256": "c402c85ecbd13e6d4f4fb63a702cc7d1a447a4e509d6459e4265642fe10d15a5"
+    },
+    {
+      "path": "src/render/objects/PodracerView.ts",
+      "exactProductionMatch": true,
+      "sha256": "a9bae5477f611698a4a11d446ace0c6ef67accf54bba854a5e6c1ba846d49758"
+    },
+    {
+      "path": "src/render/objects/RaceCourseView.ts",
+      "exactProductionMatch": true,
+      "sha256": "13a769d54ddaa27aa0af94b581dde3ffa7b4b3b889006572ec742a62985b8b44"
+    },
+    {
+      "path": "src/render/objects/SpeedStreaks.ts",
+      "exactProductionMatch": true,
+      "sha256": "6ec677ac8e0b547618fd91227e2875d325df06cbf2913b1804d4df327f9b603c"
+    },
+    {
+      "path": "src/render/terrain/SandSpray.ts",
+      "exactProductionMatch": true,
+      "sha256": "6cefc45ea6ec89ad8e48b95964e9a31e23e2da53b33df35a1eabb7b1aa31700e"
+    },
+    {
+      "path": "src/render/terrain/TerrainMaterial.ts",
+      "exactProductionMatch": true,
+      "sha256": "8ca5662de13d93285cae59ddb342135f452cf9768316be04a832149e431c5a1b"
+    },
+    {
+      "path": "src/render/terrain/WakeRibbons.ts",
+      "exactProductionMatch": true,
+      "sha256": "ae4cf6329eb93e3e6958e8cca7dbde778fb99ec098f1a83297b6edd9656f8567"
+    },
+    {
+      "path": "src/render/vehicles/ImportedVehiclePresentation.ts",
+      "exactProductionMatch": true,
+      "sha256": "f6e600f8f7fd418ed12e3d7cc364644d1b5215817f8cd1e4e783c50e35ed2042"
+    },
+    {
+      "path": "src/ui/VehicleCardPreview.ts",
+      "exactProductionMatch": true,
+      "sha256": "19cefb9a845e57c29f915b51cfbeb41422582dfd81949fecb30fa0fa5240e1a6"
+    },
+    {
+      "path": "src/ui/hudStyles.ts",
+      "exactProductionMatch": true,
+      "sha256": "59a2b7cb93c5a736dfcaa2dbce4f3ed96a29a816dd5d140a8240c6000b97a8bf"
+    },
+    {
+      "path": "tests/render/GalacticEffectsView.test.ts",
+      "exactProductionMatch": true,
+      "sha256": "573c272eb7f8e6069b2eacea2800df90d3315a8a63af2bae5064a224cf01eb6a"
+    },
+    {
+      "path": "tests/render/importedVehiclePresentation.test.ts",
+      "exactProductionMatch": true,
+      "sha256": "7efc63d6ab7128fc23806dc03d798d9c7e21af23f708073336307b65fded7c24"
+    },
+    {
+      "path": "tests/render/inkstormLaunchDepth.test.ts",
+      "exactProductionMatch": true,
+      "sha256": "c9a265b8c17a58f7435aad84b81f1d8681fe96e380ac362770d35986dd861c7d"
+    },
+    {
+      "path": "tests/render/inkstormRacerShadow.test.ts",
+      "exactProductionMatch": true,
+      "sha256": "42c1e78a396dc092d79c04c8984591496c20db4b6be0ea77159aadb039ced826"
+    },
+    {
+      "path": "tests/terrain/saltRunProfile.test.ts",
+      "exactProductionMatch": true,
+      "sha256": "de916ead682adee0c14408dbd292ebcfdcf7f4557cd674e17ed484eefb828489"
+    },
+    {
+      "path": "tests/ui/polwoGarageFraming.test.ts",
+      "exactProductionMatch": true,
+      "sha256": "49aeee31ad30dbffaaf143a0a59cdc958cd20ae0ea16acfddd8030a554f40af0"
+    },
+    {
+      "path": "tests/ui/vehiclePreviewCacheLifecycle.test.ts",
+      "exactProductionMatch": true,
+      "sha256": "d8a0e9f04cf820421493182a00fa9383ef391f738a68229c7fcb3048b487fc48"
+    }
+  ],
+  "audioFilesUnchangedFromCheckpoint2": 44,
+  "originalVoiceSha256": "39c4d411570a2591be5cbf7fc27d86a63c36d3befa5de8d57c0d2018e1c89260"
+}

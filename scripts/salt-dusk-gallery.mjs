@@ -15,7 +15,7 @@ const bundle={path:bundlePath,bytes:bundleBytes.length,sha256:createHash('sha256
 const port=await new Promise(resolve=>{const s=createServer();s.listen(0,'127.0.0.1',()=>{const p=s.address().port;s.close(()=>resolve(p));});});
 const server=spawn(process.execPath,['node_modules/vite/bin/vite.js','preview','--host','127.0.0.1','--port',String(port),'--strictPort'],{stdio:'ignore'});
 let browser;
-const receipt={bundle,scope:'Diagnostic world and UI framing only. Course seeking is not native play or a framerate measurement.',errors:[],shots:[],cleanup:{browserClosed:false,serverClosed:false}};
+const receipt={bundle,scope:'Diagnostic world and UI framing only. Course seeking is not native play or a framerate measurement.',errors:[],requestedAssets:[],shots:[],cleanup:{browserClosed:false,serverClosed:false}};
 try{
   for(let i=0;i<80;i++){
     try{if((await fetch(`http://127.0.0.1:${port}`)).ok)break;}catch{}
@@ -23,6 +23,7 @@ try{
   }
   browser=await chromium.launch({channel:'chrome',headless:true});
   const page=await browser.newPage({viewport:{width:1440,height:900},deviceScaleFactor:2});
+  page.on('request',r=>{const path=new URL(r.url()).pathname;if(path.startsWith('/assets/')||path.startsWith('/audio/'))receipt.requestedAssets.push(path);});
   page.on('pageerror',e=>receipt.errors.push(String(e)));
   page.on('console',m=>{if(m.type()==='error')receipt.errors.push(m.text());});
   await page.goto(`http://127.0.0.1:${port}`);

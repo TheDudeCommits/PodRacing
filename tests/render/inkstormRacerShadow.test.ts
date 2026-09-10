@@ -1,4 +1,3 @@
-import { SALT_DUSK_SUN } from '../../src/render/saltDusk/SaltDuskLighting';
 import { describe, expect, it, vi } from 'vitest';
 import {
   BoxGeometry, Color, Group, Mesh, MeshBasicMaterial, Scene, ShaderChunk,
@@ -74,13 +73,13 @@ describe('bounded live player sun shadow', () => {
     const receiving = new Scene(); receiving.add(f.parent, new Mesh(f.geometry, receiver));
     expect(atlas.update(stub.renderer, f.player, receiving, 5)).toBe(true);
     const center = new Vector3().setFromMatrixPosition(f.mesh.matrixWorld);
-    const footprint = center.clone().addScaledVector(SALT_DUSK_SUN, -(center.y - 5) / SALT_DUSK_SUN.y);
+    const footprint = center.clone().addScaledVector(new Vector3(.42, -.76, .5), (center.y - 5) / .76);
     for (const world of [center, footprint]) {
       const projected = world.clone().applyMatrix4(atlas.uniforms.uRacerShadowMatrix.value);
       expect(projected.toArray().every(v => v > 0 && v < 1)).toBe(true);
     }
     expect(receiver.uniforms.uRacerShadow).toBe(atlas.uniforms.uRacerShadow);
-    expect(atlas.receipt.depthMetres).toBeLessThan(384); // Same local volume, photographed grazing sun.
+    expect(atlas.receipt.depthMetres).toBeLessThan(45);
     expect(atlas.receipt.texelMetres).toBeLessThan(.08);
     expect(atlas.receipt.drawCalls).toBe(1);
     expect(atlas.receipt.drawnTriangles).toBe(12);

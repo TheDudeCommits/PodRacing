@@ -47,7 +47,7 @@ function frame(appearance: string, aspect: number, angle: number) {
   for (const index of gltf.scenes[gltf.scene ?? 0].nodes) vehicle.add(nodes[index]);
   const scene = new Scene(); scene.add(vehicle);
   const camera = new PerspectiveCamera(30, aspect, .1, 500);
-  const resources = { scene, camera, vehicles: new Map([['podracer', vehicle]]), pilots: new Map(), stage: { update: () => undefined },
+  const resources = { scene, camera, vehicles: new Map([['podracer', vehicle]]), pilots: new Map(),
     outlineMaterial: { setViewport() {} },
     renderer: { setSize() {}, clear() {}, render() { camera.updateMatrixWorld(true); },
       domElement: { toDataURL: () => 'cpu-framing-only' } } };

@@ -1,17 +1,10 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { VehicleCardPreviewRenderer } from '../../src/ui/VehicleCardPreview';
 
-const environmentAssets = vi.hoisted(() => ({ acquire: vi.fn() }));
-vi.mock('../../src/render/saltDusk/SaltDuskAssets', () => ({ acquireSaltDuskAssets: environmentAssets.acquire }));
-
 afterEach(() => { vi.restoreAllMocks(); vi.unstubAllGlobals(); });
 
 describe('interactive preview cache lifecycle', () => {
-  it('awaits photographic lighting before capture, then reacquires the cached hero and draws its latest angle', async () => {
-    let finishEnvironment!: () => void;
-    const environmentReady = new Promise<void>(resolve => { finishEnvironment = resolve; });
-    const releaseEnvironment = vi.fn();
-    environmentAssets.acquire.mockReturnValue({ ready: environmentReady, release: releaseEnvironment });
+  it('reacquires a cached hero after hide, awaits its mesh, then draws the latest inspection angle', async () => {
     let finishReload!: () => void;
     const reloaded = new Promise<void>(resolve => { finishReload = resolve; });
     const frames: FrameRequestCallback[] = [];
@@ -54,7 +47,7 @@ describe('interactive preview cache lifecycle', () => {
       };
       const resources = {
         vehicles: new Map([['podracer', vehicle]]), pilots: new Map(), outlines: [],
-        outlineMaterial: { dispose: vi.fn() }, scene: { clear: vi.fn() }, stage: { dispose: vi.fn() },
+        outlineMaterial: { dispose: vi.fn() }, scene: { clear: vi.fn() },
         renderer: { domElement: { width: 400, height: 200 }, renderLists: { dispose: vi.fn() }, dispose: vi.fn(), forceContextLoss: vi.fn() },
       };
       allocated.push(resources); (preview as any).resources = resources; return resources;
@@ -62,17 +55,11 @@ describe('interactive preview cache lifecycle', () => {
     const render = vi.spyOn(preview as any, 'renderVehicle').mockReturnValue('data:image/webp;base64,cached');
     try {
       preview.setAppearance('teemto');
-      const firstShow = preview.show();
-      await Promise.resolve();
-      expect(render).not.toHaveBeenCalled(); // A slow HDR must not become a permanent fallback snapshot.
-      expect(host.dataset.previewReady).not.toBe('true');
-      finishEnvironment();
-      await firstShow;
+      await preview.show();
       expect(render).toHaveBeenCalledOnce();
       preview.hide();
       expect(preview.hasGpuResources).toBe(false);
       expect(allocated[0].renderer.forceContextLoss).toHaveBeenCalledOnce();
-      expect(allocated[0].stage.dispose).toHaveBeenCalledOnce();
 
       const returning = preview.show();
       expect(ensure).toHaveBeenCalledTimes(2);
@@ -90,11 +77,6 @@ describe('interactive preview cache lifecycle', () => {
       preview.hide();
       expect(preview.hasGpuResources).toBe(false);
       expect(allocated[1].renderer.forceContextLoss).toHaveBeenCalledOnce();
-      expect(allocated[1].stage.dispose).toHaveBeenCalledOnce();
-      expect(releaseEnvironment).not.toHaveBeenCalled(); // The backend still owns its borrowed bindings while hidden.
-    } finally { finishEnvironment(); finishReload(); preview.dispose(); }
-    expect(releaseEnvironment).toHaveBeenCalledOnce();
-    preview.dispose();
-    expect(releaseEnvironment).toHaveBeenCalledOnce();
+    } finally { finishReload(); preview.dispose(); }
   });
 });

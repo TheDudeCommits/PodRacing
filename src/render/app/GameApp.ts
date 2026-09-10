@@ -1,4 +1,4 @@
-import { saltDuskAssetReceipt } from '../saltDusk/SaltDuskAssets';
+import { duskSkyAssetReceipt } from '../sky/DuskSkyAssets';
 import { CombatPresentationController, type CombatPresentationContext } from '../combat/CombatPresentationController';
 import { WreckVisualPoseCache, type WreckVisualPose } from '../combat/WreckVisualPose';
 import { WreckGroundContactGate } from '../combat/WreckGroundContact';
@@ -555,8 +555,8 @@ export class GameApp {
     window.addEventListener('keydown', this.handleUtilityKey);
     document.addEventListener('visibilitychange', this.handleVisibilityChange);
 
-    this.scene.background = new Color('#aaa7ac');
-    this.scene.fog = new Fog('#aaa7ac', 620, 3800);
+    this.scene.background = new Color('#281f56');
+    this.scene.fog = new Fog('#e47a45', 620, 3800);
     this.scene.add(this.cameraRig.camera);
     this.scene.add(this.sky);
     this.scene.add(this.terrain.group);
@@ -601,7 +601,7 @@ export class GameApp {
     this.landmarks.setHeightSampler((x, z) => this.terrain.sampleHeight(x, z));
 
     this.post = new CelPostPipeline(this.renderer, this.scene, this.cameraRig.camera, {
-      enabled: false,
+      enabled: true,
       prepassScale: 0.78,
       edges: {
         contactStrength: .85,
@@ -2143,8 +2143,7 @@ export class GameApp {
     } else if (group === 'audio' && key in this.settings.audio) {
       this.applyGameSettings({
         ...this.settings,
-        audio: {
-          recordings: this.audio.recordingStatus, ...this.settings.audio, [key]: value },
+        audio: { ...this.settings.audio, [key]: value },
       });
     } else if (group === 'controls' && key in this.settings.controls) {
       this.applyGameSettings({
@@ -2660,7 +2659,7 @@ export class GameApp {
     // between the one-draw racer MRT proxy and its animated beauty meshes as
     // detached ground contours. Gameplay cameras retain the complete MRT +
     // Sobel stack; the overhead audit view uses hull ink without that proxy.
-    this.post.setEnabled(false);
+    this.post.setEnabled(name !== 'course');
     this.cameraDirector.setManualMode(name);
     this.cameraRig.snap(this.subject);
     this.render(FIXED_DT);
@@ -3850,7 +3849,7 @@ export class GameApp {
       simulationFrame: this.simulationFrame,
       raceTime: this.race.state.raceTime,
       renderer: {
-        saltDuskAssets: { loaded: [...saltDuskAssetReceipt.loaded], failures: [...saltDuskAssetReceipt.failures] },
+        skyAssets: { loaded: [...duskSkyAssetReceipt.loaded], failures: [...duskSkyAssetReceipt.failures] },
         sceneryShadow: { ...this.inkstormSunShadow.receipt,
           terrain: { ...this.inkstormWorld.terrainShadowReceipt } },
         racerShadow: { ...this.inkstormRacerShadow.receipt },
@@ -4115,8 +4114,6 @@ export class GameApp {
   }
 
   private installPriorityOutlines(): void {
-    // Dusk materials use continuous shading and physical silhouettes.
-    return;
     const sources: Mesh[] = [];
     const silhouetteParts = new Set([
       'engine-shell',
@@ -4149,8 +4146,6 @@ export class GameApp {
   }
 
   private installCourseOutlines(): void {
-    // Track cues remain authored meshes; ink hulls belong to the older look.
-    return;
     const width = Math.max(1, window.innerWidth);
     const height = Math.max(1, window.innerHeight);
     const pixelRatio = Math.min(window.devicePixelRatio || 1, 2);

@@ -342,10 +342,10 @@ export function bakeLaunchRevealThroat(grid: CourseGulfGrid, course: PodraceCour
 export const SALT_RUN_PROFILE = Object.freeze({
   startDistance: 570, entryEndDistance: 650, floorDistance: 780,
   riseDistance: 900, riseEndDistance: 1100, exitStartDistance: 1210, endDistance: 1260,
-  fullWidth: 195, fadeWidth: 370,
+  fullWidth: 95, fadeWidth: 210,
 });
 
-/** A broad salt basin that rejoins before the unchanged launch rim. */
+/** A shallow salt valley that rejoins before the unchanged launch rim. */
 export function saltRunCeiling(distance: number): number {
   return -21 - 4 * smoother((distance - 650) / 130) + 11 * smoother((distance - 900) / 200);
 }
@@ -378,17 +378,8 @@ export function bakeSaltRunProfile(grid: CourseGulfGrid, course: PodraceCourse):
         * (1 - smoother((Math.sqrt(nearestSq) - profile.fullWidth) / (profile.fadeWidth - profile.fullWidth)));
       const index = row * grid.size + column;
       const existing = grid.values[index]!;
-      const radius = Math.sqrt(nearestSq);
-      const along = smoother((distance - profile.startDistance) / (profile.entryEndDistance - profile.startDistance))
-        * (1 - smoother((distance - profile.exitStartDistance) / (profile.endDistance - profile.exitStartDistance)));
-      // Preserve the published lane, shoulder and normal probes exactly. Only
-      // the outer basin changes: old 95m cap blends into a wider settled floor.
-      // Both render and physics sample the same signed field, including runoff.
-      const target = saltRunCeiling(distance) - course.heightAt(x, z) - existing;
-      const publishedOffset = Math.min(0, target) * along * (1 - smoother((radius - 95) / 115));
-      const outerBasin = smoother((radius - 95) / 50);
-      const offset = publishedOffset + (target * envelope - publishedOffset) * outerBasin;
-      grid.values[index] = Math.min(COURSE_GULF_MAX_RISE, Math.max(-COURSE_GULF_MAX_DEPTH, existing + offset));
+      const offset = Math.min(0, saltRunCeiling(distance) - course.heightAt(x, z) - existing) * envelope;
+      grid.values[index] = Math.max(-COURSE_GULF_MAX_DEPTH, existing + offset);
     }
   }
 }

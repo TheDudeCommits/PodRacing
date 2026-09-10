@@ -1,4 +1,3 @@
-import { SaltDuskVehicleMaterial } from '../saltDusk/SaltDuskVehicleMaterial';
 import {
   Color,
   Group,
@@ -146,8 +145,6 @@ type ImportedSurfaceMaterial = Material & {
   normalScale?: Vector2;
   roughnessMap?: Texture | null;
   roughness?: number;
-  metalness?: number;
-  metalnessMap?: Texture|null;
   vertexColors?: boolean;
 };
 
@@ -218,7 +215,7 @@ function prepareSurfaceStyles(styles: VehicleArtDefinition['surfaceStyles']) {
 function validateSurfaceMaps(mesh: Mesh, material: ImportedSurfaceMaterial): void {
   const position = mesh.geometry.getAttribute('position');
   for (const [label, texture] of [
-    ['color', material.map], ['normal', material.normalMap], ['roughness', material.roughnessMap], ['metalness', material.metalnessMap],
+    ['color', material.map], ['normal', material.normalMap], ['roughness', material.roughnessMap],
   ] as const) {
     if (!texture) continue;
     const channel = texture.channel;
@@ -546,7 +543,7 @@ export class ImportedVehiclePresentation extends Group {
           if (original.color) tint.multiply(original.color);
           const normalScale = original.normalScale?.clone() ?? new Vector2(1, 1);
           normalScale.multiplyScalar(style?.normalStrength ?? 1);
-          material = new SaltDuskVehicleMaterial({
+          material = new CelMaterial({
             palette: TEXTURED_PALETTE,
             ...this.options.materialOptions,
             ...style?.materialOptions,
@@ -556,11 +553,12 @@ export class ImportedVehiclePresentation extends Group {
             normalScale,
             normalMapTangents,
             roughnessMap: original.roughnessMap ?? null,
-            // Physical shading retains the source factor with or without a map.
-            // glTF packs roughness in green and metalness in blue.
-            roughness: original.roughness ?? .56,
+            // Preserve legacy map-only craft shading. A supplied roughness map
+            // opts into its authored factor; an explicit caller override still
+            // works for materials without one.
+            ...(original.roughnessMap ? { roughness: original.roughness ?? 1 } : {}),
             tint, side: original.side, opacity: 1, vertexColors: original.vertexColors ?? false,
-          }, original.metalness ?? 0, original.metalnessMap ?? null);
+          });
           material.visible = original.visible;
           converted.set(key, material);
         }

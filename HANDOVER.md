@@ -1,3 +1,21 @@
+# PodRacing — Production style with retained dusk sky (2026-09-10)
+
+The owner rejected photorealism and requested Production visuals with the current sky retained. **Active direction: Production V36 stylized art plus the approved photographic cloud sky.** Do not resume the rejected photoreal surface/geometry direction. [Current restoration and prioritized improvement list](docs/inkstorm-overhaul/STYLIZED_RETURN_ROADMAP.md).
+
+Verified Production baseline: a4bb70d104c997667d4e42d29c02831af2cbd788 / dpl_H7CSaEXCT9V4RnBBqvu1TMEnk95f, READY at https://now-this-is-podracing.vercel.app. Worktree /Users/amir/Projects/PodRacing, branch codex/now-this-is-podracing; remote TheDudeCommits/PodRacing. /Users/amir/Codex-ThreeJS is unrelated. Publish the updated build as Preview under the existing checkpoint workflow; Production promotion remains subject to owner approval.
+
+Restored Production materials, terrain/height field, geometry placement/asset mappings, cel post/ink, shadows, gameplay FX, UI and actual pod preview. Retained the exact current 4K sky bytes and shader math in independent src/render/sky modules; Production surface lighting retains its original direction. No dusk ground/rock or replacement-geometry requests occur. Unused photo runtime modules are removed; source assets and historical evidence remain preserved. All 24 restored source/test files match Production exactly.
+
+Audio is not rolled back: preserve the eight-file sourced SFX bank, existing Scott Buckley music, hidden mute and original voice SHA256 39c4d411570a2591be5cbf7fc27d86a63c36d3befa5de8d57c0d2018e1c89260. All 44 audio source/runtime files match checkpoint 2; no sound was generated. Settings accessibility and credits remain.
+
+TypeScript/build and 980 tests /167 files pass. Every staged world capture uses mrt-sobel; sky ready, no rejected photoreal requests and no browser errors. Exact final native eight-pod Battle: 57.630 FPS mean, p95 16.8 ms, p99 33.4 ms, maximum 83.3 ms on M4/Chrome153/1440×900/adaptive DPR1–2; 6,728 frames, none excluded. All 9 recordings loaded, post mrt-sobel active, browser/server closed. [Current native receipt](docs/inkstorm-overhaul/evidence/stylized-return/native-battle-summary.json). Runtime index-BW4j4KUa.js / 1,874,964 bytes / SHA256 d089a3500899cc149b9bc17ca882fff11359bc0da6b59679febb88a329f140cb. Preview publication is pending; older FPS measurements below do not apply.
+
+Next proposed priorities: handling, one authored circuit with clear flow, fair world-occluded/nearest-hit combat, distinct pod handling, deeper mastery rewards, clear onboarding/audio, actual hardware validation and reliable private multiplayer. No roadmap feature is implemented by this visual rollback. Keep deterministic simulation separate from presentation; do not restore the withdrawn V36 suspension experiment. Close browsers/servers after use, never adopt port5211 and never save shared Blender GUI state.
+
+---
+
+## Historical checkpoint 2 — photoreal direction rejected
+
 # PodRacing — Salt Flats at Dusk checkpoint 2 (2026-09-10)
 
 The owner rejected checkpoint 1 as unaesthetic and its SFX as weird. Current revision rebuilds cloud lighting, continuous distant ranges, prominent eroded rock meshes, outer salt runoff, grounded 3D inspection, lighter HUD/exhaust and an eight-file sourced SFX bank. **The photographic target is incomplete.** [Current report, evidence and remaining work](docs/inkstorm-overhaul/SALT_DUSK_CHECKPOINT_2.md).

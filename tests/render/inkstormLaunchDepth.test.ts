@@ -8,7 +8,6 @@ import { getInkstormVistaPlan } from '../../src/render/inkstorm/InkstormVista';
 import { groundInkstormButtress } from '../../src/render/inkstorm/InkstormRockGrounding';
 import { sampleTerrainHeight } from '../../src/render/terrain/terrainMath';
 import { InkstormWorld } from '../../src/render/inkstorm/InkstormWorld';
-import { retainSaltDuskPlacement } from '../../src/render/saltDusk/SaltDuskScenery';
 import { getInkstormLayout } from '../../src/game/race/inkstormLayout';
 
 const course = createProceduralPodraceCourse({ heightAt: sampleTerrainHeight }, 0x494e4b53);
@@ -104,7 +103,7 @@ describe('bounded launch composition spires', () => {
     }
   });
 
-  it('omits the retired decorative launch spires from actual world uploads', async () => {
+  it('uploads grounded matrices for only the new spires and retains ordinary spire transforms', async () => {
     // This test isolates the real world assembly/instance upload without a
     // browser. Actual high/LOD geometry was independently checked above.
     const loader = vi.spyOn(GLTFLoader.prototype, 'loadAsync').mockImplementation(async () => {
@@ -129,15 +128,13 @@ describe('bounded launch composition spires', () => {
         throw new Error(`Missing uploaded spire at ${x},${z}`);
       };
       for (const form of compositionForms) {
-        // These non-colliding skyline repeats are intentionally replaced by
-        // continuous distant ranges in the Salt Dusk direction.
-        expect(() => matrixAt(form.x, form.z)).toThrow('Missing uploaded spire');
+        const actual = matrixAt(form.x, form.z), planted = groundInkstormButtress(form, ground);
+        expect(actual.elements[13]).toBeCloseTo(planted.baseY, 4);
+        expect(actual.elements[5]).toBeCloseTo(planted.scaleY, 6);
+        expect(actual.elements[13]).toBeLessThan(ground(form.x, form.z) - 1.5);
       }
-      const ordinary = getInkstormLayout(course).filter(p => p.family === 'fractured-spire' && retainSaltDuskPlacement(p, course));
-      // This seed has no physical canyon spires. The empty instance batch is
-      // deliberate; collider-associated canyon families are checked separately.
-      expect(batch.count).toBe(ordinary.length);
-      expect(ordinary).toHaveLength(0);
+      const ordinary = getInkstormLayout(course).filter(p => p.family === 'fractured-spire');
+      expect(ordinary.length).toBeGreaterThan(0);
       for (const form of ordinary) {
         const actual = matrixAt(form.x, form.z);
         expect(actual.elements[13]).toBeCloseTo(ground(form.x, form.z) - 1.5, 4);

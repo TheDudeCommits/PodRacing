@@ -1,0 +1,114 @@
+{
+  "build": [
+    {
+      "url": "http://127.0.0.1:54028/assets/index-BW4j4KUa.js",
+      "sha256": "d089a3500899cc149b9bc17ca882fff11359bc0da6b59679febb88a329f140cb"
+    }
+  ],
+  "device": {
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+    "hardwareConcurrency": 10,
+    "requestedDpr": 2,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "canvas": {
+      "width": 2520,
+      "height": 1575
+    },
+    "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M4, Unspecified Version)",
+    "vendor": "Google Inc. (Apple)",
+    "webglVersion": "WebGL 2.0 (OpenGL ES 3.0 Chromium)"
+  },
+  "browserVersion": "153.0.8010.36",
+  "scope": "Native requestAnimationFrame intervals across each complete ordinary racing phase, including transient slow frames and post-player classification grace. Countdown reported separately; no warmup removal or interior exclusions. Read-only snapshot/input-controller overhead is included. No GPU timer queries or physical presentation timestamps.",
+  "limitations": "Full ordinary-race native RAF cadence with automated gamepad/controller overhead included. No staged starts, review steps, pose/progress mutation, warmup exclusion or frame filtering. Local browser/device only; not GPU execution time, physical display presentation, universal device FPS or human driving feel.",
+  "performance": {
+    "summary": {
+      "racing": {
+        "phase": "racing",
+        "samples": 6728,
+        "durationMs": 116745.3,
+        "averageFps": 57.62972899123134,
+        "p50Ms": 16.69999999999709,
+        "p95Ms": 16.80000000000291,
+        "p99Ms": 33.39999999999418,
+        "maxMs": 83.30000000000291,
+        "over25ms": 274,
+        "over33ms": 99,
+        "over50ms": 1,
+        "firstRaceTime": 0.016666666666666666,
+        "lastRaceTime": 113.40000000003631
+      },
+      "countdown": {
+        "phase": "countdown",
+        "samples": 159,
+        "durationMs": 2683.2,
+        "averageFps": 59.25760286225403,
+        "p50Ms": 16.699999999999818,
+        "p95Ms": 16.800000000000182,
+        "p99Ms": 16.800000000000182,
+        "maxMs": 49.899999999999636,
+        "over25ms": 1,
+        "over33ms": 1,
+        "over50ms": 0,
+        "firstRaceTime": 0,
+        "lastRaceTime": 0
+      }
+    },
+    "acceptance": {
+      "outcome": "PASS",
+      "criteria": {
+        "minimumMeanHz": 40,
+        "maximumP95Ms": 25,
+        "boundaryToleranceSeconds": 0.05
+      },
+      "issues": []
+    },
+    "rendererExtrema": {
+      "minDpr": 1,
+      "maxDpr": 2,
+      "maxCalls": 174,
+      "maxTriangles": 5271280
+    },
+    "observedGalacticEvents": {
+      "heat-lance-fired": 329,
+      "weapon-hit": 81,
+      "scrap-mine-deployed": 21,
+      "redline-surge": 228,
+      "pulse-shell": 152,
+      "scrap-mine-triggered": 18,
+      "shield-block": 17,
+      "wreck": 20,
+      "recovery-start": 20,
+      "takedown": 19,
+      "recovered": 20,
+      "hazard-hit": 35,
+      "upgrade-collected": 6,
+      "emp-pulse": 3,
+      "repair-salvage-collected": 5
+    }
+  },
+  "resultsText": "8TH PLACE\nBATTLE \u00b7 EVENT RESULT\nRACE AGAIN\n\u2197\nBACK TO HANGAR\nPRACTICE RUN\nTOTAL 1:53.41 \u00b7 PB \u2014\n\nRecovery used \u2014 finish for practice, then retry for a clean record.\n\nOPEN STRAIGHT\nS1 0:20.48\u2014\nOPEN STRAIGHT\nS2 0:04.64\u2014\nLAUNCH DESCENT\nS3 0:05.09\u2014\nSWEEPER\nS4 0:07.48\u2014\nCANYON\nS5 0:04.48\u2014\nFOUNDRY TURNS\nS6 0:32.39\u2014\nRECOVERY STRAIGHT\nS7 0:05.73\u2014\nOPEN STRAIGHT\nS8 0:05.40\u2014\nHAIRPIN\nS9 0:07.33\u2014\nRECOVERY STRAIGHT\nS10 0:20.36\u2014\nTAKEDOWN\nTAKEDOWN\nTALIK VENN // YOU\n1ST\nKODO FIZZ\n1:05.283\nBEST LAP (RUN) 1:05.283\n2ND\nRAX KORDO\n1:11.500\nBEST LAP (RUN) 1:11.500\n3RD\nSOLA DINN\n1:24.733\nBEST LAP (RUN) 1:24.733\n4TH\nTALIK VENN\n1:30.766\nBEST LAP (RUN) 1:30.766\n5TH\nMIRI VOSS\n1:34.483\nBEST LAP (RUN) 1:34.483\n6TH\nVEXA RUUN\n1:35.525\nBEST LAP (RUN) 1:35.525\n7TH\nOLAN TARR\n1:42.975\nBEST LAP (RUN) 1:42.975\n8TH\nYOU\n1:53.416\nBEST LAP (RUN) 1:53.416\n\u25b6 REPLAY \u00b7 TAKEDOWN\nTAKEDOWN\n1:00.550 // Talik Venn // You\n\u25b6 REPLAY \u00b7 TAKEDOWN\nTAKEDOWN\n1:00.591 // Sola Dinn // Vexa Ruun\n\u25b6 REPLAY \u00b7 TAKEDOWN\nTAKEDOWN\n1:41.200 // Olan Tarr // You\n\u25b6 REPLAY \u00b7 TAKEDOWN\nWRECK\n1:00.550 // You // Talik Venn\n\u25b6 REPLAY \u00b7 TAKEDOWN\nWRECK\n1:00.591 // Vexa Ruun // Sola Dinn\nR TO RETRY \u00b7 SELECT A HIGHLIGHT TO RELIVE THE RACE",
+  "postMode": "mrt-sobel",
+  "audio": {
+    "loaded": 9,
+    "pending": 0,
+    "failed": [],
+    "activeEffects": 2
+  },
+  "sky": {
+    "loaded": [
+      "/assets/salt-dusk-v2/environment/kloppenheim-dusk-4k.hdr"
+    ],
+    "failures": []
+  },
+  "errors": [],
+  "cleanup": {
+    "browserClosed": true,
+    "serverExited": true,
+    "port": 54028
+  },
+  "completedAt": "2026-09-10T10:30:22.219Z"
+}

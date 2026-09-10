@@ -707,13 +707,13 @@ export class GalacticEffectsView extends Group {
 
   readonly weaponBolts = prepare(new InstancedMesh(
     new CylinderGeometry(0.18, 0.07, 1, 5),
-    material(0.52, true),
+    material(1, true),
     GALACTIC_EFFECT_CAPACITY.weaponBolts,
   ), 'galactic-weapon-bolts', 29);
 
   readonly heatLances = prepare(new InstancedMesh(
     createHeatLanceGeometry(),
-    material(0.24, true),
+    material(1, true),
     GALACTIC_EFFECT_CAPACITY.heatLances,
   ), 'galactic-heat-lances', 29);
 
@@ -1628,7 +1628,7 @@ export class GalacticEffectsView extends Group {
         this.tempQuaternion.multiply(this.beamTwistQuaternion);
       }
       const pulse = 0.88 + Math.sin(time * 19 + slot.phase + index) * 0.12;
-      const width = slot.width * pulse * 0.46;
+      const width = slot.width * pulse;
       const energy = 0.45 + slot.intensity * 0.55;
       if (curved) {
         this.writeInstance(mesh, visibleCount, slot.x, slot.y, slot.z, this.tempQuaternion,
@@ -1666,7 +1666,7 @@ export class GalacticEffectsView extends Group {
       )) continue;
       this.tempQuaternion.setFromUnitVectors(UP, this.direction);
       const pulse = 0.9 + Math.sin(time * 22 + slot.phase + index) * 0.1;
-      const width = slot.width * pulse * 0.46;
+      const width = slot.width * pulse;
       const energy = 0.45 + slot.intensity * 0.55;
       this.writeInstance(this.weaponBolts, visibleCount, this.midpoint.x, this.midpoint.y, this.midpoint.z,
         this.tempQuaternion, width, length, width,
@@ -1690,7 +1690,7 @@ export class GalacticEffectsView extends Group {
       )) continue;
       this.tempQuaternion.setFromUnitVectors(UP, this.direction);
       const flicker = 0.92 + Math.sin(time * 31 + slot.phase * 5.1 + index) * 0.08;
-      const coreWidth = slot.width * 0.14 * flicker;
+      const coreWidth = slot.width * 0.24 * flicker;
       const coreR = MathUtils.lerp(slot.r, 1, 0.82);
       const coreG = MathUtils.lerp(slot.g, 1, 0.82);
       const coreB = MathUtils.lerp(slot.b, 1, 0.82);
@@ -1703,7 +1703,7 @@ export class GalacticEffectsView extends Group {
       const travel = ((time * 3.7 + slot.phase * 0.31 + index * 0.19) % 1 + 1) % 1;
       const pulseDistance = length * (0.18 + travel * 0.74);
       const pulseLength = Math.min(10, Math.max(1.6, length * 0.2));
-      const pulseWidth = slot.width * (0.23 + Math.sin(travel * Math.PI) * 0.09);
+      const pulseWidth = slot.width * (0.48 + Math.sin(travel * Math.PI) * 0.18);
       this.tempPosition.set(slot.x, slot.y, slot.z).addScaledVector(this.direction, pulseDistance);
       this.writeInstance(this.weaponBolts, visibleCount,
         this.tempPosition.x, this.tempPosition.y, this.tempPosition.z,

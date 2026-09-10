@@ -3,6 +3,7 @@ import {
   BufferAttribute,
   BufferGeometry,
   Color,
+  ConeGeometry,
   CylinderGeometry,
   DoubleSide,
   DynamicDrawUsage,
@@ -25,8 +26,6 @@ import { sampleTerrainHeight } from '../terrain/terrainMath';
 import { createCourseGulfUniforms, type CourseGulfUniforms } from '../terrain/CourseGulfTextures';
 import { createCourseMarkers, type CourseMarker } from '../../game/race/courseMarkers';
 import { InkstormSurfaceMaterial } from '../inkstorm/InkstormSurfaceMaterial';
-import { saltDuskUniforms } from '../saltDusk/SaltDuskAssets';
-import { SALT_DUSK_LIGHT_GLSL } from '../saltDusk/SaltDuskLighting';
 
 export interface CourseRenderPoint {
   x: number;
@@ -397,7 +396,6 @@ const pylonVertex = /* glsl */ `
   uniform float uBaseOffset;
   uniform float uFarHeightGain;
   varying float vDistanceToCamera;
-  varying vec3 vPylonWorld; varying vec3 vPylonNormal;
 
   void main() {
     vec4 centerWorld = modelMatrix * instanceMatrix * vec4(0.0, 0.0, 0.0, 1.0);
@@ -419,17 +417,12 @@ const pylonVertex = /* glsl */ `
       + smoothstep(90.0, 270.0, vDistanceToCamera) * uFarHeightGain;
     shapedPosition.y = (shapedPosition.y + uBaseOffset) * heightScale - uBaseOffset;
     vec4 worldPosition = modelMatrix * instanceMatrix * vec4(shapedPosition, 1.0);
-    vPylonWorld=worldPosition.xyz;
-    vPylonNormal=normalize(mat3(modelMatrix*instanceMatrix)*normal);
     gl_Position = projectionMatrix * viewMatrix * worldPosition;
   }
 `;
 
 const pylonFragment = /* glsl */ `
   precision highp float;
-  ${SALT_DUSK_LIGHT_GLSL}
-  uniform float uLens;
-  varying vec3 vPylonWorld; varying vec3 vPylonNormal;
   uniform vec3 uColor;
   uniform float uDetailFadeStart;
   uniform float uDetailFadeEnd;
@@ -442,9 +435,7 @@ const pylonFragment = /* glsl */ `
       vDistanceToCamera
     );
     if (detailAlpha < 0.018) discard;
-    vec3 body=duskLight(uColor,normalize(vPylonNormal),vPylonWorld,.65,.28,1.);
-    vec3 color=mix(body,uColor*1.8,uLens);
-    gl_FragColor = vec4(duskTone(duskAtmosphere(color,vDistanceToCamera)), detailAlpha);
+    gl_FragColor = vec4(uColor, detailAlpha);
     #include <colorspace_fragment>
   }
 `;
@@ -1081,12 +1072,11 @@ export class RaceCourseView extends Group {
     const markers = authoritativeMarkers ?? createCourseMarkers(points, branches, (x, z) => this.heightAt(x, z));
     const count = Math.max(1, markers.length);
     const bodyMaterial = new ShaderMaterial({
-      name: 'Dusk metal route beacon',
+      name: 'Distance-normalized pylon ink',
       vertexShader: pylonVertex,
       fragmentShader: pylonFragment,
       uniforms: {
-        ...saltDuskUniforms(), uLens: {value:0},
-        uColor: { value: new Color('#59616a') },
+        uColor: { value: new Color('#251627') },
         uFarWidthGain: { value: 0.93 },
         uBaseOffset: { value: 2.2 },
         uFarHeightGain: { value: 1.0 },
@@ -1100,11 +1090,10 @@ export class RaceCourseView extends Group {
       toneMapped: false,
     });
     const lightMaterial = new ShaderMaterial({
-      name: 'Dusk amber route beacon lens',
+      name: 'Distance-normalized pylon light',
       vertexShader: pylonVertex,
       fragmentShader: pylonFragment,
       uniforms: {
-        ...saltDuskUniforms(), uLens: {value:1},
         uColor: { value: new Color('#ffd391') },
         uFarWidthGain: { value: 1.18 },
         uBaseOffset: { value: 4.2 },
@@ -1116,14 +1105,14 @@ export class RaceCourseView extends Group {
       depthWrite: false,
       toneMapped: false,
     });
-    this.pylonBodies = new InstancedMesh(new CylinderGeometry(.30, .62, 4.8, 8), bodyMaterial, count);
+    this.pylonBodies = new InstancedMesh(new ConeGeometry(.62, 4.8, 5), bodyMaterial, count);
     this.pylonLights = new InstancedMesh(new CylinderGeometry(.24, .24, 1.4, 5), lightMaterial, count);
     const farMarkerMaterial = new ShaderMaterial({
       name: 'Coherent far pylon impostors',
       vertexShader: farPylonVertex,
       fragmentShader: farPylonFragment,
       uniforms: {
-        uInkColor: { value: new Color('#303844') },
+        uInkColor: { value: new Color('#251627') },
         uLightColor: { value: new Color('#ffd391') },
         uViewportSize: { value: this.viewportSize },
         // One coherent 4.6 x 14 CSS-pixel sign replaces the separate body/cap

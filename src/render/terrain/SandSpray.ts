@@ -67,15 +67,15 @@ void main() {
   // Hard two-tone facets describe one broad dust mass. There is deliberately
   // no ink strip on either edge: a thin dark boundary reads as a rail once the
   // bank stretches through perspective.
-  float crownBand = smoothstep(.1,.9,1.0-abs(vBankEdge));
+  float crownBand = step(0.53, 1.0 - abs(vBankEdge));
   vec3 body = mix(uSandColor, uHotColor, 0.22 + crownBand * 0.24);
 
   // Continuous lifetime coverage keeps the dust graphic and substantial;
   // only the oldest tail dissolves. Longitudinal taper is authored in the
   // connected upper silhouette, not stamped onto every source sample.
-  float alpha = clamp(vBankAlpha*(1.-smoothstep(.15,1.,abs(vBankEdge)))*(1.-vBankAge*.7)*.36,0.,.36);
+  float alpha = clamp(vBankAlpha * (0.96 - vBankAge * 0.12), 0.0, 0.94);
   if (alpha < 0.025) discard;
-  fragColor = linearToOutputTexel(vec4(body, alpha));
+  fragColor = vec4(body, alpha);
 }
 `;
 
