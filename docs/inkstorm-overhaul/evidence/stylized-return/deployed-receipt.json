@@ -1,0 +1,99 @@
+{
+  "url": "https://now-this-is-podracing-2mtbhpcyn-amirs-projects-d9680079.vercel.app",
+  "expectedBundle": "index-BW4j4KUa.js",
+  "expectedSha256": "d089a3500899cc149b9bc17ca882fff11359bc0da6b59679febb88a329f140cb",
+  "checks": [
+    {
+      "name": "Exact deployed bundle",
+      "pass": true,
+      "detail": [
+        {
+          "path": "/assets/index-BW4j4KUa.js",
+          "bytes": 1874964,
+          "sha256": "d089a3500899cc149b9bc17ca882fff11359bc0da6b59679febb88a329f140cb"
+        }
+      ]
+    },
+    {
+      "name": "Four accessible race types",
+      "pass": true
+    },
+    {
+      "name": "Four pod selections and actual rotation controls",
+      "pass": true,
+      "detail": [
+        "TEEMTO",
+        "SEBULBA",
+        "POLWO",
+        "BLOCKRUNNER"
+      ]
+    },
+    {
+      "name": "Accessible Settings and original-source credits popup",
+      "pass": true
+    },
+    {
+      "name": "390px responsive menu",
+      "pass": true,
+      "detail": {
+        "scroll": 390,
+        "inner": 390
+      }
+    },
+    {
+      "name": "Eight-pod native race and recorded asset bank",
+      "pass": true,
+      "detail": {
+        "raceTime": 4.700000000000023,
+        "racers": 8,
+        "recordings": {
+          "loaded": 9,
+          "pending": 0,
+          "failed": [],
+          "activeEffects": 0
+        },
+        "skyAssets": {
+          "loaded": [
+            "/assets/salt-dusk-v2/environment/kloppenheim-dusk-4k.hdr"
+          ],
+          "failures": []
+        },
+        "postMode": "mrt-sobel"
+      }
+    },
+    {
+      "name": "Pause settings, close and return to garage",
+      "pass": true
+    }
+  ],
+  "errors": [],
+  "build": [
+    {
+      "path": "/assets/index-BW4j4KUa.js",
+      "bytes": 1874964,
+      "sha256": "d089a3500899cc149b9bc17ca882fff11359bc0da6b59679febb88a329f140cb"
+    }
+  ],
+  "cleanup": {
+    "browserClosed": true
+  },
+  "scope": "Native deployed browser interactions and passive loaded-resource hashing; no staged course state, no FPS claim.",
+  "race": {
+    "raceTime": 4.700000000000023,
+    "racers": 8,
+    "recordings": {
+      "loaded": 9,
+      "pending": 0,
+      "failed": [],
+      "activeEffects": 0
+    },
+    "skyAssets": {
+      "loaded": [
+        "/assets/salt-dusk-v2/environment/kloppenheim-dusk-4k.hdr"
+      ],
+      "failures": []
+    },
+    "postMode": "mrt-sobel"
+  },
+  "outcome": "PASS"
+}
