@@ -1,0 +1,18 @@
+{
+  "asset": "Kloppenheim 06 (Pure Sky)",
+  "source": "https://polyhaven.com/a/kloppenheim_06_puresky",
+  "authors": [
+    "Greg Zaal",
+    "Jarod Guest"
+  ],
+  "license": "CC0-1.0",
+  "licenseUrl": "https://polyhaven.com/license",
+  "upstream": {
+    "size": 17385661,
+    "url": "https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/4k/kloppenheim_06_puresky_4k.hdr",
+    "md5": "63e9826c43b973f8b6ecb07cb6a89227"
+  },
+  "sha256": "1bebd7cbbfb5c48a642f03d93bffbabb2c42d0b109061f37a72259d1cbdb3053",
+  "runtime": "public/assets/salt-dusk-v2/environment/kloppenheim-dusk-4k.hdr",
+  "operation": "Byte-identical 4K HDR; warm photographic grade applied by runtime shader."
+}

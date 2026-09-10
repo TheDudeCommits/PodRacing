@@ -58,36 +58,36 @@ export const DUSK_UI_CSS = /* css */ `
 
 /* Separate white readouts leave the sky open; status positions remain stable. */
 .pod-hud .pod-hud__race-rail { visibility:hidden; }
-.pod-hud .pod-hud__race-stat,.pod-hud .pod-hud__race-time { background:radial-gradient(ellipse,#08121c66,transparent 73%); border:0; box-shadow:none; }
+.pod-hud .pod-hud__race-stat,.pod-hud .pod-hud__race-time { background:none; border:0; box-shadow:none; }
 .pod-hud .pod-hud__race-value,.pod-hud .pod-hud__clock {
   color:var(--dusk-white); font-family:"Inkstorm UI",sans-serif; font-weight:700;
   font-style:italic; letter-spacing:-.045em; -webkit-text-stroke:0;
-  text-shadow:0 2px 3px #03081280;
+  text-shadow:0 1px 1px #03081280;
 }
 .pod-hud .pod-hud__race-value small { color:#d4dfeb; font-size:.65em; font-weight:400; }
 .pod-hud .pod-hud__race-time { width:160px; }
 .pod-hud .pod-hud__clock { font-size:26px; }
 .pod-hud .pod-hud__race-stat .pod-hud__label,.pod-hud .pod-hud__race-time>.pod-hud__label { color:#d1dce8; font-weight:400; letter-spacing:.18em; font-size:10px; text-shadow:0 1px 2px #030812; }
-.pod-hud .pod-hud__race>.pod-hud__detail-toggle { color:#d3dfeb; background:linear-gradient(90deg,#0b17205c,transparent); border:0; font-family:"Inkstorm UI",sans-serif; font-weight:400; letter-spacing:.05em; }
+.pod-hud .pod-hud__race>.pod-hud__detail-toggle { color:#d3dfeb; background:none; border:0; font-family:"Inkstorm UI",sans-serif; font-weight:400; letter-spacing:.05em; }
 .pod-hud .pod-hud__detail-toggle:focus-visible { outline-color:var(--dusk-blue); }
-.pod-hud .pod-hud__corner { width:max-content; max-width:min(180px,calc(100vw - 32px)); color:var(--dusk-white); background:var(--dusk-glass); border-color:var(--dusk-line); border-radius:2px; }
+.pod-hud .pod-hud__corner { width:max-content; max-width:min(180px,calc(100vw - 32px)); color:var(--dusk-white); background:#09101926; border-color:#d6e6f029; border-radius:2px; }
 .pod-hud .pod-hud__corner-distance { font-family:"Inkstorm UI",sans-serif; font-weight:700; font-style:italic; }
 .pod-hud .pod-hud__course-progress-rail { color:#d8e6f3; border-color:#d6e8f359; box-shadow:none; }
 .pod-hud .pod-hud__course-progress-rail::before { background:#d6e8f380; box-shadow:none; }
 .pod-hud .pod-hud__course-progress-rail>[data-course-checkpoint] { background:#d6e8f399; }
 
 /* A small readout glass replaces the decorative speed loop; live meters stay. */
-.pod-hud .pod-hud__driving-instruments::before { content:''; position:absolute; inset:136px 17px 19px 12px; z-index:0; pointer-events:none; background:linear-gradient(115deg,#06101a66,#07121c24); border-radius:3px; box-shadow:none; }
+.pod-hud .pod-hud__driving-instruments::before { content:''; position:absolute; inset:136px 17px 19px 12px; z-index:0; pointer-events:none; background:none; border-radius:3px; box-shadow:none; }
 .pod-hud .pod-hud__driving-instruments .pod-hud__speed-dial { opacity:0; }
-.pod-hud .pod-hud__driving-instruments .pod-hud__speed-number { color:var(--dusk-white); font-family:"Inkstorm UI",sans-serif; font-weight:700; font-style:italic; letter-spacing:-.055em; -webkit-text-stroke:0; text-shadow:0 2px 3px #02071280; }
-.pod-hud .pod-hud__driving-instruments .pod-hud__speed-unit { color:#d2deeb; font-style:italic; font-weight:400; text-shadow:0 1px 2px #020712; }
-.pod-hud .pod-hud__driving-instruments .pod-hud__meter-head .pod-hud__label { color:#d6e2ee; font-weight:400; font-size:11px; text-shadow:0 1px 2px #020712; }
-.pod-hud .pod-hud__driving-instruments .pod-hud__meter-value { color:var(--dusk-white); font-family:"Inkstorm UI",sans-serif; font-weight:700; font-style:italic; text-shadow:0 1px 2px #020712; }
+.pod-hud .pod-hud__driving-instruments .pod-hud__speed-number { color:var(--dusk-white); font-family:"Inkstorm UI",sans-serif; font-weight:700; font-style:italic; letter-spacing:-.055em; -webkit-text-stroke:0; text-shadow:0 1px 1px #02071280; }
+.pod-hud .pod-hud__driving-instruments .pod-hud__speed-unit { color:#d2deeb; font-style:italic; font-weight:400; text-shadow:0 1px 1px #02071280; }
+.pod-hud .pod-hud__driving-instruments .pod-hud__meter-head .pod-hud__label { color:#d6e2ee; font-weight:400; font-size:11px; text-shadow:0 1px 1px #02071280; }
+.pod-hud .pod-hud__driving-instruments .pod-hud__meter-value { color:var(--dusk-white); font-family:"Inkstorm UI",sans-serif; font-weight:700; font-style:italic; text-shadow:0 1px 1px #02071280; }
 .pod-hud .pod-hud__driving-instruments .pod-hud__meter-track,.pod-hud .pod-hud__driving-instruments .pod-hud__telemetry .pod-hud__meter-track { background:#050a12a6; border-radius:1px; box-shadow:0 0 0 1px #c8e7fa29; }
 .pod-hud .pod-hud__driving-instruments .pod-hud__meter--boost .pod-hud__meter-fill { background:linear-gradient(90deg,#5fb4dc,#b8e9fb); }
 .pod-hud .pod-hud__driving-instruments .pod-hud__meter--heat .pod-hud__meter-fill { background:linear-gradient(90deg,#bc794a,#f3c391); }
 .pod-hud .pod-hud__driving-instruments .pod-hud__meter--damage .pod-hud__meter-fill { background:#f79785; }
-.pod-hud .pod-hud__driving-instruments>.pod-hud__redline-heat>span { background:#0a14219e; color:#d1ddeb; border-radius:1px; font-weight:400; text-shadow:0 1px 1px #020712; }
+.pod-hud .pod-hud__driving-instruments>.pod-hud__redline-heat>span { background:none; color:#d1ddeb; border-radius:1px; font-weight:400; text-shadow:0 1px 1px #020712; }
 .pod-hud .pod-hud__driving-instruments>.pod-hud__redline-heat.is-active>span,.pod-hud .pod-hud__driving-instruments>.pod-hud__redline-heat.is-hot>span { color:var(--dusk-amber); }
 .pod-hud .pod-hud__driving-instruments .pod-hud__telemetry.is-hot .pod-hud__meter--heat .pod-hud__label { color:var(--dusk-amber); font-weight:700; }
 .pod-hud .pod-hud__driving-instruments .pod-hud__telemetry.is-damaged .pod-hud__meter--damage .pod-hud__label { color:var(--dusk-red); font-weight:700; }
@@ -106,15 +106,15 @@ export const DUSK_UI_CSS = /* css */ `
 .pod-hud .pod-hud__combat-slot--mine .pod-hud__system-icon { background:var(--dusk-amber); }
 .pod-hud .pod-hud__combat-slot--mine .pod-hud__system-icon::after { background:#0c1623; }
 .pod-hud .pod-hud__combat-key { color:var(--dusk-white); border-color:#cbe4f64a; background:#0b1322b8; border-radius:1px; text-shadow:none; }
-.pod-hud .pod-hud__system-label { color:#dae6f2; font-weight:400; background:linear-gradient(90deg,transparent,#09131da8 15% 85%,transparent); text-shadow:0 1px 2px #020712; }
-.pod-hud .pod-hud__system-ammo { color:var(--dusk-white); text-shadow:0 1px 2px #020712; }
+.pod-hud .pod-hud__system-label { color:#dae6f2; font-weight:400; background:none; text-shadow:0 1px 1px #02071280; }
+.pod-hud .pod-hud__system-ammo { color:var(--dusk-white); text-shadow:0 1px 1px #02071280; }
 .pod-hud .pod-hud__combat-slot[data-ready=true] .pod-hud__system-gauge { box-shadow:inset 0 0 0 1px #cbe4f69c; }
 .pod-hud .pod-hud__combat-slot[data-ready=false] .pod-hud__system-icon { opacity:.48; }
 .pod-hud .pod-hud__galactic.is-shield-active .pod-hud__combat-slot--shield .pod-hud__system-gauge { background:#78cdec29; box-shadow:inset 0 0 0 1px #d5f6ff,0 0 0 1px #92dffa55; }
 .pod-hud .pod-hud__galactic.is-shield-active .pod-hud__combat-slot--shield .pod-hud__system-icon { border-color:#b5efff; opacity:1; }
 
 /* Alert timing, priority and their measured lanes are unchanged. */
-.pod-hud .pod-hud__driving-feedback>.pod-hud__launch[data-stage=result],.pod-hud .pod-hud__driving-feedback>.pod-hud__flight,.pod-hud .pod-hud__driving-feedback>.pod-hud__meter--drift { color:var(--dusk-white); background:linear-gradient(90deg,#09131dbc,#09131d40 80%,transparent); border-left-width:1px; border-left-color:var(--dusk-amber); }
+.pod-hud .pod-hud__driving-feedback>.pod-hud__launch[data-stage=result],.pod-hud .pod-hud__driving-feedback>.pod-hud__flight,.pod-hud .pod-hud__driving-feedback>.pod-hud__meter--drift { color:var(--dusk-white); background:linear-gradient(90deg,#09131d45,transparent 80%); border-left-width:1px; border-left-color:var(--dusk-amber); }
 .pod-hud .pod-hud__driving-feedback>.pod-hud__flight { border-left-color:var(--dusk-blue); }
 .pod-hud .pod-hud__driving-feedback>.pod-hud__launch[data-stage=result] header>strong { font-family:"Inkstorm UI",sans-serif; font-weight:700; font-style:italic; }
 .pod-hud .pod-hud__driving-feedback .pod-hud__label,.pod-hud .pod-hud__driving-feedback .pod-hud__meter-value { color:var(--dusk-white); }
@@ -131,6 +131,14 @@ export const DUSK_UI_CSS = /* css */ `
 .pod-hud .pod-hud__director-event[data-phase=end]>strong { color:#b6decf; }
 .pod-hud .pod-hud__countdown { color:var(--dusk-white); font-family:"Inkstorm UI",sans-serif; font-weight:700; font-style:italic; -webkit-text-stroke:0; text-shadow:0 3px 14px #030a1366; }
 
+/* Redundant instrument captions stay in the accessibility tree. */
+.pod-hud .pod-hud__race-stat .pod-hud__label,.pod-hud .pod-hud__race-time>.pod-hud__label { position:absolute; width:1px; height:1px; margin:-1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap; }
+.pod-hud .pod-hud__race-value { font-size:32px; }
+.pod-hud .pod-hud__driving-instruments .pod-hud__speed-number { font-size:38px; }
+.pod-hud .pod-hud__system-label { font-size:10px; letter-spacing:.02em; }
+.pod-hud .pod-hud__combat-slot--weapon .pod-hud__system-label { position:absolute; width:1px; height:1px; margin:-1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap; }
+.pod-hud .pod-hud__course-progress-rail { opacity:.65; }
+
 /* Optional settings inherit the same material without changing their controls. */
 .pod-hud .pod-hud__pause { color:var(--dusk-white); background:#0b1421f2; border:1px solid #afcce440; box-shadow:0 16px 50px #0008; }
 .pod-hud .pod-hud__pause>strong,.pod-hud .pod-hud__settings>header strong { color:var(--dusk-white); font-family:"Inkstorm UI",sans-serif; text-shadow:none; }
@@ -139,6 +147,7 @@ export const DUSK_UI_CSS = /* css */ `
 .pod-hud .pod-hud__settings-sliders label,.pod-hud .pod-hud__settings-toggles label { background:#121e2e; color:#dce7f0; border-color:#6f9dbb; }
 
 .pod-hud.is-high-contrast { --dusk-glass:#08101b; --dusk-line:#d9eaff99; }
+.pod-hud.is-high-contrast .pod-hud__course-progress-rail { opacity:1; }
 .pod-hud.is-high-contrast .simple-setup { background:#080f19; }
 .pod-hud.is-high-contrast .simple-setup .pod-hud__garage-hero { background:#17283b; border-color:#cde5f56b; }
 .pod-hud.is-high-contrast .pod-hud__race-stat,.pod-hud.is-high-contrast .pod-hud__race-time,.pod-hud.is-high-contrast .pod-hud__driving-instruments::before { background:#080f19; }

@@ -1,0 +1,65 @@
+{
+  "source": "public/assets/inkstorm/canyon-arch-v3.glb",
+  "sourceSha256": "1b950e08b0004fec5590b1167a7c1f7311c0389a2d48b2e43c387c1ef82d9b01",
+  "output": "assets/source/salt-dusk/stone-refinement-v1/canyon-arch-dusk-v1.glb",
+  "sha256": "38b6609e82dd0cf3e72da0bf9c36416758935b2df90c050887fc63504b7a62aa",
+  "bytes": 1681836,
+  "sourceTopology": {
+    "vertices": 18918,
+    "faces": 37800,
+    "boundaryEdges": 0,
+    "nonManifoldEdges": 0,
+    "components": 9,
+    "signedVolume": 145578.7012608266
+  },
+  "topology": {
+    "vertices": 35018,
+    "faces": 70000,
+    "boundaryEdges": 0,
+    "nonManifoldEdges": 0,
+    "components": 9,
+    "signedVolume": 152562.15017870604
+  },
+  "originalBoundsBlender": [
+    [
+      -83.40000915527344,
+      -16.399999618530273,
+      0.0
+    ],
+    [
+      86.69999694824219,
+      16.599998474121094,
+      94.0
+    ]
+  ],
+  "finalBoundsBlender": [
+    [
+      -83.40000915527344,
+      -16.399999618530273,
+      0.0
+    ],
+    [
+      86.69999694824219,
+      16.599998474121094,
+      94.0
+    ]
+  ],
+  "subdivision": [
+    {
+      "before": 37800,
+      "after": 70000,
+      "splitEdges": 16100
+    }
+  ],
+  "contactProfile": {
+    "rays": 0,
+    "largestInwardMetres": 0.0
+  },
+  "movedVertices": 27155,
+  "maxDisplacementMetres": 0.9159246289700179,
+  "meanDisplacementMetres": 0.11980691592845148,
+  "sourceColorMaxInterpolationError": 2.9802322387695312e-08,
+  "method": "Adaptive longest-edge subdivision; outward coherent warped bedding and vertical flute relief on broad panels; per-component bound/toe pins. Source triangle barycentric color correspondence.",
+  "blender": "5.2.0 LTS",
+  "seconds": 0.9709608554840088
+}

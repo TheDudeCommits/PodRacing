@@ -20,6 +20,7 @@ import { ART_APPEARANCES, resolveVehicleAppearance, type VehicleAppearanceId } f
 import { RacerPresentation } from '../render/vehicles/RacerPresentation';
 import { VehicleArtLibrary } from '../render/vehicles/VehicleArtLibrary';
 import { acquireSaltDuskAssets } from '../render/saltDusk/SaltDuskAssets';
+import { VehiclePreviewStage } from './VehiclePreviewStage';
 import {
   createCelMaterial,
   CEL_PALETTES,
@@ -141,6 +142,7 @@ interface PreviewResources {
   readonly camera: PerspectiveCamera;
   readonly vehicles: ReadonlyMap<GalacticVehicleClass, RacerPresentation>;
   readonly pilots: ReadonlyMap<GalacticVehicleClass, PilotView>;
+  readonly stage: VehiclePreviewStage;
 }
 
 const cameraDirection = new Vector3(0.7, 0.38, -1).normalize();
@@ -658,6 +660,8 @@ export class VehicleCardPreviewRenderer {
     const camera = new PerspectiveCamera(30, 2, 0.1, 500);
     const vehicles = new Map<GalacticVehicleClass, RacerPresentation>();
     const pilots = new Map<GalacticVehicleClass, PilotView>();
+    const stage = new VehiclePreviewStage();
+    scene.add(stage.mesh);
 
     GALACTIC_VEHICLE_ORDER.forEach((vehicleClass, index) => {
       // Preview imported art at hero detail independently of a card's physics-class index.
@@ -691,6 +695,7 @@ export class VehicleCardPreviewRenderer {
       camera,
       vehicles,
       pilots,
+      stage,
     };
     return this.resources;
   }
@@ -782,6 +787,7 @@ export class VehicleCardPreviewRenderer {
     resources.camera.lookAt(previewCenter);
     resources.camera.updateProjectionMatrix();
 
+    resources.stage.update(resources.renderer, vehicle, bounds);
     resources.renderer.clear(true, true, true);
     resources.renderer.render(resources.scene, resources.camera);
     return encode ? resources.renderer.domElement.toDataURL('image/webp', 0.92) : '';
@@ -834,6 +840,7 @@ export class VehicleCardPreviewRenderer {
   private releaseGpuResources(): void {
     const resources = this.resources;
     if (!resources) return;
+    resources.stage.dispose();
     for (const pilot of resources.pilots.values()) pilot.dispose();
     for (const vehicle of resources.vehicles.values()) {
       vehicle.removeFromParent();

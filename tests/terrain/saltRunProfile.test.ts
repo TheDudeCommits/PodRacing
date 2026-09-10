@@ -30,6 +30,25 @@ describe('shared salt-run lane correction', () => {
     expect(hump.y).toBeLessThan(-24);
   });
 
+  it('extends the settled physical salt floor into the outer basin while preserving the published lane', () => {
+    // The old 95m profile left rolling banks outside the racing corridor.
+    // Outer salt settles around the existing lane; legacy lane hashes below
+    // and in connectedLaunchRidge remain unchanged.
+    for (const distance of [795, 830, 865]) {
+      const point = race.course.sampleAtDistance(distance);
+      const heights = [-180, -165, -150, 150, 165, 180].map(lateral =>
+        race.terrain.heightAt(point.x + point.rightX * lateral, point.z + point.rightZ * lateral));
+      // The six-metre correction field interpolates against analytic terrain.
+      // Allow half-metre residuals around the target, bounded below one metre
+      // across the basin; preserve the separately pinned race corridor.
+      expect(Math.max(...heights) - Math.min(...heights)).toBeLessThan(1);
+      for (const height of heights) expect(Math.abs(height + 25)).toBeLessThan(.5);
+      for (const [a, b] of [[0, 1], [1, 2], [3, 4], [4, 5]]) {
+        expect(Math.abs(heights[a!]! - heights[b!]!) / 15).toBeLessThan(.05);
+      }
+    }
+  });
+
   it('keeps eight metre grades bounded and smoothly rejoins its unchanged surrounding terrain', () => {
     let maximumGrade = 0, maximumCut = 0;
     for (let d = SALT_RUN_PROFILE.startDistance; d <= 1280; d += 2) {

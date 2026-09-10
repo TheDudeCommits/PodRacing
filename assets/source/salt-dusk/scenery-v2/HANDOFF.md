@@ -1,0 +1,9 @@
+# Environment geometry v2 — first capture candidate
+
+Six original continuous eroded range surfaces replace the non-colliding repeating skyline. They use 48,624 triangles across three ordinary meshes and the shared photographed rock material. Each has a closed buried underside and a perimeter seated 3m below the existing height sampler. A conservative envelope of all main and branch routes leaves about 210m minimum sampled clearance. No terrain, physics, camera, lighting or source asset pixels changed.
+
+The retained layout is 165/227 hero placements and 166/260 expedition placements; every collider-associated placement stays at its exact original transform. Canyon walls near the actual canyon, fork dividers, founded settlement supports, foundry forms, industrial structures, signs and route landmarks stay visible. Isolated Vista landscape repeats are omitted only when they do not support a settlement; InkstormVista source is untouched.
+
+Stone GLBs receive area-weighted normals across co-located source vertices under a 62° crease limit. This does not merge vertices or change position, UV, colors, indices, bounds or the polygon silhouette. The actual arch test detects 86,035 changed normal components while proving every other source array exact. Ninety-degree creases remain hard.
+
+22 focused tests pass, including closed outward topology, finite normals, below-ground skirts, route/collider checks, real arch preservation, workshop async ownership and existing gantry/Foundry integration. Full source integration is root-owned; no GPU/browser/build executed here. Actual visual acceptance remains pending. Distant ranges join the existing static shadow caster path, so their effect on the one-shot world shadow fit and basin coverage needs the next native images. This pass cannot erase collision-bearing pit props or physical launch terrain ridges.

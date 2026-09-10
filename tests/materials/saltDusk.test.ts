@@ -11,8 +11,8 @@ describe('photographic dusk resource and material contracts',()=>{
     const u=saltDuskUniforms();
     const actualU=(Math.atan2(SALT_DUSK_SUN.z,SALT_DUSK_SUN.x)/(Math.PI*2)+.5+u.uDuskEnvironmentRotation.value+1)%1;
     const actualV=Math.asin(SALT_DUSK_SUN.y)/Math.PI+.5;
-    expect(actualU).toBeCloseTo(.60009765625,8);
-    expect(actualV).toBeCloseTo(.5146484375,8);
+    expect(actualU).toBeCloseTo(.6119384765625,8);
+    expect(actualV).toBeCloseTo(.525634765625,8);
   });
 
   it('keeps borrowed glTF metallic texture, independent UV transform and factor across material disposal',()=>{

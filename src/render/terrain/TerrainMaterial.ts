@@ -87,18 +87,24 @@ void main(){
   vec3 world=vTerrainWorldPosition;
   vec3 n=normalize(vTerrainNormal);if(n.y<0.)n=-n;
   float distanceToCamera=length(vTerrainRenderPosition-cameraPosition);
-  vec3 base=vec3(.63,.59,.51);
-  vec3 groundNormal=n;float roughness=.83;
-  if(uDuskGroundReady>.5){
-    vec3 detail=duskTriplanar(uDuskGround,world,n,1./13.);
-    // Mineral bloom lifts the photographic earth to a pale saline crust while
-    // retaining actual fissures, plates and grain rather than painted strokes.
-    float mineral=dot(detail,vec3(.2126,.7152,.0722));
-    base=vec3(.69,.645,.545)*(.64+mineral*.74);
-    groundNormal=duskRelief(uDuskGroundNormal,world,n,1./13.,.26);
-    roughness=clamp(duskTriplanar(uDuskGroundRoughness,world,n,1./13.).r,.60,1.);
-  }
   float slope=length(n.xz)/max(.1,n.y);
+  float level=1.-smoothstep(.055,.24,slope);
+  float evaporite=duskNoise(world.xz*.0035)+duskNoise(world.xz*.011+37.)*.25;
+  float salt=level*smoothstep(.29,.79,evaporite);
+  // Mineral crust belongs to the level basin. Raised banks expose darker
+  // wind-scoured earth instead of looking like white snowdrifts everywhere.
+  vec3 base=mix(vec3(.245,.211,.17),vec3(.57,.535,.45),salt);
+  vec3 groundNormal=n;float roughness=mix(.91,.72,salt);
+  if(uDuskGroundReady>.5){
+    vec3 detail=duskTriplanar(uDuskGround,world,n,1./18.);
+    float mineral=dot(detail,vec3(.2126,.7152,.0722));
+    base*=.84+mineral*.40;
+    groundNormal=duskRelief(uDuskGroundNormal,world,n,1./18.,.052*(1.-salt*.5));
+    roughness=clamp(duskTriplanar(uDuskGroundRoughness,world,n,1./18.).r,.72,.96);
+  }
+  float damp=level*smoothstep(.70,.88,evaporite)*salt;
+  roughness=mix(roughness,.56,damp);
+  groundNormal=normalize(mix(groundNormal,n,damp*.85));
   float cliff=smoothstep(.24,.58,slope)*max(smoothstep(8.,42.,abs(vTerrainAuthoredOffset)),smoothstep(.15,.45,vTerrainAuthoredGrade));
   if(cliff>.001){
     vec3 rock=inkstormRockAlbedo(world,n,uRockPaint,uRockBeds,uRockPaintReady);

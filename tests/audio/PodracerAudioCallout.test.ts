@@ -363,7 +363,7 @@ describe('recorded catalogue audio owner', () => {
     const menuSources = context.bufferSources.filter(source => !(source.connections[0] instanceof FakeBiquadFilterNode));
     const vehicleSources = context.bufferSources.filter(source => source.loop && source.connections[0] instanceof FakeBiquadFilterNode);
     const vehicleGains = vehicleSources.map(source => source.connections[0]!.connections[0] as FakeGainNode);
-    expect(vehicleGains).toHaveLength(8);
+    expect(vehicleGains).toHaveLength(3);
     const engineBus = vehicleGains[0]!.connections[0]!.connections[0] as FakeGainNode;
     const delay = engineBus.connections.find(node => node instanceof FakeDelayNode)!;
     const canyonReturn = delay.connections[0]!.connections[0] as FakeGainNode;
@@ -518,7 +518,7 @@ describe('recorded catalogue audio owner', () => {
       context.currentTime += .1;
       audio.trigger({ kind: 'weapon', intensity: .8 });
     }
-    expect(audio.recordingStatus.activeEffects).toBe(24);
+    expect(audio.recordingStatus.activeEffects).toBe(4);
     const sources = context.bufferSources.slice(before);
     audio.dispose();
     expect(audio.recordingStatus.activeEffects).toBe(0);
@@ -533,6 +533,52 @@ describe('recorded catalogue audio owner', () => {
     expect(context.bufferSources.length).toBe(before);
     audio.setPaused(false); audio.trigger({ kind: 'weapon', intensity: 1 });
     expect(context.bufferSources.length).toBe(before + 1);
+    audio.dispose();
+  });
+
+  it('uses one stable propulsion bed and only two quiet rivals with conservative playback rates', async () => {
+    const { audio, context } = await createLoadedAudio();
+    audio.transitionMenuMusicToRace();
+    const sources = context.bufferSources.filter(source => source.loop && source.connections[0] instanceof FakeBiquadFilterNode);
+    expect(sources).toHaveLength(3);
+    const gains = sources.map(source => source.connections[0]!.connections[0] as FakeGainNode);
+    context.currentTime = 8;
+    audio.update({ ...racingTelemetry, speedMps: 1000, throttle: 100, boost: 100, damage: 0,
+      rivals: Array.from({ length: 8 }, (_, i) => ({ id: `r${i}`, speedMps: 1000, distanceM: 0, closingSpeedMps: 999, pan: 1 })) });
+    expect(gains[0]!.gain.value).toBeGreaterThan(0.3);
+    expect(gains.slice(1).every(gain => gain.gain.value <= 0.031)).toBe(true);
+    expect(gains.reduce((sum, node) => sum + node.gain.value, 0)).toBeLessThan(0.43);
+    expect(sources.every(source => source.playbackRate.value >= 0.94 && source.playbackRate.value <= 1.121)).toBe(true);
+    context.currentTime = 9;
+    audio.update(racingTelemetry);
+    const rate = sources[0]!.playbackRate.value;
+    context.currentTime = 10;
+    audio.update({ ...racingTelemetry, heat: 1, simulationTime: 812, vehicleId: 'speeder-bike', rivals: [] });
+    expect(sources[0]!.playbackRate.value).toBe(rate);
+    expect(gains.slice(1).every(node => node.gain.value === 0)).toBe(true);
+    expect(context.bufferSources.filter(source => source.loop && source.connections[0] instanceof FakeBiquadFilterNode)).toHaveLength(3);
+    audio.dispose();
+  });
+
+  it('omits reward bleeps and rate-limits aliased effects as one physical recording', async () => {
+    const { audio, context } = await createLoadedAudio();
+    context.currentTime = 8;
+    const before = context.bufferSources.length;
+    for (const kind of ['checkpoint', 'lap', 'finish', 'warning', 'electric', 'takedown', 'recovery', 'redline', 'sand'] as const) {
+      audio.trigger({ kind, intensity: 1 });
+    }
+    expect(context.bufferSources).toHaveLength(before);
+    audio.trigger({ kind: 'boost', intensity: 1, pitch: 7 });
+    const firstBoost = context.bufferSources.at(-1)!;
+    audio.trigger({ kind: 'horn', intensity: 1 });
+    expect(context.bufferSources).toHaveLength(before + 1);
+    expect(firstBoost.playbackRate.value).toBe(1.05);
+    context.currentTime = 10;
+    audio.trigger({ kind: 'boost', intensity: 1, pitch: 0.1 });
+    expect(firstBoost.disconnected).toBe(true);
+    expect(firstBoost.stopCalls.at(-1)).toBe(0);
+    expect(context.bufferSources.at(-1)!.playbackRate.value).toBe(0.95);
+    expect(audio.recordingStatus.activeEffects).toBe(1);
     audio.dispose();
   });
 

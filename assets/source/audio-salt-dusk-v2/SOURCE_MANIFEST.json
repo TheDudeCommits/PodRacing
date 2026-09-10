@@ -1,0 +1,139 @@
+{
+  "retrievedAt": "2026-09-10T09:11:02.998847+00:00",
+  "status": "PRIMARY_SOURCE_LICENSE_VERIFIED_RUNTIME_CANDIDATE_PENDING_OWNER_AUDITION",
+  "sources": [
+    {
+      "id": "rocket-propulsion",
+      "author": "Iwan Gabovitch (qubodup)",
+      "title": "Rocket Boost Engine Loop.wav",
+      "published": "2012-02-16",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "page": "https://freesound.org/people/qubodup/sounds/146770/",
+      "pageFile": "research/rocket-boost.html",
+      "download": "https://cdn.freesound.org/previews/146/146770_71257-hq.mp3",
+      "file": "rocket-boost-hq.mp3",
+      "role": "Main propulsion bed",
+      "provenance": "Creator describes sound made for a robot flight game. Public HQ preview, not login-required original WAV. Existing sound design, not claimed real jet recording.",
+      "fileSha256": "23989578e6bc77b24c8f238fbc482a623188277812ddc54d5907e5eae4bad749",
+      "pageFileSha256": "cc18ab504337b4a5b6eb2207a63a0b10b6d0b64535699424348a63f389da1edb",
+      "pageFileDistribution": "private local cache; Git-ignored, not published"
+    },
+    {
+      "id": "little-robot",
+      "author": "Little Robot Sound Factory",
+      "title": "Sci-Fi Sound Effects Library",
+      "published": "2015-04-13",
+      "license": "CC-BY-3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0/",
+      "page": "https://opengameart.org/content/sci-fi-sound-effects-library",
+      "pageFile": "research/little-robot-sci-fi.html",
+      "download": "https://opengameart.org/sites/default/files/Sci-Fi%20Sound%20Library.zip",
+      "file": "Sci-Fi-Sound-Library.zip",
+      "role": "Medium spacecraft rival loop; Laser09 weapon; Laser07 shield/EMP",
+      "provenance": "Author published premixed spaceship, laser and warp library including original 48 kHz WAVs; use OGA package CC-BY 3 license. These are existing conventional designed effects, not real spacecraft recordings. Large 0.493 s and Small engine loops are research-only.",
+      "fileSha256": "85ac292e2f6785c2b5a22c0d5d0e7dd10b9f1db72ec62ce8ade75edb44d0c277",
+      "pageFileSha256": "ce997ee32ba68bc5442ae9e9a388f6b8752394d993831b60b3f1b422bb2f70c8",
+      "pageFileDistribution": "private local cache; Git-ignored, not published"
+    },
+    {
+      "id": "jet-boost",
+      "author": "dklon",
+      "title": "Jet Engine Takeoff",
+      "published": "2013-05-13",
+      "license": "CC-BY-3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0/",
+      "page": "https://opengameart.org/content/jet-engine-takeoff",
+      "pageFile": "research/jet.html",
+      "download": "https://opengameart.org/sites/default/files/engine_takeoff.wav",
+      "file": "engine_takeoff.wav",
+      "role": "Boost launch transient",
+      "provenance": "Author describes jet takeoff with Doppler applied; credit dklon. Existing effect, recording equipment/source not specified.",
+      "fileSha256": "c7aa06c63a4fc5a638cab2b9f292a34ca03b3f3a1016d01e3b69cfd65f328e87",
+      "pageFileSha256": "edd6d7a1bf8606cb3f03b64aa26e856abbca0c6a2d1d530b4d2ad29737f1d0f5",
+      "pageFileDistribution": "private local cache; Git-ignored, not published"
+    },
+    {
+      "id": "hull-impact",
+      "author": "7of9Designs",
+      "title": "Heavy Metal Thud on Ground",
+      "published": "2022-06-29",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "page": "https://freesound.org/people/7of9Designs/sounds/640204/",
+      "pageFile": "research/heavy-metal-thud.html",
+      "download": "https://cdn.freesound.org/previews/640/640204_12131847-hq.mp3",
+      "file": "heavy-metal-thud-hq.mp3",
+      "role": "Hull/ground collision and weapon impact",
+      "provenance": "Creator describes heavy metal object hitting dirt with dirt sound. Public HQ preview, not login-required uploaded original MP3.",
+      "fileSha256": "fa19f1983c27e5f66906eebfa3911bd3322e85d271cd50559d6ead5d5881fac4",
+      "pageFileSha256": "6259780d41364b1eea7f3b81bbb42249f26811fa78ee7846d221b22858911a8c",
+      "pageFileDistribution": "private local cache; Git-ignored, not published"
+    },
+    {
+      "id": "rupture",
+      "author": "Michel Baradari",
+      "title": "2 High Quality Explosions",
+      "published": "2009-08-14",
+      "license": "CC-BY-3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0/",
+      "page": "https://opengameart.org/content/2-high-quality-explosions",
+      "pageFile": "research/explosions.html",
+      "download": "https://opengameart.org/sites/default/files/explosions.7z",
+      "file": "explosions.7z",
+      "role": "Wreck/mine blast",
+      "provenance": "Package includes info.txt confirming author and CC-BY 3. Existing catalogued blast, not claimed live explosion recording.",
+      "fileSha256": "17225b583e7dd40462fa7c57b880d8cc226a650073e231aba99bc91aa4f87e5b",
+      "pageFileSha256": "70dd4c6fb7e5313b2256a79e82b1985bcf99331ee1547f80b1b6d6aaaf7ef9cf",
+      "pageFileDistribution": "private local cache; Git-ignored, not published"
+    }
+  ],
+  "retained": [
+    {
+      "sourceManifest": "assets/source/audio-salt-dusk/SOURCE_MANIFEST.json",
+      "runtime": "public/audio/salt-dusk/juggernaut.mp3",
+      "author": "Scott Buckley",
+      "license": "CC-BY-4.0",
+      "role": "Unchanged 75-second licensed music excerpt"
+    },
+    {
+      "sourceManifest": "assets/source/audio-salt-dusk/SOURCE_MANIFEST.json",
+      "runtime": "public/audio/salt-dusk-v2/mechanical-click.ogg",
+      "author": "Kenney",
+      "license": "CC0-1.0",
+      "role": "Only dry mechanical click retained; no old beeps/jingles"
+    }
+  ],
+  "researchOnly": [
+    "wood-and-metal.zip and extracted metal samples: no runtime admission; mostly high ringing impact energy, unsuitable as main hull thud",
+    "Other Little Robot engine/laser/warp/ambience WAVs: comparison only, no runtime import"
+  ],
+  "listening": "No perceptual listening tool was available; signal measurements are not a listening-quality judgment. No audio generation used.",
+  "publication": {
+    "reviewedAt": "2026-09-10T09:48:57.263347+00:00",
+    "note": "PUBLICATION.md",
+    "commitStatusAtReview": "New v2 files are untracked; documentation preparation does not attest commit or deployment.",
+    "creatorPageCaches": "pageFile/pageFileSha256 describe local-only Git-ignored research/*.html caches; creator HTML is not included in source publication or browser deployment.",
+    "auditionPage": "AUDITION.html is project-authored source documentation, eligible for repository publication but outside Vite public assets.",
+    "runtimeSelection": "Eight public/audio/salt-dusk-v2 OGG files; full source archives and other extracted samples are retained provenance/research material, not runtime sound selection."
+  },
+  "researchArchives": [
+    {
+      "id": "ogrebane-metal-research",
+      "author": "Ogrebane; creator page description signed artistic",
+      "title": "Metal and Wood Impact Sound Effects",
+      "published": "2010-06-07",
+      "license": "CC-BY-3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0/",
+      "page": "https://opengameart.org/content/metal-and-wood-impact-sound-effects",
+      "download": "https://opengameart.org/sites/default/files/wood_and_metal_impact_sfx.zip",
+      "file": "wood-and-metal.zip",
+      "fileSha256": "8cd2fcd99e1ae9e05ec8f7a2c4a5a45e78b5b15eaff39f7384d3d8bc66c976ac",
+      "pageFile": "research/metal.html",
+      "pageFileSha256": "395f79221f32d8085f88d3852db4a922a5f00a58911597a824561615047279cf",
+      "pageFileDistribution": "private local cache; Git-ignored, not published",
+      "role": "Unused comparison material retained with source attribution in PUBLICATION.md; no runtime use",
+      "extractedFiles": "metal/*.aif, unchanged bytes from archive"
+    }
+  ]
+}

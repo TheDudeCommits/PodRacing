@@ -1,5 +1,4 @@
 import {
-  derivePodracerAudioTargets,
   deriveRivalAudioTargets,
   mapGameEventsToAudioCues,
 } from './model';
@@ -7,7 +6,7 @@ import {
   createMenuMusicTransitionSchedule,
 } from './menuMusic';
 import type { MenuMusicTransitionSchedule } from './menuMusic';
-import { RECORDED_CUES, RECORDED_EFFECT_URLS, RECORDED_LOOPS, RECORDED_MUSIC_URL } from './catalogue';
+import { RECORDED_CUES, RECORDED_CUE_ROLES, RECORDED_EFFECT_URLS, RECORDED_LOOPS, RECORDED_MUSIC_URL } from './catalogue';
 import type {
   AudioEventLike,
   AudioEventMapOptions,
@@ -36,10 +35,7 @@ interface ContinuousGraph {
   calloutBus: GainNode;
   calloutHighpass: BiquadFilterNode;
   calloutPresence: BiquadFilterNode;
-  left: RecordedVoice | null;
-  right: RecordedVoice | null;
-  turbine: RecordedVoice | null;
-  wind: RecordedVoice | null;
+  engine: RecordedVoice | null;
   rivals: RecordedVoice[];
   canyonReturn: GainNode;
   canyonDelay: DelayNode | null;
@@ -99,9 +95,8 @@ export class PodracerAudio {
   private readonly recordings = new Map<string, AudioBuffer>();
   private readonly pendingRecordings = new Map<string, Promise<AudioBuffer | null>>();
   private readonly failedRecordings = new Set<string>();
-  private readonly effects = new Map<AudioBufferSourceNode, GainNode>();
+  private readonly effects = new Map<AudioBufferSourceNode, { gain: GainNode; url: string }>();
   private readonly cueLastPlayed = new Map<string, number>();
-  private nextHeatWarningAt = 0;
   private nextAudioUpdateAt = 0;
   private menuMusicMode: MenuMusicMode = 'off';
   private menuMusicUrl: string | null = null;
@@ -380,34 +375,26 @@ export class PodracerAudio {
     if (!context || !graph || context.state === 'closed') return;
     if (context.currentTime < this.nextAudioUpdateAt) return;
     this.nextAudioUpdateAt = context.currentTime + 1 / 30;
-    const targets = derivePodracerAudioTargets(model), now = context.currentTime;
-    const engine = (voice: RecordedVoice | null, frequency: number, gain: number, filter: number): void => {
-      if (!voice) return;
-      // Playback-rate changes retain the recorded combustion/rotor texture.
-      this.target(voice.source.playbackRate, Math.min(2.1, Math.max(0.55, frequency / 180)), now, 0.12);
-      this.target(voice.filter.frequency, Math.max(900, filter * 2), now, 0.08);
-      this.target(voice.gain.gain, gain * 2.2, now, 0.08);
-    };
-    engine(graph.left, targets.engineLeft.frequency, targets.engineLeft.gain, targets.engineLeft.filterFrequency);
-    engine(graph.right, targets.engineRight.frequency, targets.engineRight.gain, targets.engineRight.filterFrequency);
-    if (graph.turbine) {
-      this.target(graph.turbine.source.playbackRate, Math.min(1.9, 0.8 + Math.max(0, finite(model.speedMps, 0)) / 220), now, 0.18);
-      this.target(graph.turbine.gain.gain, targets.repulsorGain + targets.intakeGain * 1.8, now, 0.1);
+    const now = context.currentTime;
+    const unit = (value: number): number => Math.min(1, Math.max(0, finite(value, 0)));
+    const speed = unit(model.speedMps / 210), throttle = unit(model.throttle);
+    const boost = model.boostActive ? unit(model.boost) : 0;
+    if (graph.engine) {
+      // One continuous propulsion bed. Load changes are gradual and narrow;
+      // heat/damage/time never introduce pitch flutter or oscillating layers.
+      this.target(graph.engine.source.playbackRate, 0.94 + throttle * 0.12 + speed * 0.04 + boost * 0.02, now, 0.22);
+      this.target(graph.engine.filter.frequency, 1_600 + throttle * 2_000 + speed * 800, now, 0.18);
+      this.target(graph.engine.gain.gain, (0.13 + throttle * 0.13 + speed * 0.07 + boost * 0.03) * (1 - unit(model.damage) * 0.25), now, 0.16);
     }
-    if (graph.wind) {
-      this.target(graph.wind.gain.gain, targets.windGain * 1.5, now, 0.12);
-      this.target(graph.wind.filter.frequency, targets.windFilterFrequency, now, 0.1);
-    }
-    this.target(graph.canyonReturn.gain, targets.environmentClosure * 0.105, now, 0.45);
+    this.target(graph.canyonReturn.gain, unit(model.environmentClosure ?? 0) * 0.025, now, 0.45);
     const rivals = deriveRivalAudioTargets(model.rivals);
     for (let i = 0; i < graph.rivals.length; i += 1) {
-      const voice = graph.rivals[i]!, target = rivals[i];
-      engine(voice, target?.frequency ?? 180, target?.gain ?? 0, target?.filterFrequency ?? 900);
-      if (target) this.target(voice.panner.pan, target.pan, now, 0.08);
-    }
-    if (targets.heatWarningGain > 0 && now >= this.nextHeatWarningAt && !this.paused) {
-      this.nextHeatWarningAt = now + 1.8;
-      this.trigger({ kind: 'warning', intensity: 0.2 });
+      const voice = graph.rivals[i]!, rival = model.rivals?.[i], target = rivals[i];
+      const near = rival && finite(rival.distanceM, 240) < 70;
+      this.target(voice.source.playbackRate, Math.min(1.08, Math.max(0.94, (target?.frequency ?? 180) / 180)), now, 0.24);
+      this.target(voice.gain.gain, near ? (target?.gain ?? 0) * 0.36 : 0, now, 0.14);
+      this.target(voice.filter.frequency, 1_800, now, 0.18);
+      if (target) this.target(voice.panner.pan, target.pan * 0.75, now, 0.12);
     }
   }
 
@@ -427,43 +414,47 @@ export class PodracerAudio {
     const intensity = Math.min(1, Math.max(0, finite(cue.intensity, 0)));
     if (intensity <= 0) return;
     const now = context.currentTime;
-    const repeatGap = cue.kind === 'weapon' ? 0.045 : cue.kind === 'impact' || cue.kind === 'sand' ? 0.09 : 0.04;
-    if (now - (this.cueLastPlayed.get(cue.kind) ?? -Infinity) < repeatGap) return;
     const choices = RECORDED_CUES[cue.kind];
+    if (choices.length === 0) return;
     const url = choices[this.effectSequence % choices.length]!;
+    const role = RECORDED_CUE_ROLES[url];
+    if (!role || now - (this.cueLastPlayed.get(url) ?? -Infinity) < role.gap) return;
     const buffer = this.recordings.get(url);
     // Do not queue stale gameplay sounds if loading has not completed.
     if (!buffer) return;
-    this.cueLastPlayed.set(cue.kind, now);
+    this.cueLastPlayed.set(url, now);
     this.effectSequence += 1;
-    // A strict voice budget bounds eight-racer combat bursts.
-    if (this.effects.size >= 24) {
+    // Bound tails per recording, so aliased collision/EMP/boost events cannot
+    // accumulate a wall of overlapping copies. Preserve a global safety cap.
+    const matching = [...this.effects].filter(([, effect]) => effect.url === url);
+    if (matching.length >= role.voices) this.releaseEffect(matching[0]![0], true);
+    if (this.effects.size >= 12) {
       const oldest = this.effects.keys().next().value as AudioBufferSourceNode;
       this.releaseEffect(oldest, true);
     }
     const source = context.createBufferSource(), gain = context.createGain();
     source.buffer = buffer;
-    source.playbackRate.value = Math.min(1.25, Math.max(0.8, finite(cue.pitch ?? 1, 1)));
+    source.playbackRate.value = Math.min(1.05, Math.max(0.95, finite(cue.pitch ?? 1, 1)));
     const start = now + 0.005, duration = buffer.duration / source.playbackRate.value;
-    const level = (cue.kind === 'ui' || cue.kind === 'checkpoint' ? 0.22 : 0.55) * intensity;
+    const level = role.gain * intensity;
     gain.gain.setValueAtTime(0, start);
     gain.gain.linearRampToValueAtTime(level, start + Math.min(0.008, duration * 0.1));
     gain.gain.setValueAtTime(level, start + Math.max(0.01, duration - 0.025));
     gain.gain.linearRampToValueAtTime(0, start + duration);
     source.connect(gain).connect(graph.effectsBus);
-    this.effects.set(source, gain);
+    this.effects.set(source, { gain, url });
     source.addEventListener('ended', () => this.releaseEffect(source, false));
     source.start(start);
     source.stop(start + duration + 0.005);
   }
 
   private releaseEffect(source: AudioBufferSourceNode, stop: boolean): void {
-    const gain = this.effects.get(source);
-    if (!gain) return;
+    const effect = this.effects.get(source);
+    if (!effect) return;
     this.effects.delete(source);
     if (stop) { try { source.stop(); } catch { /* Already ended. */ } }
     source.disconnect();
-    gain.disconnect();
+    effect.gain.disconnect();
   }
 
   private clearGameplayTransients(): void {
@@ -477,14 +468,13 @@ export class PodracerAudio {
     this.vehicleLoopsEnabled = false;
     this.lastTelemetry = null;
     this.nextAudioUpdateAt = 0;
-    this.nextHeatWarningAt = 0;
     this.clearGameplayTransients();
     const context = this.context, graph = this.graph;
     if (!context || !graph || context.state === 'closed') return;
     // Menu frames do not supply telemetry. Cancel every lingering gain/duck,
     // including the canyon return, without stopping the pooled recordings.
     const gains = [graph.engineBus, graph.canyonReturn,
-      graph.left?.gain, graph.right?.gain, graph.turbine?.gain, graph.wind?.gain,
+      graph.engine?.gain,
       ...graph.rivals.map(voice => voice.gain)];
     for (const node of gains) {
       if (!node) continue;
@@ -904,7 +894,7 @@ export class PodracerAudio {
     this.context = context;
     const graph: ContinuousGraph = {
       master, compressor, engineBus, effectsBus, musicBus, calloutBus,
-      calloutHighpass, calloutPresence, left: null, right: null, turbine: null, wind: null,
+      calloutHighpass, calloutPresence, engine: null,
       rivals: [], canyonReturn, canyonDelay, steadySources: [], nodes,
     };
     this.graph = graph;
@@ -913,12 +903,9 @@ export class PodracerAudio {
     if (context.state === 'running') this.disarm();
     await Promise.all(RECORDED_EFFECT_URLS.map(url => this.loadRecording(url)));
     if (this.disposed || this.graph !== graph || context.state === 'closed') return;
-    graph.left = this.createRecordedVoice(RECORDED_LOOPS.engine, -0.66, 0);
-    graph.right = this.createRecordedVoice(RECORDED_LOOPS.engine, 0.66, 0.37);
-    graph.turbine = this.createRecordedVoice(RECORDED_LOOPS.turbine, 0, 0);
-    graph.wind = this.createRecordedVoice(RECORDED_LOOPS.wind, 0, 0);
-    for (let i = 0; i < 4; i += 1) {
-      const voice = this.createRecordedVoice(RECORDED_LOOPS.engine, 0, (i + 1) * 0.57);
+    graph.engine = this.createRecordedVoice(RECORDED_LOOPS.engine, 0, 0);
+    for (let i = 0; i < 2; i += 1) {
+      const voice = this.createRecordedVoice(RECORDED_LOOPS.rival, 0, (i + 1) * 0.57);
       if (voice) graph.rivals.push(voice);
     }
     if (this.lastTelemetry) this.update(this.lastTelemetry);

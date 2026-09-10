@@ -59,7 +59,7 @@ ${INKSTORM_GEOLOGY_GLSL}
         float edge=abs(vUv.x-.5)*2.;float distanceToCamera=length(vWorld-cameraPosition);
         float rough=noise(vec2(vUv.x*20.,vUv.y*.045));
         float alpha=(1.-smoothstep(.62+rough*.12,1.,edge))*.89;
-        vec3 base=mix(vec3(.36,.32,.255),vec3(.52,.47,.36),rough*.65);
+        vec3 base=mix(vec3(.34,.30,.235),vec3(.48,.433,.335),rough*.55);
         // Broad compacted sand planes with restrained granular texture keep the
         // racing line readable without looking like a pasted gravel strip.
         vec3 crust=texture(uGroundPaint,vWorld.xz*.026).rgb;
@@ -67,7 +67,7 @@ ${INKSTORM_GEOLOGY_GLSL}
         float grooves=sin(vUv.x*166.+sin(vUv.y*.016)*2.4+noise(vec2(vUv.x*24.,vUv.y*.055))*3.);
         float detail=1.-smoothstep(100.,500.,distanceToCamera);
         float brokenTrail=smoothstep(.32,.65,noise(vec2(vUv.x*17.,vUv.y*.021)));
-        base*=1.-smoothstep(.3,.9,grooves)*.065*detail*brokenTrail;
+        base*=1.-smoothstep(.3,.9,grooves)*.028*detail*brokenTrail;
         float tire1=exp(-pow((vUv.x-.33)*35.,2.)),tire2=exp(-pow((vUv.x-.67)*35.,2.));
         base*=1.-(tire1+tire2)*(.06+noise(vec2(vUv.y*.17,1.))*.08);
         float scuff=noise(vec2(vUv.x*9.+sin(vUv.y*.007),vUv.y*.013));
@@ -75,11 +75,12 @@ ${INKSTORM_GEOLOGY_GLSL}
         vec3 n=normalize(vRoadNormal);if(n.y<0.)n=-n;
         float visibility=min(inkstormSunVisibility(vWorld+vec3(0.,.5,0.)),inkstormRacerSunVisibility(vWorld,n));
         vec3 groundNormal=n;
-        if(uDuskGroundReady>.5)groundNormal=duskRelief(uDuskGroundNormal,vWorld,n,1./13.,.12);
+        if(uDuskGroundReady>.5)groundNormal=duskRelief(uDuskGroundNormal,vWorld,n,1./18.,.028);
         // Compacted patches catch a broad grazing reflection. This is a dry
         // mineral raceway, not a mirror/SSR water plane over physical ground.
-        float smoothPatch=smoothstep(.43,.8,scuff);
-        base=duskLight(base,groundNormal,vWorld,mix(.68,.24,smoothPatch),0.,visibility);
+        float smoothPatch=smoothstep(.46,.82,scuff);
+        groundNormal=normalize(mix(groundNormal,n,smoothPatch*.7));
+        base=duskLight(base,groundNormal,vWorld,mix(.88,.55,smoothPatch),0.,visibility);
         fragColor=vec4(duskTone(duskAtmosphere(base,distanceToCamera)),alpha);
         fragColor = linearToOutputTexel(fragColor);
       }`});

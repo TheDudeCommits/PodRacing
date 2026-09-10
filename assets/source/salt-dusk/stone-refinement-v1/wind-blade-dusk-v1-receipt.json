@@ -1,0 +1,70 @@
+{
+  "source": "public/assets/inkstorm/wind-blade.glb",
+  "sourceSha256": "ba6164eb49629f3283c66e160ede136488f69bbfbf8fc8d340e72bc3a0002153",
+  "output": "assets/source/salt-dusk/stone-refinement-v1/wind-blade-dusk-v1.glb",
+  "sha256": "10c6c4f3d8fd82bf145e11cafd6c554ea7d9b9615b66a6c9b57d74c967dfc77a",
+  "bytes": 241260,
+  "sourceTopology": {
+    "vertices": 342,
+    "faces": 664,
+    "boundaryEdges": 18,
+    "nonManifoldEdges": 18,
+    "components": 1,
+    "signedVolume": 41737.89940183014
+  },
+  "topology": {
+    "vertices": 5002,
+    "faces": 10000,
+    "boundaryEdges": 0,
+    "nonManifoldEdges": 0,
+    "components": 1,
+    "signedVolume": 44353.120746633096
+  },
+  "originalBoundsBlender": [
+    [
+      -19.583036422729492,
+      -8.396995544433594,
+      -2.0
+    ],
+    [
+      16.98383903503418,
+      8.26010513305664,
+      152.40176391601562
+    ]
+  ],
+  "finalBoundsBlender": [
+    [
+      -19.583036422729492,
+      -8.396995544433594,
+      -2.0
+    ],
+    [
+      16.98383903503418,
+      8.26010513305664,
+      152.40176391601562
+    ]
+  ],
+  "subdivision": [
+    {
+      "before": 680,
+      "after": 2716,
+      "splitEdges": 1018
+    },
+    {
+      "before": 2716,
+      "after": 10000,
+      "splitEdges": 3642
+    }
+  ],
+  "contactProfile": {
+    "rays": 1444,
+    "largestInwardMetres": 2.288818359375e-05
+  },
+  "movedVertices": 4207,
+  "maxDisplacementMetres": 0.70900391060473,
+  "meanDisplacementMetres": 0.2620571074748979,
+  "sourceColorMaxInterpolationError": 2.220446049250313e-16,
+  "method": "Adaptive longest-edge subdivision; outward coherent warped bedding and vertical flute relief on broad panels; per-component bound/toe pins. Source triangle barycentric color correspondence.",
+  "blender": "5.2.0 LTS",
+  "seconds": 0.1101071834564209
+}

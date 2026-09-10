@@ -1,0 +1,96 @@
+[
+  {
+    "name": "canyon-arch-dusk-v1",
+    "sha256": "38b6609e82dd0cf3e72da0bf9c36416758935b2df90c050887fc63504b7a62aa",
+    "bytes": 1681836,
+    "primitives": 1,
+    "materials": 1,
+    "images": 0,
+    "triangles": 70000,
+    "validation": {
+      "uri": "canyon-arch-dusk-v1.glb",
+      "mimeType": "model/gltf-binary",
+      "validatorVersion": "2.0.0-dev.3.10",
+      "validatedAt": "2026-09-10T09:30:07.580Z",
+      "issues": {
+        "numErrors": 0,
+        "numWarnings": 0,
+        "numInfos": 0,
+        "numHints": 0,
+        "messages": [],
+        "truncated": false
+      },
+      "info": {
+        "version": "2.0",
+        "generator": "Khronos glTF Blender I/O v5.2.39",
+        "resources": [
+          {
+            "pointer": "/buffers/0",
+            "mimeType": "application/gltf-buffer",
+            "storage": "glb",
+            "byteLength": 1680648
+          }
+        ],
+        "animationCount": 0,
+        "materialCount": 1,
+        "hasMorphTargets": false,
+        "hasSkins": false,
+        "hasTextures": false,
+        "hasDefaultScene": true,
+        "drawCallCount": 1,
+        "totalVertexCount": 35018,
+        "totalTriangleCount": 70000,
+        "maxUVs": 0,
+        "maxInfluences": 0,
+        "maxAttributes": 3
+      }
+    }
+  },
+  {
+    "name": "wind-blade-dusk-v1",
+    "sha256": "10c6c4f3d8fd82bf145e11cafd6c554ea7d9b9615b66a6c9b57d74c967dfc77a",
+    "bytes": 241260,
+    "primitives": 1,
+    "materials": 1,
+    "images": 0,
+    "triangles": 10000,
+    "validation": {
+      "uri": "wind-blade-dusk-v1.glb",
+      "mimeType": "model/gltf-binary",
+      "validatorVersion": "2.0.0-dev.3.10",
+      "validatedAt": "2026-09-10T09:30:07.585Z",
+      "issues": {
+        "numErrors": 0,
+        "numWarnings": 0,
+        "numInfos": 0,
+        "numHints": 0,
+        "messages": [],
+        "truncated": false
+      },
+      "info": {
+        "version": "2.0",
+        "generator": "Khronos glTF Blender I/O v5.2.39",
+        "resources": [
+          {
+            "pointer": "/buffers/0",
+            "mimeType": "application/gltf-buffer",
+            "storage": "glb",
+            "byteLength": 240072
+          }
+        ],
+        "animationCount": 0,
+        "materialCount": 1,
+        "hasMorphTargets": false,
+        "hasSkins": false,
+        "hasTextures": false,
+        "hasDefaultScene": true,
+        "drawCallCount": 1,
+        "totalVertexCount": 5002,
+        "totalTriangleCount": 10000,
+        "maxUVs": 0,
+        "maxInfluences": 0,
+        "maxAttributes": 3
+      }
+    }
+  }
+]

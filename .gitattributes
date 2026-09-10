@@ -5,3 +5,5 @@ docs/**/*.jpg filter=lfs diff=lfs merge=lfs -text
 
 # Preserve downloaded catalogue package formatting and license bytes unchanged.
 assets/source/audio-salt-dusk/kenney-*/** -whitespace
+
+assets/**/*.hdr filter=lfs diff=lfs merge=lfs -text

@@ -1,0 +1,158 @@
+{
+  "reviewedAt": "2026-09-10T09:49:42.928911+00:00",
+  "status": "DOCUMENTATION_REVIEW_COMPLETE_NO_RUNTIME_TEST_BROWSER_OR_COMMIT_ACTION",
+  "runtimeAndTestPinsUnchanged": [
+    {
+      "path": "src/audio/catalogue.ts",
+      "sha256": "5770be707ed2b31bdc2eaeba35b7f8f112a278b1d98bcafb030b613e441288b3"
+    },
+    {
+      "path": "src/audio/menuMusic.ts",
+      "sha256": "37b03b5effe10c3d0884a5786fe88a111599bba678a4ffaba63e77926782bff0"
+    },
+    {
+      "path": "src/audio/model.ts",
+      "sha256": "98c110a945d62740c5aa7ecfe1901778cb9153432b377104abb8104d418158ed"
+    },
+    {
+      "path": "src/audio/types.ts",
+      "sha256": "c0fc07effb53def6348b3294fa999d837a16daa385b74d41017811b007806286"
+    },
+    {
+      "path": "src/audio/PodracerAudio.ts",
+      "sha256": "27fd66aec2c63118c3ed84d5ca866ac5de3b30a726e173f3c492a42c47da2836"
+    },
+    {
+      "path": "src/audio/index.ts",
+      "sha256": "edfcd1aa9039cf00454cf37417caa294afb6cb743c384fd18fa3ca6c169add71"
+    },
+    {
+      "path": "tests/audio/menuMusic.test.ts",
+      "sha256": "c122f2e349d5cd47b1626ce6c837147a767e73d0752f05486e498fbc0fb8834a"
+    },
+    {
+      "path": "tests/audio/PodracerAudioCallout.test.ts",
+      "sha256": "0df1b8e132ef235b545a15ab790deee6faa1df120c361272864cb7bf331adf85"
+    },
+    {
+      "path": "tests/audio/audioModel.test.ts",
+      "sha256": "68e87979f765d832f2c25a1d29d97b65dbb86d6d9ae2be7b8a7eb0f0455e43d0"
+    },
+    {
+      "path": "tests/audio/inkstormAudio.test.ts",
+      "sha256": "534df69c11eff5f0940f3f9600882ece089f6e0b64bc991d6ab2c8c9310d54c7"
+    },
+    {
+      "path": "tests/audio/recordedCatalogue.test.ts",
+      "sha256": "77655311688fd80d985d6556c88444e15f54c5cd4186bc4daa290ab316235557"
+    },
+    {
+      "path": "tests/audio/galacticAudioModel.test.ts",
+      "sha256": "49b68a0ec409d7f294b890a338ca6905d6b69093c10cd5c409e721be1b3d0661"
+    },
+    {
+      "path": "tests/audio/combatPickupAudio.test.ts",
+      "sha256": "c85617e09d717684cc10637efe89a7270e49ed5f08d152fa8abe7691ca196ed1"
+    },
+    {
+      "path": "public/audio/salt-dusk-v2/hull-impact.ogg",
+      "sha256": "22402f87ceddec355d256944250605e3058721a32a537da8bb516ee38d53bfb0"
+    },
+    {
+      "path": "public/audio/salt-dusk-v2/rival.ogg",
+      "sha256": "73d0292d5cd654997ee80cce41192edb1ad08f0f8724e5c06f60b0b42b6848b8"
+    },
+    {
+      "path": "public/audio/salt-dusk-v2/boost.ogg",
+      "sha256": "b47e357af77f1a43418f262f1dccf07d6be6fc20c5758f2d3f60fbd4a49d61d4"
+    },
+    {
+      "path": "public/audio/salt-dusk-v2/rupture.ogg",
+      "sha256": "6636d76d7e9092c63dafd3e3e4a248d95b596499acae6d549349904e7883293f"
+    },
+    {
+      "path": "public/audio/salt-dusk-v2/shield-pulse.ogg",
+      "sha256": "376ddc659ce47d8bba83c74cd0886fca3d9cbc395c1cad535a0b6a112b466676"
+    },
+    {
+      "path": "public/audio/salt-dusk-v2/CREDITS.html",
+      "sha256": "83a6f996f6fbafd8d79554c176f843c853a46929655b07d510d7ef51b881a755"
+    },
+    {
+      "path": "public/audio/salt-dusk-v2/weapon.ogg",
+      "sha256": "583549c1264af7a110dd9c203097d9695b5486286b06402808dc7867123f47a7"
+    },
+    {
+      "path": "public/audio/salt-dusk-v2/propulsion.ogg",
+      "sha256": "9b03608be7b67ff9c88bbfa78440c2a4f0ebd11ac272d0dba3d14ab1de09b881"
+    },
+    {
+      "path": "public/audio/salt-dusk-v2/mechanical-click.ogg",
+      "sha256": "ccfb7fa0cccdd9faec0eb16033c732b1e308d139d80f799161495d58f7adcdb9"
+    },
+    {
+      "path": "public/audio/podracing-selection-intro.webm",
+      "sha256": "39c4d411570a2591be5cbf7fc27d86a63c36d3befa5de8d57c0d2018e1c89260"
+    },
+    {
+      "path": "public/audio/salt-dusk/juggernaut.mp3",
+      "sha256": "0c263f2004386de5b93be61d6cb2fdc55f79c4dd8e626a02d65cc5cef0d1058d"
+    }
+  ],
+  "runtimeLedgerHashesPass": 8,
+  "privateCreatorPageCaches": [
+    {
+      "path": "assets/source/audio-salt-dusk-v2/research/rocket-boost.html",
+      "sha256": "cc18ab504337b4a5b6eb2207a63a0b10b6d0b64535699424348a63f389da1edb",
+      "gitIgnored": true
+    },
+    {
+      "path": "assets/source/audio-salt-dusk-v2/research/little-robot-sci-fi.html",
+      "sha256": "ce997ee32ba68bc5442ae9e9a388f6b8752394d993831b60b3f1b422bb2f70c8",
+      "gitIgnored": true
+    },
+    {
+      "path": "assets/source/audio-salt-dusk-v2/research/jet.html",
+      "sha256": "edd6d7a1bf8606cb3f03b64aa26e856abbca0c6a2d1d530b4d2ad29737f1d0f5",
+      "gitIgnored": true
+    },
+    {
+      "path": "assets/source/audio-salt-dusk-v2/research/heavy-metal-thud.html",
+      "sha256": "6259780d41364b1eea7f3b81bbb42249f26811fa78ee7846d221b22858911a8c",
+      "gitIgnored": true
+    },
+    {
+      "path": "assets/source/audio-salt-dusk-v2/research/explosions.html",
+      "sha256": "70dd4c6fb7e5313b2256a79e82b1985bcf99331ee1547f80b1b6d6aaaf7ef9cf",
+      "gitIgnored": true
+    },
+    {
+      "path": "assets/source/audio-salt-dusk-v2/research/metal.html",
+      "sha256": "395f79221f32d8085f88d3852db4a922a5f00a58911597a824561615047279cf",
+      "gitIgnored": true
+    }
+  ],
+  "voiceFile": "public/audio/podracing-selection-intro.webm",
+  "voiceSha256": "39c4d411570a2591be5cbf7fc27d86a63c36d3befa5de8d57c0d2018e1c89260",
+  "headVoiceSha256": "39c4d411570a2591be5cbf7fc27d86a63c36d3befa5de8d57c0d2018e1c89260",
+  "documentationPins": [
+    {
+      "path": "docs/inkstorm-overhaul/SALT_DUSK_AUDIO_V2.md",
+      "sha256": "d134395f698d78f57729613b1164fbb307473827839730e75beb4c49b2d9c2e0"
+    },
+    {
+      "path": "assets/source/audio-salt-dusk-v2/SOURCE_MANIFEST.json",
+      "sha256": "4fa3f8359f6e913bec1a1219c33cd4d01d36a6f5980e7457489ee2f9c8723fc2"
+    },
+    {
+      "path": "assets/source/audio-salt-dusk-v2/PUBLICATION.md",
+      "sha256": "1f01b0cfaf1f0a9d168abb7950adeb51de387e64937ffe86f3f321b138fa81cb"
+    }
+  ],
+  "publicationIssuesAddressed": [
+    "Clarified private creator HTML caches are not included in source/deployment",
+    "Added attribution/license/archive hash for unused Ogrebane research material retained in source",
+    "Distinguished designed historical effects and creator-described physical impact from independently verified field recordings",
+    "Retained no-perceptual-approval limitation and no-commit attestation"
+  ]
+}

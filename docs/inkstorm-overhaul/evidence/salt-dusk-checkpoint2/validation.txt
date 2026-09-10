@@ -1,0 +1,45 @@
+
+> now-this-is-podracing@1.0.0 verify
+> npm run typecheck && npm run test && npm run build
+
+
+> now-this-is-podracing@1.0.0 typecheck
+> tsc --noEmit
+
+
+> now-this-is-podracing@1.0.0 test
+> vitest run
+
+
+ RUN  v4.1.10 /Users/amir/Projects/PodRacing
+
+
+ Test Files  169 passed (169)
+      Tests  983 passed (983)
+   Start at  16:47:00
+   Duration  48.82s (transform 1.87s, setup 0ms, import 25.43s, tests 157.97s, environment 9ms)
+
+
+> now-this-is-podracing@1.0.0 build
+> npm run typecheck && vite build
+
+
+> now-this-is-podracing@1.0.0 typecheck
+> tsc --noEmit
+
+vite v8.2.0 building client environment for production...
+
+transforming...✓ 202 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                      0.74 kB │ gzip:   0.46 kB
+dist/assets/index-DCGNDBpv.css       0.34 kB │ gzip:   0.23 kB
+dist/assets/bundler-C30YlaIR.js     87.46 kB │ gzip:  23.44 kB │ map:   311.38 kB
+dist/assets/index-DSU6k9pU.js    1,878.13 kB │ gzip: 509.29 kB │ map: 6,284.21 kB
+
+✓ built in 607ms
+[plugin builtin:vite-reporter]
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.

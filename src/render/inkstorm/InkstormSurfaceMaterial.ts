@@ -209,6 +209,12 @@ float inkstormWorkshopBakedLens() {
           warmService=step(.98,base.r)*step(.50,base.g)
             *(1.-step(.59,base.g))*(1.-step(.12,base.b));
           #endif
+          // Weathered machinery shares the mineral palette. Reserve saturated
+          // color for small lamps and race signals, not entire hangar facades.
+          if(uStone<.5 && service<.5 && warmService<.5){
+            float value=dot(base,vec3(.2126,.7152,.0722));
+            base=mix(vec3(value*.94,value*.98,value),base,.62)*.82;
+          }
           vec3 weights=pow(abs(normalize(vPaintNormal)),vec3(4.));weights/=max(.001,weights.x+weights.y+weights.z);
           float broad=noise(vLocal.xz*.024+vLocal.y*.011);
           float brush=noise(vLocal.xy*vec2(.16,.32)+vLocal.z*.07);
@@ -266,9 +272,7 @@ float inkstormWorkshopBakedLens() {
           #endif
           #endif
           float distanceToCamera=length(vWorld-cameraPosition);
-          float haze=1.-exp(-max(0.,distanceToCamera-300.)*.00045);
-          color=uStone>.5 ? inkstormRockAtmosphere(color,distanceToCamera)
-            : mix(color,uHaze,haze*.85);
+          color=duskAtmosphere(color,distanceToCamera);
           gl_FragColor=vec4(duskTone(color),1.);
           #include <colorspace_fragment>
         }`,

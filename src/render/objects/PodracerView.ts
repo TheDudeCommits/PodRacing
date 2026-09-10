@@ -228,68 +228,58 @@ const beamFragment = /* glsl */ `
 
 const exhaustVertex = /* glsl */ `
   varying vec3 vLocal;
+  varying vec3 vViewPosition;
+  varying vec3 vViewNormal;
   void main() {
     vLocal = position;
-    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+    vec4 viewPosition = modelViewMatrix * vec4(position, 1.0);
+    vViewPosition = -viewPosition.xyz;
+    vViewNormal = normalize(normalMatrix * normal);
+    gl_Position = projectionMatrix * viewPosition;
   }
 `;
 
 const exhaustFragment = /* glsl */ `
   precision highp float;
   varying vec3 vLocal;
+  varying vec3 vViewPosition;
+  varying vec3 vViewNormal;
   uniform float uTime;
   uniform float uPower;
   uniform vec3 uHot;
   void main() {
-    // ConeGeometry runs from -4.25 at the nozzle to +4.25 at its tip. Break
-    // that taper into three deliberately clean anime energy plates. Earlier
-    // high-frequency edge bites read as blue crystal/icicles in side views;
-    // two narrow air gaps and one broad forked tail keep the energy graphic
-    // without turning it back into a transparent spotlight cone.
+    // One existing closed mesh: soft axial extinction and flowing filaments
+    // replace quantized plates. No scene sampling or extra particle pass.
     float along = clamp((vLocal.y + 4.25) / 8.5, 0.0, 1.0);
     float angle = atan(vLocal.z, vLocal.x);
-    float frame = floor(uTime * 12.0);
-    float jitter = (sin(frame * 2.173) * 0.5 + 0.5) * 0.035;
-    float flameLength = clamp(0.42 + uPower * 0.36 + jitter, 0.45, 0.86);
-    float lengthMask = step(along, flameLength);
+    float power = clamp(uPower, 0.0, 1.6);
+    float flow = uTime * (7.0 + power * 2.0);
+    float curl = sin(angle * 3.0 + along * 19.0 - flow);
+    float filament = pow(0.5 + 0.5 * sin(angle * 5.0 - along * 26.0 + flow + curl * 0.6), 3.0);
+    float reach = 0.56 + power * 0.18;
+    float tail = 1.0 - smoothstep(reach * 0.35, reach, along);
+    float facing = abs(dot(normalize(vViewNormal), normalize(vViewPosition)));
+    float softEdge = 0.32 + 0.68 * smoothstep(0.015, 0.25, facing);
+    float ignition = exp(-along * 5.0);
+    float shimmer = 0.88 + 0.12 * sin(along * 43.0 - flow * 1.7 + curl);
+    float alpha = tail * softEdge * shimmer
+      * (0.065 + ignition * 0.52 + filament * 0.16) * (0.65 + power * 0.35);
+    vec3 color = mix(uHot * 0.66, vec3(0.91, 0.97, 1.0), ignition * 0.76);
 
-    float ignitionPlate = 1.0 - step(0.22, along);
-    float drivePlate = step(0.27, along) * (1.0 - step(0.51, along));
-    float tailPlate = step(0.56, along) * (1.0 - step(0.82, along));
-    float tailFork = step(-0.42, sin(angle * 2.0 + frame * 0.08));
-    tailPlate *= tailFork;
-    float silhouette = max(ignitionPlate, max(drivePlate, tailPlate));
-
-    vec3 color = vec3(0.14, 0.7, 0.96);
-    color = mix(color, vec3(0.68, 0.96, 1.0), drivePlate);
-    color = mix(color, uHot, ignitionPlate);
-    // One deep facet is the exhaust's ink core; it rotates only in quantized
-    // animation frames and never becomes a smooth lighting gradient.
-    float inkFacet = step(0.58, sin(angle * 3.0 + frame * 0.045));
-    color = mix(color, vec3(0.04, 0.13, 0.24), inkFacet * (1.0 - ignitionPlate) * 0.38);
-    float alpha = lengthMask * silhouette
-      * (0.2 + ignitionPlate * 0.25 + drivePlate * 0.13);
-    // The closed nozzle base stays opaque, with a small hot ignition point
-    // behind darker radial channels and an annular plasma band. Filling the
-    // whole cap with white erased every internal value from the chase view.
+    // The nozzle remains a translucent blue-white core with a feathered rim,
+    // allowing the authored vanes to read through its outer radius.
     float radius = length(vLocal.xz) / 0.82;
-    float cap = 1.0 - step(0.003, along);
-    float centre = 1.0 - smoothstep(0.12, 0.29, radius);
-    float plasma = smoothstep(0.34, 0.45, radius)
-      * (1.0 - smoothstep(0.67, 0.80, radius));
-    float channels = smoothstep(0.32, 0.60, sin(angle * 12.0 + radius * 2.4));
-    float rim = smoothstep(0.82, 0.88, radius)
-      * (1.0 - smoothstep(0.97, 1.0, radius));
-    float pulse = 0.93 + sin(uTime * 17.0 + angle * 2.0) * 0.07;
-    vec3 cavity = vec3(0.014, 0.040, 0.062);
-    cavity = mix(cavity, uHot * (0.47 + uPower * 0.15),
-      plasma * mix(0.32, 1.0, channels) * pulse);
-    cavity = mix(cavity, uHot * 0.24, rim);
-    cavity = mix(cavity, mix(uHot, vec3(0.98, 0.99, 1.0), 0.56), centre);
-    color = mix(color, cavity, cap);
-    alpha = mix(alpha, 1.0, cap);
-    if (alpha < 0.08) discard;
+    float cap = 1.0 - smoothstep(0.0, 0.004, along);
+    float core = exp(-radius * radius * 13.0);
+    float rim = exp(-pow((radius - 0.60) / 0.19, 2.0));
+    float edge = 1.0 - smoothstep(0.80, 1.0, radius);
+    float capAlpha = (core * 0.85 + rim * 0.25) * edge;
+    vec3 capColor = mix(uHot, vec3(0.96, 0.99, 1.0), core * 0.9);
+    color = mix(color, capColor, cap);
+    alpha = mix(alpha, capAlpha, cap);
+    if (alpha < 0.003) discard;
     gl_FragColor = vec4(color, alpha);
+    #include <colorspace_fragment>
   }
 `;
 
@@ -649,7 +639,7 @@ function createEngine(materials: PodracerMaterials, side: number): {
   }
 
   const exhaustMaterial = new ShaderMaterial({
-    name: 'GraphicEngineExhaust',
+    name: 'DuskEngineExhaust',
     vertexShader: exhaustVertex,
     fragmentShader: exhaustFragment,
     transparent: true,
@@ -658,7 +648,7 @@ function createEngine(materials: PodracerMaterials, side: number): {
     uniforms: {
       uTime: { value: 0 },
       uPower: { value: 0.4 },
-      uHot: { value: new Color(side < 0 ? '#fff0a5' : '#ff8b43') },
+      uHot: { value: new Color('#b9eaff') },
     },
   });
   // Straight sides need no extra axial subdivisions: five rings plus the cap
@@ -1421,10 +1411,10 @@ export class PodracerView extends Group {
     for (const exhaust of [this.leftEngine.exhaust, this.rightEngine.exhaust]) {
       exhaust.material.uniforms.uTime!.value = time;
       exhaust.material.uniforms.uPower!.value = power + redlinePulse * 0.45;
-      exhaust.material.uniforms.uHot!.value.set(redline > 0 ? '#ff321d' : '#79f4ff');
+      exhaust.material.uniforms.uHot!.value.set(redline > 0 ? '#ffc19a' : '#b9eaff');
       exhaust.scale.x = 1 + redlinePulse * 0.42;
       exhaust.scale.z = 1 + redlinePulse * 0.42;
-      exhaust.scale.y = 0.25 + power * 0.24 + Math.sin(time * 41 + this.racerIndex) * 0.035;
+      exhaust.scale.y = 0.21 + power * 0.20 + Math.sin(time * 17 + this.racerIndex) * 0.008;
     }
     this.couplingMaterial.uniforms.uTime!.value = time;
     this.couplingMaterial.uniforms.uPower!.value = power + redlinePulse * 0.5;

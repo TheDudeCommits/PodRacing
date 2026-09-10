@@ -1,3 +1,25 @@
+# PodRacing — Salt Flats at Dusk checkpoint 2 (2026-09-10)
+
+The owner rejected checkpoint 1 as unaesthetic and its SFX as weird. Current revision rebuilds cloud lighting, continuous distant ranges, prominent eroded rock meshes, outer salt runoff, grounded 3D inspection, lighter HUD/exhaust and an eight-file sourced SFX bank. **The photographic target is incomplete.** [Current report, evidence and remaining work](docs/inkstorm-overhaul/SALT_DUSK_CHECKPOINT_2.md).
+
+Worktree `/Users/amir/Projects/PodRacing`, branch `codex/now-this-is-podracing`, remote `TheDudeCommits/PodRacing`. `/Users/amir/Codex-ThreeJS` is unrelated. Publish as Preview; obtain the requested owner checkpoint approval before Production promotion. Production remains V36 / a4bb70d104c997667d4e42d29c02831af2cbd788 until approval. No automation was created.
+
+Frozen runtime: **index-DSU6k9pU.js**, 1,878,130 bytes, SHA256 **4e51f10f6b53b5dd13eb77b1240a9165d853f4d1eded5740f53da4dc19da6b2c**. All **983 tests /169 files**, TypeScript, build and diff checks pass. Exact final native eight-pod Battle: **59.919 FPS mean, p95 16.7 ms, p99 16.8 ms, maximum 66.6 ms**, M4/Chrome153/1440×900/adaptive DPR1–2. Slow frames included; do not transfer this measurement to another runtime/device. All9 audio recordings (8SFX+music) load, errors empty, browser/server closed.
+
+Fresh blind critic: **6/10 aesthetics, 4/10 concept match**, progress Preview only. The main racing surface still reads as dunes; simplified mesas, skyline/world material mismatch and cinematic racing atmosphere remain open. The earlier giant-range pass was rejected and withdrawn. Keep diagnostic course-seek imagery distinct from native populated-race imagery and cadence receipts.
+
+Only outer basin terrain changes; published main/shoulder/normal field hashes remain exact. A full-lane fill was withdrawn after regression failures; it is not in this build. The new ranges add58,392 triangles/3meshes. Refined arch/wind-blade originals remain preserved with CC0 provenance and clearance validation. Legacy painted shadow stamps are removed; real mesh/terrain/racer shadows remain. The 4K HDR increases GPU memory materially (~85MiB sky+mips); broad hardware profiling remains open.
+
+Do not generate audio or alter `public/audio/podracing-selection-intro.webm` (SHA25639c4d411570a2591be5cbf7fc27d86a63c36d3befa5de8d57c0d2018e1c89260). V2 uses existing conventional catalogue effects and an unchanged Scott Buckley music excerpt; no listening approval is claimed. [Audio report](docs/inkstorm-overhaul/SALT_DUSK_AUDIO_V2.md). Private creator-page HTML caches are ignored; published sources have a separate inventory. Four of26 vehicle families remain registered; original broader eight-item backlog is not complete.
+
+Preview publication is pending for this frozen source. The publication receipt and hosted verification will be added after deployment. Production is unchanged.
+
+Close owned browsers and servers immediately after use. Never adopt port5211 or save the shared Blender GUI scene. All current agents are finished; no background job is intended to continue.
+
+---
+
+## Historical checkpoint 1 — rejected by owner
+
 # PodRacing — Salt Flats at Dusk checkpoint 1 (2026-09-10)
 
 The owner approved the Salt Flats at Dusk photographic concept, requested only sourced existing audio (no generated audio), preservation of the original podracing voice, and a more futuristic minimal HUD. This checkpoint implements the material/lighting foundation, recorded audio bank and dusk UI. [Current report and next priorities](docs/inkstorm-overhaul/SALT_DUSK_CHECKPOINT_1.md).

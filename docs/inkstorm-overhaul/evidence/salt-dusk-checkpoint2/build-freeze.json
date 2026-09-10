@@ -1,0 +1,36 @@
+{
+  "bundle": {
+    "path": "/assets/index-DSU6k9pU.js",
+    "bytes": 1878130,
+    "sha256": "4e51f10f6b53b5dd13eb77b1240a9165d853f4d1eded5740f53da4dc19da6b2c"
+  },
+  "assets": [
+    {
+      "path": "public/assets/salt-dusk-v2/environment/kloppenheim-dusk-4k.hdr",
+      "bytes": 17385661,
+      "sha256": "1bebd7cbbfb5c48a642f03d93bffbabb2c42d0b109061f37a72259d1cbdb3053"
+    },
+    {
+      "path": "public/assets/inkstorm/canyon-arch-dusk-v1.glb",
+      "bytes": 1681836,
+      "sha256": "38b6609e82dd0cf3e72da0bf9c36416758935b2df90c050887fc63504b7a62aa"
+    },
+    {
+      "path": "public/assets/inkstorm/wind-blade-dusk-v1.glb",
+      "bytes": 241260,
+      "sha256": "10c6c4f3d8fd82bf145e11cafd6c554ea7d9b9615b66a6c9b57d74c967dfc77a"
+    },
+    {
+      "path": "public/audio/podracing-selection-intro.webm",
+      "bytes": 98581,
+      "sha256": "39c4d411570a2591be5cbf7fc27d86a63c36d3befa5de8d57c0d2018e1c89260"
+    }
+  ],
+  "validation": {
+    "typecheck": "PASS",
+    "tests": 983,
+    "testFiles": 169,
+    "build": "PASS",
+    "diffCheck": "PASS"
+  }
+}

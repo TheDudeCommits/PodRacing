@@ -1,0 +1,164 @@
+[
+  {
+    "source": "assets/source/audio-salt-dusk-v2/rocket-boost-hq.mp3",
+    "runtime": "public/audio/salt-dusk-v2/propulsion.ogg",
+    "operation": [
+      "ffmpeg",
+      "-v",
+      "error",
+      "-y",
+      "-i",
+      "/Users/amir/Projects/PodRacing/assets/source/audio-salt-dusk-v2/rocket-boost-hq.mp3",
+      "-vn",
+      "-af",
+      "volume=-3dB",
+      "-c:a",
+      "libopus",
+      "-b:a",
+      "128k",
+      "/Users/amir/Projects/PodRacing/public/audio/salt-dusk-v2/propulsion.ogg"
+    ],
+    "sha256": "9b03608be7b67ff9c88bbfa78440c2a4f0ebd11ac272d0dba3d14ab1de09b881",
+    "sourceSha256": "23989578e6bc77b24c8f238fbc482a623188277812ddc54d5907e5eae4bad749"
+  },
+  {
+    "source": "assets/source/audio-salt-dusk-v2/little-robot/SpaceShip_Engine_Medium_Loop_00.wav",
+    "runtime": "public/audio/salt-dusk-v2/rival.ogg",
+    "operation": [
+      "ffmpeg",
+      "-v",
+      "error",
+      "-y",
+      "-i",
+      "/Users/amir/Projects/PodRacing/assets/source/audio-salt-dusk-v2/little-robot/SpaceShip_Engine_Medium_Loop_00.wav",
+      "-vn",
+      "-af",
+      "volume=-5dB",
+      "-c:a",
+      "libopus",
+      "-b:a",
+      "128k",
+      "/Users/amir/Projects/PodRacing/public/audio/salt-dusk-v2/rival.ogg"
+    ],
+    "sha256": "73d0292d5cd654997ee80cce41192edb1ad08f0f8724e5c06f60b0b42b6848b8",
+    "sourceSha256": "761e8e9ddee4bf0d01829d90026142d3479c0f3b1b65a93c9391e91b03ff0f2e"
+  },
+  {
+    "source": "assets/source/audio-salt-dusk-v2/engine_takeoff.wav",
+    "runtime": "public/audio/salt-dusk-v2/boost.ogg",
+    "operation": [
+      "ffmpeg",
+      "-v",
+      "error",
+      "-y",
+      "-i",
+      "/Users/amir/Projects/PodRacing/assets/source/audio-salt-dusk-v2/engine_takeoff.wav",
+      "-vn",
+      "-af",
+      "volume=-4dB",
+      "-c:a",
+      "libopus",
+      "-b:a",
+      "128k",
+      "/Users/amir/Projects/PodRacing/public/audio/salt-dusk-v2/boost.ogg"
+    ],
+    "sha256": "b47e357af77f1a43418f262f1dccf07d6be6fc20c5758f2d3f60fbd4a49d61d4",
+    "sourceSha256": "c7aa06c63a4fc5a638cab2b9f292a34ca03b3f3a1016d01e3b69cfd65f328e87"
+  },
+  {
+    "source": "assets/source/audio-salt-dusk-v2/heavy-metal-thud-hq.mp3",
+    "runtime": "public/audio/salt-dusk-v2/hull-impact.ogg",
+    "operation": [
+      "ffmpeg",
+      "-v",
+      "error",
+      "-y",
+      "-i",
+      "/Users/amir/Projects/PodRacing/assets/source/audio-salt-dusk-v2/heavy-metal-thud-hq.mp3",
+      "-vn",
+      "-af",
+      "volume=-2dB",
+      "-c:a",
+      "libopus",
+      "-b:a",
+      "128k",
+      "/Users/amir/Projects/PodRacing/public/audio/salt-dusk-v2/hull-impact.ogg"
+    ],
+    "sha256": "22402f87ceddec355d256944250605e3058721a32a537da8bb516ee38d53bfb0",
+    "sourceSha256": "fa19f1983c27e5f66906eebfa3911bd3322e85d271cd50559d6ead5d5881fac4"
+  },
+  {
+    "source": "assets/source/audio-salt-dusk-v2/little-robot/Laser/Laser_09.wav",
+    "runtime": "public/audio/salt-dusk-v2/weapon.ogg",
+    "operation": [
+      "ffmpeg",
+      "-v",
+      "error",
+      "-y",
+      "-i",
+      "/Users/amir/Projects/PodRacing/assets/source/audio-salt-dusk-v2/little-robot/Laser/Laser_09.wav",
+      "-vn",
+      "-af",
+      "volume=-3dB",
+      "-c:a",
+      "libopus",
+      "-b:a",
+      "128k",
+      "/Users/amir/Projects/PodRacing/public/audio/salt-dusk-v2/weapon.ogg"
+    ],
+    "sha256": "583549c1264af7a110dd9c203097d9695b5486286b06402808dc7867123f47a7",
+    "sourceSha256": "a6b4fe4deba54fef9bd81d907ae22f23a7f2957d09d2c673eeb36a1081449d6e"
+  },
+  {
+    "source": "assets/source/audio-salt-dusk-v2/little-robot/Laser/Laser_07.wav",
+    "runtime": "public/audio/salt-dusk-v2/shield-pulse.ogg",
+    "operation": [
+      "ffmpeg",
+      "-v",
+      "error",
+      "-y",
+      "-i",
+      "/Users/amir/Projects/PodRacing/assets/source/audio-salt-dusk-v2/little-robot/Laser/Laser_07.wav",
+      "-vn",
+      "-af",
+      "volume=-5dB",
+      "-c:a",
+      "libopus",
+      "-b:a",
+      "128k",
+      "/Users/amir/Projects/PodRacing/public/audio/salt-dusk-v2/shield-pulse.ogg"
+    ],
+    "sha256": "376ddc659ce47d8bba83c74cd0886fca3d9cbc395c1cad535a0b6a112b466676",
+    "sourceSha256": "78ff07983baf29186295f37d7796451a94378488360f341559bb5a9df4afa7ef"
+  },
+  {
+    "source": "assets/source/audio-salt-dusk-v2/explosions/explode.wav",
+    "runtime": "public/audio/salt-dusk-v2/rupture.ogg",
+    "operation": [
+      "ffmpeg",
+      "-v",
+      "error",
+      "-y",
+      "-i",
+      "/Users/amir/Projects/PodRacing/assets/source/audio-salt-dusk-v2/explosions/explode.wav",
+      "-vn",
+      "-af",
+      "volume=-4dB",
+      "-c:a",
+      "libopus",
+      "-b:a",
+      "128k",
+      "/Users/amir/Projects/PodRacing/public/audio/salt-dusk-v2/rupture.ogg"
+    ],
+    "sha256": "6636d76d7e9092c63dafd3e3e4a248d95b596499acae6d549349904e7883293f",
+    "sourceSha256": "ea324b675203a509e1c5adf0c4acc94ab407684b30d9d4191507a2d4f72aea9a"
+  },
+  {
+    "source": "public/audio/salt-dusk/click_001.ogg",
+    "runtime": "public/audio/salt-dusk-v2/mechanical-click.ogg",
+    "operation": "byte-exact copy",
+    "sha256": "ccfb7fa0cccdd9faec0eb16033c732b1e308d139d80f799161495d58f7adcdb9",
+    "sourceSha256": "ccfb7fa0cccdd9faec0eb16033c732b1e308d139d80f799161495d58f7adcdb9",
+    "provenance": "assets/source/audio-salt-dusk/SOURCE_MANIFEST.json#kenney-interface"
+  }
+]

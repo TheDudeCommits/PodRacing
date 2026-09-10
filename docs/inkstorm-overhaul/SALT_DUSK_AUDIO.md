@@ -1,3 +1,5 @@
+> Historical checkpoint: the owner rejected this v1 sound palette. See [audio revision2](SALT_DUSK_AUDIO_V2.md) for the replacement candidate and its outstanding listening review.
+
 # Salt Dusk audio replacement
 
 Existing human-authored music, field recordings and catalogue effects replace the runtime oscillators, generated noise and procedural score. The user explicitly prohibited generating new sound effects or music. No audio generation service, synthesized fallback, sample-writing function, procedural score, or runtime oscillator remains active in `src/audio`. Existing files are decoded and played with gain, filtering, panning and playback-rate changes only. Removed synthesis source/tests are archived in `assets/source/audio-salt-dusk/withdrawn-synthesis/`; they are not imported or executed.

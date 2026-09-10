@@ -1,12 +1,12 @@
 import { describe, expect, it } from 'vitest';
-import { RECORDED_CUES, RECORDED_EFFECT_URLS, RECORDED_MUSIC_URL } from '../../src/audio/catalogue';
+import { RECORDED_CUES, RECORDED_CUE_ROLES, RECORDED_EFFECT_URLS, RECORDED_MUSIC_URL } from '../../src/audio/catalogue';
 const fsModule: string = 'node:fs', cryptoModule: string = 'node:crypto';
 const { readFileSync } = await import(/* @vite-ignore */ fsModule);
 const { createHash } = await import(/* @vite-ignore */ cryptoModule);
 
 describe('downloaded recording admission', () => {
   it('ships every playback URL with exact source-operation and runtime hash provenance', () => {
-    const ledger = JSON.parse(readFileSync('assets/source/audio-salt-dusk/runtime-files.json', 'utf8')) as Array<{
+    const ledger = ['audio-salt-dusk', 'audio-salt-dusk-v2'].flatMap(folder => JSON.parse(readFileSync(`assets/source/${folder}/runtime-files.json`, 'utf8'))) as Array<{
       source: string; runtime: string; operation: string | string[]; sha256: string;
     }>;
     const urls = [...RECORDED_EFFECT_URLS, RECORDED_MUSIC_URL];
@@ -19,7 +19,11 @@ describe('downloaded recording admission', () => {
       if (item!.operation === 'byte-exact copy') expect(bytes.equals(readFileSync(item!.source))).toBe(true);
     }
     expect(Object.keys(RECORDED_CUES)).toHaveLength(24);
-    expect(readFileSync('public/audio/salt-dusk/CREDITS.html', 'utf8')).toContain('Scott Buckley');
+    const credits = readFileSync('public/audio/salt-dusk-v2/CREDITS.html', 'utf8');
+    for (const author of ['Scott Buckley', 'Little Robot Sound Factory', 'qubodup', 'dklon', '7of9Designs', 'Michel Baradari']) expect(credits).toContain(author);
+    for (const url of RECORDED_EFFECT_URLS) expect(url).toContain('/salt-dusk-v2/');
+    expect(RECORDED_EFFECT_URLS).toHaveLength(8);
+    for (const url of Object.values(RECORDED_CUES).flat()) expect(RECORDED_CUE_ROLES[url]).toBeDefined();
   });
 
   it('has no synthesis, oscillator or sample-writing path in the runtime audio owner', () => {

@@ -517,7 +517,7 @@ export class RaceHud {
               <label>Effects <output data-setting-output="audio.effects">100%</output><input type="range" min="0" max="1" step="0.05" data-setting="audio.effects"></label>
               <label>Voice <output data-setting-output="audio.voice">100%</output><input type="range" min="0" max="1" step="0.05" data-setting="audio.voice"></label>
             </div>
-            <a class="pod-hud__audio-credits" href="/audio/salt-dusk/CREDITS.html" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;min-height:44px;padding:0 10px;color:#bad3e3">Audio credits ↗</a>
+            <a class="pod-hud__audio-credits" href="/audio/salt-dusk-v2/CREDITS.html" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;min-height:44px;padding:0 10px;color:#bad3e3">Audio credits ↗</a>
           </div>
         </section>
       </aside>

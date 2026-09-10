@@ -97,7 +97,10 @@ describe('GalacticEffectsView', () => {
     view.heatLances.getMatrixAt(0, matrix);
     matrix.decompose(new Vector3(), new Quaternion(), scale);
     expect(scale.z).toBeGreaterThan(35);
-    expect(scale.x).toBeGreaterThan(1.2);
+    // The dusk sheath is a thin trail; its longitudinal span and pool remain
+    // authoritative above, while radial presentation must stay visible/bounded.
+    expect(scale.x).toBeGreaterThan(0.45);
+    expect(scale.x).toBeLessThan(0.7);
     expect(view.shieldShells.geometry.getAttribute('position')?.count).toBeGreaterThan(100);
     expect(view.heatLances.geometry.getAttribute('position')?.count).toBeGreaterThan(220);
 

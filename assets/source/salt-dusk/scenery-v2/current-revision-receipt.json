@@ -1,0 +1,264 @@
+{
+  "createdAt": "2026-09-10T09:51:21.677Z",
+  "scope": "Current-source CPU publication audit only; no browser/render/Blender/build/test execution.",
+  "status": "CURRENT_SOURCE_MEASURED; NATIVE_VISUAL_ACCEPTANCE_NOT_ESTABLISHED",
+  "historicalReceipt": "assets/source/salt-dusk/scenery-v2/HANDOFF.json",
+  "files": [
+    {
+      "path": "src/render/saltDusk/SaltDuskScenery.ts",
+      "bytes": 7636,
+      "sha256": "493aec6e86cefec66f41d05c93a984896a61cc27a05e1f4386458847f3f25c98"
+    },
+    {
+      "path": "src/render/saltDusk/StoneNormals.ts",
+      "bytes": 2132,
+      "sha256": "c1c652c3b9ee7ef49f933ef71febaa238cfb9af837b99b80464ff7519eed77f7"
+    },
+    {
+      "path": "src/render/inkstorm/InkstormWorld.ts",
+      "bytes": 16455,
+      "sha256": "30f95b573f08ed1bcc7552e13fb84582c7b862b6362ac3710cff26945af6b603"
+    },
+    {
+      "path": "src/game/race/course.ts",
+      "bytes": 46383,
+      "sha256": "c1030fcc0ea2ee7d6e0487b6b7332fd29a36947c41bc4847defa9535d6bd12d3"
+    },
+    {
+      "path": "assets/source/salt-dusk/scenery-v2/HANDOFF.json",
+      "bytes": 2209,
+      "sha256": "6a9c1f8d97826db0b1a3f0c7367272ca4c31423ba4147c7cf65a174d517d21d4"
+    },
+    {
+      "path": "assets/source/salt-dusk/stone-refinement-v1/build.py",
+      "bytes": 10555,
+      "sha256": "79053c26c82f9d3ecc2980d1119a9c511a9fc4b5a4d3de20f4a36c07ba7c1585"
+    },
+    {
+      "path": "assets/source/salt-dusk/stone-refinement-v1/HANDOFF.json",
+      "bytes": 4004,
+      "sha256": "c21ae764d13528ca1b8a1f9ced7266f1db62c1c5fd0b5541568e566ae115accb"
+    },
+    {
+      "path": "public/assets/inkstorm/canyon-arch-dusk-v1.glb",
+      "bytes": 1681836,
+      "sha256": "38b6609e82dd0cf3e72da0bf9c36416758935b2df90c050887fc63504b7a62aa"
+    },
+    {
+      "path": "public/assets/inkstorm/wind-blade-dusk-v1.glb",
+      "bytes": 241260,
+      "sha256": "10c6c4f3d8fd82bf145e11cafd6c554ea7d9b9615b66a6c9b57d74c967dfc77a"
+    }
+  ],
+  "method": {
+    "mainSamples": 8192,
+    "branchSamples": "Actual current getRenderData branches (native sample arrays)",
+    "distance": "XZ distance to complete range oriented footprint, minus source route width. Report is a dense-sample corridor check, not an exact continuous spline minimum.",
+    "height": "Flat height callback used only for horizontal source plan and mesh counts; not current authored terrain seating validation.",
+    "ranges": 6,
+    "grid": [
+      192,
+      22
+    ],
+    "meshOwnership": "3 merged BufferGeometry/Mesh objects, one material each; disposed after CPU inspection."
+  },
+  "probes": [
+    {
+      "seed": 1229867859,
+      "mainSamples": 4096,
+      "branchSampleCounts": [
+        {
+          "id": "branch-1-shortcut",
+          "points": 25
+        },
+        {
+          "id": "branch-2-technical",
+          "points": 25
+        },
+        {
+          "id": "branch-3-safe",
+          "points": 25
+        }
+      ],
+      "minimumSampledCorridorGapMetres": 1259.9930262296978,
+      "witness": {
+        "rangeId": "salt-dusk-range-0",
+        "routeId": "main",
+        "pointIndex": 3473,
+        "x": 18361.351414170946,
+        "z": -414.64975300245095,
+        "width": 18.011809025762172
+      },
+      "perRange": [
+        {
+          "id": "salt-dusk-range-0",
+          "minSampledCorridorGapMetres": 1259.9930262296978,
+          "halfLength": 2028.9296972394582,
+          "halfWidth": 400,
+          "reliefParameter": 120
+        },
+        {
+          "id": "salt-dusk-range-1",
+          "minSampledCorridorGapMetres": 1409.999999999999,
+          "halfLength": 1859.8522224695034,
+          "halfWidth": 450,
+          "reliefParameter": 150
+        },
+        {
+          "id": "salt-dusk-range-2",
+          "minSampledCorridorGapMetres": 1799.9998570209243,
+          "halfLength": 1687.51114436005,
+          "halfWidth": 460,
+          "reliefParameter": 210
+        },
+        {
+          "id": "salt-dusk-range-3",
+          "minSampledCorridorGapMetres": 2070,
+          "halfLength": 1509.87839232215,
+          "halfWidth": 490,
+          "reliefParameter": 230
+        },
+        {
+          "id": "salt-dusk-range-4",
+          "minSampledCorridorGapMetres": 3259.9930262296975,
+          "halfLength": 3240.651599757468,
+          "halfWidth": 600,
+          "reliefParameter": 290
+        },
+        {
+          "id": "salt-dusk-range-5",
+          "minSampledCorridorGapMetres": 3979.999857020924,
+          "halfLength": 2131.5930244548,
+          "halfWidth": 680,
+          "reliefParameter": 340
+        }
+      ],
+      "meshStats": [
+        {
+          "name": "Salt Dusk continuous eroded ranges / 0",
+          "triangles": 19464,
+          "vertices": 9736,
+          "materialCount": 1
+        },
+        {
+          "name": "Salt Dusk continuous eroded ranges / 1",
+          "triangles": 19464,
+          "vertices": 9736,
+          "materialCount": 1
+        },
+        {
+          "name": "Salt Dusk continuous eroded ranges / 2",
+          "triangles": 19464,
+          "vertices": 9736,
+          "materialCount": 1
+        }
+      ],
+      "totalTriangles": 58392,
+      "mergedMeshCount": 3
+    },
+    {
+      "seed": 87223,
+      "mainSamples": 4096,
+      "branchSampleCounts": [
+        {
+          "id": "branch-1-shortcut",
+          "points": 25
+        },
+        {
+          "id": "branch-2-safe",
+          "points": 25
+        },
+        {
+          "id": "branch-3-salvage",
+          "points": 25
+        }
+      ],
+      "minimumSampledCorridorGapMetres": 1260,
+      "witness": {
+        "rangeId": "salt-dusk-range-0",
+        "routeId": "main",
+        "pointIndex": 1740,
+        "x": 8553.03507911327,
+        "z": -40.37201102612047,
+        "width": 25.956828537170615
+      },
+      "perRange": [
+        {
+          "id": "salt-dusk-range-0",
+          "minSampledCorridorGapMetres": 1260,
+          "halfLength": 2266.5403677174563,
+          "halfWidth": 400,
+          "reliefParameter": 120
+        },
+        {
+          "id": "salt-dusk-range-1",
+          "minSampledCorridorGapMetres": 1409.9999999999986,
+          "halfLength": 2077.6620037410016,
+          "halfWidth": 450,
+          "reliefParameter": 150
+        },
+        {
+          "id": "salt-dusk-range-2",
+          "minSampledCorridorGapMetres": 1799.996844808716,
+          "halfLength": 1842.677379046679,
+          "halfWidth": 460,
+          "reliefParameter": 210
+        },
+        {
+          "id": "salt-dusk-range-3",
+          "minSampledCorridorGapMetres": 2070.0000000000014,
+          "halfLength": 1648.7113391470286,
+          "halfWidth": 490,
+          "reliefParameter": 230
+        },
+        {
+          "id": "salt-dusk-range-4",
+          "minSampledCorridorGapMetres": 3259.9999999999995,
+          "halfLength": 3620.168642882048,
+          "halfWidth": 600,
+          "reliefParameter": 290
+        },
+        {
+          "id": "salt-dusk-range-5",
+          "minSampledCorridorGapMetres": 3979.996844808716,
+          "halfLength": 2327.592478795805,
+          "halfWidth": 680,
+          "reliefParameter": 340
+        }
+      ],
+      "meshStats": [
+        {
+          "name": "Salt Dusk continuous eroded ranges / 0",
+          "triangles": 19464,
+          "vertices": 9736,
+          "materialCount": 1
+        },
+        {
+          "name": "Salt Dusk continuous eroded ranges / 1",
+          "triangles": 19464,
+          "vertices": 9736,
+          "materialCount": 1
+        },
+        {
+          "name": "Salt Dusk continuous eroded ranges / 2",
+          "triangles": 19464,
+          "vertices": 9736,
+          "materialCount": 1
+        }
+      ],
+      "totalTriangles": 58392,
+      "mergedMeshCount": 3
+    }
+  ],
+  "cleanup": {
+    "middlewareServerClosed": true,
+    "geometryAndMaterialsDisposed": true,
+    "noBrowser": true,
+    "noBlender": true
+  },
+  "limitations": [
+    "No new visual acceptance or parity claim for range revision or refined GLBs.",
+    "Triangle count is generated geometry, not total scene or GPU draw statistics.",
+    "Historical first-pass 48,624 triangles / approximately 210m clearance is superseded only for current-source reporting; earlier evidence stays untouched."
+  ]
+}

@@ -6,8 +6,8 @@ const uniforms = {
   uDuskSun: { value: SALT_DUSK_SUN.clone() },
   uDuskEnvironment: { value: null as Texture|null },
   uDuskEnvironmentReady: { value: 0 },
-  uDuskEnvironmentRotation: { value: -0.0572179937 },
-  uDuskEnvironmentExposure: { value: .4 },
+  uDuskEnvironmentRotation: { value: -0.045377173425 },
+  uDuskEnvironmentExposure: { value: .34 },
   uDuskGround: { value: null as Texture|null },
   uDuskGroundNormal: { value: null as Texture|null },
   uDuskGroundRoughness: { value: null as Texture|null },
@@ -71,12 +71,12 @@ export function loadSaltDuskAssets(): Promise<void> {
       texture.wrapS=texture.wrapT=RepeatWrapping;texture.anisotropy=8;
       resident.add(texture);uniforms.uMachineryPaint.value=texture;uniforms.uMachineryPaintReady.value=1;
     }).catch(()=>{if(epoch===generation)saltDuskAssetReceipt.failures.push('machinery-paint.png');}),
-    new HDRLoader().loadAsync('/assets/salt-dusk/environment/sunset-quarry-1k.hdr').then(texture=>{
+    new HDRLoader().loadAsync('/assets/salt-dusk-v2/environment/kloppenheim-dusk-4k.hdr').then(texture=>{
       if(epoch!==generation){texture.dispose();return;}
       texture.wrapS=RepeatWrapping;texture.generateMipmaps=true;texture.minFilter=LinearMipmapLinearFilter;
       resident.add(texture);uniforms.uDuskEnvironment.value=texture;uniforms.uDuskEnvironmentReady.value=1;
-      saltDuskAssetReceipt.loaded.push('environment/sunset-quarry-1k.hdr');
-    }).catch(()=>{if(epoch===generation)saltDuskAssetReceipt.failures.push('environment/sunset-quarry-1k.hdr');}),
+      saltDuskAssetReceipt.loaded.push('v2/environment/kloppenheim-dusk-4k.hdr');
+    }).catch(()=>{if(epoch===generation)saltDuskAssetReceipt.failures.push('v2/environment/kloppenheim-dusk-4k.hdr');}),
   ]).then(()=>undefined);
   return loading;
 }

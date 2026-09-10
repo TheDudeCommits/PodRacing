@@ -54,7 +54,7 @@ describe('interactive preview cache lifecycle', () => {
       };
       const resources = {
         vehicles: new Map([['podracer', vehicle]]), pilots: new Map(), outlines: [],
-        outlineMaterial: { dispose: vi.fn() }, scene: { clear: vi.fn() },
+        outlineMaterial: { dispose: vi.fn() }, scene: { clear: vi.fn() }, stage: { dispose: vi.fn() },
         renderer: { domElement: { width: 400, height: 200 }, renderLists: { dispose: vi.fn() }, dispose: vi.fn(), forceContextLoss: vi.fn() },
       };
       allocated.push(resources); (preview as any).resources = resources; return resources;
@@ -72,6 +72,7 @@ describe('interactive preview cache lifecycle', () => {
       preview.hide();
       expect(preview.hasGpuResources).toBe(false);
       expect(allocated[0].renderer.forceContextLoss).toHaveBeenCalledOnce();
+      expect(allocated[0].stage.dispose).toHaveBeenCalledOnce();
 
       const returning = preview.show();
       expect(ensure).toHaveBeenCalledTimes(2);
@@ -89,6 +90,7 @@ describe('interactive preview cache lifecycle', () => {
       preview.hide();
       expect(preview.hasGpuResources).toBe(false);
       expect(allocated[1].renderer.forceContextLoss).toHaveBeenCalledOnce();
+      expect(allocated[1].stage.dispose).toHaveBeenCalledOnce();
       expect(releaseEnvironment).not.toHaveBeenCalled(); // The backend still owns its borrowed bindings while hidden.
     } finally { finishEnvironment(); finishReload(); preview.dispose(); }
     expect(releaseEnvironment).toHaveBeenCalledOnce();

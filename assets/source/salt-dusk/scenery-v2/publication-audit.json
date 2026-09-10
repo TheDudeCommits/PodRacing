@@ -1,0 +1,165 @@
+{
+  "createdAt": "2026-09-10T09:51:21.677Z",
+  "scope": "New scenery-v2 and stone-refinement-v1 source directories plus their two public exports; existing upstream provenance read only. No repository-wide secret audit claimed.",
+  "sourceInventory": [
+    {
+      "path": "assets/source/salt-dusk/scenery-v2/HANDOFF.json",
+      "bytes": 2209,
+      "sha256": "6a9c1f8d97826db0b1a3f0c7367272ca4c31423ba4147c7cf65a174d517d21d4",
+      "gitIgnored": false
+    },
+    {
+      "path": "assets/source/salt-dusk/scenery-v2/HANDOFF.md",
+      "bytes": 1870,
+      "sha256": "32781e24b8bb4cad50ea853b35db8a19b7addcad0cf5f111c2a09518fbf9e57a",
+      "gitIgnored": false
+    },
+    {
+      "path": "assets/source/salt-dusk/scenery-v2/before/InkstormWorld.ts",
+      "bytes": 16050,
+      "sha256": "c402c85ecbd13e6d4f4fb63a702cc7d1a447a4e509d6459e4265642fe10d15a5",
+      "gitIgnored": false
+    },
+    {
+      "path": "assets/source/salt-dusk/scenery-v2/current-revision-receipt.json",
+      "bytes": 8173,
+      "sha256": "d1ecabfbb82ca5744f274da3fb99c6c2c8bfa0e3e75340f55f4d443236630e50",
+      "gitIgnored": false
+    },
+    {
+      "path": "assets/source/salt-dusk/scenery-v2/focused.log",
+      "bytes": 217,
+      "sha256": "08a100fccb211031ff4b67addf6a06e50534e3d4c66647f9e310f8327f50ed8a",
+      "gitIgnored": true
+    },
+    {
+      "path": "assets/source/salt-dusk/scenery-v2/geometry.log",
+      "bytes": 1883,
+      "sha256": "af7be06690c15d7a5ffc9aa2d180bbdb7b8d790296ad4436cddc5b9a6feb01bb",
+      "gitIgnored": true
+    },
+    {
+      "path": "assets/source/salt-dusk/stone-refinement-v1/HANDOFF.json",
+      "bytes": 4004,
+      "sha256": "c21ae764d13528ca1b8a1f9ced7266f1db62c1c5fd0b5541568e566ae115accb",
+      "gitIgnored": false
+    },
+    {
+      "path": "assets/source/salt-dusk/stone-refinement-v1/HANDOFF.md",
+      "bytes": 2614,
+      "sha256": "c01e061b6ef10740e4c90f19af55f1f505e0a7b9037455283d104507eb475c06",
+      "gitIgnored": false
+    },
+    {
+      "path": "assets/source/salt-dusk/stone-refinement-v1/build-initial-failure.log",
+      "bytes": 3040,
+      "sha256": "9986e8296109b1abf843b49d336e654e910ea7f1747da8a0e43fe0ee4ee137fe",
+      "gitIgnored": true
+    },
+    {
+      "path": "assets/source/salt-dusk/stone-refinement-v1/build.log",
+      "bytes": 4386,
+      "sha256": "a41682832a7e6d0a56b669ce23bc35fe81f5b7346b13c8f88ec13892e21a339a",
+      "gitIgnored": true
+    },
+    {
+      "path": "assets/source/salt-dusk/stone-refinement-v1/build.py",
+      "bytes": 10555,
+      "sha256": "79053c26c82f9d3ecc2980d1119a9c511a9fc4b5a4d3de20f4a36c07ba7c1585",
+      "gitIgnored": false
+    },
+    {
+      "path": "assets/source/salt-dusk/stone-refinement-v1/canyon-arch-dusk-v1-receipt.json",
+      "bytes": 1677,
+      "sha256": "e123d68729d60d16375abe2040d7ef4769dd4d8697a6a9ca882316a9cb79188a",
+      "gitIgnored": false
+    },
+    {
+      "path": "assets/source/salt-dusk/stone-refinement-v1/canyon-arch-dusk-v1.glb",
+      "bytes": 1681836,
+      "sha256": "38b6609e82dd0cf3e72da0bf9c36416758935b2df90c050887fc63504b7a62aa",
+      "gitIgnored": false
+    },
+    {
+      "path": "assets/source/salt-dusk/stone-refinement-v1/contact-profile-initial-failure.log",
+      "bytes": 3148,
+      "sha256": "5fd213758b80413e2688417b6d2d92fb81ccf5ac682f9d111d52a0aef6bdf5a3",
+      "gitIgnored": true
+    },
+    {
+      "path": "assets/source/salt-dusk/stone-refinement-v1/contact-profile-radial-failure.log",
+      "bytes": 3147,
+      "sha256": "bd6a6f388f6b432ef7f9b0b3373de2349452008bc039bbe74c37e5d5abcae3dd",
+      "gitIgnored": true
+    },
+    {
+      "path": "assets/source/salt-dusk/stone-refinement-v1/focused.log",
+      "bytes": 217,
+      "sha256": "90abb5ea5693a57f7b8f9967495a739aec3ad484a10ad0f1925719156f710ab8",
+      "gitIgnored": true
+    },
+    {
+      "path": "assets/source/salt-dusk/stone-refinement-v1/gltf-validation.json",
+      "bytes": 2550,
+      "sha256": "696ba041cafb2d77b0b9d87a474be26facf2a21b027a17744d0b523b951b9cb7",
+      "gitIgnored": false
+    },
+    {
+      "path": "assets/source/salt-dusk/stone-refinement-v1/typecheck.log",
+      "bytes": 57,
+      "sha256": "fa95b29726a1ab8891b320173cad4ef80c08c37ec637f2c438a5294fb97ce445",
+      "gitIgnored": true
+    },
+    {
+      "path": "assets/source/salt-dusk/stone-refinement-v1/validate.mjs",
+      "bytes": 1278,
+      "sha256": "be6a97664af1ad51244a8013366f9f6b5ab1ba4c7973708008ff24250ca9a4b0",
+      "gitIgnored": false
+    },
+    {
+      "path": "assets/source/salt-dusk/stone-refinement-v1/wind-blade-dusk-v1-receipt.json",
+      "bytes": 1785,
+      "sha256": "57f798849bb85e36fdfe8fff2cac655c3bdf457bbc20bba61942f6a9a6b3fb15",
+      "gitIgnored": false
+    },
+    {
+      "path": "assets/source/salt-dusk/stone-refinement-v1/wind-blade-dusk-v1.glb",
+      "bytes": 241260,
+      "sha256": "10c6c4f3d8fd82bf145e11cafd6c554ea7d9b9615b66a6c9b57d74c967dfc77a",
+      "gitIgnored": false
+    }
+  ],
+  "publicationBlockers": [],
+  "reviewNotes": [
+    "No new external source required for deterministic range geometry or original wind-blade derivative.",
+    "Arch derivative uses existing Poly Haven boulder_01 CC0 lineage, credited to Rico Cilliers; source URL/license URL/download hash remain in assets/source/inkstorm/canyon-arch-v3/provenance.json.",
+    "No .blend, texture pack, executable binary, or research media cache in these two new source directories. Only two GLBs exceed 200 KB.",
+    "The source and public GLB pairs are byte-identical, 1,923,096 bytes per pair (3,846,192 combined). Source copies support offline lineage and are intentional duplication.",
+    "All local *.log files are ignored by the existing global rule. Published JSON/Markdown summarize their results; log links are local evidence, not promised Git artifacts. Do not force-add unrelated logs/research caches.",
+    "Source build.py pins its checkout path to /Users/amir/Projects/PodRacing; validate.mjs uses a local /tmp validator dependency. These are documented authoring-environment assumptions, not portable one-command tooling.",
+    "Targeted textual credential-pattern scan found only expected public provenance URLs, no secret-like tokens in reviewed scripts/manifests/notes. This is not a full repository secret scan."
+  ],
+  "publicCopies": [
+    {
+      "path": "public/assets/inkstorm/canyon-arch-dusk-v1.glb",
+      "bytes": 1681836,
+      "sha256": "38b6609e82dd0cf3e72da0bf9c36416758935b2df90c050887fc63504b7a62aa"
+    },
+    {
+      "path": "public/assets/inkstorm/wind-blade-dusk-v1.glb",
+      "bytes": 241260,
+      "sha256": "10c6c4f3d8fd82bf145e11cafd6c554ea7d9b9615b66a6c9b57d74c967dfc77a"
+    }
+  ],
+  "historicalHandoffsUntouched": [
+    {
+      "path": "assets/source/salt-dusk/scenery-v2/HANDOFF.md",
+      "sha256": "32781e24b8bb4cad50ea853b35db8a19b7addcad0cf5f111c2a09518fbf9e57a"
+    },
+    {
+      "path": "assets/source/salt-dusk/scenery-v2/HANDOFF.json",
+      "sha256": "6a9c1f8d97826db0b1a3f0c7367272ca4c31423ba4147c7cf65a174d517d21d4"
+    }
+  ],
+  "visualAcceptance": false
+}

@@ -1,0 +1,106 @@
+{
+  "createdAt": "2026-09-10T09:14:47.352761+00:00",
+  "scope": "Local file integrity and finite nonzero PCM; not perceptual listening or native performance",
+  "files": [
+    {
+      "path": "public/audio/salt-dusk-v2/hull-impact.ogg",
+      "bytes": 11966,
+      "duration": 0.755313,
+      "channels": 2,
+      "sampleRate": 48000,
+      "peak": 0.7580045461654663,
+      "rms": 0.23475097119808197,
+      "finite": true,
+      "sha256": "22402f87ceddec355d256944250605e3058721a32a537da8bb516ee38d53bfb0"
+    },
+    {
+      "path": "public/audio/salt-dusk-v2/rival.ogg",
+      "bytes": 41269,
+      "duration": 2.129167,
+      "channels": 1,
+      "sampleRate": 48000,
+      "peak": 0.5658718347549438,
+      "rms": 0.12995658814907074,
+      "finite": true,
+      "sha256": "73d0292d5cd654997ee80cce41192edb1ad08f0f8724e5c06f60b0b42b6848b8"
+    },
+    {
+      "path": "public/audio/salt-dusk-v2/boost.ogg",
+      "bytes": 54003,
+      "duration": 3.597646,
+      "channels": 1,
+      "sampleRate": 48000,
+      "peak": 0.31444454193115234,
+      "rms": 0.0807197317481041,
+      "finite": true,
+      "sha256": "b47e357af77f1a43418f262f1dccf07d6be6fc20c5758f2d3f60fbd4a49d61d4"
+    },
+    {
+      "path": "public/audio/salt-dusk-v2/rupture.ogg",
+      "bytes": 23230,
+      "duration": 1.729563,
+      "channels": 2,
+      "sampleRate": 48000,
+      "peak": 0.649055540561676,
+      "rms": 0.1156526729464531,
+      "finite": true,
+      "sha256": "6636d76d7e9092c63dafd3e3e4a248d95b596499acae6d549349904e7883293f"
+    },
+    {
+      "path": "public/audio/salt-dusk-v2/shield-pulse.ogg",
+      "bytes": 23367,
+      "duration": 1.391833,
+      "channels": 1,
+      "sampleRate": 48000,
+      "peak": 0.6799946427345276,
+      "rms": 0.08685160428285599,
+      "finite": true,
+      "sha256": "376ddc659ce47d8bba83c74cd0886fca3d9cbc395c1cad535a0b6a112b466676"
+    },
+    {
+      "path": "public/audio/salt-dusk-v2/weapon.ogg",
+      "bytes": 13636,
+      "duration": 0.731938,
+      "channels": 1,
+      "sampleRate": 48000,
+      "peak": 0.5956374406814575,
+      "rms": 0.1201409175992012,
+      "finite": true,
+      "sha256": "583549c1264af7a110dd9c203097d9695b5486286b06402808dc7867123f47a7"
+    },
+    {
+      "path": "public/audio/salt-dusk-v2/propulsion.ogg",
+      "bytes": 70381,
+      "duration": 4.7565,
+      "channels": 1,
+      "sampleRate": 48000,
+      "peak": 0.5277834534645081,
+      "rms": 0.12395147979259491,
+      "finite": true,
+      "sha256": "9b03608be7b67ff9c88bbfa78440c2a4f0ebd11ac272d0dba3d14ab1de09b881"
+    },
+    {
+      "path": "public/audio/salt-dusk-v2/mechanical-click.ogg",
+      "bytes": 4876,
+      "duration": 0.100023,
+      "channels": 1,
+      "sampleRate": 44100,
+      "peak": 0.8557066917419434,
+      "rms": 0.047883547842502594,
+      "finite": true,
+      "sha256": "ccfb7fa0cccdd9faec0eb16033c732b1e308d139d80f799161495d58f7adcdb9"
+    }
+  ],
+  "runtimeSfxBytes": 242728,
+  "voiceSha256": "39c4d411570a2591be5cbf7fc27d86a63c36d3befa5de8d57c0d2018e1c89260",
+  "musicSha256": "0c263f2004386de5b93be61d6cb2fdc55f79c4dd8e626a02d65cc5cef0d1058d",
+  "tests": {
+    "suite": "npx vitest run tests/audio --reporter=dot",
+    "passed": 39,
+    "files": 7
+  },
+  "typescript": "PASS",
+  "diffCheck": "PASS",
+  "nativeBrowser": "Pending root integrated capture",
+  "listening": "Not performed; owner audition remains required"
+}

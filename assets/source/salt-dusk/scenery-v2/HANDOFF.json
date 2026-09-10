@@ -1,0 +1,63 @@
+{
+  "stage": "environment-geometry-v2-first-pass",
+  "status": "SOURCE_AND_CPU_CHECKED; native appearance pending",
+  "files": [
+    {
+      "path": "src/render/inkstorm/InkstormWorld.ts",
+      "bytes": 16559,
+      "sha256": "0175bfcf8b851d096c99c705f48397fb7878ff3b3e270f90c2e616d380c4ec8a"
+    },
+    {
+      "path": "src/render/saltDusk/SaltDuskScenery.ts",
+      "bytes": 7303,
+      "sha256": "edea36126f7007019595741ee37351f26f3ab19fe7a5593ef312df3e7c608c66"
+    },
+    {
+      "path": "src/render/saltDusk/StoneNormals.ts",
+      "bytes": 2132,
+      "sha256": "c1c652c3b9ee7ef49f933ef71febaa238cfb9af837b99b80464ff7519eed77f7"
+    },
+    {
+      "path": "tests/render/saltDuskScenery.test.ts",
+      "bytes": 6193,
+      "sha256": "0223b90afe3c4629c27a19183c0e3975ace63cbb8202f09d30fd39e1c63d0203"
+    }
+  ],
+  "sourceProvenance": "Original deterministic source-authored range geometry. Existing GLB stone arrays unchanged except normal attribute. No external mesh, texture or Blender work.",
+  "geometry": {
+    "ranges": 6,
+    "drawGroups": 3,
+    "triangles": 48624,
+    "routeClearanceHeroMetres": 209.99302622969523,
+    "routeClearanceExpeditionMetres": 210,
+    "heroLayoutBeforeAfter": [
+      227,
+      165
+    ],
+    "expeditionLayoutBeforeAfter": [
+      260,
+      166
+    ],
+    "actualArchChangedNormalComponents": 86035
+  },
+  "preservation": [
+    "all collider-bearing placements and their transforms",
+    "source stone position/UV/color/index/bounds",
+    "terrain/simulation/course/camera/lighting untouched",
+    "existing independently cloned static shadow casters and mesh disposal paths"
+  ],
+  "validation": {
+    "focusedTests": 22,
+    "newGeometryTests": 5,
+    "testLogs": [
+      "focused.log",
+      "geometry.log"
+    ],
+    "nativeScreenshotAcceptance": false
+  },
+  "risk": [
+    "Distant range inclusion expands the existing static shadow fit; inspect actual basin shadow coverage and atlas resolution before acceptance.",
+    "Terrain-defined launch ridges and collision-bearing pits/small roadside shapes remain; this cannot remove all current visible clutter.",
+    "Normal smoothing changes shading, not the polygon silhouette of the foreground arch."
+  ]
+}

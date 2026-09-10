@@ -1,41 +1,50 @@
 import type { PodracerAudioCueKind } from './types';
 
-/** Existing recordings/catalogue files only. See /audio/salt-dusk/CREDITS.html. */
-const base = '/audio/salt-dusk/';
-const file = (name: string): string => `${base}${name}.ogg`;
-
+/** Existing sourced files only. Attribution: /audio/salt-dusk-v2/CREDITS.html. */
+const file = (name: string): string => `/audio/salt-dusk-v2/${name}.ogg`;
 export const RECORDED_LOOPS = Object.freeze({
-  engine: file('engine'),
-  turbine: file('turbine'),
-  wind: file('wind'),
+  engine: file('propulsion'),
+  rival: file('rival'),
 });
-export const RECORDED_MUSIC_URL = `${base}juggernaut.mp3`;
+// The owner's SFX revision retains the licensed composition and its exact excerpt.
+export const RECORDED_MUSIC_URL = '/audio/salt-dusk/juggernaut.mp3';
 
+/** Empty lists deliberately omit nonessential reward and warning bleeps. */
 export const RECORDED_CUES: Readonly<Record<PodracerAudioCueKind, readonly string[]>> = Object.freeze({
-  impact: [file('impactMetal_heavy_000'), file('impactMetal_heavy_001')],
-  sand: [file('impactGeneric_light_000')],
-  boost: [file('thrusterFire_000')],
-  horn: [file('bong_001')],
-  countdown: [file('select_001')],
-  checkpoint: [file('confirmation_001')],
-  lap: [file('confirmation_002')],
-  finish: [file('confirmation_004')],
-  warning: [file('error_005')],
-  electric: [file('computerNoise_000')],
-  'emp-pulse': [file('forceField_002')],
-  repair: [file('confirmation_002')],
-  ui: [file('click_001')],
-  weapon: [file('laserLarge_000'), file('laserLarge_001'), file('laserSmall_002')],
-  'weapon-hit': [file('explosionCrunch_000'), file('impactMetal_light_000')],
-  shield: [file('forceField_000')],
-  mine: [file('lowFrequency_explosion_000')],
-  hazard: [file('explosionCrunch_002')],
-  redline: [file('thrusterFire_002')],
-  wreck: [file('explosionCrunch_002')],
-  takedown: [file('confirmation_004')],
-  recovery: [file('select_001')],
-  upgrade: [file('confirmation_001')],
-  vehicle: [file('impactPlate_medium_000')],
+  impact: [file('hull-impact')],
+  sand: [],
+  boost: [file('boost')],
+  horn: [file('boost')],
+  countdown: [file('mechanical-click')],
+  checkpoint: [],
+  lap: [],
+  finish: [],
+  warning: [],
+  electric: [],
+  'emp-pulse': [file('shield-pulse')],
+  repair: [file('mechanical-click')],
+  ui: [file('mechanical-click')],
+  weapon: [file('weapon')],
+  'weapon-hit': [file('hull-impact')],
+  shield: [file('shield-pulse')],
+  mine: [file('rupture')],
+  hazard: [file('hull-impact')],
+  redline: [],
+  wreck: [file('rupture')],
+  takedown: [],
+  recovery: [],
+  upgrade: [file('mechanical-click')],
+  vehicle: [file('mechanical-click')],
+});
+
+/** Headroom and sparse playback apply per actual recording, including aliases. */
+export const RECORDED_CUE_ROLES: Readonly<Record<string, { gain: number; gap: number; voices: number }>> = Object.freeze({
+  [file('hull-impact')]: { gain: 0.42, gap: 0.18, voices: 2 },
+  [file('boost')]: { gain: 0.2, gap: 1.6, voices: 1 },
+  [file('mechanical-click')]: { gain: 0.075, gap: 0.16, voices: 1 },
+  [file('weapon')]: { gain: 0.24, gap: 0.09, voices: 3 },
+  [file('shield-pulse')]: { gain: 0.2, gap: 0.35, voices: 2 },
+  [file('rupture')]: { gain: 0.5, gap: 0.5, voices: 2 },
 });
 
 export const RECORDED_EFFECT_URLS = Object.freeze([...new Set([

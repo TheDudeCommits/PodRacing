@@ -5,7 +5,6 @@ import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 import type { PodraceCourse } from '../../game/race/course';
 import { InkstormSurfaceMaterial, loadInkstormPaint } from './InkstormSurfaceMaterial';
 import { createInkstormRoad } from './InkstormRoad';
-import { createInkstormShadows } from './InkstormShadows';
 import { createInkstormFoundations } from './InkstormFoundations';
 import { createInkstormBridge } from './InkstormBridge';
 import { createInkstormFoundry } from './InkstormFoundry';
@@ -15,6 +14,8 @@ import { createInkstormVista, type VistaLandform } from './InkstormVista';
 import { groundInkstormButtress } from './InkstormRockGrounding';
 import { InkstormTerrainShadow } from './InkstormTerrainShadow';
 import { CEL_TERRAIN_EDGE_SUPPRESS_USER_DATA_KEY } from '../post/CelPrepassMaterial';
+import { smoothStoneNormals } from '../saltDusk/StoneNormals';
+import { createSaltDuskScenery, retainSaltDuskPlacement } from '../saltDusk/SaltDuskScenery';
 
 import { INKSTORM_FAMILIES as families, getInkstormLayout } from '../../game/race/inkstormLayout';
 import { INKSTORM_SERVICE_GANTRY, inkstormRenderFamily, type InkstormRenderFamily as Family } from './InkstormGantryAppearance';
@@ -56,7 +57,7 @@ export class InkstormWorld extends Group {
     // The versioned pit geometry and atlas are a pair: UVs belong to this bake.
     // Wait for all requests so failures/disposal cannot orphan a late texture.
     const [modelResults, textureResult] = await Promise.all([
-      Promise.allSettled(modelIds.map(id=>loader.loadAsync(`/assets/inkstorm/${id==='canyon-arch'?'canyon-arch-v3':id==='pit-complex'?'pit-complex-light-v1':id==='pipe-bank'?'pipe-bank-detail-v1':id}.glb`))),
+      Promise.allSettled(modelIds.map(id=>loader.loadAsync(`/assets/inkstorm/${id==='canyon-arch'?'canyon-arch-dusk-v1':id==='wind-blade'?'wind-blade-dusk-v1':id==='pit-complex'?'pit-complex-light-v1':id==='pipe-bank'?'pipe-bank-detail-v1':id}.glb`))),
       new TextureLoader().loadAsync('/assets/inkstorm/pit-complex-light-v1.png')
         .then(texture=>({texture,error:null})).catch((error:unknown)=>({texture:null,error})),
     ]);
@@ -97,6 +98,7 @@ export class InkstormWorld extends Group {
       }
       const distant=modelIds[i]!.endsWith('-lod');
       const stone=i<5||family==='canyon-buttress'||family==='sandstone-scree'||family==='fractured-spire';
+      if(stone)smoothStoneNormals(geometry);
       const batch=new InstancedMesh(geometry,new InkstormSurfaceMaterial(stone, family==='pit-complex'||family==='pit-district'?family:null,
         family==='pit-complex'?{texture:this.workshopTexture,decodeRange:4,intensity:4}:null,
         family===INKSTORM_SERVICE_GANTRY),512);
@@ -115,10 +117,10 @@ export class InkstormWorld extends Group {
       this.roads.push(createInkstormRoad(branch.points.map(p=>({...p,progress:p.canonicalProgress,tag:'recovery-straight' as const})),false,branch.elevated,this.gulfUniforms));
       if(branch.elevated)this.roads.push(createInkstormBridge(branch,this.heightAt,course));
     }
-    this.roads.push(createInkstormShadows(getInkstormLayout(course),this.gulfUniforms));
     this.roads.push(createInkstormFoundations(getInkstormLayout(course), this.heightAt, this.pitAnchorHeight));
     const vistas=createInkstormVista(course, this.heightAt);
     this.roads.push(...vistas);
+    this.roads.push(...createSaltDuskScenery(course, this.heightAt));
     const foundry = createInkstormFoundry(course, this.heightAt);
     if (foundry) this.roads.push(foundry);
     const forkGuidance = createInkstormForkWayfinding(course, this.heightAt);
@@ -154,6 +156,9 @@ export class InkstormWorld extends Group {
         fixedRockCrowns.set(id,support.top);
       }
       for(const form of citadel.userData.inkstormVistaLandforms as readonly VistaLandform[]){
+        // Retain the founded settlement rock. Isolated decorative skyline
+        // repeats are replaced by continuous distant range surfaces.
+        if(!form.settlement)continue;
         placements.push({id:form.id,family:form.family,progress:0,x:form.x,z:form.z,
           yaw:form.yaw,sx:form.sx,sy:form.sy,sz:form.sz});
         // Vista's five-metre deck keeps its original world height. Always use
@@ -162,6 +167,7 @@ export class InkstormWorld extends Group {
       }
     }
     for(const p of placements){
+      if(!retainSaltDuskPlacement(p,course))continue;
       const renderFamily=inkstormRenderFamily(p);
       const batch=this.batches.get(renderFamily)!;if(batch.count>=512)continue;
       // District crew stand on the founded service apron; sinking this family

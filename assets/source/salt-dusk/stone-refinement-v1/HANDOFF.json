@@ -1,0 +1,101 @@
+{
+  "stage": "salt-dusk-stone-refinement-v1",
+  "createdAt": "2026-09-10T09:32:58.657864+00:00",
+  "status": "SOURCE_EXPORTS_AND_CPU_VALIDATED; NATIVE_VISUAL_ACCEPTANCE_PENDING",
+  "authoring": "Standalone Blender5.2.0LTS --background --factory-startup --threads1; no render, no .blend save and no sharedGUI mutation.",
+  "sourceProvenance": [
+    {
+      "asset": "canyon-arch-v3",
+      "basis": "Existing original nine-component arrangement of PolyHaven boulder_01 processed scans",
+      "author": "Rico Cilliers (underlying scan); project-authored arrangement/refinement",
+      "license": "CC0 underlying scan",
+      "page": "https://polyhaven.com/a/boulder_01",
+      "sourceReceipt": "assets/source/inkstorm/canyon-arch-v3/provenance.json"
+    },
+    {
+      "asset": "wind-blade",
+      "basis": "Original project-authored18-sided18-level surface",
+      "sourceBuilder": "assets/source/inkstorm/build_world_kit.py"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "canyon-arch-dusk-v1",
+      "sha256": "38b6609e82dd0cf3e72da0bf9c36416758935b2df90c050887fc63504b7a62aa",
+      "bytes": 1681836,
+      "triangles": 70000,
+      "primitives": 1,
+      "textures": 0,
+      "components": 9
+    },
+    {
+      "name": "wind-blade-dusk-v1",
+      "sha256": "10c6c4f3d8fd82bf145e11cafd6c554ea7d9b9615b66a6c9b57d74c967dfc77a",
+      "bytes": 241260,
+      "triangles": 10000,
+      "primitives": 1,
+      "textures": 0,
+      "components": 1
+    }
+  ],
+  "files": [
+    {
+      "path": "assets/source/salt-dusk/stone-refinement-v1/build.py",
+      "bytes": 10555,
+      "sha256": "79053c26c82f9d3ecc2980d1119a9c511a9fc4b5a4d3de20f4a36c07ba7c1585"
+    },
+    {
+      "path": "assets/source/salt-dusk/stone-refinement-v1/validate.mjs",
+      "bytes": 1278,
+      "sha256": "be6a97664af1ad51244a8013366f9f6b5ab1ba4c7973708008ff24250ca9a4b0"
+    },
+    {
+      "path": "src/render/inkstorm/InkstormWorld.ts",
+      "bytes": 16455,
+      "sha256": "30f95b573f08ed1bcc7552e13fb84582c7b862b6362ac3710cff26945af6b603"
+    },
+    {
+      "path": "tests/render/saltDuskRefinedStone.test.ts",
+      "bytes": 4687,
+      "sha256": "ed05ecde860fa9ae88f730e6b13bdd5469577f938d6108efce903176dccfe29e"
+    },
+    {
+      "path": "public/assets/inkstorm/canyon-arch-dusk-v1.glb",
+      "bytes": 1681836,
+      "sha256": "38b6609e82dd0cf3e72da0bf9c36416758935b2df90c050887fc63504b7a62aa"
+    },
+    {
+      "path": "public/assets/inkstorm/wind-blade-dusk-v1.glb",
+      "bytes": 241260,
+      "sha256": "10c6c4f3d8fd82bf145e11cafd6c554ea7d9b9615b66a6c9b57d74c967dfc77a"
+    }
+  ],
+  "preserved": [
+    "original GLBs remain byte-exact",
+    "all per-component bounds; bottom collars and blade crown",
+    "arch88m-wide24m-high passage, original root placements",
+    "source-triangle barycentric colors, except new hidden toe cap samples nearest original source side",
+    "existing instancing, placement matrices, source-family/material selection and disposal",
+    "root stamped-shadow removal in InkstormWorld retained"
+  ],
+  "validation": {
+    "focusedTests": 17,
+    "typecheck": "PASS",
+    "gltfValidator": "0errors/0warnings both assets",
+    "archClosedComponents": 9,
+    "bladeClosedComponents": 1,
+    "bladeHorizontalProfileSamples": 1444,
+    "bladeLargestInwardMetres": 2.288818359375e-05,
+    "sourceColorMaxInterpolationError": [
+      2.9802322387695312e-08,
+      2.220446049250313e-16
+    ]
+  },
+  "limits": [
+    "The88m passage and unchanged AABB are geometry guards, not a visual acceptance.",
+    "Existing source families use approximate colliders; the ray test prevents sampled horizontal visible envelope shrinking and does not claim an exact new collision mesh.",
+    "No new LOD was introduced; added cost is32,200tri per visible arch and9,336tri per visible windblade, same draw counts.",
+    "Coherent relief is an original source derivative, not newly recovered measured geological detail.",
+    "No native in-world screenshots have yet been reviewed for these versioned exports."
+  ]
+}
