@@ -42,6 +42,6 @@ export class InkstormGhostView extends Group {
   }
 
   setVehicleClass(value:GalacticVehicleClass):void{this.body.geometry=this.geometries.get(value)!;}
-  setPose(pose:GhostPose|null):void{this.visible=!!pose;if(!pose)return;this.position.set(pose.x,pose.y,pose.z);this.rotation.set(pose.pitch,pose.yaw,pose.roll+pose.bank,'YXZ');}
+  setPose(pose:GhostPose|null):void{this.visible=!!pose;if(!pose)return;this.position.set(pose.x,pose.y,pose.z);this.rotation.set(-pose.pitch,pose.yaw,pose.roll+pose.bank,'YXZ');}
   dispose():void{for(const geometry of this.geometries.values())geometry.dispose();this.geometries.clear();this.material.dispose();this.clear();}
 }

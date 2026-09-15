@@ -1,4 +1,37 @@
-# PodRacing — Round 38 handover (2026-09-16)
+# PodRacing — Round 39 handover (2026-09-16)
+
+## Start here
+
+Round 39 is a correction round: the owner saw no improvement after round 38 because **the renderer drew simulation pitch with the wrong sign**, so every pod was pitched into or out of every slope regardless of what the physics did. That is fixed at every simulation-to-renderer boundary, and the shield/recovery/redline shells are now hull-fitted faceted skins instead of domes and discs. Details, before/after frames and the burial audit: [ROUND39_REPORT.md](docs/inkstorm-overhaul/ROUND39_REPORT.md). Earlier rounds: [ROUND38](docs/inkstorm-overhaul/ROUND38_REPORT.md), [ROUND37](docs/inkstorm-overhaul/ROUND37_REPORT.md).
+
+- Repository: https://github.com/TheDudeCommits/PodRacing, branch `codex/now-this-is-podracing`, working directory `/Users/amir/Projects/PodRacing`.
+- Runtime source: the round 39 commit on this branch (see `git log`), on top of `1ddf44f` (round 38).
+- Preview deployments come from the Git integration on push (owner Vercel sign-in required; the branch alias `now-this-is-podracing-git-codex-45ecfb-amirs-projects-d9680079.vercel.app` follows the branch). **Production is unchanged.** Never run `vercel deploy` from the working tree.
+
+## Lessons that must survive
+
+1. **Judge visual complaints from rendered frames, not simulation receipts.** `npx tsx scripts/competitive-flow.ts --battle --visual-gallery --output=<dir>` captures a real race; `node scripts/effect-stills.mjs <dir>` captures deterministic combat stills through the review API. View the PNGs before and after.
+2. **Sim pitch is nose-up positive; three.js X rotation is nose-down positive.** `GameApp` racer poses, `WreckVisualPose`, `InkstormGhostView` and the rupture-direction Euler negate it. `scripts/hull-burial-audit.ts` measures hull-below-terrain in the renderer's convention (now 1.6% of ticks, worst 3.3 m; was 30–40%, worst 15 m).
+3. `scripts/capture.mjs` times out on the current bundle and leaks its headless browser when it does; use the two scripts above instead, and `pkill -f chrome-headless-shell` only after checking the processes are yours.
+
+## Validation
+
+- Tests: 1029/1030 in the final run; the single failure is a 5 s timeout in `TeemtoSupportSettle` under a load average above 30 from the owner's video call, another project's dev server and its headless browsers. It passes alone and the suite passed 1030/1030 twice earlier today. Build passes. Native Battle on the built bundle finished with zero browser errors.
+- Frame cadence is still unmeasured on a quiet machine.
+
+## Next work, in priority order
+
+1. Owner check of the fixed pitch and the new shells in the preview; then a quiet-machine cadence run and the promotion decision.
+2. Remove the last 1.6% hull burial: outer-edge probes at ±6.4 m or a renderer-side clamp of each pod against the sampled terrain under its hull.
+3. Damage-driven handling, a reflect-timing shield, rival line discipline on cambered straights, and the remaining roadmap items.
+
+## How to resume safely
+
+Read this header and the three round reports, then `git status --short --branch`. `npm run verify` for runtime changes; headless laps with `scripts/drive-balance.ts`; native evidence with `scripts/competitive-flow.ts`. Close every owned browser and server immediately after QA; never adopt port 5211; never save the shared Blender scene.
+
+---
+
+## Previous handover — Round 38 handover (2026-09-16)
 
 ## Start here
 

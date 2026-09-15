@@ -44,27 +44,40 @@ describe('GalacticEffectsView', () => {
     view.dispose();
   });
 
-  it('presents recovery as a thin vertical rematerialization scan', () => {
+  it('presents every shell as a hull-hugging skin oriented along the craft, with no disc and no scan', () => {
     const view = new GalacticEffectsView();
-    view.setShields([{
-      position: { x: 0, y: 4, z: 0 },
-      radius: 5,
-      mode: 'recovery',
-      color: '#55ff9a',
-    }]);
-    const first = new Matrix4();
-    const second = new Matrix4();
-    const firstPosition = new Vector3();
-    const secondPosition = new Vector3();
-    const scanScale = new Vector3();
+    const yaw = 0.7;
+    view.setShields([
+      { position: { x: 0, y: 4, z: 0 }, radius: 5, mode: 'recovery', color: '#55ff9a', yaw },
+      { position: { x: 30, y: 4, z: 0 }, radius: 5, mode: 'shield', color: '#7fe9ff', yaw },
+      { position: { x: 60, y: 4, z: 0 }, radius: 2, mode: 'redline', color: '#ff6a2a', yaw },
+    ]);
+    const matrix = new Matrix4();
+    const position = new Vector3();
+    const scale = new Vector3();
+    const rotation = new Quaternion();
     view.update(0);
-    view.shieldShells.getMatrixAt(0, first);
-    first.decompose(firstPosition, new Quaternion(), scanScale);
-    expect(scanScale.y).toBeLessThan(scanScale.x * 0.1);
+    const heights: number[] = [];
+    for (let index = 0; index < 3; index += 1) {
+      view.shieldShells.getMatrixAt(index, matrix);
+      matrix.decompose(position, rotation, scale);
+      // Flattened over the hull, longer than wide, never a thin horizontal disc.
+      expect(scale.y).toBeLessThan(scale.x * 0.95);
+      expect(scale.y).toBeGreaterThan(scale.x * 0.3);
+      expect(scale.z).toBeGreaterThan(scale.x);
+      expect(new Vector3(0, 0, 1).applyQuaternion(rotation).angleTo(new Vector3(Math.sin(yaw), 0, Math.cos(yaw)))).toBeLessThan(1e-6);
+      heights.push(position.y);
+    }
+    // The redline sleeve is a tight tube around one engine.
+    view.shieldShells.getMatrixAt(2, matrix);
+    matrix.decompose(position, rotation, scale);
+    expect(scale.z / scale.x).toBeGreaterThan(3.5);
     view.update(0.6);
-    view.shieldShells.getMatrixAt(0, second);
-    second.decompose(secondPosition, new Quaternion(), new Vector3());
-    expect(Math.abs(secondPosition.y - firstPosition.y)).toBeGreaterThan(1);
+    for (let index = 0; index < 3; index += 1) {
+      view.shieldShells.getMatrixAt(index, matrix);
+      matrix.decompose(position, rotation, scale);
+      expect(Math.abs(position.y - heights[index]!)).toBeLessThan(0.3);
+    }
     view.dispose();
   });
 

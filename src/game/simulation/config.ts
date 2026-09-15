@@ -194,13 +194,14 @@ export const DEFAULT_PODRACER_CONFIG: Readonly<PodracerConfig> = Object.freeze({
   // damage alone; a hard slam still costs a seventh of the hull.
   landingDamageCap: 0.14,
   hullKick: 2.4,
-  // The authored engines reach 17–23 m ahead of the origin. Nose probes let the
-  // bed see the terrain under those tips, so a nose-down pitch lifts the craft
-  // and pitches it back instead of burying the engines in a slope.
+  // The authored engines reach 19–23 m ahead of the origin and 6.5 m out from
+  // the centreline. Nose probes near the tips let the bed see the terrain
+  // under them, so a nose-down pitch lifts the craft and pitches it back
+  // instead of burying the engines in a slope.
   probes: Object.freeze([
     ...LEGACY_PODRACER_PROBES,
-    Object.freeze({ id: 'engine-left-nose', localX: -4.1, localZ: 17.5 }),
-    Object.freeze({ id: 'engine-right-nose', localX: 4.1, localZ: 17.5 }),
+    Object.freeze({ id: 'engine-left-nose', localX: -5, localZ: 21.5 }),
+    Object.freeze({ id: 'engine-right-nose', localX: 5, localZ: 21.5 }),
   ]),
 });
 

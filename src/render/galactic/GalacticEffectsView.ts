@@ -22,7 +22,6 @@ import {
   Quaternion,
   RingGeometry,
   Sphere,
-  TorusGeometry,
   TubeGeometry,
   Vector3,
 } from 'three';
@@ -56,6 +55,8 @@ export interface ShieldEffectState {
   readonly phase?: number;
   readonly color?: GalacticEffectColor;
   readonly mode?: 'shield' | 'recovery' | 'redline';
+  /** Heading of the hull the shell hugs; the shell is elongated along it. */
+  readonly yaw?: number;
 }
 
 export interface WeaponBoltEffectState {
@@ -179,6 +180,7 @@ interface ShieldSlot extends ColoredSlot {
   intensity: number;
   phase: number;
   mode: 'shield' | 'recovery' | 'redline';
+  yaw: number;
 }
 
 interface BeamSlot extends ColoredSlot {
@@ -330,25 +332,15 @@ function createHeatLanceGeometry() {
 }
 
 function createShieldGeometry() {
-  // A translucent low-poly volume reads as an authored pulse shell. The old
-  // six-hoop cage looked like editor/debug rotation guides and hid the craft.
-  const indexedShell = new IcosahedronGeometry(0.98, 1);
+  // A faceted, hull-hugging plate shell: flat-shaded icosahedral facets with
+  // no hoops and no ground disc. Per-instance scale flattens and lengthens it
+  // along the craft, so it reads as a skin of energy over the pod rather than
+  // a symbol floating around it.
+  const indexedShell = new IcosahedronGeometry(1, 2);
   const shell = indexedShell.index ? indexedShell.toNonIndexed() : indexedShell.clone();
-  const indexedRing = new TorusGeometry(1.025, 0.018, 3, 16);
-  const ringZ = indexedRing.index ? indexedRing.toNonIndexed() : indexedRing.clone();
-  const ringDiagonalA = ringZ.clone().rotateX(Math.PI * 0.29).rotateY(Math.PI * 0.21);
-  const geometry = mergeGeometries([
-    shell,
-    ringZ,
-    ringDiagonalA,
-  ], false);
+  shell.computeVertexNormals();
   indexedShell.dispose();
-  shell.dispose();
-  indexedRing.dispose();
-  ringZ.dispose();
-  ringDiagonalA.dispose();
-  if (!geometry) throw new Error('Unable to build procedural pulse-shell geometry.');
-  return geometry;
+  return shell;
 }
 
 function createHazardTelegraphGeometry(): BufferGeometry {
@@ -668,11 +660,50 @@ function createHazardMaterial(): MeshBasicMaterial {
   return createSolidEffectMaterial();
 }
 
+const shieldShellUniforms = { uShellTime: { value: 0 } };
+
 function createShieldMaterial(): MeshBasicMaterial {
-  const result = material(0.25);
+  const result = material(0.9);
   // Only the outward polygon layer is needed; double-sided alpha stacked into
-  // an opaque cyan blob at grazing angles.
+  // an opaque blob at grazing angles.
   result.side = FrontSide;
+  result.onBeforeCompile = (shader) => {
+    Object.assign(shader.uniforms, shieldShellUniforms);
+    shader.vertexShader = shader.vertexShader
+      .replace('#include <common>', `#include <common>
+        varying vec3 vShellNormal;
+        varying vec3 vShellView;
+        varying float vShellHeight;`)
+      .replace('#include <begin_vertex>', `#include <begin_vertex>
+        mat4 shellMatrix = modelMatrix;
+        #ifdef USE_INSTANCING
+        shellMatrix = modelMatrix * instanceMatrix;
+        #endif
+        vec4 shellWorld = shellMatrix * vec4(position, 1.0);
+        vShellNormal = normalize(mat3(shellMatrix) * normal);
+        vShellView = normalize(cameraPosition - shellWorld.xyz);
+        vShellHeight = position.y;`);
+    shader.fragmentShader = shader.fragmentShader
+      .replace('#include <common>', `#include <common>
+        uniform float uShellTime;
+        varying vec3 vShellNormal;
+        varying vec3 vShellView;
+        varying float vShellHeight;
+        float shellHash(vec3 n) { return fract(sin(dot(floor(n * 37.0), vec3(12.9898, 78.233, 45.164))) * 43758.5453); }`)
+      .replace('#include <color_fragment>', `#include <color_fragment>
+        // Rim-weighted energy skin: facets glow where the shell turns away from
+        // the eye, the centre stays almost clear so the pod is still readable.
+        float facing = abs(dot(normalize(vShellNormal), normalize(vShellView)));
+        float rim = pow(1.0 - facing, 3.0);
+        float facet = shellHash(vShellNormal);
+        float flicker = 0.62 + 0.38 * sin(uShellTime * (5.0 + facet * 9.0) + facet * 31.0);
+        float band = 1.0 - smoothstep(0.0, 0.16, abs(fract(vShellHeight * 0.9 - uShellTime * 0.55) - 0.5));
+        float energy = rim * (0.55 + 0.45 * flicker) + band * 0.05 + facet * 0.02;
+        diffuseColor.rgb *= 0.85 + rim * 0.9 + band * 0.35;
+        diffuseColor.a *= clamp(energy, 0.0, 1.0);
+        if (diffuseColor.a < 0.01) discard;`);
+  };
+  result.customProgramCacheKey = () => 'inkstorm-faceted-hull-shell-v1';
   return result;
 }
 
@@ -768,7 +799,7 @@ export class GalacticEffectsView extends Group {
 
   private readonly shieldSlots = Array.from(
     { length: GALACTIC_EFFECT_CAPACITY.shields },
-    (): ShieldSlot => ({ x: 0, y: 0, z: 0, radius: 1, intensity: 1, phase: 0, mode: 'shield', r: 0, g: 1, b: 1 }),
+    (): ShieldSlot => ({ x: 0, y: 0, z: 0, radius: 1, intensity: 1, phase: 0, mode: 'shield', yaw: 0, r: 0, g: 1, b: 1 }),
   );
   private readonly boltSlots = Array.from(
     { length: GALACTIC_EFFECT_CAPACITY.weaponBolts },
@@ -893,6 +924,7 @@ export class GalacticEffectsView extends Group {
       slot.intensity = MathUtils.clamp(finite(state.intensity, 1), 0, 1.5);
       slot.phase = finite(state.phase, 0);
       slot.mode = state.mode ?? 'shield';
+      slot.yaw = finite(state.yaw, 0);
       this.writeColor(slot, state.color, '#72f4ff');
     }
   }
@@ -1563,36 +1595,31 @@ export class GalacticEffectsView extends Group {
   }
 
   private updateShields(time: number): void {
+    shieldShellUniforms.uShellTime.value = time;
     let visibleCount = 0;
     for (let index = 0; index < this.shieldCount; index += 1) {
       const slot = this.shieldSlots[index];
       if (!slot) continue;
-      const pulseRate = slot.mode === 'redline' ? 17 : slot.mode === 'recovery' ? 6 : 9;
-      const pulseDepth = slot.mode === 'redline' ? 0.12 : slot.mode === 'recovery' ? 0.065 : 0.045;
+      const sleeve = slot.mode !== 'shield';
+      const pulseRate = slot.mode === 'redline' ? 14 : slot.mode === 'recovery' ? 3.2 : 7;
+      const pulseDepth = slot.mode === 'redline' ? 0.08 : slot.mode === 'recovery' ? 0.05 : 0.03;
       const pulse = 1 + Math.sin(time * pulseRate + slot.phase) * pulseDepth;
       const radius = slot.radius * pulse;
       if (!this.isVisible(slot.x, slot.y, slot.z, radius, EFFECT_VISIBILITY_DISTANCE.shields)) continue;
-      // Keep the faceted shell below display white so cyan, recovery green,
-      // and redline orange retain their authored hues over bright sand.
-      const energy = 0.78 + slot.intensity * 0.1;
-      this.euler.set(
-        slot.mode === 'redline' ? 0.2 : 0,
-        time * (slot.mode === 'redline' ? 2.8 : slot.mode === 'recovery' ? -0.75 : 0.48) + slot.phase,
-        slot.mode === 'recovery' ? 0.08 : 0,
-      );
+      // Shield: one faceted plate fitted to the whole hull (the caller centres
+      // it on the hull, not the cockpit origin). Recovery and redline: tight
+      // sleeves around each engine, relighting green-white or glowing hot.
+      // No mode draws a disc or a hoop.
+      this.euler.set(0, slot.yaw, 0);
       this.tempQuaternion.setFromEuler(this.euler);
-      const scan = slot.mode === 'recovery'
-        ? ((time * 0.58 + slot.phase * 0.07) % 1 + 1) % 1
-        : 0.5;
-      const scanWidth = 0.76 + Math.sin(scan * Math.PI) * 0.34;
-      const scaleX = radius * (slot.mode === 'redline' ? 1.28 : slot.mode === 'recovery' ? scanWidth : 1);
-      const scaleY = radius * (slot.mode === 'redline' ? 0.7 : slot.mode === 'recovery' ? 0.055 : 0.88);
-      const scaleZ = radius * (slot.mode === 'redline' ? 1.5 : slot.mode === 'recovery' ? scanWidth : 1);
-      const renderY = slot.mode === 'recovery'
-        ? slot.y + (scan - 0.5) * radius * 1.65
-        : slot.y;
-      this.writeInstance(this.shieldShells, visibleCount, slot.x, renderY, slot.z, this.tempQuaternion,
-        scaleX, scaleY, scaleZ, slot.r * energy, slot.g * energy, slot.b * energy);
+      const relight = slot.mode === 'recovery' ? 0.3 + 0.7 * Math.max(0, Math.sin(time * 3.2 + slot.phase)) : 1;
+      const energy = (sleeve ? 1.05 : 0.78) + slot.intensity * 0.1;
+      const scaleX = sleeve ? radius * 0.6 : radius * 0.98;
+      const scaleY = sleeve ? radius * 0.55 : radius * 0.42;
+      const scaleZ = sleeve ? radius * 2.6 : radius * 1.9;
+      const shade = energy * relight;
+      this.writeInstance(this.shieldShells, visibleCount, slot.x, slot.y + (sleeve ? 0 : scaleY * 0.3), slot.z, this.tempQuaternion,
+        scaleX, scaleY, scaleZ, slot.r * shade, slot.g * shade, slot.b * shade);
       visibleCount += 1;
     }
     this.dirty(this.shieldShells, visibleCount);

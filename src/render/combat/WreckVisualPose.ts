@@ -163,14 +163,15 @@ export class WreckVisualPoseCache {
     const elapsed = Math.max(0, Math.min(WRECK_PRESENTATION_DURATION,
       WRECK_PRESENTATION_DURATION - remaining + extrapolation));
     const blend = smooth(elapsed / .3) * smooth((remaining - extrapolation) / .35);
-    this.baseRotation.set(state.orientation.pitch, state.orientation.yaw,
+    // Simulation pitch is nose-up positive; three.js X rotation is nose-down positive.
+    this.baseRotation.set(-state.orientation.pitch, state.orientation.yaw,
       state.orientation.roll + state.orientation.bank, 'YXZ');
     const base = pose.baseMotion!;
     base.position.set(state.position.x + state.velocity.x * extrapolation,
       state.position.y + state.velocity.y * extrapolation, state.position.z + state.velocity.z * extrapolation);
     base.rotation.copy(this.baseRotation);
     base.velocity.set(state.velocity.x, state.velocity.y, state.velocity.z);
-    base.angularVelocity.set(state.angularVelocity.pitch, state.angularVelocity.yaw,
+    base.angularVelocity.set(-state.angularVelocity.pitch, state.angularVelocity.yaw,
       state.angularVelocity.roll + state.angularVelocity.bank, 'YXZ');
     this.baseCenter.copy(this.localCenter).applyEuler(this.baseRotation);
     const pitch = Math.sin(elapsed * 2.2) * .1 * blend;

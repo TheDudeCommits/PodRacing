@@ -1,0 +1,2230 @@
+{
+  "driverPace": {
+    "scale": 1,
+    "scope": "Ordinary throttle/brake target speeds only; no simulation, damage or record-rule overrides."
+  },
+  "requestedQualityOverride": null,
+  "buildScripts": [
+    "http://127.0.0.1:59015/assets/index-Damq-uTI.js"
+  ],
+  "appearanceSelection": {
+    "requested": "default",
+    "action": "No appearance selection; preserve the ordinary default flow."
+  },
+  "battle": {
+    "final": {
+      "preset": "desert",
+      "camera": "hero",
+      "simulationFrame": 11546,
+      "raceTime": 91.96666666668592,
+      "renderer": {
+        "skyAssets": {
+          "loaded": [
+            "/assets/salt-dusk-v2/environment/kloppenheim-dusk-4k.hdr"
+          ],
+          "failures": []
+        },
+        "sceneryShadow": {
+          "revision": 2,
+          "size": 4096,
+          "casters": 23,
+          "texelMetres": 1.6976190993058324,
+          "bakes": 2,
+          "failure": null,
+          "terrain": {
+            "vertices": 3247,
+            "triangles": 5817,
+            "sampleMetres": 18,
+            "physicalMinHeight": -26.212434847719244,
+            "physicalMaxHeight": 253.7666657695385,
+            "maxMeasuredOvershoot": 48.65001795647088,
+            "maxDownwardPad": 49.45001795647088,
+            "interiorProbeMetres": 6
+          }
+        },
+        "racerShadow": {
+          "size": 512,
+          "casters": 4,
+          "candidates": 4,
+          "omitted": 0,
+          "triangles": 41839,
+          "drawCalls": 4,
+          "drawnTriangles": 41839,
+          "frames": 2421,
+          "refreshes": 2,
+          "texelMetres": 0.09254465589932792,
+          "depthMetres": 46.087444126702394,
+          "cpuMs": 0.10000002384185791,
+          "maxCpuMs": 14.100000023841858,
+          "failure": null,
+          "skipped": null
+        },
+        "width": 1440,
+        "height": 900,
+        "pixelRatio": 1,
+        "calls": 136,
+        "triangles": 3311934,
+        "points": 0,
+        "lines": 0,
+        "performance": {
+          "qualityLevel": 8,
+          "adaptive": true,
+          "reason": "minimum-quality",
+          "terrainRequestedLevels": 4,
+          "terrainEffectiveLevels": 6,
+          "terrainCoverageRadius": 3072,
+          "workEmaMs": 5.27423908554172,
+          "cadenceEmaMs": 33.9944694040382,
+          "cadenceSamples": 2420,
+          "cadenceLastMs": 50
+        },
+        "memory": {
+          "geometries": 235,
+          "textures": 191,
+          "programs": 56
+        }
+      },
+      "game": {
+        "flameAtlas": {
+          "status": "ready",
+          "url": "/assets/fx/inkstorm/rupture-flame-v1.png",
+          "width": 1254,
+          "height": 1254,
+          "frameCount": 4
+        },
+        "milestone": 9,
+        "vehiclePresentation": {
+          "selected": "teemto",
+          "library": {
+            "entries": 7,
+            "pending": 0,
+            "leases": 11,
+            "idle": 0,
+            "disposed": false
+          },
+          "racers": [
+            {
+              "vehicleClass": "podracer",
+              "requested": "teemto",
+              "active": "teemto",
+              "status": "ready",
+              "error": null,
+              "lod": "full",
+              "revision": 1,
+              "registeredPrepasses": 14,
+              "visiblePrepasses": 10,
+              "embeddedPilot": true,
+              "breakupAvailable": true,
+              "breakupActive": false,
+              "damageVariantAvailable": true,
+              "damageVariantActive": false,
+              "damageVariantError": null,
+              "statistics": {
+                "meshes": 10,
+                "opaqueDraws": 10,
+                "bodyDraws": 4,
+                "pilotDraws": 6,
+                "triangles": 57618,
+                "prepassDraws": 10,
+                "shadowSourceMeshes": 4
+              },
+              "residentStatistics": {
+                "meshes": 14,
+                "opaqueDraws": 14,
+                "bodyDraws": 8,
+                "pilotDraws": 6,
+                "triangles": 88337,
+                "prepassDraws": 14,
+                "shadowSourceMeshes": 8
+              }
+            },
+            {
+              "vehicleClass": "podracer",
+              "requested": "polwo",
+              "active": "polwo",
+              "status": "ready",
+              "error": null,
+              "lod": "simplified",
+              "revision": 1,
+              "registeredPrepasses": 8,
+              "visiblePrepasses": 2,
+              "embeddedPilot": true,
+              "breakupAvailable": false,
+              "breakupActive": false,
+              "damageVariantAvailable": false,
+              "damageVariantActive": false,
+              "damageVariantError": null,
+              "statistics": {
+                "meshes": 8,
+                "opaqueDraws": 8,
+                "bodyDraws": 2,
+                "pilotDraws": 6,
+                "triangles": 28830,
+                "prepassDraws": 8,
+                "shadowSourceMeshes": 2
+              },
+              "residentStatistics": {
+                "meshes": 8,
+                "opaqueDraws": 8,
+                "bodyDraws": 2,
+                "pilotDraws": 6,
+                "triangles": 28830,
+                "prepassDraws": 8,
+                "shadowSourceMeshes": 2
+              }
+            },
+            {
+              "vehicleClass": "podracer",
+              "requested": "teemto",
+              "active": "teemto",
+              "status": "ready",
+              "error": null,
+              "lod": "simplified",
+              "revision": 1,
+              "registeredPrepasses": 9,
+              "visiblePrepasses": 3,
+              "embeddedPilot": true,
+              "breakupAvailable": true,
+              "breakupActive": false,
+              "damageVariantAvailable": true,
+              "damageVariantActive": false,
+              "damageVariantError": null,
+              "statistics": {
+                "meshes": 7,
+                "opaqueDraws": 7,
+                "bodyDraws": 3,
+                "pilotDraws": 4,
+                "triangles": 26180,
+                "prepassDraws": 7,
+                "shadowSourceMeshes": 3
+              },
+              "residentStatistics": {
+                "meshes": 9,
+                "opaqueDraws": 9,
+                "bodyDraws": 5,
+                "pilotDraws": 4,
+                "triangles": 31966,
+                "prepassDraws": 9,
+                "shadowSourceMeshes": 5
+              }
+            },
+            {
+              "vehicleClass": "podracer",
+              "requested": "sebulba",
+              "active": "sebulba",
+              "status": "ready",
+              "error": null,
+              "lod": "simplified",
+              "revision": 1,
+              "registeredPrepasses": 6,
+              "visiblePrepasses": 2,
+              "embeddedPilot": true,
+              "breakupAvailable": false,
+              "breakupActive": false,
+              "damageVariantAvailable": false,
+              "damageVariantActive": false,
+              "damageVariantError": null,
+              "statistics": {
+                "meshes": 6,
+                "opaqueDraws": 6,
+                "bodyDraws": 2,
+                "pilotDraws": 4,
+                "triangles": 24559,
+                "prepassDraws": 6,
+                "shadowSourceMeshes": 2
+              },
+              "residentStatistics": {
+                "meshes": 6,
+                "opaqueDraws": 6,
+                "bodyDraws": 2,
+                "pilotDraws": 4,
+                "triangles": 24559,
+                "prepassDraws": 6,
+                "shadowSourceMeshes": 2
+              }
+            },
+            {
+              "vehicleClass": "podracer",
+              "requested": "blockrunner",
+              "active": "blockrunner",
+              "status": "ready",
+              "error": null,
+              "lod": "silhouette",
+              "revision": 1,
+              "registeredPrepasses": 5,
+              "visiblePrepasses": 1,
+              "embeddedPilot": true,
+              "breakupAvailable": false,
+              "breakupActive": false,
+              "damageVariantAvailable": false,
+              "damageVariantActive": false,
+              "damageVariantError": null,
+              "statistics": {
+                "meshes": 5,
+                "opaqueDraws": 5,
+                "bodyDraws": 1,
+                "pilotDraws": 4,
+                "triangles": 29682,
+                "prepassDraws": 5,
+                "shadowSourceMeshes": 1
+              },
+              "residentStatistics": {
+                "meshes": 5,
+                "opaqueDraws": 5,
+                "bodyDraws": 1,
+                "pilotDraws": 4,
+                "triangles": 29682,
+                "prepassDraws": 5,
+                "shadowSourceMeshes": 1
+              }
+            },
+            {
+              "vehicleClass": "podracer",
+              "requested": "teemto",
+              "active": "teemto",
+              "status": "ready",
+              "error": null,
+              "lod": "simplified",
+              "revision": 1,
+              "registeredPrepasses": 9,
+              "visiblePrepasses": 3,
+              "embeddedPilot": true,
+              "breakupAvailable": true,
+              "breakupActive": false,
+              "damageVariantAvailable": true,
+              "damageVariantActive": false,
+              "damageVariantError": null,
+              "statistics": {
+                "meshes": 7,
+                "opaqueDraws": 7,
+                "bodyDraws": 3,
+                "pilotDraws": 4,
+                "triangles": 26180,
+                "prepassDraws": 7,
+                "shadowSourceMeshes": 3
+              },
+              "residentStatistics": {
+                "meshes": 9,
+                "opaqueDraws": 9,
+                "bodyDraws": 5,
+                "pilotDraws": 4,
+                "triangles": 31966,
+                "prepassDraws": 9,
+                "shadowSourceMeshes": 5
+              }
+            },
+            {
+              "vehicleClass": "podracer",
+              "requested": "sebulba",
+              "active": "sebulba",
+              "status": "ready",
+              "error": null,
+              "lod": "silhouette",
+              "revision": 1,
+              "registeredPrepasses": 6,
+              "visiblePrepasses": 2,
+              "embeddedPilot": true,
+              "breakupAvailable": false,
+              "breakupActive": false,
+              "damageVariantAvailable": false,
+              "damageVariantActive": false,
+              "damageVariantError": null,
+              "statistics": {
+                "meshes": 6,
+                "opaqueDraws": 6,
+                "bodyDraws": 2,
+                "pilotDraws": 4,
+                "triangles": 24559,
+                "prepassDraws": 6,
+                "shadowSourceMeshes": 2
+              },
+              "residentStatistics": {
+                "meshes": 6,
+                "opaqueDraws": 6,
+                "bodyDraws": 2,
+                "pilotDraws": 4,
+                "triangles": 24559,
+                "prepassDraws": 6,
+                "shadowSourceMeshes": 2
+              }
+            },
+            {
+              "vehicleClass": "podracer",
+              "requested": "polwo",
+              "active": "polwo",
+              "status": "ready",
+              "error": null,
+              "lod": "simplified",
+              "revision": 1,
+              "registeredPrepasses": 8,
+              "visiblePrepasses": 2,
+              "embeddedPilot": true,
+              "breakupAvailable": false,
+              "breakupActive": false,
+              "damageVariantAvailable": false,
+              "damageVariantActive": false,
+              "damageVariantError": null,
+              "statistics": {
+                "meshes": 8,
+                "opaqueDraws": 8,
+                "bodyDraws": 2,
+                "pilotDraws": 6,
+                "triangles": 28830,
+                "prepassDraws": 8,
+                "shadowSourceMeshes": 2
+              },
+              "residentStatistics": {
+                "meshes": 8,
+                "opaqueDraws": 8,
+                "bodyDraws": 2,
+                "pilotDraws": 6,
+                "triangles": 28830,
+                "prepassDraws": 8,
+                "shadowSourceMeshes": 2
+              }
+            }
+          ]
+        },
+        "inkstorm": {
+          "loaded": true,
+          "error": null,
+          "detail": {
+            "highInstances": 54,
+            "lowInstances": 22,
+            "instancedTriangles": 1003500
+          }
+        },
+        "mastery": {
+          "eventId": "inkstorm-battle",
+          "eventTitle": "Battle",
+          "eventSubtitle": "8 racers · Weapons on",
+          "events": [
+            {
+              "id": "inkstorm-battle",
+              "title": "Battle",
+              "subtitle": "8 racers · Weapons on"
+            },
+            {
+              "id": "inkstorm-race",
+              "title": "Race",
+              "subtitle": "8 racers · Weapons off"
+            },
+            {
+              "id": "inkstorm-trial",
+              "title": "Inkstorm • Time Attack",
+              "subtitle": "One clean lap. Stock machine. Chase your personal best."
+            },
+            {
+              "id": "flight-school",
+              "title": "Flight School",
+              "subtitle": "Learn launch, braking, drift release and heat control at your own pace."
+            },
+            {
+              "id": "cup-canyon",
+              "title": "Inkstorm Cup • Canyon",
+              "subtitle": "Round 1 / 3. Eight-racer grid. Two laps. Stock machinery."
+            },
+            {
+              "id": "cup-foundry",
+              "title": "Inkstorm Cup • Foundry",
+              "subtitle": "Round 2 / 3. Industrial sweepers reward patient boost timing."
+            },
+            {
+              "id": "cup-glass",
+              "title": "Inkstorm Cup • Glasslands",
+              "subtitle": "Final round. Carry your championship points into the high-speed flats."
+            },
+            {
+              "id": "open-expedition",
+              "title": "Open Expedition",
+              "subtitle": "Fresh course every race. Your rules, Workshop builds and combat."
+            },
+            {
+              "id": "daily-2026-09-15",
+              "title": "Daily Flight",
+              "subtitle": "2026-09-15 • Shared course, stock build, one clean lap."
+            }
+          ],
+          "bestTime": null,
+          "medal": "none",
+          "ghostAvailable": false,
+          "ghostEnabled": true,
+          "courseSaved": false,
+          "latestSector": {
+            "index": 10,
+            "lap": 1,
+            "label": "Recovery straight",
+            "time": 8.766666666673643,
+            "delta": null,
+            "paceDelta": null
+          },
+          "retryTarget": null,
+          "tutorial": null,
+          "result": {
+            "eventTitle": "Battle",
+            "time": 83.96666666667956,
+            "personalBest": false,
+            "bestTime": null,
+            "improvement": null,
+            "medal": "none",
+            "nextMedal": null,
+            "sectors": [
+              {
+                "index": 1,
+                "lap": 1,
+                "label": "Open straight",
+                "time": 8.27500000000017,
+                "delta": null,
+                "paceDelta": null
+              },
+              {
+                "index": 2,
+                "lap": 1,
+                "label": "Open straight",
+                "time": 4.6583333333330685,
+                "delta": null,
+                "paceDelta": null
+              },
+              {
+                "index": 3,
+                "lap": 1,
+                "label": "Launch descent",
+                "time": 8.291666666666197,
+                "delta": null,
+                "paceDelta": null
+              },
+              {
+                "index": 4,
+                "lap": 1,
+                "label": "Sweeper",
+                "time": 8.008333333332878,
+                "delta": null,
+                "paceDelta": null
+              },
+              {
+                "index": 5,
+                "lap": 1,
+                "label": "Canyon",
+                "time": 4.599999999999742,
+                "delta": null,
+                "paceDelta": null
+              },
+              {
+                "index": 6,
+                "lap": 1,
+                "label": "Foundry turns",
+                "time": 21.758333333332097,
+                "delta": null,
+                "paceDelta": null
+              },
+              {
+                "index": 7,
+                "lap": 1,
+                "label": "Recovery straight",
+                "time": 5.883333333332999,
+                "delta": null,
+                "paceDelta": null
+              },
+              {
+                "index": 8,
+                "lap": 1,
+                "label": "Open straight",
+                "time": 5.550000000002257,
+                "delta": null,
+                "paceDelta": null
+              },
+              {
+                "index": 9,
+                "lap": 1,
+                "label": "Hairpin",
+                "time": 8.175000000006506,
+                "delta": null,
+                "paceDelta": null
+              },
+              {
+                "index": 10,
+                "lap": 1,
+                "label": "Recovery straight",
+                "time": 8.766666666673643,
+                "delta": null,
+                "paceDelta": null
+              }
+            ],
+            "retryTarget": null,
+            "invalidReason": "Recovery used — finish for practice, then retry for a clean record.",
+            "nextEventId": null,
+            "nextObjective": "Retry the same course and complete a lap without recovery."
+          },
+          "championship": [],
+          "championshipRound": 0,
+          "storageWarning": null,
+          "archiveNotice": null
+        },
+        "competitionProfile": "chaos",
+        "reviewScenario": "desert",
+        "reviewCamera": "chase",
+        "speed": 0.004996439628067851,
+        "position": [
+          18595.543641838856,
+          -6.768253149534855,
+          122.20457695501979
+        ],
+        "cameraFocusPosition": [
+          18595.543641838856,
+          -6.768253149534855,
+          122.20457695501979
+        ],
+        "cameraPosition": [
+          18537.406511345613,
+          30.23174685046514,
+          35.99428633571873
+        ],
+        "combatPresentation": {
+          "cooldownUntilWallMs": 62220.5,
+          "cinematic": null
+        },
+        "combatCamera": {
+          "cut": false,
+          "recoveryArmed": false,
+          "wreckChase": false,
+          "wreckRecovery": false
+        },
+        "renderedRacerPositions": [
+          {
+            "id": "player",
+            "position": [
+              18595.543641838856,
+              -6.768253149534855,
+              122.20457695501979
+            ]
+          },
+          {
+            "id": "ai-vexa",
+            "position": [
+              18590.06954361863,
+              -15.695416298098312,
+              157.9773895939838
+            ]
+          },
+          {
+            "id": "ai-talik",
+            "position": [
+              18595.403825902402,
+              -6.844832035838882,
+              122.96527711827085
+            ]
+          },
+          {
+            "id": "ai-kodo",
+            "position": [
+              18594.11712454623,
+              -10.997178684482895,
+              136.54037643318634
+            ]
+          },
+          {
+            "id": "ai-sola",
+            "position": [
+              18601.125196274446,
+              -7.037865396875229,
+              99.07196563157585
+            ]
+          },
+          {
+            "id": "ai-rax",
+            "position": [
+              18596.45362157185,
+              -6.650784068230563,
+              122.48019865858382
+            ]
+          },
+          {
+            "id": "ai-miri",
+            "position": [
+              18792.93783744752,
+              -16.410762970933888,
+              -243.4813242498721
+            ]
+          },
+          {
+            "id": "ai-olan",
+            "position": [
+              18591.786729326577,
+              -11.193036748030062,
+              136.70958952546704
+            ]
+          }
+        ],
+        "highlightReplay": null,
+        "cameraFocusOffset": {
+          "forward": 0,
+          "right": 0,
+          "height": 0
+        },
+        "yaw": -0.01301731857960986,
+        "inputSteer": 0,
+        "inputFire": false,
+        "inputMine": false,
+        "inputShield": false,
+        "awaitingStart": false,
+        "selectedLaps": 1,
+        "pendingCourse": null,
+        "course": {
+          "seed": 1229867859,
+          "signature": "2dacfc90",
+          "ordinal": 1,
+          "totalLength": 7646.005613260706,
+          "checkpointCount": 10,
+          "bounds": {
+            "minX": 18278.79533696944,
+            "maxX": 19951.707920938836,
+            "minZ": -1091.5543442307046,
+            "maxZ": 1537.3488790080094
+          },
+          "sectionCounts": {
+            "start-straight": 2,
+            "fast-straight": 4,
+            "launch-crest": 2,
+            "wide-sweeper": 4,
+            "narrow-canyon": 3,
+            "chicane": 3,
+            "recovery-straight": 3,
+            "hairpin": 5
+          },
+          "sections": [
+            {
+              "id": "01-grid",
+              "progress": 0.003
+            },
+            {
+              "id": "02-salt-run",
+              "progress": 0.08593750000000007
+            },
+            {
+              "id": "03-canyon",
+              "progress": 0.44140624999999994
+            },
+            {
+              "id": "04-fork",
+              "progress": 0.7987770605129424
+            },
+            {
+              "id": "05-launch",
+              "progress": 0.17968750000000008
+            },
+            {
+              "id": "06-foundry",
+              "progress": 0.53515625
+            },
+            {
+              "id": "07-finish",
+              "progress": 0.83203125
+            }
+          ],
+          "samples": [
+            {
+              "x": 18603.9,
+              "z": -17.2,
+              "width": 30,
+              "tag": "start-straight"
+            },
+            {
+              "x": 18608.8,
+              "z": 102,
+              "width": 30.7,
+              "tag": "start-straight"
+            },
+            {
+              "x": 18621.6,
+              "z": 220.8,
+              "width": 31.5,
+              "tag": "start-straight"
+            },
+            {
+              "x": 18633,
+              "z": 339.8,
+              "width": 32,
+              "tag": "start-straight"
+            },
+            {
+              "x": 18639.2,
+              "z": 459,
+              "width": 32.3,
+              "tag": "fast-straight"
+            },
+            {
+              "x": 18643.7,
+              "z": 578.4,
+              "width": 33.1,
+              "tag": "fast-straight"
+            },
+            {
+              "x": 18649,
+              "z": 697.8,
+              "width": 33.8,
+              "tag": "fast-straight"
+            },
+            {
+              "x": 18656.9,
+              "z": 817,
+              "width": 33.9,
+              "tag": "fast-straight"
+            },
+            {
+              "x": 18663.6,
+              "z": 936.3,
+              "width": 32.6,
+              "tag": "fast-straight"
+            },
+            {
+              "x": 18679.9,
+              "z": 1054.5,
+              "width": 31.2,
+              "tag": "fast-straight"
+            },
+            {
+              "x": 18719,
+              "z": 1167.2,
+              "width": 30.9,
+              "tag": "launch-crest"
+            },
+            {
+              "x": 18775.6,
+              "z": 1272.3,
+              "width": 30.4,
+              "tag": "launch-crest"
+            },
+            {
+              "x": 18852.8,
+              "z": 1363.1,
+              "width": 30,
+              "tag": "launch-crest"
+            },
+            {
+              "x": 18949.3,
+              "z": 1433.1,
+              "width": 31.3,
+              "tag": "launch-crest"
+            },
+            {
+              "x": 19056.1,
+              "z": 1486.4,
+              "width": 34,
+              "tag": "launch-crest"
+            },
+            {
+              "x": 19169.7,
+              "z": 1523,
+              "width": 35.9,
+              "tag": "launch-crest"
+            },
+            {
+              "x": 19288.2,
+              "z": 1537.2,
+              "width": 36.4,
+              "tag": "wide-sweeper"
+            },
+            {
+              "x": 19407.2,
+              "z": 1529.9,
+              "width": 37.3,
+              "tag": "wide-sweeper"
+            },
+            {
+              "x": 19522.9,
+              "z": 1500.8,
+              "width": 38,
+              "tag": "wide-sweeper"
+            },
+            {
+              "x": 19630.4,
+              "z": 1449.1,
+              "width": 37.5,
+              "tag": "wide-sweeper"
+            },
+            {
+              "x": 19728.2,
+              "z": 1380.6,
+              "width": 36.2,
+              "tag": "wide-sweeper"
+            },
+            {
+              "x": 19814.8,
+              "z": 1298.5,
+              "width": 35.1,
+              "tag": "wide-sweeper"
+            },
+            {
+              "x": 19881.7,
+              "z": 1200,
+              "width": 34.1,
+              "tag": "wide-sweeper"
+            },
+            {
+              "x": 19922.7,
+              "z": 1088,
+              "width": 30.3,
+              "tag": "wide-sweeper"
+            },
+            {
+              "x": 19945.4,
+              "z": 970.8,
+              "width": 27.2,
+              "tag": "wide-sweeper"
+            },
+            {
+              "x": 19950.5,
+              "z": 851.7,
+              "width": 24.9,
+              "tag": "wide-sweeper"
+            },
+            {
+              "x": 19933.7,
+              "z": 733.5,
+              "width": 19.3,
+              "tag": "wide-sweeper"
+            },
+            {
+              "x": 19907.8,
+              "z": 616.8,
+              "width": 17,
+              "tag": "narrow-canyon"
+            },
+            {
+              "x": 19874.3,
+              "z": 502.2,
+              "width": 15.9,
+              "tag": "narrow-canyon"
+            },
+            {
+              "x": 19828.4,
+              "z": 392,
+              "width": 15,
+              "tag": "narrow-canyon"
+            },
+            {
+              "x": 19759.6,
+              "z": 294.8,
+              "width": 15.3,
+              "tag": "narrow-canyon"
+            },
+            {
+              "x": 19684.8,
+              "z": 201.8,
+              "width": 15.8,
+              "tag": "narrow-canyon"
+            },
+            {
+              "x": 19683.5,
+              "z": 91.3,
+              "width": 16.9,
+              "tag": "narrow-canyon"
+            },
+            {
+              "x": 19766.6,
+              "z": 5.7,
+              "width": 20.7,
+              "tag": "narrow-canyon"
+            },
+            {
+              "x": 19795.4,
+              "z": -95.8,
+              "width": 22.9,
+              "tag": "chicane"
+            },
+            {
+              "x": 19694.3,
+              "z": -158.4,
+              "width": 21.5,
+              "tag": "chicane"
+            },
+            {
+              "x": 19594,
+              "z": -222,
+              "width": 20.1,
+              "tag": "chicane"
+            },
+            {
+              "x": 19634.9,
+              "z": -319.7,
+              "width": 20.7,
+              "tag": "chicane"
+            },
+            {
+              "x": 19722.7,
+              "z": -400.4,
+              "width": 21.8,
+              "tag": "chicane"
+            },
+            {
+              "x": 19738.8,
+              "z": -514.2,
+              "width": 23.4,
+              "tag": "chicane"
+            },
+            {
+              "x": 19697.5,
+              "z": -626,
+              "width": 28.2,
+              "tag": "chicane"
+            },
+            {
+              "x": 19634,
+              "z": -727,
+              "width": 31,
+              "tag": "chicane"
+            },
+            {
+              "x": 19550.9,
+              "z": -812.5,
+              "width": 31.6,
+              "tag": "recovery-straight"
+            },
+            {
+              "x": 19453.6,
+              "z": -881.4,
+              "width": 32.7,
+              "tag": "recovery-straight"
+            },
+            {
+              "x": 19346.1,
+              "z": -933.4,
+              "width": 32.9,
+              "tag": "fast-straight"
+            },
+            {
+              "x": 19231.6,
+              "z": -966.9,
+              "width": 31.9,
+              "tag": "fast-straight"
+            },
+            {
+              "x": 19113.9,
+              "z": -987.3,
+              "width": 30.5,
+              "tag": "fast-straight"
+            },
+            {
+              "x": 18995,
+              "z": -998.4,
+              "width": 29.9,
+              "tag": "fast-straight"
+            },
+            {
+              "x": 18875.5,
+              "z": -999.3,
+              "width": 27.8,
+              "tag": "fast-straight"
+            },
+            {
+              "x": 18756.5,
+              "z": -989.9,
+              "width": 24.5,
+              "tag": "fast-straight"
+            },
+            {
+              "x": 18639,
+              "z": -968.7,
+              "width": 23,
+              "tag": "hairpin"
+            },
+            {
+              "x": 18525.3,
+              "z": -932.3,
+              "width": 21.5,
+              "tag": "hairpin"
+            },
+            {
+              "x": 18418.2,
+              "z": -879.7,
+              "width": 19.4,
+              "tag": "hairpin"
+            },
+            {
+              "x": 18329.4,
+              "z": -800.9,
+              "width": 18.8,
+              "tag": "hairpin"
+            },
+            {
+              "x": 18281.1,
+              "z": -692.8,
+              "width": 18,
+              "tag": "hairpin"
+            },
+            {
+              "x": 18305.8,
+              "z": -578.7,
+              "width": 18.6,
+              "tag": "hairpin"
+            },
+            {
+              "x": 18389.2,
+              "z": -494.7,
+              "width": 19.2,
+              "tag": "hairpin"
+            },
+            {
+              "x": 18499.1,
+              "z": -448.7,
+              "width": 21.2,
+              "tag": "hairpin"
+            },
+            {
+              "x": 18616.7,
+              "z": -432.7,
+              "width": 22.3,
+              "tag": "hairpin"
+            },
+            {
+              "x": 18733.2,
+              "z": -458.8,
+              "width": 25.2,
+              "tag": "hairpin"
+            },
+            {
+              "x": 18822.7,
+              "z": -419.2,
+              "width": 27.3,
+              "tag": "recovery-straight"
+            },
+            {
+              "x": 18803.1,
+              "z": -301.9,
+              "width": 28.7,
+              "tag": "recovery-straight"
+            },
+            {
+              "x": 18749.9,
+              "z": -196.4,
+              "width": 29.3,
+              "tag": "recovery-straight"
+            },
+            {
+              "x": 18665,
+              "z": -112.6,
+              "width": 30,
+              "tag": "start-straight"
+            }
+          ]
+        },
+        "onlineRoom": {
+          "role": "solo",
+          "status": "idle",
+          "code": "",
+          "laps": 3,
+          "mode": "circuit",
+          "aiDifficulty": "medium",
+          "members": [],
+          "localRacerId": null,
+          "capacity": 4,
+          "canStart": false,
+          "error": null
+        },
+        "networkSnapshotAge": 0,
+        "vehicleSelectionLocked": true,
+        "vehicleClass": "podracer",
+        "shieldActive": false,
+        "shieldCooldown": 0,
+        "weaponCooldown": 0,
+        "mineCharges": 0,
+        "redlineHeat": 0,
+        "wreckPhase": "running",
+        "takedowns": 0,
+        "projectiles": 0,
+        "mines": 0,
+        "activeHazards": 4,
+        "upgrades": {
+          "afterburner": 0,
+          "cornering": 0,
+          "resilience": 0,
+          "parts": [],
+          "collectedPickupIds": [
+            "lance-cells-chicane",
+            "lance-cells-hairpin"
+          ]
+        },
+        "audio": {
+          "recordings": {
+            "loaded": 11,
+            "pending": 0,
+            "failed": [],
+            "activeEffects": 0
+          },
+          "ready": true,
+          "mode": "race",
+          "requested": true,
+          "loading": false,
+          "introScheduled": true,
+          "scoreScheduled": true,
+          "awaitingGesture": false,
+          "url": "/audio/podracing-selection-intro.webm",
+          "overtakeCallout": {
+            "ready": true,
+            "scheduled": false,
+            "playing": false,
+            "paused": false,
+            "cooldownRemainingSeconds": 0,
+            "playCount": 2
+          }
+        },
+        "postMode": "mrt-sobel",
+        "postFailure": null
+      },
+      "galactic": {
+        "racers": [
+          {
+            "id": "player",
+            "galactic": {
+              "version": 1,
+              "vehicleClass": "podracer",
+              "shield": {
+                "active": false,
+                "remaining": 0,
+                "cooldown": 0,
+                "absorbedDamage": 0.03773339807108581
+              },
+              "weapon": {
+                "cooldown": 0,
+                "triggerHeld": false,
+                "shotsFired": 14,
+                "hits": 3,
+                "charges": 0
+              },
+              "mine": {
+                "cooldown": 0,
+                "charges": 0,
+                "deployed": 3
+              },
+              "redline": {
+                "active": false,
+                "heat": 0,
+                "lockout": 0,
+                "peakHeat": 0.08
+              },
+              "wreck": {
+                "phase": "running",
+                "timer": 0,
+                "invulnerable": 0,
+                "crashCount": 1,
+                "cause": null,
+                "sourceId": null,
+                "takedownBy": null,
+                "recentAggressorId": null,
+                "recentAggressorTime": 0
+              },
+              "status": {
+                "sandGeyser": 0,
+                "heatVent": 0,
+                "rockfallStun": 0,
+                "dustInterference": 0,
+                "ionized": 0
+              },
+              "upgrades": {
+                "afterburner": 0,
+                "cornering": 0,
+                "resilience": 0,
+                "parts": [],
+                "collectedPickupIds": [
+                  "lance-cells-chicane",
+                  "lance-cells-hairpin"
+                ]
+              },
+              "takedowns": 0,
+              "controls": {
+                "fireHeld": false,
+                "shieldHeld": false,
+                "cycleVehicleHeld": false
+              },
+              "rivalry": {
+                "rivalId": null,
+                "remaining": 0
+              }
+            },
+            "position": [
+              18595.543641838856,
+              -6.768253149534855,
+              122.20457695501979
+            ],
+            "yaw": -0.01301731857960986,
+            "courseProgress": 0.000019316613992548874,
+            "lateralOffset": -3.0319160788111925
+          },
+          {
+            "id": "ai-vexa",
+            "galactic": {
+              "version": 1,
+              "vehicleClass": "podracer",
+              "shield": {
+                "active": false,
+                "remaining": 0,
+                "cooldown": 0,
+                "absorbedDamage": 0.12277439999999998
+              },
+              "weapon": {
+                "cooldown": 0,
+                "triggerHeld": false,
+                "shotsFired": 0,
+                "hits": 0,
+                "charges": 8
+              },
+              "mine": {
+                "cooldown": 0,
+                "charges": 5,
+                "deployed": 0
+              },
+              "redline": {
+                "active": false,
+                "heat": 0,
+                "lockout": 0,
+                "peakHeat": 0.16716666666666644
+              },
+              "wreck": {
+                "phase": "running",
+                "timer": 0,
+                "invulnerable": 0,
+                "crashCount": 0,
+                "cause": null,
+                "sourceId": null,
+                "takedownBy": null,
+                "recentAggressorId": null,
+                "recentAggressorTime": 0
+              },
+              "status": {
+                "sandGeyser": 0,
+                "heatVent": 0,
+                "rockfallStun": 0,
+                "dustInterference": 0,
+                "ionized": 0
+              },
+              "upgrades": {
+                "afterburner": 1,
+                "cornering": 1,
+                "resilience": 1,
+                "parts": [
+                  "pulse-capacitor",
+                  "landing-recuperator",
+                  "mine-printer"
+                ],
+                "collectedPickupIds": [
+                  "lance-cells-straight",
+                  "part-afterburner",
+                  "combat-emp",
+                  "part-vector",
+                  "lance-cells-canyon",
+                  "lance-cells-chicane",
+                  "part-frame",
+                  "part-pulse",
+                  "combat-repair",
+                  "lance-cells-hairpin",
+                  "part-landing",
+                  "part-mine"
+                ]
+              },
+              "takedowns": 0,
+              "controls": {
+                "fireHeld": false,
+                "shieldHeld": false,
+                "cycleVehicleHeld": false
+              },
+              "rivalry": {
+                "rivalId": null,
+                "remaining": 0
+              }
+            },
+            "position": [
+              18590.06954361863,
+              -15.695416298098312,
+              157.9773895939838
+            ],
+            "yaw": -0.07954600228807429,
+            "courseProgress": 0.000037730857803801196,
+            "lateralOffset": -3.61177881078094
+          },
+          {
+            "id": "ai-talik",
+            "galactic": {
+              "version": 1,
+              "vehicleClass": "podracer",
+              "shield": {
+                "active": false,
+                "remaining": 0,
+                "cooldown": 0,
+                "absorbedDamage": 0.11692799999999999
+              },
+              "weapon": {
+                "cooldown": 0,
+                "triggerHeld": false,
+                "shotsFired": 5,
+                "hits": 2,
+                "charges": 1
+              },
+              "mine": {
+                "cooldown": 0,
+                "charges": 3,
+                "deployed": 0
+              },
+              "redline": {
+                "active": false,
+                "heat": 0,
+                "lockout": 0,
+                "peakHeat": 0.10199999999999992
+              },
+              "wreck": {
+                "phase": "running",
+                "timer": 0,
+                "invulnerable": 0,
+                "crashCount": 0,
+                "cause": null,
+                "sourceId": null,
+                "takedownBy": null,
+                "recentAggressorId": null,
+                "recentAggressorTime": 0
+              },
+              "status": {
+                "sandGeyser": 0,
+                "heatVent": 0,
+                "rockfallStun": 0,
+                "dustInterference": 0,
+                "ionized": 0
+              },
+              "upgrades": {
+                "afterburner": 0,
+                "cornering": 0,
+                "resilience": 0,
+                "parts": [],
+                "collectedPickupIds": []
+              },
+              "takedowns": 0,
+              "controls": {
+                "fireHeld": false,
+                "shieldHeld": false,
+                "cycleVehicleHeld": false
+              },
+              "rivalry": {
+                "rivalId": null,
+                "remaining": 0
+              }
+            },
+            "position": [
+              18595.403825902402,
+              -6.844832035838882,
+              122.96527711827085
+            ],
+            "yaw": -0.02015218881023273,
+            "courseProgress": 0.0000422836326373778,
+            "lateralOffset": -2.394336584355088
+          },
+          {
+            "id": "ai-kodo",
+            "galactic": {
+              "version": 1,
+              "vehicleClass": "podracer",
+              "shield": {
+                "active": false,
+                "remaining": 0,
+                "cooldown": 0,
+                "absorbedDamage": 0.7299525104729373
+              },
+              "weapon": {
+                "cooldown": 0,
+                "triggerHeld": false,
+                "shotsFired": 7,
+                "hits": 5,
+                "charges": 7
+              },
+              "mine": {
+                "cooldown": 0,
+                "charges": 0,
+                "deployed": 3
+              },
+              "redline": {
+                "active": false,
+                "heat": 0,
+                "lockout": 0,
+                "peakHeat": 0.21816666666666631
+              },
+              "wreck": {
+                "phase": "running",
+                "timer": 0,
+                "invulnerable": 0,
+                "crashCount": 1,
+                "cause": null,
+                "sourceId": null,
+                "takedownBy": null,
+                "recentAggressorId": null,
+                "recentAggressorTime": 0
+              },
+              "status": {
+                "sandGeyser": 0,
+                "heatVent": 0,
+                "rockfallStun": 0,
+                "dustInterference": 0,
+                "ionized": 0
+              },
+              "upgrades": {
+                "afterburner": 0,
+                "cornering": 0,
+                "resilience": 0,
+                "parts": [],
+                "collectedPickupIds": [
+                  "lance-cells-canyon",
+                  "lance-cells-chicane",
+                  "combat-repair"
+                ]
+              },
+              "takedowns": 0,
+              "controls": {
+                "fireHeld": false,
+                "shieldHeld": false,
+                "cycleVehicleHeld": false
+              },
+              "rivalry": {
+                "rivalId": null,
+                "remaining": 0
+              }
+            },
+            "position": [
+              18594.11712454623,
+              -10.997178684482895,
+              136.54037643318634
+            ],
+            "yaw": -0.07122830086898535,
+            "courseProgress": 0.000021432603732648663,
+            "lateralOffset": -2.408008500913053
+          },
+          {
+            "id": "ai-sola",
+            "galactic": {
+              "version": 1,
+              "vehicleClass": "podracer",
+              "shield": {
+                "active": false,
+                "remaining": 0,
+                "cooldown": 0,
+                "absorbedDamage": 0.30362303999999996
+              },
+              "weapon": {
+                "cooldown": 0,
+                "triggerHeld": false,
+                "shotsFired": 6,
+                "hits": 3,
+                "charges": 4
+              },
+              "mine": {
+                "cooldown": 0,
+                "charges": 3,
+                "deployed": 0
+              },
+              "redline": {
+                "active": false,
+                "heat": 0,
+                "lockout": 0,
+                "peakHeat": 0.27766666666666645
+              },
+              "wreck": {
+                "phase": "running",
+                "timer": 0,
+                "invulnerable": 0,
+                "crashCount": 0,
+                "cause": null,
+                "sourceId": null,
+                "takedownBy": null,
+                "recentAggressorId": null,
+                "recentAggressorTime": 0
+              },
+              "status": {
+                "sandGeyser": 0,
+                "heatVent": 0,
+                "rockfallStun": 0,
+                "dustInterference": 0,
+                "ionized": 0
+              },
+              "upgrades": {
+                "afterburner": 0,
+                "cornering": 0,
+                "resilience": 0,
+                "parts": [],
+                "collectedPickupIds": [
+                  "lance-cells-hairpin"
+                ]
+              },
+              "takedowns": 1,
+              "controls": {
+                "fireHeld": false,
+                "shieldHeld": false,
+                "cycleVehicleHeld": false
+              },
+              "rivalry": {
+                "rivalId": null,
+                "remaining": 0
+              }
+            },
+            "position": [
+              18601.125196274446,
+              -7.037865396875229,
+              99.07196563157585
+            ],
+            "yaw": 0.12597199479783416,
+            "courseProgress": 0.00005911681283412993,
+            "lateralOffset": -2.841487716842036
+          },
+          {
+            "id": "ai-rax",
+            "galactic": {
+              "version": 1,
+              "vehicleClass": "podracer",
+              "shield": {
+                "active": false,
+                "remaining": 0,
+                "cooldown": 0,
+                "absorbedDamage": 0.23385599999999998
+              },
+              "weapon": {
+                "cooldown": 0,
+                "triggerHeld": false,
+                "shotsFired": 10,
+                "hits": 3,
+                "charges": 0
+              },
+              "mine": {
+                "cooldown": 0,
+                "charges": 3,
+                "deployed": 0
+              },
+              "redline": {
+                "active": false,
+                "heat": 0,
+                "lockout": 0,
+                "peakHeat": 0.3371666666666669
+              },
+              "wreck": {
+                "phase": "running",
+                "timer": 0,
+                "invulnerable": 0,
+                "crashCount": 1,
+                "cause": null,
+                "sourceId": null,
+                "takedownBy": null,
+                "recentAggressorId": null,
+                "recentAggressorTime": 0
+              },
+              "status": {
+                "sandGeyser": 0,
+                "heatVent": 0,
+                "rockfallStun": 0,
+                "dustInterference": 0,
+                "ionized": 0
+              },
+              "upgrades": {
+                "afterburner": 0,
+                "cornering": 0,
+                "resilience": 0,
+                "parts": [],
+                "collectedPickupIds": [
+                  "lance-cells-chicane"
+                ]
+              },
+              "takedowns": 0,
+              "controls": {
+                "fireHeld": false,
+                "shieldHeld": false,
+                "cycleVehicleHeld": false
+              },
+              "rivalry": {
+                "rivalId": null,
+                "remaining": 0
+              }
+            },
+            "position": [
+              18596.45362157185,
+              -6.650784068230563,
+              122.48019865858382
+            ],
+            "yaw": -0.0036461671764334014,
+            "courseProgress": 0.00001535111768162583,
+            "lateralOffset": -2.188670247228315
+          },
+          {
+            "id": "ai-miri",
+            "galactic": {
+              "version": 1,
+              "vehicleClass": "podracer",
+              "shield": {
+                "active": false,
+                "remaining": 0,
+                "cooldown": 0,
+                "absorbedDamage": 0.20364960000000001
+              },
+              "weapon": {
+                "cooldown": 0,
+                "triggerHeld": false,
+                "shotsFired": 6,
+                "hits": 5,
+                "charges": 8
+              },
+              "mine": {
+                "cooldown": 0,
+                "charges": 0,
+                "deployed": 3
+              },
+              "redline": {
+                "active": false,
+                "heat": 0,
+                "lockout": 0,
+                "peakHeat": 0.3683333333333338
+              },
+              "wreck": {
+                "phase": "running",
+                "timer": 0,
+                "invulnerable": 0,
+                "crashCount": 2,
+                "cause": null,
+                "sourceId": null,
+                "takedownBy": null,
+                "recentAggressorId": null,
+                "recentAggressorTime": 0
+              },
+              "status": {
+                "sandGeyser": 0,
+                "heatVent": 0,
+                "rockfallStun": 0,
+                "dustInterference": 0,
+                "ionized": 0
+              },
+              "upgrades": {
+                "afterburner": 0,
+                "cornering": 0,
+                "resilience": 0,
+                "parts": [],
+                "collectedPickupIds": [
+                  "lance-cells-chicane",
+                  "lance-cells-hairpin"
+                ]
+              },
+              "takedowns": 1,
+              "controls": {
+                "fireHeld": false,
+                "shieldHeld": false,
+                "cycleVehicleHeld": false
+              },
+              "rivalry": {
+                "rivalId": null,
+                "remaining": 0
+              }
+            },
+            "position": [
+              18792.93783744752,
+              -16.410762970933888,
+              -243.4813242498721
+            ],
+            "yaw": -0.11490471255841639,
+            "courseProgress": 0.9497130208326332,
+            "lateralOffset": -8.088167713483768
+          },
+          {
+            "id": "ai-olan",
+            "galactic": {
+              "version": 1,
+              "vehicleClass": "podracer",
+              "shield": {
+                "active": false,
+                "remaining": 0,
+                "cooldown": 0,
+                "absorbedDamage": 0
+              },
+              "weapon": {
+                "cooldown": 0,
+                "triggerHeld": false,
+                "shotsFired": 6,
+                "hits": 5,
+                "charges": 0
+              },
+              "mine": {
+                "cooldown": 0,
+                "charges": 1,
+                "deployed": 2
+              },
+              "redline": {
+                "active": false,
+                "heat": 0,
+                "lockout": 0,
+                "peakHeat": 0.11333333333333323
+              },
+              "wreck": {
+                "phase": "running",
+                "timer": 0,
+                "invulnerable": 0,
+                "crashCount": 1,
+                "cause": null,
+                "sourceId": null,
+                "takedownBy": null,
+                "recentAggressorId": null,
+                "recentAggressorTime": 0
+              },
+              "status": {
+                "sandGeyser": 0,
+                "heatVent": 0,
+                "rockfallStun": 0,
+                "dustInterference": 0,
+                "ionized": 0
+              },
+              "upgrades": {
+                "afterburner": 0,
+                "cornering": 0,
+                "resilience": 0,
+                "parts": [],
+                "collectedPickupIds": [
+                  "combat-repair"
+                ]
+              },
+              "takedowns": 1,
+              "controls": {
+                "fireHeld": false,
+                "shieldHeld": false,
+                "cycleVehicleHeld": false
+              },
+              "rivalry": {
+                "rivalId": null,
+                "remaining": 0
+              }
+            },
+            "position": [
+              18591.786729326577,
+              -11.193036748030062,
+              136.70958952546704
+            ],
+            "yaw": -0.09885411996617943,
+            "courseProgress": 0.000003906243120867473,
+            "lateralOffset": -3.374939575055744
+          }
+        ],
+        "world": {
+          "version": 1,
+          "step": 11037,
+          "rngState": 2121146087,
+          "projectileSequence": 54,
+          "mineSequence": 11,
+          "projectiles": [],
+          "mines": [],
+          "hazards": [
+            {
+              "id": "geyser-launch",
+              "kind": "sand-geyser",
+              "progress": 0.19791666666666677,
+              "lateralOffset": -3,
+              "progressRadius": 0.006,
+              "lateralRadius": 15,
+              "cooldowns": {}
+            },
+            {
+              "id": "vent-canyon",
+              "kind": "heat-vent",
+              "progress": 0.47005208333333326,
+              "lateralOffset": 4,
+              "progressRadius": 0.007,
+              "lateralRadius": 13,
+              "cooldowns": {}
+            },
+            {
+              "id": "fall-chicane",
+              "kind": "rockfall",
+              "progress": 0.5885416666666665,
+              "lateralOffset": -5,
+              "progressRadius": 0.006,
+              "lateralRadius": 14,
+              "cooldowns": {}
+            },
+            {
+              "id": "dust-hairpin",
+              "kind": "dust-interference",
+              "progress": 0.8489583333333333,
+              "lateralOffset": 0,
+              "progressRadius": 0.01,
+              "lateralRadius": 24,
+              "cooldowns": {}
+            }
+          ],
+          "pickups": [
+            {
+              "id": "part-afterburner",
+              "progress": 0.205,
+              "lateralOffset": -7,
+              "progressRadius": 0.0045,
+              "lateralRadius": 8,
+              "part": "afterburner-coils",
+              "collectedBy": "ai-vexa"
+            },
+            {
+              "id": "part-vector",
+              "progress": 0.39,
+              "lateralOffset": 8,
+              "progressRadius": 0.0045,
+              "lateralRadius": 8,
+              "part": "vector-vanes",
+              "collectedBy": "ai-vexa"
+            },
+            {
+              "id": "part-frame",
+              "progress": 0.57,
+              "lateralOffset": -7,
+              "progressRadius": 0.0045,
+              "lateralRadius": 8,
+              "part": "reinforced-frame",
+              "collectedBy": "ai-vexa"
+            },
+            {
+              "id": "part-pulse",
+              "progress": 0.705,
+              "lateralOffset": 7,
+              "progressRadius": 0.0045,
+              "lateralRadius": 8,
+              "part": "pulse-capacitor",
+              "collectedBy": "ai-vexa"
+            },
+            {
+              "id": "part-landing",
+              "progress": 0.845,
+              "lateralOffset": -5,
+              "progressRadius": 0.0045,
+              "lateralRadius": 8,
+              "part": "landing-recuperator",
+              "collectedBy": "ai-vexa"
+            },
+            {
+              "id": "part-mine",
+              "progress": 0.93,
+              "lateralOffset": 6,
+              "progressRadius": 0.0045,
+              "lateralRadius": 8,
+              "part": "mine-printer",
+              "collectedBy": "ai-vexa"
+            },
+            {
+              "id": "combat-emp",
+              "progress": 0.315,
+              "lateralOffset": -9,
+              "progressRadius": 0.0045,
+              "lateralRadius": 8,
+              "part": "emp-cell",
+              "collectedBy": null,
+              "respawnRemaining": 0
+            },
+            {
+              "id": "combat-repair",
+              "progress": 0.805,
+              "lateralOffset": 8,
+              "progressRadius": 0.0045,
+              "lateralRadius": 8,
+              "part": "repair-salvage",
+              "collectedBy": null,
+              "respawnRemaining": 0
+            },
+            {
+              "id": "lance-cells-canyon",
+              "progress": 0.4309895833333335,
+              "lateralOffset": 0,
+              "progressRadius": 0.0045,
+              "lateralRadius": 8,
+              "part": "lance-cells",
+              "collectedBy": null,
+              "respawnRemaining": 0
+            },
+            {
+              "id": "lance-cells-chicane",
+              "progress": 0.5611979166666665,
+              "lateralOffset": 0,
+              "progressRadius": 0.0045,
+              "lateralRadius": 8,
+              "part": "lance-cells",
+              "collectedBy": null,
+              "respawnRemaining": 0
+            },
+            {
+              "id": "lance-cells-hairpin",
+              "progress": 0.83203125,
+              "lateralOffset": 0,
+              "progressRadius": 0.0045,
+              "lateralRadius": 8,
+              "part": "lance-cells",
+              "collectedBy": null,
+              "respawnRemaining": 0
+            },
+            {
+              "id": "lance-cells-straight",
+              "progress": 0.1458333333333333,
+              "lateralOffset": 0,
+              "progressRadius": 0.0045,
+              "lateralRadius": 8,
+              "part": "lance-cells",
+              "collectedBy": null,
+              "respawnRemaining": 0
+            }
+          ],
+          "runTokens": 2,
+          "runCurrency": 0
+        },
+        "recentEvents": [
+          {
+            "type": "pulse-shell",
+            "racerId": "player",
+            "active": true,
+            "cooldown": 7.550000000000001,
+            "frame": 8403
+          },
+          {
+            "type": "pulse-shell",
+            "racerId": "player",
+            "active": false,
+            "cooldown": 6.39166666666661,
+            "frame": 8542
+          },
+          {
+            "type": "repair-salvage-collected",
+            "racerId": "ai-olan",
+            "pickupId": "combat-repair",
+            "repaired": 0.24,
+            "cooled": 0,
+            "coreCooled": 0,
+            "frame": 8712
+          },
+          {
+            "type": "lance-cells-collected",
+            "racerId": "player",
+            "pickupId": "lance-cells-hairpin",
+            "charges": 4,
+            "frame": 8736
+          },
+          {
+            "type": "heat-lance-fired",
+            "racerId": "player",
+            "projectileId": "lance-player-50",
+            "frame": 8813
+          },
+          {
+            "type": "hazard-hit",
+            "racerId": "player",
+            "hazardId": "dust-hairpin",
+            "hazard": "dust-interference",
+            "intensity": 1,
+            "frame": 8815
+          },
+          {
+            "type": "heat-lance-fired",
+            "racerId": "player",
+            "projectileId": "lance-player-51",
+            "frame": 8911
+          },
+          {
+            "type": "heat-lance-fired",
+            "racerId": "player",
+            "projectileId": "lance-player-52",
+            "frame": 9007
+          },
+          {
+            "type": "hazard-hit",
+            "racerId": "ai-olan",
+            "hazardId": "dust-hairpin",
+            "hazard": "dust-interference",
+            "intensity": 1,
+            "frame": 9076
+          },
+          {
+            "type": "heat-lance-fired",
+            "racerId": "player",
+            "projectileId": "lance-player-53",
+            "frame": 9105
+          },
+          {
+            "type": "heat-lance-blocked",
+            "ownerId": "player",
+            "projectileId": "lance-player-53",
+            "x": 18553.338511415524,
+            "y": -6.96020231541668,
+            "z": -349.9014164637351,
+            "frame": 9232
+          },
+          {
+            "type": "pulse-shell",
+            "racerId": "player",
+            "active": true,
+            "cooldown": 7.550000000000001,
+            "frame": 9485
+          },
+          {
+            "type": "redline-surge",
+            "racerId": "ai-miri",
+            "active": true,
+            "heat": 0.0028333333333333335,
+            "lockout": 0,
+            "frame": 9568
+          },
+          {
+            "type": "pulse-shell",
+            "racerId": "player",
+            "active": false,
+            "cooldown": 6.39166666666661,
+            "frame": 9624
+          },
+          {
+            "type": "redline-surge",
+            "racerId": "ai-miri",
+            "active": false,
+            "heat": 0.15699999999999978,
+            "lockout": 0,
+            "frame": 9624
+          },
+          {
+            "type": "redline-surge",
+            "racerId": "ai-miri",
+            "active": true,
+            "heat": 0.15483333333333307,
+            "lockout": 0,
+            "frame": 9628
+          },
+          {
+            "type": "redline-surge",
+            "racerId": "ai-miri",
+            "active": false,
+            "heat": 0.1531666666666664,
+            "lockout": 0,
+            "frame": 9629
+          },
+          {
+            "type": "redline-surge",
+            "racerId": "ai-miri",
+            "active": true,
+            "heat": 0.149333333333333,
+            "lockout": 0,
+            "frame": 9634
+          },
+          {
+            "type": "redline-surge",
+            "racerId": "ai-miri",
+            "active": false,
+            "heat": 0.14766666666666634,
+            "lockout": 0,
+            "frame": 9635
+          },
+          {
+            "type": "redline-surge",
+            "racerId": "ai-miri",
+            "active": true,
+            "heat": 0.14549999999999963,
+            "lockout": 0,
+            "frame": 9639
+          },
+          {
+            "type": "redline-surge",
+            "racerId": "ai-miri",
+            "active": false,
+            "heat": 0.14383333333333295,
+            "lockout": 0,
+            "frame": 9640
+          },
+          {
+            "type": "redline-surge",
+            "racerId": "ai-miri",
+            "active": true,
+            "heat": 0.14166666666666625,
+            "lockout": 0,
+            "frame": 9644
+          },
+          {
+            "type": "redline-surge",
+            "racerId": "ai-miri",
+            "active": false,
+            "heat": 0.13999999999999957,
+            "lockout": 0,
+            "frame": 9645
+          },
+          {
+            "type": "heat-lance-fired",
+            "racerId": "ai-kodo",
+            "projectileId": "lance-ai-kodo-54",
+            "frame": 9705
+          },
+          {
+            "type": "redline-surge",
+            "racerId": "ai-miri",
+            "active": true,
+            "heat": 0.03449999999999966,
+            "lockout": 0,
+            "frame": 9711
+          },
+          {
+            "type": "redline-surge",
+            "racerId": "ai-miri",
+            "active": false,
+            "heat": 0.052666666666666334,
+            "lockout": 0,
+            "frame": 9719
+          },
+          {
+            "type": "pulse-shell",
+            "racerId": "ai-rax",
+            "active": true,
+            "cooldown": 7.550000000000001,
+            "frame": 9736
+          },
+          {
+            "type": "shield-block",
+            "racerId": "ai-rax",
+            "sourceId": "ai-kodo",
+            "absorbed": 0.11692799999999999,
+            "x": 18612.562751419686,
+            "y": -9.222790935731464,
+            "z": -56.08361266936497,
+            "frame": 9786
+          },
+          {
+            "type": "weapon-hit",
+            "attackerId": "ai-kodo",
+            "targetId": "ai-rax",
+            "weapon": "heat-lance",
+            "damage": 0.022272,
+            "shielded": true,
+            "x": 18612.562751419686,
+            "y": -9.222790935731464,
+            "z": -56.08361266936497,
+            "frame": 9786
+          },
+          {
+            "type": "pulse-shell",
+            "racerId": "ai-rax",
+            "active": false,
+            "cooldown": 6.59166666666662,
+            "frame": 9851
+          },
+          {
+            "type": "lance-cells-collected",
+            "racerId": "ai-miri",
+            "pickupId": "lance-cells-hairpin",
+            "charges": 8,
+            "frame": 10145
+          },
+          {
+            "type": "hazard-hit",
+            "racerId": "ai-miri",
+            "hazardId": "dust-hairpin",
+            "hazard": "dust-interference",
+            "intensity": 0.9985282740928233,
+            "frame": 10219
+          }
+        ]
+      }
+    },
+    "scope": "Default populated Battle through standard virtual gamepad input; no pose, progress or health writes."
+  },
+  "outcome": "PASS",
+  "visibleGhostAcceptance": "Requires separate visual verification; ghostAvailable/ghostEnabled alone do not prove visible geometry.",
+  "cleanup": {
+    "browserClosed": true,
+    "serverExited": true,
+    "port": 59015
+  },
+  "errors": [],
+  "completedAt": "2026-09-15T19:05:58.878Z",
+  "limitations": "Automated virtual gamepad through shipped live adapter in disposable storage. No capture mode, simulation stepping, pose/progress mutation, or real-user PB changes. Not human gamepad feel or FPS evidence.",
+  "scriptHash": "0ce69d50df0f41841e6a82ff556cb665dcd78dddb3da6ae43aa24caa3c5c9fe0"
+}

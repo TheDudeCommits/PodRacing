@@ -312,7 +312,7 @@ export class GameApp {
   });
   private readonly galacticShieldPool = Array.from({ length: RACE_PRESENTATION_CAPACITY * 2 }, () => ({
     position: { x: 0, y: 0, z: 0 }, radius: 10, intensity: 1, phase: 0, color: '#72f4ff',
-    mode: 'shield' as 'shield' | 'recovery' | 'redline',
+    mode: 'shield' as 'shield' | 'recovery' | 'redline', yaw: 0,
   }));
   private readonly activeGalacticShields: Array<{
     position: { x: number; y: number; z: number };
@@ -321,6 +321,7 @@ export class GameApp {
     phase: number;
     color: string;
     mode: 'shield' | 'recovery' | 'redline';
+    yaw: number;
   }> = [];
   private readonly galacticLancePool = Array.from({ length: 32 }, () => ({
     origin: { x: 0, y: 0, z: 0 },
@@ -1128,7 +1129,9 @@ export class GameApp {
         y: wreckPose?.position.y ?? displayY,
         z: wreckPose?.position.z ?? displayZ,
         yaw: wreckPose?.rotation.y ?? (displayYaw + (wrecked ? presentationTime * 1.25 : 0)),
-        pitch: wreckPose?.rotation.x ?? (vehicle.orientation.pitch + crashPitch),
+        // Simulation pitch is nose-up positive; a three.js X rotation is nose-down
+        // positive. Every renderer consumer negates at this boundary.
+        pitch: wreckPose?.rotation.x ?? (-vehicle.orientation.pitch + crashPitch),
         roll: wreckPose?.rotation.z ?? (vehicle.orientation.roll + vehicle.orientation.bank + crashRoll),
         steer: input.steer,
         throttle: input.throttle,
@@ -3520,19 +3523,45 @@ export class GameApp {
       if (!galactic || shieldIndex >= this.galacticShieldPool.length) continue;
       const recoveryShell = galactic.wreck.phase === 'recovering' || galactic.wreck.invulnerable > 0;
       if (!galactic.shield.active && !recoveryShell) continue;
+      const definition = GALACTIC_VEHICLES[galactic.vehicleClass];
+      const yaw = entry.vehicle.orientation.yaw;
+      const forwardX = Math.sin(yaw), forwardZ = Math.cos(yaw);
+      if (recoveryShell) {
+        // Recovery is the engines relighting: a pale sleeve around each engine
+        // that breathes up from dark, nothing around the cockpit and no disc.
+        const engineSpread = definition.collisionRadius * (galactic.vehicleClass === 'speeder-bike' ? 0.24 : 0.54);
+        const engineForward = definition.collisionRadius * 1.3;
+        for (const side of [-1, 1] as const) {
+          if (shieldIndex >= this.galacticShieldPool.length) break;
+          const effect = this.galacticShieldPool[shieldIndex];
+          if (!effect) break;
+          effect.position.x = entry.vehicle.position.x + forwardZ * engineSpread * side + forwardX * engineForward;
+          effect.position.y = entry.vehicle.position.y + 0.55;
+          effect.position.z = entry.vehicle.position.z - forwardX * engineSpread * side + forwardZ * engineForward;
+          effect.radius = Math.max(1.7, definition.collisionRadius * 0.4);
+          effect.intensity = 1.2;
+          effect.phase = time * 0.6 + shieldIndex * 0.37;
+          effect.color = '#b8ffd6';
+          effect.mode = 'recovery';
+          effect.yaw = yaw;
+          this.activeGalacticShields.push(effect);
+          shieldIndex += 1;
+        }
+        continue;
+      }
       const effect = this.galacticShieldPool[shieldIndex];
       if (!effect) continue;
-      effect.position.x = entry.vehicle.position.x;
+      // The hull's centre sits ahead of the cockpit origin; fit the plate there.
+      const hullCentre = definition.collisionRadius * 0.85;
+      effect.position.x = entry.vehicle.position.x + forwardX * hullCentre;
       effect.position.y = entry.vehicle.position.y + 0.5;
-      effect.position.z = entry.vehicle.position.z;
-      effect.radius = GALACTIC_VEHICLES[galactic.vehicleClass].collisionRadius
-        * (recoveryShell ? 1.12 : 1.22);
-      effect.intensity = recoveryShell
-        ? 1.35
-        : Math.min(1.4, 0.95 + galactic.shield.remaining * 0.18);
+      effect.position.z = entry.vehicle.position.z + forwardZ * hullCentre;
+      effect.radius = definition.collisionRadius * 1.2;
+      effect.intensity = Math.min(1.4, 0.95 + galactic.shield.remaining * 0.18);
       effect.phase = time + shieldIndex * 0.37;
-      effect.color = recoveryShell ? '#00ff66' : '#00dfff';
-      effect.mode = recoveryShell ? 'recovery' : 'shield';
+      effect.color = '#7fe9ff';
+      effect.mode = 'shield';
+      effect.yaw = yaw;
       this.activeGalacticShields.push(effect);
       shieldIndex += 1;
     }
@@ -3555,8 +3584,9 @@ export class GameApp {
         effect.radius = Math.max(1.7, definition.collisionRadius * 0.4);
         effect.intensity = Math.min(1.5, 0.82 + galactic.redline.heat * 0.55);
         effect.phase = time * 2.3 + shieldIndex * 0.59;
-        effect.color = '#ff2600';
+        effect.color = '#ff6a2a';
         effect.mode = 'redline';
+        effect.yaw = yaw;
         this.activeGalacticShields.push(effect);
         shieldIndex += 1;
       }
@@ -3809,7 +3839,7 @@ export class GameApp {
             } else this.wreckRuptureDirection.set(Math.sin(vehicle.orientation.yaw), 0, Math.cos(vehicle.orientation.yaw));
             direction = this.wreckRuptureDirection;
             if (wreckPose) view.imported.transformWreckAttachment('exhaustRight', local);
-            local.applyEuler(wreckPose?.rotation ?? new Euler(vehicle.orientation.pitch,
+            local.applyEuler(wreckPose?.rotation ?? new Euler(-vehicle.orientation.pitch,
               vehicle.orientation.yaw, vehicle.orientation.roll + vehicle.orientation.bank, 'YXZ'));
             const origin = wreckPose?.position ?? vehicle.position;
             position = { x: origin.x + local.x, y: origin.y + local.y, z: origin.z + local.z };

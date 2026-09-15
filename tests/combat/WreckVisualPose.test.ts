@@ -74,7 +74,8 @@ describe('renderer-only rigid wreck pose', () => {
         // The birth pose is the intact authoritative orientation/root exactly.
         if (frame === 910) {
           expect(pose.position.toArray()).toEqual([entry.vehicle.position.x, entry.vehicle.position.y, entry.vehicle.position.z]);
-          expect(pose.rotation.x).toBe(entry.vehicle.orientation.pitch);
+          // Renderer X rotation is nose-down positive; simulation pitch is nose-up positive.
+          expect(pose.rotation.x).toBe(-entry.vehicle.orientation.pitch);
           expect(pose.rotation.y).toBe(entry.vehicle.orientation.yaw);
           expect(pose.rotation.z).toBe(entry.vehicle.orientation.roll + entry.vehicle.orientation.bank);
         }
