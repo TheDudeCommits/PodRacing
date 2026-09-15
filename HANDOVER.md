@@ -1,4 +1,43 @@
-# PodRacing — Production handover (2026-09-15)
+# PodRacing — Round 37 handover (2026-09-16)
+
+## Start here
+
+Round 37 implemented the first four roadmap items on top of the published stylized restoration: **drive-6 handling, the course-10 banked flagship sweeper, world-occluded nearest-hit combat with threat-aware rivals, and four pod identities with sourced engine voices.** Full description, tuning rationale and evidence: [ROUND37_REPORT.md](docs/inkstorm-overhaul/ROUND37_REPORT.md). The art direction, retained dusk sky, audio bank policy (no generated audio; original voice unchanged) and the deterministic simulation authority are unchanged.
+
+- Repository: https://github.com/TheDudeCommits/PodRacing, branch `codex/now-this-is-podracing`, working directory `/Users/amir/Projects/PodRacing`.
+- Runtime source commit: `fcc639a73d0bcb55804373e1bdd11fc34f50d488` (preceded by `675d6ae`, the main round commit).
+- **READY Preview (Git-triggered on push):** deployment `dpl_EMnzEd5Rs63T6rtdpnm93A6ctgy1`, https://now-this-is-podracing-8i1u2shak-amirs-projects-d9680079.vercel.app, branch alias `now-this-is-podracing-git-codex-45ecfb-amirs-projects-d9680079.vercel.app`. Vercel deployment protection redirects anonymous visitors to SSO; the owner's Vercel sign-in is required. The remote build produced `index-BgkzsTAX.js` (1,890.37 kB), matching the local build name; the local bundle is 1,890,373 bytes, SHA256 `ac4ae36f74a6d90a9d69d8f52ee47931b89846cca9d4ff5a30da5accb37fed65`.
+- **Production is unchanged** (still `dpl_9NaNFDVseLbS7AvkWRHqVUJnatcq`, source `b8ca960`). Promotion is the owner's call; the new handling, banking and combat rules invalidate earlier records by design (`inkstorm-course-10`, `inkstorm-drive-6`).
+- Do not deploy with `vercel deploy` from the working tree: the repository plus LFS sources exceeds Vercel's file limit and `--archive=tgz` tries to upload ~17 GB. Push the branch and let the Git integration build, or `vercel promote` a verified deployment.
+
+## What changed (summary)
+
+1. **Handling** (`src/game/simulation/config.ts`, `podracer.ts`): brake thrust cut, lateral scrub and trail-braking authority; steerable drift slip with a 0.36 s blended exit that converts scrubbed slide into forward travel; reduced airborne grip/steering with a 0.3 s regrip on landing; two-way repulsor attraction within range; bank assist and bank slide on cambered beds; per-landing damage cap 0.22 → 0.14. `DRIVE5_COMPATIBILITY_CONFIG` reproduces the old feel for the archived V9 wreck replays only.
+2. **Circuit** (`CourseGulfField.bakeSweeperBanking`, `inkstormLayout.getInkstormTurnMarkers`): the flagship sweeper is cambered up to 0.24 rad in the shared physics/shader field; flagship roadside props halved (227 → 158 placements) and cleared from the sweeper; two wind-blade turn markers. The course-8 lanes outside the launch and sweeper editions are proven bit-identical (`tests/terrain/launchEdition31.test.ts`); the course-10 field is pinned in `tests/terrain/launchRidgeRound37.ts`.
+3. **Combat** (`src/game/galactic/system.ts`, `RaceSimulation.lanceOccluder`): Heat Lance sweeps stop at scenery and canyon walls (`heat-lance-blocked` event), hits resolve to the nearest hull, mines to the nearest racer; rivals use `assessGalacticThreats` (cone target, clear line of fire, deliberate cadence, no fire from the grid, no shots at returning or shielded racers, mines only for real pursuers, shield only for inbound lance/mine/aimed rival); the driving AI avoids mines and no longer brakes for a rival leaving the grid; recovery immunity escalates with repeat wrecks. The line-of-fire sweep is evaluated only on ticks where a shot is possible (0.45 ms per headless Battle tick).
+4. **Pods** (`src/game/podIdentity.ts`, `RaceSimulation.selectRacerPodIdentity`, garage card, audio): Teemto balanced, Sebulba fast/heat-sensitive, Polwo agile, Blockrunner heavy; identity is on the race entry, in snapshots and in the record identity; engine voices are the existing licensed loops (`RECORDED_ENGINE_VOICES`, credits updated); the fleet stays at four.
+
+## Validation and evidence
+
+- `npm run verify`: TypeScript, **1012 tests / 172 files**, build pass ([log](docs/inkstorm-overhaul/evidence/handling-round37/validation.log)).
+- Headless input-only driver, ten clean laps across the three authored courses (Canyon ×3, Foundry ×3, Glasslands ×3, Time Attack ×1): zero player resets, wrecks or scenery contacts; identity laps Sebulba 54.0 s, Polwo 55.0 s, Teemto 55.5 s, Blockrunner 57.7 s ([receipts](docs/inkstorm-overhaul/evidence/handling-round37/)). Before the round the same driver reached 0.67 damage in two Canyon laps and wrecked in three.
+- Native browser Battle on the built bundle through the ordinary gamepad driver: finished, zero browser errors, all 11 recordings loaded, takedowns credited; browser and server closed ([receipt](docs/inkstorm-overhaul/evidence/handling-round37/native-battle-receipt.json)).
+- **Frame cadence was NOT measured validly.** Every `--performance` run this session coincided with an active video call / screen share on the owner's Mac (`avconferenced` and the VideoToolbox encoder at 20–25% CPU each), producing 10–20 FPS with quantized frame times; the harness also leaves no processes behind. Headless simulation cost is 0.45 ms per Battle tick. Re-run `npx tsx scripts/competitive-flow.ts --battle --performance --output=<dir>` on a quiet machine before any Production claim; the earlier 57.6 FPS figure belongs to the previous bundle.
+
+## Next work, in priority order
+
+1. Owner playtest of the four pod identities on a physical controller and listening approval of the engine voices; adjust `POD_IDENTITIES` scales, then admit two more finished models at a time.
+2. Quiet-machine cadence measurement; then decide on Production promotion.
+3. Roadmap items 5–8 remain: mastery calibration and rewards, HUD combat lesson and weapon-state icons, real-hardware profiling, private multiplayer checks (the room protocol still does not carry appearance/identity; remote humans race as Teemto).
+4. `scripts/competitive-flow.ts` throws on cadence failure without closing its browser/server in that path; it did not leak this session, but harden it before relying on it unattended.
+
+## How to resume safely
+
+Read this header and the round report, then `git status --short --branch`. `npm run verify` for runtime changes; `npx tsx scripts/drive-balance.ts --only=<event> --laps=3 --identity=<pod>` for headless lap evidence; the competitive-flow harness for native browser evidence. Terrain field receipts are hash-pinned; when editing `CourseGulfField`, re-pin with a digest script and prove untouched lanes identical (see round report). Close every owned browser and server immediately after QA; never adopt port 5211; never save the shared Blender scene.
+
+---
+
+## Previous handover — Production handover (2026-09-15)
 
 ## Start here
 
