@@ -25,7 +25,7 @@ describe('deterministic instant combat pickups', () => {
       { id: 'part-landing', progress: 0.845, lateralOffset: -5, part: 'landing-recuperator' },
       { id: 'part-mine', progress: 0.93, lateralOffset: 6, part: 'mine-printer' },
     ]);
-    expect(world.pickups.slice(6).map((pickup) => pickup.part)).toEqual(['emp-cell', 'repair-salvage']);
+    expect(world.pickups.slice(6).map((pickup) => pickup.part)).toEqual(['emp-cell', 'repair-salvage', 'lance-cells', 'lance-cells', 'lance-cells', 'lance-cells']);
     const rng = world.rngState;
     collectCombatPickup('emp', 'emp-cell', racer('player'), [racer('enemy', 10)], world);
     expect(world.rngState).toBe(rng);

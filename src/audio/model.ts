@@ -255,6 +255,14 @@ function cuesForEvent(event: AudioEventLike, options: AudioEventMapOptions): Pod
     case 'weapon-fired':
     case 'heat-lance-fired':
       return ownRacer ? [cue('weapon', 0.82, 1.08)] : [];
+    case 'target-lock':
+      // A short high tick when a target enters the lance cone; silence on loss.
+      return ownRacer && eventString(event, 'targetId') !== undefined && recordOf(event).targetId !== null
+        ? [cue('ui', 0.5, 1.45)] : [];
+    case 'lance-cells-collected':
+      return ownRacer ? [cue('upgrade', 0.7, 1.12)] : [];
+    case 'rivalry-marked':
+      return ownRacer ? [cue('warning', 0.5, 0.9)] : [];
     case 'weapon-hit': {
       if (!combatEventBelongsToPlayer(event, options.playerId)) return [];
       const damage = eventNumber(event, 'damage', 0.45);

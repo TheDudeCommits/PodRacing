@@ -1945,11 +1945,14 @@ export class RaceHud {
       : 0;
     const weaponReadiness = 1 - weaponCooldownFraction;
     this.weaponFill.style.width = `${(weaponReadiness * 100).toFixed(1)}%`;
-    const weaponState = galactic.weaponCooldown <= 0.001
-        ? 'Ready'
-        : `${galactic.weaponCooldown.toFixed(1)}S`;
+    const weaponState = galactic.weaponCharges <= 0
+        ? 'Empty'
+        : galactic.weaponCooldown <= 0.001
+          ? `Ready ×${galactic.weaponCharges}`
+          : `${galactic.weaponCooldown.toFixed(1)}S ×${galactic.weaponCharges}`;
     write(this.weaponValue, weaponState);
-    this.setSystemReadiness(this.primarySlot, weaponReadiness);
+    this.setSystemReadiness(this.primarySlot, galactic.weaponCharges <= 0 ? 0 : weaponReadiness);
+    this.galactic.classList.toggle('is-weapon-empty', galactic.weaponCharges <= 0);
     this.primarySlot.setAttribute('aria-label', `Primary ${this.combatBindings.fire}, ${galactic.weaponName}, ${weaponState}`);
     this.primarySlot.title = `${galactic.weaponName} [${this.combatBindings.fire}] • ${weaponState}`;
     write(

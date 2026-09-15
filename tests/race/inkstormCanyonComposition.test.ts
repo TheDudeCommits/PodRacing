@@ -128,15 +128,17 @@ describe('flagship canyon entrance composition', () => {
     }
   });
 
-  it('leaves the physical route, checkpoint identity, branches and ordinary buttress collision unchanged', async () => {
+  it('leaves the physical route, checkpoint identity and branches unchanged while the anchors are solid', async () => {
     const fresh = createProceduralPodraceCourse(terrain, flagshipSeed);
     const physical = () => ({ signature: fresh.signature, totalLength: fresh.totalLength, controlPoints: fresh.controlPoints,
       checkpoints: fresh.checkpoints, route: fresh.getRenderData(4096), branches: fresh.branches });
     const before = await digest(physical());
     const near = getInkstormLayout(fresh).filter(p => ids.includes(p.id));
     expect(near).toHaveLength(2);
+    // Every rock mass is solid since round 38: the anchors collide at their own
+    // centre, while the physical route itself stays untouched.
     for (const rock of near) expect(getInkstormObstacleContact(fresh, rock.x, rock.z,
-      wideVehicleHalfWidth, terrain.heightAt(rock.x, rock.z) + 2, terrain.heightAt)).toBeNull();
+      wideVehicleHalfWidth, terrain.heightAt(rock.x, rock.z) + 2, terrain.heightAt)?.id).toBe(rock.id);
     expect(await digest(physical())).toBe(before);
   });
 

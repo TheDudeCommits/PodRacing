@@ -126,7 +126,8 @@ export type GalacticUpgradePart =
   | 'landing-recuperator'
   | 'mine-printer'
   | 'emp-cell'
-  | 'repair-salvage';
+  | 'repair-salvage'
+  | 'lance-cells';
 
 export type GalacticHazardKind =
   | 'sand-geyser'
@@ -186,6 +187,14 @@ export interface GalacticWeaponState {
   triggerHeld: boolean;
   shotsFired: number;
   hits: number;
+  /** Heat Lance cells in the rack; refilled by authored pickups, never by time. */
+  charges: number;
+}
+
+/** A racer who wrecked this one is marked for a while; rivals and HUD react to it. */
+export interface GalacticRivalryState {
+  rivalId: string | null;
+  remaining: number;
 }
 
 export interface GalacticMineRackState {
@@ -251,6 +260,7 @@ export interface GalacticRacerState {
   upgrades: GalacticUpgradeState;
   takedowns: number;
   controls: GalacticControlMemoryState;
+  rivalry: GalacticRivalryState;
 }
 
 export interface HeatLanceProjectileState {
@@ -343,12 +353,20 @@ export type GalacticWorldOccluder = (
   progressHint?: number,
 ) => number | null;
 
+export type GalacticAICombatStyle = 'aggressive' | 'clean' | 'erratic';
+
 /** What a rival can perceive when deciding to attack or defend this tick. */
 export interface GalacticAITactics {
   projectiles: readonly HeatLanceProjectileState[];
   mines: readonly ScrapMineState[];
   /** Line-of-fire test against world geometry; absent means always clear. */
   hasLineOfFire?: (target: Readonly<GalacticRacerSnapshot>) => boolean;
+  /** Driving personality; combat decisions follow it (default: clean). */
+  style?: GalacticAICombatStyle;
+  /** The human racer, hunted by aggressive rivals. */
+  playerId?: string;
+  /** Course section under the rival; erratic rivals mine technical sections. */
+  sectionTag?: string;
 }
 
 export interface GalacticActionContext {
@@ -387,6 +405,10 @@ export interface GalacticImpact {
   statusDuration: number;
   hazardId: string | null;
   hazardKind: GalacticHazardKind | null;
+  /** World point where the hit landed on the hull, for effects and HUD. */
+  hitX: number;
+  hitY: number;
+  hitZ: number;
 }
 
 export interface GalacticPickupClaim {
@@ -413,9 +435,12 @@ export type GalacticEvent =
   | { type: 'repair-salvage-collected'; racerId: string; pickupId: string; repaired: number; cooled: number; coreCooled: number }
   | { type: 'vehicle-class-changed'; racerId: string; vehicleClass: GalacticVehicleClass }
   | { type: 'pulse-shell'; racerId: string; active: boolean; cooldown: number }
-  | { type: 'shield-block'; racerId: string; sourceId: string | null; absorbed: number }
+  | { type: 'shield-block'; racerId: string; sourceId: string | null; absorbed: number; x?: number; y?: number; z?: number }
   | { type: 'heat-lance-fired'; racerId: string; projectileId: string }
   | { type: 'heat-lance-blocked'; ownerId: string; projectileId: string; x: number; y: number; z: number }
+  | { type: 'target-lock'; racerId: string; targetId: string | null }
+  | { type: 'lance-cells-collected'; racerId: string; pickupId: string; charges: number }
+  | { type: 'rivalry-marked'; racerId: string; rivalId: string; duration: number }
   | {
       type: 'weapon-hit';
       attackerId: string;
@@ -423,6 +448,9 @@ export type GalacticEvent =
       weapon: 'heat-lance' | 'scrap-mine';
       damage: number;
       shielded: boolean;
+      x?: number;
+      y?: number;
+      z?: number;
     }
   | { type: 'scrap-mine-deployed'; racerId: string; mineId: string }
   | { type: 'scrap-mine-triggered'; racerId: string; ownerId: string; mineId: string }

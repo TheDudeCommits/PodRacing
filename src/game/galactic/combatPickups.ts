@@ -6,14 +6,16 @@ export const EMP_DISRUPTION_SECONDS = 1.35;
 export const SALVAGE_REPAIR_AMOUNT = 0.24;
 export const SALVAGE_COOLING_AMOUNT = 0.4;
 export const COMBAT_PICKUP_RESPAWN_SECONDS = 5;
-export type CombatPickupPart = 'emp-cell' | 'repair-salvage';
+export const LANCE_CELLS_PER_PICKUP = 4;
+export const LANCE_CELL_CAPACITY = 8;
+export type CombatPickupPart = 'emp-cell' | 'repair-salvage' | 'lance-cells';
 export interface CombatPickupRacer {
   readonly id: string;
   readonly vehicle: PodracerState;
   readonly galactic: GalacticRacerState;
 }
 export function isCombatPickup(part: GalacticUpgradePart): part is CombatPickupPart {
-  return part === 'emp-cell' || part === 'repair-salvage';
+  return part === 'emp-cell' || part === 'repair-salvage' || part === 'lance-cells';
 }
 
 /**
@@ -31,6 +33,10 @@ export function collectCombatPickup(
   const { galactic, vehicle, id } = collector;
   if (galactic.wreck.phase === 'wrecked' || galactic.upgrades.collectedPickupIds.includes(pickupId)) return [];
   galactic.upgrades.collectedPickupIds.push(pickupId);
+  if (part === 'lance-cells') {
+    galactic.weapon.charges = Math.min(LANCE_CELL_CAPACITY, galactic.weapon.charges + LANCE_CELLS_PER_PICKUP);
+    return [{ type: 'lance-cells-collected', racerId: id, pickupId, charges: galactic.weapon.charges }];
+  }
   if (part === 'repair-salvage') {
     const repaired = Math.min(Math.max(0, vehicle.damage), SALVAGE_REPAIR_AMOUNT);
     const cooled = Math.min(Math.max(0, vehicle.heat), SALVAGE_COOLING_AMOUNT);

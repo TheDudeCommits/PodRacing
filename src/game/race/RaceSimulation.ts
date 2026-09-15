@@ -6,6 +6,7 @@ import { normalizePlayerInput, type PlayerInputState } from '../input/actions';
 import {
   GALACTIC_VEHICLES,
   applyGalacticImpact,
+  assessGalacticThreats,
   augmentGalacticAIInput,
   beginGalacticWreck,
   collectGalacticUpgrade,
@@ -21,6 +22,7 @@ import {
   stepGalacticRacerAction,
   stepGalacticWorld,
   validateWorkshopLoadout,
+  type GalacticAICombatStyle,
   type GalacticEvent,
   type GalacticImpact,
   type GalacticRacerSnapshot,
@@ -267,6 +269,73 @@ function makeResult(entry: RaceEntryState<AIControllerState>): RaceResultEntry {
   };
 }
 
+/** Local hull primitives: two engine capsules ahead of the origin and a cockpit sphere behind it. */
+interface HullPrimitive { ax: number; az: number; bx: number; bz: number; radius: number }
+
+export function hullPrimitives(definition: Readonly<{ probeScaleX: number; probeScaleZ: number }>): HullPrimitive[] {
+  const engineX = 4.1 * definition.probeScaleX;
+  const engineRadius = 2.4 * Math.max(0.6, definition.probeScaleX);
+  const noseZ = 19 * definition.probeScaleZ;
+  return [
+    { ax: -engineX, az: 0.5, bx: -engineX, bz: noseZ, radius: engineRadius },
+    { ax: engineX, az: 0.5, bx: engineX, bz: noseZ, radius: engineRadius },
+    { ax: 0, az: -3.5, bx: 0, bz: -3.5, radius: 3 },
+  ];
+}
+
+interface HullContact { normalX: number; normalZ: number; penetration: number; localAX: number; localAZ: number; localBX: number; localBZ: number }
+
+/** Closest points between two planar segments, as fractions along each. */
+function segmentSegmentClosest(
+  ax: number, az: number, bx: number, bz: number,
+  cx: number, cz: number, dx: number, dz: number,
+): [number, number] {
+  const ux = bx - ax, uz = bz - az, vx = dx - cx, vz = dz - cz, wx = ax - cx, wz = az - cz;
+  const a = ux * ux + uz * uz, b = ux * vx + uz * vz, c = vx * vx + vz * vz, d = ux * wx + uz * wz, e = vx * wx + vz * wz;
+  const denominator = a * c - b * b;
+  let s = denominator > 1e-9 ? clamp((b * e - c * d) / denominator, 0, 1) : 0;
+  let t = c > 1e-9 ? clamp((b * s + e) / c, 0, 1) : 0;
+  s = a > 1e-9 ? clamp((b * t - d) / a, 0, 1) : 0;
+  t = c > 1e-9 ? clamp((b * s + e) / c, 0, 1) : 0;
+  return [s, t];
+}
+
+/** Deepest contact between two racers' hulls in the plane, or null when clear. */
+export function closestHullContact(
+  a: Readonly<PodracerState>, aDefinition: Readonly<{ probeScaleX: number; probeScaleZ: number }>,
+  b: Readonly<PodracerState>, bDefinition: Readonly<{ probeScaleX: number; probeScaleZ: number }>,
+  fallbackSide: 1 | -1,
+): HullContact | null {
+  const toWorld = (state: Readonly<PodracerState>, x: number, z: number): [number, number] => {
+    const sinYaw = Math.sin(state.orientation.yaw), cosYaw = Math.cos(state.orientation.yaw);
+    return [state.position.x + x * cosYaw + z * sinYaw, state.position.z - x * sinYaw + z * cosYaw];
+  };
+  const toLocal = (state: Readonly<PodracerState>, x: number, z: number): [number, number] => {
+    const sinYaw = Math.sin(state.orientation.yaw), cosYaw = Math.cos(state.orientation.yaw);
+    const dx = x - state.position.x, dz = z - state.position.z;
+    return [dx * cosYaw - dz * sinYaw, dx * sinYaw + dz * cosYaw];
+  };
+  let best: HullContact | null = null;
+  for (const pa of hullPrimitives(aDefinition)) {
+    const [ax, az] = toWorld(a, pa.ax, pa.az), [bx, bz] = toWorld(a, pa.bx, pa.bz);
+    for (const pb of hullPrimitives(bDefinition)) {
+      const [cx, cz] = toWorld(b, pb.ax, pb.az), [dx, dz] = toWorld(b, pb.bx, pb.bz);
+      const [s, t] = segmentSegmentClosest(ax, az, bx, bz, cx, cz, dx, dz);
+      const px = ax + (bx - ax) * s, pz = az + (bz - az) * s;
+      const qx = cx + (dx - cx) * t, qz = cz + (dz - cz) * t;
+      const distance = Math.hypot(qx - px, qz - pz);
+      const penetration = pa.radius + pb.radius - distance;
+      if (penetration <= 0 || (best && penetration <= best.penetration)) continue;
+      const normalX = distance > 1e-5 ? (qx - px) / distance : fallbackSide;
+      const normalZ = distance > 1e-5 ? (qz - pz) / distance : 0;
+      const [localAX, localAZ] = toLocal(a, px + normalX * pa.radius, pz + normalZ * pa.radius);
+      const [localBX, localBZ] = toLocal(b, qx - normalX * pb.radius, qz - normalZ * pb.radius);
+      best = { normalX, normalZ, penetration, localAX, localAZ, localBX, localBZ };
+    }
+  }
+  return best;
+}
+
 export class RaceSimulation {
   readonly terrain: HeightSampler;
   readonly course: PodraceCourse;
@@ -278,6 +347,8 @@ export class RaceSimulation {
 
   /** Renderer consumes the same cleared placements as fixed-step contact. */
   get routeMarkers(): readonly CourseMarker[] { return this.markerColliders; }
+  /** Id of the racer the local player's Heat Lance is locked on, if any. */
+  get lockedTargetId(): string | null { return this.playerLockTargetIdValue; }
   private readonly markerContactSteps = new Map<string, number>();
   private readonly markerImpactStepsByRacer = new Map<string, number>();
   private activeMarkerContacts = new Set<string>();
@@ -292,6 +363,8 @@ export class RaceSimulation {
   private readonly entriesById = new Map<string, RaceEntryState<AIControllerState>>();
   private readonly maximumCheckpointGapProgress: number;
   private playerVehicleSelectionLockedValue = false;
+  /** Rival currently inside the player's lance cone with a clear line; HUD/audio consume it. */
+  private playerLockTargetIdValue: string | null = null;
   private configuredTotalLapsValue: 1 | 2 | 3;
   private configuredAIDifficultyValue: AIDifficulty;
   private configuredRaceModeValue: RaceMode;
@@ -507,6 +580,27 @@ export class RaceSimulation {
       : { impacts: [], pickupClaims: [], events: [] };
     galacticEvents.push(...worldResult.events);
 
+    // The player's lance lock is perception, not a rule: it is refreshed at
+    // 15 Hz with the same cone and line-of-fire test the rivals use.
+    if (this.state.phase === 'racing' && playerEntry && this.competitionProfile === 'chaos' && this.state.step % 8 === 0) {
+      const playerIndex = this.entryIndexById.get(playerEntry.id);
+      const self = playerIndex === undefined ? undefined : galacticSnapshots[playerIndex];
+      const locked = self && playerEntry.status !== 'finished'
+        ? assessGalacticThreats(self, galacticOpponentsByIndex[playerIndex!] ?? [], {
+            projectiles: [], mines: [],
+            hasLineOfFire: (target) => this.lanceOccluder(
+              self.x, self.y + 0.6, self.z, target.x, target.y + 0.6, target.z, self.courseProgress,
+            ) === null,
+          }).targetId
+        : null;
+      if (locked !== this.playerLockTargetIdValue) {
+        this.playerLockTargetIdValue = locked;
+        galacticEvents.push({ type: 'target-lock', racerId: playerEntry.id, targetId: locked });
+      }
+    } else if (this.state.phase !== 'racing' && this.playerLockTargetIdValue !== null) {
+      this.playerLockTargetIdValue = null;
+    }
+
     const latestImpact: Array<GalacticImpact | undefined> = new Array(entries.length);
     for (const impact of worldResult.impacts) {
       const targetIndex = this.entryIndexById.get(impact.targetId);
@@ -653,6 +747,9 @@ export class RaceSimulation {
               target.x, target.y + 0.6, target.z,
               galacticSelf.courseProgress,
             ) === null,
+            style: entry.ai.personality as GalacticAICombatStyle,
+            playerId: this.options.playerId,
+            sectionTag: this.course.sampleAtProgress(entry.progress.courseProgress).tag,
           },
         );
         input = this.applyModeAIObjective(entry, input);
@@ -1484,6 +1581,7 @@ export class RaceSimulation {
     this.aiLastRaceScores.clear();
     this.aiStallSeconds.clear();
     this.runtimeConfigs.clear();
+    this.playerLockTargetIdValue = null;
   }
 
   private vehicleConfigFor(
@@ -1645,16 +1743,20 @@ export class RaceSimulation {
         if (!b || b.status === 'finished') continue;
         const aConfig = configs[aIndex] ?? this.vehicleConfigFor(a);
         const bConfig = configs[bIndex] ?? this.vehicleConfigFor(b);
-        const pairDistance = GALACTIC_VEHICLES[this.galacticFor(a).vehicleClass].collisionRadius
-          + GALACTIC_VEHICLES[this.galacticFor(b).vehicleClass].collisionRadius;
-        const dx = b.vehicle.position.x - a.vehicle.position.x;
-        const dz = b.vehicle.position.z - a.vehicle.position.z;
+        // Broad phase on the old class circles, then the real hull: two engine
+        // capsules and a cockpit sphere per craft, so contact happens at the
+        // visible engine edge and a side-by-side rub is a rub, not a bounce.
+        const broad = GALACTIC_VEHICLES[this.galacticFor(a).vehicleClass].collisionRadius
+          + GALACTIC_VEHICLES[this.galacticFor(b).vehicleClass].collisionRadius + 12;
         const vertical = Math.abs(b.vehicle.position.y - a.vehicle.position.y);
-        const distance = Math.hypot(dx, dz);
-        if (distance >= pairDistance || vertical > 5.5) continue;
-        const normalX = distance > 1e-5 ? dx / distance : aIndex % 2 === 0 ? 1 : -1;
-        const normalZ = distance > 1e-5 ? dz / distance : 0;
-        const penetration = pairDistance - distance;
+        if (vertical > 5.5 || Math.hypot(b.vehicle.position.x - a.vehicle.position.x, b.vehicle.position.z - a.vehicle.position.z) >= broad) continue;
+        const contact = closestHullContact(
+          a.vehicle, GALACTIC_VEHICLES[this.galacticFor(a).vehicleClass],
+          b.vehicle, GALACTIC_VEHICLES[this.galacticFor(b).vehicleClass],
+          aIndex % 2 === 0 ? 1 : -1,
+        );
+        if (!contact) continue;
+        const { normalX, normalZ, penetration } = contact;
         const contactKey = `${a.id}:${b.id}`;
         nextRacerContacts.add(contactKey);
         const relativeAlong = (
@@ -1676,6 +1778,17 @@ export class RaceSimulation {
         a.vehicle.position.z -= normalZ * correction;
         b.vehicle.position.x += normalX * correction;
         b.vehicle.position.z += normalZ * correction;
+        // A side-by-side rub trades pace: the faster hull drags the slower one
+        // along and gives up some of its own speed, instead of only paying damage.
+        const forwardX = Math.sin(a.vehicle.orientation.yaw), forwardZ = Math.cos(a.vehicle.orientation.yaw);
+        const sideways = Math.abs(normalX * forwardX + normalZ * forwardZ) < 0.45;
+        if (sideways) {
+          const aAlong = a.vehicle.velocity.x * forwardX + a.vehicle.velocity.z * forwardZ;
+          const bAlong = b.vehicle.velocity.x * forwardX + b.vehicle.velocity.z * forwardZ;
+          const exchange = clamp((bAlong - aAlong) * 0.25 * this.config.fixedDelta * 12, -0.6, 0.6);
+          a.vehicle.velocity.x += forwardX * exchange; a.vehicle.velocity.z += forwardZ * exchange;
+          b.vehicle.velocity.x -= forwardX * exchange; b.vehicle.velocity.z -= forwardZ * exchange;
+        }
         const lastContactStep = this.racerContactSteps.get(contactKey)
           ?? Number.NEGATIVE_INFINITY;
         const cooldownSteps = Math.max(1, Math.ceil(0.22 / this.config.fixedDelta));
@@ -1684,16 +1797,16 @@ export class RaceSimulation {
           || this.state.step - lastContactStep < cooldownSteps
         ) continue;
         this.racerContactSteps.set(contactKey, this.state.step);
-        const damage = Math.min(0.01, 0.001 + closingSpeed * 0.00035);
+        const damage = Math.min(0.01, 0.001 + closingSpeed * 0.00035) * (sideways ? 0.4 : 1);
         append(aIndex, {
           impulse: { x: -normalX * impulseMagnitude, y: 0.55 * aConfig.mass, z: -normalZ * impulseMagnitude },
-          localPoint: this.localCollisionPoint(a.vehicle, normalX, normalZ),
+          localPoint: { x: contact.localAX, y: 0, z: contact.localAZ },
           sourceId: b.id,
           damage,
         });
         append(bIndex, {
           impulse: { x: normalX * impulseMagnitude, y: 0.55 * bConfig.mass, z: normalZ * impulseMagnitude },
-          localPoint: this.localCollisionPoint(b.vehicle, -normalX, -normalZ),
+          localPoint: { x: contact.localBX, y: 0, z: contact.localBZ },
           sourceId: a.id,
           damage,
         });
@@ -1974,8 +2087,11 @@ export class RaceSimulation {
     }
     const score = racerRaceScore(entry);
     const previous = this.aiLastRaceScores.get(entry.id);
-    this.aiLastRaceScores.set(entry.id, score);
+    // Only a new high-water mark is progress. A craft shoved back and forth by
+    // the pack (engine capsules reach nineteen metres ahead) jitters around the
+    // same score and must not keep postponing the watchdog.
     if (previous === undefined || score - previous > 0.00001) {
+      this.aiLastRaceScores.set(entry.id, score);
       this.aiStallSeconds.set(
         entry.id,
         // A tiny collision shove is not a recovery. Sustained useful motion
@@ -2165,6 +2281,18 @@ export class RaceSimulation {
       const progress = placements.get(hazard.id);
       if (progress !== undefined) hazard.progress = progress;
     }
+    // Lance cells sit at the fight beats: canyon entry, chicane, hairpin and
+    // the open straight, so exchanges cluster where the course invites them.
+    const cellPlacements = new Map<string, number>([
+      ['lance-cells-canyon', progressInSection('narrow-canyon', 0.12)],
+      ['lance-cells-chicane', progressInSection('chicane', 0.3)],
+      ['lance-cells-hairpin', progressInSection('hairpin', 0.35)],
+      ['lance-cells-straight', progressInSection('fast-straight', 0.5)],
+    ]);
+    for (const pickup of world.pickups) {
+      const progress = cellPlacements.get(pickup.id);
+      if (progress !== undefined) pickup.progress = progress;
+    }
     return world;
   }
 
@@ -2185,12 +2313,12 @@ export class RaceSimulation {
       if (!racer) continue;
       const row = Math.floor(index / 2);
       const side = index % 2 === 0 ? -1 : 1;
-      const gridSample = this.course.sampleAtDistance(-10 - row * 25);
-      // The pods are nearly eighteen metres wide across their engine pair.
-      // A full four-row field also needs longitudinal engine clearance: the
-      // earlier 13 m pitch looked compact from above but visually interlocked
-      // neighbouring engine pods. Twenty-five metres gives every silhouette a
-      // clean launch box while still presenting as one tightly packed grid.
+      const gridSample = this.course.sampleAtDistance(-10 - row * 31);
+      // The pods are nearly eighteen metres wide across their engine pair and
+      // their engines reach twenty-one metres ahead of the origin while the
+      // cockpit trails six behind. The hull capsules are solid now, so rows
+      // need thirty-one metres or the noses start the race inside the pod in
+      // front; it still reads as one packed grid from the launch camera.
       const lane = this.options.fieldSize === 1 ? 0 : side * (12 + row * 0.45);
       const x = gridSample.x + gridSample.rightX * lane;
       const z = gridSample.z + gridSample.rightZ * lane;

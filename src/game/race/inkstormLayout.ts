@@ -1,6 +1,7 @@
 import type { PodraceCourse } from './course';
 import type { CourseObstacleContact, CourseSample } from './types';
 import { getLaunchBasinAnchor } from './CourseGulfField';
+import { getInkstormFoundryCorridorPlan } from './inkstormFoundryCorridor';
 export const INKSTORM_FAMILIES = ['cliff-strata','wind-blade','mesa-crown','roadside-shard','canyon-arch','foundry-gantry','refinery-stack','pit-complex','pipe-bank','finish-tower','canyon-buttress','sandstone-scree','fractured-spire','pit-district'] as const;
 export type InkstormFamily = typeof INKSTORM_FAMILIES[number];
 export interface InkstormPlacement { id:string;family:InkstormFamily;progress:number;x:number;z:number;yaw:number;sx:number;sy:number;sz:number; }
@@ -353,12 +354,19 @@ function obstacleBuckets(course:PodraceCourse):Map<string,Collider[]>{
   const cached=colliderCache.get(course);if(cached)return cached;
   const buckets=new Map<string,Collider[]>();
   const add=(c:Collider)=>{const radius=(c.box?Math.hypot(c.rx,c.rz):Math.max(c.rx,c.rz))+20;for(let x=Math.floor((c.x-radius)/128);x<=Math.floor((c.x+radius)/128);x++)for(let z=Math.floor((c.z-radius)/128);z<=Math.floor((c.z+radius)/128);z++){const key=`${x}:${z}`;const list=buckets.get(key)??[];list.push(c);buckets.set(key,list);}};
-  for(const p of getInkstormLayout(course)){
-    const dimensions:Partial<Record<InkstormFamily,[number,number,number]>>={'roadside-shard':[5,3.5,12],'sandstone-scree':[17.5,11,12],'wind-blade':[17,7.5,148],'mesa-crown':[58,45,76],'refinery-stack':[12,12,98],'pit-complex':[75,31,47],'pit-district':[60,18,35],'pipe-bank':[47,22,51],'finish-tower':[17,12,113]};
+  // Every rendered family is solid to the simulation. Rock masses use an
+  // ellipse fitted inside their measured low-vertex footprint (canonical
+  // 80×120×100 m buttress/spire, 74×52 m cliff strata) so the visible outline
+  // is the wall a pod feels; the canyon arch is two legs with an open span.
+  const dimensions:Partial<Record<InkstormFamily,[number,number,number]>>={'roadside-shard':[5,3.5,12],'sandstone-scree':[17.5,11,12],'wind-blade':[17,7.5,148],'mesa-crown':[58,45,76],'refinery-stack':[12,12,98],'pit-complex':[75,31,47],'pit-district':[60,18,35],'pipe-bank':[47,22,51],'finish-tower':[17,12,113],'canyon-buttress':[34,44,120],'fractured-spire':[38,46,120],'cliff-strata':[35,25,111]};
+  const decorative = getInkstormFoundryCorridorPlan(course, (x, z) => course.heightAt(x, z)).landforms;
+  for(const p of [...getInkstormLayout(course), ...decorative]){
+    if(p.id.startsWith('inkstorm-fork-divider-')){add({id:p.id,x:p.x,z:p.z,rx:40*p.sx,rz:50*p.sz,yaw:p.yaw,height:120*p.sy,progress:p.progress,box:true});continue;}
     const size=dimensions[p.family];
     if(size)add({id:p.id,x:p.x,z:p.z,rx:size[0]*p.sx,rz:size[1]*p.sz,yaw:p.yaw,height:size[2]*p.sy,progress:p.progress});
-    if(p.id.startsWith('inkstorm-fork-divider-'))add({id:p.id,x:p.x,z:p.z,rx:40*p.sx,rz:50*p.sz,yaw:p.yaw,height:120*p.sy,progress:p.progress,box:true});
     if(p.family==='foundry-gantry')for(const side of [-1,1])add({id:`${p.id}-${side}`,x:p.x+Math.cos(p.yaw)*46*p.sx*side,z:p.z-Math.sin(p.yaw)*46*p.sx*side,rx:6*p.sx,rz:7*p.sz,yaw:p.yaw,height:50*p.sy,progress:p.progress});
+    // Measured arch legs: low vertices sit at local X ±50..90 across a ±17 m base.
+    if(p.family==='canyon-arch')for(const side of [-1,1])add({id:`${p.id}-leg${side<0?'-left':'-right'}`,x:p.x+Math.cos(p.yaw)*70*p.sx*side,z:p.z-Math.sin(p.yaw)*70*p.sx*side,rx:20*p.sx,rz:17*p.sz,yaw:p.yaw,height:94*p.sy,progress:p.progress,box:true});
   }
   colliderCache.set(course,buckets);return buckets;
 }
@@ -387,4 +395,22 @@ export function getInkstormObstacleContact(course:PodraceCourse,x:number,z:numbe
     return {id:c.id,kind:'scenery',progress:c.progress,penetration:(1-distance)*Math.min(rx,rz),normalX:nx*cos+nz*sin,normalZ:-nx*sin+nz*cos};
   }
   return null;
+}
+
+/**
+ * Terrain plus solid scenery: inside a collider footprint the surface is the
+ * rock's crown. Wreck poses and settling debris sample this so a hull can lean
+ * on the rock it slid into instead of sinking through the face.
+ */
+export function getInkstormSolidHeight(course:PodraceCourse,x:number,z:number,heightAt:(x:number,z:number)=>number):number{
+  const ground=heightAt(x,z);
+  const bucket=obstacleBuckets(course).get(`${Math.floor(x/128)}:${Math.floor(z/128)}`);if(!bucket)return ground;
+  let solid=ground;
+  for(const c of bucket){
+    const dx=x-c.x,dz=z-c.z,cos=Math.cos(c.yaw),sin=Math.sin(c.yaw);
+    const lx=dx*cos-dz*sin,lz=dx*sin+dz*cos;
+    const inside=c.box?Math.abs(lx)<=c.rx&&Math.abs(lz)<=c.rz:Math.hypot(lx/c.rx,lz/c.rz)<1;
+    if(inside)solid=Math.max(solid,heightAt(c.x,c.z)+c.height);
+  }
+  return solid;
 }

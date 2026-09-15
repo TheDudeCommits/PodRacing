@@ -3,6 +3,7 @@ import type { PodracerConfig } from '../simulation/config';
 import type { PodracerState } from '../simulation/types';
 import { GALACTIC_VEHICLES } from './catalog';
 import { COMBAT_PICKUP_RESPAWN_SECONDS, isCombatPickup } from './combatPickups';
+import type { GalacticAICombatStyle } from './types';
 import type {
   GalacticActionContext,
   GalacticActionResult,
@@ -26,6 +27,13 @@ import type {
 const DEFAULT_WORLD_SEED = 0x47414c43; // GALC
 const WRECK_DAMAGE_THRESHOLD = 0.86;
 const WRECK_DURATION = 2.15;
+/** Starting Heat Lance cells; more come only from authored pickups. */
+export const LANCE_STARTING_CHARGES = 6;
+/** Lance speed relative to the shooter: slow enough that leading a target is a skill. */
+export const LANCE_SPEED = 150;
+export const LANCE_LIFETIME = 1.6;
+/** How long a racer that wrecked you stays marked. */
+export const RIVALRY_DURATION = 45;
 const RECOVERY_INVULNERABILITY = 1.55;
 /** Each consecutive wreck buys a longer protected return, bounded at three steps. */
 const RECOVERY_INVULNERABILITY_STEP = 0.45;
@@ -110,7 +118,7 @@ export function createGalacticRacerState(
     version: 1,
     vehicleClass,
     shield: { active: false, remaining: 0, cooldown: 0, absorbedDamage: 0 },
-    weapon: { cooldown: 0, triggerHeld: false, shotsFired: 0, hits: 0 },
+    weapon: { cooldown: 0, triggerHeld: false, shotsFired: 0, hits: 0, charges: LANCE_STARTING_CHARGES },
     mine: { cooldown: 0, charges: 3, deployed: 0 },
     redline: { active: false, heat: 0.08, lockout: 0, peakHeat: 0.08 },
     wreck: {
@@ -134,6 +142,7 @@ export function createGalacticRacerState(
     },
     takedowns: 0,
     controls: { fireHeld: false, shieldHeld: false, cycleVehicleHeld: false },
+    rivalry: { rivalId: null, remaining: 0 },
   };
 }
 
@@ -162,6 +171,12 @@ export function createGalacticWorldState(seed = DEFAULT_WORLD_SEED): GalacticWor
       // Authored additions: old pickup coordinates and the RNG stream stay fixed.
       makePickup('combat-emp', 0.315, -9, 'emp-cell'),
       makePickup('combat-repair', 0.805, 8, 'repair-salvage'),
+      // Lance cells sit at the authored fight beats; RaceSimulation aligns them
+      // to the generated sections so combat clusters where the course invites it.
+      makePickup('lance-cells-canyon', 0.42, 0, 'lance-cells'),
+      makePickup('lance-cells-chicane', 0.6, 0, 'lance-cells'),
+      makePickup('lance-cells-hairpin', 0.78, 0, 'lance-cells'),
+      makePickup('lance-cells-straight', 0.12, 0, 'lance-cells'),
     ],
     runTokens: 3,
     runCurrency: 0,
@@ -206,6 +221,8 @@ function decrementRacerTimers(
   state.wreck.invulnerable = Math.max(0, state.wreck.invulnerable - delta);
   state.wreck.recentAggressorTime = Math.max(0, state.wreck.recentAggressorTime - delta);
   if (state.wreck.recentAggressorTime <= 0) state.wreck.recentAggressorId = null;
+  state.rivalry.remaining = Math.max(0, state.rivalry.remaining - delta);
+  if (state.rivalry.remaining <= 0) state.rivalry.rivalId = null;
   state.status.sandGeyser = Math.max(0, state.status.sandGeyser - delta);
   state.status.heatVent = Math.max(0, state.status.heatVent - delta);
   state.status.rockfallStun = Math.max(0, state.status.rockfallStun - delta);
@@ -326,7 +343,8 @@ export function stepGalacticRacerAction(
   const fireHeatLance = context.racing
     && state.wreck.phase !== 'wrecked'
     && input.fire
-    && state.weapon.cooldown <= 0;
+    && state.weapon.cooldown <= 0
+    && state.weapon.charges > 0;
   if (deployMine) {
     state.mine.cooldown = 2.4;
     state.mine.charges -= 1;
@@ -335,6 +353,7 @@ export function stepGalacticRacerAction(
   if (fireHeatLance) {
     state.weapon.cooldown = definition.weaponCooldown;
     state.weapon.shotsFired += 1;
+    state.weapon.charges -= 1;
   }
 
   state.controls.fireHeld = input.fire;
@@ -390,8 +409,13 @@ export function assessGalacticThreats(
   const rightX = forwardZ;
   const rightZ = -forwardX;
   const selfSpeed = Math.hypot(self.velocityX, self.velocityZ);
+  // Preferred quarry: the racer that wrecked us, then (for a hunter) the human.
+  const grudge = self.galactic.rivalry.remaining > 0 ? self.galactic.rivalry.rivalId : null;
+  const hunted = tactics?.style === 'aggressive' ? tactics.playerId ?? null : null;
+  const priority = (id: string): number => (id === grudge ? 0 : id === hunted ? 1 : 2);
   let targetId: string | null = null;
   let targetDistance = Number.POSITIVE_INFINITY;
+  let targetPriority = 3;
   let pursuerId: string | null = null;
   let pursuerDistance = Number.POSITIVE_INFINITY;
   let aimedAtBy: string | null = null;
@@ -410,10 +434,13 @@ export function assessGalacticThreats(
     const inCone = forward > LANCE_MIN_RANGE && forward < LANCE_MAX_RANGE
       && Math.abs(lateral) < LANCE_CONE_BASE + forward * LANCE_CONE_PER_METRE
       && Math.abs(opponent.y - self.y) < 7;
-    if (shootable && inCone && distance < targetDistance
+    const rank = priority(opponent.id);
+    const better = rank < targetPriority || (rank === targetPriority && distance < targetDistance);
+    if (shootable && inCone && better
       && (!tactics?.hasLineOfFire || tactics.hasLineOfFire(opponent))) {
       targetId = opponent.id;
       targetDistance = distance;
+      targetPriority = rank;
     }
 
     const opponentForwardSpeed = opponent.velocityX * forwardX + opponent.velocityZ * forwardZ;
@@ -482,27 +509,39 @@ export function augmentGalacticAIInput(
   step: number,
   tactics?: GalacticAITactics,
 ): PlayerInputState {
+  // No style means the neutral rule set; only a declared personality shifts it.
+  const style: GalacticAICombatStyle | undefined = tactics?.style;
   const phase = (step + hashString(self.id)) >>> 0;
-  const fireWindow = phase % LANCE_WINDOW_PERIOD < LANCE_WINDOW_OPEN;
-  const mineWindow = phase % MINE_WINDOW_PERIOD < MINE_WINDOW_OPEN;
+  // Hunters keep the trigger window open longer; erratic rivals mine more often.
+  const fireOpen = style === 'aggressive' ? LANCE_WINDOW_OPEN * 1.5 : LANCE_WINDOW_OPEN;
+  const minePeriod = style === 'erratic' ? MINE_WINDOW_PERIOD / 2 : MINE_WINDOW_PERIOD;
+  const fireWindow = phase % LANCE_WINDOW_PERIOD < fireOpen;
+  const mineWindow = phase % minePeriod < MINE_WINDOW_OPEN;
   const own = self.galactic;
   // Attacks are a racing decision: nobody opens fire from the grid or while
   // crawling out of a wreck. Defence stays available at any speed.
   const underway = Math.hypot(self.velocityX, self.velocityZ) >= ATTACK_MINIMUM_SPEED;
-  const canFire = underway && fireWindow && own.weapon.cooldown <= 0 && own.wreck.phase !== 'wrecked';
+  const canFire = underway && fireWindow && own.weapon.cooldown <= 0 && own.weapon.charges > 0
+    && own.wreck.phase !== 'wrecked';
   // The world line-of-fire sweep is the expensive perception. Only pay for it
   // on a tick where the lance could actually leave the muzzle.
   const perception = tactics && !canFire && tactics.hasLineOfFire
-    ? { projectiles: tactics.projectiles, mines: tactics.mines }
+    ? { ...tactics, hasLineOfFire: undefined }
     : tactics;
   const threats = assessGalacticThreats(self, opponents, perception);
   const fire = canFire && threats.targetId !== null;
-  const mine = underway && mineWindow && threats.pursuerId !== null && own.mine.cooldown <= 0 && own.mine.charges > 0;
+  // Erratic rivals seed the technical sections whether or not someone is close;
+  // everyone else only mines a genuine pursuer.
+  const technical = tactics?.sectionTag === 'chicane' || tactics?.sectionTag === 'hairpin';
+  const mineReason = threats.pursuerId !== null || (style === 'erratic' && technical);
+  const mine = underway && mineWindow && mineReason && own.mine.cooldown <= 0 && own.mine.charges > 0;
   const shieldReady = own.shield.cooldown <= 0 && !own.shield.active;
+  // Clean drivers shield as soon as a rival lines them up; others wait until hurt.
+  const aimedThreshold = style === 'clean' ? 0 : 0.45;
   const shield = shieldReady && (
     threats.inboundProjectileId !== null
     || threats.mineAheadId !== null
-    || (threats.aimedAtBy !== null && self.damage > 0.45)
+    || (threats.aimedAtBy !== null && self.damage >= aimedThreshold && (style === 'clean' || self.damage > 0))
   );
   return normalizePlayerInput({
     ...input,
@@ -532,11 +571,11 @@ export function spawnHeatLance(
     position,
     previousPosition: { ...position },
     velocity: {
-      x: racer.velocityX + forwardX * 268,
+      x: racer.velocityX + forwardX * LANCE_SPEED,
       y: racer.velocityY * 0.2,
-      z: racer.velocityZ + forwardZ * 268,
+      z: racer.velocityZ + forwardZ * LANCE_SPEED,
     },
-    remaining: 1.35,
+    remaining: LANCE_LIFETIME,
     radius: 1.15,
     damage: definition.weaponDamage,
     heat: 0.13,
@@ -601,34 +640,35 @@ export function sweepCircleEntry(
 
 function hazardImpact(hazard: GalacticHazardState, racer: GalacticRacerSnapshot): GalacticImpact {
   const tangent = ((hashString(hazard.id) & 1) === 0 ? -1 : 1);
+  const hit = { hitX: racer.x, hitY: racer.y, hitZ: racer.z };
   switch (hazard.kind) {
     case 'sand-geyser':
       return {
         targetId: racer.id, sourceId: null, cause: 'hazard', weapon: null,
         damage: 0.025, heat: 0, impulseX: tangent * 1.8, impulseY: 16, impulseZ: 0,
         status: 'sandGeyser', statusDuration: 1.2,
-        hazardId: hazard.id, hazardKind: hazard.kind,
+        hazardId: hazard.id, hazardKind: hazard.kind, ...hit,
       };
     case 'heat-vent':
       return {
         targetId: racer.id, sourceId: null, cause: 'hazard', weapon: null,
         damage: 0.035, heat: 0.28, impulseX: 0, impulseY: 4, impulseZ: 0,
         status: 'heatVent', statusDuration: 1.8,
-        hazardId: hazard.id, hazardKind: hazard.kind,
+        hazardId: hazard.id, hazardKind: hazard.kind, ...hit,
       };
     case 'rockfall':
       return {
         targetId: racer.id, sourceId: null, cause: 'rockfall', weapon: null,
         damage: 0.2, heat: 0, impulseX: tangent * 12, impulseY: 7, impulseZ: -9,
         status: 'rockfallStun', statusDuration: 1.05,
-        hazardId: hazard.id, hazardKind: hazard.kind,
+        hazardId: hazard.id, hazardKind: hazard.kind, ...hit,
       };
     case 'dust-interference':
       return {
         targetId: racer.id, sourceId: null, cause: 'hazard', weapon: null,
         damage: 0, heat: 0, impulseX: 0, impulseY: 0, impulseZ: 0,
         status: 'dustInterference', statusDuration: 2.4,
-        hazardId: hazard.id, hazardKind: hazard.kind,
+        hazardId: hazard.id, hazardKind: hazard.kind, ...hit,
       };
   }
 }
@@ -695,6 +735,7 @@ export function stepGalacticWorld(
     }
     if (target) {
       const speed = Math.max(1, Math.hypot(projectile.velocity.x, projectile.velocity.z));
+      const entry = clamp(targetEntry, 0, 1);
       impacts.push({
         targetId: target.id,
         sourceId: projectile.ownerId,
@@ -709,6 +750,10 @@ export function stepGalacticWorld(
         statusDuration: 0.72,
         hazardId: null,
         hazardKind: null,
+        // The hull point the lance actually reached, not the racer's centre.
+        hitX: projectile.previousPosition.x + (projectile.position.x - projectile.previousPosition.x) * entry,
+        hitY: projectile.previousPosition.y + (projectile.position.y - projectile.previousPosition.y) * entry,
+        hitZ: projectile.previousPosition.z + (projectile.position.z - projectile.previousPosition.z) * entry,
       });
       world.projectiles.splice(index, 1);
     } else if (projectile.remaining <= 0) {
@@ -744,6 +789,7 @@ export function stepGalacticWorld(
         impulseX: dx / length * 14, impulseY: 8, impulseZ: dz / length * 14,
         status: 'rockfallStun', statusDuration: 0.66,
         hazardId: null, hazardKind: null,
+        hitX: mine.position.x, hitY: mine.position.y, hitZ: mine.position.z,
       });
       events.push({ type: 'scrap-mine-triggered', racerId: target.id, ownerId: mine.ownerId, mineId: mine.id });
       world.mines.splice(index, 1);
@@ -829,7 +875,7 @@ export function applyGalacticImpact(
     const absorbed = baseDamage - appliedDamage;
     state.shield.absorbedDamage += absorbed;
     state.shield.remaining = Math.max(0, state.shield.remaining - absorbed * 1.7);
-    events.push({ type: 'shield-block', racerId, sourceId: impact.sourceId, absorbed });
+    events.push({ type: 'shield-block', racerId, sourceId: impact.sourceId, absorbed, x: impact.hitX, y: impact.hitY, z: impact.hitZ });
   }
   vehicle.damage = clamp(vehicle.damage + appliedDamage, 0, 1);
   vehicle.heat = clamp(vehicle.heat + Math.max(0, impact.heat) * (shielded ? 0.35 : 1), 0, 1.25);
@@ -847,7 +893,7 @@ export function applyGalacticImpact(
   if (impact.weapon) {
     events.push({
       type: 'weapon-hit', attackerId: impact.sourceId ?? 'world', targetId: racerId,
-      weapon: impact.weapon, damage: appliedDamage, shielded,
+      weapon: impact.weapon, damage: appliedDamage, shielded, x: impact.hitX, y: impact.hitY, z: impact.hitZ,
     });
   }
   return { appliedDamage, shielded, events };
@@ -894,7 +940,13 @@ export function beginGalacticWreck(
   }, {
     type: 'recovery-start', racerId, duration: WRECK_DURATION,
   }];
-  if (credited) events.push({ type: 'takedown', attackerId: credited, victimId: racerId, cause });
+  if (credited) {
+    events.push({ type: 'takedown', attackerId: credited, victimId: racerId, cause });
+    // The victim remembers who did it: rivals hunt them back and the HUD calls it out.
+    state.rivalry.rivalId = credited;
+    state.rivalry.remaining = RIVALRY_DURATION;
+    events.push({ type: 'rivalry-marked', racerId, rivalId: credited, duration: RIVALRY_DURATION });
+  }
   return events;
 }
 

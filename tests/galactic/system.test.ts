@@ -122,7 +122,7 @@ describe('Galactic Racer deterministic gameplay systems', () => {
     expect(new Set(configs.map((config) => config.mass)).size).toBe(4);
     expect(new Set(configs.map((config) => config.maxSpeed)).size).toBe(4);
     expect(configs.every((config) => config.fixedDelta === DEFAULT_PODRACER_CONFIG.fixedDelta)).toBe(true);
-    expect(configs.every((config) => config.probes.length === 6)).toBe(true);
+    expect(configs.every((config) => config.probes.length === DEFAULT_PODRACER_CONFIG.probes.length)).toBe(true);
   });
 
   it('activates Pulse Shell on an edge and blocks most incoming weapon damage', () => {
@@ -152,6 +152,7 @@ describe('Galactic Racer deterministic gameplay systems', () => {
       statusDuration: 1,
       hazardId: null,
       hazardKind: null,
+      hitX: 0, hitY: 2, hitZ: 0,
     };
     const result = applyGalacticImpact('shielded', state, vehicle, config, impact);
 
@@ -167,7 +168,8 @@ describe('Galactic Racer deterministic gameplay systems', () => {
     world.hazards = [];
     world.pickups = [];
     const shooter = makeSnapshot('shooter', 0);
-    const target = makeSnapshot('target', 28, 'skim-speeder');
+    // A 0.1 s step at lance speed sweeps fifteen metres straight through the hull.
+    const target = makeSnapshot('target', 14, 'skim-speeder');
     const projectile = spawnHeatLance(world, shooter);
     const result = stepGalacticWorld(world, [shooter, target], 0.1);
 

@@ -376,7 +376,13 @@ function computeAvoidance(
       0,
       context.self.speed - Math.hypot(other.velocityX, other.velocityZ),
     );
-    const currentThreat = clamp(forwardWeight * lateralWeight + closingSpeed / 180, 0, 1);
+    let currentThreat = clamp(forwardWeight * lateralWeight + closingSpeed / 180, 0, 1);
+    // Hull overlap band: the engines reach twenty-one metres ahead and the
+    // pods are thirteen metres wide, so a rival closer than thirty metres in
+    // the same lane is already about to be touched. Treat it as urgent.
+    if (forwardDistance > -8 && forwardDistance < 30 && Math.abs(lateralDistance) < 13.5) {
+      currentThreat = Math.max(currentThreat, 0.85 - Math.abs(lateralDistance) / 13.5 * 0.3);
+    }
     const side = Math.abs(lateralDistance) < 0.05
       ? ((context.self.id < other.id) ? -1 : 1)
       : (lateralDistance > 0 ? -1 : 1);

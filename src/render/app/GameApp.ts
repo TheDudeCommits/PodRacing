@@ -18,6 +18,8 @@ import { PodracerAudio, type RivalAudioTelemetry } from '../../audio';
 import { RaceMastery, masterySectorLabels, INKSTORM_HERO_SEED, type CompetitionProfile, type MasteryStartOptions } from '../../game/mastery';
 import { loadVehicleAppearance, resolveRacerAppearancePreference, saveVehicleAppearance, selectablePodAppearance, SELECTABLE_POD_APPEARANCES, vehicleChaseClearance, type VehicleAppearanceId } from '../../game/vehicleAppearance';
 import { POD_IDENTITIES, podIdentityStatRows } from '../../game/podIdentity';
+import { getInkstormSolidHeight } from '../../game/race/inkstormLayout';
+import type { HeightSampler } from '../../game/simulation/types';
 import { VehicleArtLibrary } from '../vehicles/VehicleArtLibrary';
 import { RacerPresentation } from '../vehicles/RacerPresentation';
 import { DEFAULT_PODRACER_CONFIG } from '../../game/simulation/config';
@@ -1185,6 +1187,13 @@ export class GameApp {
         this.race.terrain.heightAt(shadowView.position.x, shadowView.position.z));
       if (shadowReady) this.contactShadows.hide(shadowIndex);
     } else this.inkstormRacerShadow.clear();
+    // Drafting is visible: the wake of the leader thickens the streaks and a
+    // slingshot flares them, so the tow reads before the HUD says anything.
+    const drafting = this.race.state.entries.find((entry) => entry.id === this.localRacerId())?.drafting;
+    const draftBoost = drafting ? Math.min(1, drafting.wakeStrength) * 0.8 + (drafting.slingshotRemaining > 0 ? 0.7 : 0) : 0;
+    this.speedStreaks.setIntensity(
+      this.settings.comfort.reducedMotion ? 0 : this.settings.comfort.motionIntensity * (1 + draftBoost),
+    );
     this.speedStreaks.update(
       presentationTime,
       this.subject.speed,
@@ -1246,6 +1255,12 @@ export class GameApp {
           : undefined,
       });
       if (this.race.state.raceTime < this.hudGoUntil) hudModel.countdownCue = 'go';
+      if (hudModel.galactic) {
+        const nameOf = (id: string | null): string | null => id
+          ? this.race.state.entries.find((entry) => entry.id === id)?.name ?? null : null;
+        hudModel.galactic.weaponTarget = nameOf(this.race.lockedTargetId);
+        hudModel.galactic.rivalName = nameOf(hudModel.galactic.rivalName);
+      }
       this.hud.update(hudModel);
     }
     if (!this.captureMode && !this.awaitingRaceStart) {
@@ -2222,6 +2237,19 @@ export class GameApp {
         kind,
       });
     };
+
+    // A rival who wrecked us is called out while the grudge lasts and they are near.
+    const rivalry = local.galactic?.rivalry;
+    if (rivalry?.rivalId && rivalry.remaining > 0) {
+      const rival = this.race.state.entries.find((entry) => entry.id === rivalry.rivalId);
+      if (rival && rival.status !== 'finished') {
+        const distance = Math.hypot(rival.vehicle.position.x - origin.x, rival.vehicle.position.z - origin.z);
+        if (distance < 220) {
+          addCue(`rival-${rival.id}`, `REVENGE // ${rival.name.toUpperCase()}`, rival.vehicle.position.x, rival.vehicle.position.z,
+            0.35 + (1 - distance / 220) * 0.45, 'rival');
+        }
+      }
+    }
 
     for (const projectile of this.race.state.galacticWorld.projectiles) {
       if (projectile.ownerId === localId) continue;
@@ -3298,9 +3326,22 @@ export class GameApp {
     // wreck animation merely because its timer has reached zero.
     const remaining = entry.galactic?.wreck.phase === 'wrecked'
       ? entry.galactic.wreck.timer : 2.15 + extrapolationSeconds;
-    const pose = cache.update(entry.vehicle, remaining, this.race.terrain, extrapolationSeconds);
-    if (view.importedActive) view.imported.updateWreckBreakup(pose, remaining, this.race.terrain, extrapolationSeconds);
+    // Support points settle on terrain or on the rock they slid into, so a
+    // wreck leans against scenery instead of sinking through its face.
+    const solid = this.solidWreckTerrain();
+    const pose = cache.update(entry.vehicle, remaining, solid, extrapolationSeconds);
+    if (view.importedActive) view.imported.updateWreckBreakup(pose, remaining, solid, extrapolationSeconds);
     return pose;
+  }
+
+  private solidWreckTerrainCache: { race: RaceSimulation; sampler: HeightSampler } | null = null;
+  private solidWreckTerrain(): HeightSampler {
+    if (this.solidWreckTerrainCache?.race === this.race) return this.solidWreckTerrainCache.sampler;
+    const race = this.race;
+    const terrain = (x: number, z: number): number => race.terrain.heightAt(x, z);
+    const sampler: HeightSampler = { heightAt: (x, z) => getInkstormSolidHeight(race.course, x, z, terrain) };
+    this.solidWreckTerrainCache = { race, sampler };
+    return sampler;
   }
 
   private syncCombatCameraSubject(extrapolationSeconds: number): void {
@@ -3589,7 +3630,7 @@ export class GameApp {
       ?.galactic?.upgrades.collectedPickupIds;
     for (const pickup of this.race.state.galacticWorld.pickups) {
       if (pickup.collectedBy !== null || worldObjectIndex >= this.galacticMinePool.length) continue;
-      if ((pickup.part === 'emp-cell' || pickup.part === 'repair-salvage')
+      if ((pickup.part === 'emp-cell' || pickup.part === 'repair-salvage' || pickup.part === 'lance-cells')
         && localPickupClaims?.includes(pickup.id)) continue;
       const effect = this.galacticMinePool[worldObjectIndex];
       if (!effect) continue;
@@ -3730,7 +3771,12 @@ export class GameApp {
       const racerIndex = this.race.state.entries.findIndex((candidate) => candidate.id === racerId);
       const entry = this.race.state.entries[racerIndex];
       if (!entry) continue;
-      let position = entry.vehicle.position;
+      let position: { x: number; y: number; z: number } = entry.vehicle.position;
+      // Lance and shield flashes belong at the hull point the sweep reached.
+      if ((event.type === 'weapon-hit' || event.type === 'shield-block')
+        && typeof event.x === 'number' && typeof event.y === 'number' && typeof event.z === 'number') {
+        position = { x: event.x, y: event.y, z: event.z };
+      }
       let direction: Vector3 | undefined;
       let surfaceNormal: Vector3 | undefined;
       if (style === 'redline' || style === 'crash') {

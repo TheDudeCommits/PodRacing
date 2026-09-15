@@ -186,6 +186,8 @@ const model: RaceHudViewModel = {
     weaponTarget: 'Vexa Ruun',
     weaponShots: 21,
     weaponHits: 13,
+  weaponCharges: 6,
+  rivalName: null,
     mineCount: 2,
     redlineHeat: 0.84,
     redlineActive: true,

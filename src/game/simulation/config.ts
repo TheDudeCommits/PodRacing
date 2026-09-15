@@ -91,8 +91,20 @@ export interface PodracerConfig {
   bankSlide: number;
   /** Hull damage one landing can inflict; a designed drop never wrecks a clean lap alone. */
   landingDamageCap: number;
+  /** Attitude correction (rad/s per radian of hull penetration) when a probe breaks the hard deck. */
+  hullKick: number;
   probes: readonly TerrainProbeDefinition[];
 }
+
+/** The original six-point repulsor bed, retained for the drive-5 compatibility tune. */
+export const LEGACY_PODRACER_PROBES: readonly TerrainProbeDefinition[] = Object.freeze([
+  Object.freeze({ id: 'cockpit-front', localX: 0, localZ: 1.9 }),
+  Object.freeze({ id: 'cockpit-rear', localX: 0, localZ: -1.8 }),
+  Object.freeze({ id: 'engine-left-front', localX: -4.1, localZ: 5.3 }),
+  Object.freeze({ id: 'engine-left-rear', localX: -4.1, localZ: 2.2 }),
+  Object.freeze({ id: 'engine-right-front', localX: 4.1, localZ: 5.3 }),
+  Object.freeze({ id: 'engine-right-rear', localX: 4.1, localZ: 2.2 }),
+]);
 
 /**
  * Arcade tune: deliberately energetic and underdamped enough to communicate
@@ -181,13 +193,14 @@ export const DEFAULT_PODRACER_CONFIG: Readonly<PodracerConfig> = Object.freeze({
   // The old 0.22 cap made a clean three-lap race wreck itself on landing
   // damage alone; a hard slam still costs a seventh of the hull.
   landingDamageCap: 0.14,
+  hullKick: 2.4,
+  // The authored engines reach 17–23 m ahead of the origin. Nose probes let the
+  // bed see the terrain under those tips, so a nose-down pitch lifts the craft
+  // and pitches it back instead of burying the engines in a slope.
   probes: Object.freeze([
-    Object.freeze({ id: 'cockpit-front', localX: 0, localZ: 1.9 }),
-    Object.freeze({ id: 'cockpit-rear', localX: 0, localZ: -1.8 }),
-    Object.freeze({ id: 'engine-left-front', localX: -4.1, localZ: 5.3 }),
-    Object.freeze({ id: 'engine-left-rear', localX: -4.1, localZ: 2.2 }),
-    Object.freeze({ id: 'engine-right-front', localX: 4.1, localZ: 5.3 }),
-    Object.freeze({ id: 'engine-right-rear', localX: 4.1, localZ: 2.2 }),
+    ...LEGACY_PODRACER_PROBES,
+    Object.freeze({ id: 'engine-left-nose', localX: -4.1, localZ: 17.5 }),
+    Object.freeze({ id: 'engine-right-nose', localX: 4.1, localZ: 17.5 }),
   ]),
 });
 
@@ -211,4 +224,6 @@ export const DRIVE5_COMPATIBILITY_CONFIG: Readonly<PodracerConfig> = Object.free
   bankAssist: 0,
   bankSlide: 0,
   landingDamageCap: 0.22,
+  hullKick: 0,
+  probes: LEGACY_PODRACER_PROBES,
 });

@@ -33,16 +33,18 @@ describe('local terrain support at a straddled edge', () => {
     let queries = 0;
     const terrain = {heightAt: (_x: number, z: number) => { queries += 1; return .12 * z; }};
     const state = createPodracerState({terrain, initialSpeed: 100});
+    // Two samples per probe on an ordinary tick, three when the hard deck corrects.
+    const probes = config.probes.length;
     for (let tick = 0; tick < 120; tick += 1) {
       queries = 0;
       stepPodracer(state, {throttle: .45}, {terrain});
-      expect(queries).toBeLessThanOrEqual(18);
+      expect(queries).toBeLessThanOrEqual(3 * probes);
     }
     state.position.y -= state.telemetry.groundClearance;
     state.velocity.y = -4;
     queries = 0;
     stepPodracer(state, {throttle: .45}, {terrain});
-    expect(queries).toBeLessThanOrEqual(24);
+    expect(queries).toBeLessThanOrEqual(3 * probes);
     expect(state.probes.every(probe => probe.clearance >= config.hardDeckClearance - 1e-9)).toBe(true);
   });
 });

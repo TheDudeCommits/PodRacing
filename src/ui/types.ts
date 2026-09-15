@@ -338,7 +338,11 @@ export interface HudGalacticViewModel {
   weaponTarget: string | null;
   weaponShots: number;
   weaponHits: number;
+  /** Heat Lance cells left; zero means the trigger does nothing until a pickup. */
+  weaponCharges: number;
   mineCount: number;
+  /** Name of the racer who last wrecked this one while the grudge lasts. */
+  rivalName: string | null;
   redlineHeat: number;
   redlineActive: boolean;
   statusLabel: string | null;

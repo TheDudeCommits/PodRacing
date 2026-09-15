@@ -77,6 +77,8 @@ describe('podracer fixed-step simulation', () => {
       'engine-left-rear',
       'engine-right-front',
       'engine-right-rear',
+      'engine-left-nose',
+      'engine-right-nose',
     ]);
   });
 
@@ -175,8 +177,10 @@ describe('podracer fixed-step simulation', () => {
 
     expect(sawAirborne).toBe(true);
     expect(landing).toBeDefined();
-    expect(landing?.airTime).toBeGreaterThan(0.2);
-    expect(landing?.verticalSpeed).toBeGreaterThan(5);
+    // Nose probes reach the far lip early, so the hop is shorter than the six-probe tune measured.
+    expect(landing?.airTime).toBeGreaterThan(0.12);
+    // Nose probes catch the far lip a little earlier, so the slam is softer than before.
+    expect(landing?.verticalSpeed).toBeGreaterThan(3);
     expect(sawSpray).toBe(true);
     expect(sawLandingShake).toBe(true);
     expect(state.position.z).toBeGreaterThan(43);

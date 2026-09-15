@@ -40,7 +40,9 @@ export type TerrainProbeId =
   | 'engine-left-front'
   | 'engine-left-rear'
   | 'engine-right-front'
-  | 'engine-right-rear';
+  | 'engine-right-rear'
+  | 'engine-left-nose'
+  | 'engine-right-nose';
 
 export interface TerrainProbeState {
   id: TerrainProbeId;

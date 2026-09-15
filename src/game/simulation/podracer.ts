@@ -177,6 +177,7 @@ function sampleTerrain(
 ): TerrainSummary {
   let heightSum = 0;
   let clearanceSum = 0;
+  let activeClearanceSum = 0;
   let activeCount = 0;
   let totalLift = 0;
   let maxPenetration = 0;
@@ -232,7 +233,10 @@ function sampleTerrain(
         )
       : 0;
 
-    if (probe.active) activeCount += 1;
+    if (probe.active) {
+      activeCount += 1;
+      activeClearanceSum += probe.clearance;
+    }
     heightSum += probe.groundHeight;
     clearanceSum += probe.clearance;
     minimumClearance = Math.min(minimumClearance, probe.clearance);
@@ -254,7 +258,10 @@ function sampleTerrain(
   const count = state.probes.length;
   return {
     averageHeight: heightSum / count,
-    averageClearance: clearanceSum / count,
+    // Supported clearance is judged by the probes still inside repulsor range:
+    // a nose hanging over a deck edge or a drop must not make a planted craft
+    // read as airborne.
+    averageClearance: activeCount > 0 ? activeClearanceSum / activeCount : clearanceSum / count,
     minimumClearance,
     support: activeCount / count,
     slopePitch: Math.atan2(pitchNumerator, Math.max(0.001, pitchDenominator)),
@@ -755,6 +762,24 @@ function updateTerrainResponse(
   terrainSummary = sampleTerrain(state, terrain, config);
   let landingVerticalSpeed = Math.max(0, -preStepVerticalSpeed, -state.velocity.y);
   if (terrainSummary.maxPenetration > 0) {
+    // A hull corner below the hard deck lifts the craft and rotates it away
+    // from the ground it hit: a buried nose pitches up, a buried engine rolls
+    // up, so the visible hull reacts to the slope instead of passing through it.
+    if (config.hullKick > 0) {
+      let pitchNumerator = 0, pitchDenominator = 0, rollNumerator = 0, rollDenominator = 0;
+      for (const probe of state.probes) {
+        const penetration = config.hardDeckClearance - probe.clearance;
+        if (penetration <= 0) continue;
+        pitchNumerator += probe.localZ * penetration;
+        pitchDenominator += probe.localZ * probe.localZ;
+        rollNumerator += probe.localX * penetration;
+        rollDenominator += probe.localX * probe.localX;
+      }
+      const pitchKick = pitchDenominator > 0 ? Math.atan2(pitchNumerator, pitchDenominator) : 0;
+      const rollKick = rollDenominator > 0 ? Math.atan2(rollNumerator, rollDenominator) : 0;
+      state.angularVelocity.pitch = clamp(state.angularVelocity.pitch + pitchKick * config.hullKick, -3.5, 3.5);
+      state.angularVelocity.roll = clamp(state.angularVelocity.roll + rollKick * config.hullKick, -3.5, 3.5);
+    }
     state.position.y += terrainSummary.maxPenetration;
     if (state.velocity.y < 0) {
       landingVerticalSpeed = Math.max(landingVerticalSpeed, -state.velocity.y);
