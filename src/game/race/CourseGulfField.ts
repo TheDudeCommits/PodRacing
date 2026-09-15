@@ -435,6 +435,95 @@ export function bakeForkApproachProfile(grid: CourseGulfGrid, course: PodraceCou
   }
 }
 
+/**
+ * Banked flagship sweeper. The bank follows the actual bend: it rises from a
+ * gentle arc to a readable camber where the curvature is strongest, so the
+ * outside edge tells the player where the corner is before the braking point.
+ * The cross-slope is baked into the same shared field that physics and the
+ * terrain shader sample, so the craft rolls with the bank it can see.
+ */
+export const SWEEPER_BANK_PROFILE = Object.freeze({
+  /** Radians of camber at full curvature; ~13.7 degrees across a 36m road. */
+  maxBank: 0.24,
+  curvatureStart: 0.0009,
+  curvatureFull: 0.0017,
+  /** Metres beyond the lane edge that keep the full cross-slope. */
+  shoulder: 16,
+  /** Metres over which the cross-slope fades back to the natural desert. */
+  fadeWidth: 90,
+  /** Metres of ramp at each end of the tagged section. */
+  entryFade: 140,
+});
+
+export function sweeperBankAngle(curvature: number): number {
+  const profile = SWEEPER_BANK_PROFILE;
+  return profile.maxBank * smoother(
+    (Math.abs(curvature) - profile.curvatureStart) / (profile.curvatureFull - profile.curvatureStart),
+  );
+}
+
+/** Signed cross-slope height (metres) at a lateral offset for one road sample. */
+export function sweeperBankOffset(curvature: number, width: number, lateral: number, envelope: number): number {
+  const profile = SWEEPER_BANK_PROFILE;
+  const bank = sweeperBankAngle(curvature) * envelope;
+  if (bank <= 0) return 0;
+  // Raise the outside of the bend: positive curvature bends toward racer-right,
+  // so the left (negative lateral) edge climbs.
+  const side = curvature >= 0 ? -1 : 1;
+  const reach = width + profile.shoulder;
+  const clamped = Math.max(-reach, Math.min(reach, lateral));
+  const fade = 1 - smoother((Math.abs(lateral) - reach) / profile.fadeWidth);
+  return Math.tan(bank) * clamped * side * fade;
+}
+
+/** Course distances the banked sweeper edition may touch, or null off the flagship. */
+export function sweeperBankingExtent(course: PodraceCourse): { start: number; end: number } | null {
+  if (course.seed !== COURSE_GULF_SEED) return null;
+  const points = Array.from({ length: 2048 }, (_, i) => course.samplePlanAtProgress(i / 2048));
+  const sweeper = points.filter(point => point.tag === 'wide-sweeper');
+  if (sweeper.length < 2) return null;
+  return { start: sweeper[0]!.distance, end: sweeper[sweeper.length - 1]!.distance };
+}
+
+export function bakeSweeperBanking(grid: CourseGulfGrid, course: PodraceCourse): void {
+  const extent = sweeperBankingExtent(course);
+  if (!extent) return;
+  const profile = SWEEPER_BANK_PROFILE;
+  const points = Array.from({ length: 2048 }, (_, i) => course.samplePlanAtProgress(i / 2048));
+  const { start, end } = extent;
+  const reach = 43 + profile.shoulder + profile.fadeWidth;
+  const buckets = makeProfileBuckets(points, reach);
+  for (let row = 1; row < grid.size - 1; row++) {
+    const z = grid.minZ + row * grid.cellSize;
+    for (let column = 1; column < grid.size - 1; column++) {
+      const x = grid.minX + column * grid.cellSize;
+      const segments = buckets.get(`${Math.floor(x / BUCKET_SIZE)}:${Math.floor(z / BUCKET_SIZE)}`);
+      if (!segments) continue;
+      let nearestSq = reach * reach, distance = -1, lateral = 0;
+      for (const segment of segments) {
+        const t = Math.max(0, Math.min(1, ((x - segment.ax) * segment.dx + (z - segment.az) * segment.dz) / Math.max(1e-8, segment.lengthSq)));
+        const offX = x - segment.ax - segment.dx * t, offZ = z - segment.az - segment.dz * t;
+        const square = offX * offX + offZ * offZ;
+        if (square >= nearestSq) continue;
+        nearestSq = square;
+        distance = segment.distance + segment.span * t;
+        // Right of travel is (tangentZ, -tangentX); the segment direction is the tangent.
+        const length = Math.sqrt(segment.lengthSq) || 1;
+        lateral = (offX * segment.dz - offZ * segment.dx) / length;
+      }
+      if (distance <= start || distance >= end) continue;
+      const envelope = smoother((distance - start) / profile.entryFade)
+        * (1 - smoother((distance - (end - profile.entryFade)) / profile.entryFade));
+      if (envelope <= 0) continue;
+      const sample = course.samplePlanAtProgress(distance / course.totalLength);
+      const offset = sweeperBankOffset(sample.curvature, sample.width, lateral, envelope);
+      if (offset === 0) continue;
+      const index = row * grid.size + column;
+      grid.values[index] = Math.max(-COURSE_GULF_MAX_DEPTH, Math.min(COURSE_GULF_MAX_RISE, grid.values[index]! + offset));
+    }
+  }
+}
+
 /** Call only after generating the unchanged base plan; never feeds seed search. */
 export function createCourseGulfField(course: PodraceCourse, options: { forkApproach?: boolean } = {}): CourseGulfField | null {
   if (course.seed !== COURSE_GULF_SEED) return null;
@@ -473,6 +562,7 @@ export function createCourseGulfField(course: PodraceCourse, options: { forkAppr
   extendLaunchBasin(launchGrid, course, profile);
   bakeLaunchRevealThroat(launchGrid, course, profile);
   bakeSaltRunProfile(launchGrid, course);
+  bakeSweeperBanking(launchGrid, course);
   const finishGrid = bakeGrid('finish', finish, finishSide, points, protection, 150);
   // The explicit opt-out supports independent before/after regression receipts;
   // every normal RaceSimulation/GameApp construction installs the profile.

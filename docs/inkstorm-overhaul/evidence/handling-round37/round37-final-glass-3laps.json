@@ -1,0 +1,4466 @@
+{
+  "generatedAt": "2026-09-15T17:02:26.423Z",
+  "heroSeed": 1229867859,
+  "command": [
+    "--only=cup-glass",
+    "--laps=3",
+    "--label=round37-final-glass-3laps",
+    "--limit=600",
+    "--wall=400"
+  ],
+  "limitation": "Automated input-only driver; no teleport or progress mutation. This is not human handling acceptance.",
+  "hashes": {
+    "src/game/simulation/config.ts": "680753eca1417fc916038a8715e7938ef909c0b74922f549f2820a372ec6af69",
+    "src/game/simulation/podracer.ts": "7fc86b81490e5557dd5b68899e98fe44f8805d70807a34457c6a420f4897c867",
+    "src/game/podIdentity.ts": "a0b3927db30e907beb6a6adb0143b609d788eacc3b53449fdbc3867c2471a95b",
+    "src/game/race/RaceSimulation.ts": "2179ce862d63bfcaf42f0835b8a32d992a5a0d8f21eb53c4adf1cf36be1db7a6",
+    "src/game/race/course.ts": "c1030fcc0ea2ee7d6e0487b6b7332fd29a36947c41bc4847defa9535d6bd12d3",
+    "src/game/race/inkstormLayout.ts": "4f8b3362448093dcb1ce44f7f46d70c3bcbd97957538496e308838101ddd0f9e",
+    "src/render/terrain/terrainMath.ts": "a01165a6244b98905dbac5326eccf428ea7e671db47f72fdc36582a3b8c50db5",
+    "src/game/ai/controller.ts": "dcfca48970e6a061991572d86696dfab113908051c0878827b5cc7e4cb6ba639",
+    "scripts/drive-balance.ts": "ae549e48ed31db6ac47f0bda64243defb73486824adc9964d2e7dbbd5cc681cd",
+    "src/game/race/branches.ts": "f9595ca3b1eafea98f7e87607f246b5c1f405be1e2602456d1b8d939ccae3f52",
+    "src/game/race/bridgeSurface.ts": "ead93c5cb3bf8b0ad643135e91776e547f81f1e309b66149d732a753b0a6501b",
+    "src/game/race/CourseGulfField.ts": "e98c66f990ce191ecbcdb45fe56a2fde04534bfb5aab850b4a360517139ffaa8"
+  },
+  "receipts": [
+    {
+      "eventId": "cup-glass",
+      "vehicleClass": "podracer",
+      "podIdentity": "teemto",
+      "seed": 1196179795,
+      "profile": "clean-race",
+      "laps": 3,
+      "courseLengthM": 9365.012688804773,
+      "pace": 0.88,
+      "disableBoost": false,
+      "launchBoost": false,
+      "saltBoost": false,
+      "observeAiUntil": 0,
+      "useElevatedBridge": false,
+      "bridgeSpeed": 0,
+      "resultsGraceSeconds": 8,
+      "terminatedBy": "race-finished",
+      "ticks": 24010,
+      "simulationTime": 197.08333333331842,
+      "executionSeconds": 20.890012875,
+      "cleanCompletion": true,
+      "medal": "not-applicable",
+      "medalTimes": {
+        "gold": 180,
+        "silver": 225,
+        "bronze": 300
+      },
+      "racers": [
+        {
+          "id": "player",
+          "name": "You",
+          "vehicleClass": "podracer",
+          "status": "finished",
+          "completedLaps": 3,
+          "finishReason": "finish-line",
+          "unwrappedProgress": 3.0000667028741157,
+          "courseProgress": 0.00006670287411316155,
+          "finishTime": 189.07499999999237,
+          "lapTimes": [
+            63.874999999997016,
+            62.591666666716364,
+            62.60833333327899
+          ],
+          "resets": 0,
+          "collisions": 16,
+          "sceneryCollisions": 0,
+          "wrecks": 0,
+          "maxSpeed": 193.15520047161675,
+          "maxDamage": 0.11553177023241942,
+          "maxOffCourseM": 0,
+          "airborneSeconds": 12.591666666666592,
+          "naturalFinishTime": 189.07499999999237,
+          "observedLaps": [
+            63.874999999997016,
+            62.591666666716364,
+            62.60833333327899
+          ],
+          "checkpointCrossings": 30,
+          "checkpointOrder": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            0
+          ],
+          "bridgeSeconds": 0,
+          "bridgeGroundedSeconds": 0,
+          "bridgePeakLift": 0,
+          "bridgeMinimumClearance": null,
+          "saltSeconds": 0,
+          "saltBoostInputSeconds": 0,
+          "saltPeakSpeed": 0,
+          "saltCollisions": 0,
+          "saltResets": 0,
+          "launchSeconds": 0,
+          "launchBoostInputSeconds": 0,
+          "launchAirborneSeconds": 0,
+          "launchPeakSpeed": 0,
+          "launchCollisions": 0,
+          "launchResets": 0,
+          "launchCollisionSources": {},
+          "collisionSources": {
+            "ai-talik": 8,
+            "ai-sola": 2,
+            "ai-kodo": 3,
+            "ai-vexa": 3
+          }
+        },
+        {
+          "id": "ai-vexa",
+          "name": "Vexa Ruun",
+          "vehicleClass": "landspeeder",
+          "status": "finished",
+          "completedLaps": 2,
+          "finishReason": "classified",
+          "unwrappedProgress": 2.4904315221304136,
+          "courseProgress": 0.4935866877243678,
+          "finishTime": null,
+          "lapTimes": [
+            82.38333333334496,
+            79.8666666666718
+          ],
+          "resets": 0,
+          "collisions": 9,
+          "sceneryCollisions": 0,
+          "wrecks": 0,
+          "maxSpeed": 159.50573779325381,
+          "maxDamage": 0.06468670171058269,
+          "maxOffCourseM": 0,
+          "airborneSeconds": 7.675000000000171,
+          "naturalFinishTime": null,
+          "observedLaps": [
+            82.38333333334496,
+            79.8666666666718
+          ],
+          "checkpointCrossings": 24,
+          "checkpointOrder": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "bridgeSeconds": 0,
+          "bridgeGroundedSeconds": 0,
+          "bridgePeakLift": 0,
+          "bridgeMinimumClearance": null,
+          "saltSeconds": 0,
+          "saltBoostInputSeconds": 0,
+          "saltPeakSpeed": 0,
+          "saltCollisions": 0,
+          "saltResets": 0,
+          "launchSeconds": 0,
+          "launchBoostInputSeconds": 0,
+          "launchAirborneSeconds": 0,
+          "launchPeakSpeed": 0,
+          "launchCollisions": 0,
+          "launchResets": 0,
+          "launchCollisionSources": {},
+          "collisionSources": {
+            "player": 3,
+            "ai-rax": 6
+          }
+        },
+        {
+          "id": "ai-talik",
+          "name": "Talik Venn",
+          "vehicleClass": "speeder-bike",
+          "status": "finished",
+          "completedLaps": 2,
+          "finishReason": "classified",
+          "unwrappedProgress": 2.9913854113701466,
+          "courseProgress": 0.9950715618622787,
+          "finishTime": null,
+          "lapTimes": [
+            65.05833333333118,
+            66.6166666667134
+          ],
+          "resets": 0,
+          "collisions": 8,
+          "sceneryCollisions": 0,
+          "wrecks": 0,
+          "maxSpeed": 169.15140341925886,
+          "maxDamage": 0.060224740898751065,
+          "maxOffCourseM": 0,
+          "airborneSeconds": 11.366666666666662,
+          "naturalFinishTime": null,
+          "observedLaps": [
+            65.05833333333118,
+            66.6166666667134
+          ],
+          "checkpointCrossings": 29,
+          "checkpointOrder": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "bridgeSeconds": 0,
+          "bridgeGroundedSeconds": 0,
+          "bridgePeakLift": 0,
+          "bridgeMinimumClearance": null,
+          "saltSeconds": 0,
+          "saltBoostInputSeconds": 0,
+          "saltPeakSpeed": 0,
+          "saltCollisions": 0,
+          "saltResets": 0,
+          "launchSeconds": 0,
+          "launchBoostInputSeconds": 0,
+          "launchAirborneSeconds": 0,
+          "launchPeakSpeed": 0,
+          "launchCollisions": 0,
+          "launchResets": 0,
+          "launchCollisionSources": {},
+          "collisionSources": {
+            "player": 8
+          }
+        },
+        {
+          "id": "ai-kodo",
+          "name": "Kodo Fizz",
+          "vehicleClass": "skim-speeder",
+          "status": "finished",
+          "completedLaps": 2,
+          "finishReason": "classified",
+          "unwrappedProgress": 2.623244068632265,
+          "courseProgress": 0.6215214395524101,
+          "finishTime": null,
+          "lapTimes": [
+            77.3250000000076,
+            73.17500000001985
+          ],
+          "resets": 0,
+          "collisions": 3,
+          "sceneryCollisions": 0,
+          "wrecks": 0,
+          "maxSpeed": 167.0595762021301,
+          "maxDamage": 0.029939736970984288,
+          "maxOffCourseM": 0,
+          "airborneSeconds": 9.691666666666757,
+          "naturalFinishTime": null,
+          "observedLaps": [
+            77.3250000000076,
+            73.17500000001985
+          ],
+          "checkpointCrossings": 25,
+          "checkpointOrder": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "bridgeSeconds": 0,
+          "bridgeGroundedSeconds": 0,
+          "bridgePeakLift": 0,
+          "bridgeMinimumClearance": null,
+          "saltSeconds": 0,
+          "saltBoostInputSeconds": 0,
+          "saltPeakSpeed": 0,
+          "saltCollisions": 0,
+          "saltResets": 0,
+          "launchSeconds": 0,
+          "launchBoostInputSeconds": 0,
+          "launchAirborneSeconds": 0,
+          "launchPeakSpeed": 0,
+          "launchCollisions": 0,
+          "launchResets": 0,
+          "launchCollisionSources": {},
+          "collisionSources": {
+            "player": 3
+          }
+        },
+        {
+          "id": "ai-sola",
+          "name": "Sola Dinn",
+          "vehicleClass": "podracer",
+          "status": "finished",
+          "completedLaps": 2,
+          "finishReason": "classified",
+          "unwrappedProgress": 2.5727223706427362,
+          "courseProgress": 0.5640074097528784,
+          "finishTime": null,
+          "lapTimes": [
+            80.52500000001015,
+            76.40833333334479
+          ],
+          "resets": 1,
+          "collisions": 27,
+          "sceneryCollisions": 0,
+          "wrecks": 0,
+          "maxSpeed": 174.2894639448237,
+          "maxDamage": 0.23162736283924315,
+          "maxOffCourseM": 0,
+          "airborneSeconds": 9.708333333333423,
+          "naturalFinishTime": null,
+          "observedLaps": [
+            80.52500000001015,
+            76.40833333334479
+          ],
+          "checkpointCrossings": 25,
+          "checkpointOrder": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "bridgeSeconds": 0,
+          "bridgeGroundedSeconds": 0,
+          "bridgePeakLift": 0,
+          "bridgeMinimumClearance": null,
+          "saltSeconds": 0,
+          "saltBoostInputSeconds": 0,
+          "saltPeakSpeed": 0,
+          "saltCollisions": 0,
+          "saltResets": 0,
+          "launchSeconds": 0,
+          "launchBoostInputSeconds": 0,
+          "launchAirborneSeconds": 0,
+          "launchPeakSpeed": 0,
+          "launchCollisions": 0,
+          "launchResets": 0,
+          "launchCollisionSources": {},
+          "collisionSources": {
+            "player": 2,
+            "ai-miri": 5,
+            "ai-rax": 2,
+            "ai-olan": 17,
+            "canyon-wall-right": 1
+          }
+        },
+        {
+          "id": "ai-rax",
+          "name": "Rax Kordo",
+          "vehicleClass": "landspeeder",
+          "status": "finished",
+          "completedLaps": 2,
+          "finishReason": "classified",
+          "unwrappedProgress": 2.497557736908124,
+          "courseProgress": 0.49909686754086274,
+          "finishTime": null,
+          "lapTimes": [
+            81.60833333334435,
+            79.77500000000654
+          ],
+          "resets": 0,
+          "collisions": 17,
+          "sceneryCollisions": 0,
+          "wrecks": 0,
+          "maxSpeed": 159.4587138837822,
+          "maxDamage": 0.1499021518955667,
+          "maxOffCourseM": 0,
+          "airborneSeconds": 7.5333333333334975,
+          "naturalFinishTime": null,
+          "observedLaps": [
+            81.60833333334435,
+            79.77500000000654
+          ],
+          "checkpointCrossings": 24,
+          "checkpointOrder": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "bridgeSeconds": 0,
+          "bridgeGroundedSeconds": 0,
+          "bridgePeakLift": 0,
+          "bridgeMinimumClearance": null,
+          "saltSeconds": 0,
+          "saltBoostInputSeconds": 0,
+          "saltPeakSpeed": 0,
+          "saltCollisions": 0,
+          "saltResets": 0,
+          "launchSeconds": 0,
+          "launchBoostInputSeconds": 0,
+          "launchAirborneSeconds": 0,
+          "launchPeakSpeed": 0,
+          "launchCollisions": 0,
+          "launchResets": 0,
+          "launchCollisionSources": {},
+          "collisionSources": {
+            "ai-miri": 7,
+            "ai-sola": 2,
+            "ai-olan": 2,
+            "ai-vexa": 6
+          }
+        },
+        {
+          "id": "ai-miri",
+          "name": "Miri Voss",
+          "vehicleClass": "speeder-bike",
+          "status": "finished",
+          "completedLaps": 2,
+          "finishReason": "classified",
+          "unwrappedProgress": 2.8659321834589444,
+          "courseProgress": 0.871807645328256,
+          "finishTime": null,
+          "lapTimes": [
+            75.08333333333916,
+            65.87500000003031
+          ],
+          "resets": 0,
+          "collisions": 18,
+          "sceneryCollisions": 0,
+          "wrecks": 0,
+          "maxSpeed": 189.07401391091992,
+          "maxDamage": 0.13808179251229835,
+          "maxOffCourseM": 0,
+          "airborneSeconds": 11.383333333333328,
+          "naturalFinishTime": null,
+          "observedLaps": [
+            75.08333333333916,
+            65.87500000003031
+          ],
+          "checkpointCrossings": 27,
+          "checkpointOrder": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "bridgeSeconds": 0,
+          "bridgeGroundedSeconds": 0,
+          "bridgePeakLift": 0,
+          "bridgeMinimumClearance": null,
+          "saltSeconds": 0,
+          "saltBoostInputSeconds": 0,
+          "saltPeakSpeed": 0,
+          "saltCollisions": 0,
+          "saltResets": 0,
+          "launchSeconds": 0,
+          "launchBoostInputSeconds": 0,
+          "launchAirborneSeconds": 0,
+          "launchPeakSpeed": 0,
+          "launchCollisions": 0,
+          "launchResets": 0,
+          "launchCollisionSources": {},
+          "collisionSources": {
+            "ai-sola": 5,
+            "ai-rax": 7,
+            "ai-olan": 6
+          }
+        },
+        {
+          "id": "ai-olan",
+          "name": "Olan Tarr",
+          "vehicleClass": "skim-speeder",
+          "status": "finished",
+          "completedLaps": 2,
+          "finishReason": "classified",
+          "unwrappedProgress": 2.5653646700327335,
+          "courseProgress": 0.569300690566744,
+          "finishTime": null,
+          "lapTimes": [
+            79.85000000000962,
+            74.19166666668129
+          ],
+          "resets": 0,
+          "collisions": 25,
+          "sceneryCollisions": 0,
+          "wrecks": 0,
+          "maxSpeed": 164.51897768905238,
+          "maxDamage": 0.1963465081429932,
+          "maxOffCourseM": 0,
+          "airborneSeconds": 8.166666666666844,
+          "naturalFinishTime": null,
+          "observedLaps": [
+            79.85000000000962,
+            74.19166666668129
+          ],
+          "checkpointCrossings": 25,
+          "checkpointOrder": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "bridgeSeconds": 0,
+          "bridgeGroundedSeconds": 0,
+          "bridgePeakLift": 0,
+          "bridgeMinimumClearance": null,
+          "saltSeconds": 0,
+          "saltBoostInputSeconds": 0,
+          "saltPeakSpeed": 0,
+          "saltCollisions": 0,
+          "saltResets": 0,
+          "launchSeconds": 0,
+          "launchBoostInputSeconds": 0,
+          "launchAirborneSeconds": 0,
+          "launchPeakSpeed": 0,
+          "launchCollisions": 0,
+          "launchResets": 0,
+          "launchCollisionSources": {},
+          "collisionSources": {
+            "ai-miri": 6,
+            "ai-sola": 17,
+            "ai-rax": 2
+          }
+        }
+      ],
+      "notableEvents": [
+        {
+          "t": 0,
+          "type": "collision",
+          "source": "ai-talik",
+          "progress": 0.9987111093000027
+        },
+        {
+          "t": 0.21666666666666665,
+          "type": "collision",
+          "source": "ai-sola",
+          "progress": 0.9986050943481308
+        },
+        {
+          "t": 0.6083333333333336,
+          "type": "collision",
+          "source": "ai-sola",
+          "progress": 0.9994084725385175
+        },
+        {
+          "t": 1.0083333333333322,
+          "type": "collision",
+          "source": "ai-kodo",
+          "progress": 0.0012550381297381048
+        },
+        {
+          "t": 1.741666666666663,
+          "type": "collision",
+          "source": "ai-kodo",
+          "progress": 0.005775544053069998
+        },
+        {
+          "t": 2.308333333333328,
+          "type": "collision",
+          "source": "ai-kodo",
+          "progress": 0.010806832992293987
+        },
+        {
+          "t": 3.0666666666666584,
+          "type": "collision",
+          "source": "ai-vexa",
+          "progress": 0.017498654072820967
+        },
+        {
+          "t": 3.324999999999991,
+          "type": "collision",
+          "source": "ai-vexa",
+          "progress": 0.019717936473730015
+        },
+        {
+          "t": 4.191666666666665,
+          "type": "collision",
+          "source": "ai-vexa",
+          "progress": 0.03111132874962737
+        },
+        {
+          "t": 32.87499999999878,
+          "type": "collision",
+          "source": "ai-talik",
+          "progress": 0.52863303790036
+        },
+        {
+          "t": 33.683333333332065,
+          "type": "collision",
+          "source": "ai-talik",
+          "progress": 0.5355153558113508
+        },
+        {
+          "t": 35.316666666665306,
+          "type": "collision",
+          "source": "ai-talik",
+          "progress": 0.549545762034011
+        },
+        {
+          "t": 35.9749999999986,
+          "type": "collision",
+          "source": "ai-talik",
+          "progress": 0.556783476406472
+        },
+        {
+          "t": 36.216666666665255,
+          "type": "collision",
+          "source": "ai-talik",
+          "progress": 0.5589522900843829
+        },
+        {
+          "t": 37.98333333333182,
+          "type": "collision",
+          "source": "ai-talik",
+          "progress": 0.5755131663946137
+        },
+        {
+          "t": 38.81666666666511,
+          "type": "collision",
+          "source": "ai-talik",
+          "progress": 0.5891220324934717
+        }
+      ],
+      "recoveries": [
+        {
+          "t": 151.1000000000269,
+          "racer": "ai-sola",
+          "progress": 0.9600653347894921,
+          "nextCheckpoint": 9,
+          "unwrappedProgress": 1.968780295679361,
+          "x": 10204.950673777417,
+          "z": 920.5790221620189,
+          "before": {
+            "id": "ai-sola",
+            "x": 10174.775558862813,
+            "z": 943.5547846784108,
+            "progress": 0.9620006647797421,
+            "offCourse": 3.65203790720388,
+            "speed": 58.42575667250459,
+            "grounded": true,
+            "wrongWay": false
+          },
+          "ai": {
+            "targetProgress": 0.9662232848481725,
+            "targetSpeed": 55,
+            "lookaheadDistance": 39.54489052085297,
+            "desiredLaneOffset": -0.005169640239599734,
+            "avoidance": 0,
+            "collisionThreat": 0,
+            "cornerSeverity": 1,
+            "rubberBand": 0,
+            "mistake": "none",
+            "objectiveBias": 1,
+            "routeBranchId": null
+          }
+        }
+      ],
+      "trace": [
+        {
+          "t": 0,
+          "progress": 0.999,
+          "lap": 1,
+          "speed": 0,
+          "targetSpeed": 0,
+          "lateral": -12,
+          "width": 31.9,
+          "tag": "start-straight",
+          "damage": 0,
+          "input": {
+            "throttle": 0
+          }
+        },
+        {
+          "t": 0,
+          "progress": 0.999,
+          "lap": 1,
+          "speed": 0,
+          "targetSpeed": 0,
+          "lateral": -12,
+          "width": 31.9,
+          "tag": "start-straight",
+          "damage": 0,
+          "input": {
+            "throttle": 0
+          }
+        },
+        {
+          "t": 0,
+          "progress": 0.999,
+          "lap": 1,
+          "speed": 0,
+          "targetSpeed": 0,
+          "lateral": -12,
+          "width": 31.9,
+          "tag": "start-straight",
+          "damage": 0,
+          "input": {
+            "throttle": 0
+          }
+        },
+        {
+          "t": 0,
+          "progress": 0.9987,
+          "lap": 1,
+          "speed": 8.6,
+          "targetSpeed": 0,
+          "lateral": -11.4,
+          "width": 31.9,
+          "tag": "start-straight",
+          "damage": 0.005,
+          "input": {
+            "throttle": 0
+          }
+        },
+        {
+          "t": 1,
+          "progress": 0.0012,
+          "lap": 1,
+          "speed": 50.6,
+          "targetSpeed": 80.1,
+          "lateral": -6.1,
+          "width": 31.9,
+          "tag": "start-straight",
+          "damage": 0.025,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": -0.6236068223933727,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 2,
+          "progress": 0.0079,
+          "lap": 1,
+          "speed": 95.4,
+          "targetSpeed": 99.9,
+          "lateral": 2.4,
+          "width": 32.2,
+          "tag": "start-straight",
+          "damage": 0.051,
+          "input": {
+            "throttle": 0.8145641631476138,
+            "brake": 0,
+            "steer": 0.6032362787927814,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 3,
+          "progress": 0.0169,
+          "lap": 1,
+          "speed": 80,
+          "targetSpeed": 88.7,
+          "lateral": 1.7,
+          "width": 32.6,
+          "tag": "start-straight",
+          "damage": 0.054,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.6177295941379358,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 4,
+          "progress": 0.0278,
+          "lap": 1,
+          "speed": 155,
+          "targetSpeed": 206.1,
+          "lateral": 3.6,
+          "width": 33,
+          "tag": "start-straight",
+          "damage": 0.067,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.027259268965147996,
+            "drift": false,
+            "boost": true,
+            "reset": false
+          }
+        },
+        {
+          "t": 5,
+          "progress": 0.0464,
+          "lap": 1,
+          "speed": 166.9,
+          "targetSpeed": 206.1,
+          "lateral": -0.1,
+          "width": 34.4,
+          "tag": "start-straight",
+          "damage": 0.07,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.10785971126209336,
+            "drift": false,
+            "boost": true,
+            "reset": false
+          }
+        },
+        {
+          "t": 6,
+          "progress": 0.0641,
+          "lap": 1,
+          "speed": 164.4,
+          "targetSpeed": 206.1,
+          "lateral": 0,
+          "width": 35.2,
+          "tag": "start-straight",
+          "damage": 0.07,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.1195154384716729,
+            "drift": false,
+            "boost": true,
+            "reset": false
+          }
+        },
+        {
+          "t": 7,
+          "progress": 0.083,
+          "lap": 1,
+          "speed": 176,
+          "targetSpeed": 206.1,
+          "lateral": 0,
+          "width": 35.7,
+          "tag": "fast-straight",
+          "damage": 0.07,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.09838907995080214,
+            "drift": false,
+            "boost": true,
+            "reset": false
+          }
+        },
+        {
+          "t": 8,
+          "progress": 0.1007,
+          "lap": 1,
+          "speed": 164.8,
+          "targetSpeed": 206.1,
+          "lateral": -0.1,
+          "width": 36.6,
+          "tag": "fast-straight",
+          "damage": 0.07,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.07453911529712659,
+            "drift": false,
+            "boost": true,
+            "reset": false
+          }
+        },
+        {
+          "t": 9,
+          "progress": 0.119,
+          "lap": 1,
+          "speed": 166.9,
+          "targetSpeed": 206.1,
+          "lateral": -0.1,
+          "width": 37.4,
+          "tag": "fast-straight",
+          "damage": 0.07,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.10656067716407489,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 10,
+          "progress": 0.1369,
+          "lap": 1,
+          "speed": 167,
+          "targetSpeed": 206.1,
+          "lateral": -0.2,
+          "width": 37.3,
+          "tag": "fast-straight",
+          "damage": 0.07,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.09495115695524313,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 11,
+          "progress": 0.1548,
+          "lap": 1,
+          "speed": 167.4,
+          "targetSpeed": 206.1,
+          "lateral": 0.1,
+          "width": 35.6,
+          "tag": "fast-straight",
+          "damage": 0.07,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.3035605295162801,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 12,
+          "progress": 0.1727,
+          "lap": 1,
+          "speed": 167.1,
+          "targetSpeed": 206.1,
+          "lateral": 0.3,
+          "width": 34.1,
+          "tag": "fast-straight",
+          "damage": 0.07,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.46153416337040276,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 13,
+          "progress": 0.1905,
+          "lap": 1,
+          "speed": 167.5,
+          "targetSpeed": 206.1,
+          "lateral": -1,
+          "width": 33.6,
+          "tag": "launch-crest",
+          "damage": 0.07,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.3294964769598772,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 14,
+          "progress": 0.2084,
+          "lap": 1,
+          "speed": 167.3,
+          "targetSpeed": 206.1,
+          "lateral": 0.6,
+          "width": 32.7,
+          "tag": "launch-crest",
+          "damage": 0.07,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.44116375278155895,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 15,
+          "progress": 0.2263,
+          "lap": 1,
+          "speed": 167.7,
+          "targetSpeed": 206.1,
+          "lateral": 0.4,
+          "width": 33,
+          "tag": "launch-crest",
+          "damage": 0.07,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.33376359022543883,
+            "drift": false,
+            "boost": true,
+            "reset": false
+          }
+        },
+        {
+          "t": 16,
+          "progress": 0.2442,
+          "lap": 1,
+          "speed": 167.4,
+          "targetSpeed": 206.1,
+          "lateral": 0.4,
+          "width": 35.6,
+          "tag": "launch-crest",
+          "damage": 0.07,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.23527830744801076,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 17,
+          "progress": 0.2621,
+          "lap": 1,
+          "speed": 167.1,
+          "targetSpeed": 206.1,
+          "lateral": 0.4,
+          "width": 38,
+          "tag": "launch-crest",
+          "damage": 0.07,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.3944683421150204,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 18,
+          "progress": 0.28,
+          "lap": 1,
+          "speed": 167.5,
+          "targetSpeed": 206.1,
+          "lateral": 0.2,
+          "width": 38.5,
+          "tag": "wide-sweeper",
+          "damage": 0.07,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.40453136945304613,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 19,
+          "progress": 0.2979,
+          "lap": 1,
+          "speed": 167.3,
+          "targetSpeed": 206.1,
+          "lateral": 0.3,
+          "width": 39.2,
+          "tag": "wide-sweeper",
+          "damage": 0.07,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.3591988986595109,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 20,
+          "progress": 0.3158,
+          "lap": 1,
+          "speed": 167.7,
+          "targetSpeed": 206.1,
+          "lateral": 0.4,
+          "width": 39.4,
+          "tag": "wide-sweeper",
+          "damage": 0.07,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.3811422702972192,
+            "drift": false,
+            "boost": true,
+            "reset": false
+          }
+        },
+        {
+          "t": 21,
+          "progress": 0.3337,
+          "lap": 1,
+          "speed": 167.4,
+          "targetSpeed": 206.1,
+          "lateral": 0.2,
+          "width": 37.8,
+          "tag": "wide-sweeper",
+          "damage": 0.07,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.29834108989729974,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 22,
+          "progress": 0.3516,
+          "lap": 1,
+          "speed": 167.1,
+          "targetSpeed": 206.1,
+          "lateral": 0.4,
+          "width": 36,
+          "tag": "wide-sweeper",
+          "damage": 0.07,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.4514113442440013,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 23,
+          "progress": 0.3695,
+          "lap": 1,
+          "speed": 167.5,
+          "targetSpeed": 206.1,
+          "lateral": 0.2,
+          "width": 34.1,
+          "tag": "wide-sweeper",
+          "damage": 0.07,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.5027864624312028,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 24,
+          "progress": 0.3874,
+          "lap": 1,
+          "speed": 167.3,
+          "targetSpeed": 206.1,
+          "lateral": 0.2,
+          "width": 29,
+          "tag": "wide-sweeper",
+          "damage": 0.07,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.2266396617511176,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 25,
+          "progress": 0.4052,
+          "lap": 1,
+          "speed": 167.6,
+          "targetSpeed": 206.1,
+          "lateral": 0.3,
+          "width": 26.4,
+          "tag": "wide-sweeper",
+          "damage": 0.07,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.469818818786027,
+            "drift": false,
+            "boost": true,
+            "reset": false
+          }
+        },
+        {
+          "t": 26,
+          "progress": 0.4231,
+          "lap": 1,
+          "speed": 167.4,
+          "targetSpeed": 206.1,
+          "lateral": 0.2,
+          "width": 19.5,
+          "tag": "wide-sweeper",
+          "damage": 0.07,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.03763663231016503,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 27,
+          "progress": 0.441,
+          "lap": 1,
+          "speed": 167,
+          "targetSpeed": 206.1,
+          "lateral": 0.1,
+          "width": 17,
+          "tag": "narrow-canyon",
+          "damage": 0.07,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.18623004556370734,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 28,
+          "progress": 0.4589,
+          "lap": 1,
+          "speed": 164.7,
+          "targetSpeed": 165.4,
+          "lateral": 0.2,
+          "width": 15.5,
+          "tag": "narrow-canyon",
+          "damage": 0.07,
+          "input": {
+            "throttle": 0.5356875759586065,
+            "brake": 0,
+            "steer": 0.24649453242803848,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 29,
+          "progress": 0.4755,
+          "lap": 1,
+          "speed": 154.5,
+          "targetSpeed": 176.3,
+          "lateral": -0.2,
+          "width": 15.6,
+          "tag": "narrow-canyon",
+          "damage": 0.07,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.29511876722727,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 30,
+          "progress": 0.4913,
+          "lap": 1,
+          "speed": 128.6,
+          "targetSpeed": 123,
+          "lateral": -1.3,
+          "width": 16.5,
+          "tag": "narrow-canyon",
+          "damage": 0.07,
+          "input": {
+            "throttle": 0,
+            "brake": 0.23519736911990877,
+            "steer": -0.9667570900700986,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 31,
+          "progress": 0.5027,
+          "lap": 1,
+          "speed": 94.5,
+          "targetSpeed": 114.1,
+          "lateral": -2.4,
+          "width": 17,
+          "tag": "narrow-canyon",
+          "damage": 0.07,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": -0.5332359504775688,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 32,
+          "progress": 0.5168,
+          "lap": 1,
+          "speed": 147.8,
+          "targetSpeed": 139.4,
+          "lateral": 0.2,
+          "width": 20.4,
+          "tag": "narrow-canyon",
+          "damage": 0.07,
+          "input": {
+            "throttle": 0,
+            "brake": 0.4098971227907384,
+            "steer": 0.04148759812415231,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 33,
+          "progress": 0.5299,
+          "lap": 1,
+          "speed": 94.2,
+          "targetSpeed": 86.2,
+          "lateral": 1.7,
+          "width": 23.8,
+          "tag": "narrow-canyon",
+          "damage": 0.08,
+          "input": {
+            "throttle": 0,
+            "brake": 0.370615677771938,
+            "steer": 0.729833458321789,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 34,
+          "progress": 0.5375,
+          "lap": 1,
+          "speed": 52.5,
+          "targetSpeed": 59.1,
+          "lateral": 4.8,
+          "width": 24.3,
+          "tag": "chicane",
+          "damage": 0.084,
+          "input": {
+            "throttle": 0.9639481570666874,
+            "brake": 0,
+            "steer": 0.6345807802020086,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 35,
+          "progress": 0.5456,
+          "lap": 1,
+          "speed": 113.7,
+          "targetSpeed": 132.8,
+          "lateral": -1,
+          "width": 23.4,
+          "tag": "chicane",
+          "damage": 0.084,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.0337798839185193,
+            "drift": false,
+            "boost": true,
+            "reset": false
+          }
+        },
+        {
+          "t": 36,
+          "progress": 0.557,
+          "lap": 1,
+          "speed": 84.6,
+          "targetSpeed": 73.7,
+          "lateral": -3.1,
+          "width": 22,
+          "tag": "chicane",
+          "damage": 0.095,
+          "input": {
+            "throttle": 0,
+            "brake": 0.5458636264376617,
+            "steer": -1,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 37,
+          "progress": 0.5648,
+          "lap": 1,
+          "speed": 73.9,
+          "targetSpeed": 110.8,
+          "lateral": -0.6,
+          "width": 21.8,
+          "tag": "chicane",
+          "damage": 0.097,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": -0.7267345962837568,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 38,
+          "progress": 0.5758,
+          "lap": 1,
+          "speed": 139,
+          "targetSpeed": 206.1,
+          "lateral": 0.6,
+          "width": 22.7,
+          "tag": "chicane",
+          "damage": 0.112,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.05877884875103732,
+            "drift": false,
+            "boost": true,
+            "reset": false
+          }
+        },
+        {
+          "t": 39,
+          "progress": 0.5923,
+          "lap": 1,
+          "speed": 158.7,
+          "targetSpeed": 144.9,
+          "lateral": -1.1,
+          "width": 23.9,
+          "tag": "chicane",
+          "damage": 0.116,
+          "input": {
+            "throttle": 0,
+            "brake": 0.7310200275017648,
+            "steer": 0.6124543646751958,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 40,
+          "progress": 0.6081,
+          "lap": 1,
+          "speed": 161.6,
+          "targetSpeed": 206.1,
+          "lateral": 0.7,
+          "width": 25.5,
+          "tag": "chicane",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.6364290374974904,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 41,
+          "progress": 0.6255,
+          "lap": 1,
+          "speed": 163.1,
+          "targetSpeed": 206.1,
+          "lateral": -1.7,
+          "width": 32.5,
+          "tag": "chicane",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 1,
+            "drift": false,
+            "boost": true,
+            "reset": false
+          }
+        },
+        {
+          "t": 42,
+          "progress": 0.6434,
+          "lap": 1,
+          "speed": 167.5,
+          "targetSpeed": 206.1,
+          "lateral": 0.7,
+          "width": 34.5,
+          "tag": "recovery-straight",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.3119638119869562,
+            "drift": false,
+            "boost": true,
+            "reset": false
+          }
+        },
+        {
+          "t": 43,
+          "progress": 0.6613,
+          "lap": 1,
+          "speed": 167.3,
+          "targetSpeed": 206.1,
+          "lateral": 0.3,
+          "width": 35.7,
+          "tag": "recovery-straight",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.31278029651167455,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 44,
+          "progress": 0.6792,
+          "lap": 1,
+          "speed": 166.9,
+          "targetSpeed": 206.1,
+          "lateral": 0.4,
+          "width": 36.2,
+          "tag": "fast-straight",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.3920235369699087,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 45,
+          "progress": 0.6971,
+          "lap": 1,
+          "speed": 167.5,
+          "targetSpeed": 206.1,
+          "lateral": 0.3,
+          "width": 34.8,
+          "tag": "fast-straight",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.1599946741380371,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 46,
+          "progress": 0.715,
+          "lap": 1,
+          "speed": 167.1,
+          "targetSpeed": 206.1,
+          "lateral": 0.3,
+          "width": 33,
+          "tag": "fast-straight",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.035329396081307196,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 47,
+          "progress": 0.7327,
+          "lap": 1,
+          "speed": 164.4,
+          "targetSpeed": 206.1,
+          "lateral": 0,
+          "width": 32.2,
+          "tag": "fast-straight",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.0160364421544705,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 48,
+          "progress": 0.7507,
+          "lap": 1,
+          "speed": 167.2,
+          "targetSpeed": 206.1,
+          "lateral": 0.2,
+          "width": 29.1,
+          "tag": "fast-straight",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.15517317386360469,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 49,
+          "progress": 0.7685,
+          "lap": 1,
+          "speed": 166.9,
+          "targetSpeed": 206.1,
+          "lateral": 0.5,
+          "width": 25.5,
+          "tag": "fast-straight",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.3859804423885887,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 50,
+          "progress": 0.7864,
+          "lap": 1,
+          "speed": 167.3,
+          "targetSpeed": 206.1,
+          "lateral": 0.5,
+          "width": 24.2,
+          "tag": "hairpin",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.4747105706675678,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 51,
+          "progress": 0.8043,
+          "lap": 1,
+          "speed": 167.1,
+          "targetSpeed": 206.1,
+          "lateral": 0.5,
+          "width": 22,
+          "tag": "hairpin",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.337071835057056,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 52,
+          "progress": 0.8222,
+          "lap": 1,
+          "speed": 166.8,
+          "targetSpeed": 174.9,
+          "lateral": 0.6,
+          "width": 19.8,
+          "tag": "hairpin",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.6678045720621361,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 53,
+          "progress": 0.8397,
+          "lap": 1,
+          "speed": 167.5,
+          "targetSpeed": 181.6,
+          "lateral": 0.8,
+          "width": 19.2,
+          "tag": "hairpin",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.8227398115981535,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 54,
+          "progress": 0.857,
+          "lap": 1,
+          "speed": 144.1,
+          "targetSpeed": 139.9,
+          "lateral": 1.5,
+          "width": 18.4,
+          "tag": "hairpin",
+          "damage": 0.116,
+          "input": {
+            "throttle": 0,
+            "brake": 0.1489305292300538,
+            "steer": 0.8199090961534199,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 55,
+          "progress": 0.8719,
+          "lap": 1,
+          "speed": 148.4,
+          "targetSpeed": 206.1,
+          "lateral": -2.3,
+          "width": 18.7,
+          "tag": "hairpin",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.8195109953143614,
+            "drift": false,
+            "boost": true,
+            "reset": false
+          }
+        },
+        {
+          "t": 56,
+          "progress": 0.8895,
+          "lap": 1,
+          "speed": 167.1,
+          "targetSpeed": 206.1,
+          "lateral": 0.8,
+          "width": 19.2,
+          "tag": "hairpin",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.4809324256017685,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 57,
+          "progress": 0.9074,
+          "lap": 1,
+          "speed": 167.5,
+          "targetSpeed": 206.1,
+          "lateral": 0.2,
+          "width": 20.6,
+          "tag": "hairpin",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.12912632028607735,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 58,
+          "progress": 0.9253,
+          "lap": 1,
+          "speed": 167.2,
+          "targetSpeed": 206.1,
+          "lateral": 0.3,
+          "width": 22.2,
+          "tag": "hairpin",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.1314672604075585,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 59,
+          "progress": 0.9432,
+          "lap": 1,
+          "speed": 166.4,
+          "targetSpeed": 166.9,
+          "lateral": -0.3,
+          "width": 24.2,
+          "tag": "hairpin",
+          "damage": 0.116,
+          "input": {
+            "throttle": 0.5226147109263233,
+            "brake": 0,
+            "steer": -0.09651114196615054,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 60,
+          "progress": 0.9589,
+          "lap": 1,
+          "speed": 121.5,
+          "targetSpeed": 115.6,
+          "lateral": -2.1,
+          "width": 27.4,
+          "tag": "hairpin",
+          "damage": 0.116,
+          "input": {
+            "throttle": 0,
+            "brake": 0.2513913039622492,
+            "steer": -0.9194740966778795,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 61,
+          "progress": 0.9707,
+          "lap": 1,
+          "speed": 113.5,
+          "targetSpeed": 133.1,
+          "lateral": -0.8,
+          "width": 28.4,
+          "tag": "recovery-straight",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": -0.6902824390318137,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 62,
+          "progress": 0.9828,
+          "lap": 1,
+          "speed": 90.3,
+          "targetSpeed": 70.6,
+          "lateral": -2.2,
+          "width": 30.1,
+          "tag": "recovery-straight",
+          "damage": 0.116,
+          "input": {
+            "throttle": 0,
+            "brake": 1,
+            "steer": -0.8842480710294667,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 63,
+          "progress": 0.9908,
+          "lap": 1,
+          "speed": 76,
+          "targetSpeed": 122.3,
+          "lateral": -1,
+          "width": 30.9,
+          "tag": "start-straight",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": -0.5077959585253112,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 64,
+          "progress": 0.0014,
+          "lap": 2,
+          "speed": 89.6,
+          "targetSpeed": 81.5,
+          "lateral": -2.2,
+          "width": 32,
+          "tag": "start-straight",
+          "damage": 0.116,
+          "input": {
+            "throttle": 0,
+            "brake": 0.3818390882466954,
+            "steer": -0.34623843489410555,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 65,
+          "progress": 0.0122,
+          "lap": 2,
+          "speed": 87.9,
+          "targetSpeed": 77,
+          "lateral": 3.4,
+          "width": 32.4,
+          "tag": "start-straight",
+          "damage": 0.116,
+          "input": {
+            "throttle": 0,
+            "brake": 0.5481081358767463,
+            "steer": 1,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 66,
+          "progress": 0.0213,
+          "lap": 2,
+          "speed": 104.8,
+          "targetSpeed": 170.2,
+          "lateral": -0.1,
+          "width": 32.6,
+          "tag": "start-straight",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.4418515290513397,
+            "drift": false,
+            "boost": true,
+            "reset": false
+          }
+        },
+        {
+          "t": 67,
+          "progress": 0.0371,
+          "lap": 2,
+          "speed": 167.5,
+          "targetSpeed": 206.1,
+          "lateral": 0.2,
+          "width": 33.7,
+          "tag": "start-straight",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.13661938724166378,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 68,
+          "progress": 0.055,
+          "lap": 2,
+          "speed": 167.1,
+          "targetSpeed": 206.1,
+          "lateral": 0.2,
+          "width": 34.9,
+          "tag": "start-straight",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.10198670012869424,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 69,
+          "progress": 0.0729,
+          "lap": 2,
+          "speed": 167.5,
+          "targetSpeed": 206.1,
+          "lateral": 0.1,
+          "width": 35.3,
+          "tag": "fast-straight",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.073895009945037,
+            "drift": false,
+            "boost": true,
+            "reset": false
+          }
+        },
+        {
+          "t": 70,
+          "progress": 0.0908,
+          "lap": 2,
+          "speed": 167.2,
+          "targetSpeed": 206.1,
+          "lateral": -0.2,
+          "width": 36,
+          "tag": "fast-straight",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.08023751955050326,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 71,
+          "progress": 0.1086,
+          "lap": 2,
+          "speed": 166.9,
+          "targetSpeed": 206.1,
+          "lateral": -0.1,
+          "width": 37,
+          "tag": "fast-straight",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.08835389443350067,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 72,
+          "progress": 0.1265,
+          "lap": 2,
+          "speed": 167.3,
+          "targetSpeed": 206.1,
+          "lateral": -0.1,
+          "width": 37.6,
+          "tag": "fast-straight",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.08944787906702306,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 73,
+          "progress": 0.1444,
+          "lap": 2,
+          "speed": 167.1,
+          "targetSpeed": 206.1,
+          "lateral": -0.1,
+          "width": 36.7,
+          "tag": "fast-straight",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.17142974428429447,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 74,
+          "progress": 0.1623,
+          "lap": 2,
+          "speed": 167.5,
+          "targetSpeed": 206.1,
+          "lateral": 0.2,
+          "width": 34.7,
+          "tag": "fast-straight",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.39572830575223705,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 75,
+          "progress": 0.1801,
+          "lap": 2,
+          "speed": 165.1,
+          "targetSpeed": 206.1,
+          "lateral": -0.9,
+          "width": 34,
+          "tag": "launch-crest",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.6224064721345,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 76,
+          "progress": 0.1979,
+          "lap": 2,
+          "speed": 167.6,
+          "targetSpeed": 206.1,
+          "lateral": 0.5,
+          "width": 33.2,
+          "tag": "launch-crest",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.2966655031021824,
+            "drift": false,
+            "boost": true,
+            "reset": false
+          }
+        },
+        {
+          "t": 77,
+          "progress": 0.2158,
+          "lap": 2,
+          "speed": 167.3,
+          "targetSpeed": 206.1,
+          "lateral": 0.6,
+          "width": 32.5,
+          "tag": "launch-crest",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.45883365913536006,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 78,
+          "progress": 0.2337,
+          "lap": 2,
+          "speed": 167.1,
+          "targetSpeed": 206.1,
+          "lateral": 0.3,
+          "width": 33.9,
+          "tag": "launch-crest",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.2791469307783222,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 79,
+          "progress": 0.2516,
+          "lap": 2,
+          "speed": 167.5,
+          "targetSpeed": 206.1,
+          "lateral": 0.5,
+          "width": 36.8,
+          "tag": "launch-crest",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.2745847113625275,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 80,
+          "progress": 0.2695,
+          "lap": 2,
+          "speed": 167.2,
+          "targetSpeed": 206.1,
+          "lateral": 0.4,
+          "width": 38.2,
+          "tag": "wide-sweeper",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.4106212238109418,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 81,
+          "progress": 0.2874,
+          "lap": 2,
+          "speed": 167.6,
+          "targetSpeed": 206.1,
+          "lateral": 0.2,
+          "width": 38.7,
+          "tag": "wide-sweeper",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.3341065700683546,
+            "drift": false,
+            "boost": true,
+            "reset": false
+          }
+        },
+        {
+          "t": 82,
+          "progress": 0.3053,
+          "lap": 2,
+          "speed": 167.3,
+          "targetSpeed": 206.1,
+          "lateral": 0.3,
+          "width": 39.4,
+          "tag": "wide-sweeper",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.37764933469591294,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 83,
+          "progress": 0.3231,
+          "lap": 2,
+          "speed": 167.1,
+          "targetSpeed": 206.1,
+          "lateral": 0.2,
+          "width": 38.9,
+          "tag": "wide-sweeper",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.33279452886111993,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 84,
+          "progress": 0.341,
+          "lap": 2,
+          "speed": 167.5,
+          "targetSpeed": 206.1,
+          "lateral": 0.3,
+          "width": 37,
+          "tag": "wide-sweeper",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.3292160968356187,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 85,
+          "progress": 0.3589,
+          "lap": 2,
+          "speed": 167.2,
+          "targetSpeed": 206.1,
+          "lateral": 0.7,
+          "width": 35.7,
+          "tag": "wide-sweeper",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.634441398771315,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 86,
+          "progress": 0.3768,
+          "lap": 2,
+          "speed": 167.5,
+          "targetSpeed": 206.1,
+          "lateral": 0.2,
+          "width": 32.1,
+          "tag": "wide-sweeper",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.3453063454072717,
+            "drift": false,
+            "boost": true,
+            "reset": false
+          }
+        },
+        {
+          "t": 87,
+          "progress": 0.3947,
+          "lap": 2,
+          "speed": 167.3,
+          "targetSpeed": 206.1,
+          "lateral": 0.1,
+          "width": 27.5,
+          "tag": "wide-sweeper",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.2622413290440065,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 88,
+          "progress": 0.4126,
+          "lap": 2,
+          "speed": 166.9,
+          "targetSpeed": 206.1,
+          "lateral": 0.1,
+          "width": 23.9,
+          "tag": "wide-sweeper",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.28668974090631333,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 89,
+          "progress": 0.4304,
+          "lap": 2,
+          "speed": 167.5,
+          "targetSpeed": 206.1,
+          "lateral": 0.1,
+          "width": 17.5,
+          "tag": "wide-sweeper",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": -0.01790414682155541,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 90,
+          "progress": 0.4483,
+          "lap": 2,
+          "speed": 167.1,
+          "targetSpeed": 194.4,
+          "lateral": 0.1,
+          "width": 16.4,
+          "tag": "narrow-canyon",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.18648027342592238,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 91,
+          "progress": 0.4659,
+          "lap": 2,
+          "speed": 151.2,
+          "targetSpeed": 137.8,
+          "lateral": 1,
+          "width": 15.3,
+          "tag": "narrow-canyon",
+          "damage": 0.116,
+          "input": {
+            "throttle": 0,
+            "brake": 0.7154811980512497,
+            "steer": 0.5593673274185108,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 92,
+          "progress": 0.4822,
+          "lap": 2,
+          "speed": 153.2,
+          "targetSpeed": 156.9,
+          "lateral": -1.3,
+          "width": 16,
+          "tag": "narrow-canyon",
+          "damage": 0.116,
+          "input": {
+            "throttle": 0.7405543234310187,
+            "brake": 0,
+            "steer": -0.2851537099007481,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 93,
+          "progress": 0.4964,
+          "lap": 2,
+          "speed": 106.9,
+          "targetSpeed": 100.1,
+          "lateral": -2.8,
+          "width": 16.6,
+          "tag": "narrow-canyon",
+          "damage": 0.116,
+          "input": {
+            "throttle": 0,
+            "brake": 0.3029424229720502,
+            "steer": -1,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 94,
+          "progress": 0.5074,
+          "lap": 2,
+          "speed": 128.8,
+          "targetSpeed": 171.6,
+          "lateral": -0.2,
+          "width": 18,
+          "tag": "narrow-canyon",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": -0.5601891150955323,
+            "drift": false,
+            "boost": true,
+            "reset": false
+          }
+        },
+        {
+          "t": 95,
+          "progress": 0.5228,
+          "lap": 2,
+          "speed": 130.5,
+          "targetSpeed": 117.2,
+          "lateral": 0.2,
+          "width": 22,
+          "tag": "narrow-canyon",
+          "damage": 0.116,
+          "input": {
+            "throttle": 0,
+            "brake": 0.7045999696591456,
+            "steer": 0.2574527379573298,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 96,
+          "progress": 0.5337,
+          "lap": 2,
+          "speed": 71.4,
+          "targetSpeed": 60.7,
+          "lateral": 4.9,
+          "width": 24.4,
+          "tag": "narrow-canyon",
+          "damage": 0.116,
+          "input": {
+            "throttle": 0,
+            "brake": 0.5366365256657856,
+            "steer": 1,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 97,
+          "progress": 0.5407,
+          "lap": 2,
+          "speed": 69.5,
+          "targetSpeed": 115.7,
+          "lateral": 0.3,
+          "width": 24,
+          "tag": "chicane",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.49803348293494565,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 98,
+          "progress": 0.5516,
+          "lap": 2,
+          "speed": 112.2,
+          "targetSpeed": 102.8,
+          "lateral": -0.6,
+          "width": 22.6,
+          "tag": "chicane",
+          "damage": 0.116,
+          "input": {
+            "throttle": 0,
+            "brake": 0.4664871021249197,
+            "steer": -0.6213893330067021,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 99,
+          "progress": 0.5612,
+          "lap": 2,
+          "speed": 59.2,
+          "targetSpeed": 55.1,
+          "lateral": -5,
+          "width": 21.7,
+          "tag": "chicane",
+          "damage": 0.116,
+          "input": {
+            "throttle": 0,
+            "brake": 0.1304470205552051,
+            "steer": -0.5812332892870874,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 100,
+          "progress": 0.5692,
+          "lap": 2,
+          "speed": 98,
+          "targetSpeed": 204.3,
+          "lateral": 2.2,
+          "width": 22.1,
+          "tag": "chicane",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": -0.3573162629691016,
+            "drift": false,
+            "boost": true,
+            "reset": false
+          }
+        },
+        {
+          "t": 101,
+          "progress": 0.5843,
+          "lap": 2,
+          "speed": 164.1,
+          "targetSpeed": 186.1,
+          "lateral": 0.3,
+          "width": 23.4,
+          "tag": "chicane",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.2512141364301686,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 102,
+          "progress": 0.6003,
+          "lap": 2,
+          "speed": 124.1,
+          "targetSpeed": 113.5,
+          "lateral": 1.5,
+          "width": 24.2,
+          "tag": "chicane",
+          "damage": 0.116,
+          "input": {
+            "throttle": 0,
+            "brake": 0.5407787378558478,
+            "steer": 0.4640703896997159,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 103,
+          "progress": 0.6159,
+          "lap": 2,
+          "speed": 156.2,
+          "targetSpeed": 206.1,
+          "lateral": 0.6,
+          "width": 28.5,
+          "tag": "chicane",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.5899051381850887,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 104,
+          "progress": 0.633,
+          "lap": 2,
+          "speed": 167.3,
+          "targetSpeed": 206.1,
+          "lateral": -1.3,
+          "width": 34.2,
+          "tag": "chicane",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.4274540461108003,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 105,
+          "progress": 0.6509,
+          "lap": 2,
+          "speed": 166.9,
+          "targetSpeed": 206.1,
+          "lateral": 0.4,
+          "width": 34.9,
+          "tag": "recovery-straight",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.34860933652369996,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 106,
+          "progress": 0.6688,
+          "lap": 2,
+          "speed": 167.5,
+          "targetSpeed": 206.1,
+          "lateral": 0.4,
+          "width": 36.1,
+          "tag": "recovery-straight",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.3510427102660312,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 107,
+          "progress": 0.6867,
+          "lap": 2,
+          "speed": 167.1,
+          "targetSpeed": 206.1,
+          "lateral": 0.3,
+          "width": 35.8,
+          "tag": "fast-straight",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.2928096169179707,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 108,
+          "progress": 0.7046,
+          "lap": 2,
+          "speed": 167.5,
+          "targetSpeed": 206.1,
+          "lateral": 0.3,
+          "width": 34,
+          "tag": "fast-straight",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.11760802367121007,
+            "drift": false,
+            "boost": true,
+            "reset": false
+          }
+        },
+        {
+          "t": 109,
+          "progress": 0.7224,
+          "lap": 2,
+          "speed": 166.5,
+          "targetSpeed": 206.1,
+          "lateral": 0.2,
+          "width": 32.5,
+          "tag": "fast-straight",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.022579668615820385,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 110,
+          "progress": 0.7403,
+          "lap": 2,
+          "speed": 166.9,
+          "targetSpeed": 206.1,
+          "lateral": 0.1,
+          "width": 31.1,
+          "tag": "fast-straight",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.0661245452681194,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 111,
+          "progress": 0.7581,
+          "lap": 2,
+          "speed": 167.3,
+          "targetSpeed": 206.1,
+          "lateral": 0.3,
+          "width": 27.5,
+          "tag": "fast-straight",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.2042915459535899,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 112,
+          "progress": 0.776,
+          "lap": 2,
+          "speed": 167.1,
+          "targetSpeed": 206.1,
+          "lateral": 0.7,
+          "width": 24.6,
+          "tag": "fast-straight",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.5645308284204266,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 113,
+          "progress": 0.7939,
+          "lap": 2,
+          "speed": 167.5,
+          "targetSpeed": 206.1,
+          "lateral": 0.4,
+          "width": 23.4,
+          "tag": "hairpin",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.36971293379730646,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 114,
+          "progress": 0.8118,
+          "lap": 2,
+          "speed": 167.2,
+          "targetSpeed": 206.1,
+          "lateral": 0.4,
+          "width": 20.9,
+          "tag": "hairpin",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.3798188645877771,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 115,
+          "progress": 0.8296,
+          "lap": 2,
+          "speed": 160.8,
+          "targetSpeed": 166.7,
+          "lateral": 1,
+          "width": 19.7,
+          "tag": "hairpin",
+          "damage": 0.116,
+          "input": {
+            "throttle": 0.8925210895215249,
+            "brake": 0,
+            "steer": 0.8590951793400669,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 116,
+          "progress": 0.8472,
+          "lap": 2,
+          "speed": 165.5,
+          "targetSpeed": 169.9,
+          "lateral": 1,
+          "width": 18.7,
+          "tag": "hairpin",
+          "damage": 0.116,
+          "input": {
+            "throttle": 0.7857749937891829,
+            "brake": 0,
+            "steer": 0.8202921758835171,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 117,
+          "progress": 0.8631,
+          "lap": 2,
+          "speed": 136.6,
+          "targetSpeed": 154.4,
+          "lateral": 1.4,
+          "width": 18.5,
+          "tag": "hairpin",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.7251952077553102,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 118,
+          "progress": 0.879,
+          "lap": 2,
+          "speed": 167.5,
+          "targetSpeed": 206.1,
+          "lateral": -0.8,
+          "width": 19,
+          "tag": "hairpin",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.21723374822991168,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 119,
+          "progress": 0.8969,
+          "lap": 2,
+          "speed": 167.2,
+          "targetSpeed": 206.1,
+          "lateral": 0.3,
+          "width": 19.5,
+          "tag": "hairpin",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.46840283089737433,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 120,
+          "progress": 0.9148,
+          "lap": 2,
+          "speed": 167.6,
+          "targetSpeed": 206.1,
+          "lateral": 0.3,
+          "width": 21.4,
+          "tag": "hairpin",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.026250776241337287,
+            "drift": false,
+            "boost": true,
+            "reset": false
+          }
+        },
+        {
+          "t": 121,
+          "progress": 0.9326,
+          "lap": 2,
+          "speed": 167.3,
+          "targetSpeed": 203.6,
+          "lateral": 0.4,
+          "width": 22.5,
+          "tag": "hairpin",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.396311243691162,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 122,
+          "progress": 0.9502,
+          "lap": 2,
+          "speed": 153,
+          "targetSpeed": 143,
+          "lateral": -0.4,
+          "width": 25.7,
+          "tag": "hairpin",
+          "damage": 0.116,
+          "input": {
+            "throttle": 0,
+            "brake": 0.5036525718982015,
+            "steer": -0.42833031274759037,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 123,
+          "progress": 0.9639,
+          "lap": 2,
+          "speed": 102.8,
+          "targetSpeed": 102.7,
+          "lateral": -2.9,
+          "width": 27.7,
+          "tag": "recovery-straight",
+          "damage": 0.116,
+          "input": {
+            "throttle": 0.48984440774501364,
+            "brake": 0,
+            "steer": -0.7150586321198715,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 124,
+          "progress": 0.9759,
+          "lap": 2,
+          "speed": 120,
+          "targetSpeed": 125.6,
+          "lateral": -0.3,
+          "width": 29.2,
+          "tag": "recovery-straight",
+          "damage": 0.116,
+          "input": {
+            "throttle": 0.8815660476919551,
+            "brake": 0,
+            "steer": -0.5830245187440204,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 125,
+          "progress": 0.9862,
+          "lap": 2,
+          "speed": 62.1,
+          "targetSpeed": 54.4,
+          "lateral": -5.5,
+          "width": 30.3,
+          "tag": "start-straight",
+          "damage": 0.116,
+          "input": {
+            "throttle": 0,
+            "brake": 0.3522332908990761,
+            "steer": -0.5606248763861286,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 126,
+          "progress": 0.9946,
+          "lap": 2,
+          "speed": 107.6,
+          "targetSpeed": 126.5,
+          "lateral": 1.4,
+          "width": 31.5,
+          "tag": "start-straight",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.028435463401309313,
+            "drift": false,
+            "boost": true,
+            "reset": false
+          }
+        },
+        {
+          "t": 127,
+          "progress": 0.0056,
+          "lap": 3,
+          "speed": 107.1,
+          "targetSpeed": 111.1,
+          "lateral": -0.2,
+          "width": 32.1,
+          "tag": "start-straight",
+          "damage": 0.116,
+          "input": {
+            "throttle": 0.7697437083048697,
+            "brake": 0,
+            "steer": 0.08145764551310172,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 128,
+          "progress": 0.0157,
+          "lap": 3,
+          "speed": 76.5,
+          "targetSpeed": 78.7,
+          "lateral": 3.2,
+          "width": 32.5,
+          "tag": "start-straight",
+          "damage": 0.116,
+          "input": {
+            "throttle": 0.6538141457075833,
+            "brake": 0,
+            "steer": 0.6708685024048301,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 129,
+          "progress": 0.0267,
+          "lap": 3,
+          "speed": 144.5,
+          "targetSpeed": 206.1,
+          "lateral": -0.5,
+          "width": 32.9,
+          "tag": "start-straight",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.28837155756958605,
+            "drift": false,
+            "boost": true,
+            "reset": false
+          }
+        },
+        {
+          "t": 130,
+          "progress": 0.0443,
+          "lap": 3,
+          "speed": 167.5,
+          "targetSpeed": 206.1,
+          "lateral": 0.2,
+          "width": 34.2,
+          "tag": "start-straight",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.1122369077355952,
+            "drift": false,
+            "boost": true,
+            "reset": false
+          }
+        },
+        {
+          "t": 131,
+          "progress": 0.0622,
+          "lap": 3,
+          "speed": 167.2,
+          "targetSpeed": 206.1,
+          "lateral": 0,
+          "width": 35.2,
+          "tag": "start-straight",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.11643482738935133,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 132,
+          "progress": 0.08,
+          "lap": 3,
+          "speed": 166.9,
+          "targetSpeed": 206.1,
+          "lateral": 0.1,
+          "width": 35.5,
+          "tag": "fast-straight",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.09169259873897513,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 133,
+          "progress": 0.0979,
+          "lap": 3,
+          "speed": 167.3,
+          "targetSpeed": 206.1,
+          "lateral": -0.1,
+          "width": 36.4,
+          "tag": "fast-straight",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.06675052038595933,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 134,
+          "progress": 0.1158,
+          "lap": 3,
+          "speed": 167.1,
+          "targetSpeed": 206.1,
+          "lateral": -0.1,
+          "width": 37.3,
+          "tag": "fast-straight",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.09799593269174006,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 135,
+          "progress": 0.1337,
+          "lap": 3,
+          "speed": 167.5,
+          "targetSpeed": 206.1,
+          "lateral": -0.2,
+          "width": 37.4,
+          "tag": "fast-straight",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.07072283912627741,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 136,
+          "progress": 0.1515,
+          "lap": 3,
+          "speed": 167.2,
+          "targetSpeed": 206.1,
+          "lateral": 0,
+          "width": 35.9,
+          "tag": "fast-straight",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.26091293370587354,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 137,
+          "progress": 0.1694,
+          "lap": 3,
+          "speed": 167.6,
+          "targetSpeed": 206.1,
+          "lateral": 0.4,
+          "width": 34.2,
+          "tag": "fast-straight",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.4507529207559853,
+            "drift": false,
+            "boost": true,
+            "reset": false
+          }
+        },
+        {
+          "t": 138,
+          "progress": 0.1872,
+          "lap": 3,
+          "speed": 167.3,
+          "targetSpeed": 206.1,
+          "lateral": -1.6,
+          "width": 33.7,
+          "tag": "launch-crest",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.5126097582868698,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 139,
+          "progress": 0.2051,
+          "lap": 3,
+          "speed": 167.1,
+          "targetSpeed": 206.1,
+          "lateral": 0.7,
+          "width": 32.8,
+          "tag": "launch-crest",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.4251640368618652,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 140,
+          "progress": 0.223,
+          "lap": 3,
+          "speed": 167.5,
+          "targetSpeed": 206.1,
+          "lateral": 0.5,
+          "width": 32.7,
+          "tag": "launch-crest",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.3890014980749016,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 141,
+          "progress": 0.2409,
+          "lap": 3,
+          "speed": 167.2,
+          "targetSpeed": 206.1,
+          "lateral": 0.4,
+          "width": 35.1,
+          "tag": "launch-crest",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.24700342477721712,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 142,
+          "progress": 0.2588,
+          "lap": 3,
+          "speed": 167.6,
+          "targetSpeed": 206.1,
+          "lateral": 0.4,
+          "width": 37.7,
+          "tag": "launch-crest",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.3629256318858149,
+            "drift": false,
+            "boost": true,
+            "reset": false
+          }
+        },
+        {
+          "t": 143,
+          "progress": 0.2767,
+          "lap": 3,
+          "speed": 167.3,
+          "targetSpeed": 206.1,
+          "lateral": 0.3,
+          "width": 38.4,
+          "tag": "wide-sweeper",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.4133318730983513,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 144,
+          "progress": 0.2945,
+          "lap": 3,
+          "speed": 167.1,
+          "targetSpeed": 206.1,
+          "lateral": 0.3,
+          "width": 39,
+          "tag": "wide-sweeper",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.3453643798811542,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 145,
+          "progress": 0.3124,
+          "lap": 3,
+          "speed": 167.5,
+          "targetSpeed": 206.1,
+          "lateral": 0.4,
+          "width": 39.5,
+          "tag": "wide-sweeper",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.40476661004257336,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 146,
+          "progress": 0.3303,
+          "lap": 3,
+          "speed": 167.2,
+          "targetSpeed": 206.1,
+          "lateral": 0.2,
+          "width": 38.2,
+          "tag": "wide-sweeper",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.3004316291243248,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 147,
+          "progress": 0.3482,
+          "lap": 3,
+          "speed": 167.5,
+          "targetSpeed": 206.1,
+          "lateral": 0.4,
+          "width": 36.2,
+          "tag": "wide-sweeper",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.3939401462220688,
+            "drift": false,
+            "boost": true,
+            "reset": false
+          }
+        },
+        {
+          "t": 148,
+          "progress": 0.3661,
+          "lap": 3,
+          "speed": 167.3,
+          "targetSpeed": 206.1,
+          "lateral": 0.3,
+          "width": 34.9,
+          "tag": "wide-sweeper",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.5856423363982155,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 149,
+          "progress": 0.384,
+          "lap": 3,
+          "speed": 166.9,
+          "targetSpeed": 206.1,
+          "lateral": 0.3,
+          "width": 29.9,
+          "tag": "wide-sweeper",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.2602698202803216,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 150,
+          "progress": 0.4019,
+          "lap": 3,
+          "speed": 167.5,
+          "targetSpeed": 206.1,
+          "lateral": 0.5,
+          "width": 27,
+          "tag": "wide-sweeper",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.4974839033769953,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 151,
+          "progress": 0.4197,
+          "lap": 3,
+          "speed": 167.1,
+          "targetSpeed": 206.1,
+          "lateral": 0.2,
+          "width": 20.9,
+          "tag": "wide-sweeper",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.11109643476161478,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 152,
+          "progress": 0.4376,
+          "lap": 3,
+          "speed": 167.5,
+          "targetSpeed": 206.1,
+          "lateral": 0.2,
+          "width": 17.1,
+          "tag": "narrow-canyon",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.1443738159420585,
+            "drift": false,
+            "boost": true,
+            "reset": false
+          }
+        },
+        {
+          "t": 153,
+          "progress": 0.4555,
+          "lap": 3,
+          "speed": 166.9,
+          "targetSpeed": 184.3,
+          "lateral": 0.2,
+          "width": 15.8,
+          "tag": "narrow-canyon",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.19346747002237996,
+            "drift": false,
+            "boost": true,
+            "reset": false
+          }
+        },
+        {
+          "t": 154,
+          "progress": 0.4723,
+          "lap": 3,
+          "speed": 153.6,
+          "targetSpeed": 182.9,
+          "lateral": 0.6,
+          "width": 15.5,
+          "tag": "narrow-canyon",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.4043128710905831,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 155,
+          "progress": 0.4885,
+          "lap": 3,
+          "speed": 137.7,
+          "targetSpeed": 132.8,
+          "lateral": -1,
+          "width": 16.3,
+          "tag": "narrow-canyon",
+          "damage": 0.116,
+          "input": {
+            "throttle": 0,
+            "brake": 0.19648273953738654,
+            "steer": -0.8519139488065424,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 156,
+          "progress": 0.5007,
+          "lap": 3,
+          "speed": 89.3,
+          "targetSpeed": 92.7,
+          "lateral": -3.2,
+          "width": 16.8,
+          "tag": "narrow-canyon",
+          "damage": 0.116,
+          "input": {
+            "throttle": 0.7398791627861603,
+            "brake": 0,
+            "steer": -0.5717948000328703,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 157,
+          "progress": 0.5134,
+          "lap": 3,
+          "speed": 156.5,
+          "targetSpeed": 166.7,
+          "lateral": 0.3,
+          "width": 19.5,
+          "tag": "narrow-canyon",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": -0.15330637134375963,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 158,
+          "progress": 0.5278,
+          "lap": 3,
+          "speed": 107,
+          "targetSpeed": 95.2,
+          "lateral": 1,
+          "width": 23.3,
+          "tag": "narrow-canyon",
+          "damage": 0.116,
+          "input": {
+            "throttle": 0,
+            "brake": 0.6121165865050822,
+            "steer": 0.5261501091189956,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 159,
+          "progress": 0.5367,
+          "lap": 3,
+          "speed": 50.7,
+          "targetSpeed": 48.1,
+          "lateral": 5.1,
+          "width": 24.4,
+          "tag": "chicane",
+          "damage": 0.116,
+          "input": {
+            "throttle": 0.33547399646793347,
+            "brake": 0.02752294429299988,
+            "steer": 0.7000533639549531,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 160,
+          "progress": 0.5441,
+          "lap": 3,
+          "speed": 101.6,
+          "targetSpeed": 146.9,
+          "lateral": -0.9,
+          "width": 23.6,
+          "tag": "chicane",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.19477116001915176,
+            "drift": false,
+            "boost": true,
+            "reset": false
+          }
+        },
+        {
+          "t": 161,
+          "progress": 0.556,
+          "lap": 3,
+          "speed": 91.5,
+          "targetSpeed": 81.8,
+          "lateral": -2.5,
+          "width": 22.1,
+          "tag": "chicane",
+          "damage": 0.116,
+          "input": {
+            "throttle": 0,
+            "brake": 0.47755104628320266,
+            "steer": -1,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 162,
+          "progress": 0.564,
+          "lap": 3,
+          "speed": 70.6,
+          "targetSpeed": 100.3,
+          "lateral": -1.9,
+          "width": 21.8,
+          "tag": "chicane",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": -0.6876169495820276,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 163,
+          "progress": 0.5743,
+          "lap": 3,
+          "speed": 138.7,
+          "targetSpeed": 193.5,
+          "lateral": 1,
+          "width": 22.5,
+          "tag": "chicane",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": -0.040182179897210415,
+            "drift": false,
+            "boost": true,
+            "reset": false
+          }
+        },
+        {
+          "t": 164,
+          "progress": 0.5911,
+          "lap": 3,
+          "speed": 157.8,
+          "targetSpeed": 153,
+          "lateral": 0.8,
+          "width": 23.8,
+          "tag": "chicane",
+          "damage": 0.116,
+          "input": {
+            "throttle": 0,
+            "brake": 0.19309918041946114,
+            "steer": 0.629029753260762,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 165,
+          "progress": 0.6061,
+          "lap": 3,
+          "speed": 145.9,
+          "targetSpeed": 206.1,
+          "lateral": 0.7,
+          "width": 24.9,
+          "tag": "chicane",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.5104303837622474,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 166,
+          "progress": 0.6224,
+          "lap": 3,
+          "speed": 154.8,
+          "targetSpeed": 206.1,
+          "lateral": -0.8,
+          "width": 31.3,
+          "tag": "chicane",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.8978291643043522,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 167,
+          "progress": 0.6399,
+          "lap": 3,
+          "speed": 167.5,
+          "targetSpeed": 206.1,
+          "lateral": 0.4,
+          "width": 34.3,
+          "tag": "recovery-straight",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.2812299846344078,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 168,
+          "progress": 0.6578,
+          "lap": 3,
+          "speed": 167.1,
+          "targetSpeed": 206.1,
+          "lateral": 0.3,
+          "width": 35.4,
+          "tag": "recovery-straight",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.31174613326571077,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 169,
+          "progress": 0.6757,
+          "lap": 3,
+          "speed": 167.5,
+          "targetSpeed": 206.1,
+          "lateral": 0.4,
+          "width": 36.2,
+          "tag": "recovery-straight",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.3940610226783044,
+            "drift": false,
+            "boost": true,
+            "reset": false
+          }
+        },
+        {
+          "t": 170,
+          "progress": 0.6936,
+          "lap": 3,
+          "speed": 167.2,
+          "targetSpeed": 206.1,
+          "lateral": 0.3,
+          "width": 35.2,
+          "tag": "fast-straight",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.19416398700278048,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 171,
+          "progress": 0.7114,
+          "lap": 3,
+          "speed": 166.9,
+          "targetSpeed": 206.1,
+          "lateral": 0.2,
+          "width": 33.3,
+          "tag": "fast-straight",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.06546449948939065,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 172,
+          "progress": 0.7292,
+          "lap": 3,
+          "speed": 164.7,
+          "targetSpeed": 206.1,
+          "lateral": -0.1,
+          "width": 32.4,
+          "tag": "fast-straight",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.006909060304469639,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 173,
+          "progress": 0.7471,
+          "lap": 3,
+          "speed": 167.1,
+          "targetSpeed": 206.1,
+          "lateral": 0.2,
+          "width": 29.8,
+          "tag": "fast-straight",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.11189234182437013,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 174,
+          "progress": 0.765,
+          "lap": 3,
+          "speed": 167.5,
+          "targetSpeed": 206.1,
+          "lateral": 0.5,
+          "width": 26.1,
+          "tag": "fast-straight",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.3122914609410806,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 175,
+          "progress": 0.7829,
+          "lap": 3,
+          "speed": 167.2,
+          "targetSpeed": 206.1,
+          "lateral": 0.6,
+          "width": 24.4,
+          "tag": "hairpin",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.5185850282572788,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 176,
+          "progress": 0.8008,
+          "lap": 3,
+          "speed": 167.6,
+          "targetSpeed": 206.1,
+          "lateral": 0.5,
+          "width": 22.5,
+          "tag": "hairpin",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.32805077287039763,
+            "drift": false,
+            "boost": true,
+            "reset": false
+          }
+        },
+        {
+          "t": 177,
+          "progress": 0.8187,
+          "lap": 3,
+          "speed": 167.3,
+          "targetSpeed": 183.9,
+          "lateral": 0.5,
+          "width": 20.1,
+          "tag": "hairpin",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.49705563245107076,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 178,
+          "progress": 0.8362,
+          "lap": 3,
+          "speed": 163.3,
+          "targetSpeed": 176.9,
+          "lateral": 0.8,
+          "width": 19.4,
+          "tag": "hairpin",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.8238755528350147,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 179,
+          "progress": 0.8539,
+          "lap": 3,
+          "speed": 157.3,
+          "targetSpeed": 143.2,
+          "lateral": 1.1,
+          "width": 18.4,
+          "tag": "hairpin",
+          "damage": 0.116,
+          "input": {
+            "throttle": 0,
+            "brake": 0.763340425061017,
+            "steer": 0.9671770445339992,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 180,
+          "progress": 0.8689,
+          "lap": 3,
+          "speed": 140.6,
+          "targetSpeed": 206.1,
+          "lateral": -1.2,
+          "width": 18.6,
+          "tag": "hairpin",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.9672389847955385,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 181,
+          "progress": 0.886,
+          "lap": 3,
+          "speed": 167.6,
+          "targetSpeed": 206.1,
+          "lateral": 0.6,
+          "width": 19.2,
+          "tag": "hairpin",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.29782181104060557,
+            "drift": false,
+            "boost": true,
+            "reset": false
+          }
+        },
+        {
+          "t": 182,
+          "progress": 0.9039,
+          "lap": 3,
+          "speed": 167.3,
+          "targetSpeed": 206.1,
+          "lateral": 0.1,
+          "width": 20.2,
+          "tag": "hairpin",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.20742128286873948,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 183,
+          "progress": 0.9218,
+          "lap": 3,
+          "speed": 167.1,
+          "targetSpeed": 206.1,
+          "lateral": 0.3,
+          "width": 22,
+          "tag": "hairpin",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": -0.05034088333095185,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 184,
+          "progress": 0.9397,
+          "lap": 3,
+          "speed": 167.5,
+          "targetSpeed": 191.8,
+          "lateral": -0.3,
+          "width": 23.5,
+          "tag": "hairpin",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": 0.08211055605935336,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 185,
+          "progress": 0.9562,
+          "lap": 3,
+          "speed": 132.8,
+          "targetSpeed": 128.8,
+          "lateral": -1.3,
+          "width": 27,
+          "tag": "hairpin",
+          "damage": 0.116,
+          "input": {
+            "throttle": 0,
+            "brake": 0.1354625039320484,
+            "steer": -0.8018909959146738,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 186,
+          "progress": 0.9684,
+          "lap": 3,
+          "speed": 109.4,
+          "targetSpeed": 122.4,
+          "lateral": -1.5,
+          "width": 28.1,
+          "tag": "recovery-straight",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": -0.7386253960983084,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 187,
+          "progress": 0.9807,
+          "lap": 3,
+          "speed": 106.5,
+          "targetSpeed": 83.4,
+          "lateral": -1,
+          "width": 29.9,
+          "tag": "recovery-straight",
+          "damage": 0.116,
+          "input": {
+            "throttle": 0,
+            "brake": 1,
+            "steer": -0.7992623899658333,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 188,
+          "progress": 0.9892,
+          "lap": 3,
+          "speed": 69.6,
+          "targetSpeed": 92.9,
+          "lateral": -3,
+          "width": 30.7,
+          "tag": "start-straight",
+          "damage": 0.116,
+          "input": {
+            "throttle": 1,
+            "brake": 0,
+            "steer": -0.6020162608442019,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        },
+        {
+          "t": 189,
+          "progress": 0.9993,
+          "lap": 3,
+          "speed": 98.3,
+          "targetSpeed": 90,
+          "lateral": 0.2,
+          "width": 31.9,
+          "tag": "start-straight",
+          "damage": 0.116,
+          "input": {
+            "throttle": 0,
+            "brake": 0.3954292665311736,
+            "steer": -0.30593475557390126,
+            "drift": false,
+            "boost": false,
+            "reset": false
+          }
+        }
+      ],
+      "collisionHotspots": []
+    }
+  ]
+}

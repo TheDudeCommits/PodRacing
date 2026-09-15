@@ -4,8 +4,7 @@ import { createProceduralPodraceCourse } from '../../src/game/race/course';
 import { RaceSimulation } from '../../src/game/race/RaceSimulation';
 import {
   COURSE_GULF_MAX_DEPTH, COURSE_GULF_MAX_RISE, COURSE_GULF_SEED, SALT_RUN_PROFILE, FORK_APPROACH_PROFILE, createCourseGulfField,
-  sampleCourseGulfGrid,
-} from '../../src/game/race/CourseGulfField';
+  sampleCourseGulfGrid, sweeperBankingExtent } from '../../src/game/race/CourseGulfField';
 import { sampleTerrainHeight, sampleTerrain, createTerrainSample } from '../../src/render/terrain/terrainMath';
 import { TerrainSystem } from '../../src/render/terrain/TerrainSystem';
 import { createInkstormRoad } from '../../src/render/inkstorm/InkstormRoad';
@@ -53,6 +52,9 @@ describe('shared flagship off-road gulf', () => {
       if (p.distance > field.launchProfile.startDistance - 24 && p.distance < field.launchProfile.endDistance + 24) continue;
       const forkEntry = course.branches.find(branch => branch.elevated)!.entryProgress * course.totalLength;
       if (p.distance > forkEntry + FORK_APPROACH_PROFILE.start - 24 && p.distance < forkEntry + FORK_APPROACH_PROFILE.end + 24) continue;
+      // Course 10 cambers the flagship sweeper inside the same field.
+      const sweeper = sweeperBankingExtent(course)!;
+      if (p.distance > sweeper.start - 24 && p.distance < sweeper.end + 24) continue;
       for (const lateral of [-p.width - 10, -p.width, 0, p.width, p.width + 10]) {
         const x = p.x + p.rightX * lateral, z = p.z + p.rightZ * lateral;
         for (const [dx, dz] of [[0, 0], [1.15, 0], [-1.15, 0], [0, 1.15], [0, -1.15]]) {

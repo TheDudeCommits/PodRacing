@@ -6,6 +6,7 @@ import { COMBAT_PICKUP_RESPAWN_SECONDS, isCombatPickup } from './combatPickups';
 import type {
   GalacticActionContext,
   GalacticActionResult,
+  GalacticAITactics,
   GalacticEvent,
   GalacticHazardState,
   GalacticImpact,
@@ -15,6 +16,7 @@ import type {
   GalacticUpgradePart,
   GalacticUpgradePickupState,
   GalacticVehicleClass,
+  GalacticWorldOccluder,
   GalacticWorldState,
   GalacticWorldStepResult,
   HeatLanceProjectileState,
@@ -25,6 +27,15 @@ const DEFAULT_WORLD_SEED = 0x47414c43; // GALC
 const WRECK_DAMAGE_THRESHOLD = 0.86;
 const WRECK_DURATION = 2.15;
 const RECOVERY_INVULNERABILITY = 1.55;
+/** Each consecutive wreck buys a longer protected return, bounded at three steps. */
+const RECOVERY_INVULNERABILITY_STEP = 0.45;
+const RECOVERY_INVULNERABILITY_MAX_STEPS = 3;
+
+/** A returning racer is protected longer after repeated wrecks. */
+export function recoveryInvulnerability(crashCount: number): number {
+  const repeats = clamp(Math.floor(Number.isFinite(crashCount) ? crashCount : 1) - 1, 0, RECOVERY_INVULNERABILITY_MAX_STEPS);
+  return RECOVERY_INVULNERABILITY + repeats * RECOVERY_INVULNERABILITY_STEP;
+}
 
 function clamp(value: number, minimum: number, maximum: number): number {
   return Math.min(maximum, Math.max(minimum, Number.isFinite(value) ? value : minimum));
@@ -233,10 +244,11 @@ export function stepGalacticRacerAction(
   if (state.wreck.phase === 'wrecked') {
     state.wreck.timer = Math.max(0, state.wreck.timer - delta);
     if (state.wreck.timer <= 0) {
+      const invulnerable = recoveryInvulnerability(state.wreck.crashCount);
       state.wreck.phase = 'recovering';
-      state.wreck.invulnerable = RECOVERY_INVULNERABILITY;
+      state.wreck.invulnerable = invulnerable;
       recoverNow = true;
-      events.push({ type: 'recovered', racerId: context.self.id, invulnerable: RECOVERY_INVULNERABILITY });
+      events.push({ type: 'recovered', racerId: context.self.id, invulnerable });
     }
     input = normalizePlayerInput({ brake: 0.6, reset: recoverNow });
   } else if (state.wreck.phase === 'recovering') {
@@ -341,37 +353,157 @@ export function stepGalacticRacerAction(
   };
 }
 
-/** Adds deterministic combat intent to an existing spline-driving AI action. */
-export function augmentGalacticAIInput(
-  input: Readonly<PlayerInputState>,
+/** Heat Lance engagement envelope: a narrow cone that widens with range. */
+const LANCE_MIN_RANGE = 6;
+const LANCE_MAX_RANGE = 190;
+const LANCE_CONE_BASE = 5;
+const LANCE_CONE_PER_METRE = 0.08;
+/** Deliberate spacing: one half-second firing window every two seconds. */
+const LANCE_WINDOW_PERIOD = 240;
+const LANCE_WINDOW_OPEN = 60;
+/** One half-second mine window every six seconds, only with a real pursuer. */
+const MINE_WINDOW_PERIOD = 720;
+const MINE_WINDOW_OPEN = 60;
+/** Metres per second before a rival is considered to be racing rather than launching. */
+const ATTACK_MINIMUM_SPEED = 25;
+
+export interface GalacticAIThreatAssessment {
+  targetId: string | null;
+  pursuerId: string | null;
+  inboundProjectileId: string | null;
+  mineAheadId: string | null;
+  aimedAtBy: string | null;
+}
+
+/**
+ * Pure perception for a rival: what it can shoot, who is chasing it and what
+ * is about to hit it. Exported so tests and telemetry can inspect the reasons
+ * behind an attack or a shield without replaying the whole simulation.
+ */
+export function assessGalacticThreats(
   self: Readonly<GalacticRacerSnapshot>,
   opponents: readonly GalacticRacerSnapshot[],
-  step: number,
-): PlayerInputState {
+  tactics?: GalacticAITactics,
+): GalacticAIThreatAssessment {
   const forwardX = Math.sin(self.yaw);
   const forwardZ = Math.cos(self.yaw);
   const rightX = forwardZ;
   const rightZ = -forwardX;
-  let targetAhead = false;
-  let targetBehind = false;
+  const selfSpeed = Math.hypot(self.velocityX, self.velocityZ);
+  let targetId: string | null = null;
+  let targetDistance = Number.POSITIVE_INFINITY;
+  let pursuerId: string | null = null;
+  let pursuerDistance = Number.POSITIVE_INFINITY;
+  let aimedAtBy: string | null = null;
+
   for (const opponent of opponents) {
     if (opponent.finished || opponent.galactic.wreck.phase === 'wrecked') continue;
     const dx = opponent.x - self.x;
     const dz = opponent.z - self.z;
     const forward = dx * forwardX + dz * forwardZ;
     const lateral = dx * rightX + dz * rightZ;
-    targetAhead ||= forward > 5 && forward < 210 && Math.abs(lateral) < 34;
-    targetBehind ||= forward < -5 && forward > -68 && Math.abs(lateral) < 27;
+    const distance = Math.hypot(dx, dz);
+
+    // A returning or shielded racer is not a worthwhile shot; wasting the
+    // lance on it is what made rivals look mindless and made recoveries cruel.
+    const shootable = opponent.galactic.wreck.invulnerable <= 0 && !opponent.galactic.shield.active;
+    const inCone = forward > LANCE_MIN_RANGE && forward < LANCE_MAX_RANGE
+      && Math.abs(lateral) < LANCE_CONE_BASE + forward * LANCE_CONE_PER_METRE
+      && Math.abs(opponent.y - self.y) < 7;
+    if (shootable && inCone && distance < targetDistance
+      && (!tactics?.hasLineOfFire || tactics.hasLineOfFire(opponent))) {
+      targetId = opponent.id;
+      targetDistance = distance;
+    }
+
+    const opponentForwardSpeed = opponent.velocityX * forwardX + opponent.velocityZ * forwardZ;
+    const behind = forward < -LANCE_MIN_RANGE && forward > -48 && Math.abs(lateral) < 9;
+    if (behind && opponentForwardSpeed >= selfSpeed * 0.9 - 2 && distance < pursuerDistance) {
+      pursuerId = opponent.id;
+      pursuerDistance = distance;
+    }
+
+    if (forward < 0 && forward > -70 && Math.abs(lateral) < 12 && opponent.galactic.weapon.cooldown <= 0) {
+      const toSelfX = -dx / Math.max(1e-6, distance);
+      const toSelfZ = -dz / Math.max(1e-6, distance);
+      const aim = Math.sin(opponent.yaw) * toSelfX + Math.cos(opponent.yaw) * toSelfZ;
+      if (aim > 0.985) aimedAtBy = opponent.id;
+    }
   }
+
+  let inboundProjectileId: string | null = null;
+  let inboundTime = Number.POSITIVE_INFINITY;
+  for (const projectile of tactics?.projectiles ?? []) {
+    if (projectile.ownerId === self.id) continue;
+    const relX = self.x - projectile.position.x;
+    const relZ = self.z - projectile.position.z;
+    const distance = Math.hypot(relX, relZ);
+    if (distance > 110 || distance < 1e-6) continue;
+    const speed = Math.hypot(projectile.velocity.x, projectile.velocity.z);
+    if (speed < 1) continue;
+    const closing = (relX * projectile.velocity.x + relZ * projectile.velocity.z) / distance;
+    if (closing < speed * 0.6) continue;
+    const miss = Math.abs(relX * projectile.velocity.z - relZ * projectile.velocity.x) / speed;
+    const time = distance / speed;
+    if (miss < 9 && time < 0.55 && time < inboundTime) {
+      inboundProjectileId = projectile.id;
+      inboundTime = time;
+    }
+  }
+
+  let mineAheadId: string | null = null;
+  let mineDistance = Number.POSITIVE_INFINITY;
+  for (const mine of tactics?.mines ?? []) {
+    if (mine.ownerId === self.id) continue;
+    const dx = mine.position.x - self.x;
+    const dz = mine.position.z - self.z;
+    const forward = dx * forwardX + dz * forwardZ;
+    const lateral = dx * rightX + dz * rightZ;
+    if (forward > 0 && forward < 42 && Math.abs(lateral) < 9 && selfSpeed > 20 && forward < mineDistance) {
+      mineAheadId = mine.id;
+      mineDistance = forward;
+    }
+  }
+
+  return { targetId, pursuerId, inboundProjectileId, mineAheadId, aimedAtBy };
+}
+
+/**
+ * Adds deterministic combat intent to an existing spline-driving AI action.
+ * Attacks need a real target in the lance cone with a clear line of fire and
+ * respect a deliberate cadence; mines need a genuine pursuer; the shield is a
+ * reaction to an inbound shot, an unavoidable mine or an aimed rival, never a
+ * timer. Everything is a pure function of the supplied snapshots.
+ */
+export function augmentGalacticAIInput(
+  input: Readonly<PlayerInputState>,
+  self: Readonly<GalacticRacerSnapshot>,
+  opponents: readonly GalacticRacerSnapshot[],
+  step: number,
+  tactics?: GalacticAITactics,
+): PlayerInputState {
+  const threats = assessGalacticThreats(self, opponents, tactics);
   const phase = (step + hashString(self.id)) >>> 0;
-  const fireWindow = phase % 31 < 3;
-  const mineWindow = phase % 97 < 3;
-  const shieldWindow = phase % 643 === 0 || (self.damage > 0.55 && phase % 181 === 0);
+  const fireWindow = phase % LANCE_WINDOW_PERIOD < LANCE_WINDOW_OPEN;
+  const mineWindow = phase % MINE_WINDOW_PERIOD < MINE_WINDOW_OPEN;
+  const own = self.galactic;
+  // Attacks are a racing decision: nobody opens fire from the grid or while
+  // crawling out of a wreck. Defence stays available at any speed.
+  const underway = Math.hypot(self.velocityX, self.velocityZ) >= ATTACK_MINIMUM_SPEED;
+  const fire = underway && fireWindow && threats.targetId !== null && own.weapon.cooldown <= 0
+    && own.wreck.phase !== 'wrecked';
+  const mine = underway && mineWindow && threats.pursuerId !== null && own.mine.cooldown <= 0 && own.mine.charges > 0;
+  const shieldReady = own.shield.cooldown <= 0 && !own.shield.active;
+  const shield = shieldReady && (
+    threats.inboundProjectileId !== null
+    || threats.mineAheadId !== null
+    || (threats.aimedAtBy !== null && self.damage > 0.45)
+  );
   return normalizePlayerInput({
     ...input,
-    fire: fireWindow && targetAhead,
-    mine: mineWindow && targetBehind,
-    shield: shieldWindow,
+    fire,
+    mine,
+    shield,
     cycleVehicle: false,
   });
 }
@@ -403,6 +535,7 @@ export function spawnHeatLance(
     radius: 1.15,
     damage: definition.weaponDamage,
     heat: 0.13,
+    progressHint: wrapProgress(racer.courseProgress),
   };
   world.projectiles.push(projectile);
   return projectile;
@@ -432,23 +565,33 @@ export function deployScrapMine(
   return mine;
 }
 
-function segmentPointDistanceSquared(
+/**
+ * Entry fraction of a planar sweep into a circle, or null when it misses.
+ * A sweep that starts inside the circle hits at zero, so a point-blank shot
+ * still resolves against the nearest hull rather than the first roster entry.
+ */
+export function sweepCircleEntry(
   ax: number,
   az: number,
   bx: number,
   bz: number,
   px: number,
   pz: number,
-): number {
+  radius: number,
+): number | null {
   const dx = bx - ax;
   const dz = bz - az;
-  const lengthSquared = dx * dx + dz * dz;
-  const amount = lengthSquared <= 1e-9
-    ? 0
-    : clamp(((px - ax) * dx + (pz - az) * dz) / lengthSquared, 0, 1);
-  const closestX = ax + dx * amount;
-  const closestZ = az + dz * amount;
-  return (px - closestX) ** 2 + (pz - closestZ) ** 2;
+  const fx = ax - px;
+  const fz = az - pz;
+  const c = fx * fx + fz * fz - radius * radius;
+  if (c <= 0) return 0;
+  const a = dx * dx + dz * dz;
+  if (a <= 1e-12) return null;
+  const b = 2 * (fx * dx + fz * dz);
+  const discriminant = b * b - 4 * a * c;
+  if (discriminant < 0) return null;
+  const t = (-b - Math.sqrt(discriminant)) / (2 * a);
+  return t >= 0 && t <= 1 ? t : null;
 }
 
 function hazardImpact(hazard: GalacticHazardState, racer: GalacticRacerSnapshot): GalacticImpact {
@@ -485,11 +628,16 @@ function hazardImpact(hazard: GalacticHazardState, racer: GalacticRacerSnapshot)
   }
 }
 
-/** Advances bounded projectile, mine, hazard and pickup state for one fixed tick. */
+/**
+ * Advances bounded projectile, mine, hazard and pickup state for one fixed tick.
+ * The optional occluder lets authored scenery and canyon walls stop a lance;
+ * the nearest hit along the sweep always wins, whether it is a hull or a wall.
+ */
 export function stepGalacticWorld(
   world: GalacticWorldState,
   racers: readonly GalacticRacerSnapshot[],
   delta: number,
+  occluder?: GalacticWorldOccluder,
 ): GalacticWorldStepResult {
   const safeDelta = clamp(delta, 0, 0.1);
   const impacts: GalacticImpact[] = [];
@@ -506,18 +654,39 @@ export function stepGalacticWorld(
     projectile.position.y += projectile.velocity.y * safeDelta;
     projectile.position.z += projectile.velocity.z * safeDelta;
     let target: GalacticRacerSnapshot | null = null;
+    let targetEntry = Number.POSITIVE_INFINITY;
     for (const racer of racers) {
       if (racer.id === projectile.ownerId || racer.finished) continue;
       const radius = GALACTIC_VEHICLES[racer.galactic.vehicleClass].collisionRadius + projectile.radius;
-      const distanceSquared = segmentPointDistanceSquared(
+      const entry = sweepCircleEntry(
         projectile.previousPosition.x, projectile.previousPosition.z,
         projectile.position.x, projectile.position.z,
-        racer.x, racer.z,
+        racer.x, racer.z, radius,
       );
-      if (distanceSquared <= radius * radius && Math.abs(projectile.position.y - racer.y) < 7) {
+      if (entry === null || Math.abs(projectile.position.y - racer.y) >= 7) continue;
+      // Ties resolve by stable id so hosts and guests agree on the victim.
+      if (entry < targetEntry || (entry === targetEntry && target && racer.id.localeCompare(target.id) < 0)) {
         target = racer;
-        break;
+        targetEntry = entry;
       }
+    }
+    const worldEntry = occluder
+      ? occluder(
+          projectile.previousPosition.x, projectile.previousPosition.y, projectile.previousPosition.z,
+          projectile.position.x, projectile.position.y, projectile.position.z,
+          projectile.progressHint,
+        )
+      : null;
+    if (worldEntry !== null && worldEntry < targetEntry) {
+      const blocked = clamp(worldEntry, 0, 1);
+      events.push({
+        type: 'heat-lance-blocked', ownerId: projectile.ownerId, projectileId: projectile.id,
+        x: projectile.previousPosition.x + (projectile.position.x - projectile.previousPosition.x) * blocked,
+        y: projectile.previousPosition.y + (projectile.position.y - projectile.previousPosition.y) * blocked,
+        z: projectile.previousPosition.z + (projectile.position.z - projectile.previousPosition.z) * blocked,
+      });
+      world.projectiles.splice(index, 1);
+      continue;
     }
     if (target) {
       const speed = Math.max(1, Math.hypot(projectile.velocity.x, projectile.velocity.z));
@@ -548,12 +717,15 @@ export function stepGalacticWorld(
     mine.remaining -= safeDelta;
     mine.armTime = Math.max(0, mine.armTime - safeDelta);
     let target: GalacticRacerSnapshot | null = null;
+    let targetDistance = Number.POSITIVE_INFINITY;
     if (mine.armTime <= 0) {
       for (const racer of racers) {
         if (racer.id === mine.ownerId || racer.finished) continue;
-        if (Math.hypot(racer.x - mine.position.x, racer.z - mine.position.z) <= mine.triggerRadius) {
+        const distance = Math.hypot(racer.x - mine.position.x, racer.z - mine.position.z);
+        if (distance > mine.triggerRadius) continue;
+        if (distance < targetDistance || (distance === targetDistance && target && racer.id.localeCompare(target.id) < 0)) {
           target = racer;
-          break;
+          targetDistance = distance;
         }
       }
     }
@@ -727,7 +899,7 @@ export function completeGalacticRecovery(
 ): void {
   state.wreck.phase = 'recovering';
   state.wreck.timer = 0;
-  state.wreck.invulnerable = RECOVERY_INVULNERABILITY;
+  state.wreck.invulnerable = recoveryInvulnerability(state.wreck.crashCount);
   state.status.rockfallStun = 0;
   state.status.ionized = 0;
   state.status.sandGeyser = 0;

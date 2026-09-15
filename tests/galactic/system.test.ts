@@ -90,8 +90,11 @@ describe('Galactic Racer deterministic gameplay systems', () => {
 
   it('gives AI forward Heat Lance intent and a distinct rear Mine intent', () => {
     const self = makeSnapshot('ai-racer', 0);
+    // Rivals attack only once they are actually racing, never from the grid.
+    self.velocityZ = 80;
     const ahead = makeSnapshot('ahead', 40);
     const behind = makeSnapshot('behind', -32);
+    behind.velocityZ = 84;
     let firedAhead = false;
     let minedBehind = false;
     for (let step = 0; step < 800; step += 1) {

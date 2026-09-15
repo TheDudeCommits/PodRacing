@@ -17,6 +17,7 @@ import { RaceCameraDirector } from '../../camera/RaceCameraDirector';
 import { PodracerAudio, type RivalAudioTelemetry } from '../../audio';
 import { RaceMastery, masterySectorLabels, INKSTORM_HERO_SEED, type CompetitionProfile, type MasteryStartOptions } from '../../game/mastery';
 import { loadVehicleAppearance, resolveRacerAppearancePreference, saveVehicleAppearance, selectablePodAppearance, SELECTABLE_POD_APPEARANCES, vehicleChaseClearance, type VehicleAppearanceId } from '../../game/vehicleAppearance';
+import { POD_IDENTITIES, podIdentityStatRows } from '../../game/podIdentity';
 import { VehicleArtLibrary } from '../vehicles/VehicleArtLibrary';
 import { RacerPresentation } from '../vehicles/RacerPresentation';
 import { DEFAULT_PODRACER_CONFIG } from '../../game/simulation/config';
@@ -1206,6 +1207,12 @@ export class GameApp {
               active: this.racerViews[shadowIndex]?.activeAppearanceId ?? 'procedural',
               status: this.racerViews[shadowIndex]?.appearanceStatus ?? 'procedural',
               error: this.racerViews[shadowIndex]?.imported.error?.message ?? null,
+              identity: {
+                roleLabel: POD_IDENTITIES[this.vehicleAppearance].roleLabel,
+                tagline: POD_IDENTITIES[this.vehicleAppearance].tagline,
+                bestOn: POD_IDENTITIES[this.vehicleAppearance].bestOn,
+                stats: podIdentityStatRows(this.vehicleAppearance),
+              },
             },
             selectedLaps: this.selectedLaps,
             fixedRules: this.fixedEventRules(),
@@ -1244,6 +1251,8 @@ export class GameApp {
     if (!this.captureMode && !this.awaitingRaceStart) {
       const playerInput = this.lastRaceInputs[this.localRacerId()] ?? NEUTRAL_PLAYER_INPUT;
       const galactic = this.race.state.entries.find((entry) => entry.isPlayer)?.galactic;
+      const playerIdentity = this.race.podIdentityFor(this.localRacerId());
+      this.audio.setEngineVoice(POD_IDENTITIES[playerIdentity].engineVoice);
       this.audio.update({
         speedMps: this.playerState.telemetry.speed,
         normalizedSpeed: this.playerState.telemetry.normalizedSpeed,
@@ -1256,7 +1265,8 @@ export class GameApp {
         grounded: this.playerState.grounded,
         engineTorque: this.playerState.telemetry.engineTorque,
         simulationTime: this.playerState.simulationTime,
-        vehicleId: galactic?.vehicleClass ?? 'podracer',
+        vehicleId: galactic?.vehicleClass === 'podracer' && playerIdentity !== 'procedural'
+          ? playerIdentity : galactic?.vehicleClass ?? 'podracer',
         environmentClosure: this.race.course.sampleAtProgress(this.race.state.entries.find((entry) => entry.isPlayer)?.progress.courseProgress ?? 0).tag === 'narrow-canyon' ? 1 : 0.08,
         rivals: this.rivalAudioTelemetry(),
       });
@@ -1327,6 +1337,22 @@ export class GameApp {
     );
   }
 
+  /**
+   * Every registered appearance carries its pod identity into the simulation:
+   * the local choice for the local racer, the roster identity for each AI and
+   * the default for remote humans, whose appearance the room protocol does
+   * not carry yet. Handling therefore follows the pod the player can see.
+   */
+  private syncPodIdentities(): void {
+    const localRacerId = this.localRacerId();
+    const members = this.room.lobby.members;
+    for (const entry of this.race.state.entries) {
+      this.race.selectRacerPodIdentity(entry.id, resolveRacerAppearancePreference(
+        entry.id, localRacerId, this.vehicleAppearance, members,
+      ));
+    }
+  }
+
   private restartRace(previousVehicleClass = this.selectedVehicleClass()): void {
     this.mastery.cancelRun();
     this.ghostView.setPose(null);
@@ -1337,6 +1363,7 @@ export class GameApp {
     } else {
       this.applyRoomLobbyChoicesToGrid(this.room.lobby);
     }
+    this.syncPodIdentities();
     this.awaitingRaceStart = true;
     this.simulationFrame = 0;
     this.accumulator = 0;
@@ -1445,6 +1472,7 @@ export class GameApp {
       if (vehicleClass) this.race.selectRacerVehicle(entry.id, vehicleClass);
       entry.name = racerNames.get(entry.id) ?? entry.name;
     }
+    this.syncPodIdentities();
 
     for (const handle of this.courseOutlineHandles) handle.dispose();
     this.courseOutlineHandles.length = 0;
@@ -1702,7 +1730,9 @@ export class GameApp {
       vehicleClass,
       loadout: event.stock ? null : this.awaitingRaceStart
         ? this.workshopGarage.loadouts[vehicleClass] : player?.workshop?.loadout ?? null,
-      tune: DEFAULT_PODRACER_CONFIG,
+      // The identity is part of the competitive condition: a heavy pod's best
+      // never becomes the target ghost for an agile pod's lap.
+      tune: { base: DEFAULT_PODRACER_CONFIG, podIdentity: this.race.podIdentityFor(this.localRacerId()) },
       playerId: this.localRacerId(),
       recordEligible: !this.captureMode && this.room.lobby.role === 'solo',
       sectorLabels: pending ? [] : masterySectorLabels(this.race.course),
@@ -1753,10 +1783,12 @@ export class GameApp {
         const distanceM = Math.max(0.01, Math.hypot(dx, dz));
         const closingSpeedMps = -((entry.vehicle.velocity.x - player.velocity.x) * dx
           + (entry.vehicle.velocity.z - player.velocity.z) * dz) / distanceM;
+        const identity = this.race.podIdentityFor(entry.id);
         return { id: entry.id, distanceM,
           pan: Math.max(-1, Math.min(1, (dx * Math.cos(yaw) - dz * Math.sin(yaw)) / distanceM)),
           closingSpeedMps, speedMps: entry.vehicle.telemetry.speed,
-          vehicleId: entry.galactic?.vehicleClass ?? 'podracer' };
+          vehicleId: entry.galactic?.vehicleClass === 'podracer' && identity !== 'procedural'
+            ? identity : entry.galactic?.vehicleClass ?? 'podracer' };
       }).sort((a, b) => a.distanceM - b.distanceM).slice(0, 4);
   }
 
@@ -1773,6 +1805,8 @@ export class GameApp {
     saveVehicleAppearance(appearance);
     const index = this.race.state.entries.findIndex((entry) => entry.id === this.localRacerId());
     void this.racerViews[index]?.setAppearance(appearance);
+    this.syncPodIdentities();
+    this.audio.setEngineVoice(POD_IDENTITIES[appearance].engineVoice);
     this.nextHudFrame = 0;
   }
 
@@ -1821,6 +1855,7 @@ export class GameApp {
     for (const [racerId, vehicleClass] of Object.entries(start.vehicleClasses)) {
       this.race.selectRacerVehicle(racerId, vehicleClass);
     }
+    this.syncPodIdentities();
     this.syncRacerVehicleViews();
     this.finishStartingGrid();
   }
@@ -1874,6 +1909,7 @@ export class GameApp {
       const entry = this.race.state.entries.find((candidate) => candidate.id === member.racerId);
       if (entry) entry.name = member.name;
     }
+    this.syncPodIdentities();
   }
 
   private selectLapCount(laps: HudLapCount): void {
@@ -2828,6 +2864,7 @@ export class GameApp {
       radius: 1.15,
       damage: 0.12,
       heat: 0.13,
+      progressHint: target.progress.courseProgress,
     });
   }
 
@@ -2906,6 +2943,7 @@ export class GameApp {
           radius: 1.05,
           damage: 0.08,
           heat: 0.12,
+          progressHint: player.progress.courseProgress,
         });
         this.reviewInput = normalizePlayerInput({ throttle: 0.82, shield: true });
         break;

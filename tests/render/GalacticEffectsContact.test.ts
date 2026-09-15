@@ -5,6 +5,7 @@ import type { GalacticEvent } from '../../src/game/galactic/types';
 import { GameApp } from '../../src/render/app/GameApp';
 import { GalacticEffectsView, type CrashEffectEvent } from '../../src/render/galactic/GalacticEffectsView';
 import { RaceSimulation } from '../../src/game/race/RaceSimulation';
+import { DRIVE5_COMPATIBILITY_CONFIG } from '../../src/game/simulation/config';
 import { sampleTerrainHeight } from '../../src/render/terrain/terrainMath';
 import { WreckGroundContactGate } from '../../src/render/combat/WreckGroundContact';
 
@@ -120,7 +121,7 @@ describe('authoritative event to visible rupture placement', () => {
 
   it('surface-projects the reproduced native V9 buried rupture without changing simulation or horizontal placement', () => {
     const race = new RaceSimulation({ terrain: { heightAt: sampleTerrainHeight }, seed: 1229867859,
-      totalLaps: 1, countdownSeconds: 3, competitionProfile: 'time-trial' });
+      totalLaps: 1, countdownSeconds: 3, competitionProfile: 'time-trial', config: DRIVE5_COMPATIBILITY_CONFIG });
     let events: readonly GalacticEvent[] = [];
     for (let frame = 1; frame <= 910; frame++) {
       events = race.step({ brake: 1, boost: frame >= 558 }).galacticEvents;

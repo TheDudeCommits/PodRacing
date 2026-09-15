@@ -383,6 +383,22 @@ function computeAvoidance(
     steer += side * currentThreat * tune.avoidanceStrength * difficulty.avoidanceScale;
     threat = Math.max(threat, currentThreat);
   }
+  // Deployed ordnance is a point hazard: steer around it inside the corridor
+  // rather than driving through a visible mine because the line was clear.
+  for (const hazard of context.hazards ?? []) {
+    const dx = hazard.x - context.self.x;
+    const dz = hazard.z - context.self.z;
+    const forwardDistance = dx * forwardX + dz * forwardZ;
+    const lateralDistance = dx * rightX + dz * rightZ;
+    const reach = Math.max(18, hazard.radius + 10);
+    if (forwardDistance < 0 || forwardDistance > 90 || Math.abs(lateralDistance) > reach) continue;
+    const forwardWeight = 1 - clamp(forwardDistance / 90, 0, 1);
+    const lateralWeight = 1 - clamp(Math.abs(lateralDistance) / reach, 0, 1);
+    const currentThreat = clamp(forwardWeight * lateralWeight, 0, 1);
+    const side = Math.abs(lateralDistance) < 0.05 ? ((context.self.id.length & 1) ? -1 : 1) : (lateralDistance > 0 ? -1 : 1);
+    steer += side * currentThreat * Math.max(0.9, tune.avoidanceStrength) * difficulty.avoidanceScale;
+    threat = Math.max(threat, currentThreat * 0.6);
+  }
   return { steer: clamp(steer, -1, 1), threat };
 }
 
@@ -546,9 +562,13 @@ export function stepAIController(
   const desiredThrottle =
     clamp(0.5 + speedError / 15, 0, 1) * (1 - avoidance.threat * 0.45);
   state.throttleMemory += (desiredThrottle - state.throttleMemory) * Math.min(1, delta * 4.8);
+  // Threat braking is pointless at a standstill: a rival directly ahead on
+  // the grid is leaving, not arriving. Braking now also lifts the throttle,
+  // so the craft never fights itself the way a held brake used to.
   const brake = Math.max(
     clamp((-speedError - 2) / 17, 0, 1),
-    clamp((avoidance.threat - 0.25) / 0.75, 0, 1) * 0.65,
+    clamp((avoidance.threat - 0.25) / 0.75, 0, 1) * 0.65
+      * clamp((speed - 10) / 30, 0, 1),
   );
 
   state.boostDecisionTimer -= delta;
@@ -585,7 +605,7 @@ export function stepAIController(
     state.mistake.kind !== 'awkward-landing';
 
   const input: PlayerInputState = {
-    throttle: state.throttleMemory,
+    throttle: state.throttleMemory * (1 - brake * 0.6),
     brake,
     steer: clamp(state.steerMemory, -1, 1),
     drift,

@@ -4,7 +4,7 @@ import { COURSE_GULF_MAX_RISE, createCourseGulfField, getLaunchBasinAnchor, samp
 import { LAUNCH_RIDGES } from '../../src/game/race/LaunchBasinPlan';
 import { getInkstormVistaPlan } from '../../src/render/inkstorm/InkstormVista';
 import { sampleTerrainHeight } from '../../src/render/terrain/terrainMath';
-import { launchRidgeRound31 } from './launchRidgeRound31';
+import { launchRidgeRound37 } from './launchRidgeRound37';
 
 const course = createProceduralPodraceCourse({ heightAt: sampleTerrainHeight }, 0x494e4b53);
 const field = createCourseGulfField(course)!, anchor = getLaunchBasinAnchor(course)!;
@@ -15,7 +15,7 @@ const world = (forward: number, right: number) => ({
 const ground = (x: number, z: number) => sampleTerrainHeight(x, z) + field.sampleOffset(x, z);
 
 describe('connected physical launch ridges', () => {
-  it('pins all 532296 accepted course9 launch-grid lane/shoulder/normal samples bit for bit', async () => {
+  it('pins all 532296 accepted course10 launch-grid lane/shoulder/normal samples bit for bit', async () => {
     const samples: number[] = [];
     const probe = (x: number, z: number): void => {
       for (const [dx, dz] of [[0, 0], [.85, 0], [-.85, 0], [0, .85], [0, -.85], [1.15, 0], [-1.15, 0], [0, 1.15], [0, -1.15]]) {
@@ -38,10 +38,10 @@ describe('connected physical launch ridges', () => {
         }
       }
     }
-    expect(samples).toHaveLength(launchRidgeRound31.samples);
+    expect(samples).toHaveLength(launchRidgeRound37.samples);
     const bytes = new Uint8Array(new Float64Array(samples).buffer);
     const digest = new Uint8Array(await crypto.subtle.digest('SHA-256', bytes));
-    expect(Array.from(digest, value => value.toString(16).padStart(2, '0')).join('')).toBe(launchRidgeRound31.sha256);
+    expect(Array.from(digest, value => value.toString(16).padStart(2, '0')).join('')).toBe(launchRidgeRound37.sha256);
   });
 
   it('forms connected mountain interiors with distinct near, middle and far summit heights', () => {

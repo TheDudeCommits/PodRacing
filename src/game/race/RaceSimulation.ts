@@ -26,9 +26,17 @@ import {
   type GalacticRacerSnapshot,
   type GalacticRacerState,
   type GalacticVehicleClass,
+  type GalacticWorldOccluder,
   type GalacticWorldState,
   type WorkshopLoadout,
 } from '../galactic';
+import {
+  DEFAULT_POD_IDENTITY,
+  POD_IDENTITIES,
+  derivePodIdentityConfig,
+  isPodIdentityId,
+  type PodIdentityId,
+} from '../podIdentity';
 import {
   createAIControllerState,
   stepAIController,
@@ -290,8 +298,11 @@ export class RaceSimulation {
   private readonly vehicleSelections = new Map<string, GalacticVehicleClass>();
   /** `null` is an explicit lobby clear and prevents an option loadout returning on reset. */
   private readonly workshopSelections = new Map<string, WorkshopLoadout | null>();
+  /** Registered pod identities survive reset/rematch like vehicle classes do. */
+  private readonly podIdentitySelections = new Map<string, PodIdentityId>();
   private readonly runtimeConfigs = new Map<string, {
     vehicleClass: GalacticVehicleClass;
+    podIdentity: PodIdentityId;
     afterburner: number;
     cornering: number;
     resilience: number;
@@ -299,6 +310,24 @@ export class RaceSimulation {
     workshopKey: string;
     config: Readonly<PodracerConfig>;
   }>();
+
+  /**
+   * World occlusion for Heat Lance sweeps. Samples the authored scenery and
+   * canyon proxies every few metres along the segment and returns the first
+   * blocked fraction; the projectile's launch progress bounds the wall lookup.
+   */
+  private readonly lanceOccluder: GalacticWorldOccluder = (x0, y0, z0, x1, y1, z1, progressHint) => {
+    const length = Math.hypot(x1 - x0, z1 - z0);
+    const steps = Math.max(1, Math.ceil(length / 4));
+    for (let index = 0; index <= steps; index += 1) {
+      const t = index / steps;
+      const x = x0 + (x1 - x0) * t;
+      const z = z0 + (z1 - z0) * t;
+      const y = y0 + (y1 - y0) * t;
+      if (this.course.getObstacleContact(x, z, 1.2, progressHint, y)) return t;
+    }
+    return null;
+  };
 
   private readonly options: Readonly<{
     seed: number;
@@ -474,7 +503,7 @@ export class RaceSimulation {
     // the causality explicit: a projectile spawned below begins moving on the
     // next fixed tick, which is stable in saves, replays and headless tests.
     const worldResult = this.state.phase === 'racing'
-      ? stepGalacticWorld(this.state.galacticWorld, galacticSnapshots, delta)
+      ? stepGalacticWorld(this.state.galacticWorld, galacticSnapshots, delta, this.lanceOccluder)
       : { impacts: [], pickupClaims: [], events: [] };
     galacticEvents.push(...worldResult.events);
 
@@ -484,11 +513,10 @@ export class RaceSimulation {
       if (targetIndex === undefined) continue;
       const target = entries[targetIndex];
       if (!target) continue;
-      const tunedImpact = target.workshop
-        ? {
-            ...impact,
-            damage: impact.damage * workshopIncomingDamageScale(target.workshop),
-          }
+      const damageScale = (target.workshop ? workshopIncomingDamageScale(target.workshop) : 1)
+        * this.podIdentityDamageScale(target);
+      const tunedImpact = damageScale !== 1
+        ? { ...impact, damage: impact.damage * damageScale }
         : impact;
       const result = applyGalacticImpact(
         target.id,
@@ -587,6 +615,7 @@ export class RaceSimulation {
           activeRacerCount: entries.filter(
             (racer) => !racer.competition?.eliminated && racer.status !== 'finished',
           ).length,
+          hazards: this.aiPointHazardsFor(entry.id),
         });
         input = aiResult.input;
         aiEvents.push(...aiResult.events);
@@ -616,6 +645,15 @@ export class RaceSimulation {
           galacticSelf,
           galacticOpponentsByIndex[entryIndex] ?? [],
           this.state.step,
+          {
+            projectiles: this.state.galacticWorld.projectiles,
+            mines: this.state.galacticWorld.mines,
+            hasLineOfFire: (target) => this.lanceOccluder(
+              galacticSelf.x, galacticSelf.y + 0.6, galacticSelf.z,
+              target.x, target.y + 0.6, target.z,
+              galacticSelf.courseProgress,
+            ) === null,
+          },
         );
         input = this.applyModeAIObjective(entry, input);
       } else {
@@ -988,6 +1026,51 @@ export class RaceSimulation {
     return true;
   }
 
+  /**
+   * Registers a pod identity for one stable slot before the grid is released.
+   * Identities only shape the podracer class; other classes keep their tune.
+   */
+  selectRacerPodIdentity(racerId: string, identity: unknown): boolean {
+    if (this.playerVehicleSelectionLockedValue || this.state.phase !== 'countdown') return false;
+    if (!isPodIdentityId(identity)) return false;
+    const entry = this.entriesById.get(racerId);
+    if (!entry) return false;
+    this.podIdentitySelections.set(racerId, identity);
+    if (entry.podIdentity === identity) return true;
+    entry.podIdentity = identity;
+    this.runtimeConfigs.delete(racerId);
+    this.refreshEntryVehicleTune(entry);
+    return true;
+  }
+
+  /** Effective identity: registered pods only; other chassis use the reference tune. */
+  podIdentityFor(racerId: string): PodIdentityId {
+    const entry = this.entriesById.get(racerId);
+    if (!entry) return DEFAULT_POD_IDENTITY;
+    return this.effectivePodIdentity(entry);
+  }
+
+  private effectivePodIdentity(entry: RaceEntryState<AIControllerState>): PodIdentityId {
+    if (this.galacticFor(entry).vehicleClass !== 'podracer') return 'procedural';
+    return isPodIdentityId(entry.podIdentity) ? entry.podIdentity : DEFAULT_POD_IDENTITY;
+  }
+
+  private podIdentityDamageScale(entry: RaceEntryState<AIControllerState>): number {
+    return POD_IDENTITIES[this.effectivePodIdentity(entry)].incomingDamageScale;
+  }
+
+  /** Mines other racers dropped; the AI corridor logic steers around them. */
+  private aiPointHazardsFor(racerId: string): readonly { x: number; z: number; radius: number }[] {
+    const mines = this.state.galacticWorld.mines;
+    if (mines.length === 0) return [];
+    const hazards: { x: number; z: number; radius: number }[] = [];
+    for (const mine of mines) {
+      if (mine.ownerId === racerId) continue;
+      hazards.push({ x: mine.position.x, z: mine.position.z, radius: mine.triggerRadius + 1.5 });
+    }
+    return hazards;
+  }
+
   /** Restores the exact pre-workshop tune while the lobby remains open. */
   clearRacerWorkshopLoadout(racerId: string): boolean {
     if (this.playerVehicleSelectionLockedValue || this.state.phase !== 'countdown') return false;
@@ -1066,6 +1149,8 @@ export class RaceSimulation {
       entry.launch ??= createRacerLaunchState();
       entry.drafting ??= createRacerDraftingState();
       entry.competition ??= createRacerCompetitionState(index);
+      if (isPodIdentityId(entry.podIdentity)) this.podIdentitySelections.set(entry.id, entry.podIdentity);
+      else delete entry.podIdentity;
       const vehicleClass = entry.galactic?.vehicleClass;
       if (vehicleClass) {
         this.vehicleSelections.set(entry.id, vehicleClass);
@@ -1409,6 +1494,7 @@ export class RaceSimulation {
     const workshopKey = entry.workshop
       ? JSON.stringify(entry.workshop.loadout.slots)
       : '';
+    const podIdentity = this.effectivePodIdentity(entry);
     const cached = this.runtimeConfigs.get(entry.id);
     let partsMatch = cached?.parts.length === upgrades.parts.length;
     if (cached && partsMatch) {
@@ -1423,6 +1509,7 @@ export class RaceSimulation {
       cached
       && partsMatch
       && cached.vehicleClass === galactic.vehicleClass
+      && cached.podIdentity === podIdentity
       && cached.afterburner === upgrades.afterburner
       && cached.cornering === upgrades.cornering
       && cached.resilience === upgrades.resilience
@@ -1433,9 +1520,13 @@ export class RaceSimulation {
       this.config,
       upgrades,
     );
-    const config = deriveWorkshopVehicleConfig(galacticConfig, entry.workshop);
+    const config = derivePodIdentityConfig(
+      podIdentity,
+      deriveWorkshopVehicleConfig(galacticConfig, entry.workshop),
+    );
     this.runtimeConfigs.set(entry.id, {
       vehicleClass: galactic.vehicleClass,
+      podIdentity,
       afterburner: upgrades.afterburner,
       cornering: upgrades.cornering,
       resilience: upgrades.resilience,
@@ -1537,12 +1628,12 @@ export class RaceSimulation {
     const collisions = this.state.entries.map(() => [] as CollisionImpulse[]);
 
     const append = (index: number, collision: CollisionImpulse): void => {
-      const workshop = this.state.entries[index]?.workshop;
-      collisions[index]?.push(workshop
-        ? {
-            ...collision,
-            damage: collision.damage * workshopIncomingDamageScale(workshop),
-          }
+      const entry = this.state.entries[index];
+      if (!entry) return;
+      const scale = (entry.workshop ? workshopIncomingDamageScale(entry.workshop) : 1)
+        * this.podIdentityDamageScale(entry);
+      collisions[index]?.push(scale !== 1
+        ? { ...collision, damage: collision.damage * scale }
         : collision);
     };
     const nextRacerContacts = new Set<string>();
@@ -2125,12 +2216,16 @@ export class RaceSimulation {
         ? createRacerWorkshopState(selectedWorkshop)
         : undefined;
       if (workshop) galactic.mine.charges = workshop.mineCapacity;
+      const podIdentity = this.podIdentitySelections.get(racer.id);
       const galacticConfig = deriveGalacticVehicleConfig(
         galactic.vehicleClass,
         this.config,
         galactic.upgrades,
       );
-      const vehicleConfig = deriveWorkshopVehicleConfig(galacticConfig, workshop);
+      const vehicleConfig = derivePodIdentityConfig(
+        selectedClass === 'podracer' ? podIdentity ?? DEFAULT_POD_IDENTITY : 'procedural',
+        deriveWorkshopVehicleConfig(galacticConfig, workshop),
+      );
       const freshVehicle = createPodracerState({
         id: racer.id,
         seed: (this.options.seed + index * 0x9e3779b9) >>> 0,
@@ -2170,6 +2265,7 @@ export class RaceSimulation {
         drafting: createRacerDraftingState(),
         competition: createRacerCompetitionState(index),
         ...(workshop ? { workshop } : {}),
+        ...(podIdentity ? { podIdentity } : {}),
       });
     }
 

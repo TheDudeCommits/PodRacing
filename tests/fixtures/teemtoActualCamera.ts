@@ -2,6 +2,7 @@ import { Mesh, Object3D, type Group } from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { afterAll, beforeAll, expect } from 'vitest';
 import { RaceSimulation } from '../../src/game/race/RaceSimulation';
+import { DRIVE5_COMPATIBILITY_CONFIG } from '../../src/game/simulation/config';
 import { sampleTerrainHeight } from '../../src/render/terrain/terrainMath';
 import { WreckVisualPoseCache } from '../../src/render/combat/WreckVisualPose';
 import { TeemtoWreckBreakup } from '../../src/render/combat/TeemtoWreckBreakup';
@@ -39,7 +40,7 @@ function fixture(name: typeof variants[number]) {
   return { variant: name, root, original, damage, cache, breakup, all: [...original, ...damage] };
 }
 function race() { return new RaceSimulation({ terrain: { heightAt: sampleTerrainHeight }, seed: 1229867859,
-  totalLaps: 1, countdownSeconds: 3, competitionProfile: 'time-trial' }); }
+  totalLaps: 1, countdownSeconds: 3, competitionProfile: 'time-trial', config: DRIVE5_COMPATIBILITY_CONFIG }); }
 function step(sim: RaceSimulation, frame: number) { sim.step({ brake: 1, boost: frame >= 558 && frame <= 910 }); }
 function matrices(art: ReturnType<typeof fixture>) { return art.all.map(m => [...m.matrix.elements, ...m.position.toArray(), ...m.quaternion.toArray()]); }
 

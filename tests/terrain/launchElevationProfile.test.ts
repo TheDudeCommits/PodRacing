@@ -48,7 +48,9 @@ describe('flagship playable launch basin', () => {
     }
     for (const distance of [profile.startDistance - 30, profile.endDistance + 30]) {
       const point = race.course.sampleAtDistance(distance);
-      expect(point.y).toBe(base.heightAt(point.x, point.z));
+      // The course-10 sweeper camber overlaps the graded return; it is zero on
+      // the centreline up to the field's bilinear resolution.
+      expect(Math.abs(point.y - base.heightAt(point.x, point.z))).toBeLessThan(0.1);
     }
   });
 

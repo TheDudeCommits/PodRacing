@@ -6,7 +6,10 @@ import {
   createMenuMusicTransitionSchedule,
 } from './menuMusic';
 import type { MenuMusicTransitionSchedule } from './menuMusic';
-import { RECORDED_CUES, RECORDED_CUE_ROLES, RECORDED_EFFECT_URLS, RECORDED_LOOPS, RECORDED_MUSIC_URL } from './catalogue';
+import {
+  DEFAULT_ENGINE_VOICE_ID, RECORDED_CUES, RECORDED_CUE_ROLES, RECORDED_EFFECT_URLS,
+  RECORDED_ENGINE_VOICES, RECORDED_ENGINE_VOICE_URLS, RECORDED_LOOPS, RECORDED_MUSIC_URL,
+} from './catalogue';
 import type {
   AudioEventLike,
   AudioEventMapOptions,
@@ -92,6 +95,7 @@ export class PodracerAudio {
   private vehicleLoopsEnabled = true;
   private disposed = false;
   private effectSequence = 0;
+  private engineVoiceId: string = DEFAULT_ENGINE_VOICE_ID;
   private readonly recordings = new Map<string, AudioBuffer>();
   private readonly pendingRecordings = new Map<string, Promise<AudioBuffer | null>>();
   private readonly failedRecordings = new Set<string>();
@@ -368,6 +372,37 @@ export class PodracerAudio {
     return true;
   }
 
+  /** The sourced engine loop currently voicing the player's pod. */
+  get engineVoice(): string {
+    return this.engineVoiceId;
+  }
+
+  /**
+   * Switches the player's propulsion bed to another sourced engine identity.
+   * Unknown ids fall back to the default voice. A running graph crossfades:
+   * the old loop fades and stops while the new loop starts under the same
+   * load curve, so a pod change in the garage never clicks or doubles.
+   */
+  setEngineVoice(id: string): void {
+    const next = Object.hasOwn(RECORDED_ENGINE_VOICES, id) ? id : DEFAULT_ENGINE_VOICE_ID;
+    if (next === this.engineVoiceId) return;
+    this.engineVoiceId = next;
+    const context = this.context, graph = this.graph;
+    if (!context || !graph || context.state === 'closed' || this.disposed) return;
+    const previous = graph.engine;
+    if (previous) {
+      const now = context.currentTime;
+      previous.gain.gain.cancelScheduledValues(now);
+      previous.gain.gain.setTargetAtTime(0, now, 0.08);
+      try { previous.source.stop(now + 0.45); } catch { /* Already stopped. */ }
+      const index = graph.steadySources.indexOf(previous.source);
+      if (index >= 0) graph.steadySources.splice(index, 1);
+    }
+    graph.engine = this.createRecordedVoice(RECORDED_ENGINE_VOICES[next]!.url, 0, 0);
+    this.nextAudioUpdateAt = 0;
+    if (this.lastTelemetry) this.update(this.lastTelemetry);
+  }
+
   update(model: PodracerAudioTelemetry): void {
     if (!this.vehicleLoopsEnabled || this.disposed) return;
     this.lastTelemetry = { ...model };
@@ -382,16 +417,19 @@ export class PodracerAudio {
     if (graph.engine) {
       // One continuous propulsion bed. Load changes are gradual and narrow;
       // heat/damage/time never introduce pitch flutter or oscillating layers.
-      this.target(graph.engine.source.playbackRate, 0.94 + throttle * 0.12 + speed * 0.04 + boost * 0.02, now, 0.22);
-      this.target(graph.engine.filter.frequency, 1_600 + throttle * 2_000 + speed * 800, now, 0.18);
-      this.target(graph.engine.gain.gain, (0.13 + throttle * 0.13 + speed * 0.07 + boost * 0.03) * (1 - unit(model.damage) * 0.25), now, 0.16);
+      // The selected pod's sourced voice shapes rate, cutoff and level once.
+      const voice = RECORDED_ENGINE_VOICES[this.engineVoiceId] ?? RECORDED_ENGINE_VOICES[DEFAULT_ENGINE_VOICE_ID]!;
+      this.target(graph.engine.source.playbackRate, (0.94 + throttle * 0.12 + speed * 0.04 + boost * 0.02) * voice.rate, now, 0.22);
+      this.target(graph.engine.filter.frequency, Math.max(300, 1_600 + voice.filterOffset + throttle * 2_000 + speed * 800), now, 0.18);
+      this.target(graph.engine.gain.gain, (0.13 + throttle * 0.13 + speed * 0.07 + boost * 0.03) * voice.gain * (1 - unit(model.damage) * 0.25), now, 0.16);
     }
     this.target(graph.canyonReturn.gain, unit(model.environmentClosure ?? 0) * 0.025, now, 0.45);
     const rivals = deriveRivalAudioTargets(model.rivals);
     for (let i = 0; i < graph.rivals.length; i += 1) {
       const voice = graph.rivals[i]!, rival = model.rivals?.[i], target = rivals[i];
       const near = rival && finite(rival.distanceM, 240) < 70;
-      this.target(voice.source.playbackRate, Math.min(1.08, Math.max(0.94, (target?.frequency ?? 180) / 180)), now, 0.24);
+      // Registered pod voices widen the rival register so a heavy pod passes low.
+      this.target(voice.source.playbackRate, Math.min(1.2, Math.max(0.8, (target?.frequency ?? 180) / 180)), now, 0.24);
       this.target(voice.gain.gain, near ? (target?.gain ?? 0) * 0.36 : 0, now, 0.14);
       this.target(voice.filter.frequency, 1_800, now, 0.18);
       if (target) this.target(voice.panner.pan, target.pan * 0.75, now, 0.12);
@@ -901,9 +939,10 @@ export class PodracerAudio {
     // Resume is called before network awaits, in the original user gesture.
     if (resume && context.state === 'suspended') await context.resume();
     if (context.state === 'running') this.disarm();
-    await Promise.all(RECORDED_EFFECT_URLS.map(url => this.loadRecording(url)));
+    await Promise.all([...RECORDED_EFFECT_URLS, ...RECORDED_ENGINE_VOICE_URLS].map(url => this.loadRecording(url)));
     if (this.disposed || this.graph !== graph || context.state === 'closed') return;
-    graph.engine = this.createRecordedVoice(RECORDED_LOOPS.engine, 0, 0);
+    const engineVoice = RECORDED_ENGINE_VOICES[this.engineVoiceId] ?? RECORDED_ENGINE_VOICES[DEFAULT_ENGINE_VOICE_ID]!;
+    graph.engine = this.createRecordedVoice(engineVoice.url, 0, 0);
     for (let i = 0; i < 2; i += 1) {
       const voice = this.createRecordedVoice(RECORDED_LOOPS.rival, 0, (i + 1) * 0.57);
       if (voice) graph.rivals.push(voice);

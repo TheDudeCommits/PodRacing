@@ -5,6 +5,7 @@ import type {
   WorkshopLoadout,
   WorkshopStat,
 } from '../galactic/types';
+import type { PodIdentityId } from '../podIdentity';
 
 export type CourseSectionTag =
   | 'start-straight'
@@ -382,6 +383,8 @@ export interface RaceEntryState<TAI extends SerializableAIState = SerializableAI
   competition?: RacerCompetitionState;
   /** Omitted to preserve the legacy/default tune when no workshop build was supplied. */
   workshop?: RacerWorkshopState;
+  /** Registered pod handling/weight/heat identity; absent means the reference tune. */
+  podIdentity?: PodIdentityId;
 }
 
 export interface RaceResultEntry {

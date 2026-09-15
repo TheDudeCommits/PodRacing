@@ -50,3 +50,33 @@ export const RECORDED_CUE_ROLES: Readonly<Record<string, { gain: number; gap: nu
 export const RECORDED_EFFECT_URLS = Object.freeze([...new Set([
   ...Object.values(RECORDED_LOOPS), ...Object.values(RECORDED_CUES).flat(),
 ])]);
+
+/**
+ * Sourced engine identities for the registered pods. Each is an existing
+ * licensed loop from the audio bank (attributions in both CREDITS pages) with
+ * a narrow playback-rate, filter and gain shape; nothing is synthesized.
+ */
+export interface RecordedEngineVoice {
+  url: string;
+  /** Base playback rate multiplier applied under the shared load curve. */
+  rate: number;
+  /** Added to the shared low-pass cutoff (Hz); negative darkens the voice. */
+  filterOffset: number;
+  /** Multiplies the shared engine bed level. */
+  gain: number;
+  credit: string;
+}
+export const RECORDED_ENGINE_VOICES: Readonly<Record<string, RecordedEngineVoice>> = Object.freeze({
+  'twin-turbine': Object.freeze({ url: file('propulsion'), rate: 1, filterOffset: 0, gain: 1,
+    credit: 'Rocket Boost Engine Loop — Iwan Gabovitch (qubodup), CC0 1.0' }),
+  'split-x': Object.freeze({ url: file('propulsion'), rate: 1.13, filterOffset: 900, gain: 0.92,
+    credit: 'Rocket Boost Engine Loop — Iwan Gabovitch (qubodup), CC0 1.0' }),
+  turbofan: Object.freeze({ url: '/audio/salt-dusk/turbine.ogg', rate: 1.02, filterOffset: 1400, gain: 0.9,
+    credit: 'Fan motor — Rvgerxini, CC0 1.0' }),
+  diesel: Object.freeze({ url: '/audio/salt-dusk/engine.ogg', rate: 0.88, filterOffset: -500, gain: 1.05,
+    credit: 'Car Engine Loop 96kHz, 4s — qubodup, CC BY 3.0' }),
+});
+export const DEFAULT_ENGINE_VOICE_ID = 'twin-turbine';
+export const RECORDED_ENGINE_VOICE_URLS = Object.freeze([...new Set(
+  Object.values(RECORDED_ENGINE_VOICES).map((voice) => voice.url),
+)]);

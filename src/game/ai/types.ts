@@ -94,6 +94,14 @@ export interface AIControllerContext {
   /** One-based live standing, used by eliminator and checkpoint-sprint objectives. */
   position?: number;
   activeRacerCount?: number;
+  /** Deployed ordnance and similar point hazards the racer should steer around. */
+  hazards?: readonly AIPointHazard[];
+}
+
+export interface AIPointHazard {
+  x: number;
+  z: number;
+  radius: number;
 }
 
 export type AIEvent =

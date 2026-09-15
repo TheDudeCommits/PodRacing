@@ -65,6 +65,32 @@ export interface PodracerConfig {
   maxRoll: number;
   maxBank: number;
   engineTorqueScale: number;
+  /** Brake input scales engine thrust down so a held throttle cannot fight the brake. */
+  brakeThrottleCut: number;
+  /** Extra steering authority while braking on the ground (trail braking). */
+  brakeSteeringBonus: number;
+  /** Fraction of brake force that also scrubs lateral slide, straightening the craft. */
+  brakeLateralScrub: number;
+  /** Share of the drift slip angle that follows the live steering magnitude. */
+  driftSteerSlipShare: number;
+  /** Seconds over which grip returns after a drift release instead of snapping. */
+  driftExitBlendTime: number;
+  /** Fraction of scrubbed lateral speed converted to forward speed during regrip. */
+  momentumRetention: number;
+  /** Lateral grip while airborne; velocity carries through flight and landings. */
+  airLateralGrip: number;
+  /** Steering authority while airborne. */
+  airSteeringScale: number;
+  /** Seconds of grip blend after a real landing. */
+  landingGripBlendTime: number;
+  /** Repulsor pull-down (as a fraction of gravity) within range above hover height. */
+  repulsorAttraction: number;
+  /** Heading assist from the lateral component of support on a banked surface. */
+  bankAssist: number;
+  /** Low-speed slide down a bank as a fraction of the lateral support component. */
+  bankSlide: number;
+  /** Hull damage one landing can inflict; a designed drop never wrecks a clean lap alone. */
+  landingDamageCap: number;
   probes: readonly TerrainProbeDefinition[];
 }
 
@@ -133,6 +159,28 @@ export const DEFAULT_PODRACER_CONFIG: Readonly<PodracerConfig> = Object.freeze({
   maxRoll: 0.52,
   maxBank: 0.5,
   engineTorqueScale: 0.085,
+  // Drive 6 handling: braking is a single predictable deceleration that wins
+  // over a held throttle and tightens the line; drift exit and landings blend
+  // grip back over a short window so tangential momentum is kept rather than
+  // snapped away; the repulsor can pull the craft down toward hover height so
+  // ordinary crests no longer become unexplained launches; a banked surface
+  // turns the craft toward the low side like a real repulsor bed would.
+  brakeThrottleCut: 0.75,
+  brakeSteeringBonus: 0.22,
+  brakeLateralScrub: 0.55,
+  driftSteerSlipShare: 0.45,
+  driftExitBlendTime: 0.36,
+  momentumRetention: 0.55,
+  airLateralGrip: 3.4,
+  airSteeringScale: 0.62,
+  landingGripBlendTime: 0.3,
+  repulsorAttraction: 0.55,
+  bankAssist: 2.2,
+  bankSlide: 0.35,
+  // The authored 138 m launch escarpment lands at terminal speed every lap.
+  // The old 0.22 cap made a clean three-lap race wreck itself on landing
+  // damage alone; a hard slam still costs a seventh of the hull.
+  landingDamageCap: 0.14,
   probes: Object.freeze([
     Object.freeze({ id: 'cockpit-front', localX: 0, localZ: 1.9 }),
     Object.freeze({ id: 'cockpit-rear', localX: 0, localZ: -1.8 }),
@@ -141,4 +189,26 @@ export const DEFAULT_PODRACER_CONFIG: Readonly<PodracerConfig> = Object.freeze({
     Object.freeze({ id: 'engine-right-front', localX: 4.1, localZ: 5.3 }),
     Object.freeze({ id: 'engine-right-rear', localX: 4.1, localZ: 2.2 }),
   ]),
+});
+
+/**
+ * The drive-5 feel, expressed in the current parameter set. Archived native
+ * replays (for example the V9 wreck receipts) reproduce their recorded
+ * checkpoints under this tune; new races never use it.
+ */
+export const DRIVE5_COMPATIBILITY_CONFIG: Readonly<PodracerConfig> = Object.freeze({
+  ...DEFAULT_PODRACER_CONFIG,
+  brakeThrottleCut: 0,
+  brakeSteeringBonus: 0,
+  brakeLateralScrub: 0,
+  driftSteerSlipShare: 0,
+  driftExitBlendTime: 0,
+  momentumRetention: 0,
+  airLateralGrip: DEFAULT_PODRACER_CONFIG.lateralGrip,
+  airSteeringScale: 1,
+  landingGripBlendTime: 0,
+  repulsorAttraction: 0,
+  bankAssist: 0,
+  bankSlide: 0,
+  landingDamageCap: 0.22,
 });

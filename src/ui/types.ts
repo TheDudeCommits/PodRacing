@@ -170,11 +170,20 @@ export interface HudPreRaceViewModel {
   cards: readonly HudVehicleCardViewModel[];
 }
 
+export interface HudPodIdentityViewModel {
+  roleLabel: string;
+  tagline: string;
+  bestOn: string;
+  stats: readonly { label: string; value: number }[];
+}
+
 export interface HudVehicleAppearanceViewModel {
   selected: VehicleAppearanceId;
   active?: VehicleAppearanceId;
   status: string;
   error: string | null;
+  /** Handling/weight/heat identity of the selected pod; absent for the Classic frame. */
+  identity?: HudPodIdentityViewModel;
 }
 
 export type HudSettingsTab = 'controls' | 'comfort' | 'audio';

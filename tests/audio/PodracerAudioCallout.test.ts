@@ -1,8 +1,10 @@
 import { describe, expect, it } from 'vitest';
 import { PodracerAudio } from '../../src/audio';
-import { RECORDED_EFFECT_URLS, RECORDED_MUSIC_URL } from '../../src/audio/catalogue';
+import { RECORDED_EFFECT_URLS, RECORDED_ENGINE_VOICE_URLS, RECORDED_MUSIC_URL } from '../../src/audio/catalogue';
 import type { PodracerAudioTelemetry } from '../../src/audio';
-const EXPECTED_DECODED_FILES = RECORDED_EFFECT_URLS.length + 2;
+// Effects, the pod engine voices that are not already effects, music and voice.
+const EXPECTED_DECODED_FILES = RECORDED_EFFECT_URLS.length
+  + RECORDED_ENGINE_VOICE_URLS.filter((url) => !RECORDED_EFFECT_URLS.includes(url)).length + 2;
 
 interface ParamEvent {
   kind: 'cancel' | 'set' | 'linear' | 'exponential' | 'target';
@@ -548,7 +550,9 @@ describe('recorded catalogue audio owner', () => {
     expect(gains[0]!.gain.value).toBeGreaterThan(0.3);
     expect(gains.slice(1).every(gain => gain.gain.value <= 0.031)).toBe(true);
     expect(gains.reduce((sum, node) => sum + node.gain.value, 0)).toBeLessThan(0.43);
-    expect(sources.every(source => source.playbackRate.value >= 0.94 && source.playbackRate.value <= 1.121)).toBe(true);
+    // Registered pod identities widen the rival register to 0.8–1.2; the
+    // player bed stays inside its narrow load curve times the pod voice rate.
+    expect(sources.every(source => source.playbackRate.value >= 0.8 && source.playbackRate.value <= 1.2)).toBe(true);
     context.currentTime = 9;
     audio.update(racingTelemetry);
     const rate = sources[0]!.playbackRate.value;

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { createProceduralPodraceCourse } from '../../src/game/race/course';
-import { createCourseGulfField } from '../../src/game/race/CourseGulfField';
+import { createCourseGulfField, sweeperBankingExtent } from '../../src/game/race/CourseGulfField';
 import { sampleTerrainHeight } from '../../src/render/terrain/terrainMath';
 
 const course = createProceduralPodraceCourse({ heightAt: sampleTerrainHeight }, 0x494e4b53);
@@ -15,6 +15,10 @@ const normalTaps = [[0, 0], [.85, 0], [-.85, 0], [0, .85], [0, -.85], [1.15, 0],
 // taking this boundary from the current profile could hide an expanded edit.
 const unchangedMainBefore = 1025.7588430595824;
 const unchangedMainAfter = 2881.7588430595824;
+const sweeper = sweeperBankingExtent(course)!;
+// Course-8 lanes outside both the launch and the course-10 sweeper editions.
+const SWEEPER_EXCLUDED_SAMPLES = 184023;
+const SWEEPER_EXCLUDED_SHA256 = 'f5564e963d2b74b310620ea7d01df14e3ccc1cf1bd22994200baccc6241a50e2';
 
 async function digest(samples: number[]): Promise<string> {
   const bytes = new Uint8Array(new Float64Array(samples).buffer);
@@ -44,12 +48,14 @@ describe('course-9 launch edit isolation from course 8', () => {
     for (let i = 0; i < 4096; i++) {
       const p = course.samplePlanAtProgress((i + .371) / 4096);
       if (p.distance >= unchangedMainBefore && p.distance <= unchangedMainAfter) continue;
+      // Course 10 adds the banked sweeper edition; its extent is a second authored edit.
+      if (p.distance > sweeper.start - 24 && p.distance < sweeper.end + 24) continue;
       for (const lateral of [-p.width - 10, -p.width, -p.width * .5, 0, p.width * .5, p.width, p.width + 10]) {
         probe(samples, p.x + p.rightX * lateral, p.z + p.rightZ * lateral);
       }
     }
-    expect(samples).toHaveLength(195426);
-    expect(await digest(samples)).toBe('8fc5f08e149c6fa0eec54c1818342342460abda936109726cb57ec570114681a');
+    expect(samples).toHaveLength(SWEEPER_EXCLUDED_SAMPLES);
+    expect(await digest(samples)).toBe(SWEEPER_EXCLUDED_SHA256);
   });
 
   it('keeps every alternate route, shoulder and normal tap bit-identical to course 8', async () => {

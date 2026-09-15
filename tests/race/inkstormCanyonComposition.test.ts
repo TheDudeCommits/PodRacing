@@ -88,7 +88,9 @@ describe('flagship canyon entrance composition', () => {
     const layout = getInkstormLayout(course);
     const near = layout.filter(p => ids.includes(p.id));
     expect(near).toHaveLength(2);
-    expect(layout).toHaveLength(227);
+    // Course 10 thins the flagship roadside (half the shards, sparser near masses
+    // and refinery stacks) and adds two turn markers.
+    expect(layout).toHaveLength(158);
     const route = course.sampleAtProgress(entranceProgress);
     const original = [
       { x: 19931.643757184986, z: 395.78964639280974, yaw: -2.8622132374091094, offset: -12, scale: [.92, .72, .95] },
@@ -106,7 +108,7 @@ describe('flagship canyon entrance composition', () => {
     // Pre-change receipt excludes only numeric IDs 91 and 93. This guards every
     // remaining transform/ID, including both arches and all physical fork rocks.
     expect(await digest(layout.filter(p => !ids.includes(p.id))))
-      .toBe('bf1dfd8846615ede6d652844c20bd6e3b8f9a0b940cbfb7883843d6596e4910b');
+      .toBe('6ce558620e85f89cbf669cf05a004cdda84579055959d135b2278025d484b0db');
   });
 
   it('keeps the actual high/LOD boxes beyond full main and branch lanes plus a wide craft and 7 m', () => {

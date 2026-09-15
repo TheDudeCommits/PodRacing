@@ -1,5 +1,5 @@
 import type { PodraceCourse } from './course';
-import type { CourseObstacleContact } from './types';
+import type { CourseObstacleContact, CourseSample } from './types';
 import { getLaunchBasinAnchor } from './CourseGulfField';
 export const INKSTORM_FAMILIES = ['cliff-strata','wind-blade','mesa-crown','roadside-shard','canyon-arch','foundry-gantry','refinery-stack','pit-complex','pipe-bank','finish-tower','canyon-buttress','sandstone-scree','fractured-spire','pit-district'] as const;
 export type InkstormFamily = typeof INKSTORM_FAMILIES[number];
@@ -43,6 +43,10 @@ export function getInkstormLayout(course:PodraceCourse):readonly InkstormPlaceme
       }
       placements.push({id:`inkstorm-${family}-${placements.length}`,family,progress,x,z,yaw,sx,sy,sz});
     };
+    // The flagship circuit keeps its roadside quieter: half the shards, none
+    // through the banked sweeper, sparser near masses and refinery stacks, so
+    // the authored landmarks below read as the turn markers.
+    const flagship=course.seed===0x494e4b53;
     // Place in distance units so density remains consistent across event courses.
     for(let d=0,i=0;d<course.totalLength;d+=38,i++){
       const progress=d/course.totalLength,p=course.sampleAtProgress(progress),r=rnd(i+course.seed!);
@@ -54,13 +58,13 @@ export function getInkstormLayout(course:PodraceCourse):readonly InkstormPlaceme
         // Keep the cliff on the inside of the bend. The outer shoulder opens
         // onto the gulf instead of being sealed by the former wall of columns.
         else if(p.tag==='hairpin'&&side===(p.curvature>0?1:-1)&&i%4===0)place('canyon-buttress',progress,side*(p.width+77),1.35,.95+r*.55,1.5,side*.18);
-        else if(i%8===0)place('canyon-buttress',progress,side*(p.width+150+r*190),.58+r*.35,.8+r*1.15,.8+r*.7,side*(.3+r*.6));
+        else if(i%(flagship?12:8)===0)place('canyon-buttress',progress,side*(p.width+150+r*190),.58+r*.35,.8+r*1.15,.8+r*.7,side*(.3+r*.6));
         // Broad layered escarpments remain the dominant distant landform.
         // Isolated split spires are selected below, without mirrored pairs.
         if(i%13===0)place('canyon-buttress',progress,side*(p.width+540+r*260),2.2+r*2.2,.9+r*1.5,2.1+r*1.8,side*(.4+r*.5));
         if(i%19===0)place('canyon-buttress',progress,side*(p.width+980+r*340),4.5+r*3,1.6+r*1.4,3.1+r*2,side*.75);
-        if(i%4===0)place('roadside-shard',progress,side*(p.width+13+r*9),.5+r*.6,.6+r*.5,.8,side*r);
-        if(p.tag==='chicane'&&i%4===0)place('refinery-stack',progress,side*(p.width+42+r*12),.9,1+r*.45,1);
+        if(i%(flagship?8:4)===0&&!(flagship&&p.tag==='wide-sweeper'))place('roadside-shard',progress,side*(p.width+13+r*9),.5+r*.6,.6+r*.5,.8,side*r);
+        if(p.tag==='chicane'&&i%(flagship?8:4)===0)place('refinery-stack',progress,side*(p.width+42+r*12),.9,1+r*.45,1);
       }
     }
     // Three editorial landmark beats: starting grid, canyon arch, industrial reveal.
@@ -90,8 +94,51 @@ export function getInkstormLayout(course:PodraceCourse):readonly InkstormPlaceme
     composeSaltRun(course, placements);
     composeLaunchGeology(course, placements);
     composeCanyonEntrance(course, placements);
+    placements.push(...getInkstormTurnMarkers(course));
     placements.push(...getInkstormForkDividers(course));
   layoutCache.set(course,placements);return placements;
+}
+
+/**
+ * Flagship turn markers: one tall blade on the outside of the banked sweeper
+ * apex and one on the outside of the return hairpin. Both stand well beyond
+ * the lane and its runoff, so they frame the exit without adding an obstacle
+ * to the racing corridor. Deterministic and course-owned like every placement.
+ */
+export function getInkstormTurnMarkers(course: PodraceCourse): readonly InkstormPlacement[] {
+  if (course.seed !== 0x494e4b53) return [];
+  const markers: InkstormPlacement[] = [];
+  const apexOf = (tag: 'wide-sweeper' | 'hairpin'): CourseSample | null => {
+    let best: CourseSample | null = null;
+    for (let i = 0; i < 2048; i++) {
+      const sample = course.sampleAtProgress(i / 2048);
+      if (sample.tag !== tag) continue;
+      if (!best || Math.abs(sample.curvature) > Math.abs(best.curvature)) best = sample;
+    }
+    return best;
+  };
+  const corridors = [course.getRenderData(1024).points, ...course.branches.map(branch => branch.points)];
+  const clear = (x: number, z: number, radius: number): boolean => corridors.every(corridor => corridor.every((point, i) => {
+    if (i === 0) return true;
+    const a = corridor[i - 1]!, dx = point.x - a.x, dz = point.z - a.z;
+    const t = Math.max(0, Math.min(1, ((x - a.x) * dx + (z - a.z) * dz) / Math.max(1e-8, dx * dx + dz * dz)));
+    return Math.hypot(x - a.x - dx * t, z - a.z - dz * t) >= radius + Math.max(a.width, point.width) + 24;
+  }));
+  const forms = [
+    ['wide-sweeper', 96, 2.3, 1.35, 2.1, .55],
+    ['hairpin', 104, 1.9, 1.2, 1.8, -.45],
+  ] as const;
+  for (const [tag, offset, sx, sy, sz, turn] of forms) {
+    const apex = apexOf(tag);
+    if (!apex) continue;
+    // Outside of the bend: positive curvature bends right, so the outside is left.
+    const side = apex.curvature >= 0 ? -1 : 1;
+    const x = apex.x + apex.rightX * side * (apex.width + offset), z = apex.z + apex.rightZ * side * (apex.width + offset);
+    if (!clear(x, z, Math.hypot(17 * sx, 7.5 * sz))) continue;
+    markers.push({ id: `inkstorm-turn-marker-${tag}`, family: 'wind-blade', progress: apex.progress,
+      x, z, yaw: Math.atan2(apex.tangentX, apex.tangentZ) + turn * side, sx, sy, sz });
+  }
+  return markers;
 }
 
 /** Unequal near shoulders expose the flagship arch without moving the racing corridor. */

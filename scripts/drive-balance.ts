@@ -9,6 +9,7 @@ import { RaceSimulation } from '../src/game/race/RaceSimulation';
 import { SALT_RUN_PROFILE } from '../src/game/race/CourseGulfField';
 import { DEFAULT_PODRACER_CONFIG, type PodracerConfig } from '../src/game/simulation/config';
 import { GALACTIC_VEHICLE_ORDER, deriveGalacticVehicleConfig, type GalacticVehicleClass } from '../src/game/galactic';
+import { derivePodIdentityConfig } from '../src/game/podIdentity';
 import { getMasteryEvent, INKSTORM_HERO_SEED } from '../src/game/mastery/events';
 import { sampleTerrainHeight } from '../src/render/terrain/terrainMath';
 import type { PlayerInputState } from '../src/game/input/actions';
@@ -18,6 +19,10 @@ import { sampleBridgeSurface } from '../src/game/race/bridgeSurface';
 const option = (key: string, fallback = '') => process.argv.find((arg) => arg.startsWith(`--${key}=`))?.slice(key.length + 3) ?? fallback;
 const only = option('only');
 const label = option('label', 'latest').replace(/[^a-z0-9_-]/gi, '-');
+/** Optional lap override (1–3) for longer clean-lap evidence than the event's own count. */
+const lapsOverride = option('laps') ? Math.min(3, Math.max(1, Math.floor(Number(option('laps'))))) : null;
+/** Optional registered pod identity applied to the player's podracer. */
+const identityOption = option('identity');
 const pace = Math.min(1, Math.max(0.45, Number(option('pace', '0.88'))));
 const maxSim = Number(option('limit', '360'));
 const maxWall = Number(option('wall', '120'));
@@ -164,14 +169,18 @@ function inputFor(race: RaceSimulation, tune: Readonly<PodracerConfig>, memory: 
 }
 
 function runCase(eventId: string, vehicleClass: GalacticVehicleClass) {
-  const event = getMasteryEvent(eventId);
+  const baseEvent = getMasteryEvent(eventId);
+  const event = lapsOverride ? { ...baseEvent, laps: lapsOverride as 1 | 2 | 3 } : baseEvent;
   const race = new RaceSimulation({ terrain, seed: event.seed, competitionProfile: event.profile,
     totalLaps: event.laps, aiDifficulty: event.difficulty, mode: event.mode, countdownSeconds: 3,
     resultsGraceSeconds });
   race.selectPlayerVehicle(vehicleClass);
+  const playerId = race.state.entries.find((entry) => entry.isPlayer)!.id;
+  if (identityOption && !race.selectRacerPodIdentity(playerId, identityOption)) throw new Error(`Unknown pod identity ${identityOption}`);
   race.lockPlayerVehicleSelection();
   const player = race.state.entries.find((entry) => entry.isPlayer)!;
-  const tune = deriveGalacticVehicleConfig(vehicleClass, DEFAULT_PODRACER_CONFIG, player.galactic!.upgrades);
+  const tune = derivePodIdentityConfig(race.podIdentityFor(playerId),
+    deriveGalacticVehicleConfig(vehicleClass, DEFAULT_PODRACER_CONFIG, player.galactic!.upgrades));
   const memory: DriverMemory = { lastUsefulScore: player.progress.unwrappedProgress, stalledFor: 0, resetWasPressed: false, lastTarget: 0 };
   const stats = new Map(race.state.entries.map((entry) => [entry.id, {
     resets: 0, collisions: 0, sceneryCollisions: 0, wrecks: 0, maxSpeed: 0, maxDamage: 0,
@@ -192,7 +201,7 @@ function runCase(eventId: string, vehicleClass: GalacticVehicleClass) {
   let input: Partial<PlayerInputState> = {};
   let ticks = 0;
   let terminatedBy = 'simulation-time-limit';
-  const limit = Math.min(maxSim, event.laps * 240);
+  const limit = Math.min(maxSim, event.laps * 240 + (event.laps > 1 ? 120 : 0));
   console.log(`START ${eventId}/${vehicleClass}: ${(race.course.totalLength / 1000).toFixed(2)}km x${event.laps}, seed ${event.seed}`);
   for (; ticks < (limit + 3) * 120; ticks += 1) {
     if (ticks % 4 === 0) input = inputFor(race, tune, memory);
@@ -288,10 +297,11 @@ function runCase(eventId: string, vehicleClass: GalacticVehicleClass) {
   const playerStats = racers.find((entry) => entry.id === player.id)!;
   const cleanCompletion = playerStats.naturalFinishTime !== null && playerStats.resets === 0;
   const time = playerStats.naturalFinishTime;
-  const medal = cleanCompletion && time !== null
+  const medal = lapsOverride && lapsOverride !== baseEvent.laps ? 'not-applicable'
+    : cleanCompletion && time !== null
     ? time <= event.medalTimes.gold ? 'gold' : time <= event.medalTimes.silver ? 'silver' : time <= event.medalTimes.bronze ? 'bronze' : 'none'
     : 'ineligible';
-  const receipt = { eventId, vehicleClass, seed: event.seed, profile: event.profile, laps: event.laps,
+  const receipt = { eventId, vehicleClass, podIdentity: race.podIdentityFor(playerId), seed: event.seed, profile: event.profile, laps: event.laps,
     courseLengthM: race.course.totalLength, pace, disableBoost, launchBoost, saltBoost, observeAiUntil, useElevatedBridge, bridgeSpeed, resultsGraceSeconds, terminatedBy, ticks, simulationTime: race.state.raceTime,
     executionSeconds: (performance.now() - started) / 1000, cleanCompletion, medal, medalTimes: event.medalTimes,
     racers, notableEvents, recoveries, trace, collisionHotspots: [...collisionHotspots].map(([source, hotspot]) => ({ source, ...hotspot, racers: [...hotspot.racers] })).sort((a, b) => b.count - a.count) };
@@ -304,7 +314,9 @@ const cases: Array<[string, GalacticVehicleClass]> = [
   ['cup-canyon', 'podracer'], ['cup-foundry', 'podracer'], ['cup-glass', 'podracer'],
 ].filter(([event, vehicle]) => !only || event === only || (event === 'inkstorm-trial' && vehicle === only));
 if (![pace, maxSim, maxWall, observeAiUntil, bridgeSpeed, resultsGraceSeconds].every(Number.isFinite) || cases.length === 0) throw new Error('Invalid diagnostic options.');
-const sources = ['src/game/simulation/config.ts', 'src/game/race/RaceSimulation.ts', 'src/game/race/course.ts',
+if (lapsOverride !== null && !Number.isFinite(lapsOverride)) throw new Error('Invalid --laps option.');
+const sources = ['src/game/simulation/config.ts', 'src/game/simulation/podracer.ts', 'src/game/podIdentity.ts',
+  'src/game/race/RaceSimulation.ts', 'src/game/race/course.ts',
   'src/game/race/inkstormLayout.ts', 'src/render/terrain/terrainMath.ts', 'src/game/ai/controller.ts', 'scripts/drive-balance.ts'];
 sources.push('src/game/race/branches.ts', 'src/game/race/bridgeSurface.ts', 'src/game/race/CourseGulfField.ts');
 const hashes = Object.fromEntries(sources.map((path) => [path, createHash('sha256').update(readFileSync(path)).digest('hex')]));

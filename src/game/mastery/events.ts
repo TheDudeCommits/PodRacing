@@ -3,8 +3,12 @@ import type { MasteryEvent } from './types';
 // Round31 launch escarpment: 138m concave descent and excavated bowl throat
 // change physical racing/recovery paths. Course8 records/favorites use the
 // existing archive migration; their ghosts cannot be course9 comparison targets.
-export const MASTERY_GENERATOR_VERSION = 'inkstorm-course-9';
-export const MASTERY_PHYSICS_VERSION = 'inkstorm-drive-5';
+// Course 10 banks the flagship sweeper in the shared physical field and thins
+// its roadside props; drive 6 changes braking, drift exit, airborne grip,
+// hover attraction and bank assist, and gives each pod its own tune. Earlier
+// records and ghosts are archived rather than compared against the new feel.
+export const MASTERY_GENERATOR_VERSION = 'inkstorm-course-10';
+export const MASTERY_PHYSICS_VERSION = 'inkstorm-drive-6';
 export const MASTERY_RULES_VERSION = 'inkstorm-rules-2';
 export const INKSTORM_HERO_SEED = 0x494e4b53;
 export const DEFAULT_MASTERY_EVENT_ID = 'inkstorm-battle';

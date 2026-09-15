@@ -21,6 +21,11 @@ export const ENGINE_VOICE_PROFILES: Readonly<Record<string, {
   landspeeder: Object.freeze({ pitch: 0.7, intakeRatio: 3.1, exhaustRatio: 0.38, intakeGain: 0.55, exhaustGain: 1.35 }),
   'speeder-bike': Object.freeze({ pitch: 1.46, intakeRatio: 5.1, exhaustRatio: 0.72, intakeGain: 1.35, exhaustGain: 0.6 }),
   'skim-speeder': Object.freeze({ pitch: 1.16, intakeRatio: 3.6, exhaustRatio: 0.56, intakeGain: 0.82, exhaustGain: 0.84 }),
+  // Registered pod identities: balanced, fast/hot, agile and heavy voices.
+  teemto: Object.freeze({ pitch: 1, intakeRatio: 4.3, exhaustRatio: 0.5, intakeGain: 1, exhaustGain: 1 }),
+  sebulba: Object.freeze({ pitch: 1.13, intakeRatio: 4.8, exhaustRatio: 0.58, intakeGain: 1.15, exhaustGain: 0.85 }),
+  polwo: Object.freeze({ pitch: 1.22, intakeRatio: 5.4, exhaustRatio: 0.66, intakeGain: 1.25, exhaustGain: 0.7 }),
+  blockrunner: Object.freeze({ pitch: 0.8, intakeRatio: 3.4, exhaustRatio: 0.42, intakeGain: 0.7, exhaustGain: 1.3 }),
 });
 
 function voiceProfile(vehicleId: string | undefined) {

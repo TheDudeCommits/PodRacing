@@ -1,6 +1,7 @@
 import { BufferGeometry, Float32BufferAttribute, Group, Mesh, Vector3 } from 'three';
 import { describe, expect, it } from 'vitest';
 import { RaceSimulation } from '../../src/game/race/RaceSimulation';
+import { DRIVE5_COMPATIBILITY_CONFIG } from '../../src/game/simulation/config';
 import { sampleTerrainHeight } from '../../src/render/terrain/terrainMath';
 import { WreckVisualPoseCache, WRECK_PRESENTATION_DURATION, WRECK_SUPPORT_LIMIT } from '../../src/render/combat/WreckVisualPose';
 
@@ -38,7 +39,9 @@ function admittedArt(name: string) {
 
 function nativeRace() {
   return new RaceSimulation({ terrain: { heightAt: sampleTerrainHeight }, seed: 1229867859,
-    totalLaps: 1, countdownSeconds: 3, competitionProfile: 'time-trial' });
+    totalLaps: 1, countdownSeconds: 3, competitionProfile: 'time-trial',
+    // Archived native V9 checkpoints were driven under the drive-5 tune.
+    config: DRIVE5_COMPATIBILITY_CONFIG });
 }
 
 describe('renderer-only rigid wreck pose', () => {

@@ -1084,12 +1084,18 @@ export class RaceHud {
       write(requireElement(this.root, '[data-hud="setup-pod-index"]'), `${String(Math.max(0, SETUP_PODS.indexOf(appearance as typeof SETUP_PODS[number])) + 1).padStart(2, '0')} / 04`);
       hero.dataset.vehicleId = selection.selectedVehicleClass;
       const garageName = selection.selectedVehicleClass === 'podracer' && appearance !== 'procedural' ? selectedLabel : selectedCard.name;
+      // A registered pod presents its own identity: role, one-line handling
+      // promise and the four ratings that describe how it actually drives.
+      const identity = selection.selectedVehicleClass === 'podracer' && appearance !== 'procedural'
+        ? selection.appearance?.identity : undefined;
       hero.setAttribute('aria-label', `Inspect ${garageName}`);
       write(requireElement(this.root, '[data-hud="garage-name"]'), garageName);
-      write(requireElement(this.root, '[data-hud="garage-description"]'), selectedCard.description);
-      write(requireElement(this.root, '[data-hud="garage-class"]'), `${String(selection.cards.indexOf(selectedCard) + 1).padStart(2, '0')} / ${['TWIN ENGINE', 'HEAVY REPULSOR', 'AGILITY FRAME', 'SKIM RUNNER'][selection.cards.indexOf(selectedCard)] ?? 'RACE MACHINE'}`);
+      write(requireElement(this.root, '[data-hud="garage-description"]'), identity?.tagline ?? selectedCard.description);
+      write(requireElement(this.root, '[data-hud="garage-class"]'), identity
+        ? `${String(Math.max(0, SETUP_PODS.indexOf(appearance as typeof SETUP_PODS[number])) + 1).padStart(2, '0')} / ${identity.roleLabel.toUpperCase()}`
+        : `${String(selection.cards.indexOf(selectedCard) + 1).padStart(2, '0')} / ${['TWIN ENGINE', 'HEAVY REPULSOR', 'AGILITY FRAME', 'SKIM RUNNER'][selection.cards.indexOf(selectedCard)] ?? 'RACE MACHINE'}`);
       const stats = requireElement(this.root, '[data-hud="garage-stats"]');
-      stats.replaceChildren(...selectedCard.stats.map((stat) => {
+      stats.replaceChildren(...(identity?.stats ?? selectedCard.stats).map((stat) => {
         const row = this.root.ownerDocument.createElement('div');
         row.innerHTML = '<span></span><i></i><b></b>';
         write(requireElement(row, 'span'), stat.label);
@@ -1178,10 +1184,13 @@ export class RaceHud {
     const failed = appearance !== 'procedural' && (selection.appearance?.status === 'error' || this.vehiclePreviews.appearanceStatus === 'error');
     const activeAppearance = selection.appearance?.active ?? 'procedural';
     const selectedLabel = ART_APPEARANCES[appearance].label, activeLabel = ART_APPEARANCES[activeAppearance].label;
+    const identity = selection.appearance?.identity;
     write(requireElement(this.root, '[data-hud="appearance-status"]'), failed
       ? activeAppearance === appearance ? `Preview unavailable. ${activeLabel} remains ready to race.` : `${selectedLabel} unavailable. ${activeLabel} remains ready to race.`
       : loading ? activeAppearance === appearance ? `Preparing ${selectedLabel} preview… Your race craft is ready.` : `Loading ${selectedLabel}… ${activeLabel} is ready to race.`
-        : appearance !== 'procedural' ? `${selectedLabel} · seated pilot · twin engines` : 'Classic · original racing frame');
+        : appearance !== 'procedural'
+          ? identity ? `${selectedLabel} · ${identity.roleLabel} · best on ${identity.bestOn}` : `${selectedLabel} · seated pilot · twin engines`
+          : 'Classic · original racing frame');
     requireElement<HTMLButtonElement>(this.root, '[data-action="retry-appearance"]').hidden = !failed;
     const statusHost = this.root.querySelector<HTMLElement>('.setup-preview-status');
     if (statusHost) statusHost.hidden = !failed && !loading;

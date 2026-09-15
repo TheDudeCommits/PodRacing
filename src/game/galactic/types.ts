@@ -263,6 +263,8 @@ export interface HeatLanceProjectileState {
   radius: number;
   damage: number;
   heat: number;
+  /** Owner's course progress at launch; bounds the world occlusion lookup. */
+  progressHint: number;
 }
 
 export interface ScrapMineState {
@@ -329,6 +331,26 @@ export interface GalacticRacerSnapshot {
   galactic: GalacticRacerState;
 }
 
+/**
+ * World occlusion query for a projectile sweep. Returns the fraction along the
+ * segment where authored scenery or a canyon wall is first hit, or null when
+ * the line is clear. RaceSimulation supplies it from the course proxies so the
+ * combat layer stays renderer-free.
+ */
+export type GalacticWorldOccluder = (
+  x0: number, y0: number, z0: number,
+  x1: number, y1: number, z1: number,
+  progressHint?: number,
+) => number | null;
+
+/** What a rival can perceive when deciding to attack or defend this tick. */
+export interface GalacticAITactics {
+  projectiles: readonly HeatLanceProjectileState[];
+  mines: readonly ScrapMineState[];
+  /** Line-of-fire test against world geometry; absent means always clear. */
+  hasLineOfFire?: (target: Readonly<GalacticRacerSnapshot>) => boolean;
+}
+
 export interface GalacticActionContext {
   step: number;
   delta: number;
@@ -393,6 +415,7 @@ export type GalacticEvent =
   | { type: 'pulse-shell'; racerId: string; active: boolean; cooldown: number }
   | { type: 'shield-block'; racerId: string; sourceId: string | null; absorbed: number }
   | { type: 'heat-lance-fired'; racerId: string; projectileId: string }
+  | { type: 'heat-lance-blocked'; ownerId: string; projectileId: string; x: number; y: number; z: number }
   | {
       type: 'weapon-hit';
       attackerId: string;

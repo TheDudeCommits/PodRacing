@@ -60,6 +60,8 @@ export interface PodracerDriftState {
   charge: number;
   slipAngle: number;
   direction: -1 | 0 | 1;
+  /** Seconds remaining in the grip blend after a drift release. */
+  exitTimer: number;
 }
 
 export interface PodracerBoostState {
@@ -92,6 +94,9 @@ export interface PodracerTelemetryState {
   support: number;
   engineTorque: number;
   landingIntensity: number;
+  /** Supported-surface attitude from the last probe sample; drives bank assist. */
+  surfacePitch: number;
+  surfaceRoll: number;
 }
 
 /** Every field is finite JSON data, suitable for captures, replays and saves. */
@@ -112,6 +117,8 @@ export interface PodracerState {
   damage: number;
   grounded: boolean;
   airborneTime: number;
+  /** Seconds remaining in the grip blend after a real landing. */
+  regripTimer: number;
   respawn: PodracerRespawnPoseState;
   controls: PodracerControlMemoryState;
   telemetry: PodracerTelemetryState;

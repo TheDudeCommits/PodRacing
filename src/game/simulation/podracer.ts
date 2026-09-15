@@ -107,7 +107,7 @@ export function createPodracerState(
     orientation: { yaw, pitch: 0, roll: 0, bank: 0 },
     angularVelocity: { yaw: 0, pitch: 0, roll: 0, bank: 0 },
     probes: makeProbeStates(config, x, z, terrain),
-    drift: { active: false, charge: 0, slipAngle: 0, direction: 0 },
+    drift: { active: false, charge: 0, slipAngle: 0, direction: 0, exitTimer: 0 },
     boost: {
       energy: clamp(finite(options.initialBoostEnergy ?? 0.62), 0, 1),
       active: false,
@@ -118,6 +118,7 @@ export function createPodracerState(
     damage: 0,
     grounded: true,
     airborneTime: 0,
+    regripTimer: 0,
     respawn: {
       x: finite(options.respawn?.x ?? x),
       z: finite(options.respawn?.z ?? z),
@@ -134,10 +135,14 @@ export function createPodracerState(
       support: 1,
       engineTorque: 0,
       landingIntensity: 0,
+      surfacePitch: 0,
+      surfaceRoll: 0,
     },
   };
 
-  sampleTerrain(state, terrain, config);
+  const summary = sampleTerrain(state, terrain, config);
+  state.telemetry.surfacePitch = summary.slopePitch;
+  state.telemetry.surfaceRoll = summary.slopeRoll;
   return state;
 }
 
@@ -213,12 +218,16 @@ function sampleTerrain(
     probe.clearance = craftHeight - probe.groundHeight;
     probe.compression = config.hoverHeight - probe.clearance;
     probe.active = probe.clearance < config.repulsorRange;
+    // Within range the repulsor is a two-way spring: it can pull the craft
+    // back toward hover height when it rides high or rises quickly. That keeps
+    // ordinary crests from becoming launches while a real drop beyond range
+    // still leaves the craft ballistic.
     probe.lift = probe.active
       ? clamp(
           config.gravity +
             probe.compression * config.repulsorSpring -
             pointVerticalSpeed * config.repulsorDamping,
-          0,
+          -config.gravity * config.repulsorAttraction,
           config.maxProbeLift,
         )
       : 0;
@@ -317,10 +326,18 @@ function updateDriftAndBoost(
     state.drift.active = false;
     state.drift.charge = 0;
     state.drift.direction = 0;
+    // Grip returns over a short blend, so the exit is a predictable
+    // straightening rather than a lateral snap that also sheds speed.
+    state.drift.exitTimer = config.driftExitBlendTime;
   } else if (!input.drift) {
     state.drift.active = false;
     state.drift.charge = Math.max(0, state.drift.charge - delta * 0.18);
     if (state.drift.charge === 0) state.drift.direction = 0;
+  }
+  if (!state.drift.active) {
+    state.drift.exitTimer = Math.max(0, state.drift.exitTimer - delta);
+  } else {
+    state.drift.exitTimer = 0;
   }
 
   state.boost.driftBoostTime = Math.max(0, state.boost.driftBoostTime - delta);
@@ -508,10 +525,12 @@ export function resetPodracer(
   state.drift.charge = 0;
   state.drift.slipAngle = 0;
   state.drift.direction = 0;
+  state.drift.exitTimer = 0;
   state.boost.active = false;
   state.boost.driftBoostTime = 0;
   state.grounded = true;
   state.airborneTime = 0;
+  state.regripTimer = 0;
   refreshPodracerDerivedState(state, terrain, config);
 }
 
@@ -527,6 +546,8 @@ export function refreshPodracerDerivedState(
   state.telemetry.support = terrainSummary.support;
   state.telemetry.engineTorque = 0;
   state.telemetry.landingIntensity = 0;
+  state.telemetry.surfacePitch = terrainSummary.slopePitch;
+  state.telemetry.surfaceRoll = terrainSummary.slopeRoll;
   sanitizeState(state, config);
 }
 
@@ -553,12 +574,27 @@ function updateHorizontalMotion(
       smoothstep(0.08, 1, speedRatio);
   const movementAuthority = smoothstep(0.5, 12, Math.abs(forwardSpeed));
   const steeringDamage = 1 - state.damage * config.damageSteeringPenalty;
+  // Braking tightens the line; flight loosens it. Both are readable rules the
+  // player can plan around rather than surprises at the corner.
+  const surfaceAuthority = state.grounded
+    ? 1 + input.brake * config.brakeSteeringBonus
+    : config.airSteeringScale;
+  const supported = state.grounded && state.telemetry.support >= config.groundSupportThreshold;
+  // A banked bed pushes the craft toward its low side. Express that support
+  // component as heading change, which is how this model carries a turn.
+  const surfaceRoll = clamp(state.telemetry.surfaceRoll, -0.35, 0.35);
+  const bankAssistYawRate = supported
+    ? -Math.tan(surfaceRoll) * config.gravity * config.bankAssist / Math.max(30, speed)
+      * smoothstep(8, 40, Math.abs(forwardSpeed))
+    : 0;
   const targetYawVelocity =
     input.steer *
     steeringRate *
     movementAuthority *
     steeringDamage *
-    (state.drift.active ? config.driftSteeringMultiplier : 1);
+    surfaceAuthority *
+    (state.drift.active ? config.driftSteeringMultiplier : 1)
+    + bankAssistYawRate;
   state.angularVelocity.yaw +=
     (targetYawVelocity - state.angularVelocity.yaw) *
     Math.min(1, config.steeringResponse * delta);
@@ -567,19 +603,47 @@ function updateHorizontalMotion(
   );
 
   const boostAcceleration = state.boost.active ? config.boostAcceleration : 0;
-  const thrust = (input.throttle * config.engineAcceleration + boostAcceleration) * health;
+  const throttle = input.throttle * (1 - input.brake * config.brakeThrottleCut);
+  const thrust = (throttle * config.engineAcceleration + boostAcceleration) * health;
   forwardSpeed += thrust * delta;
 
   if (input.brake > 0) {
     const brakeAmount = config.brakeAcceleration * input.brake * delta;
     forwardSpeed = Math.max(0, forwardSpeed - brakeAmount);
+    // The brake also scrubs slide, so braking mid-slide straightens the craft.
+    const scrub = brakeAmount * config.brakeLateralScrub;
+    lateralSpeed -= Math.sign(lateralSpeed) * Math.min(Math.abs(lateralSpeed), scrub);
   }
 
-  const grip = state.drift.active ? config.driftLateralGrip : config.lateralGrip;
+  // Low-speed creep down a bank: real, bounded and quickly damped by grip.
+  if (supported) lateralSpeed -= Math.sin(surfaceRoll) * config.gravity * config.bankSlide * delta;
+
+  const groundGrip = state.drift.active ? config.driftLateralGrip : config.lateralGrip;
+  let grip = groundGrip;
+  if (!state.drift.active && state.drift.exitTimer > 0 && config.driftExitBlendTime > 0) {
+    const blend = smoothstep(0, 1, 1 - state.drift.exitTimer / config.driftExitBlendTime);
+    grip = config.driftLateralGrip + (config.lateralGrip - config.driftLateralGrip) * blend;
+  }
+  if (!state.grounded) {
+    grip = Math.min(grip, config.airLateralGrip);
+  } else if (state.regripTimer > 0 && config.landingGripBlendTime > 0) {
+    const blend = smoothstep(0, 1, 1 - state.regripTimer / config.landingGripBlendTime);
+    grip = Math.min(grip, config.airLateralGrip + (config.lateralGrip - config.airLateralGrip) * blend);
+  }
+  // Easing the stick shallows the slide, so a drift can be steered, not only held.
+  const slipShare = 1 - config.driftSteerSlipShare + config.driftSteerSlipShare * Math.abs(input.steer);
   const targetSlip = state.drift.active
-    ? state.drift.direction * speed * config.driftSlip
+    ? state.drift.direction * speed * config.driftSlip * slipShare
     : 0;
+  const lateralBefore = Math.abs(lateralSpeed);
   lateralSpeed += (targetSlip - lateralSpeed) * Math.min(1, grip * delta);
+  // While grip returns after a drift or a landing, the slide that is scrubbed
+  // becomes forward travel instead of vanishing: momentum is preserved.
+  const regripping = !state.drift.active && (state.drift.exitTimer > 0 || state.regripTimer > 0);
+  if (regripping && forwardSpeed > 0) {
+    const scrubbed = Math.max(0, lateralBefore - Math.abs(lateralSpeed));
+    forwardSpeed += scrubbed * config.momentumRetention;
+  }
 
   const planarSpeed = Math.hypot(forwardSpeed, lateralSpeed);
   if (planarSpeed > 0.001) {
@@ -704,6 +768,7 @@ function updateTerrainResponse(
       terrainSummary.averageClearance <= config.hoverHeight + config.airborneClearance) ||
     terrainSummary.minimumClearance <= config.hardDeckClearance + 0.22;
 
+  state.regripTimer = Math.max(0, state.regripTimer - delta);
   if (!state.grounded) {
     state.airborneTime += delta;
     if (previousGrounded) {
@@ -715,6 +780,9 @@ function updateTerrainResponse(
     }
   } else {
     if (!previousGrounded) {
+      // A real flight lands with reduced grip that returns over a short blend.
+      // Micro-hops over dune texture keep full grip so they never feel loose.
+      if (previousAirTime > 0.12) state.regripTimer = config.landingGripBlendTime;
       const intensity = clamp(
         (landingVerticalSpeed - config.landingMinSpeed) / 13 + previousAirTime * 0.22,
         0,
@@ -749,7 +817,7 @@ function updateTerrainResponse(
           (landingVerticalSpeed - config.landingDamageSpeed) *
             config.landingDamageScale,
           0,
-          0.22,
+          config.landingDamageCap,
         );
         state.damage = clamp(state.damage + damageAmount, 0, 1);
         events.push({
@@ -765,6 +833,8 @@ function updateTerrainResponse(
 
   state.telemetry.groundClearance = terrainSummary.averageClearance;
   state.telemetry.support = terrainSummary.support;
+  state.telemetry.surfacePitch = terrainSummary.slopePitch;
+  state.telemetry.surfaceRoll = terrainSummary.slopeRoll;
   state.telemetry.landingIntensity = Math.max(
     0,
     state.telemetry.landingIntensity - delta * 2.8,
@@ -804,6 +874,10 @@ function sanitizeState(
   state.angularVelocity.bank = clamp(finite(state.angularVelocity.bank), -3.5, 3.5);
   state.drift.charge = clamp(finite(state.drift.charge), 0, 1);
   state.drift.slipAngle = clamp(finite(state.drift.slipAngle), -Math.PI / 2, Math.PI / 2);
+  state.drift.exitTimer = clamp(finite(state.drift.exitTimer), 0, 2);
+  state.regripTimer = clamp(finite(state.regripTimer), 0, 2);
+  state.telemetry.surfacePitch = clamp(finite(state.telemetry.surfacePitch), -1.2, 1.2);
+  state.telemetry.surfaceRoll = clamp(finite(state.telemetry.surfaceRoll), -1.2, 1.2);
   state.boost.energy = clamp(finite(state.boost.energy), 0, 1);
   state.boost.driftBoostTime = clamp(finite(state.boost.driftBoostTime), 0, 4);
   state.heat = clamp(finite(state.heat), 0, 1.25);
