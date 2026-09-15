@@ -1,4 +1,44 @@
-# PodRacing — Round 37 handover (2026-09-16)
+# PodRacing — Round 38 handover (2026-09-16)
+
+## Start here
+
+Round 38 answered the owner's two complaints and eleven improvement items on top of round 37: **scenery is solid, pods have real hulls and react to slopes and each other, combat is paced by finite lance cells with a target lock, drafting is visible, rivals fight by personality and remember who wrecked them.** Details and evidence: [ROUND38_REPORT.md](docs/inkstorm-overhaul/ROUND38_REPORT.md); the previous round's report is [ROUND37_REPORT.md](docs/inkstorm-overhaul/ROUND37_REPORT.md). Art direction, retained sky and the audio policy are unchanged.
+
+- Repository: https://github.com/TheDudeCommits/PodRacing, branch `codex/now-this-is-podracing`, working directory `/Users/amir/Projects/PodRacing`.
+- Runtime source commit: `1ddf44f` (round 38), on top of `fcc639a` / `675d6ae` (round 37).
+- **READY Preview (Git-triggered on push):** deployment `dpl_prhhjYbt43Ux3hESBGUffL4ET3md`, https://now-this-is-podracing-r23g13eyv-amirs-projects-d9680079.vercel.app (owner Vercel sign-in required; branch alias `now-this-is-podracing-git-codex-45ecfb-amirs-projects-d9680079.vercel.app` follows the branch). Remote build bundle `index-BP21Dlis.js`; local build `index-BP21Dlis.js`, 1897618 bytes, SHA256 `a413311e36c1dc00e5bd5a9f7eead77e55b55980b26bfd3b79bc2cfef6b1239e`.
+- **Production is unchanged** (`dpl_9NaNFDVseLbS7AvkWRHqVUJnatcq`, source `b8ca960`). Promotion remains the owner's call after a controller playtest and a quiet-machine cadence run.
+- Never run `vercel deploy` from the working tree (it archives ~17 GB of sources). Push the branch and let the Git integration build, or `vercel promote` a verified deployment.
+
+## What changed in round 38
+
+1. **Solid scenery** (`inkstormLayout.ts`): colliders for every family (fitted ellipses for buttress/spire/cliff strata, two measured arch legs, solid Foundry corridor landforms); the lance occluder uses the same proxies; `getInkstormSolidHeight` lets wreck poses lean on rocks. The pure grounding/corridor plans now live in `src/game/race/` with shims at the old renderer paths.
+2. **Real hulls** (`config.ts`, `podracer.ts`, `RaceSimulation.ts`): nose probes at 17.5 m plus `hullKick` attitude correction; supported clearance judged by in-range probes; pod contact by engine capsules and a cockpit sphere (`closestHullContact`) with pace exchange on rubs; 31 m grid pitch; AI hull-overlap avoidance. `DRIVE5_COMPATIBILITY_CONFIG` keeps the legacy six probes for archived replays.
+3. **Paced combat** (`galactic/system.ts`, `combatPickups.ts`): six lance cells, four aligned `lance-cells` pickups, 150 m/s lance, `target-lock` events and HUD target/ammo, impacts carry hull hit points and effects use them.
+4. **Personalities and grudges**: `GalacticAITactics.style/playerId/sectionTag`; `rivalry` on the racer state, `rivalry-marked` event, HUD `REVENGE // NAME` cue, rivals prefer their grudge target.
+5. **Drafting visible**: wake strength and slingshots drive the speed streaks.
+
+## Validation and evidence
+
+- `npm run verify`: TypeScript, **1030 tests / 175 files**, build pass ([log](docs/inkstorm-overhaul/evidence/handling-round38/validation.log)).
+- Headless driver: ten clean laps across Canyon, Foundry and Glasslands (3 laps each) plus the Time Attack, zero player resets/wrecks/scenery contacts; two rival wrecks on the three-lap Canyon run (escarpment landings plus pack contact), none elsewhere ([receipts](docs/inkstorm-overhaul/evidence/handling-round38/)).
+- Native browser Battle on the built bundle: finished, zero browser errors, 11 recordings loaded, live receipt shows target locks, lance-cell pickups, rivalry marks and takedowns; browser and server closed ([receipt](docs/inkstorm-overhaul/evidence/handling-round38/native-battle-receipt.json)).
+- **Frame cadence is still unmeasured on a quiet machine.** Every `--performance` run this session coincided with an active video call on the owner's Mac. Run `npx tsx scripts/competitive-flow.ts --battle --performance --output=<dir>` when the machine is idle before any Production claim.
+
+## Next work, in priority order
+
+1. Redesign the generic shield shell and the green/red ground rings (owner complaint, not done): hull-hugging faceted shield with hit-point flicker, recovery as engine relight and sparks, redline as heat shimmer; move threat marking fully into the HUD.
+2. Owner controller playtest of the solid world, hull contacts, lance pacing and pod identities; quiet-machine cadence; then the promotion decision.
+3. Damage-driven handling (a hurt engine pulls, a broken repulsor lowers one side), a reflect-timing shield, and the remaining roadmap items (mastery, combat lesson, hardware profiling, multiplayer identity sync).
+4. Harden `scripts/competitive-flow.ts` so a cadence failure still closes its browser and server.
+
+## How to resume safely
+
+Read this header and both round reports, then `git status --short --branch`. `npm run verify` for runtime changes; `npx tsx scripts/drive-balance.ts --only=<event> --laps=3 --identity=<pod>` for headless lap evidence; the competitive-flow harness for native browser evidence. Terrain field receipts are hash-pinned; re-pin with a digest script and prove untouched lanes identical when editing `CourseGulfField`. Close every owned browser and server immediately after QA; never adopt port 5211; never save the shared Blender scene.
+
+---
+
+## Previous handover — Round 37 handover (2026-09-16)
 
 ## Start here
 
