@@ -1,0 +1,51 @@
+### Page
+- Page URL: https://now-this-is-podracing.vercel.app/
+- Page Title: Now This Is PodRacing
+- Console: 0 errors, 4 warnings
+### Snapshot
+```yaml
+- generic "Now This Is PodRacing game canvas" [ref=f3e2]:
+  - generic "Podracing viewport" [ref=f3e3]
+  - generic "Podrace instruments":
+    - region "Race setup" [ref=f3e4]:
+      - generic [ref=f3e5]:
+        - generic [ref=f3e6]:
+          - generic [ref=f3e7]: INKSTORM
+          - navigation "Race type" [ref=f3e8]:
+            - button "Battle" [pressed] [ref=f3e9] [cursor=pointer]
+            - button "Race" [ref=f3e10] [cursor=pointer]
+            - button "Time Trial" [ref=f3e11] [cursor=pointer]
+            - button "Cup" [ref=f3e12] [cursor=pointer]
+        - region "Choose your pod" [ref=f3e13]:
+          - group "Inspect Teemto" [ref=f3e59]:
+            - img "Teemto 3D model with seated pilot and twin engines"
+          - button "Previous pod" [ref=f3e15] [cursor=pointer]: ‹
+          - button "Next pod" [ref=f3e16] [cursor=pointer]: ›
+          - generic:
+            - text: 01 / 04
+            - heading "Teemto" [level=1]
+          - generic [ref=f3e17]:
+            - button "Rotate pod left" [ref=f3e18] [cursor=pointer]: ↶
+            - generic [ref=f3e19]: Drag to rotate
+            - button "Rotate pod right" [ref=f3e20] [cursor=pointer]: ↷
+        - generic [ref=f3e21]:
+          - generic [ref=f3e22]:
+            - group "AI difficulty" [ref=f3e23]:
+              - generic [ref=f3e24]: AI
+              - button "Easy" [ref=f3e25] [cursor=pointer]
+              - button "Medium" [pressed] [ref=f3e26] [cursor=pointer]
+              - button "Hard" [ref=f3e27] [cursor=pointer]
+            - group "Number of laps" [ref=f3e28]:
+              - generic [ref=f3e29]: Laps
+              - button "1" [pressed] [ref=f3e30] [cursor=pointer]
+              - button "2" [ref=f3e31] [cursor=pointer]
+              - button "3" [ref=f3e32] [cursor=pointer]
+          - button "Race" [ref=f3e33] [cursor=pointer]:
+            - generic [aria-hidden] [ref=f3e35]: ↗
+          - group [ref=f3e36]:
+            - generic "More" [ref=f3e37] [cursor=pointer]:
+              - text: More
+              - generic [aria-hidden] [ref=f3e38]: +
+            - text: ↗
+      - text: /
+```

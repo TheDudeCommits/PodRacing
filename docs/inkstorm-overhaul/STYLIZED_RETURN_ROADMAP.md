@@ -1,5 +1,7 @@
 # Production style restored, approved sky retained
 
+**2026-09-15 release update:** The owner approved Production publication. [Play the live game](https://now-this-is-podracing.vercel.app), READY deployment `dpl_9NaNFDVseLbS7AvkWRHqVUJnatcq`, runtime source `b8ca960544180c2449f7ad940be8c97ab067d666`. The Preview-only status in the original restoration record below is historical. No roadmap features were added during publication. [Production receipt](evidence/stylized-production-20260915/publication.json).
+
 The owner withdrew the photorealistic direction and requested the visuals currently on Production, keeping the latest sky. Vercel metadata resolves that baseline to **V36 / a4bb70d104c997667d4e42d29c02831af2cbd788**, READY Production at the canonical game URL. This revision restores that visual implementation instead of starting a third art direction.
 
 ## Scope of this revision

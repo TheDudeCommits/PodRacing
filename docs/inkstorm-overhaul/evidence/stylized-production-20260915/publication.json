@@ -1,0 +1,28 @@
+{
+  "verifiedDate": "2026-09-15",
+  "canonicalUrl": "https://now-this-is-podracing.vercel.app",
+  "deployment": {
+    "id": "dpl_9NaNFDVseLbS7AvkWRHqVUJnatcq",
+    "url": "https://now-this-is-podracing-fx5gmhrzp-amirs-projects-d9680079.vercel.app",
+    "state": "READY",
+    "target": "production",
+    "aliases": [
+      "now-this-is-podracing.vercel.app",
+      "now-this-is-podracing-amirs-projects-d9680079.vercel.app"
+    ],
+    "sourceCommit": "b8ca960544180c2449f7ad940be8c97ab067d666",
+    "promotedFrom": "dpl_GPh7Z89niCAkBcenDJ2k9KSiu2AK"
+  },
+  "previousProduction": {
+    "id": "dpl_H7CSaEXCT9V4RnBBqvu1TMEnk95f",
+    "sourceCommit": "a4bb70d104c997667d4e42d29c02831af2cbd788"
+  },
+  "runtime": {
+    "bundle": "index-BW4j4KUa.js",
+    "bytes": 1874964,
+    "sha256": "d089a3500899cc149b9bc17ca882fff11359bc0da6b59679febb88a329f140cb"
+  },
+  "authorization": "Owner explicitly requested GitHub push, Vercel Production deployment and next-session handover on 2026-09-15.",
+  "sourceScope": "No runtime changes since the tested source commit b8ca960; later commits update documentation and evidence only.",
+  "browserVerification": "See production-smoke.json"
+}

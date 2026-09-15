@@ -1,0 +1,53 @@
+{
+  "date": "2026-09-15",
+  "outcome": "PASS",
+  "url": "https://now-this-is-podracing.vercel.app/",
+  "bundle": {
+    "url": "https://now-this-is-podracing.vercel.app/",
+    "bytes": 1874964,
+    "sha256": "d089a3500899cc149b9bc17ca882fff11359bc0da6b59679febb88a329f140cb",
+    "ready": true
+  },
+  "checks": [
+    "Exact tested JavaScript bundle served by canonical Production URL",
+    "Four race-type controls visible",
+    "All four pod selections and rotation control",
+    "Accessible audio settings with source credits link",
+    "390px menu without horizontal overflow",
+    "Native-input populated Battle with retained sky, sourced recordings and cel post",
+    "Pause and return to hangar"
+  ],
+  "race": {
+    "raceTime": 88.95000000001686,
+    "racers": 8,
+    "recordings": {
+      "loaded": 9,
+      "pending": 0,
+      "failed": [],
+      "activeEffects": 2
+    },
+    "skyAssets": {
+      "loaded": [
+        "/assets/salt-dusk-v2/environment/kloppenheim-dusk-4k.hdr"
+      ],
+      "failures": []
+    },
+    "postMode": "mrt-sobel"
+  },
+  "mobile": {
+    "viewport": 390,
+    "scroll": 390
+  },
+  "console": {
+    "errors": 0,
+    "warnings": 4,
+    "warningDetail": "Chrome AudioContext autoplay warnings before a user gesture; recordings loaded during racing."
+  },
+  "cleanup": {
+    "browserClosed": true,
+    "serverStarted": false
+  },
+  "scope": "Release smoke using Playwright CLI and native input, passive response hashing and read-only game diagnostics. No staged gameplay state. Not a complete-race, physical-device, audio-listening or FPS acceptance run.",
+  "harnessNotes": "Initial hash capture attempts hit CLI sandbox URL lookup and cached response-body limitations; disabling browser cache and hashing the normal 200 response succeeded. An initial stale locator after reload was refreshed. Short keyboard taps were repeated at 120ms for polling input. These harness adjustments do not change game code.",
+  "previousExactRuntimeEvidence": "../stylized-return/native-battle-summary.json"
+}

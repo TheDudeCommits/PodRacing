@@ -1,3 +1,63 @@
+# PodRacing — Production handover (2026-09-15)
+
+## Start here
+
+The owner explicitly requested all latest changes committed/pushed and the current build deployed to **Vercel Production**. The tested stylized restoration is now promoted. The older Preview-only instructions in the historical sections below are superseded for this release. No new gameplay work was undertaken during publication.
+
+- Repository: https://github.com/TheDudeCommits/PodRacing
+- Working directory: `/Users/amir/Projects/PodRacing`. The session cwd `/Users/amir/Codex-ThreeJS` is an unrelated project.
+- Branch: `codex/now-this-is-podracing`. Do not switch to `main` or merge branches merely to deploy; the project uses explicit Production promotion.
+- Live game: https://now-this-is-podracing.vercel.app
+- READY Production deployment: `dpl_9NaNFDVseLbS7AvkWRHqVUJnatcq`.
+- Immutable deployment: https://now-this-is-podracing-fx5gmhrzp-amirs-projects-d9680079.vercel.app
+- Runtime source commit: `b8ca960544180c2449f7ad940be8c97ab067d666`. The subsequent `716da122ab3e0e152f5323bd701f9885a5894318` and release-handover commits contain documentation/evidence only. The runtime source and public assets have no differences from the tested commit.
+- Promoted from verified Preview `dpl_GPh7Z89niCAkBcenDJ2k9KSiu2AK`. Vercel created a new Production deployment while retaining the same runtime source metadata.
+- Previous Production / rollback reference: V36 `a4bb70d104c997667d4e42d29c02831af2cbd788`, deployment `dpl_H7CSaEXCT9V4RnBBqvu1TMEnk95f`. This is historical, no longer the canonical live build.
+- [Production publication receipt](docs/inkstorm-overhaul/evidence/stylized-production-20260915/publication.json).
+
+## Current game and visual direction
+
+Keep **V36 stylized terrain, orange/purple palette, cel outlines, pod materials, effects, menu and HUD**, with the **approved photographic dusk cloud sky**. The owner rejected photorealism for the rest of the world. Do not restart that direction or replace the retained sky. Photoreal experiments and source assets remain preserved in history, but their runtime modules are removed and their ground/rock textures are not requested by the game.
+
+The menu has four race-type tabs, an inspectable 3D pod in the middle, necessary race options and Race. More holds secondary options. Eight-pod armed Battle is the default; Race, Time Trial, Cup, Daily, ghosts, records, Flight School and private PeerJS rooms already exist. Four appearances are registered: Teemto, Sebulba, Polwo and Blockrunner. The larger asset library contains 26 preserved vehicle families; most are not yet production-ready registrations. Current appearances share pod handling.
+
+The retained sky lives in `src/render/sky/DuskSkyAssets.ts`, `DuskSkyShader.ts` and `src/render/objects/SkyAtmosphere.ts`. It has its own loader and photographed sun direction, independent of restored Production surface lighting. Keep reference-counted ownership, late-load isolation and disposal behavior. The 4K HDR costs roughly 85 MiB with GPU mipmaps; do not describe it as free or claim universal device performance.
+
+Audio uses eight sourced SFX files plus existing Scott Buckley music. **Do not generate sound effects or music.** Audition replacements from licensed sources and preserve credits. Keep `public/audio/podracing-selection-intro.webm` unchanged: SHA256 `39c4d411570a2591be5cbf7fc27d86a63c36d3befa5de8d57c0d2018e1c89260`. Hidden-tab mute, settings accessibility and audio credits remain. Decoding and provenance checks are not listening approval.
+
+## Validation and evidence
+
+The frozen game bundle is `index-BW4j4KUa.js`, 1,874,964 bytes, SHA256 `d089a3500899cc149b9bc17ca882fff11359bc0da6b59679febb88a329f140cb`. Fresh Production browser smoke checks passed on 2026-09-15: exact bundle hash, four race controls and pod choices, rotation, audio settings/credits link, 390px menu without overflow, populated native-input Battle with all nine recordings and retained sky, pause and return to hangar. Zero browser errors; four pre-gesture AudioContext warnings. The browser was closed immediately after QA; no local server was started. [Release smoke receipt](docs/inkstorm-overhaul/evidence/stylized-production-20260915/production-smoke.json).
+
+Prior exact-runtime validation on 2026-09-10: **980 tests /167 files**, TypeScript and build passed. A complete native eight-pod Battle averaged **57.630 FPS**, p95 16.8 ms, p99 33.4 ms, maximum 83.3 ms, on Apple M4 / Chrome153 /1440×900 CSS / adaptive DPR1–2. All 6,728 racing frames were included. This is a specific desktop browser cadence measurement, not physical-device or human driving acceptance. Publication does not introduce runtime changes, so the suite and full-race profiling were not repeated on 2026-09-15. [Native receipt](docs/inkstorm-overhaul/evidence/stylized-return/native-battle-summary.json), [validation](docs/inkstorm-overhaul/evidence/stylized-return/validation.txt), [restoration check](docs/inkstorm-overhaul/evidence/stylized-return/visual-check.md).
+
+## Next work, in priority order
+
+The [full roadmap](docs/inkstorm-overhaul/STYLIZED_RETURN_ROADMAP.md) has concrete scope, source evidence and acceptance goals. These items are **not completed by this release**. Begin with handling, then one authored circuit, then fair combat.
+
+1. **Handling:** predictable braking and drift exit, smoother hover damping and landings, fewer unexplained launches. Ten clean laps across three authored courses; version physics/records when behavior changes. The prior terrain-relative suspension experiment caused flight/landing damage and was withdrawn; do not restore it blindly.
+2. **One polished circuit:** readable banked sweepers, long acceleration sections, technical canyon, risky shortcut, clear exit sightlines and restrained landmark composition. Improve the core lap before adding procedural variety.
+3. **Fair combat/rivals:** world-occluded shots and nearest swept hits; threat-aware AI rather than periodic shielding/attacks; fewer unavoidable repeat wrecks. Existing Heat Lance checks racers without world occlusion and returns the first intersected roster entry.
+4. **Pod identities/fleet:** distinct balanced/agile/heavy/fast heat-sensitive handling and sourced engine identities; add finished models two at a time with drivers, LODs, source credits and actual race QA.
+5. **Mastery/replayability:** calibrate medals per track/pod, meaningful Daily rewards, cosmetics/rival unlocks and sector practice. Existing ghosts/Daily/Cup are a base, not new features to claim.
+6. **HUD/audio/onboarding:** concise weapon state feedback, a visual combat lesson and complete-race auditions of licensed effects. Keep UI text minimal and essential information legible.
+7. **Real hardware reliability:** 20-minute 40–60 FPS tests on named devices including hitches and resource growth; physical touch/controller/deadzone/reconnect and full Cup/garage cycles.
+8. **Private multiplayer:** real two-network latency/loss/reconnect/rematch checks and selected pod appearance synchronization. Defer trusted ranked results until authoritative validation exists.
+
+## How to resume safely
+
+Read this header, the roadmap and `ARCHITECTURE.md`; run `git status --short --branch`, `git remote -v`, and inspect current Production metadata before making new claims. Source archives and documentation images use Git LFS; a fresh checkout needs `git lfs pull`. Public runtime assets are regular Git. Install from the lockfile with `npm ci` if needed.
+
+Use `npm run verify` for changed runtime code, `git diff --check`, and targeted existing scripts for actual browser/race checks. `npm run dev -- --port <free-port> --strictPort` starts a local server. Do not adopt port5211. `scripts/competitive-flow.ts --battle --performance --output=<directory>` is the existing native Battle harness; it needs a TypeScript runner. `scripts/salt-dusk-gallery.mjs` is a diagnostic staged-position gallery, not native driving or FPS evidence. Distinguish these evidence types.
+
+Preserve deterministic simulation authority: renderer, HUD, audio and effects consume snapshots/events without changing gameplay state. Preserve saves and original source/provenance. Never save or alter an unrelated shared Blender GUI scene. **Close every owned browser and server immediately after QA.** Do not create automations or leave background work running without a new user request.
+
+Vercel project `prj_WjikzPmEjdKtnnXBkHgLAze2dKdY`, team `team_9UHUI9xdsOl7LAy5xl8hUIV6`, scope `amirs-projects-d9680079`; local project link is `.vercel/project.json`. Keep credentials and `.env*` out of Git. For a future explicitly approved publication, promote an already verified deployment with `vercel promote <deployment-id> --scope amirs-projects-d9680079 --yes --timeout 60s`, then verify READY, source metadata, canonical alias and real browser interactions. Vercel can create a new deployment ID during promotion. A successful command alone is not final acceptance.
+
+---
+
+## Historical handover — superseded release status below
+
 # PodRacing — Production style with retained dusk sky (2026-09-10)
 
 The owner rejected photorealism and requested Production visuals with the current sky retained. **Active direction: Production V36 stylized art plus the approved photographic cloud sky.** Do not resume the rejected photoreal surface/geometry direction. [Current restoration and prioritized improvement list](docs/inkstorm-overhaul/STYLIZED_RETURN_ROADMAP.md).

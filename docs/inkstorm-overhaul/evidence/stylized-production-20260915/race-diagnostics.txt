@@ -1,0 +1,22 @@
+### Result
+{
+  "raceTime": 88.95000000001686,
+  "racers": 8,
+  "recordings": {
+    "loaded": 9,
+    "pending": 0,
+    "failed": [],
+    "activeEffects": 2
+  },
+  "skyAssets": {
+    "loaded": [
+      "/assets/salt-dusk-v2/environment/kloppenheim-dusk-4k.hdr"
+    ],
+    "failures": []
+  },
+  "postMode": "mrt-sobel"
+}
+### Ran Playwright code
+```js
+await page.evaluate('() => ((() => {const s=window.__PODRACING__.snapshot();return {raceTime:s.raceTime,racers:s.game.vehiclePresentation.racers.length,recordings:s.game.audio.recordings,skyAssets:s.renderer.skyAssets,postMode:s.game.postMode};})())');
+```
