@@ -482,7 +482,6 @@ export function augmentGalacticAIInput(
   step: number,
   tactics?: GalacticAITactics,
 ): PlayerInputState {
-  const threats = assessGalacticThreats(self, opponents, tactics);
   const phase = (step + hashString(self.id)) >>> 0;
   const fireWindow = phase % LANCE_WINDOW_PERIOD < LANCE_WINDOW_OPEN;
   const mineWindow = phase % MINE_WINDOW_PERIOD < MINE_WINDOW_OPEN;
@@ -490,8 +489,14 @@ export function augmentGalacticAIInput(
   // Attacks are a racing decision: nobody opens fire from the grid or while
   // crawling out of a wreck. Defence stays available at any speed.
   const underway = Math.hypot(self.velocityX, self.velocityZ) >= ATTACK_MINIMUM_SPEED;
-  const fire = underway && fireWindow && threats.targetId !== null && own.weapon.cooldown <= 0
-    && own.wreck.phase !== 'wrecked';
+  const canFire = underway && fireWindow && own.weapon.cooldown <= 0 && own.wreck.phase !== 'wrecked';
+  // The world line-of-fire sweep is the expensive perception. Only pay for it
+  // on a tick where the lance could actually leave the muzzle.
+  const perception = tactics && !canFire && tactics.hasLineOfFire
+    ? { projectiles: tactics.projectiles, mines: tactics.mines }
+    : tactics;
+  const threats = assessGalacticThreats(self, opponents, perception);
+  const fire = canFire && threats.targetId !== null;
   const mine = underway && mineWindow && threats.pursuerId !== null && own.mine.cooldown <= 0 && own.mine.charges > 0;
   const shieldReady = own.shield.cooldown <= 0 && !own.shield.active;
   const shield = shieldReady && (
