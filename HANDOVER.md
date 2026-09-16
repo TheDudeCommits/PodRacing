@@ -5,7 +5,7 @@
 Round 41 implements five owner-picked excitement items on top of round 40: **catch-up through the draft only** (longer, stronger wake for racers far behind the leader; the leader is never capped), **rival taunts and revenge beats** (revenge-pass and grudge-settled events, HUD cues, five sourced CC0 voice lines), **photo finish and last-lap tension** (final-lap music lift, tighter final-straight chase, presentation-only slow motion when the predicted gap at the line is under half a second), **boost as a decision** (drafting charges the meter, clean jumps refund it, overheating costs handling for two seconds) and **wreck debris that matters** (shed parts everyone must avoid, and a drop-in shadow on the respawn point). Details, tests and stills: [ROUND41_REPORT.md](docs/inkstorm-overhaul/ROUND41_REPORT.md). Earlier rounds: [ROUND40](docs/inkstorm-overhaul/ROUND40_REPORT.md), [ROUND39](docs/inkstorm-overhaul/ROUND39_REPORT.md), [ROUND38](docs/inkstorm-overhaul/ROUND38_REPORT.md), [ROUND37](docs/inkstorm-overhaul/ROUND37_REPORT.md).
 
 - Repository: https://github.com/TheDudeCommits/PodRacing, branch `codex/now-this-is-podracing`, working directory `/Users/amir/Projects/PodRacing`.
-- Runtime source: the round 41 commit on this branch (see `git log`), on top of `50234fb` (round 40). Preview deployment: recorded in the follow-up docs commit.
+- Runtime source: commit `9697e45` (round 41) on top of `50234fb` (round 40); preview deployment `dpl_2PCqT4BkvaKNH2YiqibUe5YWURS1` (https://now-this-is-podracing-qhgattkvk-amirs-projects-d9680079.vercel.app).
 - Preview deployments come from the Git integration on push (owner Vercel sign-in required). **Production is unchanged.** Never run `vercel deploy` from the working tree.
 
 ## Lessons that must survive
