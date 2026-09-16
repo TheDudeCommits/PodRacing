@@ -5,7 +5,7 @@
 Round 40 answers three owner reports: **the Heat Lance went dead mid-race** (lance racks were one-claim-per-racer, so after 22 shots the weapon was empty for good; racks are now re-collectable every lap and a trickle keeps at least three cells coming back), **the camera sat side-on after a wreck respawn** (the wreck chase now releases at the respawn tick with a single cut to chase), and **race music** (two sourced Kevin MacLeod tracks rotate under the engines during races; the selection score is unchanged). Details, frames and provenance: [ROUND40_REPORT.md](docs/inkstorm-overhaul/ROUND40_REPORT.md). Earlier rounds: [ROUND39](docs/inkstorm-overhaul/ROUND39_REPORT.md), [ROUND38](docs/inkstorm-overhaul/ROUND38_REPORT.md), [ROUND37](docs/inkstorm-overhaul/ROUND37_REPORT.md).
 
 - Repository: https://github.com/TheDudeCommits/PodRacing, branch `codex/now-this-is-podracing`, working directory `/Users/amir/Projects/PodRacing`.
-- Runtime source: the round 40 commit on this branch (see `git log`), on top of `9ae4dd2` (round 39). Preview deployment: recorded in the follow-up docs commit.
+- Runtime source: commit `50234fb` (round 40) on top of `9ae4dd2` (round 39); preview deployment `dpl_Exgh5ehLsXU7BMpgmtSswUe8q5bL` (https://now-this-is-podracing-p0pak1ac9-amirs-projects-d9680079.vercel.app).
 - Preview deployments come from the Git integration on push (owner Vercel sign-in required). **Production is unchanged.** Never run `vercel deploy` from the working tree.
 
 ## Lessons that must survive
