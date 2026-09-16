@@ -83,7 +83,7 @@ export interface ScrapMineEffectState {
   readonly armed?: boolean;
   readonly phase?: number;
   readonly scale?: number;
-  readonly variant?: 'mine' | 'pickup' | 'emp' | 'repair' | 'debris';
+  readonly variant?: 'mine' | 'pickup' | 'emp' | 'repair' | 'debris' | 'spike' | 'cable' | 'nitro';
 }
 
 export type GalacticHazardKind = 'heat-vent' | 'sand-geyser' | 'rockfall' | 'respawn';
@@ -204,7 +204,7 @@ interface MineSlot {
   scale: number;
   armed: boolean;
   phase: number;
-  variant: 'mine' | 'pickup' | 'emp' | 'repair' | 'debris';
+  variant: 'mine' | 'pickup' | 'emp' | 'repair' | 'debris' | 'spike' | 'cable' | 'nitro';
 }
 
 interface HazardSlot {
@@ -982,6 +982,7 @@ export class GalacticEffectsView extends Group {
       slot.armed = state.armed === true;
       slot.phase = finite(state.phase, 0);
       slot.variant = state.variant === 'pickup' || state.variant === 'emp' || state.variant === 'repair' || state.variant === 'debris'
+        || state.variant === 'spike' || state.variant === 'cable' || state.variant === 'nitro'
         ? state.variant : 'mine';
     }
   }
@@ -1781,6 +1782,7 @@ export class GalacticEffectsView extends Group {
       const pickup = slot.variant !== 'mine';
       const emp = slot.variant === 'emp';
       const repair = slot.variant === 'repair';
+      const spike = slot.variant === 'spike', cable = slot.variant === 'cable', nitro = slot.variant === 'nitro';
       const spin = slot.yaw
         + time * (pickup ? 1.8 : 0)
         + Math.sin(time * 2 + slot.phase) * 0.08;
@@ -1798,9 +1800,9 @@ export class GalacticEffectsView extends Group {
       const hot = slot.armed && Math.sin(time * 12 + slot.phase) > 0;
       this.writeInstance(this.scrapMines, visibleCount, slot.x, y, slot.z, this.tempQuaternion,
         pulse, pulse * (emp ? 0.7 : repair ? 1.3 : pickup ? 1 : SOLID_HARDWARE_MINE_DEPTH_SCALE), pulse,
-        emp ? 0.74 : repair ? 0.4 : pickup ? 0.2 : slot.armed ? (hot ? 1 : 0.78) : 0.22,
-        emp ? 0.24 : repair ? 1 : pickup ? 1 : slot.armed ? (hot ? 0.22 : 0.1) : 0.68,
-        emp ? 1 : repair ? 0.24 : pickup ? 0.66 : slot.armed ? 0.05 : 0.72);
+        spike ? 1 : cable ? 0.66 : nitro ? 0.3 : emp ? 0.74 : repair ? 0.4 : pickup ? 0.2 : slot.armed ? (hot ? 1 : 0.78) : 0.22,
+        spike ? 0.18 : cable ? 0.82 : nitro ? 1 : emp ? 0.24 : repair ? 1 : pickup ? 1 : slot.armed ? (hot ? 0.22 : 0.1) : 0.68,
+        spike ? 0.42 : cable ? 1 : nitro ? 0.45 : emp ? 1 : repair ? 0.24 : pickup ? 0.66 : slot.armed ? 0.05 : 0.72);
       visibleCount += 1;
     }
     this.dirty(this.scrapMines, visibleCount);

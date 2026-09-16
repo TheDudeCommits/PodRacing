@@ -1,4 +1,38 @@
-# PodRacing — Round 41 handover (2026-09-16)
+# PodRacing — Round 42 handover (2026-09-16)
+
+## Start here
+
+Round 42 adds four owner-picked weapons on top of round 41: **tow cable** (F latches the pod ahead, pulls for three seconds, F again slingshots; their shield cuts it), **thermal spike** (F fires a heat dart that cuts boost and tips warm engines into the overheat penalty), **nitro cell** (one-shot full boost and a clean engine, only on the hairpin's inside line) and the **overcharge lance** (hold E after a shot with three cells; release fires a wide, slow, shield-piercing bolt). Forward ordnance shares the mine key through `GalacticRacerState.ordnance`. Details, tests and stills: [ROUND42_REPORT.md](docs/inkstorm-overhaul/ROUND42_REPORT.md). Earlier rounds: [ROUND41](docs/inkstorm-overhaul/ROUND41_REPORT.md), [ROUND40](docs/inkstorm-overhaul/ROUND40_REPORT.md), [ROUND39](docs/inkstorm-overhaul/ROUND39_REPORT.md), [ROUND38](docs/inkstorm-overhaul/ROUND38_REPORT.md), [ROUND37](docs/inkstorm-overhaul/ROUND37_REPORT.md).
+
+- Repository: https://github.com/TheDudeCommits/PodRacing, branch `codex/now-this-is-podracing`, working directory `/Users/amir/Projects/PodRacing`.
+- Runtime source: the round 42 commit on this branch (see `git log`), on top of `9697e45` (round 41). Preview deployment: recorded in the follow-up docs commit.
+- Preview deployments come from the Git integration on push (owner Vercel sign-in required). **Production is unchanged.** Never run `vercel deploy` from the working tree.
+
+## Lessons that must survive
+
+1. **The lance fires on the press.** Holding charges the overcharge; tests and bots pulse the trigger for repeated shots (`augmentGalacticAIInput` toggles on `controls.fireHeld`). Do not reintroduce hold-to-autofire without removing the overcharge.
+2. **Combat inputs only exist in the chaos profile.** `RaceSimulation` strips fire/mine/shield in clean races, so weapon tests must use the default profile.
+3. **Ordnance state is optional in old snapshots.** `ordnance`, `tow`, `weapon.overcharge` and `controls.mineHeld` are `??`-defaulted everywhere they are read; keep that when adding fields.
+4. **Consumable pickups bypass the one-claim ledger** through `FARMABLE_COMBAT_PARTS`; one-time upgrades keep it.
+
+## Validation
+
+- Tests: 1060/1060 (184 files), typecheck and build pass. Review-API stills of the racks and the overcharge bolt in `docs/inkstorm-overhaul/evidence/handling-round42/`; a live tow and a spike hit are covered by race-level tests only.
+- Frame cadence is still unmeasured on a quiet machine.
+
+## Next work, in priority order
+
+1. Owner playtest of the four weapons in the preview; then a quiet-machine cadence run and the promotion decision.
+2. Track improvements (options delivered with round 42), race events by sector, shortcut gambles, damage-driven handling, reflect shield, lead reticle, the remaining weapons list.
+3. Remove the last 1.6% hull burial; rival line discipline on cambered straights.
+
+## How to resume safely
+
+Read this header and the round reports, then `git status --short --branch`. `npm run verify` for runtime changes; headless laps with `scripts/drive-balance.ts`; native evidence with `scripts/competitive-flow.ts`, `scripts/effect-stills.mjs`, `scripts/recovery-camera-frames.mjs`, `scripts/wreck-debris-stills.mjs` and `scripts/ordnance-stills.ts`. Close every owned browser and server immediately after QA; never adopt port 5211; never save the shared Blender scene.
+
+---
+
+## Previous handover — Round 41 handover (2026-09-16)
 
 ## Start here
 

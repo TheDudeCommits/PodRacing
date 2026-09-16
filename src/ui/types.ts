@@ -343,6 +343,13 @@ export interface HudGalacticViewModel {
   /** Progress (0..1) toward the next trickle cell while the rack is below its floor. */
   weaponRegen: number;
   mineCount: number;
+  /** Forward ordnance loaded on the mine key, if any, and its charges. */
+  ordnanceKind: 'thermal-spike' | 'tow-cable' | null;
+  ordnanceCharges: number;
+  /** 0..1 hold-to-charge progress toward an overcharge bolt. */
+  weaponOvercharge: number;
+  /** A tow cable is attached and pulling. */
+  towActive: boolean;
   /** Name of the racer who last wrecked this one while the grudge lasts. */
   rivalName: string | null;
   redlineHeat: number;

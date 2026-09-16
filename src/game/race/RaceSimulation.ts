@@ -19,6 +19,12 @@ import {
   noteGalacticRacerAggression,
   snapshotGalacticRacer,
   spawnHeatLance,
+  TOW_DURATION,
+  TOW_PULL,
+  TOW_GAP,
+  TOW_RANGE,
+  TOW_RELEASE_KICK,
+  TOW_COOLDOWN,
   stepGalacticRacerAction,
   stepGalacticWorld,
   validateWorkshopLoadout,
@@ -546,6 +552,7 @@ export class RaceSimulation {
     if (this.state.phase === 'racing' && this.competitionProfile === 'clean-race') {
       events.push(...stepDraftingField(entries, delta, this.draftCatchUpFactor));
     }
+    if (this.state.phase === 'racing') this.stepTowCables(delta, galacticEvents);
     const vehicleConfigs = entries.map((entry) => this.vehicleConfigFor(entry));
     const collisionImpulses = this.state.phase === 'racing'
       ? this.buildCollisionImpulses(vehicleConfigs, externallyControlledRacerIds)
@@ -847,6 +854,17 @@ export class RaceSimulation {
           projectileId: projectile.id,
         });
       }
+      if (action.fireOvercharge) {
+        const projectile = spawnHeatLance(this.state.galacticWorld, self, 'overcharge');
+        projectile.damage *= workshopWeaponDamageScale(entry.workshop);
+        galacticEvents.push({ type: 'overcharge-fired', racerId: entry.id, projectileId: projectile.id });
+      }
+      if (action.fireOrdnance === 'thermal-spike') {
+        const projectile = spawnHeatLance(this.state.galacticWorld, self, 'thermal-spike');
+        galacticEvents.push({ type: 'thermal-spike-fired', racerId: entry.id, projectileId: projectile.id });
+      }
+      if (action.fireOrdnance === 'tow-cable') this.attachTowCable(entry, galacticEvents);
+      if (action.releaseTow) this.releaseTowCable(entry, false, galacticEvents);
       if (action.deployMine) {
         const mine = deployScrapMine(this.state.galacticWorld, self);
         mine.damage *= workshopWeaponDamageScale(entry.workshop);
@@ -1196,6 +1214,113 @@ export class RaceSimulation {
     // Wreck debris is avoided by everyone, including the racer who shed it.
     for (const piece of debris) hazards.push({ x: piece.position.x, z: piece.position.z, radius: piece.radius + 4 });
     return hazards;
+  }
+
+  /** Nearest opponent ahead in the cable cone with a clear line, or null. */
+  private findTowTarget(entry: RaceEntryState<AIControllerState>): RaceEntryState<AIControllerState> | null {
+    const yaw = entry.vehicle.orientation.yaw;
+    const forwardX = Math.sin(yaw), forwardZ = Math.cos(yaw);
+    const rightX = forwardZ, rightZ = -forwardX;
+    let best: RaceEntryState<AIControllerState> | null = null;
+    let bestAhead = Number.POSITIVE_INFINITY;
+    for (const candidate of this.state.entries) {
+      if (candidate.id === entry.id || candidate.status === 'finished') continue;
+      const phase = candidate.galactic?.wreck.phase ?? 'running';
+      if (phase !== 'running') continue;
+      if (this.state.settings.mode === 'team-race' && candidate.competition?.teamId === entry.competition?.teamId) continue;
+      const dx = candidate.vehicle.position.x - entry.vehicle.position.x;
+      const dz = candidate.vehicle.position.z - entry.vehicle.position.z;
+      const ahead = dx * forwardX + dz * forwardZ;
+      const lateral = Math.abs(dx * rightX + dz * rightZ);
+      if (ahead < 12 || ahead > TOW_RANGE || lateral > 14 || ahead >= bestAhead) continue;
+      const blocked = this.lanceOccluder(
+        entry.vehicle.position.x, entry.vehicle.position.y + 0.6, entry.vehicle.position.z,
+        candidate.vehicle.position.x, candidate.vehicle.position.y + 0.6, candidate.vehicle.position.z,
+        entry.progress.courseProgress,
+      );
+      if (blocked !== null) continue;
+      best = candidate;
+      bestAhead = ahead;
+    }
+    return best;
+  }
+
+  private attachTowCable(entry: RaceEntryState<AIControllerState>, events: GalacticEvent[]): void {
+    const galactic = entry.galactic;
+    if (!galactic) return;
+    const ordnance = galactic.ordnance;
+    const tow = galactic.tow ??= { targetId: null, remaining: 0, cooldown: 0 };
+    if (!ordnance || ordnance.kind !== 'tow-cable' || ordnance.charges <= 0 || tow.targetId || tow.cooldown > 0) return;
+    const target = this.findTowTarget(entry);
+    if (!target) return;
+    ordnance.charges -= 1;
+    ordnance.cooldown = 0.5;
+    tow.targetId = target.id;
+    tow.remaining = TOW_DURATION;
+    events.push({ type: 'tow-attached', racerId: entry.id, targetId: target.id });
+  }
+
+  private releaseTowCable(entry: RaceEntryState<AIControllerState>, timeout: boolean, events: GalacticEvent[]): void {
+    const tow = entry.galactic?.tow;
+    if (!tow?.targetId) return;
+    const target = this.entriesById.get(tow.targetId);
+    const targetSpeed = target?.vehicle.telemetry.speed ?? 0;
+    // The slingshot: let go and keep the towed speed plus a kick along the nose.
+    const strength = Math.min(1, 0.4 + (TOW_DURATION - tow.remaining) / TOW_DURATION * 0.6);
+    const kick = (TOW_RELEASE_KICK + targetSpeed * 0.12) * strength;
+    const yaw = entry.vehicle.orientation.yaw;
+    entry.vehicle.velocity.x += Math.sin(yaw) * kick;
+    entry.vehicle.velocity.z += Math.cos(yaw) * kick;
+    events.push({ type: 'tow-released', racerId: entry.id, targetId: tow.targetId, strength, timeout });
+    tow.targetId = null;
+    tow.remaining = 0;
+    tow.cooldown = TOW_COOLDOWN;
+  }
+
+  private cutTowCable(entry: RaceEntryState<AIControllerState>, reason: 'shield' | 'range' | 'wreck', events: GalacticEvent[]): void {
+    const tow = entry.galactic?.tow;
+    if (!tow?.targetId) return;
+    events.push({ type: 'tow-cut', racerId: entry.id, targetId: tow.targetId, reason });
+    tow.targetId = null;
+    tow.remaining = 0;
+    tow.cooldown = TOW_COOLDOWN * 0.5;
+  }
+
+  /** Pulls every towing racer toward its target; a raised shield or a wreck cuts the line. */
+  private stepTowCables(delta: number, events: GalacticEvent[]): void {
+    for (const entry of this.state.entries) {
+      const tow = entry.galactic?.tow;
+      if (!tow?.targetId) continue;
+      const target = this.entriesById.get(tow.targetId);
+      const selfPhase = entry.galactic?.wreck.phase ?? 'running';
+      if (!target || target.status === 'finished' || (target.galactic?.wreck.phase ?? 'running') !== 'running' || selfPhase !== 'running') {
+        this.cutTowCable(entry, 'wreck', events);
+        continue;
+      }
+      if (target.galactic?.shield.active) {
+        this.cutTowCable(entry, 'shield', events);
+        continue;
+      }
+      const dx = target.vehicle.position.x - entry.vehicle.position.x;
+      const dz = target.vehicle.position.z - entry.vehicle.position.z;
+      const distance = Math.hypot(dx, dz);
+      if (distance > TOW_RANGE * 1.4 || distance < 1) {
+        this.cutTowCable(entry, 'range', events);
+        continue;
+      }
+      const dirX = dx / distance, dirZ = dz / distance;
+      const closing = (target.vehicle.velocity.x - entry.vehicle.velocity.x) * dirX
+        + (target.vehicle.velocity.z - entry.vehicle.velocity.z) * dirZ;
+      // Pull harder the further back, ease off inside the gap, and never close faster than 30 m/s.
+      const reach = Math.max(0, Math.min(1, (distance - TOW_GAP) / 30));
+      const pull = TOW_PULL * (0.25 + reach * 0.75);
+      if (closing > -30) {
+        entry.vehicle.velocity.x += dirX * pull * delta;
+        entry.vehicle.velocity.z += dirZ * pull * delta;
+      }
+      tow.remaining = Math.max(0, tow.remaining - delta);
+      if (tow.remaining <= 0) this.releaseTowCable(entry, true, events);
+    }
   }
 
   /**
@@ -2344,6 +2469,34 @@ export class RaceSimulation {
     for (const pickup of world.pickups) {
       const progress = cellPlacements.get(pickup.id);
       if (progress !== undefined) pickup.progress = progress;
+    }
+    // Forward ordnance where a straight line ahead rewards it; the nitro cell
+    // only on the slow inside line of the hairpin, where taking it costs pace.
+    const ordnancePlacements = new Map<string, number>([
+      ['spike-canyon', progressInSection('narrow-canyon', 0.62)],
+      ['spike-straight', progressInSection('fast-straight', 0.82)],
+      ['cable-sweeper', progressInSection('wide-sweeper', 0.3)],
+      ['cable-recovery', progressInSection('recovery-straight', 0.4)],
+      ['nitro-hairpin', progressInSection('hairpin', 0.5)],
+    ]);
+    for (const pickup of world.pickups) {
+      const progress = ordnancePlacements.get(pickup.id);
+      if (progress === undefined) continue;
+      pickup.progress = progress;
+      if (pickup.id === 'nitro-hairpin') {
+        const apex = this.course.sampleAtProgress(progress);
+        const before = this.course.sampleAtProgress(progress - 0.02);
+        const after = this.course.sampleAtProgress(progress + 0.02);
+        const chordX = (before.x + after.x) / 2, chordZ = (before.z + after.z) / 2;
+        const inset = Math.max(3, apex.width * 0.5 - 3);
+        let best = inset, bestDistance = Number.POSITIVE_INFINITY;
+        for (const lateral of [inset, -inset]) {
+          const distance = Math.hypot(apex.x + apex.rightX * lateral - chordX, apex.z + apex.rightZ * lateral - chordZ);
+          if (distance < bestDistance) { best = lateral; bestDistance = distance; }
+        }
+        pickup.lateralOffset = best;
+        pickup.lateralRadius = 5;
+      }
     }
     return world;
   }

@@ -1,0 +1,54 @@
+{
+  "seed": 1229867859,
+  "nitro": {
+    "id": "nitro-hairpin",
+    "progress": 0.8554687500000001,
+    "lateralOffset": 6.166294225775893,
+    "progressRadius": 0.0045,
+    "lateralRadius": 5,
+    "part": "nitro-cell",
+    "collectedBy": null,
+    "respawnRemaining": 0
+  },
+  "spike": {
+    "id": "spike-canyon",
+    "progress": 0.4856770833333332,
+    "lateralOffset": 7,
+    "progressRadius": 0.0045,
+    "lateralRadius": 8,
+    "part": "thermal-spike",
+    "collectedBy": null,
+    "respawnRemaining": 0
+  },
+  "cable": {
+    "id": "cable-sweeper",
+    "progress": 0.29166666666666663,
+    "lateralOffset": -8,
+    "progressRadius": 0.0045,
+    "lateralRadius": 8,
+    "part": "tow-cable",
+    "collectedBy": null,
+    "respawnRemaining": 0
+  },
+  "errors": [],
+  "heldWeapon": {
+    "cooldown": 0,
+    "triggerHeld": true,
+    "shotsFired": 1,
+    "hits": 0,
+    "charges": 5,
+    "regen": 0,
+    "overcharge": 1
+  },
+  "afterRelease": {
+    "weapon": {
+      "cooldown": 1.011666666666667,
+      "triggerHeld": false,
+      "shotsFired": 2,
+      "hits": 0,
+      "charges": 2,
+      "regen": 0.10833333333333332,
+      "overcharge": 0
+    }
+  }
+}

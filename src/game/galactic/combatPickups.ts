@@ -8,14 +8,19 @@ export const SALVAGE_COOLING_AMOUNT = 0.4;
 export const COMBAT_PICKUP_RESPAWN_SECONDS = 5;
 export const LANCE_CELLS_PER_PICKUP = 4;
 export const LANCE_CELL_CAPACITY = 8;
-export type CombatPickupPart = 'emp-cell' | 'repair-salvage' | 'lance-cells';
+export type CombatPickupPart = 'emp-cell' | 'repair-salvage' | 'lance-cells' | 'thermal-spike' | 'tow-cable' | 'nitro-cell';
+const ORDNANCE_LOAD: Readonly<Record<'thermal-spike' | 'tow-cable', { perPickup: number; cap: number }>> = Object.freeze({
+  'thermal-spike': { perPickup: 2, cap: 4 },
+  'tow-cable': { perPickup: 1, cap: 2 },
+});
 export interface CombatPickupRacer {
   readonly id: string;
   readonly vehicle: PodracerState;
   readonly galactic: GalacticRacerState;
 }
 export function isCombatPickup(part: GalacticUpgradePart): part is CombatPickupPart {
-  return part === 'emp-cell' || part === 'repair-salvage' || part === 'lance-cells';
+  return part === 'emp-cell' || part === 'repair-salvage' || part === 'lance-cells'
+    || part === 'thermal-spike' || part === 'tow-cable' || part === 'nitro-cell';
 }
 
 /**
@@ -38,6 +43,23 @@ export function collectCombatPickup(
     galactic.weapon.charges = Math.min(LANCE_CELL_CAPACITY, galactic.weapon.charges + LANCE_CELLS_PER_PICKUP);
     galactic.weapon.regen = 0;
     return [{ type: 'lance-cells-collected', racerId: id, pickupId, charges: galactic.weapon.charges }];
+  }
+  if (part === 'thermal-spike' || part === 'tow-cable') {
+    // Forward ordnance loads into the mine key. A different kind replaces what was there.
+    const load = ORDNANCE_LOAD[part];
+    const ordnance = galactic.ordnance ??= { kind: null, charges: 0, cooldown: 0 };
+    const kept = ordnance.kind === part ? ordnance.charges : 0;
+    ordnance.kind = part;
+    ordnance.charges = Math.min(load.cap, kept + load.perPickup);
+    return [{ type: 'ordnance-collected', racerId: id, pickupId, part, charges: ordnance.charges }];
+  }
+  if (part === 'nitro-cell') {
+    // One shot: a full meter and a clean engine, so the overheat penalty and lockout are gone.
+    vehicle.boost.energy = 1;
+    vehicle.boost.overheated = false;
+    vehicle.boost.overheatHandlingTimer = 0;
+    vehicle.heat = Math.min(vehicle.heat, 0.45);
+    return [{ type: 'nitro-collected', racerId: id, pickupId }];
   }
   if (galactic.upgrades.collectedPickupIds.includes(pickupId)) return [];
   galactic.upgrades.collectedPickupIds.push(pickupId);

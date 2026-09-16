@@ -127,7 +127,13 @@ export type GalacticUpgradePart =
   | 'mine-printer'
   | 'emp-cell'
   | 'repair-salvage'
-  | 'lance-cells';
+  | 'lance-cells'
+  /** Forward heat dart ordnance, two per pickup; replaces the mine key while loaded. */
+  | 'thermal-spike'
+  /** Latch onto the pod ahead, get pulled, release for a slingshot. */
+  | 'tow-cable'
+  /** One-shot full boost refill that also clears the overheat penalty. */
+  | 'nitro-cell';
 
 export type GalacticHazardKind =
   | 'sand-geyser'
@@ -191,6 +197,24 @@ export interface GalacticWeaponState {
   charges: number;
   /** Seconds accumulated toward the next trickle cell while the rack is below the floor. */
   regen: number;
+  /** 0..1 hold-to-charge progress toward an overcharge bolt (three cells, wide, shield-piercing). */
+  overcharge: number;
+}
+
+export type GalacticOrdnanceKind = 'thermal-spike' | 'tow-cable';
+
+/** Forward ordnance loaded from a pickup; while charged it takes over the mine key. */
+export interface GalacticOrdnanceState {
+  kind: GalacticOrdnanceKind | null;
+  charges: number;
+  cooldown: number;
+}
+
+/** An active tow: this racer is being pulled toward `targetId`. */
+export interface GalacticTowState {
+  targetId: string | null;
+  remaining: number;
+  cooldown: number;
 }
 
 /** A racer who wrecked this one is marked for a while; rivals and HUD react to it. */
@@ -247,6 +271,8 @@ export interface GalacticControlMemoryState {
   fireHeld: boolean;
   shieldHeld: boolean;
   cycleVehicleHeld: boolean;
+  /** Absent in snapshots written before ordnance existed. */
+  mineHeld?: boolean;
 }
 
 /** Additive per-entry gameplay state. It contains JSON data only. */
@@ -263,6 +289,9 @@ export interface GalacticRacerState {
   takedowns: number;
   controls: GalacticControlMemoryState;
   rivalry: GalacticRivalryState;
+  /** Absent in snapshots written before ordnance existed. */
+  ordnance?: GalacticOrdnanceState;
+  tow?: GalacticTowState;
 }
 
 export interface HeatLanceProjectileState {
@@ -277,6 +306,10 @@ export interface HeatLanceProjectileState {
   heat: number;
   /** Owner's course progress at launch; bounds the world occlusion lookup. */
   progressHint: number;
+  /** Absent on legacy projectiles, which are ordinary lances. */
+  kind?: 'heat-lance' | 'overcharge' | 'thermal-spike';
+  /** An overcharge bolt ignores a raised shield. */
+  piercing?: boolean;
 }
 
 export interface ScrapMineState {
@@ -397,6 +430,12 @@ export interface GalacticActionResult {
   input: PlayerInputState;
   deployMine: boolean;
   fireHeatLance: boolean;
+  /** Release after a full hold with three cells: one slow, wide, shield-piercing bolt. */
+  fireOvercharge: boolean;
+  /** Loaded forward ordnance fired with the mine key; the race layer resolves cable targets. */
+  fireOrdnance: GalacticOrdnanceKind | null;
+  /** Mine key pressed while towing: let go now for the slingshot. */
+  releaseTow: boolean;
   activateShield: boolean;
   recoverNow: boolean;
   redlineExploded: boolean;
@@ -408,9 +447,11 @@ export interface GalacticImpact {
   targetId: string;
   sourceId: string | null;
   cause: GalacticWreckCause;
-  weapon: 'heat-lance' | 'scrap-mine' | null;
+  weapon: 'heat-lance' | 'overcharge-lance' | 'thermal-spike' | 'scrap-mine' | null;
   damage: number;
   heat: number;
+  /** Ignores a raised shield entirely. */
+  piercing?: boolean;
   impulseX: number;
   impulseY: number;
   impulseZ: number;
@@ -459,12 +500,20 @@ export type GalacticEvent =
   | { type: 'rivalry-settled'; racerId: string; rivalId: string }
   /** The passed racer is the one who wrecked this racer while the grudge lasts. */
   | { type: 'revenge-pass'; racerId: string; rivalId: string; fromPosition: number; toPosition: number }
+  | { type: 'overcharge-charging'; racerId: string; active: boolean }
+  | { type: 'overcharge-fired'; racerId: string; projectileId: string }
+  | { type: 'thermal-spike-fired'; racerId: string; projectileId: string }
+  | { type: 'tow-attached'; racerId: string; targetId: string }
+  | { type: 'tow-cut'; racerId: string; targetId: string; reason: 'shield' | 'range' | 'wreck' }
+  | { type: 'tow-released'; racerId: string; targetId: string; strength: number; timeout: boolean }
+  | { type: 'ordnance-collected'; racerId: string; pickupId: string; part: GalacticOrdnanceKind; charges: number }
+  | { type: 'nitro-collected'; racerId: string; pickupId: string }
   | { type: 'rivalry-marked'; racerId: string; rivalId: string; duration: number }
   | {
       type: 'weapon-hit';
       attackerId: string;
       targetId: string;
-      weapon: 'heat-lance' | 'scrap-mine';
+      weapon: GalacticImpact['weapon'];
       damage: number;
       shielded: boolean;
       x?: number;

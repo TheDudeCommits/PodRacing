@@ -1,6 +1,6 @@
 import type { GalacticEvent } from '../../game/galactic/types';
 
-export type CombatCueKind = 'hit' | 'shield-hit' | 'takedown' | 'wreck' | 'emp' | 'repair' | 'revenge';
+export type CombatCueKind = 'hit' | 'shield-hit' | 'takedown' | 'wreck' | 'emp' | 'repair' | 'revenge' | 'ordnance';
 export interface CombatCue {
   readonly kind: CombatCueKind;
   readonly title: string;
@@ -201,9 +201,33 @@ export class CombatPresentationController {
         return make('takedown', 'TAKEDOWN', context.racerName(event.victimId), 3,
           event.victimId, false, context.allowOffensiveSlowMotion);
       case 'weapon-hit':
+        if (event.targetId === local && event.weapon === 'thermal-spike' && !event.shielded) {
+          return make('hit', 'SPIKED', `BOOST CUT // HEAT SURGE FROM ${context.racerName(event.attackerId)}`, 2);
+        }
         if (event.attackerId !== local || event.targetId === local) return null;
+        if (event.weapon === 'overcharge-lance') return make('hit', 'OVERCHARGE HIT', context.racerName(event.targetId), 2);
+        if (event.weapon === 'thermal-spike') return make('hit', 'SPIKE HIT', `${context.racerName(event.targetId)} // BOOST CUT`, 1);
         return make(event.shielded ? 'shield-hit' : 'hit', event.shielded ? 'SHIELD HIT' : 'HIT',
           context.racerName(event.targetId), 1);
+      case 'tow-attached':
+        if (event.racerId !== local) return null;
+        return make('ordnance', 'TOW CABLE', `LATCHED // ${context.racerName(event.targetId)} · PRESS AGAIN TO SLINGSHOT`, 2);
+      case 'tow-cut':
+        if (event.racerId !== local) return null;
+        return make('ordnance', 'CABLE CUT', event.reason === 'shield' ? 'THEIR SHIELD CUT THE LINE' : event.reason === 'range' ? 'OUT OF RANGE' : 'TARGET LOST', 2);
+      case 'tow-released':
+        if (event.racerId !== local) return null;
+        return make('ordnance', 'SLINGSHOT', event.timeout ? 'CABLE RAN OUT' : `RELEASED FROM ${context.racerName(event.targetId)}`, 2);
+      case 'ordnance-collected':
+        if (event.racerId !== local) return null;
+        return make('ordnance', event.part === 'thermal-spike' ? 'THERMAL SPIKES' : 'TOW CABLE',
+          `×${event.charges} ON ${event.part === 'thermal-spike' ? 'F · FIRE FORWARD' : 'F · LATCH THE POD AHEAD'}`, 2);
+      case 'nitro-collected':
+        if (event.racerId !== local) return null;
+        return make('ordnance', 'NITRO CELL', 'BOOST FULL // ENGINES CLEAR', 2);
+      case 'overcharge-fired':
+        if (event.racerId !== local) return null;
+        return make('ordnance', 'OVERCHARGE', 'THREE CELLS // PIERCES SHIELDS', 2);
       case 'emp-pulse':
         if (event.racerId !== local) return null;
         return make('emp', 'EMP PULSE', event.targetIds.length

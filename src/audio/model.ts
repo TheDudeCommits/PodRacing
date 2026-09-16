@@ -322,6 +322,21 @@ function cuesForEvent(event: AudioEventLike, options: AudioEventMapOptions): Pod
     case 'mine-deployed':
     case 'scrap-mine-deployed':
       return ownRacer ? [cue('mine', 0.42, 1.24)] : [];
+    case 'thermal-spike-fired':
+      return ownRacer ? [cue('weapon', 0.7, 1.16)] : [];
+    case 'overcharge-fired':
+      return ownRacer ? [cue('weapon', 1, 0.86), cue('boost', 0.5, 0.9)] : [];
+    case 'overcharge-charging':
+      return ownRacer && eventBoolean(event, 'active') ? [cue('electric', 0.4)] : [];
+    case 'tow-attached':
+      return ownRacer ? [cue('electric', 0.6), cue('ui', 0.5, 1.2)] : [];
+    case 'tow-released':
+      return ownRacer ? [cue('boost', 0.75, 1.05)] : [];
+    case 'tow-cut':
+      return ownRacer ? [cue('ui', 0.45, 0.8)] : [];
+    case 'ordnance-collected':
+    case 'nitro-collected':
+      return ownRacer ? [cue('upgrade', 0.75, 1.1)] : [];
     case 'scrap-mine-triggered':
       return combatEventBelongsToPlayer(event, options.playerId)
         ? [cue('mine', 1, 0.72), cue('impact', 0.72)]

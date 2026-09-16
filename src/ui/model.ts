@@ -604,6 +604,10 @@ export function deriveGalacticHudViewModel(
     weaponRegen: finite(state.weapon.charges) < LANCE_CELL_REGEN_FLOOR
       ? clampUnit(finite(state.weapon.regen) / LANCE_CELL_REGEN_SECONDS) : 0,
     mineCount: Math.min(99, Math.max(0, Math.floor(finite(state.mine.charges)))),
+    ordnanceKind: state.ordnance?.kind && state.ordnance.charges > 0 ? state.ordnance.kind : null,
+    ordnanceCharges: Math.min(99, Math.max(0, Math.floor(finite(state.ordnance?.charges ?? 0)))),
+    weaponOvercharge: clampUnit(finite(state.weapon.overcharge ?? 0)),
+    towActive: Boolean(state.tow?.targetId),
     rivalName: state.rivalry?.remaining > 0 ? state.rivalry.rivalId : null,
     redlineHeat: clampUnit(state.redline.heat),
     redlineActive: state.redline.active,

@@ -37,9 +37,10 @@ describe('lance cells and pacing', () => {
     expect(self.galactic.weapon.charges).toBe(LANCE_STARTING_CHARGES);
     let shots = 0;
     // Four seconds: the rack empties in ~4.2 s of firing and the trickle needs six more.
+    // The trigger fires on the press, so the test pulses it like a player tapping E.
     for (let step = 0; step < 120 * 4; step += 1) {
       const action = stepGalacticRacerAction(self.galactic, {
-        step, delta: 1 / 120, racing: true, input: normalizePlayerInput({ fire: true }), self, opponents: [],
+        step, delta: 1 / 120, racing: true, input: normalizePlayerInput({ fire: step % 2 === 0 }), self, opponents: [],
       });
       shots += action.fireHeatLance ? 1 : 0;
     }
@@ -222,7 +223,7 @@ describe('lance ammunition never dies for a whole race', () => {
     let shots = 0;
     for (let tick = 0; tick < 120 * 3; tick += 1) {
       const action = stepGalacticRacerAction(self.galactic, {
-        step: tick, delta: 1 / 120, racing: true, input: normalizePlayerInput({ fire: true }), self, opponents: [],
+        step: tick, delta: 1 / 120, racing: true, input: normalizePlayerInput({ fire: tick % 2 === 0 }), self, opponents: [],
       });
       shots += action.fireHeatLance ? 1 : 0;
     }

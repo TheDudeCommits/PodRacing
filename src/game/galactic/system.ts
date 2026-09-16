@@ -3,7 +3,7 @@ import type { PodracerConfig } from '../simulation/config';
 import type { PodracerState } from '../simulation/types';
 import { GALACTIC_VEHICLES } from './catalog';
 import { COMBAT_PICKUP_RESPAWN_SECONDS, isCombatPickup } from './combatPickups';
-import type { GalacticAICombatStyle } from './types';
+import type { GalacticAICombatStyle, GalacticOrdnanceKind } from './types';
 import type {
   GalacticActionContext,
   GalacticActionResult,
@@ -40,6 +40,32 @@ export const DEBRIS_CAPACITY = 24;
 /** Hull reach added to the debris radius for contact; a pod is wider than its origin. */
 export const DEBRIS_HULL_REACH = 4.2;
 export const DEBRIS_DAMAGE = 0.05;
+/** Overcharge: hold the trigger after a shot with three cells in the rack; release fires one wide, slow, shield-piercing bolt. */
+export const OVERCHARGE_CELLS = 3;
+export const OVERCHARGE_CHARGE_SECONDS = 0.8;
+export const OVERCHARGE_SPEED = 105;
+export const OVERCHARGE_LIFETIME = 2.2;
+export const OVERCHARGE_RADIUS = 3.2;
+export const OVERCHARGE_DAMAGE_SCALE = 2.4;
+/** Thermal spike: a forward dart that spikes heat instead of hull and cuts the target's boost. */
+export const SPIKE_SPEED = 190;
+export const SPIKE_LIFETIME = 1.4;
+export const SPIKE_HEAT = 0.6;
+export const SPIKE_DAMAGE = 0.015;
+export const SPIKE_COOLDOWN = 1.1;
+export const ORDNANCE_CAPACITY: Readonly<Record<GalacticOrdnanceKind, { perPickup: number; cap: number }>> = Object.freeze({
+  'thermal-spike': { perPickup: 2, cap: 4 },
+  'tow-cable': { perPickup: 1, cap: 2 },
+});
+/** Tow cable: latch onto the pod ahead, get pulled for up to three seconds, release for a slingshot. A raised shield cuts the line. */
+export const TOW_RANGE = 70;
+export const TOW_DURATION = 3;
+export const TOW_PULL = 42;
+export const TOW_GAP = 14;
+export const TOW_COOLDOWN = 4;
+export const TOW_RELEASE_KICK = 16;
+/** Pickups that are consumables rather than one-time upgrades: any racer may take a respawned one again. */
+export const FARMABLE_COMBAT_PARTS: ReadonlySet<GalacticUpgradePart> = new Set<GalacticUpgradePart>(['lance-cells', 'thermal-spike', 'tow-cable', 'nitro-cell']);
 /** Lance speed relative to the shooter: slow enough that leading a target is a skill. */
 export const LANCE_SPEED = 150;
 export const LANCE_LIFETIME = 1.6;
@@ -129,7 +155,7 @@ export function createGalacticRacerState(
     version: 1,
     vehicleClass,
     shield: { active: false, remaining: 0, cooldown: 0, absorbedDamage: 0 },
-    weapon: { cooldown: 0, triggerHeld: false, shotsFired: 0, hits: 0, charges: LANCE_STARTING_CHARGES, regen: 0 },
+    weapon: { cooldown: 0, triggerHeld: false, shotsFired: 0, hits: 0, charges: LANCE_STARTING_CHARGES, regen: 0, overcharge: 0 },
     mine: { cooldown: 0, charges: 3, deployed: 0 },
     redline: { active: false, heat: 0.08, lockout: 0, peakHeat: 0.08 },
     wreck: {
@@ -152,7 +178,9 @@ export function createGalacticRacerState(
       collectedPickupIds: [],
     },
     takedowns: 0,
-    controls: { fireHeld: false, shieldHeld: false, cycleVehicleHeld: false },
+    controls: { fireHeld: false, shieldHeld: false, cycleVehicleHeld: false, mineHeld: false },
+    ordnance: { kind: null, charges: 0, cooldown: 0 },
+    tow: { targetId: null, remaining: 0, cooldown: 0 },
     rivalry: { rivalId: null, remaining: 0 },
   };
 }
@@ -189,6 +217,12 @@ export function createGalacticWorldState(seed = DEFAULT_WORLD_SEED): GalacticWor
       makePickup('lance-cells-chicane', 0.6, 0, 'lance-cells'),
       makePickup('lance-cells-hairpin', 0.78, 0, 'lance-cells'),
       makePickup('lance-cells-straight', 0.12, 0, 'lance-cells'),
+      // Forward ordnance and the nitro cell; RaceSimulation aligns them to the generated sections.
+      makePickup('spike-canyon', 0.46, 7, 'thermal-spike'),
+      makePickup('spike-straight', 0.14, -7, 'thermal-spike'),
+      makePickup('cable-sweeper', 0.3, -8, 'tow-cable'),
+      makePickup('cable-recovery', 0.66, 8, 'tow-cable'),
+      makePickup('nitro-hairpin', 0.8, 0, 'nitro-cell'),
     ],
     runTokens: 3,
     runCurrency: 0,
@@ -239,6 +273,8 @@ function decrementRacerTimers(
     state.weapon.regen = 0;
   }
   state.mine.cooldown = Math.max(0, state.mine.cooldown - delta);
+  if (state.ordnance) state.ordnance.cooldown = Math.max(0, state.ordnance.cooldown - delta);
+  if (state.tow) state.tow.cooldown = Math.max(0, state.tow.cooldown - delta);
   state.redline.lockout = Math.max(0, state.redline.lockout - delta);
   state.wreck.invulnerable = Math.max(0, state.wreck.invulnerable - delta);
   state.wreck.recentAggressorTime = Math.max(0, state.wreck.recentAggressorTime - delta);
@@ -358,15 +394,51 @@ export function stepGalacticRacerAction(
     input = { ...input, steer: clamp(input.steer + Math.sin(phase) * 0.16, -1, 1) };
   }
 
+  const armed = context.racing && state.wreck.phase !== 'wrecked';
+  const ordnance = state.ordnance ??= { kind: null, charges: 0, cooldown: 0 };
+  const tow = state.tow ??= { targetId: null, remaining: 0, cooldown: 0 };
+  if (ordnance.kind && ordnance.charges <= 0) ordnance.kind = null;
+  const minePressed = input.mine && !(state.controls.mineHeld ?? false);
+  let fireOrdnance: GalacticOrdnanceKind | null = null;
+  let releaseTow = false;
+  if (armed && minePressed && tow.targetId) {
+    releaseTow = true;
+  } else if (armed && minePressed && ordnance.kind && ordnance.charges > 0 && ordnance.cooldown <= 0
+    && (ordnance.kind !== 'tow-cable' || tow.cooldown <= 0)) {
+    fireOrdnance = ordnance.kind;
+    if (fireOrdnance === 'thermal-spike') {
+      ordnance.charges -= 1;
+      ordnance.cooldown = SPIKE_COOLDOWN;
+    }
+  }
+  // Mines keep their hold-to-repeat cadence, but only while no forward ordnance is loaded.
   const wantsMine = input.mine
+    && !ordnance.kind
+    && !tow.targetId
     && state.mine.cooldown <= 0
     && state.mine.charges > 0;
-  const deployMine = context.racing && state.wreck.phase !== 'wrecked' && wantsMine;
-  const fireHeatLance = context.racing
-    && state.wreck.phase !== 'wrecked'
-    && input.fire
+  const deployMine = armed && wantsMine;
+  // The lance fires on the press. Keeping the trigger held after the cooldown
+  // charges an overcharge when three cells are racked; releasing fires it.
+  const firePressed = input.fire && !state.controls.fireHeld;
+  const fireHeatLance = armed
+    && firePressed
     && state.weapon.cooldown <= 0
     && state.weapon.charges > 0;
+  const overchargeBefore = state.weapon.overcharge ?? 0;
+  let overcharge = overchargeBefore;
+  let fireOvercharge = false;
+  if (armed && input.fire && state.controls.fireHeld && !fireHeatLance
+    && state.weapon.cooldown <= 0 && state.weapon.charges >= OVERCHARGE_CELLS) {
+    overcharge = Math.min(1, overcharge + context.delta / OVERCHARGE_CHARGE_SECONDS);
+  } else if (!input.fire) {
+    if (armed && state.controls.fireHeld && overcharge >= 1 && state.weapon.charges >= OVERCHARGE_CELLS) fireOvercharge = true;
+    overcharge = 0;
+  }
+  state.weapon.overcharge = overcharge;
+  if ((overchargeBefore > 0) !== (overcharge > 0)) {
+    events.push({ type: 'overcharge-charging', racerId: context.self.id, active: overcharge > 0 });
+  }
   if (deployMine) {
     state.mine.cooldown = 2.4;
     state.mine.charges -= 1;
@@ -377,8 +449,14 @@ export function stepGalacticRacerAction(
     state.weapon.shotsFired += 1;
     state.weapon.charges -= 1;
   }
+  if (fireOvercharge) {
+    state.weapon.cooldown = definition.weaponCooldown * 1.6;
+    state.weapon.shotsFired += 1;
+    state.weapon.charges -= OVERCHARGE_CELLS;
+  }
 
   state.controls.fireHeld = input.fire;
+  state.controls.mineHeld = input.mine;
   state.controls.shieldHeld = input.shield;
   state.controls.cycleVehicleHeld = input.cycleVehicle;
   state.weapon.triggerHeld = input.fire;
@@ -386,6 +464,9 @@ export function stepGalacticRacerAction(
     input,
     deployMine,
     fireHeatLance,
+    fireOvercharge,
+    fireOrdnance,
+    releaseTow,
     activateShield,
     recoverNow,
     redlineExploded,
@@ -410,6 +491,8 @@ const ATTACK_MINIMUM_SPEED = 25;
 
 export interface GalacticAIThreatAssessment {
   targetId: string | null;
+  /** Nearest shielded rival in the cone: worthless to a lance, exactly what an overcharge is for. */
+  shieldedTargetId: string | null;
   pursuerId: string | null;
   inboundProjectileId: string | null;
   mineAheadId: string | null;
@@ -441,6 +524,8 @@ export function assessGalacticThreats(
   let pursuerId: string | null = null;
   let pursuerDistance = Number.POSITIVE_INFINITY;
   let aimedAtBy: string | null = null;
+  let shieldedTargetId: string | null = null;
+  let shieldedDistance = Number.POSITIVE_INFINITY;
 
   for (const opponent of opponents) {
     if (opponent.finished || opponent.galactic.wreck.phase === 'wrecked') continue;
@@ -463,6 +548,11 @@ export function assessGalacticThreats(
       targetId = opponent.id;
       targetDistance = distance;
       targetPriority = rank;
+    }
+    if (inCone && opponent.galactic.wreck.invulnerable <= 0 && opponent.galactic.shield.active && distance < shieldedDistance
+      && (!tactics?.hasLineOfFire || tactics.hasLineOfFire(opponent))) {
+      shieldedTargetId = opponent.id;
+      shieldedDistance = distance;
     }
 
     const opponentForwardSpeed = opponent.velocityX * forwardX + opponent.velocityZ * forwardZ;
@@ -514,7 +604,10 @@ export function assessGalacticThreats(
     }
   }
 
-  return { targetId, pursuerId, inboundProjectileId, mineAheadId, aimedAtBy };
+  return {
+    targetId,
+    shieldedTargetId,
+    pursuerId, inboundProjectileId, mineAheadId, aimedAtBy };
 }
 
 /**
@@ -551,12 +644,29 @@ export function augmentGalacticAIInput(
     ? { ...tactics, hasLineOfFire: undefined }
     : tactics;
   const threats = assessGalacticThreats(self, opponents, perception);
-  const fire = canFire && threats.targetId !== null;
+  // The trigger fires on the press, so a rival pulses it to keep the old
+  // cadence. Against a raised shield with three cells racked it holds the
+  // trigger instead and lets go once the overcharge is full.
+  const target = threats.targetId !== null ? opponents.find((opponent) => opponent.id === threats.targetId) ?? null : null;
+  // Held through the post-shot cooldown too: the charge only starts once it ends.
+  const wantOvercharge = threats.shieldedTargetId !== null && threats.targetId === null && underway
+    && own.weapon.charges >= OVERCHARGE_CELLS && own.wreck.phase !== 'wrecked';
+  const charging = (own.weapon.overcharge ?? 0) > 0 && (own.weapon.overcharge ?? 0) < 1;
+  const fire = wantOvercharge
+    ? (own.weapon.overcharge ?? 0) < 1
+    : charging ? false : canFire && target !== null && !own.controls.fireHeld;
+  // Loaded ordnance goes forward at the same target, one press per shot; a
+  // cable only when nothing is already on the line.
+  const ordnance = own.ordnance;
+  const ordnanceReady = ordnance?.kind && ordnance.charges > 0 && ordnance.cooldown <= 0 && underway
+    && own.wreck.phase !== 'wrecked' && !(own.controls.mineHeld ?? false)
+    && (ordnance.kind !== 'tow-cable' || (!own.tow?.targetId && (own.tow?.cooldown ?? 0) <= 0));
+  const useOrdnance = Boolean(ordnanceReady) && target !== null;
   // Erratic rivals seed the technical sections whether or not someone is close;
   // everyone else only mines a genuine pursuer.
   const technical = tactics?.sectionTag === 'chicane' || tactics?.sectionTag === 'hairpin';
   const mineReason = threats.pursuerId !== null || (style === 'erratic' && technical);
-  const mine = underway && mineWindow && mineReason && own.mine.cooldown <= 0 && own.mine.charges > 0;
+  const mine = useOrdnance || (!ordnance?.kind && underway && mineWindow && mineReason && own.mine.cooldown <= 0 && own.mine.charges > 0);
   const shieldReady = own.shield.cooldown <= 0 && !own.shield.active;
   // Clean drivers shield as soon as a rival lines them up; others wait until hurt.
   const aimedThreshold = style === 'clean' ? 0 : 0.45;
@@ -577,6 +687,7 @@ export function augmentGalacticAIInput(
 export function spawnHeatLance(
   world: GalacticWorldState,
   racer: Readonly<GalacticRacerSnapshot>,
+  kind: 'heat-lance' | 'overcharge' | 'thermal-spike' = 'heat-lance',
 ): HeatLanceProjectileState {
   world.projectileSequence += 1;
   const definition = GALACTIC_VEHICLES[racer.galactic.vehicleClass];
@@ -587,21 +698,25 @@ export function spawnHeatLance(
     y: racer.y + 0.6,
     z: racer.z + forwardZ * (definition.collisionRadius + 2.5),
   };
+  const speed = kind === 'overcharge' ? OVERCHARGE_SPEED : kind === 'thermal-spike' ? SPIKE_SPEED : LANCE_SPEED;
+  const prefix = kind === 'overcharge' ? 'overcharge' : kind === 'thermal-spike' ? 'spike' : 'lance';
   const projectile: HeatLanceProjectileState = {
-    id: `lance-${racer.id}-${world.projectileSequence}`,
+    id: `${prefix}-${racer.id}-${world.projectileSequence}`,
     ownerId: racer.id,
     position,
     previousPosition: { ...position },
     velocity: {
-      x: racer.velocityX + forwardX * LANCE_SPEED,
+      x: racer.velocityX + forwardX * speed,
       y: racer.velocityY * 0.2,
-      z: racer.velocityZ + forwardZ * LANCE_SPEED,
+      z: racer.velocityZ + forwardZ * speed,
     },
-    remaining: LANCE_LIFETIME,
-    radius: 1.15,
-    damage: definition.weaponDamage,
-    heat: 0.13,
+    remaining: kind === 'overcharge' ? OVERCHARGE_LIFETIME : kind === 'thermal-spike' ? SPIKE_LIFETIME : LANCE_LIFETIME,
+    radius: kind === 'overcharge' ? OVERCHARGE_RADIUS : 1.15,
+    damage: kind === 'overcharge' ? definition.weaponDamage * OVERCHARGE_DAMAGE_SCALE : kind === 'thermal-spike' ? SPIKE_DAMAGE : definition.weaponDamage,
+    heat: kind === 'thermal-spike' ? SPIKE_HEAT : kind === 'overcharge' ? 0.2 : 0.13,
     progressHint: wrapProgress(racer.courseProgress),
+    kind,
+    piercing: kind === 'overcharge',
   };
   world.projectiles.push(projectile);
   return projectile;
@@ -758,18 +873,21 @@ export function stepGalacticWorld(
     if (target) {
       const speed = Math.max(1, Math.hypot(projectile.velocity.x, projectile.velocity.z));
       const entry = clamp(targetEntry, 0, 1);
+      const kind = projectile.kind ?? 'heat-lance';
+      const shove = kind === 'overcharge' ? 14 : kind === 'thermal-spike' ? 3 : 8;
       impacts.push({
         targetId: target.id,
         sourceId: projectile.ownerId,
         cause: 'heat-lance',
-        weapon: 'heat-lance',
+        weapon: kind === 'overcharge' ? 'overcharge-lance' : kind === 'thermal-spike' ? 'thermal-spike' : 'heat-lance',
         damage: projectile.damage,
         heat: projectile.heat,
-        impulseX: projectile.velocity.x / speed * 8,
-        impulseY: 1.8,
-        impulseZ: projectile.velocity.z / speed * 8,
+        impulseX: projectile.velocity.x / speed * shove,
+        impulseY: kind === 'thermal-spike' ? 0.6 : 1.8,
+        impulseZ: projectile.velocity.z / speed * shove,
         status: 'ionized',
-        statusDuration: 0.72,
+        statusDuration: kind === 'thermal-spike' ? 0.3 : kind === 'overcharge' ? 1 : 0.72,
+        piercing: projectile.piercing === true,
         hazardId: null,
         hazardKind: null,
         // The hull point the lance actually reached, not the racer's centre.
@@ -892,7 +1010,7 @@ export function stepGalacticWorld(
         racer.finished
         || (combat && (racer.galactic.wreck.phase === 'wrecked'
           // Lance cells are ammunition: any racer may take a respawned rack again each lap.
-          || (pickup.part !== 'lance-cells' && racer.galactic.upgrades.collectedPickupIds.includes(pickup.id))))
+          || (!FARMABLE_COMBAT_PARTS.has(pickup.part) && racer.galactic.upgrades.collectedPickupIds.includes(pickup.id))))
         || progressDistance(racer.courseProgress, pickup.progress) > pickup.progressRadius
         || Math.abs(racer.lateralOffset - pickup.lateralOffset) > pickup.lateralRadius
       ) continue;
@@ -925,7 +1043,8 @@ export function applyGalacticImpact(
     * definition.incomingDamageScale
     * (1 - resilience * 0.08)
     * framePart;
-  const shielded = state.shield.active;
+  // An overcharge bolt goes straight through a raised shield.
+  const shielded = state.shield.active && impact.piercing !== true;
   const appliedDamage = baseDamage * (shielded ? 0.16 : 1);
   if (shielded && baseDamage > 0) {
     const absorbed = baseDamage - appliedDamage;
@@ -941,6 +1060,12 @@ export function applyGalacticImpact(
   vehicle.velocity.z = clamp(vehicle.velocity.z + impact.impulseZ * impulseScale, -config.boostMaxSpeed, config.boostMaxSpeed);
   if (impact.status) {
     state.status[impact.status] = Math.max(state.status[impact.status], impact.statusDuration * (shielded ? 0.3 : 1));
+  }
+  if (impact.weapon === 'thermal-spike' && !shielded) {
+    // The spike is about heat: the target loses its boost now and, if the
+    // engines tip over the line, pays the overheat handling penalty next tick.
+    vehicle.boost.active = false;
+    vehicle.boost.driftBoostTime = 0;
   }
   if (impact.sourceId && impact.sourceId !== racerId) {
     state.wreck.recentAggressorId = impact.sourceId;
@@ -974,6 +1099,8 @@ export function beginGalacticWreck(
       : null;
   state.wreck.phase = 'wrecked';
   state.wreck.timer = WRECK_DURATION;
+  if (state.tow) { state.tow.targetId = null; state.tow.remaining = 0; }
+  if (state.weapon.overcharge) state.weapon.overcharge = 0;
   state.wreck.crashCount += 1;
   state.wreck.cause = cause;
   state.wreck.sourceId = sourceId;

@@ -56,7 +56,7 @@ export interface RaceHudOptions {
 
 /** Presentation events arrive per display frame, independent of the simulation HUD cadence. */
 export interface CombatHudFrame {
-  cue: { kind: 'hit' | 'shield-hit' | 'takedown' | 'wreck' | 'emp' | 'repair' | 'revenge'; title: string; detail: string; progress: number } | null;
+  cue: { kind: 'hit' | 'shield-hit' | 'takedown' | 'wreck' | 'emp' | 'repair' | 'revenge' | 'ordnance'; title: string; detail: string; progress: number } | null;
   cinematic: { active: boolean; progress: number; letterbox: boolean };
 }
 
@@ -137,6 +137,7 @@ export class RaceHud {
   private readonly weaponValue: HTMLElement;
   private readonly weaponTarget: HTMLElement;
   private readonly mineCount: HTMLElement;
+  private readonly mineLabel: HTMLElement;
   private readonly redlineFill: HTMLElement;
   private readonly redlineValue: HTMLElement;
   private readonly upgradeList: HTMLElement;
@@ -384,7 +385,7 @@ export class RaceHud {
             <div class="pod-hud__combat-slot pod-hud__combat-slot--mine" data-hud="system-mine" aria-label="Mine F">
               <b class="pod-hud__combat-key" data-key-binding="mine">F</b>
               <i class="pod-hud__system-gauge" aria-hidden="true"><i class="pod-hud__system-icon"></i></i>
-              <span class="pod-hud__system-label">Mine</span>
+              <span class="pod-hud__system-label" data-hud="mine-label">Mine</span>
               <strong class="pod-hud__system-ammo">×<span data-hud="mine-count">0</span></strong>
             </div>
           </div>
@@ -591,6 +592,7 @@ export class RaceHud {
     this.weaponValue = requireElement(this.root, '[data-hud="weapon-value"]');
     this.weaponTarget = requireElement(this.root, '[data-hud="weapon-target"]');
     this.mineCount = requireElement(this.root, '[data-hud="mine-count"]');
+    this.mineLabel = requireElement(this.root, '[data-hud="mine-label"]');
     this.redlineFill = requireElement(this.root, '[data-hud="redline-fill"]');
     this.redlineValue = requireElement(this.root, '[data-hud="redline-value"]');
     this.upgradeList = requireElement(this.root, '[data-hud="upgrade-list"]');
@@ -1955,14 +1957,18 @@ export class RaceHud {
       : 0;
     const weaponReadiness = 1 - weaponCooldownFraction;
     this.weaponFill.style.width = `${(weaponReadiness * 100).toFixed(1)}%`;
-    const weaponState = galactic.weaponCharges <= 0
+    const weaponState = galactic.weaponOvercharge > 0
+        ? galactic.weaponOvercharge >= 0.999 ? 'OVERCHARGE // RELEASE' : `Overcharge ${Math.round(galactic.weaponOvercharge * 100)}%`
+        : galactic.weaponCharges <= 0
         ? `Charging ${Math.round(galactic.weaponRegen * 100)}%`
         : galactic.weaponCooldown <= 0.001
           ? `Ready ×${galactic.weaponCharges}`
           : `${galactic.weaponCooldown.toFixed(1)}S ×${galactic.weaponCharges}`;
     write(this.weaponValue, weaponState);
     // An empty rack shows the trickle filling the dial instead of a dead slot.
-    this.setSystemReadiness(this.primarySlot, galactic.weaponCharges <= 0 ? galactic.weaponRegen : weaponReadiness);
+    this.setSystemReadiness(this.primarySlot, galactic.weaponOvercharge > 0 ? galactic.weaponOvercharge
+      : galactic.weaponCharges <= 0 ? galactic.weaponRegen : weaponReadiness);
+    this.galactic.classList.toggle('is-overcharging', galactic.weaponOvercharge > 0);
     this.galactic.classList.toggle('is-weapon-empty', galactic.weaponCharges <= 0);
     this.primarySlot.setAttribute('aria-label', `Primary ${this.combatBindings.fire}, ${galactic.weaponName}, ${weaponState}`);
     this.primarySlot.title = `${galactic.weaponName} [${this.combatBindings.fire}] • ${weaponState}`;
@@ -1978,10 +1984,15 @@ export class RaceHud {
     this.contextAction.setAttribute('aria-label', targetState);
     this.contextAction.title = targetState;
 
-    write(this.mineCount, String(galactic.mineCount));
-    this.setSystemReadiness(this.mineSlot, galactic.mineCount > 0 ? 1 : 0);
-    this.mineSlot.setAttribute('aria-label', `Mine ${this.combatBindings.mine}, ${galactic.mineCount} remaining`);
-    this.mineSlot.title = `Mine [${this.combatBindings.mine}] • ${galactic.mineCount} remaining`;
+    // Loaded forward ordnance takes over the mine key until it is spent.
+    const ordnanceName = galactic.towActive ? 'Release' : galactic.ordnanceKind === 'thermal-spike' ? 'Spike' : galactic.ordnanceKind === 'tow-cable' ? 'Cable' : 'Mine';
+    const ordnanceCount = galactic.ordnanceKind ? galactic.ordnanceCharges : galactic.mineCount;
+    write(this.mineCount, galactic.towActive ? '' : String(ordnanceCount));
+    write(this.mineLabel, ordnanceName);
+    this.setSystemReadiness(this.mineSlot, galactic.towActive || ordnanceCount > 0 ? 1 : 0);
+    this.mineSlot.dataset.ordnance = galactic.towActive ? 'tow' : galactic.ordnanceKind ?? 'mine';
+    this.mineSlot.setAttribute('aria-label', `${ordnanceName} ${this.combatBindings.mine}, ${ordnanceCount} remaining`);
+    this.mineSlot.title = `${ordnanceName} [${this.combatBindings.mine}] • ${ordnanceCount} remaining`;
     this.updateMeter(this.redlineFill, this.redlineValue, galactic.redlineHeat);
     const redlinePercent = Math.round(galactic.redlineHeat * 100);
     const redlineVisible = model.phase !== 'finished'

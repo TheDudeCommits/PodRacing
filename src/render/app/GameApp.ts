@@ -343,7 +343,7 @@ export class GameApp {
   }> = [];
   private readonly galacticMinePool = Array.from({ length: 48 }, () => ({
     position: { x: 0, y: 0, z: 0 }, yaw: 0, armed: false, phase: 0, scale: 1,
-    variant: 'mine' as 'mine' | 'pickup' | 'emp' | 'repair' | 'debris',
+    variant: 'mine' as 'mine' | 'pickup' | 'emp' | 'repair' | 'debris' | 'spike' | 'cable' | 'nitro',
   }));
   private readonly activeGalacticMines: Array<{
     position: { x: number; y: number; z: number };
@@ -351,7 +351,7 @@ export class GameApp {
     armed: boolean;
     phase: number;
     scale: number;
-    variant: 'mine' | 'pickup' | 'emp' | 'repair' | 'debris';
+    variant: 'mine' | 'pickup' | 'emp' | 'repair' | 'debris' | 'spike' | 'cable' | 'nitro';
   }> = [];
   private readonly galacticHazardPool = Array.from({ length: 16 }, () => ({
     kind: 'heat-vent' as 'heat-vent' | 'sand-geyser' | 'rockfall' | 'respawn',
@@ -2272,6 +2272,11 @@ export class GameApp {
       }
     }
 
+    // Someone has a cable on us: name them so the shield counter is an informed choice.
+    for (const entry of this.race.state.entries) {
+      if (entry.galactic?.tow?.targetId !== localId) continue;
+      addCue(`tow-${entry.id}`, `TOWED // ${entry.name.toUpperCase()} · SHIELD CUTS IT`, entry.vehicle.position.x, entry.vehicle.position.z, 0.7, 'weapon');
+    }
     for (const projectile of this.race.state.galacticWorld.projectiles) {
       if (projectile.ownerId === localId) continue;
       const dx = origin.x - projectile.position.x;
@@ -3676,11 +3681,36 @@ export class GameApp {
       effect.target.x = projectile.position.x + directionX * 8;
       effect.target.y = projectile.position.y + directionY * 8;
       effect.target.z = projectile.position.z + directionZ * 8;
-      effect.width = 1.15 + projectile.radius * 0.42;
-      effect.intensity = 1.5;
+      const kind = projectile.kind ?? 'heat-lance';
+      effect.width = (1.15 + projectile.radius * 0.42) * (kind === 'overcharge' ? 1.6 : kind === 'thermal-spike' ? 0.75 : 1);
+      effect.intensity = kind === 'overcharge' ? 2.2 : 1.5;
       effect.phase = time + index * 0.21;
-      effect.color = '#ff5a1f';
+      effect.color = kind === 'overcharge' ? '#ffd24a' : kind === 'thermal-spike' ? '#ff2f6d' : '#ff5a1f';
       this.activeGalacticLances.push(effect);
+    }
+    // Tow cables: a taut line from the towing craft's nose to the towed craft's tail.
+    let lanceIndex = lanceCount;
+    for (const entry of this.race.state.entries) {
+      const targetId = entry.galactic?.tow?.targetId;
+      if (!targetId || lanceIndex >= this.galacticLancePool.length) continue;
+      const target = this.race.state.entries.find((candidate) => candidate.id === targetId);
+      const effect = this.galacticLancePool[lanceIndex];
+      if (!target || !effect) continue;
+      const yaw = entry.vehicle.orientation.yaw;
+      const reach = GALACTIC_VEHICLES[entry.galactic?.vehicleClass ?? 'podracer'].collisionRadius + 1.2;
+      effect.origin.x = entry.vehicle.position.x + Math.sin(yaw) * reach;
+      effect.origin.y = entry.vehicle.position.y + 0.9;
+      effect.origin.z = entry.vehicle.position.z + Math.cos(yaw) * reach;
+      const targetYaw = target.vehicle.orientation.yaw;
+      effect.target.x = target.vehicle.position.x - Math.sin(targetYaw) * 3;
+      effect.target.y = target.vehicle.position.y + 0.9;
+      effect.target.z = target.vehicle.position.z - Math.cos(targetYaw) * 3;
+      effect.width = 0.55;
+      effect.intensity = 0.9;
+      effect.phase = time * 0.5;
+      effect.color = '#a8e6ff';
+      this.activeGalacticLances.push(effect);
+      lanceIndex += 1;
     }
 
     const mines = this.race.state.galacticWorld.mines;
@@ -3719,7 +3749,8 @@ export class GameApp {
       effect.armed = false;
       effect.phase = time + worldObjectIndex * 0.61;
       effect.scale = 2.25;
-      effect.variant = pickup.part === 'emp-cell' ? 'emp' : pickup.part === 'repair-salvage' ? 'repair' : 'pickup';
+      effect.variant = pickup.part === 'emp-cell' ? 'emp' : pickup.part === 'repair-salvage' ? 'repair'
+        : pickup.part === 'thermal-spike' ? 'spike' : pickup.part === 'tow-cable' ? 'cable' : pickup.part === 'nitro-cell' ? 'nitro' : 'pickup';
       this.activeGalacticMines.push(effect);
       worldObjectIndex += 1;
     }

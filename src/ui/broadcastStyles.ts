@@ -251,6 +251,8 @@ export const BROADCAST_HUD_CSS = /* css */ `
 .pod-hud__combat-feedback[data-kind=emp] { color:#aaeaff; }
 .pod-hud__combat-feedback[data-kind=repair] { color:#c3edb5; }
 .pod-hud__combat-feedback[data-kind=revenge] { color:#ffb08a; border-bottom-color:#ff9a6a88; }
+.pod-hud__combat-feedback[data-kind=ordnance] { color:#9fe3ff; border-bottom-color:#9fe3ff66; }
+.pod-hud__galactic.is-overcharging .pod-hud__combat-slot--primary { filter:drop-shadow(0 0 6px #ffd24a); }
 .pod-hud__photo-finish { position:absolute; top:36%; left:50%; transform:translate(-50%,-50%); z-index:14; padding:8px 24px; color:#fff2c6; background:#3a1210e6; border:1px solid #ffb35a99; letter-spacing:.32em; font:400 30px/1 Inkstorm Display,sans-serif; pointer-events:none; }
 .pod-hud__photo-finish[hidden] { display:none; }
 .pod-hud.has-combat-feedback>.pod-hud__galactic-alert { visibility:hidden; }
