@@ -101,6 +101,8 @@ export interface PodRacingReviewApi {
   seekCourse?(progress: number): void;
   /** Rendering-only benchmark override; null restores adaptive quality. */
   setPerformanceQuality?(level: number | null): void;
+  /** Diagnostic-only: wreck the local player in a solo race; returns false if not racing. */
+  debugWreckPlayer?(): boolean;
 }
 
 declare global {

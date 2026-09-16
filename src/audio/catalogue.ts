@@ -9,6 +9,22 @@ export const RECORDED_LOOPS = Object.freeze({
 // The owner's SFX revision retains the licensed composition and its exact excerpt.
 export const RECORDED_MUSIC_URL = '/audio/salt-dusk/juggernaut.mp3';
 
+/**
+ * Race-phase scores: existing high-energy compositions, rotated per race.
+ * Attribution: /audio/race-set/CREDITS.html. The selection score keeps the
+ * Juggernaut excerpt; these only play while a race is running.
+ */
+export interface RecordedRaceTrack {
+  readonly url: string;
+  readonly title: string;
+  readonly artist: string;
+}
+export const RECORDED_RACE_MUSIC: readonly RecordedRaceTrack[] = Object.freeze([
+  { url: '/audio/race-set/exhilarate.mp3', title: 'Exhilarate', artist: 'Kevin MacLeod' },
+  { url: '/audio/race-set/cyborg-ninja.mp3', title: 'Cyborg Ninja', artist: 'Kevin MacLeod' },
+]);
+export const RECORDED_RACE_MUSIC_URLS: readonly string[] = Object.freeze(RECORDED_RACE_MUSIC.map((track) => track.url));
+
 /** Empty lists deliberately omit nonessential reward and warning bleeps. */
 export const RECORDED_CUES: Readonly<Record<PodracerAudioCueKind, readonly string[]>> = Object.freeze({
   impact: [file('hull-impact')],

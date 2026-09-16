@@ -361,6 +361,8 @@ export class RaceSimulation {
   private readonly aiStallSeconds = new Map<string, number>();
   private readonly entryIndexById = new Map<string, number>();
   private readonly entriesById = new Map<string, RaceEntryState<AIControllerState>>();
+  /** Events queued by diagnostics (forceWreck) and drained on the next step. */
+  private readonly pendingDiagnosticEvents: GalacticEvent[] = [];
   private readonly maximumCheckpointGapProgress: number;
   private playerVehicleSelectionLockedValue = false;
   /** Rival currently inside the player's lance cone with a clear line; HUD/audio consume it. */
@@ -490,6 +492,7 @@ export class RaceSimulation {
     const events: RaceEvent[] = [];
     const aiEvents: AIEvent[] = [];
     const galacticEvents: GalacticEvent[] = [];
+    if (this.pendingDiagnosticEvents.length > 0) galacticEvents.push(...this.pendingDiagnosticEvents.splice(0));
     const vehicleEvents: Record<string, readonly PodracerEvent[]> = {};
     const inputs: Record<string, PlayerInputState> = {};
     const delta = this.config.fixedDelta;
@@ -1070,6 +1073,19 @@ export class RaceSimulation {
   }
 
   /** Commits the current grid choice before the countdown begins. */
+  /**
+   * Diagnostic: wreck a racer immediately, as a fatal hull impact would. Used
+   * by the camera-recovery evidence capture; it writes no records or progress.
+   */
+  forceWreck(racerId: string): boolean {
+    const entry = this.entriesById.get(racerId);
+    if (!entry || !entry.galactic || this.state.phase !== 'racing') return false;
+    const events = beginGalacticWreck(entry.id, entry.galactic, entry.vehicle, this.state.galacticWorld, 'impact', null, entry.isPlayer, true);
+    if (events.length === 0) return false;
+    this.pendingDiagnosticEvents.push(...events);
+    return true;
+  }
+
   lockPlayerVehicleSelection(): void {
     this.playerVehicleSelectionLockedValue = true;
   }

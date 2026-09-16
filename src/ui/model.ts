@@ -1,4 +1,5 @@
 import { GALACTIC_VEHICLES, GALACTIC_VEHICLE_ORDER } from '../game/galactic/catalog';
+import { LANCE_CELL_REGEN_FLOOR, LANCE_CELL_REGEN_SECONDS } from '../game/galactic/system';
 import {
   DEFAULT_WORKSHOP_LOADOUTS,
   WORKSHOP_PARTS,
@@ -600,6 +601,8 @@ export function deriveGalacticHudViewModel(
     weaponShots: Math.max(0, Math.floor(finite(state.weapon.shotsFired))),
     weaponHits: Math.max(0, Math.floor(finite(state.weapon.hits))),
     weaponCharges: Math.min(99, Math.max(0, Math.floor(finite(state.weapon.charges)))),
+    weaponRegen: finite(state.weapon.charges) < LANCE_CELL_REGEN_FLOOR
+      ? clampUnit(finite(state.weapon.regen) / LANCE_CELL_REGEN_SECONDS) : 0,
     mineCount: Math.min(99, Math.max(0, Math.floor(finite(state.mine.charges)))),
     rivalName: state.rivalry?.remaining > 0 ? state.rivalry.rivalId : null,
     redlineHeat: clampUnit(state.redline.heat),

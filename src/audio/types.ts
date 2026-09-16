@@ -148,6 +148,8 @@ export interface MenuMusicStatus {
   scoreScheduled: boolean;
   awaitingGesture: boolean;
   url: string | null;
+  /** Race-phase score currently scheduled beneath the engines, if any. */
+  raceTrack: string | null;
 }
 
 export interface OvertakeCalloutStatus {

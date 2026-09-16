@@ -1,0 +1,34 @@
+[
+  {
+    "source": "assets/source/audio-race-set/Exhilarate.mp3",
+    "runtime": "public/audio/race-set/exhilarate.mp3",
+    "operation": [
+      "-af",
+      "atrim=start=0.6:end=141.0,asetpts=PTS-STARTPTS,volume=-4dB,afade=t=in:d=0.05,afade=t=out:st=139.6:d=0.8",
+      "-ar",
+      "44100",
+      "-c:a",
+      "libmp3lame",
+      "-b:a",
+      "128k"
+    ],
+    "sha256": "1829325e922015e17936d5c349e2728783540c7457099f8d0d500ebbd24c6895",
+    "bytes": 2247855
+  },
+  {
+    "source": "assets/source/audio-race-set/Cyborg Ninja.mp3",
+    "runtime": "public/audio/race-set/cyborg-ninja.mp3",
+    "operation": [
+      "-af",
+      "atrim=start=0:end=179.9,asetpts=PTS-STARTPTS,volume=-4dB,afade=t=in:d=0.05,afade=t=out:st=179.2:d=0.7",
+      "-ar",
+      "44100",
+      "-c:a",
+      "libmp3lame",
+      "-b:a",
+      "128k"
+    ],
+    "sha256": "2b41fc97a4454585e03adf199b988f3e5a0c13cf7032ef6d6271c7e8b08200e7",
+    "bytes": 2879853
+  }
+]

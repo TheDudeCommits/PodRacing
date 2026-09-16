@@ -8,7 +8,7 @@ import {
 import type { MenuMusicTransitionSchedule } from './menuMusic';
 import {
   DEFAULT_ENGINE_VOICE_ID, RECORDED_CUES, RECORDED_CUE_ROLES, RECORDED_EFFECT_URLS,
-  RECORDED_ENGINE_VOICES, RECORDED_ENGINE_VOICE_URLS, RECORDED_LOOPS, RECORDED_MUSIC_URL,
+  RECORDED_ENGINE_VOICES, RECORDED_ENGINE_VOICE_URLS, RECORDED_LOOPS, RECORDED_MUSIC_URL, RECORDED_RACE_MUSIC,
 } from './catalogue';
 import type {
   AudioEventLike,
@@ -56,6 +56,16 @@ interface MenuMusicPlayback {
   score: AudioBufferSourceNode | null;
   scoreGain: GainNode | null;
 }
+
+/** A looping race-phase score; it sits on the music bus beside the silenced menu score. */
+interface RaceMusicPlayback {
+  url: string;
+  group: GainNode;
+  source: AudioBufferSourceNode;
+}
+
+/** Steady-state gain of the race score inside its group; the bus mix sits on top. */
+const RACE_SCORE_GAIN = 0.56;
 
 interface OvertakeCalloutPlayback {
   source: AudioBufferSourceNode;
@@ -109,6 +119,9 @@ export class PodracerAudio {
   private menuMusicGeneration = 0;
   private menuMusicPlayback: MenuMusicPlayback | null = null;
   private menuIntroBuffer: AudioBuffer | null = null;
+  private raceMusicPlayback: RaceMusicPlayback | null = null;
+  private raceMusicGeneration = 0;
+  private raceMusicRotation = 0;
   private overtakeCalloutPlayback: OvertakeCalloutPlayback | null = null;
   private lastOvertakeCalloutAt = Number.NEGATIVE_INFINITY;
   private overtakeCalloutPlayCount = 0;
@@ -215,6 +228,7 @@ export class PodracerAudio {
       scoreScheduled: this.menuMusicPlayback !== null && this.menuMusicPlayback.score !== null,
       awaitingGesture: this.menuMusicUrl !== null && this.context?.state === 'suspended',
       url: this.menuMusicUrl,
+      raceTrack: this.raceMusicPlayback?.url ?? null,
     };
   }
 
@@ -284,8 +298,13 @@ export class PodracerAudio {
     return task;
   }
 
-  /** Keep the score running beneath engines and effects at a restrained mix. */
-  transitionMenuMusicToRace(fadeSeconds = 0.9): void {
+  /**
+   * Bring in the race score beneath engines and effects. Each race rotates to
+   * the next sourced track; the selection score stays scheduled but silent so
+   * it can return without a restart. Until the race score has decoded (or if
+   * it fails), the selection score keeps its former restrained race mix.
+   */
+  transitionMenuMusicToRace(fadeSeconds = 0.9, track?: number): void {
     if (this.disposed) return;
     this.vehicleLoopsEnabled = true;
     this.nextAudioUpdateAt = 0;
@@ -294,6 +313,15 @@ export class PodracerAudio {
       this.graph.engineBus.gain.setValueAtTime(this.engineBusGain(), this.context.currentTime);
     }
     this.menuMusicMode = this.menuMusicUrl ? 'race' : 'off';
+    const count = RECORDED_RACE_MUSIC.length;
+    if (this.menuMusicMode === 'race' && count > 0) {
+      const index = Number.isFinite(track) ? ((Math.floor(track!) % count) + count) % count : this.raceMusicRotation % count;
+      if (!Number.isFinite(track)) this.raceMusicRotation = (this.raceMusicRotation + 1) % count;
+      const url = RECORDED_RACE_MUSIC[index]!.url;
+      if (this.raceMusicPlayback?.url !== url) {
+        void this.scheduleRaceMusic(url, ++this.raceMusicGeneration, fadeSeconds);
+      }
+    }
     this.applyMenuMusicMix(fadeSeconds);
   }
 
@@ -302,6 +330,7 @@ export class PodracerAudio {
     if (this.disposed) return;
     this.silenceVehicleAudio();
     this.menuMusicMode = this.menuMusicUrl ? 'selection' : 'off';
+    this.releaseRaceMusic(fadeSeconds);
     this.applyMenuMusicMix(fadeSeconds);
   }
 
@@ -312,10 +341,79 @@ export class PodracerAudio {
     this.menuMusicLoadingUrl = null;
     this.menuMusicLoadPromise = null;
     this.menuMusicMode = 'off';
+    this.releaseRaceMusic(fadeSeconds);
     this.applyMenuMusicMix(fadeSeconds);
     const playback = this.menuMusicPlayback;
     this.menuMusicPlayback = null;
     if (playback) this.fadeOutMenuMusicPlayback(playback, fadeSeconds);
+  }
+
+  private releaseRaceMusic(fadeSeconds: number): void {
+    this.raceMusicGeneration += 1;
+    const playback = this.raceMusicPlayback;
+    this.raceMusicPlayback = null;
+    if (playback) this.fadeOutRaceMusic(playback, fadeSeconds);
+  }
+
+  private async scheduleRaceMusic(url: string, generation: number, fadeSeconds: number): Promise<boolean> {
+    const graphReady = await this.prewarm();
+    if (!graphReady || generation !== this.raceMusicGeneration || this.disposed) return false;
+    const buffer = await this.loadRecording(url);
+    const context = this.context, graph = this.graph;
+    if (!buffer || generation !== this.raceMusicGeneration || this.disposed || this.menuMusicMode !== 'race'
+      || !context || !graph || context.state === 'closed') return false;
+    const previous = this.raceMusicPlayback;
+    const group = context.createGain();
+    group.gain.value = 0.0001;
+    group.connect(graph.musicBus);
+    const source = context.createBufferSource();
+    source.buffer = buffer;
+    source.loop = true;
+    source.loopStart = 0;
+    source.loopEnd = buffer.duration;
+    source.connect(group);
+    const start = context.currentTime + 0.025;
+    const fade = Math.max(0.05, finite(fadeSeconds, 0.9));
+    group.gain.setValueAtTime(0.0001, start);
+    group.gain.linearRampToValueAtTime(RACE_SCORE_GAIN, start + fade);
+    source.start(start);
+    this.raceMusicPlayback = { url, group, source };
+    if (previous) this.fadeOutRaceMusic(previous, Math.min(fade, 0.4));
+    // The selection score steps aside now that the race score is really playing.
+    this.applyMenuMusicMix(fade);
+    return true;
+  }
+
+  private fadeOutRaceMusic(playback: RaceMusicPlayback, fadeSeconds: number): void {
+    const context = this.context;
+    if (!context || context.state === 'closed') {
+      this.haltRaceMusic(playback);
+      return;
+    }
+    const now = context.currentTime;
+    const fade = Math.max(0.02, finite(fadeSeconds, 0.4));
+    playback.group.gain.cancelScheduledValues(now);
+    playback.group.gain.setValueAtTime(playback.group.gain.value, now);
+    playback.group.gain.linearRampToValueAtTime(0.0001, now + fade);
+    try {
+      playback.source.stop(now + fade + 0.025);
+    } catch {
+      // It may already have been stopped.
+    }
+    playback.source.addEventListener('ended', () => {
+      playback.source.disconnect();
+      playback.group.disconnect();
+    }, { once: true });
+  }
+
+  private haltRaceMusic(playback: RaceMusicPlayback): void {
+    try {
+      playback.source.stop();
+    } catch {
+      // It may already have completed naturally.
+    }
+    playback.source.disconnect();
+    playback.group.disconnect();
   }
 
   /**
@@ -602,6 +700,10 @@ export class PodracerAudio {
     const context = this.context;
     const graph = this.graph;
     const menuPlayback = this.menuMusicPlayback;
+    const racePlayback = this.raceMusicPlayback;
+    this.raceMusicPlayback = null;
+    this.raceMusicGeneration += 1;
+    if (racePlayback) this.haltRaceMusic(racePlayback);
     const calloutPlayback = this.overtakeCalloutPlayback;
     this.context = null;
     this.graph = null;
@@ -651,10 +753,17 @@ export class PodracerAudio {
       case 'selection':
         return 0.78 * this.mix.music;
       case 'race':
-        return 0.31 * this.mix.music;
+        // The race score is mixed to sit with the engines; the fallback
+        // selection score keeps its former restrained level.
+        return (this.raceMusicPlayback ? 0.5 : 0.31) * this.mix.music;
       case 'off':
         return 0;
     }
+  }
+
+  /** The selection score's own group: silent while a race score is actually playing. */
+  private menuScoreGroupGain(): number {
+    return this.menuMusicMode === 'race' && this.raceMusicPlayback ? 0.0001 : 1;
   }
 
   private effectiveMasterGain(): number {
@@ -682,6 +791,12 @@ export class PodracerAudio {
     musicBus.gain.cancelScheduledValues(now);
     musicBus.gain.setValueAtTime(musicBus.gain.value, now);
     musicBus.gain.linearRampToValueAtTime(this.menuMusicMixGain(), now + fade);
+    const group = this.menuMusicPlayback?.group;
+    if (group) {
+      group.gain.cancelScheduledValues(now);
+      group.gain.setValueAtTime(group.gain.value, now);
+      group.gain.linearRampToValueAtTime(this.menuScoreGroupGain(), now + fade);
+    }
   }
 
   private async loadAndScheduleMenuMusic(url: string, generation: number): Promise<boolean> {

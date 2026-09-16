@@ -1,11 +1,44 @@
-# PodRacing — Round 39 handover (2026-09-16)
+# PodRacing — Round 40 handover (2026-09-16)
+
+## Start here
+
+Round 40 answers three owner reports: **the Heat Lance went dead mid-race** (lance racks were one-claim-per-racer, so after 22 shots the weapon was empty for good; racks are now re-collectable every lap and a trickle keeps at least three cells coming back), **the camera sat side-on after a wreck respawn** (the wreck chase now releases at the respawn tick with a single cut to chase), and **race music** (two sourced Kevin MacLeod tracks rotate under the engines during races; the selection score is unchanged). Details, frames and provenance: [ROUND40_REPORT.md](docs/inkstorm-overhaul/ROUND40_REPORT.md). Earlier rounds: [ROUND39](docs/inkstorm-overhaul/ROUND39_REPORT.md), [ROUND38](docs/inkstorm-overhaul/ROUND38_REPORT.md), [ROUND37](docs/inkstorm-overhaul/ROUND37_REPORT.md).
+
+- Repository: https://github.com/TheDudeCommits/PodRacing, branch `codex/now-this-is-podracing`, working directory `/Users/amir/Projects/PodRacing`.
+- Runtime source: the round 40 commit on this branch (see `git log`), on top of `9ae4dd2` (round 39). Preview deployment: recorded in the follow-up docs commit.
+- Preview deployments come from the Git integration on push (owner Vercel sign-in required). **Production is unchanged.** Never run `vercel deploy` from the working tree.
+
+## Lessons that must survive
+
+1. **Ammunition pickups are not upgrades.** `collectedPickupIds` is a one-claim ledger for the EMP cell and repair salvage; `lance-cells` bypass it on purpose. Any new consumable must decide which rule it follows and test the second lap.
+2. **The wreck chase must end when the craft moves.** `stillWrecked` in `GameApp` is gated on the *wrecked* phase only; the *recovering* phase is a driveable control-link countdown and gets the ordinary chase. `scripts/recovery-camera-frames.mjs` plus `window.__PODRACING__.debugWreckPlayer()` (solo-only diagnostic) reproduce the sequence in a real race.
+3. **Music policy.** Sourced compositions only, credited beside the files with hash provenance (`assets/source/audio-race-set/runtime-files.json`, admitted by `tests/audio/recordedCatalogue.test.ts`). Race tracks live in `RECORDED_RACE_MUSIC`; the intro webm stays byte-identical.
+
+## Validation
+
+- Tests: 1034/1034 (176 files), typecheck and build pass. Browser checks on the built bundle: race score requested at race start, zero page errors; recovery-camera frames before/after in `docs/inkstorm-overhaul/evidence/handling-round40/`.
+- Frame cadence is still unmeasured on a quiet machine.
+
+## Next work, in priority order
+
+1. Owner check of the lance, camera and music in the preview; then a quiet-machine cadence run and the promotion decision.
+2. The gameplay list delivered with round 40 (excitement: rubber-band-free catch-up drafting, sector rivals, hazard events, shortcut gambles, damage-driven handling, reflect shield, lead reticle).
+3. Remove the last 1.6% hull burial; rival line discipline on cambered straights.
+
+## How to resume safely
+
+Read this header and the round reports, then `git status --short --branch`. `npm run verify` for runtime changes; headless laps with `scripts/drive-balance.ts`; native evidence with `scripts/competitive-flow.ts`, `scripts/effect-stills.mjs` and `scripts/recovery-camera-frames.mjs`. Close every owned browser and server immediately after QA; never adopt port 5211; never save the shared Blender scene.
+
+---
+
+## Previous handover — Round 39 handover (2026-09-16)
 
 ## Start here
 
 Round 39 is a correction round: the owner saw no improvement after round 38 because **the renderer drew simulation pitch with the wrong sign**, so every pod was pitched into or out of every slope regardless of what the physics did. That is fixed at every simulation-to-renderer boundary, and the shield/recovery/redline shells are now hull-fitted faceted skins instead of domes and discs. Details, before/after frames and the burial audit: [ROUND39_REPORT.md](docs/inkstorm-overhaul/ROUND39_REPORT.md). Earlier rounds: [ROUND38](docs/inkstorm-overhaul/ROUND38_REPORT.md), [ROUND37](docs/inkstorm-overhaul/ROUND37_REPORT.md).
 
 - Repository: https://github.com/TheDudeCommits/PodRacing, branch `codex/now-this-is-podracing`, working directory `/Users/amir/Projects/PodRacing`.
-- Runtime source: the round 39 commit on this branch (see `git log`), on top of `1ddf44f` (round 38).
+- Runtime source: commit `9ae4dd2` (round 39) on top of `1ddf44f` (round 38); preview deployment `dpl_G1zHXqbY9NrLojc1iWaKRVJS2WKC` (https://now-this-is-podracing-erps77ixl-amirs-projects-d9680079.vercel.app).
 - Preview deployments come from the Git integration on push (owner Vercel sign-in required; the branch alias `now-this-is-podracing-git-codex-45ecfb-amirs-projects-d9680079.vercel.app` follows the branch). **Production is unchanged.** Never run `vercel deploy` from the working tree.
 
 ## Lessons that must survive

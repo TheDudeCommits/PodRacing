@@ -31,12 +31,16 @@ export function collectCombatPickup(
   world: GalacticWorldState,
 ): GalacticEvent[] {
   const { galactic, vehicle, id } = collector;
-  if (galactic.wreck.phase === 'wrecked' || galactic.upgrades.collectedPickupIds.includes(pickupId)) return [];
-  galactic.upgrades.collectedPickupIds.push(pickupId);
+  if (galactic.wreck.phase === 'wrecked') return [];
   if (part === 'lance-cells') {
+    // Ammunition, not a one-time upgrade: the same racer may refill from this
+    // rack every time it respawns, so the lance stays usable on every lap.
     galactic.weapon.charges = Math.min(LANCE_CELL_CAPACITY, galactic.weapon.charges + LANCE_CELLS_PER_PICKUP);
+    galactic.weapon.regen = 0;
     return [{ type: 'lance-cells-collected', racerId: id, pickupId, charges: galactic.weapon.charges }];
   }
+  if (galactic.upgrades.collectedPickupIds.includes(pickupId)) return [];
+  galactic.upgrades.collectedPickupIds.push(pickupId);
   if (part === 'repair-salvage') {
     const repaired = Math.min(Math.max(0, vehicle.damage), SALVAGE_REPAIR_AMOUNT);
     const cooled = Math.min(Math.max(0, vehicle.heat), SALVAGE_COOLING_AMOUNT);

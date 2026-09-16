@@ -1946,12 +1946,13 @@ export class RaceHud {
     const weaponReadiness = 1 - weaponCooldownFraction;
     this.weaponFill.style.width = `${(weaponReadiness * 100).toFixed(1)}%`;
     const weaponState = galactic.weaponCharges <= 0
-        ? 'Empty'
+        ? `Charging ${Math.round(galactic.weaponRegen * 100)}%`
         : galactic.weaponCooldown <= 0.001
           ? `Ready ×${galactic.weaponCharges}`
           : `${galactic.weaponCooldown.toFixed(1)}S ×${galactic.weaponCharges}`;
     write(this.weaponValue, weaponState);
-    this.setSystemReadiness(this.primarySlot, galactic.weaponCharges <= 0 ? 0 : weaponReadiness);
+    // An empty rack shows the trickle filling the dial instead of a dead slot.
+    this.setSystemReadiness(this.primarySlot, galactic.weaponCharges <= 0 ? galactic.weaponRegen : weaponReadiness);
     this.galactic.classList.toggle('is-weapon-empty', galactic.weaponCharges <= 0);
     this.primarySlot.setAttribute('aria-label', `Primary ${this.combatBindings.fire}, ${galactic.weaponName}, ${weaponState}`);
     this.primarySlot.title = `${galactic.weaponName} [${this.combatBindings.fire}] • ${weaponState}`;

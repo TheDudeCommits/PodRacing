@@ -187,6 +187,7 @@ const model: RaceHudViewModel = {
     weaponShots: 21,
     weaponHits: 13,
   weaponCharges: 6,
+  weaponRegen: 0,
   rivalName: null,
     mineCount: 2,
     redlineHeat: 0.84,

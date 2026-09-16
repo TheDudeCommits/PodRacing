@@ -42,6 +42,7 @@ describe('menu music lifecycle diagnostics', () => {
       scoreScheduled: false,
       awaitingGesture: false,
       url: null,
+      raceTrack: null,
     });
     audio.dispose();
   });

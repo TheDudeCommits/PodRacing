@@ -1004,12 +1004,14 @@ export class GameApp {
     const stillWrecked = this.combatChaseRecovery && !this.paused && !this.captureMode
       && !this.settings.comfort.reducedMotion && this.combatSystemMotion?.matches !== true
       && this.settings.comfort.motionIntensity > 0 && this.race.state.phase === 'racing'
-      && (playerWreck?.phase === 'wrecked' || playerWreck?.phase === 'recovering');
-    // The completed victim recovery is an edited return to ordinary chase.
-    // Interpolating from the opposite-side fitted wreck eye crosses the long
-    // engine envelope after its protection is removed. Cut once to the exact
-    // existing chase pose; cancellation/manual/replay paths retain their policy.
-    const recoveredChase = this.combatChaseRecovery && playerWreck?.phase === 'running'
+      && playerWreck?.phase === 'wrecked';
+    // The wreck chase ends the moment the craft respawns. Holding the fitted
+    // three-quarter eye through the invulnerable recovery left the player
+    // driving for up to three seconds with a sideways camera that then jumped;
+    // the respawn is already a teleport, so cut once to the exact chase pose
+    // there. Cancellation/manual/replay paths retain their policy.
+    const recoveredChase = this.combatChaseRecovery
+      && (playerWreck?.phase === 'recovering' || playerWreck?.phase === 'running')
       && this.cameraMode === 'chase' && !this.paused && !this.captureMode && !replayFrame
       && !this.settings.comfort.reducedMotion && this.combatSystemMotion?.matches !== true
       && this.settings.comfort.motionIntensity > 0 && this.race.state.phase === 'racing';
@@ -3914,6 +3916,9 @@ export class GameApp {
         this.render(FIXED_DT);
       },
       snapshot: () => this.snapshot(),
+      // Diagnostic only: wreck the local player as a fatal impact would, so the
+      // recovery camera can be captured in a real race. Solo races only.
+      debugWreckPlayer: () => this.room.lobby.role === 'solo' && this.race.forceWreck(this.localRacerId()),
     };
     window.__PODRACING__ = api;
     void Promise.all([this.inkstormWorld.ready,this.sky.ready]).then(() => { if (!this.disposed) api.ready = this.inkstormWorld.loaded; });

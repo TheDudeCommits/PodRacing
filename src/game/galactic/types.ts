@@ -187,8 +187,10 @@ export interface GalacticWeaponState {
   triggerHeld: boolean;
   shotsFired: number;
   hits: number;
-  /** Heat Lance cells in the rack; refilled by authored pickups, never by time. */
+  /** Heat Lance cells in the rack; refilled by authored pickups, plus a slow trickle below the floor. */
   charges: number;
+  /** Seconds accumulated toward the next trickle cell while the rack is below the floor. */
+  regen: number;
 }
 
 /** A racer who wrecked this one is marked for a while; rivals and HUD react to it. */
@@ -440,6 +442,7 @@ export type GalacticEvent =
   | { type: 'heat-lance-blocked'; ownerId: string; projectileId: string; x: number; y: number; z: number }
   | { type: 'target-lock'; racerId: string; targetId: string | null }
   | { type: 'lance-cells-collected'; racerId: string; pickupId: string; charges: number }
+  | { type: 'lance-cell-regenerated'; racerId: string; charges: number }
   | { type: 'rivalry-marked'; racerId: string; rivalId: string; duration: number }
   | {
       type: 'weapon-hit';

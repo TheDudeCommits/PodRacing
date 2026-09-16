@@ -29,6 +29,9 @@ const WRECK_DAMAGE_THRESHOLD = 0.86;
 const WRECK_DURATION = 2.15;
 /** Starting Heat Lance cells; more come only from authored pickups. */
 export const LANCE_STARTING_CHARGES = 6;
+/** Below this many cells the rack trickles one cell back every LANCE_CELL_REGEN_SECONDS, so the lance never dies for a whole race. */
+export const LANCE_CELL_REGEN_FLOOR = 3;
+export const LANCE_CELL_REGEN_SECONDS = 6;
 /** Lance speed relative to the shooter: slow enough that leading a target is a skill. */
 export const LANCE_SPEED = 150;
 export const LANCE_LIFETIME = 1.6;
@@ -118,7 +121,7 @@ export function createGalacticRacerState(
     version: 1,
     vehicleClass,
     shield: { active: false, remaining: 0, cooldown: 0, absorbedDamage: 0 },
-    weapon: { cooldown: 0, triggerHeld: false, shotsFired: 0, hits: 0, charges: LANCE_STARTING_CHARGES },
+    weapon: { cooldown: 0, triggerHeld: false, shotsFired: 0, hits: 0, charges: LANCE_STARTING_CHARGES, regen: 0 },
     mine: { cooldown: 0, charges: 3, deployed: 0 },
     redline: { active: false, heat: 0.08, lockout: 0, peakHeat: 0.08 },
     wreck: {
@@ -216,6 +219,16 @@ function decrementRacerTimers(
   events: GalacticEvent[],
 ): void {
   state.weapon.cooldown = Math.max(0, state.weapon.cooldown - delta);
+  if (state.weapon.charges < LANCE_CELL_REGEN_FLOOR) {
+    state.weapon.regen = Math.min(LANCE_CELL_REGEN_SECONDS, (state.weapon.regen ?? 0) + delta);
+    if (state.weapon.regen >= LANCE_CELL_REGEN_SECONDS - 1e-9) {
+      state.weapon.regen = 0;
+      state.weapon.charges += 1;
+      events.push({ type: 'lance-cell-regenerated', racerId, charges: state.weapon.charges });
+    }
+  } else {
+    state.weapon.regen = 0;
+  }
   state.mine.cooldown = Math.max(0, state.mine.cooldown - delta);
   state.redline.lockout = Math.max(0, state.redline.lockout - delta);
   state.wreck.invulnerable = Math.max(0, state.wreck.invulnerable - delta);
@@ -836,7 +849,8 @@ export function stepGalacticWorld(
       if (
         racer.finished
         || (combat && (racer.galactic.wreck.phase === 'wrecked'
-          || racer.galactic.upgrades.collectedPickupIds.includes(pickup.id)))
+          // Lance cells are ammunition: any racer may take a respawned rack again each lap.
+          || (pickup.part !== 'lance-cells' && racer.galactic.upgrades.collectedPickupIds.includes(pickup.id))))
         || progressDistance(racer.courseProgress, pickup.progress) > pickup.progressRadius
         || Math.abs(racer.lateralOffset - pickup.lateralOffset) > pickup.lateralRadius
       ) continue;

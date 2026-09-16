@@ -36,7 +36,8 @@ describe('lance cells and pacing', () => {
     const self = snapshot('shooter', 0, 0);
     expect(self.galactic.weapon.charges).toBe(LANCE_STARTING_CHARGES);
     let shots = 0;
-    for (let step = 0; step < 120 * 12; step += 1) {
+    // Four seconds: the rack empties in ~4.2 s of firing and the trickle needs six more.
+    for (let step = 0; step < 120 * 4; step += 1) {
       const action = stepGalacticRacerAction(self.galactic, {
         step, delta: 1 / 120, racing: true, input: normalizePlayerInput({ fire: true }), self, opponents: [],
       });
@@ -173,5 +174,58 @@ describe('rival personalities and grudges', () => {
     }
     expect(state.rivalry.rivalId).toBeNull();
     expect(deriveGalacticHudViewModel(state)!.rivalName).toBeNull();
+  });
+});
+
+describe('lance ammunition never dies for a whole race', () => {
+  it('lets the same racer refill from a rack again once it has respawned', () => {
+    const world = createGalacticWorldState(93); world.hazards = [];
+    world.pickups = world.pickups.filter((pickup) => pickup.part === 'lance-cells');
+    const pickup = world.pickups[0]!;
+    const self = snapshot('collector', 0, 0);
+    const atPickup = () => ({ ...self, courseProgress: pickup.progress, lateralOffset: pickup.lateralOffset });
+    const collector = { id: self.id, vehicle: createPodracerState({ terrain: FLAT_HEIGHT_SAMPLER }), galactic: self.galactic };
+    self.galactic.weapon.charges = 0;
+    expect(stepGalacticWorld(world, [atPickup()], 1 / 120).pickupClaims).toEqual([{ racerId: 'collector', pickupId: pickup.id, part: 'lance-cells' }]);
+    expect(collectCombatPickup(pickup.id, 'lance-cells', collector, [], world)).toHaveLength(1);
+    expect(self.galactic.weapon.charges).toBe(LANCE_CELLS_PER_PICKUP);
+    // The rack is not a one-time upgrade: no ledger entry, so the next lap can take it again.
+    expect(self.galactic.upgrades.collectedPickupIds).toEqual([]);
+    self.galactic.weapon.charges = 0;
+    let claimed = 0;
+    for (let tick = 0; tick < 601; tick += 1) claimed += stepGalacticWorld(world, [atPickup()], 1 / 120).pickupClaims.length;
+    expect(claimed).toBe(1);
+    expect(collectCombatPickup(pickup.id, 'lance-cells', collector, [], world)).toHaveLength(1);
+    expect(self.galactic.weapon.charges).toBe(LANCE_CELLS_PER_PICKUP);
+  });
+
+  it('trickles one cell back every six seconds while the rack is below three, and shows it on the HUD', () => {
+    const self = snapshot('shooter', 0, 0);
+    self.galactic.weapon.charges = 0;
+    const step = () => stepGalacticRacerAction(self.galactic, {
+      step: 0, delta: 1 / 120, racing: true, input: normalizePlayerInput({}), self, opponents: [],
+    });
+    for (let tick = 0; tick < 120 * 3; tick += 1) step();
+    expect(self.galactic.weapon.charges).toBe(0);
+    const hud = deriveGalacticHudViewModel(self.galactic)!;
+    expect(hud.weaponCharges).toBe(0);
+    expect(hud.weaponRegen).toBeCloseTo(0.5, 2);
+    for (let tick = 0; tick < 120 * 3; tick += 1) step();
+    expect(self.galactic.weapon.charges).toBe(1);
+    for (let tick = 0; tick < 120 * 12; tick += 1) step();
+    expect(self.galactic.weapon.charges).toBe(3);
+    // At the floor the trickle stops: pickups are still the way to a full rack.
+    for (let tick = 0; tick < 120 * 12; tick += 1) step();
+    expect(self.galactic.weapon.charges).toBe(3);
+    expect(deriveGalacticHudViewModel(self.galactic)!.weaponRegen).toBe(0);
+    // Firing the trickled cells works exactly like pickup cells.
+    let shots = 0;
+    for (let tick = 0; tick < 120 * 3; tick += 1) {
+      const action = stepGalacticRacerAction(self.galactic, {
+        step: tick, delta: 1 / 120, racing: true, input: normalizePlayerInput({ fire: true }), self, opponents: [],
+      });
+      shots += action.fireHeatLance ? 1 : 0;
+    }
+    expect(shots).toBe(3);
   });
 });
