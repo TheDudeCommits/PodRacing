@@ -5,7 +5,7 @@
 Round 42 adds four owner-picked weapons on top of round 41: **tow cable** (F latches the pod ahead, pulls for three seconds, F again slingshots; their shield cuts it), **thermal spike** (F fires a heat dart that cuts boost and tips warm engines into the overheat penalty), **nitro cell** (one-shot full boost and a clean engine, only on the hairpin's inside line) and the **overcharge lance** (hold E after a shot with three cells; release fires a wide, slow, shield-piercing bolt). Forward ordnance shares the mine key through `GalacticRacerState.ordnance`. Details, tests and stills: [ROUND42_REPORT.md](docs/inkstorm-overhaul/ROUND42_REPORT.md). Earlier rounds: [ROUND41](docs/inkstorm-overhaul/ROUND41_REPORT.md), [ROUND40](docs/inkstorm-overhaul/ROUND40_REPORT.md), [ROUND39](docs/inkstorm-overhaul/ROUND39_REPORT.md), [ROUND38](docs/inkstorm-overhaul/ROUND38_REPORT.md), [ROUND37](docs/inkstorm-overhaul/ROUND37_REPORT.md).
 
 - Repository: https://github.com/TheDudeCommits/PodRacing, branch `codex/now-this-is-podracing`, working directory `/Users/amir/Projects/PodRacing`.
-- Runtime source: the round 42 commit on this branch (see `git log`), on top of `9697e45` (round 41). Preview deployment: recorded in the follow-up docs commit.
+- Runtime source: commit `3811b91` (round 42) on top of `9697e45` (round 41); preview deployment `dpl_8byuiVwfKzQXBpvvUXyJGXN3WBU9` (https://now-this-is-podracing-oq2ot41zw-amirs-projects-d9680079.vercel.app).
 - Preview deployments come from the Git integration on push (owner Vercel sign-in required). **Production is unchanged.** Never run `vercel deploy` from the working tree.
 
 ## Lessons that must survive
