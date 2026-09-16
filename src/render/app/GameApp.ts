@@ -1,5 +1,7 @@
 import { duskSkyAssetReceipt } from '../sky/DuskSkyAssets';
 import { CombatPresentationController, type CombatPresentationContext } from '../combat/CombatPresentationController';
+import { PhotoFinishPresentation, type PhotoFinishRacer } from '../combat/PhotoFinishPresentation';
+import { RECORDED_VOICE_LINES } from '../../audio/catalogue';
 import { WreckVisualPoseCache, type WreckVisualPose } from '../combat/WreckVisualPose';
 import { WreckGroundContactGate } from '../combat/WreckGroundContact';
 import {
@@ -339,9 +341,9 @@ export class GameApp {
     phase: number;
     color: string;
   }> = [];
-  private readonly galacticMinePool = Array.from({ length: 24 }, () => ({
+  private readonly galacticMinePool = Array.from({ length: 48 }, () => ({
     position: { x: 0, y: 0, z: 0 }, yaw: 0, armed: false, phase: 0, scale: 1,
-    variant: 'mine' as 'mine' | 'pickup' | 'emp' | 'repair',
+    variant: 'mine' as 'mine' | 'pickup' | 'emp' | 'repair' | 'debris',
   }));
   private readonly activeGalacticMines: Array<{
     position: { x: number; y: number; z: number };
@@ -349,10 +351,10 @@ export class GameApp {
     armed: boolean;
     phase: number;
     scale: number;
-    variant: 'mine' | 'pickup' | 'emp' | 'repair';
+    variant: 'mine' | 'pickup' | 'emp' | 'repair' | 'debris';
   }> = [];
-  private readonly galacticHazardPool = Array.from({ length: 8 }, () => ({
-    kind: 'heat-vent' as 'heat-vent' | 'sand-geyser' | 'rockfall',
+  private readonly galacticHazardPool = Array.from({ length: 16 }, () => ({
+    kind: 'heat-vent' as 'heat-vent' | 'sand-geyser' | 'rockfall' | 'respawn',
     position: { x: 0, y: 0, z: 0 },
     radius: 12,
     height: 6,
@@ -361,7 +363,7 @@ export class GameApp {
     warning: 1,
   }));
   private readonly activeGalacticHazards: Array<{
-    kind: 'heat-vent' | 'sand-geyser' | 'rockfall';
+    kind: 'heat-vent' | 'sand-geyser' | 'rockfall' | 'respawn';
     position: { x: number; y: number; z: number };
     radius: number;
     height: number;
@@ -445,6 +447,8 @@ export class GameApp {
   private readonly combatPresentation = new CombatPresentationController();
   private combatCameraCut = false;
   private combatChaseRecovery = false;
+  private readonly photoFinish = new PhotoFinishPresentation();
+  private finalStraightBlend = 0;
   private combatPriorManualCamera: CaptureCamera | null = null;
   private readonly combatSystemMotion = typeof window.matchMedia === 'function'
     ? window.matchMedia('(prefers-reduced-motion: reduce)') : null;
@@ -833,7 +837,11 @@ export class GameApp {
     this.restartHeld = input.reset;
     if (this.paused) return;
 
-    const pacedDelta = this.combatPresentation.scheduleDelta(dt, this.previousTime, this.combatContext());
+    const photoArmed = this.photoFinish.update(dt, this.photoFinishLocal(), this.photoFinishRacers(),
+      this.room.lobby.role === 'solo' && !this.captureMode && this.race.state.phase === 'racing');
+    if (photoArmed) this.audio.playVoiceLine(RECORDED_VOICE_LINES['photo-finish']);
+    const pacedDelta = this.combatPresentation.scheduleDelta(dt, this.previousTime, this.combatContext())
+      * this.photoFinish.timeScale;
     this.accumulator = Math.min(this.accumulator + pacedDelta, 0.25);
     while (this.accumulator >= FIXED_DT) {
       this.stepSimulation(input);
@@ -883,11 +891,16 @@ export class GameApp {
       if (event.type === 'countdown' && event.cue === 'go') {
         this.hudGoUntil = result.state.raceTime + 0.72;
       }
+      // Entering the final lap lifts the race score; the voice line comes from the audio model.
+      if (event.type === 'lap-complete' && event.racerId === this.localRacerId()
+        && this.race.totalLaps > 1 && event.lap === this.race.totalLaps - 1 && !this.captureMode) {
+        this.audio.setRaceMusicIntensity(true);
+      }
     }
     if (!this.captureMode) {
-      this.audio.handleEvents(result.events, { playerId: this.localRacerId() });
+      this.audio.handleEvents(result.events, { playerId: this.localRacerId(), totalLaps: this.race.totalLaps });
       this.cameraDirector.consumeEvents(result.events);
-      this.audio.handleEvents(result.galacticEvents, { playerId: this.localRacerId() });
+      this.audio.handleEvents(result.galacticEvents, { playerId: this.localRacerId(), totalLaps: this.race.totalLaps });
       this.cameraDirector.consumeEvents(result.galacticEvents, { playerId: this.localRacerId() });
     }
     for (let racerIndex = 0; racerIndex < result.state.entries.length; racerIndex += 1) {
@@ -959,7 +972,8 @@ export class GameApp {
     const combatFrame = this.combatPresentation.frame(performance.now(), this.combatContext());
     const localWreckPhase = this.race.state.entries.find((entry) => entry.id === this.localRacerId())?.galactic?.wreck.phase ?? 'running';
     this.hud.updateCombat(combatFrame, localWreckPhase);
-    const motionDelta = dt * combatFrame.timeScale;
+    this.hud.setPhotoFinish(this.photoFinish.active);
+    const motionDelta = dt * combatFrame.timeScale * this.photoFinish.timeScale;
     const renderExtrapolation = this.room.lobby.role === 'guest'
       ? Math.min(0.08, this.networkSnapshotAge)
       : combatFrame.cinematic.active ? this.accumulator : 0;
@@ -1893,6 +1907,8 @@ export class GameApp {
     else this.mastery.cancelRun();
     this.accumulator = 0;
     this.nextHudFrame = 0;
+    this.photoFinish.reset();
+    this.finalStraightBlend = 0;
     this.audio.transitionMenuMusicToRace();
     void this.audio.unlock();
   }
@@ -3339,6 +3355,28 @@ export class GameApp {
     return pose;
   }
 
+  private photoFinishRacerFor(entry: RaceEntryState): PhotoFinishRacer {
+    const laps = this.race.totalLaps;
+    const unwrapped = entry.progress.unwrappedProgress;
+    return {
+      id: entry.id,
+      finished: entry.status === 'finished',
+      // Inside the last 15% of the final lap; the grid's negative progress never counts.
+      onFinalLap: unwrapped > laps - 0.15 && unwrapped <= laps + 0.05,
+      distanceToLine: Math.max(0, (laps - unwrapped) * this.race.course.totalLength),
+      speed: entry.vehicle.telemetry.speed,
+    };
+  }
+
+  private photoFinishLocal(): PhotoFinishRacer | null {
+    const local = this.race.state.entries.find((entry) => entry.id === this.localRacerId());
+    return local ? this.photoFinishRacerFor(local) : null;
+  }
+
+  private photoFinishRacers(): PhotoFinishRacer[] {
+    return this.race.state.entries.map((entry) => this.photoFinishRacerFor(entry));
+  }
+
   private solidWreckTerrainCache: { race: RaceSimulation; sampler: HeightSampler } | null = null;
   private solidWreckTerrain(): HeightSampler {
     if (this.solidWreckTerrainCache?.race === this.race) return this.solidWreckTerrainCache.sampler;
@@ -3391,6 +3429,13 @@ export class GameApp {
       this.subject.junctionWeight = updateCourseJunctionFraming(this.race.course, entry.progress.courseProgress,
         this.subject.position, this.subject.forward, this.junctionCameraPreview);
       if (this.subject.junctionWeight > 0) this.subject.junctionLookAhead = this.junctionCameraPreview;
+      // Last lap, final straight: the chase eye tightens for the run to the line.
+      const tag = this.race.course.sampleAtProgress(entry.progress.courseProgress).tag;
+      const finalStraight = this.race.state.phase === 'racing' && entry.status !== 'finished'
+        && entry.progress.currentLap >= this.race.totalLaps && entry.progress.courseProgress > 0.8
+        && (tag === 'recovery-straight' || tag === 'start-straight') ? 1 : 0;
+      this.finalStraightBlend += (finalStraight - this.finalStraightBlend) * 0.035;
+      this.subject.finalStraight = this.finalStraightBlend;
     } else this.subject.routeLookAhead = undefined;
   }
 
@@ -3678,6 +3723,23 @@ export class GameApp {
       this.activeGalacticMines.push(effect);
       worldObjectIndex += 1;
     }
+    // Wreck debris shares the solid-hardware pool: dark shed parts lying where they fell.
+    for (const piece of this.race.state.galacticWorld.debris ?? []) {
+      if (worldObjectIndex >= this.galacticMinePool.length) break;
+      const effect = this.galacticMinePool[worldObjectIndex];
+      if (!effect) break;
+      effect.position.x = piece.position.x;
+      effect.position.z = piece.position.z;
+      effect.position.y = this.race.terrain.heightAt(piece.position.x, piece.position.z) + 0.55;
+      effect.yaw = worldObjectIndex * 2.399;
+      effect.armed = false;
+      effect.phase = worldObjectIndex * 0.77;
+      // Engine-part sized so a shed piece reads from chase distance, like the mines.
+      effect.scale = 2.1 + (worldObjectIndex % 3) * 0.35;
+      effect.variant = 'debris';
+      this.activeGalacticMines.push(effect);
+      worldObjectIndex += 1;
+    }
 
     const hazards = this.race.state.galacticWorld.hazards;
     const hazardCount = Math.min(hazards.length, this.galacticHazardPool.length);
@@ -3704,6 +3766,27 @@ export class GameApp {
       effect.phase = index * 0.71;
       effect.warning = 0.72 + Math.sin(time * 3.2 + index) * 0.28;
       this.activeGalacticHazards.push(effect);
+    }
+    // Every wrecked racer's drop-in point is telegraphed by a shadow that
+    // deepens as the recovery timer runs out, so nobody is surprised by a respawn.
+    let hazardIndex = hazardCount;
+    for (const entry of this.race.state.entries) {
+      const wreck = entry.galactic?.wreck;
+      if (wreck?.phase !== 'wrecked' || hazardIndex >= this.galacticHazardPool.length) continue;
+      const effect = this.galacticHazardPool[hazardIndex];
+      if (!effect) break;
+      const respawn = entry.vehicle.respawn;
+      effect.kind = 'respawn';
+      effect.position.x = respawn.x;
+      effect.position.z = respawn.z;
+      effect.position.y = this.race.terrain.heightAt(respawn.x, respawn.z) + 0.14;
+      effect.radius = 10;
+      effect.height = 0;
+      effect.intensity = 0;
+      effect.phase = hazardIndex * 0.9;
+      effect.warning = 1 - Math.min(1, Math.max(0, wreck.timer) / 2.15);
+      this.activeGalacticHazards.push(effect);
+      hazardIndex += 1;
     }
 
     this.galacticEffects.setState({
@@ -3919,6 +4002,7 @@ export class GameApp {
       // Diagnostic only: wreck the local player as a fatal impact would, so the
       // recovery camera can be captured in a real race. Solo races only.
       debugWreckPlayer: () => this.room.lobby.role === 'solo' && this.race.forceWreck(this.localRacerId()),
+      debugWreckRacer: (racerId) => this.room.lobby.role === 'solo' && this.race.forceWreck(racerId),
     };
     window.__PODRACING__ = api;
     void Promise.all([this.inkstormWorld.ready,this.sky.ready]).then(() => { if (!this.disposed) api.ready = this.inkstormWorld.loaded; });
@@ -4103,6 +4187,7 @@ export class GameApp {
         takedowns: galactic?.takedowns ?? 0,
         projectiles: this.race.state.galacticWorld.projectiles.length,
         mines: this.race.state.galacticWorld.mines.length,
+        debris: this.race.state.galacticWorld.debris?.length ?? 0,
         activeHazards: this.race.state.galacticWorld.hazards.length,
         upgrades: galactic?.upgrades ?? null,
         audio: {

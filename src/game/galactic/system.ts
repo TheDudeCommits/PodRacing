@@ -32,6 +32,14 @@ export const LANCE_STARTING_CHARGES = 6;
 /** Below this many cells the rack trickles one cell back every LANCE_CELL_REGEN_SECONDS, so the lance never dies for a whole race. */
 export const LANCE_CELL_REGEN_FLOOR = 3;
 export const LANCE_CELL_REGEN_SECONDS = 6;
+/** Wreck debris: pieces per wreck, seconds on the course, contact radius and a world cap. */
+export const DEBRIS_PIECES_PER_WRECK = 4;
+export const DEBRIS_LIFETIME = 7;
+export const DEBRIS_RADIUS = 2.4;
+export const DEBRIS_CAPACITY = 24;
+/** Hull reach added to the debris radius for contact; a pod is wider than its origin. */
+export const DEBRIS_HULL_REACH = 4.2;
+export const DEBRIS_DAMAGE = 0.05;
 /** Lance speed relative to the shooter: slow enough that leading a target is a skill. */
 export const LANCE_SPEED = 150;
 export const LANCE_LIFETIME = 1.6;
@@ -158,6 +166,7 @@ export function createGalacticWorldState(seed = DEFAULT_WORLD_SEED): GalacticWor
     mineSequence: 0,
     projectiles: [],
     mines: [],
+    debris: [],
     hazards: [
       makeHazard('geyser-launch', 'sand-geyser', 0.145, -3, 0.006, 15),
       makeHazard('vent-canyon', 'heat-vent', 0.438, 4, 0.007, 13),
@@ -811,6 +820,39 @@ export function stepGalacticWorld(
     }
   }
 
+  const debris = world.debris ??= [];
+  for (let index = debris.length - 1; index >= 0; index -= 1) {
+    const piece = debris[index];
+    if (!piece) continue;
+    piece.remaining -= safeDelta;
+    if (piece.remaining <= 0) { debris.splice(index, 1); continue; }
+    let target: GalacticRacerSnapshot | null = null;
+    let targetDistance = Number.POSITIVE_INFINITY;
+    for (const racer of racers) {
+      if (racer.finished || racer.galactic.wreck.phase !== 'running') continue;
+      const distance = Math.hypot(racer.x - piece.position.x, racer.z - piece.position.z);
+      if (distance > piece.radius + DEBRIS_HULL_REACH) continue;
+      if (distance < targetDistance || (distance === targetDistance && target && racer.id.localeCompare(target.id) < 0)) {
+        target = racer;
+        targetDistance = distance;
+      }
+    }
+    if (!target) continue;
+    const dx = target.x - piece.position.x;
+    const dz = target.z - piece.position.z;
+    const length = Math.max(1, Math.hypot(dx, dz));
+    impacts.push({
+      targetId: target.id, sourceId: piece.ownerId === target.id ? null : piece.ownerId, cause: 'hazard', weapon: null,
+      damage: DEBRIS_DAMAGE, heat: 0.02,
+      impulseX: dx / length * 6, impulseY: 2.5, impulseZ: dz / length * 6,
+      status: 'rockfallStun', statusDuration: 0.22,
+      hazardId: piece.id, hazardKind: null,
+      hitX: piece.position.x, hitY: piece.position.y, hitZ: piece.position.z,
+    });
+    events.push({ type: 'debris-hit', racerId: target.id, ownerId: piece.ownerId, debrisId: piece.id });
+    debris.splice(index, 1);
+  }
+
   for (const hazard of world.hazards) {
     for (const racerId in hazard.cooldowns) {
       const remaining = Math.max(0, (hazard.cooldowns[racerId] ?? 0) - safeDelta);
@@ -948,7 +990,31 @@ export function beginGalacticWreck(
   vehicle.angularVelocity.yaw = clamp(vehicle.angularVelocity.yaw + 1.7, -2.5, 2.5);
   vehicle.angularVelocity.roll = clamp(vehicle.angularVelocity.roll - 1.5, -3.5, 3.5);
   if (isPlayer) world.runTokens = Math.max(0, world.runTokens - 1);
+  // Parts come off and lie on the course for a few seconds. Everyone must
+  // avoid them; the spread is deterministic per racer and crash count.
+  const debris = world.debris ??= [];
+  const seed = (hashString(racerId) + state.wreck.crashCount * 0x9e3779b1) >>> 0;
+  const forwardX = Math.sin(vehicle.orientation.yaw), forwardZ = Math.cos(vehicle.orientation.yaw);
+  for (let piece = 0; piece < DEBRIS_PIECES_PER_WRECK; piece += 1) {
+    const angle = ((seed >>> (piece * 5)) & 31) / 32 * Math.PI * 2;
+    const reach = 5 + (((seed >>> (piece * 3 + 7)) & 15) / 16) * 9;
+    const ahead = 10 + piece * 6;
+    debris.push({
+      id: `debris-${racerId}-${state.wreck.crashCount}-${piece}`,
+      ownerId: racerId,
+      position: {
+        x: vehicle.position.x + forwardX * ahead + Math.cos(angle) * reach,
+        y: vehicle.position.y,
+        z: vehicle.position.z + forwardZ * ahead + Math.sin(angle) * reach,
+      },
+      remaining: DEBRIS_LIFETIME,
+      radius: DEBRIS_RADIUS,
+    });
+  }
+  if (debris.length > DEBRIS_CAPACITY) debris.splice(0, debris.length - DEBRIS_CAPACITY);
   const events: GalacticEvent[] = [{
+    type: 'debris-spawned', racerId, count: DEBRIS_PIECES_PER_WRECK,
+  }, {
     type: 'wreck', racerId, cause, sourceId, takedownBy: credited,
     runTokens: world.runTokens,
   }, {

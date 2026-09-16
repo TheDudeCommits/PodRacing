@@ -8,7 +8,7 @@ import {
 import type { MenuMusicTransitionSchedule } from './menuMusic';
 import {
   DEFAULT_ENGINE_VOICE_ID, RECORDED_CUES, RECORDED_CUE_ROLES, RECORDED_EFFECT_URLS,
-  RECORDED_ENGINE_VOICES, RECORDED_ENGINE_VOICE_URLS, RECORDED_LOOPS, RECORDED_MUSIC_URL, RECORDED_RACE_MUSIC,
+  RECORDED_ENGINE_VOICES, RECORDED_ENGINE_VOICE_URLS, RECORDED_LOOPS, RECORDED_MUSIC_URL, RECORDED_RACE_MUSIC, RECORDED_VOICE_LINE_URLS,
 } from './catalogue';
 import type {
   AudioEventLike,
@@ -120,6 +120,9 @@ export class PodracerAudio {
   private menuMusicPlayback: MenuMusicPlayback | null = null;
   private menuIntroBuffer: AudioBuffer | null = null;
   private raceMusicPlayback: RaceMusicPlayback | null = null;
+  private raceMusicIntense = false;
+  private voiceLinePlayback: OvertakeCalloutPlayback | null = null;
+  private lastVoiceLineAt = Number.NEGATIVE_INFINITY;
   private raceMusicGeneration = 0;
   private raceMusicRotation = 0;
   private overtakeCalloutPlayback: OvertakeCalloutPlayback | null = null;
@@ -313,6 +316,9 @@ export class PodracerAudio {
       this.graph.engineBus.gain.setValueAtTime(this.engineBusGain(), this.context.currentTime);
     }
     this.menuMusicMode = this.menuMusicUrl ? 'race' : 'off';
+    this.raceMusicIntense = false;
+    // Voice lines are short; decode them before the first beat needs one.
+    for (const url of RECORDED_VOICE_LINE_URLS) void this.loadRecording(url);
     const count = RECORDED_RACE_MUSIC.length;
     if (this.menuMusicMode === 'race' && count > 0) {
       const index = Number.isFinite(track) ? ((Math.floor(track!) % count) + count) % count : this.raceMusicRotation % count;
@@ -549,6 +555,10 @@ export class PodracerAudio {
     if (!context || !graph || context.state !== 'running' || this.paused || this.hidden || this.disposed) return;
     const intensity = Math.min(1, Math.max(0, finite(cue.intensity, 0)));
     if (intensity <= 0) return;
+    if (cue.kind === 'voice') {
+      if (cue.voice) this.playVoiceLine(cue.voice, intensity);
+      return;
+    }
     const now = context.currentTime;
     const choices = RECORDED_CUES[cue.kind];
     if (choices.length === 0) return;
@@ -584,6 +594,66 @@ export class PodracerAudio {
     source.stop(start + duration + 0.005);
   }
 
+  /**
+   * Speaks one sourced voice line through the callout bus with the same
+   * engine/music ducking as the overtake callout. Lines never overlap, never
+   * pitch-shift, and keep a short gap so a burst of beats stays legible.
+   */
+  playVoiceLine(url: string, intensity = 1): boolean {
+    const context = this.context, graph = this.graph;
+    if (this.disposed || this.paused || this.hidden || !context || context.state !== 'running' || !graph) return false;
+    const buffer = this.recordings.get(url);
+    if (!buffer) {
+      void this.loadRecording(url);
+      return false;
+    }
+    const now = context.currentTime;
+    if (this.voiceLinePlayback && now < this.voiceLinePlayback.endsAt) return false;
+    if (this.overtakeCalloutPlayback && now < this.overtakeCalloutPlayback.endsAt) return false;
+    if (now - this.lastVoiceLineAt < 1.6) return false;
+    const start = now + 0.015;
+    const source = context.createBufferSource();
+    source.buffer = buffer;
+    const gain = context.createGain();
+    gain.gain.value = 0.92 * Math.min(1, Math.max(0.2, finite(intensity, 1)));
+    source.connect(gain).connect(graph.calloutBus);
+    const playback: OvertakeCalloutPlayback = { source, gain, startedAt: start, endsAt: start + buffer.duration };
+    source.addEventListener('ended', () => {
+      if (this.voiceLinePlayback !== playback) return;
+      this.disconnectOvertakeCallout(playback);
+      this.voiceLinePlayback = null;
+    }, { once: true });
+    source.start(start);
+    this.voiceLinePlayback = playback;
+    this.lastVoiceLineAt = now;
+    this.scheduleOvertakeDucking(start, buffer.duration);
+    return true;
+  }
+
+  /** Final-lap lift: the race score runs a touch faster and a little louder until the race ends. */
+  setRaceMusicIntensity(intense: boolean, fadeSeconds = 0.8): void {
+    if (this.disposed || this.raceMusicIntense === intense) return;
+    this.raceMusicIntense = intense;
+    this.applyRaceMusicIntensity(fadeSeconds);
+  }
+
+  get raceMusicIntensity(): boolean { return this.raceMusicIntense; }
+
+  private applyRaceMusicIntensity(fadeSeconds: number): void {
+    const playback = this.raceMusicPlayback, context = this.context;
+    if (!playback || !context || context.state === 'closed') return;
+    const now = context.currentTime;
+    const fade = Math.max(0.05, finite(fadeSeconds, 0.8));
+    const rate = this.raceMusicIntense ? 1.05 : 1;
+    playback.source.playbackRate.cancelScheduledValues(now);
+    playback.source.playbackRate.setValueAtTime(playback.source.playbackRate.value, now);
+    playback.source.playbackRate.linearRampToValueAtTime(rate, now + fade);
+    const level = RACE_SCORE_GAIN * (this.raceMusicIntense ? 1.22 : 1);
+    playback.group.gain.cancelScheduledValues(now);
+    playback.group.gain.setValueAtTime(playback.group.gain.value, now);
+    playback.group.gain.linearRampToValueAtTime(level, now + fade);
+  }
+
   private releaseEffect(source: AudioBufferSourceNode, stop: boolean): void {
     const effect = this.effects.get(source);
     if (!effect) return;
@@ -598,6 +668,9 @@ export class PodracerAudio {
     const callout = this.overtakeCalloutPlayback;
     this.overtakeCalloutPlayback = null;
     if (callout) this.haltOvertakeCallout(callout);
+    const voiceLine = this.voiceLinePlayback;
+    this.voiceLinePlayback = null;
+    if (voiceLine) this.haltOvertakeCallout(voiceLine);
   }
 
   private silenceVehicleAudio(): void {
@@ -704,6 +777,9 @@ export class PodracerAudio {
     this.raceMusicPlayback = null;
     this.raceMusicGeneration += 1;
     if (racePlayback) this.haltRaceMusic(racePlayback);
+    const voiceLine = this.voiceLinePlayback;
+    this.voiceLinePlayback = null;
+    if (voiceLine) this.haltOvertakeCallout(voiceLine);
     const calloutPlayback = this.overtakeCalloutPlayback;
     this.context = null;
     this.graph = null;

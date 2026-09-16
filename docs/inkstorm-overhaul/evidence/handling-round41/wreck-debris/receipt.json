@@ -1,0 +1,36 @@
+{
+  "target": {
+    "id": "player"
+  },
+  "frames": [
+    {
+      "name": "02-wreck-debris",
+      "phase": "wrecked",
+      "timer": 2.0000000000000004,
+      "debris": null,
+      "hud": null
+    },
+    {
+      "name": "03-mid-wreck-shadow",
+      "phase": "wrecked",
+      "timer": 1.000000000000004,
+      "debris": null,
+      "hud": null
+    },
+    {
+      "name": "04-drop-in",
+      "phase": "recovering",
+      "timer": 0,
+      "debris": null,
+      "hud": null
+    },
+    {
+      "name": "05-after-respawn",
+      "phase": "recovering",
+      "timer": 0,
+      "debris": null,
+      "hud": null
+    }
+  ],
+  "errors": []
+}

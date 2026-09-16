@@ -1,15 +1,15 @@
 import { describe, expect, it } from 'vitest';
-import { RECORDED_CUES, RECORDED_CUE_ROLES, RECORDED_EFFECT_URLS, RECORDED_MUSIC_URL, RECORDED_RACE_MUSIC, RECORDED_RACE_MUSIC_URLS } from '../../src/audio/catalogue';
+import { RECORDED_CUES, RECORDED_CUE_ROLES, RECORDED_EFFECT_URLS, RECORDED_MUSIC_URL, RECORDED_RACE_MUSIC, RECORDED_RACE_MUSIC_URLS, RECORDED_VOICE_LINES, RECORDED_VOICE_LINE_URLS } from '../../src/audio/catalogue';
 const fsModule: string = 'node:fs', cryptoModule: string = 'node:crypto';
 const { readFileSync } = await import(/* @vite-ignore */ fsModule);
 const { createHash } = await import(/* @vite-ignore */ cryptoModule);
 
 describe('downloaded recording admission', () => {
   it('ships every playback URL with exact source-operation and runtime hash provenance', () => {
-    const ledger = ['audio-salt-dusk', 'audio-salt-dusk-v2', 'audio-race-set'].flatMap(folder => JSON.parse(readFileSync(`assets/source/${folder}/runtime-files.json`, 'utf8'))) as Array<{
+    const ledger = ['audio-salt-dusk', 'audio-salt-dusk-v2', 'audio-race-set', 'audio-voice-fighter'].flatMap(folder => JSON.parse(readFileSync(`assets/source/${folder}/runtime-files.json`, 'utf8'))) as Array<{
       source: string; runtime: string; operation: string | string[]; sha256: string;
     }>;
-    const urls = [...RECORDED_EFFECT_URLS, RECORDED_MUSIC_URL, ...RECORDED_RACE_MUSIC_URLS];
+    const urls = [...RECORDED_EFFECT_URLS, RECORDED_MUSIC_URL, ...RECORDED_RACE_MUSIC_URLS, ...RECORDED_VOICE_LINE_URLS];
     for (const url of urls) {
       const item = ledger.find(file => file.runtime === `public${url}`);
       expect(item, url).toBeDefined();
@@ -18,7 +18,7 @@ describe('downloaded recording admission', () => {
       expect(readFileSync(item!.source).length).toBeGreaterThan(0);
       if (item!.operation === 'byte-exact copy') expect(bytes.equals(readFileSync(item!.source))).toBe(true);
     }
-    expect(Object.keys(RECORDED_CUES)).toHaveLength(24);
+    expect(Object.keys(RECORDED_CUES)).toHaveLength(25);
     const credits = readFileSync('public/audio/salt-dusk-v2/CREDITS.html', 'utf8');
     for (const author of ['Scott Buckley', 'Little Robot Sound Factory', 'qubodup', 'dklon', '7of9Designs', 'Michel Baradari']) expect(credits).toContain(author);
     for (const url of RECORDED_EFFECT_URLS) expect(url).toContain('/salt-dusk-v2/');
@@ -31,6 +31,13 @@ describe('downloaded recording admission', () => {
       expect(raceCredits).toContain(track.artist);
     }
     expect(raceCredits).toContain('creativecommons.org/licenses/by/4.0/');
+    // Voice lines: five existing CC0 recordings from one pack, credited beside the files.
+    const voiceCredits = readFileSync('public/audio/voice-fighter/CREDITS.html', 'utf8');
+    expect(Object.keys(RECORDED_VOICE_LINES)).toHaveLength(5);
+    for (const url of RECORDED_VOICE_LINE_URLS) expect(url).toContain('/voice-fighter/');
+    expect(voiceCredits).toContain('Kenney');
+    expect(voiceCredits).toContain('creativecommons.org/publicdomain/zero/1.0/');
+    expect(readFileSync('assets/source/audio-voice-fighter/License.txt', 'utf8')).toContain('Creative Commons Zero');
     expect(RECORDED_EFFECT_URLS).toHaveLength(8);
     for (const url of Object.values(RECORDED_CUES).flat()) expect(RECORDED_CUE_ROLES[url]).toBeDefined();
   });

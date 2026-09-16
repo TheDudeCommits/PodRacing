@@ -38,6 +38,7 @@ export function createRacerDraftingState(): RacerDraftingState {
     charge: 0,
     slingshotRemaining: 0,
     cooldownRemaining: 0,
+    catchUp: 0,
   };
 }
 
@@ -161,11 +162,18 @@ interface WakeCandidate {
   strength: number;
 }
 
+/** Wake reach in metres; a racer far behind the leader feels the tow from further back. */
+export function wakeReach(catchUp: number): number {
+  return 70 + clamp(catchUp, 0, 1) * 50;
+}
+
 function wakeCandidateFor(
   follower: RaceEntryState,
   entries: readonly RaceEntryState[],
+  catchUp = 0,
 ): WakeCandidate | null {
   let best: WakeCandidate | null = null;
+  const reach = wakeReach(catchUp);
   for (const leader of entries) {
     if (leader.id === follower.id || leader.status === 'finished') continue;
     if (leader.vehicle.telemetry.speed < 42) continue;
@@ -177,10 +185,10 @@ function wakeCandidateFor(
     const dz = follower.vehicle.position.z - leader.vehicle.position.z;
     const behind = -(dx * forwardX + dz * forwardZ);
     const lateral = Math.abs(dx * rightX + dz * rightZ);
-    if (behind < 8 || behind > 70 || lateral > 11) continue;
+    if (behind < 8 || behind > reach || lateral > 11) continue;
     const alignment = Math.max(0, Math.cos(follower.vehicle.orientation.yaw - leader.vehicle.orientation.yaw));
     const strength = clamp(
-      (1 - (behind - 8) / 62)
+      (1 - (behind - 8) / (reach - 8))
       * (1 - lateral / 11)
       * clamp(leader.vehicle.telemetry.speed / 80, 0, 1)
       * alignment,
@@ -192,10 +200,16 @@ function wakeCandidateFor(
   return best;
 }
 
-/** Mutates only serialized wake state and vehicle velocity, returning semantic cues. */
+/**
+ * Mutates only serialized wake state and vehicle velocity, returning semantic cues.
+ * `catchUpFor` (0..1) is the race layer's distance-behind-the-leader factor: it
+ * lengthens the wake, charges the slingshot faster and adds a real tow, so a
+ * pack stays tight through the draft itself instead of a speed cap on the leader.
+ */
 export function stepDraftingField(
   entries: readonly RaceEntryState[],
   delta: number,
+  catchUpFor?: (entry: RaceEntryState) => number,
 ): RaceEvent[] {
   const events: RaceEvent[] = [];
   for (const entry of entries) {
@@ -203,7 +217,9 @@ export function stepDraftingField(
     if (!state || entry.status === 'finished') continue;
     state.cooldownRemaining = Math.max(0, state.cooldownRemaining - delta);
     state.slingshotRemaining = Math.max(0, state.slingshotRemaining - delta);
-    const candidate = wakeCandidateFor(entry, entries);
+    const catchUp = clamp(catchUpFor?.(entry) ?? 0, 0, 1);
+    state.catchUp = catchUp;
+    const candidate = wakeCandidateFor(entry, entries, catchUp);
     const previousLeaderId = state.leaderId;
     const nextLeaderId = candidate?.leader.id ?? null;
 
@@ -221,8 +237,9 @@ export function stepDraftingField(
         state.cooldownRemaining = 1.2;
         const forwardX = Math.sin(entry.vehicle.orientation.yaw);
         const forwardZ = Math.cos(entry.vehicle.orientation.yaw);
-        entry.vehicle.velocity.x += forwardX * (8 + strength * 17);
-        entry.vehicle.velocity.z += forwardZ * (8 + strength * 17);
+        const kick = (8 + strength * 17) * (1 + catchUp * 0.5);
+        entry.vehicle.velocity.x += forwardX * kick;
+        entry.vehicle.velocity.z += forwardZ * kick;
         events.push({ type: 'slingshot', racerId: entry.id, leaderId: previousLeaderId, strength });
       }
       state.charge = 0;
@@ -235,7 +252,14 @@ export function stepDraftingField(
     state.wakeStrength = candidate?.strength ?? 0;
     state.turbulence += ((candidate?.strength ?? 0) - state.turbulence) * Math.min(1, delta * 8);
     if (candidate) {
-      state.charge = clamp(state.charge + candidate.strength * delta * 0.42, 0, 1);
+      state.charge = clamp(state.charge + candidate.strength * delta * 0.42 * (1 + catchUp * 0.8), 0, 1);
+      // The tow itself: a bounded forward pull while sitting in the wake, stronger
+      // the further behind the leader this racer is. The leader never receives it.
+      const tow = candidate.strength * (4 + catchUp * 12) * delta;
+      const forwardX = Math.sin(entry.vehicle.orientation.yaw);
+      const forwardZ = Math.cos(entry.vehicle.orientation.yaw);
+      entry.vehicle.velocity.x += forwardX * tow;
+      entry.vehicle.velocity.z += forwardZ * tow;
     } else {
       state.charge = Math.max(0, state.charge - delta * 0.18);
     }

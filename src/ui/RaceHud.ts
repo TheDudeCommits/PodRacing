@@ -56,7 +56,7 @@ export interface RaceHudOptions {
 
 /** Presentation events arrive per display frame, independent of the simulation HUD cadence. */
 export interface CombatHudFrame {
-  cue: { kind: 'hit' | 'shield-hit' | 'takedown' | 'wreck' | 'emp' | 'repair'; title: string; detail: string; progress: number } | null;
+  cue: { kind: 'hit' | 'shield-hit' | 'takedown' | 'wreck' | 'emp' | 'repair' | 'revenge'; title: string; detail: string; progress: number } | null;
   cinematic: { active: boolean; progress: number; letterbox: boolean };
 }
 
@@ -96,6 +96,7 @@ export class RaceHud {
   private readonly eventAtlas: RaceEventAtlas;
   private eventAtlasOpen = false;
   private readonly combatFeedback: HTMLElement;
+  private readonly photoFinishBanner: HTMLElement;
   private readonly combatFeedbackTitle: HTMLElement;
   private readonly combatFeedbackDetail: HTMLElement;
   private combatFeedbackKey = '';
@@ -441,6 +442,7 @@ export class RaceHud {
       <div class="pod-hud__countdown" data-hud="countdown" aria-live="assertive" aria-hidden="true"></div>
       <div class="pod-hud__cinematic-matte" aria-hidden="true"></div>
       <section class="pod-hud__combat-feedback" data-hud="combat-feedback" role="status" aria-live="polite" aria-atomic="true" hidden><i aria-hidden="true">✦</i><strong data-hud="combat-feedback-title"></strong><span data-hud="combat-feedback-detail"></span></section>
+      <div class="pod-hud__photo-finish" data-hud="photo-finish" role="status" hidden><strong>PHOTO FINISH</strong></div>
       <section class="pod-hud__driving-feedback" aria-label="Driving feedback">
       <aside class="pod-hud__flight" data-hud="flight" aria-live="polite" aria-hidden="true">
         <span class="pod-hud__flight-state">Airborne</span>
@@ -549,6 +551,7 @@ export class RaceHud {
     mount.append(this.root);
     this.eventAtlas = new RaceEventAtlas(requireElement(this.root, '[data-hud="vehicle-selection"]'));
     this.combatFeedback = requireElement(this.root, '[data-hud="combat-feedback"]');
+    this.photoFinishBanner = requireElement(this.root, '[data-hud="photo-finish"]');
     this.combatFeedbackTitle = requireElement(this.root, '[data-hud="combat-feedback-title"]');
     this.combatFeedbackDetail = requireElement(this.root, '[data-hud="combat-feedback-detail"]');
 
@@ -775,6 +778,13 @@ export class RaceHud {
     if (this.muted === muted) return;
     this.muted = muted;
     this.onMuteChange?.(muted);
+  }
+
+  /** Presentation-only: the slow-motion finish banner while a photo finish is armed. */
+  setPhotoFinish(active: boolean): void {
+    if (this.photoFinishBanner.hidden === !active) return;
+    this.photoFinishBanner.hidden = !active;
+    this.root.classList.toggle('has-photo-finish', active);
   }
 
   updateCombat(frame: CombatHudFrame, localWreckPhase?: HudGalacticWreckPhase | 'running'): void {

@@ -21,6 +21,7 @@ import {
   PlaneGeometry,
   Quaternion,
   RingGeometry,
+  Float32BufferAttribute,
   Sphere,
   TubeGeometry,
   Vector3,
@@ -82,10 +83,10 @@ export interface ScrapMineEffectState {
   readonly armed?: boolean;
   readonly phase?: number;
   readonly scale?: number;
-  readonly variant?: 'mine' | 'pickup' | 'emp' | 'repair';
+  readonly variant?: 'mine' | 'pickup' | 'emp' | 'repair' | 'debris';
 }
 
-export type GalacticHazardKind = 'heat-vent' | 'sand-geyser' | 'rockfall';
+export type GalacticHazardKind = 'heat-vent' | 'sand-geyser' | 'rockfall' | 'respawn';
 
 export interface HazardEffectState {
   readonly kind: GalacticHazardKind;
@@ -203,7 +204,7 @@ interface MineSlot {
   scale: number;
   armed: boolean;
   phase: number;
-  variant: 'mine' | 'pickup' | 'emp' | 'repair';
+  variant: 'mine' | 'pickup' | 'emp' | 'repair' | 'debris';
 }
 
 interface HazardSlot {
@@ -343,8 +344,15 @@ function createShieldGeometry() {
   return shell;
 }
 
+/**
+ * One draw holds two footprints: the warning ring with its perimeter ticks
+ * (part 0) and a filled disc for the respawn shadow (part 1). Each instance
+ * selects a part through `aFootprintShape`; the other part is discarded per
+ * fragment, so the nine-draw budget is unchanged.
+ */
 function createHazardTelegraphGeometry(): BufferGeometry {
   const ring = new RingGeometry(0.963, 1, 64).rotateX(-Math.PI / 2);
+  const disc = new RingGeometry(0.001, 0.985, 48).rotateX(-Math.PI / 2);
   const pieces: BufferGeometry[] = [ring];
   // Small flat perimeter ticks retain the real danger radius without erecting
   // multi-metre cubes when the unit shape is scaled to a wide geyser footprint.
@@ -353,9 +361,16 @@ function createHazardTelegraphGeometry(): BufferGeometry {
     pieces.push(new BoxGeometry(0.022, 0.001, 0.082)
       .translate(0, 0, 1.035).rotateY(angle));
   }
+  pieces.push(disc);
+  for (const piece of pieces) {
+    const count = piece.getAttribute('position').count;
+    piece.setAttribute('aPart', new Float32BufferAttribute(new Float32Array(count).fill(piece === disc ? 1 : 0), 1));
+  }
   const geometry = mergeGeometries(pieces, false);
   for (const piece of pieces) piece.dispose();
   if (!geometry) throw new Error('Unable to build hazard footprint.');
+  geometry.setAttribute('aFootprintShape', new InstancedBufferAttribute(
+    new Float32Array(GALACTIC_EFFECT_CAPACITY.hazardTelegraphs), 1).setUsage(DynamicDrawUsage));
   return geometry;
 }
 
@@ -639,8 +654,12 @@ function createHazardGroundMaterial(uniforms: CourseGulfUniforms): MeshBasicMate
   const result = material(.62);
   result.onBeforeCompile = shader => {
     Object.assign(shader.uniforms, uniforms);
-    shader.vertexShader = shader.vertexShader.replace('#include <common>', `#include <common>\n${TERRAIN_GLSL}`)
+    shader.fragmentShader = shader.fragmentShader
+      .replace('#include <common>', '#include <common>\nvarying float vFootprintDrop;')
+      .replace('#include <clipping_planes_fragment>', '#include <clipping_planes_fragment>\nif (vFootprintDrop > .5) discard;');
+    shader.vertexShader = shader.vertexShader.replace('#include <common>', `#include <common>\n${TERRAIN_GLSL}\nattribute float aPart;\nattribute float aFootprintShape;\nvarying float vFootprintDrop;`)
       .replace('#include <project_vertex>', `
+        vFootprintDrop=abs(aPart-aFootprintShape);
         vec4 groundPoint=vec4(transformed,1.);
         #ifdef USE_INSTANCING
         groundPoint=instanceMatrix*groundPoint;
@@ -652,7 +671,7 @@ function createHazardGroundMaterial(uniforms: CourseGulfUniforms): MeshBasicMate
         gl_Position=projectionMatrix*mvPosition;
       `);
   };
-  result.customProgramCacheKey = () => 'Inkstorm-terrain-bound-hazard-paint-v1';
+  result.customProgramCacheKey = () => 'Inkstorm-terrain-bound-hazard-paint-v2';
   return result;
 }
 
@@ -962,7 +981,7 @@ export class GalacticEffectsView extends Group {
       slot.scale = positive(state.scale, 1);
       slot.armed = state.armed === true;
       slot.phase = finite(state.phase, 0);
-      slot.variant = state.variant === 'pickup' || state.variant === 'emp' || state.variant === 'repair'
+      slot.variant = state.variant === 'pickup' || state.variant === 'emp' || state.variant === 'repair' || state.variant === 'debris'
         ? state.variant : 'mine';
     }
   }
@@ -1746,6 +1765,19 @@ export class GalacticEffectsView extends Group {
     for (let index = 0; index < this.mineCount; index += 1) {
       const slot = this.mineSlots[index];
       if (!slot) continue;
+      if (slot.variant === 'debris') {
+        // A shed engine part: a dark tumbled chunk with a fading ember, sitting
+        // on the ground where the wreck threw it.
+        this.euler.set(slot.phase * 1.3, slot.yaw + Math.sin(time * 0.6 + slot.phase) * 0.15, 0.55 + Math.sin(slot.phase) * 0.3);
+        this.tempQuaternion.setFromEuler(this.euler);
+        const scale = slot.scale;
+        if (!this.isVisible(slot.x, slot.y, slot.z, scale * 2.2, EFFECT_VISIBILITY_DISTANCE.mines)) continue;
+        const ember = 0.5 + Math.sin(time * 9 + slot.phase) * 0.5;
+        this.writeInstance(this.scrapMines, visibleCount, slot.x, slot.y, slot.z, this.tempQuaternion,
+          scale * 1.4, scale * 0.9, scale * 1.1, 0.30 + ember * 0.28, 0.13 + ember * 0.08, 0.09);
+        visibleCount += 1;
+        continue;
+      }
       const pickup = slot.variant !== 'mine';
       const emp = slot.variant === 'emp';
       const repair = slot.variant === 'repair';
@@ -1777,11 +1809,30 @@ export class GalacticEffectsView extends Group {
   private updateHazards(time: number): void {
     let visibleCount = 0;
     let bodyCount = 0;
+    const shape = this.hazardTelegraphs.geometry.getAttribute('aFootprintShape') as InstancedBufferAttribute;
     this.plumeCount = 0;
     for (let index = 0; index < this.hazardCount; index += 1) {
       const slot = this.hazardSlots[index];
       if (!slot) continue;
       const pulse = 1 + Math.sin(time * 5 + slot.phase) * 0.1;
+      if (slot.kind === 'respawn') {
+        // The drop-in shadow: a dark disc on the respawn point that deepens as
+        // the wrecked craft's return approaches. No plume, no body.
+        if (!this.isVisible(slot.x, slot.y, slot.z, slot.radius * 1.3, EFFECT_VISIBILITY_DISTANCE.hazards)) continue;
+        const approach = MathUtils.clamp(slot.warning, 0, 1);
+        const shadow = slot.radius * (0.55 + approach * 0.45) * (1 + Math.sin(time * 6 + slot.phase) * 0.03);
+        if (visibleCount + 1 >= GALACTIC_EFFECT_CAPACITY.hazardTelegraphs) continue;
+        this.writeInstance(this.hazardTelegraphs, visibleCount, slot.x, slot.y + 0.2, slot.z, IDENTITY,
+          shadow, shadow, shadow, 0.09 - approach * 0.06, 0.06 - approach * 0.04, 0.12 - approach * 0.08);
+        shape.setX(visibleCount, 1);
+        visibleCount += 1;
+        // A thin outline at the full drop-in radius stays crisp at the edge of the disc.
+        this.writeInstance(this.hazardTelegraphs, visibleCount, slot.x, slot.y + 0.26, slot.z, IDENTITY,
+          slot.radius, slot.radius, slot.radius, 0.32, 0.2, 0.34);
+        shape.setX(visibleCount, 0);
+        visibleCount += 1;
+        continue;
+      }
       // Never animate the footprint smaller than its collision envelope.
       const warningRadius = slot.radius;
       const bodyRadius = slot.radius * (0.32 + slot.intensity * 0.38) * pulse;
@@ -1810,6 +1861,7 @@ export class GalacticEffectsView extends Group {
       }
       this.writeInstance(this.hazardTelegraphs, visibleCount, slot.x, slot.y + 0.26, slot.z, IDENTITY,
         warningRadius, warningRadius, warningRadius, r, g * (0.45 + slot.warning * 0.55), b);
+      shape.setX(visibleCount, 0);
       const fallingRock = slot.kind === 'rockfall';
       if (!fallingRock) {
         // The full warning footprint remains stable while three staggered
@@ -1863,6 +1915,7 @@ export class GalacticEffectsView extends Group {
       }
       visibleCount += 1;
     }
+    shape.needsUpdate = true;
     this.dirty(this.hazardTelegraphs, visibleCount);
     this.dirty(this.hazardBodies, bodyCount);
   }

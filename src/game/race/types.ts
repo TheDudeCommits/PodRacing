@@ -239,6 +239,8 @@ export interface RacerDraftingState {
   charge: number;
   slingshotRemaining: number;
   cooldownRemaining: number;
+  /** 0..1 catch-up factor from distance behind the race leader; lengthens and strengthens the wake. */
+  catchUp: number;
 }
 
 export type RacerFinishReason =

@@ -541,10 +541,10 @@ export class RaceSimulation {
         playerEntry,
         this.state.raceTime,
       ));
-      events.push(...stepDraftingField(entries, delta));
+      events.push(...stepDraftingField(entries, delta, this.draftCatchUpFactor));
     }
     if (this.state.phase === 'racing' && this.competitionProfile === 'clean-race') {
-      events.push(...stepDraftingField(entries, delta));
+      events.push(...stepDraftingField(entries, delta, this.draftCatchUpFactor));
     }
     const vehicleConfigs = entries.map((entry) => this.vehicleConfigFor(entry));
     const collisionImpulses = this.state.phase === 'racing'
@@ -638,6 +638,16 @@ export class RaceSimulation {
         impact.sourceId,
         target.isPlayer,
       ));
+    }
+    // A grudge settled: wrecking the racer who wrecked you ends the rivalry with a beat.
+    for (const event of galacticEvents) {
+      if (event.type !== 'takedown') continue;
+      const attacker = this.entriesById.get(event.attackerId);
+      const rivalry = attacker?.galactic?.rivalry;
+      if (!rivalry || rivalry.rivalId !== event.victimId || rivalry.remaining <= 0) continue;
+      rivalry.rivalId = null;
+      rivalry.remaining = 0;
+      galacticEvents.push({ type: 'rivalry-settled', racerId: event.attackerId, rivalId: event.victimId });
     }
     for (const claim of worldResult.pickupClaims) {
       const collector = this.entriesById.get(claim.racerId);
@@ -879,6 +889,7 @@ export class RaceSimulation {
       const vehicleResult = stepPodracer(entry.vehicle, input, {
         terrain: this.terrain,
         collisions: collisionImpulses[entryIndex],
+        draftStrength: entry.drafting?.wakeStrength ?? 0,
       }, config);
       vehicleEvents[entry.id] = vehicleResult.events;
 
@@ -955,7 +966,7 @@ export class RaceSimulation {
       }
       this.stepModeRules(events, galacticEvents, delta);
       this.updateStandings();
-      this.appendOvertakeEvents(previousPlacements, events);
+      this.appendOvertakeEvents(previousPlacements, events, galacticEvents);
       for (const entry of newlyFinished) {
         events.push({
           type: 'finish',
@@ -1175,14 +1186,34 @@ export class RaceSimulation {
   /** Mines other racers dropped; the AI corridor logic steers around them. */
   private aiPointHazardsFor(racerId: string): readonly { x: number; z: number; radius: number }[] {
     const mines = this.state.galacticWorld.mines;
-    if (mines.length === 0) return [];
+    const debris = this.state.galacticWorld.debris ?? [];
+    if (mines.length === 0 && debris.length === 0) return [];
     const hazards: { x: number; z: number; radius: number }[] = [];
     for (const mine of mines) {
       if (mine.ownerId === racerId) continue;
       hazards.push({ x: mine.position.x, z: mine.position.z, radius: mine.triggerRadius + 1.5 });
     }
+    // Wreck debris is avoided by everyone, including the racer who shed it.
+    for (const piece of debris) hazards.push({ x: piece.position.x, z: piece.position.z, radius: piece.radius + 4 });
     return hazards;
   }
+
+  /**
+   * Catch-up factor (0..1) from distance behind the race leader: zero for the
+   * leader and anyone within 60 m, one at 420 m or more. Only the drafting
+   * field reads it, so the leader keeps every metre they earn on open road.
+   */
+  private readonly draftCatchUpFactor = (entry: RaceEntryState): number => {
+    if (entry.progress.placement === 1) return 0;
+    let leader: RaceEntryState | null = null;
+    for (const candidate of this.state.entries) {
+      if (candidate.status === 'finished') continue;
+      if (!leader || candidate.progress.unwrappedProgress > leader.progress.unwrappedProgress) leader = candidate;
+    }
+    if (!leader || leader.id === entry.id) return 0;
+    const behind = (leader.progress.unwrappedProgress - entry.progress.unwrappedProgress) * this.course.totalLength;
+    return Math.min(1, Math.max(0, (behind - 60) / 360));
+  };
 
   /** Restores the exact pre-workshop tune while the lobby remains open. */
   clearRacerWorkshopLoadout(racerId: string): boolean {
@@ -2245,6 +2276,7 @@ export class RaceSimulation {
   private appendOvertakeEvents(
     previousPlacements: ReadonlyMap<string, number>,
     events: RaceEvent[],
+    galacticEvents: GalacticEvent[],
   ): void {
     if (previousPlacements.size !== this.state.entries.length) return;
     for (const racer of this.state.entries) {
@@ -2266,6 +2298,10 @@ export class RaceSimulation {
             fromPosition,
             toPosition,
           });
+          const rivalry = racer.galactic?.rivalry;
+          if (rivalry && rivalry.rivalId === passed.id && rivalry.remaining > 0) {
+            galacticEvents.push({ type: 'revenge-pass', racerId: racer.id, rivalId: passed.id, fromPosition, toPosition });
+          }
         }
       }
     }

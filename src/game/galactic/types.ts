@@ -289,6 +289,15 @@ export interface ScrapMineState {
   damage: number;
 }
 
+/** A piece of a wrecked pod lying on the course for a few seconds. Contact kicks it away. */
+export interface GalacticDebrisState {
+  id: string;
+  ownerId: string;
+  position: Vec3State;
+  remaining: number;
+  radius: number;
+}
+
 export interface GalacticHazardState {
   id: string;
   kind: GalacticHazardKind;
@@ -320,6 +329,8 @@ export interface GalacticWorldState {
   mineSequence: number;
   projectiles: HeatLanceProjectileState[];
   mines: ScrapMineState[];
+  /** Wreck debris; absent in snapshots written before it existed. */
+  debris?: GalacticDebrisState[];
   hazards: GalacticHazardState[];
   pickups: GalacticUpgradePickupState[];
   runTokens: number;
@@ -443,6 +454,11 @@ export type GalacticEvent =
   | { type: 'target-lock'; racerId: string; targetId: string | null }
   | { type: 'lance-cells-collected'; racerId: string; pickupId: string; charges: number }
   | { type: 'lance-cell-regenerated'; racerId: string; charges: number }
+  | { type: 'debris-hit'; racerId: string; ownerId: string; debrisId: string }
+  | { type: 'debris-spawned'; racerId: string; count: number }
+  | { type: 'rivalry-settled'; racerId: string; rivalId: string }
+  /** The passed racer is the one who wrecked this racer while the grudge lasts. */
+  | { type: 'revenge-pass'; racerId: string; rivalId: string; fromPosition: number; toPosition: number }
   | { type: 'rivalry-marked'; racerId: string; rivalId: string; duration: number }
   | {
       type: 'weapon-hit';

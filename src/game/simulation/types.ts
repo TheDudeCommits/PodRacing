@@ -71,6 +71,8 @@ export interface PodracerBoostState {
   active: boolean;
   driftBoostTime: number;
   overheated: boolean;
+  /** Seconds left of the post-overheat handling penalty. */
+  overheatHandlingTimer: number;
 }
 
 export interface PodracerControlMemoryState {
@@ -139,6 +141,8 @@ export interface CollisionImpulse {
 export interface PodracerStepContext {
   terrain: HeightSampler;
   collisions?: readonly CollisionImpulse[];
+  /** Wake strength (0..1) from the race layer's drafting field; charges the boost meter faster. */
+  draftStrength?: number;
 }
 
 export type CameraShakeReason = 'landing' | 'collision' | 'boost' | 'overheat';
@@ -155,6 +159,12 @@ export type PodracerEvent =
       intensity: number;
       airTime: number;
       verticalSpeed: number;
+    }
+  | {
+      /** A clean landing after a real jump refunds boost energy. */
+      type: 'boost-refund';
+      amount: number;
+      energy: number;
     }
   | {
       type: 'camera-shake';

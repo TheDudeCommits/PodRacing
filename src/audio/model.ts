@@ -1,3 +1,4 @@
+import { RECORDED_VOICE_LINES, type RecordedVoiceLineId } from './catalogue';
 import type {
   AudioEnvelopePoint,
   AudioEnvelopeProfile,
@@ -137,6 +138,7 @@ const ENVELOPES: Readonly<Record<PodracerAudioCueKind, AudioEnvelopeProfile>> = 
   recovery: { attack: 0.01, decay: 0.11, sustain: 0.48, release: 0.38, peak: 0.38 },
   upgrade: { attack: 0.003, decay: 0.09, sustain: 0.45, release: 0.3, peak: 0.38 },
   vehicle: { attack: 0.004, decay: 0.08, sustain: 0.36, release: 0.22, peak: 0.31 },
+  voice: { attack: 0.004, decay: 0.08, sustain: 0.36, release: 0.22, peak: 0.31 },
 });
 
 export function getAudioEnvelope(kind: PodracerAudioCueKind): AudioEnvelopeProfile {
@@ -194,6 +196,8 @@ function combatEventBelongsToPlayer(event: AudioEventLike, playerId: string | un
   );
 }
 
+/** A sourced voice line; the audio owner speaks it through the callout bus. */
+const voice = (line: RecordedVoiceLineId): PodracerAudioCue => ({ kind: 'voice', intensity: 1, voice: RECORDED_VOICE_LINES[line] });
 function cue(kind: PodracerAudioCueKind, intensity: number, pitch?: number): PodracerAudioCue {
   return pitch === undefined
     ? { kind, intensity: clampAudioUnit(intensity) }
@@ -238,8 +242,14 @@ function cuesForEvent(event: AudioEventLike, options: AudioEventMapOptions): Pod
       return [cue('horn', 1)];
     case 'checkpoint':
       return ownRacer ? [cue('checkpoint', 0.72, 1 + (eventNumber(event, 'checkpointIndex') % 3) * 0.08)] : [];
-    case 'lap-complete':
-      return ownRacer ? [cue('lap', 0.88, 1 + eventNumber(event, 'lap', 1) * 0.04)] : [];
+    case 'lap-complete': {
+      if (!ownRacer) return [];
+      const lap = eventNumber(event, 'lap', 1);
+      const cues = [cue('lap', 0.88, 1 + lap * 0.04)];
+      // Entering the final lap of a multi-lap race gets its sourced call.
+      if (Number.isFinite(options.totalLaps) && options.totalLaps! > 1 && lap === options.totalLaps! - 1) cues.push(voice('final-lap'));
+      return cues;
+    }
     case 'finish':
       return ownRacer ? [cue('finish', 1, 1.04)] : [];
     case 'wrong-way':
@@ -262,7 +272,11 @@ function cuesForEvent(event: AudioEventLike, options: AudioEventMapOptions): Pod
     case 'lance-cells-collected':
       return ownRacer ? [cue('upgrade', 0.7, 1.12)] : [];
     case 'rivalry-marked':
-      return ownRacer ? [cue('warning', 0.5, 0.9)] : [];
+      return ownRacer ? [cue('warning', 0.5, 0.9), voice('rival-marked')] : [];
+    case 'revenge-pass':
+      return ownRacer ? [cue('boost', 0.45, 1.1), voice('revenge-pass')] : [];
+    case 'rivalry-settled':
+      return ownRacer ? [voice('revenge-settled')] : [];
     case 'weapon-hit': {
       if (!combatEventBelongsToPlayer(event, options.playerId)) return [];
       const damage = eventNumber(event, 'damage', 0.45);

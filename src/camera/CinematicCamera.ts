@@ -128,6 +128,8 @@ export interface CameraSubject {
   wreckRecovery?: boolean;
   /** Post-cut chase keeps the tumbling body outside the lens until recovery. */
   wreckChase?: boolean;
+  /** 0..1 final-straight tension: the chase eye moves in and low and looks further down the road. */
+  finalStraight?: number;
 }
 
 /**
@@ -321,7 +323,8 @@ export class CinematicCamera {
       ? 60
       : this.mode === 'cockpit'
         ? 84
-        : 62 + speedT * 6 * (this.comfort.reducedMotion ? 0 : this.comfort.fovKickIntensity);
+        : 62 + speedT * 6 * (this.comfort.reducedMotion ? 0 : this.comfort.fovKickIntensity)
+          + MathUtils.clamp(subject.finalStraight ?? 0, 0, 1) * 4;
     this.camera.fov = MathUtils.damp(this.camera.fov, targetFov, 4.8, dt);
     this.camera.updateProjectionMatrix();
 
@@ -512,13 +515,14 @@ export class CinematicCamera {
         else this.travelDirection.normalize();
         this.travelDirection.lerp(forward, 0.72).normalize();
         this.travelDirection.lerp(this.framingForward, MathUtils.clamp(subject.junctionWeight??0,0,1)*.85).normalize();
+        const tight = MathUtils.clamp(subject.finalStraight ?? 0, 0, 1);
         position.copy(subject.position)
-          .addScaledVector(this.framingForward, -16.5 - speedT * 0.8 - clearance * .45)
-          .addScaledVector(UP, 7.1 + speedT * 0.5 + clearance + this.landingCompression)
+          .addScaledVector(this.framingForward, -16.5 - speedT * 0.8 - clearance * .45 + tight * 4.5)
+          .addScaledVector(UP, 7.1 + speedT * 0.5 + clearance + this.landingCompression - tight * 1.8)
           .addScaledVector(right, -0.35);
         lookAt.copy(subject.position)
-          .addScaledVector(this.travelDirection, 34 + speedT * 18)
-          .addScaledVector(UP, 5.8);
+          .addScaledVector(this.travelDirection, 34 + speedT * 18 + tight * 14)
+          .addScaledVector(UP, 5.8 - tight * 1.2);
         const route = subject.routeLookAhead;
         if (route && Number.isFinite(route.x) && Number.isFinite(route.y) && Number.isFinite(route.z)) {
           // A bounded bias gives an apex preview without pulling the racer off

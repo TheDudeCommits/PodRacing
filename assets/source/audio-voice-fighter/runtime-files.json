@@ -1,0 +1,72 @@
+[
+  {
+    "source": "assets/source/audio-voice-fighter/loser.ogg",
+    "runtime": "public/audio/voice-fighter/loser.ogg",
+    "operation": [
+      "-af",
+      "volume=-2dB,afade=t=in:d=0.01",
+      "-c:a",
+      "libopus",
+      "-b:a",
+      "64k"
+    ],
+    "sha256": "d670746af4ef5664c75dd11c48e942c9f457e3c593f80cd7fe1c041aa591916d",
+    "bytes": 15030
+  },
+  {
+    "source": "assets/source/audio-voice-fighter/prepare_yourself.ogg",
+    "runtime": "public/audio/voice-fighter/prepare-yourself.ogg",
+    "operation": [
+      "-af",
+      "volume=-2dB,afade=t=in:d=0.01",
+      "-c:a",
+      "libopus",
+      "-b:a",
+      "64k"
+    ],
+    "sha256": "6d7f7b81ec617b9d199a889b3ee278450e496bc8c02d022b8311471253a3801a",
+    "bytes": 16312
+  },
+  {
+    "source": "assets/source/audio-voice-fighter/combo_breaker.ogg",
+    "runtime": "public/audio/voice-fighter/combo-breaker.ogg",
+    "operation": [
+      "-af",
+      "volume=-2dB,afade=t=in:d=0.01",
+      "-c:a",
+      "libopus",
+      "-b:a",
+      "64k"
+    ],
+    "sha256": "5f17fd67d4e43a9ae22c7ad20dbfae6ca2ff06de174bdb84557da5a3b6bf8f6b",
+    "bytes": 15732
+  },
+  {
+    "source": "assets/source/audio-voice-fighter/final_round.ogg",
+    "runtime": "public/audio/voice-fighter/final-round.ogg",
+    "operation": [
+      "-af",
+      "volume=-2dB,afade=t=in:d=0.01",
+      "-c:a",
+      "libopus",
+      "-b:a",
+      "64k"
+    ],
+    "sha256": "d7ad367f806e6ae25e730b0df20517b11300fa1f4c1a1b431538ddfca7aaefea",
+    "bytes": 16810
+  },
+  {
+    "source": "assets/source/audio-voice-fighter/sudden_death.ogg",
+    "runtime": "public/audio/voice-fighter/sudden-death.ogg",
+    "operation": [
+      "-af",
+      "volume=-2dB,afade=t=in:d=0.01",
+      "-c:a",
+      "libopus",
+      "-b:a",
+      "64k"
+    ],
+    "sha256": "c5bb026ebb8340b8dcdbd0c4a6f13cc56879b22cf81d203c18f13b77c6ebb23b",
+    "bytes": 14715
+  }
+]

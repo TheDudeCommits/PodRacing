@@ -1,4 +1,38 @@
-# PodRacing — Round 40 handover (2026-09-16)
+# PodRacing — Round 41 handover (2026-09-16)
+
+## Start here
+
+Round 41 implements five owner-picked excitement items on top of round 40: **catch-up through the draft only** (longer, stronger wake for racers far behind the leader; the leader is never capped), **rival taunts and revenge beats** (revenge-pass and grudge-settled events, HUD cues, five sourced CC0 voice lines), **photo finish and last-lap tension** (final-lap music lift, tighter final-straight chase, presentation-only slow motion when the predicted gap at the line is under half a second), **boost as a decision** (drafting charges the meter, clean jumps refund it, overheating costs handling for two seconds) and **wreck debris that matters** (shed parts everyone must avoid, and a drop-in shadow on the respawn point). Details, tests and stills: [ROUND41_REPORT.md](docs/inkstorm-overhaul/ROUND41_REPORT.md). Earlier rounds: [ROUND40](docs/inkstorm-overhaul/ROUND40_REPORT.md), [ROUND39](docs/inkstorm-overhaul/ROUND39_REPORT.md), [ROUND38](docs/inkstorm-overhaul/ROUND38_REPORT.md), [ROUND37](docs/inkstorm-overhaul/ROUND37_REPORT.md).
+
+- Repository: https://github.com/TheDudeCommits/PodRacing, branch `codex/now-this-is-podracing`, working directory `/Users/amir/Projects/PodRacing`.
+- Runtime source: the round 41 commit on this branch (see `git log`), on top of `50234fb` (round 40). Preview deployment: recorded in the follow-up docs commit.
+- Preview deployments come from the Git integration on push (owner Vercel sign-in required). **Production is unchanged.** Never run `vercel deploy` from the working tree.
+
+## Lessons that must survive
+
+1. **Presentation clocks never touch simulation truth.** `PhotoFinishPresentation` and the combat cinematic only scale the wall delta fed to the fixed-step scheduler and motion; records, inputs and RNG are untouched. Keep any new slow-motion on that path and solo-only.
+2. **Catch-up lives in the draft, not in speed caps.** `draftCatchUpFactor` is read only by `stepDraftingField`; the leader gets zero by construction. Do not add rubber-banding to `stepPodracer`.
+3. **Sourced audio only, with provenance.** Voice lines join the hash ledger pattern (`assets/source/audio-voice-fighter/runtime-files.json`, admitted by `tests/audio/recordedCatalogue.test.ts`); `RECORDED_CUES` now has a `voice` kind whose recording is named on the cue. The intro webm stays byte-identical.
+4. **New simulation config must be zeroed in `DRIVE5_COMPATIBILITY_CONFIG`** (`overheatHandlingTime/Penalty`, `draftBoostRegenBonus`, `landingBoostRefund` were) so archived V9 wreck replays keep reproducing.
+
+## Validation
+
+- Tests: 1052/1052 (183 files), typecheck and build pass. Browser checks on the built bundle: race score and voice lines requested at race start; debris and drop-in shadow stills in `docs/inkstorm-overhaul/evidence/handling-round41/`.
+- Frame cadence is still unmeasured on a quiet machine. Revenge cue, photo-finish slow motion and the final-straight camera are unit-tested, not frame-captured.
+
+## Next work, in priority order
+
+1. Owner playtest of the five items in the preview; then a quiet-machine cadence run and the promotion decision.
+2. New weapons and pickups (list delivered with round 41), race events by sector, shortcut gambles, damage-driven handling, reflect shield, lead reticle.
+3. Remove the last 1.6% hull burial; rival line discipline on cambered straights.
+
+## How to resume safely
+
+Read this header and the round reports, then `git status --short --branch`. `npm run verify` for runtime changes; headless laps with `scripts/drive-balance.ts`; native evidence with `scripts/competitive-flow.ts`, `scripts/effect-stills.mjs`, `scripts/recovery-camera-frames.mjs` and `scripts/wreck-debris-stills.mjs`. Close every owned browser and server immediately after QA; never adopt port 5211; never save the shared Blender scene.
+
+---
+
+## Previous handover — Round 40 handover (2026-09-16)
 
 ## Start here
 

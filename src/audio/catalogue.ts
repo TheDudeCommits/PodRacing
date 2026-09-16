@@ -25,6 +25,21 @@ export const RECORDED_RACE_MUSIC: readonly RecordedRaceTrack[] = Object.freeze([
 ]);
 export const RECORDED_RACE_MUSIC_URLS: readonly string[] = Object.freeze(RECORDED_RACE_MUSIC.map((track) => track.url));
 
+/**
+ * Sourced voice lines (Kenney "Voiceover Pack: Fighter", CC0) for rivalry beats
+ * and the final lap. Attribution: /audio/voice-fighter/CREDITS.html. Each line
+ * is an existing recording; none were synthesised.
+ */
+export type RecordedVoiceLineId = 'rival-marked' | 'revenge-pass' | 'revenge-settled' | 'final-lap' | 'photo-finish';
+export const RECORDED_VOICE_LINES: Readonly<Record<RecordedVoiceLineId, string>> = Object.freeze({
+  'rival-marked': '/audio/voice-fighter/prepare-yourself.ogg',
+  'revenge-pass': '/audio/voice-fighter/loser.ogg',
+  'revenge-settled': '/audio/voice-fighter/combo-breaker.ogg',
+  'final-lap': '/audio/voice-fighter/final-round.ogg',
+  'photo-finish': '/audio/voice-fighter/sudden-death.ogg',
+});
+export const RECORDED_VOICE_LINE_URLS: readonly string[] = Object.freeze([...new Set(Object.values(RECORDED_VOICE_LINES))]);
+
 /** Empty lists deliberately omit nonessential reward and warning bleeps. */
 export const RECORDED_CUES: Readonly<Record<PodracerAudioCueKind, readonly string[]>> = Object.freeze({
   impact: [file('hull-impact')],
@@ -51,6 +66,8 @@ export const RECORDED_CUES: Readonly<Record<PodracerAudioCueKind, readonly strin
   recovery: [],
   upgrade: [file('mechanical-click')],
   vehicle: [file('mechanical-click')],
+  // Voice cues name their recording on the cue itself (PodracerAudioCue.voice).
+  voice: [],
 });
 
 /** Headroom and sparse playback apply per actual recording, including aliases. */

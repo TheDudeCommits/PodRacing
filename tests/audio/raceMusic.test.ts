@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { PodracerAudio } from '../../src/audio';
-import { RECORDED_RACE_MUSIC } from '../../src/audio/catalogue';
+import { RECORDED_RACE_MUSIC, RECORDED_VOICE_LINES } from '../../src/audio/catalogue';
 
 class Param {
   value: number;
@@ -100,6 +100,32 @@ describe('race-phase music', () => {
     expect(audio.menuMusicStatus.raceTrack).toBe(RECORDED_RACE_MUSIC[0]!.url);
     audio.dispose();
     expect(audio.menuMusicStatus.raceTrack).toBeNull();
+  });
+
+  it('speaks sourced voice lines one at a time through the callout bus and lifts the score on the final lap', async () => {
+    const context = new Context();
+    const audio = new PodracerAudio({ createContext: () => context as unknown as AudioContext, fetchAudio: async () => new ArrayBuffer(16) });
+    await audio.startMenuMusic('/audio/podracing-selection-intro.webm');
+    await flush();
+    audio.transitionMenuMusicToRace();
+    await flush();
+    const race = context.sources.at(-1)!;
+    expect(audio.playVoiceLine(RECORDED_VOICE_LINES['revenge-pass'])).toBe(true);
+    const line = context.sources.at(-1)!;
+    expect(line).not.toBe(race);
+    expect(line.starts).toHaveLength(1);
+    // No overlap: a second beat in the same breath is dropped, not stacked.
+    expect(audio.playVoiceLine(RECORDED_VOICE_LINES['final-lap'])).toBe(false);
+    expect(audio.raceMusicIntensity).toBe(false);
+    audio.setRaceMusicIntensity(true);
+    expect(audio.raceMusicIntensity).toBe(true);
+    expect(race.playbackRate.events.at(-1)).toMatchObject({ kind: 'linear', value: 1.05 });
+    const group = race.connections[0] as Gain;
+    expect(group.gain.events.at(-1)).toMatchObject({ kind: 'linear', value: 0.56 * 1.22 });
+    audio.transitionMenuMusicToSelection();
+    audio.transitionMenuMusicToRace();
+    expect(audio.raceMusicIntensity).toBe(false);
+    audio.dispose();
   });
 
   it('keeps the selection score audible at its former race level when no race score is scheduled', () => {

@@ -1,6 +1,6 @@
 import type { GalacticEvent } from '../../game/galactic/types';
 
-export type CombatCueKind = 'hit' | 'shield-hit' | 'takedown' | 'wreck' | 'emp' | 'repair';
+export type CombatCueKind = 'hit' | 'shield-hit' | 'takedown' | 'wreck' | 'emp' | 'repair' | 'revenge';
 export interface CombatCue {
   readonly kind: CombatCueKind;
   readonly title: string;
@@ -221,6 +221,15 @@ export class CombatPresentationController {
         if (event.coreCooled > 0) restored.push(`${Math.round(event.coreCooled * 100)}% CORE VENTED`);
         return make('repair', 'REPAIR + COOLING', restored.join(' · ') || 'HULL + HEAT ALREADY STABLE', 2);
       }
+      case 'rivalry-marked':
+        if (event.racerId !== local) return null;
+        return make('revenge', 'MARKED', `${context.racerName(event.rivalId)} WRECKED YOU`, 2);
+      case 'revenge-pass':
+        if (event.racerId !== local) return null;
+        return make('revenge', 'REVENGE PASS', context.racerName(event.rivalId), 3);
+      case 'rivalry-settled':
+        if (event.racerId !== local) return null;
+        return make('revenge', 'GRUDGE SETTLED', context.racerName(event.rivalId), 3);
       default: return null;
     }
   }

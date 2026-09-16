@@ -113,6 +113,7 @@ export function createPodracerState(
       active: false,
       driftBoostTime: 0,
       overheated: false,
+      overheatHandlingTimer: 0,
     },
     heat: 0.08,
     damage: 0,
@@ -300,6 +301,7 @@ function updateDriftAndBoost(
   speed: number,
   config: Readonly<PodracerConfig>,
   events: PodracerEvent[],
+  draftStrength = 0,
 ): void {
   const delta = config.fixedDelta;
   const wasBoostActive = state.boost.active;
@@ -358,9 +360,11 @@ function updateDriftAndBoost(
   if (meterBoostActive) {
     state.boost.energy = Math.max(0, state.boost.energy - config.boostDrain * delta);
   } else if (!state.boost.active && !state.drift.active) {
+    // Sitting in a wake charges the meter faster: drafting is how you earn boost.
+    const draft = clamp(finite(draftStrength), 0, 1);
     state.boost.energy = Math.min(
       1,
-      state.boost.energy + config.boostRegeneration * delta,
+      state.boost.energy + config.boostRegeneration * (1 + draft * config.draftBoostRegenBonus) * delta,
     );
   }
 
@@ -373,10 +377,14 @@ function updateDriftAndBoost(
   }
   state.heat = clamp(state.heat, 0, 1.25);
 
+  state.boost.overheatHandlingTimer = Math.max(0, (state.boost.overheatHandlingTimer ?? 0) - delta);
   if (!state.boost.overheated && state.heat >= config.overheatStart) {
     state.boost.overheated = true;
     state.boost.active = false;
     state.boost.driftBoostTime = 0;
+    // Overheating costs handling for a moment, not only hull: the craft goes
+    // vague on the stick and loose on the bed until the timer runs out.
+    state.boost.overheatHandlingTimer = config.overheatHandlingTime;
   } else if (state.boost.overheated && state.heat <= config.overheatEnd) {
     state.boost.overheated = false;
   }
@@ -535,6 +543,7 @@ export function resetPodracer(
   state.drift.exitTimer = 0;
   state.boost.active = false;
   state.boost.driftBoostTime = 0;
+  state.boost.overheatHandlingTimer = 0;
   state.grounded = true;
   state.airborneTime = 0;
   state.regripTimer = 0;
@@ -581,6 +590,9 @@ function updateHorizontalMotion(
       smoothstep(0.08, 1, speedRatio);
   const movementAuthority = smoothstep(0.5, 12, Math.abs(forwardSpeed));
   const steeringDamage = 1 - state.damage * config.damageSteeringPenalty;
+  const overheatHandling = config.overheatHandlingTime > 0
+    ? clamp(state.boost.overheatHandlingTimer / config.overheatHandlingTime, 0, 1) : 0;
+  const overheatSteering = 1 - overheatHandling * config.overheatHandlingPenalty;
   // Braking tightens the line; flight loosens it. Both are readable rules the
   // player can plan around rather than surprises at the corner.
   const surfaceAuthority = state.grounded
@@ -599,6 +611,7 @@ function updateHorizontalMotion(
     steeringRate *
     movementAuthority *
     steeringDamage *
+    overheatSteering *
     surfaceAuthority *
     (state.drift.active ? config.driftSteeringMultiplier : 1)
     + bankAssistYawRate;
@@ -637,6 +650,7 @@ function updateHorizontalMotion(
     const blend = smoothstep(0, 1, 1 - state.regripTimer / config.landingGripBlendTime);
     grip = Math.min(grip, config.airLateralGrip + (config.lateralGrip - config.airLateralGrip) * blend);
   }
+  grip *= 1 - overheatHandling * config.overheatHandlingPenalty * 0.7;
   // Easing the stick shallows the slide, so a drift can be steered, not only held.
   const slipShare = 1 - config.driftSteerSlipShare + config.driftSteerSlipShare * Math.abs(input.steer);
   const targetSlip = state.drift.active
@@ -837,6 +851,15 @@ function updateTerrainResponse(
         });
       }
 
+      if (previousAirTime > 0.45 && config.landingBoostRefund > 0 && landingVerticalSpeed <= config.landingDamageSpeed) {
+        // A real jump landed cleanly pays back boost; a slammed landing does not.
+        const refund = config.landingBoostRefund * clamp((previousAirTime - 0.45) / 0.75, 0, 1);
+        const before = state.boost.energy;
+        state.boost.energy = Math.min(1, state.boost.energy + refund);
+        if (state.boost.energy > before + 1e-6) {
+          events.push({ type: 'boost-refund', amount: state.boost.energy - before, energy: state.boost.energy });
+        }
+      }
       if (landingVerticalSpeed > config.landingDamageSpeed) {
         const damageAmount = clamp(
           (landingVerticalSpeed - config.landingDamageSpeed) *
@@ -934,7 +957,7 @@ export function stepPodracer(
     }
 
     const speed = Math.hypot(state.velocity.x, state.velocity.z);
-    updateDriftAndBoost(state, input, speed, config, events);
+    updateDriftAndBoost(state, input, speed, config, events, context.draftStrength ?? 0);
     updateHorizontalMotion(state, input, config);
     state.position.x += state.velocity.x * config.fixedDelta;
     state.position.z += state.velocity.z * config.fixedDelta;

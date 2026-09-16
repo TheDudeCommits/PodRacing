@@ -86,13 +86,16 @@ export type PodracerAudioCueKind =
   | 'takedown'
   | 'recovery'
   | 'upgrade'
-  | 'vehicle';
+  | 'vehicle'
+  | 'voice';
 
 export interface PodracerAudioCue {
   kind: PodracerAudioCueKind;
   intensity: number;
   /** Multiplicative pitch adjustment. */
   pitch?: number;
+  /** For 'voice' cues: the sourced recording to speak, never pitch-shifted. */
+  voice?: string;
 }
 
 export interface AudioEventLike {
@@ -102,6 +105,8 @@ export interface AudioEventLike {
 export interface AudioEventMapOptions {
   /** When present, racer-scoped race events for other racers are ignored. */
   playerId?: string;
+  /** Lets a lap completion recognise the final lap for its voice line. */
+  totalLaps?: number;
 }
 
 export interface AudioEnvelopeProfile {

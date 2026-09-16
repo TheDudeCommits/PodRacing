@@ -49,6 +49,14 @@ export interface PodracerConfig {
   overheatStart: number;
   overheatEnd: number;
   overheatDamageRate: number;
+  /** Seconds of reduced steering and grip after the engines overheat; a real cost beyond damage. */
+  overheatHandlingTime: number;
+  /** Fraction of steering rate lost at the start of the overheat handling window. */
+  overheatHandlingPenalty: number;
+  /** Extra boost regeneration at full wake strength (1 = double), so drafting charges the meter. */
+  draftBoostRegenBonus: number;
+  /** Boost energy refunded by a clean landing after a real jump of ~1.2 s or more. */
+  landingBoostRefund: number;
   damageAccelerationPenalty: number;
   damageSteeringPenalty: number;
   steeringRateLowSpeed: number;
@@ -155,6 +163,10 @@ export const DEFAULT_PODRACER_CONFIG: Readonly<PodracerConfig> = Object.freeze({
   overheatStart: 1,
   overheatEnd: 0.56,
   overheatDamageRate: 0.035,
+  overheatHandlingTime: 2,
+  overheatHandlingPenalty: 0.35,
+  draftBoostRegenBonus: 1.2,
+  landingBoostRefund: 0.16,
   damageAccelerationPenalty: 0.44,
   damageSteeringPenalty: 0.25,
   steeringRateLowSpeed: 1.5,
@@ -212,6 +224,10 @@ export const DEFAULT_PODRACER_CONFIG: Readonly<PodracerConfig> = Object.freeze({
  */
 export const DRIVE5_COMPATIBILITY_CONFIG: Readonly<PodracerConfig> = Object.freeze({
   ...DEFAULT_PODRACER_CONFIG,
+  overheatHandlingTime: 0,
+  overheatHandlingPenalty: 0,
+  draftBoostRegenBonus: 0,
+  landingBoostRefund: 0,
   brakeThrottleCut: 0,
   brakeSteeringBonus: 0,
   brakeLateralScrub: 0,
