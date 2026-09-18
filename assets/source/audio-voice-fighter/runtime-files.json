@@ -54,19 +54,5 @@
     ],
     "sha256": "d7ad367f806e6ae25e730b0df20517b11300fa1f4c1a1b431538ddfca7aaefea",
     "bytes": 16810
-  },
-  {
-    "source": "assets/source/audio-voice-fighter/sudden_death.ogg",
-    "runtime": "public/audio/voice-fighter/sudden-death.ogg",
-    "operation": [
-      "-af",
-      "volume=-2dB,afade=t=in:d=0.01",
-      "-c:a",
-      "libopus",
-      "-b:a",
-      "64k"
-    ],
-    "sha256": "c5bb026ebb8340b8dcdbd0c4a6f13cc56879b22cf81d203c18f13b77c6ebb23b",
-    "bytes": 14715
   }
 ]

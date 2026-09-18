@@ -83,6 +83,10 @@ export interface PodracerConfig {
   driftSteerSlipShare: number;
   /** Seconds over which grip returns after a drift release instead of snapping. */
   driftExitBlendTime: number;
+  /** Seconds over which the slide builds when a drift starts; the entry ramp. */
+  driftEntryBlendTime: number;
+  /** Steering magnitude that keeps an existing drift alive; below it the slide eases out. */
+  driftHoldSteer: number;
   /** Fraction of scrubbed lateral speed converted to forward speed during regrip. */
   momentumRetention: number;
   /** Lateral grip while airborne; velocity carries through flight and landings. */
@@ -194,6 +198,8 @@ export const DEFAULT_PODRACER_CONFIG: Readonly<PodracerConfig> = Object.freeze({
   brakeLateralScrub: 0.55,
   driftSteerSlipShare: 0.45,
   driftExitBlendTime: 0.36,
+  driftEntryBlendTime: 0.26,
+  driftHoldSteer: 0.06,
   momentumRetention: 0.55,
   airLateralGrip: 3.4,
   airSteeringScale: 0.62,
@@ -233,6 +239,8 @@ export const DRIVE5_COMPATIBILITY_CONFIG: Readonly<PodracerConfig> = Object.free
   brakeLateralScrub: 0,
   driftSteerSlipShare: 0,
   driftExitBlendTime: 0,
+  driftEntryBlendTime: 0,
+  driftHoldSteer: 0.12,
   momentumRetention: 0,
   airLateralGrip: DEFAULT_PODRACER_CONFIG.lateralGrip,
   airSteeringScale: 1,

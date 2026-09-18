@@ -103,7 +103,7 @@ export interface PodRacingReviewApi {
   setPerformanceQuality?(level: number | null): void;
   /** Diagnostic-only: wreck the local player in a solo race; returns false if not racing. */
   debugWreckPlayer?(): boolean;
-  /** Diagnostic-only: wreck any racer in a solo race (evidence captures of debris and the respawn shadow). */
+  /** Diagnostic-only: wreck any racer in a solo race (evidence captures of the respawn shadow). */
   debugWreckRacer?(racerId: string): boolean;
 }
 

@@ -17,7 +17,6 @@ describe('rivalry beats', () => {
     expect(result.galacticEvents).toContainEqual({ type: 'takedown', attackerId: player.id, victimId: rival.id, cause: 'impact' });
     expect(result.galacticEvents).toContainEqual({ type: 'rivalry-settled', racerId: player.id, rivalId: rival.id });
     expect(player.galactic!.rivalry.rivalId).toBeNull();
-    expect(race.state.galacticWorld.debris!.length).toBeGreaterThan(0);
   });
 
   it('calls a revenge pass when the racer you pass is your marked rival', () => {

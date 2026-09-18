@@ -1,0 +1,65 @@
+{
+  "frames": [
+    {
+      "name": "01-straight",
+      "weapon": {
+        "charges": 5,
+        "reload": 0
+      },
+      "weaponText": "Ready ×5",
+      "driftText": "0",
+      "isDrifting": false,
+      "driftSlide": "0.000",
+      "weaponEmpty": false
+    },
+    {
+      "name": "02-drift-entry",
+      "weapon": {
+        "charges": 5,
+        "reload": 0
+      },
+      "weaponText": "Ready ×5",
+      "driftText": "0",
+      "isDrifting": false,
+      "driftSlide": "0.000",
+      "weaponEmpty": false
+    },
+    {
+      "name": "03-drift-held",
+      "weapon": {
+        "charges": 5,
+        "reload": 0
+      },
+      "weaponText": "Ready ×5",
+      "driftText": "4",
+      "isDrifting": true,
+      "driftSlide": "0.577",
+      "weaponEmpty": false
+    },
+    {
+      "name": "04-drift-exit",
+      "weapon": {
+        "charges": 5,
+        "reload": 0
+      },
+      "weaponText": "Ready ×5",
+      "driftText": "0",
+      "isDrifting": true,
+      "driftSlide": "0.160",
+      "weaponEmpty": false
+    },
+    {
+      "name": "05-lance-reloading",
+      "weapon": {
+        "charges": 0,
+        "reload": 3.54
+      },
+      "weaponText": "Reloading 3.5S",
+      "driftText": "0",
+      "isDrifting": false,
+      "driftSlide": "0.000",
+      "weaponEmpty": true
+    }
+  ],
+  "errors": []
+}

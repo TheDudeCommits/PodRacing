@@ -1,5 +1,6 @@
 import type { HudMasteryViewModel } from '../game/mastery/types';
 import { CHAMPIONSHIP_EVENT_IDS } from '../game/mastery/events';
+import { LANCE_RELOAD_SECONDS as RELOAD_SECONDS } from '../game/galactic/system';
 import { MinimapCanvas } from './MinimapCanvas';
 import { RaceEventAtlas } from './RaceEventAtlas';
 import { workshopSymbol } from './workshopSymbols';
@@ -96,7 +97,6 @@ export class RaceHud {
   private readonly eventAtlas: RaceEventAtlas;
   private eventAtlasOpen = false;
   private readonly combatFeedback: HTMLElement;
-  private readonly photoFinishBanner: HTMLElement;
   private readonly combatFeedbackTitle: HTMLElement;
   private readonly combatFeedbackDetail: HTMLElement;
   private combatFeedbackKey = '';
@@ -443,7 +443,6 @@ export class RaceHud {
       <div class="pod-hud__countdown" data-hud="countdown" aria-live="assertive" aria-hidden="true"></div>
       <div class="pod-hud__cinematic-matte" aria-hidden="true"></div>
       <section class="pod-hud__combat-feedback" data-hud="combat-feedback" role="status" aria-live="polite" aria-atomic="true" hidden><i aria-hidden="true">✦</i><strong data-hud="combat-feedback-title"></strong><span data-hud="combat-feedback-detail"></span></section>
-      <div class="pod-hud__photo-finish" data-hud="photo-finish" role="status" hidden><strong>PHOTO FINISH</strong></div>
       <section class="pod-hud__driving-feedback" aria-label="Driving feedback">
       <aside class="pod-hud__flight" data-hud="flight" aria-live="polite" aria-hidden="true">
         <span class="pod-hud__flight-state">Airborne</span>
@@ -552,7 +551,6 @@ export class RaceHud {
     mount.append(this.root);
     this.eventAtlas = new RaceEventAtlas(requireElement(this.root, '[data-hud="vehicle-selection"]'));
     this.combatFeedback = requireElement(this.root, '[data-hud="combat-feedback"]');
-    this.photoFinishBanner = requireElement(this.root, '[data-hud="photo-finish"]');
     this.combatFeedbackTitle = requireElement(this.root, '[data-hud="combat-feedback-title"]');
     this.combatFeedbackDetail = requireElement(this.root, '[data-hud="combat-feedback-detail"]');
 
@@ -752,6 +750,10 @@ export class RaceHud {
     this.updateMeter(this.boostFill, this.boostValue, model.boost);
     this.updateMeter(this.driftFill, this.driftValue, model.driftCharge);
     this.root.classList.toggle('has-drift-charge', model.driftCharge > 0.01);
+    // A live slide lights the meter, so the driver can see the drift is holding
+    // even before it has banked a boost.
+    this.root.classList.toggle('is-drifting', model.driftSlide > 0.15);
+    this.root.style.setProperty('--pod-drift-slide', model.driftSlide.toFixed(3));
     this.updateMeter(this.heatFill, this.heatValue, model.heat);
     this.updateMeter(this.damageFill, this.damageValue, model.damage);
     this.speedRing.closest('.pod-hud__speed')?.classList.toggle('is-boosting', model.boostActive);
@@ -780,13 +782,6 @@ export class RaceHud {
     if (this.muted === muted) return;
     this.muted = muted;
     this.onMuteChange?.(muted);
-  }
-
-  /** Presentation-only: the slow-motion finish banner while a photo finish is armed. */
-  setPhotoFinish(active: boolean): void {
-    if (this.photoFinishBanner.hidden === !active) return;
-    this.photoFinishBanner.hidden = !active;
-    this.root.classList.toggle('has-photo-finish', active);
   }
 
   updateCombat(frame: CombatHudFrame, localWreckPhase?: HudGalacticWreckPhase | 'running'): void {
@@ -1959,17 +1954,17 @@ export class RaceHud {
     this.weaponFill.style.width = `${(weaponReadiness * 100).toFixed(1)}%`;
     const weaponState = galactic.weaponOvercharge > 0
         ? galactic.weaponOvercharge >= 0.999 ? 'OVERCHARGE // RELEASE' : `Overcharge ${Math.round(galactic.weaponOvercharge * 100)}%`
-        : galactic.weaponCharges <= 0
-        ? `Charging ${Math.round(galactic.weaponRegen * 100)}%`
-        : galactic.weaponCooldown <= 0.001
-          ? `Ready ×${galactic.weaponCharges}`
-          : `${galactic.weaponCooldown.toFixed(1)}S ×${galactic.weaponCharges}`;
+        : galactic.weaponReload > 0
+          ? `Reloading ${(galactic.weaponReload * RELOAD_SECONDS).toFixed(1)}S`
+          : galactic.weaponCooldown <= 0.001
+            ? `Ready ×${galactic.weaponCharges}`
+            : `${galactic.weaponCooldown.toFixed(1)}S ×${galactic.weaponCharges}`;
     write(this.weaponValue, weaponState);
-    // An empty rack shows the trickle filling the dial instead of a dead slot.
+    // A reloading lance fills the dial as the magazine comes back.
     this.setSystemReadiness(this.primarySlot, galactic.weaponOvercharge > 0 ? galactic.weaponOvercharge
-      : galactic.weaponCharges <= 0 ? galactic.weaponRegen : weaponReadiness);
+      : galactic.weaponReload > 0 ? 1 - galactic.weaponReload : weaponReadiness);
     this.galactic.classList.toggle('is-overcharging', galactic.weaponOvercharge > 0);
-    this.galactic.classList.toggle('is-weapon-empty', galactic.weaponCharges <= 0);
+    this.galactic.classList.toggle('is-weapon-empty', galactic.weaponReload > 0);
     this.primarySlot.setAttribute('aria-label', `Primary ${this.combatBindings.fire}, ${galactic.weaponName}, ${weaponState}`);
     this.primarySlot.title = `${galactic.weaponName} [${this.combatBindings.fire}] • ${weaponState}`;
     write(
@@ -1985,7 +1980,7 @@ export class RaceHud {
     this.contextAction.title = targetState;
 
     // Loaded forward ordnance takes over the mine key until it is spent.
-    const ordnanceName = galactic.towActive ? 'Release' : galactic.ordnanceKind === 'thermal-spike' ? 'Spike' : galactic.ordnanceKind === 'tow-cable' ? 'Cable' : 'Mine';
+    const ordnanceName = galactic.towActive ? 'Release' : galactic.ordnanceKind === 'tow-cable' ? 'Cable' : 'Mine';
     const ordnanceCount = galactic.ordnanceKind ? galactic.ordnanceCharges : galactic.mineCount;
     write(this.mineCount, galactic.towActive ? '' : String(ordnanceCount));
     write(this.mineLabel, ordnanceName);

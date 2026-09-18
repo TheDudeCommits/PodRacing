@@ -201,12 +201,8 @@ export class CombatPresentationController {
         return make('takedown', 'TAKEDOWN', context.racerName(event.victimId), 3,
           event.victimId, false, context.allowOffensiveSlowMotion);
       case 'weapon-hit':
-        if (event.targetId === local && event.weapon === 'thermal-spike' && !event.shielded) {
-          return make('hit', 'SPIKED', `BOOST CUT // HEAT SURGE FROM ${context.racerName(event.attackerId)}`, 2);
-        }
         if (event.attackerId !== local || event.targetId === local) return null;
         if (event.weapon === 'overcharge-lance') return make('hit', 'OVERCHARGE HIT', context.racerName(event.targetId), 2);
-        if (event.weapon === 'thermal-spike') return make('hit', 'SPIKE HIT', `${context.racerName(event.targetId)} // BOOST CUT`, 1);
         return make(event.shielded ? 'shield-hit' : 'hit', event.shielded ? 'SHIELD HIT' : 'HIT',
           context.racerName(event.targetId), 1);
       case 'tow-attached':
@@ -220,8 +216,7 @@ export class CombatPresentationController {
         return make('ordnance', 'SLINGSHOT', event.timeout ? 'CABLE RAN OUT' : `RELEASED FROM ${context.racerName(event.targetId)}`, 2);
       case 'ordnance-collected':
         if (event.racerId !== local) return null;
-        return make('ordnance', event.part === 'thermal-spike' ? 'THERMAL SPIKES' : 'TOW CABLE',
-          `×${event.charges} ON ${event.part === 'thermal-spike' ? 'F · FIRE FORWARD' : 'F · LATCH THE POD AHEAD'}`, 2);
+        return make('ordnance', 'TOW CABLE', `×${event.charges} ON F · LATCH THE POD AHEAD`, 2);
       case 'nitro-collected':
         if (event.racerId !== local) return null;
         return make('ordnance', 'NITRO CELL', 'BOOST FULL // ENGINES CLEAR', 2);

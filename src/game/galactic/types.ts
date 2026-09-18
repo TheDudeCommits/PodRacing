@@ -127,9 +127,6 @@ export type GalacticUpgradePart =
   | 'mine-printer'
   | 'emp-cell'
   | 'repair-salvage'
-  | 'lance-cells'
-  /** Forward heat dart ordnance, two per pickup; replaces the mine key while loaded. */
-  | 'thermal-spike'
   /** Latch onto the pod ahead, get pulled, release for a slingshot. */
   | 'tow-cable'
   /** One-shot full boost refill that also clears the overheat penalty. */
@@ -193,15 +190,15 @@ export interface GalacticWeaponState {
   triggerHeld: boolean;
   shotsFired: number;
   hits: number;
-  /** Heat Lance cells in the rack; refilled by authored pickups, plus a slow trickle below the floor. */
+  /** Rounds left in the magazine. Ammunition is unlimited; an empty magazine reloads on a timer. */
   charges: number;
-  /** Seconds accumulated toward the next trickle cell while the rack is below the floor. */
-  regen: number;
-  /** 0..1 hold-to-charge progress toward an overcharge bolt (three cells, wide, shield-piercing). */
+  /** Seconds left in the reload, or zero when the magazine is loaded. */
+  reload: number;
+  /** 0..1 hold-to-charge progress toward an overcharge bolt (three rounds, wide, shield-piercing). */
   overcharge: number;
 }
 
-export type GalacticOrdnanceKind = 'thermal-spike' | 'tow-cable';
+export type GalacticOrdnanceKind = 'tow-cable';
 
 /** Forward ordnance loaded from a pickup; while charged it takes over the mine key. */
 export interface GalacticOrdnanceState {
@@ -307,7 +304,7 @@ export interface HeatLanceProjectileState {
   /** Owner's course progress at launch; bounds the world occlusion lookup. */
   progressHint: number;
   /** Absent on legacy projectiles, which are ordinary lances. */
-  kind?: 'heat-lance' | 'overcharge' | 'thermal-spike';
+  kind?: 'heat-lance' | 'overcharge';
   /** An overcharge bolt ignores a raised shield. */
   piercing?: boolean;
 }
@@ -320,15 +317,6 @@ export interface ScrapMineState {
   armTime: number;
   triggerRadius: number;
   damage: number;
-}
-
-/** A piece of a wrecked pod lying on the course for a few seconds. Contact kicks it away. */
-export interface GalacticDebrisState {
-  id: string;
-  ownerId: string;
-  position: Vec3State;
-  remaining: number;
-  radius: number;
 }
 
 export interface GalacticHazardState {
@@ -362,8 +350,6 @@ export interface GalacticWorldState {
   mineSequence: number;
   projectiles: HeatLanceProjectileState[];
   mines: ScrapMineState[];
-  /** Wreck debris; absent in snapshots written before it existed. */
-  debris?: GalacticDebrisState[];
   hazards: GalacticHazardState[];
   pickups: GalacticUpgradePickupState[];
   runTokens: number;
@@ -447,7 +433,7 @@ export interface GalacticImpact {
   targetId: string;
   sourceId: string | null;
   cause: GalacticWreckCause;
-  weapon: 'heat-lance' | 'overcharge-lance' | 'thermal-spike' | 'scrap-mine' | null;
+  weapon: 'heat-lance' | 'overcharge-lance' | 'scrap-mine' | null;
   damage: number;
   heat: number;
   /** Ignores a raised shield entirely. */
@@ -493,16 +479,13 @@ export type GalacticEvent =
   | { type: 'heat-lance-fired'; racerId: string; projectileId: string }
   | { type: 'heat-lance-blocked'; ownerId: string; projectileId: string; x: number; y: number; z: number }
   | { type: 'target-lock'; racerId: string; targetId: string | null }
-  | { type: 'lance-cells-collected'; racerId: string; pickupId: string; charges: number }
-  | { type: 'lance-cell-regenerated'; racerId: string; charges: number }
-  | { type: 'debris-hit'; racerId: string; ownerId: string; debrisId: string }
-  | { type: 'debris-spawned'; racerId: string; count: number }
+  | { type: 'lance-reload'; racerId: string; seconds: number }
+  | { type: 'lance-reloaded'; racerId: string; charges: number }
   | { type: 'rivalry-settled'; racerId: string; rivalId: string }
   /** The passed racer is the one who wrecked this racer while the grudge lasts. */
   | { type: 'revenge-pass'; racerId: string; rivalId: string; fromPosition: number; toPosition: number }
   | { type: 'overcharge-charging'; racerId: string; active: boolean }
   | { type: 'overcharge-fired'; racerId: string; projectileId: string }
-  | { type: 'thermal-spike-fired'; racerId: string; projectileId: string }
   | { type: 'tow-attached'; racerId: string; targetId: string }
   | { type: 'tow-cut'; racerId: string; targetId: string; reason: 'shield' | 'range' | 'wreck' }
   | { type: 'tow-released'; racerId: string; targetId: string; strength: number; timeout: boolean }

@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import {
+  LANCE_MAGAZINE,
   OVERCHARGE_CELLS,
-  SPIKE_HEAT,
   TOW_DURATION,
   applyGalacticImpact,
   augmentGalacticAIInput,
@@ -14,7 +14,7 @@ import {
   stepGalacticWorld,
   type GalacticRacerSnapshot,
 } from '../../src/game/galactic';
-import { collectCombatPickup, isCombatPickup } from '../../src/game/galactic/combatPickups';
+import { collectCombatPickup } from '../../src/game/galactic/combatPickups';
 import { normalizePlayerInput } from '../../src/game/input';
 import { createRaceSimulation } from '../../src/game/race';
 import { DEFAULT_PODRACER_CONFIG, FLAT_HEIGHT_SAMPLER, createPodracerState } from '../../src/game/simulation';
@@ -34,10 +34,11 @@ const act = (self: ReturnType<typeof racer>, input: Partial<Parameters<typeof no
   stepGalacticRacerAction(self.galactic, { step, delta: 1 / 120, racing: true, input: normalizePlayerInput(input), self: self.snapshot(), opponents: [] });
 
 describe('overcharge lance', () => {
-  it('fires on the press, charges while held with three cells racked, and releases one wide piercing bolt for three cells', () => {
+  it('fires on the press, charges while held with three rounds loaded, and releases one wide piercing bolt for three rounds', () => {
     const self = racer('shooter', 0, 0);
+    expect(self.galactic.weapon.charges).toBe(LANCE_MAGAZINE);
     expect(act(self, { fire: true }).fireHeatLance).toBe(true);
-    expect(self.galactic.weapon.charges).toBe(5);
+    expect(self.galactic.weapon.charges).toBe(LANCE_MAGAZINE - 1);
     // Holding through the cooldown does not autofire; it starts the overcharge.
     let charging = false;
     for (let tick = 0; tick < 120 * 1.6; tick += 1) {
@@ -50,7 +51,7 @@ describe('overcharge lance', () => {
     expect(deriveGalacticHudViewModel(self.galactic)!.weaponOvercharge).toBe(1);
     const release = act(self, { fire: false });
     expect(release.fireOvercharge).toBe(true);
-    expect(self.galactic.weapon.charges).toBe(5 - OVERCHARGE_CELLS);
+    expect(self.galactic.weapon.charges).toBe(LANCE_MAGAZINE - 1 - OVERCHARGE_CELLS);
     expect(self.galactic.weapon.overcharge).toBe(0);
     const world = createGalacticWorldState(); world.hazards = [];
     const bolt = spawnHeatLance(world, self.snapshot(), 'overcharge');
@@ -87,34 +88,6 @@ describe('overcharge lance', () => {
     }
     expect(held).toBeGreaterThan(60);
     expect(released).toBe(true);
-  });
-});
-
-describe('thermal spike', () => {
-  it('loads from a pickup onto the mine key, flies forward and spikes heat while cutting boost', () => {
-    const self = racer('shooter', 0, 0);
-    const world = createGalacticWorldState(); world.hazards = [];
-    expect(isCombatPickup('thermal-spike')).toBe(true);
-    const events = collectCombatPickup('spike-canyon', 'thermal-spike', { id: 'shooter', vehicle: self.vehicle, galactic: self.galactic }, [], world);
-    expect(events).toEqual([{ type: 'ordnance-collected', racerId: 'shooter', pickupId: 'spike-canyon', part: 'thermal-spike', charges: 2 }]);
-    expect(deriveGalacticHudViewModel(self.galactic)).toMatchObject({ ordnanceKind: 'thermal-spike', ordnanceCharges: 2 });
-    const fired = act(self, { mine: true });
-    expect(fired.fireOrdnance).toBe('thermal-spike');
-    expect(fired.deployMine).toBe(false);
-    expect(self.galactic.ordnance!.charges).toBe(1);
-    const victim = racer('victim', 0, 40);
-    victim.vehicle.boost.active = true;
-    victim.vehicle.boost.driftBoostTime = 0.8;
-    victim.vehicle.heat = 0.5;
-    spawnHeatLance(world, self.snapshot(), 'thermal-spike');
-    let impact = null;
-    for (let tick = 0; tick < 240 && !impact; tick += 1) impact = stepGalacticWorld(world, [self.snapshot(), victim.snapshot()], 1 / 120).impacts[0] ?? null;
-    expect(impact).toMatchObject({ weapon: 'thermal-spike' });
-    applyGalacticImpact('victim', victim.galactic, victim.vehicle, victim.config, impact!);
-    expect(victim.vehicle.heat).toBeCloseTo(0.5 + SPIKE_HEAT, 6);
-    expect(victim.vehicle.boost.active).toBe(false);
-    expect(victim.vehicle.boost.driftBoostTime).toBe(0);
-    expect(victim.vehicle.damage).toBeLessThan(0.03);
   });
 });
 

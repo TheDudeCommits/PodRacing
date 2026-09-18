@@ -1,7 +1,5 @@
 import { duskSkyAssetReceipt } from '../sky/DuskSkyAssets';
 import { CombatPresentationController, type CombatPresentationContext } from '../combat/CombatPresentationController';
-import { PhotoFinishPresentation, type PhotoFinishRacer } from '../combat/PhotoFinishPresentation';
-import { RECORDED_VOICE_LINES } from '../../audio/catalogue';
 import { WreckVisualPoseCache, type WreckVisualPose } from '../combat/WreckVisualPose';
 import { WreckGroundContactGate } from '../combat/WreckGroundContact';
 import {
@@ -343,7 +341,7 @@ export class GameApp {
   }> = [];
   private readonly galacticMinePool = Array.from({ length: 48 }, () => ({
     position: { x: 0, y: 0, z: 0 }, yaw: 0, armed: false, phase: 0, scale: 1,
-    variant: 'mine' as 'mine' | 'pickup' | 'emp' | 'repair' | 'debris' | 'spike' | 'cable' | 'nitro',
+    variant: 'mine' as 'mine' | 'pickup' | 'emp' | 'repair' | 'cable' | 'nitro',
   }));
   private readonly activeGalacticMines: Array<{
     position: { x: number; y: number; z: number };
@@ -351,7 +349,7 @@ export class GameApp {
     armed: boolean;
     phase: number;
     scale: number;
-    variant: 'mine' | 'pickup' | 'emp' | 'repair' | 'debris' | 'spike' | 'cable' | 'nitro';
+    variant: 'mine' | 'pickup' | 'emp' | 'repair' | 'cable' | 'nitro';
   }> = [];
   private readonly galacticHazardPool = Array.from({ length: 16 }, () => ({
     kind: 'heat-vent' as 'heat-vent' | 'sand-geyser' | 'rockfall' | 'respawn',
@@ -447,7 +445,6 @@ export class GameApp {
   private readonly combatPresentation = new CombatPresentationController();
   private combatCameraCut = false;
   private combatChaseRecovery = false;
-  private readonly photoFinish = new PhotoFinishPresentation();
   private finalStraightBlend = 0;
   private combatPriorManualCamera: CaptureCamera | null = null;
   private readonly combatSystemMotion = typeof window.matchMedia === 'function'
@@ -837,11 +834,7 @@ export class GameApp {
     this.restartHeld = input.reset;
     if (this.paused) return;
 
-    const photoArmed = this.photoFinish.update(dt, this.photoFinishLocal(), this.photoFinishRacers(),
-      this.room.lobby.role === 'solo' && !this.captureMode && this.race.state.phase === 'racing');
-    if (photoArmed) this.audio.playVoiceLine(RECORDED_VOICE_LINES['photo-finish']);
-    const pacedDelta = this.combatPresentation.scheduleDelta(dt, this.previousTime, this.combatContext())
-      * this.photoFinish.timeScale;
+    const pacedDelta = this.combatPresentation.scheduleDelta(dt, this.previousTime, this.combatContext());
     this.accumulator = Math.min(this.accumulator + pacedDelta, 0.25);
     while (this.accumulator >= FIXED_DT) {
       this.stepSimulation(input);
@@ -928,35 +921,53 @@ export class GameApp {
         dynamics.previousVerticalSpeed = entry.vehicle.velocity.y;
       }
       const driftInput = result.inputs[entry.id] ?? NEUTRAL_PLAYER_INPUT;
-      const driftSprayActive = entry.vehicle.drift.active || (
+      // The eased slide authority drives the whole drift read-out, so the sand
+      // fans swell as the slide builds and thin out as it unwinds instead of
+      // switching on and off with the boolean.
+      const driftBlend = Math.max(entry.vehicle.drift.blend, entry.vehicle.drift.active ? 0.25 : 0);
+      const driftSprayActive = driftBlend > 0.12 || (
         driftInput.drift && entry.vehicle.telemetry.normalizedSpeed > 0.32
       );
-      if (driftSprayActive && this.simulationFrame % RACE_PRESENTATION_CAPACITY === racerIndex) {
+      // The local pod sprays four times as often as the pack: the driver needs
+      // a continuous plume to read the slide, rivals only need the silhouette.
+      const sprayCadence = entry.isPlayer ? 2 : RACE_PRESENTATION_CAPACITY;
+      const sprayDue = entry.isPlayer
+        ? this.simulationFrame % sprayCadence === 0
+        : this.simulationFrame % RACE_PRESENTATION_CAPACITY === racerIndex;
+      if (driftSprayActive && sprayDue) {
         const yaw = entry.vehicle.orientation.yaw;
         const forwardX = Math.sin(yaw);
         const forwardZ = Math.cos(yaw);
         const rightX = Math.cos(yaw);
         const rightZ = -Math.sin(yaw);
         const driftSide = entry.vehicle.drift.direction || Math.sign(driftInput.steer) || 1;
+        const charge = entry.vehicle.drift.charge;
+        const swell = Math.max(0.3, driftBlend);
         // Throw the plume from the loaded, outside engine instead of the
         // chassis centre.  The offset is deliberately exaggerated: at race
         // camera distance this creates the broad anime sand fan that makes a
-        // powerslide legible in a single frame.
-        const sprayX = entry.vehicle.position.x
-          + rightX * driftSide * 10
-          - forwardX * 3.5;
-        const sprayZ = entry.vehicle.position.z
-          + rightZ * driftSide * 10
-          - forwardZ * 3.5;
-        this.dust.emitSpray(
-          sprayX,
-          this.race.terrain.heightAt(sprayX, sprayZ) + 0.32,
-          sprayZ,
-          forwardX * 0.94 - rightX * driftSide * 0.46,
-          forwardZ * 0.94 - rightZ * driftSide * 0.46,
-          0.82 + Math.max(0.35, entry.vehicle.drift.charge) * 0.92,
-          12,
-        );
+        // powerslide legible in a single frame. Past half charge the inside
+        // engine lights up too, so a committed slide throws two rooster tails.
+        const plumes: Array<readonly [number, number]> = charge > 0.5 && driftBlend > 0.45
+          ? [[driftSide, 1], [-driftSide, 0.55]]
+          : [[driftSide, 1]];
+        for (const [side, scale] of plumes) {
+          const sprayX = entry.vehicle.position.x
+            + rightX * side * 10
+            - forwardX * 3.5;
+          const sprayZ = entry.vehicle.position.z
+            + rightZ * side * 10
+            - forwardZ * 3.5;
+          this.dust.emitSpray(
+            sprayX,
+            this.race.terrain.heightAt(sprayX, sprayZ) + 0.32,
+            sprayZ,
+            forwardX * 0.94 - rightX * side * 0.46,
+            forwardZ * 0.94 - rightZ * side * 0.46,
+            (0.82 + Math.max(0.35, charge) * 0.92) * swell * scale,
+            Math.round(12 * scale),
+          );
+        }
       }
     }
     if (!this.captureMode
@@ -972,8 +983,7 @@ export class GameApp {
     const combatFrame = this.combatPresentation.frame(performance.now(), this.combatContext());
     const localWreckPhase = this.race.state.entries.find((entry) => entry.id === this.localRacerId())?.galactic?.wreck.phase ?? 'running';
     this.hud.updateCombat(combatFrame, localWreckPhase);
-    this.hud.setPhotoFinish(this.photoFinish.active);
-    const motionDelta = dt * combatFrame.timeScale * this.photoFinish.timeScale;
+    const motionDelta = dt * combatFrame.timeScale;
     const renderExtrapolation = this.room.lobby.role === 'guest'
       ? Math.min(0.08, this.networkSnapshotAge)
       : combatFrame.cinematic.active ? this.accumulator : 0;
@@ -1907,7 +1917,6 @@ export class GameApp {
     else this.mastery.cancelRun();
     this.accumulator = 0;
     this.nextHudFrame = 0;
-    this.photoFinish.reset();
     this.finalStraightBlend = 0;
     this.audio.transitionMenuMusicToRace();
     void this.audio.unlock();
@@ -3360,28 +3369,6 @@ export class GameApp {
     return pose;
   }
 
-  private photoFinishRacerFor(entry: RaceEntryState): PhotoFinishRacer {
-    const laps = this.race.totalLaps;
-    const unwrapped = entry.progress.unwrappedProgress;
-    return {
-      id: entry.id,
-      finished: entry.status === 'finished',
-      // Inside the last 15% of the final lap; the grid's negative progress never counts.
-      onFinalLap: unwrapped > laps - 0.15 && unwrapped <= laps + 0.05,
-      distanceToLine: Math.max(0, (laps - unwrapped) * this.race.course.totalLength),
-      speed: entry.vehicle.telemetry.speed,
-    };
-  }
-
-  private photoFinishLocal(): PhotoFinishRacer | null {
-    const local = this.race.state.entries.find((entry) => entry.id === this.localRacerId());
-    return local ? this.photoFinishRacerFor(local) : null;
-  }
-
-  private photoFinishRacers(): PhotoFinishRacer[] {
-    return this.race.state.entries.map((entry) => this.photoFinishRacerFor(entry));
-  }
-
   private solidWreckTerrainCache: { race: RaceSimulation; sampler: HeightSampler } | null = null;
   private solidWreckTerrain(): HeightSampler {
     if (this.solidWreckTerrainCache?.race === this.race) return this.solidWreckTerrainCache.sampler;
@@ -3504,15 +3491,22 @@ export class GameApp {
     const halfSpread = Math.abs(
       view?.wakeAnchors[1]?.position.x ?? halfSpreads[racerIndex] ?? 8.4,
     );
-    const leftX = view?.wakeAnchors[0]?.position.x ?? -halfSpread;
-    const rightX = view?.wakeAnchors[1]?.position.x ?? halfSpread;
+    // A slide drags the wake wide and pushes it to the outside of the turn, so
+    // the ground keeps a broad curved scar for as long as the drift holds. The
+    // eased authority drives it, so the mark opens and closes with the slide.
+    const slide = Math.min(1, Math.max(0, state.drift.blend));
+    const slideSide = state.drift.direction || 0;
+    const widen = 1 + slide * 0.85;
+    const outside = slide * slideSide * halfSpread * 0.55;
+    const leftX = (view?.wakeAnchors[0]?.position.x ?? -halfSpread) * widen + outside;
+    const rightX = (view?.wakeAnchors[1]?.position.x ?? halfSpread) * widen + outside;
     const toWorld = (localX: number): [number, number] => [
       state.position.x + localX * cosYaw + localZ * sinYaw,
       state.position.z - localX * sinYaw + localZ * cosYaw,
     ];
     const left = toWorld(leftX);
     const right = toWorld(rightX);
-    const strength = Math.min(1, state.telemetry.normalizedSpeed * 1.15)
+    const strength = Math.min(1, state.telemetry.normalizedSpeed * 1.15 + slide * 0.45)
       * (state.grounded ? 1 : 0.18);
     this.dust.pushWakePair(
       racerIndex,
@@ -3682,10 +3676,10 @@ export class GameApp {
       effect.target.y = projectile.position.y + directionY * 8;
       effect.target.z = projectile.position.z + directionZ * 8;
       const kind = projectile.kind ?? 'heat-lance';
-      effect.width = (1.15 + projectile.radius * 0.42) * (kind === 'overcharge' ? 1.6 : kind === 'thermal-spike' ? 0.75 : 1);
+      effect.width = (1.15 + projectile.radius * 0.42) * (kind === 'overcharge' ? 1.6 : 1);
       effect.intensity = kind === 'overcharge' ? 2.2 : 1.5;
       effect.phase = time + index * 0.21;
-      effect.color = kind === 'overcharge' ? '#ffd24a' : kind === 'thermal-spike' ? '#ff2f6d' : '#ff5a1f';
+      effect.color = kind === 'overcharge' ? '#ffd24a' : '#ff5a1f';
       this.activeGalacticLances.push(effect);
     }
     // Tow cables: a taut line from the towing craft's nose to the towed craft's tail.
@@ -3737,7 +3731,7 @@ export class GameApp {
       ?.galactic?.upgrades.collectedPickupIds;
     for (const pickup of this.race.state.galacticWorld.pickups) {
       if (pickup.collectedBy !== null || worldObjectIndex >= this.galacticMinePool.length) continue;
-      if ((pickup.part === 'emp-cell' || pickup.part === 'repair-salvage' || pickup.part === 'lance-cells')
+      if ((pickup.part === 'emp-cell' || pickup.part === 'repair-salvage')
         && localPickupClaims?.includes(pickup.id)) continue;
       const effect = this.galacticMinePool[worldObjectIndex];
       if (!effect) continue;
@@ -3750,24 +3744,7 @@ export class GameApp {
       effect.phase = time + worldObjectIndex * 0.61;
       effect.scale = 2.25;
       effect.variant = pickup.part === 'emp-cell' ? 'emp' : pickup.part === 'repair-salvage' ? 'repair'
-        : pickup.part === 'thermal-spike' ? 'spike' : pickup.part === 'tow-cable' ? 'cable' : pickup.part === 'nitro-cell' ? 'nitro' : 'pickup';
-      this.activeGalacticMines.push(effect);
-      worldObjectIndex += 1;
-    }
-    // Wreck debris shares the solid-hardware pool: dark shed parts lying where they fell.
-    for (const piece of this.race.state.galacticWorld.debris ?? []) {
-      if (worldObjectIndex >= this.galacticMinePool.length) break;
-      const effect = this.galacticMinePool[worldObjectIndex];
-      if (!effect) break;
-      effect.position.x = piece.position.x;
-      effect.position.z = piece.position.z;
-      effect.position.y = this.race.terrain.heightAt(piece.position.x, piece.position.z) + 0.55;
-      effect.yaw = worldObjectIndex * 2.399;
-      effect.armed = false;
-      effect.phase = worldObjectIndex * 0.77;
-      // Engine-part sized so a shed piece reads from chase distance, like the mines.
-      effect.scale = 2.1 + (worldObjectIndex % 3) * 0.35;
-      effect.variant = 'debris';
+        : pickup.part === 'tow-cable' ? 'cable' : pickup.part === 'nitro-cell' ? 'nitro' : 'pickup';
       this.activeGalacticMines.push(effect);
       worldObjectIndex += 1;
     }
@@ -4218,7 +4195,6 @@ export class GameApp {
         takedowns: galactic?.takedowns ?? 0,
         projectiles: this.race.state.galacticWorld.projectiles.length,
         mines: this.race.state.galacticWorld.mines.length,
-        debris: this.race.state.galacticWorld.debris?.length ?? 0,
         activeHazards: this.race.state.galacticWorld.hazards.length,
         upgrades: galactic?.upgrades ?? null,
         audio: {

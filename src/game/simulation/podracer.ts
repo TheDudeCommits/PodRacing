@@ -107,7 +107,7 @@ export function createPodracerState(
     orientation: { yaw, pitch: 0, roll: 0, bank: 0 },
     angularVelocity: { yaw: 0, pitch: 0, roll: 0, bank: 0 },
     probes: makeProbeStates(config, x, z, terrain),
-    drift: { active: false, charge: 0, slipAngle: 0, direction: 0, exitTimer: 0 },
+    drift: { active: false, charge: 0, slipAngle: 0, direction: 0, exitTimer: 0, blend: 0 },
     boost: {
       energy: clamp(finite(options.initialBoostEnergy ?? 0.62), 0, 1),
       active: false,
@@ -306,11 +306,16 @@ function updateDriftAndBoost(
   const delta = config.fixedDelta;
   const wasBoostActive = state.boost.active;
   const wasOverheated = state.boost.overheated;
+  // Starting a slide asks for a real steering input; holding one only asks that
+  // the stick is not centred, so easing off mid-corner steers the drift instead
+  // of dropping it.
+  const holdSteer = state.drift.active ? config.driftHoldSteer : 0.12;
+  const holdSpeed = state.drift.active ? config.driftMinimumSpeed * 0.8 : config.driftMinimumSpeed;
   const driftAllowed =
     input.drift &&
     state.grounded &&
-    speed >= config.driftMinimumSpeed &&
-    Math.abs(input.steer) > 0.12;
+    speed >= holdSpeed &&
+    Math.abs(input.steer) > holdSteer;
 
   if (driftAllowed) {
     state.drift.active = true;
@@ -322,7 +327,10 @@ function updateDriftAndBoost(
       0,
       1,
     );
-  } else if (state.drift.active && !input.drift) {
+  } else if (state.drift.active) {
+    // The slide ends either by releasing the button or by straightening up
+    // while still holding it. Both bank the charge, so committing to an exit
+    // line is rewarded rather than punished for letting go of the button late.
     const charge = state.drift.charge;
     if (charge >= config.driftMinimumBoostCharge && !state.boost.overheated) {
       const chargeAmount = smoothstep(config.driftMinimumBoostCharge, 1, charge);
@@ -334,20 +342,28 @@ function updateDriftAndBoost(
     }
     state.drift.active = false;
     state.drift.charge = 0;
-    state.drift.direction = 0;
     // Grip returns over a short blend, so the exit is a predictable
-    // straightening rather than a lateral snap that also sheds speed.
+    // straightening rather than a lateral snap that also sheds speed. The
+    // direction is held until the blend has run out, so the slide unwinds.
     state.drift.exitTimer = config.driftExitBlendTime;
   } else if (!input.drift) {
     state.drift.active = false;
     state.drift.charge = Math.max(0, state.drift.charge - delta * 0.18);
-    if (state.drift.charge === 0) state.drift.direction = 0;
   }
   if (!state.drift.active) {
     state.drift.exitTimer = Math.max(0, state.drift.exitTimer - delta);
   } else {
     state.drift.exitTimer = 0;
   }
+  // One eased authority drives grip, slip and steering. Zero blend times
+  // reproduce the legacy snap exactly for the archived replays.
+  const blendTarget = state.drift.active ? 1 : 0;
+  const blendTime = state.drift.active ? config.driftEntryBlendTime : config.driftExitBlendTime;
+  const blendStep = blendTime > 0 ? delta / blendTime : 1;
+  state.drift.blend = blendTarget > state.drift.blend
+    ? Math.min(blendTarget, state.drift.blend + blendStep)
+    : Math.max(blendTarget, state.drift.blend - blendStep);
+  if (!state.drift.active && state.drift.blend <= 0 && state.drift.charge === 0) state.drift.direction = 0;
 
   state.boost.driftBoostTime = Math.max(0, state.boost.driftBoostTime - delta);
   const driftBoostActive = state.boost.driftBoostTime > 0;
@@ -541,6 +557,7 @@ export function resetPodracer(
   state.drift.slipAngle = 0;
   state.drift.direction = 0;
   state.drift.exitTimer = 0;
+  state.drift.blend = 0;
   state.boost.active = false;
   state.boost.driftBoostTime = 0;
   state.boost.overheatHandlingTimer = 0;
@@ -613,7 +630,7 @@ function updateHorizontalMotion(
     steeringDamage *
     overheatSteering *
     surfaceAuthority *
-    (state.drift.active ? config.driftSteeringMultiplier : 1)
+    (1 + (config.driftSteeringMultiplier - 1) * smoothstep(0, 1, state.drift.blend))
     + bankAssistYawRate;
   state.angularVelocity.yaw +=
     (targetYawVelocity - state.angularVelocity.yaw) *
@@ -638,12 +655,10 @@ function updateHorizontalMotion(
   // Low-speed creep down a bank: real, bounded and quickly damped by grip.
   if (supported) lateralSpeed -= Math.sin(surfaceRoll) * config.gravity * config.bankSlide * delta;
 
-  const groundGrip = state.drift.active ? config.driftLateralGrip : config.lateralGrip;
-  let grip = groundGrip;
-  if (!state.drift.active && state.drift.exitTimer > 0 && config.driftExitBlendTime > 0) {
-    const blend = smoothstep(0, 1, 1 - state.drift.exitTimer / config.driftExitBlendTime);
-    grip = config.driftLateralGrip + (config.lateralGrip - config.driftLateralGrip) * blend;
-  }
+  // Grip follows the eased drift authority in both directions, so a slide
+  // builds and unwinds over a few frames instead of switching in one tick.
+  const driftEase = smoothstep(0, 1, state.drift.blend);
+  let grip = config.lateralGrip + (config.driftLateralGrip - config.lateralGrip) * driftEase;
   if (!state.grounded) {
     grip = Math.min(grip, config.airLateralGrip);
   } else if (state.regripTimer > 0 && config.landingGripBlendTime > 0) {
@@ -653,14 +668,12 @@ function updateHorizontalMotion(
   grip *= 1 - overheatHandling * config.overheatHandlingPenalty * 0.7;
   // Easing the stick shallows the slide, so a drift can be steered, not only held.
   const slipShare = 1 - config.driftSteerSlipShare + config.driftSteerSlipShare * Math.abs(input.steer);
-  const targetSlip = state.drift.active
-    ? state.drift.direction * speed * config.driftSlip * slipShare
-    : 0;
+  const targetSlip = state.drift.direction * speed * config.driftSlip * slipShare * driftEase;
   const lateralBefore = Math.abs(lateralSpeed);
   lateralSpeed += (targetSlip - lateralSpeed) * Math.min(1, grip * delta);
   // While grip returns after a drift or a landing, the slide that is scrubbed
   // becomes forward travel instead of vanishing: momentum is preserved.
-  const regripping = !state.drift.active && (state.drift.exitTimer > 0 || state.regripTimer > 0);
+  const regripping = !state.drift.active && (state.drift.blend > 0 || state.regripTimer > 0);
   if (regripping && forwardSpeed > 0) {
     const scrubbed = Math.max(0, lateralBefore - Math.abs(lateralSpeed));
     forwardSpeed += scrubbed * config.momentumRetention;
@@ -922,6 +935,7 @@ function sanitizeState(
   state.angularVelocity.bank = clamp(finite(state.angularVelocity.bank), -3.5, 3.5);
   state.drift.charge = clamp(finite(state.drift.charge), 0, 1);
   state.drift.slipAngle = clamp(finite(state.drift.slipAngle), -Math.PI / 2, Math.PI / 2);
+  state.drift.blend = clamp(finite(state.drift.blend), 0, 1);
   state.drift.exitTimer = clamp(finite(state.drift.exitTimer), 0, 2);
   state.regripTimer = clamp(finite(state.regripTimer), 0, 2);
   state.telemetry.surfacePitch = clamp(finite(state.telemetry.surfacePitch), -1.2, 1.2);

@@ -1,4 +1,53 @@
-# PodRacing — Round 42 handover (2026-09-16)
+# PodRacing — Round 43 handover (2026-09-18)
+
+## Start here
+
+Round 43 is a trim-and-polish round on the owner's instruction: **photo finishes reverted**, **the Heat Lance made unlimited again behind a five-round magazine with a five-second reload**, **the thermal spike removed**, **wreck debris removed**, and **drifting rebuilt around one eased authority with a visible ground trail**. Details, physics numbers and native frames: [ROUND43_REPORT.md](docs/inkstorm-overhaul/ROUND43_REPORT.md). Earlier rounds: [ROUND42](docs/inkstorm-overhaul/ROUND42_REPORT.md), [ROUND41](docs/inkstorm-overhaul/ROUND41_REPORT.md), [ROUND40](docs/inkstorm-overhaul/ROUND40_REPORT.md), [ROUND39](docs/inkstorm-overhaul/ROUND39_REPORT.md), [ROUND38](docs/inkstorm-overhaul/ROUND38_REPORT.md), [ROUND37](docs/inkstorm-overhaul/ROUND37_REPORT.md).
+
+- Repository: https://github.com/TheDudeCommits/PodRacing, branch `codex/now-this-is-podracing`, working directory `/Users/amir/Projects/PodRacing`.
+- Runtime source: the round 43 commit on this branch (see `git log`), on top of `74ac4d6` (round 42).
+- **Production was promoted from this round at the owner's explicit request** (`vercel promote`, recorded in the follow-up docs commit). Previews still come from the Git integration on push. Never run `vercel deploy` from the working tree; it tries to upload roughly 17 GB.
+
+## What the game is right now
+
+Eight-pod hover racing on one authored desert circuit (Inkstorm), 120 Hz deterministic simulation, renderer/HUD/audio consume snapshots only. The combat layer ("galactic") sits on top of the driving model.
+
+- **Driving.** Predictable braking, an eased drift with a boost payout, hover suspension over eight terrain probes, momentum-preserving landings, banked corners that steer you, a two-second handling penalty after an overheat, boost charged by drafting and refunded by clean jumps.
+- **Catch-up.** Distance behind the leader lengthens and strengthens the draft only. There is no speed cap on the leader anywhere; do not add one.
+- **Combat.** Heat Lance on E (tap to fire, hold with three rounds for a shield-piercing overcharge), shield on Q, and F carrying either mines or a loaded tow cable. Pickups: EMP cell, repair salvage, tow cable, nitro cell.
+- **Rivalry.** Whoever wrecks you is marked for 45 s, with HUD cues and four sourced CC0 voice lines for marked, revenge pass, grudge settled and final lap.
+
+## Lessons that must survive
+
+1. **Judge visual complaints from rendered frames, not simulation receipts.** Capture mode batches many simulation ticks into one render, so trails, wakes and particle systems cannot build up there. Anything that accumulates over frames must be evidenced natively: `scripts/drift-native-frames.mjs` drives a real race with the keyboard through ordinary frames and is the template.
+2. **Sim pitch is nose-up positive; three.js X rotation is nose-down positive.** Every renderer consumer negates it (`GameApp` pose, `WreckVisualPose`, `InkstormGhostView`). `scripts/hull-burial-audit.ts` measures hull-below-terrain in the renderer's convention (1.6% of ticks, worst 3.3 m).
+3. **New simulation config must be zeroed in `DRIVE5_COMPATIBILITY_CONFIG`** so the archived V9 wreck replays still reproduce. Round 43 added `driftEntryBlendTime` and `driftHoldSteer` there.
+4. **The lance fires on the press.** Holding charges the overcharge. Tests and bots pulse the trigger for repeated shots.
+5. **Combat inputs only exist in the chaos profile**; clean races strip fire/mine/shield, so weapon tests must use the default profile.
+6. **Optional state stays optional.** `ordnance`, `tow`, `weapon.overcharge`, `weapon.reload`, `controls.mineHeld` and `drift.blend` are all `??`-defaulted where read, so older snapshots keep loading.
+7. **Sourced audio only, with provenance.** Every runtime audio file has a hash ledger entry under `assets/source/audio-*/runtime-files.json` and a credits line; `tests/audio/recordedCatalogue.test.ts` enforces it. The selection intro webm must stay byte-identical (SHA256 `39c4d411…`). Never generate music or sound.
+
+## Validation
+
+- `npm run verify`: TypeScript, **1056 tests / 184 files**, build all pass.
+- Native run on the built bundle: `Ready ×5` → five taps → `Reloading 3.7S` → `Ready ×5` with no pickup, and the drift slide ramping 0 → 0.54 → 1.0 → 0 with the meter lit. Frames and receipts in `docs/inkstorm-overhaul/evidence/handling-round43/`.
+- Frame cadence is still unmeasured on a quiet machine. That is the one outstanding quality check.
+
+## Next work, in priority order
+
+1. Owner playtest of the drift feel and the lance magazine now that Production carries them.
+2. A quiet-machine cadence run (`npx tsx scripts/competitive-flow.ts --battle --performance`); it has never been measured without other load on the Mac.
+3. Track improvements, which the owner has asked about but not yet chosen: named landmarks per corner, real shortcut gambles, a signature jump at the launch crest, more elevation, surface variety that changes grip, a wider sweeper and a tighter canyon, trackside life, per-sector lighting, a rebuilt start straight, and eventually a second circuit.
+4. Remove the last 1.6% hull burial; rival line discipline on cambered straights.
+5. Remaining ideas from earlier rounds: damage-driven handling, a reflect-timing shield, a lead reticle on the lock, sector race events, salvage magnet, chain mine, decoy beacon, repulsor jammer, ghost drive.
+
+## How to resume safely
+
+Read this header and the round reports, then `git status --short --branch`. `npm run verify` for any runtime change. Headless laps: `scripts/drive-balance.ts`. Native evidence: `scripts/competitive-flow.ts`, `scripts/effect-stills.mjs`, `scripts/recovery-camera-frames.mjs`, `scripts/wreck-debris-stills.mjs` (now only useful for the respawn shadow), `scripts/ordnance-stills.ts`, `scripts/drift-stills.mjs`, `scripts/drift-native-frames.mjs`. Diagnostics on `window.__PODRACING__`: `debugWreckPlayer()`, `debugWreckRacer(id)`, `seekCourse`, `setInput`, `step`, `snapshot`. Close every owned browser and preview server immediately after QA; never adopt port 5211; never save the shared Blender scene; keep credentials and `.env` out of Git.
+
+---
+
+## Previous handover — Round 42 handover (2026-09-16)
 
 ## Start here
 

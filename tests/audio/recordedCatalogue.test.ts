@@ -33,7 +33,7 @@ describe('downloaded recording admission', () => {
     expect(raceCredits).toContain('creativecommons.org/licenses/by/4.0/');
     // Voice lines: five existing CC0 recordings from one pack, credited beside the files.
     const voiceCredits = readFileSync('public/audio/voice-fighter/CREDITS.html', 'utf8');
-    expect(Object.keys(RECORDED_VOICE_LINES)).toHaveLength(5);
+    expect(Object.keys(RECORDED_VOICE_LINES)).toHaveLength(4);
     for (const url of RECORDED_VOICE_LINE_URLS) expect(url).toContain('/voice-fighter/');
     expect(voiceCredits).toContain('Kenney');
     expect(voiceCredits).toContain('creativecommons.org/publicdomain/zero/1.0/');

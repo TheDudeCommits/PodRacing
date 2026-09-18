@@ -64,6 +64,11 @@ export interface PodracerDriftState {
   direction: -1 | 0 | 1;
   /** Seconds remaining in the grip blend after a drift release. */
   exitTimer: number;
+  /**
+   * 0..1 eased drift authority. Grip, slip and steering follow this instead of
+   * the boolean, so entering and leaving a slide is a ramp rather than a snap.
+   */
+  blend: number;
 }
 
 export interface PodracerBoostState {

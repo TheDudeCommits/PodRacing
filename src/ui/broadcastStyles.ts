@@ -253,8 +253,6 @@ export const BROADCAST_HUD_CSS = /* css */ `
 .pod-hud__combat-feedback[data-kind=revenge] { color:#ffb08a; border-bottom-color:#ff9a6a88; }
 .pod-hud__combat-feedback[data-kind=ordnance] { color:#9fe3ff; border-bottom-color:#9fe3ff66; }
 .pod-hud__galactic.is-overcharging .pod-hud__combat-slot--primary { filter:drop-shadow(0 0 6px #ffd24a); }
-.pod-hud__photo-finish { position:absolute; top:36%; left:50%; transform:translate(-50%,-50%); z-index:14; padding:8px 24px; color:#fff2c6; background:#3a1210e6; border:1px solid #ffb35a99; letter-spacing:.32em; font:400 30px/1 Inkstorm Display,sans-serif; pointer-events:none; }
-.pod-hud__photo-finish[hidden] { display:none; }
 .pod-hud.has-combat-feedback>.pod-hud__galactic-alert { visibility:hidden; }
 .pod-hud.has-takedown-cue>.pod-hud__director-event { visibility:hidden; }
 .pod-hud__launch[data-stage=result] { top:112px; bottom:auto; min-height:0; height:auto; width:310px; padding:10px 14px; transform:translateX(-50%); }
@@ -559,7 +557,10 @@ export const BROADCAST_HUD_CSS = /* css */ `
 .pod-hud__driving-instruments .pod-hud__meter-head { align-items:baseline; }
 .pod-hud__driving-instruments .pod-hud__meter-head .pod-hud__label { font-size:12px; }
 .pod-hud__driving-instruments .pod-hud__meter-value { font:700 15px/1 Inkstorm UI,sans-serif; }
-.pod-hud:not(.has-drift-charge) .pod-hud__driving-instruments .pod-hud__meter--drift { display:none; }
+.pod-hud:not(.has-drift-charge):not(.is-drifting) .pod-hud__driving-instruments .pod-hud__meter--drift { display:none; }
+.pod-hud.is-drifting .pod-hud__driving-instruments .pod-hud__meter--drift { border-left-color:#7ce0ff; box-shadow:0 0 calc(8px + var(--pod-drift-slide,0)*18px) rgba(124,224,255,calc(.22 + var(--pod-drift-slide,0)*.46)); }
+.pod-hud.is-drifting .pod-hud__driving-instruments .pod-hud__meter--drift .pod-hud__meter-fill { background:#7ce0ff; }
+.pod-hud.is-drifting .pod-hud__driving-instruments .pod-hud__meter--drift .pod-hud__label::after { content:' // SLIDE'; color:#7ce0ff; letter-spacing:.16em; }
 .pod-hud__driving-instruments .pod-hud__speed>.pod-hud__meter--drift { top:-63px; bottom:auto; left:0; width:100%; padding:5px 9px; background:#142f37e8; border-left:2px solid #f5d58e; }
 .pod-hud__driving-instruments>.pod-hud__telemetry { bottom:0; gap:10px; }
 .pod-hud__driving-instruments .pod-hud__telemetry>.pod-hud__meter { padding:7px 8px 6px; background:#142f37ca; border-radius:2px; }

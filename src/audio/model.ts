@@ -269,8 +269,10 @@ function cuesForEvent(event: AudioEventLike, options: AudioEventMapOptions): Pod
       // A short high tick when a target enters the lance cone; silence on loss.
       return ownRacer && eventString(event, 'targetId') !== undefined && recordOf(event).targetId !== null
         ? [cue('ui', 0.5, 1.45)] : [];
-    case 'lance-cells-collected':
-      return ownRacer ? [cue('upgrade', 0.7, 1.12)] : [];
+    case 'lance-reload':
+      return ownRacer ? [cue('ui', 0.5, 0.78)] : [];
+    case 'lance-reloaded':
+      return ownRacer ? [cue('ui', 0.6, 1.3)] : [];
     case 'rivalry-marked':
       return ownRacer ? [cue('warning', 0.5, 0.9), voice('rival-marked')] : [];
     case 'revenge-pass':
@@ -322,8 +324,6 @@ function cuesForEvent(event: AudioEventLike, options: AudioEventMapOptions): Pod
     case 'mine-deployed':
     case 'scrap-mine-deployed':
       return ownRacer ? [cue('mine', 0.42, 1.24)] : [];
-    case 'thermal-spike-fired':
-      return ownRacer ? [cue('weapon', 0.7, 1.16)] : [];
     case 'overcharge-fired':
       return ownRacer ? [cue('weapon', 1, 0.86), cue('boost', 0.5, 0.9)] : [];
     case 'overcharge-charging':

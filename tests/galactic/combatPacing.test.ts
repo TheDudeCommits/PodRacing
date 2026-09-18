@@ -1,7 +1,8 @@
 import { describe, expect, it } from 'vitest';
 import {
+  LANCE_MAGAZINE,
+  LANCE_RELOAD_SECONDS,
   LANCE_SPEED,
-  LANCE_STARTING_CHARGES,
   RIVALRY_DURATION,
   applyGalacticImpact,
   assessGalacticThreats,
@@ -16,7 +17,6 @@ import {
   stepGalacticWorld,
   type GalacticRacerSnapshot,
 } from '../../src/game/galactic';
-import { LANCE_CELLS_PER_PICKUP, collectCombatPickup, isCombatPickup } from '../../src/game/galactic/combatPickups';
 import { normalizePlayerInput } from '../../src/game/input';
 import { createRaceSimulation } from '../../src/game/race';
 import { DEFAULT_PODRACER_CONFIG, FLAT_HEIGHT_SAMPLER, createPodracerState } from '../../src/game/simulation';
@@ -31,56 +31,57 @@ function snapshot(id: string, x: number, z: number, velocityZ = 80): GalacticRac
   return snapshotGalacticRacer(id, vehicle, galactic, 0, 0, false);
 }
 
-describe('lance cells and pacing', () => {
-  it('starts with a finite rack, spends one cell per shot and refuses to fire empty', () => {
+describe('Heat Lance magazine', () => {
+  it('fires five rounds on the press, then reloads on a five-second timer and comes back full', () => {
     const self = snapshot('shooter', 0, 0);
-    expect(self.galactic.weapon.charges).toBe(LANCE_STARTING_CHARGES);
+    expect(self.galactic.weapon.charges).toBe(LANCE_MAGAZINE);
+    expect(self.galactic.weapon.reload).toBe(0);
+    const events: string[] = [];
     let shots = 0;
-    // Four seconds: the rack empties in ~4.2 s of firing and the trickle needs six more.
     // The trigger fires on the press, so the test pulses it like a player tapping E.
-    for (let step = 0; step < 120 * 4; step += 1) {
-      const action = stepGalacticRacerAction(self.galactic, {
-        step, delta: 1 / 120, racing: true, input: normalizePlayerInput({ fire: step % 2 === 0 }), self, opponents: [],
-      });
-      shots += action.fireHeatLance ? 1 : 0;
-    }
-    expect(shots).toBe(LANCE_STARTING_CHARGES);
+    const pulse = (ticks: number, fire: (step: number) => boolean) => {
+      for (let step = 0; step < ticks; step += 1) {
+        const action = stepGalacticRacerAction(self.galactic, {
+          step, delta: 1 / 120, racing: true, input: normalizePlayerInput({ fire: fire(step) }), self, opponents: [],
+        });
+        shots += action.fireHeatLance ? 1 : 0;
+        for (const event of action.events) if (event.type === 'lance-reload' || event.type === 'lance-reloaded') events.push(event.type);
+      }
+    };
+    // Four seconds of tapping empties the five-round magazine and starts the reload.
+    pulse(120 * 4, (step) => step % 2 === 0);
+    expect(shots).toBe(LANCE_MAGAZINE);
     expect(self.galactic.weapon.charges).toBe(0);
-    const hud = deriveGalacticHudViewModel(self.galactic)!;
-    expect(hud.weaponCharges).toBe(0);
+    expect(self.galactic.weapon.reload).toBeGreaterThan(0);
+    expect(events).toEqual(['lance-reload']);
+    const reloading = deriveGalacticHudViewModel(self.galactic)!;
+    expect(reloading.weaponCharges).toBe(0);
+    expect(reloading.weaponReload).toBeGreaterThan(0);
+    // The trigger does nothing at all while the magazine is out.
+    const beforeReload = shots;
+    // The reload began at ~2.8 s and runs for LANCE_RELOAD_SECONDS; three more
+    // seconds of tapping land inside it and fire nothing at all.
+    expect(LANCE_RELOAD_SECONDS).toBe(5);
+    pulse(120 * 3, (step) => step % 2 === 0);
+    expect(shots).toBe(beforeReload);
+    // Ammunition itself is unlimited: the magazine returns full with no pickup.
+    pulse(120 * 1.2, () => false);
+    expect(self.galactic.weapon.charges).toBe(LANCE_MAGAZINE);
+    expect(self.galactic.weapon.reload).toBe(0);
+    expect(events).toEqual(['lance-reload', 'lance-reloaded']);
+    expect(deriveGalacticHudViewModel(self.galactic)!.weaponReload).toBe(0);
+    pulse(120 * 3, (step) => step % 2 === 0);
+    expect(shots).toBe(beforeReload + LANCE_MAGAZINE);
+    expect(self.galactic.weapon.reload).toBeGreaterThan(0);
   });
 
-  it('refills from an authored lance-cell pickup that respawns like other combat pickups', () => {
-    const self = snapshot('collector', 0, 0);
-    self.galactic.weapon.charges = 1;
-    expect(isCombatPickup('lance-cells')).toBe(true);
-    const world = createGalacticWorldState();
-    const events = collectCombatPickup('lance-cells-canyon', 'lance-cells',
-      { id: self.id, vehicle: createPodracerState({ terrain: FLAT_HEIGHT_SAMPLER }), galactic: self.galactic }, [], world);
-    expect(events).toEqual([{ type: 'lance-cells-collected', racerId: 'collector', pickupId: 'lance-cells-canyon', charges: 1 + LANCE_CELLS_PER_PICKUP }]);
-    expect(world.pickups.filter((pickup) => pickup.part === 'lance-cells')).toHaveLength(4);
-    expect(mapGameEventsToAudioCues(events, { playerId: 'collector' })).toHaveLength(1);
-  });
-
-  it('aligns lance cells to the canyon, chicane, hairpin and straight in a real race and lets a racer collect them', () => {
+  it('carries no ammunition pickups on the course', () => {
     const race = createRaceSimulation({ terrain: FLAT_HEIGHT_SAMPLER, seed: 0x494e4b53, countdownSeconds: 0 });
-    const cells = race.state.galacticWorld.pickups.filter((pickup) => pickup.part === 'lance-cells');
-    const tags = cells.map((pickup) => race.course.sampleAtProgress(pickup.progress).tag);
-    expect(tags).toEqual(['narrow-canyon', 'chicane', 'hairpin', 'fast-straight']);
-    const player = race.state.entries.find((entry) => entry.isPlayer)!;
-    player.galactic!.weapon.charges = 0;
-    const target = cells[3]!;
-    const sample = race.course.sampleAtProgress(target.progress - 0.002);
-    player.vehicle.position.x = sample.x; player.vehicle.position.z = sample.z;
-    player.vehicle.orientation.yaw = Math.atan2(sample.tangentX, sample.tangentZ);
-    player.vehicle.velocity.x = sample.tangentX * 60; player.vehicle.velocity.z = sample.tangentZ * 60;
-    player.progress.courseProgress = sample.progress;
-    let collected = false;
-    for (let tick = 0; tick < 240 && !collected; tick += 1) {
-      collected = race.step({ throttle: 0.5 }).galacticEvents.some((event) => event.type === 'lance-cells-collected' && event.racerId === player.id);
+    for (const pickup of race.state.galacticWorld.pickups) {
+      expect(pickup.part).not.toBe('lance-cells');
     }
-    expect(collected).toBe(true);
-    expect(player.galactic!.weapon.charges).toBe(LANCE_CELLS_PER_PICKUP);
+    const player = race.state.entries.find((entry) => entry.isPlayer)!;
+    expect(player.galactic!.weapon.charges).toBe(LANCE_MAGAZINE);
   });
 
   it('flies the lance slowly enough that leading matters and records where it struck the hull', () => {
@@ -175,58 +176,5 @@ describe('rival personalities and grudges', () => {
     }
     expect(state.rivalry.rivalId).toBeNull();
     expect(deriveGalacticHudViewModel(state)!.rivalName).toBeNull();
-  });
-});
-
-describe('lance ammunition never dies for a whole race', () => {
-  it('lets the same racer refill from a rack again once it has respawned', () => {
-    const world = createGalacticWorldState(93); world.hazards = [];
-    world.pickups = world.pickups.filter((pickup) => pickup.part === 'lance-cells');
-    const pickup = world.pickups[0]!;
-    const self = snapshot('collector', 0, 0);
-    const atPickup = () => ({ ...self, courseProgress: pickup.progress, lateralOffset: pickup.lateralOffset });
-    const collector = { id: self.id, vehicle: createPodracerState({ terrain: FLAT_HEIGHT_SAMPLER }), galactic: self.galactic };
-    self.galactic.weapon.charges = 0;
-    expect(stepGalacticWorld(world, [atPickup()], 1 / 120).pickupClaims).toEqual([{ racerId: 'collector', pickupId: pickup.id, part: 'lance-cells' }]);
-    expect(collectCombatPickup(pickup.id, 'lance-cells', collector, [], world)).toHaveLength(1);
-    expect(self.galactic.weapon.charges).toBe(LANCE_CELLS_PER_PICKUP);
-    // The rack is not a one-time upgrade: no ledger entry, so the next lap can take it again.
-    expect(self.galactic.upgrades.collectedPickupIds).toEqual([]);
-    self.galactic.weapon.charges = 0;
-    let claimed = 0;
-    for (let tick = 0; tick < 601; tick += 1) claimed += stepGalacticWorld(world, [atPickup()], 1 / 120).pickupClaims.length;
-    expect(claimed).toBe(1);
-    expect(collectCombatPickup(pickup.id, 'lance-cells', collector, [], world)).toHaveLength(1);
-    expect(self.galactic.weapon.charges).toBe(LANCE_CELLS_PER_PICKUP);
-  });
-
-  it('trickles one cell back every six seconds while the rack is below three, and shows it on the HUD', () => {
-    const self = snapshot('shooter', 0, 0);
-    self.galactic.weapon.charges = 0;
-    const step = () => stepGalacticRacerAction(self.galactic, {
-      step: 0, delta: 1 / 120, racing: true, input: normalizePlayerInput({}), self, opponents: [],
-    });
-    for (let tick = 0; tick < 120 * 3; tick += 1) step();
-    expect(self.galactic.weapon.charges).toBe(0);
-    const hud = deriveGalacticHudViewModel(self.galactic)!;
-    expect(hud.weaponCharges).toBe(0);
-    expect(hud.weaponRegen).toBeCloseTo(0.5, 2);
-    for (let tick = 0; tick < 120 * 3; tick += 1) step();
-    expect(self.galactic.weapon.charges).toBe(1);
-    for (let tick = 0; tick < 120 * 12; tick += 1) step();
-    expect(self.galactic.weapon.charges).toBe(3);
-    // At the floor the trickle stops: pickups are still the way to a full rack.
-    for (let tick = 0; tick < 120 * 12; tick += 1) step();
-    expect(self.galactic.weapon.charges).toBe(3);
-    expect(deriveGalacticHudViewModel(self.galactic)!.weaponRegen).toBe(0);
-    // Firing the trickled cells works exactly like pickup cells.
-    let shots = 0;
-    for (let tick = 0; tick < 120 * 3; tick += 1) {
-      const action = stepGalacticRacerAction(self.galactic, {
-        step: tick, delta: 1 / 120, racing: true, input: normalizePlayerInput({ fire: tick % 2 === 0 }), self, opponents: [],
-      });
-      shots += action.fireHeatLance ? 1 : 0;
-    }
-    expect(shots).toBe(3);
   });
 });

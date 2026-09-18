@@ -338,13 +338,13 @@ export interface HudGalacticViewModel {
   weaponTarget: string | null;
   weaponShots: number;
   weaponHits: number;
-  /** Heat Lance cells left; zero means the trigger does nothing until a pickup or the trickle. */
+  /** Rounds left in the magazine; zero means the lance is reloading. */
   weaponCharges: number;
-  /** Progress (0..1) toward the next trickle cell while the rack is below its floor. */
-  weaponRegen: number;
+  /** Share of the reload still to run (1 at the start, 0 when loaded). */
+  weaponReload: number;
   mineCount: number;
   /** Forward ordnance loaded on the mine key, if any, and its charges. */
-  ordnanceKind: 'thermal-spike' | 'tow-cable' | null;
+  ordnanceKind: 'tow-cable' | null;
   ordnanceCharges: number;
   /** 0..1 hold-to-charge progress toward an overcharge bolt. */
   weaponOvercharge: number;
@@ -381,6 +381,8 @@ export interface RaceHudViewModel {
   boost: number;
   boostActive: boolean;
   driftCharge: number;
+  /** 0..1 eased slide authority; non-zero means the pod is actually sliding. */
+  driftSlide: number;
   heat: number;
   damage: number;
   wrongWay: boolean;
@@ -420,7 +422,7 @@ export interface RaceHudSnapshotEntryLike {
     velocity?: { y: number };
     telemetry: { speed: number; normalizedSpeed?: number; groundClearance?: number };
     boost: { energy: number; active?: boolean };
-    drift?: { charge?: number };
+    drift?: { charge?: number; blend?: number };
     heat: number;
     damage: number;
     grounded?: boolean;

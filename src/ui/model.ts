@@ -1,5 +1,5 @@
 import { GALACTIC_VEHICLES, GALACTIC_VEHICLE_ORDER } from '../game/galactic/catalog';
-import { LANCE_CELL_REGEN_FLOOR, LANCE_CELL_REGEN_SECONDS } from '../game/galactic/system';
+import { LANCE_RELOAD_SECONDS } from '../game/galactic/system';
 import {
   DEFAULT_WORKSHOP_LOADOUTS,
   WORKSHOP_PARTS,
@@ -601,8 +601,7 @@ export function deriveGalacticHudViewModel(
     weaponShots: Math.max(0, Math.floor(finite(state.weapon.shotsFired))),
     weaponHits: Math.max(0, Math.floor(finite(state.weapon.hits))),
     weaponCharges: Math.min(99, Math.max(0, Math.floor(finite(state.weapon.charges)))),
-    weaponRegen: finite(state.weapon.charges) < LANCE_CELL_REGEN_FLOOR
-      ? clampUnit(finite(state.weapon.regen) / LANCE_CELL_REGEN_SECONDS) : 0,
+    weaponReload: clampUnit(finite(state.weapon.reload) / LANCE_RELOAD_SECONDS),
     mineCount: Math.min(99, Math.max(0, Math.floor(finite(state.mine.charges)))),
     ordnanceKind: state.ordnance?.kind && state.ordnance.charges > 0 ? state.ordnance.kind : null,
     ordnanceCharges: Math.min(99, Math.max(0, Math.floor(finite(state.ordnance?.charges ?? 0)))),
@@ -761,6 +760,7 @@ export function deriveRaceHudViewModel(
     boost: clampUnit(player.vehicle.boost.energy),
     boostActive: player.vehicle.boost.active === true,
     driftCharge: clampUnit(player.vehicle.drift?.charge ?? 0),
+    driftSlide: clampUnit(player.vehicle.drift?.blend ?? 0),
     heat: clampUnit(player.vehicle.heat),
     damage: clampUnit(player.vehicle.damage),
     wrongWay: player.progress.wrongWay,

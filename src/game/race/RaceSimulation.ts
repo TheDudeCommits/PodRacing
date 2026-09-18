@@ -859,10 +859,6 @@ export class RaceSimulation {
         projectile.damage *= workshopWeaponDamageScale(entry.workshop);
         galacticEvents.push({ type: 'overcharge-fired', racerId: entry.id, projectileId: projectile.id });
       }
-      if (action.fireOrdnance === 'thermal-spike') {
-        const projectile = spawnHeatLance(this.state.galacticWorld, self, 'thermal-spike');
-        galacticEvents.push({ type: 'thermal-spike-fired', racerId: entry.id, projectileId: projectile.id });
-      }
       if (action.fireOrdnance === 'tow-cable') this.attachTowCable(entry, galacticEvents);
       if (action.releaseTow) this.releaseTowCable(entry, false, galacticEvents);
       if (action.deployMine) {
@@ -1204,15 +1200,12 @@ export class RaceSimulation {
   /** Mines other racers dropped; the AI corridor logic steers around them. */
   private aiPointHazardsFor(racerId: string): readonly { x: number; z: number; radius: number }[] {
     const mines = this.state.galacticWorld.mines;
-    const debris = this.state.galacticWorld.debris ?? [];
-    if (mines.length === 0 && debris.length === 0) return [];
+    if (mines.length === 0) return [];
     const hazards: { x: number; z: number; radius: number }[] = [];
     for (const mine of mines) {
       if (mine.ownerId === racerId) continue;
       hazards.push({ x: mine.position.x, z: mine.position.z, radius: mine.triggerRadius + 1.5 });
     }
-    // Wreck debris is avoided by everyone, including the racer who shed it.
-    for (const piece of debris) hazards.push({ x: piece.position.x, z: piece.position.z, radius: piece.radius + 4 });
     return hazards;
   }
 
@@ -2458,23 +2451,9 @@ export class RaceSimulation {
       const progress = placements.get(hazard.id);
       if (progress !== undefined) hazard.progress = progress;
     }
-    // Lance cells sit at the fight beats: canyon entry, chicane, hairpin and
-    // the open straight, so exchanges cluster where the course invites them.
-    const cellPlacements = new Map<string, number>([
-      ['lance-cells-canyon', progressInSection('narrow-canyon', 0.12)],
-      ['lance-cells-chicane', progressInSection('chicane', 0.3)],
-      ['lance-cells-hairpin', progressInSection('hairpin', 0.35)],
-      ['lance-cells-straight', progressInSection('fast-straight', 0.5)],
-    ]);
-    for (const pickup of world.pickups) {
-      const progress = cellPlacements.get(pickup.id);
-      if (progress !== undefined) pickup.progress = progress;
-    }
-    // Forward ordnance where a straight line ahead rewards it; the nitro cell
-    // only on the slow inside line of the hairpin, where taking it costs pace.
+    // Tow cables where a straight line ahead rewards one; the nitro cell only
+    // on the slow inside line of the hairpin, where taking it costs pace.
     const ordnancePlacements = new Map<string, number>([
-      ['spike-canyon', progressInSection('narrow-canyon', 0.62)],
-      ['spike-straight', progressInSection('fast-straight', 0.82)],
       ['cable-sweeper', progressInSection('wide-sweeper', 0.3)],
       ['cable-recovery', progressInSection('recovery-straight', 0.4)],
       ['nitro-hairpin', progressInSection('hairpin', 0.5)],

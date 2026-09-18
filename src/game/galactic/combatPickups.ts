@@ -6,11 +6,8 @@ export const EMP_DISRUPTION_SECONDS = 1.35;
 export const SALVAGE_REPAIR_AMOUNT = 0.24;
 export const SALVAGE_COOLING_AMOUNT = 0.4;
 export const COMBAT_PICKUP_RESPAWN_SECONDS = 5;
-export const LANCE_CELLS_PER_PICKUP = 4;
-export const LANCE_CELL_CAPACITY = 8;
-export type CombatPickupPart = 'emp-cell' | 'repair-salvage' | 'lance-cells' | 'thermal-spike' | 'tow-cable' | 'nitro-cell';
-const ORDNANCE_LOAD: Readonly<Record<'thermal-spike' | 'tow-cable', { perPickup: number; cap: number }>> = Object.freeze({
-  'thermal-spike': { perPickup: 2, cap: 4 },
+export type CombatPickupPart = 'emp-cell' | 'repair-salvage' | 'tow-cable' | 'nitro-cell';
+const ORDNANCE_LOAD: Readonly<Record<'tow-cable', { perPickup: number; cap: number }>> = Object.freeze({
   'tow-cable': { perPickup: 1, cap: 2 },
 });
 export interface CombatPickupRacer {
@@ -19,8 +16,7 @@ export interface CombatPickupRacer {
   readonly galactic: GalacticRacerState;
 }
 export function isCombatPickup(part: GalacticUpgradePart): part is CombatPickupPart {
-  return part === 'emp-cell' || part === 'repair-salvage' || part === 'lance-cells'
-    || part === 'thermal-spike' || part === 'tow-cable' || part === 'nitro-cell';
+  return part === 'emp-cell' || part === 'repair-salvage' || part === 'tow-cable' || part === 'nitro-cell';
 }
 
 /**
@@ -37,14 +33,7 @@ export function collectCombatPickup(
 ): GalacticEvent[] {
   const { galactic, vehicle, id } = collector;
   if (galactic.wreck.phase === 'wrecked') return [];
-  if (part === 'lance-cells') {
-    // Ammunition, not a one-time upgrade: the same racer may refill from this
-    // rack every time it respawns, so the lance stays usable on every lap.
-    galactic.weapon.charges = Math.min(LANCE_CELL_CAPACITY, galactic.weapon.charges + LANCE_CELLS_PER_PICKUP);
-    galactic.weapon.regen = 0;
-    return [{ type: 'lance-cells-collected', racerId: id, pickupId, charges: galactic.weapon.charges }];
-  }
-  if (part === 'thermal-spike' || part === 'tow-cable') {
+  if (part === 'tow-cable') {
     // Forward ordnance loads into the mine key. A different kind replaces what was there.
     const load = ORDNANCE_LOAD[part];
     const ordnance = galactic.ordnance ??= { kind: null, charges: 0, cooldown: 0 };
