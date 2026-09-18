@@ -5,8 +5,9 @@
 Round 43 is a trim-and-polish round on the owner's instruction: **photo finishes reverted**, **the Heat Lance made unlimited again behind a five-round magazine with a five-second reload**, **the thermal spike removed**, **wreck debris removed**, and **drifting rebuilt around one eased authority with a visible ground trail**. Details, physics numbers and native frames: [ROUND43_REPORT.md](docs/inkstorm-overhaul/ROUND43_REPORT.md). Earlier rounds: [ROUND42](docs/inkstorm-overhaul/ROUND42_REPORT.md), [ROUND41](docs/inkstorm-overhaul/ROUND41_REPORT.md), [ROUND40](docs/inkstorm-overhaul/ROUND40_REPORT.md), [ROUND39](docs/inkstorm-overhaul/ROUND39_REPORT.md), [ROUND38](docs/inkstorm-overhaul/ROUND38_REPORT.md), [ROUND37](docs/inkstorm-overhaul/ROUND37_REPORT.md).
 
 - Repository: https://github.com/TheDudeCommits/PodRacing, branch `codex/now-this-is-podracing`, working directory `/Users/amir/Projects/PodRacing`.
-- Runtime source: the round 43 commit on this branch (see `git log`), on top of `74ac4d6` (round 42).
-- **Production was promoted from this round at the owner's explicit request** (`vercel promote`, recorded in the follow-up docs commit). Previews still come from the Git integration on push. Never run `vercel deploy` from the working tree; it tries to upload roughly 17 GB.
+- Runtime source: commit `298950d` (round 43) on top of `74ac4d6` (round 42).
+- **Production is live from this round at the owner's explicit request.** Preview `dpl_5yfYPyNNRPcXUgudt9ko8KqiKsVQ` (https://now-this-is-podracing-dkeftxaib-amirs-projects-d9680079.vercel.app) was promoted with `npx vercel promote`, which rebuilt it in the production environment as `dpl_FKeZ9Vbbf7aG5GD7XzMsb3dMuSWC` and aliased https://now-this-is-podracing.vercel.app. The live bundle hash matches the local `npm run build` output (`index-DkeU_NFY.js`). Promotion needs an interactive confirmation, so drive it with `yes | npx vercel promote <url> --scope amirs-projects-d9680079`.
+- Previews come from the Git integration on push. Never run `vercel deploy` from the working tree; it tries to upload roughly 17 GB. Production promotion stays owner-approved only.
 
 ## What the game is right now
 
