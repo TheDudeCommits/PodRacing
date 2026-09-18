@@ -1,6 +1,17 @@
 # Trailer build
 
-A 60.000s / 1920x1080 / 60fps launch trailer. Roughly 70% is real gameplay
+The current cut is a **scene-by-scene remake of the reference trailer**:
+91.000s / 1920x1080 / 60fps, 51 cuts matching the reference's 50 scenes at its
+own timecodes. See `REFERENCE.md` for the mapping and for the five groups of
+scenes that could not be matched literally.
+
+Build it with:
+
+```
+node scripts/trailer/edit.mjs --edl=./scenes.mjs --shots=shots3 --out=PodRacing-Trailer-v4
+```
+
+Earlier cuts (`edl3.mjs`, 60s original edit) still build the same way. Roughly 70% is real gameplay
 rendered from the shipping bundle; the rest is generated cinematic material and
 typography.
 

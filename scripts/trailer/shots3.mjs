@@ -57,5 +57,16 @@ export const SHOTS3 = [
   // The line.
   { id: 't3-finish-chase', seek: 0.920, camera: 'chase',   yieldFor: 4.0, frames: 440, feature: 'finish', drive: { throttle: 0.97 } },
   { id: 't3-finish-side',  seek: 0.935, camera: 'side',    yieldFor: 4.0, frames: 400, feature: 'finish', drive: { throttle: 0.97 } },
-  { id: 't3-finish-pov',   seek: 0.930, camera: 'cockpit', yieldFor: 4.0, frames: 400, feature: 'finish', drive: { throttle: 0.97 } },
+  { id: 't3-finish-pov',   seek: 0.930, camera: 'cockpit', yieldFor: 4.0, frames: 400, feature: 'finish', drive: { throttle: 0.97 } },,
+
+  // --- Added for the scene-by-scene remake ---------------------------------
+  // The reference cuts repeatedly to POV shots threading through structures
+  // (ship wreckage, engine rooms, stone arches, frozen pipework). These are the
+  // circuit's equivalents: the rock arch and the refinery.
+  { id: 't4-arch-pov',     seek: 0.435, camera: 'cockpit', yieldFor: 4.0, frames: 400, feature: 'pack', drive: { throttle: 0.94, overtake: false } },
+  { id: 't4-arch-side',    seek: 0.437, camera: 'side',    yieldFor: 4.0, frames: 380, feature: 'pack', drive: { throttle: 0.94, overtake: false } },
+  { id: 't4-refinery-pov', seek: 0.575, camera: 'cockpit', yieldFor: 4.0, frames: 400, feature: 'pack', drive: { throttle: 0.94, overtake: false } },
+  { id: 't4-spires-dusk',  seek: 0.680, camera: 'chase',   yieldFor: 4.0, frames: 400, feature: 'pack', drive: { throttle: 0.94, overtake: false } },
+  // A low, close side pass: the reference's "craft screams past the lens".
+  { id: 't4-lowpass-side', seek: 0.150, camera: 'side',    yieldFor: 4.6, frames: 400, feature: 'pack', drive: { throttle: 0.90, overtake: false } },
 ];

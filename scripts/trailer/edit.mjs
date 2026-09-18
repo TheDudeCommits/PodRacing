@@ -8,8 +8,8 @@ import { mkdir, writeFile, access, readdir } from 'node:fs/promises';
 import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
 const edlModule = process.argv.find((a) => a.startsWith('--edl='))?.split('=')[1] ?? './edl.mjs';
-const { EDL, EDL2, EDL3, MUSIC, SFX } = await import(edlModule);
-const CUTS = EDL3 ?? EDL2 ?? EDL;
+const { EDL, EDL2, EDL3, SCENES, MUSIC, SFX, TAIL } = await import(edlModule);
+const CUTS = SCENES ?? EDL3 ?? EDL2 ?? EDL;
 
 const run = promisify(execFile);
 const probeDuration = async (file) => {
@@ -51,6 +51,7 @@ const list = [];
 for (const [i, shot] of CUTS.entries()) {
   const frames = Math.round(shot.dur * FPS);
   const name = `${String(i).padStart(2, '0')}-${shot.src}`;
+  // (scene maps reuse the same take at different in-points; index keeps them distinct)
   const out = `${clipsDir}/${name}.mp4`;
   list.push(out);
   if (skipClips && await exists(out)) continue;
@@ -103,6 +104,7 @@ for (const [i, shot] of CUTS.entries()) {
       chain.push(s.kind === 'gen' ? `scale=${W}:${H},fps=${FPS}` : `scale=${W}:${H}`);
     }
     const cf = cropFilter(s.crop); if (cf) chain.push(cf);
+    if (s.dim) chain.push(`eq=brightness=-${Number(s.dim).toFixed(2)}:saturation=0.8`);
     const p = pushFilter(s.push, frames); if (p) chain.push(p);
     const f = flashFilter(s.flash); if (f) chain.push(f);
     await ff([...input, '-vf', chain.join(','), ...enc, out]);
@@ -122,16 +124,28 @@ await ff(['-i', `${outDir}/${outName}-raw.mp4`, '-vf',
 console.log('graded');
 
 // Audio: sourced music bed plus the game's own sourced SFX, limited and normalised.
+const musicAt = MUSIC.at ?? 0;
 const aIn = ['-ss', String(MUSIC.in), '-t', String(MUSIC.dur), '-i', MUSIC.file];
-const aFilters = [`[0:a]afade=t=in:st=0:d=0.5,afade=t=out:st=${MUSIC.dur - 3}:d=3,volume=0.92[m]`];
+const musicDelay = Math.round(musicAt * 1000);
+const aFilters = [`[0:a]afade=t=in:st=0:d=0.5,afade=t=out:st=${MUSIC.dur - 2.5}:d=2.5,`
+  + `volume=0.92,adelay=${musicDelay}|${musicDelay}[m]`];
 const mixLabels = ['[m]'];
+let nextIn = 1;
+if (TAIL) {
+  aIn.push('-i', TAIL.file);
+  const td = Math.round(TAIL.at * 1000);
+  aFilters.push(`[${nextIn}:a]aformat=channel_layouts=stereo,volume=${TAIL.gain},`
+    + `afade=t=in:st=0:d=1.5,adelay=${td}|${td}[tail]`);
+  mixLabels.push('[tail]');
+  nextIn += 1;
+}
 SFX.forEach((s, i) => {
   aIn.push('-i', s.file);
   const ms = Math.round(s.at * 1000);
-  aFilters.push(`[${i + 1}:a]aformat=channel_layouts=stereo,adelay=${ms}|${ms},volume=${s.gain}[s${i}]`);
+  aFilters.push(`[${nextIn + i}:a]aformat=channel_layouts=stereo,adelay=${ms}|${ms},volume=${s.gain}[s${i}]`);
   mixLabels.push(`[s${i}]`);
 });
-aFilters.push(`${mixLabels.join('')}amix=inputs=${mixLabels.length}:normalize=0:duration=first[mixed]`);
+aFilters.push(`${mixLabels.join('')}amix=inputs=${mixLabels.length}:normalize=0:duration=longest[mixed]`);
 aFilters.push(`[mixed]alimiter=limit=0.97,loudnorm=I=-14:TP=-1.5:LRA=11[a]`);
 await ff([...aIn, '-filter_complex', aFilters.join(';'), '-map', '[a]',
   '-c:a', 'pcm_s16le', '-ar', '48000', `${outDir}/${outName}-mix.wav`]);
