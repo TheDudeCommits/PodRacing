@@ -4,14 +4,19 @@
  * music bed with the game's own sourced SFX hits.
  *   node scripts/trailer/edit.mjs [--skip-clips] [--edl=./edl2.mjs] [--shots=shots2] [--out=name]
  */
-import { mkdir, writeFile, access } from 'node:fs/promises';
+import { mkdir, writeFile, access, readdir } from 'node:fs/promises';
 import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
 const edlModule = process.argv.find((a) => a.startsWith('--edl='))?.split('=')[1] ?? './edl.mjs';
-const { EDL, EDL2, MUSIC, SFX } = await import(edlModule);
-const CUTS = EDL2 ?? EDL;
+const { EDL, EDL2, EDL3, MUSIC, SFX } = await import(edlModule);
+const CUTS = EDL3 ?? EDL2 ?? EDL;
 
 const run = promisify(execFile);
+const probeDuration = async (file) => {
+  const { stdout } = await run('ffprobe', ['-v', 'error', '-show_entries', 'format=duration',
+    '-of', 'default=nw=1:nk=1', file]);
+  return parseFloat(stdout.trim());
+};
 const ff = (args) => run('ffmpeg', ['-y', '-loglevel', 'error', ...args], { maxBuffer: 1 << 26 });
 const exists = async (p) => { try { await access(p); return true; } catch { return false; } };
 
@@ -26,6 +31,11 @@ await mkdir(clipsDir, { recursive: true });
 // A slow punch-in over the shot. zoompan re-renders each source frame once.
 const pushFilter = (push, frames) => push && push > 1
   ? `zoompan=z='1+(${(push - 1).toFixed(4)})*on/${frames}':d=1:x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':s=${W}x${H}:fps=${FPS}`
+  : null;
+// A framing punch-in. Effects like a lance bolt are only a few pixels wide in a
+// full chase frame, so feature beats are reframed tighter around the action.
+const cropFilter = (c) => c
+  ? `crop=iw/${c.z}:ih/${c.z}:(iw-iw/${c.z})*${c.cx ?? 0.5}:(ih-ih/${c.z})*${c.cy ?? 0.5},scale=${W}:${H}`
   : null;
 const flashFilter = (n) => n ? `fade=t=in:st=0:d=${(n / FPS).toFixed(4)}:color=0xffe0c0` : null;
 
@@ -44,6 +54,15 @@ for (const [i, shot] of CUTS.entries()) {
   const out = `${clipsDir}/${name}.mp4`;
   list.push(out);
   if (skipClips && await exists(out)) continue;
+  if (shot.kind === 'game') {
+    const avail = (await readdir(`output/trailer/${shotsDir}/${shot.src}`))
+      .filter((f) => f.endsWith('.jpg')).length;
+    const need = Math.round((shot.in ?? 0) * FPS) + frames;
+    if (need > avail) {
+      throw new Error(`${shot.src}: cut needs frame ${need} but the take has ${avail}. `
+        + `Lower in (max ${((avail - frames) / FPS).toFixed(2)}s) or shorten dur.`);
+    }
+  }
 
   // Resolve a generated shot that never arrived to its real-gameplay fallback.
   let s = shot;
@@ -74,8 +93,16 @@ for (const [i, shot] of CUTS.entries()) {
       `[0:v]${bg}[bg];[1:v]format=rgba,fade=t=in:st=0:d=0.12:alpha=1[fg];[bg][fg]overlay=0:0:format=auto[v]`,
       '-map', '[v]', ...enc, out]);
   } else {
-    const input = s.kind === 'gen' ? genInput(s.src, s.in ?? 0) : gameInput(s.src, s.in ?? 0);
-    chain.push(s.kind === 'gen' ? `scale=${W}:${H},fps=${FPS}` : `scale=${W}:${H}`);
+    let input;
+    if (s.kind === 'gen' && s.fit) {
+      const srcDur = await probeDuration(`output/trailer/gen/${s.src}.mp4`);
+      input = ['-i', `output/trailer/gen/${s.src}.mp4`];
+      chain.push(`scale=${W}:${H}`, `setpts=PTS*${(s.dur / srcDur).toFixed(5)}`, `fps=${FPS}`);
+    } else {
+      input = s.kind === 'gen' ? genInput(s.src, s.in ?? 0) : gameInput(s.src, s.in ?? 0);
+      chain.push(s.kind === 'gen' ? `scale=${W}:${H},fps=${FPS}` : `scale=${W}:${H}`);
+    }
+    const cf = cropFilter(s.crop); if (cf) chain.push(cf);
     const p = pushFilter(s.push, frames); if (p) chain.push(p);
     const f = flashFilter(s.flash); if (f) chain.push(f);
     await ff([...input, '-vf', chain.join(','), ...enc, out]);

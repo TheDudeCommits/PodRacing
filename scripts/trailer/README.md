@@ -9,12 +9,41 @@ typography.
 | Step | Command | Output |
 | --- | --- | --- |
 | Scout the circuit for locations | `node scripts/trailer/scout.mjs` | `output/trailer/scout/` |
-| Render every gameplay take | `node scripts/trailer/capture.mjs` | `output/trailer/shots/<id>/f%05d.jpg` |
-| Render the typographic cards | `node scripts/trailer/cards.mjs` | `output/trailer/cards/*.png` |
-| Cut, grade and mix | `node scripts/trailer/edit.mjs` | `output/trailer/PodRacing-Trailer.mp4` |
+| Render every gameplay take | `node scripts/trailer/capture3.mjs` | `output/trailer/shots3/<id>/` |
+| Report the best window per take | `node scripts/trailer/pick.mjs` | stdout |
+| Render the end card | `node scripts/trailer/cards.mjs` | `output/trailer/cards/*.png` |
+| Cut, grade and mix | `node scripts/trailer/edit.mjs --edl=./edl3.mjs --shots=shots3 --out=PodRacing-Trailer-v3` | `output/trailer/PodRacing-Trailer-v3.mp4` |
 
-`shots.mjs` is the capture shot list, `edl.mjs` the edit decision list.
-`--skip-clips` on `edit.mjs` reuses already-rendered clips.
+`shots3.mjs` is the capture shot list, `driver.mjs` the in-page hero driver,
+`edl3.mjs` the edit decision list. `--skip-clips` reuses rendered clips.
+
+## Driving the hero pod
+
+The first cut held `setInput({throttle:1})` with no steer, so the pod drove
+straight off the racing line while the camera followed it into open desert;
+lateral offset reached -24 m and climbing while the AI rivals held -17..+12.
+`driver.mjs` replaces that with a closed-loop driver reading the review
+snapshot: a PD lane hold (kp 0.055 / kd 0.115), targets clamped to the racing
+surface, an explicit recentre above 11 m, overtaking that picks the free side,
+lance fire only at a rival inside the forward cone, and shields raised on real
+incoming projectiles.
+
+`seekCourse` also places the hero ahead of the entire field, so a chase camera
+sees nobody. Each take runs a low-throttle `yieldFor` phase first and lets the
+seven rivals stream past.
+
+## Choosing cuts from telemetry, not by eye
+
+`capture3.mjs` writes `telemetry.json` beside every take: per-frame lateral
+offset, rivals within range, lance fire, mine drops, shield state, drift, wreck
+phase. `pick.mjs` slides a window over it, rejects any window where the hero
+leaves the racing line or wrecks unintentionally, and scores the rest for the
+feature the beat must show. Weapon beats are cut to the exact frame the weapon
+fires. Small effects are reframed tighter (`crop` in the EDL) because a lance
+bolt is only a few pixels in a full chase frame.
+
+`edit.mjs` refuses to build a cut that runs past the end of its take; two shots
+silently truncated to a third of their length before that guard existed.
 
 ## Why the capture works the way it does
 
@@ -47,11 +76,15 @@ selection-screen score. Used from 13.97s for 60s. Credited in
 audio ledger is untouched.
 
 **Typography.** The game's own shipped faces (Black Ops One, Russo One, Chakra
-Petch) and HUD palette.
+Petch) and HUD palette. The cut carries no on-screen text except the end card.
 
-**Generated footage — disclose when publishing.** Six shots were generated with
-Seedance 2.5 via Higgsfield, each conditioned on real frames from this build as
-style or start references: `g1-engine-ignite`, `g2-low-pass`, `g3-pilot`,
-`g4-crash`, `g5-canyon`, `g6-dust-plate` (in `output/trailer/gen/`). They are
-about 11s of the 60s cut. They are **trailer assets only** and must never enter
+**Generated footage — disclose when publishing.** Shots generated with Seedance
+2.5 via Higgsfield, all conditioned on real frames from this build. Three are
+*bridges*: each is conditioned on the last frame of the gameplay cut before it
+and the first frame of the cut after it (`start_image` + `end_image`), so it
+begins and ends on real game frames and cuts invisibly. Generated at 4s and
+retimed into their slots (`fit: true`) so both boundary frames are traversed.
+`bridge-launch`, `bridge-war`, `bridge-finish`, `g1-engine-ignite`, `gen-pack`,
+`gen-duel`, `g4-crash`, `g6-dust-plate` (in `output/trailer/gen/`). About 20s of
+the 60s cut. They are **trailer assets only** and must never enter
 `public/`, the game bundle, or the audio/asset provenance ledgers.

@@ -1,23 +1,25 @@
 /**
  * The in-page hero driver, injected into the built bundle for trailer capture.
  *
- * v1 of this trailer held `setInput({throttle:1})` with no steering, so the pod
- * drove straight off the racing line while the camera followed it into open
- * desert. This is a closed-loop replacement: a PD lane-hold on the review
- * snapshot's `lateralOffset` (kp/kd tuned to a 3.5 m median, zero off-course
- * resets), plus drafting, overtaking, lance fire at real targets and shield
- * reactions to real incoming projectiles.
+ * v1 held setInput({throttle:1}) with no steering and drove off the course. v2
+ * added a PD lane hold but still wandered: the overtake bias chased rivals that
+ * were themselves wide (one take peaked 117 m off the centreline), and drifting
+ * pushed the hero out with no recovery. This version clamps every target to the
+ * racing surface and adds an explicit recentre state.
  *
- * It also fixes the staging: seekCourse puts the hero ahead of the whole field,
- * so a chase camera sees nothing. `yieldFor` runs a slow phase first and lets
- * the seven rivals stream past, putting the hero in traffic before the take.
+ * It also emits per-frame telemetry so cuts can be chosen from measured data
+ * (on the line, rivals close, weapon actually firing) instead of by eye.
  */
 export const DRIVER_SOURCE = `
 window.__TRAILER_DRIVE__ = (function () {
   var prevLat = null, fireCooldown = 0, shieldCooldown = 0, weaveT = 0;
+  var recovering = false, prevShots = 0, prevMines = 0;
   var KP = 0.055, KD = 0.115, DT = 2 / 120;
+  var HALF = 9;          // keep every commanded line inside the racing surface
+  var RECOVER_IN = 11;   // beyond this the take is off-track: recentre hard
+  var RECOVER_OUT = 5;
 
-  function forwardOf(yaw) { return { x: Math.sin(yaw), z: Math.cos(yaw) }; }
+  function clamp(v, a, b) { return v < a ? a : (v > b ? b : v); }
 
   return function drive(cmd) {
     cmd = cmd || {};
@@ -27,69 +29,95 @@ window.__TRAILER_DRIVE__ = (function () {
     var me = racers.find(function (r) { return r.id === 'player'; });
     if (!me) return null;
 
+    var g = me.galactic;
     var lat = me.lateralOffset, yaw = me.yaw || 0, pos = me.position || [0, 0, 0];
+    var fwd = { x: Math.sin(yaw), z: Math.cos(yaw) };
     var rivals = racers.filter(function (r) { return r.id !== 'player' && r.position; });
-    var fwd = forwardOf(yaw);
 
-    // Where on the track this shot wants the hero to sit. A slow weave keeps a
-    // dead-centre line from reading robotic.
+    // Off-track recovery takes priority over everything the shot asked for.
+    if (Math.abs(lat) > RECOVER_IN) recovering = true;
+    else if (Math.abs(lat) < RECOVER_OUT) recovering = false;
+
     weaveT += DT;
-    var target = (cmd.targetLat || 0) + Math.sin(weaveT * 0.55) * (cmd.weave === 0 ? 0 : (cmd.weave || 2.2));
+    var target = clamp(cmd.targetLat || 0, -HALF, HALF);
+    if (!recovering && cmd.weave !== 0) target += Math.sin(weaveT * 0.55) * (cmd.weave || 2.0);
 
-    // Overtaking: if a rival sits close ahead, pick the free side and go round.
-    var ahead = null, aheadDist = 1e9;
+    // Nearest rival ahead, used for both overtaking and the lance cone.
+    var ahead = null, aheadDist = 1e9, near = 0;
     for (var i = 0; i < rivals.length; i++) {
       var r = rivals[i];
       var dx = r.position[0] - pos[0], dz = r.position[2] - pos[2];
-      var along = dx * fwd.x + dz * fwd.z;
       var dist = Math.sqrt(dx * dx + dz * dz);
-      if (along > 4 && dist < aheadDist) { aheadDist = dist; ahead = r; }
+      if (dist < 90) near++;
+      if (dx * fwd.x + dz * fwd.z > 4 && dist < aheadDist) { aheadDist = dist; ahead = r; }
     }
-    if (cmd.overtake !== false && ahead && aheadDist < 95) {
+    if (!recovering && cmd.overtake !== false && ahead && aheadDist < 95) {
       var gap = ahead.lateralOffset - lat;
-      target = ahead.lateralOffset + (gap >= 0 ? -13 : 13);
+      target = ahead.lateralOffset + (gap >= 0 ? -12 : 12);
     }
+    target = clamp(recovering ? 0 : target, -HALF, HALF);
 
     var d = prevLat === null ? 0 : (lat - prevLat) / DT;
     prevLat = lat;
-    var steer = -(KP * (lat - target)) - (KD * d);
-    steer = Math.max(-1, Math.min(1, steer));
+    var steer = clamp(-(KP * (lat - target)) - (KD * d), -1, 1);
 
-    // Lance: fire only at a rival actually inside the forward cone, and pulse
-    // the trigger, because the weapon fires on the press.
     var fire = false;
     fireCooldown = Math.max(0, fireCooldown - DT);
-    if (cmd.fire && fireCooldown === 0 && ahead && aheadDist < 230) {
+    if (cmd.fire && fireCooldown === 0 && ahead && aheadDist < 300) {
       var ax = ahead.position[0] - pos[0], az = ahead.position[2] - pos[2];
-      var alen = Math.sqrt(ax * ax + az * az) || 1;
-      if ((ax / alen) * fwd.x + (az / alen) * fwd.z > 0.982) { fire = true; fireCooldown = 0.55; }
+      var al = Math.sqrt(ax * ax + az * az) || 1;
+      if ((ax / al) * fwd.x + (az / al) * fwd.z > 0.945) { fire = true; fireCooldown = 0.42; }
     }
 
-    // Shield: react to a real incoming bolt, not a timer.
     var shield = false;
     shieldCooldown = Math.max(0, shieldCooldown - DT);
     var projectiles = (snap.galactic.world && snap.galactic.world.projectiles) || [];
-    if (cmd.shield !== false && shieldCooldown === 0) {
-      for (var p = 0; p < projectiles.length; p++) {
-        var pr = projectiles[p];
-        if (pr.ownerId === 'player') continue;
-        var px = pr.position.x - pos[0], pz = pr.position.z - pos[2];
-        if (Math.sqrt(px * px + pz * pz) < 110) { shield = true; shieldCooldown = 2.2; break; }
-      }
+    var incoming = 0;
+    for (var p = 0; p < projectiles.length; p++) {
+      var pr = projectiles[p];
+      if (pr.ownerId === 'player') continue;
+      var px = pr.position.x - pos[0], pz = pr.position.z - pos[2];
+      if (Math.sqrt(px * px + pz * pz) < 130) incoming++;
     }
+    if (cmd.shield !== false && shieldCooldown === 0 && (incoming > 0 || cmd.forceShield)) {
+      shield = true; shieldCooldown = 2.0;
+    }
+
+    // Drift only in a real corner and only while still on the surface, so the
+    // slide showcases handling instead of leaving the track.
+    var wantDrift = cmd.drift === false ? false
+      : (cmd.drift === true ? true : (Math.abs(steer) > 0.5 && Math.abs(lat) < 10));
+    if (recovering) wantDrift = false;
 
     var straight = Math.abs(steer) < 0.18;
     var input = {
-      throttle: cmd.throttle === undefined ? 1 : cmd.throttle,
+      throttle: recovering ? 0.70 : (cmd.throttle === undefined ? 1 : cmd.throttle),
       steer: steer,
-      drift: cmd.drift === false ? false : Math.abs(steer) > 0.46,
-      boost: cmd.boost === false ? false : (straight && (me.galactic.boost ? me.galactic.boost.energy > 0.3 : true)),
+      drift: wantDrift,
+      boost: (!recovering && cmd.boost !== false && straight),
       fire: fire,
       shield: shield,
       mine: !!cmd.mine
     };
     api.setInput(input);
-    return { lat: lat, target: target, steer: steer, aheadDist: ahead ? aheadDist : null, fire: fire, shield: shield };
+
+    var hud = document.querySelector('.pod-hud');
+    var driftSlide = hud ? parseFloat(hud.style.getPropertyValue('--pod-drift-slide')) : NaN;
+    var firedNow = g.weapon.shotsFired > prevShots; prevShots = g.weapon.shotsFired;
+    var minedNow = g.mine.deployed > prevMines; prevMines = g.mine.deployed;
+
+    return {
+      lat: lat, steer: steer, recovering: recovering,
+      near: near, aheadDist: ahead ? Math.round(aheadDist) : null,
+      speed: Math.round(snap.game.speed || 0),
+      firedNow: firedNow, minedNow: minedNow,
+      shieldActive: !!g.shield.active,
+      redline: !!g.redline.active,
+      wreck: g.wreck.phase,
+      bolts: projectiles.length, incoming: incoming,
+      drift: isNaN(driftSlide) ? 0 : driftSlide,
+      events: (snap.galactic.recentEvents || []).map(function (e) { return e.type; })
+    };
   };
 })();
 `;
