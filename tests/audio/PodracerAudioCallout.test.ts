@@ -1,10 +1,11 @@
 import { describe, expect, it } from 'vitest';
 import { PodracerAudio } from '../../src/audio';
+import { COCKPIT_RECORDINGS } from '../../src/audio/cockpit';
 import { RECORDED_EFFECT_URLS, RECORDED_ENGINE_VOICE_URLS, RECORDED_MUSIC_URL } from '../../src/audio/catalogue';
 import type { PodracerAudioTelemetry } from '../../src/audio';
 // Effects, the pod engine voices that are not already effects, music and voice.
 const EXPECTED_DECODED_FILES = RECORDED_EFFECT_URLS.length
-  + RECORDED_ENGINE_VOICE_URLS.filter((url) => !RECORDED_EFFECT_URLS.includes(url)).length + 2;
+  + RECORDED_ENGINE_VOICE_URLS.filter((url) => !RECORDED_EFFECT_URLS.includes(url)).length + 2 + Object.keys(COCKPIT_RECORDINGS).length;
 
 interface ParamEvent {
   kind: 'cancel' | 'set' | 'linear' | 'exponential' | 'target';
@@ -256,6 +257,27 @@ async function createLoadedAudio(initiallyMuted = false): Promise<{
 }
 
 describe('PodracerAudio overtake callout', () => {
+  it('plays cached cockpit recordings through effects and master, bounds repeats, and stops on hide', async () => {
+    const { audio, context, fetchCount } = await createLoadedAudio(true);
+    const before = context.bufferSources.length;
+    audio.playCockpitCue('select');
+    audio.playCockpitCue('select');
+    expect(context.bufferSources).toHaveLength(before + 1);
+    const source = context.bufferSources.at(-1)!;
+    const gain = source.connections[0] as FakeGainNode;
+    const effects = gain.connections[0] as FakeGainNode;
+    expect(effects.connections[0]).toBe(context.gains[0]);
+    expect(context.gains[0]!.gain.value).toBe(0);
+    audio.setMix({ effects: 0 });
+    expect(effects.gain.value).toBe(0);
+    expect(context.oscillators).toHaveLength(0);
+    expect(fetchCount()).toBe(EXPECTED_DECODED_FILES);
+    audio.setHidden(true);
+    expect(source.disconnected).toBe(true);
+    audio.playCockpitCue('launch');
+    expect(context.bufferSources).toHaveLength(before + 1);
+    audio.dispose();
+  });
   it('reuses the decoded menu buffer and never refetches it for overtakes', async () => {
     const { audio, context, fetchCount } = await createLoadedAudio();
     expect(fetchCount()).toBe(EXPECTED_DECODED_FILES);

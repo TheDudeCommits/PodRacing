@@ -3,6 +3,8 @@ import type { HudMasteryViewModel } from '../game/mastery/types';
 import { CHAMPIONSHIP_EVENT_IDS } from '../game/mastery/events';
 import { LANCE_RELOAD_SECONDS as RELOAD_SECONDS } from '../game/galactic/system';
 import { MinimapCanvas } from './MinimapCanvas';
+import { CockpitConsole } from './CockpitConsole';
+import type { CockpitCue } from './CockpitConsole';
 import { RaceEventAtlas } from './RaceEventAtlas';
 import { workshopSymbol } from './workshopSymbols';
 import { VehicleCardPreviewRenderer } from './VehicleCardPreview';
@@ -50,6 +52,7 @@ export interface RaceHudOptions {
   installStyles?: boolean;
   initiallyMuted?: boolean;
   onMuteChange?: (muted: boolean) => void;
+  onCockpitCue?: (cue: CockpitCue) => void;
   /** Strongly typed menu actions; the same payload is also dispatched as `pod-hud-action`. */
   onAction?: (action: RaceHudAction) => void;
 }
@@ -177,6 +180,7 @@ export class RaceHud {
   private readonly copyRoomButton: HTMLButtonElement;
   private readonly leaveRoomButton: HTMLButtonElement;
   private readonly vehiclePreviews: VehicleCardPreviewRenderer;
+  private readonly cockpit: CockpitConsole;
   private readonly courseMarkers: HTMLElement;
   private readonly courseCorner: HTMLElement;
   private readonly onMuteChange: ((muted: boolean) => void) | undefined;
@@ -222,9 +226,8 @@ export class RaceHud {
                 ['inkstorm-race', 'race', 'Race', 'Pure racing', '02'],
                 ['inkstorm-trial', 'trial', 'Time Trial', 'Beat the clock', '03'],
                 ['cup-canyon', 'cup', 'World Cup', 'Four destinations', '04'],
-              ].map(([event, art, label, detail, number]) => `<button class="setup-mode" type="button" data-action="select-event" data-event-id="${event}" data-mode="${art}" aria-label="${label}" aria-pressed="false">
-                <span class="setup-mode-art"><img src="/assets/inkstorm/home/mode-${art}-chrome.webp" alt="" width="640" height="360" draggable="false"><span class="setup-mode-number" aria-hidden="true">${number}</span><span class="setup-mode-check" aria-hidden="true">✓</span></span>
-                <span class="setup-mode-caption"><strong>${label}</strong><small>${detail}</small></span>
+              ].map(([event, art, label]) => `<button class="setup-mode" type="button" data-action="select-event" data-event-id="${event}" data-mode="${art}" aria-label="${label}" aria-pressed="false">
+                <span class="setup-mode-caption"><strong>${label}</strong></span>
               </button>`).join('')}
             </nav>
           </header>
@@ -264,6 +267,7 @@ export class RaceHud {
                   <div class="pod-hud__difficulty-selector" role="group" aria-label="AI difficulty"><span>Rivals</span><button type="button" data-action="select-ai-difficulty" data-difficulty="easy" aria-pressed="false">Easy</button><button type="button" data-action="select-ai-difficulty" data-difficulty="medium" aria-pressed="true">Medium</button><button type="button" data-action="select-ai-difficulty" data-difficulty="hard" aria-pressed="false">Hard</button></div>
                   <div class="pod-hud__lap-selector" role="group" aria-label="Number of laps"><span>Laps</span><button type="button" data-action="select-laps" data-laps="1" aria-pressed="false">1</button><button type="button" data-action="select-laps" data-laps="2" aria-pressed="false">2</button><button type="button" data-action="select-laps" data-laps="3" aria-pressed="true">3</button></div>
                 </div>
+                <div class="setup-rule-tools"><button type="button" data-action="open-workshop">Build</button><button type="button" data-action="open-event-atlas" aria-expanded="false">Courses</button></div>
                 <section data-hud="mastery" aria-label="Race records">
                   <div data-hud="cup-context" hidden><strong></strong><p></p><div data-hud="cup-standings"></div></div>
                   <div class="pod-hud__event-list" data-hud="event-list" hidden></div>
@@ -289,11 +293,9 @@ export class RaceHud {
               <div class="pod-hud__room-status" data-hud="room-status" role="status" aria-live="polite">Solo race ready</div>
               <ul class="pod-hud__room-members" data-hud="room-member-list" aria-label="Room members"></ul>
             </div></details>
-              <button type="button" data-action="open-workshop">Build</button>
-              <button type="button" data-action="open-event-atlas" aria-expanded="false">Courses</button>
               <button type="button" data-action="toggle-settings" aria-expanded="false">Options</button>
             </nav>
-            <button type="button" class="pod-hud__start-button" data-action="start-race" data-hud="start-button"><span>Play</span><b aria-hidden="true">↗</b></button>
+            <button type="button" class="pod-hud__start-button" data-action="start-race" data-hud="start-button"><span>Play</span><b aria-hidden="true">▸</b></button>
           </footer>
           <div class="setup-legacy" hidden aria-hidden="true">
             <div data-hud="vehicle-cards"></div><div data-hud="appearance"></div>
@@ -614,6 +616,7 @@ export class RaceHud {
       root: this.root, limits: { maxWidth: 1200, maxHeight: 600 }, library: options.vehicleArtLibrary,
       onAppearanceStatusChange: () => this.updateAppearanceStatus(),
     });
+    this.cockpit = new CockpitConsole(this.vehicleSelection, delta => this.inspectPod(this.inspectionAngle + delta), options.onCockpitCue);
     this.courseMarkers = requireElement(this.root, '[data-hud="course-progress-markers"]');
     this.courseCorner = requireElement(this.root, '[data-hud="course-corner"]');
     this.minimap = new MinimapCanvas(requireElement<HTMLCanvasElement>(this.root, '[data-hud="minimap"]'));
@@ -760,6 +763,7 @@ export class RaceHud {
   }
 
   dispose(): void {
+    this.cockpit.dispose();
     this.eventAtlas.dispose();
     this.root.removeEventListener('keydown', this.handleInterfaceKey);
     this.roomCodeInput.removeEventListener('input', this.handleRoomCodeInput);

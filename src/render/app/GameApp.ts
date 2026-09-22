@@ -544,6 +544,7 @@ export class GameApp {
     this.hud = new RaceHud(mount, {
       vehicleArtLibrary: this.vehicleArtLibrary,
       onMuteChange: (muted) => this.audio.setMuted(muted),
+      onCockpitCue: (cue) => this.audio.playCockpitCue(cue),
       onAction: this.handleHudAction,
     });
     this.hud.setAssetStatus('Preparing the Inkstorm circuit…');

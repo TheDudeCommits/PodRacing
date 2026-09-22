@@ -1,4 +1,6 @@
 import { derivePodracerAudioTargets } from './model';
+import { COCKPIT_RECORDINGS } from './cockpit';
+import type { CockpitCue } from '../ui/CockpitConsole';
 import {
   deriveRivalAudioTargets,
   mapGameEventsToAudioCues,
@@ -599,6 +601,22 @@ export class PodracerAudio {
     source.stop(start + duration + 0.005);
   }
 
+  playCockpitCue(cue: CockpitCue): void {
+    const context = this.context, graph = this.graph;
+    if (!context || !graph || context.state !== 'running' || this.hidden || this.disposed) return;
+    const { url, gain: level } = COCKPIT_RECORDINGS[cue];
+    const buffer = this.recordings.get(url), now = context.currentTime;
+    if (!buffer || now - (this.cueLastPlayed.get(url) ?? -Infinity) < .08) return;
+    this.cueLastPlayed.set(url, now);
+    if (this.effects.size >= 12) this.releaseEffect(this.effects.keys().next().value!, true);
+    const source = context.createBufferSource(), gain = context.createGain();
+    source.buffer = buffer; gain.gain.value = level;
+    source.connect(gain).connect(graph.effectsBus);
+    this.effects.set(source, { gain, url });
+    source.addEventListener('ended', () => this.releaseEffect(source, false));
+    source.start(now + .005);
+  }
+
   /**
    * Speaks one sourced voice line through the callout bus with the same
    * engine/music ducking as the overtake callout. Lines never overlap, never
@@ -1135,7 +1153,7 @@ export class PodracerAudio {
     // Resume is called before network awaits, in the original user gesture.
     if (resume && context.state === 'suspended') await context.resume();
     if (context.state === 'running') this.disarm();
-    await Promise.all([...RECORDED_EFFECT_URLS, ...RECORDED_ENGINE_VOICE_URLS].map(url => this.loadRecording(url)));
+    await Promise.all([...Object.values(COCKPIT_RECORDINGS).map(cue => cue.url), ...RECORDED_EFFECT_URLS, ...RECORDED_ENGINE_VOICE_URLS].map(url => this.loadRecording(url)));
     if (this.disposed || this.graph !== graph || context.state === 'closed') return;
     const engineVoice = RECORDED_ENGINE_VOICES[this.engineVoiceId] ?? RECORDED_ENGINE_VOICES[DEFAULT_ENGINE_VOICE_ID]!;
     graph.engine = this.createRecordedVoice(engineVoice.url, 0, 0);
