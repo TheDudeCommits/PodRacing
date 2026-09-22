@@ -1,3 +1,99 @@
+# PodRacing — Round 45 handover (2026-09-22)
+
+## Start here
+
+Round 45 produced **V5 — The line is yours**, a newly scripted and directed
+72.683-second trailer. The owner rejected V4's gameplay capture and direction
+while liking its Higgsfield inserts. V4 remains intact.
+
+- **Watch/share:** `output/trailer-v5/PodRacing-Trailer-v5-web.mp4` — 116,139,009 bytes.
+- **Master:** `output/trailer-v5/PodRacing-Trailer-v5.mp4` — 268,947,928 bytes.
+- Both: 1920×1080, 60 fps, 4,361 video frames, stereo AAC at 48 kHz, 72.683333 seconds.
+- **Script and reproduction:** [scripts/trailer/v5/DIRECTION.md](scripts/trailer/v5/DIRECTION.md), [scripts/trailer/v5/README.md](scripts/trailer/v5/README.md).
+- **Publication description and required music credit:** `output/trailer-v5/PUBLICATION.txt`.
+- **Evidence:** `output/trailer-v5/QA.json`, `MANIFEST.json`, `generation-receipts.json`, `edl.json`, `audio-edl.json`, and `review/sheet-1.jpg` through `sheet-4.jpg`.
+- **Editable native Higgsedit title project:** `output/trailer-v5/higgsedit-title-project.zip`.
+
+All media is **local and gitignored**. Committing the pipeline does not upload,
+back up, publish or deploy the video. The repository is still
+`/Users/amir/Projects/PodRacing`, branch `codex/now-this-is-podracing`, remote
+`https://github.com/TheDudeCommits/PodRacing.git`. This round did not push or deploy.
+Production remains the Round 44 release described below.
+
+## What changed
+
+The new 31-cut sequence has anticipation, a four-machine introduction, a launch,
+close racing, drift, combat, an impact pause, a final sprint, title and playable
+URL. It contains **50.233 seconds of real game footage, 14.65 seconds of generated
+cinematic inserts, and 7.8 seconds of typography**. The source of every cut is in
+the EDL and publication disclosure.
+
+Gameplay now has subject-tracking capture cameras with lens control and staged
+starting formations. All eight staged racers use the authored pod bodies. The
+Teemto, Polwo, Sebulba and Blockrunner each receive an unobstructed moving
+portrait. A normal camera/HUD shot shows the playable presentation. Real drift,
+Heat Lance shots, shield activation, a rear-facing mine drop, and tow attachment
+and release are captured. Starting positions are staged; subsequent motion uses
+the actual simulation and AI. The victim-focused impact uses the existing
+`debugWreckRacer` diagnostic trigger and is disclosed as such.
+
+The capture additions are gated to capture mode; race staging additionally
+requires a solo room. They do not add a new biome, race mode, weapon or runtime
+asset. The owner authorized game additions if needed; this pass needed better
+cinematography and capture tools to show the mechanics already present.
+
+Capture still advances two individual 120 Hz ticks per 60 fps output frame and
+pins renderer quality 0. It now streams frames straight to MP4 rather than
+leaving multi-gigabyte JPEG sequences. Every take has a per-frame telemetry
+receipt. Capture, title-label and contact-sheet browsers and their private
+servers were closed when finished.
+
+## Higgsfield and music
+
+A new silent 1080p Seedance 2.5 refinery tracking insert was generated through
+Higgsfield from a real game reference frame. Completed job:
+`b40db518-5341-4bfe-8f1f-364835f5ea39`. The second new job, pilot insert
+`cfa1e069-cacb-47a7-a34d-694a8fe2ba0b`, failed. Its terminal receipt is retained;
+a reviewed existing pilot insert was used without resubmitting the paid request.
+The preflight estimate was 108 credits across both requests; final billing or
+refund was not independently verified. Selected existing V4 inserts are reused.
+No generated assets entered `public/` or the runtime audio/provenance ledgers.
+
+The titles were authored and rendered with native Higgsedit in the connected
+remote sandbox, with the project's own fonts. The complete picture and sound
+edit is reproducible from the local scripts; the native editable project covers
+the title cards.
+
+The new score is **“Race The Sun” by Scott Buckley**, CC BY 4.0:
+https://www.scottbuckley.com.au/library/race-the-sun/
+It is phrase-edited around a measured 123 BPM pulse, with a dip at the crash and
+sourced game sound effects aligned to actions. The game selection intro and its
+existing score are untouched. Attribution is in the end card and publication
+notes. Final encoded-master loudness: **−14.49 LUFS integrated, −1.44 dBTP,
+4.9 LU loudness range** (`loudness-final.log`).
+
+## Verification and limits
+
+- `npm run verify`: TypeScript, **1,059 tests / 185 files**, and production build pass.
+- Build: `index-WDzJOqQT.js`, approximately 1.923 MB. This differs from Production
+  because it contains the capture tools; it has not been deployed.
+- All selected gameplay receipts report renderer quality 0 and zero page errors.
+- Used shots include three Heat Lance firing events in the dedicated weapon cut,
+  28 active shield frames, a real mine drop at trailer time 35.583 s and 99 attached
+  tow frames followed by release. No selected hero take contains an unexpected wreck.
+- Both final videos passed complete decode and exact frame-count/audio checks.
+  An earlier validation overlapped a replacement encode and encountered an
+  incomplete MP4. The completed replacement files were subsequently validated.
+- All 31 cuts were inspected at start/middle/end, with denser temporal sampling
+  for mine, shield, tow, impact and finish shots. Generated crash timing was
+  corrected to include its actual explosion; the mine shot was reframed to keep
+  the drop inside the cinematic crop.
+- This is **technical and sampled visual QA**, not continuous human audiovisual
+  approval. The owner has not reviewed or accepted V5 yet. The generated inserts
+  retain their native model cadence inside the 60 fps master.
+
+## Previous handover — Round 44
+
 # PodRacing — Round 44 handover (2026-09-22)
 
 ## Start here

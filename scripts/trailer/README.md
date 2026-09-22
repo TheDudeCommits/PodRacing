@@ -1,6 +1,12 @@
 # Trailer build
 
-The current cut is a **scene-by-scene remake of the reference trailer**:
+The current edit is **V5 — The line is yours**, a newly directed 72.683-second
+trailer with new deterministic gameplay capture, four pod portraits, combat,
+new music and selective Seedance cinematic inserts. Start at
+[v5/README.md](v5/README.md) and [v5/DIRECTION.md](v5/DIRECTION.md).
+
+The material below documents the preserved V4 workflow. V4 was a
+**scene-by-scene remake of the reference trailer**:
 91.000s / 1920x1080 / 60fps, 51 cuts matching the reference's 50 scenes at its
 own timecodes. See `REFERENCE.md` for the mapping and for the five groups of
 scenes that could not be matched literally.

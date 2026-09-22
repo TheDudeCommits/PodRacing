@@ -20,6 +20,7 @@ import { loadVehicleAppearance, resolveRacerAppearancePreference, saveVehicleApp
 import { POD_IDENTITIES, podIdentityStatRows } from '../../game/podIdentity';
 import { getInkstormSolidHeight } from '../../game/race/inkstormLayout';
 import type { HeightSampler } from '../../game/simulation/types';
+import { applyTrailerCamera, validateTrailerCameraShot, type TrailerCameraShot } from '../../camera/TrailerCamera';
 import { VehicleArtLibrary } from '../vehicles/VehicleArtLibrary';
 import { RacerPresentation } from '../vehicles/RacerPresentation';
 import { DEFAULT_PODRACER_CONFIG } from '../../game/simulation/config';
@@ -489,6 +490,7 @@ export class GameApp {
   private readonly wreckRuptureDirection = new Vector3();
   private readonly wreckRuptureOrigin = new Vector3();
   private captureMode = false;
+  private trailerCamera: TrailerCameraShot | null = null;
   private preset: CapturePreset = 'desert';
   private reviewScenario: ReviewCapturePreset = 'desert';
   private reviewInput: PlayerInputState | null = null;
@@ -1055,6 +1057,13 @@ export class GameApp {
     } else {
       this.cameraRig.update(Math.max(dt, FIXED_DT), presentationTime, this.subject);
     }
+    if (this.captureMode && this.trailerCamera) {
+      const racer = this.race.state.entries[this.trailerCamera.racerIndex];
+      if (racer) applyTrailerCamera(this.cameraRig.camera, this.trailerCamera,
+        racer.vehicle.position, racer.vehicle.orientation.yaw);
+      const eye = this.cameraRig.camera.position;
+      eye.y = Math.max(eye.y, this.terrain.sampleHeight(eye.x, eye.z) + 1.5);
+    }
     const worldWindStrength = this.applyRaceDirectorPresentation();
     this.sky.update(presentationTime, this.cameraRig.camera);
     this.terrain.update({
@@ -1322,6 +1331,7 @@ export class GameApp {
     this.cancelCombatCut();
     if (this.captureMode === enabled) return;
     this.captureMode = enabled;
+    if (!enabled) this.trailerCamera = null;
     this.performanceGovernor.setAdaptiveEnabled(!enabled);
     if (enabled) {
       this.liveQualityLevel = this.performanceGovernor.decision.qualityLevel;
@@ -3978,6 +3988,33 @@ export class GameApp {
         for (let index = 0; index < this.race.state.entries.length; index += 1) {
           this.placeReviewRacer(index, this.reviewProgress(normalized, -index * 42), index % 2 ? -8 : 6, 0.38);
         }
+        this.syncCameraSubject();
+        this.cameraRig.snap(this.subject);
+        this.render(FIXED_DT);
+      },
+      setTrailerCamera: (shot) => {
+        if (!this.captureMode) throw new Error('Trailer cameras are capture-mode only.');
+        this.trailerCamera = shot === null ? null : validateTrailerCameraShot(shot);
+        this.render(0);
+      },
+      stageTrailerRace: (progress, formation, stationary = false) => {
+        if (!this.captureMode || this.room.lobby.role !== 'solo') {
+          throw new Error('Trailer staging requires solo capture mode.');
+        }
+        if (!Number.isFinite(progress) || formation.length > 8 || formation.some(p =>
+          !Number.isFinite(p.forward) || Math.abs(p.forward) > 500
+          || !Number.isFinite(p.lane) || Math.abs(p.lane) > 15)) {
+          throw new Error('Invalid trailer formation.');
+        }
+        this.mastery.cancelRun();
+        this.setPreset('race');
+        for (let i = 0; i < this.race.state.entries.length; i++) {
+          const entry = this.race.state.entries[i]!;
+          this.race.selectRacerVehicle(entry.id, 'podracer');
+          const pose = formation[i] ?? { forward: -50 * (i + 1), lane: i % 2 ? -7 : 7 };
+          this.placeReviewRacer(i, this.reviewProgress(progress, pose.forward), pose.lane, 0.04, stationary ? 'start' : 'race');
+        }
+        this.syncPodIdentities();
         this.syncCameraSubject();
         this.cameraRig.snap(this.subject);
         this.render(FIXED_DT);

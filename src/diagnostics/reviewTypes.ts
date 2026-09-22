@@ -1,5 +1,6 @@
 import type { GalacticRacerState, GalacticWorldState } from '../game/galactic/types';
 import type { PlayerInputState } from '../game/input/actions';
+import type { TrailerCameraShot } from '../camera/TrailerCamera';
 
 export type CapturePreset =
   | 'desert'
@@ -99,6 +100,10 @@ export interface PodRacingReviewApi {
   clearEvents?(): void;
   /** Diagnostic-only course framing; cannot write competitive records. */
   seekCourse?(progress: number): void;
+  /** Capture-only cinematography; null returns to the selected gameplay camera. */
+  setTrailerCamera?(shot: TrailerCameraShot | null): void;
+  /** Place a solo diagnostic race; ordinary physics and AI drive every following tick. */
+  stageTrailerRace?(progress: number, formation: readonly { forward: number; lane: number }[], stationary?: boolean): void;
   /** Rendering-only benchmark override; null restores adaptive quality. */
   setPerformanceQuality?(level: number | null): void;
   /** Diagnostic-only: wreck the local player in a solo race; returns false if not racing. */
