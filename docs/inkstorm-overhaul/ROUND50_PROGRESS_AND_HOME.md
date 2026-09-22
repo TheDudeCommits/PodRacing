@@ -79,6 +79,24 @@ and representative of the existing game; the artwork is menu atmosphere.
   All 20 course sectors traversed, zero console/page errors, frame interval p95
   16.7 ms at 1440×900 on this Mac. This is device-specific, not a universal FPS claim.
 
-Final visual and Production receipts will be recorded after deployment. Reproduction scripts: `qa-race-round50.mjs`, `qa-home-round50.mjs`,
+## Production release
+
+- Live: **https://podracing.dude.work/**.
+- Runtime commit: `b9c3cecaea8a5d77113f6215cd54a921217fab3f`.
+- Deployment: `dpl_8dD94iFYVnx8ZMu7F6qh2F5igCbi`, **READY**.
+- Deployment URL: https://now-this-is-podracing-qw9odawlh-amirs-projects-d9680079.vercel.app.
+- Canonical alias and `now-this-is-podracing.vercel.app` verified on this deployment.
+- Live browser checks: **18 passed**, zero page/console/HTTP errors. All eight
+  pod choices, inspection, maps, rules, options, race launch, touch, virtual
+  gamepad, reduced motion, and five desktop/mobile/landscape viewports exercised.
+- Live bundle: `index-CDgMdb2D.js`, 1,981,612 bytes, SHA-256
+  `8c36e8c38c1ce0f795566e508a6dce4eba853796a62a838802e5766d7fd90689`.
+  Exact match with the locally tested build.
+- Local receipts: `output/round50/deployment.json`, `live-qa.json`, `live-qa.log`;
+  final canonical screenshots: `home-desktop.png`, `home-390x844.png`,
+  `home-844x390.png` in the same directory.
+- Rollback: Round 49 `dpl_22gnfW4DwCxmGn52Awwj6kqrWyCV`.
+
+Reproduction scripts: `qa-race-round50.mjs`, `qa-home-round50.mjs`,
 `qa-online-round50.mjs`, `qa-live-round50.mjs`, `capture-maps-round50.mjs`.
 All browser scripts close their browsers and temporary servers in `finally`.

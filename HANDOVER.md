@@ -1,8 +1,13 @@
-# PodRacing — Round 50 validated, Production release pending (2026-09-22)
+# PodRacing — Round 50 Liquid Chrome and race repairs live (2026-09-22)
 
 Race position/finish repairs and the owner's selected **D — Liquid Chrome** home
-screen are implemented and locally validated. The previous live Production is
-Round 49 below until the new Git-integrated deployment is promoted and verified.
+screen are live at **https://podracing.dude.work/**.
+
+- Runtime source: `b9c3cecaea8a5d77113f6215cd54a921217fab3f`, pushed to GitHub.
+- Production: `dpl_8dD94iFYVnx8ZMu7F6qh2F5igCbi`, **READY**, canonical alias verified.
+- Deployment: https://now-this-is-podracing-qw9odawlh-amirs-projects-d9680079.vercel.app.
+- **18 live browser checks pass, zero page/console/HTTP errors.** The browser-loaded
+  bundle matches the tested local build exactly. All task browsers closed.
 
 - Fixed recovery distance inflation, double-counted lap score, visible/detected
   gate aperture mismatch, exact gate-plane crossings, and missed-gate recovery
@@ -15,7 +20,7 @@ Round 49 below until the new Git-integrated deployment is promoted and verified.
 - Three-lap simulation runs across all four maps; a three-lap normal-input native
   browser run reached results after recovery with all 30 gates. Native p95 16.7 ms
   on this Mac, zero console/page errors. Real host/guest checks pass.
-- Final local home QA: 18 checks, zero console/page/HTTP errors; all task browsers closed.
+- Local and canonical Production home QA: 18 checks each, zero console/page/HTTP errors; all task browsers closed.
 - Bundle: `index-CDgMdb2D.js`, 1,981,612 bytes, SHA-256
   `8c36e8c38c1ce0f795566e508a6dce4eba853796a62a838802e5766d7fd90689`.
 - [Implementation and evidence](docs/inkstorm-overhaul/ROUND50_PROGRESS_AND_HOME.md).
