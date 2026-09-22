@@ -1,7 +1,8 @@
-# PodRacing — Round 51 artwork and font comparison (2026-09-22)
+# PodRacing — Round 51 artwork and font comparison live (2026-09-22)
 
-Eight generated Liquid Chrome race-mode/destination illustrations are prepared
-for release. Four real sci-fi fonts can be compared at `/style-lab/index.html`:
+Eight generated Liquid Chrome race-mode/destination illustrations are live at
+**https://podracing.dude.work/**. Four real sci-fi fonts can be compared at
+**https://podracing.dude.work/style-lab/index.html**:
 Orbitron, Audiowide, Tektur and Zen Dots. **The owner has not selected a font yet**;
 the normal game's font remains unchanged. All candidates can be tried on the
 actual interactive home screen inside the comparison page.
@@ -10,6 +11,12 @@ actual interactive home screen inside the comparison page.
   saved in `output/round51/originals/`; provenance/prompt set recorded.
 - Typecheck/build, 2 existing UI tests, 16 font/layout checks, all four mode/map
   choices and responsive home checks pass. Zero console errors. Browsers closed.
+- Deployed source: `6b09c2e74661234fa5920aa1a3b5f782bac3ef7e`, pushed to GitHub.
+- Production `dpl_46G1pa7owfQDKwRrCkNQJh7Jq5Ze`, **READY**, canonical alias verified.
+  URL: https://now-this-is-podracing-e57ulbwtu-amirs-projects-d9680079.vercel.app.
+- Canonical browser QA passes: 8 images, 4 mode choices, 4 map choices, mobile
+  layout and all 4 live font switches. Zero page/console/HTTP errors. Exact bundle
+  SHA-256 matches the local build. Receipts in `output/round51/production-*`.
 - [Implementation and validation](docs/inkstorm-overhaul/ROUND51_ARTWORK_AND_TYPE.md).
 - Source changes are menu art and the isolated comparison page. Race simulation,
   the previous position/finish repairs and gameplay remain unchanged.

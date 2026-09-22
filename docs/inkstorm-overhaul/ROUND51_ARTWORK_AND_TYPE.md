@@ -51,6 +51,22 @@ Font provenance is in `public/style-lab/SOURCES.md`.
 
 ## Release
 
-Prepared for the established Git-integrated preview then promote workflow.
-Previous Production / rollback candidate is Round 50
-`dpl_8dD94iFYVnx8ZMu7F6qh2F5igCbi`.
+Live at **https://podracing.dude.work/**. Font comparison:
+**https://podracing.dude.work/style-lab/index.html**.
+
+- Deployed source: `6b09c2e74661234fa5920aa1a3b5f782bac3ef7e`.
+- Git-integrated preview:
+  https://now-this-is-podracing-8lpdokezs-amirs-projects-d9680079.vercel.app.
+- Promoted Production: `dpl_46G1pa7owfQDKwRrCkNQJh7Jq5Ze`, **READY**.
+- Deployment URL:
+  https://now-this-is-podracing-e57ulbwtu-amirs-projects-d9680079.vercel.app.
+- Canonical alias and fallback project aliases confirmed by Vercel inspect.
+- Canonical browser QA: eight new images decode correctly; all four mode and
+  four map choices work; 390×844 home fits; all four font faces switch in the
+  live embedded game; zero page/console/HTTP errors. Browser closed afterward.
+- Browser-loaded bundle: `index-CJMkrdLK.js`, 1,981,627 bytes, same SHA-256 as above.
+- Deployment receipt: `output/round51/production-deployment.json`.
+  Browser evidence: `output/round51/production-qa.log` and
+  `output/playwright/round51/live-*.png`.
+- Previous Production / rollback candidate: Round 50
+  `dpl_8dD94iFYVnx8ZMu7F6qh2F5igCbi`.
