@@ -21,8 +21,9 @@ export interface PlayerInputState {
   mine: boolean;
   /** Activates the timed Pulse Shell when its cooldown is ready. */
   shield: boolean;
-  /** Cycles the player's vehicle class while the race is on the grid. */
+  /** Press to trigger the selected pod's signature ability. */
   ability: boolean;
+  /** Cycles the player's vehicle class while the race is on the grid. */
   cycleVehicle: boolean;
   /** Reset to the most recent safe/respawn pose. */
   reset: boolean;

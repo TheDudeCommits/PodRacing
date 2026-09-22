@@ -1,7 +1,8 @@
 /** Mode selection, interactive pods, visual destinations, and race tools. */
 export const SIMPLE_RACE_SETUP_CSS = /* css */ `
+@font-face { font-family:Orbitron; src:url('/fonts/liquid-chrome/Orbitron-Variable.ttf') format('truetype'); font-weight:400 900; font-display:swap; }
 .pod-hud .simple-setup {
- --home-paper:#070e25; --home-ink:#f1f0ff; --home-line:#718db678; --home-accent:#ff553d; --home-muted:#b3c0e0; --ui-heading:Inkstorm UI,sans-serif;
+ --home-paper:#070e25; --home-ink:#f1f0ff; --home-line:#718db678; --home-accent:#ff553d; --home-muted:#b3c0e0; --ui-heading:Orbitron,Inkstorm UI,sans-serif;
  padding:22px 30px 16px; background:linear-gradient(180deg,#05092238,#05092212 35%,#060a20a8 90%),url('/assets/inkstorm/home/liquid-chrome-backdrop.webp') center 45% / cover no-repeat,#050c23; color:var(--home-ink); overflow-y:auto;
 }
 .pod-hud .simple-setup.is-visible { display:block; }
@@ -77,7 +78,7 @@ export const SIMPLE_RACE_SETUP_CSS = /* css */ `
 .simple-setup .setup-tools>button:hover,.simple-setup .setup-drawer>summary:hover,.simple-setup .setup-drawer[open]>summary { background:#718cff18; color:var(--home-accent); }
 .simple-setup .setup-drawer { position:relative; margin:0; padding:0; border:0; background:none; }
 .simple-setup .setup-drawer>summary::-webkit-details-marker { display:none; }
-.pod-hud .simple-setup .setup-bottom>.pod-hud__start-button { width:170px; min-width:140px; min-height:58px; margin:0; padding:8px 14px 8px 18px; display:flex; align-items:center; justify-content:space-between; gap:4px; border:1px solid #ff9a6666; background:linear-gradient(120deg,#ff5e3d28,#ff3e2522); box-shadow:inset 0 0 15px #ff643718,0 0 15px #ff3e2520; color:#ffb19c; text-shadow:0 0 18px #ff592db3; font:700 40px/1 var(--ui-heading); text-transform:uppercase; letter-spacing:.025em; cursor:pointer; transition:transform .18s; }
+.pod-hud .simple-setup .setup-bottom>.pod-hud__start-button { width:200px; min-width:180px; min-height:58px; margin:0; padding:8px 14px 8px 18px; display:flex; align-items:center; justify-content:space-between; gap:4px; border:1px solid #ff9a6666; background:linear-gradient(120deg,#ff5e3d28,#ff3e2522); box-shadow:inset 0 0 15px #ff643718,0 0 15px #ff3e2520; color:#ffb19c; text-shadow:0 0 18px #ff592db3; font:700 40px/1 var(--ui-heading); text-transform:uppercase; letter-spacing:.025em; cursor:pointer; transition:transform .18s; }
 .pod-hud .simple-setup .setup-bottom>.pod-hud__start-button:hover:not(:disabled) { transform:translateY(-2px); color:#fff3ee; background:#ff583b45; }
 .simple-setup .pod-hud__start-button b { flex:none; width:32px; font:400 32px/1 sans-serif; }
 .simple-setup .pod-hud__start-button:disabled span { font-size:22px; }
@@ -127,6 +128,7 @@ export const SIMPLE_RACE_SETUP_CSS = /* css */ `
 .simple-setup .setup-map[aria-pressed=true] { border-color:var(--home-accent); box-shadow:0 0 0 1px var(--home-accent),0 0 18px #ff402750,inset 0 0 12px #ff40272a; }
 .simple-setup .setup-map[aria-pressed=true] .setup-map-check { display:grid; }
 .simple-setup :is(.setup-mode-caption strong,.setup-racer>strong,.setup-map-caption strong,.setup-roster-heading h2,.setup-map-heading h2,.pod-hud__garage-name h1) { font-weight:700; letter-spacing:.025em; }
+.simple-setup :is(.setup-tools>button,.setup-drawer>summary,.setup-drawer-body header strong) { font-weight:700; }
 .simple-setup .setup-roster-heading h2,.simple-setup .setup-map-heading h2 { font-size:13px; letter-spacing:.12em; text-transform:uppercase; color:#bdc9ed; }
 .simple-setup .pod-hud__garage-name h1 { text-shadow:0 2px 0 #394b85,0 0 24px #9c7cfd60; }
 .simple-setup .setup-racer>strong { background:#070e28df; }
@@ -149,7 +151,7 @@ export const SIMPLE_RACE_SETUP_CSS = /* css */ `
  .simple-setup .setup-bottom { gap:12px; }
  .simple-setup .setup-tools { gap:0; }
  .simple-setup .setup-tools>button,.simple-setup .setup-drawer>summary { font-size:10px; padding:8px; }
- .pod-hud .simple-setup .setup-bottom>.pod-hud__start-button { width:125px; min-width:120px; font-size:34px; }
+ .pod-hud .simple-setup .setup-bottom>.pod-hud__start-button { width:170px; min-width:160px; font-size:32px; }
  .simple-setup .setup-hero-stats { gap:9px; inset:auto 0 8px; }
  .simple-setup .setup-hero-stats>div { grid-template-columns:1fr; gap:4px; }
 }
@@ -171,11 +173,12 @@ export const SIMPLE_RACE_SETUP_CSS = /* css */ `
  .simple-setup .setup-roster { grid-template-columns:repeat(4,minmax(0,1fr)); grid-template-rows:1fr; grid-row:3; grid-column:1/-1; gap:7px; height:66px; align-self:stretch; }
  .simple-setup .setup-roster--right { grid-column:1/-1; grid-row:4; }
  .simple-setup .setup-racer>strong { font-size:9px; min-height:22px; padding:5px 1px; overflow-wrap:anywhere; }
+ .simple-setup .setup-racer[data-appearance="blockrunner"]>strong { font-size:clamp(7px,2.1vw,8px); letter-spacing:0; white-space:nowrap; }
  .simple-setup .setup-racer-check { width:13px; height:13px; font-size:10px; line-height:13px; top:2px; right:2px; }
  .simple-setup .setup-racer img { width:100%; max-width:none; margin-left:0; }
  .pod-hud .simple-setup .pod-hud__garage-model { inset:0 18px 67px; }
  .pod-hud .simple-setup .pod-hud__garage-name { bottom:29px; }
- .simple-setup .pod-hud__garage-name h1 { font-size:32px; }
+ .simple-setup .pod-hud__garage-name h1 { font-size:clamp(24px,7vw,32px); }
  .simple-setup .setup-hero-number { top:0; left:12px; transform:none; font-size:9px; }
  .simple-setup .setup-hero-stats { bottom:6px; gap:15px; }
  .simple-setup .setup-hero-stats>div { grid-template-columns:auto 25px; gap:5px; }
@@ -186,7 +189,7 @@ export const SIMPLE_RACE_SETUP_CSS = /* css */ `
  .simple-setup .setup-bottom { position:sticky; bottom:-12px; background:var(--home-paper); display:grid; grid-template-columns:minmax(0,1fr) auto; gap:6px; padding-top:6px; }
  .simple-setup .setup-tools { grid-column:1/-1; grid-row:1; justify-content:space-between; gap:0; flex-wrap:wrap; }
  .simple-setup .setup-tools>button,.simple-setup .setup-drawer>summary { padding:6px; font-size:9px; min-height:44px; gap:4px; }
- .pod-hud .simple-setup .setup-bottom>.pod-hud__start-button { grid-row:2; grid-column:2; width:144px; min-height:47px; padding:4px 0 4px 10px; font-size:34px; }
+ .pod-hud .simple-setup .setup-bottom>.pod-hud__start-button { grid-row:2; grid-column:2; width:160px; min-height:47px; padding:4px 0 4px 10px; font-size:34px; }
  .simple-setup .setup-drawer { position:static; }
  .simple-setup .setup-drawer-body,.simple-setup .setup-online .setup-drawer-body { left:0; right:auto; bottom:calc(100% + 8px); width:100%; max-width:none; max-height:calc(100dvh - 180px); padding:14px; }
 }
@@ -206,6 +209,6 @@ export const SIMPLE_RACE_SETUP_CSS = /* css */ `
  .simple-setup .setup-bottom { padding-top:0; }
  .pod-hud .simple-setup .setup-bottom>.pod-hud__start-button { min-height:40px; font-size:32px; }
  .simple-setup .setup-tools>button,.simple-setup .setup-drawer>summary { min-height:40px; }
- .simple-setup .setup-racer>strong { min-height:22px; padding:5px 2px; font-size:10px; }
+ .simple-setup .setup-racer>strong { min-height:22px; padding:5px 2px; font-size:clamp(8px,1vw,10px); }
 }
 `;

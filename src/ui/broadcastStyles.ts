@@ -989,4 +989,9 @@ export const BROADCAST_HUD_CSS = /* css */ `
 .pod-hud__vehicle-select .pod-hud__vehicle-select-footer { background:transparent; border-top:1px solid #24424955; padding-left:0; padding-right:0; }
 .pod-hud__vehicle-select .pod-hud__start-button { border-radius:0; }
 @media(max-width:760px) { .pod-hud__vehicle-select .pod-hud__mastery { border-left:0; border-top:1px solid #24424942; padding-left:0; } }
+/* Flight-school instructions live with the paused controls, away from the race view. */
+.pod-hud__pause-tutorial { margin-top:18px; padding-top:14px; border-top:1px solid #a5bed133; text-align:left; }
+.pod-hud__pause-tutorial>span { display:block; font-size:10px; color:#9db4c6; }
+.pod-hud__pause-tutorial>strong { display:block; margin-top:5px; font-size:15px; }
+.pod-hud__pause-tutorial>p { font-size:12px; line-height:1.5; }
 `;

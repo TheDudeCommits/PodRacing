@@ -1,4 +1,4 @@
-import { POD_ABILITIES } from '../game/galactic/podAbilities';
+import { POD_ABILITIES, podAbilityBlockReason } from '../game/galactic/podAbilities';
 import { racingBiomeForSeed } from '../game/race/racingBiomes';
 import { GALACTIC_VEHICLES, GALACTIC_VEHICLE_ORDER } from '../game/galactic/catalog';
 import { LANCE_RELOAD_SECONDS } from '../game/galactic/system';
@@ -806,6 +806,12 @@ export function deriveRaceHudViewModel(
       cooldown: player.galactic?.ability?.cooldown ?? 0,
       active: (player.galactic?.ability?.remaining ?? 0) > 0,
       windup: (player.galactic?.ability?.windup ?? 0) > 0,
+      blocked: podAbilityBlockReason(POD_ABILITIES[player.podIdentity ?? 'teemto'].kind, {
+        battle: profile === undefined || profile === 'chaos',
+        running: player.status !== 'finished' && (!player.galactic || player.galactic.wreck.phase === 'running'),
+        overheated: player.vehicle.boost.overheated === true,
+        grounded: player.vehicle.grounded !== false,
+      }),
       unavailable: profile !== undefined && profile !== 'chaos' && POD_ABILITIES[player.podIdentity ?? 'teemto'].kind === 'flame' },
     galactic: deriveGalacticHudViewModel(player.galactic),
     combatEnabled: profile === undefined || profile === 'chaos',

@@ -9,7 +9,6 @@ import { VehicleCardPreviewRenderer } from './VehicleCardPreview';
 import { ART_APPEARANCES, isVehicleAppearanceId, SELECTABLE_POD_APPEARANCES } from '../game/vehicleAppearance';
 import type { VehicleArtLibrary } from '../render/vehicles';
 import { installPodracingHudStyles } from './hudStyles';
-import { layoutThreatCues, threatBearingLabel } from './threatLayout';
 import {
   cornerGlyph,
   createSessionHudViewModel,
@@ -25,7 +24,6 @@ import type {
   HudAiDifficulty,
   HudGalacticWreckPhase,
   HudLaunchViewModel,
-  HudRaceDirectorViewModel,
   HudResultViewModel,
   HudResultsPresentationViewModel,
   HudPreRaceViewModel,
@@ -97,10 +95,6 @@ export class RaceHud {
   private readonly minimap: MinimapCanvas;
   private readonly eventAtlas: RaceEventAtlas;
   private eventAtlasOpen = false;
-  private readonly combatFeedback: HTMLElement;
-  private readonly combatFeedbackTitle: HTMLElement;
-  private readonly combatFeedbackDetail: HTMLElement;
-  private combatFeedbackKey = '';
   private readonly systemMotionPreference: MediaQueryList | null;
   private readonly lap: HTMLElement;
   private readonly lapTotal: HTMLElement;
@@ -113,9 +107,6 @@ export class RaceHud {
   private readonly cornerArrow: HTMLElement;
   private readonly cornerDistance: HTMLElement;
   private readonly cornerTag: HTMLElement;
-  private readonly flight: HTMLElement;
-  private readonly flightClearance: HTMLElement;
-  private readonly flightMotion: HTMLElement;
   private readonly telemetry: HTMLElement;
   private readonly boostFill: HTMLElement;
   private readonly boostValue: HTMLElement;
@@ -142,10 +133,6 @@ export class RaceHud {
   private readonly redlineFill: HTMLElement;
   private readonly redlineValue: HTMLElement;
   private readonly upgradeList: HTMLElement;
-  private readonly galacticAlert: HTMLElement;
-  private readonly galacticAlertLabel: HTMLElement;
-  private readonly galacticAlertDetail: HTMLElement;
-  private readonly wrongWay: HTMLElement;
   private readonly countdown: HTMLElement;
   private readonly launch: HTMLElement;
   private readonly launchLabel: HTMLElement;
@@ -159,17 +146,10 @@ export class RaceHud {
   private readonly raceModeScoreLabel: HTMLElement;
   private readonly raceModeScoreValue: HTMLElement;
   private readonly raceModeProgress: HTMLElement;
-  private readonly directorEvent: HTMLElement;
-  private readonly directorTitle: HTMLElement;
-  private readonly directorDetail: HTMLElement;
   private readonly pause: HTMLElement;
   private readonly settingsPanel: HTMLElement;
   private readonly settingsBindings: HTMLElement;
   private readonly settingsCapture: HTMLElement;
-  private readonly controls: HTMLElement;
-  private readonly threatCues: HTMLElement;
-  private readonly compactThreatObstacles: readonly HTMLElement[];
-  private readonly drivingFeedback: HTMLElement;
   private readonly results: HTMLElement;
   private readonly resultTitle: HTMLElement;
   private readonly resultCallout: HTMLElement;
@@ -201,7 +181,6 @@ export class RaceHud {
   private readonly courseCorner: HTMLElement;
   private readonly onMuteChange: ((muted: boolean) => void) | undefined;
   private readonly onAction: ((action: RaceHudAction) => void) | undefined;
-  private readonly createdAt: number;
   private muted: boolean;
   private countdownKey = '';
   private resultsKey = '';
@@ -213,7 +192,6 @@ export class RaceHud {
   private workshopKey = '';
   private settingsBindingsKey = '';
   private resultPresentationKey = '';
-  private threatStructureKey = '';
   private garageVehicleKey = '';
   private vehicleSelectionModel: HudPreRaceViewModel | undefined;
   private inspectionAngle = 0;
@@ -228,7 +206,6 @@ export class RaceHud {
     this.onMuteChange = options.onMuteChange;
     this.onAction = options.onAction;
     this.muted = options.initiallyMuted ?? false;
-    this.createdAt = performance.now();
     this.root = mount.ownerDocument.createElement('div');
     this.systemMotionPreference = mount.ownerDocument.defaultView?.matchMedia?.('(prefers-reduced-motion: reduce)') ?? null;
     this.root.className = 'pod-hud';
@@ -461,25 +438,9 @@ export class RaceHud {
 
       </section>
 
-      <div class="pod-hud__galactic-alert" data-hud="galactic-alert" role="status" aria-live="polite" aria-hidden="true">
-        <strong data-hud="galactic-alert-label"></strong>
-        <span data-hud="galactic-alert-detail"></span>
-      </div>
-      <div class="pod-hud__director-event" data-hud="director-event" role="status" aria-live="polite" aria-atomic="true" aria-hidden="true">
-        <span>Race Director</span>
-        <strong data-hud="director-title"></strong>
-        <small data-hud="director-detail"></small>
-      </div>
-      <div class="pod-hud__wrong-way" data-hud="wrong-way" role="alert" aria-hidden="true">Wrong way</div>
       <div class="pod-hud__countdown" data-hud="countdown" aria-live="assertive" aria-hidden="true"></div>
       <div class="pod-hud__cinematic-matte" aria-hidden="true"></div>
-      <section class="pod-hud__combat-feedback" data-hud="combat-feedback" role="status" aria-live="polite" aria-atomic="true" hidden><i aria-hidden="true">✦</i><strong data-hud="combat-feedback-title"></strong><span data-hud="combat-feedback-detail"></span></section>
       <section class="pod-hud__driving-feedback" aria-label="Driving feedback">
-      <aside class="pod-hud__flight" data-hud="flight" aria-live="polite" aria-hidden="true">
-        <span class="pod-hud__flight-state">Airborne</span>
-        <strong data-hud="flight-clearance">00.0 M Clear</strong>
-        <small data-hud="flight-motion">Apex // Set</small>
-      </aside>
         <div class="pod-hud__meter pod-hud__meter--drift">
           <div class="pod-hud__meter-head"><span class="pod-hud__label">Drift</span><span class="pod-hud__meter-value" data-hud="drift-value">0</span></div>
           <div class="pod-hud__meter-track"><span class="pod-hud__meter-fill" data-hud="drift-fill"></span></div>
@@ -496,8 +457,6 @@ export class RaceHud {
         </footer>
       </div>
       </section>
-      <div class="pod-hud__threat-cues" data-hud="threat-cues" aria-label="Directional threats" aria-hidden="true"></div>
-      <aside class="pod-hud__tutorial" data-hud="tutorial" aria-live="polite" aria-hidden="true"><span data-hud="tutorial-step"></span><strong data-hud="tutorial-title"></strong><p data-hud="tutorial-instruction"></p><i aria-hidden="true"><i data-hud="tutorial-progress"></i></i></aside>
       <aside class="pod-hud__pause" data-hud="pause" role="dialog" aria-label="Race paused" aria-hidden="true">
         <div class="pod-hud__pause-home">
           <span data-hud="paused-event">Engines holding</span>
@@ -510,6 +469,7 @@ export class RaceHud {
             <button type="button" data-action="return-to-garage" data-solo-pause hidden disabled>Back to Hangar</button>
           </div>
           <p data-hud="pause-navigation-hint"></p>
+          <aside class="pod-hud__pause-tutorial" data-hud="tutorial" hidden><span data-hud="tutorial-step"></span><strong data-hud="tutorial-title"></strong><p data-hud="tutorial-instruction"></p><i aria-hidden="true"><i data-hud="tutorial-progress"></i></i></aside>
         </div>
         <section class="pod-hud__settings" data-hud="settings" aria-label="Game settings" aria-hidden="true">
           <header>
@@ -539,7 +499,6 @@ export class RaceHud {
             <div class="pod-hud__settings-toggles">
               <label><input type="checkbox" data-setting="comfort.reducedMotion"><span>Reduced motion</span></label>
               <label><input type="checkbox" data-setting="comfort.highContrast"><span>High contrast</span></label>
-              <label><input type="checkbox" data-setting="comfort.directionalThreatCues"><span>Directional threat cues</span></label>
             </div>
           </div>
           <div class="pod-hud__settings-page" data-settings-page="audio" hidden>
@@ -555,19 +514,6 @@ export class RaceHud {
         </section>
       </aside>
 
-      <aside class="pod-hud__controls" data-hud="controls" aria-hidden="true">
-        <span><b class="pod-hud__key">W</b> Throttle</span>
-        <span><b class="pod-hud__key">S</b> Brake</span>
-        <span><b class="pod-hud__key">A D</b> Carve</span>
-        <span><b class="pod-hud__key">SPACE</b> Drift</span>
-        <span><b class="pod-hud__key">SHIFT</b> Redline</span>
-        <span><b class="pod-hud__key" data-key-binding="fire">E</b> Heat Lance</span>
-        <span><b class="pod-hud__key" data-key-binding="shield">Q</b> Shield</span>
-        <span><b class="pod-hud__key" data-key-binding="mine">F</b> Mine</span>
-        <span><b class="pod-hud__key">R</b> Recover</span>
-        <span><b class="pod-hud__key">ESC/P</b> Pause</span>
-      </aside>
-
       <section class="pod-hud__results" data-hud="results" role="dialog" aria-label="Race results" aria-hidden="true">
         <h1 class="pod-hud__results-title" data-hud="result-title">Race complete</h1>
         <div class="pod-hud__results-callout" data-hud="result-callout">Pod one // Circuit conquered</div>
@@ -581,9 +527,6 @@ export class RaceHud {
     `;
     mount.append(this.root);
     this.eventAtlas = new RaceEventAtlas(requireElement(this.root, '[data-hud="vehicle-selection"]'));
-    this.combatFeedback = requireElement(this.root, '[data-hud="combat-feedback"]');
-    this.combatFeedbackTitle = requireElement(this.root, '[data-hud="combat-feedback-title"]');
-    this.combatFeedbackDetail = requireElement(this.root, '[data-hud="combat-feedback-detail"]');
 
     this.lap = requireElement(this.root, '[data-hud="lap"]');
     this.lapTotal = requireElement(this.root, '[data-hud="lap-total"]');
@@ -596,9 +539,6 @@ export class RaceHud {
     this.cornerArrow = requireElement(this.root, '[data-hud="corner-arrow"]');
     this.cornerDistance = requireElement(this.root, '[data-hud="corner-distance"]');
     this.cornerTag = requireElement(this.root, '[data-hud="corner-tag"]');
-    this.flight = requireElement(this.root, '[data-hud="flight"]');
-    this.flightClearance = requireElement(this.root, '[data-hud="flight-clearance"]');
-    this.flightMotion = requireElement(this.root, '[data-hud="flight-motion"]');
     this.telemetry = requireElement(this.root, '[data-hud="telemetry"]');
     this.boostFill = requireElement(this.root, '[data-hud="boost-fill"]');
     this.boostValue = requireElement(this.root, '[data-hud="boost-value"]');
@@ -625,10 +565,6 @@ export class RaceHud {
     this.redlineFill = requireElement(this.root, '[data-hud="redline-fill"]');
     this.redlineValue = requireElement(this.root, '[data-hud="redline-value"]');
     this.upgradeList = requireElement(this.root, '[data-hud="upgrade-list"]');
-    this.galacticAlert = requireElement(this.root, '[data-hud="galactic-alert"]');
-    this.galacticAlertLabel = requireElement(this.root, '[data-hud="galactic-alert-label"]');
-    this.galacticAlertDetail = requireElement(this.root, '[data-hud="galactic-alert-detail"]');
-    this.wrongWay = requireElement(this.root, '[data-hud="wrong-way"]');
     this.countdown = requireElement(this.root, '[data-hud="countdown"]');
     this.launch = requireElement(this.root, '[data-hud="launch"]');
     this.launchLabel = requireElement(this.root, '[data-hud="launch-label"]');
@@ -642,25 +578,10 @@ export class RaceHud {
     this.raceModeScoreLabel = requireElement(this.root, '[data-hud="race-mode-score-label"]');
     this.raceModeScoreValue = requireElement(this.root, '[data-hud="race-mode-score-value"]');
     this.raceModeProgress = requireElement(this.root, '[data-hud="race-mode-progress"]');
-    this.directorEvent = requireElement(this.root, '[data-hud="director-event"]');
-    this.directorTitle = requireElement(this.root, '[data-hud="director-title"]');
-    this.directorDetail = requireElement(this.root, '[data-hud="director-detail"]');
     this.pause = requireElement(this.root, '[data-hud="pause"]');
     this.settingsPanel = requireElement(this.root, '[data-hud="settings"]');
     this.settingsBindings = requireElement(this.root, '[data-hud="settings-bindings"]');
     this.settingsCapture = requireElement(this.root, '[data-hud="settings-capture"]');
-    this.controls = requireElement(this.root, '[data-hud="controls"]');
-    this.threatCues = requireElement(this.root, '[data-hud="threat-cues"]');
-    this.drivingFeedback = requireElement(this.root, '.pod-hud__driving-feedback');
-    // Bounded visual children only: the galactic/threat containers span the viewport.
-    this.compactThreatObstacles = [...this.root.querySelectorAll<HTMLElement>([
-      '.pod-hud__race', '.pod-hud__split', '.pod-hud__corner', '.pod-hud__course-progress',
-      '.pod-hud__driving-instruments', '.pod-hud__systems-cluster', '.pod-hud__context-action',
-      '.pod-hud__upgrades', '.pod-hud__mode-status', '.pod-hud__director-event',
-      '.pod-hud__galactic-alert', '.pod-hud__wrong-way', '.pod-hud__combat-feedback',
-      '.pod-hud__driving-feedback', '.pod-hud__pod-ability', '.pod-hud__launch', '.pod-hud__controls',
-      '.pod-hud__tutorial', '.pod-hud__asset-status', '.pod-hud__map', '.pod-hud__countdown',
-    ].join(','))];
     this.results = requireElement(this.root, '[data-hud="results"]');
     this.resultTitle = requireElement(this.root, '[data-hud="result-title"]');
     this.resultCallout = requireElement(this.root, '[data-hud="result-callout"]');
@@ -714,14 +635,9 @@ export class RaceHud {
     this.root.classList.toggle('has-context-danger', model.wrongWay || model.galactic?.wreckPhase != null);
     this.root.classList.toggle('has-wreck-state', model.galactic?.wreckPhase != null);
     this.root.classList.toggle('has-ordinary-circuit', model.raceModeStatus?.mode === 'circuit' && model.raceTime > 7);
-    this.root.dataset.notice = model.wrongWay ? 'wrong-way'
-      : model.galactic?.wreckPhase != null ? 'galactic'
-      : model.directorEvent ? 'director'
-      : model.galactic?.statusLabel || (model.galactic?.redlineHeat ?? 0) >= 0.9 ? 'galactic'
-      : 'none';
     this.updateVehicleSelection(model.preRace);
     const selectorActive = model.preRace?.active === true;
-    this.root.classList.toggle('has-launch-cue', Boolean(model.launch) && !selectorActive);
+    this.root.classList.toggle('has-launch-cue', model.phase === 'countdown' && model.launch?.stage === 'charging' && !selectorActive);
     this.updateSettings(model.settings);
     const session = createSessionHudViewModel(model);
     this.pause.dataset.session = session.solo ? 'solo' : 'online';
@@ -731,13 +647,8 @@ export class RaceHud {
       button.hidden = !session.canRestart;
       button.disabled = !session.canRestart;
     }
-    const automaticControls = performance.now() - this.createdAt < 7_500
-      && model.phase !== 'finished'
-      && !selectorActive;
-    const controlsVisible = model.controlsVisible ?? automaticControls;
-    this.updatePerfectLaunch(model.launch, selectorActive);
+    this.updatePerfectLaunch(model.phase === 'countdown' ? model.launch : undefined, selectorActive);
     this.updateRaceModeStatus(model.raceModeStatus, model.phase, selectorActive);
-    this.updateDirectorEvent(model.directorEvent, model.phase, model.wrongWay, selectorActive);
     write(this.lap, String(Math.max(1, Math.floor(model.lap))));
     write(this.lapTotal, String(Math.max(1, Math.floor(model.totalLaps))));
     write(this.position, String(Math.max(1, Math.floor(model.position))));
@@ -762,31 +673,14 @@ export class RaceHud {
     this.cornerArrow.dataset.direction = model.corner.direction;
     this.cornerArrow.style.transform = `skewX(-5deg) scale(${(0.92 + model.corner.severity * 0.16).toFixed(3)})`;
 
-    const airborne = model.airborne === true;
-    const clearance = Math.max(0, Number.isFinite(model.groundClearance) ? model.groundClearance ?? 0 : 0);
-    const verticalSpeed = Number.isFinite(model.verticalSpeed) ? model.verticalSpeed ?? 0 : 0;
-    const motion = clearance < 3.2 || verticalSpeed < -1.25
-      ? 'descending'
-      : verticalSpeed > 1.25
-        ? 'climbing'
-        : 'apex';
-    write(this.flightClearance, `${clearance.toFixed(1).padStart(4, '0')} M CLEAR`);
-    write(this.flightMotion, motion === 'descending'
-      ? '↓ Landing'
-      : motion === 'climbing'
-        ? '↑ Climb'
-        : '◇ Apex');
-    this.flight.dataset.motion = motion;
-    setVisible(this.flight, airborne && model.galactic?.wreckPhase == null);
-
     this.updateMeter(this.boostFill, this.boostValue, model.boost);
     const abilityPanel = requireElement<HTMLElement>(this.root, '[data-hud="pod-ability"]');
     abilityPanel.hidden = model.phase !== 'racing' || !model.ability || model.ability.unavailable;
     if (model.ability) {
       requireElement(abilityPanel, '[data-hud="ability-name"]').textContent = model.ability.label;
-      requireElement(abilityPanel, '[data-hud="ability-state"]').textContent = model.ability.windup ? 'ARMING' : model.ability.active ? 'ACTIVE' : model.ability.cooldown > 0 ? `${Math.ceil(model.ability.cooldown)}s` : 'READY';
+      requireElement(abilityPanel, '[data-hud="ability-state"]').textContent = model.ability.windup ? 'ARMING' : model.ability.active ? 'ACTIVE' : model.ability.cooldown > 0 ? `${Math.ceil(model.ability.cooldown)}s` : model.ability.blocked ?? 'READY';
       abilityPanel.title = model.ability.hint;
-      abilityPanel.dataset.ready = String(model.ability.cooldown <= 0);
+      abilityPanel.dataset.ready = String(model.ability.cooldown <= 0 && !model.ability.blocked);
     }
     this.updateMeter(this.driftFill, this.driftValue, model.driftCharge);
     const chargeStage = driftStage(model.driftCharge);
@@ -806,9 +700,7 @@ export class RaceHud {
     this.telemetry.classList.toggle('is-damaged', model.damage >= 0.58);
     this.updateGalactic(model);
 
-    setVisible(this.wrongWay, model.wrongWay);
     this.updateCountdown(model.countdownCue);
-    setVisible(this.controls, controlsVisible);
     this.updateResults(
       model.results,
       model.phase === 'finished',
@@ -818,7 +710,6 @@ export class RaceHud {
     this.updateCourseProgress(model.racers);
     this.minimap.update(model.course, model.racers, model.raceTime, model.courseBranches);
     this.updateMastery(model.mastery, model.phase, selectorActive, session.tutorialVisible);
-    this.updateThreatCues(model.threats, model.phase, selectorActive, model.airborne === true, controlsVisible, session.tutorialVisible);
     this.eventAtlas.update(model.mastery, model.preRace?.lobby.canStart === true);
     if (!selectorActive || !model.mastery) this.setEventAtlasVisible(false);
   }
@@ -838,21 +729,10 @@ export class RaceHud {
     const available = !this.root.classList.contains('has-vehicle-selection') && !this.root.classList.contains('is-paused') && this.root.dataset.phase === 'racing';
     const cue = available ? frame.cue : null;
     const reduced = this.root.classList.contains('is-reduced-motion') || this.systemMotionPreference?.matches;
-    const key = cue ? `${cue.kind}:${cue.title}:${cue.detail}` : '';
-    if (key !== this.combatFeedbackKey) {
-      this.combatFeedbackKey = key;
-      this.combatFeedback.hidden = !cue;
-      this.combatFeedback.dataset.kind = cue?.kind ?? '';
-      write(this.combatFeedbackTitle, cue?.title ?? '');
-      write(this.combatFeedbackDetail, cue?.detail ?? '');
-    }
-    this.root.classList.toggle('has-combat-feedback', Boolean(cue));
-    this.root.classList.toggle('has-takedown-cue', cue?.kind === 'takedown' || cue?.kind === 'wreck');
     // Combat events render every frame; the full telemetry model updates less often.
     // Suppress driving instructions on the wreck's first frame too, including reduced motion.
     this.root.classList.toggle('has-wreck-cue', cue?.kind === 'wreck');
     this.root.classList.toggle('has-cinematic-matte', available && frame.cinematic.active && frame.cinematic.letterbox && !reduced);
-    this.combatFeedback.style.setProperty('--cue-age', String(Math.min(1, Math.max(0, cue?.progress ?? 0))));
   }
 
   setAssetStatus(message: string | null): void {
@@ -1400,7 +1280,7 @@ export class RaceHud {
     const controls = requireElement<HTMLElement>(this.root, '[data-hud="mastery-controls"]');
     controls.hidden = !mastery;
     const tutorial = requireElement<HTMLElement>(this.root, '[data-hud="tutorial"]');
-    setVisible(tutorial, tutorialVisible);
+    tutorial.hidden = !tutorialVisible;
     const cup = requireElement<HTMLElement>(this.root, '[data-hud="cup-context"]');
     const cupComplete = mastery?.championshipRound === CHAMPIONSHIP_EVENT_IDS.length;
     cup.hidden = !mastery?.championshipContext && !cupComplete;
@@ -1691,130 +1571,8 @@ export class RaceHud {
     this.settingsCapture.classList.toggle('is-listening', settings.capture !== null);
   }
 
-  private updateThreatCues(
-    threats: RaceHudViewModel['threats'],
-    phase: RaceHudViewModel['phase'],
-    preRace: boolean,
-    airborne: boolean,
-    controlsVisible: boolean,
-    tutorialVisible: boolean,
-  ): void {
-    const viewport = this.root.ownerDocument.defaultView;
-    const canShowThreats = phase === 'racing' && !preRace
-      && this.root.dataset.threatCues !== 'disabled' && Boolean(threats?.length);
-    const reservedRects: { left: number; top: number; right: number; bottom: number }[] = [];
-    const compact = viewport && viewport.innerWidth >= 651 && viewport.innerWidth <= 760 && viewport.innerHeight <= 540;
-    const occupiedRects: typeof reservedRects | undefined = canShowThreats && compact ? [] : undefined;
-    let compactHeaderBottom: number | undefined;
-    if (occupiedRects && viewport) {
-      const origin = this.threatCues.getBoundingClientRect();
-      const assetStatus = this.root.querySelector<HTMLElement>('[data-hud="asset-status"]');
-      const obstacles = assetStatus ? [...this.compactThreatObstacles, assetStatus] : this.compactThreatObstacles;
-      for (const element of obstacles) {
-        const style = viewport.getComputedStyle(element);
-        // Reserve the first fade frame, but not hidden ancestors or CSS priority suppression.
-        if (style.visibility !== 'visible' || style.display === 'none') continue;
-        let hidden = false;
-        for (let parent = element.parentElement; parent && parent !== this.root; parent = parent.parentElement) {
-          const parentStyle = viewport.getComputedStyle(parent);
-          if (parentStyle.display === 'none' || parentStyle.visibility !== 'visible') { hidden = true; break; }
-        }
-        if (hidden) continue;
-        const box = element.getBoundingClientRect();
-        if (element.classList.contains('pod-hud__race')) compactHeaderBottom = box.bottom - origin.top;
-        if (box.width > 0 && box.height > 0) occupiedRects.push({
-          left: box.left - origin.left, right: box.right - origin.left,
-          top: box.top - origin.top, bottom: box.bottom - origin.top,
-        });
-      }
-    }
-    if (canShowThreats && !occupiedRects && viewport) {
-      // Flight, drift and launch-result rows change the occupied lane height.
-      // Legacy viewport estimates do not describe that live stack at 844px.
-      const style = viewport.getComputedStyle(this.drivingFeedback);
-      if (style.visibility === 'visible' && style.display !== 'none') {
-        const feedback = this.drivingFeedback.getBoundingClientRect();
-        if (feedback.width > 0 && feedback.height > 0) {
-          const origin = this.threatCues.getBoundingClientRect();
-          reservedRects.push({ left: feedback.left - origin.left, right: feedback.right - origin.left,
-            top: feedback.top - origin.top, bottom: feedback.bottom - origin.top });
-        }
-      }
-    }
-    if (canShowThreats && !occupiedRects && viewport) {
-      const ability = this.root.querySelector<HTMLElement>('.pod-hud__pod-ability');
-      if (ability && viewport.getComputedStyle(ability).display !== 'none') {
-        const box = ability.getBoundingClientRect(), origin = this.threatCues.getBoundingClientRect();
-        if (box.width && box.height) reservedRects.push({ left: box.left - origin.left, right: box.right - origin.left,
-          top: box.top - origin.top, bottom: box.bottom - origin.top });
-      }
-    }
-    if (canShowThreats && !occupiedRects && this.root.dataset.notice === 'director'
-      && this.directorEvent.classList.contains('is-visible') && viewport) {
-      const style = viewport.getComputedStyle(this.directorEvent);
-      // Reserve from the first fade frame, but respect CSS priority suppression.
-      if (style.visibility === 'visible' && style.display !== 'none') {
-        const notice = this.directorEvent.getBoundingClientRect();
-        const origin = this.threatCues.getBoundingClientRect();
-        if (notice.width > 0 && notice.height > 0) reservedRects.push({
-          left: notice.left - origin.left, right: notice.right - origin.left,
-          top: notice.top - origin.top, bottom: notice.bottom - origin.top,
-        });
-      }
-    }
-    const visibleThreats = canShowThreats
-      ? layoutThreatCues(threats ?? [], viewport?.innerWidth ?? 1280, viewport?.innerHeight ?? 720, airborne, {
-        detailVisible: this.root.classList.contains('has-hud-detail'),
-        assetStatusVisible: this.root.classList.contains('has-asset-status'),
-        controlsVisible,
-        tutorialVisible,
-        reservedRects,
-        occupiedRects,
-        compactHeaderBottom,
-      })
-      : [];
-    const key = visibleThreats.map(({ threat, count, directionOnly }) => `${threat.id}:${threat.kind}:${threat.label}:${count}:${directionOnly ?? false}`).join('|');
-    if (key !== this.threatStructureKey) {
-      this.threatStructureKey = key;
-      this.threatCues.replaceChildren(...visibleThreats.map(({ threat, count, directionOnly: compactDirectionOnly }, index) => {
-        const isImpactVector = threat.kind === 'impact' && threat.label === 'IMPACT VECTOR';
-        // Only the most urgent bearing needs a caption. Secondary bearings and
-        // group counts remain visible; complete labels remain accessible.
-        const directionOnly = compactDirectionOnly || index > 0;
-        const cue = this.root.ownerDocument.createElement('i');
-        cue.className = 'pod-hud__threat-cue';
-        cue.dataset.threatId = threat.id;
-        cue.dataset.kind = threat.kind;
-        cue.setAttribute('role', 'img');
-        cue.classList.toggle('is-primary', index === 0);
-        cue.classList.toggle('is-direction-only', directionOnly);
-        cue.innerHTML = '<b aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M5 14 12 5 19 14M7 20 12 13 17 20"/></svg></b><span></span><em aria-hidden="true"></em>';
-        cue.dataset.threatCount = String(count);
-        cue.classList.toggle('has-group', count > 1);
-        write(requireElement(cue, 'span'), isImpactVector ? 'IMPACT' : threat.label);
-        write(requireElement(cue, 'em'), count > 1 ? `+${count - 1}` : '');
-        cue.title = `${threat.label}${count > 1 ? `, ${count - 1} additional threats nearby` : ''}`;
-        return cue;
-      }));
-    }
-    const byId = new Map(visibleThreats.map((layout) => [layout.threat.id, layout]));
-    for (const cue of this.threatCues.querySelectorAll<HTMLElement>('[data-threat-id]')) {
-      const layout = byId.get(cue.dataset.threatId ?? '');
-      if (!layout) continue;
-      const { threat, bearing, urgency, count } = layout;
-      cue.style.width = layout.directionOnly ? `${layout.footprintWidth}px` : '';
-      cue.style.left = `${layout.x.toFixed(1)}px`;
-      cue.style.top = `${layout.y.toFixed(1)}px`;
-      cue.style.setProperty('--pod-threat-bearing', `${bearing}deg`);
-      cue.style.setProperty('--pod-threat-urgency', urgency.toFixed(3));
-      cue.classList.toggle('is-critical', urgency >= 0.72);
-      cue.setAttribute('aria-label', `${threat.label}, ${threatBearingLabel(bearing)}, bearing ${Math.round(bearing)} degrees, ${Math.round(urgency * 100)} percent threat${count > 1 ? `, ${count - 1} additional threats nearby` : ''}`);
-    }
-    setVisible(this.threatCues, visibleThreats.length > 0);
-  }
-
   private updatePerfectLaunch(launch: HudLaunchViewModel | undefined, preRace: boolean): void {
-    const visible = Boolean(launch) && !preRace;
+    const visible = launch?.stage === 'charging' && !preRace;
     if (!launch) {
       setVisible(this.launch, false);
       return;
@@ -1831,24 +1589,9 @@ export class RaceHud {
     this.launch.dataset.stage = launch.stage;
     this.launch.dataset.outcome = launch.outcome ?? 'pending';
     this.launch.classList.toggle('is-hot', heat >= 0.76);
-    if (launch.stage === 'charging') {
-      this.launch.setAttribute('aria-live', 'off');
-      write(this.launchLabel, 'Match the sweet spot');
-      write(this.launchValue, `REV ${String(Math.round(rev * 100)).padStart(3, '0')} // TARGET ${String(Math.round(target * 100)).padStart(3, '0')}`);
-      this.launch.setAttribute('aria-label', 'Perfect launch meter. Match engine revs to the green sweet spot.');
-    } else {
-      const outcome = launch.outcome ?? 'good';
-      const result = {
-        perfect: ['Perfect launch', 'Boost charged // Full impulse'],
-        good: ['Clean launch', 'Impulse stable'],
-        bog: ['Engine bog', 'Low revs // Recover throttle'],
-        overheat: ['Over-rev', 'Core hot // Throttle limited'],
-      } as const;
-      this.launch.setAttribute('aria-live', 'polite');
-      write(this.launchLabel, result[outcome][0]);
-      write(this.launchValue, result[outcome][1]);
-      this.launch.setAttribute('aria-label', `${result[outcome][0]}. ${result[outcome][1]}.`);
-    }
+    write(this.launchLabel, 'Match the sweet spot');
+    write(this.launchValue, `REV ${String(Math.round(rev * 100)).padStart(3, '0')} // TARGET ${String(Math.round(target * 100)).padStart(3, '0')}`);
+    this.launch.setAttribute('aria-label', 'Perfect launch meter. Match engine revs to the green sweet spot.');
     setVisible(this.launch, visible);
   }
 
@@ -1877,24 +1620,6 @@ export class RaceHud {
       `${status.name}. ${status.objective}. ${status.scoreLabel}: ${status.scoreValue}.`,
     );
     setVisible(this.raceModeStatus, visible);
-  }
-
-  private updateDirectorEvent(
-    event: HudRaceDirectorViewModel | undefined,
-    phase: RaceHudViewModel['phase'],
-    wrongWay: boolean,
-    preRace: boolean,
-  ): void {
-    const visible = Boolean(event) && phase === 'racing' && !wrongWay && !preRace;
-    if (event) {
-      write(this.directorTitle, event.title);
-      write(this.directorDetail, event.detail);
-      this.directorEvent.dataset.kind = event.kind;
-      this.directorEvent.dataset.phase = event.phase;
-      this.directorEvent.setAttribute('aria-label', `Race Director. ${event.title}. ${event.detail}.`);
-    }
-    this.root.classList.toggle('has-director-event', visible);
-    setVisible(this.directorEvent, visible);
   }
 
   private updateLobby(lobby: HudPreRaceViewModel['lobby']): void {
@@ -2040,7 +1765,6 @@ export class RaceHud {
     setVisible(this.galactic, Boolean(galactic) && model.combatEnabled !== false && model.phase !== 'finished');
     if (!galactic) {
       setVisible(this.redlineInstrument, false);
-      setVisible(this.galacticAlert, false);
       return;
     }
 
@@ -2140,34 +1864,8 @@ export class RaceHud {
       this.upgradeList.replaceChildren(...chips);
     }
 
-    const wrecked = galactic.wreckPhase !== null;
-    const recovering = galactic.wreckPhase === 'recovering';
-    const wreckLabel = recovering ? 'Recovering' : 'Wrecked';
-    const redlineCritical = galactic.redlineHeat >= 0.9;
-    const alertVisible = wrecked || galactic.statusLabel !== null || redlineCritical;
-    write(
-      this.galacticAlertLabel,
-      wrecked
-        ? wreckLabel
-        : galactic.statusLabel ?? (redlineCritical ? 'Redline critical' : ''),
-    );
-    write(
-      this.galacticAlertDetail,
-      wrecked
-        ? `${recovering ? 'Control link' : 'Recovery'} // ${galactic.wreckTimer.toFixed(1)} S`
-        : redlineCritical
-          ? 'Core heat // Vent or release'
-          : galactic.weaponTarget
-            ? `Target // ${galactic.weaponTarget}`
-            : '',
-    );
-    this.galacticAlert.style.setProperty('--pod-alert-intensity', galactic.statusIntensity.toFixed(3));
     this.galactic.classList.toggle('is-wrecked', galactic.wreckPhase === 'wrecked');
-    this.galactic.classList.toggle('is-recovering', recovering);
-    this.galacticAlert.classList.toggle('is-wrecked', galactic.wreckPhase === 'wrecked');
-    this.galacticAlert.classList.toggle('is-recovering', recovering);
-    this.galacticAlert.classList.toggle('is-critical', redlineCritical || galactic.statusIntensity >= 0.72);
-    setVisible(this.galacticAlert, alertVisible && model.phase !== 'finished' && !model.wrongWay);
+    this.galactic.classList.toggle('is-recovering', galactic.wreckPhase === 'recovering');
   }
 
   private updateCountdown(cue: RaceHudViewModel['countdownCue']): void {

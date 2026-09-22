@@ -19,6 +19,18 @@ export const POD_ABILITIES: Readonly<Record<PodIdentityId, Definition>> = Object
 export function createPodAbility(kind: PodAbilityKind = 'vent'): PodAbilityState {
   return { kind, cooldown: 0, windup: 0, remaining: 0, held: false, direction: 0, pulse: 0 };
 }
+/** Shared activation rules keep the fixed-step simulation and readiness HUD in agreement. */
+export function podAbilityBlockReason(kind: PodAbilityKind, state: {
+  battle: boolean; running: boolean; overheated: boolean; grounded: boolean;
+}): 'BATTLE ONLY' | 'RECOVERING' | 'OVERHEATED' | 'AIRBORNE' | null {
+  if (kind === 'flame' && !state.battle) return 'BATTLE ONLY';
+  if (!state.running) return 'RECOVERING';
+  // Cooling is the way out of an overheated core, so it must remain usable.
+  if (state.overheated && kind !== 'vent') return 'OVERHEATED';
+  // A lateral dodge needs ground contact. Do not spend its cooldown in mid-air.
+  if (kind === 'shunt' && !state.grounded) return 'AIRBORNE';
+  return null;
+}
 export interface AbilityRacer { id: string; vehicle: PodracerState; galactic: GalacticRacerState; identity: PodIdentityId; progress: number; finished: boolean; teamId?: string }
 /** Called once after all racer inputs have been resolved. Uses one pre-impact field,
  * so racer ordering cannot make flame hits disappear or double during a tick. */
@@ -31,7 +43,8 @@ export function stepPodAbilities(racers: readonly AbilityRacer[], inputs: Readon
     const input = inputs[racer.id], held = input?.ability === true;
     a.cooldown = Math.max(0, a.cooldown - delta); a.pulse = Math.max(0, a.pulse - delta);
     if (racer.finished || g.wreck.phase !== 'running') { a.windup = a.remaining = 0; a.held = held; continue; }
-    if (held && !a.held && a.cooldown === 0 && (battle || def.kind !== 'flame') && !v.boost.overheated) {
+    const blocked = podAbilityBlockReason(def.kind, { battle, running: true, overheated: v.boost.overheated, grounded: v.grounded });
+    if (held && !a.held && a.cooldown === 0 && blocked === null) {
       a.cooldown = def.cooldown; a.windup = def.windup; a.remaining = 0;
       a.direction = Math.abs(input?.steer ?? 0) > .15 ? Math.sign(input!.steer) : def.kind === 'shunt' ? 1 : 0;
       events.push({ type: 'pod-ability', racerId: racer.id, kind: def.kind, phase: 'windup' });

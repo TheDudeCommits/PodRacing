@@ -373,7 +373,8 @@ export interface HudGalacticViewModel {
  * simulation class, which keeps race truth on the simulation side of the app.
  */
 export interface RaceHudViewModel {
-  ability?: { label: string; hint: string; cooldown: number; active: boolean; windup: boolean; unavailable: boolean };
+  ability?: { label: string; hint: string; cooldown: number; active: boolean; windup: boolean; unavailable: boolean;
+    blocked?: ReturnType<typeof import('../game/galactic/podAbilities').podAbilityBlockReason> };
   phase: HudRacePhase;
   mastery?: HudMasteryViewModel;
   speedMps: number;
@@ -429,7 +430,7 @@ export interface RaceHudSnapshotEntryLike {
     position: { x: number; z: number };
     velocity?: { y: number };
     telemetry: { speed: number; normalizedSpeed?: number; groundClearance?: number };
-    boost: { energy: number; active?: boolean };
+    boost: { energy: number; active?: boolean; overheated?: boolean };
     drift?: { charge?: number; blend?: number };
     heat: number;
     damage: number;

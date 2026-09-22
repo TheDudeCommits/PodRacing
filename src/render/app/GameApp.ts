@@ -112,7 +112,6 @@ import {
   type HudResultHighlightViewModel,
   type HudResultsPresentationViewModel,
   type HudSettingsTab,
-  type HudThreatCueViewModel,
   type HudWorkshopSlot,
   type RaceHudAction,
 } from '../../ui';
@@ -1310,9 +1309,6 @@ export class GameApp {
           activeTab: this.settingsTab,
           capture: this.settingsCapture,
         }),
-        threats: this.settings.comfort.directionalThreatCues
-          ? this.createThreatCues()
-          : undefined,
       });
       if (this.race.state.raceTime < this.hudGoUntil) hudModel.countdownCue = 'go';
       if (hudModel.galactic) {
@@ -2304,139 +2300,6 @@ export class GameApp {
     }
   }
 
-  /**
-   * Projects authoritative combat/world state into at most four glanceable
-   * screen-edge warnings. Bearing is relative to the local craft, so network
-   * guests and the host read the same threat even from different cameras.
-   */
-  private createThreatCues(): readonly HudThreatCueViewModel[] {
-    if (this.awaitingRaceStart || this.race.state.phase !== 'racing') return [];
-    const localId = this.localRacerId();
-    const local = this.race.state.entries.find((entry) => entry.id === localId)
-      ?? this.race.state.entries.find((entry) => entry.isPlayer);
-    if (!local) return [];
-    const origin = local.vehicle.position;
-    const yaw = local.vehicle.orientation.yaw;
-    const cues: HudThreatCueViewModel[] = [];
-    const addCue = (
-      id: string,
-      label: string,
-      x: number,
-      z: number,
-      urgency: number,
-      kind: HudThreatCueViewModel['kind'],
-    ): void => {
-      const dx = x - origin.x;
-      const dz = z - origin.z;
-      const relative = Math.atan2(dx, dz) - yaw;
-      cues.push({
-        id,
-        label,
-        bearingDegrees: ((relative * 180 / Math.PI + 540) % 360) - 180,
-        urgency: Math.min(1, Math.max(0, urgency)),
-        kind,
-      });
-    };
-
-    // A rival who wrecked us is called out while the grudge lasts and they are near.
-    const rivalry = local.galactic?.rivalry;
-    if (rivalry?.rivalId && rivalry.remaining > 0) {
-      const rival = this.race.state.entries.find((entry) => entry.id === rivalry.rivalId);
-      if (rival && rival.status !== 'finished') {
-        const distance = Math.hypot(rival.vehicle.position.x - origin.x, rival.vehicle.position.z - origin.z);
-        if (distance < 220) {
-          addCue(`rival-${rival.id}`, `REVENGE // ${rival.name.toUpperCase()}`, rival.vehicle.position.x, rival.vehicle.position.z,
-            0.35 + (1 - distance / 220) * 0.45, 'rival');
-        }
-      }
-    }
-
-    // Someone has a cable on us: name them so the shield counter is an informed choice.
-    for (const entry of this.race.state.entries) {
-      if (entry.galactic?.tow?.targetId !== localId) continue;
-      addCue(`tow-${entry.id}`, `TOWED // ${entry.name.toUpperCase()} · SHIELD CUTS IT`, entry.vehicle.position.x, entry.vehicle.position.z, 0.7, 'weapon');
-    }
-    for (const projectile of this.race.state.galacticWorld.projectiles) {
-      if (projectile.ownerId === localId) continue;
-      const dx = origin.x - projectile.position.x;
-      const dz = origin.z - projectile.position.z;
-      const distance = Math.hypot(dx, dz);
-      if (distance > 280) continue;
-      const velocityLength = Math.max(1, Math.hypot(projectile.velocity.x, projectile.velocity.z));
-      const closing = (dx * projectile.velocity.x + dz * projectile.velocity.z)
-        / Math.max(1, distance * velocityLength);
-      if (closing < 0.18) continue;
-      addCue(
-        projectile.id,
-        'INCOMING LANCE',
-        projectile.position.x,
-        projectile.position.z,
-        (1 - distance / 280) * 0.72 + Math.max(0, closing) * 0.36,
-        'weapon',
-      );
-    }
-
-    for (const mine of this.race.state.galacticWorld.mines) {
-      if (mine.ownerId === localId || mine.armTime > 0) continue;
-      const distance = Math.hypot(mine.position.x - origin.x, mine.position.z - origin.z);
-      if (distance > 150) continue;
-      addCue(
-        mine.id,
-        'SCRAP MINE',
-        mine.position.x,
-        mine.position.z,
-        1 - distance / 170,
-        'hazard',
-      );
-    }
-
-    for (const hazard of this.race.state.galacticWorld.hazards) {
-      const sample = this.race.course.sampleAtProgress(hazard.progress);
-      const x = sample.x + sample.rightX * hazard.lateralOffset;
-      const z = sample.z + sample.rightZ * hazard.lateralOffset;
-      const distance = Math.hypot(x - origin.x, z - origin.z);
-      if (distance > 230) continue;
-      addCue(
-        hazard.id,
-        hazard.kind.replaceAll('-', ' ').toUpperCase(),
-        x,
-        z,
-        1 - distance / 260,
-        'hazard',
-      );
-    }
-
-    for (const rival of this.race.state.entries) {
-      if (rival.id === localId || rival.status !== 'racing') continue;
-      const dx = rival.vehicle.position.x - origin.x;
-      const dz = rival.vehicle.position.z - origin.z;
-      const distance = Math.hypot(dx, dz);
-      const ability = rival.galactic?.ability;
-      if (distance < 68 && ability && (ability.windup > 0 || ability.remaining > 0) && (ability.kind === 'flame' || ability.kind === 'ram')) {
-        addCue(`ability-${rival.id}`, ability.kind === 'flame' ? 'FLAME — SHIELD / EVADE' : 'RAM — EVADE',
-          rival.vehicle.position.x, rival.vehicle.position.z, .9, 'impact');
-      }
-      if (distance > 52) continue;
-      const relativeVelocityX = rival.vehicle.velocity.x - local.vehicle.velocity.x;
-      const relativeVelocityZ = rival.vehicle.velocity.z - local.vehicle.velocity.z;
-      const closingSpeed = distance > 0.01
-        ? -(dx * relativeVelocityX + dz * relativeVelocityZ) / distance
-        : 20;
-      if (distance > 30 && closingSpeed < 5) continue;
-      addCue(
-        `rival-${rival.id}`,
-        closingSpeed > 8 ? 'IMPACT VECTOR' : rival.name.toUpperCase(),
-        rival.vehicle.position.x,
-        rival.vehicle.position.z,
-        (1 - distance / 58) * 0.7 + Math.min(0.35, Math.max(0, closingSpeed) / 45),
-        closingSpeed > 8 ? 'impact' : 'rival',
-      );
-    }
-
-    return cues
-      .sort((left, right) => right.urgency - left.urgency || left.id.localeCompare(right.id))
-      .slice(0, 4);
-  }
 
   private getResultsPresentation(): HudResultsPresentationViewModel {
     if (this.resultsPresentation) return this.resultsPresentation;
