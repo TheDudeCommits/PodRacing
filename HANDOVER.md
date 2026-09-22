@@ -1,17 +1,27 @@
-# PodRacing — Round 49 home screen (2026-09-22)
+# PodRacing — Round 49 home screen live (2026-09-22)
 
-The requested Rift Arena-inspired home layout is implemented and locally verified.
-Production is still Round 48 until the release receipt below is updated.
+The requested Rift Arena-inspired home layout is live at **https://podracing.dude.work/**.
 
+- Runtime source: `49395706ee4ac7f73e79e4cde280fd38cc57dfcf`, pushed to GitHub.
+- Production: `dpl_22gnfW4DwCxmGn52Awwj6kqrWyCV`, **READY**.
+- Deployment URL: https://now-this-is-podracing-m1tcb31xn-amirs-projects-d9680079.vercel.app.
+- Canonical browser-loaded bundle: `index-Ct8GJolt.js`, 1,978,870 bytes, SHA-256
+  `e08c4e667d2ef13ad75fbad3ecc649e90a8264895852b5664ae8850846b48182`, matching the local build.
+- **18 live browser checks, zero page/console/HTTP errors.** All task browsers closed.
 - Illustrated mode cards on top; all eight pods around an interactive, animated
   center showcase; destination/rules/online/options/play along the bottom.
 - Responsive desktop, mobile and compact landscape layouts; touch, keyboard,
-  reduced motion and controller navigation verified.
+  reduced motion and controller navigation verified. Controller checks used a
+  virtual standard browser gamepad, not physical hardware.
 - Guest home shows the authoritative host mode/destination and locks those controls.
-- [Implementation and verification](docs/inkstorm-overhaul/ROUND49_HOME_SCREEN.md).
+  Actual two-peer lobby and race checks passed after the change.
+- [Implementation, validation and release evidence](docs/inkstorm-overhaul/ROUND49_HOME_SCREEN.md).
 - Reproduction: `scripts/qa-home-round49.mjs`, `scripts/qa-online-round49.mjs`.
   Local evidence: `output/round49/`. Menu artwork is 232,632 bytes, captured from
   this game's existing assets; see `public/assets/inkstorm/home/SOURCES.md`.
+- Rollback: `dpl_GhE3nyomhH61YRfMNmwnTU7Q6Sq5` (Round 48).
+- Continue the Git-integrated preview and promote workflow. Do not upload the
+  large working source archive directly. Do not touch the user's Blender scene/server.
 
 ## Previous release — Round 48
 

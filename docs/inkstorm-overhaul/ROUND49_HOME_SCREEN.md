@@ -36,7 +36,7 @@ remain as established in Round 48. Asset provenance: `public/assets/inkstorm/hom
   timeout while browser work ran. Its entire 9-test file passed in isolation
   without changing thresholds or implementation. All 1,093 tests are covered.
 - Final focused UI/controller checks: **74 tests in 12 files passed**.
-- Native browser home check: **17 checks, zero page/console/HTTP errors**.
+- Native browser home check: **18 checks, zero page/console/HTTP errors**.
   Eight pod choices, mouse/keyboard inspection, mode/destination/rules, exclusive
   drawers, menu input isolation, controller navigation/A/B, reduced motion, desktop,
   1024px tablet, 390/360px mobile, 844px landscape and native race launch.
@@ -54,6 +54,16 @@ this does not establish physical hardware or rumble acceptance.
 
 ## Release
 
-Implementation and local checks complete. Production receipt will be added after
-Git-integrated deployment, promotion, and canonical browser verification.
-Previous Production: `dpl_GhE3nyomhH61YRfMNmwnTU7Q6Sq5` (Round 48).
+- Runtime source: `49395706ee4ac7f73e79e4cde280fd38cc57dfcf`.
+- Git-integrated preview: `dpl_55METHVreW2X2qM39izd4Sg1hpH6`.
+- Promoted Production: `dpl_22gnfW4DwCxmGn52Awwj6kqrWyCV`, **READY**.
+- URL: https://now-this-is-podracing-m1tcb31xn-amirs-projects-d9680079.vercel.app.
+- Aliases: https://podracing.dude.work and https://now-this-is-podracing.vercel.app.
+- Previous Production for rollback: `dpl_GhE3nyomhH61YRfMNmwnTU7Q6Sq5`.
+- Tested local bundle: `index-Ct8GJolt.js`, 1,978,870 bytes, SHA-256
+  `e08c4e667d2ef13ad75fbad3ecc649e90a8264895852b5664ae8850846b48182`.
+- Canonical browser verification: **18 checks, zero page/console/HTTP errors**;
+  the browser-loaded bundle matches the exact local SHA-256 above.
+- Receipts: `output/round49/deployment.json`, `home-local-qa.json`, `home-qa.json`,
+  `multiplayer.json`; final screenshots: `home-desktop.png`, `home-390x844.png`,
+  `home-844x390.png`, `home-touch-sebulba.png`. All test browsers closed.
