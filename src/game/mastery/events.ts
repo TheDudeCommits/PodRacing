@@ -1,3 +1,4 @@
+import { RACING_BIOMES, RACING_BIOME_SEEDS } from '../race/racingBiomes';
 import type { MasteryEvent } from './types';
 
 // Round31 launch escarpment: 138m concave descent and excavated bowl throat
@@ -9,7 +10,8 @@ import type { MasteryEvent } from './types';
 // records and ghosts are archived rather than compared against the new feel.
 export const MASTERY_GENERATOR_VERSION = 'inkstorm-course-10';
 export const MASTERY_PHYSICS_VERSION = 'inkstorm-drive-6';
-export const MASTERY_RULES_VERSION = 'inkstorm-rules-2';
+// The expanded opponent roster changes race competition; archive earlier records.
+export const MASTERY_RULES_VERSION = 'inkstorm-rules-3';
 export const INKSTORM_HERO_SEED = 0x494e4b53;
 export const DEFAULT_MASTERY_EVENT_ID = 'inkstorm-battle';
 
@@ -61,6 +63,14 @@ export const MASTERY_EVENTS: readonly MasteryEvent[] = Object.freeze([
     mode: 'circuit', profile: 'clean-race', laps: 2, difficulty: 'medium', stock: true,
     medalTimes: { gold: 180, silver: 225, bronze: 300 }, championshipRound: 3,
   },
+  ...(['frozen', 'volcanic', 'jungle'] as const).flatMap((id) =>
+    (['battle', 'race', 'trial'] as const).map((kind): MasteryEvent => ({
+      id: `biome-${id}-${kind}`, title: `${RACING_BIOMES[id].title} · ${kind === 'trial' ? 'Time Trial' : kind === 'race' ? 'Race' : 'Battle'}`,
+      subtitle: RACING_BIOMES[id].subtitle, courseId: `biome-${id}-v1`, seed: RACING_BIOME_SEEDS[id],
+      mode: 'circuit', profile: kind === 'trial' ? 'time-trial' : kind === 'race' ? 'clean-race' : 'chaos',
+      laps: 1, difficulty: 'medium', stock: true,
+      medalTimes: { gold: 110, silver: 140, bronze: 180 },
+    }))),
   {
     id: 'open-expedition', title: 'Open Expedition',
     subtitle: 'Fresh course every race. Your rules, Workshop builds and combat.',

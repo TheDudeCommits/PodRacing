@@ -1,0 +1,116 @@
+{
+  "id": "needle",
+  "uid": "5a927a9fa0984371bd970b31f5f06086",
+  "sourceSha256": "36c1b68e1856da7edb18b8f4d7670e78f85b463fff6169dad8752efef4ebe085",
+  "normalization": {
+    "id": "needle",
+    "uid": "5a927a9fa0984371bd970b31f5f06086",
+    "scale": 1.32,
+    "centerX": -0.51385,
+    "rearY": 7.1551,
+    "floor": 0.2008,
+    "seat": [
+      -0.51385,
+      3.0,
+      2.35
+    ],
+    "pilotScale": 1.1,
+    "exhaust": [
+      [
+        -3.48,
+        -2.5,
+        2
+      ],
+      [
+        2.45,
+        -2.5,
+        2
+      ]
+    ],
+    "coupling": [
+      [
+        -2.4,
+        -3.6,
+        2
+      ],
+      [
+        1.4,
+        -3.6,
+        2
+      ]
+    ]
+  },
+  "attachments": {
+    "pilot": [
+      0.0,
+      2.98694,
+      -0.51527
+    ],
+    "exhaustLeft": [
+      -3.91532,
+      2.52494,
+      6.74473
+    ],
+    "exhaustRight": [
+      3.91228,
+      2.52494,
+      6.74473
+    ],
+    "couplingLeft": [
+      -2.48972,
+      2.52494,
+      8.19673
+    ],
+    "couplingRight": [
+      2.52628,
+      2.52494,
+      8.19673
+    ]
+  },
+  "variants": {
+    "hero": {
+      "path": "public/assets/inkstorm/vehicles/needle-hero-v1.glb",
+      "sha256": "dd2366e47f08f18a4660bb96e9df96d80a31f6d3ed8d8b31f91e52a7986feda1",
+      "bytes": 4912916,
+      "triangles": 56777,
+      "bodyDraws": 3,
+      "pilotDraws": 6,
+      "blenderBounds": [
+        [
+          -5.959117412567139,
+          -9.840225219726562,
+          0.14946819841861725
+        ],
+        [
+          5.959124565124512,
+          6.000033378601074,
+          4.883406639099121
+        ]
+      ],
+      "textureLimit": 1024,
+      "degenerateTangentFramesRepaired": 23
+    },
+    "rival": {
+      "path": "public/assets/inkstorm/vehicles/needle-rival-v1.glb",
+      "sha256": "3e91a8e735986a2c2b2fec0d42acc2b41ac83c788a8e00203d33242bd6243f0a",
+      "bytes": 2749576,
+      "triangles": 24286,
+      "bodyDraws": 3,
+      "pilotDraws": 6,
+      "blenderBounds": [
+        [
+          -5.959475517272949,
+          -9.841863632202148,
+          0.148665651679039
+        ],
+        [
+          5.958389759063721,
+          6.001420497894287,
+          4.8841376304626465
+        ]
+      ],
+      "textureLimit": 1024,
+      "degenerateTangentFramesRepaired": 9
+    }
+  }
+}

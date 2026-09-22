@@ -26,6 +26,10 @@ export const ENGINE_VOICE_PROFILES: Readonly<Record<string, {
   teemto: Object.freeze({ pitch: 1, intakeRatio: 4.3, exhaustRatio: 0.5, intakeGain: 1, exhaustGain: 1 }),
   sebulba: Object.freeze({ pitch: 1.13, intakeRatio: 4.8, exhaustRatio: 0.58, intakeGain: 1.15, exhaustGain: 0.85 }),
   polwo: Object.freeze({ pitch: 1.22, intakeRatio: 5.4, exhaustRatio: 0.66, intakeGain: 1.25, exhaustGain: 0.7 }),
+  verdigris: Object.freeze({ pitch: .87, intakeRatio: 3.8, exhaustRatio: .46, intakeGain: .8, exhaustGain: 1.2 }),
+  skybolt: Object.freeze({ pitch: 1.14, intakeRatio: 5.2, exhaustRatio: .64, intakeGain: 1.1, exhaustGain: .9 }),
+  needle: Object.freeze({ pitch: 1.28, intakeRatio: 5.6, exhaustRatio: .7, intakeGain: 1.2, exhaustGain: .75 }),
+  pog: Object.freeze({ pitch: .75, intakeRatio: 3.3, exhaustRatio: .4, intakeGain: .75, exhaustGain: 1.35 }),
   blockrunner: Object.freeze({ pitch: 0.8, intakeRatio: 3.4, exhaustRatio: 0.42, intakeGain: 0.7, exhaustGain: 1.3 }),
 });
 

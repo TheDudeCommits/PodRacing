@@ -476,6 +476,7 @@ export interface RaceHudSnapshotLike {
     teamScores: { sun: number; shadow: number };
   };
   director?: {
+    seed?: number;
     events: readonly {
       id: string;
       kind: HudRaceDirectorKind;

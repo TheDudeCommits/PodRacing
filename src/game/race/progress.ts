@@ -1,5 +1,5 @@
 import { setPodracerRespawnPose } from '../simulation/podracer';
-import type { RaceEntryState, RacerProgressState, RaceEvent } from './types';
+import type { CourseProjection, RaceEntryState, RacerProgressState, RaceEvent } from './types';
 import { PodraceCourse, signedProgressDelta, wrapCourseProgress } from './course';
 
 function clamp(value: number, minimum: number, maximum: number): number {
@@ -45,6 +45,8 @@ export interface ProgressUpdateOptions {
   totalLaps: number;
   /** Normally guards against teleports/shortcuts; tests and replay repair may override it. */
   maximumProgressDelta?: number;
+  /** Reuse the same current-pose projection when surface effects also need it. */
+  projection?: CourseProjection;
 }
 
 /**
@@ -60,7 +62,7 @@ export function updateRacerProgress(
   if (entry.status === 'finished') return [];
   const events: RaceEvent[] = [];
   const progress = entry.progress;
-  const projection = course.projectPoint(
+  const projection = options.projection ?? course.projectPoint(
     entry.vehicle.position.x,
     entry.vehicle.position.z,
     progress.courseProgress,

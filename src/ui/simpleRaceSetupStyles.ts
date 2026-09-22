@@ -3,6 +3,10 @@ export const SIMPLE_RACE_SETUP_CSS = /* css */ `
 .pod-hud .simple-setup { padding:24px 32px; background:var(--ui-paper); color:var(--ui-ink); overflow-y:auto; }
 .pod-hud .simple-setup::before,.pod-hud .simple-setup::after { display:none; }
 .pod-hud .simple-setup .setup-frame { width:min(1400px,100%); min-height:560px; height:calc(100dvh - 48px); margin:0 auto; display:grid; grid-template-columns:minmax(0,1fr); grid-template-rows:auto minmax(0,1fr) auto; gap:18px; }
+.simple-setup .setup-courses { grid-column:1/-1; display:flex; align-items:center; flex-wrap:wrap; gap:6px; }
+.simple-setup .setup-courses span { font:600 11px/1.2 var(--ui-body); text-transform:uppercase; letter-spacing:.09em; margin-right:10px; }
+.simple-setup .setup-courses button { border:1px solid #28444a4d; border-radius:4px; padding:9px 14px; min-height:40px; background:transparent; color:var(--ui-teal); cursor:pointer; }
+.simple-setup .setup-courses button[aria-pressed=true] { background:var(--ui-teal); color:var(--ui-paper); }
 .simple-setup .setup-header { display:grid; grid-template-columns:1fr auto 1fr; align-items:center; min-width:0; gap:20px; }
 .simple-setup .setup-brand { font:400 17px/1 var(--ui-heading); letter-spacing:.08em; }
 .simple-setup .setup-types { display:flex; gap:4px; border-bottom:1px solid #28444a4d; }
@@ -80,6 +84,7 @@ export const SIMPLE_RACE_SETUP_CSS = /* css */ `
 @media(max-height:540px) and (min-width:600px) {
  .pod-hud .simple-setup { padding:10px 18px; }
  .pod-hud .simple-setup .setup-frame { height:calc(100dvh - 20px); min-height:320px; gap:8px; }
+ .simple-setup .setup-courses { grid-row:2; justify-content:center; }
  .simple-setup .setup-header { display:flex; flex-direction:row; justify-content:space-between; gap:12px; }
  .simple-setup .setup-brand { font-size:12px; }
  .simple-setup .setup-types button { min-height:44px; padding:10px 16px; font-size:14px; }

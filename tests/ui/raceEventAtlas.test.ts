@@ -11,12 +11,15 @@ function model(day = '2026-09-09'): HudMasteryViewModel {
 }
 
 describe('race event atlas calendar and selection contract', () => {
-  it('includes the two quick races alongside the seven existing calendar entries', () => {
+  it('includes the two quick races alongside biome variants and the existing calendar entries', () => {
     const input = model(), actual = createRaceEventAtlasModel(input);
     expect(actual.events).toEqual(input.events);
     expect(actual.events.map(event => event.id)).toEqual([
       'inkstorm-battle', 'inkstorm-race', 'inkstorm-trial', 'flight-school',
-      'cup-canyon', 'cup-foundry', 'cup-glass', 'open-expedition', 'daily-2026-09-09',
+      'cup-canyon', 'cup-foundry', 'cup-glass',
+      'biome-frozen-battle', 'biome-frozen-race', 'biome-frozen-trial',
+      'biome-volcanic-battle', 'biome-volcanic-race', 'biome-volcanic-trial',
+      'biome-jungle-battle', 'biome-jungle-race', 'biome-jungle-trial', 'open-expedition', 'daily-2026-09-09',
     ]);
     expect(actual.selectedId).toBe(input.eventId); expect(actual.canStart).toBe(true);
     expect(actual.title).toBe(input.events[0]!.title); expect(actual.subtitle).toBe(input.events[0]!.subtitle);
@@ -50,7 +53,7 @@ describe('race event atlas calendar and selection contract', () => {
     const input = model(); input.events[0]!.title = '<img onerror="bad()"> & event';
     input.events.push({ id: input.events[0]!.id, title: 'Duplicate', subtitle: '' }, { id: '', title: 'No identity', subtitle: '' });
     const actual = createRaceEventAtlasModel(input);
-    expect(actual.events).toHaveLength(9); expect(actual.title).toBe('<img onerror="bad()"> & event');
+    expect(actual.events).toHaveLength(18); expect(actual.title).toBe('<img onerror="bad()"> & event');
   });
 });
 

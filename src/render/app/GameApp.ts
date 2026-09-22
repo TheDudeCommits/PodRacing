@@ -603,6 +603,9 @@ export class GameApp {
       if (!this.disposed) this.courseView.setInkstormWorldEnabled(this.inkstormWorld.loaded);
     });
     this.sky.setRegion(this.race.course.region);
+    this.sky.setRacingBiome(this.race.course.seed);
+    this.terrain.setRacingBiome(this.race.course.seed);
+    this.dust.setRacingBiome(this.race.course.seed);
     this.scene.add(this.courseView);
     this.scene.add(this.speedStreaks.lines);
     this.landmarks.setHeightSampler((x, z) => this.terrain.sampleHeight(x, z));
@@ -1540,6 +1543,9 @@ export class GameApp {
     this.inkstormWorld.setCourse(this.race.course);
     this.racerShadowBindingRevision = -1;
     this.sky.setRegion(this.race.course.region);
+    this.sky.setRacingBiome(this.race.course.seed);
+    this.terrain.setRacingBiome(this.race.course.seed);
+    this.dust.setRacingBiome(this.race.course.seed);
     this.installCourseOutlines();
     this.minimapCourse = this.createMinimapCourse();
     this.minimapCourseBranches = this.createMinimapCourseBranches();
@@ -1766,7 +1772,8 @@ export class GameApp {
 
   private fixedEventRules(): boolean {
     return this.room.lobby.role === 'solo'
-      && !['inkstorm-battle', 'inkstorm-race', 'open-expedition'].includes(this.mastery.selectedEvent.id);
+      && !['inkstorm-battle', 'inkstorm-race', 'open-expedition'].includes(this.mastery.selectedEvent.id)
+      && !/^biome-(frozen|volcanic|jungle)-(battle|race)$/.test(this.mastery.selectedEvent.id);
   }
 
   private masteryStartOptions(): MasteryStartOptions {
@@ -4194,6 +4201,7 @@ export class GameApp {
         pendingCourse: this.pendingSoloCourse ? { ...this.pendingSoloCourse } : null,
         course: {
           seed: this.currentCourseSeed,
+          biome: this.race.biome,
           signature: this.race.course.signature,
           ordinal: this.courseOrdinal,
           totalLength: this.race.course.totalLength,

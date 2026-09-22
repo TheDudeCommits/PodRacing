@@ -1,0 +1,81 @@
+{
+  "id": "pog",
+  "uid": "c0d192c145a44459a454627708e46cf5",
+  "sourceSha256": "1f042fefe261f1cba6733cddbfe8f1e1bd865254ced400f2c3179ead305751e3",
+  "normalization": {
+    "id": "pog",
+    "uid": "c0d192c145a44459a454627708e46cf5",
+    "scale": 0.61,
+    "centerX": 0,
+    "rearY": 4.371,
+    "floor": 0.0002,
+    "seat": null,
+    "pilotScale": 1,
+    "exhaust": [
+      [
+        0,
+        4.1,
+        2.3
+      ]
+    ],
+    "coupling": []
+  },
+  "attachments": {
+    "pilot": [
+      0,
+      6,
+      -3
+    ],
+    "exhaustLeft": [
+      0.0,
+      1.55288,
+      -5.83469
+    ]
+  },
+  "variants": {
+    "hero": {
+      "path": "public/assets/inkstorm/vehicles/pog-hero-v1.glb",
+      "sha256": "5c3a3569cb8e74ef28c53ddfcf6a4221be899c770c2edb3d8d1f6b5ee5225878",
+      "bytes": 4493556,
+      "triangles": 35192,
+      "bodyDraws": 1,
+      "pilotDraws": 0,
+      "blenderBounds": [
+        [
+          -1.3813074827194214,
+          0.7445793151855469,
+          0.1500043421983719
+        ],
+        [
+          1.3813074827194214,
+          5.9999847412109375,
+          7.4700026512146
+        ]
+      ],
+      "textureLimit": 1024,
+      "degenerateTangentFramesRepaired": 92
+    },
+    "rival": {
+      "path": "public/assets/inkstorm/vehicles/pog-rival-v1.glb",
+      "sha256": "dab2ba8eca4d153b70400edf247e38d009b22b200a517ec18d292b586adc456f",
+      "bytes": 2320024,
+      "triangles": 14076,
+      "bodyDraws": 1,
+      "pilotDraws": 0,
+      "blenderBounds": [
+        [
+          -1.3813074827194214,
+          0.7445793151855469,
+          0.1500043421983719
+        ],
+        [
+          1.3813074827194214,
+          6.000182151794434,
+          7.469965934753418
+        ]
+      ],
+      "textureLimit": 1024,
+      "degenerateTangentFramesRepaired": 0
+    }
+  }
+}

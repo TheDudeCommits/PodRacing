@@ -1,3 +1,4 @@
+import { racingBiomeForSeed } from '../../game/race/racingBiomes';
 import {
   BufferGeometry,
   Group,
@@ -136,6 +137,12 @@ export class TerrainSystem {
 
     this.meshes = this.mutableMeshes;
     this.outerRadius = baseHalfExtent * (2 ** (levels - 1));
+  }
+
+  setRacingBiome(seed: number | null): void {
+    const biome = racingBiomeForSeed(seed);
+    this.materials.uniforms.biomeColor.value.set(biome.ground);
+    this.materials.uniforms.biomeStrength.value = biome.id === 'desert' ? 0 : 1;
   }
 
   /** Update from the interpolated render frame; this does not own simulation. */

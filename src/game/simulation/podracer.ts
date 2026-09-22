@@ -302,6 +302,7 @@ function updateDriftAndBoost(
   config: Readonly<PodracerConfig>,
   events: PodracerEvent[],
   draftStrength = 0,
+  coolingScale = 1,
 ): void {
   const delta = config.fixedDelta;
   const wasBoostActive = state.boost.active;
@@ -389,7 +390,7 @@ function updateDriftAndBoost(
   } else if (state.drift.active) {
     state.heat += config.driftHeatRate * delta;
   } else {
-    state.heat -= config.passiveHeatCooling * delta;
+    state.heat -= config.passiveHeatCooling * delta * clamp(finite(coolingScale, 1), .25, 2);
   }
   state.heat = clamp(state.heat, 0, 1.25);
 
@@ -588,6 +589,7 @@ function updateHorizontalMotion(
   state: PodracerState,
   input: PlayerInputState,
   config: Readonly<PodracerConfig>,
+  surfaceTraction = 1,
 ): void {
   const delta = config.fixedDelta;
   const yaw = state.orientation.yaw;
@@ -665,6 +667,7 @@ function updateHorizontalMotion(
     const blend = smoothstep(0, 1, 1 - state.regripTimer / config.landingGripBlendTime);
     grip = Math.min(grip, config.airLateralGrip + (config.lateralGrip - config.airLateralGrip) * blend);
   }
+  if (state.grounded) grip *= clamp(finite(surfaceTraction, 1), .35, 1.3);
   grip *= 1 - overheatHandling * config.overheatHandlingPenalty * 0.7;
   // Easing the stick shallows the slide, so a drift can be steered, not only held.
   const slipShare = 1 - config.driftSteerSlipShare + config.driftSteerSlipShare * Math.abs(input.steer);
@@ -971,8 +974,8 @@ export function stepPodracer(
     }
 
     const speed = Math.hypot(state.velocity.x, state.velocity.z);
-    updateDriftAndBoost(state, input, speed, config, events, context.draftStrength ?? 0);
-    updateHorizontalMotion(state, input, config);
+    updateDriftAndBoost(state, input, speed, config, events, context.draftStrength ?? 0, context.coolingScale ?? 1);
+    updateHorizontalMotion(state, input, config, context.surfaceTraction ?? 1);
     state.position.x += state.velocity.x * config.fixedDelta;
     state.position.z += state.velocity.z * config.fixedDelta;
     updateTerrainResponse(state, input, context.terrain, config, events);

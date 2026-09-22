@@ -1,3 +1,4 @@
+import { RACING_BIOME_SEEDS } from './racingBiomes';
 import type { CourseBranchKind, DesertRegionId } from './types';
 
 export const TERRAIN_REGION_CELL_SIZE = 9_600;
@@ -142,6 +143,9 @@ export function desertRegionByIndex(index: number): DesertRegionProfile {
 }
 
 export function desertRegionForSeed(seed: number): DesertRegionProfile {
+  if ((seed >>> 0) === RACING_BIOME_SEEDS.frozen) return DESERT_REGIONS['glass-flats'];
+  if ((seed >>> 0) === RACING_BIOME_SEEDS.volcanic) return DESERT_REGIONS['geothermal-badlands'];
+  if ((seed >>> 0) === RACING_BIOME_SEEDS.jungle) return DESERT_REGIONS['storm-basin'];
   if ((seed >>> 0) === 0x494e4b53) return DESERT_REGIONS['red-canyon'];
   if ((seed >>> 0) === 0x464f554e) return DESERT_REGIONS['machine-graveyard'];
   if ((seed >>> 0) === 0x474c4153) return DESERT_REGIONS['glass-flats'];

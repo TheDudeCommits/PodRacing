@@ -59,6 +59,8 @@ export interface TerrainUniformSet {
   haze: { value: Color };
   hazeNear: { value: number };
   hazeFar: { value: number };
+  biomeColor: { value: Color };
+  biomeStrength: { value: number };
 }
 
 export interface TerrainMaterialBundle {
@@ -93,6 +95,8 @@ uniform vec3 uSparkleColor;
 uniform vec3 uHazeColor;
 uniform float uHazeNear;
 uniform float uHazeFar;
+uniform vec3 uBiomeColor;
+uniform float uBiomeStrength;
 
 in vec3 vTerrainWorldPosition;
 in vec3 vTerrainRenderPosition;
@@ -382,6 +386,7 @@ void main() {
     rock=inkstormRockAtmosphere(rock,distanceToCamera);
     color=mix(color,rock,cliff);
   }
+  color = mix(color, uBiomeColor * clamp(dot(color,vec3(.30,.59,.11))*2.4,.32,1.35), uBiomeStrength);
   fragColor = vec4(color, 1.0);
 }
 `;
@@ -439,6 +444,8 @@ export function createTerrainMaterial(
     haze: { value: new Color(palette.haze) },
     hazeNear: { value: options.hazeNear ?? 520 },
     hazeFar: { value: options.hazeFar ?? 2_650 },
+    biomeColor: { value: new Color(1, 1, 1) },
+    biomeStrength: { value: 0 },
   };
 
   const sharedTerrainUniforms = {
@@ -470,6 +477,8 @@ export function createTerrainMaterial(
       uHazeColor: uniforms.haze,
       uHazeNear: uniforms.hazeNear,
       uHazeFar: uniforms.hazeFar,
+      uBiomeColor: uniforms.biomeColor,
+      uBiomeStrength: uniforms.biomeStrength,
     },
   });
   material.toneMapped = false;

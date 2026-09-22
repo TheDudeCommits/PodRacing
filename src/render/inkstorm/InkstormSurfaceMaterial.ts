@@ -37,7 +37,7 @@ export class InkstormSurfaceMaterial extends ShaderMaterial {
       name: stone ? 'Inkstorm painted sandstone' : 'Inkstorm worn machinery',
       vertexColors: true, toneMapped: false,
       defines: { ...(!stone && workshopFamily ? { INKSTORM_WORKSHOP_FAMILY: workshopFamily === 'pit-complex' ? 1 : 2, ...(workshopBake ? { INKSTORM_WORKSHOP_BAKE: 1 } : {}) } : {}), ...(!stone && foundryEmission ? { INKSTORM_FOUNDRY_EMISSION: 1 } : {}), ...(!stone && foundationPaint ? { INKSTORM_FOUNDATION_METERS: 1 } : {}) },
-      uniforms: { uWorkshopBake: { value: workshopBake?.texture ?? null }, uWorkshopDecodeRange: { value: workshopBake?.decodeRange ?? 4 }, uWorkshopIntensity: { value: workshopBake?.intensity ?? 1 }, ...createInkstormShadowUniforms(), ...createInkstormRacerShadowUniforms(), ...machineryPaintUniforms, uPaint: rockPaintUniforms.uRockPaint, uRockBeds: rockPaintUniforms.uRockBeds, uPaintReady: rockPaintUniforms.uRockPaintReady, uStone: { value: stone ? 1 : 0 }, uSun: { value: new Vector3(-.42, .76, -.5).normalize() }, uHaze: { value: new Color('#b79cb8') } },
+      uniforms: { uWorkshopBake: { value: workshopBake?.texture ?? null }, uWorkshopDecodeRange: { value: workshopBake?.decodeRange ?? 4 }, uWorkshopIntensity: { value: workshopBake?.intensity ?? 1 }, ...createInkstormShadowUniforms(), ...createInkstormRacerShadowUniforms(), ...machineryPaintUniforms, uPaint: rockPaintUniforms.uRockPaint, uRockBeds: rockPaintUniforms.uRockBeds, uPaintReady: rockPaintUniforms.uRockPaintReady, uStone: { value: stone ? 1 : 0 }, uBiomeTint: { value: new Color(1,1,1) }, uBiomeStrength: { value: 0 }, uSun: { value: new Vector3(-.42, .76, -.5).normalize() }, uHaze: { value: new Color('#b79cb8') } },
       vertexShader: `
         #include <common>
         #include <color_pars_vertex>
@@ -97,7 +97,7 @@ export class InkstormSurfaceMaterial extends ShaderMaterial {
 ${INKSTORM_RACER_SHADOW_GLSL}
 ${INKSTORM_GEOLOGY_GLSL}
         varying vec3 vWorld;varying vec3 vNormal;varying vec3 vLocal;varying vec3 vPaintNormal;
-        uniform float uStone;uniform vec3 uSun;uniform vec3 uHaze;uniform sampler2D uPaint;uniform sampler2D uRockBeds;uniform float uPaintReady;
+        uniform vec3 uBiomeTint;uniform float uBiomeStrength;uniform float uStone;uniform vec3 uSun;uniform vec3 uHaze;uniform sampler2D uPaint;uniform sampler2D uRockBeds;uniform float uPaintReady;
         uniform sampler2D uMachineryPaint;uniform float uMachineryPaintReady;
         float hash(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}
         float noise(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);return mix(mix(hash(i),hash(i+vec2(1,0)),f.x),mix(hash(i+vec2(0,1)),hash(i+1.),f.x),f.y);}
@@ -296,6 +296,7 @@ float inkstormWorkshopBakedLens() {
           float haze=1.-exp(-max(0.,distanceToCamera-300.)*.00045);
           color=uStone>.5 ? inkstormRockAtmosphere(color,distanceToCamera)
             : mix(color,uHaze,haze*.85);
+          color=mix(color,uBiomeTint*clamp(dot(color,vec3(.30,.59,.11))*2.4,.28,1.4),uBiomeStrength*uStone);
           gl_FragColor=vec4(color,1.);
           #include <colorspace_fragment>
         }`,

@@ -1,0 +1,117 @@
+{
+  "id": "skybolt",
+  "uid": "dac6d14dcf914e88af8625b59f4020bc",
+  "sourceSha256": "d101d06650c0df3707e09dc52e6e73d84265c6527170d5142495fa32a0a66eec",
+  "normalization": {
+    "id": "skybolt",
+    "uid": "dac6d14dcf914e88af8625b59f4020bc",
+    "scale": 2.0,
+    "centerX": 0,
+    "rearY": 1.2491,
+    "floor": -1.3801,
+    "seat": [
+      0,
+      0.3,
+      0.015
+    ],
+    "pilotScale": 1.05,
+    "exhaust": [
+      [
+        -1.54,
+        -3.4,
+        -0.6
+      ],
+      [
+        1.54,
+        -3.4,
+        -0.6
+      ]
+    ],
+    "coupling": [
+      [
+        -1,
+        -7.6,
+        -0.6
+      ],
+      [
+        1,
+        -7.6,
+        -0.6
+      ]
+    ],
+    "atlas": true
+  },
+  "attachments": {
+    "pilot": [
+      0.0,
+      2.9402,
+      -4.1018
+    ],
+    "exhaustLeft": [
+      -3.08,
+      1.7102,
+      3.2982
+    ],
+    "exhaustRight": [
+      3.08,
+      1.7102,
+      3.2982
+    ],
+    "couplingLeft": [
+      -2.0,
+      1.7102,
+      11.6982
+    ],
+    "couplingRight": [
+      2.0,
+      1.7102,
+      11.6982
+    ]
+  },
+  "variants": {
+    "hero": {
+      "path": "public/assets/inkstorm/vehicles/skybolt-hero-v1.glb",
+      "sha256": "0e27559710d9c227f7982fd614632998957a2fed2cf3cfa59ee44be3851fef80",
+      "bytes": 5189972,
+      "triangles": 56778,
+      "bodyDraws": 1,
+      "pilotDraws": 6,
+      "blenderBounds": [
+        [
+          -4.615295886993408,
+          -17.999906539916992,
+          0.15003585815429688
+        ],
+        [
+          4.7080864906311035,
+          6.000089645385742,
+          4.028007507324219
+        ]
+      ],
+      "textureLimit": 1024,
+      "degenerateTangentFramesRepaired": 16
+    },
+    "rival": {
+      "path": "public/assets/inkstorm/vehicles/skybolt-rival-v1.glb",
+      "sha256": "a7aa2d26a401231fcb5330f783a112dbda5b1948611e8eb4b1f46b5aba56999c",
+      "bytes": 3058680,
+      "triangles": 24286,
+      "bodyDraws": 1,
+      "pilotDraws": 6,
+      "blenderBounds": [
+        [
+          -4.619830131530762,
+          -17.99655532836914,
+          0.14893610775470734
+        ],
+        [
+          4.712450981140137,
+          5.996527671813965,
+          4.033734321594238
+        ]
+      ],
+      "textureLimit": 1024,
+      "degenerateTangentFramesRepaired": 1
+    }
+  }
+}

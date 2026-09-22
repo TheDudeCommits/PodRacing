@@ -1,3 +1,5 @@
+import { racingBiomeForSeed } from '../../game/race/racingBiomes';
+import { createRacingBiomeScenery } from './RacingBiomeScenery';
 import { createCourseGulfUniforms, type CourseGulfUniforms } from '../terrain/CourseGulfTextures';
 import { BufferGeometry, Camera, Frustum, Group, InstancedMesh, Matrix4, Mesh, Quaternion, Sphere, SRGBColorSpace, TextureLoader, Vector3, type Texture } from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
@@ -109,10 +111,11 @@ export class InkstormWorld extends Group {
   }
   setCourse(course:PodraceCourse):void{
     this.course=course;
+    const biome=racingBiomeForSeed(course.seed);
     for(const road of this.roads){this.remove(road);disposeMesh(road);}this.roads.length=0;
-    const roadData=course.getRenderData(1536);this.roads.push(createInkstormRoad(roadData.points,true,false,this.gulfUniforms));
+    const roadData=course.getRenderData(1536);this.roads.push(createInkstormRoad(roadData.points,true,false,this.gulfUniforms,biome));
     for(const branch of roadData.branches??[]){
-      this.roads.push(createInkstormRoad(branch.points.map(p=>({...p,progress:p.canonicalProgress,tag:'recovery-straight' as const})),false,branch.elevated,this.gulfUniforms));
+      this.roads.push(createInkstormRoad(branch.points.map(p=>({...p,progress:p.canonicalProgress,tag:'recovery-straight' as const})),false,branch.elevated,this.gulfUniforms,biome));
       if(branch.elevated)this.roads.push(createInkstormBridge(branch,this.heightAt,course));
     }
     this.roads.push(createInkstormShadows(getInkstormLayout(course),this.gulfUniforms));
@@ -123,6 +126,15 @@ export class InkstormWorld extends Group {
     if (foundry) this.roads.push(foundry);
     const forkGuidance = createInkstormForkWayfinding(course, this.heightAt);
     if (forkGuidance) this.roads.push(forkGuidance);
+    this.roads.push(...createRacingBiomeScenery(course, this.heightAt));
+    for (const mesh of [...this.roads, ...this.batches.values(), ...this.distantBatches.values()]) {
+      for (const material of Array.isArray(mesh.material) ? mesh.material : [mesh.material]) {
+        if (material instanceof InkstormSurfaceMaterial) {
+          material.uniforms.uBiomeTint!.value.set(biome.stone);
+          material.uniforms.uBiomeStrength!.value=biome.id==='desert'?0:1;
+        }
+      }
+    }
     this.add(...this.roads);if(!this.loaded)return;
     // Build once when this course revision is ready; asynchronous asset loading
     // may call setCourse again for the same initial course.

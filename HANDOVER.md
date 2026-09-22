@@ -1,3 +1,82 @@
+# PodRacing — Round 46 handover (2026-09-22)
+
+## Start here
+
+Round 46 is a **local gameplay expansion**, following the owner's request to
+re-examine the benchmark's racing features and recover unfinished pod assets.
+The first batch adds three solo destinations and four selectable pods. The
+benchmark audit, complete source inventory and remaining work are in
+[ROUND46_REPORT.md](docs/inkstorm-overhaul/ROUND46_REPORT.md).
+
+- Repository: `/Users/amir/Projects/PodRacing`, branch `codex/now-this-is-podracing`.
+- **Play locally:** `npm run dev`, then choose a Destination and Battle, Race or
+  Time Trial in the setup screen. Use the pod arrows to reach all eight designs.
+- New destinations: **Frostline**, **Ember Rift**, **Verdant Run**. They use
+  different deterministic layouts, scenery, surface grip and engine cooling.
+  Ember Rift's orange outer shoulders add heat between 30–44% of the lap; the
+  centre lane is safe. Alternate routes use their own physical lane widths.
+- Recovered pods: **Verdigris**, **Skybolt**, **Needle**, **Pog Racer**. Each has a
+  distinct handling/damage tune, a hero and rival model, and an existing sourced
+  engine voice. Three open cockpits have the original Inkstorm pilot; Pog has an
+  enclosed cockpit and one exhaust. AI racers also use the new designs.
+- **Not pushed or deployed.** Public Production still uses Round 44's release
+  (Round 43 runtime). The V5 trailer remains local and unchanged by this round.
+- Preview and evidence: `output/round46/expansion-preview.jpg`, `browser-qa.json`,
+  `drive-qa.json`, screenshots and validation logs. These outputs are gitignored.
+
+## Implementation boundaries
+
+The new destinations are seeded circuits on the established physical terrain
+system, with original ice formations, basalt columns and forest canopy. They
+are a first expansion, not reference-level wreck interiors, waterfalls, flowing
+lava or a new tunnel collision system. Added scenery is decorative and placed
+outside playable lanes; the established road/scenery collisions remain in use.
+No new weapon was added: Heat Lance, Overcharge, mines, tow, shield and Redline
+already existed. Dedicated class maneuvers and a directional flame attack are
+still missing. Do not reintroduce the thermal-spike weapon, loose wreck debris
+or photo-finish behavior explicitly removed in Round 43.
+
+New destinations are exposed in **solo** Battle/Race/Time Trial. The existing
+three-round Cup is unchanged. Online biome selection was not added, and this
+round does not establish multiplayer browser acceptance. Identity remains
+locked after the grid releases. Fixed 120 Hz simulation, host authority and
+CPU/shader terrain height alignment are preserved. Mastery rules are now
+`inkstorm-rules-3` because the opponent roster changed; older records/ghosts are
+archived by the existing migration rather than compared against new competition.
+New medal targets are initial values and still need human balancing.
+
+Of 26 included archived source entries, four were already integrated and four
+more now are. **18 remain unintegrated**, including duplicate variants and assets
+with noncommercial/no-derivatives or commercial-game provenance concerns. The
+report names each source and its status; it must not be read as 18 equally ready
+new pod designs. Runtime assets retain attribution and source hashes; original
+source GLBs were not modified. Recovered craft currently share the established
+pod physics probe footprint and have no bespoke destruction shell.
+
+## Validation and reproduction
+
+Final validation results and bundle fingerprint are recorded in
+[ROUND46_REPORT.md](docs/inkstorm-overhaul/ROUND46_REPORT.md). Native browser QA
+covers the actual setup buttons, loaded models, destination changes, race starts,
+short simulation drives and portrait/landscape mobile setup. This is automated
+and sampled visual QA; human full-lap balance and aesthetic acceptance remain.
+All task-created browsers and private QA servers were closed after use.
+
+Asset reproduction runs an isolated Blender factory process via
+`scripts/blender/recover-roster-round46.py`, then
+`scripts/assets/optimize-recovered-roster.py` and
+`scripts/assets/repair-recovered-tangents.py`. Per-pod hashes, normalization,
+anchors and budgets live in `assets/source/inkstorm/roster-round46/`.
+Never open/save the owner's interactive Blender scene as part of this pipeline.
+
+Browser checks: `node scripts/qa-round46.mjs`; after a production build,
+`node scripts/qa-drive-round46.mjs`. Both close their browser and private server
+in `finally`. Run the expensive suite and browser profiling separately to avoid
+contention. The old `selector-stability.mjs` expects the obsolete simultaneous
+preview layout and was not used as evidence for this eight-pod carousel.
+
+## Previous handover — Round 45
+
 # PodRacing — Round 45 handover (2026-09-22)
 
 ## Start here

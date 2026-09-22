@@ -4791,13 +4791,62 @@
       },
       "downloadableAtDiscovery": true,
       "driver": {
-        "status": "unverified_until_geometry_inspection",
-        "requiredAction": "Inspect cockpit occupancy after import; add an original Inkstorm pilot to each unoccupied drivable craft."
+        "status": "original_inkstorm_pilot_fitted",
+        "requiredAction": "Review runtime cockpit fit; packaged and verified in Round 46."
       },
       "sourceProvenanceNote": null,
       "stylizedExport": {
-        "status": "not_started",
-        "path": null
+        "status": "runtime_integrated_round46",
+        "path": "public/assets/inkstorm/vehicles/verdigris-hero-v1.glb",
+        "runtimeId": "verdigris",
+        "receipt": "roster-round46/verdigris.json",
+        "variants": {
+          "hero": {
+            "path": "public/assets/inkstorm/vehicles/verdigris-hero-v1.glb",
+            "sha256": "3a16f60f3dae90e4e92f89ce3ab0e775767542a8af5bfd3a9b1e72c14d427053",
+            "bytes": 8529852,
+            "triangles": 56778,
+            "bodyDraws": 2,
+            "pilotDraws": 6,
+            "blenderBounds": [
+              [
+                -6.0029778480529785,
+                -11.760046005249023,
+                0.15002724528312683
+              ],
+              [
+                6.0029778480529785,
+                5.999948978424072,
+                4.568671226501465
+              ]
+            ],
+            "textureLimit": 1024,
+            "degenerateTangentFramesRepaired": 16
+          },
+          "rival": {
+            "path": "public/assets/inkstorm/vehicles/verdigris-rival-v1.glb",
+            "sha256": "bde095a93fce4e11a9aa9f6875a29c15108b4004499ca75599970ed076718760",
+            "bytes": 4664228,
+            "triangles": 24288,
+            "bodyDraws": 2,
+            "pilotDraws": 6,
+            "blenderBounds": [
+              [
+                -6.01225471496582,
+                -11.760046005249023,
+                0.1489700973033905
+              ],
+              [
+                6.01225471496582,
+                5.999948978424072,
+                4.568671226501465
+              ]
+            ],
+            "textureLimit": 1024,
+            "degenerateTangentFramesRepaired": 1
+          }
+        },
+        "limitations": "Perceptual owner acceptance pending. Uses the shared pod physics probe footprint; no bespoke destruction shell."
       },
       "download": {
         "status": "downloaded",
@@ -5394,13 +5443,62 @@
       },
       "downloadableAtDiscovery": true,
       "driver": {
-        "status": "unverified_until_geometry_inspection",
-        "requiredAction": "Inspect cockpit occupancy after import; add an original Inkstorm pilot to each unoccupied drivable craft."
+        "status": "original_inkstorm_pilot_fitted",
+        "requiredAction": "Review runtime cockpit fit; packaged and verified in Round 46."
       },
       "sourceProvenanceNote": null,
       "stylizedExport": {
-        "status": "not_started",
-        "path": null
+        "status": "runtime_integrated_round46",
+        "path": "public/assets/inkstorm/vehicles/skybolt-hero-v1.glb",
+        "runtimeId": "skybolt",
+        "receipt": "roster-round46/skybolt.json",
+        "variants": {
+          "hero": {
+            "path": "public/assets/inkstorm/vehicles/skybolt-hero-v1.glb",
+            "sha256": "0e27559710d9c227f7982fd614632998957a2fed2cf3cfa59ee44be3851fef80",
+            "bytes": 5189972,
+            "triangles": 56778,
+            "bodyDraws": 1,
+            "pilotDraws": 6,
+            "blenderBounds": [
+              [
+                -4.615295886993408,
+                -17.999906539916992,
+                0.15003585815429688
+              ],
+              [
+                4.7080864906311035,
+                6.000089645385742,
+                4.028007507324219
+              ]
+            ],
+            "textureLimit": 1024,
+            "degenerateTangentFramesRepaired": 16
+          },
+          "rival": {
+            "path": "public/assets/inkstorm/vehicles/skybolt-rival-v1.glb",
+            "sha256": "a7aa2d26a401231fcb5330f783a112dbda5b1948611e8eb4b1f46b5aba56999c",
+            "bytes": 3058680,
+            "triangles": 24286,
+            "bodyDraws": 1,
+            "pilotDraws": 6,
+            "blenderBounds": [
+              [
+                -4.619830131530762,
+                -17.99655532836914,
+                0.14893610775470734
+              ],
+              [
+                4.712450981140137,
+                5.996527671813965,
+                4.033734321594238
+              ]
+            ],
+            "textureLimit": 1024,
+            "degenerateTangentFramesRepaired": 1
+          }
+        },
+        "limitations": "Perceptual owner acceptance pending. Uses the shared pod physics probe footprint; no bespoke destruction shell."
       },
       "download": {
         "status": "downloaded",
@@ -9807,13 +9905,62 @@
       },
       "downloadableAtDiscovery": true,
       "driver": {
-        "status": "unverified_until_geometry_inspection",
-        "requiredAction": "Inspect cockpit occupancy after import; add an original Inkstorm pilot to each unoccupied drivable craft."
+        "status": "original_inkstorm_pilot_fitted",
+        "requiredAction": "Review runtime cockpit fit; packaged and verified in Round 46."
       },
       "sourceProvenanceNote": null,
       "stylizedExport": {
-        "status": "not_started",
-        "path": null
+        "status": "runtime_integrated_round46",
+        "path": "public/assets/inkstorm/vehicles/needle-hero-v1.glb",
+        "runtimeId": "needle",
+        "receipt": "roster-round46/needle.json",
+        "variants": {
+          "hero": {
+            "path": "public/assets/inkstorm/vehicles/needle-hero-v1.glb",
+            "sha256": "dd2366e47f08f18a4660bb96e9df96d80a31f6d3ed8d8b31f91e52a7986feda1",
+            "bytes": 4912916,
+            "triangles": 56777,
+            "bodyDraws": 3,
+            "pilotDraws": 6,
+            "blenderBounds": [
+              [
+                -5.959117412567139,
+                -9.840225219726562,
+                0.14946819841861725
+              ],
+              [
+                5.959124565124512,
+                6.000033378601074,
+                4.883406639099121
+              ]
+            ],
+            "textureLimit": 1024,
+            "degenerateTangentFramesRepaired": 23
+          },
+          "rival": {
+            "path": "public/assets/inkstorm/vehicles/needle-rival-v1.glb",
+            "sha256": "3e91a8e735986a2c2b2fec0d42acc2b41ac83c788a8e00203d33242bd6243f0a",
+            "bytes": 2749576,
+            "triangles": 24286,
+            "bodyDraws": 3,
+            "pilotDraws": 6,
+            "blenderBounds": [
+              [
+                -5.959475517272949,
+                -9.841863632202148,
+                0.148665651679039
+              ],
+              [
+                5.958389759063721,
+                6.001420497894287,
+                4.8841376304626465
+              ]
+            ],
+            "textureLimit": 1024,
+            "degenerateTangentFramesRepaired": 9
+          }
+        },
+        "limitations": "Perceptual owner acceptance pending. Uses the shared pod physics probe footprint; no bespoke destruction shell."
       },
       "download": {
         "status": "downloaded",
@@ -10008,13 +10155,62 @@
       },
       "downloadableAtDiscovery": true,
       "driver": {
-        "status": "unverified_until_geometry_inspection",
-        "requiredAction": "Inspect cockpit occupancy after import; add an original Inkstorm pilot to each unoccupied drivable craft."
+        "status": "enclosed_cockpit",
+        "requiredAction": "Review runtime cockpit fit; packaged and verified in Round 46."
       },
       "sourceProvenanceNote": null,
       "stylizedExport": {
-        "status": "not_started",
-        "path": null
+        "status": "runtime_integrated_round46",
+        "path": "public/assets/inkstorm/vehicles/pog-hero-v1.glb",
+        "runtimeId": "pog",
+        "receipt": "roster-round46/pog.json",
+        "variants": {
+          "hero": {
+            "path": "public/assets/inkstorm/vehicles/pog-hero-v1.glb",
+            "sha256": "5c3a3569cb8e74ef28c53ddfcf6a4221be899c770c2edb3d8d1f6b5ee5225878",
+            "bytes": 4493556,
+            "triangles": 35192,
+            "bodyDraws": 1,
+            "pilotDraws": 0,
+            "blenderBounds": [
+              [
+                -1.3813074827194214,
+                0.7445793151855469,
+                0.1500043421983719
+              ],
+              [
+                1.3813074827194214,
+                5.9999847412109375,
+                7.4700026512146
+              ]
+            ],
+            "textureLimit": 1024,
+            "degenerateTangentFramesRepaired": 92
+          },
+          "rival": {
+            "path": "public/assets/inkstorm/vehicles/pog-rival-v1.glb",
+            "sha256": "dab2ba8eca4d153b70400edf247e38d009b22b200a517ec18d292b586adc456f",
+            "bytes": 2320024,
+            "triangles": 14076,
+            "bodyDraws": 1,
+            "pilotDraws": 0,
+            "blenderBounds": [
+              [
+                -1.3813074827194214,
+                0.7445793151855469,
+                0.1500043421983719
+              ],
+              [
+                1.3813074827194214,
+                6.000182151794434,
+                7.469965934753418
+              ]
+            ],
+            "textureLimit": 1024,
+            "degenerateTangentFramesRepaired": 0
+          }
+        },
+        "limitations": "Perceptual owner acceptance pending. Uses the shared pod physics probe footprint; no bespoke destruction shell."
       },
       "download": {
         "status": "downloaded",

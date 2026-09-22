@@ -5,9 +5,9 @@ import { VehicleCardPreviewRenderer } from '../../src/ui/VehicleCardPreview';
 afterEach(() => vi.unstubAllGlobals());
 
 describe('simple race setup controls', () => {
-  it('cycles the actual four authored pods in both directions without exposing a legacy class', () => {
-    expect(SETUP_PODS.map(pod => nextSetupPod(pod, 1))).toEqual(['sebulba', 'polwo', 'blockrunner', 'teemto']);
-    expect(SETUP_PODS.map(pod => nextSetupPod(pod, -1))).toEqual(['blockrunner', 'teemto', 'sebulba', 'polwo']);
+  it('cycles the actual eight authored pods in both directions without exposing a legacy class', () => {
+    expect(SETUP_PODS.map(pod => nextSetupPod(pod, 1))).toEqual(['sebulba', 'polwo', 'blockrunner', 'verdigris', 'skybolt', 'needle', 'pog', 'teemto']);
+    expect(SETUP_PODS.map(pod => nextSetupPod(pod, -1))).toEqual(['pog', 'teemto', 'sebulba', 'polwo', 'blockrunner', 'verdigris', 'skybolt', 'needle']);
   });
 
   it('coalesces pointer inspection and cancels pending GPU work when the setup closes', () => {

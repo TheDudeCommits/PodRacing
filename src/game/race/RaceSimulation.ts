@@ -1,3 +1,4 @@
+import { racingBiomeForSeed, racingBiomeHeatRate } from './racingBiomes';
 import { collectCombatPickup, isCombatPickup } from '../galactic/combatPickups';
 import { createCourseGulfField, type CourseGulfField } from './CourseGulfField';
 import { createPitPadField, type PitPadField } from './PitPadField';
@@ -344,6 +345,7 @@ export function closestHullContact(
 
 export class RaceSimulation {
   readonly terrain: HeightSampler;
+  readonly biome: ReturnType<typeof racingBiomeForSeed>;
   readonly course: PodraceCourse;
   readonly courseGulfField: CourseGulfField | null;
   readonly pitPadField: PitPadField | null;
@@ -430,6 +432,7 @@ export class RaceSimulation {
 
   constructor(options: RaceSimulationOptions) {
     const raceSeed = (options.seed ?? DEFAULT_RACE_SEED) >>> 0;
+    this.biome = racingBiomeForSeed(options.course?.seed ?? raceSeed);
     // Seed search and cached lane/deck heights use the original landscape.
     // Only after generation does this instance-owned sampler acquire its gulf.
     // Direct simulations, host and guest therefore use the same physical field.
@@ -820,6 +823,9 @@ export class RaceSimulation {
       input = action.input;
       galacticEvents.push(...action.events);
 
+      if (this.biome.cooling !== 1 && galactic.redline.heat < redlineHeatBefore) {
+        galactic.redline.heat = Math.max(0, redlineHeatBefore - (redlineHeatBefore - galactic.redline.heat) * this.biome.cooling);
+      }
       if (entry.workshop) {
         const coolingScale = workshopStatMultiplier(entry.workshop, 'cooling');
         if (galactic.redline.heat >= redlineHeatBefore) {
@@ -904,6 +910,8 @@ export class RaceSimulation {
         terrain: this.terrain,
         collisions: collisionImpulses[entryIndex],
         draftStrength: entry.drafting?.wakeStrength ?? 0,
+        surfaceTraction: this.biome.traction,
+        coolingScale: this.biome.cooling,
       }, config);
       vehicleEvents[entry.id] = vehicleResult.events;
 
@@ -957,11 +965,23 @@ export class RaceSimulation {
       for (const entry of this.state.entries) {
         if (entry.status === 'finished') continue;
         entry.status = 'racing';
+        // Share the progress projection: branch widths and lateral offsets must
+        // describe the same lane, without another projection scan per tick.
+        const projection = this.biome.id === 'volcanic'
+          ? this.course.projectPoint(entry.vehicle.position.x, entry.vehicle.position.z, entry.progress.courseProgress)
+          : undefined;
         const progressEvents = updateRacerProgress(entry, this.course, {
           delta,
           raceTime: this.state.raceTime,
           totalLaps: this.state.totalLaps,
+          projection,
         });
+        if (projection && entry.vehicle.grounded && entry.progress.finishTime === null) {
+          const heat = racingBiomeHeatRate(this.biome.id, projection.progress, projection.lateralOffset, projection.width) * delta;
+          entry.vehicle.heat = clamp(entry.vehicle.heat + heat, 0, 1.25);
+          const galactic = this.galacticFor(entry);
+          galactic.redline.heat = clamp(galactic.redline.heat + heat, 0, 1);
+        }
         events.push(...progressEvents);
         this.scoreProgressEvents(entry, progressEvents, events);
         if (externallyControlledRacerIds.has(entry.id)) {

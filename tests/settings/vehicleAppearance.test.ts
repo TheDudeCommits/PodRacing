@@ -34,7 +34,7 @@ describe('vehicle appearance preference', () => {
     expect(storage.writes).toEqual([]);
   });
 
-  it.each(['teemto', 'sebulba', 'polwo', 'blockrunner', 'procedural'] as const)('retains an explicit %s selection through reloads', (id) => {
+  it.each(['teemto', 'sebulba', 'polwo', 'blockrunner', 'verdigris', 'skybolt', 'needle', 'pog', 'procedural'] as const)('retains an explicit %s selection through reloads', (id) => {
     const storage = new MemoryStorage();
     expect(saveVehicleAppearance(id, storage)).toBe(true);
     expect(loadVehicleAppearance(storage)).toBe(id);
@@ -103,8 +103,8 @@ describe('vehicle appearance preference', () => {
 });
 
 describe('vehicle appearance art contract', () => {
-  it('offers four imported appearances with separate LOD URLs and an explicit procedural fallback', () => {
-    expect(Object.keys(ART_APPEARANCES)).toEqual(['teemto', 'sebulba', 'polwo', 'blockrunner', 'procedural']);
+  it('offers eight imported appearances with separate LOD URLs and an explicit procedural fallback', () => {
+    expect(Object.keys(ART_APPEARANCES)).toEqual(['teemto', 'sebulba', 'polwo', 'blockrunner', 'verdigris', 'skybolt', 'needle', 'pog', 'procedural']);
     expect(Object.values(ART_APPEARANCES).every((art) => art.vehicleClass === 'podracer')).toBe(true);
     expect(getVehicleArtDefinition('procedural', 'hero')).toBeNull();
     expect(getVehicleArtDefinition('procedural', 'rival')).toBeNull();

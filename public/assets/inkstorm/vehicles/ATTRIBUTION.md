@@ -50,3 +50,15 @@ Changes by the PodRacing project: normalized scale and orientation; merged rigid
 - Model UID: `a6f14ae799ab40d7ac425f043f824ff8`
 
 Changes by the PodRacing project: removed exact overlapping opposing faces; shortened two grips and added two side mounts while retaining the original seated minifigure pilot; authored and baked an Inkstorm paint and roughness treatment; consolidated rigid geometry, normalized scale and orientation, and packaged distinct hero/rival derivatives with resized body and pilot atlases. The rival simplifies body geometry while retaining the original pilot and exhaust openings. No new driver was added. Original source, earlier studies, license metadata and exact export receipts are preserved under `assets/source/inkstorm/blockrunner-round34/` and `assets/source/inkstorm/vehicles/a6f14ae799ab40d7ac425f043f824ff8/`. These adaptations do not imply the original creator's endorsement.
+
+## Round 46 — recovered roster (2026-09-22)
+
+Runtime labels are local racing identities. Original source titles and authors follow. All four sources report **CC BY 4.0**, with metadata receipts preserved in `assets/source/inkstorm/vehicles/<UID>/`. No source GLB was modified.
+
+- **Verdigris** — [Ye Old Podracer](https://sketchfab.com/3d-models/none-4022e489f3d74eebb0aa3305f38dcc3f) by [Anette Rana](https://sketchfab.com/pertrosfoliea); [CC BY 4.0](http://creativecommons.org/licenses/by/4.0/). Changes: coordinate normalization, rigid mesh consolidation, triangle reduction, texture resizing/transcoding, degenerate tangent repair, and cel material adaptation. Original Inkstorm pilot fitted to the open cockpit; separate hero/rival LODs.
+
+- **Skybolt** — [Anakins Pod Racer](https://sketchfab.com/3d-models/none-dac6d14dcf914e88af8625b59f4020bc) by [tutan09](https://sketchfab.com/tutan09); [CC BY 4.0](http://creativecommons.org/licenses/by/4.0/). Changes: coordinate normalization, rigid mesh consolidation, triangle reduction, texture resizing/transcoding, degenerate tangent repair, and cel material adaptation. Original Inkstorm pilot fitted to the open cockpit; separate hero/rival LODs. Existing source diffuse pigments baked into one atlas; small windscreen made opaque for the runtime adapter.
+
+- **Needle** — [Spaceship(pod)](https://sketchfab.com/3d-models/none-5a927a9fa0984371bd970b31f5f06086) by [LewisGridley](https://sketchfab.com/LewisGridley); [CC BY 4.0](http://creativecommons.org/licenses/by/4.0/). Changes: coordinate normalization, rigid mesh consolidation, triangle reduction, texture resizing/transcoding, degenerate tangent repair, and cel material adaptation. Original Inkstorm pilot fitted to the open cockpit; separate hero/rival LODs.
+
+- **Pog Racer** — [Pog Racer](https://sketchfab.com/3d-models/none-c0d192c145a44459a454627708e46cf5) by [Andrea Rosini](https://sketchfab.com/andrearosini); [CC BY 4.0](http://creativecommons.org/licenses/by/4.0/). Changes: coordinate normalization, rigid mesh consolidation, triangle reduction, texture resizing/transcoding, degenerate tangent repair, and cel material adaptation. Enclosed source cockpit retained; separate hero/rival LODs.

@@ -72,8 +72,8 @@ describe('production AI appearance roster', () => {
   it('keeps identity assignments independent of entry order and local appearance', () => {
     const ids = ['ai-vexa', 'ai-talik', 'ai-kodo', 'ai-sola', 'ai-rax', 'ai-miri', 'ai-olan'];
     const expected = {
-      'ai-vexa': 'polwo', 'ai-talik': 'teemto', 'ai-kodo': 'sebulba',
-      'ai-sola': 'blockrunner', 'ai-rax': 'teemto', 'ai-miri': 'sebulba', 'ai-olan': 'polwo',
+      'ai-vexa': 'polwo', 'ai-talik': 'verdigris', 'ai-kodo': 'sebulba',
+      'ai-sola': 'blockrunner', 'ai-rax': 'skybolt', 'ai-miri': 'needle', 'ai-olan': 'pog',
     };
     for (const preference of ['teemto', 'sebulba', 'polwo', 'blockrunner', 'procedural'] as const) {
       for (const order of [ids, [...ids].reverse()]) {

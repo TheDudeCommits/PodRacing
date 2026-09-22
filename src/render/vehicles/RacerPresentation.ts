@@ -116,6 +116,7 @@ export class RacerPresentation extends Group {
       for (let index = 0; index < this.exhaustMeshes.length; index += 1) {
         const flame = this.exhaustMeshes[index], source = this.exhaustSources[index];
         const anchor = this.imported.getAttachment(index === 0 ? 'exhaustLeft' : 'exhaustRight');
+        if (flame) flame.visible = Boolean(anchor);
         if (!flame || !source || !anchor) continue;
         flame.scale.copy(source.scale);
         // Installed aperture metadata includes peak redline expansion; omitted
@@ -183,7 +184,8 @@ export class RacerPresentation extends Group {
     if (this.importedActive && this.exhaustMeshes.length === 0) this.createEffects();
     if (this.importedActive && this.imported.activeSource !== this.effectsSource) this.refreshCoupling();
     if (this.importedActive) {
-      const left = this.imported.getAttachment('exhaustLeft'), right = this.imported.getAttachment('exhaustRight');
+      const left = this.imported.getAttachment('exhaustLeft');
+      const right = this.imported.getAttachment('exhaustRight') ?? left;
       if (left && right) {
         this.importedWake[0]!.position.copy(left.position);
         this.importedWake[1]!.position.copy(right.position);

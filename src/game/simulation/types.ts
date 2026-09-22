@@ -148,6 +148,10 @@ export interface PodracerStepContext {
   collisions?: readonly CollisionImpulse[];
   /** Wake strength (0..1) from the race layer's drafting field; charges the boost meter faster. */
   draftStrength?: number;
+  /** Ground grip only; flight control is unaffected. */
+  surfaceTraction?: number;
+  /** Ambient cooling multiplier supplied by deterministic course identity. */
+  coolingScale?: number;
 }
 
 export type CameraShakeReason = 'landing' | 'collision' | 'boost' | 'overheat';

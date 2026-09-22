@@ -250,11 +250,18 @@ export class RaceHud {
             <div class="pod-hud__garage-model" data-hud="garage-model" data-vehicle-preview="hero" data-vehicle-id="podracer" data-pod-inspection role="group" tabindex="0" aria-label="Inspect Teemto" aria-describedby="setup-inspect-hint" aria-description="Use Left and Right arrow keys to inspect. Home resets the view." title="Drag to rotate. When focused, use Left/Right arrows to inspect; Home resets the view."></div>
             <button class="setup-pod-arrow setup-pod-arrow--previous" type="button" data-action="step-pod" data-direction="-1" aria-label="Previous pod">‹</button>
             <button class="setup-pod-arrow setup-pod-arrow--next" type="button" data-action="step-pod" data-direction="1" aria-label="Next pod">›</button>
-            <div class="pod-hud__garage-name" aria-live="polite"><span data-hud="setup-pod-index">01 / 04</span><h1 data-hud="garage-name">Teemto</h1></div>
+            <div class="pod-hud__garage-name" aria-live="polite"><span data-hud="setup-pod-index">01 / 08</span><h1 data-hud="garage-name">Teemto</h1></div>
             <div class="pod-hud__garage-inspect"><button type="button" data-action="inspect-vehicle" data-direction="-1" aria-label="Rotate pod left">↶</button><span id="setup-inspect-hint">Drag to rotate</span><button type="button" data-action="inspect-vehicle" data-direction="1" aria-label="Rotate pod right">↷</button></div>
             <div class="setup-preview-status"><p data-hud="appearance-status" role="status" aria-live="polite"></p><button type="button" data-action="retry-appearance" hidden>Retry preview</button></div>
           </section>
           <footer class="setup-bottom">
+            <nav class="setup-courses" aria-label="Race destination">
+              <span>Destination</span>
+              <button type="button" data-action="select-event" data-destination="desert" data-event-id="inkstorm-battle">Inkstorm</button>
+              <button type="button" data-action="select-event" data-destination="frozen" data-event-id="biome-frozen-battle">Frostline</button>
+              <button type="button" data-action="select-event" data-destination="volcanic" data-event-id="biome-volcanic-battle">Ember Rift</button>
+              <button type="button" data-action="select-event" data-destination="jungle" data-event-id="biome-jungle-battle">Verdant Run</button>
+            </nav>
             <div class="setup-options">
               <div class="pod-hud__difficulty-selector" role="group" aria-label="AI difficulty"><span>AI</span><button type="button" data-action="select-ai-difficulty" data-difficulty="easy" aria-pressed="false">Easy</button><button type="button" data-action="select-ai-difficulty" data-difficulty="medium" aria-pressed="true">Medium</button><button type="button" data-action="select-ai-difficulty" data-difficulty="hard" aria-pressed="false">Hard</button></div>
               <div class="pod-hud__lap-selector" role="group" aria-label="Number of laps"><span>Laps</span><button type="button" data-action="select-laps" data-laps="1" aria-pressed="false">1</button><button type="button" data-action="select-laps" data-laps="2" aria-pressed="false">2</button><button type="button" data-action="select-laps" data-laps="3" aria-pressed="true">3</button></div>
@@ -1088,7 +1095,7 @@ export class RaceHud {
       this.garageVehicleKey = vehicleKey;
       this.inspectionAngle = 0;
       hero.dataset.previewAngle = '0';
-      write(requireElement(this.root, '[data-hud="setup-pod-index"]'), `${String(Math.max(0, SETUP_PODS.indexOf(appearance as typeof SETUP_PODS[number])) + 1).padStart(2, '0')} / 04`);
+      write(requireElement(this.root, '[data-hud="setup-pod-index"]'), `${String(Math.max(0, SETUP_PODS.indexOf(appearance as typeof SETUP_PODS[number])) + 1).padStart(2, '0')} / ${String(SETUP_PODS.length).padStart(2, '0')}`);
       hero.dataset.vehicleId = selection.selectedVehicleClass;
       const garageName = selection.selectedVehicleClass === 'podracer' && appearance !== 'procedural' ? selectedLabel : selectedCard.name;
       // A registered pod presents its own identity: role, one-line handling
@@ -1317,6 +1324,7 @@ export class RaceHud {
 
   private updateMastery(mastery: HudMasteryViewModel | undefined, phase: RaceHudViewModel['phase'], preRace: boolean, tutorialVisible: boolean): void {
     this.root.classList.toggle('has-mastery', Boolean(mastery));
+    requireElement<HTMLElement>(this.root, '.setup-courses').hidden = !mastery;
     requireElement<HTMLElement>(this.root, '[data-hud="mastery"]').hidden = !mastery;
     const controls = requireElement<HTMLElement>(this.root, '[data-hud="mastery-controls"]');
     controls.hidden = !mastery;
@@ -1397,6 +1405,19 @@ export class RaceHud {
     // Selecting a Cup can insert standings and expand the selected description.
     // Reveal the entire entry after that layout change, only on selection.
     if (newlySelectedEvent?.offsetHeight) newlySelectedEvent.scrollIntoView?.({ block: 'nearest', inline: 'nearest' });
+    const biomeMatch = /^biome-(frozen|volcanic|jungle)-(battle|race|trial)$/.exec(mastery.eventId);
+    const destination = biomeMatch?.[1] ?? 'desert';
+    const kind = biomeMatch?.[2] ?? (mastery.eventId === 'inkstorm-trial' ? 'trial' : mastery.eventId === 'inkstorm-race' ? 'race' : 'battle');
+    for (const button of this.root.querySelectorAll<HTMLButtonElement>('[data-destination]')) {
+      const id = button.dataset.destination!;
+      button.dataset.eventId = id === 'desert' ? `inkstorm-${kind}` : `biome-${id}-${kind}`;
+      button.setAttribute('aria-pressed', String(id === destination));
+      button.disabled = this.roomPanel.dataset.role === 'guest';
+    }
+    const modes = ['battle', 'race', 'trial'];
+    this.root.querySelectorAll<HTMLButtonElement>('.setup-types [data-event-id]').forEach((button, index) => {
+      if (index < 3) button.dataset.eventId = destination === 'desert' ? `inkstorm-${modes[index]}` : `biome-${destination}-${modes[index]}`;
+    });
     for (const button of this.root.querySelectorAll<HTMLButtonElement>('.setup-types [data-event-id]')) {
       const selected = button.dataset.eventId === mastery.eventId || button.dataset.eventId === 'cup-canyon' && mastery.eventId.startsWith('cup-');
       button.setAttribute('aria-pressed', String(selected));

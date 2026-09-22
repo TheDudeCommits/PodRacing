@@ -1,3 +1,5 @@
+import { racingBiomeForSeed } from '../../game/race/racingBiomes';
+import { Color, type ShaderMaterial } from 'three';
 import { Group } from 'three';
 import { CrestDust, type CrestDustOptions } from './CrestDust';
 import {
@@ -45,6 +47,20 @@ export class DustSystem {
   readonly spray: SandSpray;
 
   private currentTime = 0;
+  private readonly desertColors = new Map<Color, Color>();
+
+  setRacingBiome(seed: number | null): void {
+    const biome = racingBiomeForSeed(seed);
+    for (const pool of [this.wakes, this.groundRings, this.crestDust, this.spray]) {
+      for (const [name, uniform] of Object.entries((pool.mesh.material as ShaderMaterial).uniforms)) {
+        if (!name.endsWith('Color') || !(uniform.value instanceof Color)) continue;
+        const color = uniform.value as Color;
+        if (!this.desertColors.has(color)) this.desertColors.set(color, color.clone());
+        if (biome.id === 'desert') color.copy(this.desertColors.get(color)!);
+        else color.set(biome.ground).multiplyScalar(name.includes('Ink') ? .42 : name.includes('Hot') || name.includes('Rim') ? 1.3 : .85);
+      }
+    }
+  }
 
   constructor(options: DustSystemOptions = {}) {
     this.group.name = 'Stylized Desert Dust';

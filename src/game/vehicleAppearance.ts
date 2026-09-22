@@ -3,7 +3,7 @@ import { DEFAULT_CEL_PALETTE } from '../render/materials/celPalette';
 import type { GalacticVehicleClass } from './galactic/types';
 import { resolveBrowserSettingsStorage, type SettingsStorage } from './settings/storage';
 
-export type VehicleAppearanceId = 'teemto' | 'sebulba' | 'polwo' | 'blockrunner' | 'procedural';
+export type VehicleAppearanceId = 'teemto' | 'sebulba' | 'polwo' | 'blockrunner' | 'verdigris' | 'skybolt' | 'needle' | 'pog' | 'procedural';
 export type VehicleArtLod = 'hero' | 'rival';
 
 /** Appearance never changes the physics class, workshop loadout or record identity. */
@@ -12,13 +12,17 @@ export const ART_APPEARANCES = Object.freeze({
   sebulba: Object.freeze({ id: 'sebulba', label: 'Sebulba', vehicleClass: 'podracer' } as const),
   polwo: Object.freeze({ id: 'polwo', label: 'Polwo', vehicleClass: 'podracer' } as const),
   blockrunner: Object.freeze({ id: 'blockrunner', label: 'Blockrunner', vehicleClass: 'podracer' } as const),
+  verdigris: Object.freeze({ id: 'verdigris', label: 'Verdigris', vehicleClass: 'podracer' } as const),
+  skybolt: Object.freeze({ id: 'skybolt', label: 'Skybolt', vehicleClass: 'podracer' } as const),
+  needle: Object.freeze({ id: 'needle', label: 'Needle', vehicleClass: 'podracer' } as const),
+  pog: Object.freeze({ id: 'pog', label: 'Pog Racer', vehicleClass: 'podracer' } as const),
   procedural: Object.freeze({ id: 'procedural', label: 'Classic', vehicleClass: 'podracer' } as const),
 });
 
 export const DEFAULT_VEHICLE_APPEARANCE: VehicleAppearanceId = 'teemto';
 /** Player-facing carousel; procedural art remains an internal loading fallback. */
 export const SELECTABLE_POD_APPEARANCES: readonly VehicleAppearanceId[] = Object.freeze([
-  'teemto', 'sebulba', 'polwo', 'blockrunner',
+  'teemto', 'sebulba', 'polwo', 'blockrunner', 'verdigris', 'skybolt', 'needle', 'pog',
 ]);
 
 export function selectablePodAppearance(preference: VehicleAppearanceId): VehicleAppearanceId {
@@ -30,12 +34,12 @@ export const VEHICLE_APPEARANCE_VERSION = 1 as const;
 /** Stable identity preferences; the existing physics-class gate still applies. */
 const AI_APPEARANCE_ROSTER: Readonly<Record<string, VehicleAppearanceId>> = Object.freeze({
   'ai-vexa': 'polwo',
-  'ai-talik': 'teemto',
+  'ai-talik': 'verdigris',
   'ai-kodo': 'sebulba',
   'ai-sola': 'blockrunner',
-  'ai-rax': 'teemto',
-  'ai-miri': 'sebulba',
-  'ai-olan': 'polwo',
+  'ai-rax': 'skybolt',
+  'ai-miri': 'needle',
+  'ai-olan': 'pog',
 });
 
 /** Human guests occupy AI ids, but their appearance is not in the room protocol. */
@@ -57,6 +61,8 @@ export function resolveRacerAppearancePreference(
 
 /** Tall rear bodywork needs an elevated eye to separate the cockpit and engines. */
 export function vehicleChaseClearance(appearance: VehicleAppearanceId): number {
+  if (appearance === 'pog') return 8.5;
+  if (appearance === 'needle' || appearance === 'verdigris') return 4.5;
   if (appearance === 'polwo') return 5.2;
   return appearance === 'blockrunner' ? 4.8 : 0;
 }
@@ -273,7 +279,7 @@ export const BLOCKRUNNER_ART_DEFINITIONS: Readonly<Record<VehicleArtLod, Vehicle
 });
 
 export function isVehicleAppearanceId(value: unknown): value is VehicleAppearanceId {
-  return value === 'teemto' || value === 'sebulba' || value === 'polwo' || value === 'blockrunner' || value === 'procedural';
+  return typeof value === 'string' && Object.hasOwn(ART_APPEARANCES, value);
 }
 
 /** Reads only the appearance key. Defaults are not written over corrupt or future saves. */
@@ -321,6 +327,22 @@ export function resolveVehicleAppearance(
   return isVehicleAppearanceId(preference) ? preference : DEFAULT_VEHICLE_APPEARANCE;
 }
 
+/** Recovered source packages; anchors are measured in the isolated DCC export. */
+function recoveredArt(id: VehicleAppearanceId, attachments: Readonly<Record<string, VehicleArtAttachment>>): Readonly<Record<VehicleArtLod, VehicleArtDefinition>> {
+  const definition = (lod: VehicleArtLod): VehicleArtDefinition => Object.freeze({
+    id, revision: `${id}-recovery-v1`, url: `/assets/inkstorm/vehicles/${id}-${lod}-v1.glb`,
+    hasAuthoredExhaustHardware: true, embeddedPilotNodePrefix: `${id}-pilot-`,
+    attachments: Object.freeze(attachments), surfaceStyles: TEEMTO_PILOT_SURFACE_STYLES,
+  });
+  return Object.freeze({ hero: definition('hero'), rival: definition('rival') });
+}
+const RECOVERED_ART_DEFINITIONS: Readonly<Partial<Record<VehicleAppearanceId, Readonly<Record<VehicleArtLod, VehicleArtDefinition>>>>> = Object.freeze({
+  verdigris: recoveredArt('verdigris', { pilot: rootAttachment(0.0, 2.87261, -4.24028), exhaustLeft: rootAttachment(-4.366, 1.57021, 5.60172), exhaustRight: rootAttachment(4.366, 1.57021, 5.60172), couplingLeft: rootAttachment(-2.442, 1.76261, 8.70972), couplingRight: rootAttachment(2.442, 1.76261, 8.70972) }),
+  skybolt: recoveredArt('skybolt', { pilot: rootAttachment(0.0, 2.9402, -4.1018), exhaustLeft: rootAttachment(-3.08, 1.7102, 3.2982), exhaustRight: rootAttachment(3.08, 1.7102, 3.2982), couplingLeft: rootAttachment(-2.0, 1.7102, 11.6982), couplingRight: rootAttachment(2.0, 1.7102, 11.6982) }),
+  needle: recoveredArt('needle', { pilot: rootAttachment(0.0, 2.98694, -0.51527), exhaustLeft: rootAttachment(-3.91532, 2.52494, 6.74473), exhaustRight: rootAttachment(3.91228, 2.52494, 6.74473), couplingLeft: rootAttachment(-2.48972, 2.52494, 8.19673), couplingRight: rootAttachment(2.52628, 2.52494, 8.19673) }),
+  pog: recoveredArt('pog', { pilot: rootAttachment(0, 6, -3), exhaustLeft: rootAttachment(0.0, 1.55288, -5.83469) }),
+});
+
 /** Null explicitly selects the procedural fallback; unknown runtime values cannot fetch art. */
 export function getVehicleArtDefinition(
   id: VehicleAppearanceId,
@@ -330,5 +352,5 @@ export function getVehicleArtDefinition(
   if (id === 'teemto') return TEEMTO_ART_DEFINITIONS[lod];
   if (id === 'sebulba') return SEBULBA_ART_DEFINITIONS[lod];
   if (id === 'polwo') return POLWO_ART_DEFINITIONS[lod];
-  return id === 'blockrunner' ? BLOCKRUNNER_ART_DEFINITIONS[lod] : null;
+  return id === 'blockrunner' ? BLOCKRUNNER_ART_DEFINITIONS[lod] : RECOVERED_ART_DEFINITIONS[id]?.[lod] ?? null;
 }

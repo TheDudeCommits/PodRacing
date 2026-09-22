@@ -51,3 +51,8 @@ export const DUSK_SKY_FRAGMENT = /* glsl */ `varying vec3 vDirection;
   gl_FragColor=vec4(duskTone(sky),1.);
   #include <colorspace_fragment>
   }`;
+
+/** Instance-selected grading leaves the established Inkstorm fragment intact. */
+export const RACING_SKY_FRAGMENT = DUSK_SKY_FRAGMENT
+  .replace('varying vec3 vDirection;', 'uniform vec3 uBiomeSky; uniform float uBiomeStrength; varying vec3 vDirection;')
+  .replace('gl_FragColor=vec4(duskTone(sky),1.);', 'sky=mix(sky,uBiomeSky*dot(sky,vec3(.30,.59,.11))*1.4,uBiomeStrength); gl_FragColor=vec4(duskTone(sky),1.);');

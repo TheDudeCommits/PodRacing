@@ -1,3 +1,4 @@
+import { racingBiomeForSeed } from '../game/race/racingBiomes';
 import { GALACTIC_VEHICLES, GALACTIC_VEHICLE_ORDER } from '../game/galactic/catalog';
 import { LANCE_RELOAD_SECONDS } from '../game/galactic/system';
 import {
@@ -245,6 +246,7 @@ export function createPerfectLaunchHudViewModel(
 }
 
 interface RaceDirectorStateLike {
+  seed?: number;
   events: readonly {
     id: string;
     kind: HudRaceDirectorKind;
@@ -289,6 +291,8 @@ export function createRaceDirectorHudViewModel(
   const phase = event.phase === 'complete' ? 'end' : event.phase;
   if (phase === 'pending') return undefined;
   const copy = DIRECTOR_COPY[event.kind];
+  const biome = racingBiomeForSeed(state.seed ?? null);
+  const weather = biome.id === 'frozen' ? 'Snow squall' : biome.id === 'jungle' ? 'Monsoon gusts' : biome.id === 'volcanic' ? 'Ash storm' : 'Sandstorm';
   const section = readableLabel(event.sectionTag, 'course').toUpperCase();
   const side = event.kind === 'lane-collapse'
     ? `${event.side > 0 ? 'RIGHT LANE BLOCKED // MOVE LEFT' : 'LEFT LANE BLOCKED // MOVE RIGHT'}`
@@ -297,7 +301,7 @@ export function createRaceDirectorHudViewModel(
     id: event.id,
     kind: event.kind,
     phase,
-    title: copy[phase],
+    title: event.kind === 'sandstorm' ? `${weather} ${phase === 'warning' ? 'inbound' : phase === 'active' ? 'active' : 'cleared'}` : copy[phase],
     detail: phase === 'warning'
       ? `${section} // ${copy.warningDetail}`
       : phase === 'active'
