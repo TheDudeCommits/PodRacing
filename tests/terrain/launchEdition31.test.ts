@@ -1,5 +1,5 @@
+import { legacyBranchedCourse as createProceduralPodraceCourse } from '../helpers/legacyBranchedCourse';
 import { describe, expect, it } from 'vitest';
-import { createProceduralPodraceCourse } from '../../src/game/race/course';
 import { createCourseGulfField, sweeperBankingExtent } from '../../src/game/race/CourseGulfField';
 import { sampleTerrainHeight } from '../../src/render/terrain/terrainMath';
 

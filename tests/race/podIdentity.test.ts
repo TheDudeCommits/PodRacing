@@ -1,3 +1,4 @@
+import { POD_FOOTPRINTS } from '../../src/game/podGeometry';
 import { describe, expect, it } from 'vitest';
 import {
   DEFAULT_POD_IDENTITY,
@@ -24,16 +25,16 @@ describe('pod identities', () => {
     expect(POD_IDENTITIES.procedural.role).toBe('balanced');
   });
 
-  it('derives four materially distinct tunes without touching cadence or probes', () => {
+  it('derives four materially distinct tunes with fixed cadence and fitted support beds', () => {
     const configs = REGISTERED.map((id) => derivePodIdentityConfig(id, DEFAULT_PODRACER_CONFIG));
     expect(new Set(configs.map((config) => config.mass)).size).toBe(4);
     expect(new Set(configs.map((config) => config.maxSpeed)).size).toBe(4);
     expect(new Set(configs.map((config) => config.steeringRateHighSpeed)).size).toBe(4);
-    for (const config of configs) {
+    for (const [index, config] of configs.entries()) {
       expect(config.fixedDelta).toBe(DEFAULT_PODRACER_CONFIG.fixedDelta);
-      expect(config.probes).toBe(DEFAULT_PODRACER_CONFIG.probes);
+      expect(config.probes).toBe(POD_FOOTPRINTS[REGISTERED[index]!].probes);
     }
-    expect(derivePodIdentityConfig('teemto', DEFAULT_PODRACER_CONFIG)).toBe(DEFAULT_PODRACER_CONFIG);
+    expect(derivePodIdentityConfig('teemto', DEFAULT_PODRACER_CONFIG).mass).toBe(DEFAULT_PODRACER_CONFIG.mass);
   });
 
   it('gives each identity a distinguishable feel in the same manoeuvre', () => {

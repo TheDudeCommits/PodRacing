@@ -1,0 +1,33 @@
+# Round 48 — driving, contact racing and destination polish
+
+Status: implementation and local validation complete; deployment evidence is recorded in HANDOVER.md. This is a substantial gameplay/presentation pass, not a claim of AAA production quality.
+
+## What changed
+
+- Newly generated circuits have one canonical route. Shortcut roads, fork arrows, alternate minimap paths and shortcut Director events are absent. An explicit opt-in retains archived geometry fixtures only. Course/drive/rules identities are now 11/7/4, so old records are archived instead of compared against changed physics.
+- Frozen outcrops, basalt clusters, branching trees, asymmetrical crowns, ground cover and biome road detail replace the earlier repeated primitive stands. Instanced scenery adds two draws per non-jungle destination, three in jungle, with no extra downloads.
+- Drift has blue, amber and pink charge stages. Release banks 0.55, 1.10 or 1.75 seconds of boost. Countersteering retains the committed slide direction. A 350 ms hop grace preserves charge without earning charge in the air. Color-coded particles, staged recorded cues, HUD labels and controller feedback communicate the build/release.
+- Acceleration adds low-speed torque that fades by 75 m/s. Imported pods use support beds and contact capsules measured from each admitted GLB, including Pog's compact single turbine. Chase clearance accommodates the tallest body. Landings emit bounded impact particles and controller pulses.
+- Glancing rubs cost little hull; committed closing hits cause more damage. Mass, shields and reinforced ram maneuvers affect contact. Takedowns restore 35% boost and remove 12% heat. Existing inked rupture effects remain, with new scrape sparks, engine smoke and local hull scorching. Source geometry and textures remain immutable.
+- Pod abilities use keyboard C / controller LB. Sebulba has a directional flame jet; Teemto and Verdigris cool their cores; Polwo and Needle dodge sideways; Skybolt sprints; Blockrunner and Pog charge. Abilities commit after a tell and require a fresh button press after cooldown. Flame checks range, height, world cover, shields, recovery immunity and teams; it is disabled in clean races. Ram/shunt do not make racers invulnerable.
+- Engine pitch responds to throttle and speed over a wider range. Nearby rival voices have stronger pass-bys, tunnel return is louder, and the recorded score follows race intensity. No existing source recording or the owner's selection introduction was replaced.
+- Lossless WebP repacking saves 6,678,284 bytes across the sixteen active hero/rival packages. The optimizer verifies decoded RGBA equality and retains every non-image buffer view byte-for-byte. Original admissions remain checked in, with new runtime receipts in `assets/source/inkstorm/runtime-round48.json`. Race release waits for pod loading and asynchronous shader preparation.
+- World Cup covers Inkstorm, Frostline, Verdant Run and Ember Rift as four stock, one-lap clean events. Medal targets use measured full laps. Previous three-round cup points cannot leak into the new series; records/history remain archived. Native controller focus, confirmation and range adjustment support menus. Threat layout reserves the actual ability panel and driving feedback stack.
+- Room protocol 2 carries each human's pod identity, destination and competition profile. Host and guest use the same immutable starting selections and semantic ability input. Both clients must refresh to this release; older protocol clients cannot race with changed physics.
+
+## Validation
+
+- `npm test`: **1,092 tests across 189 files passed**. The later focused camera run passed **46 tests / 9 files**, including a new Pog hull projection check. TypeScript, production build and `git diff --check` passed.
+- Live two-browser PeerJS room: host Sebulba and guest Needle agree on Frostline / clean race and retained pod choices. Guest C input reaches the host and triggers Needle's shunt on both clients. Zero page/console errors. `output/round48/multiplayer.json`.
+- Full deterministic fields: all eight pods completed all four destinations (32 finishes). Finish ranges: Inkstorm 60.42–71.49 s, Frostline 63.39–76.03 s, Ember Rift 61.11–72.90 s, Verdant Run 54.88–67.77 s. One Needle recovery in Ember Rift; that racer still finished. Source receipt: `output/round48/full-race.json`.
+- Native built browser: all four scenery views, actual loading of the optimized assets, flame attack, drift feedback and 390 × 844 setup. Zero page/console/HTTP errors and no mobile horizontal overflow in that pass. `output/round48/visual-qa.json`.
+- Mechanical coverage includes stage/release edges, countersteering, hop grace, flame tell/cone/range/cover/shield checks, held-button suppression, snapshot continuation, mobility abilities, shortcut removal and championship migration. Network coverage checks pod/map/rules agreement, locked selection and guest ability input.
+- Asset coverage retains original admission tests and separately verifies runtime hashes, budgets, unchanged nodes/accessors/meshes and all non-image bytes. Shader compilation and decoded textures are also exercised in Chromium.
+
+- Native controller-driven complete jungle race, 1440 × 900, Chromium ANGLE/Metal, local M4: all 20 course bins traversed, 3,886 measured frames, p50/p95 16.7 ms, p99/max 16.8 ms, zero >33.5 ms frames, quality level 0 with adaptive enabled. No page/console errors. Native d-pad focus and A confirmation passed. This uses a QA controller driver through the actual Gamepad adapter, with ordinary fixed-step race advancement; no position teleporting. `output/round48/native-race.json` and `native-race-results.png`.
+
+## Limits and next quality work
+
+The maps remain a procedural stylized foundation. Large bespoke set pieces, destructible scenery, authored sound stems and complete bespoke wreck geometry for every pod are future work. Contact racing retains control and the existing bounded rupture system; this is not Burnout's full vehicle-deformation system. Music intensity currently changes the mix rather than composing layered musical stems. Native browser frame timing is a local Chromium/M4 measurement, not a broad device guarantee. No physical gamepad vibration or continuous human audiovisual acceptance is implied by automated checks.
+
+References for interaction design: [Nintendo kart basics](https://www.nintendo.com/jp/ichikara/aabpa/index_en.html), [Activision CTR driving tips](https://support.activision.com/crash-team-racing/articles/crash-team-racing-nitro-fueled-gameplay-tips), [EA Burnout](https://www.ea.com/games/burnout). No assets, music or branding were copied from these games.

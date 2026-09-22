@@ -42,17 +42,17 @@ const AI_APPEARANCE_ROSTER: Readonly<Record<string, VehicleAppearanceId>> = Obje
   'ai-olan': 'pog',
 });
 
-/** Human guests occupy AI ids, but their appearance is not in the room protocol. */
+/** Human guests occupy AI ids; their replicated choice overrides the AI roster. */
 export function resolveRacerAppearancePreference(
   racerId: string | undefined,
   localRacerId: string,
   localPreference: VehicleAppearanceId,
-  humanMembers: readonly { readonly racerId: string }[],
+  humanMembers: readonly { readonly racerId: string; readonly podIdentity?: VehicleAppearanceId }[],
 ): VehicleAppearanceId {
   if (racerId === undefined) return 'procedural';
   if (racerId === localRacerId) return localPreference;
   for (const member of humanMembers) {
-    if (member.racerId === racerId) return DEFAULT_VEHICLE_APPEARANCE;
+    if (member.racerId === racerId) return member.podIdentity && isVehicleAppearanceId(member.podIdentity) ? member.podIdentity : DEFAULT_VEHICLE_APPEARANCE;
   }
   return Object.hasOwn(AI_APPEARANCE_ROSTER, racerId)
     ? AI_APPEARANCE_ROSTER[racerId]!
@@ -164,7 +164,7 @@ export const TEEMTO_ART_DEFINITIONS: Readonly<Record<VehicleArtLod, VehicleArtDe
   hero: Object.freeze({
     id: 'teemto',
     revision: 'teemto-open-cockpit-v2',
-    url: '/assets/inkstorm/vehicles/teemto-hero-open-v2.glb',
+    url: '/assets/inkstorm/vehicles/optimized/teemto-hero-open-v2-r48.glb',
     damageVariant: Object.freeze({ id: 'teemto-damage', revision: 'teemto-damage-hero-v16-b',
       url: '/assets/inkstorm/vehicles/teemto-damage-hero-v16.glb' }),
     embeddedPilotNodePrefix: 'teemto-pilot-',
@@ -174,7 +174,7 @@ export const TEEMTO_ART_DEFINITIONS: Readonly<Record<VehicleArtLod, VehicleArtDe
   rival: Object.freeze({
     id: 'teemto',
     revision: 'teemto-v1',
-    url: '/assets/inkstorm/vehicles/teemto-rival.glb',
+    url: '/assets/inkstorm/vehicles/optimized/teemto-rival-r48.glb',
     damageVariant: Object.freeze({ id: 'teemto-damage', revision: 'teemto-damage-rival-v16-b',
       url: '/assets/inkstorm/vehicles/teemto-damage-rival-v16.glb' }),
     embeddedPilotNodePrefix: 'teemto-pilot-',
@@ -185,12 +185,12 @@ export const TEEMTO_ART_DEFINITIONS: Readonly<Record<VehicleArtLod, VehicleArtDe
 export const SEBULBA_ART_DEFINITIONS: Readonly<Record<VehicleArtLod, VehicleArtDefinition>> = Object.freeze({
   hero: Object.freeze({
     id: 'sebulba', revision: 'sebulba-v1',
-    url: '/assets/inkstorm/vehicles/sebulba-hero.glb',
+    url: '/assets/inkstorm/vehicles/optimized/sebulba-hero-r48.glb',
     embeddedPilotNodePrefix: 'sebulba-pilot-', attachments: SEBULBA_ATTACHMENTS,
   }),
   rival: Object.freeze({
     id: 'sebulba', revision: 'sebulba-v1',
-    url: '/assets/inkstorm/vehicles/sebulba-rival.glb',
+    url: '/assets/inkstorm/vehicles/optimized/sebulba-rival-r48.glb',
     embeddedPilotNodePrefix: 'sebulba-pilot-', attachments: SEBULBA_ATTACHMENTS,
   }),
 });
@@ -199,14 +199,14 @@ export const POLWO_ART_DEFINITIONS: Readonly<Record<VehicleArtLod, VehicleArtDef
   hero: Object.freeze({
     id: 'polwo', revision: 'polwo-inkstorm-v1',
     hasAuthoredExhaustHardware: true,
-    url: '/assets/inkstorm/vehicles/polwo-hero-v1.glb',
+    url: '/assets/inkstorm/vehicles/optimized/polwo-hero-v1-r48.glb',
     embeddedPilotNodePrefix: 'polwo-pilot-', attachments: POLWO_ATTACHMENTS,
     surfaceStyles: POLWO_SURFACE_STYLES,
   }),
   rival: Object.freeze({
     id: 'polwo', revision: 'polwo-inkstorm-v1',
     hasAuthoredExhaustHardware: true,
-    url: '/assets/inkstorm/vehicles/polwo-rival-v1.glb',
+    url: '/assets/inkstorm/vehicles/optimized/polwo-rival-v1-r48.glb',
     embeddedPilotNodePrefix: 'polwo-pilot-', attachments: POLWO_ATTACHMENTS,
     surfaceStyles: POLWO_SURFACE_STYLES,
   }),
@@ -264,14 +264,14 @@ const BLOCKRUNNER_ATTACHMENTS: Readonly<Record<string, VehicleArtAttachment>> = 
 export const BLOCKRUNNER_ART_DEFINITIONS: Readonly<Record<VehicleArtLod, VehicleArtDefinition>> = Object.freeze({
   hero: Object.freeze({
     id: 'blockrunner', revision: 'blockrunner-inkstorm-v1',
-    url: '/assets/inkstorm/vehicles/blockrunner-hero-v1.glb',
+    url: '/assets/inkstorm/vehicles/optimized/blockrunner-hero-v1-r48.glb',
     embeddedPilotNodePrefix: 'blockrunner-pilot-',
     hasAuthoredExhaustHardware: true, exhaustApertureRadius: .34,
     attachments: BLOCKRUNNER_ATTACHMENTS, surfaceStyles: BLOCKRUNNER_SURFACE_STYLES,
   }),
   rival: Object.freeze({
     id: 'blockrunner', revision: 'blockrunner-inkstorm-v1',
-    url: '/assets/inkstorm/vehicles/blockrunner-rival-v1.glb',
+    url: '/assets/inkstorm/vehicles/optimized/blockrunner-rival-v1-r48.glb',
     embeddedPilotNodePrefix: 'blockrunner-pilot-',
     hasAuthoredExhaustHardware: true, exhaustApertureRadius: .34,
     attachments: BLOCKRUNNER_ATTACHMENTS, surfaceStyles: BLOCKRUNNER_SURFACE_STYLES,
@@ -330,7 +330,7 @@ export function resolveVehicleAppearance(
 /** Recovered source packages; anchors are measured in the isolated DCC export. */
 function recoveredArt(id: VehicleAppearanceId, attachments: Readonly<Record<string, VehicleArtAttachment>>): Readonly<Record<VehicleArtLod, VehicleArtDefinition>> {
   const definition = (lod: VehicleArtLod): VehicleArtDefinition => Object.freeze({
-    id, revision: `${id}-recovery-v1`, url: `/assets/inkstorm/vehicles/${id}-${lod}-v1.glb`,
+    id, revision: `${id}-recovery-v1`, url: `/assets/inkstorm/vehicles/optimized/${id}-${lod}-v1-r48.glb`,
     hasAuthoredExhaustHardware: true, embeddedPilotNodePrefix: `${id}-pilot-`,
     attachments: Object.freeze(attachments), surfaceStyles: TEEMTO_PILOT_SURFACE_STYLES,
   });

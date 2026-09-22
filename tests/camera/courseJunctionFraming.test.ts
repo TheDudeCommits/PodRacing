@@ -1,13 +1,13 @@
+import { legacyBranchedCourse as createProceduralPodraceCourse } from '../helpers/legacyBranchedCourse';
 import { Vector3 } from 'three';
 import { describe, expect, it } from 'vitest';
 import { updateCourseJunctionFraming } from '../../src/camera/CourseJunctionFraming';
 import { CinematicCamera, type CameraSubject } from '../../src/camera/CinematicCamera';
 import { RaceSimulation } from '../../src/game/race/RaceSimulation';
-import { createProceduralPodraceCourse } from '../../src/game/race/course';
 import { sampleTerrainHeight } from '../../src/render/terrain/terrainMath';
 
 const terrain = { heightAt: sampleTerrainHeight };
-const race = new RaceSimulation({ terrain, seed: 0x494e4b53, competitionProfile: 'time-trial' });
+const race = new RaceSimulation({ enableCourseBranches: true, terrain, seed: 0x494e4b53, competitionProfile: 'time-trial' });
 const course = race.course, branch = course.branches.find(candidate => candidate.elevated)!;
 const entry = branch.entryProgress * course.totalLength;
 function branchSample(distance: number) {

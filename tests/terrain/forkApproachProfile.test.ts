@@ -1,7 +1,7 @@
+import { legacyBranchedCourse as createProceduralPodraceCourse } from '../helpers/legacyBranchedCourse';
 import { describe, expect, it } from 'vitest';
 import originalForkJson from '../../docs/inkstorm-overhaul/fixtures/fork-course7.json?raw';
 import type { CourseBranchDefinition } from '../../src/game/race/types';
-import { createProceduralPodraceCourse } from '../../src/game/race/course';
 import { createCourseGulfField, COURSE_GULF_SEED, FORK_APPROACH_PROFILE } from '../../src/game/race/CourseGulfField';
 import { createBridgeHeightSampler } from '../../src/game/race/bridgeSurface';
 import { RaceSimulation } from '../../src/game/race/RaceSimulation';
@@ -60,7 +60,7 @@ describe('physical fork approach', () => {
     expect(samples).toBeGreaterThan(100_000);
     expect(maximumGroundDelta).toBe(0);
     expect(maximumSupportDelta).toBe(0);
-    const race = new RaceSimulation({ terrain: base, seed: COURSE_GULF_SEED, competitionProfile: 'time-trial' });
+    const race = new RaceSimulation({ enableCourseBranches: true, terrain: base, seed: COURSE_GULF_SEED, competitionProfile: 'time-trial' });
     expect(race.course.branches).toEqual(course.branches);
     expect(race.course.checkpoints.map(({ y: _y, ...p }) => p)).toEqual(course.checkpoints.map(({ y: _y, ...p }) => p));
     for (const checkpoint of race.course.checkpoints) expect(checkpoint.y).toBe(oldGround.heightAt(checkpoint.x, checkpoint.z));

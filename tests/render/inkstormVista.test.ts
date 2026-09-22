@@ -1,6 +1,7 @@
+import { legacyBranchedCourse as createProceduralPodraceCourse } from '../helpers/legacyBranchedCourse';
 import { describe, expect, it } from 'vitest';
 import { Color, Mesh, PerspectiveCamera, Vector3 } from 'three';
-import { createPodraceCourse, createProceduralPodraceCourse, PODRACE_CONTROL_POINTS } from '../../src/game/race/course';
+import { createPodraceCourse, PODRACE_CONTROL_POINTS } from '../../src/game/race/course';
 import { createInkstormVista, getInkstormVistaPlan, type VistaFootprint } from '../../src/render/inkstorm/InkstormVista';
 import { CEL_TERRAIN_EDGE_SUPPRESS_USER_DATA_KEY } from '../../src/render/post/CelPrepassMaterial';
 import { LAUNCH_INDUSTRIAL_CENTER } from '../../src/game/race/LaunchBasinPlan';

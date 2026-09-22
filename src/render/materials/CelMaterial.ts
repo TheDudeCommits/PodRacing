@@ -50,6 +50,7 @@ interface CelUniforms {
   uHazeBands: ValueUniform<number>;
   uOpacity: ValueUniform<number>;
   uWear: ValueUniform<number>;
+  uDamage: ValueUniform<number>;
   uBaseColorMap: ValueUniform<Texture | null>;
   uBaseColorUvTransform: ValueUniform<Matrix3>;
   uBaseColorStrength: ValueUniform<number>;
@@ -65,6 +66,8 @@ interface CelUniforms {
 
 export interface CelMaterialOptions {
   readonly name?: string;
+  /** Opt-in local hull scorch. Source textures remain immutable. */
+  readonly damageFeedback?: boolean;
   readonly palette?: CelPalette;
   readonly thresholds?: readonly number[];
   readonly tint?: ColorRepresentation;
@@ -204,6 +207,7 @@ export class CelMaterial extends ShaderMaterial {
       uHazeBands: { value: Math.max(1, Math.floor(options.hazeBands ?? 5)) },
       uOpacity: { value: opacity },
       uWear: { value: options.wear ?? 0 },
+      uDamage: { value: 0 },
       ...(paintedShadingSoftness > 0 ? { uPaintedShadingSoftness: { value: paintedShadingSoftness } } : {}),
       uBaseColorMap: { value: baseColorMap },
       uBaseColorUvTransform: { value: baseColorBinding.transform },
@@ -221,7 +225,15 @@ export class CelMaterial extends ShaderMaterial {
     super({
       name: options.name ?? 'CelMaterial',
       vertexShader: CEL_VERTEX_SHADER,
-      fragmentShader: paintedShadingSoftness > 0 ? CEL_PAINTED_FRAGMENT_SHADER : CEL_FRAGMENT_SHADER,
+      fragmentShader: options.damageFeedback ? (paintedShadingSoftness > 0 ? CEL_PAINTED_FRAGMENT_SHADER : CEL_FRAGMENT_SHADER)
+        .replace('uniform float uWear;', 'uniform float uWear; uniform float uDamage;')
+        .replace('  float hazeSpan =', `  if (uDamage > .18) {
+          vec3 cell = floor(vSurfacePosition * vec3(.75, .9, .42));
+          float mark = fract(sin(dot(cell, vec3(12.9898, 78.233, 39.425))) * 43758.5453);
+          float scorch = smoothstep(1. - max(0., uDamage - .18) * .6, 1., mark);
+          color = mix(color, vec3(.038, .025, .022), scorch * .84);
+        }
+        float hazeSpan =`) : (paintedShadingSoftness > 0 ? CEL_PAINTED_FRAGMENT_SHADER : CEL_FRAGMENT_SHADER),
       uniforms,
       defines,
       vertexColors: options.vertexColors ?? false,
@@ -273,6 +285,8 @@ export class CelMaterial extends ShaderMaterial {
     if (direction.lengthSq() === 0) throw new RangeError('Cel light direction cannot be zero.');
     this.celUniforms.uLightDirection.value.copy(direction).normalize();
   }
+
+  setDamage(amount: number): void { this.celUniforms.uDamage.value = clamp01(amount); }
 
   setHaze(near: number, far: number, color?: ColorRepresentation, bands = 5): void {
     if (near < 0 || far <= near) throw new RangeError('Cel haze far must be greater than near.');

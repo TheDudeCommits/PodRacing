@@ -63,6 +63,8 @@ export interface PodracerAudioTargets {
 }
 
 export type PodracerAudioCueKind =
+  | 'drift-charge'
+  | 'flame'
   | 'impact'
   | 'sand'
   | 'boost'

@@ -8,12 +8,20 @@ import type { MasteryEvent } from './types';
 // its roadside props; drive 6 changes braking, drift exit, airborne grip,
 // hover attraction and bank assist, and gives each pod its own tune. Earlier
 // records and ghosts are archived rather than compared against the new feel.
-export const MASTERY_GENERATOR_VERSION = 'inkstorm-course-10';
-export const MASTERY_PHYSICS_VERSION = 'inkstorm-drive-6';
+export const MASTERY_GENERATOR_VERSION = 'inkstorm-course-11';
+export const MASTERY_PHYSICS_VERSION = 'inkstorm-drive-7';
 // The expanded opponent roster changes race competition; archive earlier records.
-export const MASTERY_RULES_VERSION = 'inkstorm-rules-3';
+export const MASTERY_RULES_VERSION = 'inkstorm-rules-4';
 export const INKSTORM_HERO_SEED = 0x494e4b53;
 export const DEFAULT_MASTERY_EVENT_ID = 'inkstorm-battle';
+
+// Calibrated against complete stock-pod laps through every destination (round 48).
+const WORLD_CUP_MEDALS = {
+  desert: { gold: 63, silver: 76, bronze: 95 },
+  frozen: { gold: 70, silver: 84, bronze: 105 },
+  volcanic: { gold: 62, silver: 74, bronze: 93 },
+  jungle: { gold: 60, silver: 72, bronze: 90 },
+} as const;
 
 export const MASTERY_EVENTS: readonly MasteryEvent[] = Object.freeze([
   {
@@ -42,27 +50,16 @@ export const MASTERY_EVENTS: readonly MasteryEvent[] = Object.freeze([
     mode: 'circuit', profile: 'training', laps: 1, difficulty: 'easy', stock: true,
     medalTimes: { gold: 110, silver: 145, bronze: 210 },
   },
-  {
-    id: 'cup-canyon', title: 'Inkstorm Cup • Canyon',
-    subtitle: 'Round 1 / 3. Eight-racer grid. Two laps. Stock machinery.',
-    courseId: 'inkstorm-canyon', seed: INKSTORM_HERO_SEED,
-    mode: 'circuit', profile: 'clean-race', laps: 2, difficulty: 'medium', stock: true,
-    medalTimes: { gold: 180, silver: 220, bronze: 290 }, championshipRound: 1,
-  },
-  {
-    id: 'cup-foundry', title: 'Inkstorm Cup • Foundry',
-    subtitle: 'Round 2 / 3. Industrial sweepers reward patient boost timing.',
-    courseId: 'foundry-run', seed: 0x464f554e,
-    mode: 'circuit', profile: 'clean-race', laps: 2, difficulty: 'medium', stock: true,
-    medalTimes: { gold: 180, silver: 225, bronze: 300 }, championshipRound: 2,
-  },
-  {
-    id: 'cup-glass', title: 'Inkstorm Cup • Glasslands',
-    subtitle: 'Final round. Carry your championship points into the high-speed flats.',
-    courseId: 'glasslands-run', seed: 0x474c4153,
-    mode: 'circuit', profile: 'clean-race', laps: 2, difficulty: 'medium', stock: true,
-    medalTimes: { gold: 180, silver: 225, bronze: 300 }, championshipRound: 3,
-  },
+  ...(['desert', 'frozen', 'jungle', 'volcanic'] as const).map((id, index): MasteryEvent => ({
+    id: ['cup-canyon', 'cup-frostline', 'cup-verdant', 'cup-ember'][index]!,
+    title: `World Cup · ${RACING_BIOMES[id].title}`,
+    subtitle: `Round ${index + 1} / 4 · One lap · Stock pods · Weapons off`,
+    courseId: id === 'desert' ? 'inkstorm-canyon' : `biome-${id}-v1`,
+    seed: id === 'desert' ? INKSTORM_HERO_SEED : RACING_BIOME_SEEDS[id],
+    mode: 'circuit', profile: 'clean-race', laps: 1, difficulty: 'medium', stock: true,
+    medalTimes: WORLD_CUP_MEDALS[id],
+    championshipRound: index + 1,
+  })),
   ...(['frozen', 'volcanic', 'jungle'] as const).flatMap((id) =>
     (['battle', 'race', 'trial'] as const).map((kind): MasteryEvent => ({
       id: `biome-${id}-${kind}`, title: `${RACING_BIOMES[id].title} · ${kind === 'trial' ? 'Time Trial' : kind === 'race' ? 'Race' : 'Battle'}`,
@@ -99,5 +96,5 @@ export function getMasteryEvent(id: string, date = new Date()): MasteryEvent {
   return MASTERY_EVENTS.find((event) => event.id === id) ?? MASTERY_EVENTS[0]!;
 }
 
-export const CHAMPIONSHIP_EVENT_IDS = ['cup-canyon', 'cup-foundry', 'cup-glass'] as const;
+export const CHAMPIONSHIP_EVENT_IDS = ['cup-canyon', 'cup-frostline', 'cup-verdant', 'cup-ember'] as const;
 export const CHAMPIONSHIP_POINTS = [15, 12, 10, 8, 6, 4, 2, 1] as const;

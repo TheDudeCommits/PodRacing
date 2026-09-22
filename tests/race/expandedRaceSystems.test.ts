@@ -66,7 +66,7 @@ describe('expanded deterministic race systems', () => {
       fieldSize: 8,
       maximumHumanRacers: 4,
     });
-    expect(race.state.settings.branches.length).toBeGreaterThanOrEqual(2);
+    expect(race.state.settings.branches).toHaveLength(0);
     expect(race.state.entries.slice(1).every((entry) => entry.ai?.difficulty === 'medium')).toBe(true);
     const gridClearances = race.state.entries.flatMap((entry, index) => (
       race.state.entries.slice(index + 1).map((other) => Math.hypot(
@@ -178,15 +178,12 @@ describe('expanded deterministic race systems', () => {
     });
     expect(second.state.director).toEqual(first.state.director);
     expect(first.state.director.events.map((event) => event.kind)).toEqual([
-      'sandstorm', 'heatwave', 'lane-collapse', 'gate-blackout', 'shortcut-window',
+      'sandstorm', 'heatwave', 'lane-collapse', 'gate-blackout',
     ]);
     expect(first.state.director.events.slice(0, 4).map((event) => event.sectionTag)).toEqual([
       'wide-sweeper', 'fast-straight', 'chicane', 'narrow-canyon',
     ]);
-    const shortcut = first.state.director.events.at(-1)!;
-    expect(first.state.settings.branches.some(
-      (branch) => branch.id === shortcut.branchId && branch.sectionTag === shortcut.sectionTag,
-    )).toBe(true);
+    expect(first.state.director.events.some(event => event.kind === 'shortcut-window')).toBe(false);
     expect(new Set(first.state.director.events.map((event) => event.lap)).size)
       .toBeGreaterThan(1);
   });
@@ -402,7 +399,7 @@ describe('expanded deterministic race systems', () => {
   });
 
   it('lets AI deterministically commit to generated risk/reward branch geometry', () => {
-    const race = createRaceSimulation({
+    const race = createRaceSimulation({ enableCourseBranches: true,
       terrain: FLAT_HEIGHT_SAMPLER,
       countdownSeconds: 0,
       fieldSize: 4,

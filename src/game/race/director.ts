@@ -69,7 +69,7 @@ export function createRaceDirectorState(
 ): RaceDirectorState {
   const random = { rngState: mixSeed(seed ^ 0xd1ec70a5) };
   const laps = Math.max(1, Math.floor(totalLaps));
-  const events: RaceDirectorScheduledEvent[] = EVENT_PLAN.map((plan, index) => {
+  const events: RaceDirectorScheduledEvent[] = EVENT_PLAN.filter(plan => plan.kind !== 'shortcut-window' || branches.length > 0).map((plan, index) => {
     const branch = plan.kind === 'shortcut-window' ? semanticBranch(branches, plan.tag) : undefined;
     const sectionTag = branch?.sectionTag ?? plan.tag;
     const jitter = (nextRandom(random) - 0.5) * 0.18;

@@ -37,10 +37,10 @@ export function createInkstormRoad(points:readonly CourseRenderPoint[], closed=t
   }
   const geometry=new BufferGeometry();geometry.setAttribute('position',new BufferAttribute(new Float32Array(vertices),3));geometry.setAttribute('uv',new BufferAttribute(new Float32Array(uvs),2));geometry.setAttribute('aProgress',new BufferAttribute(new Float32Array(progresses),1));geometry.setAttribute('aRoadWidth',new BufferAttribute(new Float32Array(widths),1));geometry.setIndex(indices);geometry.computeBoundingSphere();
   const material=new ShaderMaterial({name:'Inkstorm compacted racing surface',glslVersion:GLSL3,transparent:true,depthWrite:false,side:DoubleSide,toneMapped:false,
-    uniforms:{...gulfUniforms,...createInkstormShadowUniforms(), ...createInkstormRacerShadowUniforms(),uBiomeTint:{value:new Color(biome.road)},uBiomeStrength:{value:biome.id==='desert'?0:1},uVolcanic:{value:biome.id==='volcanic'?1:0},uElevated:{value:elevated?1:0},uGroundPaint:{value:inkstormGroundPaint()},uGroundReady:{value:inkstormGroundPaint()?1:0}},
+    uniforms:{...gulfUniforms,...createInkstormShadowUniforms(), ...createInkstormRacerShadowUniforms(),uBiomeTint:{value:new Color(biome.road)},uBiomeStrength:{value:biome.id==='desert'?0:1},uFrozen:{value:biome.id==='frozen'?1:0},uJungle:{value:biome.id==='jungle'?1:0},uVolcanic:{value:biome.id==='volcanic'?1:0},uElevated:{value:elevated?1:0},uGroundPaint:{value:inkstormGroundPaint()},uGroundReady:{value:inkstormGroundPaint()?1:0}},
     vertexShader:`${TERRAIN_GLSL}
       attribute float aProgress;attribute float aRoadWidth;out float vRoadWidth;out float vProgress;uniform float uElevated;out vec2 vUv;out vec3 vWorld;void main(){vProgress=aProgress;vRoadWidth=aRoadWidth;vUv=uv;vec4 p=modelMatrix*vec4(position,1.);vec3 fields;p.y=uElevated>.5?p.y+.04:terrainFields(p.xz,fields)+.45;vWorld=p.xyz;gl_Position=projectionMatrix*viewMatrix*p;}`,
-    fragmentShader:`precision highp float;in float vProgress;in float vRoadWidth;uniform vec3 uBiomeTint;uniform float uBiomeStrength;uniform float uVolcanic;uniform float uElevated;in vec2 vUv;in vec3 vWorld;out vec4 fragColor;uniform sampler2D uGroundPaint;uniform float uGroundReady;
+    fragmentShader:`precision highp float;in float vProgress;in float vRoadWidth;uniform vec3 uBiomeTint;uniform float uBiomeStrength;uniform float uFrozen;uniform float uJungle;uniform float uVolcanic;uniform float uElevated;in vec2 vUv;in vec3 vWorld;out vec4 fragColor;uniform sampler2D uGroundPaint;uniform float uGroundReady;
       ${INKSTORM_SHADOW_GLSL}
 ${INKSTORM_RACER_SHADOW_GLSL}
       float hash(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}
@@ -67,6 +67,13 @@ ${INKSTORM_RACER_SHADOW_GLSL}
         base=mix(base*vec3(.28,.25,.48),base,light*mix(.15,1.,min(inkstormSunVisibility(vWorld+vec3(0.,.5,0.)),inkstormRacerSunVisibility(vWorld,n))));
         float haze=1.-exp(-max(0.,distanceToCamera-300.)*.00045);base=mix(base,vec3(.48,.34,.47),haze*.65);
         base=mix(base,uBiomeTint*clamp(dot(base,vec3(.30,.59,.11))*3.,.3,1.35),uBiomeStrength);
+        // Frost fractures, packed mud and heat-darkened crust retain the same physical road.
+        float fracture=pow(abs(sin(vWorld.x*.13+sin(vWorld.z*.08)*3.)),22.)*detail;
+        base=mix(base,base*.65+vec3(.06,.13,.18),uFrozen*fracture*.65);
+        float sheen=pow(max(0.,dot(reflect(normalize(vWorld-cameraPosition),n),normalize(vec3(-.42,.76,-.5)))),18.);
+        base+=vec3(.22,.32,.37)*sheen*uFrozen*(1.-edge*.5);
+        base*=1.-uJungle*smoothstep(.60,.83,noise(vWorld.xz*.055))*.28;
+        base*=1.-uVolcanic*fracture*.18;
         // Match the sim's .30-.44 outer-shoulder heat corridor. Visible seams mark the risk.
         float lateral=edge*(vRoadWidth+(uElevated>.5?0.:4.));
         float vents=uVolcanic*step(.30,vProgress)*step(vProgress,.44)*step(vRoadWidth*.62,lateral)*step(lateral,vRoadWidth*1.2);

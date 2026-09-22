@@ -1,3 +1,4 @@
+import { legacyBranchedCourse as createProceduralPodraceCourse } from '../helpers/legacyBranchedCourse';
 import { describe, expect, it } from 'vitest';
 import {
   createAIControllerState,
@@ -6,7 +7,7 @@ import {
   type AIMistakeKind,
   type AIPersonality,
 } from '../../src/game/ai';
-import { createPodraceCourse, createProceduralPodraceCourse } from '../../src/game/race';
+import { createPodraceCourse,  } from '../../src/game/race';
 import { DEFAULT_PODRACER_CONFIG } from '../../src/game/simulation/config';
 
 const flat = { heightAt: () => 0 };

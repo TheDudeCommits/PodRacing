@@ -24,8 +24,8 @@ describe('final Blockrunner package bytes and restrictive asset contract', () =>
     const packageReceipt = receipt.packages?.[lod];
     expect(packageReceipt).toBeDefined();
     expect(packageReceipt.sha256).toMatch(/^[a-f0-9]{64}$/);
-    expect(packageReceipt.publicUrl).toBe(BLOCKRUNNER_ART_DEFINITIONS[lod].url);
-    const bytes = readFileSync(new URL(`../../public${BLOCKRUNNER_ART_DEFINITIONS[lod].url}`, import.meta.url));
+    // Immutable package admission; runtime compression has a separate byte-for-byte geometry receipt.
+    const bytes = readFileSync(new URL(`../../public${packageReceipt.publicUrl}`, import.meta.url));
     expect(bytes.length).toBe(packageReceipt.bytes); expect(sha(bytes)).toBe(packageReceipt.sha256);
     expect(bytes.readUInt32LE(0)).toBe(0x46546c67); expect(bytes.readUInt32LE(4)).toBe(2);
     expect(bytes.readUInt32LE(8)).toBe(bytes.length); expect(bytes.readUInt32LE(16)).toBe(0x4e4f534a);

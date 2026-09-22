@@ -1,3 +1,4 @@
+import { derivePodracerAudioTargets } from './model';
 import {
   deriveRivalAudioTargets,
   mapGameEventsToAudioCues,
@@ -523,19 +524,23 @@ export class PodracerAudio {
       // heat/damage/time never introduce pitch flutter or oscillating layers.
       // The selected pod's sourced voice shapes rate, cutoff and level once.
       const voice = RECORDED_ENGINE_VOICES[this.engineVoiceId] ?? RECORDED_ENGINE_VOICES[DEFAULT_ENGINE_VOICE_ID]!;
-      this.target(graph.engine.source.playbackRate, (0.94 + throttle * 0.12 + speed * 0.04 + boost * 0.02) * voice.rate, now, 0.22);
+      this.target(graph.engine.source.playbackRate, (.78 + throttle * .19 + speed * .24 + boost * .08) * voice.rate, now, 0.22);
       this.target(graph.engine.filter.frequency, Math.max(300, 1_600 + voice.filterOffset + throttle * 2_000 + speed * 800), now, 0.18);
       this.target(graph.engine.gain.gain, (0.13 + throttle * 0.13 + speed * 0.07 + boost * 0.03) * voice.gain * (1 - unit(model.damage) * 0.25), now, 0.16);
     }
-    this.target(graph.canyonReturn.gain, unit(model.environmentClosure ?? 0) * 0.025, now, 0.45);
+    this.target(graph.canyonReturn.gain, unit(model.environmentClosure ?? 0) * 0.095, now, 0.45);
+    if (this.raceMusicPlayback) {
+      const intensity = derivePodracerAudioTargets(model).raceIntensity;
+      this.target(this.raceMusicPlayback.group.gain, RACE_SCORE_GAIN * (.82 + intensity * .28) * (this.raceMusicIntense ? 1.15 : 1), now, 1.5);
+    }
     const rivals = deriveRivalAudioTargets(model.rivals);
     for (let i = 0; i < graph.rivals.length; i += 1) {
       const voice = graph.rivals[i]!, rival = model.rivals?.[i], target = rivals[i];
       const near = rival && finite(rival.distanceM, 240) < 70;
       // Registered pod voices widen the rival register so a heavy pod passes low.
-      this.target(voice.source.playbackRate, Math.min(1.2, Math.max(0.8, (target?.frequency ?? 180) / 180)), now, 0.24);
-      this.target(voice.gain.gain, near ? (target?.gain ?? 0) * 0.36 : 0, now, 0.14);
-      this.target(voice.filter.frequency, 1_800, now, 0.18);
+      this.target(voice.source.playbackRate, Math.min(1.45, Math.max(0.65, (target?.frequency ?? 180) / 180)), now, 0.07);
+      this.target(voice.gain.gain, near ? (target?.gain ?? 0) * 1.2 : 0, now, 0.055);
+      this.target(voice.filter.frequency, target?.filterFrequency ?? 1_800, now, 0.18);
       if (target) this.target(voice.panner.pan, target.pan * 0.75, now, 0.12);
     }
   }

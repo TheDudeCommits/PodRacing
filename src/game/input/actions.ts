@@ -22,6 +22,7 @@ export interface PlayerInputState {
   /** Activates the timed Pulse Shell when its cooldown is ready. */
   shield: boolean;
   /** Cycles the player's vehicle class while the race is on the grid. */
+  ability: boolean;
   cycleVehicle: boolean;
   /** Reset to the most recent safe/respawn pose. */
   reset: boolean;
@@ -45,6 +46,7 @@ export const NEUTRAL_PLAYER_INPUT: Readonly<PlayerInputState> = Object.freeze({
   fire: false,
   mine: false,
   shield: false,
+  ability: false,
   cycleVehicle: false,
   reset: false,
   pause: false,
@@ -71,6 +73,7 @@ export function normalizePlayerInput(
     fire: input.fire === true,
     mine: input.mine === true,
     shield: input.shield === true,
+    ability: input.ability === true,
     cycleVehicle: input.cycleVehicle === true,
     reset: input.reset === true,
     pause: input.pause === true,
@@ -95,6 +98,7 @@ export function mergePlayerInputStates(
   let fire = false;
   let mine = false;
   let shield = false;
+  let ability = false;
   let cycleVehicle = false;
   let reset = false;
   let pause = false;
@@ -109,6 +113,7 @@ export function mergePlayerInputStates(
     fire ||= input.fire;
     mine ||= input.mine;
     shield ||= input.shield;
+    ability ||= input.ability;
     cycleVehicle ||= input.cycleVehicle;
     reset ||= input.reset;
     pause ||= input.pause;
@@ -123,6 +128,7 @@ export function mergePlayerInputStates(
     fire,
     mine,
     shield,
+    ability,
     cycleVehicle,
     reset,
     pause,

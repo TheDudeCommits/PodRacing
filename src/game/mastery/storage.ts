@@ -1,5 +1,5 @@
 import { MAX_GHOST_FRAMES } from './ghost';
-import { MASTERY_GENERATOR_VERSION, MASTERY_PHYSICS_VERSION, MASTERY_RULES_VERSION } from './events';
+import { CHAMPIONSHIP_EVENT_IDS, MASTERY_GENERATOR_VERSION, MASTERY_PHYSICS_VERSION, MASTERY_RULES_VERSION } from './events';
 import type { GhostRun, MasteryMedal, MasteryProfile, MasteryRecord, MasteryStartOptions, RecordIdentity, SavedCourse } from './types';
 
 export const MASTERY_STORAGE_KEY = 'podracing.inkstorm.mastery.v1';
@@ -37,7 +37,7 @@ export function createRecordIdentity(options: MasteryStartOptions): RecordIdenti
 export function recordIdentityKey(identity: RecordIdentity): string { return stableStringify(identity); }
 
 export function emptyMasteryProfile(): MasteryProfile {
-  return { version: 1, records: {}, favorites: [], archivedRecords: [], archivedFavorites: [], history: [], championship: { version: 1, rounds: [] }, tutorialComplete: false, ghostEnabled: true };
+  return { version: 1, records: {}, favorites: [], archivedRecords: [], archivedFavorites: [], history: [], championship: { version: 2, rounds: [] }, tutorialComplete: false, ghostEnabled: true };
 }
 
 function validIdentity(value: unknown): value is RecordIdentity {
@@ -124,12 +124,12 @@ export function parseMasteryProfile(raw: string | null): MasteryProfile {
       && positive(entry.time) && Number.isInteger(entry.placement) && Number(entry.placement) >= 1 && Number(entry.placement) <= 8
       && medal(entry.medal) && typeof entry.valid === 'boolean' && string(entry.recordedAt)).slice(-40) as MasteryProfile['history'];
   }
-  if (object(value.championship) && value.championship.version === 1 && Array.isArray(value.championship.rounds)) {
-    for (const entry of value.championship.rounds.slice(0, 3)) {
+  if (object(value.championship) && value.championship.version === 2 && Array.isArray(value.championship.rounds)) {
+    for (const entry of value.championship.rounds.slice(0, CHAMPIONSHIP_EVENT_IDS.length)) {
       if (!object(entry) || !string(entry.eventId) || !Array.isArray(entry.results) || entry.results.length > 8) break;
       if (!entry.results.every((r) => object(r) && string(r.id) && string(r.name) && Number.isInteger(r.placement)
         && Number(r.placement) >= 1 && Number(r.placement) <= 8 && Number.isInteger(r.points) && Number(r.points) >= 0 && Number(r.points) <= 15)) break;
-      const expected = ['cup-canyon', 'cup-foundry', 'cup-glass'][clean.championship.rounds.length];
+      const expected = CHAMPIONSHIP_EVENT_IDS[clean.championship.rounds.length];
       if (entry.eventId !== expected) break;
       clean.championship.rounds.push(entry as unknown as MasteryProfile['championship']['rounds'][number]);
     }

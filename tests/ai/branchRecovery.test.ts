@@ -6,7 +6,7 @@ import { sampleTerrainHeight } from '../../src/render/terrain/terrainMath';
 describe('legal shortcut recovery boundary', () => {
   it('keeps a craft on the Glass Cup shortcut even when the main road is far away', () => {
     const terrain = { heightAt: sampleTerrainHeight };
-    const race = createRaceSimulation({ terrain, seed: 0x474c4153, competitionProfile: 'time-trial',
+    const race = createRaceSimulation({ terrain, enableCourseBranches: true, seed: 0x474c4153, competitionProfile: 'time-trial',
       countdownSeconds: 0, offCourseRecoverySeconds: 0.5 });
     race.step();
     const branch = race.course.branches.find((route) => route.kind === 'shortcut')!;

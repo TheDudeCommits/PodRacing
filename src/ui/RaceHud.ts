@@ -1,3 +1,4 @@
+import { DRIFT_COLORS, DRIFT_LABELS, driftStage } from '../game/simulation/drift';
 import type { HudMasteryViewModel } from '../game/mastery/types';
 import { CHAMPIONSHIP_EVENT_IDS } from '../game/mastery/events';
 import { LANCE_RELOAD_SECONDS as RELOAD_SECONDS } from '../game/galactic/system';
@@ -243,7 +244,7 @@ export class RaceHud {
               <button type="button" data-action="select-event" data-event-id="inkstorm-battle" aria-pressed="false" title="8 racers · weapons enabled">Battle</button>
               <button type="button" data-action="select-event" data-event-id="inkstorm-race" aria-pressed="false" title="8 racers · clean race">Race</button>
               <button type="button" data-action="select-event" data-event-id="inkstorm-trial" aria-pressed="false" title="Solo · one timed lap">Time Trial</button>
-              <button type="button" data-action="select-event" data-event-id="cup-canyon" aria-pressed="false" title="8 racers · three-round championship">Cup</button>
+              <button type="button" data-action="select-event" data-event-id="cup-canyon" aria-pressed="false" title="8 racers · four-destination championship">Cup</button>
             </nav>
           </header>
           <section class="pod-hud__garage-hero" aria-label="Choose your pod">
@@ -324,7 +325,7 @@ export class RaceHud {
       </section>
 
       <section class="pod-hud__race" aria-label="Race status">
-        <button class="pod-hud__detail-toggle" type="button" data-action="toggle-hud-detail" aria-pressed="false">ROUTE +</button>
+        <button class="pod-hud__detail-toggle" type="button" data-action="toggle-hud-detail" aria-pressed="false">MAP +</button>
         <div class="pod-hud__race-rail" aria-hidden="true"><svg viewBox="0 0 1000 76" preserveAspectRatio="none" focusable="false"><path class="race-glass" d="M0 0H1000V46H920L900 72H760L740 46H604C558 83 442 83 396 46H260L240 72H100L80 46H0Z"/><path class="race-contour" d="M0 46H80L100 72H240L260 46H396C442 83 558 83 604 46H740L760 72H900L920 46H1000" vector-effect="non-scaling-stroke"/></svg></div>
         <div class="pod-hud__race-stat pod-hud__race-stat--lap">
           <div class="pod-hud__race-value"><span data-hud="lap">1</span><small>/ <span data-hud="lap-total">3</span></small></div>
@@ -406,6 +407,7 @@ export class RaceHud {
 
 
 
+      <div class="pod-hud__pod-ability" data-hud="pod-ability"><kbd data-key-binding="ability">C</kbd><span data-hud="ability-name">Pod ability</span><b data-hud="ability-state">READY</b></div>
       <section class="pod-hud__driving-instruments" aria-label="Driving instruments">
         <div class="pod-hud__redline-heat" data-hud="redline-instrument" aria-label="Redline heat" aria-hidden="true">
           <span>SHIFT / REDLINE</span>
@@ -634,7 +636,7 @@ export class RaceHud {
       '.pod-hud__driving-instruments', '.pod-hud__systems-cluster', '.pod-hud__context-action',
       '.pod-hud__upgrades', '.pod-hud__mode-status', '.pod-hud__director-event',
       '.pod-hud__galactic-alert', '.pod-hud__wrong-way', '.pod-hud__combat-feedback',
-      '.pod-hud__driving-feedback', '.pod-hud__launch', '.pod-hud__controls',
+      '.pod-hud__driving-feedback', '.pod-hud__pod-ability', '.pod-hud__launch', '.pod-hud__controls',
       '.pod-hud__tutorial', '.pod-hud__asset-status', '.pod-hud__map', '.pod-hud__countdown',
     ].join(','))];
     this.results = requireElement(this.root, '[data-hud="results"]');
@@ -755,7 +757,20 @@ export class RaceHud {
     setVisible(this.flight, airborne && model.galactic?.wreckPhase == null);
 
     this.updateMeter(this.boostFill, this.boostValue, model.boost);
+    const abilityPanel = requireElement<HTMLElement>(this.root, '[data-hud="pod-ability"]');
+    abilityPanel.hidden = model.phase !== 'racing' || !model.ability || model.ability.unavailable;
+    if (model.ability) {
+      requireElement(abilityPanel, '[data-hud="ability-name"]').textContent = model.ability.label;
+      requireElement(abilityPanel, '[data-hud="ability-state"]').textContent = model.ability.windup ? 'ARMING' : model.ability.active ? 'ACTIVE' : model.ability.cooldown > 0 ? `${Math.ceil(model.ability.cooldown)}s` : 'READY';
+      abilityPanel.title = model.ability.hint;
+      abilityPanel.dataset.ready = String(model.ability.cooldown <= 0);
+    }
     this.updateMeter(this.driftFill, this.driftValue, model.driftCharge);
+    const chargeStage = driftStage(model.driftCharge);
+    this.driftFill.style.background = `#${DRIFT_COLORS[chargeStage].toString(16).padStart(6, '0')}`;
+    this.driftFill.style.boxShadow = chargeStage ? `0 0 12px ${this.driftFill.style.background}` : 'none';
+    this.driftValue.textContent = model.driftCharge > .01 ? DRIFT_LABELS[chargeStage] : 'HOLD + STEER';
+    this.root.dataset.driftStage = String(chargeStage);
     this.root.classList.toggle('has-drift-charge', model.driftCharge > 0.01);
     // A live slide lights the meter, so the driver can see the drift is holding
     // even before it has banked a boost.
@@ -982,7 +997,7 @@ export class RaceHud {
     } else if (action === 'toggle-hud-detail') {
       const open = this.root.classList.toggle('has-hud-detail');
       trigger.setAttribute('aria-pressed', String(open));
-      trigger.textContent = open ? 'ROUTE −' : 'ROUTE +';
+      trigger.textContent = open ? 'MAP −' : 'MAP +';
     } else if (action === 'select-ai-difficulty') {
       const difficulty = trigger.dataset.difficulty as HudAiDifficulty | undefined;
       if (difficulty && HUD_AI_DIFFICULTIES.includes(difficulty)) {
@@ -1343,7 +1358,7 @@ export class RaceHud {
     }
     const cupContext: HudMasteryViewModel['championshipContext'] = mastery.championshipContext ?? (cupComplete ? {
       title: 'Inkstorm Cup complete',
-      detail: 'Your final standings are saved. Race another cup to start three new rounds; your personal records stay.',
+      detail: 'Your final standings are saved. Race another cup to start four new rounds; your personal records stay.',
     } : undefined);
     let cupReplay = cup.querySelector<HTMLButtonElement>('[data-action="restart-championship"]');
     if (!cupReplay) {
@@ -1517,7 +1532,7 @@ export class RaceHud {
     button.type = 'button';
     button.dataset.action = 'restart-championship';
     button.textContent = 'Race another cup';
-    button.title = 'Start a new three-round Inkstorm Cup. Personal records and saved courses stay.';
+    button.title = 'Start a new four-destination World Cup. Personal records and saved courses stay.';
     return button;
   }
 
@@ -1666,6 +1681,14 @@ export class RaceHud {
           reservedRects.push({ left: feedback.left - origin.left, right: feedback.right - origin.left,
             top: feedback.top - origin.top, bottom: feedback.bottom - origin.top });
         }
+      }
+    }
+    if (canShowThreats && !occupiedRects && viewport) {
+      const ability = this.root.querySelector<HTMLElement>('.pod-hud__pod-ability');
+      if (ability && viewport.getComputedStyle(ability).display !== 'none') {
+        const box = ability.getBoundingClientRect(), origin = this.threatCues.getBoundingClientRect();
+        if (box.width && box.height) reservedRects.push({ left: box.left - origin.left, right: box.right - origin.left,
+          top: box.top - origin.top, bottom: box.bottom - origin.top });
       }
     }
     if (canShowThreats && !occupiedRects && this.root.dataset.notice === 'director'

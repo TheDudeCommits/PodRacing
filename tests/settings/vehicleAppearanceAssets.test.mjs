@@ -9,11 +9,14 @@ import {
   SEBULBA_BODY_NODES,
 } from '../../src/game/vehicleAppearance';
 
+const optimizations = JSON.parse(readFileSync(new URL('../../assets/source/inkstorm/runtime-round48.json', import.meta.url)));
+const admittedUrl = url => optimizations.find(r => r.runtime === `public${url}`)?.source.replace(/^public/, '') ?? url;
+
 // Node-only asset verification stays outside the browser TypeScript compilation.
 describe('published vehicle appearance assets', () => {
   it.each(['hero', 'rival'])('matches the %s body and embedded driver contract using only its JSON header', (lod) => {
     const definition = TEEMTO_ART_DEFINITIONS[lod];
-    const bytes = readFileSync(new URL(`../../public${definition.url}`, import.meta.url));
+    const bytes = readFileSync(new URL(`../../public${admittedUrl(definition.url)}`, import.meta.url));
     expect(bytes.readUInt32LE(0)).toBe(0x46546c67);
     const gltf = JSON.parse(bytes.subarray(20, 20 + bytes.readUInt32LE(12)).toString());
     const nodes = new Set(gltf.nodes.map((node) => node.name));
@@ -47,7 +50,7 @@ describe('published vehicle appearance assets', () => {
 
   it.each(['hero', 'rival'])('admits the published Sebulba %s with its exact static body, pilot and texture contract', (lod) => {
     const definition = SEBULBA_ART_DEFINITIONS[lod];
-    const bytes = readFileSync(new URL(`../../public${definition.url}`, import.meta.url));
+    const bytes = readFileSync(new URL(`../../public${admittedUrl(definition.url)}`, import.meta.url));
     expect(createHash('sha256').update(bytes).digest('hex')).toBe(lod === 'hero'
       ? 'f4b31d9260e3272ec394161dea236c874d551b469f18a1d794ec85c05b625b7e'
       : '22e1adf8e3dd6562ce143132fb4e82cdb56e62696d9894804ca07b4a3552d951');

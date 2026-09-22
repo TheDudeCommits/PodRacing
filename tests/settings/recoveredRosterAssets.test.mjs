@@ -1,3 +1,4 @@
+import { POD_FOOTPRINTS } from '../../src/game/podGeometry';
 import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { describe, it, expect } from 'vitest';
@@ -18,9 +19,9 @@ describe('recovered roster admission',()=>{
   expect(POD_IDENTITIES[id].id).toBe(id);
   const config=derivePodIdentityConfig(id,DEFAULT_PODRACER_CONFIG);
   expect(config.fixedDelta).toBe(DEFAULT_PODRACER_CONFIG.fixedDelta);
-  expect(config.probes).toBe(DEFAULT_PODRACER_CONFIG.probes);
+  expect(config.probes).toBe(POD_FOOTPRINTS[id].probes);
   for(const lod of ['hero','rival']){
-   const def=getVehicleArtDefinition(id,lod),bytes=read(`public${def.url}`);
+   const bytes=read(receipt.variants[lod].path);
    expect(hash(bytes)).toBe(receipt.variants[lod].sha256);
    expect(bytes.length).toBeLessThan(10_000_000);
    const n=bytes.readUInt32LE(12),gltf=JSON.parse(bytes.subarray(20,20+n)),base=28+n;

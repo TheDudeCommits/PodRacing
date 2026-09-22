@@ -1,7 +1,7 @@
+import { legacyBranchedCourse as createProceduralPodraceCourse } from '../helpers/legacyBranchedCourse';
 import { beforeAll, describe, expect, it, vi } from 'vitest';
 import { Box3, BoxGeometry, Group, InstancedMesh, Matrix4, Mesh, MeshBasicMaterial, PerspectiveCamera, Quaternion, Texture, TextureLoader, Vector3 } from 'three';
 import { GLTFLoader, type GLTF } from 'three/addons/loaders/GLTFLoader.js';
-import { createProceduralPodraceCourse } from '../../src/game/race/course';
 import { createCourseGulfField } from '../../src/game/race/CourseGulfField';
 import { createPitPadField } from '../../src/game/race/PitPadField';
 import { getInkstormLayout } from '../../src/game/race/inkstormLayout';

@@ -1,6 +1,6 @@
+import { legacyBranchedCourse as createProceduralPodraceCourse } from '../helpers/legacyBranchedCourse';
 import { describe, expect, it } from 'vitest';
 import { createRaceSimulation } from '../../src/game/race';
-import { createProceduralPodraceCourse } from '../../src/game/race/course';
 import { createBridgeHeightSampler, groundPylonConflictsWithBridge, INKSTORM_BRIDGE_SEED, sampleBridgeSurface } from '../../src/game/race/bridgeSurface';
 import { createPodracerState } from '../../src/game/simulation/podracer';
 import { sampleTerrainHeight } from '../../src/render/terrain/terrainMath';
@@ -80,7 +80,7 @@ describe('flagship supported viaduct', () => {
   });
 
   it.each([6, 12, 18])('holds a braking craft on deck sample %i without falling through or resetting', (index) => {
-    const race = createRaceSimulation({ terrain: base, seed: INKSTORM_BRIDGE_SEED, competitionProfile: 'time-trial', countdownSeconds: 0 });
+    const race = createRaceSimulation({ terrain: base, enableCourseBranches: true, seed: INKSTORM_BRIDGE_SEED, competitionProfile: 'time-trial', countdownSeconds: 0 });
     race.step();
     const point = bridge.points[index]!, next = bridge.points[index + 1]!;
     const player = race.state.entries[0]!;
@@ -105,7 +105,7 @@ describe('flagship supported viaduct', () => {
   });
 
   it('lets a craft beyond the bridge edge fall to the actual desert', () => {
-    const race = createRaceSimulation({ terrain: base, seed: INKSTORM_BRIDGE_SEED,
+    const race = createRaceSimulation({ terrain: base, enableCourseBranches: true, seed: INKSTORM_BRIDGE_SEED,
       competitionProfile: 'time-trial', countdownSeconds: 0 });
     race.step();
     const point = bridge.points[11]!, next = bridge.points[12]!;
@@ -137,7 +137,7 @@ describe('finite ground pylon height', () => {
     const entry = bridge.points[2]!, middle = bridge.points[12]!;
     expect(groundPylonConflictsWithBridge(hero.branches, entry.x, entry.z, base.heightAt(entry.x, entry.z))).toBe(true);
     expect(groundPylonConflictsWithBridge(hero.branches, middle.x, middle.z, base.heightAt(middle.x, middle.z))).toBe(false);
-    const race = createRaceSimulation({ terrain: base, seed: INKSTORM_BRIDGE_SEED, competitionProfile: 'time-trial' });
+    const race = createRaceSimulation({ terrain: base, enableCourseBranches: true, seed: INKSTORM_BRIDGE_SEED, competitionProfile: 'time-trial' });
     const markers = (race as unknown as { markerColliders: readonly { x: number; z: number }[] }).markerColliders;
     expect(markers.length).toBeGreaterThan(100);
     // Placement can change when the shoulder becomes wider. Every actual
@@ -147,7 +147,7 @@ describe('finite ground pylon height', () => {
   });
 
   it.each([{ clearance: 2.5, hits: 1 }, { clearance: 8, hits: 0 }, { clearance: 18, hits: 0 }])('gives $hits impacts at $clearance m ground clearance', ({ clearance, hits }) => {
-    const race = createRaceSimulation({ terrain: base, seed: INKSTORM_BRIDGE_SEED,
+    const race = createRaceSimulation({ terrain: base, enableCourseBranches: true, seed: INKSTORM_BRIDGE_SEED,
       competitionProfile: 'time-trial', countdownSeconds: 0 });
     race.step();
     const marker = (race as unknown as { markerColliders: readonly { x: number; z: number; id: string; minY: number; maxY: number }[] }).markerColliders[0]!;

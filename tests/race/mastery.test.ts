@@ -179,17 +179,17 @@ describe('persistent driving mastery', () => {
   it('records championship rounds once, enforces order and restores cumulative named-rival points', () => {
     const storage = new MemoryStorage();
     const mastery = new RaceMastery(storage, fixedNow);
-    finish(mastery, 180, getMasteryEvent('cup-foundry'));
+    finish(mastery, 180, getMasteryEvent('cup-frostline'));
     expect(mastery.profile.championship.rounds).toHaveLength(0);
     for (const id of CHAMPIONSHIP_EVENT_IDS) finish(mastery, 180, getMasteryEvent(id));
-    expect(mastery.profile.championship.rounds).toHaveLength(3);
+    expect(mastery.profile.championship.rounds).toHaveLength(4);
     expect(mastery.model().championship).toEqual([
-      { name: 'You', points: 45, isPlayer: true }, { name: 'Vexa Ruun', points: 36, isPlayer: false },
+      { name: 'You', points: 60, isPlayer: true }, { name: 'Vexa Ruun', points: 48, isPlayer: false },
     ]);
-    finish(mastery, 180, getMasteryEvent('cup-glass'));
-    expect(mastery.profile.championship.rounds).toHaveLength(3);
+    finish(mastery, 180, getMasteryEvent('cup-ember'));
+    expect(mastery.profile.championship.rounds).toHaveLength(4);
     const reloaded = new RaceMastery(storage, fixedNow);
-    expect(reloaded.model().championshipRound).toBe(3);
+    expect(reloaded.model().championshipRound).toBe(4);
     reloaded.restartChampionship();
     expect(reloaded.profile.championship.rounds).toHaveLength(0);
     expect(reloaded.selectedEvent.id).toBe('cup-canyon');
@@ -213,8 +213,8 @@ describe('persistent driving mastery', () => {
     reloaded.restartChampionship();
     expect(reloaded.selectedEvent.id).toBe('cup-canyon');
     expect(reloaded.model()).toMatchObject({ championship: [], championshipRound: 0, result: null,
-      championshipContext: { title: 'Cup round 1 of 3', actionLabel: 'Start championship' } });
-    expect(reloaded.profile).toEqual({ ...completed, championship: { version: 1, rounds: [] } });
+      championshipContext: { title: 'Cup round 1 of 4', actionLabel: 'Start championship' } });
+    expect(reloaded.profile).toEqual({ ...completed, championship: { version: 2, rounds: [] } });
     expect(new RaceMastery(storage, fixedNow).profile).toEqual(reloaded.profile);
 
     // A slower replay banks new-series points without replacing a prior PB/ghost.
@@ -226,7 +226,7 @@ describe('persistent driving mastery', () => {
     expect(reloaded.model().championship).toEqual([
       { name: 'You', points: 15, isPlayer: true }, { name: 'Vexa Ruun', points: 12, isPlayer: false },
     ]);
-    expect(reloaded.result?.nextEventId).toBe('cup-foundry');
+    expect(reloaded.result?.nextEventId).toBe('cup-frostline');
     expect(reloaded.profile.records).toEqual(completed.records);
     expect(reloaded.profile.favorites).toEqual(completed.favorites);
     expect(reloaded.profile.history).toHaveLength(completed.history.length + 1);
@@ -319,7 +319,7 @@ describe('fixed competition and driving lessons', () => {
     expect(lesson.cue.step).toBe(1);
     for (let tick = 0; tick < 20; tick += 1) lesson.observe(input, 'player');
     expect(lesson.cue.step).toBe(1);
-    input.inputs = { player: { throttle: 1, brake: 0, steer: 0, drift: false, boost: false, fire: false, mine: false, shield: false, cycleVehicle: false, reset: false, pause: false } };
+    input.inputs = { player: { throttle: 1, brake: 0, steer: 0, drift: false, boost: false, fire: false, mine: false, shield: false, ability: false, cycleVehicle: false, reset: false, pause: false } };
     player.vehicle.telemetry.speed = 6;
     lesson.observe(input, 'player');
     expect(lesson.cue.step).toBe(2);

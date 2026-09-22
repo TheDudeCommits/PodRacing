@@ -920,6 +920,8 @@ export class GalacticEffectsView extends Group {
     );
   }
 
+  get flameAtlasUniforms() { return this.ruptureFlameAtlas.uniforms; }
+
   get flameAtlasDiagnostics() { return this.ruptureFlameAtlas.diagnostics; }
 
   setState(state: Readonly<GalacticEffectsState>): void {

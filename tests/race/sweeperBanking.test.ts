@@ -87,7 +87,7 @@ describe('banked flagship sweeper', () => {
   });
 
   it('versions records for the new course edition and handling', () => {
-    expect(MASTERY_GENERATOR_VERSION).toBe('inkstorm-course-10');
-    expect(MASTERY_PHYSICS_VERSION).toBe('inkstorm-drive-6');
+    expect(MASTERY_GENERATOR_VERSION).toBe('inkstorm-course-11');
+    expect(MASTERY_PHYSICS_VERSION).toBe('inkstorm-drive-7');
   });
 });

@@ -659,6 +659,7 @@ export function augmentGalacticAIInput(
     fire,
     mine,
     shield,
+    ability: false,
     cycleVehicle: false,
   });
 }

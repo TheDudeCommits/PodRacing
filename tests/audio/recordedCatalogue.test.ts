@@ -18,10 +18,10 @@ describe('downloaded recording admission', () => {
       expect(readFileSync(item!.source).length).toBeGreaterThan(0);
       if (item!.operation === 'byte-exact copy') expect(bytes.equals(readFileSync(item!.source))).toBe(true);
     }
-    expect(Object.keys(RECORDED_CUES)).toHaveLength(25);
+    expect(Object.keys(RECORDED_CUES)).toHaveLength(27);
     const credits = readFileSync('public/audio/salt-dusk-v2/CREDITS.html', 'utf8');
     for (const author of ['Scott Buckley', 'Little Robot Sound Factory', 'qubodup', 'dklon', '7of9Designs', 'Michel Baradari']) expect(credits).toContain(author);
-    for (const url of RECORDED_EFFECT_URLS) expect(url).toContain('/salt-dusk-v2/');
+    for (const url of RECORDED_EFFECT_URLS) expect(url).toMatch(/\/salt-dusk(?:-v2)?\//);
     // Race scores: two existing Kevin MacLeod compositions, credited beside the files.
     const raceCredits = readFileSync('public/audio/race-set/CREDITS.html', 'utf8');
     expect(RECORDED_RACE_MUSIC).toHaveLength(2);
@@ -38,7 +38,7 @@ describe('downloaded recording admission', () => {
     expect(voiceCredits).toContain('Kenney');
     expect(voiceCredits).toContain('creativecommons.org/publicdomain/zero/1.0/');
     expect(readFileSync('assets/source/audio-voice-fighter/License.txt', 'utf8')).toContain('Creative Commons Zero');
-    expect(RECORDED_EFFECT_URLS).toHaveLength(8);
+    expect(RECORDED_EFFECT_URLS).toHaveLength(10);
     for (const url of Object.values(RECORDED_CUES).flat()) expect(RECORDED_CUE_ROLES[url]).toBeDefined();
   });
 

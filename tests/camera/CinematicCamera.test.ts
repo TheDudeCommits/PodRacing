@@ -213,6 +213,23 @@ describe('Inkstorm driving composition', () => {
     velocity: new Vector3(0, 0, 180), speed: 180,
   });
 
+  it('keeps the full compact Pog hull above the HUD in portrait and landscape chase views', () => {
+    const rig = new CinematicCamera();
+    try {
+      for (const speed of [0, 120, 220]) for (const aspect of [1440 / 900, 390 / 844]) {
+        rig.camera.aspect = aspect;
+        rig.snap({ ...subject(), speed, velocity: new Vector3(0, 0, speed), chaseClearance: vehicleChaseClearance('pog') });
+        rig.camera.updateMatrixWorld(true);
+        for (const x of [-1.38, 1.38]) for (const y of [0, 7.47]) for (const z of [-6, -.74]) {
+          const projected = new Vector3(x, y, z).project(rig.camera);
+          expect(Math.abs(projected.x)).toBeLessThan(.8);
+          expect(projected.y).toBeGreaterThan(-.82);
+          expect(projected.y).toBeLessThan(.65);
+        }
+      }
+    } finally { rig.dispose(); }
+  });
+
   it('separates Polwo engine and cockpit depth in the live chase view without moving race state', () => {
     const rig = new CinematicCamera(), state = subject();
     const cockpit = new Vector3(0, 4.2725, -5.2), engine = new Vector3(-3.9292, 1.6775, 13);

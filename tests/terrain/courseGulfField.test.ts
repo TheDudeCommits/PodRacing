@@ -1,6 +1,6 @@
+import { legacyBranchedCourse as createProceduralPodraceCourse } from '../helpers/legacyBranchedCourse';
 import { describe, expect, it } from 'vitest';
 import { FloatType, NearestFilter, ShaderMaterial, Vector3 } from 'three';
-import { createProceduralPodraceCourse } from '../../src/game/race/course';
 import { RaceSimulation } from '../../src/game/race/RaceSimulation';
 import {
   COURSE_GULF_MAX_DEPTH, COURSE_GULF_MAX_RISE, COURSE_GULF_SEED, SALT_RUN_PROFILE, FORK_APPROACH_PROFILE, createCourseGulfField,
@@ -103,8 +103,8 @@ describe('shared flagship off-road gulf', () => {
   });
 
   it('uses the same physical field in standalone races and never leaks into another course', () => {
-    const race = new RaceSimulation({ terrain: base, seed: COURSE_GULF_SEED, competitionProfile: 'time-trial' });
-    const peer = new RaceSimulation({ terrain: base, seed: COURSE_GULF_SEED, competitionProfile: 'time-trial' });
+    const race = new RaceSimulation({ enableCourseBranches: true, terrain: base, seed: COURSE_GULF_SEED, competitionProfile: 'time-trial' });
+    const peer = new RaceSimulation({ enableCourseBranches: true, terrain: base, seed: COURSE_GULF_SEED, competitionProfile: 'time-trial' });
     expect(race.course.signature).toBe(course.signature);
     expect(race.course.checkpoints.map(({y: _y, ...p}) => p)).toEqual(course.checkpoints.map(({y: _y, ...p}) => p));
     for (const checkpoint of race.course.checkpoints) expect(checkpoint.y).toBe(race.course.heightAt(checkpoint.x, checkpoint.z));
@@ -115,12 +115,12 @@ describe('shared flagship off-road gulf', () => {
     expect(race.course.heightAt(x, z)).toBe(expected);
     expect(peer.terrain.heightAt(x, z)).toBe(expected);
     expect(field.sampleOffset(x, z)).not.toBe(0);
-    const expedition = new RaceSimulation({ terrain: base, seed: 1234, competitionProfile: 'time-trial' });
+    const expedition = new RaceSimulation({ enableCourseBranches: true, terrain: base, seed: 1234, competitionProfile: 'time-trial' });
     expect(expedition.courseGulfField).toBeNull();
     expect(expedition.terrain.heightAt(x, z)).toBe(base.heightAt(x, z));
     expect(expedition.course.heightAt(x, z)).toBe(base.heightAt(x, z));
     expect(createCourseGulfField(expedition.course)).toBeNull();
-    const supplied = new RaceSimulation({ terrain: base, seed: COURSE_GULF_SEED, course, competitionProfile: 'time-trial' });
+    const supplied = new RaceSimulation({ enableCourseBranches: true, terrain: base, seed: COURSE_GULF_SEED, course, competitionProfile: 'time-trial' });
     expect(supplied.course).toBe(course);
     expect(supplied.courseGulfField).toBeNull();
     expect(supplied.terrain.heightAt(x, z)).toBe(base.heightAt(x, z));

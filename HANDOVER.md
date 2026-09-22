@@ -1,3 +1,21 @@
+# PodRacing — Round 48 gameplay overhaul (2026-09-22)
+
+Implementation and local validation are complete. Production promotion is in progress;
+its exact deployment and bundle receipt will be added here after canonical-domain QA.
+
+- Shortcuts removed from playable circuits; scenery and surfaces improved across all four destinations.
+- Three-stage drift, hop grace, countersteering, stronger torque/landing feedback, fitted hulls and compact-pod camera framing.
+- Contact takedowns, visible scorching/smoke, directional flame and eight pod ability assignments. Keyboard **C**, controller **LB**; steer to aim/dodge. Existing primary/shield/mine controls remain.
+- Recorded engine/pass-by/tunnel/intensity mix changes. Lossless runtime pod packaging saves about **6.7 MB** with unchanged decoded pixels and geometry. Startup waits for pod/shader preparation.
+- Four-round World Cup, controller menu navigation and replicated multiplayer pod/map/rules selection. Protocol 2 requires both players to refresh.
+- `npm test`: **1,092 tests / 189 files passed**; subsequent focused camera regression: **46 tests / 9 files passed**, including a new full-Pog-hull framing check. TypeScript, production build and diff checks pass.
+- All eight pods completed all four destinations, live host/guest ability and selection parity passed, and a full native jungle lap measured **p95 16.7 ms** at 1440×900 on this Mac. Device-specific evidence and limitations are in the report.
+- [Implementation, validation and remaining quality work](docs/inkstorm-overhaul/ROUND48_GAMEPLAY.md).
+- Reproduction: `scripts/qa-race-round48.mjs`, `qa-live-round48.mjs`, `qa-online-round48.mjs`, `qa-pods-round48.mjs`, `qa-round48.mjs`, `qa-production-round48.mjs`. Local receipts/screenshots: `output/round48/`.
+- Do not touch the user's interactive Blender scene/server or rewrite admitted source geometry/audio. Archived branch fixtures stay explicitly opt-in; new runtime tracks do not use them.
+
+## Prior release — Round 47
+
 # PodRacing — Round 47 Production release (2026-09-22)
 
 The owner requested deployment to **https://podracing.dude.work/**. Round 46's

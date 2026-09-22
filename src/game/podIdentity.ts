@@ -1,3 +1,4 @@
+import { POD_FOOTPRINTS } from './podGeometry';
 import type { PodracerConfig } from './simulation/config';
 import type { VehicleAppearanceId } from './vehicleAppearance';
 
@@ -150,7 +151,7 @@ export function derivePodIdentityConfig(
 ): Readonly<PodracerConfig> {
   const definition = POD_IDENTITIES[identity] ?? POD_IDENTITIES[DEFAULT_POD_IDENTITY];
   const entries = Object.entries(definition.configScale);
-  if (entries.length === 0) return base;
+  if (entries.length === 0 && !base.stagedDrift) return base;
   const result = { ...base } as PodracerConfig;
   for (const [key, scale] of entries) {
     const typedKey = key as keyof PodracerConfig;
@@ -161,7 +162,7 @@ export function derivePodIdentityConfig(
     }
   }
   result.fixedDelta = base.fixedDelta;
-  result.probes = base.probes;
+  result.probes = base.stagedDrift && identity !== 'procedural' ? POD_FOOTPRINTS[identity].probes : base.probes;
   return Object.freeze(result);
 }
 

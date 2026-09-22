@@ -538,7 +538,7 @@ describe('recorded catalogue audio owner', () => {
     audio.dispose();
   });
 
-  it('uses one stable propulsion bed and only two quiet rivals with conservative playback rates', async () => {
+  it('uses a load-responsive bed and two bounded Doppler pass-by voices', async () => {
     const { audio, context } = await createLoadedAudio();
     audio.transitionMenuMusicToRace();
     const sources = context.bufferSources.filter(source => source.loop && source.connections[0] instanceof FakeBiquadFilterNode);
@@ -548,11 +548,11 @@ describe('recorded catalogue audio owner', () => {
     audio.update({ ...racingTelemetry, speedMps: 1000, throttle: 100, boost: 100, damage: 0,
       rivals: Array.from({ length: 8 }, (_, i) => ({ id: `r${i}`, speedMps: 1000, distanceM: 0, closingSpeedMps: 999, pan: 1 })) });
     expect(gains[0]!.gain.value).toBeGreaterThan(0.3);
-    expect(gains.slice(1).every(gain => gain.gain.value <= 0.031)).toBe(true);
-    expect(gains.reduce((sum, node) => sum + node.gain.value, 0)).toBeLessThan(0.43);
+    expect(gains.slice(1).every(gain => gain.gain.value <= 0.103)).toBe(true);
+    expect(gains.reduce((sum, node) => sum + node.gain.value, 0)).toBeLessThan(0.58);
     // Registered pod identities widen the rival register to 0.8–1.2; the
     // player bed stays inside its narrow load curve times the pod voice rate.
-    expect(sources.every(source => source.playbackRate.value >= 0.8 && source.playbackRate.value <= 1.2)).toBe(true);
+    expect(sources.every(source => source.playbackRate.value >= 0.65 && source.playbackRate.value <= 1.45)).toBe(true);
     context.currentTime = 9;
     audio.update(racingTelemetry);
     const rate = sources[0]!.playbackRate.value;

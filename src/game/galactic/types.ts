@@ -289,6 +289,7 @@ export interface GalacticRacerState {
   /** Absent in snapshots written before ordnance existed. */
   ordnance?: GalacticOrdnanceState;
   tow?: GalacticTowState;
+  ability?: import('./podAbilities').PodAbilityState;
 }
 
 export interface HeatLanceProjectileState {
@@ -433,7 +434,7 @@ export interface GalacticImpact {
   targetId: string;
   sourceId: string | null;
   cause: GalacticWreckCause;
-  weapon: 'heat-lance' | 'overcharge-lance' | 'scrap-mine' | null;
+  weapon: 'heat-lance' | 'overcharge-lance' | 'scrap-mine' | 'flame' | null;
   damage: number;
   heat: number;
   /** Ignores a raised shield entirely. */
@@ -470,6 +471,7 @@ export interface GalacticImpactResult {
 }
 
 export type GalacticEvent =
+  | { type: 'pod-ability'; racerId: string; kind: import('./podAbilities').PodAbilityKind; phase: 'windup' | 'active' }
   | { type: 'emp-pulse'; racerId: string; pickupId: string; radius: number; targetIds: string[]; blockedIds: string[]; clearedOrdnance: number }
   | { type: 'emp-hit'; attackerId: string; targetId: string; blocked: boolean; duration: number }
   | { type: 'repair-salvage-collected'; racerId: string; pickupId: string; repaired: number; cooled: number; coreCooled: number }

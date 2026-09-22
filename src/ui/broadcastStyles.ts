@@ -214,6 +214,7 @@ export const BROADCAST_HUD_CSS = /* css */ `
 .pod-hud__context-action { left:32px; bottom:129px; width:213px; background:#17363ed4; }
 .pod-hud__controls { bottom:21px; width:min(590px,calc(100vw - 500px)); padding:8px 10px; background:#17363eee; border-color:#f5d58e50; }
 .pod-hud__controls>span { font-size:11px; }
+.pod-hud__wrong-way { color:#ffe39b; }
 .pod-hud__galactic-alert,.pod-hud__director-event,.pod-hud__wrong-way { top:132px; width:min(390px,40vw); background:#17363eea; border-left-color:var(--pod-paper); }
 .pod-hud__galactic-alert strong,.pod-hud__director-event strong { font:700 17px Inkstorm UI,sans-serif; }
 .pod-hud__flight { right:30px; bottom:251px; width:182px; padding:7px 9px; border-left:1px solid #f5d58e77; background:#17363ed9; }
@@ -915,7 +916,7 @@ export const BROADCAST_HUD_CSS = /* css */ `
 .pod-hud__driving-feedback .pod-hud__meter-head { display:flex; justify-content:space-between; gap:12px; }
 .pod-hud__driving-feedback .pod-hud__label { font:700 12px/1.3 Inkstorm UI,sans-serif; letter-spacing:0; }
 .pod-hud__driving-feedback .pod-hud__meter-value { position:static; width:auto; height:auto; clip:auto; clip-path:none; overflow:visible; margin:0; font:700 13px/1.3 Inkstorm UI,sans-serif; }
-.pod-hud__driving-feedback .pod-hud__meter-value::after { content:'%'; font-size:.8em; }
+.pod-hud__driving-feedback .pod-hud__meter-value::after { content:''; }
 .pod-hud__driving-feedback .pod-hud__meter-track { display:block; height:4px; margin-top:5px; overflow:hidden; background:#b1d9da33; border:0; transform:none; }
 .pod-hud__driving-feedback .pod-hud__meter-fill { display:block; height:100%; background:var(--pod-paper); transition:width 80ms linear; }
 .pod-hud.has-combat-feedback .pod-hud__driving-feedback>.pod-hud__launch[data-stage=result],.pod-hud.has-context-danger .pod-hud__driving-feedback>.pod-hud__launch[data-stage=result] { display:none; }

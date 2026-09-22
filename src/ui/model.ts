@@ -1,3 +1,4 @@
+import { POD_ABILITIES } from '../game/galactic/podAbilities';
 import { racingBiomeForSeed } from '../game/race/racingBiomes';
 import { GALACTIC_VEHICLES, GALACTIC_VEHICLE_ORDER } from '../game/galactic/catalog';
 import { LANCE_RELOAD_SECONDS } from '../game/galactic/system';
@@ -394,7 +395,7 @@ export function createWorkshopHudViewModel(
 const BINDING_LABELS: Readonly<Record<string, string>> = Object.freeze({
   throttle: 'Throttle', brake: 'Brake', steer: 'Analog steer', steerLeft: 'Steer left',
   steerRight: 'Steer right', drift: 'Drift', boost: 'Redline', fire: 'Heat Lance',
-  mine: 'Mine', shield: 'Shield', cycleVehicle: 'Cycle vehicle', reset: 'Recover', pause: 'Pause',
+  mine: 'Mine', shield: 'Shield', ability: 'Pod ability', cycleVehicle: 'Cycle vehicle', reset: 'Recover', pause: 'Pause',
 });
 
 function readableKey(code: string): string {
@@ -800,6 +801,12 @@ export function deriveRaceHudViewModel(
     raceModeStatus,
     directorEvent,
     controlsVisible: options.controlsVisible,
+    ability: { label: POD_ABILITIES[player.podIdentity ?? 'teemto'].label,
+      hint: POD_ABILITIES[player.podIdentity ?? 'teemto'].hint,
+      cooldown: player.galactic?.ability?.cooldown ?? 0,
+      active: (player.galactic?.ability?.remaining ?? 0) > 0,
+      windup: (player.galactic?.ability?.windup ?? 0) > 0,
+      unavailable: profile !== undefined && profile !== 'chaos' && POD_ABILITIES[player.podIdentity ?? 'teemto'].kind === 'flame' },
     galactic: deriveGalacticHudViewModel(player.galactic),
     combatEnabled: profile === undefined || profile === 'chaos',
   };

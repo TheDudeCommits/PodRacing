@@ -495,7 +495,8 @@ export class CinematicCamera {
           break;
         }
         const speedT = MathUtils.smoothstep(subject.speed, 0, 230);
-        const clearance = MathUtils.clamp(Number.isFinite(subject.chaseClearance) ? subject.chaseClearance! : 0, 0, 6);
+        const clearance = MathUtils.clamp(Number.isFinite(subject.chaseClearance) ? subject.chaseClearance! : 0, 0, 10);
+        const compactHull = MathUtils.smoothstep(clearance, 6, 8.5);
         this.framingForward.copy(forward);
         const junction=subject.junctionLookAhead;
         if(junction && Number.isFinite(junction.x) && Number.isFinite(junction.z)){
@@ -517,12 +518,12 @@ export class CinematicCamera {
         this.travelDirection.lerp(this.framingForward, MathUtils.clamp(subject.junctionWeight??0,0,1)*.85).normalize();
         const tight = MathUtils.clamp(subject.finalStraight ?? 0, 0, 1);
         position.copy(subject.position)
-          .addScaledVector(this.framingForward, -16.5 - speedT * 0.8 - clearance * .45 + tight * 4.5)
-          .addScaledVector(UP, 7.1 + speedT * 0.5 + clearance + this.landingCompression - tight * 1.8)
+          .addScaledVector(this.framingForward, -16.5 - speedT * 0.8 - clearance * .45 - compactHull * 9 + tight * 4.5)
+          .addScaledVector(UP, 7.1 + speedT * 0.5 + clearance - compactHull * 2 + this.landingCompression - tight * 1.8)
           .addScaledVector(right, -0.35);
         lookAt.copy(subject.position)
-          .addScaledVector(this.travelDirection, 34 + speedT * 18 + tight * 14)
-          .addScaledVector(UP, 5.8 - tight * 1.2);
+          .addScaledVector(this.travelDirection, 34 + speedT * 18 - compactHull * 18 + tight * 14)
+          .addScaledVector(UP, 5.8 - compactHull * 3 - tight * 1.2);
         const route = subject.routeLookAhead;
         if (route && Number.isFinite(route.x) && Number.isFinite(route.y) && Number.isFinite(route.z)) {
           // A bounded bias gives an apex preview without pulling the racer off

@@ -14,19 +14,19 @@ describe('route lights with a recoverable shoulder', () => {
       const race = createRaceSimulation({terrain, seed, competitionProfile: 'time-trial'});
       const data = race.course.getRenderData(1024);
       const markers = race.routeMarkers;
-      expect(markers.length).toBeGreaterThan(90);
+      expect(markers.length).toBeGreaterThan(70);
       for (const marker of markers) {
         const route = race.course.projectPoint(marker.x, marker.z);
         expect(route.distanceToCenter - route.width, marker.id).toBeGreaterThan(7.8 + COURSE_MARKER_RADIUS + 1.5);
         expect(marker.maxY - race.course.heightAt(marker.x, marker.z)).toBeCloseTo(4.9, 9);
         expect(route.tag, marker.id).not.toBe('narrow-canyon');
         expect(race.course.getObstacleContact(marker.x, marker.z,
-          7.8 + COURSE_MARKER_RADIUS, undefined, marker.minY + 2.65), marker.id).toBeNull();
+          25 + COURSE_MARKER_RADIUS, undefined, marker.minY + 2.65), marker.id).toBeNull();
       }
       // Both reconstructions, including alternate path rejection, are deterministic.
       expect(createCourseMarkers(data.points, data.branches ?? [], (x, z) => race.course.heightAt(x, z))
         .filter(marker => !race.course.getObstacleContact(marker.x, marker.z,
-          7.8 + COURSE_MARKER_RADIUS, undefined, marker.minY + 2.65))).toEqual(markers);
+          25 + COURSE_MARKER_RADIUS, undefined, marker.minY + 2.65))).toEqual(markers);
     },
   );
 

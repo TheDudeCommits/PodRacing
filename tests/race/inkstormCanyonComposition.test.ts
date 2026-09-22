@@ -1,7 +1,8 @@
+import { legacyBranchedCourse as createProceduralPodraceCourse } from '../helpers/legacyBranchedCourse';
 import { Box3, Mesh } from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { beforeAll, describe, expect, it } from 'vitest';
-import { createProceduralPodraceCourse, type PodraceCourse } from '../../src/game/race/course';
+import {  type PodraceCourse } from '../../src/game/race/course';
 import { getInkstormLayout, getInkstormObstacleContact, type InkstormPlacement } from '../../src/game/race/inkstormLayout';
 import { sampleTerrainHeight } from '../../src/render/terrain/terrainMath';
 

@@ -1,3 +1,6 @@
+import { GamepadFeedback } from '../../game/input/gamepadFeedback';
+import { racingBiomeForSeed } from '../../game/race/racingBiomes';
+import { DrivingEffects } from '../galactic/DrivingEffects';
 import { duskSkyAssetReceipt } from '../sky/DuskSkyAssets';
 import { CombatPresentationController, type CombatPresentationContext } from '../combat/CombatPresentationController';
 import { WreckVisualPoseCache, type WreckVisualPose } from '../combat/WreckVisualPose';
@@ -311,6 +314,7 @@ export class GameApp {
   private readonly galacticEffects = new GalacticEffectsView({
     flameAtlas: { url: '/assets/fx/inkstorm/rupture-flame-v1.png' },
   });
+  private readonly drivingEffects = new DrivingEffects(this.galacticEffects.flameAtlasUniforms);
   private readonly galacticShieldPool = Array.from({ length: RACE_PRESENTATION_CAPACITY * 2 }, () => ({
     position: { x: 0, y: 0, z: 0 }, radius: 10, intensity: 1, phase: 0, color: '#72f4ff',
     mode: 'shield' as 'shield' | 'recovery' | 'redline', yaw: 0,
@@ -509,6 +513,9 @@ export class GameApp {
   /** The renderer is live on boot, but race simulation remains frozen until confirmed. */
   private awaitingRaceStart = true;
   private worldAssetsSettled = false;
+  private preparingRace = false;
+  private launchEpoch = 0;
+  private readonly gamepadFeedback = new GamepadFeedback();
   private pauseHeld = false;
   private readonly handleVisibilityChange = (): void => {
     this.audio.setHidden(document.hidden);
@@ -569,7 +576,7 @@ export class GameApp {
     this.scene.add(this.terrain.group);
     this.scene.add(this.dust.group);
     this.scene.add(this.contactShadows.mesh);
-    this.scene.add(this.galacticEffects);
+    this.scene.add(this.galacticEffects, this.drivingEffects);
     this.scene.add(this.landmarks);
     this.scene.add(this.inkstormWorld);
     this.scene.add(this.ghostView);
@@ -747,6 +754,8 @@ export class GameApp {
     this.speedStreaks.dispose();
     this.contactShadows.dispose();
     this.galacticEffects.dispose();
+    this.drivingEffects.dispose();
+    this.gamepadFeedback.dispose();
     this.terrain.dispose();
     this.dust.dispose();
     this.renderer.dispose();
@@ -785,6 +794,7 @@ export class GameApp {
 
   private advanceRealtime(dt: number): void {
     this.pollGamepadRemapCapture();
+    this.gamepadFeedback.navigate(this.hud.root, performance.now(), !this.captureMode && !this.settingsCapture && (this.awaitingRaceStart || this.paused || this.settingsOpen || this.race.state.phase === 'finished'));
     const input = this.input.snapshot();
     this.consumeRoomControlSignals();
     // Boot into an interactive vehicle registry, not a race already in
@@ -912,6 +922,14 @@ export class GameApp {
         entry.vehicle,
         entry.isPlayer,
       );
+      for (const event of result.vehicleEvents[entry.id] ?? []) {
+        if ((event.type === 'collision' || event.type === 'landing') && event.intensity > .06) this.drivingEffects.impact(entry.vehicle, event.intensity);
+        if (entry.isPlayer && !this.captureMode && this.settings.comfort.cameraShake > 0) {
+          if (event.type === 'collision') this.gamepadFeedback.pulse(event.intensity * .55);
+          if (event.type === 'landing') this.gamepadFeedback.pulse(event.intensity * .45, 160);
+          if (event.type === 'drift-stage') this.gamepadFeedback.pulse(event.stage * .12, 75);
+        }
+      }
       this.pushRacerWake(racerIndex, entry.vehicle, time);
       const dynamics = this.pilotDynamics[racerIndex];
       if (dynamics) {
@@ -1076,6 +1094,7 @@ export class GameApp {
       renderOriginZ: 0,
       time: presentationTime,
     });
+    this.drivingEffects.update(presentationTime, this.race.state.entries.map(entry => ({ vehicle: entry.vehicle, identity: this.race.podIdentityFor(entry.id), ability: entry.galactic?.ability, running: entry.galactic?.wreck.phase === 'running' })));
     this.syncGalacticEffects(presentationTime);
     this.updateGroundDust();
     this.dust.update({
@@ -1277,7 +1296,7 @@ export class GameApp {
             lobby: this.hudLobbyViewModel(),
           },
         ),
-        mastery: !this.captureMode && this.room.lobby.role === 'solo'
+        mastery: !this.captureMode && this.room.lobby.role !== 'guest'
           ? this.mastery.model(this.awaitingRaceStart ? this.masteryStartOptions() : undefined) : undefined,
         controlsVisible: !this.captureMode && (
           !this.awaitingRaceStart
@@ -1397,8 +1416,7 @@ export class GameApp {
   /**
    * Every registered appearance carries its pod identity into the simulation:
    * the local choice for the local racer, the roster identity for each AI and
-   * the default for remote humans, whose appearance the room protocol does
-   * not carry yet. Handling therefore follows the pod the player can see.
+   * the replicated identity for remote humans. Handling therefore follows the pod the player can see.
    */
   private syncPodIdentities(): void {
     const localRacerId = this.localRacerId();
@@ -1411,6 +1429,7 @@ export class GameApp {
   }
 
   private restartRace(previousVehicleClass = this.selectedVehicleClass()): void {
+    this.launchEpoch++; this.preparingRace = false;
     this.mastery.cancelRun();
     this.ghostView.setPose(null);
     this.race.reset();
@@ -1441,6 +1460,7 @@ export class GameApp {
     this.resultsPresentation = null;
     this.dust.clear();
     this.galacticEffects.clearEffects();
+    this.drivingEffects.clearEffects();
     this.wreckGroundContacts.clear();
     this.cameraDirector.reset();
     this.paused = false;
@@ -1573,6 +1593,7 @@ export class GameApp {
     this.recentGalacticEvents.length = 0;
     this.dust.clear();
     this.galacticEffects.clearEffects();
+    this.drivingEffects.clearEffects();
     this.wreckGroundContacts.clear();
     this.cameraDirector.reset();
     this.syncRacerVehicleViews();
@@ -1810,7 +1831,7 @@ export class GameApp {
   }
 
   private selectMasteryEvent(id: string, forcePrepare = false): void {
-    if (this.room.lobby.role !== 'solo' || (!this.awaitingRaceStart && this.race.state.phase !== 'finished')) return;
+    if (this.preparingRace || this.room.lobby.role === 'guest' || (!this.awaitingRaceStart && this.race.state.phase !== 'finished')) return;
     if (!forcePrepare && this.awaitingRaceStart && this.mastery.selectedEvent.id === id) return;
     const vehicleClass = this.selectedVehicleClass();
     const event = this.mastery.selectEvent(id);
@@ -1820,6 +1841,10 @@ export class GameApp {
     this.workshopOpen = false;
     if (!this.awaitingRaceStart) this.restartRace(vehicleClass);
     this.reserveSoloCourse();
+    if (this.room.lobby.role === 'host') {
+      this.room.setDestination(event.seed, event.profile === 'chaos' ? 'chaos' : 'clean-race');
+      this.room.setLaps(event.laps); this.room.setRaceMode(event.mode); this.room.setAIDifficulty(event.difficulty);
+    }
     this.nextHudFrame = 0;
   }
 
@@ -1860,10 +1885,11 @@ export class GameApp {
   }
 
   private selectPodAppearance(appearance: VehicleAppearanceId): void {
-    if (!this.awaitingRaceStart) return;
+    if (!this.awaitingRaceStart || this.preparingRace) return;
     if (this.selectedVehicleClass() !== 'podracer') this.selectVehicle('podracer');
     this.vehicleAppearance = appearance;
     saveVehicleAppearance(appearance);
+    this.room.updateLocalVehicle(this.selectedVehicleClass(), this.workshopGarage.loadouts[this.selectedVehicleClass()], appearance);
     const index = this.race.state.entries.findIndex((entry) => entry.id === this.localRacerId());
     void this.racerViews[index]?.setAppearance(appearance);
     this.syncPodIdentities();
@@ -1872,7 +1898,7 @@ export class GameApp {
   }
 
   private selectVehicle(vehicleClass: GalacticVehicleClass): void {
-    if (!this.awaitingRaceStart) return;
+    if (!this.awaitingRaceStart || this.preparingRace) return;
     const racerId = this.localRacerId();
     const event = this.race.selectRacerVehicle(racerId, vehicleClass);
     this.room.updateLocalVehicle(vehicleClass, this.workshopGarage.loadouts[vehicleClass]);
@@ -1886,11 +1912,11 @@ export class GameApp {
   }
 
   private beginRaceCountdown(): void {
-    if (!this.awaitingRaceStart || !this.worldAssetsSettled) return;
+    if (!this.awaitingRaceStart || !this.worldAssetsSettled || this.preparingRace) return;
     const lobby = this.room.lobby;
     if (lobby.role === 'guest' || (lobby.role === 'host' && !lobby.canStart)) return;
     if (lobby.role === 'host') {
-      const start = this.room.startRace(this.nextCourseSeed());
+      const start = this.room.startRace();
       this.applyRaceStart(start);
       this.room.broadcastState(this.race.snapshot());
       return;
@@ -1909,7 +1935,7 @@ export class GameApp {
     this.selectedLaps = start.laps;
     this.selectedRaceMode = start.mode;
     this.selectedAIDifficulty = start.aiDifficulty;
-    this.rebuildRaceForCourse(start.seed, start.workshopLoadouts);
+    this.rebuildRaceForCourse(start.seed, start.workshopLoadouts, start.competitionProfile ?? 'chaos');
     this.race.setTotalLaps(start.laps);
     this.race.setRaceMode(start.mode);
     this.race.setAIDifficulty(start.aiDifficulty);
@@ -1917,11 +1943,38 @@ export class GameApp {
       this.race.selectRacerVehicle(racerId, vehicleClass);
     }
     this.syncPodIdentities();
+    for (const [id, identity] of Object.entries(start.podIdentities ?? {})) this.race.selectRacerPodIdentity(id, identity);
     this.syncRacerVehicleViews();
     this.finishStartingGrid();
   }
 
   private finishStartingGrid(): void {
+    if (this.preparingRace) return;
+    if (this.captureMode) { this.releaseStartingGrid(); return; }
+    const epoch = ++this.launchEpoch;
+    this.preparingRace = true;
+    this.race.lockPlayerVehicleSelection();
+    this.hud.setAssetStatus('Preparing pods and shaders…');
+    void Promise.all(this.racerViews.map(view => view.ready))
+      .then(() => {
+        if (this.disposed || epoch !== this.launchEpoch) return;
+        const localView = this.racerViews[this.race.state.entries.findIndex(entry => entry.id === this.localRacerId())];
+        if (localView?.appearanceStatus === 'error') throw new Error('Pod download failed. Reload to retry.');
+        return this.renderer.compileAsync(this.scene, this.cameraRig.camera);
+      })
+      .then(() => {
+        if (this.disposed || epoch !== this.launchEpoch) return;
+        this.preparingRace = false;
+        this.hud.setAssetStatus(null);
+        this.releaseStartingGrid();
+      }).catch(error => {
+        if (this.disposed || epoch !== this.launchEpoch) return;
+        this.preparingRace = false;
+        this.hud.setAssetStatus(`Unable to prepare race: ${error instanceof Error ? error.message : 'reload to retry'}`);
+      });
+  }
+
+  private releaseStartingGrid(): void {
     // Release native button focus when the player commits the menu, so driving
     // keys belong to the game rather than the now-hidden setup controls.
     if (document.activeElement instanceof HTMLElement && this.hud.root.contains(document.activeElement)) {
@@ -2358,6 +2411,11 @@ export class GameApp {
       const dx = rival.vehicle.position.x - origin.x;
       const dz = rival.vehicle.position.z - origin.z;
       const distance = Math.hypot(dx, dz);
+      const ability = rival.galactic?.ability;
+      if (distance < 68 && ability && (ability.windup > 0 || ability.remaining > 0) && (ability.kind === 'flame' || ability.kind === 'ram')) {
+        addCue(`ability-${rival.id}`, ability.kind === 'flame' ? 'FLAME — SHIELD / EVADE' : 'RAM — EVADE',
+          rival.vehicle.position.x, rival.vehicle.position.z, .9, 'impact');
+      }
       if (distance > 52) continue;
       const relativeVelocityX = rival.vehicle.velocity.x - local.vehicle.velocity.x;
       const relativeVelocityZ = rival.vehicle.velocity.z - local.vehicle.velocity.z;
@@ -2599,8 +2657,10 @@ export class GameApp {
     void this.room.createRoom({
       name: 'Host',
       vehicleClass: this.selectedVehicleClass(),
+      podIdentity: this.vehicleAppearance,
       workshopLoadout: this.workshopGarage.loadouts[this.selectedVehicleClass()],
     }, this.selectedLaps).then(() => {
+      this.room.setDestination(this.mastery.selectedEvent.seed, this.mastery.selectedEvent.profile === 'chaos' ? 'chaos' : 'clean-race');
       this.room.setRaceMode(this.selectedRaceMode);
       this.room.setAIDifficulty(this.selectedAIDifficulty);
     }).catch(() => undefined);
@@ -2613,6 +2673,7 @@ export class GameApp {
     void this.room.joinRoom(code, {
       name: this.multiplayerCallsign,
       vehicleClass: this.selectedVehicleClass(),
+      podIdentity: this.vehicleAppearance,
       workshopLoadout: this.workshopGarage.loadouts[this.selectedVehicleClass()],
     }).catch(() => undefined);
   }
@@ -2717,7 +2778,7 @@ export class GameApp {
           ? lobby.error ?? 'Room connection failed'
           : lobby.role === 'host'
             ? `${lobby.members.length} racer${lobby.members.length === 1 ? '' : 's'} ready · You host`
-            : 'Connected · Host controls laps and start';
+            : `Connected · ${racingBiomeForSeed(lobby.courseSeed ?? 0x494e4b53).title} · ${lobby.competitionProfile === 'clean-race' ? 'Race' : 'Battle'}`;
     return {
       role: lobby.role,
       roomCode: lobby.code,
@@ -2956,6 +3017,7 @@ export class GameApp {
     this.reviewInput = normalizePlayerInput();
     this.setReviewCameraFocus();
     this.galacticEffects.clearEffects();
+    this.drivingEffects.clearEffects();
     this.wreckGroundContacts.clear();
     const player = this.race.state.entries.find((entry) => entry.isPlayer);
     const galactic = player?.galactic;
@@ -3226,6 +3288,7 @@ export class GameApp {
     this.race.reset();
     this.dust.clear();
     this.galacticEffects.clearEffects();
+    this.drivingEffects.clearEffects();
     this.wreckGroundContacts.clear();
     const progressByPreset: Record<CapturePreset, number> = {
       // The wide review camera doubles as proof of the authored canyon set
@@ -4214,7 +4277,7 @@ export class GameApp {
             return [
               {id:'01-grid',progress:.003},{id:'02-salt-run',progress:section('fast-straight',.2)},
               {id:'03-canyon',progress:section('narrow-canyon',.2)},
-              {id:'04-fork',progress:this.race.course.branches[0]?.entryProgress??section('wide-sweeper')},
+              {id:'04-sweeper',progress:this.race.course.branches[0]?.entryProgress??section('wide-sweeper')},
               {id:'05-launch',progress:section('launch-crest',.4)},
               {id:'06-foundry',progress:section('chicane',.06)},
               {id:'07-finish',progress:section('hairpin',.35)},

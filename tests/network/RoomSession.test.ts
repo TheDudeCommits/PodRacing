@@ -264,9 +264,9 @@ describe('RoomSession in-memory protocol', () => {
     outgoing.bufferSize = 2;
     expect(guest.sendInput(normalizePlayerInput({ throttle: 1, steer: -0.5 }))).toBe(false);
     outgoing.bufferSize = 0;
-    outgoing.send({ v: 1, type: 'input', sequence: 999, input: { throttle: Number.NaN } });
+    outgoing.send({ v: 2, type: 'input', sequence: 999, input: { throttle: Number.NaN } });
     expect(host.remoteInputs['ai-vexa']).toEqual(fired);
-    outgoing.send({ v: 1, type: 'input', sequence: 1, input: normalizePlayerInput({ brake: 1 }) });
+    outgoing.send({ v: 2, type: 'input', sequence: 1, input: normalizePlayerInput({ brake: 1 }) });
     expect(host.remoteInputs['ai-vexa']).toEqual(fired);
 
     clock.now = 421;
@@ -304,7 +304,7 @@ describe('RoomSession in-memory protocol', () => {
 
     hostConnection.bufferSize = 0;
     hostConnection.send({
-      v: 1,
+      v: 2,
       type: 'state',
       sequence: 999,
       state: { version: 1, entries: [] },
@@ -538,4 +538,19 @@ describe('RoomSession in-memory protocol', () => {
     host.dispose();
     await expect(host.createRoom(profile('Again'), 3)).rejects.toThrow(/disposed/);
   });
+});
+
+it('replicates pod identities and destination before start and locks them during the race',async()=>{
+ const {host,guest}=await connectedPair();
+ try {
+  host.updateLocalVehicle('podracer',undefined,'sebulba');guest.updateLocalVehicle('podracer',undefined,'needle');
+  host.setDestination(0x46524f53,'clean-race');host.setLaps(1);
+  expect(guest.lobby.courseSeed).toBe(0x46524f53);expect(guest.lobby.competitionProfile).toBe('clean-race');
+  expect(guest.lobby.members.map(m=>m.podIdentity)).toEqual(['sebulba','needle']);
+  const start=host.startRace(),received=guest.consumeStart();expect(received).toEqual(start);
+  expect(start).toMatchObject({seed:0x46524f53,laps:1,competitionProfile:'clean-race',podIdentities:{player:'sebulba','ai-vexa':'needle'}});
+  host.updateLocalVehicle('podracer',undefined,'pog');guest.updateLocalVehicle('podracer',undefined,'skybolt');host.setDestination(12,'chaos');
+  expect(host.lobby.members.map(m=>m.podIdentity)).toEqual(['sebulba','needle']);expect(host.lobby.courseSeed).toBe(0x46524f53);
+  guest.sendInput(normalizePlayerInput({ability:true,steer:-1}));expect(host.remoteInputs['ai-vexa']).toMatchObject({ability:true,steer:-1});
+ } finally {guest.dispose();host.dispose();}
 });

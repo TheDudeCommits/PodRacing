@@ -37,6 +37,8 @@ export interface PodracerConfig {
   driftSlip: number;
   driftMinimumSpeed: number;
   driftChargeRate: number;
+  /** 1 enables staged boosts and latched countersteer; 0 preserves archived handling. */
+  stagedDrift: number;
   driftMinimumBoostCharge: number;
   driftBoostMinTime: number;
   driftBoostMaxTime: number;
@@ -154,10 +156,11 @@ export const DEFAULT_PODRACER_CONFIG: Readonly<PodracerConfig> = Object.freeze({
   driftLateralGrip: 1.7,
   driftSlip: 0.17,
   driftMinimumSpeed: 24,
-  driftChargeRate: 0.52,
-  driftMinimumBoostCharge: 0.16,
+  driftChargeRate: 0.56,
+  stagedDrift: 1,
+  driftMinimumBoostCharge: 0.28,
   driftBoostMinTime: 0.34,
-  driftBoostMaxTime: 1.35,
+  driftBoostMaxTime: 1.75,
   boostDrain: 0.25,
   boostRegeneration: 0.055,
   boostMinimumEnergy: 0.08,
@@ -230,6 +233,10 @@ export const DEFAULT_PODRACER_CONFIG: Readonly<PodracerConfig> = Object.freeze({
  */
 export const DRIVE5_COMPATIBILITY_CONFIG: Readonly<PodracerConfig> = Object.freeze({
   ...DEFAULT_PODRACER_CONFIG,
+  stagedDrift: 0,
+  driftChargeRate: 0.52,
+  driftMinimumBoostCharge: 0.16,
+  driftBoostMaxTime: 1.35,
   overheatHandlingTime: 0,
   overheatHandlingPenalty: 0,
   draftBoostRegenBonus: 0,

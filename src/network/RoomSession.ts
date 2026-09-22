@@ -1,3 +1,4 @@
+import { resolvePodIdentity, type PodIdentityId } from '../game/podIdentity';
 import type {
   GalacticEvent,
   GalacticVehicleClass,
@@ -21,7 +22,7 @@ import type {
   RaceSimulationState,
 } from '../game/race';
 
-const PROTOCOL_VERSION = 1;
+const PROTOCOL_VERSION = 2;
 const ROOM_PREFIX = 'now-this-is-podracing-room-';
 // Excludes glyphs commonly confused in condensed UI fonts: 0/O, 1/I/L,
 // 2/Z and 5/S, plus U/V.
@@ -54,12 +55,14 @@ export type RoomStatus = 'idle' | 'connecting' | 'waiting' | 'ready' | 'error';
 export type RoomLapCount = 1 | 2 | 3;
 
 export interface RoomProfile {
+  podIdentity?: PodIdentityId;
   name: string;
   vehicleClass: GalacticVehicleClass;
   workshopLoadout?: WorkshopLoadout;
 }
 
 export interface RoomMember {
+  podIdentity?: PodIdentityId;
   racerId: NetworkRacerId;
   name: string;
   vehicleClass: GalacticVehicleClass;
@@ -68,6 +71,8 @@ export interface RoomMember {
 }
 
 export interface RoomLobbySnapshot {
+  courseSeed?: number;
+  competitionProfile?: 'chaos' | 'clean-race';
   role: RoomRole;
   status: RoomStatus;
   code: string;
@@ -82,6 +87,8 @@ export interface RoomLobbySnapshot {
 }
 
 export interface RoomRaceStart {
+  podIdentities?: Readonly<Partial<Record<NetworkRacerId, PodIdentityId>>>;
+  competitionProfile?: 'chaos' | 'clean-race';
   seed: number;
   laps: RoomLapCount;
   mode: RaceMode;
@@ -136,6 +143,7 @@ export interface RoomSessionOptions {
 }
 
 interface WireMember {
+  podIdentity?: PodIdentityId;
   racerId: NetworkRacerId;
   name: string;
   vehicleClass: GalacticVehicleClass;
@@ -144,15 +152,16 @@ interface WireMember {
 }
 
 type ClientPacket =
-  | { v: 1; type: 'hello'; profile: RoomProfile }
-  | { v: 1; type: 'profile'; profile: RoomProfile }
-  | { v: 1; type: 'input'; sequence: number; input: PlayerInputState }
-  | { v: 1; type: 'leave' };
+  | { v: 2; type: 'hello'; profile: RoomProfile }
+  | { v: 2; type: 'profile'; profile: RoomProfile }
+  | { v: 2; type: 'input'; sequence: number; input: PlayerInputState }
+  | { v: 2; type: 'leave' };
 
 type HostPacket =
   | {
-      v: 1;
+      v: 2;
       type: 'welcome';
+      courseSeed?: number; competitionProfile?: 'chaos' | 'clean-race';
       code: string;
       laps: RoomLapCount;
       mode: RaceMode;
@@ -161,24 +170,25 @@ type HostPacket =
       members: readonly WireMember[];
     }
   | {
-      v: 1;
+      v: 2;
       type: 'lobby';
+      courseSeed?: number; competitionProfile?: 'chaos' | 'clean-race';
       laps: RoomLapCount;
       mode: RaceMode;
       aiDifficulty: AIDifficulty;
       members: readonly WireMember[];
     }
-  | { v: 1; type: 'start'; start: RoomRaceStart }
+  | { v: 2; type: 'start'; start: RoomRaceStart }
   | {
-      v: 1;
+      v: 2;
       type: 'state';
       sequence: number;
       state: RaceSimulationState<AIControllerState>;
       /** Optional keeps protocol-v1 snapshot-only hosts wire-compatible. */
       events?: readonly RoomAuthoritativeEventEnvelope[];
     }
-  | { v: 1; type: 'return-to-lobby' }
-  | { v: 1; type: 'error'; message: string };
+  | { v: 2; type: 'return-to-lobby' }
+  | { v: 2; type: 'error'; message: string };
 
 interface HostConnectionState {
   connection: RoomDataConnection;
@@ -230,7 +240,7 @@ function normalizeProfile(
   const workshopLoadout = sanitized.vehicleClass === vehicleClass
     ? sanitized
     : DEFAULT_WORKSHOP_LOADOUTS[vehicleClass];
-  return Object.freeze({ name, vehicleClass, workshopLoadout });
+  return Object.freeze({ name, vehicleClass, workshopLoadout, podIdentity: resolvePodIdentity(profile.podIdentity) });
 }
 
 function isRecord(value: unknown): value is Record<string, unknown> {
@@ -259,6 +269,7 @@ function parseProfile(
   }
   return normalizeProfile({
     name: value.name,
+    podIdentity: resolvePodIdentity(value.podIdentity),
     vehicleClass: value.vehicleClass,
     workshopLoadout: value.workshopLoadout as WorkshopLoadout | undefined,
   });
@@ -274,6 +285,7 @@ function parseMember(value: unknown): WireMember | null {
   }
   return Object.freeze({
     racerId: value.racerId as NetworkRacerId,
+    podIdentity: resolvePodIdentity(value.podIdentity),
     name: normalizeProfile({ name: value.name, vehicleClass: value.vehicleClass }).name,
     vehicleClass: value.vehicleClass,
     workshopLoadout: normalizeProfile({
@@ -313,6 +325,7 @@ function parsePlayerInput(value: unknown): PlayerInputState | null {
   ] as const) {
     if (typeof value[key] !== 'boolean') return null;
   }
+  if (value.ability !== undefined && typeof value.ability !== 'boolean') return null;
   return normalizePlayerInput(value as unknown as PlayerInputState);
 }
 
@@ -489,6 +502,8 @@ export class RoomSession {
   private code = '';
   private laps: RoomLapCount = 3;
   private mode: RaceMode = 'circuit';
+  private courseSeed = 0x494e4b53;
+  private competitionProfile: 'chaos' | 'clean-race' = 'chaos';
   private aiDifficulty: AIDifficulty = 'medium';
   private localRacerIdValue: NetworkRacerId | null = null;
   private errorValue: string | null = null;
@@ -540,6 +555,8 @@ export class RoomSession {
       laps: this.laps,
       mode: this.mode,
       aiDifficulty: this.aiDifficulty,
+      courseSeed: this.courseSeed,
+      competitionProfile: this.competitionProfile,
       members,
       localRacerId: this.localRacerIdValue,
       capacity: ROOM_CAPACITY,
@@ -671,6 +688,7 @@ export class RoomSession {
   updateLocalVehicle(
     vehicleClass: GalacticVehicleClass,
     workshopLoadout: WorkshopLoadout = DEFAULT_WORKSHOP_LOADOUTS[vehicleClass],
+    podIdentity?: PodIdentityId,
   ): void {
     if (!isVehicleClass(vehicleClass) || this.racing) return;
     const profileLoadout = normalizeProfile({
@@ -681,7 +699,7 @@ export class RoomSession {
     if (this.role === 'host') {
       const local = this.hostMembers.get('player');
       if (!local) return;
-      this.hostMembers.set('player', { ...local, vehicleClass, workshopLoadout: profileLoadout });
+      this.hostMembers.set('player', { ...local, vehicleClass, podIdentity: resolvePodIdentity(podIdentity ?? local.podIdentity), workshopLoadout: profileLoadout });
       this.broadcastLobby();
       this.emit();
       return;
@@ -692,7 +710,7 @@ export class RoomSession {
       this.safeSend(this.guestConnection, {
         v: PROTOCOL_VERSION,
         type: 'profile',
-        profile: { name: local.name, vehicleClass, workshopLoadout: profileLoadout },
+        profile: { name: local.name, vehicleClass, podIdentity: resolvePodIdentity(podIdentity ?? local.podIdentity), workshopLoadout: profileLoadout },
       } satisfies ClientPacket);
     }
   }
@@ -702,6 +720,13 @@ export class RoomSession {
     const local = this.lobby.members.find((member) => member.racerId === this.localRacerIdValue);
     if (!local) return;
     this.updateLocalVehicle(local.vehicleClass, workshopLoadout);
+  }
+
+  setDestination(seed: number, profile: 'chaos' | 'clean-race' = 'chaos'): void {
+    if (this.role !== 'host' || this.racing || !Number.isSafeInteger(seed)) return;
+    this.courseSeed = seed >>> 0;
+    this.competitionProfile = profile === 'clean-race' ? profile : 'chaos';
+    this.broadcastLobby(); this.emit();
   }
 
   setLaps(laps: number): void {
@@ -725,7 +750,7 @@ export class RoomSession {
     this.emit();
   }
 
-  startRace(seed = Math.floor(this.random() * 0xffff_ffff) >>> 0): RoomRaceStart {
+  startRace(seed = this.courseSeed): RoomRaceStart {
     if (this.role !== 'host' || this.status !== 'ready' || this.racing) {
       throw new Error('Only the room host can start this race.');
     }
@@ -733,11 +758,13 @@ export class RoomSession {
       ...DEFAULT_VEHICLE_CLASSES,
     };
     const workshopLoadouts = {} as Record<NetworkRacerId, WorkshopLoadout>;
+    const podIdentities: Partial<Record<NetworkRacerId, PodIdentityId>> = {};
     for (const racerId of NETWORK_RACER_IDS) {
       workshopLoadouts[racerId] = DEFAULT_WORKSHOP_LOADOUTS[vehicleClasses[racerId]];
     }
     for (const member of this.hostMembers.values()) {
       vehicleClasses[member.racerId] = member.vehicleClass;
+      podIdentities[member.racerId] = resolvePodIdentity(member.podIdentity);
       workshopLoadouts[member.racerId] = member.workshopLoadout;
     }
     const start = Object.freeze({
@@ -745,8 +772,10 @@ export class RoomSession {
       laps: this.laps,
       mode: this.mode,
       aiDifficulty: this.aiDifficulty,
+      competitionProfile: this.competitionProfile,
       vehicleClasses: Object.freeze(vehicleClasses),
       workshopLoadouts: Object.freeze(workshopLoadouts),
+      podIdentities: Object.freeze(podIdentities),
     });
     this.resetAuthoritativeRaceDelivery(start.seed);
     this.racing = true;
@@ -1132,6 +1161,8 @@ export class RoomSession {
         laps: this.laps,
         mode: this.mode,
         aiDifficulty: this.aiDifficulty,
+      courseSeed: this.courseSeed,
+      competitionProfile: this.competitionProfile,
         localRacerId: racerId,
         members: this.wireMembers(),
       } satisfies HostPacket);
@@ -1191,6 +1222,8 @@ export class RoomSession {
       this.laps = Number(data.laps) as RoomLapCount;
       this.mode = data.mode;
       this.aiDifficulty = data.aiDifficulty;
+      this.courseSeed = Number.isSafeInteger(data.courseSeed) ? Number(data.courseSeed) >>> 0 : 0x494e4b53;
+      this.competitionProfile = data.competitionProfile === 'clean-race' ? 'clean-race' : 'chaos';
       this.localRacerIdValue = data.localRacerId as NetworkRacerId;
       this.guestMembers = members;
       this.status = 'waiting';
@@ -1212,6 +1245,8 @@ export class RoomSession {
       this.laps = Number(data.laps) as RoomLapCount;
       this.mode = data.mode;
       this.aiDifficulty = data.aiDifficulty;
+      this.courseSeed = Number.isSafeInteger(data.courseSeed) ? Number(data.courseSeed) >>> 0 : 0x494e4b53;
+      this.competitionProfile = data.competitionProfile === 'clean-race' ? 'clean-race' : 'chaos';
       this.emit();
       return;
     }
@@ -1295,11 +1330,13 @@ export class RoomSession {
     }
     const vehicleClasses = {} as Record<NetworkRacerId, GalacticVehicleClass>;
     const workshopLoadouts = {} as Record<NetworkRacerId, WorkshopLoadout>;
+    const podIdentities: Partial<Record<NetworkRacerId, PodIdentityId>> = {};
     const rawWorkshopLoadouts = isRecord(value.workshopLoadouts) ? value.workshopLoadouts : {};
     for (const racerId of NETWORK_RACER_IDS) {
       const vehicleClass = value.vehicleClasses[racerId];
       if (!isVehicleClass(vehicleClass)) return null;
       vehicleClasses[racerId] = vehicleClass;
+      if (isRecord(value.podIdentities) && value.podIdentities[racerId] !== undefined) podIdentities[racerId] = resolvePodIdentity(value.podIdentities[racerId]);
       const candidate = sanitizeWorkshopLoadout(rawWorkshopLoadouts[racerId], vehicleClass);
       workshopLoadouts[racerId] = candidate.vehicleClass === vehicleClass
         ? candidate
@@ -1310,8 +1347,10 @@ export class RoomSession {
       laps: Number(value.laps) as RoomLapCount,
       mode: value.mode,
       aiDifficulty: value.aiDifficulty,
+      competitionProfile: value.competitionProfile === 'clean-race' ? 'clean-race' : 'chaos',
       vehicleClasses: Object.freeze(vehicleClasses),
       workshopLoadouts: Object.freeze(workshopLoadouts),
+      podIdentities: Object.freeze(podIdentities),
     });
   }
 
@@ -1330,6 +1369,8 @@ export class RoomSession {
       laps: this.laps,
       mode: this.mode,
       aiDifficulty: this.aiDifficulty,
+      courseSeed: this.courseSeed,
+      competitionProfile: this.competitionProfile,
       members: this.wireMembers(),
     } satisfies HostPacket);
   }

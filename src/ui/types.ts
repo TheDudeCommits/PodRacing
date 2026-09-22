@@ -367,6 +367,7 @@ export interface HudGalacticViewModel {
  * simulation class, which keeps race truth on the simulation side of the app.
  */
 export interface RaceHudViewModel {
+  ability?: { label: string; hint: string; cooldown: number; active: boolean; windup: boolean; unavailable: boolean };
   phase: HudRacePhase;
   mastery?: HudMasteryViewModel;
   speedMps: number;
@@ -413,6 +414,7 @@ export interface RaceHudViewModel {
 }
 
 export interface RaceHudSnapshotEntryLike {
+  podIdentity?: import('../game/podIdentity').PodIdentityId;
   id: string;
   name: string;
   isPlayer: boolean;

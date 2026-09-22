@@ -1,6 +1,7 @@
+import { legacyBranchedCourse as createProceduralPodraceCourse } from '../helpers/legacyBranchedCourse';
 import { describe, expect, it } from 'vitest';
 import {
-  createProceduralPodraceCourse,
+
   validatePodraceCourse,
 } from '../../src/game/race/course';
 import { validateCourseBranches } from '../../src/game/race/branches';

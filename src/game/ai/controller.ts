@@ -619,6 +619,7 @@ export function stepAIController(
     fire: false,
     mine: false,
     shield: false,
+    ability: false,
     cycleVehicle: false,
     reset: false,
     pause: false,

@@ -1,5 +1,5 @@
+import { legacyBranchedCourse as createProceduralPodraceCourse } from '../helpers/legacyBranchedCourse';
 import { describe, expect, it } from 'vitest';
-import { createProceduralPodraceCourse } from '../../src/game/race/course';
 import { createCourseGulfField, getLaunchBasinAnchor } from '../../src/game/race/CourseGulfField';
 import { getInkstormForkDividers, getInkstormLayout, getInkstormObstacleContact, getInkstormSaltFrames } from '../../src/game/race/inkstormLayout';
 import { getInkstormVistaPlan } from '../../src/render/inkstorm/InkstormVista';

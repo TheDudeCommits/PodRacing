@@ -91,9 +91,11 @@ describe('solid scenery', () => {
     let hit = false;
     for (let tick = 0; tick < 600 && !hit; tick += 1) {
       const result = race.step({ throttle: 1 });
-      hit = (result.vehicleEvents[player.id] ?? []).some((event) => event.type === 'collision' && event.sourceId === rock.id);
+      hit = (result.vehicleEvents[player.id] ?? []).some((event) => event.type === 'collision' && getInkstormLayout(race.course).some(p => p.id === event.sourceId && ['canyon-buttress', 'roadside-shard'].includes(p.family)));
     }
     expect(hit).toBe(true);
+    expect(player.vehicle.damage).toBeGreaterThan(0);
+    // The fitted nose may hit the smaller roadside shard in front of this mass first.
     const cos = Math.cos(rock.yaw), sin = Math.sin(rock.yaw);
     const lx = (player.vehicle.position.x - rock.x) * cos - (player.vehicle.position.z - rock.z) * sin;
     const lz = (player.vehicle.position.x - rock.x) * sin + (player.vehicle.position.z - rock.z) * cos;

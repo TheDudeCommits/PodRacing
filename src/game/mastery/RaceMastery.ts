@@ -201,8 +201,8 @@ export class RaceMastery {
       result: this.resultValue, championship: [...standings.values()].sort((a, b) => b.points - a.points),
       championshipRound: this.profile.championship.rounds.length,
       championshipContext: event.championshipRound ? event.championshipRound === this.profile.championship.rounds.length + 1
-        ? { title: `Cup round ${event.championshipRound} of 3`,
-          detail: event.championshipRound === 1 ? 'Begin a three-round championship. Points carry across all three circuits.' : 'This is your next unplayed round. Its points will join your championship standings.',
+        ? { title: `Cup round ${event.championshipRound} of ${CHAMPIONSHIP_EVENT_IDS.length}`,
+          detail: event.championshipRound === 1 ? 'Begin a four-destination championship. Points carry across every circuit.' : 'This is your next unplayed round. Its points will join your championship standings.',
           actionLabel: event.championshipRound === 1 ? 'Start championship' : 'Continue championship' }
         : { title: 'Single-round practice', detail: 'This round is outside your current championship sequence. Practice earns a course record, but does not add cup points.', actionLabel: 'Practice this round' }
         : undefined,

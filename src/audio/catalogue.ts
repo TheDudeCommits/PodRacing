@@ -41,6 +41,8 @@ export const RECORDED_VOICE_LINE_URLS: readonly string[] = Object.freeze([...new
 
 /** Empty lists deliberately omit nonessential reward and warning bleeps. */
 export const RECORDED_CUES: Readonly<Record<PodracerAudioCueKind, readonly string[]>> = Object.freeze({
+  'drift-charge': ['/audio/salt-dusk/confirmation_002.ogg'],
+  flame: ['/audio/salt-dusk/thrusterFire_002.ogg'],
   impact: [file('hull-impact')],
   sand: [],
   boost: [file('boost')],
@@ -71,6 +73,8 @@ export const RECORDED_CUES: Readonly<Record<PodracerAudioCueKind, readonly strin
 
 /** Headroom and sparse playback apply per actual recording, including aliases. */
 export const RECORDED_CUE_ROLES: Readonly<Record<string, { gain: number; gap: number; voices: number }>> = Object.freeze({
+  '/audio/salt-dusk/confirmation_002.ogg': { gain: .22, gap: .25, voices: 1 },
+  '/audio/salt-dusk/thrusterFire_002.ogg': { gain: .3, gap: .45, voices: 2 },
   [file('hull-impact')]: { gain: 0.42, gap: 0.18, voices: 2 },
   [file('boost')]: { gain: 0.2, gap: 1.6, voices: 1 },
   [file('mechanical-click')]: { gain: 0.075, gap: 0.16, voices: 1 },

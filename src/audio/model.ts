@@ -118,6 +118,8 @@ export function derivePodracerAudioTargets(model: PodracerAudioTelemetry): Podra
 }
 
 const ENVELOPES: Readonly<Record<PodracerAudioCueKind, AudioEnvelopeProfile>> = Object.freeze({
+  'drift-charge': { attack: .003, decay: .08, sustain: .4, release: .2, peak: .35 },
+  flame: { attack: .015, decay: .2, sustain: .7, release: .3, peak: .55 },
   impact: { attack: 0.003, decay: 0.075, sustain: 0.34, release: 0.32, peak: 0.72 },
   sand: { attack: 0.006, decay: 0.09, sustain: 0.28, release: 0.21, peak: 0.33 },
   boost: { attack: 0.018, decay: 0.14, sustain: 0.62, release: 0.48, peak: 0.54 },
@@ -230,6 +232,10 @@ function cuesForEvent(event: AudioEventLike, options: AudioEventMapOptions): Pod
       if (reason === 'overheat') return [cue('warning', 0.45 + amount * 0.35)];
       return [cue('impact', 0.22 + amount * 0.45)];
     }
+    case 'pod-ability':
+      return ownRacer ? [cue(eventString(event, 'kind') === 'flame' && eventString(event, 'phase') === 'active' ? 'flame' : 'drift-charge', .85)] : [];
+    case 'drift-stage':
+      return [cue('drift-charge', .65 + eventNumber(event, 'stage', 1) * .1, .85 + eventNumber(event, 'stage', 1) * .18)];
     case 'drift-boost':
       return [cue('boost', 0.48 + eventNumber(event, 'charge', 0.4) * 0.5, 1.08)];
     case 'boost-start':

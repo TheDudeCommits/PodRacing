@@ -79,7 +79,7 @@ export interface MasteryProfile {
   archivedRecords: MasteryRecord[];
   archivedFavorites: SavedCourse[];
   history: { id: string; eventId: string; time: number; placement: number; medal: MasteryMedal; valid: boolean; recordedAt: string }[];
-  championship: { version: 1; rounds: ChampionshipRound[] };
+  championship: { version: 2; rounds: ChampionshipRound[] };
   tutorialComplete: boolean;
   ghostEnabled: boolean;
 }

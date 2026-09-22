@@ -1,5 +1,6 @@
 import { normalizePlayerInput, type PlayerInputState } from '../input/actions';
 import { DEFAULT_PODRACER_CONFIG, type PodracerConfig } from './config';
+import { driftStage, driftBoostDuration } from './drift';
 import type {
   CollisionImpulse,
   HeightSampler,
@@ -314,20 +315,26 @@ function updateDriftAndBoost(
   const holdSpeed = state.drift.active ? config.driftMinimumSpeed * 0.8 : config.driftMinimumSpeed;
   const driftAllowed =
     input.drift &&
-    state.grounded &&
+    (state.grounded || (config.stagedDrift && state.drift.active && state.airborneTime < .35)) &&
     speed >= holdSpeed &&
     Math.abs(input.steer) > holdSteer;
 
   if (driftAllowed) {
+    const previousStage = driftStage(state.drift.charge);
+    // Countersteering widens the same slide. Changing drift direction requires a release.
+    if (!state.drift.active || !config.stagedDrift) state.drift.direction = input.steer > 0 ? 1 : -1;
     state.drift.active = true;
-    state.drift.direction = input.steer > 0 ? 1 : -1;
-    const speedFactor = clamp(speed / config.maxSpeed, 0.35, 1.35);
+    const speedFactor = clamp(speed / config.maxSpeed, config.stagedDrift ? .65 : .35, 1.35);
+    const commitment = config.stagedDrift ? .65 + .35 * Math.abs(input.steer) : Math.abs(input.steer);
     state.drift.charge = clamp(
       state.drift.charge +
-        config.driftChargeRate * Math.abs(input.steer) * speedFactor * delta,
+        config.driftChargeRate * commitment * speedFactor * delta * (config.stagedDrift && !state.grounded ? 0 : 1)
+          * (config.stagedDrift ? smoothstep(0.1, 0.7, state.drift.blend) : 1),
       0,
       1,
     );
+    const nextStage = driftStage(state.drift.charge);
+    if (config.stagedDrift && nextStage !== 0 && nextStage > previousStage) events.push({ type: 'drift-stage', stage: nextStage });
   } else if (state.drift.active) {
     // The slide ends either by releasing the button or by straightening up
     // while still holding it. Both bank the charge, so committing to an exit
@@ -335,7 +342,7 @@ function updateDriftAndBoost(
     const charge = state.drift.charge;
     if (charge >= config.driftMinimumBoostCharge && !state.boost.overheated) {
       const chargeAmount = smoothstep(config.driftMinimumBoostCharge, 1, charge);
-      const duration =
+      const duration = config.stagedDrift ? driftBoostDuration(charge, config.driftBoostMaxTime) :
         config.driftBoostMinTime +
         (config.driftBoostMaxTime - config.driftBoostMinTime) * chargeAmount;
       state.boost.driftBoostTime = Math.max(state.boost.driftBoostTime, duration);
@@ -626,7 +633,9 @@ function updateHorizontalMotion(
       * smoothstep(8, 40, Math.abs(forwardSpeed))
     : 0;
   const targetYawVelocity =
-    input.steer *
+    (config.stagedDrift && state.drift.active
+      ? state.drift.direction * 0.22 + input.steer * 0.78
+      : input.steer) *
     steeringRate *
     movementAuthority *
     steeringDamage *
@@ -643,7 +652,8 @@ function updateHorizontalMotion(
 
   const boostAcceleration = state.boost.active ? config.boostAcceleration : 0;
   const throttle = input.throttle * (1 - input.brake * config.brakeThrottleCut);
-  const thrust = (throttle * config.engineAcceleration + boostAcceleration) * health;
+  const launchTorque = config.stagedDrift ? 1 + 0.18 * (1 - smoothstep(8, 75, speed)) : 1;
+  const thrust = (throttle * config.engineAcceleration * launchTorque + boostAcceleration) * health;
   forwardSpeed += thrust * delta;
 
   if (input.brake > 0) {

@@ -189,6 +189,10 @@ export type PodracerEvent =
       direction: -1 | 0 | 1;
     }
   | {
+      type: 'drift-stage';
+      stage: 1 | 2 | 3;
+    }
+  | {
       type: 'drift-boost';
       charge: number;
       duration: number;

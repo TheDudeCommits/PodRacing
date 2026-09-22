@@ -22,7 +22,7 @@ describe('sourced pod engine voices', () => {
     expect(credits).toContain('Fan motor');
     expect(credits).toContain('Car Engine Loop');
     // The core effect bank is unchanged; voices only add two shared loops.
-    expect(RECORDED_EFFECT_URLS).toHaveLength(8);
+    expect(RECORDED_EFFECT_URLS).toHaveLength(10);
     expect(RECORDED_ENGINE_VOICE_URLS.filter((url) => !RECORDED_EFFECT_URLS.includes(url))).toHaveLength(2);
   });
 

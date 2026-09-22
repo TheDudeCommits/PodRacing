@@ -16,7 +16,7 @@ describe('race event atlas calendar and selection contract', () => {
     expect(actual.events).toEqual(input.events);
     expect(actual.events.map(event => event.id)).toEqual([
       'inkstorm-battle', 'inkstorm-race', 'inkstorm-trial', 'flight-school',
-      'cup-canyon', 'cup-foundry', 'cup-glass',
+      'cup-canyon', 'cup-frostline', 'cup-verdant', 'cup-ember',
       'biome-frozen-battle', 'biome-frozen-race', 'biome-frozen-trial',
       'biome-volcanic-battle', 'biome-volcanic-race', 'biome-volcanic-trial',
       'biome-jungle-battle', 'biome-jungle-race', 'biome-jungle-trial', 'open-expedition', 'daily-2026-09-09',
@@ -27,8 +27,8 @@ describe('race event atlas calendar and selection contract', () => {
   it('tracks authoritative selection and permission changes without changing the source view model', () => {
     const input = model(), before = JSON.stringify(input);
     expect(createRaceEventAtlasModel(input, false).canStart).toBe(false);
-    const switched = { ...input, eventId: 'cup-foundry' };
-    expect(createRaceEventAtlasModel(switched)).toMatchObject({ selectedId: 'cup-foundry', title: 'Inkstorm Cup • Foundry', canStart: true });
+    const switched = { ...input, eventId: 'cup-frostline' };
+    expect(createRaceEventAtlasModel(switched)).toMatchObject({ selectedId: 'cup-frostline', title: 'World Cup · Frostline', canStart: true });
     expect(JSON.stringify(input)).toBe(before);
     const projected = createRaceEventAtlasModel(input); projected.events[0]!.title = 'Changed outside';
     expect(input.events[0]!.title).toBe('Battle');
@@ -53,7 +53,7 @@ describe('race event atlas calendar and selection contract', () => {
     const input = model(); input.events[0]!.title = '<img onerror="bad()"> & event';
     input.events.push({ id: input.events[0]!.id, title: 'Duplicate', subtitle: '' }, { id: '', title: 'No identity', subtitle: '' });
     const actual = createRaceEventAtlasModel(input);
-    expect(actual.events).toHaveLength(18); expect(actual.title).toBe('<img onerror="bad()"> & event');
+    expect(actual.events).toHaveLength(19); expect(actual.title).toBe('<img onerror="bad()"> & event');
   });
 });
 

@@ -1,3 +1,5 @@
+import { stepPodAbilities, POD_ABILITIES } from '../galactic/podAbilities';
+import { POD_FOOTPRINTS, type PodHullCapsule } from '../podGeometry';
 import { racingBiomeForSeed, racingBiomeHeatRate } from './racingBiomes';
 import { collectCombatPickup, isCombatPickup } from '../galactic/combatPickups';
 import { createCourseGulfField, type CourseGulfField } from './CourseGulfField';
@@ -130,6 +132,8 @@ const AI_DIFFICULTIES: readonly AIDifficulty[] = Object.freeze(['easy', 'medium'
 export interface RaceSimulationOptions {
   terrain: HeightSampler;
   course?: PodraceCourse;
+  /** Archived geometry fixtures only. Shipped destinations never enable shortcuts. */
+  enableCourseBranches?: boolean;
   seed?: number;
   totalLaps?: number;
   mode?: RaceMode;
@@ -279,7 +283,8 @@ function makeResult(entry: RaceEntryState<AIControllerState>): RaceResultEntry {
 /** Local hull primitives: two engine capsules ahead of the origin and a cockpit sphere behind it. */
 interface HullPrimitive { ax: number; az: number; bx: number; bz: number; radius: number }
 
-export function hullPrimitives(definition: Readonly<{ probeScaleX: number; probeScaleZ: number }>): HullPrimitive[] {
+export function hullPrimitives(definition: Readonly<{ probeScaleX: number; probeScaleZ: number; hull?: readonly PodHullCapsule[] }>): readonly HullPrimitive[] {
+  if (definition.hull) return definition.hull;
   const engineX = 4.1 * definition.probeScaleX;
   const engineRadius = 2.4 * Math.max(0.6, definition.probeScaleX);
   const noseZ = 19 * definition.probeScaleZ;
@@ -309,8 +314,8 @@ function segmentSegmentClosest(
 
 /** Deepest contact between two racers' hulls in the plane, or null when clear. */
 export function closestHullContact(
-  a: Readonly<PodracerState>, aDefinition: Readonly<{ probeScaleX: number; probeScaleZ: number }>,
-  b: Readonly<PodracerState>, bDefinition: Readonly<{ probeScaleX: number; probeScaleZ: number }>,
+  a: Readonly<PodracerState>, aDefinition: Readonly<{ probeScaleX: number; probeScaleZ: number; hull?: readonly PodHullCapsule[] }>,
+  b: Readonly<PodracerState>, bDefinition: Readonly<{ probeScaleX: number; probeScaleZ: number; hull?: readonly PodHullCapsule[] }>,
   fallbackSide: 1 | -1,
 ): HullContact | null {
   const toWorld = (state: Readonly<PodracerState>, x: number, z: number): [number, number] => {
@@ -442,7 +447,7 @@ export class RaceSimulation {
       heightAt: (x, z) => options.terrain.heightAt(x, z)
         + (courseGulfField?.sampleOffset(x, z) ?? 0) + (pitPadField?.sampleOffset(x, z) ?? 0),
     };
-    this.course = options.course ?? createProceduralPodraceCourse(courseTerrain, raceSeed);
+    this.course = options.course ?? createProceduralPodraceCourse(courseTerrain, raceSeed, { enableBranches: options.enableCourseBranches });
     // Explicitly supplied courses retain their caller-owned height contract;
     // do not add a field only to physics while their own sampler stays unchanged.
     this.courseGulfField = courseGulfField = options.course ? null : createCourseGulfField(this.course);
@@ -775,6 +780,15 @@ export class RaceSimulation {
             sectionTag: this.course.sampleAtProgress(entry.progress.courseProgress).tag,
           },
         );
+        const abilityKind = POD_ABILITIES[this.effectivePodIdentity(entry)].kind;
+        const abilityTarget = (galacticOpponentsByIndex[entryIndex] ?? []).some(target => {
+          const dx = target.x - entry.vehicle.position.x, dz = target.z - entry.vehicle.position.z;
+          return Math.hypot(dx, dz) < 42 && dx * Math.sin(entry.vehicle.orientation.yaw) + dz * Math.cos(entry.vehicle.orientation.yaw) > 0;
+        });
+        input = { ...input, ability: this.state.step % 240 === (entryIndex * 29) % 240
+          && (abilityKind === 'flame' || abilityKind === 'ram' ? abilityTarget
+            : abilityKind === 'vent' ? entry.vehicle.heat > .4
+            : entry.vehicle.telemetry.speed > 50 && Math.abs(input.steer) < .35) };
         input = this.applyModeAIObjective(entry, input);
       } else {
         input = normalizePlayerInput();
@@ -952,6 +966,21 @@ export class RaceSimulation {
       ));
     }
 
+    if (this.state.phase === 'racing') {
+      const abilityResult = stepPodAbilities(entries.map(entry => ({ id: entry.id, vehicle: entry.vehicle,
+        galactic: this.galacticFor(entry), identity: this.effectivePodIdentity(entry), progress: entry.progress.courseProgress,
+        finished: entry.status === 'finished', teamId: this.state.settings.mode === 'team-race' ? entry.competition?.teamId : undefined })), inputs, delta, this.competitionProfile === 'chaos', this.lanceOccluder);
+      galacticEvents.push(...abilityResult.events);
+      for (const impact of abilityResult.impacts) {
+        const target = this.entriesById.get(impact.targetId); if (!target) continue;
+        const result = applyGalacticImpact(target.id, this.galacticFor(target), target.vehicle, this.vehicleConfigFor(target),
+          { ...impact, damage: impact.damage * this.podIdentityDamageScale(target) });
+        galacticEvents.push(...result.events);
+        noteGalacticRacerAggression(this.galacticFor(target), impact.sourceId);
+        galacticEvents.push(...beginGalacticWreck(target.id, this.galacticFor(target), target.vehicle,
+          this.state.galacticWorld, 'impact', impact.sourceId, target.isPlayer));
+      }
+    }
     this.creditTakedowns(galacticEvents);
 
     if (this.state.phase === 'racing') {
@@ -1887,7 +1916,11 @@ export class RaceSimulation {
     for (const event of events) {
       if (event.type !== 'takedown') continue;
       const attacker = this.entriesById.get(event.attackerId);
-      if (attacker) this.galacticFor(attacker).takedowns += 1;
+      if (attacker) {
+        this.galacticFor(attacker).takedowns += 1;
+        attacker.vehicle.boost.energy = Math.min(1, attacker.vehicle.boost.energy + .35);
+        attacker.vehicle.heat = Math.max(0, attacker.vehicle.heat - .12);
+      }
     }
   }
 
@@ -1895,15 +1928,22 @@ export class RaceSimulation {
     const renderData = this.course.getRenderData(1024);
     return createCourseMarkers(renderData.points, this.course.branches,
       (x, z) => this.course.heightAt(x, z)).filter(marker => !this.course.getObstacleContact(
-        marker.x, marker.z, 7.8 + COURSE_MARKER_RADIUS, undefined, marker.minY + 2.65,
+        marker.x, marker.z, 25 + COURSE_MARKER_RADIUS, undefined, marker.minY + 2.65,
       ));
   }
 
   /**
-   * Four racers permit a tiny deterministic broad phase. Equal-and-opposite
+   * Eight racers permit a small deterministic broad phase. Equal-and-opposite
    * impulses make contact physical, while immediate penetration correction
    * prevents a pair from accumulating damage for many 120 Hz ticks.
    */
+  private contactHull(entry: RaceEntryState<AIControllerState>): { hull: readonly HullPrimitive[]; radius: number } {
+    const definition = GALACTIC_VEHICLES[this.galacticFor(entry).vehicleClass];
+    if (this.galacticFor(entry).vehicleClass === 'podracer') return POD_FOOTPRINTS[this.effectivePodIdentity(entry)];
+    const hull = hullPrimitives(definition);
+    return { hull, radius: Math.max(...hull.map(h => Math.max(Math.hypot(h.ax, h.az), Math.hypot(h.bx, h.bz)) + h.radius)) };
+  }
+
   private buildCollisionImpulses(
     configs: readonly Readonly<PodracerConfig>[],
     externallyControlledRacerIds: ReadonlySet<string> = new Set(),
@@ -1922,22 +1962,22 @@ export class RaceSimulation {
     const nextRacerContacts = new Set<string>();
     for (let aIndex = 0; aIndex < this.state.entries.length; aIndex += 1) {
       const a = this.state.entries[aIndex];
-      if (!a || a.status === 'finished') continue;
+      if (!a || a.status === 'finished' || this.galacticFor(a).wreck.phase !== 'running' || this.galacticFor(a).wreck.invulnerable > 0) continue;
       for (let bIndex = aIndex + 1; bIndex < this.state.entries.length; bIndex += 1) {
         const b = this.state.entries[bIndex];
-        if (!b || b.status === 'finished') continue;
+        if (!b || b.status === 'finished' || this.galacticFor(b).wreck.phase !== 'running' || this.galacticFor(b).wreck.invulnerable > 0) continue;
         const aConfig = configs[aIndex] ?? this.vehicleConfigFor(a);
         const bConfig = configs[bIndex] ?? this.vehicleConfigFor(b);
-        // Broad phase on the old class circles, then the real hull: two engine
+        // Broad phase on fitted extents, then the real hull: two engine
         // capsules and a cockpit sphere per craft, so contact happens at the
         // visible engine edge and a side-by-side rub is a rub, not a bounce.
-        const broad = GALACTIC_VEHICLES[this.galacticFor(a).vehicleClass].collisionRadius
-          + GALACTIC_VEHICLES[this.galacticFor(b).vehicleClass].collisionRadius + 12;
+        const aHull = this.contactHull(a), bHull = this.contactHull(b);
+        const broad = aHull.radius + bHull.radius;
         const vertical = Math.abs(b.vehicle.position.y - a.vehicle.position.y);
         if (vertical > 5.5 || Math.hypot(b.vehicle.position.x - a.vehicle.position.x, b.vehicle.position.z - a.vehicle.position.z) >= broad) continue;
         const contact = closestHullContact(
-          a.vehicle, GALACTIC_VEHICLES[this.galacticFor(a).vehicleClass],
-          b.vehicle, GALACTIC_VEHICLES[this.galacticFor(b).vehicleClass],
+          a.vehicle, { ...GALACTIC_VEHICLES[this.galacticFor(a).vehicleClass], hull: aHull.hull },
+          b.vehicle, { ...GALACTIC_VEHICLES[this.galacticFor(b).vehicleClass], hull: bHull.hull },
           aIndex % 2 === 0 ? 1 : -1,
         );
         if (!contact) continue;
@@ -1982,18 +2022,23 @@ export class RaceSimulation {
           || this.state.step - lastContactStep < cooldownSteps
         ) continue;
         this.racerContactSteps.set(contactKey, this.state.step);
-        const damage = Math.min(0.01, 0.001 + closingSpeed * 0.00035) * (sideways ? 0.4 : 1);
+        // Contact racing: small rubs are cheap; a committed closing hit costs hull.
+        const combatScale = this.competitionProfile === 'chaos' ? 1 : .28;
+        const damage = (0.001 + Math.min(.24, Math.pow(Math.max(0, closingSpeed - 5) / 100, 1.4)))
+          * combatScale * (sideways ? .75 : 1);
+        const aShield = this.galacticFor(a).shield.active ? .12 : this.galacticFor(a).ability?.kind === 'ram' && this.galacticFor(a).ability!.remaining > 0 ? .4 : 1;
+        const bShield = this.galacticFor(b).shield.active ? .12 : this.galacticFor(b).ability?.kind === 'ram' && this.galacticFor(b).ability!.remaining > 0 ? .4 : 1;
         append(aIndex, {
           impulse: { x: -normalX * impulseMagnitude, y: 0.55 * aConfig.mass, z: -normalZ * impulseMagnitude },
           localPoint: { x: contact.localAX, y: 0, z: contact.localAZ },
           sourceId: b.id,
-          damage,
+          damage: damage * aShield * clamp(bConfig.mass / aConfig.mass, .6, 1.6),
         });
         append(bIndex, {
           impulse: { x: normalX * impulseMagnitude, y: 0.55 * bConfig.mass, z: normalZ * impulseMagnitude },
           localPoint: { x: contact.localBX, y: 0, z: contact.localBZ },
           sourceId: a.id,
-          damage,
+          damage: damage * bShield * clamp(aConfig.mass / bConfig.mass, .6, 1.6),
         });
       }
     }
@@ -2004,18 +2049,20 @@ export class RaceSimulation {
       const entry = this.state.entries[entryIndex];
       if (!entry || entry.status === 'finished') continue;
       const config = configs[entryIndex] ?? this.vehicleConfigFor(entry);
-      const vehicleDefinition = GALACTIC_VEHICLES[this.galacticFor(entry).vehicleClass];
       // Let the position projection own the section decision. A coarse tag
       // reject opens a pass-through seam when a collision occurs at a newly
       // generated canyon boundary and progress advances one sample past it.
       // The hinted local search is bounded and cheap for the eight-racer grid.
-      const contact = this.course.getObstacleContact(
-        entry.vehicle.position.x,
-        entry.vehicle.position.z,
-        vehicleDefinition.collisionRadius,
-        entry.progress.courseProgress,
-        entry.vehicle.position.y,
-      );
+      const footprint = this.contactHull(entry);
+      const sin = Math.sin(entry.vehicle.orientation.yaw), cos = Math.cos(entry.vehicle.orientation.yaw);
+      let contact: ReturnType<PodraceCourse['getObstacleContact']> = null;
+      for (const capsule of footprint.hull) for (const [px, pz] of [[capsule.ax, capsule.az], [capsule.bx, capsule.bz]]) {
+        const hit = this.course.getObstacleContact(
+          entry.vehicle.position.x + px! * cos + pz! * sin,
+          entry.vehicle.position.z - px! * sin + pz! * cos,
+          capsule.radius, entry.progress.courseProgress, entry.vehicle.position.y);
+        if (hit && (!contact || hit.penetration > contact.penetration)) contact = hit;
+      }
       if (!contact) continue;
 
       const contactKey = `${entry.id}:${contact.id}`;

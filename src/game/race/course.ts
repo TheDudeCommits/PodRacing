@@ -89,6 +89,8 @@ interface CurveEvaluation {
 }
 
 export interface PodraceCourseOptions {
+  /** Explicit opt-in for archived branch fixtures. Playable circuits use one racing line. */
+  enableBranches?: boolean;
   controlPoints?: readonly AuthoredCoursePoint[];
   /** Seed receipt for procedural courses; null identifies the authored baseline. */
   seed?: number | null;
@@ -659,7 +661,7 @@ export class PodraceCourse {
         };
       });
 
-    this.branchDefinitions = options.branches ?? (this.seed === null
+    this.branchDefinitions = options.branches ?? (this.seed === null || !options.enableBranches
       ? Object.freeze([])
       : generateCourseBranches(this, this.seed, this.region));
     this.generationReport = validatePodraceCourse(this);
@@ -1096,7 +1098,7 @@ export function validatePodraceCourse(course: PodraceCourse): CourseGenerationRe
   if (maximumStartCurvature > 0.028) reasons.push(`start-grid-curvature:${maximumStartCurvature.toFixed(3)}`);
   if (maximumTerrainSlope > profile.maximumCourseSlope) reasons.push(`terrain-slope:${maximumTerrainSlope.toFixed(3)}/${profile.maximumCourseSlope.toFixed(3)}`);
   if (course.seed !== null && launchScore < profile.minimumLaunchScore) reasons.push('launch-crest');
-  if (course.seed !== null) {
+  if (course.branches.length > 0) {
     const branchReport = validateCourseBranches(course, course.branches);
     reasons.push(...branchReport.reasons.map((reason) => `branches:${reason}`));
   }

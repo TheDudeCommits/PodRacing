@@ -1,6 +1,6 @@
+import { legacyBranchedCourse as createProceduralPodraceCourse } from '../helpers/legacyBranchedCourse';
 import { describe, expect, it } from 'vitest';
 import { launchRidgeRound31 } from './launchRidgeRound31';
-import { createProceduralPodraceCourse } from '../../src/game/race/course';
 import { COURSE_GULF_SEED, createCourseGulfField, getLaunchBasinAnchor } from '../../src/game/race/CourseGulfField';
 import { sampleTerrainHeight } from '../../src/render/terrain/terrainMath';
 

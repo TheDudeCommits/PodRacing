@@ -41,7 +41,7 @@ export class RacerPresentation extends Group {
     this.pilotAnchor = this.procedural.pilotAnchor;
     this.imported = new ImportedVehiclePresentation(library, {
       maxTriangles: racerIndex === 0 ? 60_000 : 30_000,
-      materialOptions: { specularStrength: .2, rimStrength: .16, reflectionStrength: .08, wear: .24 },
+      materialOptions: { damageFeedback: true, specularStrength: .2, rimStrength: .16, reflectionStrength: .08, wear: .24 },
       onGeometryChanged: () => this.refreshGeometry(),
     });
     this.effects.name = 'imported-vehicle-effects';
@@ -106,6 +106,7 @@ export class RacerPresentation extends Group {
     if (!preserveWreckBreakup) this.imported.resetWreckBreakup();
     this.position.set(pose.x, pose.y, pose.z);
     this.rotation.set(pose.pitch, pose.yaw, pose.roll, 'YXZ');
+    for (const material of this.imported.materials) material.setDamage(material.name.toLowerCase().includes('pilot') ? 0 : pose.damage);
     Object.assign(this.localPose, pose);
     this.localPose.x = this.localPose.y = this.localPose.z = 0;
     this.localPose.yaw = this.localPose.pitch = this.localPose.roll = 0;
