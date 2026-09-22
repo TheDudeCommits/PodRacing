@@ -246,7 +246,7 @@ export class RaceHud {
                 ['inkstorm-trial', 'trial', 'Time Trial', 'Beat the clock', '03'],
                 ['cup-canyon', 'cup', 'World Cup', 'Four destinations', '04'],
               ].map(([event, art, label, detail, number]) => `<button class="setup-mode" type="button" data-action="select-event" data-event-id="${event}" data-mode="${art}" aria-label="${label}" aria-pressed="false">
-                <span class="setup-mode-art"><img src="/assets/inkstorm/home/mode-${art}.webp" alt="" width="640" height="360" draggable="false"><span class="setup-mode-number" aria-hidden="true">${number}</span><span class="setup-mode-check" aria-hidden="true">✓</span></span>
+                <span class="setup-mode-art"><img src="/assets/inkstorm/home/mode-${art}-chrome.webp" alt="" width="640" height="360" draggable="false"><span class="setup-mode-number" aria-hidden="true">${number}</span><span class="setup-mode-check" aria-hidden="true">✓</span></span>
                 <span class="setup-mode-caption"><strong>${label}</strong><small>${detail}</small></span>
               </button>`).join('')}
             </nav>
@@ -275,7 +275,7 @@ export class RaceHud {
                 ['frozen', 'biome-frozen-battle', 'Frostline', 'Ice & snow'],
                 ['volcanic', 'biome-volcanic-battle', 'Ember Rift', 'Volcanic highlands'],
                 ['jungle', 'biome-jungle-battle', 'Verdant Run', 'Deep jungle'],
-              ].map(([destination, event, name, detail]) => `<button class="setup-map" type="button" data-action="select-event" data-destination="${destination}" data-event-id="${event}" aria-label="${name}" aria-pressed="false"><img src="/assets/inkstorm/home/map-${destination}.webp" alt="" width="800" height="450" draggable="false"><span class="setup-map-caption"><strong>${name}</strong><small>${detail}</small></span><span class="setup-map-check" aria-hidden="true">✓</span></button>`).join('')}
+              ].map(([destination, event, name, detail]) => `<button class="setup-map" type="button" data-action="select-event" data-destination="${destination}" data-event-id="${event}" aria-label="${name}" aria-pressed="false"><img src="/assets/inkstorm/home/map-${destination}-chrome.webp" alt="" width="800" height="450" draggable="false"><span class="setup-map-caption"><strong>${name}</strong><small>${detail}</small></span><span class="setup-map-check" aria-hidden="true">✓</span></button>`).join('')}
             </nav>
           </section>
           <footer class="setup-bottom">

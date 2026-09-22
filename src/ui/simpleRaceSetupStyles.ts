@@ -14,7 +14,7 @@ export const SIMPLE_RACE_SETUP_CSS = /* css */ `
 .simple-setup .setup-mode { position:relative; display:flex; flex-direction:column; width:100%; min-width:0; min-height:0; overflow:hidden; padding:0; border:1px solid var(--home-line); background:#07132bd9; color:var(--home-ink); cursor:pointer; text-align:left; transform:none; transition:border-color .18s,box-shadow .18s,transform .18s; }
 .simple-setup .setup-mode-art { position:relative; display:block; min-height:0; flex:1 1 0; width:100%; overflow:hidden; background:#101b3d; border-bottom:0; }
 .simple-setup .setup-mode-art::after { content:''; position:absolute; inset:0; background:linear-gradient(180deg,#1b2d7020,transparent 40%,#050d2fee); pointer-events:none; }
-.simple-setup .setup-mode img { width:100%; height:100%; display:block; object-fit:cover; filter:saturate(.65) brightness(.78) contrast(1.05); transition:filter .25s,transform .4s; }
+.simple-setup .setup-mode img { width:100%; height:100%; display:block; object-fit:cover; filter:saturate(.93) brightness(.94) contrast(1.02); transition:filter .25s,transform .4s; }
 .simple-setup .setup-mode-number { position:absolute; top:10px; left:12px; font:400 15px/1 var(--ui-heading); padding:5px 6px; background:#07122c9c; color:var(--home-ink); }
 .simple-setup .setup-mode-check { position:absolute; top:10px; right:10px; display:none; width:26px; height:26px; place-items:center; background:var(--home-accent); color:#fff; box-shadow:0 0 15px #ff553d55; font:700 17px/1 Inkstorm UI,sans-serif; }
 .simple-setup .setup-mode-caption { position:absolute; inset:auto 0 0; display:flex; justify-content:space-between; align-items:center; gap:8px; min-height:56px; padding:12px 16px; }
@@ -22,9 +22,9 @@ export const SIMPLE_RACE_SETUP_CSS = /* css */ `
 .simple-setup .setup-mode-caption small { font:700 10px/1.3 Inkstorm UI,sans-serif; text-align:right; letter-spacing:.045em; }
 .simple-setup .setup-mode[aria-pressed=true] { border-color:var(--home-accent); box-shadow:0 0 0 1px var(--home-accent),0 0 18px #ff402750,inset 0 0 12px #ff40272a; }
 .simple-setup .setup-mode[aria-pressed=true] .setup-mode-art { border-bottom-color:var(--home-accent); }
-.simple-setup .setup-mode[aria-pressed=true] img { filter:saturate(.95) contrast(1.08) brightness(.95); }
+.simple-setup .setup-mode[aria-pressed=true] img { filter:saturate(1.06) contrast(1.03) brightness(1); }
 .simple-setup .setup-mode[aria-pressed=true] .setup-mode-check { display:grid; }
-.simple-setup .setup-mode:hover:not(:disabled) img { filter:saturate(.95) contrast(1.08) brightness(.98); transform:scale(1.04); }
+.simple-setup .setup-mode:hover:not(:disabled) img { filter:saturate(1.06) contrast(1.03) brightness(1.04); transform:scale(1.04); }
 .simple-setup .setup-mode:hover:not(:disabled) { transform:translateY(-2px); }
 .simple-setup .setup-roster-stage { display:grid; grid-template-columns:minmax(220px,1fr) minmax(320px,2.25fr) minmax(220px,1fr); grid-template-rows:24px minmax(0,1fr); gap:12px 20px; min-height:0; }
 .simple-setup .setup-roster-heading { grid-column:1/-1; display:flex; align-items:center; gap:16px; }

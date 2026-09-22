@@ -1,3 +1,21 @@
+# PodRacing — Round 51 artwork and font comparison (2026-09-22)
+
+Eight generated Liquid Chrome race-mode/destination illustrations are prepared
+for release. Four real sci-fi fonts can be compared at `/style-lab/index.html`:
+Orbitron, Audiowide, Tektur and Zen Dots. **The owner has not selected a font yet**;
+the normal game's font remains unchanged. All candidates can be tried on the
+actual interactive home screen inside the comparison page.
+
+- Built-in Imagegen; versioned WebP assets total 714,706 bytes. Full-size originals
+  saved in `output/round51/originals/`; provenance/prompt set recorded.
+- Typecheck/build, 2 existing UI tests, 16 font/layout checks, all four mode/map
+  choices and responsive home checks pass. Zero console errors. Browsers closed.
+- [Implementation and validation](docs/inkstorm-overhaul/ROUND51_ARTWORK_AND_TYPE.md).
+- Source changes are menu art and the isolated comparison page. Race simulation,
+  the previous position/finish repairs and gameplay remain unchanged.
+
+## Previous release — Round 50
+
 # PodRacing — Round 50 Liquid Chrome and race repairs live (2026-09-22)
 
 Race position/finish repairs and the owner's selected **D — Liquid Chrome** home

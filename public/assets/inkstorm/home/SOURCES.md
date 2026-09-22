@@ -1,4 +1,29 @@
-# Home screen artwork — Round 49
+# Home screen artwork
+
+## Round 51 — illustrated Liquid Chrome cards
+
+The eight `mode-*-chrome.webp` and `map-*-chrome.webp` assets are newly generated
+menu illustrations made with **built-in Imagegen** at the owner's request.
+They replace the captured screenshots in the home menu; the original captures
+remain available under their original filenames. They are key art, not gameplay
+captures or a representation of new rendered terrain features.
+
+- Modes: Battle (flame/shield), Race (close competition), Time Trial (ghost/timing),
+  World Cup (turbine-inspired chrome championship trophy).
+- Maps: Dune Sea (copper canyon), Frostline (blue ice), Ember Rift (basalt/embers),
+  Verdant Run (emerald jungle).
+- Battle, Race and Time Trial use this project's existing admitted Sebulba/Teemto
+  pod renders as shape references. No new third-party vehicle images were imported.
+- The approved Liquid Chrome D direction supplies the cobalt/violet reflections,
+  lavender highlights and red-orange accent lighting.
+- Runtime files are 960×540 WebP, quality 84, **714,706 bytes total**.
+  Encoding/resizing uses `cwebp`; no manual compositing changes the generated art.
+- Complete prompts and original generator paths:
+  `docs/inkstorm-overhaul/ROUND51_IMAGE_PROMPTS.json`.
+- Full-resolution workspace originals: `output/round51/originals/`.
+  Encoded hashes/sizes: `output/round51/artwork-manifest.json`.
+
+## Round 49 — original captures
 
 Eight transparent portraits rendered with `VehicleCardPreviewRenderer` from the
 project's existing admitted pod models. Four mode images captured in the native

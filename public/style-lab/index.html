@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>PodRacing · Type directions</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./fonts.css">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <main>
+    <header class="masthead"><div><p class="eyebrow">PODRACING / LIQUID CHROME</p><h1>Choose your typeface.</h1></div><a href="/">Back to game ↗</a></header>
+    <p class="intro">Four sci-fi directions, rendered with the actual fonts. Select a card to try it on the interactive home screen below.</p>
+    <section class="specimens" aria-label="Font options">
+      <button class="specimen" data-font="orbitron" aria-pressed="true" style="--type:Orbitron;--weight:700">
+        <span class="specimen-meta"><span>A / ORBITRON</span><span class="tag">Recommended</span></span>
+        <span class="sample-title">POD RACING</span>
+        <span class="sample-modes">BATTLE <span>RACE</span> TIME TRIAL</span>
+        <span class="sample-destination">EMBER RIFT</span>
+        <span class="sample-bottom"><span class="sample-time">01:42.830</span><span class="sample-play">PLAY ↗</span></span>
+        <span class="description">Angular aerospace lettering. The strongest classic sci-fi identity.</span>
+      </button>
+      <button class="specimen" data-font="audiowide" aria-pressed="false" style="--type:Audiowide;--weight:400">
+        <span class="specimen-meta"><span>B / AUDIOWIDE</span><span class="tag">Retro future</span></span>
+        <span class="sample-title">POD RACING</span>
+        <span class="sample-modes">BATTLE <span>RACE</span> TIME TRIAL</span>
+        <span class="sample-destination">EMBER RIFT</span>
+        <span class="sample-bottom"><span class="sample-time">01:42.830</span><span class="sample-play">PLAY ↗</span></span>
+        <span class="description">Rounded, continuous curves. A natural partner for liquid chrome.</span>
+      </button>
+      <button class="specimen" data-font="tektur" aria-pressed="false" style="--type:Tektur;--weight:700">
+        <span class="specimen-meta"><span>C / TEKTUR</span><span class="tag">Combat tech</span></span>
+        <span class="sample-title">POD RACING</span>
+        <span class="sample-modes">BATTLE <span>RACE</span> TIME TRIAL</span>
+        <span class="sample-destination">EMBER RIFT</span>
+        <span class="sample-bottom"><span class="sample-time">01:42.830</span><span class="sample-play">PLAY ↗</span></span>
+        <span class="description">Heavy clipped corners. Tough, mechanical and compact.</span>
+      </button>
+      <button class="specimen" data-font="zendots" aria-pressed="false" style="--type:'Zen Dots';--weight:400">
+        <span class="specimen-meta"><span>D / ZEN DOTS</span><span class="tag">Space age</span></span>
+        <span class="sample-title">POD RACING</span>
+        <span class="sample-modes">BATTLE <span>RACE</span> TIME TRIAL</span>
+        <span class="sample-destination">EMBER RIFT</span>
+        <span class="sample-bottom"><span class="sample-time">01:42.830</span><span class="sample-play">PLAY ↗</span></span>
+        <span class="description">Wide sculpted forms. Distinctive and bold for hero headings.</span>
+      </button>
+    </section>
+    <section class="tryout" aria-labelledby="preview-title">
+      <div class="preview-header"><div><p class="eyebrow">LIVE TYPE PREVIEW</p><h2 id="preview-title" aria-live="polite">A / Orbitron</h2></div><button class="expand" type="button" aria-pressed="false">Expand preview ↗</button></div>
+      <p class="note">Use the game’s mode, pod and map controls. This preview changes headings and buttons; small labels stay readable. Your choice here does not change the live game’s default font.</p>
+      <div class="preview-shell"><iframe id="game" src="/" title="Interactive PodRacing home screen with selected font"></iframe></div>
+    </section>
+    <section class="artwork" aria-labelledby="art-title"><p class="eyebrow">GENERATED WITH IMAGEGEN</p><h2 id="art-title">Race modes & destinations</h2><p class="note">Illustrated menu artwork in the selected Liquid Chrome direction.</p><div class="art-grid" id="art-grid"></div></section>
+    <footer>Font files are self-hosted under the SIL Open Font License. <a href="./SOURCES.md">Sources & licenses</a></footer>
+  </main>
+  <script src="./app.js"></script>
+</body>
+</html>
