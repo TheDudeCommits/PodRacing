@@ -20,6 +20,7 @@ import { ART_APPEARANCES, resolveVehicleAppearance, type VehicleAppearanceId } f
 import { RacerPresentation } from '../render/vehicles/RacerPresentation';
 import { VehicleArtLibrary } from '../render/vehicles/VehicleArtLibrary';
 import {
+  CelMaterial,
   createCelMaterial,
   CEL_PALETTES,
   createInvertedHullOutline,
@@ -755,6 +756,17 @@ export class VehicleCardPreviewRenderer {
       steer: .12, throttle: parked ? 0 : .7, speed: parked ? 0 : 126,
       boost: parked ? 0 : .12, damage: 0 }, 1.75 + vehicle.racerIndex * .31);
     vehicle.syncVisibility();
+    vehicle.traverseVisible(object => {
+      if (!(object instanceof Mesh) || !(object.material instanceof CelMaterial)) return;
+      const light = object.material.uniforms;
+      light.uRimColor!.value.set('#99a0ff');
+      light.uRimStrength!.value = .36;
+      light.uSpecularColor!.value.set('#ffd6df');
+      light.uSpecularStrength!.value = .56;
+      light.uReflectionColor!.value.set('#647ff5');
+      light.uReflectionStrength!.value = .3;
+      light.uRoughness!.value = Math.min(light.uRoughness!.value, .48);
+    });
     vehicle.updateMatrixWorld(true);
 
     resources.renderer.setSize(width, height, false);

@@ -1,3 +1,4 @@
+import { stageRaceProgress } from '../helpers/stageRaceProgress';
 import { describe, expect, it } from 'vitest';
 import { createRaceSimulation } from '../../src/game/race';
 import {
@@ -125,9 +126,7 @@ describe('host-authoritative race simulation adapters', () => {
       const progress = progressById[entry.id] ?? 0;
       const sample = race.course.sampleAtProgress(progress);
       const lane = (index - 1.5) * 12;
-      entry.progress.courseProgress = progress;
-      entry.progress.previousProgress = progress;
-      entry.progress.unwrappedProgress = progress;
+      stageRaceProgress(entry, race.course, progress);
       entry.progress.placement = oldPlacementById[entry.id] ?? index + 1;
       entry.vehicle.position.x = sample.x + sample.rightX * lane;
       entry.vehicle.position.z = sample.z + sample.rightZ * lane;

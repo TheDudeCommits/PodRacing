@@ -1,3 +1,4 @@
+import { stageRaceProgress } from '../helpers/stageRaceProgress';
 import { describe, expect, it } from 'vitest';
 import {
   LANCE_MAGAZINE,
@@ -132,7 +133,7 @@ describe('tow cable', () => {
       entry.vehicle.position.y = sample.y + 2.45;
       entry.vehicle.orientation.yaw = Math.atan2(sample.tangentX, sample.tangentZ);
       entry.vehicle.velocity.x = sample.tangentX * speed; entry.vehicle.velocity.z = sample.tangentZ * speed;
-      entry.progress.courseProgress = progress; entry.progress.unwrappedProgress = progress; entry.progress.previousProgress = progress;
+      stageRaceProgress(entry, race.course, progress);
     };
     place(player, 0.100, 60);
     place(rivals[0]!, 0.100 + 40 / race.course.totalLength, 60);

@@ -1,3 +1,4 @@
+import { stageRaceProgress } from '../helpers/stageRaceProgress';
 import { describe, expect, it } from 'vitest';
 import { RACING_BIOMES, RACING_BIOME_SEEDS, racingBiomeForSeed, racingBiomeHeatRate } from '../../src/game/race/racingBiomes';
 import { createProceduralPodraceCourse, PodraceCourse } from '../../src/game/race/course';
@@ -80,6 +81,7 @@ describe('racing destinations', () => {
       const entry=race.state.entries[0]!;
       entry.vehicle=createPodracerState({id:entry.id,terrain,position:{x:mid.x+lane.rightX*lateral,z:mid.z+lane.rightZ*lateral},yaw:Math.atan2(lane.tangentX,lane.tangentZ)});
       entry.progress=createRacerProgressState(course,mid.canonicalProgress);
+      stageRaceProgress(entry, course, mid.canonicalProgress);
       race.step({throttle:0});
       return entry.vehicle.heat;
     };

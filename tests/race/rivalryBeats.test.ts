@@ -1,3 +1,4 @@
+import { stageRaceProgress } from '../helpers/stageRaceProgress';
 import { describe, expect, it } from 'vitest';
 import { createRaceSimulation } from '../../src/game/race';
 import { FLAT_HEIGHT_SAMPLER } from '../../src/game/simulation';
@@ -28,7 +29,7 @@ describe('rivalry beats', () => {
       entry.vehicle.position.x = sample.x; entry.vehicle.position.z = sample.z; entry.vehicle.position.y = sample.y + 2.45;
       entry.vehicle.orientation.yaw = Math.atan2(sample.tangentX, sample.tangentZ);
       entry.vehicle.velocity.x = sample.tangentX * speed; entry.vehicle.velocity.z = sample.tangentZ * speed;
-      entry.progress.courseProgress = progress; entry.progress.unwrappedProgress = progress; entry.progress.previousProgress = progress;
+      stageRaceProgress(entry, race.course, progress);
     };
     place(player, 0.100, 120);
     place(rivals[0]!, 0.102, 10);

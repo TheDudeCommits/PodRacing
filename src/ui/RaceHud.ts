@@ -252,34 +252,34 @@ export class RaceHud {
             </nav>
           </header>
           <section class="setup-roster-stage" aria-label="Choose your pod">
-            <div class="setup-roster-heading"><h2>Select your racer</h2><span aria-hidden="true"></span><small>8 pods. Your racing style.</small></div>
+            <div class="setup-roster-heading"><h2>Select your racer</h2><span aria-hidden="true"></span></div>
             <div class="setup-roster setup-roster--left" role="group" aria-label="Racers 1 to 4">${this.createPodRoster(SETUP_PODS.slice(0, 4))}</div>
             <section class="pod-hud__garage-hero" aria-label="Selected racer">
               <span class="setup-hero-number" data-hud="setup-pod-index" aria-hidden="true">01 / 08</span>
               <div class="setup-hero-orbit" aria-hidden="true"></div>
-              <div class="pod-hud__garage-model" data-hud="garage-model" data-vehicle-preview="hero" data-vehicle-id="podracer" data-pod-inspection role="group" tabindex="0" aria-label="Inspect Teemto" aria-describedby="setup-inspect-hint" aria-description="Use Left and Right arrow keys to inspect. Home resets the view." title="Drag to rotate. When focused, use Left/Right arrows to inspect; Home resets the view."></div>
+              <div class="pod-hud__garage-model" data-hud="garage-model" data-vehicle-preview="hero" data-vehicle-id="podracer" data-pod-inspection role="group" tabindex="0" aria-label="Inspect Teemto" aria-description="Use Left and Right arrow keys to inspect. Home resets the view."></div>
               <button class="setup-pod-arrow setup-pod-arrow--previous" type="button" data-action="step-pod" data-direction="-1" aria-label="Previous pod">‹</button>
               <button class="setup-pod-arrow setup-pod-arrow--next" type="button" data-action="step-pod" data-direction="1" aria-label="Next pod">›</button>
               <div class="pod-hud__garage-name" aria-live="polite"><span data-hud="garage-class"></span><h1 data-hud="garage-name">Teemto</h1></div>
               <div class="setup-hero-stats" data-hud="garage-stats" aria-label="Racer ratings"></div>
-              <div class="pod-hud__garage-inspect"><button type="button" data-action="inspect-vehicle" data-direction="-1" aria-label="Rotate pod left">↶</button><span id="setup-inspect-hint">Drag to rotate <small>← → browse racers</small></span><button type="button" data-action="inspect-vehicle" data-direction="1" aria-label="Rotate pod right">↷</button></div>
+              <div class="pod-hud__garage-inspect"><button type="button" data-action="inspect-vehicle" data-direction="-1" aria-label="Rotate pod left">↶</button><button type="button" data-action="inspect-vehicle" data-direction="1" aria-label="Rotate pod right">↷</button></div>
               <div class="setup-preview-status"><p data-hud="appearance-status" role="status" aria-live="polite"></p><button type="button" data-action="retry-appearance" hidden>Retry preview</button></div>
             </section>
             <div class="setup-roster setup-roster--right" role="group" aria-label="Racers 5 to 8">${this.createPodRoster(SETUP_PODS.slice(4))}</div>
           </section>
+          <section class="setup-maps" aria-label="Choose your destination">
+            <div class="setup-map-heading"><h2>Destination</h2><span data-hud="setup-destination">Dune Sea</span></div>
+            <nav class="setup-map-grid" aria-label="Race destination">
+              ${[
+                ['desert', 'inkstorm-battle', 'Dune Sea', 'Sun-scorched canyon'],
+                ['frozen', 'biome-frozen-battle', 'Frostline', 'Ice & snow'],
+                ['volcanic', 'biome-volcanic-battle', 'Ember Rift', 'Volcanic highlands'],
+                ['jungle', 'biome-jungle-battle', 'Verdant Run', 'Deep jungle'],
+              ].map(([destination, event, name, detail]) => `<button class="setup-map" type="button" data-action="select-event" data-destination="${destination}" data-event-id="${event}" aria-label="${name}" aria-pressed="false"><img src="/assets/inkstorm/home/map-${destination}.webp" alt="" width="800" height="450" draggable="false"><span class="setup-map-caption"><strong>${name}</strong><small>${detail}</small></span><span class="setup-map-check" aria-hidden="true">✓</span></button>`).join('')}
+            </nav>
+          </section>
           <footer class="setup-bottom">
-            <div class="setup-brand">INKSTORM<small>NOW THIS IS PODRACING</small></div>
             <nav class="setup-tools" aria-label="Race options and tools">
-              <details class="setup-drawer setup-destination" name="setup-panel"><summary><span><small>Destination</small><b data-hud="setup-destination">Inkstorm</b></span><span aria-hidden="true">⌃</span></summary>
-                <div class="setup-drawer-body"><header><strong>Choose a destination</strong><button type="button" data-action="close-setup-drawer" aria-label="Close destinations">×</button></header>
-                  <nav class="setup-courses" aria-label="Race destination">
-                    <button type="button" data-action="select-event" data-destination="desert" data-event-id="inkstorm-battle"><strong>Inkstorm</strong><small>Sun-scorched canyon</small></button>
-                    <button type="button" data-action="select-event" data-destination="frozen" data-event-id="biome-frozen-battle"><strong>Frostline</strong><small>Ice &amp; snow</small></button>
-                    <button type="button" data-action="select-event" data-destination="volcanic" data-event-id="biome-volcanic-battle"><strong>Ember Rift</strong><small>Volcanic highlands</small></button>
-                    <button type="button" data-action="select-event" data-destination="jungle" data-event-id="biome-jungle-battle"><strong>Verdant Run</strong><small>Deep jungle</small></button>
-                  </nav>
-                </div>
-              </details>
               <details class="setup-drawer setup-more" name="setup-panel" data-hud="setup-more"><summary>Race rules <span aria-hidden="true">+</span></summary><div class="setup-drawer-body">
                 <header><strong>Race rules</strong><button type="button" data-action="close-setup-drawer" aria-label="Close race rules">×</button></header>
                 <p class="setup-rule-summary" data-hud="setup-rule-summary">Choose your challenge.</p>
@@ -1396,7 +1396,6 @@ export class RaceHud {
 
   private updateMastery(mastery: HudMasteryViewModel | undefined, phase: RaceHudViewModel['phase'], preRace: boolean, tutorialVisible: boolean): void {
     this.root.classList.toggle('has-mastery', Boolean(mastery));
-    requireElement<HTMLElement>(this.root, '.setup-courses').hidden = !mastery;
     requireElement<HTMLElement>(this.root, '[data-hud="mastery"]').hidden = !mastery;
     const controls = requireElement<HTMLElement>(this.root, '[data-hud="mastery-controls"]');
     controls.hidden = !mastery;
@@ -1487,7 +1486,7 @@ export class RaceHud {
       button.disabled = this.roomPanel.dataset.role === 'guest';
     }
     const cupSelected = mastery.eventId.startsWith('cup-');
-    write(requireElement(this.root, '[data-hud="setup-destination"]'), cupSelected ? 'World tour' : ({ desert: 'Inkstorm', frozen: 'Frostline', volcanic: 'Ember Rift', jungle: 'Verdant Run' } as Record<string, string>)[destination]!);
+    write(requireElement(this.root, '[data-hud="setup-destination"]'), cupSelected ? 'World tour' : ({ desert: 'Dune Sea', frozen: 'Frostline', volcanic: 'Ember Rift', jungle: 'Verdant Run' } as Record<string, string>)[destination]!);
     const modes = ['battle', 'race', 'trial'];
     this.root.querySelectorAll<HTMLButtonElement>('.setup-types [data-event-id]').forEach((button, index) => {
       if (index < 3) button.dataset.eventId = destination === 'desert' ? `inkstorm-${modes[index]}` : `biome-${destination}-${modes[index]}`;
@@ -1913,7 +1912,7 @@ export class RaceHud {
         button.setAttribute('aria-pressed', String(selected));
       }
     }
-    if (guest && lobby.sharedSetup) write(requireElement(this.root, '[data-hud="setup-destination"]'), lobby.sharedSetup.destinationLabel);
+    if (guest && lobby.sharedSetup) write(requireElement(this.root, '[data-hud="setup-destination"]'), lobby.sharedSetup.destination === 'desert' ? 'Dune Sea' : lobby.sharedSetup.destinationLabel);
 
 
     const startButton = requireElement<HTMLButtonElement>(this.root, '[data-hud="start-button"]');

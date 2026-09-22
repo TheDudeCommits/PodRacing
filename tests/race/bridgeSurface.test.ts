@@ -1,3 +1,4 @@
+import { stageRaceProgress } from '../helpers/stageRaceProgress';
 import { legacyBranchedCourse as createProceduralPodraceCourse } from '../helpers/legacyBranchedCourse';
 import { describe, expect, it } from 'vitest';
 import { createRaceSimulation } from '../../src/game/race';
@@ -86,9 +87,7 @@ describe('flagship supported viaduct', () => {
     const player = race.state.entries[0]!;
     player.vehicle = createPodracerState({ id: player.id, terrain: race.terrain,
       position: { x: point.x, z: point.z }, yaw: Math.atan2(next.x - point.x, next.z - point.z) });
-    player.progress.courseProgress = point.canonicalProgress;
-    player.progress.previousProgress = point.canonicalProgress;
-    player.progress.unwrappedProgress = point.canonicalProgress;
+    stageRaceProgress(player, race.course, point.canonicalProgress);
     let resets = 0, supported = 0;
     // Initial fixture only: every subsequent pose is produced by normal physics.
     for (let tick = 0; tick < 360; tick += 1) {
@@ -116,9 +115,7 @@ describe('flagship supported viaduct', () => {
     const player = race.state.entries[0]!;
     player.vehicle = createPodracerState({ id: player.id, terrain: race.terrain,
       position: { x, y: initialY, z }, yaw: Math.atan2(dx, dz) });
-    player.progress.courseProgress = point.canonicalProgress;
-    player.progress.previousProgress = point.canonicalProgress;
-    player.progress.unwrappedProgress = point.canonicalProgress;
+    stageRaceProgress(player, race.course, point.canonicalProgress);
     expect(sampleBridgeSurface(race.course.branches, x, z)).toBeNull();
     let resets = 0;
     for (let tick = 0; tick < 300; tick += 1) {

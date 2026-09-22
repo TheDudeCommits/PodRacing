@@ -1,3 +1,4 @@
+import { stageRaceProgress } from '../helpers/stageRaceProgress';
 import { describe, expect, it } from 'vitest';
 import { createProceduralPodraceCourse } from '../../src/game/race/course';
 import { createCourseGulfField } from '../../src/game/race/CourseGulfField';
@@ -87,7 +88,7 @@ describe('solid scenery', () => {
     player.vehicle.orientation.yaw = Math.atan2(dx / distance, dz / distance);
     player.vehicle.velocity.x = dx / distance * 80;
     player.vehicle.velocity.z = dz / distance * 80;
-    player.progress.courseProgress = rock.progress;
+    stageRaceProgress(player, race.course, rock.progress);
     let hit = false;
     for (let tick = 0; tick < 600 && !hit; tick += 1) {
       const result = race.step({ throttle: 1 });

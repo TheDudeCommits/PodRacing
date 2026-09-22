@@ -537,7 +537,7 @@ export function stepAIController(
     (tune.steeringResponse + 4) * difficulty.reactionScale * delta,
   );
 
-  const selfScore = context.self.completedLaps + context.self.unwrappedProgress;
+  const selfScore = context.self.unwrappedProgress;
   const scoreGap = context.playerRaceScore - selfScore;
   const rubberSignal = clamp(scoreGap * 2.2, -1, 1);
   // Catch-up remains deliberately mild. A leader also sheds a little more

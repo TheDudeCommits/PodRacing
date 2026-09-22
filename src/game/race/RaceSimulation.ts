@@ -743,14 +743,11 @@ export class RaceSimulation {
         aiEvents.push(...aiResult.events);
         const stalled = (this.aiStallSeconds.get(entry.id) ?? 0)
           >= this.options.aiStallRecoverySeconds;
-        const missedCheckpoint = this.aiMissedRequiredCheckpoint(entry);
         if (
           entry.progress.offCourseDistance > 68
           || entry.progress.wrongWayTimer > 4.2
           || stalled
-          || missedCheckpoint
         ) {
-          if (missedCheckpoint) this.armRequiredCheckpointRecovery(entry);
           input = { ...input, reset: true };
           if (stalled) {
             // One edge-triggered reset is enough. Clearing the watchdog here
@@ -802,14 +799,16 @@ export class RaceSimulation {
         input = this.applyDirectorEffects(entry, input, delta, events);
       }
 
+      const missedGate = this.state.phase === 'racing' && this.missedRequiredCheckpoint(entry);
       if (
         this.state.phase === 'racing'
         && entry.status !== 'finished'
         // Preserve the collision tick so impacts, damage, takedown attribution
         // and audiovisual feedback are not swallowed by a simultaneous reset.
         && (collisionImpulses[entryIndex]?.length ?? 0) === 0
-        && this.shouldAutomaticallyRecoverOffCourse(entry, delta)
+        && (missedGate || this.shouldAutomaticallyRecoverOffCourse(entry, delta))
       ) {
+        if (missedGate) this.armRequiredCheckpointRecovery(entry);
         // Automatic recovery is a guaranteed edge, even if the player was
         // already holding the manual reset control on the previous tick.
         entry.vehicle.controls.resetHeld = false;
@@ -1004,6 +1003,8 @@ export class RaceSimulation {
           raceTime: this.state.raceTime,
           totalLaps: this.state.totalLaps,
           projection,
+          previousPosition: snapshots[this.entryIndexById.get(entry.id) ?? 0],
+          recovered: vehicleEvents[entry.id]?.some(event => event.type === 'reset'),
         });
         if (projection && entry.vehicle.grounded && entry.progress.finishTime === null) {
           const heat = racingBiomeHeatRate(this.biome.id, projection.progress, projection.lateralOffset, projection.width) * delta;
@@ -2280,17 +2281,24 @@ export class RaceSimulation {
   }
 
   /** True once the required gate is farther ahead than any authored gate gap. */
-  private aiMissedRequiredCheckpoint(entry: RaceEntryState<AIControllerState>): boolean {
-    if (!entry.ai || entry.status === 'finished') return false;
+  private missedRequiredCheckpoint(entry: RaceEntryState<AIControllerState>): boolean {
+    if (entry.status === 'finished') return false;
     const expected = this.course.checkpoints[entry.progress.nextCheckpointIndex];
     if (!expected) return false;
+    // A large off-course excursion uses the last validated safe pose and its
+    // existing recovery timer. Only a near-track missed gate uses this approach.
+    const sample = this.course.sampleAtProgress(entry.progress.courseProgress);
+    const lateral = (entry.vehicle.position.x - sample.x) * sample.rightX
+      + (entry.vehicle.position.z - sample.z) * sample.rightZ;
+    if (Math.abs(lateral) > sample.width + this.options.offCourseRecoveryDistance) return false;
     const forward = wrapCourseProgress(expected.progress - entry.progress.courseProgress);
-    return forward > Math.min(0.92, this.maximumCheckpointGapProgress + 0.055);
+    return forward > Math.min(0.92, this.maximumCheckpointGapProgress + 0.055)
+      && (1 - forward) * this.course.totalLength > 12;
   }
 
   /**
    * Land immediately before the missed gate while preserving ordered truth.
-   * The teleport awards nothing; the AI must drive through on a later tick.
+   * The teleport awards nothing; every racer must drive through on a later tick.
    */
   private armRequiredCheckpointRecovery(entry: RaceEntryState<AIControllerState>): void {
     const expected = this.course.checkpoints[entry.progress.nextCheckpointIndex];

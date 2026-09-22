@@ -1,3 +1,4 @@
+import { createPodraceCourse } from '../../src/game/race';
 import { BufferAttribute, InstancedMesh, Matrix4, Mesh, MeshBasicMaterial, ShaderMaterial, Vector2, Vector3 } from 'three';
 import { describe, expect, it } from 'vitest';
 import {
@@ -22,6 +23,19 @@ function createCourse(pointCount = 160): CourseRenderData {
 }
 
 describe('race course rendering', () => {
+  it('places visible gate posts on the exact authoritative crossing plane and aperture', () => {
+    const model = createPodraceCourse({ heightAt: () => 0 });
+    const view = new RaceCourseView();
+    view.setCourse(model.getRenderData(128)); // deliberately coarse road samples
+    const posts = view.getObjectByName('painted-checkpoint-supports') as InstancedMesh;
+    const matrix = new Matrix4(), position = new Vector3();
+    for (const gate of model.checkpoints) {
+      posts.getMatrixAt(gate.index * 2, matrix); position.setFromMatrixPosition(matrix);
+      expect(position.x).toBeCloseTo(gate.x - gate.rightX * gate.width * 1.18, 2);
+      expect(position.z).toBeCloseTo(gate.z - gate.rightZ * gate.width * 1.18, 2);
+    }
+    view.dispose();
+  });
   it('releases retired instance buffers when rebuilding and disposing a course', () => {
     const course = new RaceCourseView();
     const data = createCourse();

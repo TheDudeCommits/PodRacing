@@ -1,3 +1,30 @@
+# PodRacing — Round 50 validated, Production release pending (2026-09-22)
+
+Race position/finish repairs and the owner's selected **D — Liquid Chrome** home
+screen are implemented and locally validated. The previous live Production is
+Round 49 below until the new Git-integrated deployment is promoted and verified.
+
+- Fixed recovery distance inflation, double-counted lap score, visible/detected
+  gate aperture mismatch, exact gate-plane crossings, and missed-gate recovery
+  for both local players and online guests. All ordered checkpoints remain required.
+- Four Imagegen previews delivered; owner selected D. Generated menu-only backdrop,
+  blue/violet chrome-lit pod previews, orange-red selection highlights; actual
+  game map thumbnails now sit below pod selection. Removed requested extra copy.
+- Full suite: 1,104 tests / 190 files pass. Subsequent final preview/framing/race
+  regressions: 25 tests / 6 files pass. Typecheck, build and diff checks pass.
+- Three-lap simulation runs across all four maps; a three-lap normal-input native
+  browser run reached results after recovery with all 30 gates. Native p95 16.7 ms
+  on this Mac, zero console/page errors. Real host/guest checks pass.
+- Final local home QA: 18 checks, zero console/page/HTTP errors; all task browsers closed.
+- Bundle: `index-CDgMdb2D.js`, 1,981,612 bytes, SHA-256
+  `8c36e8c38c1ce0f795566e508a6dce4eba853796a62a838802e5766d7fd90689`.
+- [Implementation and evidence](docs/inkstorm-overhaul/ROUND50_PROGRESS_AND_HOME.md).
+  Scripts and local evidence use `round50`; art previews are in `output/round50/previews/`.
+- Continue preview-then-promote deployment, not a full source-archive upload.
+  Rollback candidate: Round 49 `dpl_22gnfW4DwCxmGn52Awwj6kqrWyCV`.
+
+## Previous release — Round 49
+
 # PodRacing — Round 49 home screen live (2026-09-22)
 
 The requested Rift Arena-inspired home layout is live at **https://podracing.dude.work/**.

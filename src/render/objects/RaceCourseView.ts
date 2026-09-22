@@ -1,3 +1,5 @@
+import { checkpointHalfWidth } from '../../game/race/checkpointGeometry';
+import type { CourseCheckpoint } from '../../game/race/types';
 import {
   BoxGeometry,
   BufferAttribute,
@@ -45,6 +47,7 @@ export interface CourseRenderBranch {
 export interface CourseRenderData {
   points: readonly CourseRenderPoint[];
   checkpointIndices: readonly number[];
+  checkpoints?: readonly CourseCheckpoint[];
   branches?: readonly CourseRenderBranch[];
 }
 
@@ -1179,14 +1182,16 @@ export class RaceCourseView extends Group {
     for (let gate = 0; gate < gateCount; gate += 1) {
       const index = course.checkpointIndices[gate];
       if (index === undefined) continue;
-      const point = course.points[index % course.points.length];
+      const exact = course.checkpoints?.[gate];
+      const point = exact ?? course.points[index % course.points.length];
       const next = course.points[(index + 1) % course.points.length];
       if (!point || !next) continue;
-      forward.set(next.x - point.x, 0, next.z - point.z).normalize();
+      if (exact) forward.set(exact.tangentX, 0, exact.tangentZ);
+      else forward.set(next.x - point.x, 0, next.z - point.z).normalize();
       right.set(forward.z, 0, -forward.x);
       // The course width is already a half-width. A small safety margin clears
       // all four pods without turning a checkpoint crossbar into an 80 m wall.
-      const gateWidth = point.width * 1.18;
+      const gateWidth = checkpointHalfWidth(point.width);
       const yaw = Math.atan2(forward.x, forward.z);
       rotation.setFromAxisAngle(up, yaw);
       for (const side of [-1, 1]) {

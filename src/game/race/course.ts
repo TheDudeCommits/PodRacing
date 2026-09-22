@@ -970,6 +970,7 @@ export class PodraceCourse {
     return {
       points,
       checkpointIndices,
+      checkpoints: this.checkpoints,
       branches: this.branchDefinitions,
       region: this.region,
     };

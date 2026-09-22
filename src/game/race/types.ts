@@ -148,7 +148,9 @@ export interface CourseRenderPoint {
 
 export interface CourseRenderData {
   points: readonly CourseRenderPoint[];
-  /** Indices into `points`, ready for the renderer's instanced gates. */
+  /** Exact gate poses, shared with authoritative crossing detection. */
+  checkpoints?: readonly CourseCheckpoint[];
+  /** Indices retained for older authored render fixtures. */
   checkpointIndices: readonly number[];
   /** Optional for backwards-compatible authored/test fixtures. */
   branches?: readonly CourseRenderBranch[];
@@ -337,7 +339,7 @@ export interface CheckpointSplit {
 
 export interface RacerProgressState {
   courseProgress: number;
-  /** Continuous progress, allowed below zero on the starting grid. */
+  /** Validated lap plus physical course position; includes laps exactly once. May be negative on the grid. */
   unwrappedProgress: number;
   previousProgress: number;
   completedLaps: number;

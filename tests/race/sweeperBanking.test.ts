@@ -1,3 +1,4 @@
+import { stageRaceProgress } from '../helpers/stageRaceProgress';
 import { describe, expect, it } from 'vitest';
 import { createProceduralPodraceCourse } from '../../src/game/race/course';
 import {
@@ -61,6 +62,7 @@ describe('banked flagship sweeper', () => {
     player.vehicle.orientation.yaw = Math.atan2(apex.tangentX, apex.tangentZ);
     player.vehicle.velocity.x = apex.tangentX * 90;
     player.vehicle.velocity.z = apex.tangentZ * 90;
+    stageRaceProgress(player, race.course, apex.progress);
     for (let tick = 0; tick < 90; tick += 1) race.step({ throttle: 0.6 });
     expect(player.vehicle.grounded).toBe(true);
     expect(Math.abs(player.vehicle.telemetry.surfaceRoll)).toBeGreaterThan(0.12);

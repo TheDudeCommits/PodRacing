@@ -1,3 +1,4 @@
+import { checkpointHalfWidth } from './checkpointGeometry';
 import { setPodracerRespawnPose } from '../simulation/podracer';
 import type { CourseProjection, RaceEntryState, RacerProgressState, RaceEvent } from './types';
 import { PodraceCourse, signedProgressDelta, wrapCourseProgress } from './course';
@@ -47,6 +48,10 @@ export interface ProgressUpdateOptions {
   maximumProgressDelta?: number;
   /** Reuse the same current-pose projection when surface effects also need it. */
   projection?: CourseProjection;
+  /** Actual pose before this fixed tick, used for a swept gate-plane crossing. */
+  previousPosition?: Readonly<{ x: number; z: number }>;
+  /** Recovery moves the craft but cannot cross or award any checkpoints. */
+  recovered?: boolean;
 }
 
 /**
@@ -78,12 +83,12 @@ export function updateRacerProgress(
 
   progress.previousProgress = previous;
   progress.courseProgress = projection.progress;
-  progress.unwrappedProgress += acceptedDelta;
+
   progress.lateralOffset = projection.lateralOffset;
   progress.offCourseDistance = Math.max(0, Math.abs(projection.lateralOffset) - projection.width);
   progress.cornerPreview = course.getCornerPreview(projection.progress);
 
-  if (acceptedDelta > 0 && course.checkpoints.length > 0) {
+  if (!options.recovered && acceptedDelta > 0 && course.checkpoints.length > 0) {
     // One physical 120 Hz tick cannot reach many gates, but the loop also
     // supports deterministic replay catch-up without relaxing gate ordering.
     let remainingArc = acceptedDelta;
@@ -92,11 +97,23 @@ export function updateRacerProgress(
       const expected = course.checkpoints[progress.nextCheckpointIndex];
       if (!expected) break;
       const toCheckpoint = forwardArcDistance(cursor, expected.progress);
-      if (toCheckpoint < 1e-7 || toCheckpoint > remainingArc + 1e-7) break;
-      // Arc progress alone is not a gate crossing. The craft centre must also
-      // pass between the illuminated posts; otherwise a huge desert shortcut
-      // beside the structure would incorrectly award a split.
-      if (Math.abs(projection.lateralOffset) > expected.width + 2.5) break;
+      let crossingLateral = projection.lateralOffset;
+      if (options.previousPosition) {
+        // Test the segment actually driven against the exact rendered plane.
+        // Nearest-spline progress can cross slightly early/late on a bend.
+        const before = options.previousPosition;
+        const after = entry.vehicle.position;
+        const beforeAlong = (before.x - expected.x) * expected.tangentX
+          + (before.z - expected.z) * expected.tangentZ;
+        const afterAlong = (after.x - expected.x) * expected.tangentX
+          + (after.z - expected.z) * expected.tangentZ;
+        if (beforeAlong > 1e-6 || afterAlong < 0 || afterAlong <= beforeAlong) break;
+        if (Math.abs(signedProgressDelta(expected.progress, projection.progress)) > maximumDelta * 2) break;
+        const fraction = clamp(-beforeAlong / (afterAlong - beforeAlong), 0, 1);
+        crossingLateral = (before.x + (after.x - before.x) * fraction - expected.x) * expected.rightX
+          + (before.z + (after.z - before.z) * fraction - expected.z) * expected.rightZ;
+      } else if (toCheckpoint > remainingArc + 1e-7) break;
+      if (Math.abs(crossingLateral) > checkpointHalfWidth(expected.width)) break;
 
       const split = Math.max(0, options.raceTime - progress.lastSplitTime);
       progress.splits.push({
@@ -137,6 +154,22 @@ export function updateRacerProgress(
     }
   }
 
+  // This is a position on the validated lap, not an odometer. Integrating
+  // movement but ignoring reset jumps used to keep the old distance, allowing
+  // repeated recovery to manufacture an invisible lead over nearby racers.
+  const lastGate = course.checkpoints[progress.lastCheckpointIndex];
+  const nextGate = course.checkpoints[progress.nextCheckpointIndex];
+  if (lastGate && nextGate) {
+    const offset = signedProgressDelta(lastGate.progress, projection.progress);
+    const segmentLength = forwardArcDistance(lastGate.progress, nextGate.progress);
+    const positionScore = progress.completedLaps + lastGate.progress + Math.min(offset, segmentLength);
+    // A rejected forward teleport cannot improve rank. A recovery immediately
+    // loses the distance it actually moved backward, without awarding a gate.
+    progress.unwrappedProgress = Math.abs(rawDelta) <= maximumDelta || options.recovered
+      ? positionScore
+      : Math.min(progress.unwrappedProgress, positionScore);
+  }
+
   const speed = Math.hypot(entry.vehicle.velocity.x, entry.vehicle.velocity.z);
   const motionAlongCourse =
     entry.vehicle.velocity.x * projection.tangentX +
@@ -158,5 +191,5 @@ export function updateRacerProgress(
 }
 
 export function racerRaceScore(entry: Pick<RaceEntryState, 'progress'>): number {
-  return entry.progress.completedLaps + entry.progress.unwrappedProgress;
+  return entry.progress.unwrappedProgress;
 }
