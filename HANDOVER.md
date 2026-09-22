@@ -11,7 +11,9 @@ Round 43 and earlier are unchanged and still describe the game itself: [ROUND43_
 
 - Repository: https://github.com/TheDudeCommits/PodRacing, branch `codex/now-this-is-podracing`, working directory `/Users/amir/Projects/PodRacing`.
 - **Runtime source is still commit `298950d` (round 43).** Every round 44 commit adds only `scripts/trailer/` and this handover, so the built bundle is byte-identical to round 43's.
-- Previews come from the Git integration on push. **Never run `vercel deploy` from the working tree**; it tries to upload roughly 17 GB. Production promotion stays owner-approved only: `yes | npx vercel promote <url> --scope amirs-projects-d9680079`.
+- **Production is live from this round**, promoted at the owner's explicit instruction to push and deploy. Preview `dpl_3tgwK9ka3hTvh9tZgJpka74Tk6rt` (https://now-this-is-podracing-1wf8g18b0-amirs-projects-d9680079.vercel.app, built by the Git integration from `5b56fde`) was promoted with `npx vercel promote ... --yes`, which rebuilt it in the production environment as `dpl_EvmpCPx4YfPwQxtPcmhJAJnjzxAF` (https://now-this-is-podracing-bhfn2ywyu-amirs-projects-d9680079.vercel.app). It carries the aliases `podracing.dude.work`, `now-this-is-podracing.vercel.app`, the project alias and the branch alias.
+- `vercel promote` prompts interactively. `--yes` drives it non-interactively; the older `yes | npx vercel promote` recipe still works but a piped `yes` may be refused by a sandbox.
+- Previews come from the Git integration on push. **Never run `vercel deploy` from the working tree**; it tries to upload roughly 17 GB. Production promotion stays owner-approved only: `npx vercel promote <url> --yes --scope amirs-projects-d9680079`.
 
 ## The domain
 
@@ -36,7 +38,7 @@ Built with:
 node scripts/trailer/edit.mjs --edl=./scenes.mjs --shots=shots3 --out=PodRacing-Trailer-v4
 ```
 
-Masters live in `output/trailer/`, which is **gitignored** — the videos exist only on this Mac and are not in the repo or the deployment. `PodRacing-Trailer-v4.mp4` is the master (h264 CRF 16 + AAC 256k); `PodRacing-Trailer-v4-web.mp4` is a lighter share encode (`-crf 20 -preset slow -c:a aac -b:a 192k -movflags +faststart`).
+Masters live in `output/trailer/`, which is **gitignored** — the videos exist only on this Mac and are not in the repo or the deployment. `PodRacing-Trailer-v4.mp4` is the master (h264 CRF 16 + AAC 256k); `PodRacing-Trailer-v4-web.mp4` is a lighter share encode (`-crf 20 -preset slow -c:a aac -b:a 192k -movflags +faststart`), 165,428,869 bytes at 14.5 Mbps. **The share encode is not produced by `edit.mjs`** — it is the ffmpeg line above, run by hand on the master; an earlier copy was lost to a disk cleanup and had to be rebuilt.
 
 Four cuts were made. The first three were rejected by the owner, and the reasons are the useful part:
 
@@ -66,6 +68,7 @@ Round 43's lessons all still apply and are reproduced in the round 43 section be
 - Domain: `podracing.dude.work` resolves to the Vercel anycast edge (`216.150.1.0/24`; the exact A records rotate), HTTP/2 200 with HSTS. Asset spot-checks all 200 — JS 1,920,743 B, `podracing-selection-intro.webm` 98,581 B, `BlackOpsOne-Regular.ttf` 166,532 B, `teemto-hero-open-v2.glb` 7,698,824 B.
 - Browser boot on the live domain: `__PODRACING__.ready === true`, dusk-sky HDR loaded with zero failures, Inkstorm world loaded, Race control present, **zero page errors and zero failed requests**.
 - Neighbouring sites unaffected: `dude.work` 200, `www.dude.work` 307, `board.dude.work` 307.
+- After the promotion, `podracing.dude.work` and `now-this-is-podracing.vercel.app` both serve `index-DkeU_NFY.js`, matching the locally verified build. A headless boot of the live domain reported `ready: true`, title `Now This Is PodRacing`, 95 controls, and **zero page errors and zero failed requests**.
 - Frame cadence is **still unmeasured on a quiet machine**. That remains the one outstanding quality check, carried over from round 43.
 - The trailer itself has had no viewer review beyond the owner's.
 
