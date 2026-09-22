@@ -42,7 +42,7 @@ export const COCKPIT_CSS = /* css */ `
 .pod-hud .simple-setup .pod-hud__garage-hero {
  grid-column:2; grid-row:1; padding:0; background:radial-gradient(ellipse at 55% 42%,#132d1c,#061b12 63%,#020805); border:18px solid #121916; border-radius:10% / 7%; overflow:hidden;
  box-shadow:0 0 0 2px #454941,0 0 0 4px #070a08,0 0 0 6px #55564b,0 8px 12px #000,inset 0 0 12px 3px #000,inset 0 0 2px 4px #315e36;
- transform:translateZ(-3px); color:var(--phosphor);
+ transform:translateZ(5px); color:var(--phosphor);
 }
 .pod-hud .simple-setup .pod-hud__garage-hero::after { display:block; content:''; position:absolute; z-index:3; inset:0; border-radius:8%; pointer-events:none; background:repeating-linear-gradient(0deg,#0003 0 1px,transparent 1px 3px),linear-gradient(120deg,#dbffce0c,transparent 25%,transparent 85%,#bcffbb0b); box-shadow:inset 0 0 35px #000b; }
 .pod-hud .simple-setup .pod-hud__garage-hero::before { display:block; content:'+'; position:absolute; inset:17% 8% auto auto; color:#7dcc8555; font:28px monospace; }
@@ -67,6 +67,7 @@ export const COCKPIT_CSS = /* css */ `
 .simple-setup .setup-map[aria-pressed=true] { border-color:#a68a49; box-shadow:0 0 0 1px #eec974,0 0 12px #ffb83d55,inset 0 0 6px #ffe499; }.simple-setup .setup-map[aria-pressed=true] img,.simple-setup .setup-map:hover img { filter:saturate(.85) sepia(.1) brightness(1); }.simple-setup .setup-map:hover { transform:translateY(-1px); }
 .simple-setup .setup-bottom { padding:0; border:0; gap:28px; transform:translateZ(20px); align-items:stretch; }
 .simple-setup .setup-drawer { height:100%; min-height:0; align-self:stretch; }
+.pod-hud .simple-setup .setup-tools>.setup-online { height:100%; padding:0; margin:0; border:0; background:none; }
 .simple-setup .setup-tools { gap:14px; flex:1; align-items:stretch; }
 .simple-setup .setup-tools::after { content:''; flex:1; min-width:30px; margin:12px 6px; border:4px solid #383c32; border-radius:3px; background:repeating-linear-gradient(90deg,#030504 0 8px,#20251f 9px 11px,#5c5c4b 12px 13px); box-shadow:0 1px 1px #d2c09744; }
 .simple-setup .setup-tools>button,.simple-setup .setup-drawer>summary { height:100%; min-width:140px; min-height:56px; padding:12px 18px; justify-content:center; border:7px solid #242a24; border-radius:6px; color:#171c18; background:linear-gradient(#c5c2aadd,#989b88db),var(--metal) center / 330px; font:800 13px/1.3 Orbitron,sans-serif; box-shadow:0 4px 0 #080c09,inset 1px 2px 1px #f2ead48c,inset -1px -2px 2px #353e30; }
