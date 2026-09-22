@@ -1,3 +1,26 @@
+# PodRacing — Round 47 Production release (2026-09-22)
+
+The owner requested deployment to **https://podracing.dude.work/**. Round 46's
+three destinations and four recovered pods are now live. All eight pods remain
+available through the setup carousel; destination selection is solo-only.
+
+- Runtime source: `cdb3fe8687a4a458fab2bfa477937884acefd4a9`, pushed to GitHub.
+- Production: `dpl_DZ5je3Rd6PrwK3pHjGwDnbxe2qkz`, **READY**, with canonical alias
+  `podracing.dude.work` and `now-this-is-podracing.vercel.app`.
+- The live browser-loaded bundle matches the tested local build:
+  `index-CqDGBrTc.js`, SHA-256
+  `721fd11bdb4abbe34de9ad509fe3368d8e59079cdac82994595c125c9cd68366`.
+- [Release evidence and prioritized quality roadmap](docs/inkstorm-overhaul/ROUND47_RELEASE_AND_ROADMAP.md).
+- Browser reproduction: `node scripts/qa-production-round47.mjs`.
+  Screenshots and receipts are local under `output/round47/`.
+- No runtime source or trailer media changed in this release round. The older
+  Round 46 statement that work is local-only is historical and superseded here.
+- Continue to push for a Git-integrated preview, then promote its verified URL
+  for an owner-authorized Production release. Do not deploy the working tree's
+  large source archive directly.
+
+## Previous handover — Round 46
+
 # PodRacing — Round 46 handover (2026-09-22)
 
 ## Start here
