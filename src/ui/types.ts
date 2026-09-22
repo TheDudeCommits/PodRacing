@@ -139,6 +139,12 @@ export interface HudLobbyViewModel {
   members: readonly HudLobbyMemberViewModel[];
   capacity: number;
   canStart: boolean;
+  /** Authoritative room choices, rendered without deriving state from status copy. */
+  sharedSetup?: {
+    destination: 'desert' | 'frozen' | 'volcanic' | 'jungle';
+    destinationLabel: string;
+    mode: 'battle' | 'race';
+  };
 }
 
 export interface HudVehicleSelectionOptions {

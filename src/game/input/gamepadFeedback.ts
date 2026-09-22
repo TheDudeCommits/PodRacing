@@ -10,8 +10,8 @@ export class GamepadFeedback {
     const pad = this.pad(); if (!pad) return;
     const confirm = !!pad.buttons[0]?.pressed, cancel = !!pad.buttons[1]?.pressed;
     if (active) {
-      const controls = [...root.querySelectorAll<HTMLElement>('button:not(:disabled),input:not(:disabled),select:not(:disabled)')]
-        .filter(el => el.getClientRects().length > 0 && !el.closest('[hidden],[aria-hidden="true"]'));
+      const controls = [...root.querySelectorAll<HTMLElement>('button:not(:disabled),input:not(:disabled),select:not(:disabled),summary')]
+        .filter(el => el.getClientRects().length > 0 && !el.closest('[hidden],[aria-hidden="true"],[inert]') && el.checkVisibility({ checkVisibilityCSS: true, checkOpacity: true }));
       const focused = controls.includes(document.activeElement as HTMLElement) ? document.activeElement as HTMLElement : null;
       const x = (pad.buttons[15]?.pressed ? 1 : 0) - (pad.buttons[14]?.pressed ? 1 : 0) || (Math.abs(pad.axes[0] ?? 0) > .55 ? Math.sign(pad.axes[0]!) : 0);
       const y = (pad.buttons[13]?.pressed ? 1 : 0) - (pad.buttons[12]?.pressed ? 1 : 0) || (Math.abs(pad.axes[1] ?? 0) > .55 ? Math.sign(pad.axes[1]!) : 0);
@@ -37,7 +37,12 @@ export class GamepadFeedback {
       }
       this.lastDirection = direction;
       if (confirm && !this.heldConfirm) (focused ?? controls[0])?.click();
-      if (cancel && !this.heldCancel) root.querySelector<HTMLElement>('[data-action="resume-race"]:not([hidden])')?.click();
+      if (cancel && !this.heldCancel) {
+        const back = controls.find(el => el.matches('[aria-label="Close settings"],[aria-label="Close workshop"],[data-action="close-event-atlas"],[data-action="resume-race"]'));
+        const drawer = root.querySelector<HTMLDetailsElement>('.setup-drawer[open]');
+        if (back) back.click();
+        else if (drawer) { drawer.open = false; drawer.querySelector('summary')?.focus(); }
+      }
     }
     this.heldConfirm = confirm; this.heldCancel = cancel;
   }

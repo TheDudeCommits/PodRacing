@@ -1,3 +1,20 @@
+# PodRacing — Round 49 home screen (2026-09-22)
+
+The requested Rift Arena-inspired home layout is implemented and locally verified.
+Production is still Round 48 until the release receipt below is updated.
+
+- Illustrated mode cards on top; all eight pods around an interactive, animated
+  center showcase; destination/rules/online/options/play along the bottom.
+- Responsive desktop, mobile and compact landscape layouts; touch, keyboard,
+  reduced motion and controller navigation verified.
+- Guest home shows the authoritative host mode/destination and locks those controls.
+- [Implementation and verification](docs/inkstorm-overhaul/ROUND49_HOME_SCREEN.md).
+- Reproduction: `scripts/qa-home-round49.mjs`, `scripts/qa-online-round49.mjs`.
+  Local evidence: `output/round49/`. Menu artwork is 232,632 bytes, captured from
+  this game's existing assets; see `public/assets/inkstorm/home/SOURCES.md`.
+
+## Previous release — Round 48
+
 # PodRacing — Round 48 gameplay overhaul live (2026-09-22)
 
 The requested overhaul is live at **https://podracing.dude.work/**.

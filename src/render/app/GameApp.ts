@@ -2792,6 +2792,11 @@ export class GameApp {
       })),
       capacity: lobby.capacity,
       canStart: lobby.canStart,
+      sharedSetup: {
+        destination: racingBiomeForSeed(lobby.courseSeed ?? null).id,
+        destinationLabel: racingBiomeForSeed(lobby.courseSeed ?? null).title,
+        mode: lobby.competitionProfile === 'clean-race' ? 'race' : 'battle',
+      },
     };
   }
 
