@@ -1,4 +1,92 @@
-# PodRacing — Round 43 handover (2026-09-18)
+# PodRacing — Round 44 handover (2026-09-22)
+
+## Start here
+
+Round 44 changed **no game code**. It is a release round: the game got a **public address** and a **launch trailer**.
+
+- **Live: https://podracing.dude.work** — the owner's own domain, added to the existing Vercel project. `https://now-this-is-podracing.vercel.app` still works and serves the same deployment.
+- **Launch trailer** — 91.000 s, 1920×1080, 60 fps, a scene-by-scene remake of the owner's reference trailer (https://www.youtube.com/watch?v=2MtgIoToa7I). Roughly 70% real gameplay rendered offline from the shipping bundle, the rest generated with Seedance 2.5 through Higgsfield and conditioned on real frames from this build. The whole pipeline is committed under `scripts/trailer/`; read [scripts/trailer/README.md](scripts/trailer/README.md) and [scripts/trailer/REFERENCE.md](scripts/trailer/REFERENCE.md) before touching it.
+
+Round 43 and earlier are unchanged and still describe the game itself: [ROUND43_REPORT.md](docs/inkstorm-overhaul/ROUND43_REPORT.md), [ROUND42](docs/inkstorm-overhaul/ROUND42_REPORT.md), [ROUND41](docs/inkstorm-overhaul/ROUND41_REPORT.md), [ROUND40](docs/inkstorm-overhaul/ROUND40_REPORT.md), [ROUND39](docs/inkstorm-overhaul/ROUND39_REPORT.md), [ROUND38](docs/inkstorm-overhaul/ROUND38_REPORT.md), [ROUND37](docs/inkstorm-overhaul/ROUND37_REPORT.md).
+
+- Repository: https://github.com/TheDudeCommits/PodRacing, branch `codex/now-this-is-podracing`, working directory `/Users/amir/Projects/PodRacing`.
+- **Runtime source is still commit `298950d` (round 43).** Every round 44 commit adds only `scripts/trailer/` and this handover, so the built bundle is byte-identical to round 43's.
+- Previews come from the Git integration on push. **Never run `vercel deploy` from the working tree**; it tries to upload roughly 17 GB. Production promotion stays owner-approved only: `yes | npx vercel promote <url> --scope amirs-projects-d9680079`.
+
+## The domain
+
+`podracing.dude.work` was attached with:
+
+```
+npx vercel domains add podracing.dude.work now-this-is-podracing --scope amirs-projects-d9680079
+```
+
+`dude.work` already runs on Vercel nameservers, so DNS was automatic and no code change was needed.
+
+**The owner originally asked for `dude.work/Podracing`, a subpath. Do not attempt that without budgeting real work.** Two blockers:
+
+1. The apex and `www` belong to a *different* Vercel project (`dudework`); `board.dude.work` belongs to `dashboard-ink`. A subpath would need a rewrite added to that other live site.
+2. **This game is built for a domain root.** `vite.config.ts` sets no `base`, and there are **32 hardcoded root-absolute asset paths across 7 source files** — `src/ui/broadcastStyles.ts`, `src/render/sky/DuskSkyAssets.ts`, `src/render/app/GameApp.ts`, `src/render/inkstorm/InkstormWorld.ts`, `src/game/vehicleAppearance.ts`, `src/render/inkstorm/InkstormSurfaceMaterial.ts`, `src/audio/catalogue.ts`. At a subpath every one of those 404s. `catalogue.ts` is additionally hash-ledger-validated by `tests/audio/recordedCatalogue.test.ts`, and `DuskSkyAssets.ts` is the reference-counted sky loader, so this is not a blind find-and-replace.
+
+## The trailer
+
+Built with:
+
+```
+node scripts/trailer/edit.mjs --edl=./scenes.mjs --shots=shots3 --out=PodRacing-Trailer-v4
+```
+
+Masters live in `output/trailer/`, which is **gitignored** — the videos exist only on this Mac and are not in the repo or the deployment. `PodRacing-Trailer-v4.mp4` is the master (h264 CRF 16 + AAC 256k); `PodRacing-Trailer-v4-web.mp4` is a lighter share encode (`-crf 20 -preset slow -c:a aac -b:a 192k -movflags +faststart`).
+
+Four cuts were made. The first three were rejected by the owner, and the reasons are the useful part:
+
+1. **v1** — "zero direction, the pod is going off track instead of actually racing, you repeated the same shots". Root cause: the capture used `setInput({throttle: 1})` with no steer, so the hero drove off the racing line while the camera followed it into open desert.
+2. **v2** — gameplay still underwhelming; generated and in-game footage did not blend; the pods, weapons, shields, mines, explosions and drifting were not shown.
+3. **v3** — "recreate it SCENE BY SCENE": if the reference has an explosion, show *our* explosion.
+4. **v4** — the current cut, 51 cuts against the reference's 50 scenes at the reference's own timecodes.
+
+## Lessons that must survive
+
+Round 43's lessons all still apply and are reproduced in the round 43 section below. Round 44 adds:
+
+1. **Gameplay footage must be rendered offline and deterministically, never screen-recorded.** Real-time headless capture reached only ~24 fps and the adaptive governor dropped to quality level 8. `setCaptureMode(true)` pins quality level 0. Drive `step()` by hand, **two 120 Hz ticks per output frame** — `step()` calls `render(FIXED_DT)` once, so two steps advance effect time by exactly 1/60 s, and stepping one tick at a time lets persistent dust and wakes accumulate the way a player sees them. That is the ROUND39 batched-capture constraint, satisfied.
+2. **The hero pod has to be driven closed-loop.** `scripts/trailer/driver.mjs` is a PD lane hold on `lateralOffset` (kp 0.055 / kd 0.115) with targets clamped to ±9 m, an explicit recentre above 11 m, overtaking that picks the free side, and lance fire only inside a forward cone. Open-loop input put the pod 117 m off the line; forcing a drift by swinging the target put it 86 m off. **Do not force behaviour the simulation produces on its own** — drift peaks of 0.77–1.0 happen unaided in the circuit's corners.
+3. **`seekCourse` places the hero ahead of the entire field** (rivals at `-index * 42` m), so a chase camera sees nobody. Every take must run a low-throttle phase first and let the seven rivals stream past.
+4. **`setCamera` is *not* capture-mode gated**, so shots are framed from the real gameplay cameras. Avoid `course`: it disables the cel post. The `hero` camera frames too far out to use.
+5. **Cut from telemetry, not by eye.** `capture3.mjs` writes `telemetry.json` beside every take; `pick.mjs` rejects any window where the hero leaves the racing line or wrecks unintentionally and scores the rest for the feature the beat must show. Weapon beats must be cut to the *exact frame* the weapon fires — several early cuts missed their own event by a second. Small effects need a tighter reframe (`crop` in the EDL); a lance bolt is a few pixels in a full chase frame.
+6. **This machine's ffmpeg has no `drawtext`** (no libfreetype). All typography is rendered in a headless browser by `scripts/trailer/cards.mjs`, using the game's own shipped faces and HUD palette.
+7. **Higgsfield cannot generate music.** `sonilo_music` and `mirelo_text_to_audio` are gated to its game pipeline and `generate_audio` is speech-only, so the owner's request for an original score could not be met. The cut uses "Juggernaut" by Scott Buckley, already licensed in this repo as the selection-screen score. **The repo's sourced-audio-only policy was not bent.**
+8. **Generated footage is a trailer asset and nothing else.** It must never enter `public/`, the game bundle, or the audio/asset provenance ledgers. Disclose it when publishing.
+9. **Mines do not read on screen.** The mine drops *behind* the pod and no camera looks backward, so it reads as a pebble. One mine beat survives in the cut; that is an honest limit of the current cameras, not a cutting mistake.
+10. **`lateralOffset` is measured against the nearest course branch.** Near the route fork a perfectly good take reports ~155 m off-line. Check the frames before discarding a take on that number alone.
+
+## Validation
+
+- `npm run verify` on the round 44 tree: TypeScript, **1056 tests / 184 files**, and the build all pass. The build emits `index-DkeU_NFY.js`, 1,920,743 bytes — the same bundle round 43 promoted to Production, which is the expected result of a round that touched no runtime source.
+- Domain: `podracing.dude.work` resolves to the Vercel anycast edge (`216.150.1.0/24`; the exact A records rotate), HTTP/2 200 with HSTS. Asset spot-checks all 200 — JS 1,920,743 B, `podracing-selection-intro.webm` 98,581 B, `BlackOpsOne-Regular.ttf` 166,532 B, `teemto-hero-open-v2.glb` 7,698,824 B.
+- Browser boot on the live domain: `__PODRACING__.ready === true`, dusk-sky HDR loaded with zero failures, Inkstorm world loaded, Race control present, **zero page errors and zero failed requests**.
+- Neighbouring sites unaffected: `dude.work` 200, `www.dude.work` 307, `board.dude.work` 307.
+- Frame cadence is **still unmeasured on a quiet machine**. That remains the one outstanding quality check, carried over from round 43.
+- The trailer itself has had no viewer review beyond the owner's.
+
+## Next work, in priority order
+
+1. Owner playtest of the round 43 drift feel and lance magazine, now that the game is on a public address.
+2. A quiet-machine cadence run (`npx tsx scripts/competitive-flow.ts --battle --performance`); it has never been measured without other load on the Mac.
+3. Track improvements, which the owner has asked about but not yet chosen: named landmarks per corner, real shortcut gambles, a signature jump at the launch crest, more elevation, surface variety that changes grip, a wider sweeper and a tighter canyon, trackside life, per-sector lighting, a rebuilt start straight, and eventually a second circuit.
+4. Remove the last 1.6% hull burial; rival line discipline on cambered straights.
+5. Remaining ideas from earlier rounds: damage-driven handling, a reflect-timing shield, a lead reticle on the lock, sector race events, salvage magnet, chain mine, decoy beacon, repulsor jammer, ghost drive.
+6. Trailer follow-ups the owner has **not** asked for, offered and not taken: a 60 s compression of the 91 s cut, literal jungle/ice biome shots if an exact biome match is ever wanted, and removing the end-card text if zero text is preferred.
+
+## How to resume safely
+
+Read this header and the round reports, then `git status --short --branch`. `npm run verify` for any runtime change. Headless laps: `scripts/drive-balance.ts`. Native evidence: `scripts/competitive-flow.ts`, `scripts/effect-stills.mjs`, `scripts/recovery-camera-frames.mjs`, `scripts/wreck-debris-stills.mjs`, `scripts/ordnance-stills.ts`, `scripts/drift-stills.mjs`, `scripts/drift-native-frames.mjs`. Diagnostics on `window.__PODRACING__`: `debugWreckPlayer()`, `debugWreckRacer(id)`, `seekCourse`, `setInput`, `step`, `snapshot`.
+
+Trailer work specifically: the frame sequences under `output/trailer/shots3/` are ~5.5 GB and this Mac has run out of disk mid-capture before — check `df -h` before recapturing, and delete `output/trailer/shots*` and `clips*` when done. Close every owned browser and preview server immediately after QA; never adopt port 5211; never save the shared Blender scene; keep credentials and `.env` out of Git.
+
+---
+
+## Previous handover — Round 43 handover (2026-09-18)
 
 ## Start here
 
