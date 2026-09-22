@@ -1,7 +1,16 @@
-# PodRacing — Round 48 gameplay overhaul (2026-09-22)
+# PodRacing — Round 48 gameplay overhaul live (2026-09-22)
 
-Implementation and local validation are complete. Production promotion is in progress;
-its exact deployment and bundle receipt will be added here after canonical-domain QA.
+The requested overhaul is live at **https://podracing.dude.work/**.
+
+- Runtime source: `31780293d381864e6c30ada6bba8156684629c24`, pushed to GitHub.
+- Production: `dpl_GhE3nyomhH61YRfMNmwnTU7Q6Sq5`, **READY**.
+- Deployment URL: https://now-this-is-podracing-4m0b44uk4-amirs-projects-d9680079.vercel.app.
+- Verified aliases: `podracing.dude.work`, `now-this-is-podracing.vercel.app`.
+- Canonical browser bundle: `index-DEzAwTYZ.js`, 1,963,961 bytes, SHA-256
+  `bebdf3c8d5217452bdd49f94757bec6d8e278e2b10bdb347b5cf91e07173f1fa` — identical to the tested local build.
+- Live verification: **12 checks, zero page/console/HTTP errors**; all eight pod selections, keyboard driving on all three new destinations, and 390px mobile layout without overflow.
+- Previous Production for rollback: `dpl_DZ5je3Rd6PrwK3pHjGwDnbxe2qkz`.
+- Release receipts: `output/round48/deployment.json`, `live-qa.json`, `live-qa.log`. All task browsers were closed after their checks.
 
 - Shortcuts removed from playable circuits; scenery and surfaces improved across all four destinations.
 - Three-stage drift, hop grace, countersteering, stronger torque/landing feedback, fitted hulls and compact-pod camera framing.

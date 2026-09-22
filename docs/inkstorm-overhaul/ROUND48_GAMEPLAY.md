@@ -1,6 +1,6 @@
 # Round 48 — driving, contact racing and destination polish
 
-Status: implementation and local validation complete; deployment evidence is recorded in HANDOVER.md. This is a substantial gameplay/presentation pass, not a claim of AAA production quality.
+Status: live on https://podracing.dude.work/ from runtime commit `31780293d381864e6c30ada6bba8156684629c24`. Production is READY; canonical browser bytes match the tested build. Detailed deployment evidence is recorded in HANDOVER.md. This is a substantial gameplay/presentation pass, not a claim of AAA production quality.
 
 ## What changed
 
@@ -24,7 +24,10 @@ Status: implementation and local validation complete; deployment evidence is rec
 - Mechanical coverage includes stage/release edges, countersteering, hop grace, flame tell/cone/range/cover/shield checks, held-button suppression, snapshot continuation, mobility abilities, shortcut removal and championship migration. Network coverage checks pod/map/rules agreement, locked selection and guest ability input.
 - Asset coverage retains original admission tests and separately verifies runtime hashes, budgets, unchanged nodes/accessors/meshes and all non-image bytes. Shader compilation and decoded textures are also exercised in Chromium.
 
-- Native controller-driven complete jungle race, 1440 × 900, Chromium ANGLE/Metal, local M4: all 20 course bins traversed, 3,886 measured frames, p50/p95 16.7 ms, p99/max 16.8 ms, zero >33.5 ms frames, quality level 0 with adaptive enabled. No page/console errors. Native d-pad focus and A confirmation passed. This uses a QA controller driver through the actual Gamepad adapter, with ordinary fixed-step race advancement; no position teleporting. `output/round48/native-race.json` and `native-race-results.png`.
+- Native controller-driven complete jungle race, 1440 × 900, Chromium ANGLE/Metal, local M4: all 20 course bins traversed, 3,887 measured frames, p50/p95 16.7 ms, p99/max 16.8 ms, zero >33.5 ms frames, quality level 0 with adaptive enabled. No page/console errors. Native d-pad focus and A confirmation passed. This uses a QA controller driver through the actual Gamepad adapter, with ordinary fixed-step race advancement; no position teleporting. `output/round48/native-race.json` and `native-race-results.png`.
+
+- Final canonical Production verification: 12 checks, zero browser/HTTP errors, all eight pods loaded, keyboard input on the three new destinations, mobile overflow check passed. The loaded JS SHA-256 is `bebdf3c8d5217452bdd49f94757bec6d8e278e2b10bdb347b5cf91e07173f1fa`. `output/round48/live-qa.json`.
+- All eight native chase views reviewed. Pog's compact hull now stays above the bottom HUD; projection tests cover portrait/landscape and three speeds. Native fixed-step steering earned Turbo III from neutral charge after 316 ticks (2.63 s), with visibly colored trails. `output/round48/pod-cameras.json`, `pog-camera-final.json`, `drift-earned.png`.
 
 ## Limits and next quality work
 

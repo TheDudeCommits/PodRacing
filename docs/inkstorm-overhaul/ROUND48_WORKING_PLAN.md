@@ -17,7 +17,7 @@ multiplayer selection. This is implementation work, not a roadmap-only task.
 - [x] Recorded drift/impact cues, load-responsive engines, environment acoustics and intensity-aware music.
 - [x] Startup/asset optimization and whole-race frame-cadence evidence.
 - [x] Championship through new destinations, cleaner warnings/results, controller and online selection parity.
-- [ ] Regression suite, build, desktop/mobile native play, multiplayer and complete-lap QA; handover and commit.
+- [x] Regression suite, build, desktop/mobile native play, multiplayer and complete-lap QA; handover and commit.
 
 Maintain fixed-step host authority, CPU/shader terrain alignment, immutable grid
 selection, the owner's existing selection intro, recorded/licensed audio and
@@ -30,3 +30,5 @@ sparks and release boosts; Activision's CTR tips describe explicit visual timing
 for power-slide boosts. EA describes Burnout around aggressive driving,
 takedowns and crashes. Our implementation should retain player control and
 readability rather than introduce forced camera cuts during ordinary combat.
+
+Completed and deployed from runtime commit `3178029`. See ROUND48_GAMEPLAY.md and HANDOVER.md for release evidence and the remaining broader AAA-production work.
