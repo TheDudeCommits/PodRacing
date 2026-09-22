@@ -1,3 +1,43 @@
+# PodRacing — Round 53 Smuggler's Cockpit live and trailer v6 (2026-09-23)
+
+Owner-selected **F — Smuggler's Cockpit** is implemented and live at
+**https://podracing.dude.work/**. Worn metal, raised/depressing controls, CRT
+screens, pointer depth and a real interactive 3D pod inspector. Four modes on
+top, eight pods around the central display, four destinations below and physical
+bottom controls. Mobile, reduced motion and existing audio controls are retained.
+Four downloaded CC0 Kenney interface sounds provide menu feedback.
+
+- Runtime commit: `feb7a9dfa10a5c4801a48c1d2c7a3535a5aaee42`, pushed to GitHub
+  (main implementation `b9d3ef6`). Production
+  `dpl_EA9duBSR64qyoUMpHE8s3APBqxCo` is **READY**.
+- [Deployment](https://now-this-is-podracing-17xv3cdtx-amirs-projects-d9680079.vercel.app).
+  Canonical browser verified bundle `index-fFqYwSRS.js`. Local SHA-256:
+  `deb430d87bb354a35d5cd03abb094578b7788d9e39d9ac8d6d0d9813d8e14d76`.
+  The live filename was checked; the live bytes were not independently hashed.
+- **1,114 tests / 191 files pass**, typecheck/build/diff checks pass. Desktop and
+  mobile interaction checks pass. Final Production drag rotates the mesh 45°;
+  Needle/Verdant Run launches the correct pod/map, Online and Options respond,
+  mobile has no horizontal overflow and no page errors were recorded.
+- **Trailer v6:** 70.25 seconds, 1080p/60, starts on the actual new menu, newly
+  captured footage across all eight pods and four maps, drift/boost/combat,
+  retained Higgsfield inserts, no added racing labels, **Podracing.Dude.Work**
+  end card. New edit and sourced sound mix. Local files:
+  `output/trailer-v6/PodRacing-Trailer-v6.mp4` and
+  `output/trailer-v6/PodRacing-Trailer-v6-web.mp4`.
+- Both delivery files pass frame-count and complete-decode checks. Start/middle/end
+  images from all 30 cuts were reviewed. This is technical and sampled visual QA,
+  not continuous human audiovisual acceptance. Staged starting formations/cameras
+  and one diagnostically triggered opponent wreck are documented. Generated
+  cinematic windows and music attribution are in `output/trailer-v6/PUBLICATION.txt`.
+- [Implementation, evidence and media details](docs/inkstorm-overhaul/ROUND53_COCKPIT_AND_TRAILER.md).
+  [Reproduction](scripts/trailer/v6/DIRECTION.md). Media is ignored/local; v4/v5
+  exports remain intact. Git preview then promote is the deployment path; avoid
+  uploading the large checkout directly. All task browsers and dev servers closed.
+- Next step is owner visual/playback feedback. Do not treat technical QA as an
+  approved new visual direction beyond the F composition already selected.
+
+## Previous release — Round 52
+
 # PodRacing — Round 52 Orbitron, abilities and quiet HUD live (2026-09-23)
 
 **A — Orbitron** is selected and implemented. C/LB pod abilities are retained:
