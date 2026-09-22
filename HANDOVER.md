@@ -1,4 +1,4 @@
-# PodRacing — Round 52 Orbitron, abilities and quiet HUD (2026-09-23)
+# PodRacing — Round 52 Orbitron, abilities and quiet HUD live (2026-09-23)
 
 **A — Orbitron** is selected and implemented. C/LB pod abilities are retained:
 they provide cooling, dodges, charges or Sebulba's Battle flame. Fixed cooling
@@ -9,8 +9,15 @@ countdown, fixed instruments and results; flight-school help lives in Pause.
 - Full suite: **1,113 tests / 191 files pass**. Typecheck/build and desktop/mobile
   browser checks pass. Native C-key activation and notification stress checks pass.
 - [Implementation and validation](docs/inkstorm-overhaul/ROUND52_TYPE_AND_QUIET_HUD.md).
-- Production promotion and live verification are in progress; see the release
-  receipt appended below when complete. Current fallback remains Round 51.
+- **Live at https://podracing.dude.work/**; Production
+  `dpl_132qKfwz78Sy1tcAaKMeqKbRUHDV` is **READY**, canonical alias verified.
+- Source: `c147ce17c23f9f151be7d0150a540cc890f324cb`, pushed to GitHub.
+- Live browser: actual Orbitron, 8 illustrations, all 4 mode/map choices, mobile
+  layout, C activation and zero removed notification nodes; no page/console/HTTP
+  errors. Browser bundle SHA-256 matches the local build exactly.
+- [Deployment](https://now-this-is-podracing-prul3b01b-amirs-projects-d9680079.vercel.app).
+  Rollback: Round 51 `dpl_46G1pa7owfQDKwRrCkNQJh7Jq5Ze`.
+- All task browsers and the task development server are closed.
 
 ## Previous release — Round 51
 

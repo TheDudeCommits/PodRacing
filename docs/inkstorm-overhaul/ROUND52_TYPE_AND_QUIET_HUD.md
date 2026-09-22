@@ -65,4 +65,21 @@ change damage, scoring, recovery, lap or finish authority.
   not retested; normal keyboard activation and simulation/network regression
   coverage are the evidence for this change.
 
-Production release receipt will be appended after promotion and live verification.
+
+## Production release — verified 2026-09-23
+
+- Source commit: `c147ce17c23f9f151be7d0150a540cc890f324cb`, pushed to
+  `TheDudeCommits/PodRacing` on `codex/now-this-is-podracing`.
+- Production: `dpl_132qKfwz78Sy1tcAaKMeqKbRUHDV`, **READY**.
+- Deployment: https://now-this-is-podracing-prul3b01b-amirs-projects-d9680079.vercel.app.
+- Canonical alias: **https://podracing.dude.work/**, live browser verification passed.
+- Exact browser bundle: `index-PWWCNfeS.js`, 1,967,085 bytes. SHA-256
+  `2e9860a88371a92a00a9d226ec7bda1d63a2d3dbdba3877ec1f2df3b6339236d`,
+  identical to the local tested build.
+- Live: Orbitron loaded, all 8 illustrations loaded, all 4 mode and 4 map selections
+  work, 390px layout has no overflow, normal C-key cooling activation works,
+  removed popup DOM count is zero. No page, console or HTTP errors.
+- Receipts: `output/round52/{deployment,production-qa}.json`;
+  live screenshots: `output/playwright/round52/live-{home,mobile,race}.png`.
+- All task browsers and the task's port-43152 development server are closed.
+- Rollback candidate: Round 51 `dpl_46G1pa7owfQDKwRrCkNQJh7Jq5Ze`.
