@@ -1,3 +1,30 @@
+# Continue here — latest push and Production release
+
+- Checkout: `/Users/amir/Projects/PodRacing` (do not use the session's default
+  `/Users/amir/Codex-ThreeJS`). GitHub: https://github.com/TheDudeCommits/PodRacing.
+- Active branch: `codex/now-this-is-podracing`. Menu/trailer work is committed
+  through `2531f0ee746e85b0b66a298b32c0aae40602042c`; this continuation note is the
+  following documentation-only commit. No runtime changes follow `feb7a9d`.
+- Live site: **https://podracing.dude.work/**. The latest documentation revision
+  is deployed through the Git preview → Production promotion workflow. The exact
+  final deployment ID, commit and aliases are saved locally in
+  `output/round53/qa/latest-production.json`; inspect the canonical alias with
+  `npx --yes vercel inspect https://podracing.dude.work --json` when continuing.
+  Deployment IDs in the historical Round 53 section below describe the earlier
+  verified runtime release and are rollback references, not the newest promotion.
+- Owner approved F / Smuggler's Cockpit. Implementation and trailer v6 are done;
+  wait for owner feedback rather than restarting design exploration. Source,
+  checks, capture details and constraints are below and in the linked Round 53 doc.
+- Trailer videos are **local, gitignored media**, not uploaded into the web app:
+  `/Users/amir/Projects/PodRacing/output/trailer-v6/PodRacing-Trailer-v6-web.mp4`
+  and `PodRacing-Trailer-v6.mp4` in the same directory. The source/edit scripts,
+  direction and publication credits are tracked under `scripts/trailer/v6/`.
+  Preserve these and prior v4/v5 exports. Keep Scott Buckley attribution on uploads.
+- Do not disturb Blender on port 5211. Close every task browser immediately after
+  use. Capture scripts close their own browsers; menu capture needs a local Vite
+  server on 43153, which must be stopped afterwards. Avoid runtime edits during
+  capture because Vite reloads interrupt takes.
+
 # PodRacing — Round 53 Smuggler's Cockpit live and trailer v6 (2026-09-23)
 
 Owner-selected **F — Smuggler's Cockpit** is implemented and live at
