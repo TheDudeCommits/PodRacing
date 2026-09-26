@@ -7,8 +7,9 @@ on-brand audio is allowed. The plan and target frames are in the audit page
 published for the owner.
 
 Working title: **Thrustline** (trademark search still owed). Branch
-`overhaul/aaa`, created from `codex/now-this-is-podracing`. Not yet committed,
-pushed or deployed.
+`overhaul/aaa`, created from `codex/now-this-is-podracing`. Runtime commit
+`3944805`, live in Production at https://podracing.dude.work/ since 2026-09-27
+(`dpl_5VRnzdRqcoy37rb7vtNnaYJb6rZg`).
 
 ## What changed, by system
 
@@ -117,8 +118,8 @@ pushed or deployed.
 
 ## Owner-owned next steps
 1. Trademark check for "Thrustline"; confirm or pick from the shortlist.
-2. Review on `overhaul/aaa`, then push for a Git preview; promote only after
-   owner approval (`npx vercel promote <url> --scope amirs-projects-d9680079`).
+2. Merge `overhaul/aaa` into the main working branch when ready; it is already
+   live in Production.
 3. Run the full test suite with LFS objects present.
 4. The fleet has no authored damage variants yet; wrecks use the generic path.
 5. `public/audio/podracing-selection-intro.webm` (the owner-supplied menu intro

@@ -1,11 +1,17 @@
-# Continue here — Thrustline overhaul on `overhaul/aaa` (2026-09-26)
+# Continue here — Thrustline overhaul live in Production (2026-09-27)
 
 - The owner chose Cinematic Stylized, an original IP, web-only, a feature freeze
   and generated on-brand audio. This round implements the overhaul; details,
   verification and next steps are in [docs/thrustline/OVERHAUL.md](docs/thrustline/OVERHAUL.md).
 - Checkout used for this round: `/Users/VladaPro/Claude-Pro/PodRacing`. Branch
-  `overhaul/aaa` from `codex/now-this-is-podracing`. **Production still serves
-  Round 53** (below) until the owner approves a preview and promotion.
+  `overhaul/aaa` from `codex/now-this-is-podracing`, runtime commit `3944805`
+  (pushed). On the owner's instruction it was promoted to Production on
+  2026-09-27: `dpl_5VRnzdRqcoy37rb7vtNnaYJb6rZg`
+  (now-this-is-podracing-pw1zqkh5l-amirs-projects-d9680079.vercel.app), aliased to
+  **https://podracing.dude.work/**. Verified live: Thrustline title, fleet and
+  announcer assets 200, replica pods 404, countdown lamps, grid slots and the
+  Colossus render, no console errors. Rollback target: the Round 53 deployment
+  below (`dpl_EA9duBSR64qyoUMpHE8s3APBqxCo`).
 - Headline changes: HDR post chain and per-world looks; lava, ice, moss and
   aurora/volcano skies; the Colossus ribcage on Sunscar's first straight; a
   countdown lamp-and-spark start ceremony; the Verdant canopy; per-world

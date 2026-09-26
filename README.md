@@ -11,7 +11,7 @@ Verdant canopy, and an original fleet and announcer that replace the earlier
 fan-replica pods. See [the overhaul notes](docs/thrustline/OVERHAUL.md) and the
 [handover](HANDOVER.md).
 
-[Play](https://podracing.dude.work/) (Production still runs Round 53 until the overhaul is promoted).
+[Play](https://podracing.dude.work/)
 
 ## Run locally
 
