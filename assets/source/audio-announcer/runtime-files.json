@@ -1,0 +1,290 @@
+[
+  {
+    "source": "assets/source/audio-announcer/count-3.mp3",
+    "runtime": "public/audio/announcer/count-3.ogg",
+    "operation": [
+      "-af",
+      "silenceremove=start_periods=1:start_threshold=-48dB,areverse,silenceremove=start_periods=1:start_threshold=-48dB,areverse,highpass=f=130,acompressor=threshold=-20dB:ratio=3:attack=5:release=120,aecho=0.85:0.55:38|84:0.18|0.09,loudnorm=I=-15:TP=-1.5:LRA=9,apad=pad_dur=0.25",
+      "-ar",
+      "48000",
+      "-ac",
+      "1",
+      "-c:a",
+      "libvorbis",
+      "-q:a",
+      "5"
+    ],
+    "sha256": "becf5714e57cadb2b040e81785b1f2d4fc22335afd7359cc3842950aaff7ab1d",
+    "bytes": 13893
+  },
+  {
+    "source": "assets/source/audio-announcer/count-2.mp3",
+    "runtime": "public/audio/announcer/count-2.ogg",
+    "operation": [
+      "-af",
+      "silenceremove=start_periods=1:start_threshold=-48dB,areverse,silenceremove=start_periods=1:start_threshold=-48dB,areverse,highpass=f=130,acompressor=threshold=-20dB:ratio=3:attack=5:release=120,aecho=0.85:0.55:38|84:0.18|0.09,loudnorm=I=-15:TP=-1.5:LRA=9,apad=pad_dur=0.25",
+      "-ar",
+      "48000",
+      "-ac",
+      "1",
+      "-c:a",
+      "libvorbis",
+      "-q:a",
+      "5"
+    ],
+    "sha256": "db2bd6d4afe23c6e37fed710494a58df1ac6558de31477591f71d46888035a71",
+    "bytes": 10841
+  },
+  {
+    "source": "assets/source/audio-announcer/count-1.mp3",
+    "runtime": "public/audio/announcer/count-1.ogg",
+    "operation": [
+      "-af",
+      "silenceremove=start_periods=1:start_threshold=-48dB,areverse,silenceremove=start_periods=1:start_threshold=-48dB,areverse,highpass=f=130,acompressor=threshold=-20dB:ratio=3:attack=5:release=120,aecho=0.85:0.55:38|84:0.18|0.09,loudnorm=I=-15:TP=-1.5:LRA=9,apad=pad_dur=0.25",
+      "-ar",
+      "48000",
+      "-ac",
+      "1",
+      "-c:a",
+      "libvorbis",
+      "-q:a",
+      "5"
+    ],
+    "sha256": "d7503ff2fd863ecdb2f6ea90bd8ac08b8783ebe3c4e86c663d7ef5d8396bf8da",
+    "bytes": 9642
+  },
+  {
+    "source": "assets/source/audio-announcer/count-go.mp3",
+    "runtime": "public/audio/announcer/count-go.ogg",
+    "operation": [
+      "-af",
+      "silenceremove=start_periods=1:start_threshold=-48dB,areverse,silenceremove=start_periods=1:start_threshold=-48dB,areverse,highpass=f=130,acompressor=threshold=-20dB:ratio=3:attack=5:release=120,aecho=0.85:0.55:38|84:0.18|0.09,loudnorm=I=-15:TP=-1.5:LRA=9,apad=pad_dur=0.25",
+      "-ar",
+      "48000",
+      "-ac",
+      "1",
+      "-c:a",
+      "libvorbis",
+      "-q:a",
+      "5"
+    ],
+    "sha256": "439ae9c33a819923655f7277f089881134dc73e4287603362dbe998cf41c7588",
+    "bytes": 24464
+  },
+  {
+    "source": "assets/source/audio-announcer/final-lap.mp3",
+    "runtime": "public/audio/announcer/final-lap.ogg",
+    "operation": [
+      "-af",
+      "silenceremove=start_periods=1:start_threshold=-48dB,areverse,silenceremove=start_periods=1:start_threshold=-48dB,areverse,highpass=f=130,acompressor=threshold=-20dB:ratio=3:attack=5:release=120,aecho=0.85:0.55:38|84:0.18|0.09,loudnorm=I=-15:TP=-1.5:LRA=9,apad=pad_dur=0.25",
+      "-ar",
+      "48000",
+      "-ac",
+      "1",
+      "-c:a",
+      "libvorbis",
+      "-q:a",
+      "5"
+    ],
+    "sha256": "775052291da6bf0c6d0a02fce9f7fba80ab083b43ac4111484252752dbced520",
+    "bytes": 38139
+  },
+  {
+    "source": "assets/source/audio-announcer/rival-marked.mp3",
+    "runtime": "public/audio/announcer/rival-marked.ogg",
+    "operation": [
+      "-af",
+      "silenceremove=start_periods=1:start_threshold=-48dB,areverse,silenceremove=start_periods=1:start_threshold=-48dB,areverse,highpass=f=130,acompressor=threshold=-20dB:ratio=3:attack=5:release=120,aecho=0.85:0.55:38|84:0.18|0.09,loudnorm=I=-15:TP=-1.5:LRA=9,apad=pad_dur=0.25",
+      "-ar",
+      "48000",
+      "-ac",
+      "1",
+      "-c:a",
+      "libvorbis",
+      "-q:a",
+      "5"
+    ],
+    "sha256": "f07efb211c83e761525d5d51b82fc6f53917ce9540f00922e7ce53e7b153b7fe",
+    "bytes": 44064
+  },
+  {
+    "source": "assets/source/audio-announcer/revenge-pass.mp3",
+    "runtime": "public/audio/announcer/revenge-pass.ogg",
+    "operation": [
+      "-af",
+      "silenceremove=start_periods=1:start_threshold=-48dB,areverse,silenceremove=start_periods=1:start_threshold=-48dB,areverse,highpass=f=130,acompressor=threshold=-20dB:ratio=3:attack=5:release=120,aecho=0.85:0.55:38|84:0.18|0.09,loudnorm=I=-15:TP=-1.5:LRA=9,apad=pad_dur=0.25",
+      "-ar",
+      "48000",
+      "-ac",
+      "1",
+      "-c:a",
+      "libvorbis",
+      "-q:a",
+      "5"
+    ],
+    "sha256": "cde7e83f0df8035a249bcec40647f94c88ae0b27d6269796c94d2f945a95d3cc",
+    "bytes": 39702
+  },
+  {
+    "source": "assets/source/audio-announcer/grudge-settled.mp3",
+    "runtime": "public/audio/announcer/grudge-settled.ogg",
+    "operation": [
+      "-af",
+      "silenceremove=start_periods=1:start_threshold=-48dB,areverse,silenceremove=start_periods=1:start_threshold=-48dB,areverse,highpass=f=130,acompressor=threshold=-20dB:ratio=3:attack=5:release=120,aecho=0.85:0.55:38|84:0.18|0.09,loudnorm=I=-15:TP=-1.5:LRA=9,apad=pad_dur=0.25",
+      "-ar",
+      "48000",
+      "-ac",
+      "1",
+      "-c:a",
+      "libvorbis",
+      "-q:a",
+      "5"
+    ],
+    "sha256": "4288dd1d4fdce7f5d08c51fb7279f886db088a7af36e44d63c205c6604840ef6",
+    "bytes": 21814
+  },
+  {
+    "source": "assets/source/audio-announcer/takedown.mp3",
+    "runtime": "public/audio/announcer/takedown.ogg",
+    "operation": [
+      "-af",
+      "silenceremove=start_periods=1:start_threshold=-48dB,areverse,silenceremove=start_periods=1:start_threshold=-48dB,areverse,highpass=f=130,acompressor=threshold=-20dB:ratio=3:attack=5:release=120,aecho=0.85:0.55:38|84:0.18|0.09,loudnorm=I=-15:TP=-1.5:LRA=9,apad=pad_dur=0.25",
+      "-ar",
+      "48000",
+      "-ac",
+      "1",
+      "-c:a",
+      "libvorbis",
+      "-q:a",
+      "5"
+    ],
+    "sha256": "d56c3b7c77a299e1e95b7e2afa78f5f5ce15157dc43c01095eb97d99bfd55515",
+    "bytes": 16281
+  },
+  {
+    "source": "assets/source/audio-announcer/victory.mp3",
+    "runtime": "public/audio/announcer/victory.ogg",
+    "operation": [
+      "-af",
+      "silenceremove=start_periods=1:start_threshold=-48dB,areverse,silenceremove=start_periods=1:start_threshold=-48dB,areverse,highpass=f=130,acompressor=threshold=-20dB:ratio=3:attack=5:release=120,aecho=0.85:0.55:38|84:0.18|0.09,loudnorm=I=-15:TP=-1.5:LRA=9,apad=pad_dur=0.25",
+      "-ar",
+      "48000",
+      "-ac",
+      "1",
+      "-c:a",
+      "libvorbis",
+      "-q:a",
+      "5"
+    ],
+    "sha256": "d927215afe817164f980fe70c1304f958a757e5dd27732f56f6e5302d378f6e0",
+    "bytes": 36145
+  },
+  {
+    "source": "assets/source/audio-announcer/race-over.mp3",
+    "runtime": "public/audio/announcer/race-over.ogg",
+    "operation": [
+      "-af",
+      "silenceremove=start_periods=1:start_threshold=-48dB,areverse,silenceremove=start_periods=1:start_threshold=-48dB,areverse,highpass=f=130,acompressor=threshold=-20dB:ratio=3:attack=5:release=120,aecho=0.85:0.55:38|84:0.18|0.09,loudnorm=I=-15:TP=-1.5:LRA=9,apad=pad_dur=0.25",
+      "-ar",
+      "48000",
+      "-ac",
+      "1",
+      "-c:a",
+      "libvorbis",
+      "-q:a",
+      "5"
+    ],
+    "sha256": "b15102d50402e7722766bbf182a256964ed65905e888953e87883cabae932843",
+    "bytes": 30973
+  },
+  {
+    "source": "assets/source/audio-announcer/welcome.mp3",
+    "runtime": "public/audio/announcer/welcome.ogg",
+    "operation": [
+      "-af",
+      "silenceremove=start_periods=1:start_threshold=-48dB,areverse,silenceremove=start_periods=1:start_threshold=-48dB,areverse,highpass=f=130,acompressor=threshold=-20dB:ratio=3:attack=5:release=120,aecho=0.85:0.55:38|84:0.18|0.09,loudnorm=I=-15:TP=-1.5:LRA=9,apad=pad_dur=0.25",
+      "-ar",
+      "48000",
+      "-ac",
+      "1",
+      "-c:a",
+      "libvorbis",
+      "-q:a",
+      "5"
+    ],
+    "sha256": "ca36f8396ec9b327c8a4874ed8b76c218b999a78c0b16d75046e1eae45aa1e8c",
+    "bytes": 59360
+  },
+  {
+    "source": "assets/source/audio-announcer/world-desert.mp3",
+    "runtime": "public/audio/announcer/world-desert.ogg",
+    "operation": [
+      "-af",
+      "silenceremove=start_periods=1:start_threshold=-48dB,areverse,silenceremove=start_periods=1:start_threshold=-48dB,areverse,highpass=f=130,acompressor=threshold=-20dB:ratio=3:attack=5:release=120,aecho=0.85:0.55:38|84:0.18|0.09,loudnorm=I=-15:TP=-1.5:LRA=9,apad=pad_dur=0.25",
+      "-ar",
+      "48000",
+      "-ac",
+      "1",
+      "-c:a",
+      "libvorbis",
+      "-q:a",
+      "5"
+    ],
+    "sha256": "828d6008b8fe94d7ddcec0e728119786541e5823ce3ff386c32ee398b0bb6797",
+    "bytes": 43848
+  },
+  {
+    "source": "assets/source/audio-announcer/world-frozen.mp3",
+    "runtime": "public/audio/announcer/world-frozen.ogg",
+    "operation": [
+      "-af",
+      "silenceremove=start_periods=1:start_threshold=-48dB,areverse,silenceremove=start_periods=1:start_threshold=-48dB,areverse,highpass=f=130,acompressor=threshold=-20dB:ratio=3:attack=5:release=120,aecho=0.85:0.55:38|84:0.18|0.09,loudnorm=I=-15:TP=-1.5:LRA=9,apad=pad_dur=0.25",
+      "-ar",
+      "48000",
+      "-ac",
+      "1",
+      "-c:a",
+      "libvorbis",
+      "-q:a",
+      "5"
+    ],
+    "sha256": "178c29bdbf89227ddb870faf6b8412f4599695764655e83ff9b9ba55daf49b17",
+    "bytes": 34127
+  },
+  {
+    "source": "assets/source/audio-announcer/world-volcanic.mp3",
+    "runtime": "public/audio/announcer/world-volcanic.ogg",
+    "operation": [
+      "-af",
+      "silenceremove=start_periods=1:start_threshold=-48dB,areverse,silenceremove=start_periods=1:start_threshold=-48dB,areverse,highpass=f=130,acompressor=threshold=-20dB:ratio=3:attack=5:release=120,aecho=0.85:0.55:38|84:0.18|0.09,loudnorm=I=-15:TP=-1.5:LRA=9,apad=pad_dur=0.25",
+      "-ar",
+      "48000",
+      "-ac",
+      "1",
+      "-c:a",
+      "libvorbis",
+      "-q:a",
+      "5"
+    ],
+    "sha256": "794f64872a6f5a7ef908605ff7dfe5cbd7b3f98c6c030d85b76f3fe2ea8b7831",
+    "bytes": 34317
+  },
+  {
+    "source": "assets/source/audio-announcer/world-jungle.mp3",
+    "runtime": "public/audio/announcer/world-jungle.ogg",
+    "operation": [
+      "-af",
+      "silenceremove=start_periods=1:start_threshold=-48dB,areverse,silenceremove=start_periods=1:start_threshold=-48dB,areverse,highpass=f=130,acompressor=threshold=-20dB:ratio=3:attack=5:release=120,aecho=0.85:0.55:38|84:0.18|0.09,loudnorm=I=-15:TP=-1.5:LRA=9,apad=pad_dur=0.25",
+      "-ar",
+      "48000",
+      "-ac",
+      "1",
+      "-c:a",
+      "libvorbis",
+      "-q:a",
+      "5"
+    ],
+    "sha256": "c27f50df802a716c1002cfec8eca652eb0556bd0d9a9468362d76518e2dea317",
+    "bytes": 32350
+  }
+]

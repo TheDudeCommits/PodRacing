@@ -8,7 +8,7 @@ import { getInkstormLayout } from '../../src/game/race/inkstormLayout';
 import { sampleTerrainHeight } from '../../src/render/terrain/terrainMath';
 import { PodracerView } from '../../src/render/objects/PodracerView';
 import { InkstormWorld } from '../../src/render/inkstorm/InkstormWorld';
-import { POLWO_ART_DEFINITIONS, SEBULBA_ART_DEFINITIONS, TEEMTO_ART_DEFINITIONS } from '../../src/game/vehicleAppearance';
+import { POLWO_ART_DEFINITIONS, SEBULBA_ART_DEFINITIONS, TEEMTO_ART_DEFINITIONS, legacyPodFile } from '../fixtures/legacyVehicleArt';
 import {
   FOUNDRY_CORRIDOR_CLEARANCE, FOUNDRY_CORRIDOR_SOURCES, getInkstormFoundryCorridorPlan,
   type FoundryCorridorLandform,
@@ -134,7 +134,7 @@ describe('render-only Foundry corridor proposal', () => {
     const fileModule: string = 'node:fs';
     const { readFileSync } = await import(/* @vite-ignore */ fileModule) as { readFileSync(path: URL): Uint8Array<ArrayBuffer> };
     for (const definition of [...Object.values(TEEMTO_ART_DEFINITIONS), ...Object.values(SEBULBA_ART_DEFINITIONS), ...Object.values(POLWO_ART_DEFINITIONS)]) {
-      const bytes = Uint8Array.from(readFileSync(new URL(`../../public${definition.url}`, import.meta.url)));
+      const bytes = Uint8Array.from(readFileSync(new URL(`../../${legacyPodFile(definition.url)}`, import.meta.url)));
       const original = new DataView(bytes.buffer), jsonSize = original.getUint32(12, true);
       // Preserve binary accessors and every scene/node transform. Dropping the
       // unused material references makes this a local CPU geometry test only.

@@ -28,6 +28,7 @@ import {
   DESERT_REGIONS,
   type DesertRegionProfile,
 } from '../../game/race/regions';
+import { CourseDistanceField } from './CourseDistanceField';
 
 export interface TerrainSystemOptions extends TerrainMaterialOptions {
   /** Number of concentric levels. Six reaches roughly three kilometres. */
@@ -62,6 +63,8 @@ export class TerrainSystem {
   readonly group = new Group();
   readonly meshes: readonly TerrainMesh[];
   readonly materials: TerrainMaterialBundle;
+  /** Art-direction distance to the racing line, shared with road and scenery shaders. */
+  readonly courseDistance = new CourseDistanceField();
   readonly outerRadius: number;
   readonly gulfTextures = new CourseGulfTextures();
 
@@ -101,7 +104,7 @@ export class TerrainSystem {
 
     this.group.name = 'Infinite Cel Desert';
     this.group.matrixAutoUpdate = true;
-    this.materials = createTerrainMaterial({ ...options, gulfUniforms: this.gulfTextures.uniforms });
+    this.materials = createTerrainMaterial({ ...options, gulfUniforms: this.gulfTextures.uniforms }, this.courseDistance.uniforms);
     this.activeLevels = levels;
     this.requestedLevels = levels;
 
@@ -143,6 +146,11 @@ export class TerrainSystem {
     const biome = racingBiomeForSeed(seed);
     this.materials.uniforms.biomeColor.value.set(biome.ground);
     this.materials.uniforms.biomeStrength.value = biome.id === 'desert' ? 0 : 1;
+    this.materials.uniforms.biomeId.value = ({ desert: 0, frozen: 1, volcanic: 2, jungle: 3 } as const)[biome.id];
+  }
+
+  setCourseLine(points: readonly { x: number; z: number }[]): void {
+    this.courseDistance.setCourse(points);
   }
 
   /** Update from the interpolated render frame; this does not own simulation. */

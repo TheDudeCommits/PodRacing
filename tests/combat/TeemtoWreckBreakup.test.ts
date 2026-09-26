@@ -7,7 +7,7 @@ import { TeemtoWreckBreakup } from '../../src/render/combat/TeemtoWreckBreakup';
 import { WreckVisualPoseCache, WRECK_PRESENTATION_DURATION, type WreckVisualPose } from '../../src/render/combat/WreckVisualPose';
 import { ImportedVehiclePresentation } from '../../src/render/vehicles/ImportedVehiclePresentation';
 import { VehicleArtLibrary } from '../../src/render/vehicles/VehicleArtLibrary';
-import { TEEMTO_ART_DEFINITIONS } from '../../src/game/vehicleAppearance';
+import { TEEMTO_ART_DEFINITIONS } from '../fixtures/legacyVehicleArt';
 
 const fileModule: string = 'node:fs';
 const { readFileSync } = await import(/* @vite-ignore */ fileModule);
@@ -19,7 +19,7 @@ const sourceGeometries = new Set<BufferGeometry>();
 // Reconstruct the actual admitted GLB hierarchy and indexed POSITION geometry.
 // No browser, material/texture loader, copied proxy hull or synthetic engine is used.
 function admittedArt(name: typeof admittedNames[number]) {
-  const data = readFileSync(`public/assets/inkstorm/vehicles/${name}.glb`);
+  const data = readFileSync(`tests/fixtures/legacy-pods/${name}.glb`);
   const jsonSize = data.readUInt32LE(12);
   const gltf = JSON.parse(data.subarray(20, 20 + jsonSize).toString());
   const binary = data.subarray(28 + jsonSize);
@@ -68,7 +68,7 @@ function admittedArt(name: typeof admittedNames[number]) {
 }
 
 async function loadActualGeometry(name: typeof admittedNames[number]) {
-  const data = readFileSync(`public/assets/inkstorm/vehicles/${name}.glb`);
+  const data = readFileSync(`tests/fixtures/legacy-pods/${name}.glb`);
   const jsonSize = data.readUInt32LE(12), json = JSON.parse(data.subarray(20, 20 + jsonSize).toString());
   for (const rawName of rawEngineNames) expect(json.nodes.some((node: { name: string }) => node.name === rawName)).toBe(true);
   // An in-memory geometry-only copy avoids DOM image decoding. Original node

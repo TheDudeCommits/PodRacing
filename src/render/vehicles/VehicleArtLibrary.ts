@@ -6,6 +6,7 @@ import {
   type Object3D,
 } from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js';
 
 /** Art identity is independent of vehicle physics class. No catalogue entry loads itself. */
 export interface VehicleArtSource {
@@ -119,7 +120,13 @@ export class VehicleArtLibrary {
     }
     let loader: GLTFLoader | undefined;
     this.load = options.load ?? (async (url) => {
-      loader ??= new GLTFLoader();
+      if (!loader) {
+        loader = new GLTFLoader();
+        // The original fleet ships Draco-compressed geometry (public/assets/draco).
+        const draco = new DRACOLoader();
+        draco.setDecoderPath('/assets/draco/');
+        loader.setDRACOLoader(draco);
+      }
       return (await loader.loadAsync(url)).scene;
     });
   }

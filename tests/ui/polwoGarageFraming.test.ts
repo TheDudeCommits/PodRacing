@@ -6,7 +6,7 @@ import { VehicleCardPreviewRenderer } from '../../src/ui/VehicleCardPreview';
 // Real packaged positions and node transforms; no image/texture decoding or GPU.
 const fileModule: string = 'node:fs';
 const { readFileSync } = await import(fileModule);
-const bytes = readFileSync(new URL('../../public/assets/inkstorm/vehicles/polwo-hero-v1.glb', import.meta.url));
+const bytes = readFileSync(new URL('../fixtures/legacy-pods/polwo-hero-v1.glb', import.meta.url));
 const jsonLength = bytes.readUInt32LE(12);
 const gltf = JSON.parse(bytes.subarray(20, 20 + jsonLength).toString('utf8'));
 const binaryStart = 28 + jsonLength;

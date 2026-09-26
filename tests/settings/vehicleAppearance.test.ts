@@ -5,19 +5,7 @@ import type { GalacticVehicleClass } from '../../src/game/galactic/types';
 import { MASTERY_STORAGE_KEY } from '../../src/game/mastery/storage';
 import { GAME_SETTINGS_STORAGE_KEY, type SettingsStorage } from '../../src/game/settings/storage';
 import { WORKSHOP_GARAGE_STORAGE_KEY } from '../../src/game/settings/workshopStorage';
-import {
-  ART_APPEARANCES,
-  BLOCKRUNNER_ART_DEFINITIONS,
-  getVehicleArtDefinition,
-  isVehicleAppearanceId,
-  loadVehicleAppearance,
-  POLWO_ART_DEFINITIONS,
-  resolveVehicleAppearance,
-  saveVehicleAppearance,
-  SEBULBA_ART_DEFINITIONS,
-  TEEMTO_ART_DEFINITIONS,
-  VEHICLE_APPEARANCE_STORAGE_KEY,
-} from '../../src/game/vehicleAppearance';
+import { ART_APPEARANCES, FLEET_ART_DEFINITIONS, getVehicleArtDefinition, isVehicleAppearanceId, loadVehicleAppearance, resolveVehicleAppearance, saveVehicleAppearance, VEHICLE_APPEARANCE_STORAGE_KEY } from '../../src/game/vehicleAppearance';
 
 class MemoryStorage implements SettingsStorage {
   readonly values = new Map<string, string>();
@@ -103,34 +91,34 @@ describe('vehicle appearance preference', () => {
 });
 
 describe('vehicle appearance art contract', () => {
-  it('offers eight imported appearances with separate LOD URLs and an explicit procedural fallback', () => {
+  it('resolves the original fleet with separate LOD URLs and an explicit procedural fallback', () => {
     expect(Object.keys(ART_APPEARANCES)).toEqual(['teemto', 'sebulba', 'polwo', 'blockrunner', 'verdigris', 'skybolt', 'needle', 'pog', 'procedural']);
     expect(Object.values(ART_APPEARANCES).every((art) => art.vehicleClass === 'podracer')).toBe(true);
     expect(getVehicleArtDefinition('procedural', 'hero')).toBeNull();
     expect(getVehicleArtDefinition('procedural', 'rival')).toBeNull();
-    expect(getVehicleArtDefinition('teemto')).toBe(TEEMTO_ART_DEFINITIONS.hero);
-    expect(getVehicleArtDefinition('teemto', 'rival')).toBe(TEEMTO_ART_DEFINITIONS.rival);
-    expect(getVehicleArtDefinition('sebulba')).toBe(SEBULBA_ART_DEFINITIONS.hero);
-    expect(getVehicleArtDefinition('sebulba', 'rival')).toBe(SEBULBA_ART_DEFINITIONS.rival);
-    expect(getVehicleArtDefinition('blockrunner')).toBe(BLOCKRUNNER_ART_DEFINITIONS.hero);
-    expect(getVehicleArtDefinition('blockrunner', 'rival')).toBe(BLOCKRUNNER_ART_DEFINITIONS.rival);
-    expect(BLOCKRUNNER_ART_DEFINITIONS.hero.url).not.toBe(BLOCKRUNNER_ART_DEFINITIONS.rival.url);
-    expect(getVehicleArtDefinition('polwo')).toBe(POLWO_ART_DEFINITIONS.hero);
-    expect(getVehicleArtDefinition('polwo', 'rival')).toBe(POLWO_ART_DEFINITIONS.rival);
-    expect(POLWO_ART_DEFINITIONS.hero.url).not.toBe(POLWO_ART_DEFINITIONS.rival.url);
-    for (const [name, style] of Object.entries(TEEMTO_ART_DEFINITIONS.hero.surfaceStyles!)) {
-      expect(POLWO_ART_DEFINITIONS.hero.surfaceStyles?.[name]).toBe(style);
-      expect(POLWO_ART_DEFINITIONS.rival.surfaceStyles?.[name]).toBe(style);
+    // Slot ids are internal; each slot now resolves an original craft.
+    const fleet = {
+      teemto: 'kestrel', sebulba: 'scrapjack', polwo: 'hornet', blockrunner: 'bulwark',
+      verdigris: 'sirocco', skybolt: 'longshot', needle: 'glasswing', pog: 'crucible',
+    } as const;
+    for (const [id, pod] of Object.entries(fleet) as [keyof typeof fleet, string][]) {
+      const hero = getVehicleArtDefinition(id)!, rival = getVehicleArtDefinition(id, 'rival')!;
+      expect(hero).toBe(FLEET_ART_DEFINITIONS[id]!.hero);
+      expect(rival).toBe(FLEET_ART_DEFINITIONS[id]!.rival);
+      expect(hero.url).toBe(`/assets/fleet/${pod}-hero.glb`);
+      expect(rival.url).toBe(`/assets/fleet/${pod}-rival.glb`);
+      expect([hero.id, rival.id]).toEqual([id, id]);
+      expect(ART_APPEARANCES[id].label.toLowerCase()).toBe(pod);
+      // No replica package, pilot hierarchy or authored damage variant is requested.
+      expect(hero.url).not.toContain('/inkstorm/vehicles/');
+      expect(hero.damageVariant).toBeUndefined();
+      expect(hero.embeddedPilotNodePrefix).toBeUndefined();
+      expect(hero.attachments).toBe(rival.attachments);
+      expect(hero.attachments?.pilot).toBeDefined();
+      expect(hero.attachments?.exhaustLeft).toBeDefined();
+      expect(Object.isFrozen(hero.attachments?.pilot?.position)).toBe(true);
     }
-    expect(POLWO_ART_DEFINITIONS.hero.surfaceStyles?.['Polwo Inkstorm body paint-v1']).toMatchObject({ rimStrength: 0, reflectionStrength: 0, wear: 0 });
-    expect(POLWO_ART_DEFINITIONS.rival.surfaceStyles).toBe(POLWO_ART_DEFINITIONS.hero.surfaceStyles);
-    expect(Object.isFrozen(POLWO_ART_DEFINITIONS.hero.attachments?.pilot?.position)).toBe(true);
-    // A fourth registered appearance must not turn an arbitrary ID into an art request.
+    // A registered appearance must not turn an arbitrary ID into an art request.
     expect(getVehicleArtDefinition('unknown' as never)).toBeNull();
-    expect(SEBULBA_ART_DEFINITIONS.hero.url).not.toBe(SEBULBA_ART_DEFINITIONS.rival.url);
-    expect(Object.isFrozen(SEBULBA_ART_DEFINITIONS.hero.attachments?.pilot?.position)).toBe(true);
-    expect(TEEMTO_ART_DEFINITIONS.hero.url).not.toBe(TEEMTO_ART_DEFINITIONS.rival.url);
-    expect(TEEMTO_ART_DEFINITIONS.hero.id).toBe(TEEMTO_ART_DEFINITIONS.rival.id);
-    expect(Object.isFrozen(TEEMTO_ART_DEFINITIONS.hero.attachments?.pilot?.position)).toBe(true);
   });
 });

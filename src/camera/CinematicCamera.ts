@@ -130,6 +130,10 @@ export interface CameraSubject {
   wreckChase?: boolean;
   /** 0..1 final-straight tension: the chase eye moves in and low and looks further down the road. */
   finalStraight?: number;
+  /** 0..1 boost intensity; widens the lens for a speed punch. Presentation only. */
+  boost?: number;
+  /** Terrain plus solid scenery height; lets the chase eye pull in instead of clipping into rock. */
+  solidHeightAt?: (x: number, z: number) => number;
 }
 
 /**
@@ -323,7 +327,7 @@ export class CinematicCamera {
       ? 60
       : this.mode === 'cockpit'
         ? 84
-        : 62 + speedT * 6 * (this.comfort.reducedMotion ? 0 : this.comfort.fovKickIntensity)
+        : 62 + (speedT * 8 + MathUtils.clamp(subject.boost ?? 0, 0, 1) * 7) * (this.comfort.reducedMotion ? 0 : this.comfort.fovKickIntensity)
           + MathUtils.clamp(subject.finalStraight ?? 0, 0, 1) * 4;
     this.camera.fov = MathUtils.damp(this.camera.fov, targetFov, 4.8, dt);
     this.camera.updateProjectionMatrix();
@@ -353,6 +357,8 @@ export class CinematicCamera {
       this.lookPoint.copy(subject.combatFocus);
     }
 
+    if (this.mode === 'chase' && subject.solidHeightAt && !subject.wreckChase) this.pullInFromObstruction(subject);
+
     this.shake = MathUtils.damp(this.shake, 0, 7, dt);
     if (!this.captureMode && !this.comfort.reducedMotion && this.shake > 0.002) {
       const frequency = time * 53;
@@ -361,6 +367,27 @@ export class CinematicCamera {
     }
 
     this.camera.lookAt(this.lookPoint);
+  }
+
+  /**
+   * If the eye has entered solid scenery, slide it along the line toward the
+   * craft until it is clear. Uses the same analytic colliders as racing, so
+   * the lens never renders the inside of a rock or a refinery tank.
+   */
+  private pullInFromObstruction(subject: CameraSubject): void {
+    const solid = subject.solidHeightAt!;
+    const eye = this.camera.position, target = subject.position;
+    const clearance = 1.6;
+    if (solid(eye.x, eye.z) < eye.y - clearance) return;
+    for (let step = 1; step <= 10; step++) {
+      const t = step / 12;
+      const x = eye.x + (target.x - eye.x) * t, z = eye.z + (target.z - eye.z) * t;
+      const y = eye.y + (target.y - eye.y) * t;
+      const surface = solid(x, z);
+      if (surface < y - clearance) { eye.set(x, y, z); return; }
+    }
+    // Still buried near the craft: lift above the local surface instead.
+    eye.y = Math.max(eye.y, solid(eye.x, eye.z) + clearance + .5);
   }
 
   private getDesired(subject: CameraSubject, _time: number): { position: Vector3; lookAt: Vector3 } {

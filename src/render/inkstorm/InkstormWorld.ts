@@ -20,6 +20,7 @@ import { CEL_TERRAIN_EDGE_SUPPRESS_USER_DATA_KEY } from '../post/CelPrepassMater
 
 import { INKSTORM_FAMILIES as families, getInkstormLayout } from '../../game/race/inkstormLayout';
 import { INKSTORM_SERVICE_GANTRY, inkstormRenderFamily, type InkstormRenderFamily as Family } from './InkstormGantryAppearance';
+import { createColossusRibcage, type ColossusReceipt } from '../setpieces/ColossusRibcage';
 const matrix=new Matrix4(), position=new Vector3(), rotation=new Quaternion(), scale=new Vector3(), up=new Vector3(0,1,0);
 function disposeMesh(mesh:Mesh):void{
   if(mesh instanceof InstancedMesh)mesh.dispose();
@@ -34,6 +35,7 @@ export class InkstormWorld extends Group {
   shadowRevision = 0;
   error: string | null = null;
   readonly detailReceipt = { highInstances: 0, lowInstances: 0, instancedTriangles: 0 };
+  readonly colossusReceipt: ColossusReceipt = { placed: false, startProgress: 0, endProgress: 0, side: 0, ribs: 0, vertebrae: 0, triangles: 0, reason: 'not built' };
   private course: PodraceCourse | null = null;
   private dead = false;
   private workshopTexture: Texture | null = null;
@@ -127,11 +129,23 @@ export class InkstormWorld extends Group {
     const forkGuidance = createInkstormForkWayfinding(course, this.heightAt);
     if (forkGuidance) this.roads.push(forkGuidance);
     this.roads.push(...createRacingBiomeScenery(course, this.heightAt));
+    if (biome.id === 'desert') {
+      // Forks, bridges and built structures keep their sightlines; the fossil lies in open desert.
+      const structures = new Set(['foundry-gantry', 'refinery-stack', 'pit-complex', 'pipe-bank', 'finish-tower', 'canyon-arch', 'pit-district']);
+      const avoid = [
+        ...(roadData.branches ?? []).flatMap(branch => branch.points.filter((_, i) => i % 8 === 0).map(p => ({ x: p.x, z: p.z }))),
+        ...getInkstormLayout(course).filter(p => structures.has(p.family)).map(p => ({ x: p.x, z: p.z })),
+      ];
+      const colossus = createColossusRibcage(roadData.points, this.heightAt, avoid);
+      Object.assign(this.colossusReceipt, colossus.receipt);
+      if (colossus.mesh) this.roads.push(colossus.mesh);
+    } else Object.assign(this.colossusReceipt, { placed: false, reason: `${biome.id} world` });
     for (const mesh of [...this.roads, ...this.batches.values(), ...this.distantBatches.values()]) {
       for (const material of Array.isArray(mesh.material) ? mesh.material : [mesh.material]) {
         if (material instanceof InkstormSurfaceMaterial) {
           material.uniforms.uBiomeTint!.value.set(biome.stone);
           material.uniforms.uBiomeStrength!.value=biome.id==='desert'?0:1;
+          material.uniforms.uWeather!.value={desert:0,frozen:1,volcanic:2,jungle:3}[biome.id];
         }
       }
     }

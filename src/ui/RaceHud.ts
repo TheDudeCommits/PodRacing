@@ -215,7 +215,7 @@ export class RaceHud {
     this.root.className = 'pod-hud';
     // Avoid a one-frame flash of every instrument before the first model tick.
     this.root.dataset.phase = 'countdown';
-    this.root.setAttribute('aria-label', 'Podrace instruments');
+    this.root.setAttribute('aria-label', 'Race instruments');
     this.root.innerHTML = /* html */ `
       <section class="pod-hud__vehicle-select simple-setup" data-hud="vehicle-selection" aria-label="Race setup" aria-hidden="true">
         <div class="pod-hud__vehicle-select-frame setup-frame">
@@ -237,7 +237,7 @@ export class RaceHud {
             <section class="pod-hud__garage-hero" aria-label="Selected racer">
               <span class="setup-hero-number" data-hud="setup-pod-index" aria-hidden="true">01 / 08</span>
               <div class="setup-hero-orbit" aria-hidden="true"></div>
-              <div class="pod-hud__garage-model" data-hud="garage-model" data-vehicle-preview="hero" data-vehicle-id="podracer" data-pod-inspection role="group" tabindex="0" aria-label="Inspect Teemto" aria-description="Use Left and Right arrow keys to inspect. Home resets the view."></div>
+              <div class="pod-hud__garage-model" data-hud="garage-model" data-vehicle-preview="hero" data-vehicle-id="podracer" data-pod-inspection role="group" tabindex="0" aria-label="Inspect Kestrel" aria-description="Use Left and Right arrow keys to inspect. Home resets the view."></div>
               <button class="setup-pod-arrow setup-pod-arrow--previous" type="button" data-action="step-pod" data-direction="-1" aria-label="Previous pod">‹</button>
               <button class="setup-pod-arrow setup-pod-arrow--next" type="button" data-action="step-pod" data-direction="1" aria-label="Next pod">›</button>
               <div class="pod-hud__garage-name" aria-live="polite"><span data-hud="garage-class"></span><h1 data-hud="garage-name">Teemto</h1></div>
@@ -248,10 +248,10 @@ export class RaceHud {
             <div class="setup-roster setup-roster--right" role="group" aria-label="Racers 5 to 8">${this.createPodRoster(SETUP_PODS.slice(4))}</div>
           </section>
           <section class="setup-maps" aria-label="Choose your destination">
-            <div class="setup-map-heading"><h2>Destination</h2><span data-hud="setup-destination">Dune Sea</span></div>
+            <div class="setup-map-heading"><h2>Destination</h2><span data-hud="setup-destination">Sunscar Canyon</span></div>
             <nav class="setup-map-grid" aria-label="Race destination">
               ${[
-                ['desert', 'inkstorm-battle', 'Dune Sea', 'Sun-scorched canyon'],
+                ['desert', 'inkstorm-battle', 'Sunscar Canyon', 'Sun-scorched canyon'],
                 ['frozen', 'biome-frozen-battle', 'Frostline', 'Ice & snow'],
                 ['volcanic', 'biome-volcanic-battle', 'Ember Rift', 'Volcanic highlands'],
                 ['jungle', 'biome-jungle-battle', 'Verdant Run', 'Deep jungle'],
@@ -306,7 +306,7 @@ export class RaceHud {
             <select data-action="select-race-mode" data-hud="race-mode-select" aria-label="Legacy race mode">${HUD_RACE_MODES.map(mode => `<option value="${mode.id}">${mode.label}</option>`).join('')}</select>
             <button class="pod-hud__workshop-toggle" type="button" data-action="toggle-workshop" aria-expanded="false">Build</button><strong data-hud="start-prompt"></strong>
           </div>
-          <section class="pod-hud__workshop" data-hud="workshop" aria-label="Podracer workshop" aria-hidden="true">
+          <section class="pod-hud__workshop" data-hud="workshop" aria-label="Racer workshop" aria-hidden="true">
             <header class="pod-hud__workshop-head">
               <div><span>INKSTORM / ENGINEERING</span><strong>BUILD</strong></div>
               <button type="button" data-action="toggle-workshop" aria-label="Close workshop">×</button>
@@ -814,7 +814,7 @@ export class RaceHud {
 
   private createPodRoster(pods: readonly typeof SETUP_PODS[number][]): string {
     return pods.map(pod => `<button class="setup-racer" type="button" data-action="select-appearance" data-appearance="${pod}" aria-label="${ART_APPEARANCES[pod].label}" aria-pressed="false">
-      <span class="setup-racer-art"><img src="/assets/inkstorm/home/pod-${pod}.webp" alt="" width="400" height="250" draggable="false"><span class="setup-racer-check" aria-hidden="true">✓</span></span>
+      <span class="setup-racer-art"><img src="/assets/fleet/card-${pod}.webp" alt="" width="400" height="250" draggable="false"><span class="setup-racer-check" aria-hidden="true">✓</span></span>
       <strong>${ART_APPEARANCES[pod].label}</strong>
     </button>`).join('');
   }
@@ -1297,7 +1297,7 @@ export class RaceHud {
       return;
     }
     const cupContext: HudMasteryViewModel['championshipContext'] = mastery.championshipContext ?? (cupComplete ? {
-      title: 'Inkstorm Cup complete',
+      title: 'World Cup complete',
       detail: 'Your final standings are saved. Race another cup to start four new rounds; your personal records stay.',
     } : undefined);
     let cupReplay = cup.querySelector<HTMLButtonElement>('[data-action="restart-championship"]');
@@ -1370,7 +1370,7 @@ export class RaceHud {
       button.disabled = this.roomPanel.dataset.role === 'guest';
     }
     const cupSelected = mastery.eventId.startsWith('cup-');
-    write(requireElement(this.root, '[data-hud="setup-destination"]'), cupSelected ? 'World tour' : ({ desert: 'Dune Sea', frozen: 'Frostline', volcanic: 'Ember Rift', jungle: 'Verdant Run' } as Record<string, string>)[destination]!);
+    write(requireElement(this.root, '[data-hud="setup-destination"]'), cupSelected ? 'World tour' : ({ desert: 'Sunscar Canyon', frozen: 'Frostline', volcanic: 'Ember Rift', jungle: 'Verdant Run' } as Record<string, string>)[destination]!);
     const modes = ['battle', 'race', 'trial'];
     this.root.querySelectorAll<HTMLButtonElement>('.setup-types [data-event-id]').forEach((button, index) => {
       if (index < 3) button.dataset.eventId = destination === 'desert' ? `inkstorm-${modes[index]}` : `biome-${destination}-${modes[index]}`;
@@ -1641,7 +1641,7 @@ export class RaceHud {
         button.setAttribute('aria-pressed', String(selected));
       }
     }
-    if (guest && lobby.sharedSetup) write(requireElement(this.root, '[data-hud="setup-destination"]'), lobby.sharedSetup.destination === 'desert' ? 'Dune Sea' : lobby.sharedSetup.destinationLabel);
+    if (guest && lobby.sharedSetup) write(requireElement(this.root, '[data-hud="setup-destination"]'), lobby.sharedSetup.destination === 'desert' ? 'Sunscar Canyon' : lobby.sharedSetup.destinationLabel);
 
 
     const startButton = requireElement<HTMLButtonElement>(this.root, '[data-hud="start-button"]');

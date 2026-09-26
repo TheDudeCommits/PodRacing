@@ -1,7 +1,7 @@
 import { BoxGeometry, Euler, Group, Mesh, MeshStandardMaterial, PropertyBinding, Raycaster, TubeGeometry, Vector3, type Material, type Object3D } from 'three';
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { loadVehicleAppearance, SEBULBA_ART_DEFINITIONS, SEBULBA_BODY_NODES, TEEMTO_ART_DEFINITIONS, TEEMTO_BODY_GROUP_NODES, TEEMTO_BODY_NODES } from '../../src/game/vehicleAppearance';
-import * as vehicleAppearance from '../../src/game/vehicleAppearance';
+import { afterEach, describe, expect, it, vi } from 'vitest';
+import { loadVehicleAppearance, type VehicleAppearanceId, type VehicleArtLod } from '../../src/game/vehicleAppearance';
+import { SEBULBA_ART_DEFINITIONS, SEBULBA_BODY_NODES, TEEMTO_ART_DEFINITIONS, TEEMTO_BODY_GROUP_NODES, TEEMTO_BODY_NODES, getLegacyVehicleArtDefinition } from '../fixtures/legacyVehicleArt';
 import { PodracerView, type PodracerPose } from '../../src/render/objects/PodracerView';
 import { RacerPresentation } from '../../src/render/vehicles/RacerPresentation';
 import { VehicleArtLibrary, type VehicleArtLibraryOptions } from '../../src/render/vehicles/VehicleArtLibrary';
@@ -44,21 +44,19 @@ function sebulbaFixture() {
 
 const ownedRacers: RacerPresentation[] = [];
 const ownedLibraries: VehicleArtLibrary[] = [];
-const actualArtDefinition = vehicleAppearance.getVehicleArtDefinition;
-beforeEach(() => {
-  // These fixtures transfer one intact template per source request. Keep their
-  // cancellation/ownership assertions source-only; importedVehicleDamage.test
-  // covers real optional package routing and both-lease ownership separately.
-  vi.spyOn(vehicleAppearance, 'getVehicleArtDefinition').mockImplementation((...args) => {
-    const definition = actualArtDefinition(...args);
-    if (!definition) return definition;
-    const { damageVariant: _damageVariant, ...intact } = definition;
-    return intact;
-  });
-});
+// These fixtures transfer one intact template per source request. Keep their
+// cancellation/ownership assertions source-only; importedVehicleDamage.test
+// covers real optional package routing and both-lease ownership separately.
+// The contracts were measured on the retired replica definitions.
+function intactLegacyArt(id: VehicleAppearanceId, lod: VehicleArtLod) {
+  const definition = getLegacyVehicleArtDefinition(id, lod);
+  if (!definition) return definition;
+  const { damageVariant: _damageVariant, ...intact } = definition;
+  return intact;
+}
 function setup(options: VehicleArtLibraryOptions, index = 0) {
   const library = new VehicleArtLibrary(options);
-  const racer = new RacerPresentation(library, undefined, index);
+  const racer = new RacerPresentation(library, undefined, index, intactLegacyArt);
   ownedLibraries.push(library);
   ownedRacers.push(racer);
   const proxy = racer.createCelPrepassProxy();

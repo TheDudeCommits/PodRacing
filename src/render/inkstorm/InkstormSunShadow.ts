@@ -3,6 +3,7 @@ import {
   OrthographicCamera, RGBADepthPacking, Scene, ShaderMaterial, Vector2, Vector3,
   WebGLRenderTarget, type Texture, type WebGLRenderer,
 } from 'three';
+import { WORLD_SUN } from '../lighting/WorldLight';
 
 export function createInkstormShadowUniforms() {
   return { uWorldShadow: { value: null as Texture | null }, uWorldShadowMatrix: { value: new Matrix4() },
@@ -69,7 +70,7 @@ export class InkstormSunShadow {
     const center = bounds.getCenter(new Vector3());
     const radius = bounds.getSize(new Vector3()).length() * .5 + 40;
     const camera = new OrthographicCamera(-radius, radius, radius, -radius, 1, radius * 4 + 100);
-    camera.position.copy(center).addScaledVector(new Vector3(-.42, .76, -.5).normalize(), radius * 2);
+    camera.position.copy(center).addScaledVector(WORLD_SUN.value, radius * 2);
     camera.lookAt(center); camera.updateMatrixWorld(true);
     // Fit the actual light-space box, rather than wasting atlas area on its sphere.
     const lightBounds = new Box3();

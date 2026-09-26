@@ -213,38 +213,57 @@ describe('Inkstorm driving composition', () => {
     velocity: new Vector3(0, 0, 180), speed: 180,
   });
 
-  it('keeps the full compact Pog hull above the HUD in portrait and landscape chase views', () => {
+  // Measured runtime bounds and pilot anchors of the original fleet
+  // (output/fleet/out/fleet-report.json), keyed by their identity slots.
+  const FLEET = {
+    teemto: { x: [-6.15, 6.15], y: [0.2, 6.76], z: [-8.42, 22.7], pilot: [0, 1.54, -4.6] },
+    sebulba: { x: [-7.49, 7.83], y: [0.29, 7.86], z: [-7.6, 19.13], pilot: [0, 2.76, -3.9] },
+    polwo: { x: [-5.72, 5.73], y: [0.2, 5.14], z: [-7.62, 22.35], pilot: [0, 3.75, -4] },
+    blockrunner: { x: [-4.96, 4.96], y: [0.2, 5.3], z: [-10.53, 8.65], pilot: [0, 3.87, -6] },
+    verdigris: { x: [-5.94, 5.92], y: [0.17, 6.51], z: [-6.7, 13.6], pilot: [0, 2.34, -3.6] },
+    skybolt: { x: [-4.11, 4.11], y: [0.2, 3.2], z: [-7.6, 18], pilot: [0, 1.11, -3.9] },
+    needle: { x: [-5.47, 5.47], y: [0.2, 5], z: [-6, 10.8], pilot: [0, 1.96, -1.3] },
+    pog: { x: [-2.04, 2.04], y: [0.2, 4.62], z: [-8.32, 3.6], pilot: [0, 2.29, -5.6] },
+  } as const;
+
+  it('frames every fleet craft with its cockpit low and its engines below the horizon', () => {
     const rig = new CinematicCamera();
     try {
-      for (const speed of [0, 120, 220]) for (const aspect of [1440 / 900, 390 / 844]) {
-        rig.camera.aspect = aspect;
-        rig.snap({ ...subject(), speed, velocity: new Vector3(0, 0, speed), chaseClearance: vehicleChaseClearance('pog') });
-        rig.camera.updateMatrixWorld(true);
-        for (const x of [-1.38, 1.38]) for (const y of [0, 7.47]) for (const z of [-6, -.74]) {
-          const projected = new Vector3(x, y, z).project(rig.camera);
-          expect(Math.abs(projected.x)).toBeLessThan(.8);
-          expect(projected.y).toBeGreaterThan(-.82);
-          expect(projected.y).toBeLessThan(.65);
+      for (const [id, bounds] of Object.entries(FLEET) as [keyof typeof FLEET, (typeof FLEET)[keyof typeof FLEET]][]) {
+        for (const speed of [0, 120, 220]) {
+          rig.camera.aspect = 1440 / 900;
+          rig.snap({ ...subject(), speed, velocity: new Vector3(0, 0, speed), chaseClearance: vehicleChaseClearance(id) });
+          rig.camera.updateMatrixWorld(true);
+          const pilot = new Vector3(...bounds.pilot).project(rig.camera);
+          expect(pilot.y, id).toBeGreaterThan(-.9);
+          expect(pilot.y, id).toBeLessThan(-.3);
+          for (const x of bounds.x) for (const y of bounds.y) for (const z of bounds.z) {
+            const projected = new Vector3(x, y, z).project(rig.camera);
+            expect(Math.abs(projected.x), id).toBeLessThan(.8);
+            // The whole craft stays under the horizon band, clear of the lap/time bar.
+            expect(projected.y, id).toBeLessThan(.1);
+          }
         }
       }
     } finally { rig.dispose(); }
   });
 
-  it('separates Polwo engine and cockpit depth in the live chase view without moving race state', () => {
+  it('keeps the compact Crucible inside a portrait chase frame and leaves race state untouched', () => {
     const rig = new CinematicCamera(), state = subject();
-    const cockpit = new Vector3(0, 4.2725, -5.2), engine = new Vector3(-3.9292, 1.6775, 13);
-    rig.snap(state); rig.camera.updateMatrixWorld(true);
-    const previousSeparation = engine.clone().project(rig.camera).y - cockpit.clone().project(rig.camera).y;
-    rig.snap({ ...state, chaseClearance: vehicleChaseClearance('polwo') });
-    rig.camera.updateMatrixWorld(true);
-    const pilotProjection = cockpit.clone().project(rig.camera), engineProjection = engine.clone().project(rig.camera);
-    expect(engineProjection.y - pilotProjection.y).toBeGreaterThan(previousSeparation * 2);
-    expect(pilotProjection.y).toBeGreaterThan(-.8);
-    expect(engineProjection.y).toBeLessThan(0);
-    expect(rig.camera.getWorldDirection(new Vector3()).y).toBeGreaterThan(-.18);
-    expect(state.position.toArray()).toEqual([0, 0, 0]);
-    for (const appearance of ['teemto', 'sebulba', 'procedural'] as const) expect(vehicleChaseClearance(appearance)).toBe(0);
-    rig.dispose();
+    try {
+      for (const speed of [0, 120, 220]) {
+        rig.camera.aspect = 390 / 844;
+        rig.snap({ ...state, speed, velocity: new Vector3(0, 0, speed), chaseClearance: vehicleChaseClearance('pog') });
+        rig.camera.updateMatrixWorld(true);
+        for (const x of FLEET.pog.x) for (const y of FLEET.pog.y) for (const z of FLEET.pog.z) {
+          expect(Math.abs(new Vector3(x, y, z).project(rig.camera).x)).toBeLessThan(.9);
+        }
+      }
+      expect(state.position.toArray()).toEqual([0, 0, 0]);
+      expect(vehicleChaseClearance('procedural')).toBe(0);
+      // Tall silhouettes raise the eye; the low Longshot and Hornet keep the default.
+      for (const id of ['teemto', 'sebulba', 'blockrunner', 'verdigris', 'needle', 'pog'] as const) expect(vehicleChaseClearance(id)).toBeGreaterThan(0);
+    } finally { rig.dispose(); }
   });
 
   it('bounds a junction orbit while preserving the foreground racer', () => {

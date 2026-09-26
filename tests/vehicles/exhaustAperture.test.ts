@@ -8,7 +8,7 @@ import { afterEach, describe, expect, it } from 'vitest';
 import { RacerPresentation as CandidateRacer } from '../../src/render/vehicles/RacerPresentation';
 import { ImportedVehiclePresentation, type VehicleArtDefinition } from '../../src/render/vehicles/ImportedVehiclePresentation';
 import { VehicleArtLibrary } from '../../src/render/vehicles/VehicleArtLibrary';
-import { POLWO_ART_DEFINITIONS, SEBULBA_ART_DEFINITIONS, TEEMTO_ART_DEFINITIONS } from '../../src/game/vehicleAppearance';
+import { getLegacyVehicleArtDefinition, POLWO_ART_DEFINITIONS, SEBULBA_ART_DEFINITIONS, TEEMTO_ART_DEFINITIONS } from '../fixtures/legacyVehicleArt';
 import type { PodracerPose } from '../../src/render/objects/PodracerView';
 
 function assertEnvelope(condition: boolean, message: string): void {
@@ -39,7 +39,8 @@ function flameMeshes(racer: Group) {
   return racer.getObjectsByProperty('name', 'imported-engine-exhaust') as Mesh<import('three').BufferGeometry, ShaderMaterial>[];
 }
 async function racer(index = 0, appearance: 'teemto' | 'sebulba' | 'polwo' = 'polwo') {
-  const value = new CandidateRacer(library(), undefined, index);
+  // Default-flame contracts were measured on the retired replica definitions.
+  const value = new CandidateRacer(library(), undefined, index, getLegacyVehicleArtDefinition);
   owned.push(value); value.setVehicleClass('podracer'); await value.setAppearance(appearance); return value;
 }
 function definition(radius: unknown = example.exhaustApertureRadius): VehicleArtDefinition {

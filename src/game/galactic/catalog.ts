@@ -15,7 +15,7 @@ export const GALACTIC_VEHICLE_ORDER = [
 
 export const GALACTIC_VEHICLES: Readonly<Record<GalacticVehicleClass, GalacticVehicleDefinition>> = Object.freeze({
   podracer: Object.freeze({
-    id: 'podracer', label: 'Twin-Engine Podracer', role: 'Velocity Striker',
+    id: 'podracer', label: 'Twin-Engine Racer', role: 'Velocity Striker',
     description: 'Fast, forceful and responsive—the all-round racing machine for attacking the lead.',
     stats: Object.freeze({ speed: 4, acceleration: 4, drift: 3, defence: 2, weapons: 4 }),
     advantages: Object.freeze(['High-speed steering', 'Hard-hitting lance']),

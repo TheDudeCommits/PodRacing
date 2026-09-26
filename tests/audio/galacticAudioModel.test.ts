@@ -33,9 +33,10 @@ describe('Galactic Racer procedural audio mapping', () => {
       { type: 'vehicle-class-changed', racerId: 'player', vehicleClass: 'speeder-bike' },
     ];
     const kinds = new Set(mapGameEventsToAudioCues(events, { playerId: 'player' }).map((cue) => cue.kind));
+    // The announcer also calls the player's takedown.
     expect(kinds).toEqual(new Set([
       'shield', 'mine', 'hazard', 'redline', 'wreck',
-      'takedown', 'recovery', 'upgrade', 'vehicle',
+      'takedown', 'recovery', 'upgrade', 'vehicle', 'voice',
     ]));
   });
 

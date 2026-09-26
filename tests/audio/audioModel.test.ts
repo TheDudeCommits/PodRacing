@@ -85,7 +85,9 @@ describe('audio event mapping and envelopes', () => {
       { type: 'countdown', cue: 'go' },
       { type: 'start-horn' },
     ]);
-    expect(cues).toEqual([{ kind: 'horn', intensity: 1 }]);
+    // One horn, plus the announcer's call on GO.
+    expect(cues.filter(cue => cue.kind === 'horn')).toEqual([{ kind: 'horn', intensity: 1 }]);
+    expect(cues.filter(cue => cue.kind !== 'horn').map(cue => cue.kind)).toEqual(['voice']);
   });
 
   it('builds finite ordered attack/decay/release schedules from authored profiles', () => {

@@ -38,6 +38,7 @@ import {
   SOLID_HARDWARE_MINE_DEPTH_SCALE, SOLID_RUBBLE_BASE_Y,
 } from './SolidEffectGeometry';
 import { CEL_TERRAIN_EDGE_SUPPRESS_USER_DATA_KEY } from '../post/CelPrepassMaterial';
+import { WORLD_SUN } from '../lighting/WorldLight';
 
 /** Plain-number inputs keep this adapter independent from simulation objects. */
 export interface GalacticPoint {
@@ -427,13 +428,15 @@ function createCrashDebrisMaterial(): MeshBasicMaterial {
       #endif
       vFragmentNormal = normalize(mat3(modelMatrix) * fragmentNormal);
     `);
+    shader.uniforms.uWorldSun = WORLD_SUN;
     shader.fragmentShader = shader.fragmentShader.replace('#include <common>', `
       #include <common>
+      uniform vec3 uWorldSun;
       varying float vFragmentMetal;
       varying vec3 vFragmentNormal;
     `).replace('#include <color_fragment>', `
       #include <color_fragment>
-      float sun = max(0.0, dot(normalize(vFragmentNormal), normalize(vec3(-.42, .76, -.5))));
+      float sun = max(0.0, dot(normalize(vFragmentNormal), normalize(uWorldSun)));
       // 0: existing hot fragment, 1: casing, 2: contact sand clod.
       // Both solid kinds receive the same actual world-sun facet response.
       diffuseColor.rgb *= mix(1.0, .32 + sun * .86, min(vFragmentMetal, 1.0));

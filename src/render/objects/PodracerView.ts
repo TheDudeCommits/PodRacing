@@ -1,4 +1,5 @@
 import {
+  AdditiveBlending,
   BoxGeometry,
   BufferGeometry,
   CatmullRomCurve3,
@@ -217,78 +218,66 @@ const beamFragment = /* glsl */ `
   uniform float uPower;
   uniform vec3 uColor;
   void main() {
-    float edge = step(abs(vUv.y - 0.5), 0.34);
-    float movingBand = step(0.58, fract(vUv.x * 4.0 - uTime * (2.0 + uPower * 3.0)));
-    float core = 1.-smoothstep(.045,.18,abs(vUv.y-.5));
-    float alpha = edge * (0.38 + core * 0.6 + movingBand * 0.3) * (0.68 + uPower * 0.4);
-    vec3 beamColor = mix(uColor, vec3(.65, 1., 1.), core * 0.45);
-    gl_FragColor = vec4(beamColor * (1.0 + core * 0.18), alpha);
+    // Scene-referred electric arc: a white-hot core over a saturated sheath,
+    // flickering per animation frame so the post chain blooms it into a spark.
+    float across = abs(vUv.y - 0.5) * 2.0;
+    float core = 1.0 - smoothstep(0.0, 0.42, across);
+    float sheath = 1.0 - smoothstep(0.25, 1.0, across);
+    float frame = floor(uTime * 24.0);
+    float flicker = 0.62 + 0.38 * fract(sin(frame * 12.9898 + vUv.x * 3.1) * 43758.5453);
+    float pulse = smoothstep(0.82, 1.0, fract(vUv.x * 3.0 - uTime * (2.5 + uPower * 4.0)));
+    float energy = (0.8 + uPower * 1.4) * flicker;
+    vec3 color = uColor * sheath * 2.2 + vec3(1.0, 1.0, 1.0) * core * 3.2 + uColor * pulse * 3.0;
+    gl_FragColor = vec4(color * energy, clamp(sheath * 0.9 + core, 0.0, 1.0));
   }
 `;
 
 const exhaustVertex = /* glsl */ `
   varying vec3 vLocal;
+  varying vec3 vViewNormal;
+  varying vec3 vViewDir;
   void main() {
     vLocal = position;
-    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+    vec4 mv = modelViewMatrix * vec4(position, 1.0);
+    vViewNormal = normalize(normalMatrix * normal);
+    vViewDir = normalize(-mv.xyz);
+    gl_Position = projectionMatrix * mv;
   }
 `;
 
 const exhaustFragment = /* glsl */ `
   precision highp float;
   varying vec3 vLocal;
+  varying vec3 vViewNormal;
+  varying vec3 vViewDir;
   uniform float uTime;
   uniform float uPower;
   uniform vec3 uHot;
+  float plumeHash(float n) { return fract(sin(n) * 43758.5453); }
   void main() {
-    // ConeGeometry runs from -4.25 at the nozzle to +4.25 at its tip. Break
-    // that taper into three deliberately clean anime energy plates. Earlier
-    // high-frequency edge bites read as blue crystal/icicles in side views;
-    // two narrow air gaps and one broad forked tail keep the energy graphic
-    // without turning it back into a transparent spotlight cone.
+    // ConeGeometry runs from -4.25 at the nozzle to +4.25 at its tip. The
+    // plume is additive and scene-referred: a white-hot throat, a saturated
+    // body with shock diamonds, and a flickering tail the bloom turns to heat.
     float along = clamp((vLocal.y + 4.25) / 8.5, 0.0, 1.0);
-    float angle = atan(vLocal.z, vLocal.x);
-    float frame = floor(uTime * 12.0);
-    float jitter = (sin(frame * 2.173) * 0.5 + 0.5) * 0.035;
-    float flameLength = clamp(0.42 + uPower * 0.36 + jitter, 0.45, 0.86);
-    float lengthMask = step(along, flameLength);
-
-    float ignitionPlate = 1.0 - step(0.22, along);
-    float drivePlate = step(0.27, along) * (1.0 - step(0.51, along));
-    float tailPlate = step(0.56, along) * (1.0 - step(0.82, along));
-    float tailFork = step(-0.42, sin(angle * 2.0 + frame * 0.08));
-    tailPlate *= tailFork;
-    float silhouette = max(ignitionPlate, max(drivePlate, tailPlate));
-
-    vec3 color = vec3(0.14, 0.7, 0.96);
-    color = mix(color, vec3(0.68, 0.96, 1.0), drivePlate);
-    color = mix(color, uHot, ignitionPlate);
-    // One deep facet is the exhaust's ink core; it rotates only in quantized
-    // animation frames and never becomes a smooth lighting gradient.
-    float inkFacet = step(0.58, sin(angle * 3.0 + frame * 0.045));
-    color = mix(color, vec3(0.04, 0.13, 0.24), inkFacet * (1.0 - ignitionPlate) * 0.38);
-    float alpha = lengthMask * silhouette
-      * (0.2 + ignitionPlate * 0.25 + drivePlate * 0.13);
-    // The closed nozzle base stays opaque, with a small hot ignition point
-    // behind darker radial channels and an annular plasma band. Filling the
-    // whole cap with white erased every internal value from the chase view.
+    float frame = floor(uTime * 30.0);
+    float flicker = 0.85 + 0.15 * plumeHash(frame * 1.37);
+    float reach = clamp(0.38 + uPower * 0.52, 0.3, 0.95) * (0.92 + 0.08 * plumeHash(frame * 3.1));
+    float facing = pow(abs(dot(normalize(vViewNormal), normalize(vViewDir))), 1.4);
+    float body = (1.0 - smoothstep(reach * 0.55, reach, along)) * facing;
+    float throat = 1.0 - smoothstep(0.0, 0.16, along);
+    float diamonds = pow(0.5 + 0.5 * cos(along * 38.0 - uTime * 22.0), 10.0)
+      * (1.0 - smoothstep(0.08, reach * 0.8, along)) * uPower;
+    vec3 hot = mix(uHot, vec3(1.0), 0.45);
+    vec3 color = uHot * body * (1.6 + uPower * 2.4)
+      + hot * throat * facing * (1.8 + uPower * 2.4)
+      + vec3(1.0) * diamonds * 3.0;
     float radius = length(vLocal.xz) / 0.82;
     float cap = 1.0 - step(0.003, along);
-    float centre = 1.0 - smoothstep(0.12, 0.29, radius);
-    float plasma = smoothstep(0.34, 0.45, radius)
-      * (1.0 - smoothstep(0.67, 0.80, radius));
-    float channels = smoothstep(0.32, 0.60, sin(angle * 12.0 + radius * 2.4));
-    float rim = smoothstep(0.82, 0.88, radius)
-      * (1.0 - smoothstep(0.97, 1.0, radius));
-    float pulse = 0.93 + sin(uTime * 17.0 + angle * 2.0) * 0.07;
-    vec3 cavity = vec3(0.014, 0.040, 0.062);
-    cavity = mix(cavity, uHot * (0.47 + uPower * 0.15),
-      plasma * mix(0.32, 1.0, channels) * pulse);
-    cavity = mix(cavity, uHot * 0.24, rim);
-    cavity = mix(cavity, mix(uHot, vec3(0.98, 0.99, 1.0), 0.56), centre);
-    color = mix(color, cavity, cap);
-    alpha = mix(alpha, 1.0, cap);
-    if (alpha < 0.08) discard;
+    float plasma = 1.0 - smoothstep(0.1, 0.95, radius);
+    color = mix(color, hot * (1.1 + uPower * 1.7) * plasma + uHot * 0.35, cap);
+    color *= flicker;
+    float alpha = clamp(max(body, throat) * 0.85 + cap, 0.0, 1.0);
+    if (dot(color, vec3(1.0)) < 0.004) discard;
     gl_FragColor = vec4(color, alpha);
   }
 `;
@@ -654,6 +643,7 @@ function createEngine(materials: PodracerMaterials, side: number): {
     fragmentShader: exhaustFragment,
     transparent: true,
     depthWrite: false,
+    blending: AdditiveBlending,
     side: DoubleSide,
     uniforms: {
       uTime: { value: 0 },
@@ -1019,6 +1009,7 @@ export class PodracerView extends Group {
       fragmentShader: beamFragment,
       transparent: true,
       depthWrite: false,
+      blending: AdditiveBlending,
       side: DoubleSide,
       uniforms: {
         uTime: { value: 0 },

@@ -26,17 +26,34 @@ export const RECORDED_RACE_MUSIC: readonly RecordedRaceTrack[] = Object.freeze([
 export const RECORDED_RACE_MUSIC_URLS: readonly string[] = Object.freeze(RECORDED_RACE_MUSIC.map((track) => track.url));
 
 /**
- * Sourced voice lines (Kenney "Voiceover Pack: Fighter", CC0) for rivalry beats
- * and the final lap. Attribution: /audio/voice-fighter/CREDITS.html. Each line
- * is an existing recording; none were synthesised.
+ * The Thrustline race announcer: original lines generated for this game
+ * (Higgsfield text-to-speech, ElevenLabs engine, preset voice "Knox") and
+ * mastered with a stadium PA treatment. Provenance: /audio/announcer/SOURCES.md.
  */
-export type RecordedVoiceLineId = 'rival-marked' | 'revenge-pass' | 'revenge-settled' | 'final-lap';
+export type RecordedVoiceLineId = 'rival-marked' | 'revenge-pass' | 'revenge-settled' | 'final-lap'
+  | 'count-3' | 'count-2' | 'count-1' | 'count-go' | 'takedown' | 'victory' | 'race-over'
+  | 'world-desert' | 'world-frozen' | 'world-volcanic' | 'world-jungle';
+const announcer = (name: string): string => `/audio/announcer/${name}.ogg`;
 export const RECORDED_VOICE_LINES: Readonly<Record<RecordedVoiceLineId, string>> = Object.freeze({
-  'rival-marked': '/audio/voice-fighter/prepare-yourself.ogg',
-  'revenge-pass': '/audio/voice-fighter/loser.ogg',
-  'revenge-settled': '/audio/voice-fighter/combo-breaker.ogg',
-  'final-lap': '/audio/voice-fighter/final-round.ogg',
+  'rival-marked': announcer('rival-marked'),
+  'revenge-pass': announcer('revenge-pass'),
+  'revenge-settled': announcer('grudge-settled'),
+  'final-lap': announcer('final-lap'),
+  'count-3': announcer('count-3'),
+  'count-2': announcer('count-2'),
+  'count-1': announcer('count-1'),
+  'count-go': announcer('count-go'),
+  takedown: announcer('takedown'),
+  victory: announcer('victory'),
+  'race-over': announcer('race-over'),
+  // Destination calls as a world is picked in the menu.
+  'world-desert': announcer('world-desert'),
+  'world-frozen': announcer('world-frozen'),
+  'world-volcanic': announcer('world-volcanic'),
+  'world-jungle': announcer('world-jungle'),
 });
+/** Menu welcome sting, played before the selection score. */
+export const ANNOUNCER_WELCOME_URL = announcer('welcome');
 export const RECORDED_VOICE_LINE_URLS: readonly string[] = Object.freeze([...new Set(Object.values(RECORDED_VOICE_LINES))]);
 
 /** Empty lists deliberately omit nonessential reward and warning bleeps. */

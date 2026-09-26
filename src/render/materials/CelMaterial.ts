@@ -21,6 +21,7 @@ import {
 import { createCelRampTexture, createGraphicMatcapTexture, writeCelRampData } from './celRamp';
 import { CEL_FRAGMENT_SHADER, CEL_PAINTED_FRAGMENT_SHADER, CEL_VERTEX_SHADER } from './celShaders';
 import { createInkstormShadowUniforms } from '../inkstorm/InkstormSunShadow';
+import { LEGACY_HAZE, WORLD_SUN } from '../lighting/WorldLight';
 
 interface ValueUniform<T> {
   value: T;
@@ -48,6 +49,7 @@ interface CelUniforms {
   uHazeNear: ValueUniform<number>;
   uHazeFar: ValueUniform<number>;
   uHazeBands: ValueUniform<number>;
+  uLegacyHaze: ValueUniform<number>;
   uOpacity: ValueUniform<number>;
   uWear: ValueUniform<number>;
   uDamage: ValueUniform<number>;
@@ -182,12 +184,12 @@ export class CelMaterial extends ShaderMaterial {
     const ramp = createCelRampTexture({ bands: palette.diffuseBands, thresholds, paintedShadingSoftness });
     const matcap = createGraphicMatcapTexture();
     const opacity = clamp01(options.opacity ?? 1);
-    const lightDirection = (options.lightDirection ?? new Vector3(-0.42, 0.76, -0.5)).clone().normalize();
+    const lightDirection = options.lightDirection ? options.lightDirection.clone().normalize() : null;
     const uniforms: CelUniforms = {
       ...createInkstormShadowUniforms(),
       uRamp: { value: ramp },
       uMatcap: { value: matcap },
-      uLightDirection: { value: lightDirection },
+      uLightDirection: lightDirection ? { value: lightDirection } : WORLD_SUN,
       uTint: { value: new Color(options.tint ?? 0xffffff) },
       uSpecularColor: { value: new Color(palette.specular) },
       uRimColor: { value: new Color(palette.rim) },
@@ -205,6 +207,7 @@ export class CelMaterial extends ShaderMaterial {
       uHazeNear: { value: Math.max(0, options.hazeNear ?? 420) },
       uHazeFar: { value: Math.max(0.001, options.hazeFar ?? 1750) },
       uHazeBands: { value: Math.max(1, Math.floor(options.hazeBands ?? 5)) },
+      uLegacyHaze: LEGACY_HAZE,
       uOpacity: { value: opacity },
       uWear: { value: options.wear ?? 0 },
       uDamage: { value: 0 },
@@ -283,7 +286,9 @@ export class CelMaterial extends ShaderMaterial {
 
   setLightDirection(direction: Vector3): void {
     if (direction.lengthSq() === 0) throw new RangeError('Cel light direction cannot be zero.');
-    this.celUniforms.uLightDirection.value.copy(direction).normalize();
+    const own = { value: direction.clone().normalize() };
+    this.celUniforms.uLightDirection = own;
+    this.uniforms.uLightDirection = own;
   }
 
   setDamage(amount: number): void { this.celUniforms.uDamage.value = clamp01(amount); }

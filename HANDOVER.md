@@ -1,3 +1,26 @@
+# Continue here — Thrustline overhaul on `overhaul/aaa` (2026-09-26)
+
+- The owner chose Cinematic Stylized, an original IP, web-only, a feature freeze
+  and generated on-brand audio. This round implements the overhaul; details,
+  verification and next steps are in [docs/thrustline/OVERHAUL.md](docs/thrustline/OVERHAUL.md).
+- Checkout used for this round: `/Users/VladaPro/Claude-Pro/PodRacing`. Branch
+  `overhaul/aaa` from `codex/now-this-is-podracing`. **Production still serves
+  Round 53** (below) until the owner approves a preview and promotion.
+- Headline changes: HDR post chain and per-world looks; lava, ice, moss and
+  aurora/volcano skies; the Colossus ribcage on Sunscar's first straight; a
+  countdown lamp-and-spark start ceremony; the Verdant canopy; per-world
+  weathering of the shared kit; eight original craft (Kestrel … Crucible) with
+  the replica pods moved out of `public/` into test fixtures; THRUSTLINE menu
+  wordmark; an original announcer.
+- Tests: all pass except the 14 LFS-dependent files that also fail without LFS
+  objects; rerun with LFS pulled. Typecheck and build pass.
+- Showcase (private artifact): https://claude.ai/artifact/QFwsn7C81a6J65HvJAYUBp
+- Showreel (local, gitignored): `output/trailer-v7/Thrustline-Showreel.mp4`,
+  reproducible with `scripts/trailer/v7/`. Music: "Juggernaut" by Scott Buckley,
+  CC BY 4.0 — keep the credit on any upload.
+- Never run `vercel deploy` from the working tree. Previews come from pushing
+  the branch; Production promotion is owner-approved only.
+
 # Continue here — latest push and Production release
 
 - Checkout: `/Users/amir/Projects/PodRacing` (do not use the session's default

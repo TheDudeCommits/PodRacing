@@ -1,5 +1,4 @@
-import type { VehicleArtAttachment, VehicleArtDefinition, VehicleArtSurfaceStyle } from '../render/vehicles';
-import { DEFAULT_CEL_PALETTE } from '../render/materials/celPalette';
+import type { VehicleArtAttachment, VehicleArtDefinition } from '../render/vehicles';
 import type { GalacticVehicleClass } from './galactic/types';
 import { resolveBrowserSettingsStorage, type SettingsStorage } from './settings/storage';
 
@@ -8,14 +7,14 @@ export type VehicleArtLod = 'hero' | 'rival';
 
 /** Appearance never changes the physics class, workshop loadout or record identity. */
 export const ART_APPEARANCES = Object.freeze({
-  teemto: Object.freeze({ id: 'teemto', label: 'Teemto', vehicleClass: 'podracer' } as const),
-  sebulba: Object.freeze({ id: 'sebulba', label: 'Sebulba', vehicleClass: 'podracer' } as const),
-  polwo: Object.freeze({ id: 'polwo', label: 'Polwo', vehicleClass: 'podracer' } as const),
-  blockrunner: Object.freeze({ id: 'blockrunner', label: 'Blockrunner', vehicleClass: 'podracer' } as const),
-  verdigris: Object.freeze({ id: 'verdigris', label: 'Verdigris', vehicleClass: 'podracer' } as const),
-  skybolt: Object.freeze({ id: 'skybolt', label: 'Skybolt', vehicleClass: 'podracer' } as const),
-  needle: Object.freeze({ id: 'needle', label: 'Needle', vehicleClass: 'podracer' } as const),
-  pog: Object.freeze({ id: 'pog', label: 'Pog Racer', vehicleClass: 'podracer' } as const),
+  teemto: Object.freeze({ id: 'teemto', label: 'Kestrel', vehicleClass: 'podracer' } as const),
+  sebulba: Object.freeze({ id: 'sebulba', label: 'Scrapjack', vehicleClass: 'podracer' } as const),
+  polwo: Object.freeze({ id: 'polwo', label: 'Hornet', vehicleClass: 'podracer' } as const),
+  blockrunner: Object.freeze({ id: 'blockrunner', label: 'Bulwark', vehicleClass: 'podracer' } as const),
+  verdigris: Object.freeze({ id: 'verdigris', label: 'Sirocco', vehicleClass: 'podracer' } as const),
+  skybolt: Object.freeze({ id: 'skybolt', label: 'Longshot', vehicleClass: 'podracer' } as const),
+  needle: Object.freeze({ id: 'needle', label: 'Glasswing', vehicleClass: 'podracer' } as const),
+  pog: Object.freeze({ id: 'pog', label: 'Crucible', vehicleClass: 'podracer' } as const),
   procedural: Object.freeze({ id: 'procedural', label: 'Classic', vehicleClass: 'podracer' } as const),
 });
 
@@ -28,6 +27,7 @@ export const SELECTABLE_POD_APPEARANCES: readonly VehicleAppearanceId[] = Object
 export function selectablePodAppearance(preference: VehicleAppearanceId): VehicleAppearanceId {
   return SELECTABLE_POD_APPEARANCES.includes(preference) ? preference : DEFAULT_VEHICLE_APPEARANCE;
 }
+/** Storage key kept for save compatibility; the id values are internal slots. */
 export const VEHICLE_APPEARANCE_STORAGE_KEY = 'now-this-is-podracing.vehicle-appearance';
 export const VEHICLE_APPEARANCE_VERSION = 1 as const;
 
@@ -59,224 +59,24 @@ export function resolveRacerAppearancePreference(
     : DEFAULT_VEHICLE_APPEARANCE;
 }
 
-/** Tall rear bodywork needs an elevated eye to separate the cockpit and engines. */
+/** Tall bodywork needs an elevated eye to separate the cockpit and engines.
+ * Values follow the original fleet's measured silhouettes (output/fleet). */
 export function vehicleChaseClearance(appearance: VehicleAppearanceId): number {
-  if (appearance === 'pog') return 8.5;
-  if (appearance === 'needle' || appearance === 'verdigris') return 4.5;
-  if (appearance === 'polwo') return 5.2;
-  return appearance === 'blockrunner' ? 4.8 : 0;
+  switch (appearance) {
+    case 'teemto': return 3.2;      // Kestrel: tall swept tail fins
+    case 'sebulba': return 3.4;     // Scrapjack: oversized salvage engines
+    case 'blockrunner': return 3.2; // Bulwark: armoured cage cockpit
+    case 'verdigris': return 4.5;   // Sirocco: raised third engine
+    case 'needle': return 2.2;      // Glasswing: translucent fins
+    case 'pog': return 2.6;         // Crucible: single giant turbine
+    default: return 0;
+  }
 }
 const MAX_APPEARANCE_JSON_LENGTH = 1024;
-
-/** Exact exported nodes; mesh positions are baked and group transforms start at identity. */
-export const TEEMTO_BODY_NODES = Object.freeze({
-  cockpit: 'teemto-cockpit-body',
-  engineLeft: 'teemto-engine-left-body',
-  engineRight: 'teemto-engine-right-body',
-});
-
-export const TEEMTO_BODY_GROUP_NODES = Object.freeze({
-  cockpit: 'teemto-cockpit.001',
-  engineLeft: 'teemto-engine-left.001',
-  engineRight: 'teemto-engine-right.001',
-});
-
-/** Sebulba is a static rigid shell/hardware pair, without separate engine pivots. */
-export const SEBULBA_BODY_NODES = Object.freeze({
-  hardware: 'sebulba-body-hardware.002',
-  shell: 'sebulba-body-shell.002',
-});
-
-/** Canonical rigid mesh names from the Polwo runtime packager. */
-export const POLWO_BODY_NODES = Object.freeze({
-  main: 'polwo-body-0',
-  antenna: 'polwo-body-1',
-});
-
-/** Canonical package nodes; the four original pilot roles remain separate draws. */
-export const BLOCKRUNNER_BODY_NODES = Object.freeze({ main: 'blockrunner-body' });
 
 function rootAttachment(x: number, y: number, z: number): VehicleArtAttachment {
   return Object.freeze({ position: Object.freeze([x, y, z] as const) });
 }
-
-/** DCC-provided model-root coordinates; exported art is +Z forward and +Y up. */
-const TEEMTO_ATTACHMENTS: Readonly<Record<string, VehicleArtAttachment>> = Object.freeze({
-  pilot: rootAttachment(0, 2.2, -5.2),
-  exhaustLeft: rootAttachment(-4.075, 0.178, 5.638),
-  exhaustRight: rootAttachment(4.025, 0.178, 5.638),
-  couplingLeft: rootAttachment(-1.3, 3.238, 18.941),
-  couplingRight: rootAttachment(1.325, 3.238, 18.941),
-});
-
-/** Measured normalized export coordinates; both optimized variants share this basis. */
-const SEBULBA_ATTACHMENTS: Readonly<Record<string, VehicleArtAttachment>> = Object.freeze({
-  pilot: rootAttachment(0, 1.366, -5.2),
-  exhaustLeft: rootAttachment(-4.426030636, 3.854108810, 3.669570684),
-  exhaustRight: rootAttachment(4.426030159, 3.854107857, 3.669572830),
-  couplingLeft: rootAttachment(-2.767781019, 3.899996042, 10.019994736),
-  couplingRight: rootAttachment(2.767776728, 3.899995565, 10.019995689),
-});
-
-/** DCC root measurements; the rear fan plane replaces the initial spike-tip
- * bound for exhaust. See polwo-driver-round32/nozzle-correction/attachments-study-v2.json. */
-const POLWO_ATTACHMENTS: Readonly<Record<string, VehicleArtAttachment>> = Object.freeze({
-  pilot: rootAttachment(0, 4.2725324630737305, -5.199999809265137),
-  exhaustLeft: rootAttachment(-3.929196834564209, 1.6775317192077637, 8.135646316150098),
-  exhaustRight: rootAttachment(3.929197072982788, 1.677531659603119, 8.135646316150098),
-  couplingLeft: rootAttachment(-3.0361387729644775, 1.6775315403938293, 14.65654182434082),
-  couplingRight: rootAttachment(3.0361380577087402, 1.6775315403938293, 14.65653944015503),
-});
-
-const TEEMTO_CLOTH_PALETTE = Object.freeze({
-  ...DEFAULT_CEL_PALETTE,
-  diffuseBands: ['#9ba5b7', '#c0c4c9', '#e5ddd0', '#fff2dd'] as const,
-});
-const TEEMTO_CLOTH_STYLE: VehicleArtSurfaceStyle = Object.freeze({
-  palette: TEEMTO_CLOTH_PALETTE,
-  normalStrength: .25, specularStrength: .025, rimStrength: 0,
-  reflectionStrength: 0, wear: 0,
-});
-/** Exact DCC material contracts: cloth, webbing and leather keep distinct responses. */
-const TEEMTO_PILOT_SURFACE_STYLES = Object.freeze({
-  'Pilot atlas v4c runtime suit': TEEMTO_CLOTH_STYLE,
-  'Pilot atlas v4c runtime accent': TEEMTO_CLOTH_STYLE,
-  'Pilot atlas v4c runtime webbing': Object.freeze({ ...TEEMTO_CLOTH_STYLE,
-    normalStrength: .35, specularStrength: .035, rimStrength: .01 }),
-  'Pilot atlas v4c runtime rubber': Object.freeze({
-    normalStrength: .5, specularStrength: .09, rimStrength: .035,
-    reflectionStrength: .015, wear: 0,
-  }),
-} satisfies Readonly<Record<string, VehicleArtSurfaceStyle>>);
-
-/** This atlas already carries paint wear. An additive red rim over cobalt
- * creates mauve panels, so retain its authored color and surface normal. */
-const POLWO_SURFACE_STYLES = Object.freeze({
-  ...TEEMTO_PILOT_SURFACE_STYLES,
-  'Polwo Inkstorm body paint-v1': Object.freeze({
-    specularStrength: .08, rimStrength: 0, reflectionStrength: 0, wear: 0,
-    normalStrength: 1,
-  }),
-} satisfies Readonly<Record<string, VehicleArtSurfaceStyle>>);
-
-/** Pure metadata: importing this module does not create a loader or request art. */
-export const TEEMTO_ART_DEFINITIONS: Readonly<Record<VehicleArtLod, VehicleArtDefinition>> = Object.freeze({
-  hero: Object.freeze({
-    id: 'teemto',
-    revision: 'teemto-open-cockpit-v2',
-    url: '/assets/inkstorm/vehicles/optimized/teemto-hero-open-v2-r48.glb',
-    damageVariant: Object.freeze({ id: 'teemto-damage', revision: 'teemto-damage-hero-v16-b',
-      url: '/assets/inkstorm/vehicles/teemto-damage-hero-v16.glb' }),
-    embeddedPilotNodePrefix: 'teemto-pilot-',
-    attachments: TEEMTO_ATTACHMENTS,
-    surfaceStyles: TEEMTO_PILOT_SURFACE_STYLES,
-  }),
-  rival: Object.freeze({
-    id: 'teemto',
-    revision: 'teemto-v1',
-    url: '/assets/inkstorm/vehicles/optimized/teemto-rival-r48.glb',
-    damageVariant: Object.freeze({ id: 'teemto-damage', revision: 'teemto-damage-rival-v16-b',
-      url: '/assets/inkstorm/vehicles/teemto-damage-rival-v16.glb' }),
-    embeddedPilotNodePrefix: 'teemto-pilot-',
-    attachments: TEEMTO_ATTACHMENTS,
-  }),
-});
-
-export const SEBULBA_ART_DEFINITIONS: Readonly<Record<VehicleArtLod, VehicleArtDefinition>> = Object.freeze({
-  hero: Object.freeze({
-    id: 'sebulba', revision: 'sebulba-v1',
-    url: '/assets/inkstorm/vehicles/optimized/sebulba-hero-r48.glb',
-    embeddedPilotNodePrefix: 'sebulba-pilot-', attachments: SEBULBA_ATTACHMENTS,
-  }),
-  rival: Object.freeze({
-    id: 'sebulba', revision: 'sebulba-v1',
-    url: '/assets/inkstorm/vehicles/optimized/sebulba-rival-r48.glb',
-    embeddedPilotNodePrefix: 'sebulba-pilot-', attachments: SEBULBA_ATTACHMENTS,
-  }),
-});
-
-export const POLWO_ART_DEFINITIONS: Readonly<Record<VehicleArtLod, VehicleArtDefinition>> = Object.freeze({
-  hero: Object.freeze({
-    id: 'polwo', revision: 'polwo-inkstorm-v1',
-    hasAuthoredExhaustHardware: true,
-    url: '/assets/inkstorm/vehicles/optimized/polwo-hero-v1-r48.glb',
-    embeddedPilotNodePrefix: 'polwo-pilot-', attachments: POLWO_ATTACHMENTS,
-    surfaceStyles: POLWO_SURFACE_STYLES,
-  }),
-  rival: Object.freeze({
-    id: 'polwo', revision: 'polwo-inkstorm-v1',
-    hasAuthoredExhaustHardware: true,
-    url: '/assets/inkstorm/vehicles/optimized/polwo-rival-v1-r48.glb',
-    embeddedPilotNodePrefix: 'polwo-pilot-', attachments: POLWO_ATTACHMENTS,
-    surfaceStyles: POLWO_SURFACE_STYLES,
-  }),
-});
-
-/** Warm key light and cool reflected fill separate the existing atlas surfaces.
- * Paint wear remains authored in the maps; these colors only shape response. */
-const BLOCKRUNNER_PALETTE = Object.freeze({
-  ...DEFAULT_CEL_PALETTE,
-  diffuseBands: ['#535b70', '#9999a3', '#d5d1cb', '#fff4e3'] as const,
-  specular: '#fff0cf', rim: '#dbc5a4', reflection: '#9ab6ca',
-});
-/** Slate cloth stays below the titanium helmet; the shared source atlas still
- * supplies pigment and contact detail. No material or texture is repainted. */
-const BLOCKRUNNER_SUIT_PALETTE = Object.freeze({
-  ...BLOCKRUNNER_PALETTE,
-  diffuseBands: ['#8d99ad', '#b3bdc6', '#d4d6d5', '#eee7d8'] as const,
-  rim: '#c4cbd0',
-});
-const BLOCKRUNNER_HELMET_PALETTE = Object.freeze({
-  ...BLOCKRUNNER_PALETTE,
-  diffuseBands: ['#8b98ac', '#b6c0c9', '#e0e1dd', '#fff4e3'] as const,
-});
-const BLOCKRUNNER_SURFACE_STYLES = Object.freeze({
-  'Blockrunner Inkstorm body atlas v1': Object.freeze({
-    palette: BLOCKRUNNER_PALETTE, paintedShadingSoftness: .85,
-    specularStrength: .24, rimStrength: .025, reflectionStrength: .045, wear: 0,
-  }),
-  'Blockrunner Inkstorm pilot suit atlas v1': Object.freeze({
-    palette: BLOCKRUNNER_SUIT_PALETTE, baseColorStrength: .86, paintedShadingSoftness: .45,
-    normalStrength: .25, specularStrength: .035, rimStrength: .025, reflectionStrength: 0, wear: 0,
-  }),
-  'Blockrunner Inkstorm pilot helmet atlas v1': Object.freeze({
-    palette: BLOCKRUNNER_HELMET_PALETTE, baseColorStrength: .94, paintedShadingSoftness: .75,
-    specularStrength: .32, rimStrength: .035, reflectionStrength: .1, wear: 0,
-  }),
-  'Blockrunner Inkstorm pilot visor atlas v1': Object.freeze({
-    palette: BLOCKRUNNER_PALETTE,
-    specularStrength: .42, rimStrength: .015, reflectionStrength: .18, wear: 0,
-  }),
-  'Blockrunner Inkstorm pilot gloves atlas v1': Object.freeze({
-    specularStrength: .035, rimStrength: 0, reflectionStrength: 0, wear: 0,
-  }),
-} satisfies Readonly<Record<string, VehicleArtSurfaceStyle>>);
-
-/** Exact normalization candidate: package verification must prove these root coordinates.
- * The rigid source crossbeam needs no duplicate energy coupling. */
-const BLOCKRUNNER_ATTACHMENTS: Readonly<Record<string, VehicleArtAttachment>> = Object.freeze({
-  pilot: rootAttachment(0, 2.8454298774641376, -5.200000000000003),
-  exhaustLeft: rootAttachment(-3.651407175599785, 1.4209392232848972, 2.96253509241496),
-  exhaustRight: rootAttachment(3.482691623294051, 1.4209392232848972, 2.9625384568864277),
-});
-
-/** Requires the separately reviewed exhaust-aperture candidate before application. */
-export const BLOCKRUNNER_ART_DEFINITIONS: Readonly<Record<VehicleArtLod, VehicleArtDefinition>> = Object.freeze({
-  hero: Object.freeze({
-    id: 'blockrunner', revision: 'blockrunner-inkstorm-v1',
-    url: '/assets/inkstorm/vehicles/optimized/blockrunner-hero-v1-r48.glb',
-    embeddedPilotNodePrefix: 'blockrunner-pilot-',
-    hasAuthoredExhaustHardware: true, exhaustApertureRadius: .34,
-    attachments: BLOCKRUNNER_ATTACHMENTS, surfaceStyles: BLOCKRUNNER_SURFACE_STYLES,
-  }),
-  rival: Object.freeze({
-    id: 'blockrunner', revision: 'blockrunner-inkstorm-v1',
-    url: '/assets/inkstorm/vehicles/optimized/blockrunner-rival-v1-r48.glb',
-    embeddedPilotNodePrefix: 'blockrunner-pilot-',
-    hasAuthoredExhaustHardware: true, exhaustApertureRadius: .34,
-    attachments: BLOCKRUNNER_ATTACHMENTS, surfaceStyles: BLOCKRUNNER_SURFACE_STYLES,
-  }),
-});
 
 export function isVehicleAppearanceId(value: unknown): value is VehicleAppearanceId {
   return typeof value === 'string' && Object.hasOwn(ART_APPEARANCES, value);
@@ -327,20 +127,34 @@ export function resolveVehicleAppearance(
   return isVehicleAppearanceId(preference) ? preference : DEFAULT_VEHICLE_APPEARANCE;
 }
 
-/** Recovered source packages; anchors are measured in the isolated DCC export. */
-function recoveredArt(id: VehicleAppearanceId, attachments: Readonly<Record<string, VehicleArtAttachment>>): Readonly<Record<VehicleArtLod, VehicleArtDefinition>> {
+/**
+ * The original fleet. Parts were generated from the fleet concept sheet
+ * (Higgsfield image, Meshy image-to-3D) and assembled by
+ * output/fleet/build_fleet.py into this runtime contract: +Z forward, +Y up,
+ * bottom near y=0, rigid opaque meshes, Draco geometry and WebP textures.
+ * Each craft fits the physics envelope of the slot it occupies
+ * (src/game/podGeometry.ts), so handling and collision are unchanged.
+ */
+function fleetArt(id: VehicleAppearanceId, pod: string, attachments: Readonly<Record<string, VehicleArtAttachment>>,
+  exhaustApertureRadius: number | undefined): Readonly<Record<VehicleArtLod, VehicleArtDefinition>> {
   const definition = (lod: VehicleArtLod): VehicleArtDefinition => Object.freeze({
-    id, revision: `${id}-recovery-v1`, url: `/assets/inkstorm/vehicles/optimized/${id}-${lod}-v1-r48.glb`,
-    hasAuthoredExhaustHardware: true, embeddedPilotNodePrefix: `${id}-pilot-`,
-    attachments: Object.freeze(attachments), surfaceStyles: TEEMTO_PILOT_SURFACE_STYLES,
+    id, revision: `${pod}-fleet-v1`, url: `/assets/fleet/${pod}-${lod}.glb`,
+    hasAuthoredExhaustHardware: true,
+    ...(exhaustApertureRadius !== undefined ? { exhaustApertureRadius } : {}),
+    attachments: Object.freeze(attachments),
   });
   return Object.freeze({ hero: definition('hero'), rival: definition('rival') });
 }
-const RECOVERED_ART_DEFINITIONS: Readonly<Partial<Record<VehicleAppearanceId, Readonly<Record<VehicleArtLod, VehicleArtDefinition>>>>> = Object.freeze({
-  verdigris: recoveredArt('verdigris', { pilot: rootAttachment(0.0, 2.87261, -4.24028), exhaustLeft: rootAttachment(-4.366, 1.57021, 5.60172), exhaustRight: rootAttachment(4.366, 1.57021, 5.60172), couplingLeft: rootAttachment(-2.442, 1.76261, 8.70972), couplingRight: rootAttachment(2.442, 1.76261, 8.70972) }),
-  skybolt: recoveredArt('skybolt', { pilot: rootAttachment(0.0, 2.9402, -4.1018), exhaustLeft: rootAttachment(-3.08, 1.7102, 3.2982), exhaustRight: rootAttachment(3.08, 1.7102, 3.2982), couplingLeft: rootAttachment(-2.0, 1.7102, 11.6982), couplingRight: rootAttachment(2.0, 1.7102, 11.6982) }),
-  needle: recoveredArt('needle', { pilot: rootAttachment(0.0, 2.98694, -0.51527), exhaustLeft: rootAttachment(-3.91532, 2.52494, 6.74473), exhaustRight: rootAttachment(3.91228, 2.52494, 6.74473), couplingLeft: rootAttachment(-2.48972, 2.52494, 8.19673), couplingRight: rootAttachment(2.52628, 2.52494, 8.19673) }),
-  pog: recoveredArt('pog', { pilot: rootAttachment(0, 6, -3), exhaustLeft: rootAttachment(0.0, 1.55288, -5.83469) }),
+
+export const FLEET_ART_DEFINITIONS: Readonly<Partial<Record<VehicleAppearanceId, Readonly<Record<VehicleArtLod, VehicleArtDefinition>>>>> = Object.freeze({
+  teemto: fleetArt('teemto', 'kestrel', { pilot: rootAttachment(0.0, 1.535, -4.6), exhaustLeft: rootAttachment(-4.05, 3.294, 5.9), exhaustRight: rootAttachment(4.05, 3.294, 5.9), couplingLeft: rootAttachment(-1.946, 4.318, 19.64), couplingRight: rootAttachment(1.946, 4.318, 19.64) }, 1.074),
+  sebulba: fleetArt('sebulba', 'scrapjack', { pilot: rootAttachment(0.0, 2.758, -3.9), exhaustLeft: rootAttachment(-4.43, 3.888, 3.9), exhaustRight: rootAttachment(4.43, 3.874, 3.9), couplingLeft: rootAttachment(-1.371, 5.066, 16.328), couplingRight: rootAttachment(1.073, 5.047, 16.328) }, 1.561),
+  polwo: fleetArt('polwo', 'hornet', { pilot: rootAttachment(0.0, 3.75, -4.0), exhaustLeft: rootAttachment(-3.93, 1.602, 9.516), exhaustRight: rootAttachment(3.93, 1.602, 9.516), couplingLeft: rootAttachment(-2.13, 2.002, 21.345), couplingRight: rootAttachment(2.13, 2.002, 21.345) }, 0.638),
+  blockrunner: fleetArt('blockrunner', 'bulwark', { pilot: rootAttachment(0.0, 3.872, -6.0), exhaustLeft: rootAttachment(-3.15, 2.6, -1.25), exhaustRight: rootAttachment(3.15, 2.6, -1.25), couplingLeft: rootAttachment(-1.344, 3.4, 6.832), couplingRight: rootAttachment(1.344, 3.4, 6.832) }, 0.921),
+  verdigris: fleetArt('verdigris', 'sirocco', { pilot: rootAttachment(0.0, 2.345, -3.6), exhaustLeft: rootAttachment(-4.36, 2.006, 4.75), exhaustRight: rootAttachment(4.36, 2.006, 4.75), couplingLeft: rootAttachment(-2.8, 2.582, 10.454), couplingRight: rootAttachment(2.8, 2.582, 10.454) }, 0.796),
+  skybolt: fleetArt('skybolt', 'longshot', { pilot: rootAttachment(0.0, 1.115, -3.9), exhaustLeft: rootAttachment(-3.08, 1.716, 3.5), exhaustRight: rootAttachment(3.08, 1.716, 3.5), couplingLeft: rootAttachment(-2.05, 2.156, 15.354), couplingRight: rootAttachment(2.05, 2.156, 15.354) }, 0.525),
+  needle: fleetArt('needle', 'glasswing', { pilot: rootAttachment(0.0, 1.957, -1.3), exhaustLeft: rootAttachment(-3.91, 2.516, 5.2), exhaustRight: rootAttachment(3.91, 2.516, 5.2), couplingLeft: rootAttachment(-2.349, 3.252, 9.756), couplingRight: rootAttachment(2.349, 3.252, 9.756) }, 0.796),
+  pog: fleetArt('pog', 'crucible', { pilot: rootAttachment(0.0, 2.286, -5.6), exhaustLeft: rootAttachment(0.0, 2.314, -2.0) }, undefined),
 });
 
 /** Null explicitly selects the procedural fallback; unknown runtime values cannot fetch art. */
@@ -349,8 +163,5 @@ export function getVehicleArtDefinition(
   lod: VehicleArtLod = 'hero',
 ): VehicleArtDefinition | null {
   if (lod !== 'hero' && lod !== 'rival') return null;
-  if (id === 'teemto') return TEEMTO_ART_DEFINITIONS[lod];
-  if (id === 'sebulba') return SEBULBA_ART_DEFINITIONS[lod];
-  if (id === 'polwo') return POLWO_ART_DEFINITIONS[lod];
-  return id === 'blockrunner' ? BLOCKRUNNER_ART_DEFINITIONS[lod] : RECOVERED_ART_DEFINITIONS[id]?.[lod] ?? null;
+  return FLEET_ART_DEFINITIONS[id]?.[lod] ?? null;
 }

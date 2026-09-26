@@ -13,7 +13,7 @@ export interface RacingBiome {
   readonly road: string;
 }
 export const RACING_BIOMES: Readonly<Record<RacingBiomeId, RacingBiome>> = Object.freeze({
-  desert: { id: 'desert', title: 'Inkstorm', subtitle: 'Desert canyon', traction: 1, cooling: 1, ground: '#d78c58', stone: '#c38965', sky: '#ffffff', road: '#ad724a' },
+  desert: { id: 'desert', title: 'Sunscar Canyon', subtitle: 'Desert canyon', traction: 1, cooling: 1, ground: '#d78c58', stone: '#c38965', sky: '#ffffff', road: '#ad724a' },
   frozen: { id: 'frozen', title: 'Frostline', subtitle: 'Frozen refinery · low grip, fast cooling', traction: .58, cooling: 1.45, ground: '#d4e9f2', stone: '#91b9d2', sky: '#93c8f5', road: '#79b0c7' },
   volcanic: { id: 'volcanic', title: 'Ember Rift', subtitle: 'Basalt caldera · poor cooling, heat vents', traction: .94, cooling: .65, ground: '#403d49', stone: '#454052', sky: '#c36f63', road: '#766772' },
   jungle: { id: 'jungle', title: 'Verdant Run', subtitle: 'Forest ruins · wet turns, dense canopy', traction: .79, cooling: 1.12, ground: '#69744f', stone: '#657c65', sky: '#b1d3b7', road: '#8f9170' },

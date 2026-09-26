@@ -14,6 +14,9 @@ import { TERRAIN_VERTEX_GLSL } from './terrainShaderChunks';
 import { createCourseGulfUniforms, type CourseGulfUniforms } from './CourseGulfTextures';
 import { createInkstormShadowUniforms, INKSTORM_SHADOW_GLSL } from '../inkstorm/InkstormSunShadow';
 import { inkstormSandPaintUniforms } from '../inkstorm/InkstormSurfaceMaterial';
+import { LEGACY_HAZE, WORLD_SUN } from '../lighting/WorldLight';
+import { COURSE_DISTANCE_GLSL, createCourseDistanceUniforms, type CourseDistanceUniforms } from './CourseDistanceField';
+import { WORLD_MATERIAL_GLSL } from './worldMaterialShader';
 
 export interface TerrainPalette {
   shadow: ColorRepresentation;
@@ -61,6 +64,7 @@ export interface TerrainUniformSet {
   hazeFar: { value: number };
   biomeColor: { value: Color };
   biomeStrength: { value: number };
+  biomeId: { value: number };
 }
 
 export interface TerrainMaterialBundle {
@@ -77,6 +81,8 @@ precision highp int;
 ${INKSTORM_SHADOW_GLSL}
 ${INKSTORM_RACER_SHADOW_GLSL}
 ${INKSTORM_GEOLOGY_GLSL}
+${COURSE_DISTANCE_GLSL}
+${WORLD_MATERIAL_GLSL}
 
 uniform float uTime;
 uniform sampler2D uSandPaint;
@@ -95,8 +101,10 @@ uniform vec3 uSparkleColor;
 uniform vec3 uHazeColor;
 uniform float uHazeNear;
 uniform float uHazeFar;
+uniform float uLegacyHaze;
 uniform vec3 uBiomeColor;
 uniform float uBiomeStrength;
+uniform float uBiomeId;
 
 in vec3 vTerrainWorldPosition;
 in vec3 vTerrainRenderPosition;
@@ -370,7 +378,7 @@ void main() {
     1.0
   );
   haze = floor(haze * 4.0) * 0.25;
-  color = mix(color, hazeColor, haze * 0.82);
+  color = mix(color, hazeColor, haze * 0.82 * uLegacyHaze);
 
   // A signed cut/fill surface crosses the old ground height mid-cliff. Its
   // authored grade retains stone through that crossing instead of drawing a
@@ -386,7 +394,11 @@ void main() {
     rock=inkstormRockAtmosphere(rock,distanceToCamera);
     color=mix(color,rock,cliff);
   }
-  color = mix(color, uBiomeColor * clamp(dot(color,vec3(.30,.59,.11))*2.4,.32,1.35), uBiomeStrength);
+  if (uBiomeId > .5) {
+    color = worldMaterial(uBiomeId, color, vTerrainWorldPosition, normal, viewDirection, sunDirection,
+      sunVisibility, slope, cliff, courseDistance(vTerrainWorldPosition.xz),
+      courseStartDistance(vTerrainWorldPosition.xz), distanceToCamera, uTime);
+  }
   fragColor = vec4(color, 1.0);
 }
 `;
@@ -427,13 +439,14 @@ function resolvePalette(overrides: Partial<TerrainPalette> | undefined): Terrain
 
 export function createTerrainMaterial(
   options: TerrainMaterialOptions = {},
+  courseDistanceUniforms: CourseDistanceUniforms = createCourseDistanceUniforms(),
 ): TerrainMaterialBundle {
   const palette = resolvePalette(options.palette);
-  const sun = options.sunDirection ?? { x: -0.42, y: 0.76, z: -0.5 };
+  const sun = options.sunDirection;
   const uniforms: TerrainUniformSet = {
     time: { value: 0 },
     renderOrigin: { value: new Vector2() },
-    sunDirection: { value: new Vector3(sun.x, sun.y, sun.z).normalize() },
+    sunDirection: sun ? { value: new Vector3(sun.x, sun.y, sun.z).normalize() } : WORLD_SUN,
     shadow: { value: new Color(palette.shadow) },
     darkSand: { value: new Color(palette.darkSand) },
     midSand: { value: new Color(palette.midSand) },
@@ -446,6 +459,7 @@ export function createTerrainMaterial(
     hazeFar: { value: options.hazeFar ?? 2_650 },
     biomeColor: { value: new Color(1, 1, 1) },
     biomeStrength: { value: 0 },
+    biomeId: { value: 0 },
   };
 
   const sharedTerrainUniforms = {
@@ -477,8 +491,11 @@ export function createTerrainMaterial(
       uHazeColor: uniforms.haze,
       uHazeNear: uniforms.hazeNear,
       uHazeFar: uniforms.hazeFar,
+      uLegacyHaze: LEGACY_HAZE,
       uBiomeColor: uniforms.biomeColor,
       uBiomeStrength: uniforms.biomeStrength,
+      uBiomeId: uniforms.biomeId,
+      ...courseDistanceUniforms,
     },
   });
   material.toneMapped = false;

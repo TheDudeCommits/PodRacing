@@ -1,6 +1,7 @@
 import { BoxGeometry, Group, InstancedMesh, Mesh, MeshStandardMaterial } from 'three';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { BLOCKRUNNER_ART_DEFINITIONS, isVehicleAppearanceId } from '../../src/game/vehicleAppearance';
+import { isVehicleAppearanceId } from '../../src/game/vehicleAppearance';
+import { BLOCKRUNNER_ART_DEFINITIONS, getLegacyVehicleArtDefinition } from '../fixtures/legacyVehicleArt';
 import { CelMaterial } from '../../src/render/materials/CelMaterial';
 import { RacerPresentation } from '../../src/render/vehicles/RacerPresentation';
 import { VehicleArtLibrary } from '../../src/render/vehicles/VehicleArtLibrary';
@@ -14,7 +15,7 @@ function setup(index = 0) {
     const mesh = new Mesh(geometry, new MeshStandardMaterial({ name })); mesh.name = node; root.add(mesh);
   }
   const load = vi.fn(async () => root), library = new VehicleArtLibrary({ load, maxIdleEntries: 0 });
-  const racer = new RacerPresentation(library, undefined, index); racer.setVehicleClass('podracer');
+  const racer = new RacerPresentation(library, undefined, index, getLegacyVehicleArtDefinition); racer.setVehicleClass('podracer');
   owned.push({ racer, library });
   return { racer, load, geometry, disposed: vi.spyOn(geometry, 'dispose') };
 }

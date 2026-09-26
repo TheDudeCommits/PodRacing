@@ -55,7 +55,12 @@ describe('approved sky retained over Production visuals', () => {
     expect(hash(functionBody('duskEnvironmentUv'))).toBe('6dba44fd1243b6860efa7dbd7fe99e6e13ef974e148865e4560c501c40eac409');
     expect(hash(functionBody('duskTone'))).toBe('ec0ffe68fdcc6175b058d49a954305a7dad93dec101dae8abb05aed85e93a2ca');
     expect(hash(functionBody('duskSkyGrade'))).toBe('cec2515db9891e0eb7ea8f5d20ac3a8237339477f7fc9158cd0eaba089518aa8');
-    expect(hash(DUSK_SKY_FRAGMENT.slice(DUSK_SKY_FRAGMENT.indexOf('void main()')))).toBe('699085f51c697bc5676f99ddefe51b1229a35c38b8128a3fe9c627ff00e0e732');
+    // Thrustline HDR pass: the sun disc and corona moved after the tone curve
+    // (scene-referred, so the cinematic chain blooms them). Projection,
+    // grading, tone curve and horizon seam are unchanged and pinned above.
+    expect(hash(DUSK_SKY_FRAGMENT.slice(DUSK_SKY_FRAGMENT.indexOf('void main()')))).toBe('4ac9a8d72a36ae065fb0d9a38da000bf66ad2187cbcfc5c42ed5ed78c61e6416');
+    const main = DUSK_SKY_FRAGMENT.slice(DUSK_SKY_FRAGMENT.indexOf('void main()'));
+    expect(main.indexOf('*sunDisc')).toBeGreaterThan(main.indexOf('duskTone(sky)'));
     expect(DUSK_SKY_FRAGMENT).not.toMatch(/duskLight|duskAtmosphere|uDuskGround|uDuskRock/);
   });
 

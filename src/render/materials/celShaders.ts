@@ -104,6 +104,7 @@ uniform float uEmissiveStrength;
 uniform float uHazeNear;
 uniform float uHazeFar;
 uniform float uHazeBands;
+uniform float uLegacyHaze;
 uniform float uOpacity;
 uniform float uWear;
 #ifdef USE_CEL_BASE_COLOR_MAP
@@ -288,7 +289,7 @@ void main() {
   float hazeSpan = max(uHazeFar - uHazeNear, 0.001);
   float haze = clamp((vViewDepth - uHazeNear) / hazeSpan, 0.0, 1.0);
   haze = floor(haze * uHazeBands) / max(uHazeBands, 1.0);
-  color = mix(color, uHazeColor, haze);
+  color = mix(color, uHazeColor, haze * uLegacyHaze);
 
   gl_FragColor = vec4(color, uOpacity);
   #include <colorspace_fragment>

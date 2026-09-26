@@ -1,8 +1,9 @@
 import { CatmullRomCurve3, Float32BufferAttribute, Group, Mesh, TubeGeometry, Vector3, type ShaderMaterial } from 'three';
-import { getVehicleArtDefinition, isVehicleAppearanceId, resolveVehicleAppearance, type VehicleAppearanceId } from '../../game/vehicleAppearance';
+import { getVehicleArtDefinition, isVehicleAppearanceId, resolveVehicleAppearance, type VehicleAppearanceId, type VehicleArtLod } from '../../game/vehicleAppearance';
 import { PodracerView, type DistantRivalLod, type PodracerMaterials, type PodracerPose, type RacerVehicleClass } from '../objects/PodracerView';
 import { ImportedVehiclePresentation } from './ImportedVehiclePresentation';
 import { VehicleArtLibrary } from './VehicleArtLibrary';
+import type { VehicleArtDefinition } from './ImportedVehiclePresentation';
 import { ImportedExhaustNozzles } from './ImportedExhaustNozzles';
 
 /** Stable race identity and pose, with independently owned procedural and imported art. */
@@ -33,7 +34,9 @@ export class RacerPresentation extends Group {
   };
   ready: Promise<unknown> = Promise.resolve();
 
-  constructor(library: VehicleArtLibrary, materials?: PodracerMaterials, readonly racerIndex = 0) {
+  /** `resolveArt` is injectable so contracts measured on the retired replica packages keep running. */
+  constructor(library: VehicleArtLibrary, materials?: PodracerMaterials, readonly racerIndex = 0,
+    private readonly resolveArt: (id: VehicleAppearanceId, lod: VehicleArtLod) => VehicleArtDefinition | null = getVehicleArtDefinition) {
     super();
     this.name = `racer-presentation-${racerIndex}`;
     this.procedural = new PodracerView(materials, racerIndex);
@@ -171,7 +174,7 @@ export class RacerPresentation extends Group {
     if (!force && next === this.effective) return this.ready;
     this.effective = next;
     const generation = ++this.sourceGeneration;
-    const definition = getVehicleArtDefinition(next, this.racerIndex === 0 ? 'hero' : 'rival');
+    const definition = this.resolveArt(next, this.racerIndex === 0 ? 'hero' : 'rival');
     this.ready = this.imported.setSource(definition).then(() => {
       if (this.disposed || generation !== this.sourceGeneration) return;
       this.refreshGeometry();
@@ -224,7 +227,7 @@ export class RacerPresentation extends Group {
   /** Rebuild only on an installed art change, never while loading or per frame. */
   private refreshCoupling(): void {
     this.effectsSource = this.imported.activeSource;
-    const definition = getVehicleArtDefinition(this.activeAppearanceId, this.racerIndex === 0 ? 'hero' : 'rival');
+    const definition = this.resolveArt(this.activeAppearanceId, this.racerIndex === 0 ? 'hero' : 'rival');
     if (definition?.hasAuthoredExhaustHardware) this.nozzleLips?.setAnchors();
     else this.nozzleLips?.setAnchors(this.imported.getAttachment('exhaustLeft'), this.imported.getAttachment('exhaustRight'));
     if (this.coupling) {
@@ -240,7 +243,7 @@ export class RacerPresentation extends Group {
         new Vector3().lerpVectors(a, b, .5).add(new Vector3(0, -.08, 0)),
         new Vector3().lerpVectors(a, b, .75).add(new Vector3(0, .13, -.08)), b.clone(),
       ]);
-      const geometry = new TubeGeometry(curve, 24, .045, 5, false);
+      const geometry = new TubeGeometry(curve, 32, .085, 6, false);
       geometry.setAttribute('aArcSeed', new Float32BufferAttribute(new Float32Array(geometry.getAttribute('position').count).fill(17), 1));
       this.coupling = new Mesh(geometry, this.couplingMaterial);
       this.coupling.name = 'imported-engine-coupling'; this.coupling.renderOrder = 14;

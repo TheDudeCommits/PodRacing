@@ -54,7 +54,7 @@ function matrices(art: ReturnType<typeof fixture>) { return art.all.map(m => [..
 
 beforeAll(async () => {
   for (const name of variants) {
-    sources.set(name, await load(`public/assets/inkstorm/vehicles/teemto-${name === 'hero' ? 'hero-open-v2' : 'rival'}.glb`, true));
+    sources.set(name, await load(`tests/fixtures/legacy-pods/teemto-${name === 'hero' ? 'hero-open-v2' : 'rival'}.glb`, true));
     sources.set(`${name}-damage`, await load(`${privatePath}teemto-damage-${name}-v16.glb`));
   }
 });

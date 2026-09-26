@@ -1,10 +1,17 @@
-# Now This Is Podracing — Inkstorm
+# Thrustline
 
-A Three.js + TypeScript browser racer. The Inkstorm V32r1 checkpoint adds authored desert scenery, imported vehicles, a reference-led interface, persistent race challenges/ghosts and cinematic combat to the original game.
+A Three.js + TypeScript browser racer: eight original tether racers, four worlds
+(Sunscar Canyon, Frostline, Ember Rift, Verdant Run), drafting, drift, heat and
+combat, deterministic 120 Hz simulation and host-authoritative online rooms.
 
-[Play](https://now-this-is-podracing.vercel.app) · [Release and QA archive](https://github.com/TheDudeCommits/PodRacing/releases/tag/inkstorm-v32r1-20260909) · [Accomplishments / remaining work](docs/inkstorm-overhaul/RELEASE_REPORT_2026-09-09.md) · [Handover](HANDOVER.md).
+The Round 54 overhaul (branch `overhaul/aaa`) rebuilt the presentation in a
+cinematic stylized direction: an HDR post chain, one shared sun per world,
+world-specific ground and skies, the Colossus set piece, a start ceremony, the
+Verdant canopy, and an original fleet and announcer that replace the earlier
+fan-replica pods. See [the overhaul notes](docs/thrustline/OVERHAUL.md) and the
+[handover](HANDOVER.md).
 
-This is a published work-in-progress checkpoint, not completed AAA art acceptance. Four vehicle appearance families are integrated; 22 preserved sources remain pending. Local verification:938 tests,158 files; M4 complete-race averages59.5/59.1Hz.
+[Play](https://podracing.dude.work/) (Production still runs Round 53 until the overhaul is promoted).
 
 ## Run locally
 

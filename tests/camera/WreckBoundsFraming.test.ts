@@ -25,7 +25,7 @@ function collect(root: Group): AdmittedArt {
 }
 
 async function loadActualTeemto(): Promise<AdmittedArt> {
-  const data = readFileSync('public/assets/inkstorm/vehicles/teemto-hero-open-v2.glb');
+  const data = readFileSync('tests/fixtures/legacy-pods/teemto-hero-open-v2.glb');
   const jsonSize = data.readUInt32LE(12), json = JSON.parse(data.subarray(20, 20 + jsonSize).toString());
   // Only material/image references are removed from this in-memory GLB. The
   // installed loader receives the original node names, hierarchy, primitives,
@@ -46,7 +46,7 @@ async function loadActualTeemto(): Promise<AdmittedArt> {
 }
 
 function readAdmittedPositions(name: AdmittedName): AdmittedArt {
-  const data = readFileSync(`public/assets/inkstorm/vehicles/${name}.glb`);
+  const data = readFileSync(`tests/fixtures/legacy-pods/${name}.glb`);
   const jsonSize = data.readUInt32LE(12), gltf = JSON.parse(data.subarray(20, 20 + jsonSize).toString());
   const binary = data.subarray(28 + jsonSize), objects: Object3D[] = [];
   for (const node of gltf.nodes) {

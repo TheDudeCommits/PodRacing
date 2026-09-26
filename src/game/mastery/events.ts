@@ -37,7 +37,7 @@ export const MASTERY_EVENTS: readonly MasteryEvent[] = Object.freeze([
     medalTimes: { gold: 90, silver: 110, bronze: 145 },
   },
   {
-    id: 'inkstorm-trial', title: 'Inkstorm • Time Attack',
+    id: 'inkstorm-trial', title: 'Sunscar • Time Attack',
     subtitle: 'One clean lap. Stock machine. Chase your personal best.',
     courseId: 'inkstorm-canyon', seed: INKSTORM_HERO_SEED,
     mode: 'circuit', profile: 'time-trial', laps: 1, difficulty: 'medium', stock: true,

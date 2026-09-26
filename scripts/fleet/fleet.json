@@ -1,0 +1,75 @@
+{
+  "_note": "glTF coordinates: +Z forward, +Y up, metres. Each craft fits the envelope of the identity it replaces (see src/game/podGeometry.ts).",
+  "kestrel": {
+    "identity": "teemto",
+    "engines": [
+      {"part": "kestrel-engine", "name": "engine-left", "x": -4.05, "bottom": 0.35, "front": 22.7, "length": 17.0, "maxW": 5.4, "maxH": 6.4},
+      {"part": "kestrel-engine", "name": "engine-right", "x": 4.05, "bottom": 0.35, "front": 22.7, "length": 17.0, "maxW": 5.4, "maxH": 6.4}
+    ],
+    "cockpit": {"part": "kestrel-cockpit", "bottom": 0.2, "center": -4.6, "length": 7.6, "maxW": 4.6, "maxH": 4.4}
+  },
+  "scrapjack": {
+    "identity": "sebulba",
+    "engines": [
+      {"part": "scrapjack-engine-left", "name": "engine-left", "x": -4.43, "bottom": 0.5, "front": 19.1, "length": 15.4, "maxW": 7.0, "maxH": 7.4},
+      {"part": "scrapjack-engine-right", "name": "engine-right", "x": 4.43, "bottom": 0.5, "front": 19.1, "length": 15.4, "maxW": 7.0, "maxH": 7.4}
+    ],
+    "cockpit": {"part": "scrapjack-cockpit", "bottom": 0.3, "center": -3.9, "length": 7.4, "maxW": 5.0, "maxH": 5.4}
+  },
+  "hornet": {
+    "identity": "polwo",
+    "engines": [
+      {"part": "hornet-engine", "name": "engine-left-front", "x": -3.93, "bottom": 0.45, "front": 22.35, "length": 6.6, "maxW": 3.6, "maxH": 4.4},
+      {"part": "hornet-engine", "name": "engine-right-front", "x": 3.93, "bottom": 0.45, "front": 22.35, "length": 6.6, "maxW": 3.6, "maxH": 4.4},
+      {"part": "hornet-engine", "name": "engine-left-rear", "x": -3.93, "bottom": 0.45, "front": 14.9, "length": 6.6, "maxW": 3.6, "maxH": 4.4},
+      {"part": "hornet-engine", "name": "engine-right-rear", "x": 3.93, "bottom": 0.45, "front": 14.9, "length": 6.6, "maxW": 3.6, "maxH": 4.4}
+    ],
+    "exhaust": ["engine-left-rear", "engine-right-rear"],
+    "coupling": ["engine-left-front", "engine-right-front"],
+    "cockpit": {"part": "hornet-cockpit", "bottom": 0.2, "center": -4.0, "length": 7.2, "maxW": 4.2, "maxH": 6.0}
+  },
+  "bulwark": {
+    "identity": "blockrunner",
+    "engines": [
+      {"part": "bulwark-engine", "name": "engine-left", "x": -3.15, "bottom": 0.3, "front": 8.65, "length": 10.1, "maxW": 4.1, "maxH": 5.0},
+      {"part": "bulwark-engine", "name": "engine-right", "x": 3.15, "bottom": 0.3, "front": 8.65, "length": 10.1, "maxW": 4.1, "maxH": 5.0}
+    ],
+    "cockpit": {"part": "bulwark-cockpit", "bottom": 0.2, "center": -6.0, "length": 9.0, "maxW": 5.6, "maxH": 5.1}
+  },
+  "sirocco": {
+    "identity": "verdigris",
+    "engines": [
+      {"part": "sirocco-engine", "name": "engine-left", "x": -4.36, "bottom": 0.35, "front": 11.75, "length": 7.2, "maxW": 3.6, "maxH": 3.6},
+      {"part": "sirocco-engine", "name": "engine-right", "x": 4.36, "bottom": 0.35, "front": 11.75, "length": 7.2, "maxW": 3.6, "maxH": 3.6},
+      {"part": "sirocco-engine", "name": "engine-top", "x": 0.0, "bottom": 2.9, "front": 13.6, "length": 7.2, "maxW": 3.4, "maxH": 3.4}
+    ],
+    "exhaust": ["engine-left", "engine-right"],
+    "coupling": ["engine-left", "engine-right"],
+    "cockpit": {"part": "sirocco-cockpit", "bottom": 0.2, "center": -3.6, "length": 6.2, "maxW": 4.3, "maxH": 4.3}
+  },
+  "longshot": {
+    "identity": "skybolt",
+    "engines": [
+      {"part": "longshot-engine", "name": "engine-left", "x": -3.08, "bottom": 0.45, "front": 18.0, "length": 14.7, "maxW": 2.8, "maxH": 3.6},
+      {"part": "longshot-engine", "name": "engine-right", "x": 3.08, "bottom": 0.45, "front": 18.0, "length": 14.7, "maxW": 2.8, "maxH": 3.6}
+    ],
+    "cockpit": {"part": "longshot-cockpit", "bottom": 0.2, "center": -3.9, "length": 7.4, "maxW": 2.8, "maxH": 3.0}
+  },
+  "glasswing": {
+    "identity": "needle",
+    "engines": [
+      {"part": "glasswing-engine", "name": "engine-left", "x": -3.91, "bottom": 0.4, "front": 10.8, "length": 5.8, "maxW": 3.6, "maxH": 4.6, "axis": 0, "flip": true},
+      {"part": "glasswing-engine", "name": "engine-right", "x": 3.91, "bottom": 0.4, "front": 10.8, "length": 5.8, "maxW": 3.6, "maxH": 4.6, "axis": 0, "flip": true}
+    ],
+    "cockpit": {"part": "glasswing-cockpit", "bottom": 0.2, "center": -1.3, "length": 9.4, "maxW": 3.6, "maxH": 3.2}
+  },
+  "crucible": {
+    "identity": "pog",
+    "engines": [
+      {"part": "crucible-engine", "name": "engine", "x": 0.0, "bottom": 0.35, "front": 3.6, "length": 5.8, "maxW": 4.8, "maxH": 5.4}
+    ],
+    "exhaust": ["engine"],
+    "coupling": [],
+    "cockpit": {"part": "crucible-cockpit", "bottom": 0.2, "center": -5.6, "length": 5.4, "maxW": 3.2, "maxH": 3.4}
+  }
+}

@@ -1,6 +1,6 @@
 import { BoxGeometry, Group, InstancedMesh, Mesh, MeshStandardMaterial, TubeGeometry, Vector3 } from 'three';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { POLWO_ART_DEFINITIONS, POLWO_BODY_NODES } from '../../src/game/vehicleAppearance';
+import { POLWO_ART_DEFINITIONS, POLWO_BODY_NODES, getLegacyVehicleArtDefinition } from '../fixtures/legacyVehicleArt';
 import { CelMaterial } from '../../src/render/materials/CelMaterial';
 import { RacerPresentation } from '../../src/render/vehicles/RacerPresentation';
 import { VehicleArtLibrary } from '../../src/render/vehicles/VehicleArtLibrary';
@@ -24,7 +24,7 @@ function polwoFixture() {
 const owned: Array<{ racer: RacerPresentation; library: VehicleArtLibrary }> = [];
 function setup(load: (url: string) => Promise<Group>, index = 0) {
   const library = new VehicleArtLibrary({ load, maxIdleEntries: 0 });
-  const racer = new RacerPresentation(library, undefined, index);
+  const racer = new RacerPresentation(library, undefined, index, getLegacyVehicleArtDefinition);
   racer.setVehicleClass('podracer');
   owned.push({ racer, library });
   return { racer, proxy: racer.createCelPrepassProxy() };

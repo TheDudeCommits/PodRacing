@@ -2,11 +2,7 @@ import { BoxGeometry, Group, Mesh, MeshStandardMaterial } from 'three';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { createRaceSimulation } from '../../src/game/race';
 import { FLAT_HEIGHT_SAMPLER } from '../../src/game/simulation';
-import {
-  BLOCKRUNNER_ART_DEFINITIONS,
-  resolveRacerAppearancePreference,
-  type VehicleAppearanceId,
-} from '../../src/game/vehicleAppearance';
+import { FLEET_ART_DEFINITIONS, resolveRacerAppearancePreference, type VehicleAppearanceId } from '../../src/game/vehicleAppearance';
 import { RacerPresentation } from '../../src/render/vehicles/RacerPresentation';
 import { VehicleArtLibrary } from '../../src/render/vehicles/VehicleArtLibrary';
 
@@ -40,7 +36,7 @@ afterEach(() => {
 });
 
 describe('production AI appearance roster', () => {
-  it.each(['clean-race', 'chaos'] as const)('loads Sola through the real rival URL in an ordinary %s grid without changing race truth', async competitionProfile => {
+  it.each(['clean-race', 'chaos'] as const)('loads the Bulwark for Sola through the real rival URL in an ordinary %s grid without changing race truth', async competitionProfile => {
     const race = createRaceSimulation({ terrain: FLAT_HEIGHT_SAMPLER, seed: 0x8ace, competitionProfile });
     const before = race.snapshot();
     const { value, load } = library();
@@ -59,13 +55,13 @@ describe('production AI appearance roster', () => {
       ['ai-sola', 'podracer'], ['ai-rax', 'landspeeder'],
       ['ai-miri', 'speeder-bike'], ['ai-olan', 'skim-speeder'],
     ]);
-    expect(load.mock.calls).toEqual([[BLOCKRUNNER_ART_DEFINITIONS.rival.url]]);
+    expect(load.mock.calls).toEqual([[FLEET_ART_DEFINITIONS.blockrunner!.rival.url]]);
     expect(racers.map(racer => racer.activeAppearanceId)).toEqual([
       'procedural', 'procedural', 'procedural', 'procedural',
       'blockrunner', 'procedural', 'procedural', 'procedural',
     ]);
     expect(racers[4]!.appearanceStatus).toBe('ready');
-    expect(racers[4]!.imported.activeSource).toEqual(BLOCKRUNNER_ART_DEFINITIONS.rival);
+    expect(racers[4]!.imported.activeSource).toEqual(FLEET_ART_DEFINITIONS.blockrunner!.rival);
     expect(race.snapshot()).toEqual(before);
   });
 

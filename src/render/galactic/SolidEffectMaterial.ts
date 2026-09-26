@@ -1,4 +1,5 @@
 import { FrontSide, MeshBasicMaterial } from 'three';
+import { WORLD_SUN } from '../lighting/WorldLight';
 
 /** Opaque pooled props share the world's sun direction and broad violet shade. */
 export function createSolidEffectMaterial(hardware = false): MeshBasicMaterial {
@@ -28,14 +29,16 @@ export function createSolidEffectMaterial(hardware = false): MeshBasicMaterial {
       vSolidNormal = normalize(mat3(modelMatrix) * solidNormal);
       ${hardware ? 'vHardwareSignal = aHardwareSignal; vHardwareSurface = aHardwareSurface;' : 'vSolidFacet = aSolidFacet;'}
     `);
+    shader.uniforms.uWorldSun = WORLD_SUN;
     shader.fragmentShader = shader.fragmentShader.replace('#include <common>', `
       #include <common>
+      uniform vec3 uWorldSun;
       varying vec3 vSolidNormal;
       ${hardware ? 'varying float vHardwareSignal; varying float vHardwareSurface;' : 'varying float vSolidFacet;'}
     `).replace('#include <color_fragment>', `
       #include <color_fragment>
       vec3 solidNormal = normalize(vSolidNormal);
-      float incidence = dot(solidNormal, normalize(vec3(-.42, .76, -.5)));
+      float incidence = dot(solidNormal, normalize(uWorldSun));
       float skyFill = clamp(solidNormal.y * .5 + .5, 0., 1.);
       float direct = max(0., incidence);
       ${hardware ? `
@@ -90,8 +93,10 @@ export function createContactDustMaterial(): MeshBasicMaterial {
       vContactRight = normalize(mat3(modelMatrix) * vContactRight);
       vContactFacing = normalize(mat3(modelMatrix) * vContactFacing);
     `);
+    shader.uniforms.uWorldSun = WORLD_SUN;
     shader.fragmentShader = shader.fragmentShader.replace('#include <common>', `
       #include <common>
+      uniform vec3 uWorldSun;
       varying vec4 vContactState;
       varying vec2 vContactUv;
       varying vec3 vContactRight;
@@ -141,7 +146,7 @@ export function createContactDustMaterial(): MeshBasicMaterial {
         sqrt(max(.12, 1. - dot(q * .65, q * .65)))));
       vec3 worldNormal = normalize(vContactRight * localNormal.x + vec3(0., localNormal.y, 0.)
         + vContactFacing * localNormal.z);
-      float light = smoothstep(-.25, .9, dot(worldNormal, normalize(vec3(-.42, .76, -.5))));
+      float light = smoothstep(-.25, .9, dot(worldNormal, normalize(uWorldSun)));
       vec3 trough = diffuseColor.rgb * vec3(.48, .40, .32);
       vec3 crown = diffuseColor.rgb * vec3(1.25, 1.17, 1.05);
       diffuseColor.rgb = mix(trough, crown, light) * (.84 + .28 * coarse);

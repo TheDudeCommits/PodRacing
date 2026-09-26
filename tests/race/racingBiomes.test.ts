@@ -98,7 +98,8 @@ describe('racing destinations', () => {
   it.each(IDS)('%s scenery uses bounded instanced batches and avoids playable lanes',id=>{
     const course=createProceduralPodraceCourse(FLAT_HEIGHT_SAMPLER,RACING_BIOME_SEEDS[id]);
     const meshes=createRacingBiomeScenery(course,()=>0);
-    expect(meshes.length).toBe(id==='jungle'?3:2);
+    // Verdant Run: trunks, three crown batches, vines and ground clusters.
+    expect(meshes.length).toBe(id==='jungle'?6:2);
     for(const mesh of meshes) {
       expect(mesh.geometry.boundingSphere?.radius ?? 1).toBeGreaterThan(0);
       mesh.geometry.dispose();for(const mat of Array.isArray(mesh.material)?mesh.material:[mesh.material])mat.dispose();

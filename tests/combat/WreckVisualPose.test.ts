@@ -11,7 +11,7 @@ const { readFileSync } = await import(/* @vite-ignore */ fileModule);
 // These are the actual admitted rigid art POSITION streams, not their physics
 // colliders. Texture/image decoding and a browser are unnecessary for this test.
 function admittedArt(name: string) {
-  const data = readFileSync(`public/assets/inkstorm/vehicles/${name}.glb`);
+  const data = readFileSync(`tests/fixtures/legacy-pods/${name}.glb`);
   const jsonSize = data.readUInt32LE(12);
   const gltf = JSON.parse(data.subarray(20, 20 + jsonSize).toString());
   const binary = data.subarray(28 + jsonSize);

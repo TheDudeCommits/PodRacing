@@ -145,9 +145,9 @@ export class RaceMastery {
         invalidReason: this.eligible ? this.invalidReason : 'Practice session — local competitive records are disabled.',
         nextEventId: null,
         nextObjective: this.eventValue.profile === 'training'
-          ? this.lesson.complete ? 'Flight school complete. Take on Inkstorm Time Attack.' : 'Retry Flight School to finish the driving lessons.'
+          ? this.lesson.complete ? 'Flight school complete. Take on the Sunscar Time Attack.' : 'Retry Flight School to finish the driving lessons.'
           : this.invalidReason ? 'Retry the same course and complete a lap without recovery.'
-          : target ? `Find ${(time - this.eventValue.medalTimes[target]).toFixed(2)}s for ${target}.` : 'Gold earned. Race your ghost or enter the Inkstorm Cup.',
+          : target ? `Find ${(time - this.eventValue.medalTimes[target]).toFixed(2)}s for ${target}.` : 'Gold earned. Race your ghost or enter the World Cup.',
       };
       if (this.eventValue.profile === 'training' && this.lesson.complete) this.resultValue.nextEventId = 'inkstorm-trial';
       if (this.eligible) this.persist();
@@ -225,7 +225,7 @@ export class RaceMastery {
     })) });
     const next = CHAMPIONSHIP_EVENT_IDS[roundIndex + 1] ?? null;
     this.resultValue.nextEventId = next;
-    this.resultValue.nextObjective = next ? 'Points banked. Continue to the next Inkstorm Cup round.' : 'Inkstorm Cup complete. Start a new cup or chase a gold time.';
+    this.resultValue.nextObjective = next ? 'Points banked. Continue to the next World Cup round.' : 'World Cup complete. Start a new cup or chase a gold time.';
     this.persist();
   }
 

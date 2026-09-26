@@ -1,6 +1,6 @@
 import { Euler, Group, Matrix4, Vector3 } from 'three';
 import { describe, expect, it, vi } from 'vitest';
-import { TEEMTO_ART_DEFINITIONS } from '../../src/game/vehicleAppearance';
+import { TEEMTO_ART_DEFINITIONS } from '../fixtures/legacyVehicleArt';
 import type { GalacticEvent } from '../../src/game/galactic/types';
 import { GameApp } from '../../src/render/app/GameApp';
 import { GalacticEffectsView, type CrashEffectEvent } from '../../src/render/galactic/GalacticEffectsView';

@@ -28,6 +28,7 @@ import { sampleTerrainHeight } from '../terrain/terrainMath';
 import { createCourseGulfUniforms, type CourseGulfUniforms } from '../terrain/CourseGulfTextures';
 import { createCourseMarkers, type CourseMarker } from '../../game/race/courseMarkers';
 import { InkstormSurfaceMaterial } from '../inkstorm/InkstormSurfaceMaterial';
+import { LEGACY_HAZE, WORLD_SUN } from '../lighting/WorldLight';
 
 export interface CourseRenderPoint {
   x: number;
@@ -563,6 +564,7 @@ const canyonFragment = /* glsl */ `
   varying float vRockVariation;
   uniform vec3 uSunDirection;
   uniform vec3 uHazeColor;
+  uniform float uLegacyHaze;
 
   void main() {
     vec3 normal = normalize(vWorldNormal);
@@ -577,7 +579,7 @@ const canyonFragment = /* glsl */ `
     color += vec3(1.0, 0.48, 0.24) * step(0.63, rim) * 0.12;
     float distanceToCamera = length(vWorldPosition - cameraPosition);
     float hazeBand = floor(clamp((distanceToCamera - 560.0) / 500.0, 0.0, 4.0)) / 4.0;
-    color = mix(color, uHazeColor, hazeBand * 0.86);
+    color = mix(color, uHazeColor, hazeBand * 0.86 * uLegacyHaze);
     // Stable facet-rim ink replaces the screen-space outline on this large
     // instanced corridor. Its threshold widens with distance instead of
     // collapsing to disconnected one-pixel stipple.
@@ -1070,6 +1072,17 @@ export class RaceCourseView extends Group {
     this.add(this.branchFarRibbon, this.branchRibbon, this.branchBeacons);
   }
 
+  /** Per-world beacon colour (scene-referred, may exceed 1). */
+  setBeaconColor(r: number, g: number, b: number): void {
+    this.beaconColor.setRGB(r, g, b);
+    const light = this.pylonLights?.material as ShaderMaterial | undefined;
+    (light?.uniforms.uColor?.value as Color | undefined)?.copy(this.beaconColor);
+    const far = this.farPylonMarkers?.material as ShaderMaterial | undefined;
+    (far?.uniforms.uLightColor?.value as Color | undefined)?.copy(this.beaconColor);
+  }
+
+  private readonly beaconColor = new Color(5.2, 2.6, .9);
+
   private buildPylons(points: readonly CourseRenderPoint[], branches: readonly CourseRenderBranch[],
     authoritativeMarkers?: readonly CourseMarker[]): void {
     const markers = authoritativeMarkers ?? createCourseMarkers(points, branches, (x, z) => this.heightAt(x, z));
@@ -1081,7 +1094,7 @@ export class RaceCourseView extends Group {
       uniforms: {
         uColor: { value: new Color('#251627') },
         uFarWidthGain: { value: 0.93 },
-        uBaseOffset: { value: 2.2 },
+        uBaseOffset: { value: 3.8 },
         uFarHeightGain: { value: 1.0 },
         uDetailFadeStart: { value: 420 },
         uDetailFadeEnd: { value: 670 },
@@ -1097,9 +1110,10 @@ export class RaceCourseView extends Group {
       vertexShader: pylonVertex,
       fragmentShader: pylonFragment,
       uniforms: {
-        uColor: { value: new Color('#ffd391') },
+        // Scene-referred lamp colour: blooms into a beacon at dusk and night.
+        uColor: { value: new Color(5.2, 2.6, .9) },
         uFarWidthGain: { value: 1.18 },
-        uBaseOffset: { value: 4.2 },
+        uBaseOffset: { value: 7.4 },
         uFarHeightGain: { value: 1.0 },
         uDetailFadeStart: { value: 420 },
         uDetailFadeEnd: { value: 670 },
@@ -1108,15 +1122,15 @@ export class RaceCourseView extends Group {
       depthWrite: false,
       toneMapped: false,
     });
-    this.pylonBodies = new InstancedMesh(new ConeGeometry(.62, 4.8, 5), bodyMaterial, count);
-    this.pylonLights = new InstancedMesh(new CylinderGeometry(.24, .24, 1.4, 5), lightMaterial, count);
+    this.pylonBodies = new InstancedMesh(new ConeGeometry(.62, 7.6, 5), bodyMaterial, count);
+    this.pylonLights = new InstancedMesh(new CylinderGeometry(.3, .3, 1.7, 6), lightMaterial, count);
     const farMarkerMaterial = new ShaderMaterial({
       name: 'Coherent far pylon impostors',
       vertexShader: farPylonVertex,
       fragmentShader: farPylonFragment,
       uniforms: {
         uInkColor: { value: new Color('#251627') },
-        uLightColor: { value: new Color('#ffd391') },
+        uLightColor: { value: new Color(5.2, 2.6, .9) },
         uViewportSize: { value: this.viewportSize },
         // One coherent 4.6 x 14 CSS-pixel sign replaces the separate body/cap
         // geometry before either component can collapse to a one-pixel mark.
@@ -1150,12 +1164,12 @@ export class RaceCourseView extends Group {
     let instance = 0;
     for (const marker of markers) {
       const ground = marker.minY + .2;
-      position.set(marker.x, ground + 2.2, marker.z);
+      position.set(marker.x, ground + 3.8, marker.z);
       scale.set(1, 1, 1);
       rotation.identity();
       matrix.compose(position, rotation, scale);
       this.pylonBodies.setMatrixAt(instance, matrix);
-      position.y = ground + 4.2;
+      position.y = ground + 7.4;
       matrix.compose(position, rotation, scale);
       this.pylonLights.setMatrixAt(instance, matrix);
       position.y = ground + .16;
@@ -1169,6 +1183,7 @@ export class RaceCourseView extends Group {
     this.pylonBodies.computeBoundingSphere();
     this.pylonLights.computeBoundingSphere();
     this.add(this.pylonBodies, this.pylonLights, this.farPylonMarkers);
+    this.setBeaconColor(this.beaconColor.r, this.beaconColor.g, this.beaconColor.b);
   }
 
   private buildGates(course: CourseRenderData): void {
@@ -1245,8 +1260,9 @@ export class RaceCourseView extends Group {
       vertexShader: canyonVertex,
       fragmentShader: canyonFragment,
       uniforms: {
-        uSunDirection: { value: new Vector3(-0.34, 0.82, 0.45).normalize() },
+        uSunDirection: WORLD_SUN,
         uHazeColor: { value: new Color('#dc7147') },
+        uLegacyHaze: LEGACY_HAZE,
       },
       transparent: true,
       depthWrite: true,

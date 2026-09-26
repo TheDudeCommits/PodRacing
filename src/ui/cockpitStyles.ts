@@ -32,15 +32,16 @@ export const COCKPIT_CSS = /* css */ `
 .simple-setup .setup-roster { height:100%; align-self:stretch; padding:7px; grid-template-columns:1fr; grid-template-rows:repeat(4,minmax(0,1fr)); gap:9px; border-radius:7px; border:1px solid #797362; box-shadow:inset 1px 1px 1px #b1aa8566,2px 4px 5px #000; transform:translateZ(9px); }
 .simple-setup .setup-roster--left { grid-column:1; grid-row:1; }.simple-setup .setup-roster--right { grid-column:3; grid-row:1; }
 .simple-setup .setup-racer { border:5px solid #171e1a; border-radius:8px; overflow:hidden; background:#07180f; box-shadow:0 1px 2px #c5b69855,0 0 0 1px #080b09,inset 0 0 14px #000; }
-.simple-setup .setup-racer-art { background:radial-gradient(ellipse,#2b593344,#04140a); }
+.simple-setup .setup-racer-art { background:radial-gradient(ellipse at 50% 62%,#6b4a2e66,#1a120c 72%); }
 .simple-setup .setup-racer-art::before { z-index:2; background:repeating-linear-gradient(0deg,#0003 0 1px,transparent 1px 3px); pointer-events:none; }
-.simple-setup .setup-racer img,.simple-setup .setup-racer[aria-pressed=true] img,.simple-setup .setup-racer:hover img { filter:grayscale(1) sepia(1) hue-rotate(65deg) saturate(1.7) brightness(1.35); object-fit:contain; }
+.simple-setup .setup-racer img { filter:saturate(.85) brightness(.92) drop-shadow(0 3px 5px #000a); object-fit:contain; transition:filter .25s,transform .25s; }
+.simple-setup .setup-racer[aria-pressed=true] img,.simple-setup .setup-racer:hover img { filter:saturate(1.05) brightness(1.08) drop-shadow(0 0 8px #ffb86b55); transform:scale(1.04); }
 .simple-setup .setup-racer>strong { min-height:20px; padding:3px; border:0; color:#c2d5b7; background:#060e0b; font:600 clamp(9px,.9vw,13px)/1.2 Orbitron,sans-serif; letter-spacing:.09em; }
 .simple-setup .setup-racer[aria-pressed=true] { border-color:#7dae79; box-shadow:inset 0 0 12px #b0ff6966,0 0 9px #83f3945e; }
 .simple-setup .setup-racer[aria-pressed=true]>strong { background:#15321c; color:#ceffb5; }.simple-setup .setup-racer-check { background:#b4f8a1; color:#1a401d; width:13px; height:13px; font-size:10px; line-height:13px; box-shadow:none; }
 .simple-setup .setup-racer:hover:not(:disabled) { transform:translateY(-1px); border-color:#a0c399; }
 .pod-hud .simple-setup .pod-hud__garage-hero {
- grid-column:2; grid-row:1; padding:0; background:radial-gradient(ellipse at 55% 42%,#132d1c,#061b12 63%,#020805); border:18px solid #121916; border-radius:10% / 7%; overflow:hidden;
+ grid-column:2; grid-row:1; padding:0; background:radial-gradient(ellipse at 55% 60%,#5a3b25 0%,#24170f 45%,#0a0706 75%); border:18px solid #121916; border-radius:10% / 7%; overflow:hidden;
  box-shadow:0 0 0 2px #454941,0 0 0 4px #070a08,0 0 0 6px #55564b,0 8px 12px #000,inset 0 0 12px 3px #000,inset 0 0 2px 4px #315e36;
  transform:translateZ(5px); color:var(--phosphor);
 }
@@ -49,7 +50,7 @@ export const COCKPIT_CSS = /* css */ `
 .simple-setup .setup-hero-orbit { border-color:#7bb58633; background:none; box-shadow:none; left:20%; right:20%; top:67%; height:16%; transform:rotate(-6deg); }
 .simple-setup .setup-hero-number { top:auto; left:auto; right:7%; bottom:6%; transform:none; color:#a7d9a3; font:600 11px Orbitron,sans-serif; z-index:4; }
 .pod-hud .simple-setup .pod-hud__garage-model { inset:12% 4% 13%; }
-.pod-hud .simple-setup .pod-hud__garage-model img,.pod-hud .simple-setup .pod-hud__garage-model canvas { filter:grayscale(1) sepia(1) hue-rotate(65deg) saturate(1.6) brightness(1.6) drop-shadow(0 0 3px #63c07066); animation:none; }
+.pod-hud .simple-setup .pod-hud__garage-model img,.pod-hud .simple-setup .pod-hud__garage-model canvas { filter:saturate(1.05) brightness(1.12) drop-shadow(0 12px 18px #000c) drop-shadow(0 0 22px #ff9f5a33); animation:none; }
 .pod-hud .simple-setup .pod-hud__garage-name { inset:6% auto auto 6%; text-align:left; z-index:4; }
 .simple-setup .pod-hud__garage-name>span { display:none; }.simple-setup .pod-hud__garage-name h1 { color:#b4e4a7; font:800 clamp(22px,2.4vw,40px)/1.1 Orbitron,sans-serif; letter-spacing:.02em; text-shadow:0 0 8px #79dc7855; }
 .simple-setup .setup-hero-stats { inset:auto auto 7% 6%; display:grid; grid-template-columns:1fr; gap:7px; z-index:4; }
@@ -69,7 +70,7 @@ export const COCKPIT_CSS = /* css */ `
 .simple-setup .setup-drawer { height:100%; min-height:0; align-self:stretch; }
 .pod-hud .simple-setup .setup-tools>.setup-online { height:100%; padding:0; margin:0; border:0; background:none; }
 .simple-setup .setup-tools { gap:14px; flex:1; align-items:stretch; }
-.simple-setup .setup-tools::after { content:''; flex:1; min-width:30px; margin:12px 6px; border:4px solid #383c32; border-radius:3px; background:repeating-linear-gradient(90deg,#030504 0 8px,#20251f 9px 11px,#5c5c4b 12px 13px); box-shadow:0 1px 1px #d2c09744; }
+.simple-setup .setup-tools::after { content:'THRUSTLINE'; flex:1; min-width:30px; margin:8px 6px; display:flex; align-items:center; justify-content:center; border:4px solid #383c32; border-radius:3px; background:radial-gradient(ellipse at 50% 55%,#3a1d0c,#0b0705 70%),repeating-linear-gradient(90deg,#030504 0 8px,#20251f 9px 11px,#5c5c4b 12px 13px); box-shadow:0 1px 1px #d2c09744,inset 0 0 18px #000; color:#ffcf8a; font:900 clamp(18px,2.5vw,40px)/1 Orbitron,sans-serif; letter-spacing:.32em; padding-left:.32em; text-shadow:0 0 6px #ff9a3c,0 0 18px #ff6a1c99,0 0 36px #ff4d0055; white-space:nowrap; overflow:hidden; }
 .simple-setup .setup-tools>button,.simple-setup .setup-drawer>summary { height:100%; min-width:140px; min-height:56px; padding:12px 18px; justify-content:center; border:7px solid #242a24; border-radius:6px; color:#171c18; background:linear-gradient(#c5c2aadd,#989b88db),var(--metal) center / 330px; font:800 13px/1.3 Orbitron,sans-serif; box-shadow:0 4px 0 #080c09,inset 1px 2px 1px #f2ead48c,inset -1px -2px 2px #353e30; }
 .simple-setup .setup-tools>button:hover,.simple-setup .setup-drawer>summary:hover,.simple-setup .setup-drawer[open]>summary { background-color:#bdb79d; color:#0b160f; filter:brightness(1.18); }
 .simple-setup .setup-drawer>summary>span { width:12px; height:15px; background:#6c8d66; border:2px solid #3b4434; box-shadow:0 0 0 2px #161e16; font-size:0; }.simple-setup .setup-drawer[open]>summary>span { background:#b6f788; box-shadow:0 0 8px #a1ff40; }

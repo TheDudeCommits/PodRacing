@@ -12,10 +12,10 @@ export function inkstormSandPaintUniforms() { return { ...groundPaintUniforms, .
 export function inkstormGroundPaint():Texture|null { return groundTexture; }
 export function loadInkstormPaint():Promise<Texture|null>{
   if(!paintLoading)paintLoading=typeof document==='undefined'?Promise.resolve(null):Promise.all([
-    new TextureLoader().loadAsync('/assets/inkstorm/rock-mass-v2.png'),
-    new TextureLoader().loadAsync('/assets/inkstorm/ground-paint.png'),
-    new TextureLoader().loadAsync('/assets/inkstorm/machinery-paint.png'),
-    new TextureLoader().loadAsync('/assets/inkstorm/rock-paint.png'),
+    new TextureLoader().loadAsync('/assets/inkstorm/rock-mass-v2.webp'),
+    new TextureLoader().loadAsync('/assets/inkstorm/ground-paint.webp'),
+    new TextureLoader().loadAsync('/assets/inkstorm/machinery-paint.webp'),
+    new TextureLoader().loadAsync('/assets/inkstorm/rock-paint.webp'),
   ]).then(([rock,ground,machinery,beds])=>{
     for(const texture of [rock,ground,beds]){texture.colorSpace=SRGBColorSpace;texture.wrapS=RepeatWrapping;texture.wrapT=RepeatWrapping;texture.anisotropy=8;}
     // Grayscale data modulates authored vertex colors; it is not a new albedo palette.
@@ -37,7 +37,7 @@ export class InkstormSurfaceMaterial extends ShaderMaterial {
       name: stone ? 'Inkstorm painted sandstone' : 'Inkstorm worn machinery',
       vertexColors: true, toneMapped: false,
       defines: { ...(!stone && workshopFamily ? { INKSTORM_WORKSHOP_FAMILY: workshopFamily === 'pit-complex' ? 1 : 2, ...(workshopBake ? { INKSTORM_WORKSHOP_BAKE: 1 } : {}) } : {}), ...(!stone && foundryEmission ? { INKSTORM_FOUNDRY_EMISSION: 1 } : {}), ...(!stone && foundationPaint ? { INKSTORM_FOUNDATION_METERS: 1 } : {}) },
-      uniforms: { uWorkshopBake: { value: workshopBake?.texture ?? null }, uWorkshopDecodeRange: { value: workshopBake?.decodeRange ?? 4 }, uWorkshopIntensity: { value: workshopBake?.intensity ?? 1 }, ...createInkstormShadowUniforms(), ...createInkstormRacerShadowUniforms(), ...machineryPaintUniforms, uPaint: rockPaintUniforms.uRockPaint, uRockBeds: rockPaintUniforms.uRockBeds, uPaintReady: rockPaintUniforms.uRockPaintReady, uStone: { value: stone ? 1 : 0 }, uBiomeTint: { value: new Color(1,1,1) }, uBiomeStrength: { value: 0 }, uSun: { value: new Vector3(-.42, .76, -.5).normalize() }, uHaze: { value: new Color('#b79cb8') } },
+      uniforms: { uWorkshopBake: { value: workshopBake?.texture ?? null }, uWorkshopDecodeRange: { value: workshopBake?.decodeRange ?? 4 }, uWorkshopIntensity: { value: workshopBake?.intensity ?? 1 }, ...createInkstormShadowUniforms(), ...createInkstormRacerShadowUniforms(), ...machineryPaintUniforms, uPaint: rockPaintUniforms.uRockPaint, uRockBeds: rockPaintUniforms.uRockBeds, uPaintReady: rockPaintUniforms.uRockPaintReady, uStone: { value: stone ? 1 : 0 }, uBiomeTint: { value: new Color(1,1,1) }, uBiomeStrength: { value: 0 }, uWeather: { value: 0 }, uSun: { value: new Vector3(-.42, .76, -.5).normalize() }, uHaze: { value: new Color('#b79cb8') } },
       vertexShader: `
         #include <common>
         #include <color_pars_vertex>
@@ -98,7 +98,7 @@ ${INKSTORM_RACER_SHADOW_GLSL}
 ${INKSTORM_GEOLOGY_GLSL}
         varying vec3 vWorld;varying vec3 vNormal;varying vec3 vLocal;varying vec3 vPaintNormal;
         uniform vec3 uBiomeTint;uniform float uBiomeStrength;uniform float uStone;uniform vec3 uSun;uniform vec3 uHaze;uniform sampler2D uPaint;uniform sampler2D uRockBeds;uniform float uPaintReady;
-        uniform sampler2D uMachineryPaint;uniform float uMachineryPaintReady;
+        uniform sampler2D uMachineryPaint;uniform float uMachineryPaintReady;uniform float uWeather;
         float hash(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}
         float noise(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);return mix(mix(hash(i),hash(i+vec2(1,0)),f.x),mix(hash(i+vec2(0,1)),hash(i+1.),f.x),f.y);}
 // Authored workshop lighting. Included only by the two existing
@@ -297,6 +297,31 @@ float inkstormWorkshopBakedLens() {
           color=uStone>.5 ? inkstormRockAtmosphere(color,distanceToCamera)
             : mix(color,uHaze,haze*.85);
           color=mix(color,uBiomeTint*clamp(dot(color,vec3(.30,.59,.11))*2.4,.28,1.4),uBiomeStrength*uStone);
+          // Each world weathers the shared kit: 1 frost and snow caps, 2 soot and
+          // ember heat, 3 moss and creepers. Applied to lit colour, so light survives.
+          if(uWeather>.5){
+            vec3 wn=normalize(vNormal);float luma=dot(color,vec3(.30,.59,.11));
+            float up=smoothstep(.3,.75,wn.y);
+            float n1=noise(vWorld.xz*.18+vWorld.y*.07),n2=noise(vWorld.xz*.9-vWorld.y*.3);
+            float fade=1.-smoothstep(900.,2200.,distanceToCamera);
+            if(uWeather<1.5){
+              color*=mix(vec3(1.),vec3(.8,.9,1.08),.6);
+              float snow=up*smoothstep(.32,.55,n1*.7+n2*.3)*fade;
+              color=mix(color,vec3(.92,.97,1.06)*clamp(luma*1.9+.18,.4,1.25),snow);
+            } else if(uWeather<2.5){
+              float soot=smoothstep(.25,.75,n1)*(.5+.5*uStone);
+              color*=mix(vec3(1.),vec3(.42,.36,.36),soot*.8+.2);
+              float low=1.-smoothstep(0.,14.,vLocal.y+n2*4.);
+              color+=vec3(1.4,.3,.05)*low*smoothstep(.55,.8,n2)*.35*fade;
+            } else {
+              float moss=max(up*smoothstep(.25,.55,n1),smoothstep(.62,.8,n1*.55+n2*.45)*(1.-smoothstep(10.,40.,vLocal.y)));
+              vec3 mossColour=mix(vec3(.12,.22,.08),vec3(.3,.42,.13),n2);
+              color=mix(color*vec3(.78,.86,.74),mossColour*clamp(luma*2.2+.1,.3,1.3),moss*fade);
+              // Creeper streaks running down the walls.
+              float streak=smoothstep(.72,.9,noise(vec2(vWorld.x*.35+vWorld.z*.35,vWorld.y*.02)))*(1.-up);
+              color=mix(color,mossColour*.7*clamp(luma*2.,.3,1.2),streak*.6*fade);
+            }
+          }
           gl_FragColor=vec4(color,1.);
           #include <colorspace_fragment>
         }`,

@@ -4,6 +4,7 @@ import type { DesertRegionProfile } from '../../game/race/regions';
 import type { DesertRegionId } from '../../game/race/types';
 import { acquireDuskSkyAssets, duskSkyUniforms } from '../sky/DuskSkyAssets';
 import { DUSK_SKY_FRAGMENT, RACING_SKY_FRAGMENT, DUSK_SKY_VERTEX } from '../sky/DuskSkyShader';
+import { SCENERY_TIME } from '../inkstorm/RacingBiomeScenery';
 
 /** Keep the approved photographic sky above the restored Production renderer.
  * Sky resources and grading are isolated from surface lighting and materials. */
@@ -13,7 +14,7 @@ export class SkyAtmosphere extends Group {
   private disposed=false;
   private readonly material=new ShaderMaterial({
     name:'Salt flats photographic dusk sky', side:BackSide,depthWrite:false,depthTest:false,toneMapped:false,
-    uniforms:{...duskSkyUniforms(),uBiomeSky:{value:new Color(1,1,1)},uBiomeStrength:{value:0}},
+    uniforms:{...duskSkyUniforms(),uBiomeSky:{value:new Color(1,1,1)},uBiomeStrength:{value:0},uBiomeId:{value:0},uTime:SCENERY_TIME},
     vertexShader:DUSK_SKY_VERTEX,
     fragmentShader:DUSK_SKY_FRAGMENT,
   });
@@ -31,6 +32,7 @@ export class SkyAtmosphere extends Group {
     if (this.material.fragmentShader !== fragment) { this.material.fragmentShader = fragment; this.material.needsUpdate = true; }
     this.material.uniforms.uBiomeSky!.value.set(biome.sky);
     this.material.uniforms.uBiomeStrength!.value=biome.id==='desert'?0:.85;
+    this.material.uniforms.uBiomeId!.value=({desert:0,frozen:1,volcanic:2,jungle:3} as const)[biome.id];
   }
   update(_time:number,camera:Camera):void {this.position.copy(camera.position);}
   dispose():void {

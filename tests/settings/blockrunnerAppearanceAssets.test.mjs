@@ -1,7 +1,7 @@
 import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { describe, expect, it } from 'vitest';
-import { BLOCKRUNNER_ART_DEFINITIONS } from '../../src/game/vehicleAppearance';
+import { BLOCKRUNNER_ART_DEFINITIONS, legacyPodFile } from '../fixtures/legacyVehicleArt';
 
 // Checked-in fixture pins actual final public bytes; ordinary npm verify needs no external environment.
 const receipt = JSON.parse(readFileSync(new URL('../fixtures/blockrunnerPackage.json', import.meta.url), 'utf8'));
@@ -25,7 +25,7 @@ describe('final Blockrunner package bytes and restrictive asset contract', () =>
     expect(packageReceipt).toBeDefined();
     expect(packageReceipt.sha256).toMatch(/^[a-f0-9]{64}$/);
     // Immutable package admission; runtime compression has a separate byte-for-byte geometry receipt.
-    const bytes = readFileSync(new URL(`../../public${packageReceipt.publicUrl}`, import.meta.url));
+    const bytes = readFileSync(new URL(`../../${legacyPodFile(packageReceipt.publicUrl)}`, import.meta.url));
     expect(bytes.length).toBe(packageReceipt.bytes); expect(sha(bytes)).toBe(packageReceipt.sha256);
     expect(bytes.readUInt32LE(0)).toBe(0x46546c67); expect(bytes.readUInt32LE(4)).toBe(2);
     expect(bytes.readUInt32LE(8)).toBe(bytes.length); expect(bytes.readUInt32LE(16)).toBe(0x4e4f534a);

@@ -1,5 +1,5 @@
 import { GamepadFeedback } from '../../game/input/gamepadFeedback';
-import { racingBiomeForSeed } from '../../game/race/racingBiomes';
+import { racingBiomeForSeed, type RacingBiomeId } from '../../game/race/racingBiomes';
 import { DrivingEffects } from '../galactic/DrivingEffects';
 import { duskSkyAssetReceipt } from '../sky/DuskSkyAssets';
 import { CombatPresentationController, type CombatPresentationContext } from '../combat/CombatPresentationController';
@@ -18,10 +18,12 @@ import { CinematicCamera, type CameraSubject } from '../../camera/CinematicCamer
 import { updateCourseJunctionFraming } from '../../camera/CourseJunctionFraming';
 import { RaceCameraDirector } from '../../camera/RaceCameraDirector';
 import { PodracerAudio, type RivalAudioTelemetry } from '../../audio';
+import { ANNOUNCER_WELCOME_URL, RECORDED_VOICE_LINES } from '../../audio/catalogue';
 import { RaceMastery, masterySectorLabels, INKSTORM_HERO_SEED, type CompetitionProfile, type MasteryStartOptions } from '../../game/mastery';
 import { loadVehicleAppearance, resolveRacerAppearancePreference, saveVehicleAppearance, selectablePodAppearance, SELECTABLE_POD_APPEARANCES, vehicleChaseClearance, type VehicleAppearanceId } from '../../game/vehicleAppearance';
 import { POD_IDENTITIES, podIdentityStatRows } from '../../game/podIdentity';
-import { getInkstormSolidHeight } from '../../game/race/inkstormLayout';
+import { getInkstormLayout, getInkstormSolidHeight } from '../../game/race/inkstormLayout';
+import { StartCeremony } from '../setpieces/StartCeremony';
 import type { HeightSampler } from '../../game/simulation/types';
 import { applyTrailerCamera, validateTrailerCameraShot, type TrailerCameraShot } from '../../camera/TrailerCamera';
 import { VehicleArtLibrary } from '../vehicles/VehicleArtLibrary';
@@ -145,6 +147,11 @@ import { createRenderer } from './createRenderer';
 import { InkstormSunShadow } from '../inkstorm/InkstormSunShadow';
 import { InkstormRacerShadow } from '../inkstorm/InkstormRacerShadow';
 import { Viewport } from './Viewport';
+import { setWorldSunForBiome } from '../lighting/WorldLight';
+import { RoosterTails, type RoosterTailSource } from '../terrain/RoosterTails';
+import { AmbientMotes } from '../terrain/AmbientMotes';
+import { SCENERY_TIME } from '../inkstorm/RacingBiomeScenery';
+import { POD_FOOTPRINTS } from '../../game/podGeometry';
 
 /**
  * A close racing pack only needs one fully articulated rival at a time. The
@@ -309,6 +316,12 @@ export class GameApp {
   }));
   private readonly courseView = new RaceCourseView();
   private readonly speedStreaks = new SpeedStreaks();
+  private readonly roosterTails = new RoosterTails();
+  private readonly ambientMotes = new AmbientMotes();
+  private readonly startCeremony = new StartCeremony();
+  private ceremonyRace: unknown = null;
+  private announcedWorld: RacingBiomeId = 'desert';
+  private readonly roosterSources: RoosterTailSource[] = [];
   private readonly contactShadows = new GroundContactShadows(RACE_PRESENTATION_CAPACITY);
   private readonly galacticEffects = new GalacticEffectsView({
     flameAtlas: { url: '/assets/fx/inkstorm/rupture-flame-v1.png' },
@@ -450,6 +463,7 @@ export class GameApp {
   private combatCameraCut = false;
   private combatChaseRecovery = false;
   private finalStraightBlend = 0;
+  private boostBlend = 0;
   private combatPriorManualCamera: CaptureCamera | null = null;
   private readonly combatSystemMotion = typeof window.matchMedia === 'function'
     ? window.matchMedia('(prefers-reduced-motion: reduce)') : null;
@@ -530,6 +544,10 @@ export class GameApp {
   private roomCopiedUntil = 0;
   private networkSnapshotAge = 0;
   private liveQualityLevel = this.performanceGovernor.decision.qualityLevel;
+  private lensBlur = 0;
+  private lensChromatic = 0;
+  private lensFlash = 0;
+  private directorVisibility = 1;
   private readonly rivalLodModes: DistantRivalLod[] = Array.from(
     { length: RACE_PRESENTATION_CAPACITY - 1 },
     () => 'full',
@@ -539,7 +557,7 @@ export class GameApp {
     for (const entry of this.race.state.entries) this.race.selectRacerVehicle(entry.id, 'podracer');
     this.renderer = createRenderer();
     this.renderer.domElement.id = 'viewport';
-    this.renderer.domElement.setAttribute('aria-label', 'Podracing viewport');
+    this.renderer.domElement.setAttribute('aria-label', 'Thrustline viewport');
     mount.append(this.renderer.domElement);
     this.hud = new RaceHud(mount, {
       vehicleArtLibrary: this.vehicleArtLibrary,
@@ -547,7 +565,7 @@ export class GameApp {
       onCockpitCue: (cue) => this.audio.playCockpitCue(cue),
       onAction: this.handleHudAction,
     });
-    this.hud.setAssetStatus('Preparing the Inkstorm circuit…');
+    this.hud.setAssetStatus('Preparing the circuit…');
     void Promise.all([this.inkstormWorld.ready, this.sky.ready]).then(() => {
       if (this.disposed) return;
       this.worldAssetsSettled = true;
@@ -561,7 +579,7 @@ export class GameApp {
     // Chrome may permit audio immediately (for an already-engaged origin). If
     // it does not, the suspended graph is fully prepared and begins on the
     // first selector key/pointer gesture without skipping the supplied sting.
-    void this.audio.startMenuMusic('/audio/podracing-selection-intro.webm');
+    void this.audio.startMenuMusic(ANNOUNCER_WELCOME_URL);
     // This succeeds immediately on origins Chrome already trusts; otherwise
     // the armed gesture listeners remain in place and resume on the player's
     // first selector key/click, which is the browser-mandated fallback.
@@ -575,6 +593,9 @@ export class GameApp {
     this.scene.add(this.sky);
     this.scene.add(this.terrain.group);
     this.scene.add(this.dust.group);
+    this.scene.add(this.roosterTails.mesh);
+    this.scene.add(this.ambientMotes.points);
+    this.scene.add(this.startCeremony.group);
     this.scene.add(this.contactShadows.mesh);
     this.scene.add(this.galacticEffects, this.drivingEffects);
     this.scene.add(this.landmarks);
@@ -604,6 +625,7 @@ export class GameApp {
     this.galacticEffects.setTerrainUniforms(this.terrain.gulfTextures.uniforms);
     this.courseView.setTerrainSampler((x, z) => this.terrain.sampleHeight(x, z), this.terrain.gulfTextures.uniforms);
     this.courseView.setCourse(this.race.course.getRenderData(1024), this.race.routeMarkers);
+    this.terrain.setCourseLine(this.race.course.getRenderData(1024).points);
     this.inkstormWorld.setCourse(this.race.course);
     this.racerShadowBindingRevision = -1;
     void this.inkstormWorld.ready.then(() => {
@@ -631,6 +653,7 @@ export class GameApp {
         hullSilhouetteSuppression: 0.08,
       },
     });
+    this.applyWorldLook();
     this.terrainMrt = new CelPrepassMaterial({
       name: 'Terrain displaced cel MRT',
       vertexPreamble: `uniform vec2 uRenderOrigin;\n${TERRAIN_GLSL}`,
@@ -1343,7 +1366,86 @@ export class GameApp {
         rivals: this.rivalAudioTelemetry(),
       });
     }
+    this.updateRoosterTails(presentationTime);
+    this.updateStartCeremony(motionDelta);
+    this.ambientMotes.setWeather(this.directorVisibility);
+    this.ambientMotes.setDensity((this.settings.comfort.reducedMotion ? .35 : 1) * (this.performanceGovernor.decision.qualityLevel >= 7 ? .5 : 1));
+    this.ambientMotes.update(presentationTime, this.cameraRig.camera.position, this.renderer.getPixelRatio());
+    SCENERY_TIME.value = presentationTime;
+    this.updateLens(presentationTime, motionDelta);
     this.post.render(dt);
+  }
+
+  /** One sun, one grade and one atmosphere per world. */
+  private applyWorldLook(): void {
+    const biome = racingBiomeForSeed(this.race.course.seed).id;
+    this.post.setBiome(biome);
+    this.roosterTails.setBiome(biome, this.post.look.sunColor);
+    this.ambientMotes.setBiome(biome);
+    const beacon = ({ desert: [5.2, 2.6, .9], frozen: [1.2, 3.8, 5.6], volcanic: [6, 1.6, .35], jungle: [2.4, 5.2, 2.2] } as const)[biome];
+    this.courseView.setBeaconColor(beacon[0], beacon[1], beacon[2]);
+    if (setWorldSunForBiome(biome)) this.inkstormSunShadow.invalidate();
+  }
+
+  /** Grid lamps, painted slots and GO pyrotechnics follow the countdown. */
+  private updateStartCeremony(dt: number): void {
+    const state = this.race.state;
+    if (this.ceremonyRace !== this.race) {
+      this.ceremonyRace = this.race;
+      const gantry = getInkstormLayout(this.race.course).find(p => p.family === 'foundry-gantry' && p.progress === .012);
+      this.startCeremony.setGantry(gantry ? { x: gantry.x, y: this.terrainAdapter.heightAt(gantry.x, gantry.z) - 1.5, z: gantry.z, yaw: gantry.yaw } : null);
+      this.startCeremony.setGrid(state.phase === 'countdown'
+        ? state.entries.map(entry => ({ x: entry.vehicle.position.x, z: entry.vehicle.position.z, yaw: entry.vehicle.orientation.yaw }))
+        : [], (x, z) => this.terrainAdapter.heightAt(x, z));
+    }
+    this.startCeremony.update({
+      phase: state.phase, awaiting: this.awaitingRaceStart,
+      countdownRemaining: state.countdownRemaining, raceTime: state.raceTime,
+    }, Math.min(dt, .1), this.cameraRig.camera, this.renderer.getPixelRatio());
+  }
+
+  /** Engine-driven dust plumes; presentation only, fed from authoritative poses. */
+  private updateRoosterTails(time: number): void {
+    const motion = this.settings.comfort.reducedMotion ? .45 : 1;
+    this.roosterTails.setIntensity(this.performanceGovernor.decision.qualityLevel >= 7 ? .45 * motion : motion);
+    const sources = this.roosterSources;
+    sources.length = 0;
+    if (this.race.state.phase === 'racing' || this.race.state.phase === 'finished') {
+      for (const entry of this.race.state.entries) {
+        const vehicle = entry.vehicle;
+        const footprint = POD_FOOTPRINTS[this.race.podIdentityFor(entry.id)] ?? POD_FOOTPRINTS.procedural;
+        sources.push({
+          x: vehicle.position.x, z: vehicle.position.z, yaw: vehicle.orientation.yaw,
+          speed: vehicle.telemetry.speed, velocityX: vehicle.velocity.x, velocityZ: vehicle.velocity.z,
+          clearance: vehicle.telemetry.groundClearance, engineX: footprint.engineX, exhaustZ: footprint.exhaustZ,
+          boosting: vehicle.boost.active, visible: entry.galactic?.wreck.phase !== 'wrecked',
+        });
+      }
+    }
+    const eye = this.cameraRig.camera.position;
+    this.roosterTails.update(time, sources, (x, z) => this.terrain.sampleHeight(x, z), eye.x, eye.y, eye.z);
+  }
+
+  /** Gameplay-driven lens response: speed blur, boost fringing, impact flash. */
+  private updateLens(time: number, dt: number): void {
+    const frame = this.post.frame;
+    frame.time = time;
+    frame.visibility = this.directorVisibility;
+    const local = this.race.state.entries.find((entry) => entry.id === this.localRacerId());
+    const racing = this.race.state.phase === 'racing' && !this.awaitingRaceStart && !this.paused;
+    const motion = this.settings.comfort.reducedMotion ? 0 : this.settings.comfort.motionIntensity;
+    const speed = local?.vehicle.telemetry.normalizedSpeed ?? 0;
+    const boosting = Boolean(local?.vehicle.boost.active);
+    const chase = this.cameraMode === 'chase';
+    const blurTarget = racing && chase ? (Math.max(0, (speed - .62) / .38) * .3 + (boosting ? .7 : 0)) * motion : 0;
+    const chromaTarget = racing && chase && boosting ? motion : 0;
+    const k = 1 - Math.exp(-Math.max(dt, 1 / 240) * 5.5);
+    this.lensBlur += (blurTarget - this.lensBlur) * k;
+    this.lensChromatic += (chromaTarget - this.lensChromatic) * k;
+    this.lensFlash = Math.max(0, this.lensFlash - Math.max(dt, 0) * 3.2);
+    frame.speedBlur = this.lensBlur;
+    frame.chromatic = this.lensChromatic;
+    frame.flash = this.lensFlash * motion;
   }
 
   private setCaptureMode(enabled: boolean): void {
@@ -1393,12 +1495,15 @@ export class GameApp {
   private applyRaceDirectorPresentation(): number {
     const environment = this.race.state.director?.environment;
     const visibility = Math.min(1, Math.max(0.12, environment?.visibility ?? 1));
+    this.directorVisibility = visibility;
     const region = this.terrain.atmosphereAt(this.subject.position.x);
     const fog = this.scene.fog;
     if (fog instanceof Fog) {
+      // The cinematic post chain owns aerial perspective; the legacy linear fog
+      // only softens the far terrain rings where post depth precision ends.
       fog.color.set(region.haze);
-      fog.near = 160 + visibility * 460;
-      fog.far = 820 + visibility * 2_980;
+      fog.near = (160 + visibility * 460) * 3.2;
+      fog.far = (820 + visibility * 2_980) * 3.2;
     }
     this.terrain.setHazeRange(
       220 + visibility * 260,
@@ -1557,12 +1662,14 @@ export class GameApp {
     this.landmarks.setHeightSampler((x, z) => this.terrain.sampleHeight(x, z));
     this.courseView.setTerrainSampler((x, z) => this.terrain.sampleHeight(x, z), this.terrain.gulfTextures.uniforms);
     this.courseView.setCourse(this.race.course.getRenderData(1024), this.race.routeMarkers);
+    this.terrain.setCourseLine(this.race.course.getRenderData(1024).points);
     this.inkstormWorld.setCourse(this.race.course);
     this.racerShadowBindingRevision = -1;
     this.sky.setRegion(this.race.course.region);
     this.sky.setRacingBiome(this.race.course.seed);
     this.terrain.setRacingBiome(this.race.course.seed);
     this.dust.setRacingBiome(this.race.course.seed);
+    this.applyWorldLook();
     this.installCourseOutlines();
     this.minimapCourse = this.createMinimapCourse();
     this.minimapCourseBranches = this.createMinimapCourseBranches();
@@ -1832,6 +1939,12 @@ export class GameApp {
     if (!forcePrepare && this.awaitingRaceStart && this.mastery.selectedEvent.id === id) return;
     const vehicleClass = this.selectedVehicleClass();
     const event = this.mastery.selectEvent(id);
+    // The announcer names a newly chosen world.
+    const world = racingBiomeForSeed(event.seed).id;
+    if (world !== this.announcedWorld) {
+      this.announcedWorld = world;
+      this.audio.playVoiceLine(RECORDED_VOICE_LINES[`world-${world}`]);
+    }
     this.selectedLaps = event.laps;
     this.selectedRaceMode = event.mode;
     this.selectedAIDifficulty = event.difficulty;
@@ -3361,6 +3474,7 @@ export class GameApp {
     this.subject.velocity.set(state.velocity.x, state.velocity.y, state.velocity.z);
     this.subject.speed = state.telemetry.speed;
     this.subject.chaseClearance = vehicleChaseClearance(this.playerView.activeAppearanceId);
+    this.subject.solidHeightAt ??= (x, z) => getInkstormSolidHeight(this.race.course, x, z, this.race.terrain.heightAt.bind(this.race.terrain));
     const entry = this.race.state.entries.find(candidate => candidate.vehicle === state);
     this.subject.junctionLookAhead=undefined;this.subject.junctionWeight=0;
     if(entry){
@@ -3377,6 +3491,8 @@ export class GameApp {
         && (tag === 'recovery-straight' || tag === 'start-straight') ? 1 : 0;
       this.finalStraightBlend += (finalStraight - this.finalStraightBlend) * 0.035;
       this.subject.finalStraight = this.finalStraightBlend;
+      this.boostBlend += ((entry.vehicle.boost.active ? 1 : 0) - this.boostBlend) * (entry.vehicle.boost.active ? .12 : .05);
+      this.subject.boost = this.boostBlend;
     } else this.subject.routeLookAhead = undefined;
   }
 
@@ -4086,7 +4202,7 @@ export class GameApp {
             residentStatistics: view.imported.residentStatistics,
           })),
         },
-        inkstorm: { loaded: this.inkstormWorld.loaded, error: this.inkstormWorld.error, detail: { ...this.inkstormWorld.detailReceipt } },
+        inkstorm: { loaded: this.inkstormWorld.loaded, error: this.inkstormWorld.error, detail: { ...this.inkstormWorld.detailReceipt }, colossus: { ...this.inkstormWorld.colossusReceipt }, ceremony: { ...this.startCeremony.receipt } },
         mastery: this.room.lobby.role === 'solo'
           ? this.mastery.model(this.awaitingRaceStart ? this.masteryStartOptions() : undefined) : null,
         competitionProfile: this.race.competitionProfile,
@@ -4228,6 +4344,7 @@ export class GameApp {
   private applyPerformanceDecision(decision: Readonly<PerformanceDecision>): void {
     this.viewport.setAdaptivePixelRatio(decision.pixelRatio);
     this.post.setPrepassScale(decision.prepassScale);
+    this.post.setQualityLevel(decision.qualityLevel);
     this.terrain.setLevelCount(decision.terrainLevelCount);
     this.dust.setQuality(decision.dustQuality);
     // The player is never simplified: cockpit readability and the hero outline

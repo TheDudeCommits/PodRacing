@@ -208,14 +208,14 @@ const model: RaceHudViewModel = {
 
 if (query.has('mastery')) {
   model.mastery = {
-    eventId: 'inkstorm-trial', eventTitle: 'Inkstorm • Time Attack',
+    eventId: 'inkstorm-trial', eventTitle: 'Sunscar • Time Attack',
     eventSubtitle: 'One clean lap. Stock machine. Chase your personal best.',
     events: MASTERY_EVENTS.map(({ id, title, subtitle }) => ({ id, title, subtitle })),
     bestTime: 94.32, medal: 'silver', ghostAvailable: true, ghostEnabled: true,
     courseSaved: true, latestSector: { index: 1, time: 28.17, delta: -0.287 },
     tutorial: query.has('tutorial') ? { step: 2, total: 5, title: 'Brake before the bend', instruction: 'Release the throttle and brake before the corner. Turn in as your speed settles.', progress: 0.45, complete: false } : null,
     result: phase === 'finished' ? {
-      eventTitle: 'Inkstorm • Time Attack', time: 91.68, personalBest: true, bestTime: 91.68,
+      eventTitle: 'Sunscar • Time Attack', time: 91.68, personalBest: true, bestTime: 91.68,
       improvement: 2.64, medal: 'silver', nextMedal: { medal: 'gold', time: 90 },
       sectors: [{ index: 1, time: 28.17, delta: -0.287 }, { index: 2, time: 32.58, delta: 0.219 }, { index: 3, time: 30.93, delta: -2.572 }],
       invalidReason: null, nextEventId: 'cup-canyon', nextObjective: 'Find 1.68 seconds for gold. Try a tighter exit from the final turn.',

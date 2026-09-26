@@ -631,9 +631,19 @@ export class PodracerAudio {
       return false;
     }
     const now = context.currentTime;
-    if (this.voiceLinePlayback && now < this.voiceLinePlayback.endsAt) return false;
-    if (this.overtakeCalloutPlayback && now < this.overtakeCalloutPlayback.endsAt) return false;
-    if (now - this.lastVoiceLineAt < 1.6) return false;
+    // Countdown calls are one second apart and must never be swallowed; they
+    // cut any line still ringing. Other calls keep the anti-chatter gap.
+    const countdown = /\/count-(?:1|2|3|go)\.ogg$/.test(url);
+    if (countdown && this.voiceLinePlayback) {
+      try { this.voiceLinePlayback.source.stop(); } catch { /* already stopped */ }
+      this.disconnectOvertakeCallout(this.voiceLinePlayback);
+      this.voiceLinePlayback = null;
+    }
+    if (!countdown) {
+      if (this.voiceLinePlayback && now < this.voiceLinePlayback.endsAt) return false;
+      if (this.overtakeCalloutPlayback && now < this.overtakeCalloutPlayback.endsAt) return false;
+      if (now - this.lastVoiceLineAt < 1.6) return false;
+    }
     const start = now + 0.015;
     const source = context.createBufferSource();
     source.buffer = buffer;

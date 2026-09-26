@@ -5,7 +5,7 @@ import { sampleTeemtoContactRoll, teemtoSlideTime, teemtoStrikeTime } from '../.
 import { WreckVisualPoseCache, WRECK_PRESENTATION_DURATION } from '../../src/render/combat/WreckVisualPose';
 import { ImportedVehiclePresentation } from '../../src/render/vehicles/ImportedVehiclePresentation';
 import { VehicleArtLibrary } from '../../src/render/vehicles/VehicleArtLibrary';
-import { TEEMTO_ART_DEFINITIONS } from '../../src/game/vehicleAppearance';
+import { TEEMTO_ART_DEFINITIONS } from '../fixtures/legacyVehicleArt';
 import { InkstormRacerShadow } from '../../src/render/inkstorm/InkstormRacerShadow';
 
 const names = ['teemto-engine-left-body', 'teemto-damage-right-front-v16', 'teemto-damage-right-rear-v16'];

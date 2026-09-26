@@ -1,8 +1,7 @@
 import { BoxGeometry, Euler, Group, Mesh, MeshStandardMaterial, PropertyBinding, Texture, Vector3 } from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { TEEMTO_ART_DEFINITIONS, TEEMTO_BODY_GROUP_NODES, TEEMTO_BODY_NODES } from '../../src/game/vehicleAppearance';
-import * as vehicleAppearance from '../../src/game/vehicleAppearance';
+import { legacyPodFile, TEEMTO_ART_DEFINITIONS, TEEMTO_BODY_GROUP_NODES, TEEMTO_BODY_NODES, getLegacyVehicleArtDefinition } from '../fixtures/legacyVehicleArt';
 import { WreckVisualPoseCache, type WreckVisualPose } from '../../src/render/combat/WreckVisualPose';
 import { InkstormRacerShadow } from '../../src/render/inkstorm/InkstormRacerShadow';
 import { ImportedVehiclePresentation, type VehicleArtDefinition } from '../../src/render/vehicles/ImportedVehiclePresentation';
@@ -68,7 +67,7 @@ const actualRivalDamagePath = 'assets/source/inkstorm/combat-round35/authored-da
 async function loadActualGeometry(path: string) {
   const bytes = readFileSync(path);
   if (path === actualDamagePath || path === actualRivalDamagePath
-    || /^public\/assets\/inkstorm\/vehicles\/teemto-damage-(hero|rival)-v16\.glb$/.test(path)) {
+    || /^tests\/fixtures\/legacy-pods\/teemto-damage-(hero|rival)-v16\.glb$/.test(path)) {
     // The authored damage export is already geometry-only: load exact bytes.
     return (await new GLTFLoader().parseAsync(bytes.buffer.slice(bytes.byteOffset, bytes.byteOffset + bytes.byteLength), '')).scene;
   }
@@ -95,8 +94,8 @@ async function loadActualGeometry(path: string) {
 describe('optional authored damage adapter lifecycle', () => {
   it.each([['hero', 0], ['rival', 1]] as const)('routes the production %s definition to its exact public damage package', async (lod, index) => {
     const requested: string[] = [];
-    const library = new VehicleArtLibrary({ load: async url => { requested.push(url); return loadActualGeometry(`public${url}`); } }); owned.push(library);
-    const racer = new RacerPresentation(library, undefined, index); owned.push(racer);
+    const library = new VehicleArtLibrary({ load: async url => { requested.push(url); return loadActualGeometry(legacyPodFile(url)); } }); owned.push(library);
+    const racer = new RacerPresentation(library, undefined, index, getLegacyVehicleArtDefinition); owned.push(racer);
     racer.setVehicleClass('podracer');
     await racer.setAppearance('teemto');
     const art = TEEMTO_ART_DEFINITIONS[lod];
@@ -110,9 +109,8 @@ describe('optional authored damage adapter lifecycle', () => {
 
   it('keeps racer effects, pilot LOD and fixed prepass registrations coherent through live damage and ordinary recovery', async () => {
     const intact = intactFixture(), damage = damageFixture();
-    vi.spyOn(vehicleAppearance, 'getVehicleArtDefinition').mockReturnValue(definition);
     const library = new VehicleArtLibrary({ load: async url => url === '/intact.glb' ? intact.root : damage.root }); owned.push(library);
-    const racer = new RacerPresentation(library); owned.push(racer);
+    const racer = new RacerPresentation(library, undefined, 0, () => definition); owned.push(racer);
     const changed = vi.fn(); racer.createCelPrepassProxy(); racer.setGeometryChangeListener(changed);
     await racer.setAppearance('teemto');
     expect(racer.damageVariantAvailable).toBe(true);
@@ -144,7 +142,7 @@ describe('optional authored damage adapter lifecycle', () => {
   });
 
   it('loads the exact authored hero fracture with the installed GLTFLoader and validates replacement, not combined resident, budgets', async () => {
-    const f = setup(url => loadActualGeometry(url === actualDamagePath ? url : `public${url}`));
+    const f = setup(url => loadActualGeometry(url === actualDamagePath ? url : legacyPodFile(url)));
     expect(await f.presentation.setSource({ ...TEEMTO_ART_DEFINITIONS.hero,
       damageVariant: { id: 'teemto-damage', revision: 'v16-authored-test', url: actualDamagePath } })).toBe('ready');
     const p = f.presentation;
@@ -177,7 +175,7 @@ describe('optional authored damage adapter lifecycle', () => {
   });
 
   it('rejects the hero damage asset against the unchanged rival 30k budget and retains the actual rival', async () => {
-    const f = setup(url => loadActualGeometry(url === actualDamagePath ? url : `public${url}`), 30_000);
+    const f = setup(url => loadActualGeometry(url === actualDamagePath ? url : legacyPodFile(url)), 30_000);
     expect(await f.presentation.setSource({ ...TEEMTO_ART_DEFINITIONS.rival,
       damageVariant: { id: 'teemto-damage', revision: 'v16-authored-test', url: actualDamagePath } })).toBe('ready');
     expect(f.presentation.damageVariantAvailable).toBe(false);
@@ -188,7 +186,7 @@ describe('optional authored damage adapter lifecycle', () => {
   });
 
   it('loads the exact authored rival fracture within 30k while retaining its original cockpit and pilot', async () => {
-    const f = setup(url => loadActualGeometry(url === actualRivalDamagePath ? url : `public${url}`), 30_000);
+    const f = setup(url => loadActualGeometry(url === actualRivalDamagePath ? url : legacyPodFile(url)), 30_000);
     expect(await f.presentation.setSource({ ...TEEMTO_ART_DEFINITIONS.rival,
       damageVariant: { id: 'teemto-damage-rival', revision: 'v16-authored-test', url: actualRivalDamagePath } })).toBe('ready');
     const p = f.presentation, cockpit = p.getNode(TEEMTO_BODY_NODES.cockpit) as Mesh;

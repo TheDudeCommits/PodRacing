@@ -244,9 +244,10 @@ function cuesForEvent(event: AudioEventLike, options: AudioEventMapOptions): Pod
       return eventBoolean(event, 'active') ? [cue('warning', 0.88, 0.82)] : [cue('ui', 0.25, 1.3)];
     case 'countdown': {
       const rawCue = recordOf(event).cue;
-      if (rawCue === 'go') return [cue('horn', 1)];
+      if (rawCue === 'go') return [cue('horn', 1), voice('count-go')];
       const count = typeof rawCue === 'number' ? rawCue : 3;
-      return [cue('countdown', 0.82, 1 + (3 - count) * 0.09)];
+      const call = count === 3 ? voice('count-3') : count === 2 ? voice('count-2') : count === 1 ? voice('count-1') : null;
+      return call ? [cue('countdown', 0.82, 1 + (3 - count) * 0.09), call] : [cue('countdown', 0.82, 1 + (3 - count) * 0.09)];
     }
     case 'start-horn':
       return [cue('horn', 1)];
@@ -261,7 +262,7 @@ function cuesForEvent(event: AudioEventLike, options: AudioEventMapOptions): Pod
       return cues;
     }
     case 'finish':
-      return ownRacer ? [cue('finish', 1, 1.04)] : [];
+      return ownRacer ? [cue('finish', 1, 1.04), voice(eventNumber(event, 'placement', 2) === 1 ? 'victory' : 'race-over')] : [];
     case 'wrong-way':
       return ownRacer && eventBoolean(event, 'active') ? [cue('warning', 0.82, 0.74)] : [];
     case 'ui-confirm':
@@ -369,7 +370,7 @@ function cuesForEvent(event: AudioEventLike, options: AudioEventMapOptions): Pod
       return ownRacer ? [cue('wreck', 1, 0.78)] : [];
     case 'takedown':
       return eventString(event, 'attackerId') === options.playerId || !options.playerId
-        ? [cue('takedown', 1, 1.08)]
+        ? [cue('takedown', 1, 1.08), voice('takedown')]
         : [];
     case 'recovery-start':
       return ownRacer ? [cue('recovery', 0.4, 0.72)] : [];
